@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "действие сейчас: I am, she is, they are + глагол с -ing",
+    "uk": "дія зараз: I am, she is, they are + дієслово з -ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Птицы возле кормушки",
+        "uk": "Птахи біля годівниці"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите у окна и внимательно следите за птицами у кормушки. Друг спрашивает, чем вы заняты именно сейчас. Observe — «наблюдать». I am observing the birds — «Я наблюдаю за птицами». Для действия сейчас нужны две части: am и observing. У observe перед -ing убираем конечную e. После I используем am; одного observing недостаточно.",
+        "uk": "Ви стоїте біля вікна й уважно стежите за птахами біля годівниці. Друг запитує, чим ви зайняті саме зараз. Observe — «спостерігати». I am observing the birds — «Я спостерігаю за птахами». Для дії зараз потрібні дві частини: am і observing. В observe перед -ing прибираємо кінцеву e. Після I використовуємо am; самого observing недостатньо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r1",
+              "text": "I am observing the birds."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r2",
+              "text": "I observing the birds."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r3",
+              "text": "I am observe the birds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r1",
+              "text": "I am observing the birds."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r2",
+              "text": "I observing the birds."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro1:r3",
+              "text": "I am observe the birds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Гусеница на листе",
+        "uk": "Гусениця на листку"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга наклонилась к листу и прямо сейчас смотрит, как по нему ползёт гусеница. Caterpillar — «гусеница». She is watching a caterpillar — «Она наблюдает за гусеницей». С she нужна is, а действие watch получает -ing: watching.",
+        "uk": "Подруга нахилилася до листка й просто зараз дивиться, як ним повзе гусениця. Caterpillar — «гусениця». She is watching a caterpillar — «Вона спостерігає за гусеницею». Із she потрібне is, а дія watch отримує -ing: watching."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r1",
+              "text": "She is watching a caterpillar."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r2",
+              "text": "She watching a caterpillar."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r3",
+              "text": "She is watch a caterpillar."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r1",
+              "text": "She is watching a caterpillar."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r2",
+              "text": "She watching a caterpillar."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro2:r3",
+              "text": "She is watch a caterpillar."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мелкие буквы на марке",
+        "uk": "Дрібні літери на марці"
+      },
+      "bodyByLocale": {
+        "ru": "Двое друзей рассматривают старую почтовую марку через лупу. Magnifier — «лупа, увеличительное стекло». They are using a magnifier — «Они пользуются лупой». С they нужна are. У use перед -ing убираем e: using. Речь о том, что друзья делают сейчас.",
+        "uk": "Двоє друзів розглядають стару поштову марку крізь лупу. Magnifier — «лупа, збільшувальне скло». They are using a magnifier — «Вони користуються лупою». Із they потрібне are. В use перед -ing прибираємо e: using. Ідеться про те, що друзі роблять зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r1",
+              "text": "They are using a magnifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r2",
+              "text": "They using a magnifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r3",
+              "text": "They are use a magnifier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r1",
+              "text": "They are using a magnifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r2",
+              "text": "They using a magnifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-01:intro3:r3",
+              "text": "They are use a magnifier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4b9d4aeaad9f4db4984da10d21d71a564d31f8d58738d7783f9891eeb22e18e2"
+}

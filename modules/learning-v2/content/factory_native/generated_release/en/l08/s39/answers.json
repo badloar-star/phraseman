@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-39:word:shove",
+    "correctText": "shove",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-39:i01",
     "correctText": "Don’t shove.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-39:word:block",
+    "correctText": "block",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-39:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t block the exit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-39:word:drag",
+    "correctText": "drag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-39:i07",
-    "correctText": "Please don’t rush.",
+    "correctText": "Don’t drag the chair.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-39:i10",
-    "correctText": "en:lesson-08:session-39:i10:p1=bake\nen:lesson-08:session-39:i10:p2=shove\nen:lesson-08:session-39:i10:p3=cycle\nen:lesson-08:session-39:i10:p4=boiler",
+    "correctText": "en:lesson-08:session-39:i10:p1=shove\nen:lesson-08:session-39:i10:p2=block\nen:lesson-08:session-39:i10:p3=drag\nen:lesson-08:session-39:i10:p4=rush",
     "correctResponseId": null
   },
   {
@@ -55,18 +70,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-39:word:trample",
+    "correctText": "trample",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-39:i12",
-    "correctText": "Wipe it.",
+    "correctText": "Don’t trample the flowers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-39:i13",
-    "correctText": "I often bake.",
+    "correctText": "Please don’t rush.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-39:i14",
-    "correctText": "touch",
+    "correctText": "block",
     "correctResponseId": "en:lesson-08:session-39:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-39:i16",
-    "correctText": "en:lesson-08:session-39:i16:p1=shove\nen:lesson-08:session-39:i16:p2=bake\nen:lesson-08:session-39:i16:p3=wipe\nen:lesson-08:session-39:i16:p4=boiler",
+    "correctText": "en:lesson-08:session-39:i16:p1=shove\nen:lesson-08:session-39:i16:p2=block\nen:lesson-08:session-39:i16:p3=drag\nen:lesson-08:session-39:i16:p4=trample",
     "correctResponseId": null
   },
   {

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "can в предложении помощи и просьбе; persuade — повторение",
+    "uk": "can у пропозиції допомоги та проханні; persuade — повторення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перед первым выходом на сцену",
+        "uk": "Перед першим виходом на сцену"
+      },
+      "bodyByLocale": {
+        "ru": "Участник школьного спектакля боится забыть текст. Вы знаете, что он хорошо подготовился, и можете придать ему уверенности. Reassure — «успокаивать, вселять уверенность». I can reassure him — «Я могу его успокоить». Это поддержка, а не попытка заставить человека выступать. После can нужно reassure без to.",
+        "uk": "Учасник шкільної вистави боїться забути текст. Ви знаєте, що він добре підготувався, і можете додати йому впевненості. Reassure — «заспокоювати, вселяти впевненість». I can reassure him — «Я можу його заспокоїти». Це підтримка, а не спроба змусити людину виступати. Після can потрібне reassure без to."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r1",
+              "text": "I can reassure him."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r2",
+              "text": "I can to reassure him."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r3",
+              "text": "I can reassures him."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r1",
+              "text": "I can reassure him."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r2",
+              "text": "I can to reassure him."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro1:r3",
+              "text": "I can reassures him."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шум от репетиции",
+        "uk": "Шум від репетиції"
+      },
+      "bodyByLocale": {
+        "ru": "Музыкальная группа просит разрешить репетицию во дворе. Соседка против: шум помешает ребёнку спать. Objection — «возражение». I can understand her objection — «Я могу понять её возражение». Прежде чем убеждать, полезно понять причину отказа.",
+        "uk": "Музичний гурт просить дозволити репетицію у дворі. Сусідка проти: шум заважатиме дитині спати. Objection — «заперечення». I can understand her objection — «Я можу зрозуміти її заперечення». Перш ніж переконувати, корисно зрозуміти причину відмови."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r1",
+              "text": "I can understand her objection."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r2",
+              "text": "I can to understand her objection."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r3",
+              "text": "I can understands her objection."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r1",
+              "text": "I can understand her objection."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r2",
+              "text": "I can to understand her objection."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro2:r3",
+              "text": "I can understands her objection."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вернуть многоразовый стакан",
+        "uk": "Повернути багаторазову склянку"
+      },
+      "bodyByLocale": {
+        "ru": "Кафе хочет, чтобы посетители возвращали многоразовые стаканы. Вы с коллегами предлагаете небольшую скидку за возврат. Incentive — «стимул, поощрение». We can offer an incentive — «Мы можем предложить поощрение». Перед incentive нужен an: слово начинается с гласного звука.",
+        "uk": "Кав’ярня хоче, щоб відвідувачі повертали багаторазові склянки. Ви з колегами пропонуєте невелику знижку за повернення. Incentive — «стимул, заохочення». We can offer an incentive — «Ми можемо запропонувати заохочення». Перед incentive потрібне an: слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r1",
+              "text": "We can offer an incentive."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r2",
+              "text": "We can to offer an incentive."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r3",
+              "text": "We can offers an incentive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r1",
+              "text": "We can offer an incentive."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r2",
+              "text": "We can to offer an incentive."
+            },
+            {
+              "responseId": "en:lesson-08:session-51:intro3:r3",
+              "text": "We can offers an incentive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "32a7a5b644f8f03d88524ad1566558befc14768e2c3b7f34a90d5bbebdf4268f"
+}

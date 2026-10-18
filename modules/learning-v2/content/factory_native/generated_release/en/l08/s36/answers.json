@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-36:word:scratch",
+    "correctText": "scratch",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-36:i01",
     "correctText": "Don’t scratch it.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-36:word:dent",
+    "correctText": "dent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-36:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t dent it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-36:word:chip",
+    "correctText": "chip",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-36:i07",
-    "correctText": "Please don’t wait.",
+    "correctText": "Don’t chip it.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-36:i10",
-    "correctText": "en:lesson-08:session-36:i10:p1=relax\nen:lesson-08:session-36:i10:p2=scratch\nen:lesson-08:session-36:i10:p3=live\nen:lesson-08:session-36:i10:p4=smoke alarm",
+    "correctText": "en:lesson-08:session-36:i10:p1=scratch\nen:lesson-08:session-36:i10:p2=dent\nen:lesson-08:session-36:i10:p3=chip\nen:lesson-08:session-36:i10:p4=wait",
     "correctResponseId": null
   },
   {
@@ -55,18 +70,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-36:word:scuff",
+    "correctText": "scuff",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-36:i12",
-    "correctText": "Fold it.",
+    "correctText": "Don’t scuff the shoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-36:i13",
-    "correctText": "I often relax.",
+    "correctText": "Please don’t wait.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-36:i14",
-    "correctText": "touch",
+    "correctText": "dent",
     "correctResponseId": "en:lesson-08:session-36:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-36:i16",
-    "correctText": "en:lesson-08:session-36:i16:p1=scratch\nen:lesson-08:session-36:i16:p2=relax\nen:lesson-08:session-36:i16:p3=fold\nen:lesson-08:session-36:i16:p4=smoke alarm",
+    "correctText": "en:lesson-08:session-36:i16:p1=scratch\nen:lesson-08:session-36:i16:p2=dent\nen:lesson-08:session-36:i16:p3=chip\nen:lesson-08:session-36:i16:p4=scuff",
     "correctResponseId": null
   },
   {

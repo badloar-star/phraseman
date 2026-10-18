@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Времени достаточно",
-        "uk": "Часу достатньо"
+        "ru": "Ручка для глиняной чашки",
+        "uk": "Ручка для глиняної чашки"
       },
       "bodyByLocale": {
-        "ru": "Друг торопится собирать вещи, хотя до выхода ещё есть время. `Rush` — «торопиться». `Don’t rush` — «Не торопись». Чтобы сказать человеку не делать что-то, начните с `Don’t`, затем назовите действие: `rush`, без `to` и `s`. Обуваться быстрее не всегда полезно: можно уйти в разных ботинках.",
-        "uk": "Друг поспішає збирати речі, хоча до виходу ще є час. `Rush` — «поспішати». `Don’t rush` — «Не поспішай». Щоб сказати людині не робити чогось, почніть із `Don’t`, потім назвіть дію: `rush`, без `to` і `s`. Взуватися швидше не завжди корисно: можна піти в різних черевиках."
+        "ru": "На занятии керамикой друг торопится прикрепить ручку к сырой чашке. Времени ещё достаточно. Rush — «торопиться». `Don’t rush` — «Не торопись». Чтобы попросить не делать что-то, начните с Don’t и добавьте действие без to и s.",
+        "uk": "На занятті керамікою друг поспішає прикріпити ручку до сирої чашки. Часу ще достатньо. Rush — «поспішати». `Don’t rush` — «Не поспішай». Щоб попросити не робити чогось, почніть із Don’t і додайте дію без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-33:intro1:q",
@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-08:session-33:intro1:r2",
-              "text": "Doesn’t rush."
+              "text": "Don’t rushes."
             },
             {
               "responseId": "en:lesson-08:session-33:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-08:session-33:intro1:r2",
-              "text": "Doesn’t rush."
+              "text": "Don’t rushes."
             },
             {
               "responseId": "en:lesson-08:session-33:intro1:r3",
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Свежая краска",
-        "uk": "Свіжа фарба"
+        "ru": "Мокрые перила после дождя",
+        "uk": "Мокрі поручні після дощу"
       },
       "bodyByLocale": {
-        "ru": "Друг тянется к только что покрашенной скамейке. Покажите на неё: `Don’t touch this` — «Не трогай это». После `Don’t` нужно `touch this`.",
-        "uk": "Друг тягнеться до щойно пофарбованої лавки. Покажіть на неї: `Don’t touch this` — «Не чіпай це». Після `Don’t` потрібне `touch this`."
+        "ru": "На балконе после дождя мокрые перила. Друг в светлой рубашке собирается на них опереться. Lean — «опираться, наклоняться». `Don’t lean on it` — «Не опирайся на это». On указывает на опору; it здесь заменяет railing — перила.",
+        "uk": "На балконі після дощу мокрі поручні. Друг у світлій сорочці збирається на них спертися. Lean — «спиратися, нахилятися». `Don’t lean on it` — «Не спирайся на це». On указує на опору; it тут замінює railing — поручні."
       },
       "question": {
         "interactionId": "en:lesson-08:session-33:intro2:q",
         "promptByLocale": {
-          "ru": "Предупредите друга: «Не трогай это».",
-          "uk": "Попередьте друга: «Не чіпай це»."
+          "ru": "Предупредите друга: «Не опирайся на это».",
+          "uk": "Попередьте друга: «Не спирайся на це»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-33:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t lean on it."
             },
             {
               "responseId": "en:lesson-08:session-33:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t leans on it."
             },
             {
               "responseId": "en:lesson-08:session-33:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to lean on it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-33:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t lean on it."
             },
             {
               "responseId": "en:lesson-08:session-33:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t leans on it."
             },
             {
               "responseId": "en:lesson-08:session-33:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to lean on it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предупредите друга: «Не трогай это».",
-          "uk": "Попередьте друга: «Не чіпай це»."
+          "ru": "Предупредите друга: «Не опирайся на это».",
+          "uk": "Попередьте друга: «Не спирайся на це»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вы задерживаетесь",
-        "uk": "Ви затримуєтеся"
+        "ru": "Считаем выручку",
+        "uk": "Рахуємо виторг"
       },
       "bodyByLocale": {
-        "ru": "Друг готов идти, а вам нужно закончить работу. Вы хотите, чтобы он шёл без вас. `Please don’t wait` — «Пожалуйста, не жди». `Please` добавляет вежливое «пожалуйста», а `don’t wait` означает «не жди».",
-        "uk": "Друг готовий іти, а вам потрібно закінчити роботу. Ви хочете, щоб він ішов без вас. `Please don’t wait` — «Будь ласка, не чекай». `Please` додає ввічливе «будь ласка», а `don’t wait` означає «не чекай»."
+        "ru": "Вы считаете монеты после школьной ярмарки. Друг рассказывает историю, и вы сбиваетесь. Distract — «отвлекать». `Please don’t distract me` — «Пожалуйста, не отвлекай меня». Please смягчает просьбу, me означает «меня».",
+        "uk": "Ви рахуєте монети після шкільного ярмарку. Друг розповідає історію, і ви збиваєтеся. Distract — «відволікати». `Please don’t distract me` — «Будь ласка, не відволікай мене». Please пом’якшує прохання, me означає «мене»."
       },
       "question": {
         "interactionId": "en:lesson-08:session-33:intro3:q",
         "promptByLocale": {
-          "ru": "Вежливо попросите друга не ждать.",
-          "uk": "Ввічливо попросіть друга не чекати."
+          "ru": "Вежливо попросите не отвлекать вас.",
+          "uk": "Ввічливо попросіть не відволікати вас."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-33:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Please don’t distract me."
             },
             {
               "responseId": "en:lesson-08:session-33:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Please don’t distracts me."
             },
             {
               "responseId": "en:lesson-08:session-33:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Please don’t to distract me."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-33:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Please don’t distract me."
             },
             {
               "responseId": "en:lesson-08:session-33:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Please don’t distracts me."
             },
             {
               "responseId": "en:lesson-08:session-33:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Please don’t to distract me."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вежливо попросите друга не ждать.",
-          "uk": "Ввічливо попросіть друга не чекати."
+          "ru": "Вежливо попросите не отвлекать вас.",
+          "uk": "Ввічливо попросіть не відволікати вас."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "458e6b6d0745f61778ee522e3c3739a5b0c30b8d552f7bc2720a64f8ca4785ad"
+  "introFingerprint": "5421aa314f748f8519ed596bf052cdffb8a77b97eafe3cecc32eabdfbfff422a"
 }

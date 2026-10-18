@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-37:word:bend",
+    "correctText": "bend",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-37:i01",
     "correctText": "Don’t bend it.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-37:word:crumple",
+    "correctText": "crumple",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-37:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t crumple it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-37:word:twist",
+    "correctText": "twist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-37:i07",
-    "correctText": "Please don’t wait.",
+    "correctText": "Don’t twist it.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-37:i10",
-    "correctText": "en:lesson-08:session-37:i10:p1=pack\nen:lesson-08:session-37:i10:p2=bend\nen:lesson-08:session-37:i10:p3=shop\nen:lesson-08:session-37:i10:p4=parcel locker",
+    "correctText": "en:lesson-08:session-37:i10:p1=bend\nen:lesson-08:session-37:i10:p2=crumple\nen:lesson-08:session-37:i10:p3=twist\nen:lesson-08:session-37:i10:p4=wait",
     "correctResponseId": null
   },
   {
@@ -55,18 +70,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-37:word:snap",
+    "correctText": "snap",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-37:i12",
-    "correctText": "Measure it.",
+    "correctText": "Don’t snap it.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-37:i13",
-    "correctText": "I often pack.",
+    "correctText": "Please don’t wait.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-37:i14",
-    "correctText": "touch",
+    "correctText": "crumple",
     "correctResponseId": "en:lesson-08:session-37:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-37:i16",
-    "correctText": "en:lesson-08:session-37:i16:p1=bend\nen:lesson-08:session-37:i16:p2=pack\nen:lesson-08:session-37:i16:p3=measure\nen:lesson-08:session-37:i16:p4=parcel locker",
+    "correctText": "en:lesson-08:session-37:i16:p1=bend\nen:lesson-08:session-37:i16:p2=crumple\nen:lesson-08:session-37:i16:p3=twist\nen:lesson-08:session-37:i16:p4=snap",
     "correctResponseId": null
   },
   {

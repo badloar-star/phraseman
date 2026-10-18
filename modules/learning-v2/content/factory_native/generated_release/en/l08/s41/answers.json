@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-41:word:negotiate",
+    "correctText": "negotiate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-41:i01",
     "correctText": "I can negotiate.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-41:word:mediate",
+    "correctText": "mediate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-41:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can mediate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:word:interpret",
+    "correctText": "interpret",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-41:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can interpret.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-41:i08",
-    "correctText": "drive",
+    "correctText": "mediate",
     "correctResponseId": "en:lesson-08:session-41:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-41:i10",
-    "correctText": "en:lesson-08:session-41:i10:p1=rush\nen:lesson-08:session-41:i10:p2=negotiate\nen:lesson-08:session-41:i10:p3=chat\nen:lesson-08:session-41:i10:p4=cashpoint",
+    "correctText": "en:lesson-08:session-41:i10:p1=negotiate\nen:lesson-08:session-41:i10:p2=mediate\nen:lesson-08:session-41:i10:p3=interpret\nen:lesson-08:session-41:i10:p4=chat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-41:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can mediate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-41:word:persuade",
+    "correctText": "persuade",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-41:i12",
-    "correctText": "Don’t rush.",
+    "correctText": "I can persuade him.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-41:i14",
-    "correctText": "whistle",
+    "correctText": "interpret",
     "correctResponseId": "en:lesson-08:session-41:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-41:i16",
-    "correctText": "en:lesson-08:session-41:i16:p1=negotiate\nen:lesson-08:session-41:i16:p2=meditate\nen:lesson-08:session-41:i16:p3=rush\nen:lesson-08:session-41:i16:p4=cashpoint",
+    "correctText": "en:lesson-08:session-41:i16:p1=negotiate\nen:lesson-08:session-41:i16:p2=mediate\nen:lesson-08:session-41:i16:p3=interpret\nen:lesson-08:session-41:i16:p4=persuade",
     "correctResponseId": null
   },
   {

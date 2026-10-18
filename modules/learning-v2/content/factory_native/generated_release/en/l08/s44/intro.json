@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проектор перед встречей",
-        "uk": "Проєктор перед зустріччю"
+        "ru": "Швейная машина на мастер-классе",
+        "uk": "Швейна машина на майстер-класі"
       },
       "bodyByLocale": {
-        "ru": "Перед встречей друг не знает, как пользоваться проектором. Вы уже работали с ним. `Operate` здесь — «работать с устройством». Скажите: `I can operate it` — «Я умею с этим работать». Здесь `it` означает проектор. После `can` нужно `operate`, без `to`. Кнопок много, но нажимать все сразу не придётся.",
-        "uk": "Перед зустріччю друг не знає, як користуватися проєктором. Ви вже працювали з ним. `Operate` тут — «працювати з пристроєм». Скажіть: `I can operate it` — «Я вмію з цим працювати». Тут `it` означає проєктор. Після `can` потрібне `operate`, без `to`. Кнопок багато, але натискати всі одразу не доведеться."
+        "ru": "На мастер-классе нужно выбрать человека, который знаком со швейной машиной. Вы уже пользовались такой моделью. Operate — «управлять устройством, работать с ним». `I can operate it` — «Я умею с этим работать». It означает швейную машину. После can нужно operate, без to и s.",
+        "uk": "На майстер-класі потрібно обрати людину, яка знайома зі швейною машиною. Ви вже користувалися такою моделлю. Operate — «керувати пристроєм, працювати з ним». `I can operate it` — «Я вмію з цим працювати». It означає швейну машину. Після can потрібне operate, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете работать с этим устройством.",
-          "uk": "Скажіть, що вмієте працювати з цим пристроєм."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете работать с этим устройством.",
-          "uk": "Скажіть, що вмієте працювати з цим пристроєм."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поездка за город",
-        "uk": "Поїздка за місто"
+        "ru": "Таймер перед новым раундом",
+        "uk": "Таймер перед новим раундом"
       },
       "bodyByLocale": {
-        "ru": "Вы планируете поездку за город. Друг спрашивает, умеет ли ваша подруга водить машину. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Ви плануєте поїздку за місто. Друг запитує, чи вміє ваша подруга водити машину. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "Раунд настольной игры закончился. Перед следующим раундом нужно вернуть таймер к исходному значению. Reset — «сбросить, вернуть к исходному состоянию». Подруга знает, как это сделать: `She can reset the timer` — «Она может сбросить таймер». После can нужно reset, даже с she.",
+        "uk": "Раунд настільної гри закінчився. Перед наступним раундом потрібно повернути таймер до початкового значення. Reset — «скинути, повернути до початкового стану». Подруга знає, як це зробити: `She can reset the timer` — «Вона може скинути таймер». Після can потрібне reset, навіть із she."
       },
       "question": {
         "interactionId": "en:lesson-08:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-44:intro2:r1",
-              "text": "She can drive."
+              "text": "She can reset the timer."
             },
             {
               "responseId": "en:lesson-08:session-44:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to reset the timer."
             },
             {
               "responseId": "en:lesson-08:session-44:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can resets the timer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-44:intro2:r1",
-              "text": "She can drive."
+              "text": "She can reset the timer."
             },
             {
               "responseId": "en:lesson-08:session-44:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to reset the timer."
             },
             {
               "responseId": "en:lesson-08:session-44:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can resets the timer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звук для ролика",
-        "uk": "Звук для ролика"
+        "ru": "Тугая ручка старого радио",
+        "uk": "Туга ручка старого радіо"
       },
       "bodyByLocale": {
-        "ru": "Друг записывает звуки для короткого ролика. Ему нужен свист, и вы предлагаете помочь. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "Друг записує звуки для короткого ролика. Йому потрібен свист, і ви пропонуєте допомогти. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "На старом радио круглая ручка настройки поворачивается туго. Друг просит помочь. Dial здесь — «круглая ручка настройки». `I can turn the dial` — «Я могу повернуть ручку настройки». Знакомое turn означает повернуть предмет, а не свернуть на дороге.",
+        "uk": "На старому радіо кругла ручка налаштування повертається туго. Друг просить допомогти. Dial тут — «кругла ручка налаштування». `I can turn the dial` — «Я можу повернути ручку налаштування». Знайоме turn означає повернути предмет, а не звернути на дорозі."
       },
       "question": {
         "interactionId": "en:lesson-08:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-44:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can turn the dial."
             },
             {
               "responseId": "en:lesson-08:session-44:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to turn the dial."
             },
             {
               "responseId": "en:lesson-08:session-44:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can turns the dial."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-44:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can turn the dial."
             },
             {
               "responseId": "en:lesson-08:session-44:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to turn the dial."
             },
             {
               "responseId": "en:lesson-08:session-44:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can turns the dial."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5bccd27d9034f173a1808ba1a21aef3b3ecfe20bba62d63e0371e350eb69d15c"
+  "introFingerprint": "5e350adcf98eb367355c534ac912371987c124ac1d1ffcdb2c2aa810759af807"
 }

@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новый распорядок",
-        "uk": "Новий розпорядок"
+        "ru": "Кухня после переезда",
+        "uk": "Кухня після переїзду"
       },
       "bodyByLocale": {
-        "ru": "На новой работе встречи начинаются раньше, чем вы привыкли. Друг спрашивает, справитесь ли вы с переменами. `Adapt` — «адаптироваться», приспосабливаться к переменам. Скажите: `I can adapt` — «Я могу адаптироваться». После `can` нужно `adapt`, без `to`. Будильнику тоже придётся освоить новый график.",
-        "uk": "На новій роботі зустрічі починаються раніше, ніж ви звикли. Друг запитує, чи впораєтеся ви зі змінами. `Adapt` — «адаптуватися», пристосовуватися до змін. Скажіть: `I can adapt` — «Я можу адаптуватися». Після `can` потрібне `adapt`, без `to`. Будильнику теж доведеться опанувати новий графік."
+        "ru": "После переезда на кухне стало гораздо меньше места. Привычный способ готовить с несколькими мисками сразу уже неудобен. Adapt — «приспосабливаться к переменам». `I can adapt` — «Я могу адаптироваться». Вы готовы изменить привычный порядок действий. После can нужно adapt, без to и s.",
+        "uk": "Після переїзду на кухні стало значно менше місця. Звичний спосіб готувати з кількома мисками одночасно вже незручний. Adapt — «пристосовуватися до змін». `I can adapt` — «Я можу адаптуватися». Ви готові змінити звичний порядок дій. Після can потрібне adapt, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что можете адаптироваться.",
-          "uk": "Скажіть, що можете адаптуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что можете адаптироваться.",
-          "uk": "Скажіть, що можете адаптуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто заберёт друга",
-        "uk": "Хто забере друга"
+        "ru": "На сцене забыли реквизит",
+        "uk": "На сцені забули реквізит"
       },
       "bodyByLocale": {
-        "ru": "Нужно забрать друга из аэропорта. Вас спрашивают, умеет ли ваша подруга водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Потрібно забрати друга з аеропорту. Вас запитують, чи вміє ваша подруга водити. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "Перед короткой сценкой выяснилось, что нужный чемодан забыли дома. Актриса умеет придумать действия на ходу и продолжить без него. Improvise — «импровизировать». `She can improvise` — «Она умеет импровизировать». После can нужно improvise, даже с she.",
+        "uk": "Перед короткою сценкою з’ясувалося, що потрібну валізу забули вдома. Акторка вміє придумати дії на ходу й продовжити без неї. Improvise — «імпровізувати». `She can improvise` — «Вона вміє імпровізувати». Після can потрібне improvise, навіть із she."
       },
       "question": {
         "interactionId": "en:lesson-08:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-47:intro2:r1",
-              "text": "She can drive."
+              "text": "She can improvise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to improvise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can improvises."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-47:intro2:r1",
-              "text": "She can drive."
+              "text": "She can improvise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro2:r2",
-              "text": "She can drives."
+              "text": "She can to improvise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro2:r3",
-              "text": "She can to drive."
+              "text": "She can improvises."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Свист вместо хлопка",
-        "uk": "Свист замість плескання"
+        "ru": "Открытое окно в общей комнате",
+        "uk": "Відчинене вікно у спільній кімнаті"
       },
       "bodyByLocale": {
-        "ru": "В игре нужно подавать сигнал свистом вместо хлопка. Друг спрашивает, кто это умеет. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "У грі потрібно подавати сигнал свистом замість плескання в долоні. Друг запитує, хто це вміє. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "Вы хотите оставить окно открытым, а соседу холодно. Вы готовы договориться: проветрить комнату несколько минут и затем закрыть окно. Compromise — «идти на компромисс». `I can compromise` — «Я могу пойти на компромисс». Вы готовы немного уступить, чтобы решение устроило обоих.",
+        "uk": "Ви хочете залишити вікно відчиненим, а сусідові холодно. Ви готові домовитися: провітрити кімнату кілька хвилин і потім зачинити вікно. Compromise — «йти на компроміс». `I can compromise` — «Я можу піти на компроміс». Ви готові трохи поступитися, щоб рішення влаштувало обох."
       },
       "question": {
         "interactionId": "en:lesson-08:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-47:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can compromise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to compromise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can compromises."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-47:intro3:r1",
-              "text": "I can whistle."
+              "text": "I can compromise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro3:r2",
-              "text": "I can to whistle."
+              "text": "I can to compromise."
             },
             {
               "responseId": "en:lesson-08:session-47:intro3:r3",
-              "text": "I can whistles."
+              "text": "I can compromises."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7b8fc2e78f873fe1cb6d5b74d5e916472ff474e9da138bfeb9e672694b208f10"
+  "introFingerprint": "742fa7908f9fbe2400f0338926545f44b08655760221ca4218feded146a34f90"
 }

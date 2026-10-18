@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-08:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-08:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-54:intro1:r2": {
+          "ru": "После can или can’t не нужно to.",
+          "uk": "Після can або can’t не потрібне to."
+        },
+        "en:lesson-08:session-54:intro1:r3": {
+          "ru": "После can или can’t действие без s/es.",
+          "uk": "Після can або can’t дія без s/es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-54:intro2:r2": {
+          "ru": "После can или can’t не нужно to.",
+          "uk": "Після can або can’t не потрібне to."
+        },
+        "en:lesson-08:session-54:intro2:r3": {
+          "ru": "После can или can’t действие без s/es.",
+          "uk": "Після can або can’t дія без s/es."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-08:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-08:session-54:intro3:r2": {
+          "ru": "После can или can’t не нужно to.",
+          "uk": "Після can або can’t не потрібне to."
+        },
+        "en:lesson-08:session-54:intro3:r3": {
+          "ru": "После can или can’t действие без s/es.",
+          "uk": "Після can або can’t дія без s/es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "76c703ec4e29e7fa9aa9710c02ce38ed8358176072782bb8a893cc189a1ad0ea"
+}

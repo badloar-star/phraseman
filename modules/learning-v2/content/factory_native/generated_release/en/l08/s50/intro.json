@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "предлагать помощь с оценкой: can + действие без to и окончаний",
+    "uk": "пропонувати допомогу з оцінюванням: can + дія без to й закінчень"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Проект общественного сада",
+        "uk": "Проєкт громадського саду"
+      },
+      "bodyByLocale": {
+        "ru": "Соседи нарисовали проект сада и ищут человека, который оценит его до начала работ. Evaluate — «оценивать», рассматривать, насколько что-то подходит или хорошо сделано. Предложите помощь: `I can evaluate it` — «Я могу это оценить». После can действие evaluate не получает to или окончание s.",
+        "uk": "Сусіди намалювали проєкт саду й шукають людину, яка оцінить його до початку робіт. Evaluate — «оцінювати», розглядати, наскільки щось підходить або добре зроблено. Запропонуйте допомогу: `I can evaluate it` — «Я можу це оцінити». Після can дія evaluate не отримує to або закінчення s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r1",
+              "text": "I can evaluate it."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r2",
+              "text": "I can to evaluate it."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r3",
+              "text": "I can evaluates it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r1",
+              "text": "I can evaluate it."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r2",
+              "text": "I can to evaluate it."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro1:r3",
+              "text": "I can evaluates it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как выбрать чемодан",
+        "uk": "Як вибрати валізу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом выбираете чемодан и решаете, что важнее для поездки — вес или размер. Criterion — «критерий», признак, по которому делают выбор. `We can choose a criterion` — «Мы можем выбрать критерий». Здесь речь об одном критерии, поэтому a criterion.",
+        "uk": "Ви з другом вибираєте валізу й вирішуєте, що важливіше для подорожі — вага чи розмір. Criterion — «критерій», ознака, за якою роблять вибір. `We can choose a criterion` — «Ми можемо вибрати критерій». Тут ідеться про один критерій, тому a criterion."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r1",
+              "text": "We can choose a criterion."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r2",
+              "text": "We can to choose a criterion."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r3",
+              "text": "We can chooses a criterion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r1",
+              "text": "We can choose a criterion."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r2",
+              "text": "We can to choose a criterion."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro2:r3",
+              "text": "We can chooses a criterion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Звёзды возле настольной игры",
+        "uk": "Зірки біля настільної гри"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с подругой выбираете настольную игру в интернет-магазине. Подруга может посмотреть, как её оценили покупатели. Возле названия есть число звёзд — rating, «рейтинг, оценка пользователей». `She can check the rating` — «Она может проверить рейтинг». Даже с she после can остаётся check, без s.",
+        "uk": "Ви з подругою вибираєте настільну гру в інтернет-магазині. Подруга може подивитися, як її оцінили покупці. Біля назви є кількість зірок — rating, «рейтинг, оцінка користувачів». `She can check the rating` — «Вона може перевірити рейтинг». Навіть із she після can залишається check, без s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r1",
+              "text": "She can check the rating."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r2",
+              "text": "She can to check the rating."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r3",
+              "text": "She can checks the rating."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r1",
+              "text": "She can check the rating."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r2",
+              "text": "She can to check the rating."
+            },
+            {
+              "responseId": "en:lesson-08:session-50:intro3:r3",
+              "text": "She can checks the rating."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5cce3f782608f030f32c116583256c8067290a76b4f281e837553bd05a199de4"
+}

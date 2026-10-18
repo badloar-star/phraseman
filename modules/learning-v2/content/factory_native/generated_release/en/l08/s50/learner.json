@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-50:word:evaluate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — evaluate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:word:evaluate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — evaluate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:word:evaluate:audio",
+          "transcript": "evaluate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:word:evaluate:r1",
+            "targetText": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать. I can evaluate it. — «Я могу это оценить».",
+              "uk": "оцінювати. I can evaluate it. — «Я можу це оцінити»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "evaluate",
+          "definitionByLocale": {
+            "ru": "оценивать. I can evaluate it. — «Я могу это оценить».",
+            "uk": "оцінювати. I can evaluate it. — «Я можу це оцінити»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите: «Я могу это оценить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите: «Я могу это оценить»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can evaluate it.",
+        "localizedMeaning": {
+          "ru": "Предложите: «Я могу это оценить»",
+          "uk": "Запропонуйте: «Я можу це оцінити»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "evaluate",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i02:r1",
+          "text": "evaluate"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i02:r2",
+          "text": "research"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i02:r3",
+          "text": "verify"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i02:audio",
+          "transcript": "evaluate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:i02:r1",
+            "targetText": "evaluate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i02:r2",
+            "targetText": "research",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i02:r3",
+            "targetText": "verify",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит evaluate",
+              "uk": "У записі звучить evaluate"
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит evaluate",
+              "uk": "У записі звучить evaluate"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i03:r1",
+          "text": "evaluate"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i03:r2",
+          "text": "to evaluate"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i03:r3",
+          "text": "evaluates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "I can ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-50:i03:r1",
+            "text": "evaluate"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i03:r2",
+            "text": "to evaluate"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i03:r3",
+            "text": "evaluates"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-50:i04:p1",
+            "target": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать",
+              "uk": "оцінювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i04:p2",
+            "target": "research",
+            "meaningByLocale": {
+              "ru": "исследовать",
+              "uk": "досліджувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i04:p3",
+            "target": "verify",
+            "meaningByLocale": {
+              "ru": "проверять достоверность",
+              "uk": "перевіряти достовірність"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i04:p4",
+            "target": "source",
+            "meaningByLocale": {
+              "ru": "источник информации",
+              "uk": "джерело інформації"
+            }
+          }
+        ],
+        "leftColumn": [
+          "evaluate",
+          "research",
+          "verify",
+          "source"
+        ],
+        "rightColumn": [
+          "оценивать",
+          "исследовать",
+          "проверять достоверность",
+          "источник информации"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i05:audio",
+          "transcript": "I can evaluate it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can evaluate it.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "evaluate",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:word:criterion",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — criterion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:word:criterion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — criterion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:word:criterion:audio",
+          "transcript": "criterion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:word:criterion:r1",
+            "targetText": "criterion",
+            "meaningByLocale": {
+              "ru": "критерий. We can choose a criterion. — «Мы можем выбрать критерий». Один признак для оценки или выбора.",
+              "uk": "критерій. We can choose a criterion. — «Ми можемо вибрати критерій». Одна ознака для оцінювання або вибору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "criterion",
+          "definitionByLocale": {
+            "ru": "критерий. We can choose a criterion. — «Мы можем выбрать критерий». Один признак для оценки или выбора.",
+            "uk": "критерій. We can choose a criterion. — «Ми можемо вибрати критерій». Одна ознака для оцінювання або вибору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Мы можем выбрать критерий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы можем выбрать критерий»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can choose a criterion.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы можем выбрать критерий»",
+          "uk": "Скажіть «Ми можемо вибрати критерій»"
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "a",
+          "criterion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:word:rating",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rating",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:word:rating:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rating",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:word:rating:audio",
+          "transcript": "rating"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:word:rating:r1",
+            "targetText": "rating",
+            "meaningByLocale": {
+              "ru": "рейтинг, оценка пользователей. She can check the rating. — «Она может проверить рейтинг».",
+              "uk": "рейтинг, оцінка користувачів. She can check the rating. — «Вона може перевірити рейтинг»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rating",
+          "definitionByLocale": {
+            "ru": "рейтинг, оценка пользователей. She can check the rating. — «Она может проверить рейтинг».",
+            "uk": "рейтинг, оцінка користувачів. She can check the rating. — «Вона може перевірити рейтинг»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Она может проверить рейтинг»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Она может проверить рейтинг»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i07:audio",
+          "transcript": "She can check the rating."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She can check the rating.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i08:r1",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i08:r2",
+          "text": "to check"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i08:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "She can ___ the rating.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-50:i08:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i08:r2",
+            "text": "to check"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i08:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i09:r1",
+          "text": "We can choose a criterion."
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i09:r2",
+          "text": "I can choose a criterion."
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i09:r3",
+          "text": "You can choose a criterion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i09:audio",
+          "transcript": "We can choose a criterion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:i09:r1",
+            "targetText": "We can choose a criterion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i09:r2",
+            "targetText": "I can choose a criterion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i09:r3",
+            "targetText": "You can choose a criterion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can choose a criterion.",
+              "uk": "У записі звучить We can choose a criterion."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can choose a criterion.",
+              "uk": "У записі звучить We can choose a criterion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-50:i10:p1",
+            "target": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать",
+              "uk": "оцінювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i10:p2",
+            "target": "criterion",
+            "meaningByLocale": {
+              "ru": "критерий",
+              "uk": "критерій"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i10:p3",
+            "target": "rating",
+            "meaningByLocale": {
+              "ru": "рейтинг",
+              "uk": "рейтинг"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i10:p4",
+            "target": "source",
+            "meaningByLocale": {
+              "ru": "источник информации",
+              "uk": "джерело інформації"
+            }
+          }
+        ],
+        "leftColumn": [
+          "evaluate",
+          "criterion",
+          "rating",
+          "source"
+        ],
+        "rightColumn": [
+          "оценивать",
+          "критерий",
+          "рейтинг",
+          "источник информации"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i11:audio",
+          "transcript": "She can check the rating."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can check the rating.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "check",
+          "the",
+          "rating"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:word:drawback",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drawback",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:word:drawback:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drawback",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:word:drawback:audio",
+          "transcript": "drawback"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:word:drawback:r1",
+            "targetText": "drawback",
+            "meaningByLocale": {
+              "ru": "недостаток, минус. I can see a drawback. — «Я вижу один недостаток». Например, удобная сумка слишком тяжёлая.",
+              "uk": "недолік, мінус. I can see a drawback. — «Я бачу один недолік». Наприклад, зручна сумка надто важка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drawback",
+          "definitionByLocale": {
+            "ru": "недостаток, минус. I can see a drawback. — «Я вижу один недостаток». Например, удобная сумка слишком тяжёлая.",
+            "uk": "недолік, мінус. I can see a drawback. — «Я бачу один недолік». Наприклад, зручна сумка надто важка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У удобной сумки есть минус — вес. Скажите «Я вижу один недостаток»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У удобной сумки есть минус — вес. Скажите «Я вижу один недостаток»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can see a drawback.",
+        "localizedMeaning": {
+          "ru": "У удобной сумки есть минус — вес. Скажите «Я вижу один недостаток»",
+          "uk": "Зручна сумка має мінус — вагу. Скажіть «Я бачу один недолік»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "see",
+          "a",
+          "drawback"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Мы часто проверяем рейтинг»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите «Мы часто проверяем рейтинг»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i13:audio",
+          "transcript": "We often check the rating."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We often check the rating.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i14:r1",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i14:r2",
+          "text": "to choose"
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i14:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "We can ___ a criterion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-50:i14:r1",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i14:r2",
+            "text": "to choose"
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i14:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-50:i15:r1",
+          "text": "I can see a drawback."
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i15:r2",
+          "text": "I can see the drawback."
+        },
+        {
+          "responseId": "en:lesson-08:session-50:i15:r3",
+          "text": "We can see a drawback."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i15:audio",
+          "transcript": "I can see a drawback."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-50:i15:r1",
+            "targetText": "I can see a drawback.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i15:r2",
+            "targetText": "I can see the drawback.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i15:r3",
+            "targetText": "We can see a drawback.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-50:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see a drawback.",
+              "uk": "У записі звучить I can see a drawback."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-50:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see a drawback.",
+              "uk": "У записі звучить I can see a drawback."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-50:i16:p1",
+            "target": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать",
+              "uk": "оцінювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i16:p2",
+            "target": "criterion",
+            "meaningByLocale": {
+              "ru": "критерий",
+              "uk": "критерій"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i16:p3",
+            "target": "rating",
+            "meaningByLocale": {
+              "ru": "рейтинг",
+              "uk": "рейтинг"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-50:i16:p4",
+            "target": "drawback",
+            "meaningByLocale": {
+              "ru": "недостаток",
+              "uk": "недолік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "evaluate",
+          "criterion",
+          "rating",
+          "drawback"
+        ],
+        "rightColumn": [
+          "оценивать",
+          "критерий",
+          "рейтинг",
+          "недостаток"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-50:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега прислал план выставки и просит оценить его. Предложите: «Я могу это оценить»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Коллега прислал план выставки и просит оценить его. Предложите: «Я могу это оценить»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-50:i17:audio",
+          "transcript": "I can evaluate it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can evaluate it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7f53b54354fe750eeac52850ce1ff537529c70722aea230818ab8cf7a677a5f1"
+}

@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Фотография в конверте",
-        "uk": "Фотографія в конверті"
+        "ru": "Линейка длиннее пенала",
+        "uk": "Лінійка довша за пенал"
       },
       "bodyByLocale": {
-        "ru": "Друг пытается втиснуть фотографию в маленький конверт и начинает сгибать её. `Bend` — «сгибать». `Don’t bend it` — «Не сгибай это». Здесь `it` относится к фотографии, а после `don’t` нужно `bend`, без `to` и окончаний. Фотография с моря не должна превращаться в бумажный кораблик.",
-        "uk": "Друг намагається втиснути фотографію в маленький конверт і починає згинати її. `Bend` — «згинати». `Don’t bend it` — «Не згинай це». Тут `it` стосується фотографії, а після `don’t` потрібне `bend`, без `to` і закінчень. Фотографія з моря не має перетворитися на паперовий кораблик."
+        "ru": "После урока черчения друг пытается согнуть вашу тонкую металлическую линейку, чтобы она поместилась в пенал. Bend — «сгибать». `Don’t bend it` — «Не сгибай её». It заменяет линейку. После don’t нужно bend, без to и s.",
+        "uk": "Після уроку креслення друг намагається зігнути вашу тонку металеву лінійку, щоб вона помістилася в пенал. Bend — «згинати». `Don’t bend it` — «Не згинай її». It замінює лінійку. Після don’t потрібне bend, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-37:intro1:q",
         "promptByLocale": {
-          "ru": "Предупредите друга: «Не сгибай это».",
-          "uk": "Попередьте друга: «Не згинай це»."
+          "ru": "Предупредите друга не сгибать линейку.",
+          "uk": "Попередьте друга не згинати лінійку."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предупредите друга: «Не сгибай это».",
-          "uk": "Попередьте друга: «Не згинай це»."
+          "ru": "Предупредите друга не сгибать линейку.",
+          "uk": "Попередьте друга не згинати лінійку."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Украшение на торте",
-        "uk": "Прикраса на торті"
+        "ru": "Сертификат после вручения",
+        "uk": "Сертифікат після вручення"
       },
       "bodyByLocale": {
-        "ru": "Друг тянется к хрупкому украшению на торте. Покажите на него: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
-        "uk": "Друг тягнеться до крихкої прикраси на торті. Покажіть на неї: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+        "ru": "Вам вручили бумажный сертификат. Друг помогает убрать его в рюкзак, но сжимает лист в руке. Crumple — «мять, комкать». `Don’t crumple it` — «Не мни его». Это не аккуратный сгиб: бумага становится мятой.",
+        "uk": "Вам вручили паперовий сертифікат. Друг допомагає прибрати його в рюкзак, але стискає аркуш у руці. Crumple — «м’яти, зминати». `Don’t crumple it` — «Не мни його». Це не акуратний згин: папір стає зім’ятим."
       },
       "question": {
         "interactionId": "en:lesson-08:session-37:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на украшение и скажите «Не трогай это».",
-          "uk": "Покажіть на прикрасу й скажіть «Не чіпай це»."
+          "ru": "Скажите другу не мять сертификат.",
+          "uk": "Скажіть другові не м’яти сертифікат."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-37:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t crumple it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t crumples it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to crumple it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-37:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Don’t crumple it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Don’t crumples it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro2:r3",
-              "text": "Not touch this."
+              "text": "Don’t to crumple it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на украшение и скажите «Не трогай это».",
-          "uk": "Покажіть на прикрасу й скажіть «Не чіпай це»."
+          "ru": "Скажите другу не мять сертификат.",
+          "uk": "Скажіть другові не м’яти сертифікат."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чемодан ещё открыт",
-        "uk": "Валіза ще відкрита"
+        "ru": "Провод наушников в руках",
+        "uk": "Дріт навушників у руках"
       },
       "bodyByLocale": {
-        "ru": "Друг готов идти в кафе, а вы ещё собираете вещи в поездку. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.",
-        "uk": "Друг готовий іти до кафе, а ви ще збираєте речі в поїздку. Нехай іде без вас: `Please don’t wait` — «Будь ласка, не чекай». `Please` пом’якшує прохання."
+        "ru": "Друг держит ваши проводные наушники и крутит провод между пальцами. Twist — «скручивать, перекручивать». `Don’t twist it` — «Не перекручивай его». It здесь заменяет провод, а не наушники во множественном числе.",
+        "uk": "Друг тримає ваші дротові навушники й крутить дріт між пальцями. Twist — «скручувати, перекручувати». `Don’t twist it` — «Не перекручуй його». It тут замінює дріт, а не навушники у множині."
       },
       "question": {
         "interactionId": "en:lesson-08:session-37:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Скажите другу не перекручивать провод.",
+          "uk": "Скажіть другові не перекручувати дріт."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-37:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t twist it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t twists it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to twist it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-37:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t twist it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t twists it."
             },
             {
               "responseId": "en:lesson-08:session-37:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to twist it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Скажите другу не перекручивать провод.",
+          "uk": "Скажіть другові не перекручувати дріт."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe6b4861f152d27cae4a8bd500b6a4d71c93becede86dd23c5a0b1c28faaca4e"
+  "introFingerprint": "bdabc683197bbbda8b9f5c78c78aecbcb6fccd26fca77d835732d370c4d17244"
 }

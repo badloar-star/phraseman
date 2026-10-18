@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-02:word:cocoa",
+    "correctText": "cocoa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i01",
+    "correctText": "I am stirring the cocoa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i02",
+    "correctText": "cocoa",
+    "correctResponseId": "en:lesson-09:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i04",
+    "correctText": "en:lesson-09:session-02:i04:p1=cocoa\nen:lesson-09:session-02:i04:p2=stir\nen:lesson-09:session-02:i04:p3=cup\nen:lesson-09:session-02:i04:p4=spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i05",
+    "correctText": "I am stirring the cocoa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:word:custard",
+    "correctText": "custard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i06",
+    "correctText": "She is stirring the custard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:word:batter",
+    "correctText": "batter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i07",
+    "correctText": "They are stirring the batter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i08",
+    "correctText": "stirring",
+    "correctResponseId": "en:lesson-09:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i09",
+    "correctText": "She is stirring the custard.",
+    "correctResponseId": "en:lesson-09:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i10",
+    "correctText": "en:lesson-09:session-02:i10:p1=cocoa\nen:lesson-09:session-02:i10:p2=custard\nen:lesson-09:session-02:i10:p3=batter\nen:lesson-09:session-02:i10:p4=spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i11",
+    "correctText": "They are stirring the batter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:word:lump",
+    "correctText": "lump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i12",
+    "correctText": "lump",
+    "correctResponseId": "en:lesson-09:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i13",
+    "correctText": "This is a lump.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-02:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i15",
+    "correctText": "I am stirring the cocoa.",
+    "correctResponseId": "en:lesson-09:session-02:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i16",
+    "correctText": "en:lesson-09:session-02:i16:p1=cocoa\nen:lesson-09:session-02:i16:p2=custard\nen:lesson-09:session-02:i16:p3=batter\nen:lesson-09:session-02:i16:p4=lump",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-02:i17",
+    "correctText": "I am stirring the batter.",
+    "correctResponseId": null
+  }
+]

@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-46:i01",
+      "interactionId": "en:lesson-08:session-46:word:diagnose",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — diagnose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:word:diagnose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — diagnose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:word:diagnose:audio",
+          "transcript": "diagnose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:word:diagnose:r1",
+            "targetText": "diagnose",
+            "meaningByLocale": {
+              "ru": "диагностировать, здесь — определять причину неисправности. I can diagnose it. — «Я могу определить причину».",
+              "uk": "діагностувати, тут — визначати причину несправності. I can diagnose it. — «Я можу визначити причину»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diagnose",
+          "definitionByLocale": {
+            "ru": "диагностировать, здесь — определять причину неисправности. I can diagnose it. — «Я могу определить причину».",
+            "uk": "діагностувати, тут — визначати причину несправності. I can diagnose it. — «Я можу визначити причину»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -38,7 +81,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -114,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що можете визначити причину несправності",
+      "prompt": "Виберіть форму для фрази про визначення причини несправності",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i03:r1",
@@ -135,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що можете визначити причину несправності",
+      "accessibilityLabel": "Виберіть форму для фрази про визначення причини несправності",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что можете определить причину неисправности",
-          "uk": "Скажіть, що можете визначити причину несправності"
+          "ru": "Выберите форму для фразы об определении причины неисправности",
+          "uk": "Виберіть форму для фрази про визначення причини несправності"
         },
         "gappedTargetPhrase": "I can ___ it.",
         "gapOptions": [
@@ -157,12 +200,12 @@
             "text": "diagnoses"
           }
         ],
-        "testedDimension": "Скажіть, що можете визначити причину несправності",
+        "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що можете визначити причину несправності",
+            "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
             "feedbackByLocale": {
               "ru": "После `can` нужно `diagnose`, без `to`.",
               "uk": "Після `can` потрібне `diagnose`, без `to`."
@@ -171,7 +214,7 @@
           {
             "responseId": "en:lesson-08:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що можете визначити причину несправності",
+            "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
             "feedbackByLocale": {
               "ru": "После `can` нужно `diagnose`, без `s`.",
               "uk": "Після `can` потрібне `diagnose`, без `s`."
@@ -183,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -256,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -291,27 +334,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-46:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-46:word:reboot",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reboot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:word:reboot:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reboot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:word:reboot:audio",
+          "transcript": "reboot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:word:reboot:r1",
+            "targetText": "reboot",
+            "meaningByLocale": {
+              "ru": "перезагрузить устройство. She can reboot it. — «Она может его перезагрузить».",
+              "uk": "перезавантажити пристрій. She can reboot it. — «Вона може його перезавантажити»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reboot",
+          "definitionByLocale": {
+            "ru": "перезагрузить устройство. She can reboot it. — «Она может его перезагрузить».",
+            "uk": "перезавантажити пристрій. She can reboot it. — «Вона може його перезавантажити»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "prompt": "Скажіть про планшет «Вона може його перезавантажити»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "accessibilityLabel": "Скажіть про планшет «Вона може його перезавантажити»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can reboot it.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите о планшете «Она может его перезагрузить»",
+          "uk": "Скажіть про планшет «Вона може його перезавантажити»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "reboot",
+          "it"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -323,26 +410,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-46:word:fault",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fault",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:word:fault:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fault",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:word:fault:audio",
+          "transcript": "fault"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:word:fault:r1",
+            "targetText": "fault",
+            "meaningByLocale": {
+              "ru": "неисправность. I can find the fault. — «Я могу найти неисправность». В этом занятии речь о проблеме в работе устройства.",
+              "uk": "несправність. I can find the fault. — «Я можу знайти несправність». У цьому занятті йдеться про проблему в роботі пристрою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fault",
+          "definitionByLocale": {
+            "ru": "неисправность. I can find the fault. — «Я могу найти неисправность». В этом занятии речь о проблеме в работе устройства.",
+            "uk": "несправність. I can find the fault. — «Я можу знайти несправність». У цьому занятті йдеться про проблему в роботі пристрою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-46:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Скажіть «Я можу знайти несправність»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Скажіть «Я можу знайти несправність»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-46:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can find the fault."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can find the fault.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +487,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вона вміє водити",
+      "prompt": "Виберіть форму для фрази «Вона може його перезавантажити»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i08:r1",
-          "text": "drive"
+          "text": "reboot"
         },
         {
           "responseId": "en:lesson-08:session-46:i08:r2",
-          "text": "drives"
+          "text": "reboots"
         },
         {
           "responseId": "en:lesson-08:session-46:i08:r3",
-          "text": "to drive"
+          "text": "to reboot"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "accessibilityLabel": "Виберіть форму для фрази «Вона може його перезавантажити»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы «Она может его перезагрузить»",
+          "uk": "Виберіть форму для фрази «Вона може його перезавантажити»"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "She can ___ it.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-46:i08:r1",
-            "text": "drive"
+            "text": "reboot"
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r2",
-            "text": "drives"
+            "text": "reboots"
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r3",
-            "text": "to drive"
+            "text": "to reboot"
           }
         ],
-        "testedDimension": "Скажіть, що вона вміє водити",
+        "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно reboot, даже с she.",
+              "uk": "Після can потрібне reboot, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -426,7 +556,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -502,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -516,48 +646,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-46:i10:p1",
-            "target": "panic",
+            "target": "diagnose",
             "meaningByLocale": {
-              "ru": "паниковать",
-              "uk": "панікувати"
+              "ru": "определять причину неисправности",
+              "uk": "визначати причину несправності"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i10:p2",
-            "target": "diagnose",
+            "target": "reboot",
             "meaningByLocale": {
-              "ru": "диагностировать",
-              "uk": "діагностувати"
+              "ru": "перезагружать",
+              "uk": "перезавантажувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i10:p3",
-            "target": "mug",
+            "target": "fault",
             "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
+              "ru": "неисправность",
+              "uk": "несправність"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i10:p4",
-            "target": "pantry",
+            "target": "organize",
             "meaningByLocale": {
-              "ru": "кладовая",
-              "uk": "комора"
+              "ru": "организовывать",
+              "uk": "організовувати"
             }
           }
         ],
         "leftColumn": [
-          "panic",
           "diagnose",
-          "mug",
-          "pantry"
+          "reboot",
+          "fault",
+          "organize"
         ],
         "rightColumn": [
-          "панікувати",
-          "діагностувати",
-          "кухоль",
-          "комора"
+          "визначати причину несправності",
+          "перезавантажувати",
+          "несправність",
+          "організовувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +705,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -590,14 +720,15 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-46:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can reboot it."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can reboot it.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "reboot",
+          "it"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -609,26 +740,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-46:word:workaround",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — workaround",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:word:workaround:audio"
+      ],
+      "accessibilityLabel": "Картка слова — workaround",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:word:workaround:audio",
+          "transcript": "workaround"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:word:workaround:r1",
+            "targetText": "workaround",
+            "meaningByLocale": {
+              "ru": "обходное решение: другой способ выполнить задачу, пока проблема остаётся. I can find a workaround. — «Я могу найти обходное решение». Например, сохранить файл и отправить его по почте вместо сломанной кнопки в программе.",
+              "uk": "обхідне рішення: інший спосіб виконати завдання, поки проблема залишається. I can find a workaround. — «Я можу знайти обхідне рішення». Наприклад, зберегти файл і надіслати його поштою замість несправної кнопки в програмі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workaround",
+          "definitionByLocale": {
+            "ru": "обходное решение: другой способ выполнить задачу, пока проблема остаётся. I can find a workaround. — «Я могу найти обходное решение». Например, сохранить файл и отправить его по почте вместо сломанной кнопки в программе.",
+            "uk": "обхідне рішення: інший спосіб виконати завдання, поки проблема залишається. I can find a workaround. — «Я можу знайти обхідне рішення». Наприклад, зберегти файл і надіслати його поштою замість несправної кнопки в програмі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-46:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг хвилюється через несправність. Підбадьорте його: «Не панікуй»",
+      "prompt": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг хвилюється через несправність. Підбадьорте його: «Не панікуй»",
+      "accessibilityLabel": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t panic.",
+        "targetPhrase": "I can find a workaround.",
         "localizedMeaning": {
-          "ru": "Друг волнуется из-за неисправности. Подбодрите его: «Не паникуй»",
-          "uk": "Друг хвилюється через несправність. Підбадьорте його: «Не панікуй»"
+          "ru": "Кнопка отправки файла в программе не работает. Скажите «Я могу найти обходное решение»",
+          "uk": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»"
         },
         "orderedTokens": [
-          "Don’t",
-          "panic"
+          "I",
+          "can",
+          "find",
+          "a",
+          "workaround"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,7 +818,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -674,67 +851,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте свистіти",
+      "prompt": "Виберіть форму для фрази «Я можу знайти несправність»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i14:r1",
-          "text": "whistle"
+          "text": "find"
         },
         {
           "responseId": "en:lesson-08:session-46:i14:r2",
-          "text": "whistles"
+          "text": "finds"
         },
         {
           "responseId": "en:lesson-08:session-46:i14:r3",
-          "text": "to whistle"
+          "text": "to find"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "accessibilityLabel": "Виберіть форму для фрази «Я можу знайти несправність»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я могу найти неисправность»",
+          "uk": "Виберіть форму для фрази «Я можу знайти несправність»"
         },
-        "gappedTargetPhrase": "I can ___.",
+        "gappedTargetPhrase": "I can ___ the fault.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-46:i14:r1",
-            "text": "whistle"
+            "text": "find"
           },
           {
             "responseId": "en:lesson-08:session-46:i14:r2",
-            "text": "whistles"
+            "text": "finds"
           },
           {
             "responseId": "en:lesson-08:session-46:i14:r3",
-            "text": "to whistle"
+            "text": "to find"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте свистіти",
+        "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-46:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно find, без s.",
+              "uk": "Після can потрібне find, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-46:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -743,7 +920,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -819,7 +996,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,46 +1012,46 @@
             "pairId": "en:lesson-08:session-46:i16:p1",
             "target": "diagnose",
             "meaningByLocale": {
-              "ru": "диагностировать",
-              "uk": "діагностувати"
+              "ru": "определять причину неисправности",
+              "uk": "визначати причину несправності"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i16:p2",
-            "target": "organize",
+            "target": "reboot",
             "meaningByLocale": {
-              "ru": "организовывать",
-              "uk": "організовувати"
+              "ru": "перезагружать",
+              "uk": "перезавантажувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i16:p3",
-            "target": "panic",
+            "target": "fault",
             "meaningByLocale": {
-              "ru": "паниковать",
-              "uk": "панікувати"
+              "ru": "неисправность",
+              "uk": "несправність"
             }
           },
           {
             "pairId": "en:lesson-08:session-46:i16:p4",
-            "target": "pantry",
+            "target": "workaround",
             "meaningByLocale": {
-              "ru": "кладовая",
-              "uk": "комора"
+              "ru": "обходное решение",
+              "uk": "обхідне рішення"
             }
           }
         ],
         "leftColumn": [
           "diagnose",
-          "organize",
-          "panic",
-          "pantry"
+          "reboot",
+          "fault",
+          "workaround"
         ],
         "rightColumn": [
-          "діагностувати",
-          "організовувати",
-          "панікувати",
-          "комора"
+          "визначати причину несправності",
+          "перезавантажувати",
+          "несправність",
+          "обхідне рішення"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,7 +1069,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-46:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -932,11 +1109,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ccd6098c2cdfbc14f9316799165191226f28409b8550008e56564f24067092b1"
+  "learnerFingerprint": "3815962582e03cde2c47533d57316dab6d67a16bc64e5714ddbcbce052923c52"
 }

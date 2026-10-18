@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-43:word:assemble",
+    "correctText": "assemble",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-43:i01",
     "correctText": "I can assemble it.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-43:word:align",
+    "correctText": "align",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-43:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can align the shelves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-43:word:bracket",
+    "correctText": "bracket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-43:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can attach the bracket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-43:i08",
-    "correctText": "drive",
+    "correctText": "align",
     "correctResponseId": "en:lesson-08:session-43:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-43:i10",
-    "correctText": "en:lesson-08:session-43:i10:p1=spill\nen:lesson-08:session-43:i10:p2=assemble\nen:lesson-08:session-43:i10:p3=speak\nen:lesson-08:session-43:i10:p4=recycling bin",
+    "correctText": "en:lesson-08:session-43:i10:p1=assemble\nen:lesson-08:session-43:i10:p2=align\nen:lesson-08:session-43:i10:p3=bracket\nen:lesson-08:session-43:i10:p4=sew",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-43:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can align the shelves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-43:word:dowel",
+    "correctText": "dowel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-43:i12",
-    "correctText": "Don’t spill it.",
+    "correctText": "I can find the dowel.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-43:i14",
-    "correctText": "whistle",
+    "correctText": "attach",
     "correctResponseId": "en:lesson-08:session-43:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-43:i16",
-    "correctText": "en:lesson-08:session-43:i16:p1=assemble\nen:lesson-08:session-43:i16:p2=sew\nen:lesson-08:session-43:i16:p3=spill\nen:lesson-08:session-43:i16:p4=recycling bin",
+    "correctText": "en:lesson-08:session-43:i16:p1=assemble\nen:lesson-08:session-43:i16:p2=align\nen:lesson-08:session-43:i16:p3=bracket\nen:lesson-08:session-43:i16:p4=dowel",
     "correctResponseId": null
   },
   {

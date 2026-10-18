@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-31:i01",
+      "interactionId": "en:lesson-08:session-31:word:wipe",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wipe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-31:word:wipe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wipe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-31:word:wipe:audio",
+          "transcript": "wipe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-31:word:wipe:r1",
+            "targetText": "wipe",
+            "meaningByLocale": {
+              "ru": "вытереть, протереть. Wipe it. — «Вытри его». Провести салфеткой или тканью по поверхности.",
+              "uk": "витерти, протерти. Wipe it. — «Витри його». Провести серветкою або тканиною по поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wipe",
+          "definitionByLocale": {
+            "ru": "вытереть, протереть. Wipe it. — «Вытри его». Провести салфеткой или тканью по поверхности.",
+            "uk": "витерти, протерти. Wipe it. — «Витри його». Провести серветкою або тканиною по поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-31:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание вытереть стол",
+      "prompt": "Выберите форму для указания вытереть стол",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-31:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание вытереть стол",
+      "accessibilityLabel": "Выберите форму для указания вытереть стол",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание вытереть стол",
-          "uk": "Дайте коротку вказівку витерти стіл"
+          "ru": "Выберите форму для указания вытереть стол",
+          "uk": "Виберіть форму для вказівки витерти стіл"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,12 +198,12 @@
             "text": "To wipe"
           }
         ],
-        "testedDimension": "Дайте короткое указание вытереть стол",
+        "testedDimension": "Выберите форму для указания вытереть стол",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание вытереть стол",
+            "testedDimension": "Выберите форму для указания вытереть стол",
             "feedbackByLocale": {
               "ru": "Для указания нужно `Wipe`, без `s`.",
               "uk": "Для вказівки потрібне `Wipe`, без `s`."
@@ -169,7 +212,7 @@
           {
             "responseId": "en:lesson-08:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание вытереть стол",
+            "testedDimension": "Выберите форму для указания вытереть стол",
             "feedbackByLocale": {
               "ru": "Начните с `Wipe`, без `to`.",
               "uk": "Почніть із `Wipe`, без `to`."
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-31:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-31:word:smudge",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smudge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-31:word:smudge:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smudge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-31:word:smudge:audio",
+          "transcript": "smudge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-31:word:smudge:r1",
+            "targetText": "smudge",
+            "meaningByLocale": {
+              "ru": "размазанный след, пятно. There is a smudge. — «Есть пятно». Например, след от пальца на зеркале.",
+              "uk": "розмазаний слід, пляма. There is a smudge. — «Є пляма». Наприклад, слід від пальця на дзеркалі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smudge",
+          "definitionByLocale": {
+            "ru": "размазанный след, пятно. There is a smudge. — «Есть пятно». Например, след от пальца на зеркале.",
+            "uk": "розмазаний слід, пляма. There is a smudge. — «Є пляма». Наприклад, слід від пальця на дзеркалі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте короткое указание «Открой окно»",
+      "prompt": "Сообщите: «Есть пятно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание «Открой окно»",
+      "accessibilityLabel": "Сообщите: «Есть пятно»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Open the window.",
+        "targetPhrase": "There is a smudge.",
         "localizedMeaning": {
-          "ru": "Дайте короткое указание «Открой окно»",
-          "uk": "Дайте коротку вказівку «Відчини вікно»"
+          "ru": "Сообщите: «Есть пятно»",
+          "uk": "Повідомте: «Є пляма»"
         },
         "orderedTokens": [
-          "Open",
-          "the",
-          "window"
+          "There",
+          "is",
+          "a",
+          "smudge"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +406,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-31:word:squeegee",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — squeegee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-31:word:squeegee:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — squeegee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-31:word:squeegee:audio",
+          "transcript": "squeegee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-31:word:squeegee:r1",
+            "targetText": "squeegee",
+            "meaningByLocale": {
+              "ru": "скребок для воды. Use the squeegee. — «Используй скребок для воды». Резиновая кромка собирает воду со стекла.",
+              "uk": "скребок для води. Use the squeegee. — «Використай скребок для води». Гумова крайка збирає воду зі скла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "squeegee",
+          "definitionByLocale": {
+            "ru": "скребок для воды. Use the squeegee. — «Используй скребок для воды». Резиновая кромка собирает воду со стекла.",
+            "uk": "скребок для води. Use the squeegee. — «Використай скребок для води». Гумова крайка збирає воду зі скла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-31:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На прогулке подскажите другу «Поверни налево»",
+      "prompt": "На стекле душевой вода. Скажите «Используй скребок для воды»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-31:i07:audio"
       ],
-      "accessibilityLabel": "На прогулке подскажите другу «Поверни налево»",
+      "accessibilityLabel": "На стекле душевой вода. Скажите «Используй скребок для воды»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-31:i07:audio",
-          "transcript": "Turn left."
+          "transcript": "Use the squeegee."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Turn left.",
+        "targetPhrase": "Use the squeegee.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,67 +483,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте короткое указание открыть окно",
+      "prompt": "Выберите форму для сообщения об одном пятне на зеркале",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-31:i08:r1",
-          "text": "Open"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-08:session-31:i08:r2",
-          "text": "Opens"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-08:session-31:i08:r3",
-          "text": "To open"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте короткое указание открыть окно",
+      "accessibilityLabel": "Выберите форму для сообщения об одном пятне на зеркале",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание открыть окно",
-          "uk": "Дайте коротку вказівку відчинити вікно"
+          "ru": "Выберите форму для сообщения об одном пятне на зеркале",
+          "uk": "Виберіть форму для повідомлення про одну пляму на дзеркалі"
         },
-        "gappedTargetPhrase": "___ the window.",
+        "gappedTargetPhrase": "There ___ a smudge.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-31:i08:r1",
-            "text": "Open"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-08:session-31:i08:r2",
-            "text": "Opens"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-08:session-31:i08:r3",
-            "text": "To open"
+            "text": "am"
           }
         ],
-        "testedDimension": "Дайте короткое указание открыть окно",
+        "testedDimension": "Выберите форму для сообщения об одном пятне на зеркале",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для сообщения об одном пятне на зеркале",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Open`, без `s`.",
-              "uk": "Для вказівки потрібне `Open`, без `s`."
+              "ru": "С одним пятном нужно is.",
+              "uk": "З однією плямою потрібне is."
             }
           },
           {
             "responseId": "en:lesson-08:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Дайте короткое указание открыть окно",
+            "testedDimension": "Выберите форму для сообщения об одном пятне на зеркале",
             "feedbackByLocale": {
-              "ru": "Начните с `Open`, без `to`.",
-              "uk": "Почніть із `Open`, без `to`."
+              "ru": "Am используется с I, здесь нужно is.",
+              "uk": "Am використовується з I, тут потрібне is."
             }
           }
         ]
@@ -422,7 +552,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +628,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +642,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-31:i10:p1",
-            "target": "reserve",
-            "meaningByLocale": {
-              "ru": "забронировать",
-              "uk": "забронювати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-31:i10:p2",
             "target": "wipe",
             "meaningByLocale": {
               "ru": "вытереть",
@@ -527,33 +649,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-31:i10:p3",
-            "target": "car park",
+            "pairId": "en:lesson-08:session-31:i10:p2",
+            "target": "smudge",
             "meaningByLocale": {
-              "ru": "автостоянка",
-              "uk": "автостоянка"
+              "ru": "размазанный след",
+              "uk": "розмазаний слід"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-31:i10:p3",
+            "target": "squeegee",
+            "meaningByLocale": {
+              "ru": "скребок для воды",
+              "uk": "скребок для води"
             }
           },
           {
             "pairId": "en:lesson-08:session-31:i10:p4",
-            "target": "visit",
+            "target": "table",
             "meaningByLocale": {
-              "ru": "посещать",
-              "uk": "відвідувати"
+              "ru": "стол",
+              "uk": "стіл"
             }
           }
         ],
         "leftColumn": [
-          "reserve",
           "wipe",
-          "car park",
-          "visit"
+          "smudge",
+          "squeegee",
+          "table"
         ],
         "rightColumn": [
-          "забронировать",
           "вытереть",
-          "автостоянка",
-          "посещать"
+          "размазанный след",
+          "скребок для воды",
+          "стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +701,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -586,13 +716,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-31:i11:audio",
-          "transcript": "Turn left."
+          "transcript": "Use the squeegee."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Turn left.",
+        "hiddenTargetPhrase": "Use the squeegee.",
         "orderedTokens": [
-          "Turn",
-          "left"
+          "Use",
+          "the",
+          "squeegee"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -604,29 +735,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-31:word:disinfectant",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disinfectant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-31:word:disinfectant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disinfectant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-31:word:disinfectant:audio",
+          "transcript": "disinfectant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-31:word:disinfectant:r1",
+            "targetText": "disinfectant",
+            "meaningByLocale": {
+              "ru": "дезинфицирующее средство. Pass me the disinfectant. — «Передай мне дезинфицирующее средство». Здесь речь о конкретном средстве, поэтому the.",
+              "uk": "дезінфекційний засіб. Pass me the disinfectant. — «Передай мені дезінфекційний засіб». Тут ідеться про конкретний засіб, тому the."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disinfectant",
+          "definitionByLocale": {
+            "ru": "дезинфицирующее средство. Pass me the disinfectant. — «Передай мне дезинфицирующее средство». Здесь речь о конкретном средстве, поэтому the.",
+            "uk": "дезінфекційний засіб. Pass me the disinfectant. — «Передай мені дезінфекційний засіб». Тут ідеться про конкретний засіб, тому the."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросите «Можешь забронировать столик?»",
+      "prompt": "Вы убираете рабочую поверхность. Попросите «Передай мне дезинфицирующее средство»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите «Можешь забронировать столик?»",
+      "accessibilityLabel": "Вы убираете рабочую поверхность. Попросите «Передай мне дезинфицирующее средство»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you reserve a table?",
+        "targetPhrase": "Pass me the disinfectant.",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь забронировать столик?»",
-          "uk": "Попросіть «Можеш забронювати столик?»"
+          "ru": "Вы убираете рабочую поверхность. Попросите «Передай мне дезинфицирующее средство»",
+          "uk": "Ви прибираєте робочу поверхню. Попросіть «Передай мені дезінфекційний засіб»"
         },
         "orderedTokens": [
-          "Can",
-          "you",
-          "reserve",
-          "a",
-          "table"
+          "Pass",
+          "me",
+          "the",
+          "disinfectant"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,25 +812,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы рассказываете о своих привычках. Используйте shower: «Я часто принимаю душ»",
+      "prompt": "Друг спрашивает, сможете ли вы вытереть стол. Скажите «Я могу вытереть его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-31:i13:audio"
       ],
-      "accessibilityLabel": "Вы рассказываете о своих привычках. Используйте shower: «Я часто принимаю душ»",
+      "accessibilityLabel": "Друг спрашивает, сможете ли вы вытереть стол. Скажите «Я могу вытереть его»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-31:i13:audio",
-          "transcript": "I often shower."
+          "transcript": "I can wipe it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often shower.",
+        "targetPhrase": "I can wipe it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -672,67 +845,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте указание повернуть налево",
+      "prompt": "Выберите форму для указания использовать скребок для воды",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-31:i14:r1",
-          "text": "Turn"
+          "text": "Use"
         },
         {
           "responseId": "en:lesson-08:session-31:i14:r2",
-          "text": "Turns"
+          "text": "Uses"
         },
         {
           "responseId": "en:lesson-08:session-31:i14:r3",
-          "text": "To turn"
+          "text": "To use"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте указание повернуть налево",
+      "accessibilityLabel": "Выберите форму для указания использовать скребок для воды",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание повернуть налево",
-          "uk": "Дайте вказівку повернути ліворуч"
+          "ru": "Выберите форму для указания использовать скребок для воды",
+          "uk": "Виберіть форму для вказівки використати скребок для води"
         },
-        "gappedTargetPhrase": "___ left.",
+        "gappedTargetPhrase": "___ the squeegee.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-31:i14:r1",
-            "text": "Turn"
+            "text": "Use"
           },
           {
             "responseId": "en:lesson-08:session-31:i14:r2",
-            "text": "Turns"
+            "text": "Uses"
           },
           {
             "responseId": "en:lesson-08:session-31:i14:r3",
-            "text": "To turn"
+            "text": "To use"
           }
         ],
-        "testedDimension": "Дайте указание повернуть налево",
+        "testedDimension": "Выберите форму для указания использовать скребок для воды",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-31:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для указания использовать скребок для воды",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Turn`, без `s`.",
-              "uk": "Для вказівки потрібне `Turn`, без `s`."
+              "ru": "Для указания нужно Use, без s.",
+              "uk": "Для вказівки потрібне Use, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-31:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте указание повернуть налево",
+            "testedDimension": "Выберите форму для указания использовать скребок для воды",
             "feedbackByLocale": {
-              "ru": "Начните с `Turn`, без `to`.",
-              "uk": "Почніть із `Turn`, без `to`."
+              "ru": "Начните с Use, без to.",
+              "uk": "Почніть з Use, без to."
             }
           }
         ]
@@ -741,7 +914,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -749,15 +922,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-31:i15:r1",
-          "text": "Open the window."
+          "text": "There is a smudge."
         },
         {
           "responseId": "en:lesson-08:session-31:i15:r2",
-          "text": "Open the door."
+          "text": "There is a table."
         },
         {
           "responseId": "en:lesson-08:session-31:i15:r3",
-          "text": "Open the box."
+          "text": "There is a box."
         }
       ],
       "mediaIds": [],
@@ -769,23 +942,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-31:i15:audio",
-          "transcript": "Open the window."
+          "transcript": "There is a smudge."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-31:i15:r1",
-            "targetText": "Open the window.",
+            "targetText": "There is a smudge.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-31:i15:r2",
-            "targetText": "Open the door.",
+            "targetText": "There is a table.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-31:i15:r3",
-            "targetText": "Open the box.",
+            "targetText": "There is a box.",
             "meaningByLocale": null
           }
         ],
@@ -796,8 +969,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `door`."
+              "ru": "В записи smudge — «пятно», а не table — «стол».",
+              "uk": "У записі smudge — «пляма», а не table — «стіл»."
             }
           },
           {
@@ -805,8 +978,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `window`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `window`, а в цьому варіанті — `box`."
+              "ru": "В записи smudge, а не box — «коробка».",
+              "uk": "У записі smudge, а не box — «коробка»."
             }
           }
         ],
@@ -817,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,40 +1012,40 @@
           },
           {
             "pairId": "en:lesson-08:session-31:i16:p2",
-            "target": "shower",
+            "target": "smudge",
             "meaningByLocale": {
-              "ru": "принимать душ",
-              "uk": "приймати душ"
+              "ru": "размазанный след",
+              "uk": "розмазаний слід"
             }
           },
           {
             "pairId": "en:lesson-08:session-31:i16:p3",
-            "target": "reserve",
+            "target": "squeegee",
             "meaningByLocale": {
-              "ru": "забронировать",
-              "uk": "забронювати"
+              "ru": "скребок для воды",
+              "uk": "скребок для води"
             }
           },
           {
             "pairId": "en:lesson-08:session-31:i16:p4",
-            "target": "car park",
+            "target": "disinfectant",
             "meaningByLocale": {
-              "ru": "автостоянка",
-              "uk": "автостоянка"
+              "ru": "дезинфицирующее средство",
+              "uk": "дезінфекційний засіб"
             }
           }
         ],
         "leftColumn": [
           "wipe",
-          "shower",
-          "reserve",
-          "car park"
+          "smudge",
+          "squeegee",
+          "disinfectant"
         ],
         "rightColumn": [
           "вытереть",
-          "принимать душ",
-          "забронировать",
-          "автостоянка"
+          "размазанный след",
+          "скребок для воды",
+          "дезинфицирующее средство"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1103,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e4beb224e6919d9c1a301cdf99d8c8c869adc5979b0c8cf0aac463240938ba7e"
+  "learnerFingerprint": "c60af7bf1a81fd3549a07329856192e1f33e18f7e8d6ec2c6dab04a6fa9d07c5"
 }

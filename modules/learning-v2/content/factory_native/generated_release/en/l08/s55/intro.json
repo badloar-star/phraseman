@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "предлагать улучшения и просить обратную связь с can",
+    "uk": "пропонувати поліпшення й просити зворотний зв’язок із can"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тёмный угол для чтения",
+        "uk": "Темний куточок для читання"
+      },
+      "bodyByLocale": {
+        "ru": "У кресла для чтения слишком темно. Вы можете переставить лампу и сделать освещение удобнее. Improve — «улучшать». I can improve it — «Я могу это улучшить». It относится к освещению у кресла. После can нужно improve, без to и s.",
+        "uk": "Біля крісла для читання надто темно. Ви можете переставити лампу й зробити освітлення зручнішим. Improve — «поліпшувати». I can improve it — «Я можу це поліпшити». It стосується освітлення біля крісла. Після can потрібне improve, без to й s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r1",
+              "text": "I can improve it."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r2",
+              "text": "I can to improve it."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r3",
+              "text": "I can improves it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r1",
+              "text": "I can improve it."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r2",
+              "text": "I can to improve it."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro1:r3",
+              "text": "I can improves it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Отзыв после короткого выступления",
+        "uk": "Відгук після короткого виступу"
+      },
+      "bodyByLocale": {
+        "ru": "Вы репетируете рассказ для школьного радио. Подруга слушает и может сказать, что понятно, а что стоит изменить. Feedback — «обратная связь, отзыв о работе». She can give feedback — «Она может дать обратную связь». В этом значении feedback употребляется без a: не a feedback.",
+        "uk": "Ви репетируєте розповідь для шкільного радіо. Подруга слухає й може сказати, що зрозуміло, а що варто змінити. Feedback — «зворотний зв’язок, відгук про роботу». She can give feedback — «Вона може дати зворотний зв’язок». У цьому значенні feedback уживається без a: не a feedback."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r1",
+              "text": "She can give feedback."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r2",
+              "text": "She can to give feedback."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r3",
+              "text": "She can gives feedback."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r1",
+              "text": "She can give feedback."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r2",
+              "text": "She can to give feedback."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro2:r3",
+              "text": "She can gives feedback."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Первые ровные стежки",
+        "uk": "Перші рівні стібки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы учитесь шить и сравниваете сегодняшнюю строчку со своей первой: теперь стежки ровнее. Progress — «прогресс, продвижение». I can see my progress — «Я вижу свой прогресс». Can see здесь означает, что вы замечаете результат.",
+        "uk": "Ви вчитеся шити й порівнюєте сьогоднішню строчку зі своєю першою: тепер стібки рівніші. Progress — «прогрес, поступ». I can see my progress — «Я бачу свій прогрес». Can see тут означає, що ви помічаєте результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r1",
+              "text": "I can see my progress."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r2",
+              "text": "I can to see my progress."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r3",
+              "text": "I can sees my progress."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r1",
+              "text": "I can see my progress."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r2",
+              "text": "I can to see my progress."
+            },
+            {
+              "responseId": "en:lesson-08:session-55:intro3:r3",
+              "text": "I can sees my progress."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d75d4154aa0bcb05237a8d4a5716f31c6837c9a1ad1060a2cdc3a414b68ab1b8"
+}

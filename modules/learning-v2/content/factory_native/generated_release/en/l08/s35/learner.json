@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-35:i01",
+      "interactionId": "en:lesson-08:session-35:word:spill",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-35:word:spill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-35:word:spill:audio",
+          "transcript": "spill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-35:word:spill:r1",
+            "targetText": "spill",
+            "meaningByLocale": {
+              "ru": "проливать. Don’t spill it. — «Не пролей это». Дать жидкости вылиться из ёмкости.",
+              "uk": "проливати. Don’t spill it. — «Не пролий це». Дати рідині вилитися з посудини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spill",
+          "definitionByLocale": {
+            "ru": "проливать. Don’t spill it. — «Не пролей это». Дать жидкости вылиться из ёмкости.",
+            "uk": "проливати. Don’t spill it. — «Не пролий це». Дати рідині вилитися з посудини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-35:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Не пролей это»",
+      "prompt": "Выберите форму для предупреждения «Не пролей это»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-35:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Не пролей это»",
+      "accessibilityLabel": "Выберите форму для предупреждения «Не пролей это»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не пролей это»",
-          "uk": "Скажіть «Не пролий це»"
+          "ru": "Выберите форму для предупреждения «Не пролей это»",
+          "uk": "Виберіть форму для попередження «Не пролий це»"
         },
         "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "to spill"
           }
         ],
-        "testedDimension": "Скажите «Не пролей это»",
+        "testedDimension": "Выберите форму для предупреждения «Не пролей это»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-35:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Не пролей это»",
+            "testedDimension": "Выберите форму для предупреждения «Не пролей это»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `spill`, без `s`.",
               "uk": "Після `don’t` потрібне `spill`, без `s`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-35:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Не пролей это»",
+            "testedDimension": "Выберите форму для предупреждения «Не пролей это»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `spill`, без `to`.",
               "uk": "Після `don’t` потрібне `spill`, без `to`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-35:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-35:word:splash",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — splash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-35:word:splash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — splash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-35:word:splash:audio",
+          "transcript": "splash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-35:word:splash:r1",
+            "targetText": "splash",
+            "meaningByLocale": {
+              "ru": "брызгать, плескаться. Please don’t splash me. — «Пожалуйста, не брызгай на меня». Splash me — обрызгать меня.",
+              "uk": "бризкати, хлюпатися. Please don’t splash me. — «Будь ласка, не бризкай на мене». Splash me — оббризкати мене."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "splash",
+          "definitionByLocale": {
+            "ru": "брызгать, плескаться. Please don’t splash me. — «Пожалуйста, не брызгай на меня». Splash me — обрызгать меня.",
+            "uk": "бризкати, хлюпатися. Please don’t splash me. — «Будь ласка, не бризкай на мене». Splash me — оббризкати мене."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажите на краску: «Не трогай это»",
+      "prompt": "Попросите «Пожалуйста, не брызгай на меня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите на краску: «Не трогай это»",
+      "accessibilityLabel": "Попросите «Пожалуйста, не брызгай на меня»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Please don’t splash me.",
         "localizedMeaning": {
-          "ru": "Покажите на краску: «Не трогай это»",
-          "uk": "Покажіть на фарбу: «Не чіпай це»"
+          "ru": "Попросите «Пожалуйста, не брызгай на меня»",
+          "uk": "Попросіть «Будь ласка, не бризкай на мене»"
         },
         "orderedTokens": [
-          "Don’t",
-          "touch",
-          "this"
+          "Please",
+          "don’t",
+          "splash",
+          "me"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +408,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-35:word:soak",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soak",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-35:word:soak:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soak",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-35:word:soak:audio",
+          "transcript": "soak"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-35:word:soak:r1",
+            "targetText": "soak",
+            "meaningByLocale": {
+              "ru": "замачивать. Don’t soak it. — «Не замачивай её». Оставлять вещь в воде, чтобы она пропиталась.",
+              "uk": "замочувати. Don’t soak it. — «Не замочуй її». Залишати річ у воді, щоб вона просочилася."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soak",
+          "definitionByLocale": {
+            "ru": "замачивать. Don’t soak it. — «Не замачивай её». Оставлять вещь в воде, чтобы она пропиталась.",
+            "uk": "замочувати. Don’t soak it. — «Не замочуй її». Залишати річ у воді, щоб вона просочилася."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-35:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ищете ключи. Скажите другу «Пожалуйста, не жди»",
+      "prompt": "Сумку нельзя замачивать. Скажите «Не замачивай её»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-35:i07:audio"
       ],
-      "accessibilityLabel": "Вы ищете ключи. Скажите другу «Пожалуйста, не жди»",
+      "accessibilityLabel": "Сумку нельзя замачивать. Скажите «Не замачивай её»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-35:i07:audio",
-          "transcript": "Please don’t wait."
+          "transcript": "Don’t soak it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t wait.",
+        "targetPhrase": "Don’t soak it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,11 +485,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросите друга не ждать",
+      "prompt": "Выберите форму для просьбы не ждать",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-35:i08:r1",
@@ -376,12 +506,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите друга не ждать",
+      "accessibilityLabel": "Выберите форму для просьбы не ждать",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга не ждать",
-          "uk": "Попросіть друга не чекати"
+          "ru": "Выберите форму для просьбы не ждать",
+          "uk": "Виберіть форму для прохання не чекати"
         },
         "gappedTargetPhrase": "Please ___ wait.",
         "gapOptions": [
@@ -398,12 +528,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросите друга не ждать",
+        "testedDimension": "Выберите форму для просьбы не ждать",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-35:i08:r2",
             "correct": false,
-            "testedDimension": "Попросите друга не ждать",
+            "testedDimension": "Выберите форму для просьбы не ждать",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t wait`.",
               "uk": "У звертанні потрібне `don’t wait`."
@@ -412,7 +542,7 @@
           {
             "responseId": "en:lesson-08:session-35:i08:r3",
             "correct": false,
-            "testedDimension": "Попросите друга не ждать",
+            "testedDimension": "Выберите форму для просьбы не ждать",
             "feedbackByLocale": {
               "ru": "В этой просьбе нужно `don’t`: `Please don’t wait`.",
               "uk": "У цьому проханні потрібне `don’t`: `Please don’t wait`."
@@ -424,7 +554,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +630,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,14 +644,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-35:i10:p1",
-            "target": "commute",
-            "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу чи навчання"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-35:i10:p2",
             "target": "spill",
             "meaningByLocale": {
               "ru": "проливать",
@@ -529,33 +651,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-35:i10:p3",
-            "target": "sleep",
+            "pairId": "en:lesson-08:session-35:i10:p2",
+            "target": "splash",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "брызгать",
+              "uk": "бризкати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-35:i10:p3",
+            "target": "soak",
+            "meaningByLocale": {
+              "ru": "замачивать",
+              "uk": "замочувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-35:i10:p4",
-            "target": "ramp",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           }
         ],
         "leftColumn": [
-          "commute",
           "spill",
-          "sleep",
-          "ramp"
+          "splash",
+          "soak",
+          "wait"
         ],
         "rightColumn": [
-          "ездить на работу или учёбу",
           "проливать",
-          "спать",
-          "пандус"
+          "брызгать",
+          "замачивать",
+          "ждать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +703,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -607,26 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-35:word:stain",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-35:word:stain:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-35:word:stain:audio",
+          "transcript": "stain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-35:word:stain:r1",
+            "targetText": "stain",
+            "meaningByLocale": {
+              "ru": "оставлять пятно, пачкать. Don’t stain the shirt. — «Не оставь пятно на рубашке». Например, испачкать светлую ткань кофе.",
+              "uk": "залишати пляму, бруднити. Don’t stain the shirt. — «Не залиш пляму на сорочці». Наприклад, забруднити світлу тканину кавою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stain",
+          "definitionByLocale": {
+            "ru": "оставлять пятно, пачкать. Don’t stain the shirt. — «Не оставь пятно на рубашке». Например, испачкать светлую ткань кофе.",
+            "uk": "залишати пляму, бруднити. Don’t stain the shirt. — «Не залиш пляму на сорочці». Наприклад, забруднити світлу тканину кавою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-35:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Телефон разряжен. Дайте указание «Заряди его»",
+      "prompt": "Друг держит чашку кофе над белой рубашкой. Скажите «Не оставь пятно на рубашке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Телефон разряжен. Дайте указание «Заряди его»",
+      "accessibilityLabel": "Друг держит чашку кофе над белой рубашкой. Скажите «Не оставь пятно на рубашке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Charge it.",
+        "targetPhrase": "Don’t stain the shirt.",
         "localizedMeaning": {
-          "ru": "Телефон разряжен. Дайте указание «Заряди его»",
-          "uk": "Телефон розряджений. Дайте вказівку «Заряди його»"
+          "ru": "Друг держит чашку кофе над белой рубашкой. Скажите «Не оставь пятно на рубашке»",
+          "uk": "Друг тримає чашку кави над білою сорочкою. Скажіть «Не залиш пляму на сорочці»"
         },
         "orderedTokens": [
-          "Charge",
-          "it"
+          "Don’t",
+          "stain",
+          "the",
+          "shirt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Я часто езжу на работу» — используйте commute",
+      "prompt": "Друг предлагает вам идти вместе, но вы задерживаетесь в раздевалке. Скажите «Пожалуйста, не жди»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-35:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Я часто езжу на работу» — используйте commute",
+      "accessibilityLabel": "Друг предлагает вам идти вместе, но вы задерживаетесь в раздевалке. Скажите «Пожалуйста, не жди»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-35:i13:audio",
-          "transcript": "I often commute."
+          "transcript": "Please don’t wait."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often commute.",
+        "targetPhrase": "Please don’t wait.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -672,67 +847,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Предупредите «Не трогай это»",
+      "prompt": "Выберите форму для просьбы не замачивать сумку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-35:i14:r1",
-          "text": "touch"
+          "text": "soak"
         },
         {
           "responseId": "en:lesson-08:session-35:i14:r2",
-          "text": "touches"
+          "text": "soaks"
         },
         {
           "responseId": "en:lesson-08:session-35:i14:r3",
-          "text": "to touch"
+          "text": "to soak"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Предупредите «Не трогай это»",
+      "accessibilityLabel": "Выберите форму для просьбы не замачивать сумку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для просьбы не замачивать сумку",
+          "uk": "Виберіть форму для прохання не замочувати сумку"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-35:i14:r1",
-            "text": "touch"
+            "text": "soak"
           },
           {
             "responseId": "en:lesson-08:session-35:i14:r2",
-            "text": "touches"
+            "text": "soaks"
           },
           {
             "responseId": "en:lesson-08:session-35:i14:r3",
-            "text": "to touch"
+            "text": "to soak"
           }
         ],
-        "testedDimension": "Предупредите «Не трогай это»",
+        "testedDimension": "Выберите форму для просьбы не замачивать сумку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-35:i14:r2",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не замачивать сумку",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно soak, без s.",
+              "uk": "Після don’t потрібне soak, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-35:i14:r3",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не замачивать сумку",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -741,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-35:i16:p2",
-            "target": "commute",
+            "target": "splash",
             "meaningByLocale": {
-              "ru": "ездить на работу или учёбу",
-              "uk": "їздити на роботу чи навчання"
+              "ru": "брызгать",
+              "uk": "бризкати"
             }
           },
           {
             "pairId": "en:lesson-08:session-35:i16:p3",
-            "target": "charge",
+            "target": "soak",
             "meaningByLocale": {
-              "ru": "зарядить",
-              "uk": "зарядити"
+              "ru": "замачивать",
+              "uk": "замочувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-35:i16:p4",
-            "target": "ramp",
+            "target": "stain",
             "meaningByLocale": {
-              "ru": "пандус",
-              "uk": "пандус"
+              "ru": "оставлять пятно",
+              "uk": "залишати пляму"
             }
           }
         ],
         "leftColumn": [
           "spill",
-          "commute",
-          "charge",
-          "ramp"
+          "splash",
+          "soak",
+          "stain"
         ],
         "rightColumn": [
           "проливать",
-          "ездить на работу или учёбу",
-          "зарядить",
-          "пандус"
+          "брызгать",
+          "замачивать",
+          "оставлять пятно"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-35:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f30e52d27763db13efab48ae6d165cd94433a0b4e8f3295598508b646c851396"
+  "learnerFingerprint": "f7a1ae66a3d7f6531c14daf363bb547dfbcaad1ff17bf2f44493146826aefa68"
 }

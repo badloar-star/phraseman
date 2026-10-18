@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-55:word:improve",
+    "correctText": "improve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i01",
+    "correctText": "I can improve it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i02",
+    "correctText": "improve",
+    "correctResponseId": "en:lesson-08:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i03",
+    "correctText": "improve",
+    "correctResponseId": "en:lesson-08:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i04",
+    "correctText": "en:lesson-08:session-55:i04:p1=improve\nen:lesson-08:session-55:i04:p2=solve\nen:lesson-08:session-55:i04:p3=design\nen:lesson-08:session-55:i04:p4=manage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i05",
+    "correctText": "I can improve it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:word:feedback",
+    "correctText": "feedback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i06",
+    "correctText": "She can give feedback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:word:progress",
+    "correctText": "progress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i07",
+    "correctText": "I can see my progress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i08",
+    "correctText": "give",
+    "correctResponseId": "en:lesson-08:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i09",
+    "correctText": "She can give feedback.",
+    "correctResponseId": "en:lesson-08:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i10",
+    "correctText": "en:lesson-08:session-55:i10:p1=improve\nen:lesson-08:session-55:i10:p2=feedback\nen:lesson-08:session-55:i10:p3=progress\nen:lesson-08:session-55:i10:p4=solution",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i11",
+    "correctText": "I can see my progress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:word:accuracy",
+    "correctText": "accuracy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i12",
+    "correctText": "I can improve my accuracy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i13",
+    "correctText": "Can you give me feedback?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i14",
+    "correctText": "improve",
+    "correctResponseId": "en:lesson-08:session-55:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i15",
+    "correctText": "I can see my progress.",
+    "correctResponseId": "en:lesson-08:session-55:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i16",
+    "correctText": "en:lesson-08:session-55:i16:p1=improve\nen:lesson-08:session-55:i16:p2=feedback\nen:lesson-08:session-55:i16:p3=progress\nen:lesson-08:session-55:i16:p4=accuracy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-55:i17",
+    "correctText": "Can you give me feedback?",
+    "correctResponseId": null
+  }
+]

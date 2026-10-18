@@ -17835,8 +17835,8 @@
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
       "assetPath": "assets/audio/learning-v2/factory-production-v1/a5e7c002443743c5836758c7-ash.mp3",
-      "byteSize": 19584,
-      "contentHash": "2b3b1ecc57cdf06f40e837059730f74115a87ed0a2cd81e1c3acb4ec78caef0f",
+      "byteSize": 15552,
+      "contentHash": "5880e29666877a214856d03bc95e6061506e49dca6afe6680ca2a7cd858bc109",
       "source": "generated_factory_v1"
     },
     {
@@ -24675,8 +24675,8 @@
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
       "assetPath": "assets/audio/learning-v2/factory-production-v1/842fcb5e60989a03d08ee07f-ash.mp3",
-      "byteSize": 19584,
-      "contentHash": "b1f2d56f5f3561f8ea5b1874e5d394f8d687501292e5fc65cd1b288545718928",
+      "byteSize": 15552,
+      "contentHash": "98c17114e9e836069779e13f067cae07ee5e420318d840c660a54b30b8069565",
       "source": "generated_factory_v1"
     },
     {
@@ -24747,8 +24747,8 @@
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
       "assetPath": "assets/audio/learning-v2/factory-production-v1/683b531f41ec88a2f345b727-ash.mp3",
-      "byteSize": 37248,
-      "contentHash": "3d528daafe3e3666c5f34d386f84f975e8c11837e508a179c26945a74da89a4e",
+      "byteSize": 28800,
+      "contentHash": "dac6b555cf2b61ea866448157c20bcbbb72c1580bb69c611880f44726aa71410",
       "source": "generated_factory_v1"
     },
     {
@@ -25611,8 +25611,8 @@
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
       "assetPath": "assets/audio/learning-v2/factory-production-v1/157dca92e4250458339d4b83-ash.mp3",
-      "byteSize": 23040,
-      "contentHash": "a04ae8f5ff047d519316f9dc7a653519edf61ad7c1bea3907faf7156f7ee63a4",
+      "byteSize": 18144,
+      "contentHash": "f07299f1f01d8ce06e569c217105771b2bc13d20e0f88196a96d03e891aa8a82",
       "source": "generated_factory_v1"
     },
     {

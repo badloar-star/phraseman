@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-38:word:panic",
+    "correctText": "panic",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-38:i01",
     "correctText": "Don’t panic.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-38:word:hesitate",
+    "correctText": "hesitate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-38:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Don’t hesitate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-38:word:guess",
+    "correctText": "guess",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-38:i07",
-    "correctText": "Please don’t rush.",
+    "correctText": "Don’t guess.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-38:i10",
-    "correctText": "en:lesson-08:session-38:i10:p1=iron\nen:lesson-08:session-38:i10:p2=panic\nen:lesson-08:session-38:i10:p3=rest\nen:lesson-08:session-38:i10:p4=bike shed",
+    "correctText": "en:lesson-08:session-38:i10:p1=panic\nen:lesson-08:session-38:i10:p2=hesitate\nen:lesson-08:session-38:i10:p3=guess\nen:lesson-08:session-38:i10:p4=rush",
     "correctResponseId": null
   },
   {
@@ -55,18 +70,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-38:word:overreact",
+    "correctText": "overreact",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-38:i12",
-    "correctText": "Label it.",
+    "correctText": "Don’t overreact.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-38:i13",
-    "correctText": "I often iron.",
+    "correctText": "Please don’t rush.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-38:i14",
-    "correctText": "touch",
+    "correctText": "guess",
     "correctResponseId": "en:lesson-08:session-38:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-38:i16",
-    "correctText": "en:lesson-08:session-38:i16:p1=panic\nen:lesson-08:session-38:i16:p2=iron\nen:lesson-08:session-38:i16:p3=label\nen:lesson-08:session-38:i16:p4=bike shed",
+    "correctText": "en:lesson-08:session-38:i16:p1=panic\nen:lesson-08:session-38:i16:p2=hesitate\nen:lesson-08:session-38:i16:p3=guess\nen:lesson-08:session-38:i16:p4=overreact",
     "correctResponseId": null
   },
   {

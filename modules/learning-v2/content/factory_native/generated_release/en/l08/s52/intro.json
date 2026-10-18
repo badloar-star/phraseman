@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "предлагать помощь и обозначать предел возможностей с can / can’t",
+    "uk": "пропонувати допомогу й позначати межу можливостей із can / can’t"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Запись в шахматный кружок",
+        "uk": "Запис до шахового гуртка"
+      },
+      "bodyByLocale": {
+        "ru": "На первую встречу кружка записалось много людей. Организатору нужен помощник, который займётся списком участников. Manage — «управлять, организовывать; справляться». I can manage the list — «Я могу заняться списком». Здесь manage означает взять ведение списка на себя. После can действие остаётся без to и s.",
+        "uk": "На першу зустріч гуртка записалося багато людей. Організатору потрібен помічник, який займеться списком учасників. Manage — «керувати, організовувати; справлятися». I can manage the list — «Я можу зайнятися списком». Тут manage означає взяти ведення списку на себе. Після can дія залишається без to й s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r1",
+              "text": "I can manage the list."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r2",
+              "text": "I can to manage the list."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r3",
+              "text": "I can manages the list."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r1",
+              "text": "I can manage the list."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r2",
+              "text": "I can to manage the list."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro1:r3",
+              "text": "I can manages the list."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Утренние заказы в пекарне",
+        "uk": "Ранкові замовлення в пекарні"
+      },
+      "bodyByLocale": {
+        "ru": "В пекарне много утренних заказов, и вы предлагаете коллеге поделить работу. Workload — «объём работы, рабочая нагрузка». We can share the workload — «Мы можем разделить нагрузку». После can используем share, без окончания s.",
+        "uk": "У пекарні багато ранкових замовлень, і ви пропонуєте колезі поділити роботу. Workload — «обсяг роботи, робоче навантаження». We can share the workload — «Ми можемо розділити навантаження». Після can використовуємо share, без закінчення s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r1",
+              "text": "We can share the workload."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r2",
+              "text": "We can to share the workload."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r3",
+              "text": "We can shares the workload."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r1",
+              "text": "We can share the workload."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r2",
+              "text": "We can to share the workload."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro2:r3",
+              "text": "We can shares the workload."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что убрать с порога первым",
+        "uk": "Що прибрати з порога спочатку"
+      },
+      "bodyByLocale": {
+        "ru": "Курьер привёз продукты, а рядом ждёт пакет с книгами. Продукты нужно сначала убрать в холодильник. Priority — «приоритет, первоочередная задача». This is the priority — «Это первоочередная задача». Покажите на продукты и назовите то, что нельзя откладывать. Здесь нет действия после can: this is называет, чем является задача.",
+        "uk": "Кур’єр привіз продукти, а поруч чекає пакет із книжками. Продукти потрібно спочатку прибрати до холодильника. Priority — «пріоритет, першочергове завдання». This is the priority — «Це першочергове завдання». Покажіть на продукти й назвіть те, що не можна відкладати. Тут немає дії після can: this is називає, чим є завдання."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r1",
+              "text": "This is the priority."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r2",
+              "text": "This are the priority."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r3",
+              "text": "This am the priority."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r1",
+              "text": "This is the priority."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r2",
+              "text": "This are the priority."
+            },
+            {
+              "responseId": "en:lesson-08:session-52:intro3:r3",
+              "text": "This am the priority."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "84b86e9b529cf591cccfb7dc422773c3f2ae12680031e45bf147a2323227d588"
+}

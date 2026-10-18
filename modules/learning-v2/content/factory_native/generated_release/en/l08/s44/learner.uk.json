@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-44:i01",
+      "interactionId": "en:lesson-08:session-44:word:operate",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — operate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-44:word:operate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — operate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-44:word:operate:audio",
+          "transcript": "operate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-44:word:operate:r1",
+            "targetText": "operate",
+            "meaningByLocale": {
+              "ru": "управлять устройством, работать с ним. I can operate it. — «Я умею с этим работать».",
+              "uk": "керувати пристроєм, працювати з ним. I can operate it. — «Я вмію з цим працювати»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "operate",
+          "definitionByLocale": {
+            "ru": "управлять устройством, работать с ним. I can operate it. — «Я умею с этим работать».",
+            "uk": "керувати пристроєм, працювати з ним. I can operate it. — «Я вмію з цим працювати»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-44:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -38,7 +81,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -114,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте працювати з цим пристроєм",
+      "prompt": "Виберіть форму для фрази «Я вмію з цим працювати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-44:i03:r1",
@@ -135,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте працювати з цим пристроєм",
+      "accessibilityLabel": "Виберіть форму для фрази «Я вмію з цим працювати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете работать с этим устройством",
-          "uk": "Скажіть, що вмієте працювати з цим пристроєм"
+          "ru": "Выберите форму для фразы «Я умею с этим работать»",
+          "uk": "Виберіть форму для фрази «Я вмію з цим працювати»"
         },
         "gappedTargetPhrase": "I can ___ it.",
         "gapOptions": [
@@ -157,12 +200,12 @@
             "text": "operates"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте працювати з цим пристроєм",
+        "testedDimension": "Виберіть форму для фрази «Я вмію з цим працювати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте працювати з цим пристроєм",
+            "testedDimension": "Виберіть форму для фрази «Я вмію з цим працювати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `operate`, без `to`.",
               "uk": "Після `can` потрібне `operate`, без `to`."
@@ -171,7 +214,7 @@
           {
             "responseId": "en:lesson-08:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте працювати з цим пристроєм",
+            "testedDimension": "Виберіть форму для фрази «Я вмію з цим працювати»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `operate`, без `s`.",
               "uk": "Після `can` потрібне `operate`, без `s`."
@@ -183,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -256,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -291,27 +334,72 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-44:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-44:word:reset",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-44:word:reset:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reset",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-44:word:reset:audio",
+          "transcript": "reset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-44:word:reset:r1",
+            "targetText": "reset",
+            "meaningByLocale": {
+              "ru": "сбросить, вернуть к исходному состоянию. She can reset the timer. — «Она может сбросить таймер».",
+              "uk": "скинути, повернути до початкового стану. She can reset the timer. — «Вона може скинути таймер»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reset",
+          "definitionByLocale": {
+            "ru": "сбросить, вернуть к исходному состоянию. She can reset the timer. — «Она может сбросить таймер».",
+            "uk": "скинути, повернути до початкового стану. She can reset the timer. — «Вона може скинути таймер»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про подругу «Вона вміє водити»",
+      "prompt": "Скажіть «Вона може скинути таймер»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про подругу «Вона вміє водити»",
+      "accessibilityLabel": "Скажіть «Вона може скинути таймер»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can reset the timer.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите «Она может сбросить таймер»",
+          "uk": "Скажіть «Вона може скинути таймер»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "reset",
+          "the",
+          "timer"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -323,26 +411,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-44:word:dial",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dial",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-44:word:dial:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dial",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-44:word:dial:audio",
+          "transcript": "dial"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-44:word:dial:r1",
+            "targetText": "dial",
+            "meaningByLocale": {
+              "ru": "круглая ручка настройки. I can turn the dial. — «Я могу повернуть ручку настройки». Здесь dial — предмет, который поворачивают.",
+              "uk": "кругла ручка налаштування. I can turn the dial. — «Я можу повернути ручку налаштування». Тут dial — предмет, який повертають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dial",
+          "definitionByLocale": {
+            "ru": "круглая ручка настройки. I can turn the dial. — «Я могу повернуть ручку настройки». Здесь dial — предмет, который поворачивают.",
+            "uk": "кругла ручка налаштування. I can turn the dial. — «Я можу повернути ручку налаштування». Тут dial — предмет, який повертають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-44:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Скажіть «Я можу повернути ручку налаштування»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-44:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Скажіть «Я можу повернути ручку налаштування»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-44:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can turn the dial."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can turn the dial.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +488,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вона вміє водити",
+      "prompt": "Виберіть форму для фрази «Вона може скинути таймер»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-44:i08:r1",
-          "text": "drive"
+          "text": "reset"
         },
         {
           "responseId": "en:lesson-08:session-44:i08:r2",
-          "text": "drives"
+          "text": "resets"
         },
         {
           "responseId": "en:lesson-08:session-44:i08:r3",
-          "text": "to drive"
+          "text": "to reset"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вона вміє водити",
+      "accessibilityLabel": "Виберіть форму для фрази «Вона може скинути таймер»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы «Она может сбросить таймер»",
+          "uk": "Виберіть форму для фрази «Вона може скинути таймер»"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "She can ___ the timer.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-44:i08:r1",
-            "text": "drive"
+            "text": "reset"
           },
           {
             "responseId": "en:lesson-08:session-44:i08:r2",
-            "text": "drives"
+            "text": "resets"
           },
           {
             "responseId": "en:lesson-08:session-44:i08:r3",
-            "text": "to drive"
+            "text": "to reset"
           }
         ],
-        "testedDimension": "Скажіть, що вона вміє водити",
+        "testedDimension": "Виберіть форму для фрази «Вона може скинути таймер»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може скинути таймер»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно reset, даже с she.",
+              "uk": "Після can потрібне reset, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вона вміє водити",
+            "testedDimension": "Виберіть форму для фрази «Вона може скинути таймер»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -426,7 +557,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -502,7 +633,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -516,48 +647,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-44:i10:p1",
-            "target": "scratch",
+            "target": "operate",
             "meaningByLocale": {
-              "ru": "царапать",
-              "uk": "дряпати"
+              "ru": "управлять устройством",
+              "uk": "керувати пристроєм"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i10:p2",
-            "target": "operate",
+            "target": "reset",
             "meaningByLocale": {
-              "ru": "работать с устройством",
-              "uk": "працювати з пристроєм"
+              "ru": "возвращать к исходному состоянию",
+              "uk": "повертати до початкового стану"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i10:p3",
-            "target": "hat",
+            "target": "dial",
             "meaningByLocale": {
-              "ru": "головной убор",
-              "uk": "головний убір"
+              "ru": "круглая ручка настройки",
+              "uk": "кругла ручка налаштування"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i10:p4",
-            "target": "freezer",
+            "target": "polish",
             "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильна камера"
+              "ru": "полировать",
+              "uk": "полірувати"
             }
           }
         ],
         "leftColumn": [
-          "scratch",
           "operate",
-          "hat",
-          "freezer"
+          "reset",
+          "dial",
+          "polish"
         ],
         "rightColumn": [
-          "дряпати",
-          "працювати з пристроєм",
-          "головний убір",
-          "морозильна камера"
+          "керувати пристроєм",
+          "повертати до початкового стану",
+          "кругла ручка налаштування",
+          "полірувати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -575,8 +706,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -590,14 +721,16 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-44:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can reset the timer."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can reset the timer.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "reset",
+          "the",
+          "timer"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -609,27 +742,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-44:word:lever",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lever",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-44:word:lever:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lever",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-44:word:lever:audio",
+          "transcript": "lever"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-44:word:lever:r1",
+            "targetText": "lever",
+            "meaningByLocale": {
+              "ru": "рычаг. I can move the lever. — «Я могу передвинуть рычаг». Ручка, движением которой управляют механизмом.",
+              "uk": "важіль. I can move the lever. — «Я можу пересунути важіль». Ручка, рухом якої керують механізмом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lever",
+          "definitionByLocale": {
+            "ru": "рычаг. I can move the lever. — «Я могу передвинуть рычаг». Ручка, движением которой управляют механизмом.",
+            "uk": "важіль. I can move the lever. — «Я можу пересунути важіль». Ручка, рухом якої керують механізмом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-44:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг рухає проєктор по столу. Покажіть на стіл і скажіть «Не подряпай це»",
+      "prompt": "У моделі підіймального крана є важіль. Скажіть «Я можу пересунути важіль»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг рухає проєктор по столу. Покажіть на стіл і скажіть «Не подряпай це»",
+      "accessibilityLabel": "У моделі підіймального крана є важіль. Скажіть «Я можу пересунути важіль»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t scratch it.",
+        "targetPhrase": "I can move the lever.",
         "localizedMeaning": {
-          "ru": "Друг двигает проектор по столу. Покажите на стол и скажите «Не поцарапай это»",
-          "uk": "Друг рухає проєктор по столу. Покажіть на стіл і скажіть «Не подряпай це»"
+          "ru": "У модели подъёмного крана есть рычаг. Скажите «Я могу передвинуть рычаг»",
+          "uk": "У моделі підіймального крана є важіль. Скажіть «Я можу пересунути важіль»"
         },
         "orderedTokens": [
-          "Don’t",
-          "scratch",
-          "it"
+          "I",
+          "can",
+          "move",
+          "the",
+          "lever"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -642,7 +820,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -675,67 +853,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть, що вмієте свистіти",
+      "prompt": "Виберіть форму для фрази «Я можу повернути ручку налаштування»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-44:i14:r1",
-          "text": "whistle"
+          "text": "turn"
         },
         {
           "responseId": "en:lesson-08:session-44:i14:r2",
-          "text": "whistles"
+          "text": "turns"
         },
         {
           "responseId": "en:lesson-08:session-44:i14:r3",
-          "text": "to whistle"
+          "text": "to turn"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть, що вмієте свистіти",
+      "accessibilityLabel": "Виберіть форму для фрази «Я можу повернути ручку налаштування»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я могу повернуть ручку настройки»",
+          "uk": "Виберіть форму для фрази «Я можу повернути ручку налаштування»"
         },
-        "gappedTargetPhrase": "I can ___.",
+        "gappedTargetPhrase": "I can ___ the dial.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-44:i14:r1",
-            "text": "whistle"
+            "text": "turn"
           },
           {
             "responseId": "en:lesson-08:session-44:i14:r2",
-            "text": "whistles"
+            "text": "turns"
           },
           {
             "responseId": "en:lesson-08:session-44:i14:r3",
-            "text": "to whistle"
+            "text": "to turn"
           }
         ],
-        "testedDimension": "Скажіть, що вмієте свистіти",
+        "testedDimension": "Виберіть форму для фрази «Я можу повернути ручку налаштування»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-44:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу повернути ручку налаштування»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно turn, без s.",
+              "uk": "Після can потрібне turn, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-44:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть, що вмієте свистіти",
+            "testedDimension": "Виберіть форму для фрази «Я можу повернути ручку налаштування»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -744,7 +922,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -820,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,46 +1014,46 @@
             "pairId": "en:lesson-08:session-44:i16:p1",
             "target": "operate",
             "meaningByLocale": {
-              "ru": "работать с устройством",
-              "uk": "працювати з пристроєм"
+              "ru": "управлять устройством",
+              "uk": "керувати пристроєм"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i16:p2",
-            "target": "polish",
+            "target": "reset",
             "meaningByLocale": {
-              "ru": "полировать",
-              "uk": "полірувати"
+              "ru": "возвращать к исходному состоянию",
+              "uk": "повертати до початкового стану"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i16:p3",
-            "target": "scratch",
+            "target": "dial",
             "meaningByLocale": {
-              "ru": "царапать",
-              "uk": "дряпати"
+              "ru": "круглая ручка настройки",
+              "uk": "кругла ручка налаштування"
             }
           },
           {
             "pairId": "en:lesson-08:session-44:i16:p4",
-            "target": "freezer",
+            "target": "lever",
             "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильна камера"
+              "ru": "рычаг",
+              "uk": "важіль"
             }
           }
         ],
         "leftColumn": [
           "operate",
-          "polish",
-          "scratch",
-          "freezer"
+          "reset",
+          "dial",
+          "lever"
         ],
         "rightColumn": [
-          "працювати з пристроєм",
-          "полірувати",
-          "дряпати",
-          "морозильна камера"
+          "керувати пристроєм",
+          "повертати до початкового стану",
+          "кругла ручка налаштування",
+          "важіль"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,7 +1071,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-44:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -933,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "30a6cb358086a1fe9c6df21b82692580098960866d31e541837f2bdf81275a2f"
+  "learnerFingerprint": "3b799e7a03aabca0f718086f3bd051004cf9f4f157fcea328458f66377d81b19"
 }

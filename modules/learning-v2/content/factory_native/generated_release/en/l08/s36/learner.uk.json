@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-36:i01",
+      "interactionId": "en:lesson-08:session-36:word:scratch",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scratch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-36:word:scratch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scratch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-36:word:scratch:audio",
+          "transcript": "scratch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-36:word:scratch:r1",
+            "targetText": "scratch",
+            "meaningByLocale": {
+              "ru": "царапать. Don’t scratch it. — «Не поцарапай это». Оставлять тонкие повреждения на поверхности.",
+              "uk": "дряпати. Don’t scratch it. — «Не подряпай це». Залишати тонкі пошкодження на поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scratch",
+          "definitionByLocale": {
+            "ru": "царапать. Don’t scratch it. — «Не поцарапай это». Оставлять тонкие повреждения на поверхности.",
+            "uk": "дряпати. Don’t scratch it. — «Не подряпай це». Залишати тонкі пошкодження на поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-36:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Не подряпай це»",
+      "prompt": "Виберіть форму для попередження «Не подряпай це»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-36:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Не подряпай це»",
+      "accessibilityLabel": "Виберіть форму для попередження «Не подряпай це»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не поцарапай это»",
-          "uk": "Скажіть «Не подряпай це»"
+          "ru": "Выберите форму для предупреждения «Не поцарапай это»",
+          "uk": "Виберіть форму для попередження «Не подряпай це»"
         },
         "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "to scratch"
           }
         ],
-        "testedDimension": "Скажіть «Не подряпай це»",
+        "testedDimension": "Виберіть форму для попередження «Не подряпай це»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-36:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Не подряпай це»",
+            "testedDimension": "Виберіть форму для попередження «Не подряпай це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `scratch`, без `es`.",
               "uk": "Після `don’t` потрібне `scratch`, без `es`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-36:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Не подряпай це»",
+            "testedDimension": "Виберіть форму для попередження «Не подряпай це»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `scratch`, без `to`.",
               "uk": "Після `don’t` потрібне `scratch`, без `to`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-36:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-36:word:dent",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-36:word:dent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-36:word:dent:audio",
+          "transcript": "dent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-36:word:dent:r1",
+            "targetText": "dent",
+            "meaningByLocale": {
+              "ru": "оставлять вмятину, мять. Don’t dent it. — «Не помни это». Например, помять металлическую бутылку.",
+              "uk": "залишати вм’ятину, м’яти. Don’t dent it. — «Не помни це». Наприклад, пом’яти металеву пляшку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dent",
+          "definitionByLocale": {
+            "ru": "оставлять вмятину, мять. Don’t dent it. — «Не помни это». Например, помять металлическую бутылку.",
+            "uk": "залишати вм’ятину, м’яти. Don’t dent it. — «Не помни це». Наприклад, пом’яти металеву пляшку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на модель: «Не чіпай це»",
+      "prompt": "Скажіть про металеву пляшку: «Не помни її»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на модель: «Не чіпай це»",
+      "accessibilityLabel": "Скажіть про металеву пляшку: «Не помни її»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Don’t dent it.",
         "localizedMeaning": {
-          "ru": "Покажите на модель: «Не трогай это»",
-          "uk": "Покажіть на модель: «Не чіпай це»"
+          "ru": "Скажите о металлической бутылке: «Не помни её»",
+          "uk": "Скажіть про металеву пляшку: «Не помни її»"
         },
         "orderedTokens": [
           "Don’t",
-          "touch",
-          "this"
+          "dent",
+          "it"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-36:word:chip",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-36:word:chip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-36:word:chip:audio",
+          "transcript": "chip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-36:word:chip:r1",
+            "targetText": "chip",
+            "meaningByLocale": {
+              "ru": "откалывать кусочек. Don’t chip it. — «Не отколи от неё кусочек». Например, случайно сделать скол на краю чашки.",
+              "uk": "відколювати шматочок. Don’t chip it. — «Не відколюй від неї шматочок». Наприклад, випадково пошкодити край чашки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chip",
+          "definitionByLocale": {
+            "ru": "откалывать кусочек. Don’t chip it. — «Не отколи от неё кусочек». Например, случайно сделать скол на краю чашки.",
+            "uk": "відколювати шматочок. Don’t chip it. — «Не відколюй від неї шматочок». Наприклад, випадково пошкодити край чашки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-36:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви ще розмовляєте телефоном. Скажіть другові «Будь ласка, не чекай»",
+      "prompt": "Чашка майже торкається крана. Скажіть «Не відколюй від неї шматочок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-36:i07:audio"
       ],
-      "accessibilityLabel": "Ви ще розмовляєте телефоном. Скажіть другові «Будь ласка, не чекай»",
+      "accessibilityLabel": "Чашка майже торкається крана. Скажіть «Не відколюй від неї шматочок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-36:i07:audio",
-          "transcript": "Please don’t wait."
+          "transcript": "Don’t chip it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t wait.",
+        "targetPhrase": "Don’t chip it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,11 +484,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть друга не чекати",
+      "prompt": "Виберіть форму для прохання не чекати",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-36:i08:r1",
@@ -376,12 +505,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть друга не чекати",
+      "accessibilityLabel": "Виберіть форму для прохання не чекати",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга не ждать",
-          "uk": "Попросіть друга не чекати"
+          "ru": "Выберите форму для просьбы не ждать",
+          "uk": "Виберіть форму для прохання не чекати"
         },
         "gappedTargetPhrase": "Please ___ wait.",
         "gapOptions": [
@@ -398,12 +527,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросіть друга не чекати",
+        "testedDimension": "Виберіть форму для прохання не чекати",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-36:i08:r2",
             "correct": false,
-            "testedDimension": "Попросіть друга не чекати",
+            "testedDimension": "Виберіть форму для прохання не чекати",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t wait`.",
               "uk": "У звертанні потрібне `don’t wait`."
@@ -412,7 +541,7 @@
           {
             "responseId": "en:lesson-08:session-36:i08:r3",
             "correct": false,
-            "testedDimension": "Попросіть друга не чекати",
+            "testedDimension": "Виберіть форму для прохання не чекати",
             "feedbackByLocale": {
               "ru": "В этой просьбе нужно `don’t`: `Please don’t wait`.",
               "uk": "У цьому проханні потрібне `don’t`: `Please don’t wait`."
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,14 +643,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-36:i10:p1",
-            "target": "relax",
-            "meaningByLocale": {
-              "ru": "расслабляться",
-              "uk": "розслаблятися"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-36:i10:p2",
             "target": "scratch",
             "meaningByLocale": {
               "ru": "царапать",
@@ -529,33 +650,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-36:i10:p3",
-            "target": "live",
+            "pairId": "en:lesson-08:session-36:i10:p2",
+            "target": "dent",
             "meaningByLocale": {
-              "ru": "жить",
-              "uk": "жити"
+              "ru": "оставлять вмятину",
+              "uk": "залишати вм’ятину"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-36:i10:p3",
+            "target": "chip",
+            "meaningByLocale": {
+              "ru": "откалывать кусочек",
+              "uk": "відколювати шматочок"
             }
           },
           {
             "pairId": "en:lesson-08:session-36:i10:p4",
-            "target": "smoke alarm",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "датчик дыма",
-              "uk": "датчик диму"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           }
         ],
         "leftColumn": [
-          "relax",
           "scratch",
-          "live",
-          "smoke alarm"
+          "dent",
+          "chip",
+          "wait"
         ],
         "rightColumn": [
-          "розслаблятися",
           "дряпати",
-          "жити",
-          "датчик диму"
+          "залишати вм’ятину",
+          "відколювати шматочок",
+          "чекати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -607,26 +736,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-36:word:scuff",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scuff",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-36:word:scuff:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scuff",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-36:word:scuff:audio",
+          "transcript": "scuff"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-36:word:scuff:r1",
+            "targetText": "scuff",
+            "meaningByLocale": {
+              "ru": "оставлять потёртости. Don’t scuff the shoes. — «Не оставь потёртостей на туфлях». Повредить поверхность трением, например о ступеньку.",
+              "uk": "залишати потертості. Don’t scuff the shoes. — «Не залиш потертостей на туфлях». Пошкодити поверхню тертям, наприклад об сходинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scuff",
+          "definitionByLocale": {
+            "ru": "оставлять потёртости. Don’t scuff the shoes. — «Не оставь потёртостей на туфлях». Повредить поверхность трением, например о ступеньку.",
+            "uk": "залишати потертості. Don’t scuff the shoes. — «Не залиш потертостей на туфлях». Пошкодити поверхню тертям, наприклад об сходинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-36:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на аркуш паперу. Дайте вказівку «Склади його»",
+      "prompt": "Друг тре нові туфлі об край сходинки. Скажіть «Не залиш потертостей на туфлях»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на аркуш паперу. Дайте вказівку «Склади його»",
+      "accessibilityLabel": "Друг тре нові туфлі об край сходинки. Скажіть «Не залиш потертостей на туфлях»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Fold it.",
+        "targetPhrase": "Don’t scuff the shoes.",
         "localizedMeaning": {
-          "ru": "Покажите на лист бумаги. Дайте указание «Сложи его»",
-          "uk": "Покажіть на аркуш паперу. Дайте вказівку «Склади його»"
+          "ru": "Друг трёт новые туфли о край ступеньки. Скажите «Не оставь потёртостей на туфлях»",
+          "uk": "Друг тре нові туфлі об край сходинки. Скажіть «Не залиш потертостей на туфлях»"
         },
         "orderedTokens": [
-          "Fold",
-          "it"
+          "Don’t",
+          "scuff",
+          "the",
+          "shoes"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я часто розслабляюся» — використайте relax",
+      "prompt": "Друг уже біля виходу з музею, а ви повертаєте аудіогід. Скажіть «Будь ласка, не чекай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-36:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я часто розслабляюся» — використайте relax",
+      "accessibilityLabel": "Друг уже біля виходу з музею, а ви повертаєте аудіогід. Скажіть «Будь ласка, не чекай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-36:i13:audio",
-          "transcript": "I often relax."
+          "transcript": "Please don’t wait."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often relax.",
+        "targetPhrase": "Please don’t wait.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -672,67 +846,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попередьте «Не чіпай це»",
+      "prompt": "Виберіть форму для попередження не пом’яти пляшку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-36:i14:r1",
-          "text": "touch"
+          "text": "dent"
         },
         {
           "responseId": "en:lesson-08:session-36:i14:r2",
-          "text": "touches"
+          "text": "dents"
         },
         {
           "responseId": "en:lesson-08:session-36:i14:r3",
-          "text": "to touch"
+          "text": "to dent"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попередьте «Не чіпай це»",
+      "accessibilityLabel": "Виберіть форму для попередження не пом’яти пляшку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для предупреждения не помять бутылку",
+          "uk": "Виберіть форму для попередження не пом’яти пляшку"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-36:i14:r1",
-            "text": "touch"
+            "text": "dent"
           },
           {
             "responseId": "en:lesson-08:session-36:i14:r2",
-            "text": "touches"
+            "text": "dents"
           },
           {
             "responseId": "en:lesson-08:session-36:i14:r3",
-            "text": "to touch"
+            "text": "to dent"
           }
         ],
-        "testedDimension": "Попередьте «Не чіпай це»",
+        "testedDimension": "Виберіть форму для попередження не пом’яти пляшку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-36:i14:r2",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для попередження не пом’яти пляшку",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно dent, без s.",
+              "uk": "Після don’t потрібне dent, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-36:i14:r3",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для попередження не пом’яти пляшку",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -741,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,40 +1013,40 @@
           },
           {
             "pairId": "en:lesson-08:session-36:i16:p2",
-            "target": "relax",
+            "target": "dent",
             "meaningByLocale": {
-              "ru": "расслабляться",
-              "uk": "розслаблятися"
+              "ru": "оставлять вмятину",
+              "uk": "залишати вм’ятину"
             }
           },
           {
             "pairId": "en:lesson-08:session-36:i16:p3",
-            "target": "fold",
+            "target": "chip",
             "meaningByLocale": {
-              "ru": "сложить",
-              "uk": "скласти"
+              "ru": "откалывать кусочек",
+              "uk": "відколювати шматочок"
             }
           },
           {
             "pairId": "en:lesson-08:session-36:i16:p4",
-            "target": "smoke alarm",
+            "target": "scuff",
             "meaningByLocale": {
-              "ru": "датчик дыма",
-              "uk": "датчик диму"
+              "ru": "оставлять потёртости",
+              "uk": "залишати потертості"
             }
           }
         ],
         "leftColumn": [
           "scratch",
-          "relax",
-          "fold",
-          "smoke alarm"
+          "dent",
+          "chip",
+          "scuff"
         ],
         "rightColumn": [
           "дряпати",
-          "розслаблятися",
-          "скласти",
-          "датчик диму"
+          "залишати вм’ятину",
+          "відколювати шматочок",
+          "залишати потертості"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-36:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6db3638405df23a5d4053d920481daf6e316e9cef871387d40e88de1da5c4adb"
+  "learnerFingerprint": "267cc0545d3de7aabf544db7ee5a621aafefa704ae861c8c8e0d1c50705bb91e"
 }

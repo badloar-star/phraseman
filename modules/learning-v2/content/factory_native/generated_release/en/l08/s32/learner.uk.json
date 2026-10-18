@@ -4,26 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-32:i01",
+      "interactionId": "en:lesson-08:session-32:word:name-tag",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — name tag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:word:name-tag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — name tag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:word:name-tag:audio",
+          "transcript": "name tag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:word:name-tag:r1",
+            "targetText": "name tag",
+            "meaningByLocale": {
+              "ru": "именная карточка, бейдж с именем. Attach the name tag. — «Прикрепи именную карточку». Name tag сообщает имя человека.",
+              "uk": "іменна картка, бейдж з ім’ям. Attach the name tag. — «Прикріпи іменну картку». Name tag повідомляє ім’я людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "name tag",
+          "definitionByLocale": {
+            "ru": "именная карточка, бейдж с именем. Attach the name tag. — «Прикрепи именную карточку». Name tag сообщает имя человека.",
+            "uk": "іменна картка, бейдж з ім’ям. Attach the name tag. — «Прикріпи іменну картку». Name tag повідомляє ім’я людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Файл готовий. Дайте вказівку «Прикріпи його»",
+      "prompt": "Скажіть «Прикріпи іменну картку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Файл готовий. Дайте вказівку «Прикріпи його»",
+      "accessibilityLabel": "Скажіть «Прикріпи іменну картку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Attach it.",
+        "targetPhrase": "Attach the name tag.",
         "localizedMeaning": {
-          "ru": "Файл готов. Дайте указание «Прикрепи его»",
-          "uk": "Файл готовий. Дайте вказівку «Прикріпи його»"
+          "ru": "Скажите «Прикрепи именную карточку»",
+          "uk": "Скажіть «Прикріпи іменну картку»"
         },
         "orderedTokens": [
           "Attach",
-          "it"
+          "the",
+          "name",
+          "tag"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -36,7 +81,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте коротку вказівку зарядити телефон",
+      "prompt": "Виберіть форму для вказівки зарядити телефон",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-32:i03:r1",
@@ -133,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте коротку вказівку зарядити телефон",
+      "accessibilityLabel": "Виберіть форму для вказівки зарядити телефон",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте короткое указание зарядить телефон",
-          "uk": "Дайте коротку вказівку зарядити телефон"
+          "ru": "Выберите форму для указания зарядить телефон",
+          "uk": "Виберіть форму для вказівки зарядити телефон"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -155,24 +200,24 @@
             "text": "To charge"
           }
         ],
-        "testedDimension": "Дайте коротку вказівку зарядити телефон",
+        "testedDimension": "Виберіть форму для вказівки зарядити телефон",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-32:i03:r2",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "testedDimension": "Виберіть форму для вказівки зарядити телефон",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Charge`, без `s`.",
-              "uk": "Для вказівки потрібне `Charge`, без `s`."
+              "ru": "Для указания нужно Charge, без s.",
+              "uk": "Для вказівки потрібне Charge, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-32:i03:r3",
             "correct": false,
-            "testedDimension": "Дайте коротку вказівку зарядити телефон",
+            "testedDimension": "Виберіть форму для вказівки зарядити телефон",
             "feedbackByLocale": {
-              "ru": "Начните с `Charge`, без `to`.",
-              "uk": "Почніть із `Charge`, без `to`."
+              "ru": "Начните с Charge, без to.",
+              "uk": "Почніть з Charge, без to."
             }
           }
         ]
@@ -181,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -195,18 +240,18 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-32:i04:p1",
-            "target": "attach",
+            "target": "name tag",
             "meaningByLocale": {
-              "ru": "прикрепить",
-              "uk": "прикріпити"
+              "ru": "именная карточка",
+              "uk": "іменна картка"
             }
           },
           {
             "pairId": "en:lesson-08:session-32:i04:p2",
-            "target": "plug in",
+            "target": "attach",
             "meaningByLocale": {
-              "ru": "подключить к розетке",
-              "uk": "підключити до розетки"
+              "ru": "прикрепить",
+              "uk": "прикріпити"
             }
           },
           {
@@ -227,14 +272,14 @@
           }
         ],
         "leftColumn": [
+          "name tag",
           "attach",
-          "plug in",
           "charge",
           "fold"
         ],
         "rightColumn": [
+          "іменна картка",
           "прикріпити",
-          "підключити до розетки",
           "зарядити",
           "скласти"
         ],
@@ -254,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +332,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-32:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-32:word:laminator",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — laminator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:word:laminator:audio"
+      ],
+      "accessibilityLabel": "Картка слова — laminator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:word:laminator:audio",
+          "transcript": "laminator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:word:laminator:r1",
+            "targetText": "laminator",
+            "meaningByLocale": {
+              "ru": "ламинатор. Plug in the laminator. — «Включи ламинатор в розетку». Прибор покрывает бумагу защитной плёнкой. С названием предмета возможны оба порядка: Plug in the laminator и Plug the laminator in.",
+              "uk": "ламінатор. Plug in the laminator. — «Увімкни ламінатор у розетку». Прилад покриває папір захисною плівкою. З назвою предмета можливі обидва порядки: Plug in the laminator та Plug the laminator in."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "laminator",
+          "definitionByLocale": {
+            "ru": "ламинатор. Plug in the laminator. — «Включи ламинатор в розетку». Прибор покрывает бумагу защитной плёнкой. С названием предмета возможны оба порядка: Plug in the laminator и Plug the laminator in.",
+            "uk": "ламінатор. Plug in the laminator. — «Увімкни ламінатор у розетку». Прилад покриває папір захисною плівкою. З назвою предмета можливі обидва порядки: Plug in the laminator та Plug the laminator in."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»",
+      "prompt": "Почніть із Plug in: «Увімкни ламінатор у розетку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»",
+      "accessibilityLabel": "Почніть із Plug in: «Увімкни ламінатор у розетку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Plug it in.",
+        "targetPhrase": "Plug in the laminator.",
         "localizedMeaning": {
-          "ru": "Лампа ещё не подключена. Скажите «Включи её в розетку»",
-          "uk": "Лампу ще не підключено. Скажіть «Увімкни її в розетку»"
+          "ru": "Начните с Plug in: «Включи ламинатор в розетку»",
+          "uk": "Почніть із Plug in: «Увімкни ламінатор у розетку»"
         },
         "orderedTokens": [
           "Plug",
-          "it",
-          "in"
+          "in",
+          "the",
+          "laminator"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +408,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-32:word:packing-tape",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — packing tape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:word:packing-tape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — packing tape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:word:packing-tape:audio",
+          "transcript": "packing tape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:word:packing-tape:r1",
+            "targetText": "packing tape",
+            "meaningByLocale": {
+              "ru": "упаковочный скотч. Use the packing tape. — «Используй упаковочный скотч». Широкая клейкая лента для коробок.",
+              "uk": "пакувальний скотч. Use the packing tape. — «Використай пакувальний скотч». Широка клейка стрічка для коробок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "packing tape",
+          "definitionByLocale": {
+            "ru": "упаковочный скотч. Use the packing tape. — «Используй упаковочный скотч». Широкая клейкая лента для коробок.",
+            "uk": "пакувальний скотч. Use the packing tape. — «Використай пакувальний скотч». Широка клейка стрічка для коробок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-32:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг кладе шарф у сумку. Скажіть «Склади його»",
+      "prompt": "Коробку потрібно заклеїти. Скажіть «Використай пакувальний скотч»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-32:i07:audio"
       ],
-      "accessibilityLabel": "Друг кладе шарф у сумку. Скажіть «Склади його»",
+      "accessibilityLabel": "Коробку потрібно заклеїти. Скажіть «Використай пакувальний скотч»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-32:i07:audio",
-          "transcript": "Fold it."
+          "transcript": "Use the packing tape."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Fold it.",
+        "targetPhrase": "Use the packing tape.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,11 +485,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "На столі розлито чай. Дайте вказівку витерти стіл",
+      "prompt": "Виберіть форму для вказівки витерти стіл",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-32:i08:r1",
@@ -374,12 +506,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На столі розлито чай. Дайте вказівку витерти стіл",
+      "accessibilityLabel": "Виберіть форму для вказівки витерти стіл",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "На столе пролит чай. Дайте указание вытереть стол",
-          "uk": "На столі розлито чай. Дайте вказівку витерти стіл"
+          "ru": "Выберите форму для указания вытереть стол",
+          "uk": "Виберіть форму для вказівки витерти стіл"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -396,24 +528,24 @@
             "text": "To wipe"
           }
         ],
-        "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+        "testedDimension": "Виберіть форму для вказівки витерти стіл",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-32:i08:r2",
             "correct": false,
-            "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+            "testedDimension": "Виберіть форму для вказівки витерти стіл",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Wipe`, без `s`.",
-              "uk": "Для вказівки потрібне `Wipe`, без `s`."
+              "ru": "Для указания нужно Wipe, без s.",
+              "uk": "Для вказівки потрібне Wipe, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-32:i08:r3",
             "correct": false,
-            "testedDimension": "На столі розлито чай. Дайте вказівку витерти стіл",
+            "testedDimension": "Виберіть форму для вказівки витерти стіл",
             "feedbackByLocale": {
-              "ru": "Начните с `Wipe`, без `to`.",
-              "uk": "Почніть із `Wipe`, без `to`."
+              "ru": "Начните с Wipe, без to.",
+              "uk": "Почніть із Wipe, без to."
             }
           }
         ]
@@ -422,7 +554,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +630,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,48 +644,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-32:i10:p1",
-            "target": "measure",
+            "target": "name tag",
             "meaningByLocale": {
-              "ru": "измерить",
-              "uk": "виміряти"
+              "ru": "именная карточка",
+              "uk": "іменна картка"
             }
           },
           {
             "pairId": "en:lesson-08:session-32:i10:p2",
+            "target": "laminator",
+            "meaningByLocale": {
+              "ru": "ламинатор",
+              "uk": "ламінатор"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i10:p3",
+            "target": "packing tape",
+            "meaningByLocale": {
+              "ru": "упаковочный скотч",
+              "uk": "пакувальний скотч"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-32:i10:p4",
             "target": "label",
             "meaningByLocale": {
               "ru": "подписать",
               "uk": "підписати"
             }
-          },
-          {
-            "pairId": "en:lesson-08:session-32:i10:p3",
-            "target": "wipe",
-            "meaningByLocale": {
-              "ru": "вытереть",
-              "uk": "витерти"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-32:i10:p4",
-            "target": "fountain",
-            "meaningByLocale": {
-              "ru": "фонтан",
-              "uk": "фонтан"
-            }
           }
         ],
         "leftColumn": [
-          "measure",
-          "label",
-          "wipe",
-          "fountain"
+          "name tag",
+          "laminator",
+          "packing tape",
+          "label"
         ],
         "rightColumn": [
-          "виміряти",
-          "підписати",
-          "витерти",
-          "фонтан"
+          "іменна картка",
+          "ламінатор",
+          "пакувальний скотч",
+          "підписати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +703,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -605,28 +737,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-32:word:cable-tie",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cable tie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-32:word:cable-tie:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cable tie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-32:word:cable-tie:audio",
+          "transcript": "cable tie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-32:word:cable-tie:r1",
+            "targetText": "cable tie",
+            "meaningByLocale": {
+              "ru": "кабельная стяжка. Pass me the cable tie. — «Передай мне кабельную стяжку». Полоска с замком, которой скрепляют провода.",
+              "uk": "кабельна стяжка. Pass me the cable tie. — «Передай мені кабельну стяжку». Смужка із замком, якою скріплюють дроти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cable tie",
+          "definitionByLocale": {
+            "ru": "кабельная стяжка. Pass me the cable tie. — «Передай мне кабельную стяжку». Полоска с замком, которой скрепляют провода.",
+            "uk": "кабельна стяжка. Pass me the cable tie. — «Передай мені кабельну стяжку». Смужка із замком, якою скріплюють дроти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-32:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Де фонтан?»",
+      "prompt": "Ви збираєте дроти за столом. Попросіть «Передай мені кабельну стяжку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Де фонтан?»",
+      "accessibilityLabel": "Ви збираєте дроти за столом. Попросіть «Передай мені кабельну стяжку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the fountain?",
+        "targetPhrase": "Pass me the cable tie.",
         "localizedMeaning": {
-          "ru": "Спросите «Где фонтан?»",
-          "uk": "Запитайте «Де фонтан?»"
+          "ru": "Вы собираете провода за столом. Попросите «Передай мне кабельную стяжку»",
+          "uk": "Ви збираєте дроти за столом. Попросіть «Передай мені кабельну стяжку»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
+          "Pass",
+          "me",
           "the",
-          "fountain"
+          "cable",
+          "tie"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,25 +815,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коробка важка. Попросіть друга «Можеш мені допомогти?»",
+      "prompt": "Друг не може знайти ламінатор. Запитайте «Де ламінатор?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-32:i13:audio"
       ],
-      "accessibilityLabel": "Коробка важка. Попросіть друга «Можеш мені допомогти?»",
+      "accessibilityLabel": "Друг не може знайти ламінатор. Запитайте «Де ламінатор?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-32:i13:audio",
-          "transcript": "Can you help me?"
+          "transcript": "Where is the laminator?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Can you help me?",
+        "targetPhrase": "Where is the laminator?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -672,11 +848,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дайте вказівку підписати коробку",
+      "prompt": "Виберіть форму для вказівки підписати коробку",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-32:i14:r1",
@@ -693,12 +869,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте вказівку підписати коробку",
+      "accessibilityLabel": "Виберіть форму для вказівки підписати коробку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дайте указание подписать коробку",
-          "uk": "Дайте вказівку підписати коробку"
+          "ru": "Выберите форму для указания подписать коробку",
+          "uk": "Виберіть форму для вказівки підписати коробку"
         },
         "gappedTargetPhrase": "___ it.",
         "gapOptions": [
@@ -715,24 +891,24 @@
             "text": "To label"
           }
         ],
-        "testedDimension": "Дайте вказівку підписати коробку",
+        "testedDimension": "Виберіть форму для вказівки підписати коробку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-32:i14:r2",
             "correct": false,
-            "testedDimension": "Дайте вказівку підписати коробку",
+            "testedDimension": "Виберіть форму для вказівки підписати коробку",
             "feedbackByLocale": {
-              "ru": "Для указания нужно `Label`, без `s`.",
-              "uk": "Для вказівки потрібне `Label`, без `s`."
+              "ru": "Для указания нужно Label, без s.",
+              "uk": "Для вказівки потрібне Label, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-32:i14:r3",
             "correct": false,
-            "testedDimension": "Дайте вказівку підписати коробку",
+            "testedDimension": "Виберіть форму для вказівки підписати коробку",
             "feedbackByLocale": {
-              "ru": "Начните с `Label`, без `to`.",
-              "uk": "Почніть із `Label`, без `to`."
+              "ru": "Начните с Label, без to.",
+              "uk": "Почніть із Label, без to."
             }
           }
         ]
@@ -741,7 +917,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +993,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -831,48 +1007,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-32:i16:p1",
-            "target": "fold",
+            "target": "name tag",
             "meaningByLocale": {
-              "ru": "сложить",
-              "uk": "скласти"
+              "ru": "именная карточка",
+              "uk": "іменна картка"
             }
           },
           {
             "pairId": "en:lesson-08:session-32:i16:p2",
-            "target": "measure",
+            "target": "laminator",
             "meaningByLocale": {
-              "ru": "измерить",
-              "uk": "виміряти"
+              "ru": "ламинатор",
+              "uk": "ламінатор"
             }
           },
           {
             "pairId": "en:lesson-08:session-32:i16:p3",
-            "target": "label",
+            "target": "packing tape",
             "meaningByLocale": {
-              "ru": "подписать",
-              "uk": "підписати"
+              "ru": "упаковочный скотч",
+              "uk": "пакувальний скотч"
             }
           },
           {
             "pairId": "en:lesson-08:session-32:i16:p4",
-            "target": "wipe",
+            "target": "cable tie",
             "meaningByLocale": {
-              "ru": "вытереть",
-              "uk": "витерти"
+              "ru": "кабельная стяжка",
+              "uk": "кабельна стяжка"
             }
           }
         ],
         "leftColumn": [
-          "fold",
-          "measure",
-          "label",
-          "wipe"
+          "name tag",
+          "laminator",
+          "packing tape",
+          "cable tie"
         ],
         "rightColumn": [
-          "скласти",
-          "виміряти",
-          "підписати",
-          "витерти"
+          "іменна картка",
+          "ламінатор",
+          "пакувальний скотч",
+          "кабельна стяжка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-32:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1106,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "73cc1676986613ee90998559ab85a2971a24e89662bb600788f4e8b42a585ed9"
+  "learnerFingerprint": "5e760606942726a799a8d42bee4bf966ea4e26315e26e34d4ae6f50162b5b2a9"
 }

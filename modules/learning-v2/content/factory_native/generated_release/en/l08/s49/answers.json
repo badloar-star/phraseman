@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-08:session-49:word:research",
+    "correctText": "research",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-49:i01",
-    "correctText": "I can research.",
+    "correctText": "I can research it.",
     "correctResponseId": null
   },
   {
@@ -21,42 +26,57 @@
   },
   {
     "interactionId": "en:lesson-08:session-49:i05",
-    "correctText": "I can research.",
+    "correctText": "I can research it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-49:word:verify",
+    "correctText": "verify",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can verify the date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-49:word:source",
+    "correctText": "source",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can find the source.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i08",
-    "correctText": "drive",
+    "correctText": "verify",
     "correctResponseId": "en:lesson-08:session-49:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-49:i09",
-    "correctText": "I can research.",
+    "correctText": "I can research it.",
     "correctResponseId": "en:lesson-08:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-49:i10",
-    "correctText": "en:lesson-08:session-49:i10:p1=negotiate\nen:lesson-08:session-49:i10:p2=research\nen:lesson-08:session-49:i10:p3=newspaper\nen:lesson-08:session-49:i10:p4=canal",
+    "correctText": "en:lesson-08:session-49:i10:p1=research\nen:lesson-08:session-49:i10:p2=verify\nen:lesson-08:session-49:i10:p3=source\nen:lesson-08:session-49:i10:p4=newspaper",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can verify the date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-49:word:archive",
+    "correctText": "archive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i12",
-    "correctText": "I can negotiate.",
+    "correctText": "I can visit the archive.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-49:i14",
-    "correctText": "whistle",
+    "correctText": "find",
     "correctResponseId": "en:lesson-08:session-49:i14:r1"
   },
   {
@@ -76,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-49:i16",
-    "correctText": "en:lesson-08:session-49:i16:p1=research\nen:lesson-08:session-49:i16:p2=camp\nen:lesson-08:session-49:i16:p3=negotiate\nen:lesson-08:session-49:i16:p4=canal",
+    "correctText": "en:lesson-08:session-49:i16:p1=research\nen:lesson-08:session-49:i16:p2=verify\nen:lesson-08:session-49:i16:p3=source\nen:lesson-08:session-49:i16:p4=archive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-49:i17",
-    "correctText": "I can research.",
+    "correctText": "I can research it.",
     "correctResponseId": null
   }
 ]

@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-31:word:wipe",
+    "correctText": "wipe",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-31:i01",
     "correctText": "Wipe it.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-31:word:smudge",
+    "correctText": "smudge",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-31:i06",
-    "correctText": "Open the window.",
+    "correctText": "There is a smudge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-31:word:squeegee",
+    "correctText": "squeegee",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i07",
-    "correctText": "Turn left.",
+    "correctText": "Use the squeegee.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i08",
-    "correctText": "Open",
+    "correctText": "is",
     "correctResponseId": "en:lesson-08:session-31:i08:r1"
   },
   {
@@ -46,37 +61,42 @@
   },
   {
     "interactionId": "en:lesson-08:session-31:i10",
-    "correctText": "en:lesson-08:session-31:i10:p1=reserve\nen:lesson-08:session-31:i10:p2=wipe\nen:lesson-08:session-31:i10:p3=car park\nen:lesson-08:session-31:i10:p4=visit",
+    "correctText": "en:lesson-08:session-31:i10:p1=wipe\nen:lesson-08:session-31:i10:p2=smudge\nen:lesson-08:session-31:i10:p3=squeegee\nen:lesson-08:session-31:i10:p4=table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i11",
-    "correctText": "Turn left.",
+    "correctText": "Use the squeegee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-31:word:disinfectant",
+    "correctText": "disinfectant",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i12",
-    "correctText": "Can you reserve a table?",
+    "correctText": "Pass me the disinfectant.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i13",
-    "correctText": "I often shower.",
+    "correctText": "I can wipe it.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-31:i14",
-    "correctText": "Turn",
+    "correctText": "Use",
     "correctResponseId": "en:lesson-08:session-31:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-31:i15",
-    "correctText": "Open the window.",
+    "correctText": "There is a smudge.",
     "correctResponseId": "en:lesson-08:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-31:i16",
-    "correctText": "en:lesson-08:session-31:i16:p1=wipe\nen:lesson-08:session-31:i16:p2=shower\nen:lesson-08:session-31:i16:p3=reserve\nen:lesson-08:session-31:i16:p4=car park",
+    "correctText": "en:lesson-08:session-31:i16:p1=wipe\nen:lesson-08:session-31:i16:p2=smudge\nen:lesson-08:session-31:i16:p3=squeegee\nen:lesson-08:session-31:i16:p4=disinfectant",
     "correctResponseId": null
   },
   {

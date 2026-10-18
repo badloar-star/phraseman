@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-42:intro1:r2": {
-          "ru": "После `can` нужно `navigate`, без `to`.",
-          "uk": "Після `can` потрібне `navigate`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-42:intro1:r3": {
-          "ru": "После `can` нужно `navigate`, без `s`.",
-          "uk": "Після `can` потрібне `navigate`, без `s`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-42:intro2:r2": {
-          "ru": "После `can` нужно `drive`, без `s`.",
-          "uk": "Після `can` потрібне `drive`, без `s`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-42:intro2:r3": {
-          "ru": "После `can` нужно `drive`, без `to`.",
-          "uk": "Після `can` потрібне `drive`, без `to`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-42:intro3:r2": {
-          "ru": "После `can` нужно `whistle`, без `to`.",
-          "uk": "Після `can` потрібне `whistle`, без `to`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-08:session-42:intro3:r3": {
-          "ru": "После `can` нужно `whistle`, без `s`.",
-          "uk": "Після `can` потрібне `whistle`, без `s`."
+          "ru": "После can действие остаётся без s.",
+          "uk": "Після can дія залишається без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bbb6a3242ff556005375956360f3110168da38d1a772bd54495d24ffe174c7b2"
+  "auxiliaryFingerprint": "a80831d140e66e52204e0ae16f23c6496a3b89f5a54c3d684cd9379408cbeab4"
 }

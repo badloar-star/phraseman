@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-08:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-08:session-52:word:manage",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — manage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:word:manage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — manage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:word:manage:audio",
+          "transcript": "manage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:word:manage:r1",
+            "targetText": "manage",
+            "meaningByLocale": {
+              "ru": "управлять, организовывать; справляться. I can manage the list. — «Я могу заняться списком».",
+              "uk": "керувати, організовувати; справлятися. I can manage the list. — «Я можу зайнятися списком»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manage",
+          "definitionByLocale": {
+            "ru": "управлять, организовывать; справляться. I can manage the list. — «Я могу заняться списком».",
+            "uk": "керувати, організовувати; справлятися. I can manage the list. — «Я можу зайнятися списком»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите «Я могу заняться списком»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите «Я могу заняться списком»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can manage the list.",
+        "localizedMeaning": {
+          "ru": "Предложите «Я могу заняться списком»",
+          "uk": "Запропонуйте «Я можу зайнятися списком»"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "manage",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i02:r1",
+          "text": "manage"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i02:r2",
+          "text": "reassure"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i02:r3",
+          "text": "evaluate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i02:audio",
+          "transcript": "manage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:i02:r1",
+            "targetText": "manage",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i02:r2",
+            "targetText": "reassure",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i02:r3",
+            "targetText": "evaluate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит manage",
+              "uk": "У записі звучить manage"
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит manage",
+              "uk": "У записі звучить manage"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i03:r1",
+          "text": "manage"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i03:r2",
+          "text": "to manage"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i03:r3",
+          "text": "manages"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "I can ___ the list.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-52:i03:r1",
+            "text": "manage"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i03:r2",
+            "text": "to manage"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i03:r3",
+            "text": "manages"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-52:i04:p1",
+            "target": "manage",
+            "meaningByLocale": {
+              "ru": "справляться",
+              "uk": "справлятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i04:p2",
+            "target": "reassure",
+            "meaningByLocale": {
+              "ru": "вселять уверенность",
+              "uk": "вселяти впевненість"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i04:p3",
+            "target": "evaluate",
+            "meaningByLocale": {
+              "ru": "оценивать",
+              "uk": "оцінювати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i04:p4",
+            "target": "deadline",
+            "meaningByLocale": {
+              "ru": "крайний срок",
+              "uk": "кінцевий термін"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manage",
+          "reassure",
+          "evaluate",
+          "deadline"
+        ],
+        "rightColumn": [
+          "справляться",
+          "вселять уверенность",
+          "оценивать",
+          "крайний срок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i05:audio",
+          "transcript": "Can you manage the list?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you manage the list?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "manage",
+          "the",
+          "list"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:word:workload",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — workload",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:word:workload:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — workload",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:word:workload:audio",
+          "transcript": "workload"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:word:workload:r1",
+            "targetText": "workload",
+            "meaningByLocale": {
+              "ru": "объём работы, нагрузка. We can share the workload. — «Мы можем разделить нагрузку».",
+              "uk": "обсяг роботи, навантаження. We can share the workload. — «Ми можемо розділити навантаження»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workload",
+          "definitionByLocale": {
+            "ru": "объём работы, нагрузка. We can share the workload. — «Мы можем разделить нагрузку».",
+            "uk": "обсяг роботи, навантаження. We can share the workload. — «Ми можемо розділити навантаження»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите «Мы можем разделить нагрузку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите «Мы можем разделить нагрузку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can share the workload.",
+        "localizedMeaning": {
+          "ru": "Скажите «Мы можем разделить нагрузку»",
+          "uk": "Скажіть «Ми можемо розділити навантаження»"
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "share",
+          "the",
+          "workload"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:word:priority",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — priority",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:word:priority:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — priority",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:word:priority:audio",
+          "transcript": "priority"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:word:priority:r1",
+            "targetText": "priority",
+            "meaningByLocale": {
+              "ru": "приоритет, первоочередная задача. This is the priority. — «Это первоочередная задача».",
+              "uk": "пріоритет, першочергове завдання. This is the priority. — «Це першочергове завдання»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "priority",
+          "definitionByLocale": {
+            "ru": "приоритет, первоочередная задача. This is the priority. — «Это первоочередная задача».",
+            "uk": "пріоритет, першочергове завдання. This is the priority. — «Це першочергове завдання»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите «Это первоочередная задача»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i07:audio"
+      ],
+      "accessibilityLabel": "Скажите «Это первоочередная задача»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i07:audio",
+          "transcript": "This is the priority."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is the priority.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i08:r1",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i08:r2",
+          "text": "to share"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i08:r3",
+          "text": "shares"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "We can ___ the workload.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-52:i08:r1",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i08:r2",
+            "text": "to share"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i08:r3",
+            "text": "shares"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i09:r1",
+          "text": "We can share the workload."
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i09:r2",
+          "text": "I can share the workload."
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i09:r3",
+          "text": "You can share the workload."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i09:audio",
+          "transcript": "We can share the workload."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:i09:r1",
+            "targetText": "We can share the workload.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i09:r2",
+            "targetText": "I can share the workload.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i09:r3",
+            "targetText": "You can share the workload.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can share the workload.",
+              "uk": "У записі звучить We can share the workload."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can share the workload.",
+              "uk": "У записі звучить We can share the workload."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-52:i10:p1",
+            "target": "manage",
+            "meaningByLocale": {
+              "ru": "справляться",
+              "uk": "справлятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i10:p2",
+            "target": "workload",
+            "meaningByLocale": {
+              "ru": "объём работы",
+              "uk": "обсяг роботи"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i10:p3",
+            "target": "priority",
+            "meaningByLocale": {
+              "ru": "приоритет",
+              "uk": "пріоритет"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i10:p4",
+            "target": "deadline",
+            "meaningByLocale": {
+              "ru": "крайний срок",
+              "uk": "кінцевий термін"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manage",
+          "workload",
+          "priority",
+          "deadline"
+        ],
+        "rightColumn": [
+          "справляться",
+          "объём работы",
+          "приоритет",
+          "крайний срок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i11:audio",
+          "transcript": "This is the priority."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is the priority.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "priority"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:word:backlog",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — backlog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:word:backlog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — backlog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:word:backlog:audio",
+          "transcript": "backlog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:word:backlog:r1",
+            "targetText": "backlog",
+            "meaningByLocale": {
+              "ru": "накопившиеся невыполненные дела. We can clear the backlog. — «Мы можем разобрать накопившиеся дела». Clear the backlog — закончить то, что накопилось.",
+              "uk": "накопичені невиконані справи. We can clear the backlog. — «Ми можемо розібрати накопичені справи». Clear the backlog — завершити те, що накопичилося."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "backlog",
+          "definitionByLocale": {
+            "ru": "накопившиеся невыполненные дела. We can clear the backlog. — «Мы можем разобрать накопившиеся дела». Clear the backlog — закончить то, что накопилось.",
+            "uk": "накопичені невиконані справи. We can clear the backlog. — «Ми можемо розібрати накопичені справи». Clear the backlog — завершити те, що накопичилося."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В библиотеке накопились возвращённые книги. Предложите «Мы можем разобрать накопившиеся дела»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В библиотеке накопились возвращённые книги. Предложите «Мы можем разобрать накопившиеся дела»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can clear the backlog.",
+        "localizedMeaning": {
+          "ru": "В библиотеке накопились возвращённые книги. Предложите «Мы можем разобрать накопившиеся дела»",
+          "uk": "У бібліотеці накопичилися повернуті книжки. Запропонуйте «Ми можемо розібрати накопичені справи»"
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "clear",
+          "the",
+          "backlog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Работы слишком много. Скажите «Я не могу справиться с нагрузкой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i13:audio"
+      ],
+      "accessibilityLabel": "Работы слишком много. Скажите «Я не могу справиться с нагрузкой»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i13:audio",
+          "transcript": "I can't manage the workload."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can't manage the workload.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму действия",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i14:r1",
+          "text": "manage"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i14:r2",
+          "text": "to manage"
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i14:r3",
+          "text": "manages"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму действия",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия",
+          "uk": "Виберіть форму дії"
+        },
+        "gappedTargetPhrase": "I can't ___ the workload.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-52:i14:r1",
+            "text": "manage"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i14:r2",
+            "text": "to manage"
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i14:r3",
+            "text": "manages"
+          }
+        ],
+        "testedDimension": "Выберите форму действия",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму действия",
+            "feedbackByLocale": {
+              "ru": "После can не нужно окончание s.",
+              "uk": "Після can не потрібне закінчення s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-52:i15:r1",
+          "text": "I can't manage the workload."
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i15:r2",
+          "text": "I can manage the workload."
+        },
+        {
+          "responseId": "en:lesson-08:session-52:i15:r3",
+          "text": "We can't manage the workload."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i15:audio",
+          "transcript": "I can't manage the workload."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-52:i15:r1",
+            "targetText": "I can't manage the workload.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i15:r2",
+            "targetText": "I can manage the workload.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i15:r3",
+            "targetText": "We can't manage the workload.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can't manage the workload.",
+              "uk": "У записі звучить I can't manage the workload."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can't manage the workload.",
+              "uk": "У записі звучить I can't manage the workload."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-08:session-52:i16:p1",
+            "target": "manage",
+            "meaningByLocale": {
+              "ru": "справляться",
+              "uk": "справлятися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i16:p2",
+            "target": "workload",
+            "meaningByLocale": {
+              "ru": "объём работы",
+              "uk": "обсяг роботи"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i16:p3",
+            "target": "priority",
+            "meaningByLocale": {
+              "ru": "приоритет",
+              "uk": "пріоритет"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-52:i16:p4",
+            "target": "backlog",
+            "meaningByLocale": {
+              "ru": "накопившиеся дела",
+              "uk": "накопичені справи"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manage",
+          "workload",
+          "priority",
+          "backlog"
+        ],
+        "rightColumn": [
+          "справляться",
+          "объём работы",
+          "приоритет",
+          "накопившиеся дела"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-52:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На благотворительной распродаже накопилось слишком много заказов для одного человека. Предложите коллеге разделить нагрузку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "На благотворительной распродаже накопилось слишком много заказов для одного человека. Предложите коллеге разделить нагрузку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-52:i17:audio",
+          "transcript": "We can share the workload."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can share the workload.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e2a034c5e1d03e88c4a9af1d949e101fd74c6a831f57611d2bfa03688334b323"
+}

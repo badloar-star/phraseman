@@ -55,9 +55,19 @@ const writeJsonAtomic = (rel, { raw, eol }, data) => {
   fs.renameSync(`${file}.reencode.tmp`, file);
 };
 function bitrateOf(file) {
-  const probe = spawnSync(FFPROBE, ["-v", "error", "-show_entries", "format=bit_rate", "-of", "csv=p=0", file], { encoding: "utf8" });
+  // Container bitrate includes MP3 headers and can report a short 96 kbps
+  // recording as 106-113 kbps. That would recompress audio already at the
+  // owner's target. Only the encoded audio stream decides whether to convert.
+  const probe = spawnSync(FFPROBE, [
+    "-v", "error",
+    "-select_streams", "a:0",
+    "-show_entries", "stream=bit_rate",
+    "-of", "csv=p=0",
+    file,
+  ], { encoding: "utf8" });
   const value = Number(String(probe.stdout).trim());
-  if (probe.status !== 0 || !Number.isFinite(value)) throw new Error(`${LOG} ffprobe failed ${file}: ${probe.stderr}`);
+  if (probe.status !== 0 || !Number.isFinite(value) || value <= 0)
+    throw new Error(`${LOG} ffprobe stream bitrate failed ${file}: ${probe.stderr}`);
   return value;
 }
 function run(script, extra = []) {

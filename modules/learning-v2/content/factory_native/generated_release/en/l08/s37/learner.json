@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-37:i01",
+      "interactionId": "en:lesson-08:session-37:word:bend",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-37:word:bend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-37:word:bend:audio",
+          "transcript": "bend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-37:word:bend:r1",
+            "targetText": "bend",
+            "meaningByLocale": {
+              "ru": "сгибать. Don’t bend it. — «Не сгибай это». Придавать предмету изогнутую форму.",
+              "uk": "згинати. Don’t bend it. — «Не згинай це». Надавати предмету вигнутої форми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bend",
+          "definitionByLocale": {
+            "ru": "сгибать. Don’t bend it. — «Не сгибай это». Придавать предмету изогнутую форму.",
+            "uk": "згинати. Don’t bend it. — «Не згинай це». Надавати предмету вигнутої форми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-37:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Не сгибай это»",
+      "prompt": "Выберите форму для предупреждения «Не сгибай это»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-37:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Не сгибай это»",
+      "accessibilityLabel": "Выберите форму для предупреждения «Не сгибай это»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не сгибай это»",
-          "uk": "Скажіть «Не згинай це»"
+          "ru": "Выберите форму для предупреждения «Не сгибай это»",
+          "uk": "Виберіть форму для попередження «Не згинай це»"
         },
         "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "to bend"
           }
         ],
-        "testedDimension": "Скажите «Не сгибай это»",
+        "testedDimension": "Выберите форму для предупреждения «Не сгибай это»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Не сгибай это»",
+            "testedDimension": "Выберите форму для предупреждения «Не сгибай это»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `bend`, без `s`.",
               "uk": "Після `don’t` потрібне `bend`, без `s`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Не сгибай это»",
+            "testedDimension": "Выберите форму для предупреждения «Не сгибай это»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `bend`, без `to`.",
               "uk": "Після `don’t` потрібне `bend`, без `to`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-37:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-37:word:crumple",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crumple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-37:word:crumple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crumple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-37:word:crumple:audio",
+          "transcript": "crumple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-37:word:crumple:r1",
+            "targetText": "crumple",
+            "meaningByLocale": {
+              "ru": "мять, комкать. Don’t crumple it. — «Не мни его». Например, сжать лист бумаги так, что он станет мятым.",
+              "uk": "м’яти, зминати. Don’t crumple it. — «Не мни його». Наприклад, стиснути аркуш паперу так, що він стане зім’ятим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crumple",
+          "definitionByLocale": {
+            "ru": "мять, комкать. Don’t crumple it. — «Не мни его». Например, сжать лист бумаги так, что он станет мятым.",
+            "uk": "м’яти, зминати. Don’t crumple it. — «Не мни його». Наприклад, стиснути аркуш паперу так, що він стане зім’ятим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-37:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажите на украшение: «Не трогай это»",
+      "prompt": "Скажите о сертификате: «Не мни его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите на украшение: «Не трогай это»",
+      "accessibilityLabel": "Скажите о сертификате: «Не мни его»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Don’t crumple it.",
         "localizedMeaning": {
-          "ru": "Покажите на украшение: «Не трогай это»",
-          "uk": "Покажіть на прикрасу: «Не чіпай це»"
+          "ru": "Скажите о сертификате: «Не мни его»",
+          "uk": "Скажіть про сертифікат: «Не мни його»"
         },
         "orderedTokens": [
           "Don’t",
-          "touch",
-          "this"
+          "crumple",
+          "it"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-37:word:twist",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — twist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-37:word:twist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — twist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-37:word:twist:audio",
+          "transcript": "twist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-37:word:twist:r1",
+            "targetText": "twist",
+            "meaningByLocale": {
+              "ru": "скручивать, перекручивать. Don’t twist it. — «Не перекручивай его». Поворачивать части предмета в разные стороны.",
+              "uk": "скручувати, перекручувати. Don’t twist it. — «Не перекручуй його». Повертати частини предмета в різні боки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "twist",
+          "definitionByLocale": {
+            "ru": "скручивать, перекручивать. Don’t twist it. — «Не перекручивай его». Поворачивать части предмета в разные стороны.",
+            "uk": "скручувати, перекручувати. Don’t twist it. — «Не перекручуй його». Повертати частини предмета в різні боки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-37:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ещё собираете вещи. Скажите другу «Пожалуйста, не жди»",
+      "prompt": "Друг крутит провод. Скажите «Не перекручивай его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-37:i07:audio"
       ],
-      "accessibilityLabel": "Вы ещё собираете вещи. Скажите другу «Пожалуйста, не жди»",
+      "accessibilityLabel": "Друг крутит провод. Скажите «Не перекручивай его»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-37:i07:audio",
-          "transcript": "Please don’t wait."
+          "transcript": "Don’t twist it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t wait.",
+        "targetPhrase": "Don’t twist it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,11 +484,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросите друга не ждать",
+      "prompt": "Выберите форму для просьбы не ждать",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-37:i08:r1",
@@ -376,12 +505,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросите друга не ждать",
+      "accessibilityLabel": "Выберите форму для просьбы не ждать",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга не ждать",
-          "uk": "Попросіть друга не чекати"
+          "ru": "Выберите форму для просьбы не ждать",
+          "uk": "Виберіть форму для прохання не чекати"
         },
         "gappedTargetPhrase": "Please ___ wait.",
         "gapOptions": [
@@ -398,12 +527,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросите друга не ждать",
+        "testedDimension": "Выберите форму для просьбы не ждать",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-37:i08:r2",
             "correct": false,
-            "testedDimension": "Попросите друга не ждать",
+            "testedDimension": "Выберите форму для просьбы не ждать",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t wait`.",
               "uk": "У звертанні потрібне `don’t wait`."
@@ -412,7 +541,7 @@
           {
             "responseId": "en:lesson-08:session-37:i08:r3",
             "correct": false,
-            "testedDimension": "Попросите друга не ждать",
+            "testedDimension": "Выберите форму для просьбы не ждать",
             "feedbackByLocale": {
               "ru": "В этой просьбе нужно `don’t`: `Please don’t wait`.",
               "uk": "У цьому проханні потрібне `don’t`: `Please don’t wait`."
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,14 +643,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-37:i10:p1",
-            "target": "pack",
-            "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-37:i10:p2",
             "target": "bend",
             "meaningByLocale": {
               "ru": "сгибать",
@@ -529,33 +650,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-37:i10:p3",
-            "target": "shop",
+            "pairId": "en:lesson-08:session-37:i10:p2",
+            "target": "crumple",
             "meaningByLocale": {
-              "ru": "делать покупки",
-              "uk": "робити покупки"
+              "ru": "комкать",
+              "uk": "зминати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-37:i10:p3",
+            "target": "twist",
+            "meaningByLocale": {
+              "ru": "перекручивать",
+              "uk": "перекручувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-37:i10:p4",
-            "target": "parcel locker",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "почтовый шкаф для посылок",
-              "uk": "поштомат"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           }
         ],
         "leftColumn": [
-          "pack",
           "bend",
-          "shop",
-          "parcel locker"
+          "crumple",
+          "twist",
+          "wait"
         ],
         "rightColumn": [
-          "собирать вещи",
           "сгибать",
-          "делать покупки",
-          "почтовый шкаф для посылок"
+          "комкать",
+          "перекручивать",
+          "ждать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -607,25 +736,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-37:word:snap",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — snap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-37:word:snap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — snap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-37:word:snap:audio",
+          "transcript": "snap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-37:word:snap:r1",
+            "targetText": "snap",
+            "meaningByLocale": {
+              "ru": "ломать с треском, переламывать. Don’t snap it. — «Не сломай его». Например, переломить тонкий стебель или веточку.",
+              "uk": "ламати з тріском, переламувати. Don’t snap it. — «Не зламай його». Наприклад, переламати тонке стебло або гілочку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snap",
+          "definitionByLocale": {
+            "ru": "ломать с треском, переламывать. Don’t snap it. — «Не сломай его». Например, переломить тонкий стебель или веточку.",
+            "uk": "ламати з тріском, переламувати. Don’t snap it. — «Не зламай його». Наприклад, переламати тонке стебло або гілочку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-37:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажите на стол. Дайте указание «Измерь его»",
+      "prompt": "Друг сильно наклоняет тонкий стебель растения. Скажите «Не сломай его» — используйте snap",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажите на стол. Дайте указание «Измерь его»",
+      "accessibilityLabel": "Друг сильно наклоняет тонкий стебель растения. Скажите «Не сломай его» — используйте snap",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Measure it.",
+        "targetPhrase": "Don’t snap it.",
         "localizedMeaning": {
-          "ru": "Покажите на стол. Дайте указание «Измерь его»",
-          "uk": "Покажіть на стіл. Дайте вказівку «Виміряй його»"
+          "ru": "Друг сильно наклоняет тонкий стебель растения. Скажите «Не сломай его» — используйте snap",
+          "uk": "Друг сильно нахиляє тонке стебло рослини. Скажіть «Не зламай його» — використайте snap"
         },
         "orderedTokens": [
-          "Measure",
+          "Don’t",
+          "snap",
           "it"
         ],
         "authoredDistractorTokens": [],
@@ -639,25 +812,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Я часто собираю вещи в дорогу» — используйте pack",
+      "prompt": "Вы задержались у гардероба после вручения сертификатов. Скажите другу «Пожалуйста, не жди»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-37:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Я часто собираю вещи в дорогу» — используйте pack",
+      "accessibilityLabel": "Вы задержались у гардероба после вручения сертификатов. Скажите другу «Пожалуйста, не жди»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-37:i13:audio",
-          "transcript": "I often pack."
+          "transcript": "Please don’t wait."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often pack.",
+        "targetPhrase": "Please don’t wait.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -672,67 +845,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Предупредите «Не трогай это»",
+      "prompt": "Выберите форму для просьбы не комкать бумагу",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-37:i14:r1",
-          "text": "touch"
+          "text": "crumple"
         },
         {
           "responseId": "en:lesson-08:session-37:i14:r2",
-          "text": "touches"
+          "text": "crumples"
         },
         {
           "responseId": "en:lesson-08:session-37:i14:r3",
-          "text": "to touch"
+          "text": "to crumple"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Предупредите «Не трогай это»",
+      "accessibilityLabel": "Выберите форму для просьбы не комкать бумагу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для просьбы не комкать бумагу",
+          "uk": "Виберіть форму для прохання не зминати папір"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___ it.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-37:i14:r1",
-            "text": "touch"
+            "text": "crumple"
           },
           {
             "responseId": "en:lesson-08:session-37:i14:r2",
-            "text": "touches"
+            "text": "crumples"
           },
           {
             "responseId": "en:lesson-08:session-37:i14:r3",
-            "text": "to touch"
+            "text": "to crumple"
           }
         ],
-        "testedDimension": "Предупредите «Не трогай это»",
+        "testedDimension": "Выберите форму для просьбы не комкать бумагу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-37:i14:r2",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не комкать бумагу",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно crumple, без s.",
+              "uk": "Після don’t потрібне crumple, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-37:i14:r3",
             "correct": false,
-            "testedDimension": "Предупредите «Не трогай это»",
+            "testedDimension": "Выберите форму для просьбы не комкать бумагу",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -741,7 +914,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,40 +1012,40 @@
           },
           {
             "pairId": "en:lesson-08:session-37:i16:p2",
-            "target": "pack",
+            "target": "crumple",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "комкать",
+              "uk": "зминати"
             }
           },
           {
             "pairId": "en:lesson-08:session-37:i16:p3",
-            "target": "measure",
+            "target": "twist",
             "meaningByLocale": {
-              "ru": "измерить",
-              "uk": "виміряти"
+              "ru": "перекручивать",
+              "uk": "перекручувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-37:i16:p4",
-            "target": "parcel locker",
+            "target": "snap",
             "meaningByLocale": {
-              "ru": "почтовый шкаф для посылок",
-              "uk": "поштомат"
+              "ru": "ломать с треском",
+              "uk": "ламати з тріском"
             }
           }
         ],
         "leftColumn": [
           "bend",
-          "pack",
-          "measure",
-          "parcel locker"
+          "crumple",
+          "twist",
+          "snap"
         ],
         "rightColumn": [
           "сгибать",
-          "собирать вещи",
-          "измерить",
-          "почтовый шкаф для посылок"
+          "комкать",
+          "перекручивать",
+          "ломать с треском"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-37:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1103,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1284f9b72be18e1a3e89dfd8cd6a97830ccda93f885788b1eb14a73379cd344a"
+  "learnerFingerprint": "7863618950729f55559dc9c2ec7c014cf5bef532d826ee2da3c0bffd482af80e"
 }

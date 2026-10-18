@@ -16,5 +16,5 @@ const luminance = (hex: string): number => {
 
 /** Пустая клетка: белый 8 % на тёмном фоне, чёрный 8 % на светлом (граница — яркость фона 0,4). */
 export function streakEmptyCellColor(bg: string): string {
-  return luminance(bg) > 0.4 ? `rgba(0,0,0,${CELL_ALPHA})` : `rgba(255,255,255,${CELL_ALPHA})`;
+  return luminance(bg) > 0.4 ? `rgba(0,0,0,${CELL_ALPHA})` : `rgba(255,255,255,${CELL_ALPHA})`; // theme-exempt: нейтральная заливка поверх фона темы, считается от bg (белый/чёрный 8 %, эталон d30)
 }

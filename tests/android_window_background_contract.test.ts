@@ -20,6 +20,19 @@ describe('Android window background contract', () => {
     expect(plugin).not.toContain("upsertStyleItem(xml, 'AppTheme', 'android:navigationBarColor', '@color/splashscreen_background')");
   });
 
+  // зачем (Ревизор 18.10 по 18a4b2ad1): плагин идёт после expo-splash-screen и обязан писать ДВА цвета — светлый в values, тёмный в values-night —
+  // те же, что заданы в app.json expo-splash-screen; иначе светлая заставка затирается тёмной.
+  it('splash background: light in values, dark in values-night — same colors as app.json expo-splash-screen', () => {
+    const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')) as { expo: { plugins: unknown[] } };
+    const splash = app.expo.plugins.find((p) => Array.isArray(p) && p[0] === 'expo-splash-screen') as [string, { backgroundColor: string; dark: { backgroundColor: string } }];
+    const plugin = fs.readFileSync(path.join(root, 'plugins', 'withAndroidSplashWindowBackground.js'), 'utf8');
+    expect(plugin).toContain(`const SPLASH_BG_LIGHT = '${splash[1].backgroundColor}';`);
+    expect(plugin).toContain(`const SPLASH_BG_DARK = '${splash[1].dark.backgroundColor}';`);
+    expect(plugin).toContain("patchColors(path.join(resRoot, 'values', 'colors.xml'), SPLASH_BG_LIGHT);");
+    expect(plugin).toContain("patchColors(path.join(resRoot, 'values-night', 'colors.xml'), SPLASH_BG_DARK);");
+    expect(splash[1].backgroundColor).not.toBe(splash[1].dark.backgroundColor);
+  });
+
   it('sets transparent system chrome once at the themed root for every route', () => {
     const layout = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
 

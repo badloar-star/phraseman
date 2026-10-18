@@ -1233,7 +1233,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // разрешён — null, и рассылка читает документ сама. Ref — чтобы смена доступа не перезапускала проверку рассылки.
   const broadcastAudienceAccessRef = useRef<boolean | null>(null);
   broadcastAudienceAccessRef.current = accessResolved ? (premiumForAudience || vipForAudience) : null;
-  const { theme: tTheme, themeMode, statusBarLight, liquidGlassChoiceReady } = useTheme();
+  const { theme: tTheme, themeMode, statusBarLight, liquidGlassChoiceReady, liquidGlassThemeId } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
@@ -3954,7 +3954,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         Состояние бонуса и так всегда «неактивно» (INTRO_FULL_ACCESS_REMOVED); физическое удаление — этап 2 (PM-298). */}
 
     {ready && effectiveShowOnboarding && (
-      <View style={styles.appFullScreenOverlay}>
+      // зачем (Ревизор 18.10): оверлей онбординга был тёмным и на светлой теме — до первого кадра онбординга мигал тёмным; фон — как у заставки
+      <View style={[styles.appFullScreenOverlay, { backgroundColor: startupSplashPalette(Appearance.getColorScheme(), liquidGlassChoiceReady ? liquidGlassTokens(liquidGlassThemeId) : null).bg }]}>
         {OnboardingScreen ? (
           <OnboardingScreen
             startAtNameStep={onboardingStartAtName}

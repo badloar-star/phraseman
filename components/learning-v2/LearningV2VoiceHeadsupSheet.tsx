@@ -14,6 +14,7 @@ import { Animated, Easing, Modal, PanResponder, Pressable, ScrollView, StyleShee
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralFormFor, type PluralForms } from '../../constants/plural';
+import { KIT_MOTION } from '../../constants/motionHybrid';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -30,10 +31,12 @@ type Props = Readonly<{
   onStartAnyway: () => void;
 }>;
 
-const DRAWER_EASE = Easing.bezier(0.32, 0.72, 0, 1);
-const ENTER_MS = 320;
-const SCRIM_MS = 220;
-const EXIT_MS = 200;
+// зачем (сторож motion_hybrid_contract, разбор красных 18.10; CLAUDE.md «гейт: анимации как на макетах»): шторка выходила своими таймингами 320/220/200 мс и кривой (.32,.72,0,1);
+// в ките шторка — 440 мс cubic-bezier(.2,1,.3,1) в обе стороны, затемнение 260 мс (kit.css:147,150). Берём единые значения KIT_MOTION, как у остальных шторок.
+const DRAWER_EASE = Easing.bezier(KIT_MOTION.sheetEase[0], KIT_MOTION.sheetEase[1], KIT_MOTION.sheetEase[2], KIT_MOTION.sheetEase[3]);
+const ENTER_MS = KIT_MOTION.sheetMs;
+const SCRIM_MS = KIT_MOTION.dimMs;
+const EXIT_MS = KIT_MOTION.sheetMs;
 /** Взмах вниз: сдвиг больше этого или скорость больше DISMISS_VELOCITY — закрыть. */
 const DISMISS_DISTANCE = 90;
 const DISMISS_VELOCITY = 0.5;

@@ -58,6 +58,7 @@ import {
 } from "../components/lesson_intro_rich";
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 import { useScaledTextStyles } from '../hooks/useLineScale';
+import { DIAG_ENABLED } from './dev_diag_gate';
 import type {
   LearningV2ModeChoiceDiagnosticV1,
   LearningV2ModeTextAnalysisV1,
@@ -285,6 +286,7 @@ function IntroReaderParagraph({
 
 // зачем ([INTRO-BLUR]): анимация появления страницы должна дойти до конца (finished=true); застрявшая на полупрозрачности/сдвиге даёт «мутный» текст
 function logIntroEntering(page: number, finished: boolean): void {
+  if (!DIAG_ENABLED) return; // зачем (Ревизор 3.44, разбор красных 18.10): журнал вступления работал и в сторовой сборке
   console.log('[INTRO-BLUR] entering done', JSON.stringify({ page, finished })); // guard-ok: итог анимации появления
 }
 
@@ -535,6 +537,8 @@ export default function LearningV2SessionIntro({
   // зачем (координатор 17.10, владелец: «почему всё так размыто»; правило «сперва логи»): какие стили реально применены к тексту вступления и его карточке в момент показа страницы —
   // тень текста, прозрачность, трансформ, тень карточки, шрифт/плотность. Рядом [INTRO-BLUR] entering/layout: дошла ли анимация появления до конца и какие размеры у карточки.
   useEffect(() => {
+    // зачем (Ревизор 3.44, разбор красных 18.10): журнал только в dev и не в сторовой сборке; заодно тест вступления без PixelRatio в подмене react-native перестаёт падать на `PixelRatio.get()` (TypeError «reading get»)
+    if (!DIAG_ENABLED) return;
     const fx = (style: unknown) => {
       const f = (StyleSheet.flatten(style as never) ?? {}) as Record<string, unknown>;
       return {
@@ -553,8 +557,9 @@ export default function LearningV2SessionIntro({
       lesson: lessonId,
       entering: !reducedMotion,
       reducedMotion,
-      pixelRatio: PixelRatio.get(),
-      fontScale: PixelRatio.getFontScale(),
+      // зачем (разбор красных 18.10): тест вступления подменяет react-native без PixelRatio — журнал не должен ронять экран, поэтому `?.`
+      pixelRatio: PixelRatio?.get?.() ?? null,
+      fontScale: PixelRatio?.getFontScale?.() ?? null,
       title: fx(sx.title),
       paragraph: fx(sx.readerParagraph),
       card: fx([sx.knowledgeFlow, lv2CardStyle(g)]),
@@ -564,6 +569,7 @@ export default function LearningV2SessionIntro({
     })); // guard-ok: журнал стилей текста вступления
   }, [g, lessonId, reducedMotion, safeIndex, sx.knowledgeFlow, sx.readerParagraph, sx.title]);
   const logIntroLayout = (node: string) => (e: LayoutChangeEvent) => {
+    if (!DIAG_ENABLED) return;
     const { x, y, width, height } = e.nativeEvent.layout;
     console.log('[INTRO-BLUR] layout', JSON.stringify({ node, page: safeIndex, x, y, w: width, h: height })); // guard-ok: размеры без округления — дробные значения тоже причина мути
   };

@@ -1,0 +1,1161 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-14:word:drowsy",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — drowsy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:word:drowsy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — drowsy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:word:drowsy:audio",
+          "transcript": "drowsy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:word:drowsy:r1",
+            "targetText": "drowsy",
+            "meaningByLocale": {
+              "ru": "сонный, испытывающий сонливость. I am drowsy. — «Меня клонит в сон». Здесь состояние, не действие с -ing.",
+              "uk": "сонний, такий, що відчуває сонливість. I am drowsy. — «Мене хилить на сон». Тут стан, не дія з -ing."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drowsy",
+          "definitionByLocale": {
+            "ru": "сонный, испытывающий сонливость. I am drowsy. — «Меня клонит в сон». Здесь состояние, не действие с -ing.",
+            "uk": "сонний, такий, що відчуває сонливість. I am drowsy. — «Мене хилить на сон». Тут стан, не дія з -ing."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Наприкінці поїздки вас хилить на сон. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Наприкінці поїздки вас хилить на сон. Скажіть про це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am drowsy.",
+        "localizedMeaning": {
+          "ru": "К концу поездки вас клонит в сон. Скажите об этом",
+          "uk": "Наприкінці поїздки вас хилить на сон. Скажіть про це"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "drowsy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i02:r1",
+          "text": "drowsy"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i02:r2",
+          "text": "dizzy"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i02:r3",
+          "text": "dirty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i02:audio",
+          "transcript": "drowsy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:i02:r1",
+            "targetText": "drowsy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i02:r2",
+            "targetText": "dizzy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i02:r3",
+            "targetText": "dirty",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит drowsy",
+              "uk": "У записі звучить drowsy"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит drowsy",
+              "uk": "У записі звучить drowsy"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для I",
+          "uk": "Виберіть форму для I"
+        },
+        "gappedTargetPhrase": "I ___ yawning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-14:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am.",
+              "uk": "Із I потрібне am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-14:i04:p1",
+            "target": "drowsy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i04:p2",
+            "target": "yawn",
+            "meaningByLocale": {
+              "ru": "зевать",
+              "uk": "позіхати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i04:p3",
+            "target": "sleep",
+            "meaningByLocale": {
+              "ru": "спать",
+              "uk": "спати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i04:p4",
+            "target": "rest",
+            "meaningByLocale": {
+              "ru": "отдыхать",
+              "uk": "відпочивати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drowsy",
+          "yawn",
+          "sleep",
+          "rest"
+        ],
+        "rightColumn": [
+          "сонний",
+          "позіхати",
+          "спати",
+          "відпочивати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i05:audio",
+          "transcript": "I am yawning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am yawning.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "yawning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:word:recliner",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recliner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:word:recliner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recliner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:word:recliner:audio",
+          "transcript": "recliner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:word:recliner:r1",
+            "targetText": "recliner",
+            "meaningByLocale": {
+              "ru": "кресло с откидывающейся спинкой. This is a recliner. — «Это кресло с откидывающейся спинкой».",
+              "uk": "крісло з відкидною спинкою. This is a recliner. — «Це крісло з відкидною спинкою»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recliner",
+          "definitionByLocale": {
+            "ru": "кресло с откидывающейся спинкой. This is a recliner. — «Это кресло с откидывающейся спинкой».",
+            "uk": "крісло з відкидною спинкою. This is a recliner. — «Це крісло з відкидною спинкою»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть крісло з відкидною спинкою й назвіть його",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть крісло з відкидною спинкою й назвіть його",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a recliner.",
+        "localizedMeaning": {
+          "ru": "Покажите кресло с откидывающейся спинкой и назовите его",
+          "uk": "Покажіть крісло з відкидною спинкою й назвіть його"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "recliner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:word:slipper",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slipper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:word:slipper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slipper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:word:slipper:audio",
+          "transcript": "slipper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:word:slipper:r1",
+            "targetText": "slipper",
+            "meaningByLocale": {
+              "ru": "домашний тапочек. The dog is carrying a slipper. — «Собака несёт тапочек». Для пары: slippers.",
+              "uk": "домашній капець. The dog is carrying a slipper. — «Собака несе капець». Для пари: slippers."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slipper",
+          "definitionByLocale": {
+            "ru": "домашний тапочек. The dog is carrying a slipper. — «Собака несёт тапочек». Для пары: slippers.",
+            "uk": "домашній капець. The dog is carrying a slipper. — «Собака несе капець». Для пари: slippers."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Собака несе один домашній капець. Опишіть дію",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Собака несе один домашній капець. Опишіть дію",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i07:audio",
+          "transcript": "The dog is carrying a slipper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog is carrying a slipper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після is not",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i08:r1",
+          "text": "sleeping"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i08:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i08:r3",
+          "text": "sleeps"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після is not",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после is not",
+          "uk": "Виберіть форму після is not"
+        },
+        "gappedTargetPhrase": "He is not ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-14:i08:r1",
+            "text": "sleeping"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i08:r2",
+            "text": "sleep"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i08:r3",
+            "text": "sleeps"
+          }
+        ],
+        "testedDimension": "Виберіть форму після is not",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "Для действия сейчас здесь нужна форма sleeping.",
+              "uk": "Для дії зараз тут потрібна форма sleeping."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "Здесь is not sleeping, а не is not sleeps.",
+              "uk": "Тут is not sleeping, а не is not sleeps."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i09:r1",
+          "text": "He is not sleeping."
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i09:r2",
+          "text": "He is sleeping."
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i09:r3",
+          "text": "They are not sleeping."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i09:audio",
+          "transcript": "He is not sleeping."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:i09:r1",
+            "targetText": "He is not sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i09:r2",
+            "targetText": "He is sleeping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i09:r3",
+            "targetText": "They are not sleeping.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is not sleeping.",
+              "uk": "У записі звучить He is not sleeping."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is not sleeping.",
+              "uk": "У записі звучить He is not sleeping."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-14:i10:p1",
+            "target": "drowsy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i10:p2",
+            "target": "recliner",
+            "meaningByLocale": {
+              "ru": "кресло с откидной спинкой",
+              "uk": "крісло з відкидною спинкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i10:p3",
+            "target": "slipper",
+            "meaningByLocale": {
+              "ru": "домашний тапочек",
+              "uk": "домашній капець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i10:p4",
+            "target": "carry",
+            "meaningByLocale": {
+              "ru": "нести",
+              "uk": "нести"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drowsy",
+          "recliner",
+          "slipper",
+          "carry"
+        ],
+        "rightColumn": [
+          "сонний",
+          "крісло з відкидною спинкою",
+          "домашній капець",
+          "нести"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i11:audio",
+          "transcript": "The dog is carrying a slipper."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The dog is carrying a slipper.",
+        "orderedTokens": [
+          "The",
+          "dog",
+          "is",
+          "carrying",
+          "a",
+          "slipper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:word:sleeve",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sleeve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:word:sleeve:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sleeve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:word:sleeve:audio",
+          "transcript": "sleeve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:word:sleeve:r1",
+            "targetText": "sleeve",
+            "meaningByLocale": {
+              "ru": "рукав. My sleeve is long. — «Мой рукав длинный». Часть одежды для руки, не сама рука.",
+              "uk": "рукав. My sleeve is long. — «Мій рукав довгий». Частина одягу для руки, не сама рука."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleeve",
+          "definitionByLocale": {
+            "ru": "рукав. My sleeve is long. — «Мой рукав длинный». Часть одежды для руки, не сама рука.",
+            "uk": "рукав. My sleeve is long. — «Мій рукав довгий». Частина одягу для руки, не сама рука."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i12:r1",
+          "text": "sleeve"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i12:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i12:r3",
+          "text": "sleet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i12:audio",
+          "transcript": "sleeve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:i12:r1",
+            "targetText": "sleeve",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i12:r2",
+            "targetText": "sleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i12:r3",
+            "targetText": "sleet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит sleeve",
+              "uk": "У записі звучить sleeve"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит sleeve",
+              "uk": "У записі звучить sleeve"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Рукав домашньої кофти закриває долоню. Скажіть: «Мій рукав довгий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Рукав домашньої кофти закриває долоню. Скажіть: «Мій рукав довгий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i13:audio",
+          "transcript": "My sleeve is long."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My sleeve is long.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для одного собаки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i14:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для одного собаки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одной собаки",
+          "uk": "Виберіть форму для одного собаки"
+        },
+        "gappedTargetPhrase": "The dog ___ carrying a slipper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-14:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i14:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для одного собаки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного собаки",
+            "feedbackByLocale": {
+              "ru": "Для одной собаки здесь нужно is.",
+              "uk": "Для одного собаки тут потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного собаки",
+            "feedbackByLocale": {
+              "ru": "Для одной собаки здесь нужно is.",
+              "uk": "Для одного собаки тут потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-14:i15:r1",
+          "text": "I am yawning."
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i15:r2",
+          "text": "I am not yawning."
+        },
+        {
+          "responseId": "en:lesson-09:session-14:i15:r3",
+          "text": "We are yawning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i15:audio",
+          "transcript": "I am yawning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-14:i15:r1",
+            "targetText": "I am yawning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i15:r2",
+            "targetText": "I am not yawning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i15:r3",
+            "targetText": "We are yawning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-14:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am yawning.",
+              "uk": "У записі звучить I am yawning."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-14:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am yawning.",
+              "uk": "У записі звучить I am yawning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-14:i16:p1",
+            "target": "drowsy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i16:p2",
+            "target": "recliner",
+            "meaningByLocale": {
+              "ru": "кресло с откидной спинкой",
+              "uk": "крісло з відкидною спинкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i16:p3",
+            "target": "slipper",
+            "meaningByLocale": {
+              "ru": "домашний тапочек",
+              "uk": "домашній капець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-14:i16:p4",
+            "target": "sleeve",
+            "meaningByLocale": {
+              "ru": "рукав",
+              "uk": "рукав"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drowsy",
+          "recliner",
+          "slipper",
+          "sleeve"
+        ],
+        "rightColumn": [
+          "сонний",
+          "крісло з відкидною спинкою",
+          "домашній капець",
+          "рукав"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-14:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після довгого фільму ви зараз позіхаєте. Скажіть: «Я позіхаю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Після довгого фільму ви зараз позіхаєте. Скажіть: «Я позіхаю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-14:i17:audio",
+          "transcript": "I am yawning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am yawning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c8e637f879bd20403b738d94c46eda3f9574c2a1254cb9545961eab1ad505a09"
+}

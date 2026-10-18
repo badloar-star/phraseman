@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Карта на развилке",
-        "uk": "Карта на роздоріжжі"
+        "ru": "Маршрут между островами",
+        "uk": "Маршрут між островами"
       },
       "bodyByLocale": {
-        "ru": "На прогулке друг не понимает, куда идти на развилке. У вас есть карта, и вы умеете находить по ней путь. `Navigate` — «ориентироваться». Скажите: `I can navigate` — «Я умею ориентироваться». После `can` нужно `navigate`, без `to`. Карта хотя бы не предлагает свернуть в кусты.",
-        "uk": "На прогулянці друг не розуміє, куди йти на роздоріжжі. У вас є карта, і ви вмієте знаходити за нею шлях. `Navigate` — «орієнтуватися». Скажіть: `I can navigate` — «Я вмію орієнтуватися». Після `can` потрібне `navigate`, без `to`. Карта принаймні не пропонує звернути в кущі."
+        "ru": "Вы отправляетесь на лодке к небольшому острову. Друг управляет лодкой, а вы умеете выбирать путь по карте. Navigate — «ориентироваться, прокладывать путь». `I can navigate` — «Я умею ориентироваться». Здесь речь об умении находить путь, а не об управлении лодкой. После can нужно navigate, без to и s.",
+        "uk": "Ви вирушаєте човном до невеликого острова. Друг керує човном, а ви вмієте обирати шлях за картою. Navigate — «орієнтуватися, прокладати шлях». `I can navigate` — «Я вмію орієнтуватися». Тут ідеться про вміння знаходити шлях, а не про керування човном. Після can потрібне navigate, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-42:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете ориентироваться.",
-          "uk": "Скажіть, що вмієте орієнтуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете ориентироваться.",
-          "uk": "Скажіть, що вмієте орієнтуватися."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "За рулём подруга",
-        "uk": "За кермом подруга"
+        "ru": "Белая башня на берегу",
+        "uk": "Біла вежа на березі"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой берёте машину напрокат. Сотрудник спрашивает, умеет ли она водить. `She can drive` — «Она умеет водить». Даже после `she` действие за `can` остаётся без `s`: `drive`.",
-        "uk": "Ви з подругою берете машину напрокат. Працівник запитує, чи вміє вона водити. `She can drive` — «Вона вміє водити». Навіть після `she` дія за `can` залишається без `s`: `drive`."
+        "ru": "На фотографии места встречи видна белая башня. С берега она тоже заметна и помогает понять, куда идти. Landmark — «ориентир»: заметный объект, по которому узнают место. `I can see the landmark` — «Я вижу ориентир». Can see здесь означает, что вы можете его видеть.",
+        "uk": "На фотографії місця зустрічі видно білу вежу. З берега її теж помітно, і вона допомагає зрозуміти, куди йти. Landmark — «орієнтир»: помітний об’єкт, за яким упізнають місце. `I can see the landmark` — «Я бачу орієнтир». Can see тут означає, що ви можете його бачити."
       },
       "question": {
         "interactionId": "en:lesson-08:session-42:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-42:intro2:r1",
-              "text": "She can drive."
+              "text": "I can see the landmark."
             },
             {
               "responseId": "en:lesson-08:session-42:intro2:r2",
-              "text": "She can drives."
+              "text": "I can to see the landmark."
             },
             {
               "responseId": "en:lesson-08:session-42:intro2:r3",
-              "text": "She can to drive."
+              "text": "I can sees the landmark."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-42:intro2:r1",
-              "text": "She can drive."
+              "text": "I can see the landmark."
             },
             {
               "responseId": "en:lesson-08:session-42:intro2:r2",
-              "text": "She can drives."
+              "text": "I can to see the landmark."
             },
             {
               "responseId": "en:lesson-08:session-42:intro2:r3",
-              "text": "She can to drive."
+              "text": "I can sees the landmark."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что она умеет водить.",
-          "uk": "Скажіть, що вона вміє водити."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало игры",
-        "uk": "Початок гри"
+        "ru": "Где начинается тропа к водопаду",
+        "uk": "Де починається стежка до водоспаду"
       },
       "bodyByLocale": {
-        "ru": "Вы с друзьями начинаете игру во дворе. Нужен человек, который даст сигнал свистом. Вы умеете свистеть: `I can whistle` — «Я умею свистеть». Здесь `can` показывает ваше умение.",
-        "uk": "Ви з друзями починаєте гру у дворі. Потрібна людина, яка подасть сигнал свистом. Ви вмієте свистіти: `I can whistle` — «Я вмію свистіти». Тут `can` показує ваше вміння."
+        "ru": "Вы приехали к большой парковке, но не видите, где начинается тропа к водопаду. Подруга уже ходила по этому маршруту. Trailhead — «начало пешеходной тропы». `She can find the trailhead` — «Она может найти начало тропы». После can нужно find, даже с she.",
+        "uk": "Ви приїхали до великої парковки, але не бачите, де починається стежка до водоспаду. Подруга вже ходила цим маршрутом. Trailhead — «початок пішохідної стежки». `She can find the trailhead` — «Вона може знайти початок стежки». Після can потрібне find, навіть із she."
       },
       "question": {
         "interactionId": "en:lesson-08:session-42:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-42:intro3:r1",
-              "text": "I can whistle."
+              "text": "She can find the trailhead."
             },
             {
               "responseId": "en:lesson-08:session-42:intro3:r2",
-              "text": "I can to whistle."
+              "text": "She can to find the trailhead."
             },
             {
               "responseId": "en:lesson-08:session-42:intro3:r3",
-              "text": "I can whistles."
+              "text": "She can finds the trailhead."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-42:intro3:r1",
-              "text": "I can whistle."
+              "text": "She can find the trailhead."
             },
             {
               "responseId": "en:lesson-08:session-42:intro3:r2",
-              "text": "I can to whistle."
+              "text": "She can to find the trailhead."
             },
             {
               "responseId": "en:lesson-08:session-42:intro3:r3",
-              "text": "I can whistles."
+              "text": "She can finds the trailhead."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что умеете свистеть.",
-          "uk": "Скажіть, що вмієте свистіти."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4d22f33281895d19a66d736f379daabac6abf99267ce72c2b730a8776dd44dc0"
+  "introFingerprint": "c5c53d1e541b5fbac8c5019f7131428ba6f52c3f24c8cacd01bedfbf64ec680f"
 }

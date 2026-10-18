@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-42:word:navigate",
+    "correctText": "navigate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-42:i01",
     "correctText": "I can navigate.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-42:word:landmark",
+    "correctText": "landmark",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-42:i06",
-    "correctText": "She can drive.",
+    "correctText": "I can see the landmark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:word:trailhead",
+    "correctText": "trailhead",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-42:i07",
-    "correctText": "I can whistle.",
+    "correctText": "She can find the trailhead.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-42:i08",
-    "correctText": "drive",
+    "correctText": "find",
     "correctResponseId": "en:lesson-08:session-42:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-42:i10",
-    "correctText": "en:lesson-08:session-42:i10:p1=interrupt\nen:lesson-08:session-42:i10:p2=navigate\nen:lesson-08:session-42:i10:p3=share\nen:lesson-08:session-42:i10:p4=bus shelter",
+    "correctText": "en:lesson-08:session-42:i10:p1=navigate\nen:lesson-08:session-42:i10:p2=landmark\nen:lesson-08:session-42:i10:p3=trailhead\nen:lesson-08:session-42:i10:p4=share",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-42:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can find the trailhead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-42:word:waypoint",
+    "correctText": "waypoint",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-42:i12",
-    "correctText": "Don’t interrupt.",
+    "correctText": "I can find the waypoint.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-42:i14",
-    "correctText": "whistle",
+    "correctText": "see",
     "correctResponseId": "en:lesson-08:session-42:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-42:i16",
-    "correctText": "en:lesson-08:session-42:i16:p1=navigate\nen:lesson-08:session-42:i16:p2=decorate\nen:lesson-08:session-42:i16:p3=interrupt\nen:lesson-08:session-42:i16:p4=bus shelter",
+    "correctText": "en:lesson-08:session-42:i16:p1=navigate\nen:lesson-08:session-42:i16:p2=landmark\nen:lesson-08:session-42:i16:p3=trailhead\nen:lesson-08:session-42:i16:p4=waypoint",
     "correctResponseId": null
   },
   {

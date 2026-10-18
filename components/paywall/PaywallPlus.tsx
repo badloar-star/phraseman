@@ -247,9 +247,11 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           {monthlyPromo ? <Text style={[S.priceStrike, { color: g.mutedText }]}>{monthlyPromo.standardPriceString}</Text> : null}
           <Text testID="paywall-month-price" style={[S.priceMonth, { color: g.text }]}>{monthlyPromo?.promoPriceString || `${monthApprox}${monthlyPrice}`}</Text>
           <Text style={[S.priceSmall, { color: g.secondary }]}>{pick(lang, COPY.perMonth)}</Text>
-          <Text style={[S.planSmall, { color: g.secondary }]}>
-            {monthlyTrialDays ? trialFreeLabel(lang, monthlyTrialDays) : pick(lang, COPY.noTrial)}
-          </Text>
+          {/* зачем (владелец 18.10): «Без пробного периода» путало — нет пробного у пакета, значит строки нет вовсе.
+              Условия списания остаются в раскрытии под кнопкой (требование магазинов). */}
+          {monthlyTrialDays ? (
+            <Text testID="paywall-month-trial" style={[S.planSmall, { color: g.secondary }]}>{trialFreeLabel(lang, monthlyTrialDays)}</Text>
+          ) : null}
         </V2Pressable>
       </View>
     </View>

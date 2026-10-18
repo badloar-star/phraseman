@@ -32,7 +32,7 @@ import {
 } from './premium_revenuecat_state';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getStorePromoPricing } from './premium_store_promo_display';
-import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
+import { describeTrialSource, getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
 import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
 import { logPaywallFunnel, type PaywallVariantLabel } from './paywall_funnel';
 import {
@@ -990,6 +990,23 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   );
   const yearlyTrialDays = yearlyTrial.hasTrial ? yearlyTrial.days : devTrialDays;
   const yearlyTrialSource: 'store' | 'dev_force' | 'none' = yearlyTrial.hasTrial ? 'store' : devTrialDays ? 'dev_force' : 'none';
+  // зачем (владелец 18.10: «почему на месяце написано БЕЗ ПРОБНОГО ПЕРИОДА?»): плитка «Месяц» показывала пробный только когда
+  // выбран месяц, а по умолчанию выбран год — поэтому всегда «нет». Пробный каждой плитки читается из СВОЕГО пакета.
+  const monthlyProductId = packages.monthly?.product.identifier;
+  const monthlyEligibility: TrialEligibility = monthlyProductId ? introEligibility[monthlyProductId] ?? 'unknown' : 'unknown';
+  const monthlyTrial: TrialInfo = useMemo(
+    () => getTrialInfo(packages.monthly, monthlyEligibility),
+    [monthlyEligibility, packages.monthly],
+  );
+  const monthlyTrialDays = monthlyTrial.hasTrial ? monthlyTrial.days : devTrialDays;
+  const monthlyTrialSource: 'store' | 'dev_force' | 'none' = monthlyTrial.hasTrial ? 'store' : devTrialDays ? 'dev_force' : 'none';
+  useEffect(() => {
+    // Постоянный журнал (правило «сперва логи»): по каждому пакету — что дал магазин, что решили, что на плитке.
+    if (loading) return;
+    const yearlyEligibility: TrialEligibility = yearlyProductId ? introEligibility[yearlyProductId] ?? 'unknown' : 'unknown';
+    DebugLogger.info('[PAYWALL-TRIAL]', `год: ${describeTrialSource(packages.yearly, yearlyEligibility)} → пробный=${yearlyTrialDays ?? 'нет'} источник=${yearlyTrialSource} платформа=${Platform.OS}`);
+    DebugLogger.info('[PAYWALL-TRIAL]', `месяц: ${describeTrialSource(packages.monthly, monthlyEligibility)} → пробный=${monthlyTrialDays ?? 'нет'} источник=${monthlyTrialSource} плитка=${monthlyTrialDays ? `«${monthlyTrialDays} дн. бесплатно»` : 'без строки'} платформа=${Platform.OS}`);
+  }, [introEligibility, loading, monthlyEligibility, monthlyTrialDays, monthlyTrialSource, packages.monthly, packages.yearly, yearlyProductId, yearlyTrialDays, yearlyTrialSource]);
   const selectedAvailable = DEV_IAP_BYPASS || Boolean(selectedPkg);
   const ctaDisabled = purchasing || loading || restoring || !selectedAvailable;
 
@@ -1872,7 +1889,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     packages, reloadOfferings,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
-    trial, trialDays, yearlyTrialDays, yearlyTrialSource, ctaDisabled, selectedAvailable,
+    trial, trialDays, yearlyTrialDays, yearlyTrialSource, monthlyTrialDays, monthlyTrialSource, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
     allowTrialReminder, skipTrialReminder,
     ...shown,

@@ -97,6 +97,33 @@ export function getTrialInfo(
 }
 
 /**
+ * Строка для журнала [PAYWALL-TRIAL]: что магазин отдал по пакету и почему getTrialInfo решил так.
+ * зачем (владелец 18.10: «пробный установлен и там, и там»): по журналу с устройства должно быть видно, даёт ли магазин
+ * пробный КАЖДОМУ пакету: настройка в App Store / Play, а не код.
+ */
+export function describeTrialSource(
+  pkg: PurchasesPackage | undefined | null,
+  iosEligibility: TrialEligibility = 'unknown',
+): string {
+  if (!pkg) return 'пакета нет';
+  const product = pkg.product as unknown as {
+    identifier?: unknown;
+    introPrice?: IntroPhaseLike | null;
+    defaultOption?: { id?: unknown; freePhase?: IntroPhaseLike | null } | null;
+  };
+  const intro = product?.introPrice;
+  const introText = intro && typeof intro === 'object'
+    ? `цена=${String(intro.price)} период=${String(intro.periodNumberOfUnits ?? '')}${String(intro.periodUnit ?? '')}/${String(intro.period ?? '')} дней=${parsePhaseDays(intro) ?? '—'}`
+    : 'нет';
+  const free = product?.defaultOption?.freePhase;
+  const freeText = free && typeof free === 'object'
+    ? `дней=${parsePhaseDays(free) ?? '—'} iso=${String(free.billingPeriod?.iso8601 ?? '')}`
+    : 'нет';
+  const option = product?.defaultOption ? String(product.defaultOption.id ?? '?') : 'нет';
+  return `продукт=${String(product?.identifier ?? '?')} introPrice[${introText}] defaultOption=${option} freePhase[${freeText}] eligibility=${iosEligibility}`;
+}
+
+/**
  * Раскрытие условий подписки на русском.
  *
  * зачем (координатор 12.10, требование сторов — условия на языке человека): боевой код теперь зовёт

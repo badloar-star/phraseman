@@ -4,6 +4,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import type { PurchasesPackage } from 'react-native-purchases';
+
+import { describeTrialSource } from '../app/paywall_trial_info';
 import { ctaStartTrial, heroTrialTitle, reminderDayTitle, trialFreeLabel } from '../components/paywall/PaywallPlusCopy';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
@@ -36,6 +39,38 @@ describe('Paywall trial: the number on screen is the number the store charges by
     const screen = read('components/paywall/PaywallPlusScreen.tsx');
     expect(screen).toContain('const yearlyTrialDays = pricesReady ? p.yearlyTrialDays : null;'); // без живых цен магазина пробный не обещаем
     expect(screen).toMatch(/источникПробного=/); // журнал [PAYWALL] называет источник N: store | dev_force
+  });
+
+  // зачем (владелец 18.10: «почему на месяце написано БЕЗ ПРОБНОГО ПЕРИОДА? пробный установлен и там, и там»): плитка «Месяц»
+  // брала пробный только при выбранном месяце, а по умолчанию выбран год. Каждая плитка читает пробный СВОЕГО пакета.
+  it('each tile reads the trial of its own package, regardless of the selected plan', () => {
+    const hook = read('app/paywall_purchase.ts');
+    expect(hook).toMatch(/getTrialInfo\(packages\.monthly, monthlyEligibility\)/);
+    expect(hook).toMatch(/const monthlyTrialDays = monthlyTrial\.hasTrial \? monthlyTrial\.days : devTrialDays;/);
+    expect(hook).toMatch(/monthlyTrialDays, monthlyTrialSource, ctaDisabled/);
+    expect(hook).toMatch(/'\[PAYWALL-TRIAL\]', `год: \$\{describeTrialSource\(packages\.yearly/);
+    expect(hook).toMatch(/'\[PAYWALL-TRIAL\]', `месяц: \$\{describeTrialSource\(packages\.monthly/);
+    const screen = read('components/paywall/PaywallPlusScreen.tsx');
+    expect(screen).toContain('const monthlyTrialDays = pricesReady ? p.monthlyTrialDays : null;');
+    expect(screen).not.toMatch(/p\.selected === 'monthly' \? p\.trialDays/);
+  });
+
+  it('the monthly tile never says «no free trial»: no trial in the package means no line at all', () => {
+    const tiles = read('components/paywall/PaywallPlus.tsx');
+    expect(tiles).not.toMatch(/COPY\.noTrial/);
+    expect(tiles).toMatch(/\{monthlyTrialDays \? \(\s*<Text testID="paywall-month-trial"/);
+  });
+
+  it('[PAYWALL-TRIAL] names what the store gave for the package', () => {
+    const monthlyAndroid = {
+      product: { identifier: 'plus_monthly', defaultOption: { id: 'trial-7', freePhase: { billingPeriod: { unit: 'DAY', value: 7, iso8601: 'P7D' } } } },
+    } as unknown as PurchasesPackage;
+    expect(describeTrialSource(monthlyAndroid)).toBe('продукт=plus_monthly introPrice[нет] defaultOption=trial-7 freePhase[дней=7 iso=P7D] eligibility=unknown');
+    const monthlyIos = {
+      product: { identifier: 'plus_monthly', introPrice: { price: 0, periodNumberOfUnits: 1, periodUnit: 'WEEK', period: 'P1W' } },
+    } as unknown as PurchasesPackage;
+    expect(describeTrialSource(monthlyIos, 'ineligible')).toBe('продукт=plus_monthly introPrice[цена=0 период=1WEEK/P1W дней=7] defaultOption=нет freePhase[нет] eligibility=ineligible');
+    expect(describeTrialSource(undefined)).toBe('пакета нет');
   });
 
   it('dev preview accepts only a sane N and never reads the param when the hook is not in the dev bypass', () => {

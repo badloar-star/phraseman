@@ -133,7 +133,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   useLoadGate({ id: 'paywall-plus-prices', status: priceGateStatus, retry: retryPrices });
   // Пробный — ТОЛЬКО из магазина и только когда цены реально пришли.
   const yearlyTrialDays = pricesReady ? p.yearlyTrialDays : null;
-  const monthlyTrialDays = pricesReady && p.selected === 'monthly' ? p.trialDays : null;
+  // зачем (владелец 18.10): у каждой плитки пробный из СВОЕГО пакета, независимо от выбранного тарифа.
+  const monthlyTrialDays = pricesReady ? p.monthlyTrialDays : null;
   const showTimeline = !!yearlyTrialDays && p.selected === 'yearly';
 
   useEffect(() => {

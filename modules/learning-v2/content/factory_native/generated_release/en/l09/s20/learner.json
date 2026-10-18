@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-20:word:grin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:word:grin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:word:grin:audio",
+          "transcript": "grin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:word:grin:r1",
+            "targetText": "grin",
+            "meaningByLocale": {
+              "ru": "широко улыбаться. I often grin. — «Я часто широко улыбаюсь». Сейчас: grinning с двойной n.",
+              "uk": "широко усміхатися. I often grin. — «Я часто широко усміхаюся». Зараз: grinning із подвійною n."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grin",
+          "definitionByLocale": {
+            "ru": "широко улыбаться. I often grin. — «Я часто широко улыбаюсь». Сейчас: grinning с двойной n.",
+            "uk": "широко усміхатися. I often grin. — «Я часто широко усміхаюся». Зараз: grinning із подвійною n."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о себе: «Я часто широко улыбаюсь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о себе: «Я часто широко улыбаюсь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often grin.",
+        "localizedMeaning": {
+          "ru": "Расскажите о себе: «Я часто широко улыбаюсь»",
+          "uk": "Розкажіть про себе: «Я часто широко усміхаюся»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "grin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i02:r1",
+          "text": "grin"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i02:r2",
+          "text": "green"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i02:r3",
+          "text": "grain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i02:audio",
+          "transcript": "grin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:i02:r1",
+            "targetText": "grin",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i02:r2",
+            "targetText": "green",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i02:r3",
+            "targetText": "grain",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит grin",
+              "uk": "У записі звучить grin"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит grin",
+              "uk": "У записі звучить grin"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите начало вопроса о брате",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i03:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i03:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i03:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите начало вопроса о брате",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало вопроса о брате",
+          "uk": "Виберіть початок запитання про брата"
+        },
+        "gappedTargetPhrase": "___ he grinning?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-20:i03:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i03:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i03:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Выберите начало вопроса о брате",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите начало вопроса о брате",
+            "feedbackByLocale": {
+              "ru": "С he нужна форма is.",
+              "uk": "Із he потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите начало вопроса о брате",
+            "feedbackByLocale": {
+              "ru": "Am используется с I, а с he нужно is.",
+              "uk": "Am вживається з I, а з he потрібне is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-20:i04:p1",
+            "target": "grin",
+            "meaningByLocale": {
+              "ru": "широко улыбаться",
+              "uk": "широко усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i04:p2",
+            "target": "smile",
+            "meaningByLocale": {
+              "ru": "улыбаться",
+              "uk": "усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i04:p3",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "шляпа",
+              "uk": "капелюх"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i04:p4",
+            "target": "prize",
+            "meaningByLocale": {
+              "ru": "приз",
+              "uk": "приз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "grin",
+          "smile",
+          "hat",
+          "prize"
+        ],
+        "rightColumn": [
+          "широко улыбаться",
+          "улыбаться",
+          "шляпа",
+          "приз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i05:audio",
+          "transcript": "Is he grinning?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is he grinning?",
+        "orderedTokens": [
+          "Is",
+          "he",
+          "grinning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:word:dimple",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dimple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:word:dimple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dimple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:word:dimple:audio",
+          "transcript": "dimple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:word:dimple:r1",
+            "targetText": "dimple",
+            "meaningByLocale": {
+              "ru": "ямочка на щеке. This is a dimple. — «Это ямочка на щеке».",
+              "uk": "ямочка на щоці. This is a dimple. — «Це ямочка на щоці»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dimple",
+          "definitionByLocale": {
+            "ru": "ямочка на щеке. This is a dimple. — «Это ямочка на щеке».",
+            "uk": "ямочка на щоці. This is a dimple. — «Це ямочка на щоці»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На рисунке лица покажите ямочку на щеке и назовите её",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На рисунке лица покажите ямочку на щеке и назовите её",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a dimple.",
+        "localizedMeaning": {
+          "ru": "На рисунке лица покажите ямочку на щеке и назовите её",
+          "uk": "На малюнку обличчя покажіть ямочку на щоці й назвіть її"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "dimple"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:word:mascot",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mascot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:word:mascot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mascot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:word:mascot:audio",
+          "transcript": "mascot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:word:mascot:r1",
+            "targetText": "mascot",
+            "meaningByLocale": {
+              "ru": "талисман команды; здесь человек в костюме персонажа. The mascot is waving. — «Талисман машет рукой».",
+              "uk": "талісман команди; тут людина в костюмі персонажа. The mascot is waving. — «Талісман махає рукою»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mascot",
+          "definitionByLocale": {
+            "ru": "талисман команды; здесь человек в костюме персонажа. The mascot is waving. — «Талисман машет рукой».",
+            "uk": "талісман команди; тут людина в костюмі персонажа. The mascot is waving. — «Талісман махає рукою»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Талисман команды сейчас машет рукой болельщикам. Скажите об этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Талисман команды сейчас машет рукой болельщикам. Скажите об этом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i07:audio",
+          "transcript": "The mascot is waving."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The mascot is waving.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для действия сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i08:r1",
+          "text": "grinning"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i08:r2",
+          "text": "grin"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i08:r3",
+          "text": "grins"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для действия сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для действия сейчас",
+          "uk": "Виберіть форму для дії зараз"
+        },
+        "gappedTargetPhrase": "He is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-20:i08:r1",
+            "text": "grinning"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i08:r2",
+            "text": "grin"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i08:r3",
+            "text": "grins"
+          }
+        ],
+        "testedDimension": "Выберите форму для действия сейчас",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "После is нужна форма grinning.",
+              "uk": "Після is потрібна форма grinning."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для действия сейчас",
+            "feedbackByLocale": {
+              "ru": "Здесь is grinning, не is grins.",
+              "uk": "Тут is grinning, не is grins."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i09:r1",
+          "text": "The mascot is not waving."
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i09:r2",
+          "text": "The mascot is waving."
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i09:r3",
+          "text": "Is the mascot waving?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i09:audio",
+          "transcript": "The mascot is not waving."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:i09:r1",
+            "targetText": "The mascot is not waving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i09:r2",
+            "targetText": "The mascot is waving.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i09:r3",
+            "targetText": "Is the mascot waving?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mascot is not waving.",
+              "uk": "У записі звучить The mascot is not waving."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The mascot is not waving.",
+              "uk": "У записі звучить The mascot is not waving."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-20:i10:p1",
+            "target": "grin",
+            "meaningByLocale": {
+              "ru": "широко улыбаться",
+              "uk": "широко усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i10:p2",
+            "target": "dimple",
+            "meaningByLocale": {
+              "ru": "ямочка на щеке",
+              "uk": "ямочка на щоці"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i10:p3",
+            "target": "mascot",
+            "meaningByLocale": {
+              "ru": "талисман команды",
+              "uk": "талісман команди"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i10:p4",
+            "target": "wave",
+            "meaningByLocale": {
+              "ru": "махать рукой",
+              "uk": "махати рукою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "grin",
+          "dimple",
+          "mascot",
+          "wave"
+        ],
+        "rightColumn": [
+          "широко улыбаться",
+          "ямочка на щеке",
+          "талисман команды",
+          "махать рукой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i11:audio",
+          "transcript": "The mascot is not waving."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The mascot is not waving.",
+        "orderedTokens": [
+          "The",
+          "mascot",
+          "is",
+          "not",
+          "waving"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:word:confetti",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — confetti",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:word:confetti:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — confetti",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:word:confetti:audio",
+          "transcript": "confetti"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:word:confetti:r1",
+            "targetText": "confetti",
+            "meaningByLocale": {
+              "ru": "конфетти. This is confetti. — «Это конфетти». Здесь не ставим a перед confetti.",
+              "uk": "конфеті. This is confetti. — «Це конфеті». Тут не ставимо a перед confetti."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "confetti",
+          "definitionByLocale": {
+            "ru": "конфетти. This is confetti. — «Это конфетти». Здесь не ставим a перед confetti.",
+            "uk": "конфеті. This is confetti. — «Це конфеті». Тут не ставимо a перед confetti."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i12:r1",
+          "text": "confetti"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i12:r2",
+          "text": "coffee"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i12:r3",
+          "text": "committee"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i12:audio",
+          "transcript": "confetti"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:i12:r1",
+            "targetText": "confetti",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i12:r2",
+            "targetText": "coffee",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i12:r3",
+            "targetText": "committee",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит confetti",
+              "uk": "У записі звучить confetti"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит confetti",
+              "uk": "У записі звучить confetti"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Покажите цветные бумажные кусочки на столе: «Это конфетти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Покажите цветные бумажные кусочки на столе: «Это конфетти»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i13:audio",
+          "transcript": "This is confetti."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is confetti.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Завершите просьбу не открывать пакет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i14:r1",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i14:r2",
+          "text": "opening"
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i14:r3",
+          "text": "opens"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Завершите просьбу не открывать пакет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Завершите просьбу не открывать пакет",
+          "uk": "Завершіть прохання не відкривати пакет"
+        },
+        "gappedTargetPhrase": "Please don’t ___ the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-20:i14:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i14:r2",
+            "text": "opening"
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i14:r3",
+            "text": "opens"
+          }
+        ],
+        "testedDimension": "Завершите просьбу не открывать пакет",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Завершите просьбу не открывать пакет",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна форма open без -ing.",
+              "uk": "Після don’t потрібна форма open без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Завершите просьбу не открывать пакет",
+            "feedbackByLocale": {
+              "ru": "После don’t не добавляем -s.",
+              "uk": "Після don’t не додаємо -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-20:i15:r1",
+          "text": "He is grinning."
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i15:r2",
+          "text": "He is not grinning."
+        },
+        {
+          "responseId": "en:lesson-09:session-20:i15:r3",
+          "text": "Is he grinning?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i15:audio",
+          "transcript": "He is grinning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-20:i15:r1",
+            "targetText": "He is grinning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i15:r2",
+            "targetText": "He is not grinning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i15:r3",
+            "targetText": "Is he grinning?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is grinning.",
+              "uk": "У записі звучить He is grinning."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is grinning.",
+              "uk": "У записі звучить He is grinning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-20:i16:p1",
+            "target": "grin",
+            "meaningByLocale": {
+              "ru": "широко улыбаться",
+              "uk": "широко усміхатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i16:p2",
+            "target": "dimple",
+            "meaningByLocale": {
+              "ru": "ямочка на щеке",
+              "uk": "ямочка на щоці"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i16:p3",
+            "target": "mascot",
+            "meaningByLocale": {
+              "ru": "талисман команды",
+              "uk": "талісман команди"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-20:i16:p4",
+            "target": "confetti",
+            "meaningByLocale": {
+              "ru": "конфетти",
+              "uk": "конфеті"
+            }
+          }
+        ],
+        "leftColumn": [
+          "grin",
+          "dimple",
+          "mascot",
+          "confetti"
+        ],
+        "rightColumn": [
+          "широко улыбаться",
+          "ямочка на щеке",
+          "талисман команды",
+          "конфетти"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На видеосвязи дедушка широко улыбается, но вам плохо видно экран. Спросите сестру: «Он широко улыбается?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "На видеосвязи дедушка широко улыбается, но вам плохо видно экран. Спросите сестру: «Он широко улыбается?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-20:i17:audio",
+          "transcript": "Is he grinning?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he grinning?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1d0564aeff60caf5507d693a843a1bb04819c401bb19e13aace84758cb2e7f7f"
+}

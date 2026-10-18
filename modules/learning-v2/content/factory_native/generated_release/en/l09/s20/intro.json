@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "grin → grinning; Is he grinning?; is not waving",
+    "uk": "grin → grinning; Is he grinning?; is not waving"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Приз за смешную шляпу",
+        "uk": "Приз за кумедний капелюх"
+      },
+      "bodyByLocale": {
+        "ru": "На школьной ярмарке брат получает приз за самую смешную шляпу и широко улыбается. Grin — «широко улыбаться». He is grinning — «Он широко улыбается». В grinning буква n удваивается. Спросите сестру: Is he grinning? — «Он широко улыбается?» Для вопроса is ставим перед he. Шляпа огромная, но улыбка почти не уступает.",
+        "uk": "На шкільному ярмарку брат отримує приз за найкумедніший капелюх і широко усміхається. Grin — «широко усміхатися». He is grinning — «Він широко усміхається». У grinning літера n подвоюється. Запитайте сестру: Is he grinning? — «Він широко усміхається?» Для запитання is ставимо перед he. Капелюх величезний, але усмішка майже не поступається."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r1",
+              "text": "Is he grinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r2",
+              "text": "Are he grinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r3",
+              "text": "Is he grin?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r1",
+              "text": "Is he grinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r2",
+              "text": "Are he grinning?"
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro1:r3",
+              "text": "Is he grin?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Талисман у входа на стадион",
+        "uk": "Талісман біля входу на стадіон"
+      },
+      "bodyByLocale": {
+        "ru": "У стадиона человек в костюме талисмана команды стоит для фотографии. Обычно он машет болельщикам, но сейчас держит плакат. Mascot — «талисман команды», здесь костюмированный персонаж. The mascot is not waving — «Талисман не машет рукой». Not после is отрицает действие сейчас.",
+        "uk": "Біля стадіону людина в костюмі талісмана команди стоїть для фотографії. Зазвичай вона махає вболівальникам, але зараз тримає плакат. Mascot — «талісман команди», тут костюмований персонаж. The mascot is not waving — «Талісман не махає рукою». Not після is заперечує дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r1",
+              "text": "The mascot is not waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r2",
+              "text": "The mascot not waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r3",
+              "text": "The mascot is not wave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r1",
+              "text": "The mascot is not waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r2",
+              "text": "The mascot not waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro2:r3",
+              "text": "The mascot is not wave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Конфетти перед тортом",
+        "uk": "Конфеті перед тортом"
+      },
+      "bodyByLocale": {
+        "ru": "На дне рождения друг поднимает пакет конфетти прямо над открытым тортом. Confetti — «конфетти», маленькие цветные кусочки бумаги. Попросите: Please don’t open the bag — «Пожалуйста, не открывай пакет». После don’t нужна форма open. Угощение уже украшено; бумажная начинка в планы не входит.",
+        "uk": "На дні народження друг піднімає пакет конфеті просто над відкритим тортом. Confetti — «конфеті», маленькі кольорові шматочки паперу. Попросіть: Please don’t open the bag — «Будь ласка, не відкривай пакет». Після don’t потрібна форма open. Частування вже прикрашене; паперова начинка до планів не входить."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r1",
+              "text": "Please don’t open the bag."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r2",
+              "text": "Please don’t opening the bag."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r3",
+              "text": "Please don’t opens the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r1",
+              "text": "Please don’t open the bag."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r2",
+              "text": "Please don’t opening the bag."
+            },
+            {
+              "responseId": "en:lesson-09:session-20:intro3:r3",
+              "text": "Please don’t opens the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1610ed82bf135cd72a6de73ab105554e5b2865b290a9865dc72fdf6efffd1ab"
+}

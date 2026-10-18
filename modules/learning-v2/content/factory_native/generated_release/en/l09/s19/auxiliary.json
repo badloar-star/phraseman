@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-19:intro1:r2": {
+          "ru": "Перед sweating с I нужно am.",
+          "uk": "Перед sweating із I потрібне am."
+        },
+        "en:lesson-09:session-19:intro1:r3": {
+          "ru": "Для действия сейчас после am нужна форма sweating.",
+          "uk": "Для дії зараз після am потрібна форма sweating."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-19:intro2:r2": {
+          "ru": "Здесь ventilation требует is.",
+          "uk": "Тут ventilation потребує is."
+        },
+        "en:lesson-09:session-19:intro2:r3": {
+          "ru": "В таком вопросе нужна форма working.",
+          "uk": "У такому запитанні потрібна форма working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-19:intro3:r2": {
+          "ru": "Для привычного действия с I подходит wear.",
+          "uk": "Для звичної дії з I підходить wear."
+        },
+        "en:lesson-09:session-19:intro3:r3": {
+          "ru": "Обычное действие: I wear, без am.",
+          "uk": "Звична дія: I wear, без am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "65bfa7d15d65446776ac25ea8e161b00a634b7cdbfb7a51b633b1bd36ec9c818"
+}

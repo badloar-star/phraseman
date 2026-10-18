@@ -3269,4 +3269,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Are you shivering? I am not shivering.","uk":"Are you shivering? I am not shivering."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 19,
+    sourceFingerprint: "ca73643dc03d127afad2bcc60eef5f12c65c40a60b64c9906ccef0419d094b0d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am sweating; Is the ventilation working?; I wear a sweatshirt","uk":"I am sweating; Is the ventilation working?; I wear a sweatshirt"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 20,
+    sourceFingerprint: "25f4c76905359494e53c48ba6d2cba7a96dfdb79f1d087aed4c95f652e252885",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"grin → grinning; Is he grinning?; is not waving","uk":"grin → grinning; Is he grinning?; is not waving"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

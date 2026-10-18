@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-19:word:workout",
+    "correctText": "workout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i01",
+    "correctText": "This is my workout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i02",
+    "correctText": "workout",
+    "correctResponseId": "en:lesson-09:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-09:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i04",
+    "correctText": "en:lesson-09:session-19:i04:p1=workout\nen:lesson-09:session-19:i04:p2=sweat\nen:lesson-09:session-19:i04:p3=towel\nen:lesson-09:session-19:i04:p4=gym",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i05",
+    "correctText": "I am sweating.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:word:ventilation",
+    "correctText": "ventilation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i06",
+    "correctText": "Is the ventilation working?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:word:sweatshirt",
+    "correctText": "sweatshirt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i07",
+    "correctText": "I wear a sweatshirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i08",
+    "correctText": "sweating",
+    "correctResponseId": "en:lesson-09:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i09",
+    "correctText": "I am not sweating.",
+    "correctResponseId": "en:lesson-09:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i10",
+    "correctText": "en:lesson-09:session-19:i10:p1=workout\nen:lesson-09:session-19:i10:p2=ventilation\nen:lesson-09:session-19:i10:p3=sweatshirt\nen:lesson-09:session-19:i10:p4=towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i11",
+    "correctText": "Is the ventilation working?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:word:deodorant",
+    "correctText": "deodorant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i12",
+    "correctText": "deodorant",
+    "correctResponseId": "en:lesson-09:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i13",
+    "correctText": "This is my deodorant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i14",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-09:session-19:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i15",
+    "correctText": "I wear a sweatshirt.",
+    "correctResponseId": "en:lesson-09:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i16",
+    "correctText": "en:lesson-09:session-19:i16:p1=workout\nen:lesson-09:session-19:i16:p2=ventilation\nen:lesson-09:session-19:i16:p3=sweatshirt\nen:lesson-09:session-19:i16:p4=deodorant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-19:i17",
+    "correctText": "Is the ventilation working?",
+    "correctResponseId": null
+  }
+]

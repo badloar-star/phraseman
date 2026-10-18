@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-20:intro1:r2": {
+          "ru": "С he нужна форма is.",
+          "uk": "Із he потрібна форма is."
+        },
+        "en:lesson-09:session-20:intro1:r3": {
+          "ru": "После is he сохраняем grinning.",
+          "uk": "Після is he зберігаємо grinning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-20:intro2:r2": {
+          "ru": "Перед not waving нужно is.",
+          "uk": "Перед not waving потрібне is."
+        },
+        "en:lesson-09:session-20:intro2:r3": {
+          "ru": "После is not здесь нужна форма waving.",
+          "uk": "Після is not тут потрібна форма waving."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-20:intro3:r2": {
+          "ru": "После don’t не добавляем -ing.",
+          "uk": "Після don’t не додаємо -ing."
+        },
+        "en:lesson-09:session-20:intro3:r3": {
+          "ru": "После don’t нужна базовая форма open.",
+          "uk": "Після don’t потрібна базова форма open."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3f096b9a130bf253a6496705129cf9f0ecce3e5235489c6fbafebee0ce59239a"
+}

@@ -88,6 +88,13 @@ export type AccountSwitchRecoveryDependencies = Readonly<{
   wipeLocalData(): Promise<void>;
   /** Откат прерванной передачи входа к гостю: тот же человек — согласия не сбрасываются (координатор 18.10). */
   wipeLocalDataForHandoffRollback?(): Promise<void>;
+  /** Довести прерванный вход вперёд (Firebase уже вошёл в доказанного провайдера); null — нельзя, тогда откат. */
+  completeProviderHandoff?(input: Readonly<{
+    provider: 'google' | 'apple';
+    ownerStableId: string;
+    targetAuthUid: string | null;
+    clearHandoff: () => Promise<void>;
+  }>): Promise<{ stableId: string; authUid: string } | null>;
   clearStableId(): Promise<void>;
   ensureAnonymousIdentity(): Promise<void>;
   activateGeneration(stableId: string): void;
@@ -96,19 +103,43 @@ export type AccountSwitchRecoveryDependencies = Readonly<{
 // зачем (блокер входа 18.10, журнал iPhone 08:45:50–08:46:17): горячая перезагрузка корня посреди входа запускала восстановление
 // параллельно идущему входу — оно выходило из только что вошедшего Google. Признак «вход провайдера идёт» живёт в globalThis:
 // при горячей перезагрузке модуль входа может переоцениться, а глобальное значение видят обе копии. Срок 2 мин — завис вход, не держим.
-const PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL = '__phrasemanProviderSignInInFlightAtMs';
-const PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS = 120_000;
+// зачем (🟡 Ревизора по 424a4dda7): один признак на процесс — finally первой попытки снимал признак второй, а срок 2 мин истекал
+// при долгом выборе аккаунта. Теперь у каждой попытки свой ключ; срок 10 мин (настоящий перезапуск всё равно стирает globalThis).
+const PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL = '__phrasemanProviderSignInsInFlightV2';
+const PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS = 10 * 60_000;
 
-export function markProviderSignInInFlight(active: boolean, now: number = Date.now()): void {
-  (globalThis as Record<string, unknown>)[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL] = active ? now : null;
+function inFlightRegistry(): Record<string, number> {
+  const holder = globalThis as Record<string, unknown>;
+  const current = holder[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL];
+  if (current && typeof current === 'object') return current as Record<string, number>;
+  const fresh: Record<string, number> = {};
+  holder[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL] = fresh;
+  return fresh;
 }
 
-/** Возраст идущего входа провайдера в мс или null (входа нет либо признак старше срока). */
+let inFlightSeq = 0;
+
+/** Отметить начало попытки входа провайдера; вернуть её ключ для снятия в finally. */
+export function beginProviderSignInInFlight(now: number = Date.now()): string {
+  inFlightSeq += 1;
+  const attemptKey = `${now}:${inFlightSeq}:${Math.random().toString(36).slice(2, 8)}`;
+  inFlightRegistry()[attemptKey] = now;
+  return attemptKey;
+}
+
+/** Снять признак ровно этой попытки (чужие попытки не трогает). */
+export function endProviderSignInInFlight(attemptKey: string): void {
+  delete inFlightRegistry()[attemptKey];
+}
+
+/** Возраст самой свежей идущей попытки входа в мс или null (нет попыток либо все старше срока). */
 export function providerSignInInFlightAgeMs(now: number = Date.now()): number | null {
-  const startedAt = (globalThis as Record<string, unknown>)[PROVIDER_SIGN_IN_IN_FLIGHT_GLOBAL];
-  if (typeof startedAt !== 'number') return null;
-  const age = now - startedAt;
-  return age >= 0 && age < PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS ? age : null;
+  let youngest: number | null = null;
+  for (const startedAt of Object.values(inFlightRegistry())) {
+    const age = now - startedAt;
+    if (age >= 0 && age < PROVIDER_SIGN_IN_IN_FLIGHT_MAX_AGE_MS && (youngest === null || age < youngest)) youngest = age;
+  }
+  return youngest;
 }
 
 export type AccountSwitchResumeResult =
@@ -939,6 +970,40 @@ async function resumeInternal(
         publish({ visible: true, status: 'quarantined', reason: 'provider_auth_mismatch' });
         return { result: 'quarantined', reason: 'provider_auth_mismatch' };
       }
+      // зачем (координатор 18.10, «вход — главная задача»): Firebase уже вошёл в доказанного провайдера B (фаза authenticated,
+      // uid и subject совпали — проверка выше) — доводим вход вперёд вместо отката к гостю. Любой отказ — прежний откат ниже.
+      if (
+        currentAuth
+        && currentAuth.isAnonymous === false
+        && handoff.phase === 'authenticated'
+        && currentAuth.uid === handoff.targetAuthUid
+        && deps.completeProviderHandoff
+      ) {
+        const provenHandoff = handoff;
+        console.warn(`[SWITCH-QUARANTINE] handoff_roll_forward start provider=${provenHandoff.provider}`); // guard-ok: ветка решения
+        const forward = await deps.completeProviderHandoff({
+          provider: provenHandoff.provider,
+          ownerStableId: provenHandoff.ownerStableId,
+          targetAuthUid: provenHandoff.targetAuthUid,
+          clearHandoff: () => clearProviderCredentialHandoff(provenHandoff),
+        }).catch((forwardError: unknown) => {
+          console.warn(`[SWITCH-QUARANTINE] handoff_roll_forward threw reason=${forwardError instanceof Error ? forwardError.message.slice(0, 80) : typeof forwardError}`); // guard-ok: catch пишет причину
+          return null;
+        });
+        if (forward) {
+          // запись снята внутри замка, поколение открыто — повторно не открываем
+          console.warn(`[SWITCH-QUARANTINE] handoff_roll_forward done provider=${provenHandoff.provider}`); // guard-ok: итог
+          publish({ visible: false, status: 'idle', reason: null });
+          return { result: 'completed', stableId: forward.stableId, authUid: forward.authUid };
+        }
+        if (await AsyncStorage.getItem(ACCOUNT_PROVIDER_HANDOFF_KEY) === null) {
+          // запись уже снята, а довод упал позже — откатывать нечего, повтор покажет итог
+          console.warn('[SWITCH-QUARANTINE] handoff_roll_forward fallback reason=marker_already_cleared'); // guard-ok: ранний выход
+          publish({ visible: true, status: 'retryable', reason: 'handoff_roll_forward_partial' });
+          return { result: 'retryable', reason: 'handoff_roll_forward_partial' };
+        }
+        console.warn('[SWITCH-QUARANTINE] handoff_roll_forward fallback → rollback'); // guard-ok: ветка решения
+      }
       // The source was proven empty before this journal was created. Roll an
       // interrupted credential replacement back to a fresh anonymous identity;
       // this cannot delete provider B and prevents any A-local bytes under B auth.
@@ -1269,6 +1334,12 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
     // зачем (координатор 18.10, Ядро 15.10): возобновлённая смена — тот же выход: онбординг и языки устройства остаются.
     wipeLocalData: async () => { await cloud.wipeLocalAccountData(undefined, { mode: 'signout' }); },
     wipeLocalDataForHandoffRollback: async () => { await cloud.wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true }); },
+    // зачем (координатор 18.10): довести прерванный вход вперёд; модуль входа — лениво, только когда довод действительно нужен
+    completeProviderHandoff: async (input) => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const authProvider = require('./auth_provider') as typeof import('./auth_provider');
+      return authProvider.completeInterruptedProviderHandoff(input);
+    },
     clearStableId: async () => {
       const startedAtMs = Date.now();
       await stable.clearStableId();

@@ -9,7 +9,8 @@ describe('cloud sync account-transition race contract', () => {
     expect(cloudSyncSource).toContain('inheritedLease?: AccountTransitionLockLease');
     expect(cloudSyncSource).toContain(
       // 89da06443 (координатор 18.10): режим стирания ('full' | 'signout') — тот же замок вокруг того же тела.
-      'await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode), inheritedLease);',
+      // 18.10 (7a6cf13aa): keepConsents — откат прерванного входа без сброса согласий
+      'await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode, keepConsents), inheritedLease);',
     );
   });
   test('outbound sync is generation-bound at the user write and local marker boundaries', () => {

@@ -539,16 +539,16 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // снимается с явным владельцем, без ensureAnonUser посреди карантина смены (только чтение, без записи).
         // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
         stableIdentityReads: 22,
-        stableIdentityWrites: 8,
-        authLinkLookups: 1,
-        ownerMergeDecisions: 7,
+        stableIdentityWrites: 9,
+        authLinkLookups: 2,
+        ownerMergeDecisions: 8,
         // +1 (блокер выпуска 18.10): Firebase отклонил вход в ветке передачи — запись снята, поколение гостя возвращено.
-        generationTransitions: 16,
+        generationTransitions: 18,
         generationFences: 9,
-        transitionLocks: 4,
+        transitionLocks: 5,
         anonymousSessionDecisions: 6,
         // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа
-        localAccountWipes: 6,
+        localAccountWipes: 7,
       },
       cloudSync: {
         stableIdentityReads: 1,
@@ -646,18 +646,19 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +1 (Вход 17.10, 💸): перенос подтверждения привязки этого входа в новое поколение после свапа (rememberSwapConfirmedStableAuthLink).
         // +1 (блокер выпуска 18.10): возврат поколения гостя после снятия записи передачи (Firebase отклонил вход).
         // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа.
-        occurrences: 126,
+        // +9 (координатор 18.10, «вход — главная задача»): completeInterruptedProviderHandoff — довод прерванного входа вперёд тем же хвостом, что обычный свап.
+        occurrences: 135,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
-          'call:beginAccountGeneration': 11,
+          'call:beginAccountGeneration': 13,
           'call:captureAccountGeneration': 2,
           'call:clearStableId': 5,
-          'call:collection': 1,
+          'call:collection': 2,
           'call:ensureAnonIdentityDetailed': 1,
           'call:ensureAnonUser': 5,
           'call:ensureFreshStableIdentityForLiveProvider': 1,
-          'call:ensureStableAuthLinkForStableIdDetailed': 5,
+          'call:ensureStableAuthLinkForStableIdDetailed': 6,
           // AA S2d 🔴2: presync входа — forceSyncToCloud без adopt вместо syncToCloud({forceNow}).
           'call:forceSyncToCloud': 2,
           'call:forgetAllAnonMergeNonces': 1,
@@ -671,14 +672,14 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:peekStableId': 9,
           'call:pruneShelvedAccountSwitchBackups': 1,
           'call:quiesceCloudSyncForAccountTransition': 4,
-          'call:quiesceSyncBeforeStableIdSwap': 3,
+          'call:quiesceSyncBeforeStableIdSwap': 4,
           'call:readExistingStableId': 1,
-          'call:rememberSwapConfirmedStableAuthLink': 1,
+          'call:rememberSwapConfirmedStableAuthLink': 2,
           'call:resetAnonAuthCacheForSignOut': 3,
           'call:readAccountSwitchEmergencyBackupSummary': 1,
           'call:restoreFromCloudDetailed': 1,
           'call:saveAccountSwitchEmergencyBackup': 6,
-          'call:setStableId': 3,
+          'call:setStableId': 4,
           'call:shelveAccountSwitchEmergencyBackupOf': 1,
           'call:stampAnonOwnershipBeforeSignIn': 2,
           'call:startCloudDeletionDirect': 1,
@@ -686,8 +687,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:syncToCloud': 2,
           'call:waitForAccountDeletionCredentialSafe': 4,
           'call:waitForRestoreApplicationIdleWithDeadline': 4,
-          'call:wipeLocalAccountData': 6,
-          'call:withAccountTransitionLock': 2,
+          'call:wipeLocalAccountData': 7,
+          'call:withAccountTransitionLock': 3,
           'call:withAccountTransitionLockWithDeadline': 2,
           'import:./account_generation': 1,
           'import:./cloud_sync': 1,

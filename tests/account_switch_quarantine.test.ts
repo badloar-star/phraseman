@@ -24,7 +24,8 @@ import {
   prepareProviderCredentialHandoff,
   markProviderCredentialHandoffAuthenticated,
   markProviderCredentialHandoffCredentialReady,
-  markProviderSignInInFlight,
+  beginProviderSignInInFlight,
+  endProviderSignInInFlight,
   providerSignInInFlightAgeMs,
   resumeAccountSwitchQuarantine,
   type AccountSwitchQuarantineMarker,
@@ -410,19 +411,76 @@ describe('durable account-switch quarantine', () => {
     const built = dependencies({
       readAuthUser: jest.fn(() => ({ uid: 'auth-B', isAnonymous: false, provider: 'google', providerSubject: 'google-B' })),
     });
-    markProviderSignInInFlight(true);
+    const first = beginProviderSignInInFlight();
+    const second = beginProviderSignInInFlight();
     try {
       await expect(resumeAccountSwitchQuarantine(built.deps)).resolves.toEqual({ result: 'retryable', reason: 'sign_in_in_flight' });
       expect(built.deps.signOut).not.toHaveBeenCalled();
       expect(built.deps.wipeLocalData).not.toHaveBeenCalled();
       expect(storage.has(ACCOUNT_PROVIDER_HANDOFF_KEY)).toBe(true);
+      // 🟡 Ревизора: finally первой попытки не снимает признак второй
+      endProviderSignInInFlight(first);
+      expect(providerSignInInFlightAgeMs()).not.toBeNull();
     } finally {
-      markProviderSignInInFlight(false);
+      endProviderSignInInFlight(first);
+      endProviderSignInInFlight(second);
     }
-    // признак старше 2 мин не держит восстановление (завис вход)
-    markProviderSignInInFlight(true, Date.now() - 121_000);
     expect(providerSignInInFlightAgeMs()).toBeNull();
-    markProviderSignInInFlight(false);
+    // долгий выбор аккаунта (5 мин) признак держит; старше 10 мин — нет (завис вход)
+    const slow = beginProviderSignInInFlight(Date.now() - 5 * 60_000);
+    expect(providerSignInInFlightAgeMs()).not.toBeNull();
+    endProviderSignInInFlight(slow);
+    const stale = beginProviderSignInInFlight(Date.now() - 11 * 60_000);
+    expect(providerSignInInFlightAgeMs()).toBeNull();
+    endProviderSignInInFlight(stale);
+  });
+
+  // зачем (координатор 18.10, «вход — главная задача»): приложение убили после того, как Firebase вошёл в B (фаза authenticated,
+  // uid и subject совпали) — при запуске вход доводится вперёд, а не откатывается к гостю.
+  async function authenticatedGoogleHandoff(operation: string) {
+    let marker = await prepareProviderCredentialHandoff({
+      operationId: `provider_handoff_${operation}`,
+      nonce: `provider_handoff_nonce_${operation}`,
+      ownerStableId: 'stable-A',
+      ownerAuthUid: 'auth-A',
+      provider: 'google',
+      now: 2_000,
+    });
+    marker = await markProviderCredentialHandoffCredentialReady(marker, 'google-B');
+    return markProviderCredentialHandoffAuthenticated(marker, 'auth-B');
+  }
+  const providerB = () => ({ uid: 'auth-B', isAnonymous: false, provider: 'google' as const, providerSubject: 'google-B', providerSubjects: { google: 'google-B' } });
+
+  it('rolls an interrupted, proven provider handoff FORWARD instead of back to a guest', async () => {
+    await authenticatedGoogleHandoff('forward_01');
+    const completeProviderHandoff = jest.fn(async (input: { clearHandoff: () => Promise<void> }) => {
+      await input.clearHandoff();
+      return { stableId: 'stable-B', authUid: 'auth-B' };
+    });
+    const built = dependencies({ readAuthUser: jest.fn(providerB), completeProviderHandoff });
+
+    await expect(resumeAccountSwitchQuarantine(built.deps)).resolves.toEqual({ result: 'completed', stableId: 'stable-B', authUid: 'auth-B' });
+    expect(completeProviderHandoff).toHaveBeenCalledWith(expect.objectContaining({ provider: 'google', ownerStableId: 'stable-A', targetAuthUid: 'auth-B' }));
+    expect(built.deps.signOut).not.toHaveBeenCalled();
+    expect(built.deps.wipeLocalData).not.toHaveBeenCalled();
+    expect(storage.has(ACCOUNT_PROVIDER_HANDOFF_KEY)).toBe(false);
+    // поколение открыл сам довод — повторно не открываем
+    expect(built.deps.activateGeneration).not.toHaveBeenCalled();
+  });
+
+  it('falls back to the safe rollback when the forward completion cannot finish', async () => {
+    await authenticatedGoogleHandoff('forward_02');
+    const completeProviderHandoff = jest.fn(async () => null);
+    const keepConsentsWipe = jest.fn(async () => undefined);
+    const built = dependencies({ readAuthUser: jest.fn(providerB), completeProviderHandoff, wipeLocalDataForHandoffRollback: keepConsentsWipe });
+    // после отката — новый гость (штатная заготовка)
+    (built.deps.readAuthUser as jest.Mock).mockImplementation(() => (built.calls.includes('ensureAnon') ? { uid: 'auth-fresh', isAnonymous: true } : providerB()));
+
+    await expect(resumeAccountSwitchQuarantine(built.deps)).resolves.toMatchObject({ result: 'completed', stableId: 'stable-fresh' });
+    expect(completeProviderHandoff).toHaveBeenCalledTimes(1);
+    expect(built.deps.signOut).toHaveBeenCalledTimes(1);
+    expect(keepConsentsWipe).toHaveBeenCalledTimes(1);
+    expect(storage.has(ACCOUNT_PROVIDER_HANDOFF_KEY)).toBe(false);
   });
 
   // зачем (координатор 18.10 10:10): откат прерванной передачи входа — тот же человек, стирание без сброса согласий

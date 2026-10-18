@@ -132,7 +132,8 @@ import {
   hasAccountSwitchPostCompletionHandoff,
   inspectAccountSwitchQuarantine,
   markProviderCredentialHandoffAuthenticated,
-  markProviderSignInInFlight,
+  beginProviderSignInInFlight,
+  endProviderSignInInFlight,
   markProviderCredentialHandoffCredentialReady,
   prepareAccountSwitchQuarantine,
   prepareProviderCredentialHandoff,
@@ -2480,11 +2481,11 @@ export async function signInWithProvider(
     requireCurrentStableIdOwnership: Boolean(options.requireCurrentStableIdOwnership),
   };
   // зачем (блокер входа 18.10): восстановление при загрузке не откатывает запись передачи, пока этот вход идёт (переживает горячую перезагрузку)
-  markProviderSignInInFlight(true);
+  const inFlightKey = beginProviderSignInInFlight();
   try {
     return await task;
   } finally {
-    markProviderSignInInFlight(false);
+    endProviderSignInInFlight(inFlightKey);
     if (providerSignInInFlight?.task === task) providerSignInInFlight = null;
     reservation.operationSettled = true;
     releaseProviderCredentialModeReservationIfSettled(reservation);
@@ -4049,6 +4050,8 @@ function accountSwitchRecoveryDependencies() {
     wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout' }); },
     // зачем (координатор 18.10 10:10): откат прерванной передачи входа — тот же человек, согласия не сбрасываем
     wipeLocalDataForHandoffRollback: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true }); },
+    // зачем (координатор 18.10): довести прерванный вход вперёд вместо отката к гостю
+    completeProviderHandoff: (input) => completeInterruptedProviderHandoff(input),
     clearStableId: async (): Promise<void> => {
       await clearStableId();
       await clearPendingAuthLink();
@@ -4064,6 +4067,81 @@ function accountSwitchRecoveryDependencies() {
     },
     activateGeneration: (stableId: string): void => { beginAccountGeneration(stableId); },
   };
+}
+
+/**
+ * зачем (координатор 18.10, «вход — главная задача»): приложение убили посреди входа — Firebase уже вошёл в провайдер B,
+ * запись передачи осталась. Раньше загрузка откатывала к гостю; теперь доводим вход вперёд тем же хвостом, что и обычный
+ * вход (auth_links → авторитетная связка → под замком: стирание гостя, setStableId, поколение → фоновое восстановление).
+ * Гость был доказан чистым ДО записи передачи, поэтому сохранять его прогресс не нужно (как и в самом входе).
+ * null — довести нельзя (несовпадение, сеть, сервер): вызывающий делает прежний безопасный откат.
+ */
+export async function completeInterruptedProviderHandoff(input: Readonly<{
+  provider: AuthProviderId;
+  ownerStableId: string;
+  targetAuthUid: string | null;
+  /** Снять запись передачи внутри замка сразу после установки stable id (как обычный вход) — нет окна «запись + чужой stable». */
+  clearHandoff: () => Promise<void>;
+}>): Promise<{ stableId: string; authUid: string } | null> {
+  const startedAt = Date.now();
+  const giveUp = (reason: string): null => {
+    console.warn(`[AUTH-HANDOFF] roll_forward gave_up reason=${reason} provider=${input.provider} tookMs=${Date.now() - startedAt}`); // guard-ok: ранний выход пишет причину
+    return null;
+  };
+  const user = getAuth()?.currentUser;
+  const authUid = String(user?.uid ?? '').trim();
+  if (!user || user.isAnonymous !== false || !authUid) return giveUp('no_provider_user');
+  if (input.targetAuthUid && input.targetAuthUid !== authUid) return giveUp('target_uid_mismatch');
+  console.log(`[AUTH-HANDOFF] roll_forward start provider=${input.provider} authUid=${identityTag(authUid)} owner=${identityTag(input.ownerStableId)}`); // guard-ok: вход
+  const firestore = getFirestore();
+  if (!firestore) return giveUp('firestore_unavailable');
+  let remoteStableId: string | null = null;
+  try {
+    // один документ по ключу (auth_links/{uid}), не выборка коллекции
+    const linkSnap = await withTimeout<any>(firestore.collection('auth_links').doc(authUid).get(), AUTH_LINK_HINT_TIMEOUT_MS, 'roll_forward_link_lookup');
+    const linked = linkSnap.exists ? linkSnap.data()?.stable_id : null;
+    remoteStableId = typeof linked === 'string' && linked.trim() ? linked.trim() : null;
+  } catch (lookupError) {
+    return giveUp(`link_lookup_${identityErrorCode(lookupError)}`);
+  }
+  const metadata: StableAuthLinkMetadata = {
+    provider: input.provider,
+    email: user.email ?? null,
+    displayName: user.displayName ?? null,
+    lastSignInAt: Date.now(),
+    devicePlatform: Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web',
+  };
+  // Нашлась связка — это существующий аккаунт B; нет — новый B, привязываем к нему чистого гостя (ветка «local» обычного входа).
+  const targetStableId = remoteStableId ?? input.ownerStableId;
+  const proof = await ensureStableAuthLinkForStableIdDetailed(targetStableId, metadata, { requireAuthoritative: true })
+    .catch((linkError: unknown) => {
+      console.warn(`[AUTH-HANDOFF] roll_forward ensure_link threw code=${identityErrorCode(linkError)}`); // guard-ok: catch пишет причину
+      return null;
+    });
+  if (!proof?.ok || !proof.stableUid) return giveUp(`ensure_link_${proof?.failure ?? 'failed'}`);
+  const canonicalStableId = proof.stableUid;
+  console.log(`[AUTH-HANDOFF] roll_forward linked branch=${remoteStableId ? 'remote' : 'local'} canonical=${identityTag(canonicalStableId)}`); // guard-ok: ветка решения
+  if (canonicalStableId !== input.ownerStableId) {
+    await quiesceSyncBeforeStableIdSwap();
+    await beginEntitlementSafeAccountTransition();
+    await withAccountTransitionLock(async (transitionLease) => {
+      // гость доказан чистым до записи передачи — стираем его локальное, ставим канонический B
+      await wipeLocalAccountData(transitionLease, { mode: 'full' });
+      await setStableId(canonicalStableId);
+      await input.clearHandoff();
+      beginAccountGeneration(canonicalStableId);
+      await rememberSwapConfirmedStableAuthLink(proof, canonicalStableId, 'handoff_roll_forward');
+    });
+    invalidatePremiumCache();
+    scheduleSameStablePostAuthRefresh('swap_restore', { preparedStableId: canonicalStableId });
+  } else {
+    await input.clearHandoff();
+    beginAccountGeneration(canonicalStableId);
+    scheduleSameStablePostAuthRefresh('linked_restore', { preparedStableId: canonicalStableId });
+  }
+  emitAuthProviderLinked();
+  console.log(`[AUTH-HANDOFF] roll_forward done provider=${input.provider} canonical=${identityTag(canonicalStableId)} tookMs=${Date.now() - startedAt}`); // guard-ok: итог
+  return { stableId: canonicalStableId, authUid };
 }
 
 export function resumePendingAccountSwitchQuarantine(): Promise<AccountSwitchResumeResult> {

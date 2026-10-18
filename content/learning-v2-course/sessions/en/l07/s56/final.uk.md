@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 56 — Як ми відпочиваємо
+# Англійська · Урок 7 · Заняття 56 — Повторюємо урок: звички й запитання
 
-**Ситуація.** Ви обговорюєте ночівлі в наметі, танці вдома й фільми Тома.
+**Ситуація.** Ви повторюєте весь урок: звички вдома, в дорозі й у магазині, запитання «Ви …?» і «Де …?». Ви самі обираєте, де потрібні usually або often і де до дієслова додається s.
 
-**Що ви опануєте:** повторити слова розділу й розповісти про свої та чужі звички
-**Нові слова:** —
+**Що ви опануєте:** самостійно розповідати про звички й ставити запитання «Ви …?» і «Де …?»
+**Нові слова:** spread, toss, nod, shake
+**Повертаються:** butter, bread, salad, bottle, neighbour, squeeze, hail, accept, staple, cafeteria, embassy, university, surgery
 
 ---
 
 ## Інтро 1
 
-### Намет на вихідних
+### Бутерброд на сніданок
 
-Друг запитує, чи часто ви ночуєте в наметі. `I often camp` — «Я часто ночую в наметі». `Often` стоїть перед `camp`. Запитати друга можна так: `Do you often camp?` — «Ти часто ночуєш у наметі?» У запитанні `often` теж стоїть перед `camp`.
+Зранку на кухні ви ріжете хліб. На свіжу скибку ви кладете масло й рівно розрівнюєте його ножем по всій поверхні. spread — «намазувати». Скажіть: I usually spread butter on bread — «Я зазвичай намазую масло на хліб». Слово usually стоїть перед spread.
 
-**Розкажіть другові про свою звичку.**
+**Гість питає, як ви готуєте сніданок. Відповідьте: «Я зазвичай намазую масло на хліб».**
 
-- ✅ **I often camp.**
-- ❌ I often camps. — *Після `I` потрібне `camp`.*
-- ❌ I often camping. — *Тут потрібна форма `camp`.*
+- ✅ **I usually spread butter on bread.**
+- ❌ I usually spreads butter on bread. — *Після I потрібно spread, без s.*
+- ❌ I usually spreading butter on bread. — *Після I usually потрібна форма spread, без -ing.*
 
 ---
 
 ## Інтро 2
 
-### Танці без глядачів
+### Салат до вечері
 
-Подруга запитує, чи танцюєте ви вдома під музику. `I often dance at home` — «Я часто танцюю вдома». `Often` стоїть перед `dance`; `at home` — «вдома». Кіт дивиться без захвату, але квитка він і не купував.
+До вечері ви нарізали овочі для салату й тепер перемішуєте їх у великій мисці, щоб заправка лягла на кожен шматочок. Брат заглянув на кухню. toss — «перемішувати, підкидати». Скажіть: I often toss a salad — «Я часто перемішую салат». Слово often стоїть перед toss.
 
-**Розкажіть подрузі про свою звичку.**
+**Брат питає, чи часто ви так перемішуєте салат. Відповідьте: «Я часто перемішую салат».**
 
-- ✅ **I often dance at home.**
-- ❌ I often dances at home. — *Після `I` потрібне `dance`.*
-- ❌ I often dancing at home. — *Тут потрібна форма `dance`.*
+- ✅ **I often toss a salad.**
+- ❌ I often tosses a salad. — *Після I потрібно toss, без es.*
+- ❌ I often tossing a salad. — *Тут потрібна форма toss.*
 
 ---
 
 ## Інтро 3
 
-### Фільми Тома
+### Сусід у дворі
 
-Друг запитує, як Том дивиться фільми. `Tom often streams films` — «Том часто дивиться фільми онлайн». Після `Tom` потрібне `streams`, із закінченням `s`. Запитати можна так: `Does Tom often stream films?` — «Том часто дивиться фільми онлайн?» Після `does` у `stream` закінчення `s` немає.
+У дворі ваш брат часто зустрічає різних сусідів. Він не зупиняється, а просто коротко нахиляє голову на знак привітання. nod — «кивати». Скажіть: He often nods at a neighbour — «Він часто киває сусідові». Після he до nod додаємо s, а often лишається перед nods.
 
-**Розкажіть про звичку Тома.**
+**Подруга питає про вашого брата у дворі. Відповідьте: «Він часто киває сусідові».**
 
-- ✅ **Tom often streams films.**
-- ❌ Tom often stream films. — *Після `Tom` потрібне `streams`.*
-- ❌ Tom often streaming films. — *Тут потрібна форма `streams`.*
+- ✅ **He often nods at a neighbour.**
+- ❌ He often nod at a neighbour. — *Після he потрібно nods, з s.*
+- ❌ He often nodding at a neighbour. — *Тут потрібна форма nods.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто ночую в наметі»**
+**1 · Картка слова — spread**
+<!-- interaction_id: en:lesson-07:session-56:word:spread; family: word_card -->
+> **spread** — намазувати. I usually spread butter on bread. — «Я зазвичай намазую масло на хліб». Тонким шаром розподіляти м’яке по поверхні.
+
+**2 · Гість питає про сніданок. Скажіть: «Я зазвичай намазую масло на хліб»**
 <!-- interaction_id: en:lesson-07:session-56:i01; family: phrase_builder -->
-Плитки: `camp` `often` `I` → **I often camp.**
+Плитки: `bread` `often` `on` `butter` `spread` `usually` `I` → **I usually spread butter on bread.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually spread butter on bread.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-56:i02; family: listen_choose -->
-🔊 *hike* → **hike** · ski · surf
-- ski — *У записі перше слово — `hike`, а в цьому варіанті — `ski`.*
-- surf — *У записі перше слово — `hike`, а в цьому варіанті — `surf`.*
+🔊 *spread* → **spread** · spend · spoon
+- spend — *У записі перше слово — `spread`, а в цьому варіанті — `spend`.*
+- spoon — *У записі перше слово — `spread`, а в цьому варіанті — `spoon`.*
 
-**3 · Скажіть «Я часто танцюю вдома»**
+**4 · Гість питає про сніданок. Скажіть: «Я зазвичай намазую масло на хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-56:i03; family: context_gap_grammar -->
-I often ___ at home. → **dance** · dances · dancing
-- dances — *Після `I` потрібне `dance`.*
-- dancing — *Тут потрібна форма `dance`.*
+I usually ___ butter on bread. → **spread** · spreads · spreading
+- spreads — *Після `I` потрібно `spread`, без закінчення.*
+- spreading — *Тут потрібна форма `spread`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-56:i04; family: speed_match -->
-camp — ночувати в наметі · hike — ходити в піший похід · dance — танцювати · ski — кататися на лижах
+spread — намазувати · butter — масло · bread — хліб · salad — салат
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — toss**
+<!-- interaction_id: en:lesson-07:session-56:word:toss; family: word_card -->
+> **toss** — перемішувати, підкидати. I often toss a salad. — «Я часто перемішую салат». Струшувати й перевертати, щоб усе змішалося.
+
+**7 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-56:i05; family: listen_build_dictation -->
-🔊 *I often dance at home.* Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+🔊 *I often toss a salad.* Плитки: `salad` `tosses` `a` `toss` `often` `I` → **I often toss a salad.**
+*(плитка `tosses` зайва: тут потрібно `toss` — `I often toss a salad.`)*
 
-**6 · Розкажіть про зимовий відпочинок: «Я зазвичай катаюся на лижах»**
+**8 · Картка слова — nod**
+<!-- interaction_id: en:lesson-07:session-56:word:nod; family: word_card -->
+> **nod** — кивати. He often nods at a neighbour. — «Він часто киває сусідові». Нахиляти голову на знак привітання або згоди.
+
+**9 · Знайомий питає про вашого брата. Скажіть: «Він часто киває сусідові»**
 <!-- interaction_id: en:lesson-07:session-56:i06; family: phrase_builder -->
-Плитки: `ski` `usually` `I` → **I usually ski.**
+Плитки: `neighbour` `nod` `a` `at` `nods` `often` `He` → **He often nods at a neighbour.**
+*(плитка `nod` зайва: тут потрібно `nods` — `He often nods at a neighbour.`)*
 
-**7 · Скажіть «Том часто дивиться фільми онлайн»**
+**10 · У магазині ви хочете заплатити карткою. Спитайте продавця: «Ви приймаєте картки?»**
 <!-- interaction_id: en:lesson-07:session-56:i07; family: scripted_repeat_compare -->
-🎙 **Tom often streams films.**
+🎙 **Do you accept cards?**
 
-**8 · Скажіть «Том часто дивиться фільми онлайн»**
+**11 · Подруга питає про вашого брата. Скажіть: «Він часто киває сусідові». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-56:i08; family: context_gap_grammar -->
-Tom often ___ films. → **streams** · stream · streaming
-- stream — *Після `Tom` потрібне `streams`.*
-- streaming — *Тут потрібна форма `streams`.*
+He often ___ at a neighbour. → **nods** · nod · nodding
+- nod — *Після `He` потрібно `nods`.*
+- nodding — *Тут потрібна форма `nods`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-56:i09; family: listen_choose -->
-🔊 *I often surf.* → **I often surf.** · I often camp. · I often dance.
-- I often camp. — *У записі останнє слово — `surf`, а в цьому варіанті — `camp`.*
-- I often dance. — *У записі останнє слово — `surf`, а в цьому варіанті — `dance`.*
+🔊 *I often toss a salad.* → **I often toss a salad.** · I often toss a coin. · I often toss a ball.
+- I often toss a coin. — *У записі останнє слово — `salad`, а в цьому варіанті — `coin`.*
+- I often toss a ball. — *У записі останнє слово — `salad`, а в цьому варіанті — `ball`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-56:i10; family: speed_match -->
-surf — займатися серфінгом · browse — переглядати · stream — дивитися онлайн · hike — ходити в піший похід
+nod — кивати · squeeze — вичавлювати · hail — зупиняти (таксі) · staple — скріплювати степлером
 
-**11 · Послухайте й складіть фразу**
+**14 · Картка слова — shake**
+<!-- interaction_id: en:lesson-07:session-56:word:shake; family: word_card -->
+> **shake** — струшувати, трусити. I usually shake the bottle. — «Я зазвичай струшую пляшку». Швидко рухати туди-сюди; тут — струшувати закриту пляшку із заправкою, щоб змішати вміст.
+
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-56:i11; family: listen_build_dictation -->
-🔊 *I usually browse online.* Плитки: `online` `browse` `usually` `I` → **I usually browse online.**
+🔊 *I usually shake the bottle.* Плитки: `bottle` `shakes` `the` `shake` `usually` `I` → **I usually shake the bottle.**
+*(плитка `shakes` зайва: тут потрібно `shake` — `I usually shake the bottle.`)*
 
-**12 · Запитайте друга «Ти часто ночуєш у наметі?»**
+**16 · Ви прийшли на курси. Спитайте охоронця: «Де їдальня?»**
 <!-- interaction_id: en:lesson-07:session-56:i12; family: phrase_builder -->
-Плитки: `camp` `often` `you` `Do` → **Do you often camp?**
+Плитки: `cafeteria` `are` `the` `is` `Where` → **Where is the cafeteria?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the cafeteria?`)*
 
-**13 · Ви обговорюєте відпочинок Тома на морі. Запитайте його подругу «Том часто займається серфінгом?»**
+**17 · Сусід питає про вашу сестру. Скажіть: «Вона часто ловить таксі вночі»**
 <!-- interaction_id: en:lesson-07:session-56:i13; family: scripted_repeat_compare -->
-🎙 **Does Tom often surf?**
+🎙 **She often hails a taxi at night.**
 
-**14 · Скажіть «Я зазвичай ходжу в піші походи»**
+**18 · Брат питає про вечерю. Скажіть: «Я часто перемішую салат». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-56:i14; family: context_gap_grammar -->
-I ___ hike. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `hike`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `hike` не ставимо.*
+I ___ toss a salad. → **often** · does · am
+- does — *Для «часто» потрібно `often` перед `toss`.*
+- am — *Для «часто» потрібно `often`; `am` перед `toss` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-56:i15; family: listen_choose -->
-🔊 *I usually browse online.* → **I usually browse online.** · We usually browse online. · They usually browse online.
-- We usually browse online. — *У записі перше слово — `I`, а в цьому варіанті — `We`.*
-- They usually browse online. — *У записі перше слово — `I`, а в цьому варіанті — `They`.*
+🔊 *Where is the embassy?* → **Where is the embassy?** · Where is the surgery? · Where is the university?
+- Where is the surgery? — *У записі останнє слово — `embassy`, а в цьому варіанті — `surgery`.*
+- Where is the university? — *У записі останнє слово — `embassy`, а в цьому варіанті — `university`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-56:i16; family: speed_match -->
-ski — кататися на лижах · surf — займатися серфінгом · browse — переглядати · stream — дивитися онлайн
+nod — кивати · toss — перемішувати, підкидати · university — університет · surgery — кабінет лікаря
 
-**17 · Друг запитує про звички Тома на природі. Скажіть «Том зазвичай ходить у піші походи»**
+**21 · На столі закрита пляшка із салатною заправкою. Гість питає, що ваш брат зазвичай робить перед її використанням. Скажіть: «Мій брат зазвичай струшує пляшку»**
 <!-- interaction_id: en:lesson-07:session-56:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually hikes.**
-
+🎙 **My brother usually shakes the bottle.**

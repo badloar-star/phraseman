@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-56",
   "learningOutcomeByLocale": {
-    "ru": "повторить слова главы и рассказать о своих и чужих привычках",
-    "uk": "повторити слова розділу й розповісти про свої та чужі звички"
+    "ru": "самостоятельно рассказывать о привычках и задавать вопросы «Вы …?» и «Где …?»",
+    "uk": "самостійно розповідати про звички й ставити запитання «Ви …?» і «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Палатка на выходных",
-        "uk": "Намет на вихідних"
+        "ru": "Бутерброд на завтрак",
+        "uk": "Бутерброд на сніданок"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы ночуете в палатке. `I often camp` — «Я часто ночую в палатке». `Often` стоит перед `camp`. Спросить друга можно так: `Do you often camp?` — «Ты часто ночуешь в палатке?» В вопросе `often` тоже стоит перед `camp`.",
-        "uk": "Друг запитує, чи часто ви ночуєте в наметі. `I often camp` — «Я часто ночую в наметі». `Often` стоїть перед `camp`. Запитати друга можна так: `Do you often camp?` — «Ти часто ночуєш у наметі?» У запитанні `often` теж стоїть перед `camp`."
+        "ru": "Утром на кухне вы режете хлеб. На свежий ломтик вы кладёте масло и ровно разравниваете его ножом по всей поверхности. spread — «намазывать». Скажите: I usually spread butter on bread — «Я обычно намазываю масло на хлеб». Слово usually стоит перед spread.",
+        "uk": "Зранку на кухні ви ріжете хліб. На свіжу скибку ви кладете масло й рівно розрівнюєте його ножем по всій поверхні. spread — «намазувати». Скажіть: I usually spread butter on bread — «Я зазвичай намазую масло на хліб». Слово usually стоїть перед spread."
       },
       "question": {
         "interactionId": "en:lesson-07:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Гость спрашивает, как вы готовите завтрак. Ответьте: «Я обычно намазываю масло на хлеб».",
+          "uk": "Гість питає, як ви готуєте сніданок. Відповідьте: «Я зазвичай намазую масло на хліб»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-56:intro1:r1",
-              "text": "I often camp."
+              "text": "I usually spread butter on bread."
             },
             {
               "responseId": "en:lesson-07:session-56:intro1:r2",
-              "text": "I often camps."
+              "text": "I usually spreads butter on bread."
             },
             {
               "responseId": "en:lesson-07:session-56:intro1:r3",
-              "text": "I often camping."
+              "text": "I usually spreading butter on bread."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-56:intro1:r1",
-              "text": "I often camp."
+              "text": "I usually spread butter on bread."
             },
             {
               "responseId": "en:lesson-07:session-56:intro1:r2",
-              "text": "I often camps."
+              "text": "I usually spreads butter on bread."
             },
             {
               "responseId": "en:lesson-07:session-56:intro1:r3",
-              "text": "I often camping."
+              "text": "I usually spreading butter on bread."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своей привычке.",
-          "uk": "Розкажіть другові про свою звичку."
+          "ru": "Гость спрашивает, как вы готовите завтрак. Ответьте: «Я обычно намазываю масло на хлеб».",
+          "uk": "Гість питає, як ви готуєте сніданок. Відповідьте: «Я зазвичай намазую масло на хліб»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Танцы без зрителей",
-        "uk": "Танці без глядачів"
+        "ru": "Салат к ужину",
+        "uk": "Салат до вечері"
       },
       "bodyByLocale": {
-        "ru": "Подруга спрашивает, танцуете ли вы дома под музыку. `I often dance at home` — «Я часто танцую дома». `Often` стоит перед `dance`; `at home` — «дома». Кот смотрит без восторга, но билета он и не покупал.",
-        "uk": "Подруга запитує, чи танцюєте ви вдома під музику. `I often dance at home` — «Я часто танцюю вдома». `Often` стоїть перед `dance`; `at home` — «вдома». Кіт дивиться без захвату, але квитка він і не купував."
+        "ru": "К ужину вы нарезали овощи для салата и теперь перемешиваете их в большой миске, чтобы заправка легла на каждый кусочек. Брат заглянул на кухню. toss — «перемешивать, подбрасывать». Скажите: I often toss a salad — «Я часто перемешиваю салат». Слово often стоит перед toss.",
+        "uk": "До вечері ви нарізали овочі для салату й тепер перемішуєте їх у великій мисці, щоб заправка лягла на кожен шматочок. Брат заглянув на кухню. toss — «перемішувати, підкидати». Скажіть: I often toss a salad — «Я часто перемішую салат». Слово often стоїть перед toss."
       },
       "question": {
         "interactionId": "en:lesson-07:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите подруге о своей привычке.",
-          "uk": "Розкажіть подрузі про свою звичку."
+          "ru": "Брат спрашивает, часто ли вы так перемешиваете салат. Ответьте: «Я часто перемешиваю салат».",
+          "uk": "Брат питає, чи часто ви так перемішуєте салат. Відповідьте: «Я часто перемішую салат»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-56:intro2:r1",
-              "text": "I often dance at home."
+              "text": "I often toss a salad."
             },
             {
               "responseId": "en:lesson-07:session-56:intro2:r2",
-              "text": "I often dances at home."
+              "text": "I often tosses a salad."
             },
             {
               "responseId": "en:lesson-07:session-56:intro2:r3",
-              "text": "I often dancing at home."
+              "text": "I often tossing a salad."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-56:intro2:r1",
-              "text": "I often dance at home."
+              "text": "I often toss a salad."
             },
             {
               "responseId": "en:lesson-07:session-56:intro2:r2",
-              "text": "I often dances at home."
+              "text": "I often tosses a salad."
             },
             {
               "responseId": "en:lesson-07:session-56:intro2:r3",
-              "text": "I often dancing at home."
+              "text": "I often tossing a salad."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите подруге о своей привычке.",
-          "uk": "Розкажіть подрузі про свою звичку."
+          "ru": "Брат спрашивает, часто ли вы так перемешиваете салат. Ответьте: «Я часто перемешиваю салат».",
+          "uk": "Брат питає, чи часто ви так перемішуєте салат. Відповідьте: «Я часто перемішую салат»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Фильмы Тома",
-        "uk": "Фільми Тома"
+        "ru": "Сосед во дворе",
+        "uk": "Сусід у дворі"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как Том смотрит фильмы. `Tom often streams films` — «Том часто смотрит фильмы онлайн». После `Tom` нужно `streams`, с окончанием `s`. Спросить можно так: `Does Tom often stream films?` — «Том часто смотрит фильмы онлайн?» После `does` у `stream` окончания `s` нет.",
-        "uk": "Друг запитує, як Том дивиться фільми. `Tom often streams films` — «Том часто дивиться фільми онлайн». Після `Tom` потрібне `streams`, із закінченням `s`. Запитати можна так: `Does Tom often stream films?` — «Том часто дивиться фільми онлайн?» Після `does` у `stream` закінчення `s` немає."
+        "ru": "Во дворе ваш брат часто встречает разных соседей. Он не останавливается, а просто коротко наклоняет голову в знак приветствия. nod — «кивать». Скажите: He often nods at a neighbour — «Он часто кивает соседу». После he к nod добавляем s, а often остаётся перед nods.",
+        "uk": "У дворі ваш брат часто зустрічає різних сусідів. Він не зупиняється, а просто коротко нахиляє голову на знак привітання. nod — «кивати». Скажіть: He often nods at a neighbour — «Він часто киває сусідові». Після he до nod додаємо s, а often лишається перед nods."
       },
       "question": {
         "interactionId": "en:lesson-07:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите о привычке Тома.",
-          "uk": "Розкажіть про звичку Тома."
+          "ru": "Подруга спрашивает про вашего брата во дворе. Ответьте: «Он часто кивает соседу».",
+          "uk": "Подруга питає про вашого брата у дворі. Відповідьте: «Він часто киває сусідові»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-56:intro3:r1",
-              "text": "Tom often streams films."
+              "text": "He often nods at a neighbour."
             },
             {
               "responseId": "en:lesson-07:session-56:intro3:r2",
-              "text": "Tom often stream films."
+              "text": "He often nod at a neighbour."
             },
             {
               "responseId": "en:lesson-07:session-56:intro3:r3",
-              "text": "Tom often streaming films."
+              "text": "He often nodding at a neighbour."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-56:intro3:r1",
-              "text": "Tom often streams films."
+              "text": "He often nods at a neighbour."
             },
             {
               "responseId": "en:lesson-07:session-56:intro3:r2",
-              "text": "Tom often stream films."
+              "text": "He often nod at a neighbour."
             },
             {
               "responseId": "en:lesson-07:session-56:intro3:r3",
-              "text": "Tom often streaming films."
+              "text": "He often nodding at a neighbour."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о привычке Тома.",
-          "uk": "Розкажіть про звичку Тома."
+          "ru": "Подруга спрашивает про вашего брата во дворе. Ответьте: «Он часто кивает соседу».",
+          "uk": "Подруга питає про вашого брата у дворі. Відповідьте: «Він часто киває сусідові»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3438c88703a46843d7e1f744a899151ac2f94bc056ac53d2e85b6b1e3ea05b05"
+  "introFingerprint": "e32da45b9c67a2e37da84008f393f94c238d7ee201e2a97d1bf5054f58ddadbf"
 }

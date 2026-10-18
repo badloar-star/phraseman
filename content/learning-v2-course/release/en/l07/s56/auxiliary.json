@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-56:intro1:r2": {
-          "ru": "После `I` нужно `camp`.",
-          "uk": "Після `I` потрібне `camp`."
+          "ru": "После I нужно spread, без s.",
+          "uk": "Після I потрібно spread, без s."
         },
         "en:lesson-07:session-56:intro1:r3": {
-          "ru": "Здесь нужна форма `camp`.",
-          "uk": "Тут потрібна форма `camp`."
+          "ru": "После I usually нужна форма spread, без -ing.",
+          "uk": "Після I usually потрібна форма spread, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-56:intro2:r2": {
-          "ru": "После `I` нужно `dance`.",
-          "uk": "Після `I` потрібне `dance`."
+          "ru": "После I нужно toss, без es.",
+          "uk": "Після I потрібно toss, без es."
         },
         "en:lesson-07:session-56:intro2:r3": {
-          "ru": "Здесь нужна форма `dance`.",
-          "uk": "Тут потрібна форма `dance`."
+          "ru": "Здесь нужна форма toss.",
+          "uk": "Тут потрібна форма toss."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-56:intro3:r2": {
-          "ru": "После `Tom` нужно `streams`.",
-          "uk": "Після `Tom` потрібне `streams`."
+          "ru": "После he нужно nods, с s.",
+          "uk": "Після he потрібно nods, з s."
         },
         "en:lesson-07:session-56:intro3:r3": {
-          "ru": "Здесь нужна форма `streams`.",
-          "uk": "Тут потрібна форма `streams`."
+          "ru": "Здесь нужна форма nods.",
+          "uk": "Тут потрібна форма nods."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "877696a73394d433440d28b49dbf43acdc341d50be86860fef6b756345fb3e10"
+  "auxiliaryFingerprint": "19635686c2a024b217d0035a70e848a29f174b69672bb9e9cf59443ecde9028c"
 }

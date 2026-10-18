@@ -4,30 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-56:i01",
+      "interactionId": "en:lesson-07:session-56:word:spread",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:word:spread:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:word:spread:audio",
+          "transcript": "spread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:word:spread:r1",
+            "targetText": "spread",
+            "meaningByLocale": {
+              "ru": "намазывать. I usually spread butter on bread. — «Я обычно намазываю масло на хлеб». Тонким слоем распределять мягкое по поверхности.",
+              "uk": "намазувати. I usually spread butter on bread. — «Я зазвичай намазую масло на хліб». Тонким шаром розподіляти м’яке по поверхні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spread",
+          "definitionByLocale": {
+            "ru": "намазывать. I usually spread butter on bread. — «Я обычно намазываю масло на хлеб». Тонким слоем распределять мягкое по поверхности.",
+            "uk": "намазувати. I usually spread butter on bread. — «Я зазвичай намазую масло на хліб». Тонким шаром розподіляти м’яке по поверхні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-56:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто ночую в палатке»",
+      "prompt": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто ночую в палатке»",
+      "accessibilityLabel": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often camp.",
+        "targetPhrase": "I usually spread butter on bread.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто ночую в палатке»",
-          "uk": "Скажіть «Я часто ночую в наметі»"
+          "ru": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб»",
+          "uk": "Гість питає про сніданок. Скажіть: «Я зазвичай намазую масло на хліб»"
         },
         "orderedTokens": [
           "I",
-          "often",
-          "camp"
+          "usually",
+          "spread",
+          "butter",
+          "on",
+          "bread"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually spread butter on bread.`",
+              "uk": "тут потрібно `usually` — `I usually spread butter on bread.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +95,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +103,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i02:r1",
-          "text": "hike"
+          "text": "spread"
         },
         {
           "responseId": "en:lesson-07:session-56:i02:r2",
-          "text": "ski"
+          "text": "spend"
         },
         {
           "responseId": "en:lesson-07:session-56:i02:r3",
-          "text": "surf"
+          "text": "spoon"
         }
       ],
       "mediaIds": [],
@@ -65,23 +123,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i02:audio",
-          "transcript": "hike"
+          "transcript": "spread"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-56:i02:r1",
-            "targetText": "hike",
+            "targetText": "spread",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i02:r2",
-            "targetText": "ski",
+            "targetText": "spend",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i02:r3",
-            "targetText": "surf",
+            "targetText": "spoon",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +150,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `hike`, а в этом варианте — `ski`.",
-              "uk": "У записі перше слово — `hike`, а в цьому варіанті — `ski`."
+              "ru": "В записи первое слово — `spread`, а в этом варианте — `spend`.",
+              "uk": "У записі перше слово — `spread`, а в цьому варіанті — `spend`."
             }
           },
           {
@@ -101,8 +159,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `hike`, а в этом варианте — `surf`.",
-              "uk": "У записі перше слово — `hike`, а в цьому варіанті — `surf`."
+              "ru": "В записи первое слово — `spread`, а в этом варианте — `spoon`.",
+              "uk": "У записі перше слово — `spread`, а в цьому варіанті — `spoon`."
             }
           }
         ],
@@ -113,67 +171,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто танцую дома»",
+      "prompt": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i03:r1",
-          "text": "dance"
+          "text": "spread"
         },
         {
           "responseId": "en:lesson-07:session-56:i03:r2",
-          "text": "dances"
+          "text": "spreads"
         },
         {
           "responseId": "en:lesson-07:session-56:i03:r3",
-          "text": "dancing"
+          "text": "spreading"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто танцую дома»",
+      "accessibilityLabel": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто танцую дома»",
-          "uk": "Скажіть «Я часто танцюю вдома»"
+          "ru": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
+          "uk": "Гість питає про сніданок. Скажіть: «Я зазвичай намазую масло на хліб». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ at home.",
+        "gappedTargetPhrase": "I usually ___ butter on bread.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-56:i03:r1",
-            "text": "dance"
+            "text": "spread"
           },
           {
             "responseId": "en:lesson-07:session-56:i03:r2",
-            "text": "dances"
+            "text": "spreads"
           },
           {
             "responseId": "en:lesson-07:session-56:i03:r3",
-            "text": "dancing"
+            "text": "spreading"
           }
         ],
-        "testedDimension": "Скажите «Я часто танцую дома»",
+        "testedDimension": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-56:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто танцую дома»",
+            "testedDimension": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `dance`.",
-              "uk": "Після `I` потрібне `dance`."
+              "ru": "После `I` нужно `spread`, без окончания.",
+              "uk": "Після `I` потрібно `spread`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-56:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто танцую дома»",
+            "testedDimension": "Гость спрашивает про завтрак. Скажите: «Я обычно намазываю масло на хлеб». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `dance`.",
-              "uk": "Тут потрібна форма `dance`."
+              "ru": "Здесь нужна форма `spread`.",
+              "uk": "Тут потрібна форма `spread`."
             }
           }
         ]
@@ -182,7 +240,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +254,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-56:i04:p1",
-            "target": "camp",
+            "target": "spread",
             "meaningByLocale": {
-              "ru": "ночевать в палатке",
-              "uk": "ночувати в наметі"
+              "ru": "намазывать",
+              "uk": "намазувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i04:p2",
-            "target": "hike",
+            "target": "butter",
             "meaningByLocale": {
-              "ru": "ходить в пеший поход",
-              "uk": "ходити в піший похід"
+              "ru": "масло",
+              "uk": "масло"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i04:p3",
-            "target": "dance",
+            "target": "bread",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "хлеб",
+              "uk": "хліб"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i04:p4",
-            "target": "ski",
+            "target": "salad",
             "meaningByLocale": {
-              "ru": "кататься на лыжах",
-              "uk": "кататися на лижах"
+              "ru": "салат",
+              "uk": "салат"
             }
           }
         ],
         "leftColumn": [
-          "camp",
-          "hike",
-          "dance",
-          "ski"
+          "spread",
+          "butter",
+          "bread",
+          "salad"
         ],
         "rightColumn": [
-          "ночевать в палатке",
-          "ходить в пеший поход",
-          "танцевать",
-          "кататься на лыжах"
+          "намазывать",
+          "масло",
+          "хлеб",
+          "салат"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,8 +312,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-56:word:toss",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:word:toss:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:word:toss:audio",
+          "transcript": "toss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:word:toss:r1",
+            "targetText": "toss",
+            "meaningByLocale": {
+              "ru": "перемешивать, подбрасывать. I often toss a salad. — «Я часто перемешиваю салат». Встряхивать и переворачивать, чтобы всё смешалось.",
+              "uk": "перемішувати, підкидати. I often toss a salad. — «Я часто перемішую салат». Струшувати й перевертати, щоб усе змішалося."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toss",
+          "definitionByLocale": {
+            "ru": "перемешивать, подбрасывать. I often toss a salad. — «Я часто перемешиваю салат». Встряхивать и переворачивать, чтобы всё смешалось.",
+            "uk": "перемішувати, підкидати. I often toss a salad. — «Я часто перемішую салат». Струшувати й перевертати, щоб усе змішалося."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-56:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,19 +371,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i05:audio",
-          "transcript": "I often dance at home."
+          "transcript": "I often toss a salad."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often dance at home.",
+        "hiddenTargetPhrase": "I often toss a salad.",
         "orderedTokens": [
           "I",
           "often",
-          "dance",
-          "at",
-          "home"
+          "toss",
+          "a",
+          "salad"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "tosses"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `toss` — `I often toss a salad.`",
+              "uk": "тут потрібно `toss` — `I often toss a salad.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -291,30 +404,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-56:word:nod",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nod",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:word:nod:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nod",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:word:nod:audio",
+          "transcript": "nod"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:word:nod:r1",
+            "targetText": "nod",
+            "meaningByLocale": {
+              "ru": "кивать. He often nods at a neighbour. — «Он часто кивает соседу». Наклонять голову в знак приветствия или согласия.",
+              "uk": "кивати. He often nods at a neighbour. — «Він часто киває сусідові». Нахиляти голову на знак привітання або згоди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nod",
+          "definitionByLocale": {
+            "ru": "кивать. He often nods at a neighbour. — «Он часто кивает соседу». Наклонять голову в знак приветствия или согласия.",
+            "uk": "кивати. He often nods at a neighbour. — «Він часто киває сусідові». Нахиляти голову на знак привітання або згоди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-56:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о зимнем отдыхе: «Я обычно катаюсь на лыжах»",
+      "prompt": "Знакомый спрашивает про вашего брата. Скажите: «Он часто кивает соседу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о зимнем отдыхе: «Я обычно катаюсь на лыжах»",
+      "accessibilityLabel": "Знакомый спрашивает про вашего брата. Скажите: «Он часто кивает соседу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually ski.",
+        "targetPhrase": "He often nods at a neighbour.",
         "localizedMeaning": {
-          "ru": "Расскажите о зимнем отдыхе: «Я обычно катаюсь на лыжах»",
-          "uk": "Розкажіть про зимовий відпочинок: «Я зазвичай катаюся на лижах»"
+          "ru": "Знакомый спрашивает про вашего брата. Скажите: «Он часто кивает соседу»",
+          "uk": "Знайомий питає про вашого брата. Скажіть: «Він часто киває сусідові»"
         },
         "orderedTokens": [
-          "I",
-          "usually",
-          "ski"
+          "He",
+          "often",
+          "nods",
+          "at",
+          "a",
+          "neighbour"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "nod"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Знакомый спрашивает про вашего брата. Скажите: «Он часто кивает соседу»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `nods` — `He often nods at a neighbour.`",
+              "uk": "тут потрібно `nods` — `He often nods at a neighbour.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -324,25 +495,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Том часто смотрит фильмы онлайн»",
+      "prompt": "В магазине вы хотите заплатить картой. Спросите продавца: «Вы принимаете карты?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-56:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Том часто смотрит фильмы онлайн»",
+      "accessibilityLabel": "В магазине вы хотите заплатить картой. Спросите продавца: «Вы принимаете карты?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i07:audio",
-          "transcript": "Tom often streams films."
+          "transcript": "Do you accept cards?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often streams films.",
+        "targetPhrase": "Do you accept cards?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -357,67 +528,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том часто смотрит фильмы онлайн»",
+      "prompt": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i08:r1",
-          "text": "streams"
+          "text": "nods"
         },
         {
           "responseId": "en:lesson-07:session-56:i08:r2",
-          "text": "stream"
+          "text": "nod"
         },
         {
           "responseId": "en:lesson-07:session-56:i08:r3",
-          "text": "streaming"
+          "text": "nodding"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том часто смотрит фильмы онлайн»",
+      "accessibilityLabel": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том часто смотрит фильмы онлайн»",
-          "uk": "Скажіть «Том часто дивиться фільми онлайн»"
+          "ru": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
+          "uk": "Подруга питає про вашого брата. Скажіть: «Він часто киває сусідові». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom often ___ films.",
+        "gappedTargetPhrase": "He often ___ at a neighbour.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-56:i08:r1",
-            "text": "streams"
+            "text": "nods"
           },
           {
             "responseId": "en:lesson-07:session-56:i08:r2",
-            "text": "stream"
+            "text": "nod"
           },
           {
             "responseId": "en:lesson-07:session-56:i08:r3",
-            "text": "streaming"
+            "text": "nodding"
           }
         ],
-        "testedDimension": "Скажите «Том часто смотрит фильмы онлайн»",
+        "testedDimension": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-56:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том часто смотрит фильмы онлайн»",
+            "testedDimension": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `Tom` нужно `streams`.",
-              "uk": "Після `Tom` потрібне `streams`."
+              "ru": "После `He` нужно `nods`.",
+              "uk": "Після `He` потрібно `nods`."
             }
           },
           {
             "responseId": "en:lesson-07:session-56:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том часто смотрит фильмы онлайн»",
+            "testedDimension": "Подруга спрашивает про вашего брата. Скажите: «Он часто кивает соседу». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `streams`.",
-              "uk": "Тут потрібна форма `streams`."
+              "ru": "Здесь нужна форма `nods`.",
+              "uk": "Тут потрібна форма `nods`."
             }
           }
         ]
@@ -426,7 +597,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -434,15 +605,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i09:r1",
-          "text": "I often surf."
+          "text": "I often toss a salad."
         },
         {
           "responseId": "en:lesson-07:session-56:i09:r2",
-          "text": "I often camp."
+          "text": "I often toss a coin."
         },
         {
           "responseId": "en:lesson-07:session-56:i09:r3",
-          "text": "I often dance."
+          "text": "I often toss a ball."
         }
       ],
       "mediaIds": [],
@@ -454,23 +625,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i09:audio",
-          "transcript": "I often surf."
+          "transcript": "I often toss a salad."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-56:i09:r1",
-            "targetText": "I often surf.",
+            "targetText": "I often toss a salad.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i09:r2",
-            "targetText": "I often camp.",
+            "targetText": "I often toss a coin.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i09:r3",
-            "targetText": "I often dance.",
+            "targetText": "I often toss a ball.",
             "meaningByLocale": null
           }
         ],
@@ -481,8 +652,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `surf`, а в этом варианте — `camp`.",
-              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `camp`."
+              "ru": "В записи последнее слово — `salad`, а в этом варианте — `coin`.",
+              "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `coin`."
             }
           },
           {
@@ -490,8 +661,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `surf`, а в этом варианте — `dance`.",
-              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `dance`."
+              "ru": "В записи последнее слово — `salad`, а в этом варианте — `ball`.",
+              "uk": "У записі останнє слово — `salad`, а в цьому варіанті — `ball`."
             }
           }
         ],
@@ -502,7 +673,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -516,48 +687,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-56:i10:p1",
-            "target": "surf",
+            "target": "nod",
             "meaningByLocale": {
-              "ru": "заниматься сёрфингом",
-              "uk": "займатися серфінгом"
+              "ru": "кивать",
+              "uk": "кивати"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i10:p2",
-            "target": "browse",
+            "target": "squeeze",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "выжимать",
+              "uk": "вичавлювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i10:p3",
-            "target": "stream",
+            "target": "hail",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "останавливать (такси)",
+              "uk": "зупиняти (таксі)"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i10:p4",
-            "target": "hike",
+            "target": "staple",
             "meaningByLocale": {
-              "ru": "ходить в пеший поход",
-              "uk": "ходити в піший похід"
+              "ru": "скреплять степлером",
+              "uk": "скріплювати степлером"
             }
           }
         ],
         "leftColumn": [
-          "surf",
-          "browse",
-          "stream",
-          "hike"
+          "nod",
+          "squeeze",
+          "hail",
+          "staple"
         ],
         "rightColumn": [
-          "заниматься сёрфингом",
-          "просматривать",
-          "смотреть онлайн",
-          "ходить в пеший поход"
+          "кивать",
+          "выжимать",
+          "останавливать (такси)",
+          "скреплять степлером"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,9 +745,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-56:word:shake",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-56:word:shake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-56:word:shake:audio",
+          "transcript": "shake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-56:word:shake:r1",
+            "targetText": "shake",
+            "meaningByLocale": {
+              "ru": "встряхивать, трясти. I usually shake the bottle. — «Я обычно встряхиваю бутылку». Быстро двигать туда-сюда; здесь — встряхивать закрытую бутылку с заправкой, чтобы смешать содержимое.",
+              "uk": "струшувати, трусити. I usually shake the bottle. — «Я зазвичай струшую пляшку». Швидко рухати туди-сюди; тут — струшувати закриту пляшку із заправкою, щоб змішати вміст."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shake",
+          "definitionByLocale": {
+            "ru": "встряхивать, трясти. I usually shake the bottle. — «Я обычно встряхиваю бутылку». Быстро двигать туда-сюда; здесь — встряхивать закрытую бутылку с заправкой, чтобы смешать содержимое.",
+            "uk": "струшувати, трусити. I usually shake the bottle. — «Я зазвичай струшую пляшку». Швидко рухати туди-сюди; тут — струшувати закриту пляшку із заправкою, щоб змішати вміст."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-56:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -590,18 +804,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i11:audio",
-          "transcript": "I usually browse online."
+          "transcript": "I usually shake the bottle."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually browse online.",
+        "hiddenTargetPhrase": "I usually shake the bottle.",
         "orderedTokens": [
           "I",
           "usually",
-          "browse",
-          "online"
+          "shake",
+          "the",
+          "bottle"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "shakes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `shake` — `I usually shake the bottle.`",
+              "uk": "тут потрібно `shake` — `I usually shake the bottle.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -611,30 +838,42 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите друга «Ты часто ночуешь в палатке?»",
+      "prompt": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите друга «Ты часто ночуешь в палатке?»",
+      "accessibilityLabel": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you often camp?",
+        "targetPhrase": "Where is the cafeteria?",
         "localizedMeaning": {
-          "ru": "Спросите друга «Ты часто ночуешь в палатке?»",
-          "uk": "Запитайте друга «Ти часто ночуєш у наметі?»"
+          "ru": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
+          "uk": "Ви прийшли на курси. Спитайте охоронця: «Де їдальня?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "often",
-          "camp"
+          "Where",
+          "is",
+          "the",
+          "cafeteria"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-56:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы пришли на курсы. Спросите охранника: «Где столовая?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the cafeteria?`",
+              "uk": "тут потрібно `is` — `Where is the cafeteria?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +883,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете отдых Тома на море. Спросите его подругу «Том часто занимается сёрфингом?»",
+      "prompt": "Сосед спрашивает про вашу сестру. Скажите: «Она часто ловит такси ночью»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-56:i13:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете отдых Тома на море. Спросите его подругу «Том часто занимается сёрфингом?»",
+      "accessibilityLabel": "Сосед спрашивает про вашу сестру. Скажите: «Она часто ловит такси ночью»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i13:audio",
-          "transcript": "Does Tom often surf?"
+          "transcript": "She often hails a taxi at night."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Tom often surf?",
+        "targetPhrase": "She often hails a taxi at night.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,15 +916,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно хожу в пешие походы»",
+      "prompt": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i14:r1",
-          "text": "usually"
+          "text": "often"
         },
         {
           "responseId": "en:lesson-07:session-56:i14:r2",
@@ -698,18 +937,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно хожу в пешие походы»",
+      "accessibilityLabel": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно хожу в пешие походы»",
-          "uk": "Скажіть «Я зазвичай ходжу в піші походи»"
+          "ru": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
+          "uk": "Брат питає про вечерю. Скажіть: «Я часто перемішую салат». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ hike.",
+        "gappedTargetPhrase": "I ___ toss a salad.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-56:i14:r1",
-            "text": "usually"
+            "text": "often"
           },
           {
             "responseId": "en:lesson-07:session-56:i14:r2",
@@ -720,24 +959,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я обычно хожу в пешие походы»",
+        "testedDimension": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-56:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно хожу в пешие походы»",
+            "testedDimension": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually` перед `hike`.",
-              "uk": "Для «зазвичай» потрібне `usually` перед `hike`."
+              "ru": "Для «часто» нужно `often` перед `toss`.",
+              "uk": "Для «часто» потрібно `often` перед `toss`."
             }
           },
           {
             "responseId": "en:lesson-07:session-56:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно хожу в пешие походы»",
+            "testedDimension": "Брат спрашивает про ужин. Скажите: «Я часто перемешиваю салат». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «обычно» нужно `usually`; `am` перед `hike` не ставим.",
-              "uk": "Для «зазвичай» потрібне `usually`; `am` перед `hike` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `toss` не ставим.",
+              "uk": "Для «часто» потрібно `often`; `am` перед `toss` не ставимо."
             }
           }
         ]
@@ -746,7 +985,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -754,15 +993,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-56:i15:r1",
-          "text": "I usually browse online."
+          "text": "Where is the embassy?"
         },
         {
           "responseId": "en:lesson-07:session-56:i15:r2",
-          "text": "We usually browse online."
+          "text": "Where is the surgery?"
         },
         {
           "responseId": "en:lesson-07:session-56:i15:r3",
-          "text": "They usually browse online."
+          "text": "Where is the university?"
         }
       ],
       "mediaIds": [],
@@ -774,23 +1013,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i15:audio",
-          "transcript": "I usually browse online."
+          "transcript": "Where is the embassy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-56:i15:r1",
-            "targetText": "I usually browse online.",
+            "targetText": "Where is the embassy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i15:r2",
-            "targetText": "We usually browse online.",
+            "targetText": "Where is the surgery?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-56:i15:r3",
-            "targetText": "They usually browse online.",
+            "targetText": "Where is the university?",
             "meaningByLocale": null
           }
         ],
@@ -801,8 +1040,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `We`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `We`."
+              "ru": "В записи последнее слово — `embassy`, а в этом варианте — `surgery`.",
+              "uk": "У записі останнє слово — `embassy`, а в цьому варіанті — `surgery`."
             }
           },
           {
@@ -810,8 +1049,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `I`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `I`, а в цьому варіанті — `They`."
+              "ru": "В записи последнее слово — `embassy`, а в этом варианте — `university`.",
+              "uk": "У записі останнє слово — `embassy`, а в цьому варіанті — `university`."
             }
           }
         ],
@@ -822,7 +1061,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1075,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-56:i16:p1",
-            "target": "ski",
+            "target": "nod",
             "meaningByLocale": {
-              "ru": "кататься на лыжах",
-              "uk": "кататися на лижах"
+              "ru": "кивать",
+              "uk": "кивати"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i16:p2",
-            "target": "surf",
+            "target": "toss",
             "meaningByLocale": {
-              "ru": "заниматься сёрфингом",
-              "uk": "займатися серфінгом"
+              "ru": "перемешивать, подбрасывать",
+              "uk": "перемішувати, підкидати"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i16:p3",
-            "target": "browse",
+            "target": "university",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "университет",
+              "uk": "університет"
             }
           },
           {
             "pairId": "en:lesson-07:session-56:i16:p4",
-            "target": "stream",
+            "target": "surgery",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "кабинет врача",
+              "uk": "кабінет лікаря"
             }
           }
         ],
         "leftColumn": [
-          "ski",
-          "surf",
-          "browse",
-          "stream"
+          "nod",
+          "toss",
+          "university",
+          "surgery"
         ],
         "rightColumn": [
-          "кататься на лыжах",
-          "заниматься сёрфингом",
-          "просматривать",
-          "смотреть онлайн"
+          "кивать",
+          "перемешивать, подбрасывать",
+          "университет",
+          "кабинет врача"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1134,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-56:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о привычках Тома на природе. Скажите «Том обычно ходит в пешие походы»",
+      "prompt": "На столе закрытая бутылка с салатной заправкой. Гость спрашивает, что ваш брат обычно делает перед её использованием. Скажите: «Мой брат обычно встряхивает бутылку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-56:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о привычках Тома на природе. Скажите «Том обычно ходит в пешие походы»",
+      "accessibilityLabel": "На столе закрытая бутылка с салатной заправкой. Гость спрашивает, что ваш брат обычно делает перед её использованием. Скажите: «Мой брат обычно встряхивает бутылку»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-56:i17:audio",
-          "transcript": "Tom usually hikes."
+          "transcript": "My brother usually shakes the bottle."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom usually hikes.",
+        "targetPhrase": "My brother usually shakes the bottle.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1174,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3f1a7cae8c3e207c5da67c4dbbccffba71fd96721b3c7c32c7bc96083b7cafee"
+  "learnerFingerprint": "9e7c4ec0c56cdbf3ccb3b24a4cbb672766c58f7e28df125840945ea9650b32eb"
 }

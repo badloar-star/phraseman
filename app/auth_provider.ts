@@ -1901,6 +1901,19 @@ function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   });
 }
 
+const GOOGLE_PREVIOUS_SESSION_CLEAR_TIMEOUT_MS = 3_000;
+
+/** Снять прежний нативный выбор аккаунта Google, чтобы окно выбора показалось. Отказ не блокирует вход — пишет причину. */
+async function clearPreviousGoogleNativeSession(mod: NonNullable<ReturnType<typeof getGoogleSignin>>): Promise<void> {
+  const startedAt = Date.now();
+  try {
+    await withTimeout(mod.GoogleSignin.signOut(), GOOGLE_PREVIOUS_SESSION_CLEAR_TIMEOUT_MS, 'google_previous_session_clear');
+    console.log(`[AUTH-LINK-GOOGLE] picker previous_session_cleared ms=${Date.now() - startedAt}`); // guard-ok: шаг перед окном выбора
+  } catch (e) {
+    console.warn(`[AUTH-LINK-GOOGLE] picker previous_session_clear_failed code=${identityErrorCode(e)} ms=${Date.now() - startedAt}`); // guard-ok: catch пишет причину
+  }
+}
+
 async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
   if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: start');
   const mod = getGoogleSignin();
@@ -1935,8 +1948,11 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
     if (!googleNativeSignInInFlight) {
       const nativeReservation = providerCredentialModeReservation;
       if (!nativeReservation) throw new Error('google_signin_reservation_missing');
+      // зачем (прогон 18.10 10:49/10:55): нативная сессия Google переживала отказ входа и убийство процесса — следующее
+      // нажатие молча брало тот же аккаунт без окна выбора (тупик: не тот аккаунт → отказ → снова он же). Снимаем её перед
+      // КАЖДЫМ новым окном; в одной цепочке с signIn — висящий вызов по-прежнему переиспользуется, второе окно не откроется.
       const task: GoogleNativeSignInTask = {
-        promise: mod.GoogleSignin.signIn(),
+        promise: clearPreviousGoogleNativeSession(mod).then(() => mod.GoogleSignin.signIn()),
         rejected: false,
       };
       googleNativeSignInInFlight = task;

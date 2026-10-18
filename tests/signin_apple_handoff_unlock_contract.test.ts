@@ -34,6 +34,15 @@ describe('вход: аноним + существующий Apple/Google-акк�
     expect(types).toContain('authCredential: AuthCredential | null;');
   });
 
+  // зачем (прогон 18.10): после отказа/убийства процесса следующий вход молча брал прежний аккаунт Google без окна выбора.
+  it('каждое новое окно входа Google сперва снимает прежнюю нативную сессию — в одной цепочке с signIn', () => {
+    expect(src).toContain('promise: clearPreviousGoogleNativeSession(mod).then(() => mod.GoogleSignin.signIn()),');
+    const fn = src.slice(src.indexOf('async function clearPreviousGoogleNativeSession('), src.indexOf('async function runGoogleNativeSignIn('));
+    expect(fn).toContain('mod.GoogleSignin.signOut()');
+    expect(fn).toContain('[AUTH-LINK-GOOGLE] picker previous_session_clear_failed');
+    expect(fn).not.toMatch(/throw /);
+  });
+
   // зачем (Ревизор к 1b38ad210, 🟡): довод при запуске не держит заставку дольше ≈6 с; срок — только на сетевую часть,
   // сдача по сроку раньше замка/стирания (иначе довод доделался бы в фоне поверх отката).
   it('довод прерванного входа: общий сетевой срок 6 с, forward_timeout до замка и стирания', () => {

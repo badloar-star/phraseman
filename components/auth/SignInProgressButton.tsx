@@ -45,8 +45,8 @@ const BUTTON_HEIGHT = 54;
 
 type BrandLook = Readonly<{ background: string; ink: string; mono: boolean; shadow: ReadonlyArray<Record<string, unknown>> }>;
 
-const SHADOW_DROP = [{ offsetX: 0, offsetY: 10, blurRadius: 24, spreadDistance: -14, color: 'rgba(0,0,0,0.55)' }];
-const SHADOW_LIT = [{ offsetX: 0, offsetY: 1, blurRadius: 0, color: '#FFFFFF', inset: true }, ...SHADOW_DROP];
+const SHADOW_DROP = [{ offsetX: 0, offsetY: 10, blurRadius: 24, spreadDistance: -14, color: 'rgba(0,0,0,0.55)' }]; // theme-exempt: тень брендовой кнопки, не цвет темы
+const SHADOW_LIT = [{ offsetX: 0, offsetY: 1, blurRadius: 0, color: '#FFFFFF', inset: true }, ...SHADOW_DROP]; // theme-exempt: блик брендовой белой кнопки Google; shadow-ok: кнопка, не контейнер
 
 // зачем: цвета те же, что у AuthProviderButtons (бренд Google/Apple) и у сторожа контраста blend_auth_1018 — кнопки не сливаются со шторкой ни в одном из 138 сочетаний тем
 function brandLook(provider: SignInProgressProvider, surface: 'dark' | 'light', sheetColor: string): BrandLook {
@@ -54,7 +54,7 @@ function brandLook(provider: SignInProgressProvider, surface: 'dark' | 'light', 
     // зачем (Макеты A1.1, координатор 18.10): эталон auth-states — белая Google с цветной G во всех темах; тёмная #1F1F1F рядом с чёрной Apple давала две чёрные кнопки подряд.
     // Где белая заливка не отделяется от шторки — тонкая линия 1 px (внутреннее кольцо, размер кнопки не меняется) и тень; альфу линии считает googleButtonPaintForSurface под ЭТУ шторку.
     const paint = googleButtonPaintForSurface(sheetColor);
-    const edgeRing = paint.edge ? [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: paint.edge, inset: true }] : [];
+    const edgeRing = paint.edge ? [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: paint.edge, inset: true }] : []; // shadow-ok: тонкая линия белой кнопки Google на светлой шторке (кнопка, не контейнер)
     return { background: '#FFFFFF', ink: '#1F1F1F', mono: false, shadow: paint.edge ? [...edgeRing, ...SHADOW_DROP] : SHADOW_LIT }; // theme-exempt: брендовая светлая кнопка Google
   }
   const colors = appleButtonColors(surface === 'dark' ? 'dark' : 'light');

@@ -1,9 +1,9 @@
 # Английский · Урок 8 · Занятие 22 — Напомни мне
 
-**Ситуация.** Вы просите напомнить о книге, помочь с коробкой и объясняете трудность с написанием слов.
+**Ситуация.** Вернуть книгу вовремя, прочитать уведомление о поезде и не забыть годовщину родителей.
 
 **Что вы освоите:** закрепить просьбы Can you…? со словом remind
-**Новые слова:** remind
+**Новые слова:** remind, notification, anniversary, memo
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Интро 2
 
-### Коробка на верхней полке
+### Сообщение о смене платформы
 
-Вы снимаете большую коробку с верхней полки. Друг стоит рядом и может помочь. `Can you help me?` — «Можешь мне помочь?» После `Can you` нужно `help me`, без `to`.
+На вокзале телефон показывает уведомление об изменении платформы. Вы несёте сумки и просите спутника прочитать его. Notification — «уведомление», сообщение от приложения. `Can you read the notification?` — «Можешь прочитать уведомление?» Здесь read означает прочитать текст, а the указывает на уведомление на вашем экране.
 
-**Попросите друга помочь вам.**
+**Попросите спутника прочитать уведомление.**
 
-- ✅ **Can you help me?**
-- ❌ Can you helps me? — *После `can` нужно `help`, без `s`.*
-- ❌ Can you to help me? — *После `can` нужно `help`, без `to`.*
+- ✅ **Can you read the notification?**
+- ❌ Can you reads the notification? — *После can нужно read, без s.*
+- ❌ Can you to read the notification? — *После can нужно read, без to.*
 
 ---
 
 ## Интро 3
 
-### Буквы путаются
+### Не забыть годовщину родителей
 
-На занятии вы узнаёте знакомые английские слова на слух, но при записи путаете буквы. `I can’t spell` — «У меня не получается правильно писать слова». Здесь `spell` относится к написанию слов по буквам. После `can’t` нужно `spell`, без `to`.
+У родителей скоро годовщина свадьбы. Вы обсуждаете с сестрой поздравление и просите её напомнить о дате. Anniversary — «годовщина», дата события, отмечаемая каждый год. `Can you remind me about the anniversary?` — «Можешь напомнить мне о годовщине?» После remind me можно добавить about и назвать то, о чём нужно напомнить.
 
-**Расскажите преподавателю о трудности с написанием слов.**
+**Попросите сестру напомнить о годовщине.**
 
-- ✅ **I can’t spell.**
-- ❌ I can spell. — *Здесь нужно `can’t`: пока не получается.*
-- ❌ I can’t to spell. — *После `can’t` нужно `spell`, без `to`.*
+- ✅ **Can you remind me about the anniversary?**
+- ❌ Can you reminds me about the anniversary? — *После can нужно remind, без s.*
+- ❌ Can you remind I about the anniversary? — *Кому напомнить? Мне — me, не I.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Попросите «Можешь мне напомнить?»**
+**1 · Карточка слова — remind**
+<!-- interaction_id: en:lesson-08:session-22:word:remind; family: word_card -->
+> **remind** — напомнить. Can you remind me? — «Можешь мне напомнить?» Напомнить человеку то, что он уже знает, но может забыть.
+
+**2 · Попросите «Можешь мне напомнить?»**
 <!-- interaction_id: en:lesson-08:session-22:i01; family: phrase_builder -->
 Плитки: `me` `remind` `you` `Can` → **Can you remind me?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-22:i02; family: listen_choose -->
 🔊 *remind* → **remind** · read · spell
 - read — *В записи первое слово — `remind`, а в этом варианте — `read`.*
 - spell — *В записи первое слово — `remind`, а в этом варианте — `spell`.*
 
-**3 · Друг знает о завтрашней встрече. Попросите напомнить вам**
+**4 · Выберите форму для просьбы напомнить о возврате книги**
 <!-- interaction_id: en:lesson-08:session-22:i03; family: context_gap_grammar -->
 Can you ___ me? → **remind** · to remind · reminds
-- to remind — *После `can` нужно `remind`, без `to`.*
-- reminds — *После `can` нужно `remind`, без `s`.*
+- to remind — *После can нужно remind, без to.*
+- reminds — *После can нужно remind, без s.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-22:i04; family: speed_match -->
-remind — напомнить · carrot — морковь · read — читать · spell — правильно писать слова
+remind — напомнить · book — книга · tomorrow — завтра · return — вернуть
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-22:i05; family: listen_build_dictation -->
 🔊 *Can you remind me?* Плитки: `me` `remind` `you` `Can` → **Can you remind me?**
 
-**6 · Попросите «Можешь мне помочь?»**
+**7 · Карточка слова — notification**
+<!-- interaction_id: en:lesson-08:session-22:word:notification; family: word_card -->
+> **notification** — уведомление. Can you read the notification? — «Можешь прочитать уведомление?» Сообщение от приложения, например о смене платформы.
+
+**8 · Попросите «Можешь прочитать уведомление?»**
 <!-- interaction_id: en:lesson-08:session-22:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `notification` `the` `read` `you` `Can` → **Can you read the notification?**
 
-**7 · При записи слов вы путаете буквы. Скажите «Я не умею правильно писать слова»**
+**9 · Карточка слова — anniversary**
+<!-- interaction_id: en:lesson-08:session-22:word:anniversary; family: word_card -->
+> **anniversary** — годовщина. Can you remind me about the anniversary? — «Можешь напомнить мне о годовщине?» About — «о»: называем событие после remind me about.
+
+**10 · Попросите сестру «Можешь напомнить мне о годовщине?»**
 <!-- interaction_id: en:lesson-08:session-22:i07; family: scripted_repeat_compare -->
-🎙 **I can’t spell.**
+🎙 **Can you remind me about the anniversary?**
 
-**8 · Попросите помочь вам**
+**11 · Выберите форму для просьбы прочитать уведомление**
 <!-- interaction_id: en:lesson-08:session-22:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *После `can` нужно `help`, без `s`.*
-- to help — *После `can` нужно `help`, без `to`.*
+Can you ___ the notification? → **read** · reads · to read
+- reads — *После can нужно read, без s.*
+- to read — *После can нужно read, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-22:i09; family: listen_choose -->
 🔊 *Can you remind me?* → **Can you remind me?** · Can you remind him? · Can you remind her?
 - Can you remind him? — *В записи последнее слово — `me`, а в этом варианте — `him`.*
 - Can you remind her? — *В записи последнее слово — `me`, а в этом варианте — `her`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-22:i10; family: speed_match -->
-argue — спорить · remind — напомнить · carrot — морковь · read — читать
+remind — напомнить · notification — уведомление · anniversary — годовщина · book — книга
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-22:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you read the notification?* Плитки: `notification` `the` `read` `you` `Can` → **Can you read the notification?**
 
-**12 · Попросите «Можешь открыть дверь?»**
+**15 · Карточка слова — memo**
+<!-- interaction_id: en:lesson-08:session-22:word:memo; family: word_card -->
+> **memo** — служебная записка. Can you read the memo? — «Можешь прочитать служебную записку?» Короткое письменное сообщение для коллег по рабочему вопросу.
+
+**16 · Коллеге нужно узнать об изменении рабочего расписания. Попросите «Можешь прочитать служебную записку?»**
 <!-- interaction_id: en:lesson-08:session-22:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `memo` `the` `read` `you` `Can` → **Can you read the memo?**
 
-**13 · Друг спрашивает, часто ли вы читаете. Скажите «Я часто читаю»**
+**17 · Вы прочитали записку и готовы объяснить новое расписание. Скажите коллеге «Я могу объяснить»**
 <!-- interaction_id: en:lesson-08:session-22:i13; family: scripted_repeat_compare -->
-🎙 **I often read.**
+🎙 **I can explain.**
 
-**14 · Начните просьбу «Можешь мне напомнить?»**
+**18 · Начните просьбу «Можешь мне напомнить?»**
 <!-- interaction_id: en:lesson-08:session-22:i14; family: context_gap_grammar -->
 ___ you remind me? → **Can** · Are · Is
 - Are — *В этой просьбе нужно `Can you remind`, без `are`.*
 - Is — *Начните с `Can you remind`.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-22:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *В записи последнее слово — `door`, а в этом варианте — `window`.*
-- Can you open the box? — *В записи последнее слово — `door`, а в этом варианте — `box`.*
+🔊 *Can you read the memo?* → **Can you read the memo?** · Can you read the manual? · Can you read the notification?
+- Can you read the manual? — *В записи memo — «служебная записка», а не manual — «руководство».*
+- Can you read the notification? — *В записи memo, а не notification — «уведомление».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-22:i16; family: speed_match -->
-remind — напомнить · argue — спорить · spell — правильно писать слова · carrot — морковь
+remind — напомнить · notification — уведомление · anniversary — годовщина · memo — служебная записка
 
-**17 · Вы договорились встретиться с другом завтра и боитесь забыть о встрече. Попросите «Можешь мне напомнить?»**
+**21 · Вы договорились встретиться с другом завтра и боитесь забыть о встрече. Попросите «Можешь мне напомнить?»**
 <!-- interaction_id: en:lesson-08:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you remind me?**
 

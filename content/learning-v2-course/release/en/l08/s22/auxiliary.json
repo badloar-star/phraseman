@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-22:intro2:r2": {
-          "ru": "После `can` нужно `help`, без `s`.",
-          "uk": "Після `can` потрібне `help`, без `s`."
+          "ru": "После can нужно read, без s.",
+          "uk": "Після can потрібне read, без s."
         },
         "en:lesson-08:session-22:intro2:r3": {
-          "ru": "После `can` нужно `help`, без `to`.",
-          "uk": "Після `can` потрібне `help`, без `to`."
+          "ru": "После can нужно read, без to.",
+          "uk": "Після can потрібне read, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-22:intro3:r2": {
-          "ru": "Здесь нужно `can’t`: пока не получается.",
-          "uk": "Тут потрібне `can’t`: поки не виходить."
+          "ru": "После can нужно remind, без s.",
+          "uk": "Після can потрібне remind, без s."
         },
         "en:lesson-08:session-22:intro3:r3": {
-          "ru": "После `can’t` нужно `spell`, без `to`.",
-          "uk": "Після `can’t` потрібне `spell`, без `to`."
+          "ru": "Кому напомнить? Мне — me, не I.",
+          "uk": "Кому нагадати? Мені — me, не I."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9f36361b6ffe43acdcb3cb92474ee7ea27e9e3432a1103ac23786765d4a10e13"
+  "auxiliaryFingerprint": "550500c8720084466dfc6cfb16d2d2d7b4fe58de73966cec5c807d55b509d4b8"
 }

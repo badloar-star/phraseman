@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Коробка на верхней полке",
-        "uk": "Коробка на верхній полиці"
+        "ru": "Сообщение о смене платформы",
+        "uk": "Повідомлення про зміну платформи"
       },
       "bodyByLocale": {
-        "ru": "Вы снимаете большую коробку с верхней полки. Друг стоит рядом и может помочь. `Can you help me?` — «Можешь мне помочь?» После `Can you` нужно `help me`, без `to`.",
-        "uk": "Ви знімаєте велику коробку з верхньої полиці. Друг стоїть поруч і може допомогти. `Can you help me?` — «Можеш мені допомогти?» Після `Can you` потрібне `help me`, без `to`."
+        "ru": "На вокзале телефон показывает уведомление об изменении платформы. Вы несёте сумки и просите спутника прочитать его. Notification — «уведомление», сообщение от приложения. `Can you read the notification?` — «Можешь прочитать уведомление?» Здесь read означает прочитать текст, а the указывает на уведомление на вашем экране.",
+        "uk": "На вокзалі телефон показує сповіщення про зміну платформи. Ви несете сумки й просите супутника прочитати його. Notification — «сповіщення», повідомлення від застосунку. `Can you read the notification?` — «Можеш прочитати сповіщення?» Тут read означає прочитати текст, а the вказує на сповіщення на вашому екрані."
       },
       "question": {
         "interactionId": "en:lesson-08:session-22:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга помочь вам.",
-          "uk": "Попросіть друга допомогти вам."
+          "ru": "Попросите спутника прочитать уведомление.",
+          "uk": "Попросіть супутника прочитати сповіщення."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-22:intro2:r1",
-              "text": "Can you help me?"
+              "text": "Can you read the notification?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro2:r2",
-              "text": "Can you helps me?"
+              "text": "Can you reads the notification?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro2:r3",
-              "text": "Can you to help me?"
+              "text": "Can you to read the notification?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-22:intro2:r1",
-              "text": "Can you help me?"
+              "text": "Can you read the notification?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro2:r2",
-              "text": "Can you helps me?"
+              "text": "Can you reads the notification?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro2:r3",
-              "text": "Can you to help me?"
+              "text": "Can you to read the notification?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга помочь вам.",
-          "uk": "Попросіть друга допомогти вам."
+          "ru": "Попросите спутника прочитать уведомление.",
+          "uk": "Попросіть супутника прочитати сповіщення."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Буквы путаются",
-        "uk": "Літери плутаються"
+        "ru": "Не забыть годовщину родителей",
+        "uk": "Не забути річницю батьків"
       },
       "bodyByLocale": {
-        "ru": "На занятии вы узнаёте знакомые английские слова на слух, но при записи путаете буквы. `I can’t spell` — «У меня не получается правильно писать слова». Здесь `spell` относится к написанию слов по буквам. После `can’t` нужно `spell`, без `to`.",
-        "uk": "На занятті ви впізнаєте знайомі англійські слова на слух, але під час запису плутаєте літери. `I can’t spell` — «У мене не виходить правильно писати слова». Тут `spell` стосується написання слів по літерах. Після `can’t` потрібне `spell`, без `to`."
+        "ru": "У родителей скоро годовщина свадьбы. Вы обсуждаете с сестрой поздравление и просите её напомнить о дате. Anniversary — «годовщина», дата события, отмечаемая каждый год. `Can you remind me about the anniversary?` — «Можешь напомнить мне о годовщине?» После remind me можно добавить about и назвать то, о чём нужно напомнить.",
+        "uk": "У батьків скоро річниця весілля. Ви обговорюєте із сестрою привітання й просите її нагадати про дату. Anniversary — «річниця», дата події, яку відзначають щороку. `Can you remind me about the anniversary?` — «Можеш нагадати мені про річницю?» Після remind me можна додати about і назвати те, про що потрібно нагадати."
       },
       "question": {
         "interactionId": "en:lesson-08:session-22:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите преподавателю о трудности с написанием слов.",
-          "uk": "Розкажіть викладачеві про труднощі з написанням слів."
+          "ru": "Попросите сестру напомнить о годовщине.",
+          "uk": "Попросіть сестру нагадати про річницю."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-22:intro3:r1",
-              "text": "I can’t spell."
+              "text": "Can you remind me about the anniversary?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro3:r2",
-              "text": "I can spell."
+              "text": "Can you reminds me about the anniversary?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro3:r3",
-              "text": "I can’t to spell."
+              "text": "Can you remind I about the anniversary?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-22:intro3:r1",
-              "text": "I can’t spell."
+              "text": "Can you remind me about the anniversary?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro3:r2",
-              "text": "I can spell."
+              "text": "Can you reminds me about the anniversary?"
             },
             {
               "responseId": "en:lesson-08:session-22:intro3:r3",
-              "text": "I can’t to spell."
+              "text": "Can you remind I about the anniversary?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите преподавателю о трудности с написанием слов.",
-          "uk": "Розкажіть викладачеві про труднощі з написанням слів."
+          "ru": "Попросите сестру напомнить о годовщине.",
+          "uk": "Попросіть сестру нагадати про річницю."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "28df7a912bc092c06779ecd4f7c65e26fbcd5215fe07c5cf77263f82dd154a9c"
+  "introFingerprint": "98c6e81bf189dbeff5a6570e43b3d12aad3113c8b93c2d931ed219c6ae5114ec"
 }

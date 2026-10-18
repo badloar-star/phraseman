@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-18:i01",
+      "interactionId": "en:lesson-08:session-18:word:pass",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pass",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:word:pass:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pass",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:word:pass:audio",
+          "transcript": "pass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:word:pass:r1",
+            "targetText": "pass",
+            "meaningByLocale": {
+              "ru": "передать. Can you pass me the key? — «Можешь передать мне ключ?» Передать предмет из рук в руки.",
+              "uk": "передати. Can you pass me the key? — «Можеш передати мені ключ?» Передати предмет із рук у руки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pass",
+          "definitionByLocale": {
+            "ru": "передать. Can you pass me the key? — «Можешь передать мне ключ?» Передать предмет из рук в руки.",
+            "uk": "передати. Can you pass me the key? — «Можеш передати мені ключ?» Передати предмет із рук у руки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -40,7 +83,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -116,11 +159,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть передати вам ключ",
+      "prompt": "Виберіть форму для прохання передати ключ",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-18:i03:r1",
@@ -137,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть передати вам ключ",
+      "accessibilityLabel": "Виберіть форму для прохання передати ключ",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите передать вам ключ",
-          "uk": "Попросіть передати вам ключ"
+          "ru": "Выберите форму для просьбы передать ключ",
+          "uk": "Виберіть форму для прохання передати ключ"
         },
         "gappedTargetPhrase": "Can you ___ me the key?",
         "gapOptions": [
@@ -159,12 +202,12 @@
             "text": "passes"
           }
         ],
-        "testedDimension": "Попросіть передати вам ключ",
+        "testedDimension": "Виберіть форму для прохання передати ключ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Попросіть передати вам ключ",
+            "testedDimension": "Виберіть форму для прохання передати ключ",
             "feedbackByLocale": {
               "ru": "После `can` нужно `pass`, без `to`.",
               "uk": "Після `can` потрібне `pass`, без `to`."
@@ -173,7 +216,7 @@
           {
             "responseId": "en:lesson-08:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Попросіть передати вам ключ",
+            "testedDimension": "Виберіть форму для прохання передати ключ",
             "feedbackByLocale": {
               "ru": "После `can` нужно `pass`, без `es`.",
               "uk": "Після `can` потрібне `pass`, без `es`."
@@ -185,7 +228,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -258,7 +301,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -295,22 +338,65 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-18:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-18:word:pitcher",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pitcher",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:word:pitcher:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pitcher",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:word:pitcher:audio",
+          "transcript": "pitcher"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:word:pitcher:r1",
+            "targetText": "pitcher",
+            "meaningByLocale": {
+              "ru": "кувшин. Can you pass me the pitcher? — «Можешь передать мне кувшин?» Сосуд с ручкой и носиком для напитков.",
+              "uk": "глечик. Can you pass me the pitcher? — «Можеш передати мені глечик?» Посудина з ручкою й носиком для напоїв."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pitcher",
+          "definitionByLocale": {
+            "ru": "кувшин. Can you pass me the pitcher? — «Можешь передать мне кувшин?» Сосуд с ручкой и носиком для напитков.",
+            "uk": "глечик. Can you pass me the pitcher? — «Можеш передати мені глечик?» Посудина з ручкою й носиком для напоїв."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросіть «Можеш передати мені молоко?»",
+      "prompt": "Попросіть «Можеш передати мені глечик?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть «Можеш передати мені молоко?»",
+      "accessibilityLabel": "Попросіть «Можеш передати мені глечик?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you pass me the milk?",
+        "targetPhrase": "Can you pass me the pitcher?",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь передать мне молоко?»",
-          "uk": "Попросіть «Можеш передати мені молоко?»"
+          "ru": "Попросите «Можешь передать мне кувшин?»",
+          "uk": "Попросіть «Можеш передати мені глечик?»"
         },
         "orderedTokens": [
           "Can",
@@ -318,7 +404,7 @@
           "pass",
           "me",
           "the",
-          "milk"
+          "pitcher"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -330,26 +416,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-18:word:corkscrew",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — corkscrew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:word:corkscrew:audio"
+      ],
+      "accessibilityLabel": "Картка слова — corkscrew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:word:corkscrew:audio",
+          "transcript": "corkscrew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:word:corkscrew:r1",
+            "targetText": "corkscrew",
+            "meaningByLocale": {
+              "ru": "штопор. Can you pass me the corkscrew? — «Можешь передать мне штопор?» Инструмент для извлечения пробки из бутылки.",
+              "uk": "штопор. Can you pass me the corkscrew? — «Можеш передати мені штопор?» Інструмент для виймання корка з пляшки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "corkscrew",
+          "definitionByLocale": {
+            "ru": "штопор. Can you pass me the corkscrew? — «Можешь передать мне штопор?» Инструмент для извлечения пробки из бутылки.",
+            "uk": "штопор. Can you pass me the corkscrew? — «Можеш передати мені штопор?» Інструмент для виймання корка з пляшки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує пірнути. Скажіть «Я не вмію пірнати»",
+      "prompt": "Друг тримає штопор. Попросіть «Можеш передати мені штопор?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Друг пропонує пірнути. Скажіть «Я не вмію пірнати»",
+      "accessibilityLabel": "Друг тримає штопор. Попросіть «Можеш передати мені штопор?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-18:i07:audio",
-          "transcript": "I can’t dive."
+          "transcript": "Can you pass me the corkscrew?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can’t dive.",
+        "targetPhrase": "Can you pass me the corkscrew?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -364,67 +493,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть допомогти вам",
+      "prompt": "Виберіть форму для прохання передати глечик",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-18:i08:r1",
-          "text": "help"
+          "text": "pass"
         },
         {
           "responseId": "en:lesson-08:session-18:i08:r2",
-          "text": "helps"
+          "text": "passes"
         },
         {
           "responseId": "en:lesson-08:session-18:i08:r3",
-          "text": "to help"
+          "text": "to pass"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть допомогти вам",
+      "accessibilityLabel": "Виберіть форму для прохання передати глечик",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите помочь вам",
-          "uk": "Попросіть допомогти вам"
+          "ru": "Выберите форму для просьбы передать кувшин",
+          "uk": "Виберіть форму для прохання передати глечик"
         },
-        "gappedTargetPhrase": "Can you ___ me?",
+        "gappedTargetPhrase": "Can you ___ me the pitcher?",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-18:i08:r1",
-            "text": "help"
+            "text": "pass"
           },
           {
             "responseId": "en:lesson-08:session-18:i08:r2",
-            "text": "helps"
+            "text": "passes"
           },
           {
             "responseId": "en:lesson-08:session-18:i08:r3",
-            "text": "to help"
+            "text": "to pass"
           }
         ],
-        "testedDimension": "Попросіть допомогти вам",
+        "testedDimension": "Виберіть форму для прохання передати глечик",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Попросіть допомогти вам",
+            "testedDimension": "Виберіть форму для прохання передати глечик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `help`, без `s`.",
-              "uk": "Після `can` потрібне `help`, без `s`."
+              "ru": "После can нужно pass, без es.",
+              "uk": "Після can потрібне pass, без es."
             }
           },
           {
             "responseId": "en:lesson-08:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Попросіть допомогти вам",
+            "testedDimension": "Виберіть форму для прохання передати глечик",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `help`, без `to`.",
-              "uk": "Після `can` потрібне `help`, без `to`."
+              "ru": "После can нужно pass, без to.",
+              "uk": "Після can потрібне pass, без to."
             }
           }
         ]
@@ -433,7 +562,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -509,7 +638,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -523,14 +652,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-18:i10:p1",
-            "target": "gamble",
-            "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-18:i10:p2",
             "target": "pass",
             "meaningByLocale": {
               "ru": "передать",
@@ -538,33 +659,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-18:i10:p3",
-            "target": "milk",
+            "pairId": "en:lesson-08:session-18:i10:p2",
+            "target": "pitcher",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "кувшин",
+              "uk": "глечик"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-18:i10:p3",
+            "target": "corkscrew",
+            "meaningByLocale": {
+              "ru": "штопор",
+              "uk": "штопор"
             }
           },
           {
             "pairId": "en:lesson-08:session-18:i10:p4",
-            "target": "smile",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "улыбаться",
-              "uk": "усміхатися"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "gamble",
           "pass",
-          "milk",
-          "smile"
+          "pitcher",
+          "corkscrew",
+          "key"
         ],
         "rightColumn": [
-          "грати в азартні ігри",
           "передати",
-          "молоко",
-          "усміхатися"
+          "глечик",
+          "штопор",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -582,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -597,15 +726,17 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-18:i11:audio",
-          "transcript": "Can you help me?"
+          "transcript": "Can you pass me the pitcher?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Can you help me?",
+        "hiddenTargetPhrase": "Can you pass me the pitcher?",
         "orderedTokens": [
           "Can",
           "you",
-          "help",
-          "me"
+          "pass",
+          "me",
+          "the",
+          "pitcher"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -617,29 +748,73 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-18:word:coaster",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coaster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-18:word:coaster:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coaster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-18:word:coaster:audio",
+          "transcript": "coaster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-18:word:coaster:r1",
+            "targetText": "coaster",
+            "meaningByLocale": {
+              "ru": "подставка под стакан. Can you pass me the coaster? — «Можешь передать мне подставку под стакан?» Защищает стол от следов напитка.",
+              "uk": "підставка під склянку. Can you pass me the coaster? — «Можеш передати мені підставку під склянку?» Захищає стіл від слідів напою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coaster",
+          "definitionByLocale": {
+            "ru": "подставка под стакан. Can you pass me the coaster? — «Можешь передать мне подставку под стакан?» Защищает стол от следов напитка.",
+            "uk": "підставка під склянку. Can you pass me the coaster? — «Можеш передати мені підставку під склянку?» Захищає стіл від слідів напою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Попросіть «Можеш відчинити двері?»",
+      "prompt": "Ви хочете поставити склянку на підставку. Попросіть друга «Можеш передати мені підставку під склянку?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть «Можеш відчинити двері?»",
+      "accessibilityLabel": "Ви хочете поставити склянку на підставку. Попросіть друга «Можеш передати мені підставку під склянку?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Can you open the door?",
+        "targetPhrase": "Can you pass me the coaster?",
         "localizedMeaning": {
-          "ru": "Попросите «Можешь открыть дверь?»",
-          "uk": "Попросіть «Можеш відчинити двері?»"
+          "ru": "Вы хотите поставить стакан на подставку. Попросите друга «Можешь передать мне подставку под стакан?»",
+          "uk": "Ви хочете поставити склянку на підставку. Попросіть друга «Можеш передати мені підставку під склянку?»"
         },
         "orderedTokens": [
           "Can",
           "you",
-          "open",
+          "pass",
+          "me",
           "the",
-          "door"
+          "coaster"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -652,25 +827,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг помічає ваш гарний настрій. Скажіть «Я часто усміхаюся»",
+      "prompt": "Ви намагаєтеся відкрити пляшку, але корок не піддається. Скажіть другові «Я не можу її відкрити»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Друг помічає ваш гарний настрій. Скажіть «Я часто усміхаюся»",
+      "accessibilityLabel": "Ви намагаєтеся відкрити пляшку, але корок не піддається. Скажіть другові «Я не можу її відкрити»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-18:i13:audio",
-          "transcript": "I often smile."
+          "transcript": "I can’t open it."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often smile.",
+        "targetPhrase": "I can’t open it.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -685,8 +860,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Почніть прохання «Можеш передати мені ключ?»",
@@ -754,7 +929,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -762,15 +937,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-18:i15:r1",
-          "text": "Can you open the door?"
+          "text": "Can you pass me the coaster?"
         },
         {
           "responseId": "en:lesson-08:session-18:i15:r2",
-          "text": "Can you open the window?"
+          "text": "Can you pass me the pitcher?"
         },
         {
           "responseId": "en:lesson-08:session-18:i15:r3",
-          "text": "Can you open the box?"
+          "text": "Can you pass me the corkscrew?"
         }
       ],
       "mediaIds": [],
@@ -782,23 +957,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-18:i15:audio",
-          "transcript": "Can you open the door?"
+          "transcript": "Can you pass me the coaster?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-18:i15:r1",
-            "targetText": "Can you open the door?",
+            "targetText": "Can you pass me the coaster?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-18:i15:r2",
-            "targetText": "Can you open the window?",
+            "targetText": "Can you pass me the pitcher?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-18:i15:r3",
-            "targetText": "Can you open the box?",
+            "targetText": "Can you pass me the corkscrew?",
             "meaningByLocale": null
           }
         ],
@@ -809,8 +984,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `window`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `window`."
+              "ru": "В записи coaster — «подставка под стакан», а не pitcher — «кувшин».",
+              "uk": "У записі coaster — «підставка під склянку», а не pitcher — «глечик»."
             }
           },
           {
@@ -818,8 +993,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `door`, а в этом варианте — `box`.",
-              "uk": "У записі останнє слово — `door`, а в цьому варіанті — `box`."
+              "ru": "В записи coaster, а не corkscrew — «штопор».",
+              "uk": "У записі coaster, а не corkscrew — «штопор»."
             }
           }
         ],
@@ -830,7 +1005,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -852,40 +1027,40 @@
           },
           {
             "pairId": "en:lesson-08:session-18:i16:p2",
-            "target": "gamble",
+            "target": "pitcher",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "кувшин",
+              "uk": "глечик"
             }
           },
           {
             "pairId": "en:lesson-08:session-18:i16:p3",
-            "target": "dive",
+            "target": "corkscrew",
             "meaningByLocale": {
-              "ru": "нырять",
-              "uk": "пірнати"
+              "ru": "штопор",
+              "uk": "штопор"
             }
           },
           {
             "pairId": "en:lesson-08:session-18:i16:p4",
-            "target": "milk",
+            "target": "coaster",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "подставка под стакан",
+              "uk": "підставка під склянку"
             }
           }
         ],
         "leftColumn": [
           "pass",
-          "gamble",
-          "dive",
-          "milk"
+          "pitcher",
+          "corkscrew",
+          "coaster"
         ],
         "rightColumn": [
           "передати",
-          "грати в азартні ігри",
-          "пірнати",
-          "молоко"
+          "глечик",
+          "штопор",
+          "підставка під склянку"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -903,7 +1078,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -943,11 +1118,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e25e59de331775fd54795b020c17db67728e51cc42951c893e6236755fd9b33d"
+  "learnerFingerprint": "edde04561c807c966e692a746271f8fe10ac06b004782092ef4481e35c5c97b8"
 }

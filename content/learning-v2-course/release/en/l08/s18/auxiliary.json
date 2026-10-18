@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-18:intro2:r2": {
-          "ru": "После `can` нужно `pass`, без `es`.",
-          "uk": "Після `can` потрібне `pass`, без `es`."
+          "ru": "После can нужно pass, без es.",
+          "uk": "Після can потрібне pass, без es."
         },
         "en:lesson-08:session-18:intro2:r3": {
-          "ru": "После `can` нужно `pass`, без `to`.",
-          "uk": "Після `can` потрібне `pass`, без `to`."
+          "ru": "После can нужно pass, без to.",
+          "uk": "Після can потрібне pass, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-18:intro3:r2": {
-          "ru": "Вы не умеете: нужно `can’t`.",
-          "uk": "Ви не вмієте: потрібне `can’t`."
+          "ru": "Для просьбы начните с Can you.",
+          "uk": "Для прохання почніть із Can you."
         },
         "en:lesson-08:session-18:intro3:r3": {
-          "ru": "После `can’t` нужно `dive`, без `to`.",
-          "uk": "Після `can’t` потрібне `dive`, без `to`."
+          "ru": "После can нужно pass, без to.",
+          "uk": "Після can потрібне pass, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "876277bdbb53ae5b101c28ea2a3912d40f9241f667ff9ed7220a4506089fc4c2"
+  "auxiliaryFingerprint": "510d93bc579121401cbfc37e7cd368928162420a4bcd12e18538158c1ba52237"
 }

@@ -1,9 +1,10 @@
 # Англійська · Урок 8 · Заняття 18 — Передай ключ
 
-**Ситуація.** Ви просите передати ключ за столом, молоко за сніданком і розповідаєте про вміння пірнати.
+**Ситуація.** Ви забираєте ключ після настільної гри, розливаєте лимонад із глечика й шукаєте штопор для пляшки з корком.
 
 **Що ви опануєте:** закріпити прохання Can you…? і повторити can’t
-**Нові слова:** pass
+**Нові слова:** pass, pitcher, corkscrew, coaster
+**Повертаються:** key, book, milk, smile
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Ключ на іншому краю столу
 
-Ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Pass` — «передати». `Can you pass me the key?` — «Можеш передати мені ключ?» Після `Can you` потрібне `pass me the key`. Ключ від машини поруч — залишилося дістатися до ключа.
+Настільна гра закінчилася, і ви збираєтеся йти. Ключ лежить поруч із другом, а вам до нього не дотягнутися. `Pass` — «передати». `Can you pass me the key?` — «Можеш передати мені ключ?» Після `Can you` потрібне `pass me the key`. Між вами ігрове поле: ви просите передати ключ, щоб не зачепити фігурки.
 
 **Попросіть друга передати вам ключ.**
 
@@ -23,111 +24,127 @@
 
 ## Інтро 2
 
-### Молоко за сніданком
+### Лимонад для гостей
 
-За сніданком молоко стоїть біля друга. Ви хочете додати його в каву. `Can you pass me the milk?` — «Можеш передати мені молоко?» У знайомому проханні замініть `the key` на `the milk`.
+Ви розставили склянки на столі у дворі. Глечик із лимонадом стоїть біля друга. Pitcher — «глечик», тут посудина з ручкою й носиком для напоїв. `Can you pass me the pitcher?` — «Можеш передати мені глечик?» У знайомому проханні замініть the key на the pitcher.
 
-**Попросіть передати молоко.**
+**Попросіть друга передати глечик із лимонадом.**
 
-- ✅ **Can you pass me the milk?**
-- ❌ Can you passes me the milk? — *Після `can` потрібне `pass`, без `es`.*
-- ❌ Can you to pass me the milk? — *Після `can` потрібне `pass`, без `to`.*
+- ✅ **Can you pass me the pitcher?**
+- ❌ Can you passes me the pitcher? — *Після can потрібне pass, без es.*
+- ❌ Can you to pass me the pitcher? — *Після can потрібне pass, без to.*
 
 ---
 
 ## Інтро 3
 
-### Перше заняття в басейні
+### Пляшка з корком
 
-Друг пропонує вам пірнути, але ви поки не вмієте. `I can’t dive` — «Я не вмію пірнати». Для «не вмію» потрібне `can’t`; після нього `dive`, без `to`.
+Ви накриваєте стіл і хочете відкрити пляшку з корком. Друг дістав штопор із шухляди, але залишив його біля себе. Corkscrew — «штопор». `Can you pass me the corkscrew?` — «Можеш передати мені штопор?» Ви просите саме передати інструмент, а не відкрити пляшку.
 
-**Скажіть другові, що не вмієте пірнати.**
+**Попросіть друга передати штопор.**
 
-- ✅ **I can’t dive.**
-- ❌ I can dive. — *Ви не вмієте: потрібне `can’t`.*
-- ❌ I can’t to dive. — *Після `can’t` потрібне `dive`, без `to`.*
+- ✅ **Can you pass me the corkscrew?**
+- ❌ You can pass me the corkscrew. — *Для прохання почніть із Can you.*
+- ❌ Can you to pass me the corkscrew? — *Після can потрібне pass, без to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Попросіть «Можеш передати мені ключ?»**
+**1 · Картка слова — pass**
+<!-- interaction_id: en:lesson-08:session-18:word:pass; family: word_card -->
+> **pass** — передати. Can you pass me the key? — «Можеш передати мені ключ?» Передати предмет із рук у руки.
+
+**2 · Попросіть «Можеш передати мені ключ?»**
 <!-- interaction_id: en:lesson-08:session-18:i01; family: phrase_builder -->
 Плитки: `key` `the` `me` `pass` `you` `Can` → **Can you pass me the key?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-18:i02; family: listen_choose -->
 🔊 *pass* → **pass** · smile · dive
 - smile — *У записі перше слово — `pass`, а в цьому варіанті — `smile`.*
 - dive — *У записі перше слово — `pass`, а в цьому варіанті — `dive`.*
 
-**3 · Попросіть передати вам ключ**
+**4 · Виберіть форму для прохання передати ключ**
 <!-- interaction_id: en:lesson-08:session-18:i03; family: context_gap_grammar -->
 Can you ___ me the key? → **pass** · to pass · passes
 - to pass — *Після `can` потрібне `pass`, без `to`.*
 - passes — *Після `can` потрібне `pass`, без `es`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-18:i04; family: speed_match -->
 pass — передати · milk — молоко · smile — усміхатися · dive — пірнати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-18:i05; family: listen_build_dictation -->
 🔊 *Can you pass me the key?* Плитки: `key` `the` `me` `pass` `you` `Can` → **Can you pass me the key?**
 
-**6 · Попросіть «Можеш передати мені молоко?»**
+**7 · Картка слова — pitcher**
+<!-- interaction_id: en:lesson-08:session-18:word:pitcher; family: word_card -->
+> **pitcher** — глечик. Can you pass me the pitcher? — «Можеш передати мені глечик?» Посудина з ручкою й носиком для напоїв.
+
+**8 · Попросіть «Можеш передати мені глечик?»**
 <!-- interaction_id: en:lesson-08:session-18:i06; family: phrase_builder -->
-Плитки: `milk` `the` `me` `pass` `you` `Can` → **Can you pass me the milk?**
+Плитки: `pitcher` `the` `me` `pass` `you` `Can` → **Can you pass me the pitcher?**
 
-**7 · Друг пропонує пірнути. Скажіть «Я не вмію пірнати»**
+**9 · Картка слова — corkscrew**
+<!-- interaction_id: en:lesson-08:session-18:word:corkscrew; family: word_card -->
+> **corkscrew** — штопор. Can you pass me the corkscrew? — «Можеш передати мені штопор?» Інструмент для виймання корка з пляшки.
+
+**10 · Друг тримає штопор. Попросіть «Можеш передати мені штопор?»**
 <!-- interaction_id: en:lesson-08:session-18:i07; family: scripted_repeat_compare -->
-🎙 **I can’t dive.**
+🎙 **Can you pass me the corkscrew?**
 
-**8 · Попросіть допомогти вам**
+**11 · Виберіть форму для прохання передати глечик**
 <!-- interaction_id: en:lesson-08:session-18:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *Після `can` потрібне `help`, без `s`.*
-- to help — *Після `can` потрібне `help`, без `to`.*
+Can you ___ me the pitcher? → **pass** · passes · to pass
+- passes — *Після can потрібне pass, без es.*
+- to pass — *Після can потрібне pass, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-18:i09; family: listen_choose -->
 🔊 *Can you pass me the key?* → **Can you pass me the key?** · Can you pass me the milk? · Can you pass me the book?
 - Can you pass me the milk? — *У записі останнє слово — `key`, а в цьому варіанті — `milk`.*
 - Can you pass me the book? — *У записі останнє слово — `key`, а в цьому варіанті — `book`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-18:i10; family: speed_match -->
-gamble — грати в азартні ігри · pass — передати · milk — молоко · smile — усміхатися
+pass — передати · pitcher — глечик · corkscrew — штопор · key — ключ
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-18:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you pass me the pitcher?* Плитки: `pitcher` `the` `me` `pass` `you` `Can` → **Can you pass me the pitcher?**
 
-**12 · Попросіть «Можеш відчинити двері?»**
+**15 · Картка слова — coaster**
+<!-- interaction_id: en:lesson-08:session-18:word:coaster; family: word_card -->
+> **coaster** — підставка під склянку. Can you pass me the coaster? — «Можеш передати мені підставку під склянку?» Захищає стіл від слідів напою.
+
+**16 · Ви хочете поставити склянку на підставку. Попросіть друга «Можеш передати мені підставку під склянку?»**
 <!-- interaction_id: en:lesson-08:session-18:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `coaster` `the` `me` `pass` `you` `Can` → **Can you pass me the coaster?**
 
-**13 · Друг помічає ваш гарний настрій. Скажіть «Я часто усміхаюся»**
+**17 · Ви намагаєтеся відкрити пляшку, але корок не піддається. Скажіть другові «Я не можу її відкрити»**
 <!-- interaction_id: en:lesson-08:session-18:i13; family: scripted_repeat_compare -->
-🎙 **I often smile.**
+🎙 **I can’t open it.**
 
-**14 · Почніть прохання «Можеш передати мені ключ?»**
+**18 · Почніть прохання «Можеш передати мені ключ?»**
 <!-- interaction_id: en:lesson-08:session-18:i14; family: context_gap_grammar -->
 ___ you pass me the key? → **Can** · Are · Is
 - Are — *У цьому проханні потрібне `Can you pass`, без `are`.*
 - Is — *Почніть із `Can you pass`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-18:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *У записі останнє слово — `door`, а в цьому варіанті — `window`.*
-- Can you open the box? — *У записі останнє слово — `door`, а в цьому варіанті — `box`.*
+🔊 *Can you pass me the coaster?* → **Can you pass me the coaster?** · Can you pass me the pitcher? · Can you pass me the corkscrew?
+- Can you pass me the pitcher? — *У записі coaster — «підставка під склянку», а не pitcher — «глечик».*
+- Can you pass me the corkscrew? — *У записі coaster, а не corkscrew — «штопор».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-18:i16; family: speed_match -->
-pass — передати · gamble — грати в азартні ігри · dive — пірнати · milk — молоко
+pass — передати · pitcher — глечик · corkscrew — штопор · coaster — підставка під склянку
 
-**17 · Книжка лежить поруч із другом. Ви хочете її почитати. Попросіть «Можеш передати мені книжку?»**
+**21 · Книжка лежить поруч із другом. Ви хочете її почитати. Попросіть «Можеш передати мені книжку?»**
 <!-- interaction_id: en:lesson-08:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you pass me the book?**
 

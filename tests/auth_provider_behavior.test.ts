@@ -1917,21 +1917,23 @@ test('a foreign delete guard never bypasses the explicit provider account-switch
 
   const result = await signInWithProvider('google');
 
+  // зачем (правило 3, 18.10): прямая смена A→B при ЧУЖОМ замке удаления не запускается — после выхода из A гостевая сессия
+  // сочла бы чужой замок своим и дожала бы удаление чужого аккаунта. Редкий случай — прежняя граница.
   expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
   expect(googleSignInImpl).not.toHaveBeenCalled();
   expect(enqueueCloudDeletion).not.toHaveBeenCalled();
 });
 
-test('an authenticated provider account cannot open another provider picker without a confirmed switch', async () => {
+// зачем (правило 3 владельца 18.10, «из A в B — без проблем»): вошедший A нажимает Google → окно выбора открывается один раз,
+// отказа account_switch_required нет; смену A и вход в B делает сам signInWithProvider (раньше тест закреплял отказ без окна).
+test('an authenticated provider account opens the picker once and switches without an account_switch_required refusal', async () => {
   authState.isAnonymous = false;
   const { signInWithProvider } = loadAuthProvider();
 
-  await expect(signInWithProvider('google')).resolves.toEqual({
-    result: 'error',
-    error: 'account_switch_required',
-  });
-  expect(googleSignInImpl).not.toHaveBeenCalled();
-  expect(authState.calls).toHaveLength(0);
+  const result = await signInWithProvider('google');
+
+  expect(result).not.toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
 });
 
 test('Firebase sign-out failure is rethrown without resetting anonymous auth state or logging success', async () => {
@@ -2971,18 +2973,18 @@ describe('resume sign-in after a confirmed account switch', () => {
     expect(authState.calls).not.toContain('signin');
   });
 
-  test('L-1: a caller without the capture flag (sign-in modal, Settings) never stores the credential', async () => {
+  // зачем (правило 2 владельца 18.10, ошибка у владельца на эмуляторе: caller_not_capturing): окно входа зовёт вход без флага —
+  // выбор аккаунта всё равно сохраняется, «Войти» в шторке гостя входит им без второго окна Google (раньше тест закреплял обратное).
+  test('L-1: a caller without the capture flag (sign-in modal, Settings) still keeps the choice for the guest sheet', async () => {
     conflictOnLink();
     const auth = loadAuthProvider({ unlocked_lessons: '[1,2]' });
-    // Ровно так зовёт RegistrationPromptModal: без captureAccountSwitchResume.
     await expect(auth.signInWithProvider('google', { requireCurrentStableIdOwnership: false }))
       .resolves.toEqual({ result: 'error', error: 'account_switch_required' });
     await lastLoadedAuthProviderStorage.removeItem('unlocked_lessons');
     providerSignedIn();
 
-    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.toBeNull();
+    await expect(auth.resumeSignInAfterAccountSwitch('google')).resolves.not.toBeNull();
     expect(googleSignInImpl).toHaveBeenCalledTimes(1);
-    expect(authState.calls).not.toContain('signin');
   });
 
   test('(b) Apple never stores a resume credential: its token is bound to a one-time nonce', async () => {

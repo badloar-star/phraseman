@@ -1775,6 +1775,16 @@ interface NativeAuthCredential {
 // его не примет — Apple после смены по-прежнему входит вторым тапом.
 const ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS = 10 * 60_000;
 
+/** Внутренний сигнал правила 3 (A→B): аккаунт выбран, пропуск в памяти — смену делает signInWithProvider. Человеку не виден. */
+const ACCOUNT_SWITCH_DIRECT_SIGNAL = 'account_switch_direct';
+/** Потолок ожидания облака при прямой смене A→B — тот же, что при выходе и смене из онбординга. */
+const DIRECT_ACCOUNT_SWITCH_SYNC_DEADLINE_MS = 3000;
+
+/** Журнал развилок правил владельца 18.10 — ISO-время в строке (в metro_live.log своих меток времени нет); без uid/почты. */
+function authSwitchTrace(step: string, fields: Record<string, unknown> = {}): void {
+  console.warn(`[AUTH-SWITCH] ${new Date().toISOString()} ${step} ${JSON.stringify(fields)}`); // guard-ok: только метки h:xxxx и флаги
+}
+
 type AccountSwitchResumeCredential = Readonly<{
   provider: AuthProviderId;
   credential: NativeAuthCredential;
@@ -1786,8 +1796,10 @@ let accountSwitchResumeCredential: AccountSwitchResumeCredential | null = null;
 function storeAccountSwitchResumeCredential(
   provider: AuthProviderId,
   credential: NativeAuthCredential,
+  // зачем (правило 3, 18.10): прямой A→B берёт пропуск сразу из окна выбора — Firebase его ещё не видел, nonce Apple цел.
+  options: Readonly<{ unconsumed?: boolean }> = {},
 ): void {
-  if (provider !== 'google') {
+  if (provider !== 'google' && !options.unconsumed) {
     console.log(`[AUTH-SWITCH-OFFER] resume_credential not_stored provider=${provider} reason=provider_not_reusable`);
     accountSwitchResumeCredential = null;
     return;
@@ -2386,6 +2398,12 @@ async function runAccountAuthorityCredentialSignIn(
   }
 }
 
+/** Окно выбора аккаунта для прямой смены A→B (правило 3): тот же нативный вызов, что у обычного входа. */
+async function openProviderPickerForDirectSwitch(provider: AuthProviderId): Promise<NativeAuthCredential | { cancelled: true }> {
+  if (provider === 'google') return runGoogleNativeSignIn();
+  return Platform.OS === 'android' ? runAppleAndroidOAuthSignIn() : runAppleNativeSignIn();
+}
+
 export async function signInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions = {},
@@ -2500,14 +2518,49 @@ export async function signInWithProvider(
   };
   // зачем (блокер входа 18.10): восстановление при загрузке не откатывает запись передачи, пока этот вход идёт (переживает горячую перезагрузку)
   const inFlightKey = beginProviderSignInInFlight();
+  let settled: SignInResult;
   try {
-    return await task;
+    settled = await task;
   } finally {
     endProviderSignInInFlight(inFlightKey);
     if (providerSignInInFlight?.task === task) providerSignInInFlight = null;
     reservation.operationSettled = true;
     releaseProviderCredentialModeReservationIfSettled(reservation);
   }
+  if (settled.result === 'error' && settled.error === ACCOUNT_SWITCH_DIRECT_SIGNAL) {
+    return completeDirectAccountSwitch(provider);
+  }
+  return settled;
+}
+
+/**
+ * Правило 3 владельца (18.10): вошёл в A → выбрал в окне B → штатная смена A (облако догоняет не дольше 3 с, аварийная
+ * копия под замком) → вход в B тем же выбором, без второго окна. Резервации исходного входа уже сняты — замки не вложены.
+ */
+async function completeDirectAccountSwitch(provider: AuthProviderId): Promise<SignInResult> {
+  const startedAt = Date.now();
+  authSwitchTrace('rule3 switch_start', { provider });
+  let switched: SignOutSwitchResult;
+  try {
+    switched = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: DIRECT_ACCOUNT_SWITCH_SYNC_DEADLINE_MS, allowWipeWithoutSync: true });
+  } catch (switchError) {
+    discardAccountSwitchResumeCredential('direct_switch_threw');
+    authSwitchTrace('rule3 switch_threw', { provider, code: identityErrorCode(switchError), tookMs: Date.now() - startedAt });
+    return { result: 'error', error: `account_switch_failed_${identityErrorCode(switchError)}` };
+  }
+  if (!switched.ok) {
+    discardAccountSwitchResumeCredential('direct_switch_failed');
+    authSwitchTrace('rule3 switch_failed', { provider, reason: switched.reason, tookMs: Date.now() - startedAt, outcome: 'stay_in_current_account' });
+    return { result: 'error', error: `account_switch_failed_${switched.reason}` };
+  }
+  authSwitchTrace('rule3 switched', { provider, synced: switched.synced ? 'yes' : 'no', tookMs: Date.now() - startedAt });
+  const resumed = await resumeSignInAfterAccountSwitch(provider);
+  if (!resumed) {
+    authSwitchTrace('rule3 resume_failed', { provider, tookMs: Date.now() - startedAt, outcome: 'guest_sign_in_again' });
+    return { result: 'error', error: 'account_switch_resume_failed' };
+  }
+  authSwitchTrace('rule3 done', { provider, result: resumed.result, tookMs: Date.now() - startedAt });
+  return resumed;
 }
 
 const PROVIDER_SIGN_IN_STALE_MS = 45_000;
@@ -2723,15 +2776,44 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     // Главная гипотеза случая §126: Firebase уже держит провайдер-сессию
     // (например, прошлый вход оборвался после signInWithCredential — см.
     // swap_presync), а локально — анонимный профиль. Любой новый тап сюда.
-    identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {
-      provider,
-      source: 'provider_session_active',
-      authUid: identityTag(auth.currentUser.uid),
-      localStable: identityTag(peekStableId()),
-      tookMs: identityTraceClockMs() - traceStartedAt,
-    }, { persist: true });
-    logAuthEvent('auth_signin_account_switch_required', { provider });
-    return { result: 'error', error: 'account_switch_required' };
+    // зачем (правило 3 владельца 18.10: «из A в B — без проблем, без вопросов и текстов»): отказа больше нет. Открываем окно
+    // выбора; выбран другой аккаунт → пропуск в память и сигнал ACCOUNT_SWITCH_DIRECT_SIGNAL — смену A и вход в B делает
+    // signInWithProvider ПОСЛЕ снятия резерваций этого входа (вложенные замки недопустимы). Тот же аккаунт → ничего не меняем.
+    const currentUser = auth.currentUser;
+    if (pendingDeleteBeforeCredential) {
+      // зачем (сторож auth_provider_behavior «foreign delete guard»): после выхода из A гостевая сессия сочла бы чужой замок
+      // удаления своим и дожала бы удаление ЧУЖОГО аккаунта. Прямую смену не запускаем — прежняя граница, редкий случай.
+      authSwitchTrace('rule3 blocked', { provider, reason: 'foreign_delete_lock_present', authUid: identityTag(currentUser.uid) });
+      logAuthEvent('auth_signin_account_switch_required', { provider });
+      return { result: 'error', error: 'account_switch_required' };
+    }
+    authSwitchTrace('rule3 picker_open', { provider, authUid: identityTag(currentUser.uid), localStable: identityTag(peekStableId()) });
+    let directCred: NativeAuthCredential | { cancelled: true };
+    try {
+      directCred = await openProviderPickerForDirectSwitch(provider);
+    } catch (pickerError) {
+      authSwitchTrace('rule3 picker_failed', { provider, code: identityErrorCode(pickerError) });
+      return { result: 'error', error: `native_${identityErrorCode(pickerError)}` };
+    }
+    if ('cancelled' in directCred) {
+      authSwitchTrace('rule3 picker_cancelled', { provider, outcome: 'stay_in_current_account' });
+      return { result: 'cancelled' };
+    }
+    const pickedSubject = directCred.providerSubject ?? providerSubjectFromIdToken(directCred.idToken);
+    const providerId = provider === 'google' ? 'google.com' : 'apple.com';
+    const currentSubjects = (Array.isArray(currentUser.providerData) ? currentUser.providerData : [])
+      .filter((entry: { providerId?: string }) => entry?.providerId === providerId)
+      .map((entry: { uid?: string }) => String(entry?.uid ?? '').trim())
+      .filter(Boolean);
+    const sameAccount = Boolean(pickedSubject && currentSubjects.includes(pickedSubject));
+    authSwitchTrace('rule3 picked', { provider, picked: identityTag(pickedSubject), sameAccount: sameAccount ? 'yes' : 'no', currentLinked: currentSubjects.length });
+    if (sameAccount) {
+      return { result: 'linked_existing', email: currentUser.email ?? null, displayName: currentUser.displayName ?? null };
+    }
+    // пропуск ещё не тратился Firebase — годится и для Apple (nonce цел)
+    storeAccountSwitchResumeCredential(provider, directCred, { unconsumed: true });
+    logAuthEvent('auth_signin_direct_account_switch', { provider });
+    return { result: 'error', error: ACCOUNT_SWITCH_DIRECT_SIGNAL };
   }
 
   // A pending guard on an anonymous session may belong to the provider selected
@@ -2960,13 +3042,19 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             // зачем (шаг 3): сохранить выбор человека на время окна «Сменить аккаунт»,
             // чтобы после смены вход продолжился без второго окна Google. Повтор из
             // пропуска сам пропуск НЕ перекладывает — иначе одноразовость ломается.
+            // зачем (правило 2 владельца 18.10, эмулятор владельца: caller_not_capturing → ошибка): выбор человека сохраняем ВСЕГДА —
+            // шторка гостя «Войти» входит им без второго окна Google; каждый новый обычный вход стирает пропуск (fresh_sign_in).
             if (resumeCredential) {
               console.warn(`[AUTH-SWITCH-OFFER] resume_credential rejected provider=${provider} reason=switch_still_required`);
-            } else if (options.captureAccountSwitchResume) {
-              storeAccountSwitchResumeCredential(provider, cred);
             } else {
-              console.log(`[AUTH-SWITCH-OFFER] resume_credential not_stored provider=${provider} reason=caller_not_capturing`);
+              storeAccountSwitchResumeCredential(provider, cred);
             }
+            authSwitchTrace('rule2 guest_with_progress_existing_account', {
+              provider,
+              localStable: identityTag(preProviderStableId),
+              captured: resumeCredential ? 'no_resume_attempt' : provider === 'google' ? 'yes' : 'apple_second_picker',
+              next: 'guest_switch_sheet',
+            });
             return { result: 'error', error: 'account_switch_required' };
           }
           // зачем ([ACC-SPEED], координатор 14.10): между «handoff proof» и «signed_in» 8,1 с — по отдельности маркер, отметка, вход.
@@ -4076,7 +4164,8 @@ function accountSwitchRecoveryDependencies() {
     // зачем (координатор 18.10 10:10): откат прерванной передачи входа — тот же человек, согласия не сбрасываем
     wipeLocalDataForHandoffRollback: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true }); },
     // зачем (координатор 18.10): довести прерванный вход вперёд вместо отката к гостю
-    completeProviderHandoff: (input) => completeInterruptedProviderHandoff(input),
+    // зачем (Ревизор f9d304c91, TS7006): объект зависимостей без объявленного типа — параметр типизируем явно.
+    completeProviderHandoff: (input: Parameters<typeof completeInterruptedProviderHandoff>[0]) => completeInterruptedProviderHandoff(input),
     clearStableId: async (): Promise<void> => {
       await clearStableId();
       await clearPendingAuthLink();

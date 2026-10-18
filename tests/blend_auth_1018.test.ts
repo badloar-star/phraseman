@@ -3,7 +3,7 @@
 // Поверхности: окно входа, удаление, выход — opaqueSheet; «Аккаунт» — фон экрана и плашка plateFillFrom; онбординг (вход/согласия) — bgTop/bg/bgBottom.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens, makeLiquidGlassTheme } from '../constants/liquidGlassThemePalette';
 import { DARK } from '../constants/theme';
-import { googleButtonVariantForSurface } from '../components/auth_google_button_style';
+import { googleButtonPaintForSurface } from '../components/auth_google_button_style';
 import { deleteButtonPaint } from '../components/account/delete_button_paint';
 
 type Rgb = [number, number, number];
@@ -30,8 +30,10 @@ const TEXT = 4.5, GRAPHIC = 3, TONE = 1.5;
 type Pair = { el: string; what: string; min: number; v: (c: Ctx) => number };
 const PAIRS: Pair[] = [
   // окно входа (RegistrationPromptModal), шторка opaqueSheet
-  { el: 'Вход: кнопка Google (окно входа)', what: 'заливка к шторке', min: GRAPHIC, v: (c) => { const s = sheet(c); const b = brand(googleButtonVariantForSurface(c.g.opaqueSheet!)); return R(solid(b.bg), s); } },
-  { el: 'Вход: кнопка Google', what: 'подпись и спиннер на заливке', min: TEXT, v: (c) => { const b = brand(googleButtonVariantForSurface(c.g.opaqueSheet!)); return R(solid(b.fg), solid(b.bg)); } },
+  // зачем (координатор 18.10): Google снова белая во всех темах (эталон auth-states, бренд); где белая не отделяется заливкой — линия hairline
+  { el: 'Вход: кнопка Google (окно входа)', what: 'белая заливка к шторке (где нет линии)', min: GRAPHIC, v: (c) => { const p = googleButtonPaintForSurface(c.g.opaqueSheet!); return p.edge ? 99 : R(solid(brand(p.variant).bg), sheet(c)); } },
+  { el: 'Вход: кнопка Google (окно входа)', what: 'линия к шторке (светлые)', min: TONE, v: (c) => { const p = googleButtonPaintForSurface(c.g.opaqueSheet!); return p.edge ? R(over(p.edge, sheet(c)), sheet(c)) : 99; } },
+  { el: 'Вход: кнопка Google', what: 'подпись и спиннер на заливке', min: TEXT, v: (c) => { const b = brand(googleButtonPaintForSurface(c.g.opaqueSheet!).variant); return R(solid(b.fg), solid(b.bg)); } },
   { el: 'Вход: кнопка Apple (окно входа)', what: 'заливка к шторке', min: GRAPHIC, v: (c) => R(solid(c.g.isLight ? '#000000' : '#FFFFFF'), sheet(c)) },
   { el: 'Вход: главные кнопки (восстановление, «Позже»)', what: 'заливка ctaFill к шторке', min: GRAPHIC, v: (c) => R(over(c.g.ctaFill!, sheet(c)), sheet(c)) },
   { el: 'Вход: главные кнопки', what: 'подпись ctaFillInk на ctaFill', min: TEXT, v: (c) => onFill(c.g.ctaFillInk!, c.g.ctaFill!, sheet(c)) },
@@ -44,7 +46,8 @@ const PAIRS: Pair[] = [
   { el: 'Вход: карточка сбоя', what: 'тон buttonFill к шторке', min: TONE, v: (c) => R(over(c.g.buttonFill!, sheet(c)), sheet(c)) },
   { el: 'Вход: карточка сбоя', what: 'заголовок, причина и значок (text) на buttonFill', min: TEXT, v: (c) => onFill(c.g.text!, c.g.buttonFill!, sheet(c)) },
   // онбординг: вход и согласия (CleanOnboarding), фон bgTop/bg/bgBottom
-  { el: 'Онбординг: кнопка Google', what: 'заливка к фону', min: GRAPHIC, v: (c) => Math.min(...pages(c).map((p) => R(solid(brand(googleButtonVariantForSurface(c.g.bg!)).bg), p))) },
+  { el: 'Онбординг: кнопка Google', what: 'белая заливка к фону (где нет линии)', min: GRAPHIC, v: (c) => { const g = googleButtonPaintForSurface(c.g.bg!); return g.edge ? 99 : Math.min(...pages(c).map((p) => R(solid(brand(g.variant).bg), p))); } },
+  { el: 'Онбординг: кнопка Google', what: 'линия к фону (светлые)', min: TONE, v: (c) => { const g = googleButtonPaintForSurface(c.g.bg!); return g.edge ? Math.min(...pages(c).map((p) => R(over(g.edge!, p), p))) : 99; } },
   { el: 'Онбординг: кнопка Apple', what: 'заливка к фону', min: GRAPHIC, v: (c) => Math.min(...pages(c).map((p) => R(solid(c.g.isLight ? '#000000' : '#FFFFFF'), p))) },
   // «Аккаунт» (account_details): фон экрана, плашка
   { el: 'Аккаунт: кнопки-чипы на плашке', what: 'тон buttonFill к плашке', min: TONE, v: (c) => R(over(c.g.buttonFill!, plate(c)), plate(c)) },

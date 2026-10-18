@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 39 — Обычно занимаюсь выпечкой
+# Английский · Урок 7 · Занятие 39 — Вечер и дорога
 
-**Ситуация.** Вы рассказываете о выпечке по выходным, поездках на велосипеде и звонках знакомой.
+**Ситуация.** Вы рассказываете, как гуляете в парке, что скачиваете перед дорогой и как подруга встречает бабушку.
 
-**Что вы освоите:** использовать usually и often перед действием
-**Новые слова:** bake
+**Что вы освоите:** использовать usually и often перед действием в рассказе о привычках
+**Новые слова:** stroll, download, hug, update
+**Возвращаются:** park, film, song, phone, grandmother, garden, city
 
 ---
 
 ## Интро 1
 
-### Выходные на кухне
+### Вечер в парке
 
-Друг спрашивает, чем вы обычно занимаетесь дома в выходные. `bake` — «печь, заниматься выпечкой». `I usually bake` — «Я обычно занимаюсь выпечкой». `Usually` стоит перед действием `bake`. Здесь вы говорите о привычном занятии. Запах из кухни может собрать гостей быстрее приглашения.
+Воскресным вечером сосед спрашивает, как вы отдыхаете от городской суеты. Вы любите тихие дорожки и скамейки у воды. stroll — «гулять не спеша». Скажите: I usually stroll in the park — «Я обычно гуляю в парке». Слово usually стоит перед stroll.
 
-**Ответьте о своих выходных: «Я обычно занимаюсь выпечкой».**
+**Сосед спрашивает, как вы отдыхаете. Ответьте: «Я обычно гуляю в парке».**
 
-- ✅ **I usually bake.**
-- ❌ I usually bakes. — *После `I` нужно `bake`.*
-- ❌ I usually baking. — *Здесь нужна форма `bake`.*
+- ✅ **I usually stroll in the park.**
+- ❌ I usually strolls in the park. — *После I нужно stroll, без s.*
+- ❌ I usually strolling in the park. — *Здесь нужна форма stroll, без -ing.*
 
 ---
 
 ## Интро 2
 
-### На велосипеде
+### Долгая дорога
 
-Коллега спрашивает, как вы обычно добираетесь до работы. `I usually cycle` — «Я обычно езжу на велосипеде». `Usually` означает «обычно» и стоит перед действием `cycle`.
+Вы регулярно ездите поездом по маршруту, где интернет часто пропадает. Друг спрашивает, как вы обычно готовитесь к таким поездкам. download — «скачивать». Скажите: I often download films — «Я часто скачиваю фильмы». Слово often стоит перед download.
 
-**Ответьте коллеге: «Я обычно езжу на велосипеде».**
+**Друг спрашивает, как вы готовитесь к долгой дороге. Ответьте: «Я часто скачиваю фильмы».**
 
-- ✅ **I usually cycle.**
-- ❌ I usually cycles. — *После `I` нужно `cycle`.*
-- ❌ I usually cycling. — *Здесь нужна форма `cycle`.*
+- ✅ **I often download films.**
+- ❌ I often downloads films. — *После I нужно download, без s.*
+- ❌ I often downloading films. — *Здесь нужна форма download.*
 
 ---
 
 ## Интро 3
 
-### Звонки знакомой
+### Бабушка на вокзале
 
-Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`; после `she` у действия остаётся окончание `s`.
+Подруга встречает бабушку на вокзале и каждый раз крепко её обнимает. Друг со стороны видит эту сцену. hug — «обнимать». Скажите: She often hugs her grandmother — «Она часто обнимает бабушку». После she к hug добавляем s, а слово often остаётся перед hugs.
 
-**Скажите о знакомой: «Она часто звонит».**
+**Друг видит, как подруга встречает бабушку. Объясните: «Она часто обнимает бабушку».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *После `she` нужно `calls`.*
-- ❌ She often calling. — *Здесь нужна форма `calls`.*
+- ✅ **She often hugs her grandmother.**
+- ❌ She often hug her grandmother. — *После she нужно hugs, с s.*
+- ❌ She often hugging her grandmother. — *Здесь нужна форма hugs.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно занимаюсь выпечкой»**
+**1 · Карточка слова — stroll**
+<!-- interaction_id: en:lesson-07:session-39:word:stroll; family: word_card -->
+> **stroll** — гулять не спеша. I usually stroll in the park. — «Я обычно гуляю в парке». Гулять в спокойном темпе, для удовольствия.
+
+**2 · Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»**
 <!-- interaction_id: en:lesson-07:session-39:i01; family: phrase_builder -->
-Плитки: `bake` `usually` `I` → **I usually bake.**
+Плитки: `park` `often` `the` `in` `stroll` `usually` `I` → **I usually stroll in the park.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually stroll in the park.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — download**
+<!-- interaction_id: en:lesson-07:session-39:word:download; family: word_card -->
+> **download** — скачивать. I often download films. — «Я часто скачиваю фильмы». Получать файл по сети и сохранять на своём устройстве, например телефоне или компьютере.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-39:i02; family: listen_choose -->
-🔊 *bake* → **bake** · cycle · visit
-- cycle — *В записи первое слово — `bake`, а в этом варианте — `cycle`.*
-- visit — *В записи первое слово — `bake`, а в этом варианте — `visit`.*
+🔊 *download* → **download** · draw · drive
+- draw — *В записи первое слово — `download`, а в этом варианте — `draw`.*
+- drive — *В записи первое слово — `download`, а в этом варианте — `drive`.*
 
-**3 · Скажите «Я обычно занимаюсь выпечкой»**
+**5 · Карточка слова — hug**
+<!-- interaction_id: en:lesson-07:session-39:word:hug; family: word_card -->
+> **hug** — обнимать. She often hugs her grandmother. — «Она часто обнимает бабушку». Обхватывать руками и прижимать к себе; здесь — обнимать бабушку.
+
+**6 · Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-39:i03; family: context_gap_grammar -->
-I usually ___. → **bake** · bakes · baking
-- bakes — *После `I` нужно `bake`.*
-- baking — *Здесь нужна форма `bake`.*
+She often ___ her grandmother. → **hugs** · hug · hugging
+- hug — *После `She` нужно `hugs`.*
+- hugging — *Здесь нужна форма `hugs`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-39:i04; family: speed_match -->
-bake — печь · cycle — ездить на велосипеде · bottles — бутылки · violin — скрипка
+stroll — гулять не спеша · download — скачивать · hug — обнимать · park — парк
 
-**5 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-39:i05; family: listen_build_dictation -->
-🔊 *I usually bake.* Плитки: `bake` `usually` `I` → **I usually bake.**
+🔊 *I often download films.* Плитки: `films` `downloads` `download` `often` `I` → **I often download films.**
+*(плитка `downloads` лишняя: здесь нужно `download` — `I often download films.`)*
 
-**6 · Расскажите о дороге на работу: «Я обычно езжу на велосипеде»**
+**9 · Карточка слова — update**
+<!-- interaction_id: en:lesson-07:session-39:word:update; family: word_card -->
+> **update** — обновлять. I usually update my phone. — «Я обычно обновляю телефон». Здесь — устанавливать обновление программного обеспечения телефона, а не покупать новый аппарат.
+
+**10 · Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»**
 <!-- interaction_id: en:lesson-07:session-39:i06; family: phrase_builder -->
-Плитки: `cycle` `usually` `I` → **I usually cycle.**
+Плитки: `phone` `often` `my` `update` `usually` `I` → **I usually update my phone.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually update my phone.`)*
 
-**7 · Скажите о знакомой «Она часто звонит»**
+**11 · Подруга спрашивает про вашего брата. Скажите: «Он обычно гуляет в парке». Используйте stroll**
 <!-- interaction_id: en:lesson-07:session-39:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **He usually strolls in the park.**
 
-**8 · Скажите «Она часто звонит»**
+**12 · Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-39:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *После `she` нужно `calls`.*
-- calling — *Здесь нужна форма `calls`.*
+He often ___ his phone. → **updates** · update · updating
+- update — *После `He` нужно `updates`.*
+- updating — *Здесь нужна форма `updates`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-39:i09; family: listen_choose -->
-🔊 *I usually bake.* → **I usually bake.** · I usually walk. · I usually cycle.
-- I usually walk. — *В записи последнее слово — `bake`, а в этом варианте — `walk`.*
-- I usually cycle. — *В записи последнее слово — `bake`, а в этом варианте — `cycle`.*
+🔊 *I usually stroll in the park.* → **I usually stroll in the park.** · I usually stroll in the garden. · I usually stroll in the city.
+- I usually stroll in the garden. — *В записи последнее слово — `park`, а в этом варианте — `garden`.*
+- I usually stroll in the city. — *В записи последнее слово — `park`, а в этом варианте — `city`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-39:i10; family: speed_match -->
-visit — посещать · bake — печь · bottles — бутылки · cycle — ездить на велосипеде
+update — обновлять · hug — обнимать · download — скачивать · stroll — гулять не спеша
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-39:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *She often hugs her grandmother.* Плитки: `grandmother` `hug` `her` `hugs` `often` `She` → **She often hugs her grandmother.**
+*(плитка `hug` лишняя: здесь нужно `hugs` — `She often hugs her grandmother.`)*
 
-**12 · Вы обсуждаете музыкальные инструменты. Спросите подругу «У тебя есть скрипка?»**
+**16 · Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»**
 <!-- interaction_id: en:lesson-07:session-39:i12; family: phrase_builder -->
-Плитки: `violin` `a` `have` `you` `Do` → **Do you have a violin?**
+Плитки: `songs` `download` `downloads` `often` `She` → **She often downloads songs.**
+*(плитка `download` лишняя: здесь нужно `downloads` — `She often downloads songs.`)*
 
-**13 · Спросите друга «Ты посещаешь парки?»**
+**17 · Знакомый спрашивает, что брат обычно делает при появлении обновления системы на телефоне. Скажите: «Он обычно обновляет телефон»**
 <!-- interaction_id: en:lesson-07:session-39:i13; family: scripted_repeat_compare -->
-🎙 **Do you visit parks?**
+🎙 **He usually updates his phone.**
 
-**14 · Скажите «Я обычно езжу на велосипеде»**
+**18 · Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-39:i14; family: context_gap_grammar -->
-I ___ cycle. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `cycle`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `cycle` не ставим.*
+I ___ download films. → **often** · does · am
+- does — *Для «часто» нужно `often` перед `download`.*
+- am — *Для «часто» нужно `often`; `am` перед `download` не ставим.*
 
-**15 · Послушайте и выберите вопрос**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-39:i15; family: listen_choose -->
-🔊 *Do you have bottles?* → **Do you have bottles?** · Do you have tickets? · Do you have maps?
-- Do you have tickets? — *В записи последнее слово — `bottles`, а в этом варианте — `tickets`.*
-- Do you have maps? — *В записи последнее слово — `bottles`, а в этом варианте — `maps`.*
+🔊 *She often hugs her grandmother.* → **She often hugs her grandmother.** · She often hugs her sister. · She often hugs her brother.
+- She often hugs her sister. — *В записи последнее слово — `grandmother`, а в этом варианте — `sister`.*
+- She often hugs her brother. — *В записи последнее слово — `grandmother`, а в этом варианте — `brother`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-39:i16; family: speed_match -->
-bake — печь · violin — скрипка · visit — посещать · bottles — бутылки
+download — скачивать · update — обновлять · hug — обнимать · film — фильм
 
-**17 · Друг спрашивает, чем Том обычно занимается дома в выходные. Скажите «Том обычно занимается выпечкой»**
+**21 · Сосед спрашивает, где гуляет ваша сестра. Скажите: «Она обычно гуляет в парке». Используйте stroll**
 <!-- interaction_id: en:lesson-07:session-39:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually bakes.**
-
+🎙 **She usually strolls in the park.**

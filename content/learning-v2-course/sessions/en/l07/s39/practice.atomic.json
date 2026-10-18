@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-39:word:stroll",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:stroll:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stroll",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:stroll:audio",
+            "transcript": "stroll"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:stroll:r1",
+              "targetText": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша. I usually stroll in the park. — «Я обычно гуляю в парке». Гулять в спокойном темпе, для удовольствия.",
+                "uk": "гуляти неквапом. I usually stroll in the park. — «Я зазвичай гуляю в парку». Гуляти в спокійному темпі, для задоволення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stroll",
+            "definitionByLocale": {
+              "ru": "гулять не спеша. I usually stroll in the park. — «Я обычно гуляю в парке». Гулять в спокойном темпе, для удовольствия.",
+              "uk": "гуляти неквапом. I usually stroll in the park. — «Я зазвичай гуляю в парку». Гуляти в спокійному темпі, для задоволення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually stroll in the park.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»",
+            "uk": "Сусід питає, як ви проводите вечір. Скажіть: «Я зазвичай гуляю в парку»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "stroll",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually stroll in the park.`",
+                "uk": "тут потрібно `usually` — `I usually stroll in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:download",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — download",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:download:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — download",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:download:audio",
+            "transcript": "download"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:download:r1",
+              "targetText": "download",
+              "meaningByLocale": {
+                "ru": "скачивать. I often download films. — «Я часто скачиваю фильмы». Получать файл по сети и сохранять на своём устройстве, например телефоне или компьютере.",
+                "uk": "завантажувати. I often download films. — «Я часто завантажую фільми». Отримувати файл через мережу й зберігати на своєму пристрої, наприклад телефоні чи комп’ютері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "download",
+            "definitionByLocale": {
+              "ru": "скачивать. I often download films. — «Я часто скачиваю фильмы». Получать файл по сети и сохранять на своём устройстве, например телефоне или компьютере.",
+              "uk": "завантажувати. I often download films. — «Я часто завантажую фільми». Отримувати файл через мережу й зберігати на своєму пристрої, наприклад телефоні чи комп’ютері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i02:r1",
+            "text": "download"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r3",
+            "text": "drive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i02:audio",
+            "transcript": "download"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i02:r1",
+              "targetText": "download",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r2",
+              "targetText": "draw",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r3",
+              "targetText": "drive",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `download`, а в этом варианте — `draw`.",
+                "uk": "У записі перше слово — `download`, а в цьому варіанті — `draw`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `download`, а в этом варианте — `drive`.",
+                "uk": "У записі перше слово — `download`, а в цьому варіанті — `drive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:hug",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:hug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:hug:audio",
+            "transcript": "hug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:hug:r1",
+              "targetText": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать. She often hugs her grandmother. — «Она часто обнимает бабушку». Обхватывать руками и прижимать к себе; здесь — обнимать бабушку.",
+                "uk": "обіймати. She often hugs her grandmother. — «Вона часто обіймає бабусю». Охоплювати руками й притискати до себе; тут — обіймати бабусю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hug",
+            "definitionByLocale": {
+              "ru": "обнимать. She often hugs her grandmother. — «Она часто обнимает бабушку». Обхватывать руками и прижимать к себе; здесь — обнимать бабушку.",
+              "uk": "обіймати. She often hugs her grandmother. — «Вона часто обіймає бабусю». Охоплювати руками й притискати до себе; тут — обіймати бабусю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i03:r1",
+            "text": "hugs"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r2",
+            "text": "hug"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r3",
+            "text": "hugging"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+            "uk": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ her grandmother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i03:r1",
+              "text": "hugs"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r2",
+              "text": "hug"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r3",
+              "text": "hugging"
+            }
+          ],
+          "testedDimension": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `hugs`.",
+                "uk": "Після `She` потрібно `hugs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `hugs`.",
+                "uk": "Тут потрібна форма `hugs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i04:p1",
+              "target": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша",
+                "uk": "прогулюватися неквапом"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p2",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p3",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stroll",
+            "download",
+            "hug",
+            "park"
+          ],
+          "rightColumn": [
+            "гулять не спеша",
+            "скачивать",
+            "обнимать",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i05:audio",
+            "transcript": "I often download films."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often download films.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "download",
+            "films"
+          ],
+          "authoredDistractorTokens": [
+            "downloads"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `download` — `I often download films.`",
+                "uk": "тут потрібно `download` — `I often download films.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:update",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — update",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:update:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — update",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:update:audio",
+            "transcript": "update"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:update:r1",
+              "targetText": "update",
+              "meaningByLocale": {
+                "ru": "обновлять. I usually update my phone. — «Я обычно обновляю телефон». Здесь — устанавливать обновление программного обеспечения телефона, а не покупать новый аппарат.",
+                "uk": "оновлювати. I usually update my phone. — «Я зазвичай оновлюю телефон». Тут — установлювати оновлення програмного забезпечення телефона, а не купувати новий апарат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "update",
+            "definitionByLocale": {
+              "ru": "обновлять. I usually update my phone. — «Я обычно обновляю телефон». Здесь — устанавливать обновление программного обеспечения телефона, а не покупать новый аппарат.",
+              "uk": "оновлювати. I usually update my phone. — «Я зазвичай оновлюю телефон». Тут — установлювати оновлення програмного забезпечення телефона, а не купувати новий апарат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually update my phone.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»",
+            "uk": "Друг питає, що ви зазвичай робите, коли телефон пропонує оновлення системи. Скажіть: «Я зазвичай оновлюю телефон»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "update",
+            "my",
+            "phone"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually update my phone.`",
+                "uk": "тут потрібно `usually` — `I usually update my phone.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает про вашего брата. Скажите: «Он обычно гуляет в парке». Используйте stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает про вашего брата. Скажите: «Он обычно гуляет в парке». Используйте stroll",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i07:audio",
+            "transcript": "He usually strolls in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually strolls in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i08:r1",
+            "text": "updates"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r2",
+            "text": "update"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r3",
+            "text": "updating"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+            "uk": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He often ___ his phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i08:r1",
+              "text": "updates"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r2",
+              "text": "update"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r3",
+              "text": "updating"
+            }
+          ],
+          "testedDimension": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `updates`.",
+                "uk": "Після `He` потрібно `updates`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `updates`.",
+                "uk": "Тут потрібна форма `updates`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i09:r1",
+            "text": "I usually stroll in the park."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r2",
+            "text": "I usually stroll in the garden."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r3",
+            "text": "I usually stroll in the city."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i09:audio",
+            "transcript": "I usually stroll in the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i09:r1",
+              "targetText": "I usually stroll in the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r2",
+              "targetText": "I usually stroll in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r3",
+              "targetText": "I usually stroll in the city.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, а в этом варианте — `garden`.",
+                "uk": "У записі останнє слово — `park`, а в цьому варіанті — `garden`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, а в этом варианте — `city`.",
+                "uk": "У записі останнє слово — `park`, а в цьому варіанті — `city`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i10:p1",
+              "target": "update",
+              "meaningByLocale": {
+                "ru": "обновлять",
+                "uk": "оновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p2",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p3",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p4",
+              "target": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша",
+                "uk": "прогулюватися неквапом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "update",
+            "hug",
+            "download",
+            "stroll"
+          ],
+          "rightColumn": [
+            "обновлять",
+            "обнимать",
+            "скачивать",
+            "гулять не спеша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i11:audio",
+            "transcript": "She often hugs her grandmother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often hugs her grandmother.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "hugs",
+            "her",
+            "grandmother"
+          ],
+          "authoredDistractorTokens": [
+            "hug"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hugs` — `She often hugs her grandmother.`",
+                "uk": "тут потрібно `hugs` — `She often hugs her grandmother.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She often downloads songs.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»",
+            "uk": "Ви розповідаєте про сестру. Скажіть: «Вона часто завантажує пісні»"
+          },
+          "orderedTokens": [
+            "She",
+            "often",
+            "downloads",
+            "songs"
+          ],
+          "authoredDistractorTokens": [
+            "download"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `downloads` — `She often downloads songs.`",
+                "uk": "тут потрібно `downloads` — `She often downloads songs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знакомый спрашивает, что брат обычно делает при появлении обновления системы на телефоне. Скажите: «Он обычно обновляет телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Знакомый спрашивает, что брат обычно делает при появлении обновления системы на телефоне. Скажите: «Он обычно обновляет телефон»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i13:audio",
+            "transcript": "He usually updates his phone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually updates his phone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+            "uk": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ download films.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `download`.",
+                "uk": "Для «часто» потрібно `often` перед `download`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `download` не ставим.",
+                "uk": "Для «часто» потрібно `often`; `am` перед `download` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i15:r1",
+            "text": "She often hugs her grandmother."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r2",
+            "text": "She often hugs her sister."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r3",
+            "text": "She often hugs her brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i15:audio",
+            "transcript": "She often hugs her grandmother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i15:r1",
+              "targetText": "She often hugs her grandmother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r2",
+              "targetText": "She often hugs her sister.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r3",
+              "targetText": "She often hugs her brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `grandmother`, а в этом варианте — `sister`.",
+                "uk": "У записі останнє слово — `grandmother`, а в цьому варіанті — `sister`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `grandmother`, а в этом варианте — `brother`.",
+                "uk": "У записі останнє слово — `grandmother`, а в цьому варіанті — `brother`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i16:p1",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p2",
+              "target": "update",
+              "meaningByLocale": {
+                "ru": "обновлять",
+                "uk": "оновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p3",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p4",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            }
+          ],
+          "leftColumn": [
+            "download",
+            "update",
+            "hug",
+            "film"
+          ],
+          "rightColumn": [
+            "скачивать",
+            "обновлять",
+            "обнимать",
+            "фильм"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, где гуляет ваша сестра. Скажите: «Она обычно гуляет в парке». Используйте stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, где гуляет ваша сестра. Скажите: «Она обычно гуляет в парке». Используйте stroll",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i17:audio",
+            "transcript": "She usually strolls in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually strolls in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-39:word:stroll",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:stroll:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stroll",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:stroll:audio",
+            "transcript": "stroll"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:stroll:r1",
+              "targetText": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша. I usually stroll in the park. — «Я обычно гуляю в парке». Гулять в спокойном темпе, для удовольствия.",
+                "uk": "гуляти неквапом. I usually stroll in the park. — «Я зазвичай гуляю в парку». Гуляти в спокійному темпі, для задоволення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stroll",
+            "definitionByLocale": {
+              "ru": "гулять не спеша. I usually stroll in the park. — «Я обычно гуляю в парке». Гулять в спокойном темпе, для удовольствия.",
+              "uk": "гуляти неквапом. I usually stroll in the park. — «Я зазвичай гуляю в парку». Гуляти в спокійному темпі, для задоволення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід питає, як ви проводите вечір. Скажіть: «Я зазвичай гуляю в парку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає, як ви проводите вечір. Скажіть: «Я зазвичай гуляю в парку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually stroll in the park.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает, как вы проводите вечер. Скажите: «Я обычно гуляю в парке»",
+            "uk": "Сусід питає, як ви проводите вечір. Скажіть: «Я зазвичай гуляю в парку»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "stroll",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід питає, як ви проводите вечір. Скажіть: «Я зазвичай гуляю в парку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually stroll in the park.`",
+                "uk": "тут потрібно `usually` — `I usually stroll in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:download",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — download",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:download:audio"
+        ],
+        "accessibilityLabel": "Картка слова — download",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:download:audio",
+            "transcript": "download"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:download:r1",
+              "targetText": "download",
+              "meaningByLocale": {
+                "ru": "скачивать. I often download films. — «Я часто скачиваю фильмы». Получать файл по сети и сохранять на своём устройстве, например телефоне или компьютере.",
+                "uk": "завантажувати. I often download films. — «Я часто завантажую фільми». Отримувати файл через мережу й зберігати на своєму пристрої, наприклад телефоні чи комп’ютері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "download",
+            "definitionByLocale": {
+              "ru": "скачивать. I often download films. — «Я часто скачиваю фильмы». Получать файл по сети и сохранять на своём устройстве, например телефоне или компьютере.",
+              "uk": "завантажувати. I often download films. — «Я часто завантажую фільми». Отримувати файл через мережу й зберігати на своєму пристрої, наприклад телефоні чи комп’ютері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i02:r1",
+            "text": "download"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i02:r3",
+            "text": "drive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i02:audio",
+            "transcript": "download"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i02:r1",
+              "targetText": "download",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r2",
+              "targetText": "draw",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r3",
+              "targetText": "drive",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `download`, а в этом варианте — `draw`.",
+                "uk": "У записі перше слово — `download`, а в цьому варіанті — `draw`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `download`, а в этом варианте — `drive`.",
+                "uk": "У записі перше слово — `download`, а в цьому варіанті — `drive`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:hug",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:hug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:hug:audio",
+            "transcript": "hug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:hug:r1",
+              "targetText": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать. She often hugs her grandmother. — «Она часто обнимает бабушку». Обхватывать руками и прижимать к себе; здесь — обнимать бабушку.",
+                "uk": "обіймати. She often hugs her grandmother. — «Вона часто обіймає бабусю». Охоплювати руками й притискати до себе; тут — обіймати бабусю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hug",
+            "definitionByLocale": {
+              "ru": "обнимать. She often hugs her grandmother. — «Она часто обнимает бабушку». Обхватывать руками и прижимать к себе; здесь — обнимать бабушку.",
+              "uk": "обіймати. She often hugs her grandmother. — «Вона часто обіймає бабусю». Охоплювати руками й притискати до себе; тут — обіймати бабусю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i03:r1",
+            "text": "hugs"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r2",
+            "text": "hug"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i03:r3",
+            "text": "hugging"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг видит, как подруга встречает бабушку. Скажите: «Она часто обнимает бабушку». Выберите слово",
+            "uk": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ her grandmother.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i03:r1",
+              "text": "hugs"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r2",
+              "text": "hug"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r3",
+              "text": "hugging"
+            }
+          ],
+          "testedDimension": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `She` нужно `hugs`.",
+                "uk": "Після `She` потрібно `hugs`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг бачить, як подруга зустрічає бабусю. Скажіть: «Вона часто обіймає бабусю». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `hugs`.",
+                "uk": "Тут потрібна форма `hugs`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i04:p1",
+              "target": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша",
+                "uk": "прогулюватися неквапом"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p2",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p3",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i04:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stroll",
+            "download",
+            "hug",
+            "park"
+          ],
+          "rightColumn": [
+            "прогулюватися неквапом",
+            "завантажувати",
+            "обіймати",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i05:audio",
+            "transcript": "I often download films."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often download films.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "download",
+            "films"
+          ],
+          "authoredDistractorTokens": [
+            "downloads"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `download` — `I often download films.`",
+                "uk": "тут потрібно `download` — `I often download films.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:word:update",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — update",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:word:update:audio"
+        ],
+        "accessibilityLabel": "Картка слова — update",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:word:update:audio",
+            "transcript": "update"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:word:update:r1",
+              "targetText": "update",
+              "meaningByLocale": {
+                "ru": "обновлять. I usually update my phone. — «Я обычно обновляю телефон». Здесь — устанавливать обновление программного обеспечения телефона, а не покупать новый аппарат.",
+                "uk": "оновлювати. I usually update my phone. — «Я зазвичай оновлюю телефон». Тут — установлювати оновлення програмного забезпечення телефона, а не купувати новий апарат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "update",
+            "definitionByLocale": {
+              "ru": "обновлять. I usually update my phone. — «Я обычно обновляю телефон». Здесь — устанавливать обновление программного обеспечения телефона, а не покупать новый аппарат.",
+              "uk": "оновлювати. I usually update my phone. — «Я зазвичай оновлюю телефон». Тут — установлювати оновлення програмного забезпечення телефона, а не купувати новий апарат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг питає, що ви зазвичай робите, коли телефон пропонує оновлення системи. Скажіть: «Я зазвичай оновлюю телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, що ви зазвичай робите, коли телефон пропонує оновлення системи. Скажіть: «Я зазвичай оновлюю телефон»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually update my phone.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы обычно делаете, когда телефон предлагает обновление системы. Скажите: «Я обычно обновляю телефон»",
+            "uk": "Друг питає, що ви зазвичай робите, коли телефон пропонує оновлення системи. Скажіть: «Я зазвичай оновлюю телефон»"
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "update",
+            "my",
+            "phone"
+          ],
+          "authoredDistractorTokens": [
+            "often"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг питає, що ви зазвичай робите, коли телефон пропонує оновлення системи. Скажіть: «Я зазвичай оновлюю телефон»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `usually` — `I usually update my phone.`",
+                "uk": "тут потрібно `usually` — `I usually update my phone.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашого брата. Скажіть: «Він зазвичай гуляє в парку». Використайте stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Він зазвичай гуляє в парку». Використайте stroll",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i07:audio",
+            "transcript": "He usually strolls in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually strolls in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i08:r1",
+            "text": "updates"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r2",
+            "text": "update"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i08:r3",
+            "text": "updating"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает про вашего брата. Скажите: «Он часто обновляет телефон». Выберите слово",
+            "uk": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He often ___ his phone.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i08:r1",
+              "text": "updates"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r2",
+              "text": "update"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r3",
+              "text": "updating"
+            }
+          ],
+          "testedDimension": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `He` нужно `updates`.",
+                "uk": "Після `He` потрібно `updates`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Друг питає про вашого брата. Скажіть: «Він часто оновлює телефон». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `updates`.",
+                "uk": "Тут потрібна форма `updates`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i09:r1",
+            "text": "I usually stroll in the park."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r2",
+            "text": "I usually stroll in the garden."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i09:r3",
+            "text": "I usually stroll in the city."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i09:audio",
+            "transcript": "I usually stroll in the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i09:r1",
+              "targetText": "I usually stroll in the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r2",
+              "targetText": "I usually stroll in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r3",
+              "targetText": "I usually stroll in the city.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, а в этом варианте — `garden`.",
+                "uk": "У записі останнє слово — `park`, а в цьому варіанті — `garden`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, а в этом варианте — `city`.",
+                "uk": "У записі останнє слово — `park`, а в цьому варіанті — `city`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i10:p1",
+              "target": "update",
+              "meaningByLocale": {
+                "ru": "обновлять",
+                "uk": "оновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p2",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p3",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i10:p4",
+              "target": "stroll",
+              "meaningByLocale": {
+                "ru": "гулять не спеша",
+                "uk": "прогулюватися неквапом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "update",
+            "hug",
+            "download",
+            "stroll"
+          ],
+          "rightColumn": [
+            "оновлювати",
+            "обіймати",
+            "завантажувати",
+            "прогулюватися неквапом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i11:audio",
+            "transcript": "She often hugs her grandmother."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She often hugs her grandmother.",
+          "orderedTokens": [
+            "She",
+            "often",
+            "hugs",
+            "her",
+            "grandmother"
+          ],
+          "authoredDistractorTokens": [
+            "hug"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `hugs` — `She often hugs her grandmother.`",
+                "uk": "тут потрібно `hugs` — `She often hugs her grandmother.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви розповідаєте про сестру. Скажіть: «Вона часто завантажує пісні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви розповідаєте про сестру. Скажіть: «Вона часто завантажує пісні»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She often downloads songs.",
+          "localizedMeaning": {
+            "ru": "Вы рассказываете о сестре. Скажите: «Она часто скачивает песни»",
+            "uk": "Ви розповідаєте про сестру. Скажіть: «Вона часто завантажує пісні»"
+          },
+          "orderedTokens": [
+            "She",
+            "often",
+            "downloads",
+            "songs"
+          ],
+          "authoredDistractorTokens": [
+            "download"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви розповідаєте про сестру. Скажіть: «Вона часто завантажує пісні»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `downloads` — `She often downloads songs.`",
+                "uk": "тут потрібно `downloads` — `She often downloads songs.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знайомий питає, що брат зазвичай робить, коли на телефоні з’являється оновлення системи. Скажіть: «Він зазвичай оновлює телефон»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i13:audio"
+        ],
+        "accessibilityLabel": "Знайомий питає, що брат зазвичай робить, коли на телефоні з’являється оновлення системи. Скажіть: «Він зазвичай оновлює телефон»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i13:audio",
+            "transcript": "He usually updates his phone."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He usually updates his phone.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы собираетесь в дорогу. Скажите: «Я часто скачиваю фильмы». Выберите слово",
+            "uk": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ download films.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-39:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `download`.",
+                "uk": "Для «часто» потрібно `often` перед `download`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви збираєтеся в дорогу. Скажіть: «Я часто завантажую фільми». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `download` не ставим.",
+                "uk": "Для «часто» потрібно `often`; `am` перед `download` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-39:i15:r1",
+            "text": "She often hugs her grandmother."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r2",
+            "text": "She often hugs her sister."
+          },
+          {
+            "responseId": "en:lesson-07:session-39:i15:r3",
+            "text": "She often hugs her brother."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i15:audio",
+            "transcript": "She often hugs her grandmother."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-39:i15:r1",
+              "targetText": "She often hugs her grandmother.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r2",
+              "targetText": "She often hugs her sister.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r3",
+              "targetText": "She often hugs her brother.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-39:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `grandmother`, а в этом варианте — `sister`.",
+                "uk": "У записі останнє слово — `grandmother`, а в цьому варіанті — `sister`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-39:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `grandmother`, а в этом варианте — `brother`.",
+                "uk": "У записі останнє слово — `grandmother`, а в цьому варіанті — `brother`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-39:i16:p1",
+              "target": "download",
+              "meaningByLocale": {
+                "ru": "скачивать",
+                "uk": "завантажувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p2",
+              "target": "update",
+              "meaningByLocale": {
+                "ru": "обновлять",
+                "uk": "оновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p3",
+              "target": "hug",
+              "meaningByLocale": {
+                "ru": "обнимать",
+                "uk": "обіймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-39:i16:p4",
+              "target": "film",
+              "meaningByLocale": {
+                "ru": "фильм",
+                "uk": "фільм"
+              }
+            }
+          ],
+          "leftColumn": [
+            "download",
+            "update",
+            "hug",
+            "film"
+          ],
+          "rightColumn": [
+            "завантажувати",
+            "оновлювати",
+            "обіймати",
+            "фільм"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-39:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, де гуляє ваша сестра. Скажіть: «Вона зазвичай гуляє в парку». Використайте stroll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, де гуляє ваша сестра. Скажіть: «Вона зазвичай гуляє в парку». Використайте stroll",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-39:i17:audio",
+            "transcript": "She usually strolls in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually strolls in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-39:word:stroll",
+      "correctText": "stroll",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i01",
+      "correctText": "I usually stroll in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:word:download",
+      "correctText": "download",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i02",
+      "correctText": "download",
+      "correctResponseId": "en:lesson-07:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:word:hug",
+      "correctText": "hug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i03",
+      "correctText": "hugs",
+      "correctResponseId": "en:lesson-07:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i05",
+      "correctText": "I often download films.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:word:update",
+      "correctText": "update",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i06",
+      "correctText": "I usually update my phone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i07",
+      "correctText": "He usually strolls in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i08",
+      "correctText": "updates",
+      "correctResponseId": "en:lesson-07:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i09",
+      "correctText": "I usually stroll in the park.",
+      "correctResponseId": "en:lesson-07:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i11",
+      "correctText": "She often hugs her grandmother.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i12",
+      "correctText": "She often downloads songs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i13",
+      "correctText": "He usually updates his phone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i14",
+      "correctText": "often",
+      "correctResponseId": "en:lesson-07:session-39:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i15",
+      "correctText": "She often hugs her grandmother.",
+      "correctResponseId": "en:lesson-07:session-39:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-39:i17",
+      "correctText": "She usually strolls in the park.",
+      "correctResponseId": null
+    }
+  ]
+}

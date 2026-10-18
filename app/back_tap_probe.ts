@@ -118,7 +118,7 @@ export function noteBackArrived(screen: string, via: string): void {
   clearProbes();
 }
 
-export const BACK_STEPS_PER_TAP = 12;
+export const BACK_STEPS_PER_TAP = 32; // было 12: к рендерам и эффектам Главной добавились причины рендеров и шаги группы вкладок
 let stepsForTap = 0;
 
 /**

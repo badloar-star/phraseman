@@ -9,6 +9,7 @@
 // ═════════════════════════════════════════════════════════════════════
 import { useEffect, useRef } from 'react';
 
+import { noteBackStep } from './back_tap_probe';
 import { IS_STORE_RELEASE } from './config';
 
 export const RENDER_CAUSE_WINDOW_MS = 10_000;
@@ -81,6 +82,9 @@ function useRenderCauseImpl(tag: string, getSnapshot: () => RenderCauseSnapshot,
     }
   }
   pendingRef.current = changed;
+  // зачем ([BACK-BTN] 18.10, координатор 03:06: Главная рисуется трижды за возврат — 110/75/55 мс): окно [HOME-RENDERS] на возврате не открывается (homeRuntimeActive не меняется), поэтому причины не было видно;
+  // пока есть тап «назад», каждый рендер корня пишет, какие значения изменились
+  if (tag === 'home') noteBackStep('home_cause', { changed: changed.slice(0, 8) });
 
   // таймер окна ставим в эффекте (не в рендере): закрытие по времени, либо при размонтировании
   useEffect(() => {

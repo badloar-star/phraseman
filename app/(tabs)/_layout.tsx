@@ -24,6 +24,7 @@ import { FLOATING_PILL_BOTTOM_GAP, TAB_DOCK_MIN_BOTTOM_PAD } from '../../compone
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
+import { noteBackStep } from '../back_tap_probe';
 import { setTabsShellMounted } from '../tabs_shell_state';
 import { whenHomePainted } from '../home_paint_marker';
 // Home stays behind the tab shell until React can commit the first frame. Its
@@ -865,6 +866,7 @@ function ReleasedTabLayout() {
   pathnameRef.current = pathname;
   const segmentsRef = useRef(segments);
   segmentsRef.current = segments;
+  noteBackStep('tabs_layout_render', { pathname, focusTick }); // зачем ([BACK-BTN] 18.10): рендер группы вкладок на линии возврата — он тянет Главную за собой
   traceTabsRenderWhy({ pathname, segments: segments.join('/'), studyTarget, width: tabPaneWidth, theme: t, activeIdx, visualIdx, physicalPageIdx, focusTick, devHubVisible, visited: visitedTabs.size, mounted: mountedTabs.size, router }, tabsInstRef.current);
   useEffect(() => {
     if (!TAP_LATENCY_TRACE_ENABLED) return undefined;
@@ -1101,6 +1103,7 @@ function ReleasedTabLayout() {
   useFocusEffect(useCallback(() => {
     // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): вернулся ли фокус группе вкладок после закрытия пейвола (только dev).
     if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs focus`); // guard-ok: временная трассировка
+    noteBackStep('tabs_focus_tick'); // зачем ([BACK-BTN] 18.10): фокус вернулся группе вкладок — сейчас вырастет focusTick и перерисуется Главная
     setFocusTick(tick => tick + 1);
     return () => { if (__DEV__) console.log(`[PAYWALL-CLOSE-FREEZE] t=${Date.now() % 100000} tabs blur`); }; // guard-ok: временная трассировка
   }, []));

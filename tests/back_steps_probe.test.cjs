@@ -37,7 +37,7 @@ test('шаг без тапа не пишется', () => {
 test('шаг после тапа пишется с seq и миллисекундами; шаги ≤ 12 на тап; новый тап обнуляет счёт', () => {
   probe.noteBackTap('today_tasks', 'BackButton');
   lines.length = 0;
-  for (let i = 0; i < 20; i += 1) probe.noteBackStep('home_render', { n: i });
+  for (let i = 0; i < probe.BACK_STEPS_PER_TAP + 8; i += 1) probe.noteBackStep('home_render', { n: i });
   assert.equal(lines.length, probe.BACK_STEPS_PER_TAP);
   const first = lines[0];
   assert.ok(first.startsWith('[BACK-BTN] step '));
@@ -149,6 +149,18 @@ test('long-frame: новый тап заменяет цепочку — преж
   clock.t += 16;
   first();
   assert.ok(lines.some((l) => l.includes('frames-cancelled')));
+});
+
+// зачем ([BACK-BTN] 18.10, координатор 03:06: Главная рисуется трижды за возврат): причина каждого рендера корня и рендер/фокус группы вкладок пишутся шагами возврата.
+test('шаги причин: home_cause в render_cause_probe, tabs_layout_render и tabs_focus_tick в _layout', () => {
+  const cause = fs.readFileSync('app/render_cause_probe.ts', 'utf8').replace(/\r\n/g, '\n');
+  assert.ok(cause.includes("import { noteBackStep } from './back_tap_probe';"));
+  assert.ok(cause.includes("if (tag === 'home') noteBackStep('home_cause', { changed: changed.slice(0, 8) });"));
+  const tabs = fs.readFileSync('app/(tabs)/_layout.tsx', 'utf8').replace(/\r\n/g, '\n');
+  assert.ok(tabs.includes("import { noteBackStep } from '../back_tap_probe';"));
+  assert.ok(tabs.includes("noteBackStep('tabs_layout_render', { pathname, focusTick });"));
+  assert.ok(tabs.includes("noteBackStep('tabs_focus_tick');"));
+  assert.ok(probe.BACK_STEPS_PER_TAP >= 24, 'потолок шагов вмещает рендеры, причины и эффекты');
 });
 
 test('long-frame: синхронный requestAnimationFrame при замороженных часах не уходит в бесконечную рекурсию (потолок кадров)', () => {

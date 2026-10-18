@@ -1,0 +1,26 @@
+--- старт (Главная) ---
+--- круг 1 ---
+--- круг 2 ---
+--- круг 3 ---
+--- круг 4 ---
+--- круг 5 ---
+--- круг 6 ---
+--- круг 7 ---
+--- круг 8 ---
+--- круг 9 ---
+--- круг 10 ---
+--- dev_state-replace Главная 1 ---
+10-18 02:05:39.013 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_instance:mount', '{"kinds":{"themed_art":"10/14 ~80MB","home_instance":"2/2","video_thumb":"16/16","lessons_instance":"1/1"},"liveDecodedMb":80}'
+10-18 02:05:39.024 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"10/14 ~80MB","home_instance":"2/2","video_thumb":"16/16","lessons_instance":"1/1"},"liveDecodedMb":80,"focusTick":0}'
+10-18 02:05:39.373 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"10/14 ~80MB","home_instance":"2/2","video_thumb":"16/16","lessons_instance":"1/1"},"liveDecodedMb":80,"focusTick":1}'
+10-18 02:05:42.030 I/ReactNativeJS(14415): '[MEM-HOME]', 'lessons_instance:mount', '{"kinds":{"themed_art":"10/15 ~80MB","home_instance":"2/2","video_thumb":"16/16","lessons_instance":"2/2"},"liveDecodedMb":80}'
+--- dev_state-replace Главная 2 ---
+10-18 02:05:53.123 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_instance:mount', '{"kinds":{"themed_art":"15/20 ~120MB","home_instance":"3/3","video_thumb":"24/24","lessons_instance":"2/2"},"liveDecodedMb":120}'
+10-18 02:05:53.132 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"15/20 ~120MB","home_instance":"3/3","video_thumb":"24/24","lessons_instance":"2/2"},"liveDecodedMb":120,"focusTick":0}'
+10-18 02:05:53.481 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"15/20 ~120MB","home_instance":"3/3","video_thumb":"24/24","lessons_instance":"2/2"},"liveDecodedMb":120,"focusTick":1}'
+10-18 02:05:55.568 I/ReactNativeJS(14415): '[MEM-HOME]', 'lessons_instance:mount', '{"kinds":{"themed_art":"15/21 ~120MB","home_instance":"3/3","video_thumb":"24/24","lessons_instance":"3/3"},"liveDecodedMb":120}'
+--- dev_state-replace Главная 3 ---
+10-18 02:06:05.510 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_instance:mount', '{"kinds":{"themed_art":"20/26 ~160MB","home_instance":"4/4","video_thumb":"32/32","lessons_instance":"3/3"},"liveDecodedMb":160}'
+10-18 02:06:05.532 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"20/26 ~160MB","home_instance":"4/4","video_thumb":"32/32","lessons_instance":"3/3"},"liveDecodedMb":160,"focusTick":0}'
+10-18 02:06:05.806 I/ReactNativeJS(14415): '[MEM-HOME]', 'home_focus', '{"kinds":{"themed_art":"20/26 ~160MB","home_instance":"4/4","video_thumb":"32/32","lessons_instance":"3/3"},"liveDecodedMb":160,"focusTick":1}'
+10-18 02:06:07.781 I/ReactNativeJS(14415): '[MEM-HOME]', 'lessons_instance:mount', '{"kinds":{"themed_art":"20/27 ~160MB","home_instance":"4/4","video_thumb":"32/32","lessons_instance":"4/4"},"liveDecodedMb":160}'

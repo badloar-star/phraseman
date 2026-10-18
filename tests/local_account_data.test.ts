@@ -31,9 +31,27 @@ describe('meaningful local account data', () => {
     expect(accountLocalDataKeysForToday('2026-07-12')).toContain('today_recommendation_history_v1');
   });
   it('rejects empty/default representations', () => {
-    ['', '0', 'false', 'null', '[]', '{}'].forEach((value) => {
+    ['', '0', 'false', 'null', '[]', '{}', '[ ]', '{ }'].forEach((value) => {
       expect(isMeaningfulStoredAccountValue(value)).toBe(false);
     });
+  });
+
+  // зачем (журнал iPhone 18.10): 44 предупреждения «JSON Parse error» за вход — обычные строки гнались через JSON.parse.
+  it('plain strings and numbers are meaningful without a parse warning; malformed JSON is meaningful and logged', () => {
+    const { DebugLogger } = require('../app/debug-logger');
+    const spy = jest.spyOn(DebugLogger, 'error').mockImplementation(() => undefined);
+    try {
+      ['pro', 'light', 'blue', 'classic', 'abc', '3d', 'en', '42', '"quoted"'].forEach((value) => {
+        expect(isMeaningfulStoredAccountValue(value)).toBe(true);
+      });
+      expect(spy).not.toHaveBeenCalled();
+      expect(isMeaningfulStoredAccountValue('[1, 2')).toBe(true);
+      expect(isMeaningfulStoredAccountValue('{"a":1}')).toBe(true);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(String(spy.mock.calls[0][1])).toContain('malformed_json shape=[ len=5');
+    } finally {
+      spy.mockRestore();
+    }
   });
 
   it('does not treat name-only onboarding state as upload-authorizing account data', async () => {

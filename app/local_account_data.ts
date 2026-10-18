@@ -45,14 +45,22 @@ export function isMeaningfulStoredAccountValue(raw: string | null): boolean {
   if (!value || value === '0' || value === 'false' || value === 'null' || value === '[]' || value === '{}') {
     return false;
   }
+  // зачем (журнал iPhone 18.10, 44 предупреждения за вход): обычные строки (имя, язык, тема) хранятся без JSON, а parse их
+  // ронял в catch. Для скаляров разбор ничего не решает — любая непустая строка/число и так «значимо»; разбираем только
+  // массивы/объекты. Битый [ или { — значим (безопасная сторона) и пишет причину без значения.
+  const first = value[0];
+  if (first !== '[' && first !== '{') return true;
   try {
     const parsed = JSON.parse(value);
     if (Array.isArray(parsed)) return parsed.length > 0;
     if (parsed && typeof parsed === 'object') return Object.keys(parsed).length > 0;
   } catch (e) {
-      // Non-empty scalar strings can be account-owned values.
-      DebugLogger.error('local_account_data:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    DebugLogger.error(
+      'local_account_data:parsed',
+      new Error(`malformed_json shape=${first} len=${value.length} reason=${e instanceof Error ? e.message.slice(0, 60) : typeof e}`),
+      'warning',
+    );
+  }
   return true;
 }
 

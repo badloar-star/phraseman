@@ -150,6 +150,8 @@ export default function CommunityPackSocialBar({
   // зачем (аудит Optimistic UI, 12.10): второй тап по «Добавить» в том же кадре (до перерисовки на «В моих наборах»)
   // запускал вторую запись и второй onAdded (двойной тост/переход). Замок меняется синхронно и снимается по завершении записи.
   const addInFlightRef = useRef(false);
+  /** Лайк в полёте — повторный тап до ответа игнорируется (координатор 18.10). */
+  const likeInFlightRef = useRef(false);
 
   useEffect(() => {
     // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
@@ -277,19 +279,19 @@ export default function CommunityPackSocialBar({
       console.log(`[OPT-UI] pack_like ignored reason=add_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
       return;
     }
+    // зачем (координатор 18.10, решение по аудиту (в)): пока лайк в полёте, повторный тап не ставится в очередь — иначе при отказе облака
+    // второй тап переворачивал уже откаченное сердце. Один запрос за раз; тап в это время пишет причину и ничего не меняет.
+    if (likeInFlightRef.current) {
+      console.log(`[OPT-UI] pack_like ignored reason=like_in_flight pack=${pack.id}`); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    likeInFlightRef.current = true;
     runLikePop();
     /** Оптимистично: цифра меняется сразу, сервер догоняет. */
     const expectedLiked = !snapshot.liked;
     opSeqRef.current += 1;
     setSnapshot((prev) => toggleLikeOptimistic(prev));
-    void (async () => {
-      let res: Awaited<ReturnType<typeof toggleCommunityPackLike>>;
-      try {
-        res = await toggleCommunityPackLike(pack.id);
-      } catch (error) {
-        // зачем (FINAL_PHASE п.7): исключение оставляло цифру перевёрнутой навсегда — откатываем тихо.
-        console.warn(`[PACK-LIKE] ${pack.id}: переключение не удалось — откат к liked=${!expectedLiked}`, error);
-        setSnapshot((prev) => (prev.liked === expectedLiked ? toggleLikeOptimistic(prev) : prev));
+    const likeFailedToast = () => {
         // зачем (аудит Optimistic UI 05.10, п.4): откат больше не молчит — как у избранного видео.
         emitAppEvent('action_toast', expectedLiked
           ? actionToastTri('error', {
@@ -304,12 +306,29 @@ export default function CommunityPackSocialBar({
             'pt-BR': 'Não foi possível remover a curtida. Tente de novo', vi: 'Không bỏ thích được. Hãy thử lại',
             id: 'Gagal membatalkan suka. Coba lagi', tr: 'Beğeni kaldırılamadı. Tekrar dene', pl: 'Nie udało się cofnąć polubienia. Spróbuj ponownie',
           }));
+    };
+    void (async () => {
+      let res: Awaited<ReturnType<typeof toggleCommunityPackLike>>;
+      try {
+        res = await toggleCommunityPackLike(pack.id);
+      } catch (error) {
+        // зачем (FINAL_PHASE п.7): исключение оставляло цифру перевёрнутой навсегда — откатываем.
+        console.warn(`[PACK-LIKE] ${pack.id}: переключение не удалось — откат к liked=${!expectedLiked}`, error); // guard-ok: catch называет причину
+        setSnapshot((prev) => (prev.liked === expectedLiked ? toggleLikeOptimistic(prev) : prev));
+        likeFailedToast();
         return;
+      } finally {
+        likeInFlightRef.current = false;
       }
       /**
        * Сверяемся с фактическим состоянием на устройстве: если параллельное нажатие
        * увело его в другую сторону, приводим цифру к правде, а не оставляем расхождение.
+       * Отказ облака (rejected) вернул флаг назад — та же сверка откатывает сердце и цифру, плюс тост.
        */
+      if (res.rejected) {
+        console.warn(`[PACK-LIKE] ${pack.id}: облако не приняло — откат к liked=${res.liked}`); // guard-ok: откат по отказу облака
+        likeFailedToast();
+      }
       if (res.liked === expectedLiked) return;
       setSnapshot((prev) => (prev.liked === res.liked ? prev : toggleLikeOptimistic(prev)));
     })();

@@ -150,12 +150,13 @@ export async function setCommunityPackLikeRemote(
   }
   if (!socialEnabled() || !packId || !userId) {
     DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк пропущен: облако=${socialEnabled()} packId=${packId || '—'} userId=${userId ? 'есть' : 'нет'}`);
-    return NOOP_RESULT;
+    // зачем (координатор 18.10): причина отказа различает «облака нет» (лайк остаётся локально) и «облако не приняло» (экран откатывает).
+    return { ...NOOP_RESULT, reason: 'cloud_off' };
   }
   /** Без авторизации правила отклонят и счётчик, и `pack_likes` — ждём вход. */
   if (!(await ensureSocialAuth())) {
     DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк пропущен: вход не поднялся packId=${packId}`);
-    return NOOP_RESULT;
+    return { ...NOOP_RESULT, reason: 'no_auth' };
   }
   const startedAt = Date.now();
   try {
@@ -169,7 +170,7 @@ export async function setCommunityPackLikeRemote(
     // откатывалась при следующем чтении, и никто не знал почему.
     const code = (e as { code?: string })?.code ?? 'unknown';
     DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк НЕ записан packId=${packId} код=${code} причина=${e instanceof Error ? e.message : String(e)} мсек=${Date.now() - startedAt}`);
-    return NOOP_RESULT;
+    return { ...NOOP_RESULT, reason: 'write_failed' };
   }
 }
 

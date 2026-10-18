@@ -99,6 +99,29 @@ describe('лайк реально ставится и снимается', () =>
     expect(await loadLikedCommunityPackIds()).toEqual(['ugc_like_1']);
   });
 
+  // 18.10 (координатор, решение по аудиту (б)): очереди повторной отправки нет — отказ облака откатывает локальный флаг сразу,
+  // экран по rejected откатывает сердце и цифру и показывает тост. Сборка без облака лайк оставляет.
+  test('облако отказало — локальный флаг возвращён, вызывающий получает rejected', async () => {
+    likeRemote.mockImplementation(async () => ({ changed: false, delta: 0, ok: false, reason: 'write_failed' }));
+    const res = await toggleCommunityPackLike('ugc_like_1');
+    expect(res).toEqual({ liked: false, changed: false, synced: false, rejected: true });
+    expect(await loadLikedCommunityPackIds()).toEqual([]);
+  });
+
+  test('вход не поднялся — тоже откат', async () => {
+    likeRemote.mockImplementation(async () => ({ changed: false, delta: 0, ok: false, reason: 'no_auth' }));
+    expect((await toggleCommunityPackLike('ugc_like_1')).rejected).toBe(true);
+    expect(await loadLikedCommunityPackIds()).toEqual([]);
+  });
+
+  test('сборка без облака — лайк остаётся на устройстве, без отката', async () => {
+    likeRemote.mockImplementation(async () => ({ changed: false, delta: 0, ok: false, reason: 'cloud_off' }));
+    const res = await toggleCommunityPackLike('ugc_like_1');
+    expect(res.rejected).toBeUndefined();
+    expect(res.liked).toBe(true);
+    expect(await loadLikedCommunityPackIds()).toEqual(['ugc_like_1']);
+  });
+
   test('пустой id ничего не делает', async () => {
     expect(await toggleCommunityPackLike('')).toEqual({ liked: false, changed: false });
     expect(likeRemote).not.toHaveBeenCalled();

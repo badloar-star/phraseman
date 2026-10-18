@@ -172,6 +172,8 @@ export type ToggleLikeResult = {
   changed: boolean;
   /** Долетела ли запись до Firestore (для точного пересчёта цифры в UI). */
   synced?: boolean;
+  /** Облако отказало (вход не поднялся / транзакция отклонена): локальный флаг возвращён, экран откатывает сердце и цифру с тостом. */
+  rejected?: boolean;
 };
 
 /**
@@ -211,6 +213,15 @@ async function toggleCommunityPackLikeNow(packId: string): Promise<ToggleLikeRes
     if (userId) {
       const res = await setCommunityPackLikeRemote(packId, userId, nextLiked);
       synced = res.changed;
+      // зачем (координатор 18.10, решение по аудиту (б)): очереди повторной отправки до релиза нет — лайк, который облако не приняло,
+      // при следующем чтении молча откатывался. Теперь откат сразу: локальный флаг назад, экран покажет тост. Сборка без облака
+      // ('cloud_off') — лайк законно остаётся на устройстве.
+      if (res.ok === false && res.reason !== 'cloud_off') {
+        console.warn(`[PACK-LIKE] облако не приняло pack=${packId} liked=${nextLiked} reason=${res.reason ?? 'unknown'} → откат локального флага`); // guard-ok: отказ облака, один раз на тап
+        await setCommunityPackLikedLocally(packId, wasLiked);
+        emitAppEvent('community_pack_like_changed', { packId, liked: wasLiked });
+        return { liked: wasLiked, changed: false, synced: false, rejected: true };
+      }
     }
   } catch (e) {
       // лайк остаётся локальным до следующей попытки

@@ -104,6 +104,11 @@ describe('источники: правки аудита на месте', () => 
     expect(bar).toContain('const addInFlightRef = useRef(false);');
     expect(bar).toContain('addInFlightRef.current = true;');
     expect(bar).toContain('.finally(() => { addInFlightRef.current = false; })');
+    // 18.10 (координатор, решение по аудиту (б)(в)): лайк в полёте — повтор игнорируется; отказ облака — откат с тостом.
+    expect(bar).toContain('const likeInFlightRef = useRef(false);');
+    expect(bar).toContain('[OPT-UI] pack_like ignored reason=like_in_flight');
+    expect(bar).toMatch(/\} finally \{\n\s+likeInFlightRef\.current = false;/);
+    expect(bar).toMatch(/if \(res\.rejected\) \{[\s\S]{0,200}likeFailedToast\(\);/);
   });
 
   it('Жалобы и Шпиль: нет немых catch, ранний выход итога ступени называет причину', () => {

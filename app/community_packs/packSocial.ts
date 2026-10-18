@@ -208,6 +208,11 @@ export type PackSocialTx = {
 export type PackSocialWriteResult = {
   /** Изменилось ли состояние (false — повторная операция, счётчик не трогали). */
   changed: boolean;
+  /**
+   * Почему запись не ушла (только при ok:false). зачем (координатор 18.10, лайк набора (б)): 'cloud_off' — сборка без облака,
+   * лайк законно остаётся только на устройстве; 'no_auth' / 'write_failed' — облако не приняло, экран откатывает сердце.
+   */
+  reason?: 'cloud_off' | 'no_auth' | 'write_failed';
   /** На сколько изменён счётчик набора. */
   delta: number;
   /**

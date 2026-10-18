@@ -4298,6 +4298,33 @@ export function resumePendingAccountSwitchQuarantine(): Promise<AccountSwitchRes
   return resumeAccountSwitchQuarantine(accountSwitchRecoveryDependencies());
 }
 
+const ACCOUNT_SWITCH_RECOVERY_RETRY_PAUSES_MS: readonly number[] = [800, 2_000];
+
+/**
+ * A5 (правило владельца 18.10 «выход без ошибки»): экран выхода/смены вызывает это вместо окна «Не удалось выйти —
+ * перезапусти приложение». Защитная запись смены уже стоит (recovery_required / wipe_failed) — доводим её тем же
+ * восстановлением, что при запуске, тихо до трёх попыток; повторяем только retryable (quarantined повтор не исправит).
+ */
+export async function resumeAccountSwitchRecovery(): Promise<{ ok: boolean }> {
+  const startedAt = Date.now();
+  for (let attempt = 0; ; attempt += 1) {
+    let result: AccountSwitchResumeResult;
+    try {
+      result = await resumePendingAccountSwitchQuarantine();
+    } catch (error) {
+      result = { result: 'retryable', reason: `threw_${identityErrorCode(error)}` };
+    }
+    console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'recovery_attempt', attempt: attempt + 1, result: result.result, reason: 'reason' in result ? result.reason : null, ms: Date.now() - startedAt })); // guard-ok: каждая попытка и её исход
+    if (result.result === 'completed' || result.result === 'none') return { ok: true };
+    const pauseMs = ACCOUNT_SWITCH_RECOVERY_RETRY_PAUSES_MS[attempt];
+    if (result.result === 'quarantined' || pauseMs === undefined) {
+      console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'recovery_gave_up', result: result.result, reason: result.reason, attempts: attempt + 1, ms: Date.now() - startedAt })); // guard-ok: ранний выход пишет причину
+      return { ok: false };
+    }
+    await new Promise<void>((resolve) => { setTimeout(resolve, pauseMs); });
+  }
+}
+
 async function prepareDurableAccountSwitch(ownerStableId: string): Promise<void> {
   const authUser = getAuth()?.currentUser;
   await prepareAccountSwitchQuarantine({

@@ -1510,9 +1510,9 @@
         {
           "text": "ready",
           "file": "753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
-          "assetPath": "assets/audio/learning-v2/session1-production-v1/ready-ash.mp3",
-          "contentHash": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce",
-          "byteSize": 30720
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
+          "contentHash": "4f80c81c618927fb614376485c9a83a293c07d462f9f3f44104b1d9cbabf9483",
+          "byteSize": 13440
         },
         {
           "text": "sorry",
@@ -2639,9 +2639,9 @@
         {
           "text": "ready",
           "file": "753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
-          "assetPath": "assets/audio/learning-v2/session1-production-v1/ready-ash.mp3",
-          "contentHash": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce",
-          "byteSize": 30720
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
+          "contentHash": "4f80c81c618927fb614376485c9a83a293c07d462f9f3f44104b1d9cbabf9483",
+          "byteSize": 13440
         },
         {
           "text": "tired",
@@ -3221,9 +3221,9 @@
         {
           "text": "ready",
           "file": "753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
-          "assetPath": "assets/audio/learning-v2/session1-production-v1/ready-ash.mp3",
-          "contentHash": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce",
-          "byteSize": 30720
+          "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/753cf04b371c47cab09c531d8b15431e30baad7ef2b30e5800c50396d7a5f12a.mp3",
+          "contentHash": "4f80c81c618927fb614376485c9a83a293c07d462f9f3f44104b1d9cbabf9483",
+          "byteSize": 13440
         }
       ]
     },
@@ -18453,8 +18453,8 @@
           "text": "faded",
           "file": "69cab3dbbcda9a716527eee66b202c91bf4b76e1a6f34cfc1eaedbbe3869a7ec.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/69cab3dbbcda9a716527eee66b202c91bf4b76e1a6f34cfc1eaedbbe3869a7ec.mp3",
-          "contentHash": "131d358e21f767bd3c763d9385af5195ddae25b31fee99dc27faf9264dc5a556",
-          "byteSize": 29952
+          "contentHash": "c596f314f37a6fa661be021f1f686918a4a6be6a8ce0c1f2f3427923f7a1bf11",
+          "byteSize": 31488
         }
       ]
     },
@@ -97467,8 +97467,8 @@
           "text": "sing",
           "file": "9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
-          "contentHash": "fc74ffd7d0648500cb8048037ee5820637f0a404f0c66b8fc6f41a0bf6aec8f7",
-          "byteSize": 25344
+          "contentHash": "665771d952693ee19f11f0dc14528ea6cac0358e68b574d39c7789bfa7c3ed03",
+          "byteSize": 19584
         },
         {
           "text": "silent",
@@ -114585,8 +114585,8 @@
           "text": "sing",
           "file": "9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
-          "contentHash": "fc74ffd7d0648500cb8048037ee5820637f0a404f0c66b8fc6f41a0bf6aec8f7",
-          "byteSize": 25344
+          "contentHash": "665771d952693ee19f11f0dc14528ea6cac0358e68b574d39c7789bfa7c3ed03",
+          "byteSize": 19584
         },
         {
           "text": "website",
@@ -131574,8 +131574,8 @@
           "text": "sing",
           "file": "9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
           "assetPath": "assets/audio/learning-v2/authoring-single-voice-v1/9ed7d63eaf940d807bb42270ad999526b2dcb3e155a28a616152628fd1234de7.mp3",
-          "contentHash": "fc74ffd7d0648500cb8048037ee5820637f0a404f0c66b8fc6f41a0bf6aec8f7",
-          "byteSize": 25344
+          "contentHash": "665771d952693ee19f11f0dc14528ea6cac0358e68b574d39c7789bfa7c3ed03",
+          "byteSize": 19584
         }
       ]
     },

@@ -43,7 +43,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 133,
+      "versionCode": 134,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -92,7 +92,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "133",
+      "buildNumber": "134",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [

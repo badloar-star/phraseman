@@ -1,0 +1,23 @@
+10-18 01:35:35.143 '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-18 01:35:35.201 [ACC-SIGNOUT] stage push_prefs_flush {"sinceStartMs":5,"outcome":"none","t":7927965}
+10-18 01:35:35.203 [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":6,"t":7927967}
+10-18 01:35:35.213 [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":15,"pendingSpend":0,"t":7927976}
+10-18 01:35:35.222 [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":26,"t":7927987}
+10-18 01:35:35.229 '[SIGNOUT-SYNC]', '{"step":"identity","ms":1,"sinceStartMs":1,"ok":true}'
+10-18 01:35:35.230 '[SIGNOUT-SYNC]', '{"step":"inflight_wait","ms":1,"sinceStartMs":2,"hadInflight":false}'
+10-18 01:35:35.232 '[SIGNOUT-SYNC]', '{"step":"authoritative_identity","ms":1,"sinceStartMs":3,"ok":true,"mismatch":false}'
+10-18 01:35:35.274 '[SIGNOUT-SYNC]', '{"step":"local_read","ms":43,"sinceStartMs":46,"localKeys":1000,"sendKeys":751,"unchangedVsLastSync":751,"droppedPhoneState":0,"droppedPremiumRule":17,"droppedPremiumKey":0,"droppedServerOwned":232}'
+10-18 01:35:35.283 '[SIGNOUT-SYNC]', '{"step":"flashcards","ms":5,"sinceStartMs":51,"ok":true,"pagesWritten":0,"sentToDoc":0,"locked":0}'
+10-18 01:35:35.845 '[SIGNOUT-SYNC]', '{"step":"doc_write","ms":554,"sinceStartMs":605,"progressFields":751,"approxBytes":45889,"retries":0,"timeoutMs":35000}'
+10-18 01:35:35.910 '[SIGNOUT-SYNC]', '{"step":"done","ms":76,"sinceStartMs":681,"ok":true,"totalMs":681}'
+10-18 01:35:35.910 [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":714,"synced":true,"t":7928675}
+10-18 01:35:35.930 [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":715,"t":7928676}
+10-18 01:35:35.946 [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":738,"t":7928699}
+10-18 01:35:35.988 [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":790,"entries":0,"t":7928750}
+10-18 01:35:38.090 [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":2893,"t":7930854}
+10-18 01:35:38.107 [ACC-SIGNOUT] stage marker_done {"sinceStartMs":2910,"t":7930871}
+10-18 01:35:38.137 [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":2941,"t":7930901}
+10-18 01:35:38.138 [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":2942,"t":7930902}
+10-18 01:35:42.057 [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":6860,"kind":"resumed","t":7934821}
+10-18 01:35:42.057 '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":true,"tookMs":6915}'
+10-18 01:35:42.058 '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'

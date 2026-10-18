@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-53:word:design",
+    "correctText": "design",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i01",
+    "correctText": "I can design it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i02",
+    "correctText": "design",
+    "correctResponseId": "en:lesson-08:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i03",
+    "correctText": "design",
+    "correctResponseId": "en:lesson-08:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i04",
+    "correctText": "en:lesson-08:session-53:i04:p1=design\nen:lesson-08:session-53:i04:p2=sketch\nen:lesson-08:session-53:i04:p3=artist\nen:lesson-08:session-53:i04:p4=gallery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i05",
+    "correctText": "Can you design it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:word:layout",
+    "correctText": "layout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i06",
+    "correctText": "We can change the layout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:word:typeface",
+    "correctText": "typeface",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i07",
+    "correctText": "She can choose a typeface.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i08",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-08:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i09",
+    "correctText": "We can change the layout.",
+    "correctResponseId": "en:lesson-08:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i10",
+    "correctText": "en:lesson-08:session-53:i10:p1=design\nen:lesson-08:session-53:i10:p2=layout\nen:lesson-08:session-53:i10:p3=typeface\nen:lesson-08:session-53:i10:p4=sketch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i11",
+    "correctText": "She can choose a typeface.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:word:prototype",
+    "correctText": "prototype",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i12",
+    "correctText": "We can test the prototype.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i13",
+    "correctText": "Whose prototype is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i14",
+    "correctText": "test",
+    "correctResponseId": "en:lesson-08:session-53:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i15",
+    "correctText": "Whose prototype is this?",
+    "correctResponseId": "en:lesson-08:session-53:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i16",
+    "correctText": "en:lesson-08:session-53:i16:p1=design\nen:lesson-08:session-53:i16:p2=layout\nen:lesson-08:session-53:i16:p3=typeface\nen:lesson-08:session-53:i16:p4=prototype",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-53:i17",
+    "correctText": "Can you design it?",
+    "correctResponseId": null
+  }
+]

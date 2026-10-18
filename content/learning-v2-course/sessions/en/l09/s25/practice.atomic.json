@@ -1,0 +1,2419 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-25:word:glow",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — glow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:glow:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — glow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:glow:audio",
+            "transcript": "glow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:glow:r1",
+              "targetText": "glow",
+              "meaningByLocale": {
+                "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
+                "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glow",
+            "definitionByLocale": {
+              "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
+              "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i01:r1",
+            "text": "glow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i01:r2",
+            "text": "grow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i01:r3",
+            "text": "slow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i01:audio",
+            "transcript": "glow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i01:r1",
+              "targetText": "glow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r2",
+              "targetText": "grow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r3",
+              "targetText": "slow",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит glow",
+                "uk": "У записі звучить glow"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит glow",
+                "uk": "У записі звучить glow"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лампа сейчас мягко светится. Соберите фразу; поставьте now в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лампа сейчас мягко светится. Соберите фразу; поставьте now в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The lamp is glowing now.",
+          "localizedMeaning": {
+            "ru": "Лампа сейчас мягко светится. Соберите фразу; поставьте now в конце",
+            "uk": "Лампа зараз м’яко світиться. Складіть фразу; поставте now наприкінці"
+          },
+          "orderedTokens": [
+            "The",
+            "lamp",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для наблюдения сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для наблюдения сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для наблюдения сейчас",
+            "uk": "Виберіть форму для спостереження зараз"
+          },
+          "gappedTargetPhrase": "The lamp ___ glowing now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для наблюдения сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для наблюдения сейчас",
+              "feedbackByLocale": {
+                "ru": "Одна лампа: is.",
+                "uk": "Одна лампа: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для наблюдения сейчас",
+              "feedbackByLocale": {
+                "ru": "Для одной лампы нужна форма is.",
+                "uk": "Для однієї лампи потрібна форма is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i04:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p2",
+              "target": "now",
+              "meaningByLocale": {
+                "ru": "сейчас",
+                "uk": "зараз"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p3",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p4",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "свет",
+                "uk": "світло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "now",
+            "lamp",
+            "light"
+          ],
+          "rightColumn": [
+            "светиться",
+            "сейчас",
+            "лампа",
+            "свет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i05:audio",
+            "transcript": "The lamp is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lamp is glowing now.",
+          "orderedTokens": [
+            "The",
+            "lamp",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:firefly",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — firefly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:firefly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — firefly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:firefly:audio",
+            "transcript": "firefly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:firefly:r1",
+              "targetText": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
+                "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "firefly",
+            "definitionByLocale": {
+              "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
+              "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу о светящемся сейчас светлячке; поставьте now в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите фразу о светящемся сейчас светлячке; поставьте now в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The firefly is glowing now.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о светящемся сейчас светлячке; поставьте now в конце",
+            "uk": "Складіть фразу про світлячка, який зараз світиться; поставте now наприкінці"
+          },
+          "orderedTokens": [
+            "The",
+            "firefly",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:ember",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ember",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:ember:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ember",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:ember:audio",
+            "transcript": "ember"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:ember:r1",
+              "targetText": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
+                "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ember",
+            "definitionByLocale": {
+              "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
+              "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За стеклом камина сейчас красным светится уголёк. Скажите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "За стеклом камина сейчас красным светится уголёк. Скажите об этом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i07:audio",
+            "transcript": "The ember is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ember is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия после is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i08:r1",
+            "text": "glowing"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i08:r2",
+            "text": "glow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i08:r3",
+            "text": "glows"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия после is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия после is",
+            "uk": "Виберіть форму дії після is"
+          },
+          "gappedTargetPhrase": "The ember is ___ now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i08:r1",
+              "text": "glowing"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r2",
+              "text": "glow"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r3",
+              "text": "glows"
+            }
+          ],
+          "testedDimension": "Выберите форму действия после is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия после is",
+              "feedbackByLocale": {
+                "ru": "После is для действия сейчас нужна форма glowing.",
+                "uk": "Після is для дії зараз потрібна форма glowing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия после is",
+              "feedbackByLocale": {
+                "ru": "Здесь is glowing, не is glows.",
+                "uk": "Тут is glowing, не is glows."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i09:r1",
+            "text": "The firefly is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i09:r2",
+            "text": "The ember is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i09:r3",
+            "text": "The firefly is not glowing now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i09:audio",
+            "transcript": "The firefly is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i09:r1",
+              "targetText": "The firefly is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r2",
+              "targetText": "The ember is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r3",
+              "targetText": "The firefly is not glowing now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The firefly is glowing now.",
+                "uk": "У записі звучить The firefly is glowing now."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The firefly is glowing now.",
+                "uk": "У записі звучить The firefly is glowing now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i10:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p2",
+              "target": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок",
+                "uk": "світлячок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p3",
+              "target": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк",
+                "uk": "жаринка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p4",
+              "target": "now",
+              "meaningByLocale": {
+                "ru": "сейчас",
+                "uk": "зараз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "firefly",
+            "ember",
+            "now"
+          ],
+          "rightColumn": [
+            "светиться",
+            "светлячок",
+            "тлеющий уголёк",
+            "сейчас"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i11:audio",
+            "transcript": "The ember is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The ember is glowing now.",
+          "orderedTokens": [
+            "The",
+            "ember",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:beacon",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beacon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:beacon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beacon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:beacon:audio",
+            "transcript": "beacon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:beacon:r1",
+              "targetText": "beacon",
+              "meaningByLocale": {
+                "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
+                "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beacon",
+            "definitionByLocale": {
+              "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
+              "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i12:r1",
+            "text": "beacon"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i12:r2",
+            "text": "bacon"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i12:r3",
+            "text": "beaker"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i12:audio",
+            "transcript": "beacon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i12:r1",
+              "targetText": "beacon",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r2",
+              "targetText": "bacon",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r3",
+              "targetText": "beaker",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beacon",
+                "uk": "У записі звучить beacon"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beacon",
+                "uk": "У записі звучить beacon"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Маячок на макете сейчас ровно светится. Скажите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Маячок на макете сейчас ровно светится. Скажите об этом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i13:audio",
+            "transcript": "The beacon is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The beacon is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Какое слово подчёркивает «прямо сейчас»?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i14:r1",
+            "text": "now"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i14:r2",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i14:r3",
+            "text": "usually"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Какое слово подчёркивает «прямо сейчас»?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Какое слово подчёркивает «прямо сейчас»?",
+            "uk": "Яке слово підкреслює «просто зараз»?"
+          },
+          "gappedTargetPhrase": "The beacon is glowing ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i14:r1",
+              "text": "now"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r2",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r3",
+              "text": "usually"
+            }
+          ],
+          "testedDimension": "Какое слово подчёркивает «прямо сейчас»?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "Какое слово подчёркивает «прямо сейчас»?",
+              "feedbackByLocale": {
+                "ru": "Often значит «часто», а не «сейчас».",
+                "uk": "Often означає «часто», а не «зараз»."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "Какое слово подчёркивает «прямо сейчас»?",
+              "feedbackByLocale": {
+                "ru": "Usually значит «обычно», а не «сейчас».",
+                "uk": "Usually означає «зазвичай», а не «зараз»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i15:r1",
+            "text": "The beacon is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i15:r2",
+            "text": "The lamp is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i15:r3",
+            "text": "The ember is glowing now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i15:audio",
+            "transcript": "The beacon is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i15:r1",
+              "targetText": "The beacon is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r2",
+              "targetText": "The lamp is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r3",
+              "targetText": "The ember is glowing now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beacon is glowing now.",
+                "uk": "У записі звучить The beacon is glowing now."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beacon is glowing now.",
+                "uk": "У записі звучить The beacon is glowing now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i16:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p2",
+              "target": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок",
+                "uk": "світлячок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p3",
+              "target": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк",
+                "uk": "жаринка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p4",
+              "target": "beacon",
+              "meaningByLocale": {
+                "ru": "световой маячок",
+                "uk": "світловий маячок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "firefly",
+            "ember",
+            "beacon"
+          ],
+          "rightColumn": [
+            "светиться",
+            "светлячок",
+            "тлеющий уголёк",
+            "световой маячок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В палатке включили лампу, и она сейчас мягко светится. Скажите: «Лампа сейчас светится»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "В палатке включили лампу, и она сейчас мягко светится. Скажите: «Лампа сейчас светится»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i17:audio",
+            "transcript": "The lamp is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lamp is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-25:word:glow",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — glow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:glow:audio"
+        ],
+        "accessibilityLabel": "Картка слова — glow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:glow:audio",
+            "transcript": "glow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:glow:r1",
+              "targetText": "glow",
+              "meaningByLocale": {
+                "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
+                "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "glow",
+            "definitionByLocale": {
+              "ru": "светиться, излучать мягкий свет. Сейчас: is glowing. Glow само по себе не означает «мигать».",
+              "uk": "світитися, випромінювати м’яке світло. Зараз: is glowing. Glow саме собою не означає «блимати»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i01:r1",
+            "text": "glow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i01:r2",
+            "text": "grow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i01:r3",
+            "text": "slow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i01:audio",
+            "transcript": "glow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i01:r1",
+              "targetText": "glow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r2",
+              "targetText": "grow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r3",
+              "targetText": "slow",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит glow",
+                "uk": "У записі звучить glow"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит glow",
+                "uk": "У записі звучить glow"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Лампа зараз м’яко світиться. Складіть фразу; поставте now наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Лампа зараз м’яко світиться. Складіть фразу; поставте now наприкінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The lamp is glowing now.",
+          "localizedMeaning": {
+            "ru": "Лампа сейчас мягко светится. Соберите фразу; поставьте now в конце",
+            "uk": "Лампа зараз м’яко світиться. Складіть фразу; поставте now наприкінці"
+          },
+          "orderedTokens": [
+            "The",
+            "lamp",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для спостереження зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для спостереження зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для наблюдения сейчас",
+            "uk": "Виберіть форму для спостереження зараз"
+          },
+          "gappedTargetPhrase": "The lamp ___ glowing now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для спостереження зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для спостереження зараз",
+              "feedbackByLocale": {
+                "ru": "Одна лампа: is.",
+                "uk": "Одна лампа: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для спостереження зараз",
+              "feedbackByLocale": {
+                "ru": "Для одной лампы нужна форма is.",
+                "uk": "Для однієї лампи потрібна форма is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i04:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p2",
+              "target": "now",
+              "meaningByLocale": {
+                "ru": "сейчас",
+                "uk": "зараз"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p3",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i04:p4",
+              "target": "light",
+              "meaningByLocale": {
+                "ru": "свет",
+                "uk": "світло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "now",
+            "lamp",
+            "light"
+          ],
+          "rightColumn": [
+            "світитися",
+            "зараз",
+            "лампа",
+            "світло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i05:audio",
+            "transcript": "The lamp is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The lamp is glowing now.",
+          "orderedTokens": [
+            "The",
+            "lamp",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:firefly",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — firefly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:firefly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — firefly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:firefly:audio",
+            "transcript": "firefly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:firefly:r1",
+              "targetText": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
+                "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "firefly",
+            "definitionByLocale": {
+              "ru": "светлячок. The firefly is glowing now. — «Светлячок сейчас светится».",
+              "uk": "світлячок. The firefly is glowing now. — «Світлячок зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу про світлячка, який зараз світиться; поставте now наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть фразу про світлячка, який зараз світиться; поставте now наприкінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The firefly is glowing now.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу о светящемся сейчас светлячке; поставьте now в конце",
+            "uk": "Складіть фразу про світлячка, який зараз світиться; поставте now наприкінці"
+          },
+          "orderedTokens": [
+            "The",
+            "firefly",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:ember",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ember",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:ember:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ember",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:ember:audio",
+            "transcript": "ember"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:ember:r1",
+              "targetText": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
+                "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ember",
+            "definitionByLocale": {
+              "ru": "тлеющий уголёк. The ember is glowing now. — «Уголёк сейчас светится».",
+              "uk": "жаринка, тліючий вуглик. The ember is glowing now. — «Жаринка зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "За склом каміна зараз червоним світиться жаринка. Скажіть про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "За склом каміна зараз червоним світиться жаринка. Скажіть про це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i07:audio",
+            "transcript": "The ember is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ember is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії після is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i08:r1",
+            "text": "glowing"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i08:r2",
+            "text": "glow"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i08:r3",
+            "text": "glows"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії після is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия после is",
+            "uk": "Виберіть форму дії після is"
+          },
+          "gappedTargetPhrase": "The ember is ___ now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i08:r1",
+              "text": "glowing"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r2",
+              "text": "glow"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r3",
+              "text": "glows"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії після is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії після is",
+              "feedbackByLocale": {
+                "ru": "После is для действия сейчас нужна форма glowing.",
+                "uk": "Після is для дії зараз потрібна форма glowing."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії після is",
+              "feedbackByLocale": {
+                "ru": "Здесь is glowing, не is glows.",
+                "uk": "Тут is glowing, не is glows."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i09:r1",
+            "text": "The firefly is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i09:r2",
+            "text": "The ember is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i09:r3",
+            "text": "The firefly is not glowing now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i09:audio",
+            "transcript": "The firefly is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i09:r1",
+              "targetText": "The firefly is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r2",
+              "targetText": "The ember is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r3",
+              "targetText": "The firefly is not glowing now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The firefly is glowing now.",
+                "uk": "У записі звучить The firefly is glowing now."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The firefly is glowing now.",
+                "uk": "У записі звучить The firefly is glowing now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i10:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p2",
+              "target": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок",
+                "uk": "світлячок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p3",
+              "target": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк",
+                "uk": "жаринка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i10:p4",
+              "target": "now",
+              "meaningByLocale": {
+                "ru": "сейчас",
+                "uk": "зараз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "firefly",
+            "ember",
+            "now"
+          ],
+          "rightColumn": [
+            "світитися",
+            "світлячок",
+            "жаринка",
+            "зараз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i11:audio",
+            "transcript": "The ember is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The ember is glowing now.",
+          "orderedTokens": [
+            "The",
+            "ember",
+            "is",
+            "glowing",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:word:beacon",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beacon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:word:beacon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beacon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:word:beacon:audio",
+            "transcript": "beacon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:word:beacon:r1",
+              "targetText": "beacon",
+              "meaningByLocale": {
+                "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
+                "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beacon",
+            "definitionByLocale": {
+              "ru": "световой маячок. The beacon is glowing now. — «Маячок сейчас светится».",
+              "uk": "світловий маячок. The beacon is glowing now. — «Маячок зараз світиться»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i12:r1",
+            "text": "beacon"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i12:r2",
+            "text": "bacon"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i12:r3",
+            "text": "beaker"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i12:audio",
+            "transcript": "beacon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i12:r1",
+              "targetText": "beacon",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r2",
+              "targetText": "bacon",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r3",
+              "targetText": "beaker",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beacon",
+                "uk": "У записі звучить beacon"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beacon",
+                "uk": "У записі звучить beacon"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Маячок на макеті зараз рівно світиться. Скажіть про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Маячок на макеті зараз рівно світиться. Скажіть про це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i13:audio",
+            "transcript": "The beacon is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The beacon is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Яке слово підкреслює «просто зараз»?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i14:r1",
+            "text": "now"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i14:r2",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i14:r3",
+            "text": "usually"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Яке слово підкреслює «просто зараз»?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Какое слово подчёркивает «прямо сейчас»?",
+            "uk": "Яке слово підкреслює «просто зараз»?"
+          },
+          "gappedTargetPhrase": "The beacon is glowing ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-25:i14:r1",
+              "text": "now"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r2",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r3",
+              "text": "usually"
+            }
+          ],
+          "testedDimension": "Яке слово підкреслює «просто зараз»?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "Яке слово підкреслює «просто зараз»?",
+              "feedbackByLocale": {
+                "ru": "Often значит «часто», а не «сейчас».",
+                "uk": "Often означає «часто», а не «зараз»."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "Яке слово підкреслює «просто зараз»?",
+              "feedbackByLocale": {
+                "ru": "Usually значит «обычно», а не «сейчас».",
+                "uk": "Usually означає «зазвичай», а не «зараз»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-25:i15:r1",
+            "text": "The beacon is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i15:r2",
+            "text": "The lamp is glowing now."
+          },
+          {
+            "responseId": "en:lesson-09:session-25:i15:r3",
+            "text": "The ember is glowing now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i15:audio",
+            "transcript": "The beacon is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-25:i15:r1",
+              "targetText": "The beacon is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r2",
+              "targetText": "The lamp is glowing now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r3",
+              "targetText": "The ember is glowing now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beacon is glowing now.",
+                "uk": "У записі звучить The beacon is glowing now."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The beacon is glowing now.",
+                "uk": "У записі звучить The beacon is glowing now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-25:i16:p1",
+              "target": "glow",
+              "meaningByLocale": {
+                "ru": "светиться",
+                "uk": "світитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p2",
+              "target": "firefly",
+              "meaningByLocale": {
+                "ru": "светлячок",
+                "uk": "світлячок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p3",
+              "target": "ember",
+              "meaningByLocale": {
+                "ru": "тлеющий уголёк",
+                "uk": "жаринка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-25:i16:p4",
+              "target": "beacon",
+              "meaningByLocale": {
+                "ru": "световой маячок",
+                "uk": "світловий маячок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "glow",
+            "firefly",
+            "ember",
+            "beacon"
+          ],
+          "rightColumn": [
+            "світитися",
+            "світлячок",
+            "жаринка",
+            "світловий маячок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У наметі ввімкнули лампу, і вона зараз м’яко світиться. Скажіть: «Лампа зараз світиться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "У наметі ввімкнули лампу, і вона зараз м’яко світиться. Скажіть: «Лампа зараз світиться»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-25:i17:audio",
+            "transcript": "The lamp is glowing now."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The lamp is glowing now.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-25:word:glow",
+      "correctText": "glow",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i01",
+      "correctText": "glow",
+      "correctResponseId": "en:lesson-09:session-25:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i02",
+      "correctText": "The lamp is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i05",
+      "correctText": "The lamp is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:word:firefly",
+      "correctText": "firefly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i06",
+      "correctText": "The firefly is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:word:ember",
+      "correctText": "ember",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i07",
+      "correctText": "The ember is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i08",
+      "correctText": "glowing",
+      "correctResponseId": "en:lesson-09:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i09",
+      "correctText": "The firefly is glowing now.",
+      "correctResponseId": "en:lesson-09:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i11",
+      "correctText": "The ember is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:word:beacon",
+      "correctText": "beacon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i12",
+      "correctText": "beacon",
+      "correctResponseId": "en:lesson-09:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i13",
+      "correctText": "The beacon is glowing now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i14",
+      "correctText": "now",
+      "correctResponseId": "en:lesson-09:session-25:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i15",
+      "correctText": "The beacon is glowing now.",
+      "correctResponseId": "en:lesson-09:session-25:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-25:i17",
+      "correctText": "The lamp is glowing now.",
+      "correctResponseId": null
+    }
+  ]
+}

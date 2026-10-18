@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-25:word:glow",
+    "correctText": "glow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i01",
+    "correctText": "glow",
+    "correctResponseId": "en:lesson-09:session-25:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i02",
+    "correctText": "The lamp is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i04",
+    "correctText": "en:lesson-09:session-25:i04:p1=glow\nen:lesson-09:session-25:i04:p2=now\nen:lesson-09:session-25:i04:p3=lamp\nen:lesson-09:session-25:i04:p4=light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i05",
+    "correctText": "The lamp is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:word:firefly",
+    "correctText": "firefly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i06",
+    "correctText": "The firefly is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:word:ember",
+    "correctText": "ember",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i07",
+    "correctText": "The ember is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i08",
+    "correctText": "glowing",
+    "correctResponseId": "en:lesson-09:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i09",
+    "correctText": "The firefly is glowing now.",
+    "correctResponseId": "en:lesson-09:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i10",
+    "correctText": "en:lesson-09:session-25:i10:p1=glow\nen:lesson-09:session-25:i10:p2=firefly\nen:lesson-09:session-25:i10:p3=ember\nen:lesson-09:session-25:i10:p4=now",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i11",
+    "correctText": "The ember is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:word:beacon",
+    "correctText": "beacon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i12",
+    "correctText": "beacon",
+    "correctResponseId": "en:lesson-09:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i13",
+    "correctText": "The beacon is glowing now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i14",
+    "correctText": "now",
+    "correctResponseId": "en:lesson-09:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i15",
+    "correctText": "The beacon is glowing now.",
+    "correctResponseId": "en:lesson-09:session-25:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i16",
+    "correctText": "en:lesson-09:session-25:i16:p1=glow\nen:lesson-09:session-25:i16:p2=firefly\nen:lesson-09:session-25:i16:p3=ember\nen:lesson-09:session-25:i16:p4=beacon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-25:i17",
+    "correctText": "The lamp is glowing now.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "is glowing now — светится прямо сейчас",
+    "uk": "is glowing now — світиться просто зараз"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Огонёк в траве",
+        "uk": "Вогник у траві"
+      },
+      "bodyByLocale": {
+        "ru": "На вечерней прогулке вы замечаете светлячка в траве. Firefly — «светлячок», glow — «светиться». Покажите другу: The firefly is glowing now — «Светлячок сейчас светится». Is glowing описывает то, что видно прямо сейчас; now подчёркивает этот момент. Маленький фонарик нашёлся без батареек — но в карман его не кладём.",
+        "uk": "На вечірній прогулянці ви помічаєте світлячка в траві. Firefly — «світлячок», glow — «світитися». Покажіть другові: The firefly is glowing now — «Світлячок зараз світиться». Is glowing описує те, що видно просто зараз; now підкреслює цю мить. Маленький ліхтарик знайшовся без батарейок — але до кишені його не кладемо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r1",
+              "text": "The firefly is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r2",
+              "text": "The firefly glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r3",
+              "text": "The firefly is glow now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r1",
+              "text": "The firefly is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r2",
+              "text": "The firefly glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro1:r3",
+              "text": "The firefly is glow now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уголёк за стеклом",
+        "uk": "Жаринка за склом"
+      },
+      "bodyByLocale": {
+        "ru": "В гостях вы смотрите на камин через закрытую стеклянную дверцу. Пламени уже нет, но один уголёк ещё светится красным. Ember — «тлеющий уголёк». The ember is glowing now — «Уголёк сейчас светится». Glow здесь — светиться без яркого пламени. Фраза описывает наблюдение в эту минуту, а не постоянное свойство каждого уголька.",
+        "uk": "У гостях ви дивитеся на камін крізь зачинені скляні дверцята. Полум’я вже немає, але одна жаринка ще світиться червоним. Ember — «жаринка, тліючий вуглик». The ember is glowing now — «Жаринка зараз світиться». Glow тут — світитися без яскравого полум’я. Фраза описує спостереження цієї хвилини, а не постійну властивість кожного вуглика."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r1",
+              "text": "The ember is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r2",
+              "text": "The ember is glows now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r3",
+              "text": "The ember are glowing now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r1",
+              "text": "The ember is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r2",
+              "text": "The ember is glows now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro2:r3",
+              "text": "The ember are glowing now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Маячок на макете",
+        "uk": "Маячок на макеті"
+      },
+      "bodyByLocale": {
+        "ru": "На выставке миниатюр сотрудница включает световой маячок на крыше игрушечной машины. В этой модели он светит ровно, не мигает. Beacon — «световой маячок». The beacon is glowing now — «Маячок сейчас светится». Now помогает показать изменение: секунду назад было темно, а описываем мы то, что видим сейчас.",
+        "uk": "На виставці мініатюр працівниця вмикає світловий маячок на даху іграшкової машини. У цій моделі він світить рівно, не блимає. Beacon — «світловий маячок». The beacon is glowing now — «Маячок зараз світиться». Now допомагає показати зміну: секунду тому було темно, а описуємо ми те, що бачимо зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r1",
+              "text": "The beacon is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r2",
+              "text": "The beacon glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r3",
+              "text": "The beacon is glow now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r1",
+              "text": "The beacon is glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r2",
+              "text": "The beacon glowing now."
+            },
+            {
+              "responseId": "en:lesson-09:session-25:intro3:r3",
+              "text": "The beacon is glow now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5cf91ec1a4cb34301f3fa8ca35f25eba826efe8c54f7dabfaf9f7ed8afb92bc0"
+}

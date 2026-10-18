@@ -1,9 +1,9 @@
 # Англійська · Урок 8 · Заняття 25 — Прикріпи файл
 
-**Ситуація.** Ви допомагаєте надіслати файл, провітрюєте кімнату й підказуєте дорогу.
+**Ситуація.** Прикріпити файл до листа, перевірити одержувача й відкрити документ з інструкціями.
 
 **Що ви опануєте:** дати коротку вказівку: почати одразу з дії
-**Нові слова:** attach
+**Нові слова:** attach, recipient, document, filename
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Інтро 2
 
-### Душно в кімнаті
+### Дві схожі адреси
 
-У кімнаті душно. Друг стоїть біля вікна, і ви кажете йому, що зробити. `Open the window` — «Відчини вікно». Почніть одразу з `Open`. Це коротка вказівка; для м’якшого прохання ви вже знаєте `Can you open the window?`.
+Колега готовий надіслати лист клієнтові, але в адресній книзі дві людини з однаковим прізвищем. Recipient — «одержувач», той, кому надсилають повідомлення. `Check the recipient` — «Перевір одержувача». Ви даєте коротку вказівку перед надсиланням: спочатку переконатися, що вибрано потрібну людину.
 
-**Дайте коротку вказівку «Відчини вікно».**
+**Скажіть колезі перевірити одержувача.**
 
-- ✅ **Open the window.**
-- ❌ Opens the window. — *Потрібне `Open`, без `s`.*
-- ❌ To open the window. — *Для вказівки потрібне `Open`, без `to`.*
+- ✅ **Check the recipient.**
+- ❌ Checks the recipient. — *Для вказівки потрібне Check, без s.*
+- ❌ To check the recipient. — *Почніть із Check, без to.*
 
 ---
 
 ## Інтро 3
 
-### Поворот на прогулянці
+### Інструкції до робочої зустрічі
 
-Ви йдете з другом і знаєте дорогу. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім напрямок `left`.
+Перед зустріччю ви надіслали колезі документ з інструкціями. Він знайшов файл і запитує, що робити далі. Document — «документ», тут електронний текстовий файл. `Open the document` — «Відкрий документ». Почніть з Open; the вказує на вже знайдений документ.
 
-**Підкажіть другові: «Поверни ліворуч».**
+**Скажіть колезі відкрити документ.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для вказівки потрібне `Turn`, без `s`.*
-- ❌ To turn left. — *Почніть із `Turn`, без `to`.*
+- ✅ **Open the document.**
+- ❌ Opens the document. — *Для вказівки потрібне Open, без s.*
+- ❌ To open the document. — *Почніть із Open, без to.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Дайте вказівку «Прикріпи його»**
+**1 · Картка слова — attach**
+<!-- interaction_id: en:lesson-08:session-25:word:attach; family: word_card -->
+> **attach** — прикріпити. Attach it. — «Прикріпи його». Тут файл додають до листа. Для короткої вказівки починаємо з дії, без you або to.
+
+**2 · Дайте вказівку «Прикріпи його»**
 <!-- interaction_id: en:lesson-08:session-25:i01; family: phrase_builder -->
 Плитки: `it` `Attach` → **Attach it.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-25:i02; family: listen_choose -->
 🔊 *attach* → **attach** · lend · walk
 - lend — *У записі перше слово — `attach`, а в цьому варіанті — `lend`.*
 - walk — *У записі перше слово — `attach`, а в цьому варіанті — `walk`.*
 
-**3 · Дайте коротку вказівку прикріпити файл**
+**4 · Виберіть форму для короткої вказівки прикріпити файл**
 <!-- interaction_id: en:lesson-08:session-25:i03; family: context_gap_grammar -->
 ___ it. → **Attach** · Attaches · To attach
-- Attaches — *Для вказівки потрібне `Attach`, без `es`.*
-- To attach — *Почніть із `Attach`, без `to`.*
+- Attaches — *Для вказівки потрібне Attach, без es.*
+- To attach — *Почніть з Attach, без to.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-25:i04; family: speed_match -->
-attach — прикріпити · sink — раковина · meet — зустрічатися · walk — ходити пішки
+attach — прикріпити · file — файл · email — електронний лист · check — перевірити
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-25:i05; family: listen_build_dictation -->
 🔊 *Attach it.* Плитки: `it` `Attach` → **Attach it.**
 
-**6 · Дайте коротку вказівку «Відчини вікно»**
+**7 · Картка слова — recipient**
+<!-- interaction_id: en:lesson-08:session-25:word:recipient; family: word_card -->
+> **recipient** — одержувач. Check the recipient. — «Перевір одержувача». Людина, якій надсилають лист або повідомлення.
+
+**8 · Дайте коротку вказівку «Перевір одержувача»**
 <!-- interaction_id: en:lesson-08:session-25:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `recipient` `the` `Check` → **Check the recipient.**
 
-**7 · На прогулянці підкажіть другові «Поверни ліворуч»**
+**9 · Картка слова — document**
+<!-- interaction_id: en:lesson-08:session-25:word:document; family: word_card -->
+> **document** — документ. Open the document. — «Відкрий документ». Тут електронний текстовий файл з інструкціями.
+
+**10 · Колега знайшов файл з інструкціями. Скажіть «Відкрий документ»**
 <!-- interaction_id: en:lesson-08:session-25:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Open the document.**
 
-**8 · Дайте коротку вказівку відчинити вікно**
+**11 · Виберіть форму для короткої вказівки відкрити документ**
 <!-- interaction_id: en:lesson-08:session-25:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для вказівки потрібне `Open`, без `s`.*
-- To open — *Почніть із `Open`, без `to`.*
+___ the document. → **Open** · Opens · To open
+- Opens — *Для вказівки потрібне Open, без s.*
+- To open — *Почніть з Open, без to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-25:i09; family: listen_choose -->
 🔊 *Attach it.* → **Attach it.** · Attach this. · Attach that.
 - Attach this. — *У записі останнє слово — `it`, а в цьому варіанті — `this`.*
 - Attach that. — *У записі останнє слово — `it`, а в цьому варіанті — `that`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-25:i10; family: speed_match -->
-lend — позичити · attach — прикріпити · sink — раковина · meet — зустрічатися
+attach — прикріпити · recipient — одержувач · document — документ · check — перевірити
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-25:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Check the recipient.* Плитки: `recipient` `the` `Check` → **Check the recipient.**
 
-**12 · Попросіть «Можеш позичити мені ручку?»**
+**15 · Картка слова — filename**
+<!-- interaction_id: en:lesson-08:session-25:word:filename; family: word_card -->
+> **filename** — ім’я файлу. Check the filename. — «Перевір ім’я файлу». Назва файлу на комп’ютері, наприклад report.pdf; filename пишеться разом.
+
+**16 · Поруч є стара й нова версії файлу. Скажіть «Перевір ім’я файлу»**
 <!-- interaction_id: en:lesson-08:session-25:i12; family: phrase_builder -->
-Плитки: `pen` `a` `me` `lend` `you` `Can` → **Can you lend me a pen?**
+Плитки: `filename` `the` `Check` → **Check the filename.**
 
-**13 · Друг запитує, як ви пересуваєтеся містом. Скажіть «Я часто ходжу пішки»**
+**17 · Документ уже відкрито. Тепер його потрібно надіслати вкладенням. Скажіть «Прикріпи документ»**
 <!-- interaction_id: en:lesson-08:session-25:i13; family: scripted_repeat_compare -->
-🎙 **I often walk.**
+🎙 **Attach the document.**
 
-**14 · Дайте вказівку повернути ліворуч**
+**18 · Виберіть форму для короткої вказівки перевірити ім’я файлу**
 <!-- interaction_id: en:lesson-08:session-25:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для вказівки потрібне `Turn`, без `s`.*
-- To turn — *Почніть із `Turn`, без `to`.*
+___ the filename. → **Check** · Checks · To check
+- Checks — *Для вказівки потрібне Check, без s.*
+- To check — *Почніть з Check, без to.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-25:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *У записі останнє слово — `window`, а в цьому варіанті — `door`.*
-- Open the box. — *У записі останнє слово — `window`, а в цьому варіанті — `box`.*
+🔊 *Check the filename.* → **Check the filename.** · Check the recipient. · Check the document.
+- Check the recipient. — *У записі filename — «ім’я файлу», а не recipient — «одержувач».*
+- Check the document. — *У записі filename, а не document — «документ».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-25:i16; family: speed_match -->
-attach — прикріпити · walk — ходити пішки · lend — позичити · sink — раковина
+attach — прикріпити · recipient — одержувач · document — документ · filename — ім’я файлу
 
-**17 · Друг готує листа з фотографією. Фотографію вже вибрано. Дайте коротку вказівку «Прикріпи її»**
+**21 · Друг готує листа з фотографією. Фотографію вже вибрано. Дайте коротку вказівку «Прикріпи її»**
 <!-- interaction_id: en:lesson-08:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Attach it.**
 

@@ -1,9 +1,9 @@
 # Английский · Урок 8 · Занятие 25 — Прикрепи файл
 
-**Ситуация.** Вы помогаете отправить файл, проветриваете комнату и подсказываете дорогу.
+**Ситуация.** Прикрепить файл к письму, проверить получателя и открыть документ с инструкциями.
 
 **Что вы освоите:** дать короткое указание: начать сразу с действия
-**Новые слова:** attach
+**Новые слова:** attach, recipient, document, filename
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Интро 2
 
-### Душно в комнате
+### Два похожих адреса
 
-В комнате душно. Друг стоит у окна, и вы говорите ему, что сделать. `Open the window` — «Открой окно». Начните сразу с `Open`. Это короткое указание; для более мягкой просьбы вы уже знаете `Can you open the window?`.
+Коллега готов отправить письмо клиенту, но в адресной книге два человека с одинаковой фамилией. Recipient — «получатель», тот, кому отправляют сообщение. `Check the recipient` — «Проверь получателя». Вы даёте короткое указание перед отправкой: сначала убедиться, что выбран нужный человек.
 
-**Дайте короткое указание «Открой окно».**
+**Скажите коллеге проверить получателя.**
 
-- ✅ **Open the window.**
-- ❌ Opens the window. — *Нужно `Open`, без `s`.*
-- ❌ To open the window. — *Для указания нужно `Open`, без `to`.*
+- ✅ **Check the recipient.**
+- ❌ Checks the recipient. — *Для указания нужно Check, без s.*
+- ❌ To check the recipient. — *Начните с Check, без to.*
 
 ---
 
 ## Интро 3
 
-### Поворот на прогулке
+### Инструкции к рабочей встрече
 
-Вы идёте с другом и знаете дорогу. На следующем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.
+Перед встречей вы отправили коллеге документ с инструкциями. Он нашёл файл и спрашивает, что делать дальше. Document — «документ», здесь электронный текстовый файл. `Open the document` — «Открой документ». Начните с Open; the указывает на уже найденный документ.
 
-**Подскажите другу: «Поверни налево».**
+**Скажите коллеге открыть документ.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для указания нужно `Turn`, без `s`.*
-- ❌ To turn left. — *Начните с `Turn`, без `to`.*
+- ✅ **Open the document.**
+- ❌ Opens the document. — *Для указания нужно Open, без s.*
+- ❌ To open the document. — *Начните с Open, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Прикрепи его»**
+**1 · Карточка слова — attach**
+<!-- interaction_id: en:lesson-08:session-25:word:attach; family: word_card -->
+> **attach** — прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.
+
+**2 · Дайте указание «Прикрепи его»**
 <!-- interaction_id: en:lesson-08:session-25:i01; family: phrase_builder -->
 Плитки: `it` `Attach` → **Attach it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-25:i02; family: listen_choose -->
 🔊 *attach* → **attach** · lend · walk
 - lend — *В записи первое слово — `attach`, а в этом варианте — `lend`.*
 - walk — *В записи первое слово — `attach`, а в этом варианте — `walk`.*
 
-**3 · Дайте короткое указание прикрепить файл**
+**4 · Выберите форму для короткого указания прикрепить файл**
 <!-- interaction_id: en:lesson-08:session-25:i03; family: context_gap_grammar -->
 ___ it. → **Attach** · Attaches · To attach
-- Attaches — *Для указания нужно `Attach`, без `es`.*
-- To attach — *Начните с `Attach`, без `to`.*
+- Attaches — *Для указания нужно Attach, без es.*
+- To attach — *Начните с Attach, без to.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-25:i04; family: speed_match -->
-attach — прикрепить · sink — раковина · meet — встречаться · walk — ходить пешком
+attach — прикрепить · file — файл · email — электронное письмо · check — проверить
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-25:i05; family: listen_build_dictation -->
 🔊 *Attach it.* Плитки: `it` `Attach` → **Attach it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — recipient**
+<!-- interaction_id: en:lesson-08:session-25:word:recipient; family: word_card -->
+> **recipient** — получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.
+
+**8 · Дайте короткое указание «Проверь получателя»**
 <!-- interaction_id: en:lesson-08:session-25:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `recipient` `the` `Check` → **Check the recipient.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — document**
+<!-- interaction_id: en:lesson-08:session-25:word:document; family: word_card -->
+> **document** — документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.
+
+**10 · Коллега нашёл файл с инструкциями. Скажите «Открой документ»**
 <!-- interaction_id: en:lesson-08:session-25:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Open the document.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для короткого указания открыть документ**
 <!-- interaction_id: en:lesson-08:session-25:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+___ the document. → **Open** · Opens · To open
+- Opens — *Для указания нужно Open, без s.*
+- To open — *Начните с Open, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-25:i09; family: listen_choose -->
 🔊 *Attach it.* → **Attach it.** · Attach this. · Attach that.
 - Attach this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Attach that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-25:i10; family: speed_match -->
-lend — одолжить · attach — прикрепить · sink — раковина · meet — встречаться
+attach — прикрепить · recipient — получатель · document — документ · check — проверить
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-25:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Check the recipient.* Плитки: `recipient` `the` `Check` → **Check the recipient.**
 
-**12 · Попросите «Можешь одолжить мне ручку?»**
+**15 · Карточка слова — filename**
+<!-- interaction_id: en:lesson-08:session-25:word:filename; family: word_card -->
+> **filename** — имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.
+
+**16 · Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»**
 <!-- interaction_id: en:lesson-08:session-25:i12; family: phrase_builder -->
-Плитки: `pen` `a` `me` `lend` `you` `Can` → **Can you lend me a pen?**
+Плитки: `filename` `the` `Check` → **Check the filename.**
 
-**13 · Друг спрашивает, как вы передвигаетесь по городу. Скажите «Я часто хожу пешком»**
+**17 · Документ уже открыт. Теперь его нужно отправить вложением. Скажите «Прикрепи документ»**
 <!-- interaction_id: en:lesson-08:session-25:i13; family: scripted_repeat_compare -->
-🎙 **I often walk.**
+🎙 **Attach the document.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для короткого указания проверить имя файла**
 <!-- interaction_id: en:lesson-08:session-25:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+___ the filename. → **Check** · Checks · To check
+- Checks — *Для указания нужно Check, без s.*
+- To check — *Начните с Check, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-25:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *Check the filename.* → **Check the filename.** · Check the recipient. · Check the document.
+- Check the recipient. — *В записи filename — «имя файла», а не recipient — «получатель».*
+- Check the document. — *В записи filename, а не document — «документ».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-25:i16; family: speed_match -->
-attach — прикрепить · walk — ходить пешком · lend — одолжить · sink — раковина
+attach — прикрепить · recipient — получатель · document — документ · filename — имя файла
 
-**17 · Друг готовит письмо с фотографией. Фотография уже выбрана. Дайте короткое указание «Прикрепи её»**
+**21 · Друг готовит письмо с фотографией. Фотография уже выбрана. Дайте короткое указание «Прикрепи её»**
 <!-- interaction_id: en:lesson-08:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Attach it.**
 

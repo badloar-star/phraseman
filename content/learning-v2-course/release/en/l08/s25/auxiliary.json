@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-25:intro2:r2": {
-          "ru": "Нужно `Open`, без `s`.",
-          "uk": "Потрібне `Open`, без `s`."
+          "ru": "Для указания нужно Check, без s.",
+          "uk": "Для вказівки потрібне Check, без s."
         },
         "en:lesson-08:session-25:intro2:r3": {
-          "ru": "Для указания нужно `Open`, без `to`.",
-          "uk": "Для вказівки потрібне `Open`, без `to`."
+          "ru": "Начните с Check, без to.",
+          "uk": "Почніть із Check, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-25:intro3:r2": {
-          "ru": "Для указания нужно `Turn`, без `s`.",
-          "uk": "Для вказівки потрібне `Turn`, без `s`."
+          "ru": "Для указания нужно Open, без s.",
+          "uk": "Для вказівки потрібне Open, без s."
         },
         "en:lesson-08:session-25:intro3:r3": {
-          "ru": "Начните с `Turn`, без `to`.",
-          "uk": "Почніть із `Turn`, без `to`."
+          "ru": "Начните с Open, без to.",
+          "uk": "Почніть із Open, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "42cdbef4179248113c215252a068d7decb29c3b156caca5b59b09706f592846c"
+  "auxiliaryFingerprint": "55dbdc10a38d345d676e2cf762f979b9d8a35d24f8777306a714a2eed7f4b77c"
 }

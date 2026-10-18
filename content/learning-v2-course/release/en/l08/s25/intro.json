@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Душно в комнате",
-        "uk": "Душно в кімнаті"
+        "ru": "Два похожих адреса",
+        "uk": "Дві схожі адреси"
       },
       "bodyByLocale": {
-        "ru": "В комнате душно. Друг стоит у окна, и вы говорите ему, что сделать. `Open the window` — «Открой окно». Начните сразу с `Open`. Это короткое указание; для более мягкой просьбы вы уже знаете `Can you open the window?`.",
-        "uk": "У кімнаті душно. Друг стоїть біля вікна, і ви кажете йому, що зробити. `Open the window` — «Відчини вікно». Почніть одразу з `Open`. Це коротка вказівка; для м’якшого прохання ви вже знаєте `Can you open the window?`."
+        "ru": "Коллега готов отправить письмо клиенту, но в адресной книге два человека с одинаковой фамилией. Recipient — «получатель», тот, кому отправляют сообщение. `Check the recipient` — «Проверь получателя». Вы даёте короткое указание перед отправкой: сначала убедиться, что выбран нужный человек.",
+        "uk": "Колега готовий надіслати лист клієнтові, але в адресній книзі дві людини з однаковим прізвищем. Recipient — «одержувач», той, кому надсилають повідомлення. `Check the recipient` — «Перевір одержувача». Ви даєте коротку вказівку перед надсиланням: спочатку переконатися, що вибрано потрібну людину."
       },
       "question": {
         "interactionId": "en:lesson-08:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Дайте короткое указание «Открой окно».",
-          "uk": "Дайте коротку вказівку «Відчини вікно»."
+          "ru": "Скажите коллеге проверить получателя.",
+          "uk": "Скажіть колезі перевірити одержувача."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-25:intro2:r1",
-              "text": "Open the window."
+              "text": "Check the recipient."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r2",
-              "text": "Opens the window."
+              "text": "Checks the recipient."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r3",
-              "text": "To open the window."
+              "text": "To check the recipient."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-25:intro2:r1",
-              "text": "Open the window."
+              "text": "Check the recipient."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r2",
-              "text": "Opens the window."
+              "text": "Checks the recipient."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r3",
-              "text": "To open the window."
+              "text": "To check the recipient."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Дайте короткое указание «Открой окно».",
-          "uk": "Дайте коротку вказівку «Відчини вікно»."
+          "ru": "Скажите коллеге проверить получателя.",
+          "uk": "Скажіть колезі перевірити одержувача."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Поворот на прогулке",
-        "uk": "Поворот на прогулянці"
+        "ru": "Инструкции к рабочей встрече",
+        "uk": "Інструкції до робочої зустрічі"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте с другом и знаете дорогу. На следующем повороте нужно налево. `Turn left` — «Поверни налево». Начните с `Turn`, затем направление `left`.",
-        "uk": "Ви йдете з другом і знаєте дорогу. На наступному повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Почніть із `Turn`, потім напрямок `left`."
+        "ru": "Перед встречей вы отправили коллеге документ с инструкциями. Он нашёл файл и спрашивает, что делать дальше. Document — «документ», здесь электронный текстовый файл. `Open the document` — «Открой документ». Начните с Open; the указывает на уже найденный документ.",
+        "uk": "Перед зустріччю ви надіслали колезі документ з інструкціями. Він знайшов файл і запитує, що робити далі. Document — «документ», тут електронний текстовий файл. `Open the document` — «Відкрий документ». Почніть з Open; the вказує на вже знайдений документ."
       },
       "question": {
         "interactionId": "en:lesson-08:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Подскажите другу: «Поверни налево».",
-          "uk": "Підкажіть другові: «Поверни ліворуч»."
+          "ru": "Скажите коллеге открыть документ.",
+          "uk": "Скажіть колезі відкрити документ."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-25:intro3:r1",
-              "text": "Turn left."
+              "text": "Open the document."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r2",
-              "text": "Turns left."
+              "text": "Opens the document."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r3",
-              "text": "To turn left."
+              "text": "To open the document."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-25:intro3:r1",
-              "text": "Turn left."
+              "text": "Open the document."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r2",
-              "text": "Turns left."
+              "text": "Opens the document."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r3",
-              "text": "To turn left."
+              "text": "To open the document."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подскажите другу: «Поверни налево».",
-          "uk": "Підкажіть другові: «Поверни ліворуч»."
+          "ru": "Скажите коллеге открыть документ.",
+          "uk": "Скажіть колезі відкрити документ."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6d46bfdc88135ab0646a1edd15f0c7e505426f9058354ba052cdcc8f6e75a36"
+  "introFingerprint": "e22907c0333d9930665241c75200c48b3ea1a0dc334164ca814f622cfddd4b9f"
 }

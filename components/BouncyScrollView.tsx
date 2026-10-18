@@ -252,7 +252,11 @@ export function useBouncy({
       const child = React.isValidElement(children)
         ? children
         : <>{children}</>;
-      const scrollChild = isAndroid && React.isValidElement(child)
+      // зачем (владелец 18.10, красный экран «Invalid prop overScrollMode supplied to React.Fragment»): overScrollMode
+      // понимает только скролл-элемент. Фрагмент (несколько детей / обёртка <>…</>) принимает лишь key и children —
+      // ему проп не пробрасываем, иначе React в dev показывает красную ошибку.
+      const isFragment = React.isValidElement(child) && child.type === React.Fragment;
+      const scrollChild = isAndroid && React.isValidElement(child) && !isFragment
         ? React.cloneElement(child as React.ReactElement<any>, { overScrollMode: 'never' })
         : child;
       if (!isAndroid) {

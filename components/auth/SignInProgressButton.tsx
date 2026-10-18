@@ -14,9 +14,9 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from '
 
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { AppleIcon, GoogleIcon, GoogleIconMono } from '../AuthProviderIcons';
+import { AppleIcon, GoogleIcon } from '../AuthProviderIcons';
 import { appleButtonColors } from '../auth_apple_button_style';
-import { googleButtonVariantForSurface } from '../auth_google_button_style';
+import { googleButtonPaintForSurface } from '../auth_google_button_style';
 
 export type SignInProgressProvider = 'google' | 'apple';
 
@@ -32,7 +32,7 @@ export type SignInProgressButtonProps = Readonly<{
   dimmed?: boolean;
   /** Яркость шторки: тёмная → Apple белая, светлая → Apple чёрная (как в AuthProviderButtons). */
   surface: 'dark' | 'light';
-  /** Цвет шторки под кнопкой (glass.opaqueSheet): Google берёт вариант, противоположный поверхности — [BLEND-AUTH], кнопки не сливаются со шторкой. */
+  /** Цвет шторки под кнопкой (glass.opaqueSheet): Google всегда белая с цветной G; на светлой шторке её отделяет тонкая линия (hairline) — [BLEND-AUTH], кнопки не сливаются. */
   sheetColor: string;
   onPress: () => void;
   testID?: string;
@@ -51,10 +51,11 @@ const SHADOW_LIT = [{ offsetX: 0, offsetY: 1, blurRadius: 0, color: '#FFFFFF', i
 // зачем: цвета те же, что у AuthProviderButtons (бренд Google/Apple) и у сторожа контраста blend_auth_1018 — кнопки не сливаются со шторкой ни в одном из 138 сочетаний тем
 function brandLook(provider: SignInProgressProvider, surface: 'dark' | 'light', sheetColor: string): BrandLook {
   if (provider === 'google') {
-    const dark = googleButtonVariantForSurface(sheetColor) === 'dark';
-    return dark
-      ? { background: '#1F1F1F', ink: '#FFFFFF', mono: true, shadow: SHADOW_DROP } // theme-exempt: брендовая тёмная кнопка Google
-      : { background: '#FFFFFF', ink: '#1F1F1F', mono: false, shadow: SHADOW_LIT }; // theme-exempt: брендовая светлая кнопка Google
+    // зачем (Макеты A1.1, координатор 18.10): эталон auth-states — белая Google с цветной G во всех темах; тёмная #1F1F1F рядом с чёрной Apple давала две чёрные кнопки подряд.
+    // Где белая заливка не отделяется от шторки — тонкая линия 1 px (внутреннее кольцо, размер кнопки не меняется) и тень; альфу линии считает googleButtonPaintForSurface под ЭТУ шторку.
+    const paint = googleButtonPaintForSurface(sheetColor);
+    const edgeRing = paint.edge ? [{ offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: paint.edge, inset: true }] : [];
+    return { background: '#FFFFFF', ink: '#1F1F1F', mono: false, shadow: paint.edge ? [...edgeRing, ...SHADOW_DROP] : SHADOW_LIT }; // theme-exempt: брендовая светлая кнопка Google
   }
   const colors = appleButtonColors(surface === 'dark' ? 'dark' : 'light');
   return { background: colors.background, ink: colors.ink, mono: true, shadow: SHADOW_DROP };
@@ -96,7 +97,7 @@ function SignInProgressButton({ provider, label, busyLabel, busy = false, dimmed
           {busy ? (
             <ActivityIndicator testID="sign-in-progress-ring" size="small" color={look.ink} />
           ) : provider === 'google' ? (
-            look.mono ? <GoogleIconMono size={20} color={look.ink} /> : <GoogleIcon size={20} />
+            <GoogleIcon size={20} />
           ) : (
             <AppleIcon size={20} color={look.ink} />
           )}

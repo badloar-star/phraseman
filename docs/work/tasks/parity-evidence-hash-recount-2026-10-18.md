@@ -171,3 +171,14 @@ Security: данных и сервисов не добавляет.
 Tech debt: какие дневные окна *_ip только для Free — подтверждает Ядро.
 Verification: снимки playwright тёмной и светлой страницы.
 Rollback: git revert коммита.
+
+
+## Макет «ИИ отдохнёт до завтра»: хаб без строки (координатор)
+Governance-ID: TG-C52FF478D197
+Outcome: в ai-rest-state.html у совета хаба убрана строка «Подробный разбор — завтра» — совет фоновый, человек его не просил; подпись против стиля владельца.
+Scope: только docs/design/v2-app/ai-rest-state.html (телефон хаба, пояснение, строки таблиц).
+Architecture: без изменений.
+Security: не затрагивает.
+Tech debt: нет.
+Verification: снимок страницы, в хабе строки нет.
+Rollback: git revert коммита.

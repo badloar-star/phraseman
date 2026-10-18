@@ -138,8 +138,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
   <h2>3. Совет в хабе ошибок</h2>
   <div class="row" id="r-hub"></div>
   <div class="spec">
-    <div><b>Место.</b> Совет хаба уже умеет жить без ИИ: если свежего ответа нет, он собирается по правилам из твоих же чисел. Поэтому здесь не пустая карточка, а обычный совет плюс одна тихая строка «Подробный разбор&nbsp;— завтра».</div>
-    <div><b>Plus здесь нет.</b> Совет обновляется фоном, человек его не просил&nbsp;— продавать на этом месте нечего. Строку можно и вовсе не показывать: решает координатор.</div>
+    <div><b>Ничего не меняется.</b> Совет хаба уже умеет жить без ИИ: если свежего ответа нет, он собирается по правилам из твоих же чисел. Совет обновляется фоном, человек его не просил — поэтому ни строки «завтра», ни Plus здесь нет: человек видит обычный совет.</div>
   </div>
 
   <h2>4. Общий потолок&nbsp;— без Plus</h2>
@@ -154,7 +153,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
     <tr><th>Место</th><th>Заголовок</th><th>Текст</th><th>Plus (только Free, личный дневной запас)</th></tr>
     <tr><td>Диалоги</td><td>На сегодня разговоров достаточно</td><td>Собеседник снова ответит завтра.</td><td>Больше разговоров в день&nbsp;— с Plus</td></tr>
     <tr><td>Объяснить ошибку</td><td>Объяснения на сегодня закончились</td><td>Правильный вариант&nbsp;— выше. Почему так, разберём завтра.</td><td>Больше объяснений в день&nbsp;— с Plus</td></tr>
-    <tr><td>Хаб ошибок</td><td>—</td><td>Подробный разбор&nbsp;— завтра</td><td>—</td></tr>
+    <tr><td>Хаб ошибок</td><td colspan="3">Новых строк нет — обычный совет по правилам</td></tr>
     <tr><td>Общее</td><td colspan="3">Метка «Снова завтра» · поле ввода «Продолжим завтра» · кнопка «Понятно»</td></tr>
   </table></div>
 
@@ -164,7 +163,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
     <tr><td><code>daily_spend_cap</code> (общий потолок)</td><td>Карточка без Plus&nbsp;— блок 4</td></tr>
     <tr><td>Личный дневной запас Free (окна <code>dlg_free_ip</code>, <code>dlg_tr_free</code>, <code>mistake_explain_ip</code>, <code>explain_*_ip</code>)</td><td>Карточка + строка Plus&nbsp;— блоки 1–2</td></tr>
     <tr><td>Дневной запас Plus (<code>plus_daily_cap</code>)</td><td>Карточка без Plus</td></tr>
-    <tr><td><code>hub_advice_ip</code> и любой отказ совета</td><td>Совет по правилам + строка «Подробный разбор&nbsp;— завтра»&nbsp;— блок 3</td></tr>
+    <tr><td><code>hub_advice_ip</code> и любой отказ совета</td><td>Совет по правилам, без строк и без Plus&nbsp;— блок 3</td></tr>
     <tr><td>Часовые окна, <code>spend_cap_busy</code>, сеть</td><td>Не это состояние: «подожди немного» / «попробуй ещё раз»</td></tr>
   </table></div>
   <p class="lead">«Завтра» без точного часа: общий потолок обнуляется в полночь по UTC, у людей это разное местное время.</p>
@@ -203,10 +202,10 @@ const explain = (cls, plus) => `<div class="ph ${cls}" role="img" aria-label="О
     <div class="btn">Понятно</div>
   </div><div class="hi"></div></div>`;
 
-const hub = (cls) => `<div class="ph ${cls}" role="img" aria-label="Хаб ошибок: совет по правилам, подробный разбор завтра">${sbar}
+const hub = (cls) => `<div class="ph ${cls}" role="img" aria-label="Хаб ошибок: совет по правилам">${sbar}
   <div class="scr"><div class="top"><div class="rb">${I.back}</div></div><div class="ttl">Работа над ошибками</div>
     <div class="stats"><div class="st"><div class="n">12</div><div class="k">ошибок</div></div><div class="st"><div class="n">3</div><div class="k">темы</div></div><div class="st"><div class="n">5</div><div class="k">исправлено</div></div></div>
-    <div class="adv"><div class="lb">${I.spark}Совет</div><div class="tx">Чаще всего спотыкаешься на артиклях — 7 из последних 12 ошибок. Начни с них.</div><div class="q">${I.moon}Подробный разбор — завтра</div></div>
+    <div class="adv"><div class="lb">${I.spark}Совет</div><div class="tx">Чаще всего спотыкаешься на артиклях — 7 из последних 12 ошибок. Начни с них.</div></div>
     <div class="lrow"><div class="tl"></div><div class="ln"><i style="width:62%"></i><i style="width:38%"></i></div></div>
     <div class="lrow"><div class="tl"></div><div class="ln"><i style="width:70%"></i><i style="width:30%"></i></div></div>
   </div><div class="hi"></div></div>`;

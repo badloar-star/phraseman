@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-52",
   "learningOutcomeByLocale": {
-    "ru": "спросить о месте и владельце велосипеда и описать его вес",
-    "uk": "запитати про місце та власника велосипеда й описати його вагу"
+    "ru": "спросить, чьи вещи, и ответить: whose, are these, ours, theirs, hers, mine, 's",
+    "uk": "спитати, чиї речі, і відповісти: whose, are these, ours, theirs, hers, mine, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для плавания",
-        "uk": "Місце для плавання"
+        "ru": "Ласты из сумки",
+        "uk": "Ласти із сумки"
       },
       "bodyByLocale": {
-        "ru": "`pool` здесь — «бассейн» для плавания. `Where is the pool?` — «Где бассейн?» `The pool is near the park` — «Бассейн возле парка». `Anna is at the pool` — «Анна в бассейне», то есть на территории бассейна; фраза не обязательно означает, что она уже в воде.",
-        "uk": "`pool` тут — «басейн» для плавання. `Where is the pool?` — «Де басейн?» `The pool is near the park` — «Басейн біля парку». `Anna is at the pool` — «Анна в басейні», тобто на території басейну; фраза не обов’язково означає, що вона вже у воді."
+        "ru": "Вы достаёте из общей сумки на берегу большие синие ласты. flippers — «ласты», их надевают на ноги, чтобы быстрее плыть. Вы не помните, чьи они: в сумке вещи всей семьи. Спросите брата: Whose flippers are these? — «Чьи это ласты?» Ласт две, поэтому are these.",
+        "uk": "Ви дістаєте із спільної сумки на березі великі сині ласти. flippers — «ласти», їх надягають на ноги, щоб швидше плисти. Ви не пам’ятаєте, чиї вони: у сумці речі всієї родини. Спитайте брата: Whose flippers are these? — «Чиї це ласти?» Ласт дві, тому are these."
       },
       "question": {
         "interactionId": "en:lesson-05:session-52:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, где бассейн.",
-          "uk": "Запитайте, де басейн."
+          "ru": "Вы держите в руках синие ласты из общей сумки. Спросите брата, чьи они.",
+          "uk": "Ви тримаєте в руках сині ласти із спільної сумки. Спитайте брата, чиї вони."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-52:intro1:r1",
-              "text": "Where is the pool?"
+              "text": "Whose flippers are these?"
             },
             {
               "responseId": "en:lesson-05:session-52:intro1:r2",
-              "text": "Whose pool is this?"
+              "text": "Where are the flippers?"
             },
             {
               "responseId": "en:lesson-05:session-52:intro1:r3",
-              "text": "Where are the pool?"
+              "text": "Whose flippers is this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-52:intro1:r1",
-              "text": "Where is the pool?"
+              "text": "Whose flippers are these?"
             },
             {
               "responseId": "en:lesson-05:session-52:intro1:r2",
-              "text": "Whose pool is this?"
+              "text": "Where are the flippers?"
             },
             {
               "responseId": "en:lesson-05:session-52:intro1:r3",
-              "text": "Where are the pool?"
+              "text": "Whose flippers is this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где бассейн.",
-          "uk": "Запитайте, де басейн."
+          "ru": "Вы держите в руках синие ласты из общей сумки. Спросите брата, чьи они.",
+          "uk": "Ви тримаєте в руках сині ласти із спільної сумки. Спитайте брата, чиї вони."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лёгкий велосипед",
-        "uk": "Легкий велосипед"
+        "ru": "Нарукавники для малышки",
+        "uk": "Нарукавники для малої"
       },
       "bodyByLocale": {
-        "ru": "`bicycle` — «велосипед», `light` здесь — «лёгкий» по весу. `This bicycle is light` — «Этот велосипед лёгкий». `Whose bicycle is this?` — «Чей это велосипед?» `The bicycle is hers` — «Велосипед её». Лёгкий велосипед удобнее нести, но обычно от него ждут другой работы.",
-        "uk": "`bicycle` — «велосипед», `light` тут — «легкий» за вагою. `This bicycle is light` — «Цей велосипед легкий». `Whose bicycle is this?` — «Чий це велосипед?» `The bicycle is hers` — «Велосипед її». Легкий велосипед зручніше нести, але зазвичай від нього чекають іншої роботи."
+        "ru": "Соседка с маленькой дочкой собирается к воде и спрашивает, чьи это жёлтые нарукавники на песке. armbands — «нарукавники», их надевают на руки ребёнку, чтобы он не тонул. Вы с сестрой купили их на прошлой неделе. Ответьте за двоих: The armbands are ours — «Нарукавники наши».",
+        "uk": "Сусідка з маленькою донькою збирається до води й питає, чиї ці жовті нарукавники на піску. armbands — «нарукавники», їх надягають на руки дитині, щоб вона не тонула. Ви із сестрою купили їх минулого тижня. Відповідьте за двох: The armbands are ours — «Нарукавники наші»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-52:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите о весе: «Этот велосипед лёгкий».",
-          "uk": "Скажіть про вагу: «Цей велосипед легкий»."
+          "ru": "Соседка спрашивает, чьи нарукавники на песке. Их купили вы с сестрой. Скажите: «Нарукавники наши».",
+          "uk": "Сусідка питає, чиї нарукавники на піску. Їх купили ви із сестрою. Скажіть: «Нарукавники наші»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-52:intro2:r1",
-              "text": "This bicycle is light."
+              "text": "The armbands are ours."
             },
             {
               "responseId": "en:lesson-05:session-52:intro2:r2",
-              "text": "This bicycle are light."
+              "text": "The armbands is ours."
             },
             {
               "responseId": "en:lesson-05:session-52:intro2:r3",
-              "text": "This bicycle is heavy."
+              "text": "The armbands are our."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-52:intro2:r1",
-              "text": "This bicycle is light."
+              "text": "The armbands are ours."
             },
             {
               "responseId": "en:lesson-05:session-52:intro2:r2",
-              "text": "This bicycle are light."
+              "text": "The armbands is ours."
             },
             {
               "responseId": "en:lesson-05:session-52:intro2:r3",
-              "text": "This bicycle is heavy."
+              "text": "The armbands are our."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о весе: «Этот велосипед лёгкий».",
-          "uk": "Скажіть про вагу: «Цей велосипед легкий»."
+          "ru": "Соседка спрашивает, чьи нарукавники на песке. Их купили вы с сестрой. Скажите: «Нарукавники наши».",
+          "uk": "Сусідка питає, чиї нарукавники на піску. Їх купили ви із сестрою. Скажіть: «Нарукавники наші»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ориентиры в районе",
-        "uk": "Орієнтири в районі"
+        "ru": "Круг у воды",
+        "uk": "Коло біля води"
       },
       "bodyByLocale": {
-        "ru": "`stations` — «станции», `nursery` здесь — «детский сад» для маленьких детей. `Where are the stations?` — «Где станции?» `The nursery is next to the park` — «Детский сад рядом с парком». `This is Tom’s bicycle` — «Это велосипед Тома».",
-        "uk": "`stations` — «станції», `nursery` тут — «дитячий садок» для маленьких дітей. `Where are the stations?` — «Де станції?» `The nursery is next to the park` — «Дитячий садок поруч із парком». `This is Tom’s bicycle` — «Це велосипед Тома»."
+        "ru": "Спасатель на пляже подбирает у воды оранжевый спасательный круг и спрашивает, чей он. lifebelt — «спасательный круг», его бросают тому, кто устал плыть. Вы видели: круг принесла соседская семья. Ответьте одним словом вместо названия вещи: The lifebelt is theirs — «Круг их».",
+        "uk": "Рятувальник на пляжі підбирає біля води помаранчеве рятувальне коло й питає, чиє воно. lifebelt — «рятувальне коло», його кидають тому, хто втомився плисти. Ви бачили: коло принесла сусідська родина. Відповідьте одним словом замість назви речі: The lifebelt is theirs — «Коло їхнє»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-52:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где станции.",
-          "uk": "Запитайте, де станції."
+          "ru": "Спасатель спрашивает, чей круг у воды. Его принесла соседская семья. Скажите: «Круг их».",
+          "uk": "Рятувальник питає, чиє коло біля води. Його принесла сусідська родина. Скажіть: «Коло їхнє»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-52:intro3:r1",
-              "text": "Where are the stations?"
+              "text": "The lifebelt is theirs."
             },
             {
               "responseId": "en:lesson-05:session-52:intro3:r2",
-              "text": "Where is the stations?"
+              "text": "The lifebelt is their."
             },
             {
               "responseId": "en:lesson-05:session-52:intro3:r3",
-              "text": "Whose stations are these?"
+              "text": "The lifebelt is ours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-52:intro3:r1",
-              "text": "Where are the stations?"
+              "text": "The lifebelt is theirs."
             },
             {
               "responseId": "en:lesson-05:session-52:intro3:r2",
-              "text": "Where is the stations?"
+              "text": "The lifebelt is their."
             },
             {
               "responseId": "en:lesson-05:session-52:intro3:r3",
-              "text": "Whose stations are these?"
+              "text": "The lifebelt is ours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где станции.",
-          "uk": "Запитайте, де станції."
+          "ru": "Спасатель спрашивает, чей круг у воды. Его принесла соседская семья. Скажите: «Круг их».",
+          "uk": "Рятувальник питає, чиє коло біля води. Його принесла сусідська родина. Скажіть: «Коло їхнє»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cf0eda5916a00c9e5da81c7b44298faeb89c6a1a644fb4422d38443d62c25a8b"
+  "introFingerprint": "b3c4c35995a7af4d781672af60341af0ff12ab5487f3b46e0d1297bd79ae489e"
 }

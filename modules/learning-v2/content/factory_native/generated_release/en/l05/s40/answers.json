@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-40:word:trophy",
+    "correctText": "trophy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-40:i01",
-    "correctText": "Whose watch is this?",
+    "correctText": "The trophy is my cousin's.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:word:medal",
+    "correctText": "medal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i02",
-    "correctText": "bracelet",
+    "correctText": "Whose medal is this?",
     "correctResponseId": "en:lesson-05:session-40:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-40:word:mask",
+    "correctText": "mask",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-40:i03",
-    "correctText": "is",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-40:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-40:i04",
-    "correctText": "en:lesson-05:session-40:i04:p1=watch\nen:lesson-05:session-40:i04:p2=ring\nen:lesson-05:session-40:i04:p3=bracelet\nen:lesson-05:session-40:i04:p4=sunglasses",
+    "correctText": "en:lesson-05:session-40:i04:p1=trophy\nen:lesson-05:session-40:i04:p2=medal\nen:lesson-05:session-40:i04:p3=mask\nen:lesson-05:session-40:i04:p4=wig",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-40:word:wig",
+    "correctText": "wig",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i05",
-    "correctText": "The violin is near the door.",
+    "correctText": "The wig is on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i06",
-    "correctText": "The thermostat is on the wall.",
+    "correctText": "Whose medal is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i07",
-    "correctText": "The bracelet is mine.",
+    "correctText": "The wig is my sister's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i08",
-    "correctText": "hers",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-40:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-40:i09",
-    "correctText": "This is Tom's ring.",
+    "correctText": "The wig is hers.",
     "correctResponseId": "en:lesson-05:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-40:i10",
-    "correctText": "en:lesson-05:session-40:i10:p1=earrings\nen:lesson-05:session-40:i10:p2=laptop\nen:lesson-05:session-40:i10:p3=violin\nen:lesson-05:session-40:i10:p4=thermostat",
+    "correctText": "en:lesson-05:session-40:i10:p1=medal\nen:lesson-05:session-40:i10:p2=mask\nen:lesson-05:session-40:i10:p3=wig\nen:lesson-05:session-40:i10:p4=shelf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i11",
-    "correctText": "Whose laptop is this?",
+    "correctText": "My aunt's wig is under the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i12",
-    "correctText": "Whose sunglasses are these?",
+    "correctText": "Whose masks are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i13",
-    "correctText": "I have your laptop.",
+    "correctText": "The trophy is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i14",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-40:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-40:i15",
-    "correctText": "My watch is here.",
+    "correctText": "Is this wig your sister's?",
     "correctResponseId": "en:lesson-05:session-40:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-40:i16",
-    "correctText": "en:lesson-05:session-40:i16:p1=thermostat\nen:lesson-05:session-40:i16:p2=sunglasses\nen:lesson-05:session-40:i16:p3=earrings\nen:lesson-05:session-40:i16:p4=violin",
+    "correctText": "en:lesson-05:session-40:i16:p1=trophy\nen:lesson-05:session-40:i16:p2=medal\nen:lesson-05:session-40:i16:p3=mask\nen:lesson-05:session-40:i16:p4=wig",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-40:i17",
-    "correctText": "Whose violin is this?",
+    "correctText": "Whose medal is this?",
     "correctResponseId": null
   }
 ]

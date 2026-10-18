@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-35",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце одной или нескольких вещей",
-    "uk": "запитати про власника однієї чи кількох речей"
+    "ru": "спросить о владельце одной вещи и нескольких вещей: is this или are these, и ответить mine, yours, hers",
+    "uk": "спитати про власника однієї речі та кількох речей: is this чи are these, і відповісти mine, yours, hers"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Украшение на запястье",
-        "uk": "Прикраса на зап’ясті"
+        "ru": "Очки для плавания",
+        "uk": "Окуляри для плавання"
       },
       "bodyByLocale": {
-        "ru": "`bracelet` — «браслет», украшение на запястье. `Whose bracelet is this?` — «Чей это браслет?» `The bracelet is mine` — «Браслет мой». `This is Anna’s bracelet` — «Это браслет Анны». Браслет занял целое кресло: маленькая вещь устроилась с размахом.",
-        "uk": "`bracelet` — «браслет», прикраса на зап’ясті. `Whose bracelet is this?` — «Чий це браслет?» `The bracelet is mine` — «Браслет мій». `This is Anna’s bracelet` — «Це браслет Анни». Браслет зайняв ціле крісло: маленька річ влаштувалася з розмахом."
+        "ru": "После утренних занятий в бассейне инструктор держит в руке мокрые очки для плавания и спрашивает, чьи они. Они ваши. goggles — «очки для плавания»; в английском это слово всегда во множественном числе, как scissors. Скажите: The goggles are mine — «Очки мои».",
+        "uk": "Після ранкових занять у басейні інструктор тримає в руці мокрі окуляри для плавання й питає, чиї вони. Вони ваші. goggles — «окуляри для плавання»; в англійській це слово завжди в множині, як scissors. Скажіть: The goggles are mine — «Окуляри мої»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце браслета.",
-          "uk": "Запитайте про власника браслета."
+          "ru": "Инструктор спрашивает, чьи очки для плавания. Они ваши. Скажите: «Очки мои».",
+          "uk": "Інструктор питає, чиї окуляри для плавання. Вони ваші. Скажіть: «Окуляри мої»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-35:intro1:r1",
-              "text": "Whose bracelet is this?"
+              "text": "The goggles are mine."
             },
             {
               "responseId": "en:lesson-05:session-35:intro1:r2",
-              "text": "Where is the bracelet?"
+              "text": "The goggles is mine."
             },
             {
               "responseId": "en:lesson-05:session-35:intro1:r3",
-              "text": "Whose bracelet are this?"
+              "text": "The goggles are my."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-35:intro1:r1",
-              "text": "Whose bracelet is this?"
+              "text": "The goggles are mine."
             },
             {
               "responseId": "en:lesson-05:session-35:intro1:r2",
-              "text": "Where is the bracelet?"
+              "text": "The goggles is mine."
             },
             {
               "responseId": "en:lesson-05:session-35:intro1:r3",
-              "text": "Whose bracelet are this?"
+              "text": "The goggles are my."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце браслета.",
-          "uk": "Запитайте про власника браслета."
+          "ru": "Инструктор спрашивает, чьи очки для плавания. Они ваши. Скажите: «Очки мои».",
+          "uk": "Інструктор питає, чиї окуляри для плавання. Вони ваші. Скажіть: «Окуляри мої»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одна вещь или несколько",
-        "uk": "Одна річ чи кілька"
+        "ru": "Щётка на скамейке",
+        "uk": "Щітка на лавці"
       },
       "bodyByLocale": {
-        "ru": "`photos` — «фотографии», `passport` — «паспорт». `Whose passport is this?` — «Чей это паспорт?» Одна вещь — `is this`. `Whose photos are these?` — «Чьи это фотографии?» Несколько вещей — `are these`. Вопрос `whose` не меняется. `The photos are hers` — «Фотографии её»: владелица одна, но фотографий несколько.",
-        "uk": "`photos` — «фотографії», `passport` — «паспорт». `Whose passport is this?` — «Чий це паспорт?» Одна річ — `is this`. `Whose photos are these?` — «Чиї це фотографії?» Кілька речей — `are these`. Питальне слово `whose` не змінюється. `The photos are hers` — «Фотографії її»: власниця одна, але фотографій кілька."
+        "ru": "В раздевалке на скамейке лежит щётка для волос. Рядом собирает сумку подруга, и вы хотите вернуть вещь хозяйке. hairbrush — «щётка для волос». Спросите, не её ли она: Is this hairbrush yours? — «Это твоя щётка для волос?» Слово yours стоит без вещи.",
+        "uk": "У роздягальні на лавці лежить щітка для волосся. Поруч збирає сумку подруга, і ви хочете повернути річ господині. hairbrush — «щітка для волосся». Спитайте, чи не її вона: Is this hairbrush yours? — «Це твоя щітка для волосся?» Слово yours стоїть без речі."
       },
       "question": {
         "interactionId": "en:lesson-05:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце фотографий.",
-          "uk": "Запитайте про власника фотографій."
+          "ru": "На скамейке лежит щётка для волос. Спросите подругу, не её ли она.",
+          "uk": "На лавці лежить щітка для волосся. Спитайте подругу, чи не її вона."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-35:intro2:r1",
-              "text": "Whose photos are these?"
+              "text": "Is this hairbrush yours?"
             },
             {
               "responseId": "en:lesson-05:session-35:intro2:r2",
-              "text": "Whose photos is this?"
+              "text": "Is this hairbrush your?"
             },
             {
               "responseId": "en:lesson-05:session-35:intro2:r3",
-              "text": "Where are the photos?"
+              "text": "Are this hairbrush yours?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-35:intro2:r1",
-              "text": "Whose photos are these?"
+              "text": "Is this hairbrush yours?"
             },
             {
               "responseId": "en:lesson-05:session-35:intro2:r2",
-              "text": "Whose photos is this?"
+              "text": "Is this hairbrush your?"
             },
             {
               "responseId": "en:lesson-05:session-35:intro2:r3",
-              "text": "Where are the photos?"
+              "text": "Are this hairbrush yours?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце фотографий.",
-          "uk": "Запитайте про власника фотографій."
+          "ru": "На скамейке лежит щётка для волос. Спросите подругу, не её ли она.",
+          "uk": "На лавці лежить щітка для волосся. Спитайте подругу, чи не її вона."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "У входа",
-        "uk": "Біля входу"
+        "ru": "Платок для бабушки",
+        "uk": "Хустинка для бабусі"
       },
       "bodyByLocale": {
-        "ru": "`ill` — «болен»: `Anna is ill` — «Анна больна». Здесь сообщаем состояние, с Анной нужна форма `is`. `ramp` — «пандус», наклонный проход вместо ступеней. `Tom is next to the ramp` — «Том рядом с пандусом». `I have your passport` — «Твой паспорт у меня».",
-        "uk": "`ill` — «хворий»: `Anna is ill` — «Анна хвора». Тут повідомляємо стан, з Анною потрібна форма `is`. `ramp` — «пандус», похилий прохід замість сходинок. `Tom is next to the ramp` — «Том поруч із пандусом». `I have your passport` — «Твій паспорт у мене»."
+        "ru": "Бабушка вышла из душа и уронила у шкафчиков белый носовой платок, а вы его подняли и догнали её. handkerchief — «носовой платок». Отдайте платок бабушке и скажите: Here is your handkerchief — «Вот твой платок». Слово your стоит перед вещью и не меняется.",
+        "uk": "Бабуся вийшла з душу й упустила біля шафок білу носову хустинку, а ви її підняли й наздогнали бабусю. handkerchief — «носова хустинка». Віддайте хустинку бабусі й скажіть: Here is your handkerchief — «Ось твоя хустинка». Слово your стоїть перед річчю й не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-05:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Анна заболела. Сообщите «Анна больна».",
-          "uk": "Анна захворіла. Повідомте «Анна хвора»."
+          "ru": "Бабушка уронила носовой платок, вы его подняли. Отдайте и скажите: «Вот твой платок».",
+          "uk": "Бабуся впустила носову хустинку, ви її підняли. Віддайте й скажіть: «Ось твоя хустинка»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-35:intro3:r1",
-              "text": "Anna is ill."
+              "text": "Here is your handkerchief."
             },
             {
               "responseId": "en:lesson-05:session-35:intro3:r2",
-              "text": "Anna are ill."
+              "text": "Here is yours handkerchief."
             },
             {
               "responseId": "en:lesson-05:session-35:intro3:r3",
-              "text": "Anna is okay."
+              "text": "Here are your handkerchief."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-35:intro3:r1",
-              "text": "Anna is ill."
+              "text": "Here is your handkerchief."
             },
             {
               "responseId": "en:lesson-05:session-35:intro3:r2",
-              "text": "Anna are ill."
+              "text": "Here is yours handkerchief."
             },
             {
               "responseId": "en:lesson-05:session-35:intro3:r3",
-              "text": "Anna is okay."
+              "text": "Here are your handkerchief."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна заболела. Сообщите «Анна больна».",
-          "uk": "Анна захворіла. Повідомте «Анна хвора»."
+          "ru": "Бабушка уронила носовой платок, вы его подняли. Отдайте и скажите: «Вот твой платок».",
+          "uk": "Бабуся впустила носову хустинку, ви її підняли. Віддайте й скажіть: «Ось твоя хустинка»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "788586a292cd3fc47e9d403740691fc81b65b1cebe5575f603e0fe70db235ce7"
+  "introFingerprint": "b8f29e3c925c478442996f31bb53597867992fd3fa05d84757011ba568690a3d"
 }

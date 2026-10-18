@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-01:intro1:r2": {
-          "ru": "Перед смысловым глаголом `work` в этой фразе не нужно `am`.",
-          "uk": "Перед смисловим дієсловом `work` у цій фразі не потрібне `am`."
+          "ru": "Перед work слово am не нужно: I work.",
+          "uk": "Перед work слово am не потрібне: I work."
         },
         "en:lesson-06:session-01:intro1:r3": {
-          "ru": "`there` — там; здесь — `here`.",
-          "uk": "`there` — там; тут — `here`."
+          "ru": "Вы работаете в аптеке, а library — библиотека: нужно pharmacy.",
+          "uk": "Ви працюєте в аптеці, а library — бібліотека: потрібно pharmacy."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-01:intro2:r2": {
-          "ru": "Здесь действие: `I work`, без `am`.",
-          "uk": "Тут дія: `I work`, без `am`."
+          "ru": "Перед bake слово am не нужно: I bake.",
+          "uk": "Перед bake слово am не потрібне: I bake."
         },
         "en:lesson-06:session-01:intro2:r3": {
-          "ru": "`bakery` — пекарня; библиотека — `library`.",
-          "uk": "`bakery` — пекарня; бібліотека — `library`."
+          "ru": "You — «ты» или «вы», а о себе говорим I.",
+          "uk": "You — «ти» або «ви», а про себе кажемо I."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-01:intro3:r2": {
-          "ru": "Перед `have` в этой фразе не нужно `am`.",
-          "uk": "Перед `have` у цій фразі не потрібне `am`."
+          "ru": "Перед wash слово am не нужно: I wash.",
+          "uk": "Перед wash слово am не потрібне: I wash."
         },
         "en:lesson-06:session-01:intro3:r3": {
-          "ru": "С `I` используется `have`.",
-          "uk": "З `I` використовується `have`."
+          "ru": "Тарелок много, поэтому нужно plates.",
+          "uk": "Тарілок багато, тому потрібно plates."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "cb12035e39da10c2e9821d088e80ccaac2f1a980194a076c8a3a45bc1344f4f8"
+  "auxiliaryFingerprint": "bce7c8ba20279bfb36f6331ccaa49e6f99674b076fbc5849c4233cb72a2ecfaa"
 }

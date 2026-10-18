@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-04:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Перед build слово are не нужно: They build.",
+          "uk": "Перед build слово are не потрібне: They build."
         },
         "en:lesson-06:session-04:intro1:r3": {
-          "ru": "Один чек: `is this`.",
-          "uk": "Один чек: `is this`."
+          "ru": "We — это «мы», а вы говорите о рабочих: нужно They.",
+          "uk": "We — це «ми», а ви говорите про робітників: потрібно They."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-04:intro2:r2": {
-          "ru": "Один бассейн: `is`.",
-          "uk": "Один басейн: `is`."
+          "ru": "Перед dig слово are не нужно: They dig.",
+          "uk": "Перед dig слово are не потрібне: They dig."
         },
         "en:lesson-06:session-04:intro2:r3": {
-          "ru": "`hidden` — скрыт; виден — `visible`.",
-          "uk": "`hidden` — прихований; видимий — `visible`."
+          "ru": "Землю копают во дворе, а roof — крыша: нужно in the yard.",
+          "uk": "Землю копають у дворі, а roof — дах: потрібно in the yard."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-04:intro3:r2": {
-          "ru": "Здесь действие: `I work`, без `am`.",
-          "uk": "Тут дія: `I work`, без `am`."
+          "ru": "Перед carry слово are не нужно: They carry.",
+          "uk": "Перед carry слово are не потрібне: They carry."
         },
         "en:lesson-06:session-04:intro3:r3": {
-          "ru": "`bank` — банк; почта — `post office`.",
-          "uk": "`bank` — банк; пошта — `post office`."
+          "ru": "sack — мешок, а несут цемент: нужно cement.",
+          "uk": "sack — мішок, а несуть цемент: потрібно cement."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "56553882ff5b394fb092ad3cde8de54ef79733d4b1bf032fcbc89fb516131201"
+  "auxiliaryFingerprint": "a2bfe19515d4d35b5fc5b3fdbfab9797b39eb21d5545932d9e4510870fcebada"
 }

@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-54:word:kiosk",
+    "correctText": "kiosk",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-54:i01",
-    "correctText": "This place is familiar.",
+    "correctText": "The kiosk is behind the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:word:comic",
+    "correctText": "comic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i02",
-    "correctText": "kiosk",
+    "correctText": "Is this comic yours?",
     "correctResponseId": "en:lesson-05:session-54:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-54:word:lollipop",
+    "correctText": "lollipop",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-54:i03",
-    "correctText": "kiosk",
+    "correctText": "sister's",
     "correctResponseId": "en:lesson-05:session-54:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-54:i04",
-    "correctText": "en:lesson-05:session-54:i04:p1=kiosk\nen:lesson-05:session-54:i04:p2=familiar\nen:lesson-05:session-54:i04:p3=unfamiliar\nen:lesson-05:session-54:i04:p4=unknown",
+    "correctText": "en:lesson-05:session-54:i04:p1=kiosk\nen:lesson-05:session-54:i04:p2=comic\nen:lesson-05:session-54:i04:p3=lollipop\nen:lesson-05:session-54:i04:p4=balloon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-54:word:balloon",
+    "correctText": "balloon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i05",
-    "correctText": "Where is the kiosk?",
+    "correctText": "The balloon is in the bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i06",
-    "correctText": "The bag is striped.",
+    "correctText": "Whose lollipop is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i07",
-    "correctText": "This place is unfamiliar.",
+    "correctText": "The balloon is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i08",
-    "correctText": "unknown",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-54:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-54:i09",
-    "correctText": "The ferry is near the kiosk.",
+    "correctText": "The lollipop is hers.",
     "correctResponseId": "en:lesson-05:session-54:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-54:i10",
-    "correctText": "en:lesson-05:session-54:i10:p1=kiosk\nen:lesson-05:session-54:i10:p2=striped\nen:lesson-05:session-54:i10:p3=petrol station\nen:lesson-05:session-54:i10:p4=ferry",
+    "correctText": "en:lesson-05:session-54:i10:p1=kiosk\nen:lesson-05:session-54:i10:p2=comic\nen:lesson-05:session-54:i10:p3=balloon\nen:lesson-05:session-54:i10:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i11",
-    "correctText": "The kiosk is next to the petrol station.",
+    "correctText": "My brother's comic is on the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i12",
-    "correctText": "The bag is hers.",
+    "correctText": "Whose lollipops are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i13",
-    "correctText": "Where is the ferry?",
+    "correctText": "The comic is yours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i14",
-    "correctText": "Whose",
+    "correctText": "isn't",
     "correctResponseId": "en:lesson-05:session-54:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-54:i15",
-    "correctText": "This place is unfamiliar.",
+    "correctText": "Is this balloon your sister's?",
     "correctResponseId": "en:lesson-05:session-54:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-54:i16",
-    "correctText": "en:lesson-05:session-54:i16:p1=kiosk\nen:lesson-05:session-54:i16:p2=unknown\nen:lesson-05:session-54:i16:p3=petrol station\nen:lesson-05:session-54:i16:p4=striped",
+    "correctText": "en:lesson-05:session-54:i16:p1=kiosk\nen:lesson-05:session-54:i16:p2=comic\nen:lesson-05:session-54:i16:p3=lollipop\nen:lesson-05:session-54:i16:p4=balloon",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-54:i17",
-    "correctText": "Whose bag is this?",
+    "correctText": "Whose comic is this?",
     "correctResponseId": null
   }
 ]

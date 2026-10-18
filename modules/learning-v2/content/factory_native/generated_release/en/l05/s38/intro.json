@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-38",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце техники и вернуть найденную вещь",
-    "uk": "запитати про власника техніки й повернути знайдену річ"
+    "ru": "спросить о владельце техники и вернуть найденную вещь: whose, that, yours, Here is your",
+    "uk": "спитати про власника техніки й повернути знайдену річ: whose, that, yours, Here is your"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Компьютер с собой",
-        "uk": "Комп’ютер із собою"
+        "ru": "Монитор у стены",
+        "uk": "Монітор біля стіни"
       },
       "bodyByLocale": {
-        "ru": "`laptop` — «ноутбук», переносной компьютер с клавиатурой и экраном. `Whose laptop is this?` — «Чей это ноутбук?» `The laptop is mine` — «Ноутбук мой». `This is Anna’s laptop` — «Это ноутбук Анны». Ноутбук уже закрыт и готов отдыхать, а хозяева всё ещё собираются.",
-        "uk": "`laptop` — «ноутбук», переносний комп’ютер із клавіатурою та екраном. `Whose laptop is this?` — «Чий це ноутбук?» `The laptop is mine` — «Ноутбук мій». `This is Anna’s laptop` — «Це ноутбук Анни». Ноутбук уже закритий і готовий відпочивати, а господарі ще збираються."
+        "ru": "Вы пришли к другу помочь с техникой перед игровым вечером. У стены стоит большой чёрный монитор, а сам друг сейчас на кухне. monitor — «монитор», экран компьютера. Монитор далеко от вас, поэтому спросите с that: Whose monitor is that? — «Чей там монитор?»",
+        "uk": "Ви прийшли до друга допомогти з технікою перед ігровим вечором. Біля стіни стоїть великий чорний монітор, а сам друг зараз на кухні. monitor — «монітор», екран комп’ютера. Монітор далеко від вас, тому спитайте з that: Whose monitor is that? — «Чий там монітор?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-38:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце ноутбука.",
-          "uk": "Запитайте про власника ноутбука."
+          "ru": "У стены стоит большой монитор. Спросите друга, чей он.",
+          "uk": "Біля стіни стоїть великий монітор. Спитайте друга, чий він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-38:intro1:r1",
-              "text": "Whose laptop is this?"
+              "text": "Whose monitor is that?"
             },
             {
               "responseId": "en:lesson-05:session-38:intro1:r2",
-              "text": "Where is the laptop?"
+              "text": "Whose monitor are that?"
             },
             {
               "responseId": "en:lesson-05:session-38:intro1:r3",
-              "text": "Whose laptop are these?"
+              "text": "Where is that monitor?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-38:intro1:r1",
-              "text": "Whose laptop is this?"
+              "text": "Whose monitor is that?"
             },
             {
               "responseId": "en:lesson-05:session-38:intro1:r2",
-              "text": "Where is the laptop?"
+              "text": "Whose monitor are that?"
             },
             {
               "responseId": "en:lesson-05:session-38:intro1:r3",
-              "text": "Whose laptop are these?"
+              "text": "Where is that monitor?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце ноутбука.",
-          "uk": "Запитайте про власника ноутбука."
+          "ru": "У стены стоит большой монитор. Спросите друга, чей он.",
+          "uk": "Біля стіни стоїть великий монітор. Спитайте друга, чий він."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Билет и наушники",
-        "uk": "Квиток і навушники"
+        "ru": "Мышь в руке",
+        "uk": "Миша в руці"
       },
       "bodyByLocale": {
-        "ru": "`ticket` — «билет», `headphones` — «наушники». `Whose ticket is this?` — «Чей это билет?» `Whose headphones are these?` — «Чьи это наушники?» Один билет — `is this`, наушники — `are these`. `The headphones are hers` — «Наушники её»: количество вещей определяет форму `are`, даже если владелица одна.",
-        "uk": "`ticket` — «квиток», `headphones` — «навушники». `Whose ticket is this?` — «Чий це квиток?» `Whose headphones are these?` — «Чиї це навушники?» Один квиток — `is this`, навушники — `are these`. `The headphones are hers` — «Навушники її»: кількість речей визначає форму `are`, навіть якщо власниця одна."
+        "ru": "Брат держит в руке чёрную компьютерную мышь и не уверен, его ли она. Вы точно знаете, что мышь его: вы вместе покупали её в магазине электроники. mouse — «компьютерная мышь». Ответьте одним словом вместо названия вещи: The mouse is yours — «Мышь твоя».",
+        "uk": "Брат тримає в руці чорну комп’ютерну мишу й не впевнений, чи його вона. Ви точно знаєте, що миша його: ви разом купували її в магазині електроніки. mouse — «комп’ютерна миша». Відповідьте одним словом замість назви речі: The mouse is yours — «Миша твоя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-38:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце наушников.",
-          "uk": "Запитайте про власника навушників."
+          "ru": "Брат не уверен, его ли эта мышь. Она его. Скажите ему: «Мышь твоя».",
+          "uk": "Брат не впевнений, чи його ця миша. Вона його. Скажіть йому: «Миша твоя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-38:intro2:r1",
-              "text": "Whose headphones are these?"
+              "text": "The mouse is yours."
             },
             {
               "responseId": "en:lesson-05:session-38:intro2:r2",
-              "text": "Whose headphones is this?"
+              "text": "The mouse is your."
             },
             {
               "responseId": "en:lesson-05:session-38:intro2:r3",
-              "text": "Where are the headphones?"
+              "text": "The mouse are yours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-38:intro2:r1",
-              "text": "Whose headphones are these?"
+              "text": "The mouse is yours."
             },
             {
               "responseId": "en:lesson-05:session-38:intro2:r2",
-              "text": "Whose headphones is this?"
+              "text": "The mouse is your."
             },
             {
               "responseId": "en:lesson-05:session-38:intro2:r3",
-              "text": "Where are the headphones?"
+              "text": "The mouse are yours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце наушников.",
-          "uk": "Запитайте про власника навушників."
+          "ru": "Брат не уверен, его ли эта мышь. Она его. Скажите ему: «Мышь твоя».",
+          "uk": "Брат не впевнений, чи його ця миша. Вона його. Скажіть йому: «Миша твоя»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "У места для велосипедов",
-        "uk": "Біля місця для велосипедів"
+        "ru": "Джойстик на диване",
+        "uk": "Джойстик на дивані"
       },
       "bodyByLocale": {
-        "ru": "`weak` — «слабый»: `I am weak` — «Я слаб / слаба», например когда мало физических сил. `bike shed` — «велосипедный сарай», крытое строение для хранения велосипедов. `Tom is next to the bike shed` — «Том рядом с велосипедным сараем». `I have your ticket` — «Твой билет у меня».",
-        "uk": "`weak` — «слабкий»: `I am weak` — «Я слабкий / слабка», наприклад коли мало фізичних сил. `bike shed` — «велосипедний сарай», крита споруда для зберігання велосипедів. `Tom is next to the bike shed` — «Том поруч із велосипедним сараєм». `I have your ticket` — «Твій квиток у мене»."
+        "ru": "Подруга нашла между подушек на диване джойстик и спрашивает, чей он. Вы знаете: он вашего сына, он забыл его после долгой игры. joystick — «джойстик», пульт для игры с рычажком. Назовите хозяина через 's: The joystick is my son's — «Джойстик моего сына».",
+        "uk": "Подруга знайшла між подушок на дивані джойстик і питає, чий він. Ви знаєте: він вашого сина, той забув його після довгої гри. joystick — «джойстик», пульт для гри з важелем. Назвіть господаря через 's: The joystick is my son's — «Джойстик мого сина»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-38:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я слаб», описывая недостаток физических сил, без сокращения.",
-          "uk": "Скажіть «Я слабкий», описуючи брак фізичних сил, без скорочення."
+          "ru": "Подруга нашла на диване джойстик. Он вашего сына. Скажите ей: «Джойстик моего сына».",
+          "uk": "Подруга знайшла на дивані джойстик. Він вашого сина. Скажіть їй: «Джойстик мого сина»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-38:intro3:r1",
-              "text": "I am weak."
+              "text": "The joystick is my son's."
             },
             {
               "responseId": "en:lesson-05:session-38:intro3:r2",
-              "text": "I is weak."
+              "text": "The joystick is my son."
             },
             {
               "responseId": "en:lesson-05:session-38:intro3:r3",
-              "text": "I am sleepy."
+              "text": "The joystick is my sister's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-38:intro3:r1",
-              "text": "I am weak."
+              "text": "The joystick is my son's."
             },
             {
               "responseId": "en:lesson-05:session-38:intro3:r2",
-              "text": "I is weak."
+              "text": "The joystick is my son."
             },
             {
               "responseId": "en:lesson-05:session-38:intro3:r3",
-              "text": "I am sleepy."
+              "text": "The joystick is my sister's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я слаб», описывая недостаток физических сил, без сокращения.",
-          "uk": "Скажіть «Я слабкий», описуючи брак фізичних сил, без скорочення."
+          "ru": "Подруга нашла на диване джойстик. Он вашего сына. Скажите ей: «Джойстик моего сына».",
+          "uk": "Подруга знайшла на дивані джойстик. Він вашого сина. Скажіть їй: «Джойстик мого сина»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3d46c8889756a37065ff5d7ecb771caedabaf66b5c4a76bc93fdeb7636f86614"
+  "introFingerprint": "f85afd83aff56c19d82f9fcec4e3899d55b9ef1ae3bf2c9e486462af78ff68bf"
 }

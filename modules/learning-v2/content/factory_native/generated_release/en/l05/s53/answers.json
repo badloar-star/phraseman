@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-53:word:court",
+    "correctText": "court",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-53:i01",
-    "correctText": "This bag is full.",
+    "correctText": "The court is near the school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-53:word:net",
+    "correctText": "net",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i02",
-    "correctText": "court",
+    "correctText": "Whose net is that?",
     "correctResponseId": "en:lesson-05:session-53:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-53:word:shuttlecock",
+    "correctText": "shuttlecock",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-53:i03",
-    "correctText": "court",
+    "correctText": "mine",
     "correctResponseId": "en:lesson-05:session-53:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-53:i04",
-    "correctText": "en:lesson-05:session-53:i04:p1=court\nen:lesson-05:session-53:i04:p2=motorbike\nen:lesson-05:session-53:i04:p3=museum\nen:lesson-05:session-53:i04:p4=police station",
+    "correctText": "en:lesson-05:session-53:i04:p1=court\nen:lesson-05:session-53:i04:p2=net\nen:lesson-05:session-53:i04:p3=shuttlecock\nen:lesson-05:session-53:i04:p4=scoreboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-53:word:scoreboard",
+    "correctText": "scoreboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i05",
-    "correctText": "Where is the court?",
+    "correctText": "The scoreboard is on the wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i06",
-    "correctText": "The museum is next to the police station.",
+    "correctText": "Where is the scoreboard?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i07",
-    "correctText": "The court is near the museum.",
+    "correctText": "The net is my friend's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i08",
-    "correctText": "is",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-53:i09",
-    "correctText": "This is Tom's motorbike.",
+    "correctText": "The net is hers.",
     "correctResponseId": "en:lesson-05:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-53:i10",
-    "correctText": "en:lesson-05:session-53:i10:p1=court\nen:lesson-05:session-53:i10:p2=full\nen:lesson-05:session-53:i10:p3=police station\nen:lesson-05:session-53:i10:p4=motorbike",
+    "correctText": "en:lesson-05:session-53:i10:p1=court\nen:lesson-05:session-53:i10:p2=net\nen:lesson-05:session-53:i10:p3=scoreboard\nen:lesson-05:session-53:i10:p4=wall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i11",
-    "correctText": "The motorbike is near the court.",
+    "correctText": "My friend's net is under the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i12",
-    "correctText": "The motorbike is hers.",
+    "correctText": "Whose shuttlecocks are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i13",
-    "correctText": "Your motorbike is here.",
+    "correctText": "The shuttlecock is yours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i14",
-    "correctText": "Where",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-53:i15",
-    "correctText": "The motorbike is mine.",
+    "correctText": "Is this net your friend's?",
     "correctResponseId": "en:lesson-05:session-53:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-53:i16",
-    "correctText": "en:lesson-05:session-53:i16:p1=court\nen:lesson-05:session-53:i16:p2=full\nen:lesson-05:session-53:i16:p3=museum\nen:lesson-05:session-53:i16:p4=motorbike",
+    "correctText": "en:lesson-05:session-53:i16:p1=court\nen:lesson-05:session-53:i16:p2=net\nen:lesson-05:session-53:i16:p3=shuttlecock\nen:lesson-05:session-53:i16:p4=scoreboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-53:i17",
-    "correctText": "Whose motorbike is this?",
+    "correctText": "Whose net is this?",
     "correctResponseId": null
   }
 ]

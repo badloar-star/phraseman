@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-53:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "Перед school нужно the: the school.",
+          "uk": "Перед school потрібно the: the school."
         },
         "en:lesson-05:session-53:intro1:r3": {
-          "ru": "Один корт: `is`.",
-          "uk": "Один корт: `is`."
+          "ru": "Корт один, поэтому нужно is.",
+          "uk": "Корт один, тому потрібно is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-53:intro2:r2": {
-          "ru": "Одна сумка: `is`.",
-          "uk": "Одна сумка: `is`."
+          "ru": "this — это про вещь рядом, а сетка лежит далеко: нужно that.",
+          "uk": "this — це про річ поруч, а сітка лежить далеко: потрібно that."
         },
         "en:lesson-05:session-53:intro2:r3": {
-          "ru": "`heavy` — тяжёлый; полный — `full`. Полнота и вес — разные признаки.",
-          "uk": "`heavy` — важкий; повний — `full`. Наповненість і вага — різні ознаки."
+          "ru": "Это «Где сетка?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де сітка?». Про господаря питаємо з whose."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-53:intro3:r2": {
-          "ru": "Один музей: `is`.",
-          "uk": "Один музей: `is`."
+          "ru": "В конце вопроса нужно yours, а не your.",
+          "uk": "Наприкінці питання потрібно yours, а не your."
         },
         "en:lesson-05:session-53:intro3:r3": {
-          "ru": "Рядом — `next to`; `in` означает внутри.",
-          "uk": "Поруч — `next to`; `in` означає всередині."
+          "ru": "Это утверждение, а вам нужен вопрос: is ставим перед this.",
+          "uk": "Це ствердження, а вам потрібне питання: is ставимо перед this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "117fd670bd2de11c4fa545ea130f268a205609c5c60de3c0c5c90acca15cf4f4"
+  "auxiliaryFingerprint": "d41424f1768e068ebc327d0b4fb0ba16660dc6b40178030b5cbc642b302c440f"
 }

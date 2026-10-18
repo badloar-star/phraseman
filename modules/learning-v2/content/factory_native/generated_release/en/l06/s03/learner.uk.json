@@ -4,32 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-03:i01",
+      "interactionId": "en:lesson-06:session-03:word:mow",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-03:word:mow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-03:word:mow:audio",
+          "transcript": "mow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-03:word:mow:r1",
+            "targetText": "mow",
+            "meaningByLocale": {
+              "ru": "косить. We mow the lawn. — «Мы косим лужайку». О том, как срезают траву машиной.",
+              "uk": "косити. We mow the lawn. — «Ми косимо галявину». Про те, як зрізають траву машиною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mow",
+          "definitionByLocale": {
+            "ru": "косить. We mow the lawn. — «Мы косим лужайку». О том, как срезают траву машиной.",
+            "uk": "косити. We mow the lawn. — «Ми косимо галявину». Про те, як зрізають траву машиною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-03:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Розкажіть про місце роботи: «Я працюю в банку»",
+      "prompt": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Розкажіть про місце роботи: «Я працюю в банку»",
+      "accessibilityLabel": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I work in a bank.",
+        "targetPhrase": "We mow the lawn.",
         "localizedMeaning": {
-          "ru": "Расскажите о месте работы: «Я работаю в банке»",
-          "uk": "Розкажіть про місце роботи: «Я працюю в банку»"
+          "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»",
+          "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»"
         },
         "orderedTokens": [
-          "I",
-          "work",
-          "in",
-          "a",
-          "bank"
+          "We",
+          "mow",
+          "the",
+          "lawn"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-03:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка через паркан питає, чим ви із сестрою зайняті. Скажіть: «Ми косимо галявину»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `mow` — `We mow the lawn.`",
+              "uk": "тут потрібно `mow` — `We mow the lawn.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -38,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-03:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-03:word:trim",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — trim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-03:word:trim:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-03:word:trim:audio",
+          "transcript": "trim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-03:word:trim:r1",
+            "targetText": "trim",
+            "meaningByLocale": {
+              "ru": "подрезать. We trim the hedge. — «Мы подрезаем живую изгородь». О том, как делают кусты и ветки короче и ровнее.",
+              "uk": "підрізати. We trim the hedge. — «Ми підрізаємо живу огорожу». Про те, як роблять кущі й гілки коротшими та рівнішими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trim",
+          "definitionByLocale": {
+            "ru": "подрезать. We trim the hedge. — «Мы подрезаем живую изгородь». О том, как делают кусты и ветки короче и ровнее.",
+            "uk": "підрізати. We trim the hedge. — «Ми підрізаємо живу огорожу». Про те, як роблять кущі й гілки коротшими та рівнішими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-03:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i02:r1",
-          "text": "parcel"
+          "text": "We trim the hedge."
         },
         {
           "responseId": "en:lesson-06:session-03:i02:r2",
-          "text": "folder"
+          "text": "We trim the tree."
         },
         {
           "responseId": "en:lesson-06:session-03:i02:r3",
-          "text": "desk"
+          "text": "We have the hedge."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i02:audio",
-          "transcript": "parcel"
+          "transcript": "We trim the hedge."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-03:i02:r1",
-            "targetText": "parcel",
+            "targetText": "We trim the hedge.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i02:r2",
-            "targetText": "folder",
+            "targetText": "We trim the tree.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i02:r3",
-            "targetText": "desk",
+            "targetText": "We have the hedge.",
             "meaningByLocale": null
           }
         ],
@@ -92,19 +189,19 @@
           {
             "responseId": "en:lesson-06:session-03:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `parcel`, а в этом варианте — `folder`.",
-              "uk": "У записі перше слово — `parcel`, а в цьому варіанті — `folder`."
+              "ru": "В записи последнее слово — `hedge`, живая изгородь, а в этом варианте — `tree`, дерево.",
+              "uk": "У записі останнє слово — `hedge`, жива огорожа, а в цьому варіанті — `tree`, дерево."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `parcel`, а в этом варианте — `desk`.",
-              "uk": "У записі перше слово — `parcel`, а в цьому варіанті — `desk`."
+              "ru": "В записи `trim` — подрезать, а в этом варианте `have` — иметь.",
+              "uk": "У записі `trim` — підрізати, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -114,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-03:word:pick",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-03:word:pick:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-03:word:pick:audio",
+          "transcript": "pick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-03:word:pick:r1",
+            "targetText": "pick",
+            "meaningByLocale": {
+              "ru": "собирать, срывать. We pick pears. — «Мы собираем груши». О том, как берут плоды с ветки.",
+              "uk": "збирати, зривати. We pick pears. — «Ми збираємо груші». Про те, як беруть плоди з гілки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pick",
+          "definitionByLocale": {
+            "ru": "собирать, срывать. We pick pears. — «Мы собираем груши». О том, как берут плоды с ветки.",
+            "uk": "збирати, зривати. We pick pears. — «Ми збираємо груші». Про те, як беруть плоди з гілки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-03:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть посилку",
+      "prompt": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i03:r1",
-          "text": "parcel"
+          "text": "pick"
         },
         {
           "responseId": "en:lesson-06:session-03:i03:r2",
-          "text": "folder"
+          "text": "are pick"
         },
         {
           "responseId": "en:lesson-06:session-03:i03:r3",
-          "text": "desk"
+          "text": "am pick"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть посилку",
+      "accessibilityLabel": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите посылку",
-          "uk": "Назвіть посилку"
+          "ru": "Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово",
+          "uk": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "We ___ pears.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-03:i03:r1",
-            "text": "parcel"
+            "text": "pick"
           },
           {
             "responseId": "en:lesson-06:session-03:i03:r2",
-            "text": "folder"
+            "text": "are pick"
           },
           {
             "responseId": "en:lesson-06:session-03:i03:r3",
-            "text": "desk"
+            "text": "am pick"
           }
         ],
-        "testedDimension": "Назвіть посилку",
+        "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть посилку",
+            "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`folder` — папка; посылка — `parcel`.",
-              "uk": "`folder` — папка; посилка — `parcel`."
+              "ru": "После `We` сразу ставим `pick`, без `are`.",
+              "uk": "Після `We` одразу ставимо `pick`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть посилку",
+            "testedDimension": "Груші на дереві дозріли. Скажіть подрузі, що ви їх збираєте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`desk` — письменный стол; посылка — `parcel`.",
-              "uk": "`desk` — письмовий стіл; посилка — `parcel`."
+              "ru": "`am` ставится только после `I`; здесь нужно `We pick`.",
+              "uk": "`am` ставиться тільки після `I`; тут потрібно `We pick`."
             }
           }
         ]
@@ -184,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-03:i04:p1",
-            "target": "parcel",
+            "target": "mow",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "косить",
+              "uk": "косити"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i04:p2",
-            "target": "aware",
+            "target": "trim",
             "meaningByLocale": {
-              "ru": "осведомлён",
-              "uk": "обізнаний"
+              "ru": "подрезать",
+              "uk": "підрізати"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i04:p3",
-            "target": "convinced",
+            "target": "pick",
             "meaningByLocale": {
-              "ru": "убеждён",
-              "uk": "переконаний"
+              "ru": "собирать",
+              "uk": "збирати"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i04:p4",
-            "target": "concerned",
+            "target": "lawnmower",
             "meaningByLocale": {
-              "ru": "обеспокоен",
-              "uk": "стурбований"
+              "ru": "газонокосилка",
+              "uk": "газонокосарка"
             }
           }
         ],
         "leftColumn": [
-          "parcel",
-          "aware",
-          "convinced",
-          "concerned"
+          "mow",
+          "trim",
+          "pick",
+          "lawnmower"
         ],
         "rightColumn": [
-          "посилка",
-          "обізнаний",
-          "переконаний",
-          "стурбований"
+          "косити",
+          "підрізати",
+          "збирати",
+          "газонокосарка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,31 +396,76 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-03:word:lawnmower",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lawnmower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-03:word:lawnmower:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lawnmower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-03:word:lawnmower:audio",
+          "transcript": "lawnmower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-03:word:lawnmower:r1",
+            "targetText": "lawnmower",
+            "meaningByLocale": {
+              "ru": "газонокосилка. The lawnmower is in the shed. — «Газонокосилка в сарае». Техника, которой косят траву.",
+              "uk": "газонокосарка. The lawnmower is in the shed. — «Газонокосарка в сараї». Техніка, якою косять траву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lawnmower",
+          "definitionByLocale": {
+            "ru": "газонокосилка. The lawnmower is in the shed. — «Газонокосилка в сарае». Техника, которой косят траву.",
+            "uk": "газонокосарка. The lawnmower is in the shed. — «Газонокосарка в сараї». Техніка, якою косять траву."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-03:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i05:audio",
-          "transcript": "This is my parcel."
+          "transcript": "The lawnmower is in the shed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is my parcel.",
+        "hiddenTargetPhrase": "The lawnmower is in the shed.",
         "orderedTokens": [
-          "This",
+          "The",
+          "lawnmower",
           "is",
-          "my",
-          "parcel"
+          "in",
+          "the",
+          "shed"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -289,10 +474,10 @@
           {
             "responseId": "en:lesson-06:session-03:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is my parcel.`",
-              "uk": "тут потрібно `is` — `This is my parcel.`"
+              "ru": "здесь нужно `is` — `The lawnmower is in the shed.`",
+              "uk": "тут потрібно `is` — `The lawnmower is in the shed.`"
             }
           }
         ],
@@ -305,30 +490,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Чия це посилка?»",
+      "prompt": "Ви знайшли біля сараю газонокосарку й питаєте сусідку, чия вона. Поставте питання: «Чия це газонокосарка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Чия це посилка?»",
+      "accessibilityLabel": "Ви знайшли біля сараю газонокосарку й питаєте сусідку, чия вона. Поставте питання: «Чия це газонокосарка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose parcel is this?",
+        "targetPhrase": "Whose lawnmower is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Чья это посылка?»",
-          "uk": "Запитайте «Чия це посилка?»"
+          "ru": "Вы нашли у сарая газонокосилку и спрашиваете соседку, чья она. Задайте вопрос: «Чья это газонокосилка?»",
+          "uk": "Ви знайшли біля сараю газонокосарку й питаєте сусідку, чия вона. Поставте питання: «Чия це газонокосарка?»"
         },
         "orderedTokens": [
           "Whose",
-          "parcel",
+          "lawnmower",
           "is",
           "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-03:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли біля сараю газонокосарку й питаєте сусідку, чия вона. Поставте питання: «Чия це газонокосарка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose lawnmower is this?`",
+              "uk": "тут потрібно `Whose` — `Whose lawnmower is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -338,25 +535,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам повідомили про затримку, але ви вже знаєте про неї. Скажіть «Я в курсі» без скорочення",
+      "prompt": "Сестра питає, що ви робите біля паркану. Скажіть: «Ми підрізаємо живу огорожу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i07:audio"
       ],
-      "accessibilityLabel": "Вам повідомили про затримку, але ви вже знаєте про неї. Скажіть «Я в курсі» без скорочення",
+      "accessibilityLabel": "Сестра питає, що ви робите біля паркану. Скажіть: «Ми підрізаємо живу огорожу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i07:audio",
-          "transcript": "I am aware."
+          "transcript": "We trim the hedge."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am aware.",
+        "targetPhrase": "We trim the hedge.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -371,67 +568,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я стурбований» без скорочення",
+      "prompt": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i08:r1",
-          "text": "am"
+          "text": "mow"
         },
         {
           "responseId": "en:lesson-06:session-03:i08:r2",
-          "text": "is"
+          "text": "are mow"
         },
         {
           "responseId": "en:lesson-06:session-03:i08:r3",
-          "text": "are"
+          "text": "am mow"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я стурбований» без скорочення",
+      "accessibilityLabel": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обеспокоен» без сокращения",
-          "uk": "Скажіть «Я стурбований» без скорочення"
+          "ru": "Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово",
+          "uk": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ concerned.",
+        "gappedTargetPhrase": "We ___ the lawn.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-03:i08:r1",
-            "text": "am"
+            "text": "mow"
           },
           {
             "responseId": "en:lesson-06:session-03:i08:r2",
-            "text": "is"
+            "text": "are mow"
           },
           {
             "responseId": "en:lesson-06:session-03:i08:r3",
-            "text": "are"
+            "text": "am mow"
           }
         ],
-        "testedDimension": "Скажіть «Я стурбований» без скорочення",
+        "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я стурбований» без скорочення",
+            "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `I` для описания состояния нужна форма `am`.",
-              "uk": "З `I` для опису стану потрібна форма `am`."
+              "ru": "После `We` сразу ставим `mow`, без `are`.",
+              "uk": "Після `We` одразу ставимо `mow`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я стурбований» без скорочення",
+            "testedDimension": "Трава у дворі занадто висока. Скажіть сусідці, що ви її косите. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `I` нужна форма `am`.",
-              "uk": "З `I` потрібна форма `am`."
+              "ru": "`am` ставится только после `I`; здесь нужно `We mow`.",
+              "uk": "`am` ставиться тільки після `I`; тут потрібно `We mow`."
             }
           }
         ]
@@ -440,51 +637,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить та посилка",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i09:r1",
-          "text": "That parcel is yours."
+          "text": "We pick pears."
         },
         {
           "responseId": "en:lesson-06:session-03:i09:r2",
-          "text": "That parcel is mine."
+          "text": "We pick plums."
         },
         {
           "responseId": "en:lesson-06:session-03:i09:r3",
-          "text": "That parcel is hers."
+          "text": "We have pears."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить та посилка",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i09:audio",
-          "transcript": "That parcel is yours."
+          "transcript": "We pick pears."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-03:i09:r1",
-            "targetText": "That parcel is yours.",
+            "targetText": "We pick pears.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i09:r2",
-            "targetText": "That parcel is mine.",
+            "targetText": "We pick plums.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i09:r3",
-            "targetText": "That parcel is hers.",
+            "targetText": "We have pears.",
             "meaningByLocale": null
           }
         ],
@@ -493,19 +690,19 @@
           {
             "responseId": "en:lesson-06:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить та посилка",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи последнее слово — `pears`, груши, а в этом варианте — `plums`, сливы.",
+              "uk": "У записі останнє слово — `pears`, груші, а в цьому варіанті — `plums`, сливи."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить та посилка",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+              "ru": "В записи `pick` — собирать, а в этом варианте `have` — иметь.",
+              "uk": "У записі `pick` — збирати, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -516,8 +713,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -530,48 +727,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-03:i10:p1",
-            "target": "parcel",
+            "target": "trim",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "подрезать",
+              "uk": "підрізати"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i10:p2",
-            "target": "bank",
+            "target": "hedge",
             "meaningByLocale": {
-              "ru": "банк",
-              "uk": "банк"
+              "ru": "живая изгородь",
+              "uk": "жива огорожа"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i10:p3",
-            "target": "desk",
+            "target": "pear",
             "meaningByLocale": {
-              "ru": "письменный стол",
-              "uk": "письмовий стіл"
+              "ru": "груша",
+              "uk": "груша"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i10:p4",
-            "target": "stadium",
+            "target": "lawnmower",
             "meaningByLocale": {
-              "ru": "стадион",
-              "uk": "стадіон"
+              "ru": "газонокосилка",
+              "uk": "газонокосарка"
             }
           }
         ],
         "leftColumn": [
-          "parcel",
-          "bank",
-          "desk",
-          "stadium"
+          "trim",
+          "hedge",
+          "pear",
+          "lawnmower"
         ],
         "rightColumn": [
-          "посилка",
-          "банк",
-          "письмовий стіл",
-          "стадіон"
+          "підрізати",
+          "жива огорожа",
+          "груша",
+          "газонокосарка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -589,32 +786,33 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сусідку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i11:audio",
-          "transcript": "The parcel is on the desk."
+          "transcript": "We mow the lawn in the garden."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The parcel is on the desk.",
+        "hiddenTargetPhrase": "We mow the lawn in the garden.",
         "orderedTokens": [
-          "The",
-          "parcel",
-          "is",
-          "on",
+          "We",
+          "mow",
           "the",
-          "desk"
+          "lawn",
+          "in",
+          "the",
+          "garden"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -623,10 +821,10 @@
           {
             "responseId": "en:lesson-06:session-03:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте сусідку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The parcel is on the desk.`",
-              "uk": "тут потрібно `is` — `The parcel is on the desk.`"
+              "ru": "здесь нужно `mow` — `We mow the lawn in the garden.`",
+              "uk": "тут потрібно `mow` — `We mow the lawn in the garden.`"
             }
           }
         ],
@@ -639,29 +837,29 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Банк біля стадіону»",
+      "prompt": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Банк біля стадіону»",
+      "accessibilityLabel": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bank is near the stadium.",
+        "targetPhrase": "We pick pears in the garden.",
         "localizedMeaning": {
-          "ru": "Скажите «Банк возле стадиона»",
-          "uk": "Скажіть «Банк біля стадіону»"
+          "ru": "Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»",
+          "uk": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»"
         },
         "orderedTokens": [
-          "The",
-          "bank",
-          "is",
-          "near",
+          "We",
+          "pick",
+          "pears",
+          "in",
           "the",
-          "stadium"
+          "garden"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -670,10 +868,10 @@
           {
             "responseId": "en:lesson-06:session-03:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Банк біля стадіону»",
+            "testedDimension": "Ви розповідаєте подрузі, де ви збираєте груші. Скажіть: «Ми збираємо груші в саду»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bank is near the stadium.`",
-              "uk": "тут потрібно `is` — `The bank is near the stadium.`"
+              "ru": "здесь нужно `pick` — `We pick pears in the garden.`",
+              "uk": "тут потрібно `pick` — `We pick pears in the garden.`"
             }
           }
         ],
@@ -686,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Аргументи друга вас переконали. Скажіть «Я переконаний» без скорочення",
+      "prompt": "Подруга питає, що ви робите під деревом. Скажіть: «Ми збираємо груші»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i13:audio"
       ],
-      "accessibilityLabel": "Аргументи друга вас переконали. Скажіть «Я переконаний» без скорочення",
+      "accessibilityLabel": "Подруга питає, що ви робите під деревом. Скажіть: «Ми збираємо груші»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i13:audio",
-          "transcript": "I am convinced."
+          "transcript": "We pick pears."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am convinced.",
+        "targetPhrase": "We pick pears.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -719,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я працюю тут»",
+      "prompt": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i14:r1",
-          "text": "work"
+          "text": "trim"
         },
         {
           "responseId": "en:lesson-06:session-03:i14:r2",
-          "text": "am work"
+          "text": "are trim"
         },
         {
           "responseId": "en:lesson-06:session-03:i14:r3",
-          "text": "is work"
+          "text": "am trim"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я працюю тут»",
+      "accessibilityLabel": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я работаю здесь»",
-          "uk": "Скажіть «Я працюю тут»"
+          "ru": "Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово",
+          "uk": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "We ___ the hedge.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-03:i14:r1",
-            "text": "work"
+            "text": "trim"
           },
           {
             "responseId": "en:lesson-06:session-03:i14:r2",
-            "text": "am work"
+            "text": "are trim"
           },
           {
             "responseId": "en:lesson-06:session-03:i14:r3",
-            "text": "is work"
+            "text": "am trim"
           }
         ],
-        "testedDimension": "Скажіть «Я працюю тут»",
+        "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-03:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я працюю тут»",
+            "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь действие: `I work`, без `am`.",
-              "uk": "Тут дія: `I work`, без `am`."
+              "ru": "После `We` сразу ставим `trim`, без `are`.",
+              "uk": "Після `We` одразу ставимо `trim`, без `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я працюю тут»",
+            "testedDimension": "Жива огорожа розрослася. Скажіть братові, що ви її підрізаєте. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `I work`, без `is`.",
-              "uk": "Тут потрібно `I work`, без `is`."
+              "ru": "`am` ставится только после `I`; здесь нужно `We trim`.",
+              "uk": "`am` ставиться тільки після `I`; тут потрібно `We trim`."
             }
           }
         ]
@@ -788,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належить посилка",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-03:i15:r1",
-          "text": "The parcel is mine."
+          "text": "The lawnmower is in the shed."
         },
         {
           "responseId": "en:lesson-06:session-03:i15:r2",
-          "text": "The parcel is hers."
+          "text": "The lawnmower is in the garden."
         },
         {
           "responseId": "en:lesson-06:session-03:i15:r3",
-          "text": "The parcel is ours."
+          "text": "The ladder is in the shed."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належить посилка",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i15:audio",
-          "transcript": "The parcel is mine."
+          "transcript": "The lawnmower is in the shed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-03:i15:r1",
-            "targetText": "The parcel is mine.",
+            "targetText": "The lawnmower is in the shed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i15:r2",
-            "targetText": "The parcel is hers.",
+            "targetText": "The lawnmower is in the garden.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-03:i15:r3",
-            "targetText": "The parcel is ours.",
+            "targetText": "The ladder is in the shed.",
             "meaningByLocale": null
           }
         ],
@@ -841,19 +1039,19 @@
           {
             "responseId": "en:lesson-06:session-03:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить посилка",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `hers`."
+              "ru": "В записи место — `shed`, сарай, а в этом варианте — `garden`, сад.",
+              "uk": "У записі місце — `shed`, сарай, а в цьому варіанті — `garden`, сад."
             }
           },
           {
             "responseId": "en:lesson-06:session-03:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належить посилка",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `mine`, а в этом варианте — `ours`.",
-              "uk": "У записі останнє слово — `mine`, а в цьому варіанті — `ours`."
+              "ru": "В записи вещь — `lawnmower`, газонокосилка, а в этом варианте — `ladder`, лестница.",
+              "uk": "У записі річ — `lawnmower`, газонокосарка, а в цьому варіанті — `ladder`, драбина."
             }
           }
         ],
@@ -864,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -878,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-03:i16:p1",
-            "target": "parcel",
+            "target": "lawnmower",
             "meaningByLocale": {
-              "ru": "посылка",
-              "uk": "посилка"
+              "ru": "газонокосилка",
+              "uk": "газонокосарка"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i16:p2",
-            "target": "aware",
+            "target": "pick",
             "meaningByLocale": {
-              "ru": "осведомлён",
-              "uk": "обізнаний"
+              "ru": "собирать",
+              "uk": "збирати"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i16:p3",
-            "target": "convinced",
+            "target": "hedge",
             "meaningByLocale": {
-              "ru": "убеждён",
-              "uk": "переконаний"
+              "ru": "живая изгородь",
+              "uk": "жива огорожа"
             }
           },
           {
             "pairId": "en:lesson-06:session-03:i16:p4",
-            "target": "concerned",
+            "target": "shed",
             "meaningByLocale": {
-              "ru": "обеспокоен",
-              "uk": "стурбований"
+              "ru": "сарай",
+              "uk": "сарай"
             }
           }
         ],
         "leftColumn": [
-          "parcel",
-          "aware",
-          "convinced",
-          "concerned"
+          "lawnmower",
+          "pick",
+          "hedge",
+          "shed"
         ],
         "rightColumn": [
-          "посилка",
-          "обізнаний",
-          "переконаний",
-          "стурбований"
+          "газонокосарка",
+          "збирати",
+          "жива огорожа",
+          "сарай"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -937,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-03:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На робочому столі лежить посилка. Запитайте колегу «Чия це посилка?»",
+      "prompt": "Ви із сестрою працюєте у дворі. Скажіть сусідці, що ви косите галявину: «Ми косимо галявину»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-03:i17:audio"
       ],
-      "accessibilityLabel": "На робочому столі лежить посилка. Запитайте колегу «Чия це посилка?»",
+      "accessibilityLabel": "Ви із сестрою працюєте у дворі. Скажіть сусідці, що ви косите галявину: «Ми косимо галявину»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-03:i17:audio",
-          "transcript": "Whose parcel is this?"
+          "transcript": "We mow the lawn."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose parcel is this?",
+        "targetPhrase": "We mow the lawn.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -977,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "72a53ef60ecf99a9fa2bf2f55a8c57d726738fb75965e66fd6807b41a6ea77c1"
+  "learnerFingerprint": "56a789ba9464130dcb4c4150dbf923a0d268b35ee89630ac9f870a5f0068d168"
 }

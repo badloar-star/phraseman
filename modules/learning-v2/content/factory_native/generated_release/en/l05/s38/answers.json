@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-38:word:monitor",
+    "correctText": "monitor",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-38:i01",
-    "correctText": "I am weak.",
+    "correctText": "The monitor is my sister's.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-38:word:mouse",
+    "correctText": "mouse",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i02",
-    "correctText": "laptop",
+    "correctText": "The mouse is yours.",
     "correctResponseId": "en:lesson-05:session-38:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-38:word:joystick",
+    "correctText": "joystick",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-38:i03",
-    "correctText": "laptop",
+    "correctText": "that",
     "correctResponseId": "en:lesson-05:session-38:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-38:i04",
-    "correctText": "en:lesson-05:session-38:i04:p1=laptop\nen:lesson-05:session-38:i04:p2=ticket\nen:lesson-05:session-38:i04:p3=bike shed\nen:lesson-05:session-38:i04:p4=headphones",
+    "correctText": "en:lesson-05:session-38:i04:p1=monitor\nen:lesson-05:session-38:i04:p2=mouse\nen:lesson-05:session-38:i04:p3=joystick\nen:lesson-05:session-38:i04:p4=drone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-38:word:drone",
+    "correctText": "drone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i05",
-    "correctText": "Whose laptop is this?",
+    "correctText": "The drone is on the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i06",
-    "correctText": "Whose ticket is this?",
+    "correctText": "Whose mouse is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i07",
-    "correctText": "The laptop is mine.",
+    "correctText": "Here is your joystick.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i08",
-    "correctText": "are",
+    "correctText": "ours",
     "correctResponseId": "en:lesson-05:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-38:i09",
-    "correctText": "This is Anna's laptop.",
+    "correctText": "Whose drone is that?",
     "correctResponseId": "en:lesson-05:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-38:i10",
-    "correctText": "en:lesson-05:session-38:i10:p1=laptop\nen:lesson-05:session-38:i10:p2=weak\nen:lesson-05:session-38:i10:p3=bike shed\nen:lesson-05:session-38:i10:p4=headphones",
+    "correctText": "en:lesson-05:session-38:i10:p1=mouse\nen:lesson-05:session-38:i10:p2=joystick\nen:lesson-05:session-38:i10:p3=drone\nen:lesson-05:session-38:i10:p4=table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i11",
-    "correctText": "Tom is next to the bike shed.",
+    "correctText": "My son's joystick is under the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i12",
-    "correctText": "The headphones are hers.",
+    "correctText": "Is this monitor yours?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i13",
-    "correctText": "I have your ticket.",
+    "correctText": "The mouse isn't mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i14",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-38:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-38:i15",
-    "correctText": "Your laptop is here.",
+    "correctText": "Here is your joystick.",
     "correctResponseId": "en:lesson-05:session-38:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-38:i16",
-    "correctText": "en:lesson-05:session-38:i16:p1=laptop\nen:lesson-05:session-38:i16:p2=weak\nen:lesson-05:session-38:i16:p3=ticket\nen:lesson-05:session-38:i16:p4=headphones",
+    "correctText": "en:lesson-05:session-38:i16:p1=monitor\nen:lesson-05:session-38:i16:p2=mouse\nen:lesson-05:session-38:i16:p3=joystick\nen:lesson-05:session-38:i16:p4=drone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-38:i17",
-    "correctText": "Whose headphones are these?",
+    "correctText": "Whose drone is this?",
     "correctResponseId": null
   }
 ]

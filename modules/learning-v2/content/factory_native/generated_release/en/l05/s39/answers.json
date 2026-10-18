@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-39:word:violin",
+    "correctText": "violin",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-39:i01",
-    "correctText": "You are brave.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-05:session-39:i02",
-    "correctText": "violin",
-    "correctResponseId": "en:lesson-05:session-39:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-05:session-39:i03",
-    "correctText": "violin",
-    "correctResponseId": "en:lesson-05:session-39:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-05:session-39:i04",
-    "correctText": "en:lesson-05:session-39:i04:p1=violin\nen:lesson-05:session-39:i04:p2=guitar\nen:lesson-05:session-39:i04:p3=bottles\nen:lesson-05:session-39:i04:p4=boiler",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-05:session-39:i05",
     "correctText": "Whose violin is this?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-05:session-39:word:harmonica",
+    "correctText": "harmonica",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i02",
+    "correctText": "The harmonica is on the shelf.",
+    "correctResponseId": "en:lesson-05:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:word:tambourine",
+    "correctText": "tambourine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i03",
+    "correctText": "between",
+    "correctResponseId": "en:lesson-05:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i04",
+    "correctText": "en:lesson-05:session-39:i04:p1=violin\nen:lesson-05:session-39:i04:p2=harmonica\nen:lesson-05:session-39:i04:p3=tambourine\nen:lesson-05:session-39:i04:p4=accordion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:word:accordion",
+    "correctText": "accordion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-39:i05",
+    "correctText": "The accordion is in the hall.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-39:i06",
-    "correctText": "Whose guitar is this?",
+    "correctText": "Whose harmonica is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i07",
-    "correctText": "The violin is hers.",
+    "correctText": "The tambourine is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i08",
-    "correctText": "are",
+    "correctText": "daughter's",
     "correctResponseId": "en:lesson-05:session-39:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-39:i09",
-    "correctText": "This is Tom's violin.",
+    "correctText": "Whose accordion is this?",
     "correctResponseId": "en:lesson-05:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-39:i10",
-    "correctText": "en:lesson-05:session-39:i10:p1=violin\nen:lesson-05:session-39:i10:p2=brave\nen:lesson-05:session-39:i10:p3=boiler\nen:lesson-05:session-39:i10:p4=bottles",
+    "correctText": "en:lesson-05:session-39:i10:p1=harmonica\nen:lesson-05:session-39:i10:p2=tambourine\nen:lesson-05:session-39:i10:p3=accordion\nen:lesson-05:session-39:i10:p4=shelf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i11",
-    "correctText": "The boiler is in the kitchen.",
+    "correctText": "My daughter's violin is on the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i12",
-    "correctText": "The bottles are ours.",
+    "correctText": "The tambourine is next to the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i13",
-    "correctText": "I have your guitar.",
+    "correctText": "It is his.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i14",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-39:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-39:i15",
-    "correctText": "My violin is here.",
+    "correctText": "The tambourine is next to the sofa.",
     "correctResponseId": "en:lesson-05:session-39:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-39:i16",
-    "correctText": "en:lesson-05:session-39:i16:p1=violin\nen:lesson-05:session-39:i16:p2=brave\nen:lesson-05:session-39:i16:p3=guitar\nen:lesson-05:session-39:i16:p4=bottles",
+    "correctText": "en:lesson-05:session-39:i16:p1=violin\nen:lesson-05:session-39:i16:p2=harmonica\nen:lesson-05:session-39:i16:p3=tambourine\nen:lesson-05:session-39:i16:p4=accordion",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-39:i17",
-    "correctText": "Whose bottles are these?",
+    "correctText": "Whose violin is this?",
     "correctResponseId": null
   }
 ]

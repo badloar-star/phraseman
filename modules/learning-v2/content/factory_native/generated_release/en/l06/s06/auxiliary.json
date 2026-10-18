@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-06:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-06:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Перед play слово are не нужно: We play.",
+          "uk": "Перед play слово are не потрібне: We play."
         },
         "en:lesson-06:session-06:intro1:r3": {
-          "ru": "Одна закладка: `is this`.",
-          "uk": "Одна закладка: `is this`."
+          "ru": "Играют во дворе: нужно yard, а pool — бассейн.",
+          "uk": "Грають у дворі: потрібно yard, а pool — басейн."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-06:intro2:r2": {
-          "ru": "Одно кольцо: `This is`.",
-          "uk": "Одна каблучка: `This is`."
+          "ru": "Перед run слово are не нужно: They run.",
+          "uk": "Перед run слово are не потрібне: They run."
         },
         "en:lesson-06:session-06:intro2:r3": {
-          "ru": "`real` — настоящее; поддельное — `fake`.",
-          "uk": "`real` — справжня; підроблена — `fake`."
+          "ru": "Дети бегают в парке: нужно park, а yard — двор.",
+          "uk": "Діти бігають у парку: потрібно park, а yard — двір."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-06:intro3:r2": {
-          "ru": "Здесь действие: `I work`, без `am`.",
-          "uk": "Тут дія: `I work`, без `am`."
+          "ru": "Перед ride слово am не нужно: I ride.",
+          "uk": "Перед ride слово am не потрібне: I ride."
         },
         "en:lesson-06:session-06:intro3:r3": {
-          "ru": "`bank` — банк; клиника — `clinic`.",
-          "uk": "`bank` — банк; клініка — `clinic`."
+          "ru": "Вы едете на велосипеде: нужно bicycle, а bus — автобус.",
+          "uk": "Ви їдете на велосипеді: потрібно bicycle, а bus — автобус."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "314d2354dff8a15d29f97169e9ea227db973cff4197286dc67a94f4581fc6954"
+  "auxiliaryFingerprint": "ff566f1032d1edc3cc5f3d9bbde3fe21df15c7fb3d91c79aa89161e69917d94b"
 }

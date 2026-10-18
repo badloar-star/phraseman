@@ -4,39 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-42:i01",
+      "interactionId": "en:lesson-05:session-42:word:tent",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-42:word:tent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-42:word:tent:audio",
+          "transcript": "tent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-42:word:tent:r1",
+            "targetText": "tent",
+            "meaningByLocale": {
+              "ru": "палатка. My uncle's tent is green. — «Палатка моего дяди зелёная». О лёгком домике из ткани, в котором спят в походе.",
+              "uk": "намет. My uncle's tent is green. — «Намет мого дядька зелений». Про легкий будиночок із тканини, у якому сплять у поході."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tent",
+          "definitionByLocale": {
+            "ru": "палатка. My uncle's tent is green. — «Палатка моего дяди зелёная». О лёгком домике из ткани, в котором спят в походе.",
+            "uk": "намет. My uncle's tent is green. — «Намет мого дядька зелений». Про легкий будиночок із тканини, у якому сплять у поході."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-42:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть другові «Ти ввічливий» без скорочення",
+      "prompt": "Сусід по табору питає, де намет вашого дядька. Він під деревом. Скажіть: «Намет мого дядька під деревом»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть другові «Ти ввічливий» без скорочення",
+      "accessibilityLabel": "Сусід по табору питає, де намет вашого дядька. Він під деревом. Скажіть: «Намет мого дядька під деревом»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are polite.",
+        "targetPhrase": "My uncle's tent is under the tree.",
         "localizedMeaning": {
-          "ru": "Скажите другу «Ты вежливый» без сокращения",
-          "uk": "Скажіть другові «Ти ввічливий» без скорочення"
+          "ru": "Сосед по лагерю спрашивает, где палатка вашего дяди. Она под деревом. Скажите: «Палатка моего дяди под деревом»",
+          "uk": "Сусід по табору питає, де намет вашого дядька. Він під деревом. Скажіть: «Намет мого дядька під деревом»"
         },
         "orderedTokens": [
-          "You",
-          "are",
-          "polite"
+          "My",
+          "uncle's",
+          "tent",
+          "is",
+          "under",
+          "the",
+          "tree"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "uncle"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть другові «Ти ввічливий» без скорочення",
+            "testedDimension": "Сусід по табору питає, де намет вашого дядька. Він під деревом. Скажіть: «Намет мого дядька під деревом»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `You are polite.`",
-              "uk": "тут потрібно `are` — `You are polite.`"
+              "ru": "здесь нужно `uncle's` — `My uncle's tent is under the tree.`",
+              "uk": "тут потрібно `uncle's` — `My uncle's tent is under the tree.`"
             }
           }
         ],
@@ -48,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-42:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-42:word:flashlight",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — flashlight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-42:word:flashlight:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flashlight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-42:word:flashlight:audio",
+          "transcript": "flashlight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-42:word:flashlight:r1",
+            "targetText": "flashlight",
+            "meaningByLocale": {
+              "ru": "фонарик. My friend's flashlight is small. — «Фонарик моей подруги маленький». О карманном фонаре с батарейкой.",
+              "uk": "ліхтарик. My friend's flashlight is small. — «Ліхтарик моєї подруги маленький». Про кишеньковий ліхтар із батарейкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flashlight",
+          "definitionByLocale": {
+            "ru": "фонарик. My friend's flashlight is small. — «Фонарик моей подруги маленький». О карманном фонаре с батарейкой.",
+            "uk": "ліхтарик. My friend's flashlight is small. — «Ліхтарик моєї подруги маленький». Про кишеньковий ліхтар із батарейкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-42:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i02:r1",
-          "text": "scooter"
+          "text": "The flashlight is in my backpack."
         },
         {
           "responseId": "en:lesson-05:session-42:i02:r2",
-          "text": "locker"
+          "text": "The flashlight is in my bag."
         },
         {
           "responseId": "en:lesson-05:session-42:i02:r3",
-          "text": "violin"
+          "text": "The tent is in my backpack."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i02:audio",
-          "transcript": "scooter"
+          "transcript": "The flashlight is in my backpack."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-42:i02:r1",
-            "targetText": "scooter",
+            "targetText": "The flashlight is in my backpack.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i02:r2",
-            "targetText": "locker",
+            "targetText": "The flashlight is in my bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i02:r3",
-            "targetText": "violin",
+            "targetText": "The tent is in my backpack.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-42:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `scooter`, а в этом варианте — `locker`.",
-              "uk": "У записі перше слово — `scooter`, а в цьому варіанті — `locker`."
+              "ru": "В записи место — `backpack`, рюкзак, а в этом варианте — `bag`, сумка.",
+              "uk": "У записі місце — `backpack`, наплічник, а в цьому варіанті — `bag`, сумка."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `scooter`, а в этом варианте — `violin`.",
-              "uk": "У записі перше слово — `scooter`, а в цьому варіанті — `violin`."
+              "ru": "В записи вещь — `flashlight`, фонарик, а в этом варианте — `tent`, палатка.",
+              "uk": "У записі річ — `flashlight`, ліхтарик, а в цьому варіанті — `tent`, намет."
             }
           }
         ],
@@ -124,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-42:word:hammock",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hammock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-42:word:hammock:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hammock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-42:word:hammock:audio",
+          "transcript": "hammock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-42:word:hammock:r1",
+            "targetText": "hammock",
+            "meaningByLocale": {
+              "ru": "гамак. The hammock is between the trees. — «Гамак между деревьями». О подвесной сетке, в которой лежат и отдыхают.",
+              "uk": "гамак. The hammock is between the trees. — «Гамак між деревами». Про підвісну сітку, у якій лежать і відпочивають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hammock",
+          "definitionByLocale": {
+            "ru": "гамак. The hammock is between the trees. — «Гамак между деревьями». О подвесной сетке, в которой лежат и отдыхают.",
+            "uk": "гамак. The hammock is between the trees. — «Гамак між деревами». Про підвісну сітку, у якій лежать і відпочивають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-42:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть самокат",
+      "prompt": "Гамак належить вашому сусідові по табору. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i03:r1",
-          "text": "scooter"
+          "text": "neighbour's"
         },
         {
           "responseId": "en:lesson-05:session-42:i03:r2",
-          "text": "ring"
+          "text": "neighbour"
         },
         {
           "responseId": "en:lesson-05:session-42:i03:r3",
-          "text": "locker"
+          "text": "neighbours"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть самокат",
+      "accessibilityLabel": "Гамак належить вашому сусідові по табору. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите самокат",
-          "uk": "Назвіть самокат"
+          "ru": "Гамак принадлежит вашему соседу по лагерю. Выберите слово",
+          "uk": "Гамак належить вашому сусідові по табору. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The hammock is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-42:i03:r1",
-            "text": "scooter"
+            "text": "neighbour's"
           },
           {
             "responseId": "en:lesson-05:session-42:i03:r2",
-            "text": "ring"
+            "text": "neighbour"
           },
           {
             "responseId": "en:lesson-05:session-42:i03:r3",
-            "text": "locker"
+            "text": "neighbours"
           }
         ],
-        "testedDimension": "Назвіть самокат",
+        "testedDimension": "Гамак належить вашому сусідові по табору. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть самокат",
+            "testedDimension": "Гамак належить вашому сусідові по табору. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`ring` — кольцо; самокат — `scooter`.",
-              "uk": "`ring` — каблучка; самокат — `scooter`."
+              "ru": "Так получилось бы, что гамак — это сам сосед. Хозяина называем через `'s`: `neighbour's`.",
+              "uk": "Так вийшло б, що гамак — це сам сусід. Господаря називаємо через `'s`: `neighbour's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть самокат",
+            "testedDimension": "Гамак належить вашому сусідові по табору. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`locker` — шкафчик; самокат — `scooter`.",
-              "uk": "`locker` — шафка; самокат — `scooter`."
+              "ru": "`neighbours` — это «соседи», несколько человек; чтобы назвать хозяина, нужно `neighbour's`.",
+              "uk": "`neighbours` — це «сусіди», кілька людей; щоб назвати господаря, потрібно `neighbour's`."
             }
           }
         ]
@@ -194,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-42:i04:p1",
-            "target": "scooter",
+            "target": "tent",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "палатка",
+              "uk": "намет"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i04:p2",
-            "target": "ring",
+            "target": "flashlight",
             "meaningByLocale": {
-              "ru": "кольцо",
-              "uk": "каблучка"
+              "ru": "фонарик",
+              "uk": "ліхтарик"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i04:p3",
-            "target": "bathroom",
+            "target": "hammock",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "гамак",
+              "uk": "гамак"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i04:p4",
-            "target": "bus shelter",
+            "target": "penknife",
             "meaningByLocale": {
-              "ru": "павильон на остановке",
-              "uk": "павільйон на зупинці"
+              "ru": "складной нож",
+              "uk": "складаний ніж"
             }
           }
         ],
         "leftColumn": [
-          "scooter",
-          "ring",
-          "bathroom",
-          "bus shelter"
+          "tent",
+          "flashlight",
+          "hammock",
+          "penknife"
         ],
         "rightColumn": [
-          "самокат",
-          "каблучка",
-          "ванна кімната",
-          "павільйон на зупинці"
+          "намет",
+          "ліхтарик",
+          "гамак",
+          "складаний ніж"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,34 +399,92 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-42:word:penknife",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — penknife",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-42:word:penknife:audio"
+      ],
+      "accessibilityLabel": "Картка слова — penknife",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-42:word:penknife:audio",
+          "transcript": "penknife"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-42:word:penknife:r1",
+            "targetText": "penknife",
+            "meaningByLocale": {
+              "ru": "складной нож. My cousin's penknife is sharp. — «Складной нож моего двоюродного брата острый». О маленьком ноже, лезвие которого складывается в рукоятку.",
+              "uk": "складаний ніж. My cousin's penknife is sharp. — «Складаний ніж мого двоюрідного брата гострий». Про маленький ніж, лезо якого складається в руків’я."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "penknife",
+          "definitionByLocale": {
+            "ru": "складной нож. My cousin's penknife is sharp. — «Складной нож моего двоюродного брата острый». О маленьком ноже, лезвие которого складывается в рукоятку.",
+            "uk": "складаний ніж. My cousin's penknife is sharp. — «Складаний ніж мого двоюрідного брата гострий». Про маленький ніж, лезо якого складається в руків’я."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-42:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте дядька й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте дядька й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i05:audio",
-          "transcript": "Whose scooter is this?"
+          "transcript": "The penknife is in my uncle's tent."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose scooter is this?",
+        "hiddenTargetPhrase": "The penknife is in my uncle's tent.",
         "orderedTokens": [
-          "Whose",
-          "scooter",
+          "The",
+          "penknife",
           "is",
-          "this"
+          "in",
+          "my",
+          "uncle's",
+          "tent"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте дядька й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The penknife is in my uncle's tent.`",
+              "uk": "тут потрібно `is` — `The penknife is in my uncle's tent.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -303,41 +494,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Каблучка у ванній»",
+      "prompt": "Ви знайшли в траві ліхтарик і питаєте сусіда по табору, чий він. Поставте питання: «Чий це ліхтарик?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Каблучка у ванній»",
+      "accessibilityLabel": "Ви знайшли в траві ліхтарик і питаєте сусіда по табору, чий він. Поставте питання: «Чий це ліхтарик?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The ring is in the bathroom.",
+        "targetPhrase": "Whose flashlight is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Кольцо в ванной»",
-          "uk": "Скажіть «Каблучка у ванній»"
+          "ru": "Вы нашли в траве фонарик и спрашиваете соседа по лагерю, чей он. Задайте вопрос: «Чей это фонарик?»",
+          "uk": "Ви знайшли в траві ліхтарик і питаєте сусіда по табору, чий він. Поставте питання: «Чий це ліхтарик?»"
         },
         "orderedTokens": [
-          "The",
-          "ring",
+          "Whose",
+          "flashlight",
           "is",
-          "in",
-          "the",
-          "bathroom"
+          "this"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Каблучка у ванній»",
+            "testedDimension": "Ви знайшли в траві ліхтарик і питаєте сусіда по табору, чий він. Поставте питання: «Чий це ліхтарик?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The ring is in the bathroom.`",
-              "uk": "тут потрібно `is` — `The ring is in the bathroom.`"
+              "ru": "здесь нужно `Whose` — `Whose flashlight is this?`",
+              "uk": "тут потрібно `Whose` — `Whose flashlight is this?`"
             }
           }
         ],
@@ -350,25 +539,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Самокат належить вам. Скажіть «Самокат мій»",
+      "prompt": "Сусід питає, чий це намет. Він ваш. Скажіть: «Це мій намет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Самокат належить вам. Скажіть «Самокат мій»",
+      "accessibilityLabel": "Сусід питає, чий це намет. Він ваш. Скажіть: «Це мій намет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i07:audio",
-          "transcript": "The scooter is mine."
+          "transcript": "This is my tent."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The scooter is mine.",
+        "targetPhrase": "This is my tent.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -383,11 +572,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника каблучки",
+      "prompt": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i08:r1",
@@ -404,14 +593,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника каблучки",
+      "accessibilityLabel": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце кольца",
-          "uk": "Запитайте про власника каблучки"
+          "ru": "Вы показываете подруге складной нож и спрашиваете, чей он. Выберите слово",
+          "uk": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose ring ___ this?",
+        "gappedTargetPhrase": "Whose penknife ___ this?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-42:i08:r1",
@@ -426,24 +615,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Запитайте про власника каблучки",
+        "testedDimension": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника каблучки",
+            "testedDimension": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Одно кольцо: `is this`.",
-              "uk": "Одна каблучка: `is this`."
+              "ru": "Нож один, поэтому нужно `is this`, а не `are this`.",
+              "uk": "Ніж один, тому потрібно `is this`, а не `are this`."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника каблучки",
+            "testedDimension": "Ви показуєте подрузі складаний ніж і питаєте, чий він. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `is this`.",
-              "uk": "`am` використовується з `I`; тут `is this`."
+              "ru": "`am` используется только с `I`; здесь нужно `is`.",
+              "uk": "`am` використовується лише з `I`; тут потрібно `is`."
             }
           }
         ]
@@ -452,51 +641,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, яку річ називає друг",
+      "prompt": "Послухайте сусіда по табору",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i09:r1",
-          "text": "This is Tom's scooter."
+          "text": "Whose hammock is this?"
         },
         {
           "responseId": "en:lesson-05:session-42:i09:r2",
-          "text": "This is Tom's ring."
+          "text": "Whose hammocks are these?"
         },
         {
           "responseId": "en:lesson-05:session-42:i09:r3",
-          "text": "This is Tom's laptop."
+          "text": "Whose tent is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "accessibilityLabel": "Послухайте сусіда по табору",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i09:audio",
-          "transcript": "This is Tom's scooter."
+          "transcript": "Whose hammock is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-42:i09:r1",
-            "targetText": "This is Tom's scooter.",
+            "targetText": "Whose hammock is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i09:r2",
-            "targetText": "This is Tom's ring.",
+            "targetText": "Whose hammocks are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i09:r3",
-            "targetText": "This is Tom's laptop.",
+            "targetText": "Whose tent is this?",
             "meaningByLocale": null
           }
         ],
@@ -505,19 +694,19 @@
           {
             "responseId": "en:lesson-05:session-42:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає друг",
+            "testedDimension": "Послухайте сусіда по табору",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `ring`.",
-              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `ring`."
+              "ru": "В записи `hammock is this` — один гамак, а в этом варианте `hammocks are these` — несколько гамаков.",
+              "uk": "У записі `hammock is this` — один гамак, а в цьому варіанті `hammocks are these` — кілька гамаків."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає друг",
+            "testedDimension": "Послухайте сусіда по табору",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `laptop`.",
-              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `laptop`."
+              "ru": "В записи вещь — `hammock`, а в этом варианте — `tent`.",
+              "uk": "У записі річ — `hammock`, а в цьому варіанті — `tent`."
             }
           }
         ],
@@ -528,8 +717,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -542,48 +731,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-42:i10:p1",
-            "target": "scooter",
+            "target": "tent",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "палатка",
+              "uk": "намет"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i10:p2",
-            "target": "polite",
+            "target": "penknife",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "складной нож",
+              "uk": "складаний ніж"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i10:p3",
-            "target": "bus shelter",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "павильон на остановке",
-              "uk": "павільйон на зупинці"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i10:p4",
-            "target": "ring",
+            "target": "tree",
             "meaningByLocale": {
-              "ru": "кольцо",
-              "uk": "каблучка"
+              "ru": "дерево",
+              "uk": "дерево"
             }
           }
         ],
         "leftColumn": [
-          "scooter",
-          "polite",
-          "bus shelter",
-          "ring"
+          "tent",
+          "penknife",
+          "bag",
+          "tree"
         ],
         "rightColumn": [
-          "самокат",
-          "ввічливий",
-          "павільйон на зупинці",
-          "каблучка"
+          "намет",
+          "складаний ніж",
+          "сумка",
+          "дерево"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -601,33 +790,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте двоюрідного брата й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте двоюрідного брата й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i11:audio",
-          "transcript": "Anna is next to the bus shelter."
+          "transcript": "My cousin's flashlight is on the bench."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna is next to the bus shelter.",
+        "hiddenTargetPhrase": "My cousin's flashlight is on the bench.",
         "orderedTokens": [
-          "Anna",
+          "My",
+          "cousin's",
+          "flashlight",
           "is",
-          "next",
-          "to",
+          "on",
           "the",
-          "bus",
-          "shelter"
+          "bench"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -636,10 +825,10 @@
           {
             "responseId": "en:lesson-05:session-42:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте двоюрідного брата й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna is next to the bus shelter.`",
-              "uk": "тут потрібно `is` — `Anna is next to the bus shelter.`"
+              "ru": "здесь нужно `is` — `My cousin's flashlight is on the bench.`",
+              "uk": "тут потрібно `is` — `My cousin's flashlight is on the bench.`"
             }
           }
         ],
@@ -652,41 +841,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть другові «Твій самокат біля дверей»",
+      "prompt": "Ви показуєте сусідові гамак. Він вашої тітки. Скажіть повною фразою: «Це гамак моєї тітки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть другові «Твій самокат біля дверей»",
+      "accessibilityLabel": "Ви показуєте сусідові гамак. Він вашої тітки. Скажіть повною фразою: «Це гамак моєї тітки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Your scooter is near the door.",
+        "targetPhrase": "This is my aunt's hammock.",
         "localizedMeaning": {
-          "ru": "Скажите другу «Твой самокат возле двери»",
-          "uk": "Скажіть другові «Твій самокат біля дверей»"
+          "ru": "Вы показываете соседу гамак. Он вашей тёти. Скажите полной фразой: «Это гамак моей тёти»",
+          "uk": "Ви показуєте сусідові гамак. Він вашої тітки. Скажіть повною фразою: «Це гамак моєї тітки»"
         },
         "orderedTokens": [
-          "Your",
-          "scooter",
+          "This",
           "is",
-          "near",
-          "the",
-          "door"
+          "my",
+          "aunt's",
+          "hammock"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aunt"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть другові «Твій самокат біля дверей»",
+            "testedDimension": "Ви показуєте сусідові гамак. Він вашої тітки. Скажіть повною фразою: «Це гамак моєї тітки»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Your scooter is near the door.`",
-              "uk": "тут потрібно `is` — `Your scooter is near the door.`"
+              "ru": "здесь нужно `aunt's` — `This is my aunt's hammock.`",
+              "uk": "тут потрібно `aunt's` — `This is my aunt's hammock.`"
             }
           }
         ],
@@ -699,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть Анні «Твоя каблучка в мене»",
+      "prompt": "Подруга питає, чий це складаний ніж. Він вашого брата. Скажіть: «Він мого брата»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть Анні «Твоя каблучка в мене»",
+      "accessibilityLabel": "Подруга питає, чий це складаний ніж. Він вашого брата. Скажіть: «Він мого брата»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i13:audio",
-          "transcript": "I have your ring."
+          "transcript": "It is my brother's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your ring.",
+        "targetPhrase": "It is my brother's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -732,67 +920,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника самоката",
+      "prompt": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i14:r1",
-          "text": "Whose"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-42:i14:r2",
-          "text": "Who"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-42:i14:r3",
-          "text": "Where"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника самоката",
+      "accessibilityLabel": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце самоката",
-          "uk": "Запитайте про власника самоката"
+          "ru": "У вашего дяди и вашей тёти есть палатка. Скажите об этом подруге. Выберите слово",
+          "uk": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ scooter is this?",
+        "gappedTargetPhrase": "My uncle and aunt ___ a tent.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-42:i14:r1",
-            "text": "Whose"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-42:i14:r2",
-            "text": "Who"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-42:i14:r3",
-            "text": "Where"
+            "text": "is"
           }
         ],
-        "testedDimension": "Запитайте про власника самоката",
+        "testedDimension": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-42:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника самоката",
+            "testedDimension": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "Дядя и тётя — двое людей, как they, поэтому нужно `have`, а не `has`.",
+              "uk": "Дядько й тітка — двоє людей, як they, тому потрібно `have`, а не `has`."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника самоката",
+            "testedDimension": "У вашого дядька й вашої тітки є намет. Скажіть про це подрузі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "`is` значит «является»: получится «дядя и тётя — палатка». Для «у них есть» нужно `have`.",
+              "uk": "`is` означає «є»: вийде «дядько й тітка — намет». Для «у них є» потрібно `have`."
             }
           }
         ]
@@ -801,51 +989,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чий самокат тут",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-42:i15:r1",
-          "text": "My scooter is here."
+          "text": "The penknife is yours."
         },
         {
           "responseId": "en:lesson-05:session-42:i15:r2",
-          "text": "Your scooter is here."
+          "text": "The penknife is mine."
         },
         {
           "responseId": "en:lesson-05:session-42:i15:r3",
-          "text": "His scooter is here."
+          "text": "The flashlight is yours."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чий самокат тут",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i15:audio",
-          "transcript": "My scooter is here."
+          "transcript": "The penknife is yours."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-42:i15:r1",
-            "targetText": "My scooter is here.",
+            "targetText": "The penknife is yours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i15:r2",
-            "targetText": "Your scooter is here.",
+            "targetText": "The penknife is mine.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-42:i15:r3",
-            "targetText": "His scooter is here.",
+            "targetText": "The flashlight is yours.",
             "meaningByLocale": null
           }
         ],
@@ -854,19 +1042,19 @@
           {
             "responseId": "en:lesson-05:session-42:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чий самокат тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `Your`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `Your`."
+              "ru": "В записи `yours` — «твой», а в этом варианте `mine` — «мой».",
+              "uk": "У записі `yours` — «твій», а в цьому варіанті `mine` — «мій»."
             }
           },
           {
             "responseId": "en:lesson-05:session-42:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чий самокат тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `My`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `My`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `penknife`, а в этом варианте — `flashlight`.",
+              "uk": "У записі річ — `penknife`, а в цьому варіанті — `flashlight`."
             }
           }
         ],
@@ -877,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -891,48 +1079,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-42:i16:p1",
-            "target": "scooter",
+            "target": "tent",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "палатка",
+              "uk": "намет"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i16:p2",
-            "target": "polite",
+            "target": "flashlight",
             "meaningByLocale": {
-              "ru": "вежливый",
-              "uk": "ввічливий"
+              "ru": "фонарик",
+              "uk": "ліхтарик"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i16:p3",
-            "target": "bathroom",
+            "target": "hammock",
             "meaningByLocale": {
-              "ru": "ванная комната",
-              "uk": "ванна кімната"
+              "ru": "гамак",
+              "uk": "гамак"
             }
           },
           {
             "pairId": "en:lesson-05:session-42:i16:p4",
-            "target": "ring",
+            "target": "penknife",
             "meaningByLocale": {
-              "ru": "кольцо",
-              "uk": "каблучка"
+              "ru": "складной нож",
+              "uk": "складаний ніж"
             }
           }
         ],
         "leftColumn": [
-          "scooter",
-          "polite",
-          "bathroom",
-          "ring"
+          "tent",
+          "flashlight",
+          "hammock",
+          "penknife"
         ],
         "rightColumn": [
-          "самокат",
-          "ввічливий",
-          "ванна кімната",
-          "каблучка"
+          "намет",
+          "ліхтарик",
+          "гамак",
+          "складаний ніж"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -950,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-42:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви знайшли каблучку й хочете повернути її власникові. Запитайте «Чия це каблучка?»",
+      "prompt": "Подруга показує гамак і питає, чий він. Він ваш. Відповідьте: «Він мій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-42:i17:audio"
       ],
-      "accessibilityLabel": "Ви знайшли каблучку й хочете повернути її власникові. Запитайте «Чия це каблучка?»",
+      "accessibilityLabel": "Подруга показує гамак і питає, чий він. Він ваш. Відповідьте: «Він мій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-42:i17:audio",
-          "transcript": "Whose ring is this?"
+          "transcript": "It is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose ring is this?",
+        "targetPhrase": "It is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -990,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "703353a6c61330a4d208778e0f6ece14075847aafc91f70e823d3ca370d79af3"
+  "learnerFingerprint": "d1ffd778f5f60ef083ee91771a6109892c63b4883546486804d8d3a01a9baee6"
 }

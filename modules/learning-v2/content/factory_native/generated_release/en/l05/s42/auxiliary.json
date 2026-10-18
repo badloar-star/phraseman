@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-42:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Если вещь не называем, нужно hers, а не her.",
+          "uk": "Якщо річ не називаємо, потрібно hers, а не her."
         },
         "en:lesson-05:session-42:intro1:r3": {
-          "ru": "Один самокат: `is this`.",
-          "uk": "Один самокат: `is this`."
+          "ru": "Палатка одна, поэтому нужно is, а не are.",
+          "uk": "Намет один, тому потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-42:intro2:r2": {
-          "ru": "Одно кольцо: `is this`.",
-          "uk": "Одна каблучка: `is this`."
+          "ru": "Брат один, как he, поэтому нужно has, а не have.",
+          "uk": "Брат один, як he, тому потрібно has, а не have."
         },
         "en:lesson-05:session-42:intro2:r3": {
-          "ru": "Это «Где кольцо?», а нужен вопрос о владельце.",
-          "uk": "Це «Де каблучка?», а потрібне запитання про власника."
+          "ru": "is значит «является»: получится «брат — фонарик». Для «у него есть» нужно has.",
+          "uk": "is означає «є»: вийде «брат — ліхтарик». Для «у нього є» потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-42:intro3:r2": {
-          "ru": "С `you` нужна форма `are`.",
-          "uk": "З `you` потрібна форма `are`."
+          "ru": "Это вопрос «где?», а нужен вопрос «чей?»: Whose.",
+          "uk": "Це питання «де?», а потрібне питання «чий?»: Whose."
         },
         "en:lesson-05:session-42:intro3:r3": {
-          "ru": "`honest` — честный; вежливый — `polite`.",
-          "uk": "`honest` — чесний; ввічливий — `polite`."
+          "ru": "Гамак один, поэтому нужно is this.",
+          "uk": "Гамак один, тому потрібно is this."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e69316c6e6eb73c2d3e055aa6c4a95fff8e730faa1498cd0b675bb21c67864c3"
+  "auxiliaryFingerprint": "ad81aa8511fa1345a6e4c2dd868d5c5061e34ea76540e59e344f34f746010005"
 }

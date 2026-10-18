@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-05:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Перед buy слово am не нужно: I buy.",
+          "uk": "Перед buy слово am не потрібне: I buy."
         },
         "en:lesson-06:session-05:intro1:r3": {
-          "ru": "Один брелок: `is this`.",
-          "uk": "Один брелок: `is this`."
+          "ru": "Яблок несколько, поэтому нужно apples.",
+          "uk": "Яблук кілька, тому потрібно apples."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-05:intro2:r2": {
-          "ru": "Один ключ: `This is`.",
-          "uk": "Один ключ: `This is`."
+          "ru": "Перед weigh слово are не нужно: They weigh.",
+          "uk": "Перед weigh слово are не потрібне: They weigh."
         },
         "en:lesson-06:session-05:intro2:r3": {
-          "ru": "Это «Это брелок»; нужен настоящий ключ: `a real key`.",
-          "uk": "Це «Це брелок»; потрібен справжній ключ: `a real key`."
+          "ru": "Продавцы взвешивают сливы: нужно plums, а pears — груши.",
+          "uk": "Продавці зважують сливи: потрібно plums, а pears — груші."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-05:intro3:r2": {
-          "ru": "Здесь действие: `I work`, без `am`.",
-          "uk": "Тут дія: `I work`, без `am`."
+          "ru": "Перед pack слово are не нужно: We pack.",
+          "uk": "Перед pack слово are не потрібне: We pack."
         },
         "en:lesson-06:session-05:intro3:r3": {
-          "ru": "`bank` — банк; супермаркет — `supermarket`.",
-          "uk": "`bank` — банк; супермаркет — `supermarket`."
+          "ru": "Вы с братом делаете это вместе: нужно We, а не I.",
+          "uk": "Ви з братом робите це разом: потрібно We, а не I."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "22508ae63c8cb53c8aacf122ec3f708f0599db1495b9b0b7c33c4448ca837192"
+  "auxiliaryFingerprint": "21d908823865ebfdc7a3fc33844c00dff0b347fd50937a3993fd080d8d86d020"
 }

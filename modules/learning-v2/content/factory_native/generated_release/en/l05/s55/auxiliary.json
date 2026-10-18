@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-55:intro1:r2": {
-          "ru": "Это вопрос о принадлежности; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про належність; про місце запитуємо з `Where`."
+          "ru": "Стена одна, поэтому нужно wall.",
+          "uk": "Стіна одна, тому потрібно wall."
         },
         "en:lesson-05:session-55:intro1:r3": {
-          "ru": "Одна роспись: `is`.",
-          "uk": "Один розпис: `is`."
+          "ru": "Роспись одна, поэтому нужно is.",
+          "uk": "Розпис один, тому потрібно is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-55:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-55:intro2:r2": {
-          "ru": "С одним человеком используется `is`.",
-          "uk": "З однією людиною використовується `is`."
+          "ru": "После teacher нужно 's: my teacher's.",
+          "uk": "Після teacher потрібно 's: my teacher's."
         },
         "en:lesson-05:session-55:intro2:r3": {
-          "ru": "`dependent` — зависимая; самостоятельная — `independent`.",
-          "uk": "`dependent` — залежна; самостійна — `independent`."
+          "ru": "Перед teacher's нужно my: my teacher's.",
+          "uk": "Перед teacher's потрібно my: my teacher's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-55:intro3:r2": {
-          "ru": "Несколько кафе: `cafes are`.",
-          "uk": "Кілька кафе: `cafes are`."
+          "ru": "Без названия вещи нужно ours, а не our.",
+          "uk": "Без назви речі потрібно ours, а не our."
         },
         "en:lesson-05:session-55:intro3:r3": {
-          "ru": "Здесь одно кафе; нужно несколько: `cafes are`.",
-          "uk": "Тут одне кафе; потрібно кілька: `cafes are`."
+          "ru": "yours — твой, а мольберт принесли вы с сестрой: нужно ours.",
+          "uk": "yours — твій, а мольберт принесли ви із сестрою: потрібно ours."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "011a429ae956aacf88ba00b827dddb02e6d4b51ad81c0d21f6193cbaa0128748"
+  "auxiliaryFingerprint": "a4634bfd4c3af2f29dc9bbedd281015a45385945e49107291131be0e495f22fb"
 }

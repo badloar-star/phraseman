@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-46:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "Жилет один, поэтому нужно is this.",
+          "uk": "Жилет один, тому потрібно is this."
         },
         "en:lesson-05:session-46:intro1:r3": {
-          "ru": "Один паром: `is`.",
-          "uk": "Один пором: `is`."
+          "ru": "Who значит «кто». Когда спрашиваем «чей», нужно Whose.",
+          "uk": "Who означає «хто». Коли питаємо «чий», потрібно Whose."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-46:intro2:r2": {
-          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
-          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+          "ru": "in значит «внутри», а палуба открыта сверху: на ней нужно on.",
+          "uk": "in означає «всередині», а палуба відкрита зверху: на ній потрібно on."
         },
         "en:lesson-05:session-46:intro2:r3": {
-          "ru": "Один ноутбук: `is`.",
-          "uk": "Один ноутбук: `is`."
+          "ru": "Куртка одна, поэтому нужно is, а не are.",
+          "uk": "Куртка одна, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-46:intro3:r2": {
-          "ru": "Один ноутбук: `is`.",
-          "uk": "Один ноутбук: `is`."
+          "ru": "После слова sister нужно 's: my sister's bag.",
+          "uk": "Після слова sister потрібно 's: my sister's bag."
         },
         "en:lesson-05:session-46:intro3:r3": {
-          "ru": "`useful` — полезный; бесполезный — `useless`.",
-          "uk": "`useful` — корисний; некорисний — `useless`."
+          "ru": "Чайка одна, поэтому нужно The seagull is.",
+          "uk": "Чайка одна, тому потрібно The seagull is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7630ba8242ef4f5fbc33369422fc7694e822c43f4c949ce181befe737e59b471"
+  "auxiliaryFingerprint": "eefd707b49003869d89b99577a9ca5f88901a95e37eaee5f02dd86a6ae241b0b"
 }

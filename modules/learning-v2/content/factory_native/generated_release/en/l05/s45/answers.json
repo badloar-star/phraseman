@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-45:word:headset",
+    "correctText": "headset",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-45:i01",
-    "correctText": "The microwave is useful.",
+    "correctText": "The headset is on my friend's desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:word:highlighter",
+    "correctText": "highlighter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i02",
-    "correctText": "motorbike",
+    "correctText": "My highlighter is on the desk.",
     "correctResponseId": "en:lesson-05:session-45:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-45:word:sharpener",
+    "correctText": "sharpener",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-45:i03",
-    "correctText": "motorbike",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-45:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-45:i04",
-    "correctText": "en:lesson-05:session-45:i04:p1=motorbike\nen:lesson-05:session-45:i04:p2=earrings\nen:lesson-05:session-45:i04:p3=office\nen:lesson-05:session-45:i04:p4=microwave",
+    "correctText": "en:lesson-05:session-45:i04:p1=headset\nen:lesson-05:session-45:i04:p2=highlighter\nen:lesson-05:session-45:i04:p3=sharpener\nen:lesson-05:session-45:i04:p4=binder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-45:word:binder",
+    "correctText": "binder",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i05",
-    "correctText": "Whose motorbike is this?",
+    "correctText": "The binder is my manager's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i06",
-    "correctText": "The earrings are in the office.",
+    "correctText": "Whose highlighter is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i07",
-    "correctText": "The motorbike is mine.",
+    "correctText": "The headset is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i08",
-    "correctText": "are",
+    "correctText": "his",
     "correctResponseId": "en:lesson-05:session-45:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-45:i09",
-    "correctText": "This is Tom's motorbike.",
+    "correctText": "Whose binder is this?",
     "correctResponseId": "en:lesson-05:session-45:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-45:i10",
-    "correctText": "en:lesson-05:session-45:i10:p1=motorbike\nen:lesson-05:session-45:i10:p2=useful\nen:lesson-05:session-45:i10:p3=microwave\nen:lesson-05:session-45:i10:p4=earrings",
+    "correctText": "en:lesson-05:session-45:i10:p1=headset\nen:lesson-05:session-45:i10:p2=highlighter\nen:lesson-05:session-45:i10:p3=desk\nen:lesson-05:session-45:i10:p4=drawer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i11",
-    "correctText": "The motorbike is near the office.",
+    "correctText": "My colleague's binder is on the shelf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i12",
-    "correctText": "The earrings are hers.",
+    "correctText": "This is my colleague's headset.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i13",
-    "correctText": "I have your earrings.",
+    "correctText": "It is my colleague's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i14",
-    "correctText": "Whose",
+    "correctText": "have",
     "correctResponseId": "en:lesson-05:session-45:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-45:i15",
-    "correctText": "Your motorbike is here.",
+    "correctText": "The sharpeners are in the drawer.",
     "correctResponseId": "en:lesson-05:session-45:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-45:i16",
-    "correctText": "en:lesson-05:session-45:i16:p1=motorbike\nen:lesson-05:session-45:i16:p2=useful\nen:lesson-05:session-45:i16:p3=office\nen:lesson-05:session-45:i16:p4=earrings",
+    "correctText": "en:lesson-05:session-45:i16:p1=headset\nen:lesson-05:session-45:i16:p2=highlighter\nen:lesson-05:session-45:i16:p3=sharpener\nen:lesson-05:session-45:i16:p4=binder",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-45:i17",
-    "correctText": "Whose earrings are these?",
+    "correctText": "The highlighter is mine.",
     "correctResponseId": null
   }
 ]

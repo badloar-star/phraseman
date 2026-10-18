@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-02:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Перед sweep слово are не нужно: You sweep.",
+          "uk": "Перед sweep слово are не потрібне: You sweep."
         },
         "en:lesson-06:session-02:intro1:r3": {
-          "ru": "Одна папка: `is this`.",
-          "uk": "Одна папка: `is this`."
+          "ru": "I — это «я», а вы говорите помощнице: нужно You.",
+          "uk": "I — це «я», а ви говорите помічниці: потрібно You."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-02:intro2:r2": {
-          "ru": "В этой фразе нужно `I work`, без `am`.",
-          "uk": "У цій фразі потрібно `I work`, без `am`."
+          "ru": "Перед carry слово are не нужно: You carry.",
+          "uk": "Перед carry слово are не потрібне: You carry."
         },
         "en:lesson-06:session-02:intro2:r3": {
-          "ru": "`there` — там; здесь — `here`.",
-          "uk": "`there` — там; тут — `here`."
+          "ru": "Подносов три, поэтому нужно trays.",
+          "uk": "Тацьок три, тому потрібно trays."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-02:intro3:r2": {
-          "ru": "Перед словом, описывающим состояние, здесь нужно `am`.",
-          "uk": "Перед словом, що описує стан, тут потрібне `am`."
+          "ru": "Перед wash слово are не нужно: You wash.",
+          "uk": "Перед wash слово are не потрібне: You wash."
         },
         "en:lesson-06:session-02:intro3:r3": {
-          "ru": "`relaxed` — расслаблен; доволен — `satisfied`.",
-          "uk": "`relaxed` — розслаблений; задоволений — `satisfied`."
+          "ru": "Блюдец много, поэтому нужно saucers.",
+          "uk": "Блюдець багато, тому потрібно saucers."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d85046ce1142d8a81e3ab56b6e48a82883f269b7a6b4241ca9f45c515ea86db7"
+  "auxiliaryFingerprint": "ee493ec02e1e08ea9a48f5b3e89f2b3f4ae7c01982665b1221ed487673a12dce"
 }

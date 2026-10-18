@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-42",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце самоката и вернуть найденную вещь",
-    "uk": "запитати про власника самоката й повернути знайдену річ"
+    "ru": "спросить «чей» и ответить с hers, mine или 's; сказать, что у человека есть вещь",
+    "uk": "спитати «чий» і відповісти з hers, mine чи 's; сказати, що в людини є річ"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "На двух колёсах",
-        "uk": "На двох колесах"
+        "ru": "Палатка на берегу",
+        "uk": "Намет на березі"
       },
       "bodyByLocale": {
-        "ru": "`scooter` здесь — «самокат»: на нём стоят и отталкиваются ногой. `Whose scooter is this?` — «Чей это самокат?» `The scooter is mine` — «Самокат мой». `This is Tom’s scooter` — «Это самокат Тома». Самокат уже у двери, хотя на прогулку его ещё никто не позвал.",
-        "uk": "`scooter` тут — «самокат»: на ньому стоять і відштовхуються ногою. `Whose scooter is this?` — «Чий це самокат?» `The scooter is mine` — «Самокат мій». `This is Tom’s scooter` — «Це самокат Тома». Самокат уже біля дверей, хоча на прогулянку його ще ніхто не покликав."
+        "ru": "На берегу озера вы с друзьями ставите лагерь. Рядом с вашим местом стоит маленькая зелёная палатка, и сосед по лагерю спрашивает, чья она. Она вашей подруги. tent — «палатка», в ней спят в походе. Вещь можно не называть: The tent is hers — «Палатка её».",
+        "uk": "На березі озера ви з друзями ставите табір. Поруч із вашим місцем стоїть маленький зелений намет, і сусід по табору питає, чий він. Він вашої подруги. tent — «намет», у ньому сплять у поході. Річ можна не називати: The tent is hers — «Намет її»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-42:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце самоката.",
-          "uk": "Запитайте про власника самоката."
+          "ru": "Сосед по лагерю спрашивает, чья палатка. Она вашей подруги. Скажите ему: «Палатка её».",
+          "uk": "Сусід по табору питає, чий намет. Він вашої подруги. Скажіть йому: «Намет її»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-42:intro1:r1",
-              "text": "Whose scooter is this?"
+              "text": "The tent is hers."
             },
             {
               "responseId": "en:lesson-05:session-42:intro1:r2",
-              "text": "Where is the scooter?"
+              "text": "The tent is her."
             },
             {
               "responseId": "en:lesson-05:session-42:intro1:r3",
-              "text": "Whose scooter are these?"
+              "text": "The tent are hers."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-42:intro1:r1",
-              "text": "Whose scooter is this?"
+              "text": "The tent is hers."
             },
             {
               "responseId": "en:lesson-05:session-42:intro1:r2",
-              "text": "Where is the scooter?"
+              "text": "The tent is her."
             },
             {
               "responseId": "en:lesson-05:session-42:intro1:r3",
-              "text": "Whose scooter are these?"
+              "text": "The tent are hers."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце самоката.",
-          "uk": "Запитайте про власника самоката."
+          "ru": "Сосед по лагерю спрашивает, чья палатка. Она вашей подруги. Скажите ему: «Палатка её».",
+          "uk": "Сусід по табору питає, чий намет. Він вашої подруги. Скажіть йому: «Намет її»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кольцо нашлось",
-        "uk": "Каблучка знайшлася"
+        "ru": "Фонарик в рюкзаке",
+        "uk": "Ліхтарик у наплічнику"
       },
       "bodyByLocale": {
-        "ru": "`ring` — «кольцо», `bathroom` — «ванная комната». `The ring is in the bathroom` — «Кольцо в ванной». `Whose ring is this?` — «Чьё это кольцо?» `I have your ring` — «Твоё кольцо у меня».",
-        "uk": "`ring` — «каблучка», `bathroom` — «ванна кімната». `The ring is in the bathroom` — «Каблучка у ванній». `Whose ring is this?` — «Чия це каблучка?» `I have your ring` — «Твоя каблучка в мене»."
+        "ru": "Вечером в лагере стемнело, и подруга просит фонарик. У вашего брата в рюкзаке есть один. flashlight — «фонарик»: карманный фонарь с батарейкой. Когда у человека что-то есть, говорим has: My brother has a flashlight — «У моего брата есть фонарик».",
+        "uk": "Увечері в таборі споночіло, і подруга просить ліхтарик. У вашого брата в наплічнику є один. flashlight — «ліхтарик»: кишеньковий ліхтар із батарейкою. Коли в людини щось є, кажемо has: My brother has a flashlight — «У мого брата є ліхтарик»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-42:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, кому принадлежит кольцо.",
-          "uk": "Запитайте, кому належить каблучка."
+          "ru": "Подруга просит фонарик. Он есть у вашего брата. Скажите ей: «У моего брата есть фонарик».",
+          "uk": "Подруга просить ліхтарик. Він є у вашого брата. Скажіть їй: «У мого брата є ліхтарик»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-42:intro2:r1",
-              "text": "Whose ring is this?"
+              "text": "My brother has a flashlight."
             },
             {
               "responseId": "en:lesson-05:session-42:intro2:r2",
-              "text": "Whose ring are these?"
+              "text": "My brother have a flashlight."
             },
             {
               "responseId": "en:lesson-05:session-42:intro2:r3",
-              "text": "Where is the ring?"
+              "text": "My brother is a flashlight."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-42:intro2:r1",
-              "text": "Whose ring is this?"
+              "text": "My brother has a flashlight."
             },
             {
               "responseId": "en:lesson-05:session-42:intro2:r2",
-              "text": "Whose ring are these?"
+              "text": "My brother have a flashlight."
             },
             {
               "responseId": "en:lesson-05:session-42:intro2:r3",
-              "text": "Where is the ring?"
+              "text": "My brother is a flashlight."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, кому принадлежит кольцо.",
-          "uk": "Запитайте, кому належить каблучка."
+          "ru": "Подруга просит фонарик. Он есть у вашего брата. Скажите ей: «У моего брата есть фонарик».",
+          "uk": "Подруга просить ліхтарик. Він є у вашого брата. Скажіть їй: «У мого брата є ліхтарик»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вежливый друг",
-        "uk": "Ввічливий друг"
+        "ru": "Гамак между деревьями",
+        "uk": "Гамак між деревами"
       },
       "bodyByLocale": {
-        "ru": "`polite` — «вежливый»: `You are polite` — «Ты вежливый / вежливая». `bus shelter` — «павильон на остановке», укрытие для ожидающих автобус. `Anna is next to the bus shelter` — «Анна рядом с павильоном на остановке».",
-        "uk": "`polite` — «ввічливий»: `You are polite` — «Ти ввічливий / ввічлива». `bus shelter` — «павільйон на зупинці», укриття для тих, хто чекає на автобус. `Anna is next to the bus shelter` — «Анна поруч із павільйоном на зупинці»."
+        "ru": "Между двумя деревьями висит гамак. Сосед по лагерю хочет в нём отдохнуть, но не знает, чей он. Вы тоже не знаете и спрашиваете подругу. hammock — «гамак», подвесная сетка для отдыха. Спросить «чей» можно так: Whose hammock is this? — «Чей это гамак?»",
+        "uk": "Між двома деревами висить гамак. Сусід по табору хоче в ньому відпочити, але не знає, чий він. Ви теж не знаєте й питаєте подругу. hammock — «гамак», підвісна сітка для відпочинку. Спитати «чий» можна так: Whose hammock is this? — «Чий це гамак?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-42:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу «Ты вежливый» без сокращения.",
-          "uk": "Скажіть другові «Ти ввічливий» без скорочення."
+          "ru": "Между деревьями висит гамак. Спросите подругу: «Чей это гамак?»",
+          "uk": "Між деревами висить гамак. Спитайте подругу: «Чий це гамак?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-42:intro3:r1",
-              "text": "You are polite."
+              "text": "Whose hammock is this?"
             },
             {
               "responseId": "en:lesson-05:session-42:intro3:r2",
-              "text": "You is polite."
+              "text": "Where is this hammock?"
             },
             {
               "responseId": "en:lesson-05:session-42:intro3:r3",
-              "text": "You are honest."
+              "text": "Whose hammock are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-42:intro3:r1",
-              "text": "You are polite."
+              "text": "Whose hammock is this?"
             },
             {
               "responseId": "en:lesson-05:session-42:intro3:r2",
-              "text": "You is polite."
+              "text": "Where is this hammock?"
             },
             {
               "responseId": "en:lesson-05:session-42:intro3:r3",
-              "text": "You are honest."
+              "text": "Whose hammock are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу «Ты вежливый» без сокращения.",
-          "uk": "Скажіть другові «Ти ввічливий» без скорочення."
+          "ru": "Между деревьями висит гамак. Спросите подругу: «Чей это гамак?»",
+          "uk": "Між деревами висить гамак. Спитайте подругу: «Чий це гамак?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e999b49a51b9df5dd21a1b4d0874802e972c2fee2ffad396c260a58f6d0cb606"
+  "introFingerprint": "016582dcca4a643fbb2cf78c6bb7e5c4ad421fb7604ba16c095fc59cb02ebab2"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-51",
   "learningOutcomeByLocale": {
-    "ru": "спросить о городских местах и определить владельца сумки",
-    "uk": "запитати про міські місця й визначити власника сумки"
+    "ru": "спросить о хозяине вещи и ответить: whose, yours, ours, hers, 's",
+    "uk": "спитати про господаря речі та відповісти: whose, yours, ours, hers, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Большое место для спорта",
-        "uk": "Велике місце для спорту"
+        "ru": "Здание за деревьями",
+        "uk": "Будівля за деревами"
       },
       "bodyByLocale": {
-        "ru": "`stadium` — «стадион». `Where is the stadium?` — «Где стадион?» `The stadium is near the river` — «Стадион возле реки». `Tom is at the stadium` — «Том на стадионе».",
-        "uk": "`stadium` — «стадіон». `Where is the stadium?` — «Де стадіон?» `The stadium is near the river` — «Стадіон біля річки». `Tom is at the stadium` — «Том на стадіоні»."
+        "ru": "Двоюродная сестра зовёт вас на футбольный матч. Вы идёте через парк, и за деревьями показывается огромное здание с лампами на крыше. Сестра спрашивает, что это. stadium — «стадион», большое поле с трибунами. Ответьте ей: That is the stadium — «Это стадион».",
+        "uk": "Двоюрідна сестра кличе вас на футбольний матч. Ви йдете через парк, і за деревами показується величезна будівля з лампами на даху. Сестра питає, що це. stadium — «стадіон», велике поле з трибунами. Відповідьте їй: That is the stadium — «Це стадіон»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, где стадион.",
-          "uk": "Запитайте, де стадіон."
+          "ru": "Сестра показывает на огромное здание за деревьями и спрашивает, что это. Скажите: «Это стадион».",
+          "uk": "Сестра показує на величезну будівлю за деревами й питає, що це. Скажіть: «Це стадіон»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-51:intro1:r1",
-              "text": "Where is the stadium?"
+              "text": "That is the stadium."
             },
             {
               "responseId": "en:lesson-05:session-51:intro1:r2",
-              "text": "Whose stadium is this?"
+              "text": "That is the school."
             },
             {
               "responseId": "en:lesson-05:session-51:intro1:r3",
-              "text": "Where are the stadium?"
+              "text": "That are the stadium."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-51:intro1:r1",
-              "text": "Where is the stadium?"
+              "text": "That is the stadium."
             },
             {
               "responseId": "en:lesson-05:session-51:intro1:r2",
-              "text": "Whose stadium is this?"
+              "text": "That is the school."
             },
             {
               "responseId": "en:lesson-05:session-51:intro1:r3",
-              "text": "Where are the stadium?"
+              "text": "That are the stadium."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где стадион.",
-          "uk": "Запитайте, де стадіон."
+          "ru": "Сестра показывает на огромное здание за деревьями и спрашивает, что это. Скажите: «Это стадион».",
+          "uk": "Сестра показує на величезну будівлю за деревами й питає, що це. Скажіть: «Це стадіон»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тяжёлая сумка",
-        "uk": "Важка сумка"
+        "ru": "Флаг на траве",
+        "uk": "Прапор на траві"
       },
       "bodyByLocale": {
-        "ru": "`heavy` — «тяжёлый» по весу. `This bag is heavy` — «Эта сумка тяжёлая». `Whose bag is this?` — «Чья это сумка?» `The bag is hers` — «Сумка её». Сумка тяжёлая, но это ещё не значит, что внутри целый стадион.",
-        "uk": "`heavy` — «важкий» за вагою. `This bag is heavy` — «Ця сумка важка». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Сумка важка, але це ще не означає, що всередині цілий стадіон."
+        "ru": "У входа на стадион на траве лежит бело-красный флаг, и контролёр спрашивает, чей он. flag — «флаг», болельщики машут им на трибунах. Вы знаете: флаг принёс ваш двоюродный брат, он уже ушёл на свои места. Ответьте: The flag is my cousin's — «Флаг моего двоюродного брата».",
+        "uk": "Біля входу на стадіон на траві лежить біло-червоний прапор, і контролер питає, чий він. flag — «прапор», уболівальники махають ним на трибунах. Ви знаєте: прапор приніс ваш двоюрідний брат, він уже пішов на свої місця. Відповідьте: The flag is my cousin's — «Прапор мого двоюрідного брата»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Эта сумка тяжёлая».",
-          "uk": "Скажіть «Ця сумка важка»."
+          "ru": "Контролёр спрашивает, чей флаг на траве. Его принёс ваш двоюродный брат. Скажите: «Флаг моего двоюродного брата».",
+          "uk": "Контролер питає, чий прапор на траві. Його приніс ваш двоюрідний брат. Скажіть: «Прапор мого двоюрідного брата»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-51:intro2:r1",
-              "text": "This bag is heavy."
+              "text": "The flag is my cousin's."
             },
             {
               "responseId": "en:lesson-05:session-51:intro2:r2",
-              "text": "This bag are heavy."
+              "text": "The flag is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-51:intro2:r3",
-              "text": "This bag is expensive."
+              "text": "The flag is cousin's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-51:intro2:r1",
-              "text": "This bag is heavy."
+              "text": "The flag is my cousin's."
             },
             {
               "responseId": "en:lesson-05:session-51:intro2:r2",
-              "text": "This bag are heavy."
+              "text": "The flag is my cousin."
             },
             {
               "responseId": "en:lesson-05:session-51:intro2:r3",
-              "text": "This bag is expensive."
+              "text": "The flag is cousin's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Эта сумка тяжёлая».",
-          "uk": "Скажіть «Ця сумка важка»."
+          "ru": "Контролёр спрашивает, чей флаг на траве. Его принёс ваш двоюродный брат. Скажите: «Флаг моего двоюродного брата».",
+          "uk": "Контролер питає, чий прапор на траві. Його приніс ваш двоюрідний брат. Скажіть: «Прапор мого двоюрідного брата»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё два ориентира",
-        "uk": "Ще два орієнтири"
+        "ru": "Программа матча",
+        "uk": "Програма матчу"
       },
       "bodyByLocale": {
-        "ru": "`libraries` — «библиотеки», `community centre` — «общественный центр», место для встреч и занятий жителей района. `Where are the libraries?` — «Где библиотеки?» `Anna is in the community centre` — «Анна в общественном центре». `I have your bag` — «Твоя сумка у меня».",
-        "uk": "`libraries` — «бібліотеки», `community centre` — «громадський центр», місце для зустрічей і занять мешканців району. `Where are the libraries?` — «Де бібліотеки?» `Anna is in the community centre` — «Анна в громадському центрі». `I have your bag` — «Твоя сумка в мене»."
+        "ru": "На скамейке у входа сестра листает программку с составами команд. programme — «программа матча», небольшая брошюра, которую покупают у входа. Вы отдали ей свою ещё утром, чтобы она могла выбрать любимого игрока. Скажите: The programme is yours — «Программа твоя».",
+        "uk": "На лаві біля входу сестра гортає програмку зі складами команд. programme — «програма матчу», невелика брошура, яку купують біля входу. Ви віддали їй свою ще зранку, щоб вона могла вибрати улюбленого гравця. Скажіть: The programme is yours — «Програма твоя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где библиотеки.",
-          "uk": "Запитайте, де бібліотеки."
+          "ru": "Сестра листает программку, которую вы отдали ей утром. Скажите: «Программа твоя».",
+          "uk": "Сестра гортає програмку, яку ви віддали їй зранку. Скажіть: «Програма твоя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-51:intro3:r1",
-              "text": "Where are the libraries?"
+              "text": "The programme is yours."
             },
             {
               "responseId": "en:lesson-05:session-51:intro3:r2",
-              "text": "Where is the libraries?"
+              "text": "The programme is your."
             },
             {
               "responseId": "en:lesson-05:session-51:intro3:r3",
-              "text": "Whose libraries are these?"
+              "text": "The programme is mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-51:intro3:r1",
-              "text": "Where are the libraries?"
+              "text": "The programme is yours."
             },
             {
               "responseId": "en:lesson-05:session-51:intro3:r2",
-              "text": "Where is the libraries?"
+              "text": "The programme is your."
             },
             {
               "responseId": "en:lesson-05:session-51:intro3:r3",
-              "text": "Whose libraries are these?"
+              "text": "The programme is mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где библиотеки.",
-          "uk": "Запитайте, де бібліотеки."
+          "ru": "Сестра листает программку, которую вы отдали ей утром. Скажите: «Программа твоя».",
+          "uk": "Сестра гортає програмку, яку ви віддали їй зранку. Скажіть: «Програма твоя»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d391f7b99742bbbb53fabdb5a9fa205379ec1d53375e83f83a284e9147a62c23"
+  "introFingerprint": "a37160191c1b4944ca4354196c7a944139ab968ef6077ea567fcab276ae45d5e"
 }

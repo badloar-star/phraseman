@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-54",
   "learningOutcomeByLocale": {
-    "ru": "уточнить место встречи и различать знакомое, незнакомое и неизвестное",
-    "uk": "уточнити місце зустрічі й розрізняти знайоме, незнайоме та невідоме"
+    "ru": "ответить на вопрос «Это твоё?» и спросить о хозяине: Yes, it is; No, it isn't; whose; mine, yours, hers, 's",
+    "uk": "відповісти на питання «Це твоє?» і спитати про господаря: Yes, it is; No, it isn't; whose; mine, yours, hers, 's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Небольшая торговая точка",
-        "uk": "Невелика торгова точка"
+        "ru": "Где купить воду",
+        "uk": "Де купити воду"
       },
       "bodyByLocale": {
-        "ru": "`kiosk` — «киоск», небольшая торговая точка. `Where is the kiosk?` — «Где киоск?» `petrol station` — «заправочная станция»: `The kiosk is next to the petrol station` — «Киоск рядом с заправочной станцией». `ferry` — «паром»: `The ferry is here` — «Паром здесь».",
-        "uk": "`kiosk` — «кіоск», невелика торгова точка. `Where is the kiosk?` — «Де кіоск?» `petrol station` — «заправна станція»: `The kiosk is next to the petrol station` — «Кіоск поруч із заправною станцією». `ferry` — «пором»: `The ferry is here` — «Пором тут»."
+        "ru": "Туристка хочет купить воду и спрашивает, где можно это сделать. Вы часто ходите мимо маленького магазинчика на углу. kiosk — «киоск», так называют маленький магазин на улице, где продают воду, газеты и сладости. Скажите ей: The kiosk is next to the bench — «Киоск рядом со скамейкой».",
+        "uk": "Туристка хоче купити воду й питає, де це можна зробити. Ви часто ходите повз маленький магазинчик на розі. kiosk — «кіоск», так називають маленький магазин на вулиці, де продають воду, газети й солодощі. Скажіть їй: The kiosk is next to the bench — «Кіоск поруч із лавою»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-54:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, где киоск.",
-          "uk": "Запитайте, де кіоск."
+          "ru": "Туристка спрашивает, где купить воду. Киоск рядом со скамейкой. Скажите ей: «Киоск рядом со скамейкой».",
+          "uk": "Туристка питає, де купити воду. Кіоск поруч із лавою. Скажіть їй: «Кіоск поруч із лавою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-54:intro1:r1",
-              "text": "Where is the kiosk?"
+              "text": "The kiosk is next to the bench."
             },
             {
               "responseId": "en:lesson-05:session-54:intro1:r2",
-              "text": "Whose kiosk is this?"
+              "text": "The kiosk is next the bench."
             },
             {
               "responseId": "en:lesson-05:session-54:intro1:r3",
-              "text": "Where are the kiosk?"
+              "text": "The kiosk are next to the bench."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-54:intro1:r1",
-              "text": "Where is the kiosk?"
+              "text": "The kiosk is next to the bench."
             },
             {
               "responseId": "en:lesson-05:session-54:intro1:r2",
-              "text": "Whose kiosk is this?"
+              "text": "The kiosk is next the bench."
             },
             {
               "responseId": "en:lesson-05:session-54:intro1:r3",
-              "text": "Where are the kiosk?"
+              "text": "The kiosk are next to the bench."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где киоск.",
-          "uk": "Запитайте, де кіоск."
+          "ru": "Туристка спрашивает, где купить воду. Киоск рядом со скамейкой. Скажите ей: «Киоск рядом со скамейкой».",
+          "uk": "Туристка питає, де купити воду. Кіоск поруч із лавою. Скажіть їй: «Кіоск поруч із лавою»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Знакомо или неизвестно?",
-        "uk": "Знайоме чи невідоме?"
+        "ru": "Чужой комикс",
+        "uk": "Чужий комікс"
       },
       "bodyByLocale": {
-        "ru": "`familiar` — «знакомый», узнаваемый: `This place is familiar` — «Это место знакомое». `unfamiliar` — «незнакомый»: `This place is unfamiliar` — «Это место незнакомое». `unknown` — «неизвестный»: `His name is unknown` — «Его имя неизвестно». Незнакомое вам место может быть хорошо известно другим; `unknown` в примере означает, что сведений об имени нет.",
-        "uk": "`familiar` — «знайомий», упізнаваний: `This place is familiar` — «Це місце знайоме». `unfamiliar` — «незнайомий»: `This place is unfamiliar` — «Це місце незнайоме». `unknown` — «невідомий»: `His name is unknown` — «Його ім’я невідоме». Незнайоме вам місце може бути добре відоме іншим; `unknown` у прикладі означає, що відомостей про ім’я немає."
+        "ru": "Продавец в киоске поднимает с прилавка толстый журнал с картинками и спрашивает у вас: Is this comic yours? comic — «комикс», журнал с историями в картинках. Вы смотрите на обложку и понимаете, что покупали другой. Ответьте коротко: No, this comic isn't mine — «Нет, этот комикс не мой».",
+        "uk": "Продавець у кіоску піднімає з прилавка товстий журнал із картинками й питає у вас: Is this comic yours? comic — «комікс», журнал з історіями в картинках. Ви дивитеся на обкладинку й розумієте, що купували інший. Відповідьте коротко: No, this comic isn't mine — «Ні, цей комікс не мій»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-54:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Это место незнакомое», используя слово из пары familiar / unfamiliar.",
-          "uk": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar."
+          "ru": "Продавец показывает комикс и спрашивает, ваш ли он. Вы купили другой. Скажите: «Нет, этот комикс не мой».",
+          "uk": "Продавець показує комікс і питає, чи ваш він. Ви купили інший. Скажіть: «Ні, цей комікс не мій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-54:intro2:r1",
-              "text": "This place is unfamiliar."
+              "text": "No, this comic isn't mine."
             },
             {
               "responseId": "en:lesson-05:session-54:intro2:r2",
-              "text": "This place is familiar."
+              "text": "No, this comic isn't my."
             },
             {
               "responseId": "en:lesson-05:session-54:intro2:r3",
-              "text": "This place are unfamiliar."
+              "text": "Yes, this comic isn't mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-54:intro2:r1",
-              "text": "This place is unfamiliar."
+              "text": "No, this comic isn't mine."
             },
             {
               "responseId": "en:lesson-05:session-54:intro2:r2",
-              "text": "This place is familiar."
+              "text": "No, this comic isn't my."
             },
             {
               "responseId": "en:lesson-05:session-54:intro2:r3",
-              "text": "This place are unfamiliar."
+              "text": "Yes, this comic isn't mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это место незнакомое», используя слово из пары familiar / unfamiliar.",
-          "uk": "Скажіть «Це місце незнайоме», використовуючи слово з пари familiar / unfamiliar."
+          "ru": "Продавец показывает комикс и спрашивает, ваш ли он. Вы купили другой. Скажите: «Нет, этот комикс не мой».",
+          "uk": "Продавець показує комікс і питає, чи ваш він. Ви купили інший. Скажіть: «Ні, цей комікс не мій»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Полосатая находка",
-        "uk": "Смугаста знахідка"
+        "ru": "Леденец на прилавке",
+        "uk": "Льодяник на прилавку"
       },
       "bodyByLocale": {
-        "ru": "`striped` — «полосатый»: `The bag is striped` — «Сумка полосатая». `Whose bag is this?` — «Чья это сумка?» `The bag is hers` — «Сумка её». Полоски помогут узнать сумку, но фамилию владельца они не сообщают.",
-        "uk": "`striped` — «смугастий»: `The bag is striped` — «Сумка смугаста». `Whose bag is this?` — «Чия це сумка?» `The bag is hers` — «Сумка її». Смужки допоможуть упізнати сумку, але прізвища власника вони не повідомляють."
+        "ru": "На прилавке киоска лежит красный леденец на палочке, и рядом стоит несколько детей. lollipop — «леденец на палочке». Продавец поднимает его и ждёт, кто признается. Вы хотите узнать, чей он. Спросите у продавца: Whose lollipop is this? — «Чей это леденец?» Леденец один, поэтому is this.",
+        "uk": "На прилавку кіоску лежить червоний льодяник на паличці, і поруч діти. lollipop — «льодяник на паличці». Продавець піднімає його й чекає, хто зізнається. Ви хочете дізнатися, чий він. Спитайте в продавця: Whose lollipop is this? — «Чий це льодяник?» Льодяник один, тому is this."
       },
       "question": {
         "interactionId": "en:lesson-05:session-54:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Сумка полосатая».",
-          "uk": "Скажіть «Сумка смугаста»."
+          "ru": "Продавец держит леденец, рядом стоят дети. Спросите у него, чей это леденец.",
+          "uk": "Продавець тримає льодяник, поруч стоять діти. Спитайте в нього, чий це льодяник."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-54:intro3:r1",
-              "text": "The bag is striped."
+              "text": "Whose lollipop is this?"
             },
             {
               "responseId": "en:lesson-05:session-54:intro3:r2",
-              "text": "The bag are striped."
+              "text": "Where is the lollipop?"
             },
             {
               "responseId": "en:lesson-05:session-54:intro3:r3",
-              "text": "The bag is full."
+              "text": "Whose lollipop are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-54:intro3:r1",
-              "text": "The bag is striped."
+              "text": "Whose lollipop is this?"
             },
             {
               "responseId": "en:lesson-05:session-54:intro3:r2",
-              "text": "The bag are striped."
+              "text": "Where is the lollipop?"
             },
             {
               "responseId": "en:lesson-05:session-54:intro3:r3",
-              "text": "The bag is full."
+              "text": "Whose lollipop are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Сумка полосатая».",
-          "uk": "Скажіть «Сумка смугаста»."
+          "ru": "Продавец держит леденец, рядом стоят дети. Спросите у него, чей это леденец.",
+          "uk": "Продавець тримає льодяник, поруч стоять діти. Спитайте в нього, чий це льодяник."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2902b683ef0d242e551bb9f278bcb6bcb40d1d445aa01c8a0f69ab7678d08876"
+  "introFingerprint": "d2bf25c981e2a1519f040e4662523ac557404962fce4c919254d0e033242d77d"
 }

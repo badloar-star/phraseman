@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-50:word:seesaw",
+    "correctText": "seesaw",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-50:i01",
-    "correctText": "This scooter is expensive.",
+    "correctText": "The seesaw is near the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:word:hoop",
+    "correctText": "hoop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i02",
-    "correctText": "playground",
+    "correctText": "Whose hoop is this?",
     "correctResponseId": "en:lesson-05:session-50:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-50:word:chalk",
+    "correctText": "chalk",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-50:i03",
-    "correctText": "Whose",
+    "correctText": "hers",
     "correctResponseId": "en:lesson-05:session-50:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-50:i04",
-    "correctText": "en:lesson-05:session-50:i04:p1=playground\nen:lesson-05:session-50:i04:p2=scooter\nen:lesson-05:session-50:i04:p3=cinema\nen:lesson-05:session-50:i04:p4=river",
+    "correctText": "en:lesson-05:session-50:i04:p1=seesaw\nen:lesson-05:session-50:i04:p2=hoop\nen:lesson-05:session-50:i04:p3=chalk\nen:lesson-05:session-50:i04:p4=sandcastle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-50:word:sandcastle",
+    "correctText": "sandcastle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i05",
-    "correctText": "The playground is near the river.",
+    "correctText": "The sandcastle is under the tree.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i06",
-    "correctText": "Where is the cinema?",
+    "correctText": "Whose sandcastle is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i07",
-    "correctText": "The scooter is hers.",
+    "correctText": "The hoop is his.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i08",
-    "correctText": "ours",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-50:i09",
-    "correctText": "This is Anna's scooter.",
+    "correctText": "The chalk is his.",
     "correctResponseId": "en:lesson-05:session-50:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-50:i10",
-    "correctText": "en:lesson-05:session-50:i10:p1=playground\nen:lesson-05:session-50:i10:p2=expensive\nen:lesson-05:session-50:i10:p3=river\nen:lesson-05:session-50:i10:p4=scooter",
+    "correctText": "en:lesson-05:session-50:i10:p1=seesaw\nen:lesson-05:session-50:i10:p2=hoop\nen:lesson-05:session-50:i10:p3=sandcastle\nen:lesson-05:session-50:i10:p4=bench",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i11",
-    "correctText": "The scooter is next to the playground.",
+    "correctText": "My brother's hoop is under the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i12",
-    "correctText": "Where is the river?",
+    "correctText": "Whose hoops are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i13",
-    "correctText": "Your scooter is here.",
+    "correctText": "The chalk is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i14",
-    "correctText": "Where",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-50:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-50:i15",
-    "correctText": "The scooter is mine.",
+    "correctText": "Is this chalk your sister's?",
     "correctResponseId": "en:lesson-05:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-50:i16",
-    "correctText": "en:lesson-05:session-50:i16:p1=playground\nen:lesson-05:session-50:i16:p2=expensive\nen:lesson-05:session-50:i16:p3=cinema\nen:lesson-05:session-50:i16:p4=scooter",
+    "correctText": "en:lesson-05:session-50:i16:p1=seesaw\nen:lesson-05:session-50:i16:p2=hoop\nen:lesson-05:session-50:i16:p3=chalk\nen:lesson-05:session-50:i16:p4=sandcastle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-50:i17",
-    "correctText": "Whose scooter is this?",
+    "correctText": "Whose chalk is this?",
     "correctResponseId": null
   }
 ]

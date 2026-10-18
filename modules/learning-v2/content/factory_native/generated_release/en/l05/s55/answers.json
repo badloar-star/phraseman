@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-55:word:mural",
+    "correctText": "mural",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-55:i01",
-    "correctText": "Tom is responsible.",
+    "correctText": "The mural is under the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-55:word:paintbrush",
+    "correctText": "paintbrush",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i02",
-    "correctText": "mural",
+    "correctText": "Whose paintbrush is this?",
     "correctResponseId": "en:lesson-05:session-55:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-55:word:easel",
+    "correctText": "easel",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-55:i03",
-    "correctText": "mural",
+    "correctText": "ours",
     "correctResponseId": "en:lesson-05:session-55:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-55:i04",
-    "correctText": "en:lesson-05:session-55:i04:p1=mural\nen:lesson-05:session-55:i04:p2=responsible\nen:lesson-05:session-55:i04:p3=independent\nen:lesson-05:session-55:i04:p4=dependent",
+    "correctText": "en:lesson-05:session-55:i04:p1=mural\nen:lesson-05:session-55:i04:p2=paintbrush\nen:lesson-05:session-55:i04:p3=easel\nen:lesson-05:session-55:i04:p4=sketchbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-55:word:sketchbook",
+    "correctText": "sketchbook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i05",
-    "correctText": "Where is the mural?",
+    "correctText": "The sketchbook is on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i06",
-    "correctText": "Anna is independent.",
+    "correctText": "Whose paintbrush is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i07",
-    "correctText": "The mural is near the subway.",
+    "correctText": "The sketchbook is yours.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-05:session-55:i09",
-    "correctText": "He is dependent on his parents.",
+    "correctText": "The easel is hers.",
     "correctResponseId": "en:lesson-05:session-55:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-55:i10",
-    "correctText": "en:lesson-05:session-55:i10:p1=mural\nen:lesson-05:session-55:i10:p2=cafes\nen:lesson-05:session-55:i10:p3=shortcut\nen:lesson-05:session-55:i10:p4=subway",
+    "correctText": "en:lesson-05:session-55:i10:p1=mural\nen:lesson-05:session-55:i10:p2=paintbrush\nen:lesson-05:session-55:i10:p3=sketchbook\nen:lesson-05:session-55:i10:p4=wall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i11",
-    "correctText": "Where is the shortcut?",
+    "correctText": "My teacher's sketchbook is under the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i12",
-    "correctText": "Your bag is here.",
+    "correctText": "Whose easels are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i13",
-    "correctText": "Where is the subway?",
+    "correctText": "The paintbrush is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i14",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-55:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-55:i15",
-    "correctText": "Anna is independent.",
+    "correctText": "Is this paintbrush your teacher's?",
     "correctResponseId": "en:lesson-05:session-55:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-55:i16",
-    "correctText": "en:lesson-05:session-55:i16:p1=mural\nen:lesson-05:session-55:i16:p2=dependent\nen:lesson-05:session-55:i16:p3=shortcut\nen:lesson-05:session-55:i16:p4=cafes",
+    "correctText": "en:lesson-05:session-55:i16:p1=mural\nen:lesson-05:session-55:i16:p2=paintbrush\nen:lesson-05:session-55:i16:p3=easel\nen:lesson-05:session-55:i16:p4=sketchbook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-55:i17",
-    "correctText": "Where is the mural?",
+    "correctText": "Whose sketchbook is this?",
     "correctResponseId": null
   }
 ]

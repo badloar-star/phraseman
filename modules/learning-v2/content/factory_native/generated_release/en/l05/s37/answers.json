@@ -1,32 +1,52 @@
 [
   {
+    "interactionId": "en:lesson-05:session-37:word:earrings",
+    "correctText": "earrings",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-37:i01",
-    "correctText": "I am lonely.",
+    "correctText": "The earrings are my aunt's.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-37:word:skateboard",
+    "correctText": "skateboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i02",
-    "correctText": "earrings",
+    "correctText": "The skateboard is his.",
     "correctResponseId": "en:lesson-05:session-37:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-37:word:tripod",
+    "correctText": "tripod",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-37:i03",
-    "correctText": "earrings",
+    "correctText": "brother's",
     "correctResponseId": "en:lesson-05:session-37:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-37:i04",
-    "correctText": "en:lesson-05:session-37:i04:p1=earrings\nen:lesson-05:session-37:i04:p2=car\nen:lesson-05:session-37:i04:p3=parcel locker\nen:lesson-05:session-37:i04:p4=skateboard",
+    "correctText": "en:lesson-05:session-37:i04:p1=earrings\nen:lesson-05:session-37:i04:p2=skateboard\nen:lesson-05:session-37:i04:p3=tripod\nen:lesson-05:session-37:i04:p4=compass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-37:word:compass",
+    "correctText": "compass",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i05",
-    "correctText": "Whose earrings are these?",
+    "correctText": "The compass is in the car.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i06",
-    "correctText": "Whose car is this?",
+    "correctText": "Whose skateboard is that?",
     "correctResponseId": null
   },
   {
@@ -41,42 +61,42 @@
   },
   {
     "interactionId": "en:lesson-05:session-37:i09",
-    "correctText": "These are Anna's earrings.",
+    "correctText": "Is this tripod your brother's?",
     "correctResponseId": "en:lesson-05:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-37:i10",
-    "correctText": "en:lesson-05:session-37:i10:p1=earrings\nen:lesson-05:session-37:i10:p2=lonely\nen:lesson-05:session-37:i10:p3=parcel locker\nen:lesson-05:session-37:i10:p4=skateboard",
+    "correctText": "en:lesson-05:session-37:i10:p1=skateboard\nen:lesson-05:session-37:i10:p2=tripod\nen:lesson-05:session-37:i10:p3=compass\nen:lesson-05:session-37:i10:p4=car",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i11",
-    "correctText": "Tom is next to the parcel locker.",
+    "correctText": "My uncle's compass is in the bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i12",
-    "correctText": "The skateboard is his.",
+    "correctText": "Is this skateboard your sister's?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i13",
-    "correctText": "I have your earrings.",
+    "correctText": "This is my compass.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-37:i14",
-    "correctText": "Whose",
+    "correctText": "aunt's",
     "correctResponseId": "en:lesson-05:session-37:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-37:i15",
-    "correctText": "Your car is here.",
+    "correctText": "Whose earrings are these?",
     "correctResponseId": "en:lesson-05:session-37:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-37:i16",
-    "correctText": "en:lesson-05:session-37:i16:p1=earrings\nen:lesson-05:session-37:i16:p2=lonely\nen:lesson-05:session-37:i16:p3=car\nen:lesson-05:session-37:i16:p4=skateboard",
+    "correctText": "en:lesson-05:session-37:i16:p1=earrings\nen:lesson-05:session-37:i16:p2=skateboard\nen:lesson-05:session-37:i16:p3=tripod\nen:lesson-05:session-37:i16:p4=compass",
     "correctResponseId": null
   },
   {

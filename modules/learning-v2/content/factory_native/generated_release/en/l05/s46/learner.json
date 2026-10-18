@@ -4,40 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-46:i01",
+      "interactionId": "en:lesson-05:session-46:word:lifejacket",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lifejacket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:word:lifejacket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lifejacket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:word:lifejacket:audio",
+          "transcript": "lifejacket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:word:lifejacket:r1",
+            "targetText": "lifejacket",
+            "meaningByLocale": {
+              "ru": "спасательный жилет. My brother's lifejacket is orange. — «Спасательный жилет моего брата оранжевый». О жилете, который держит человека на воде.",
+              "uk": "рятувальний жилет. My brother's lifejacket is orange. — «Рятувальний жилет мого брата помаранчевий». Про жилет, який тримає людину на воді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lifejacket",
+          "definitionByLocale": {
+            "ru": "спасательный жилет. My brother's lifejacket is orange. — «Спасательный жилет моего брата оранжевый». О жилете, который держит человека на воде.",
+            "uk": "рятувальний жилет. My brother's lifejacket is orange. — «Рятувальний жилет мого брата помаранчевий». Про жилет, який тримає людину на воді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+      "prompt": "Сосед по скамье спрашивает, чей жилет. Он вашего брата. Скажите полной фразой: «Это спасательный жилет моего брата»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+      "accessibilityLabel": "Сосед по скамье спрашивает, чей жилет. Он вашего брата. Скажите полной фразой: «Это спасательный жилет моего брата»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This laptop is useless.",
+        "targetPhrase": "This is my brother's lifejacket.",
         "localizedMeaning": {
-          "ru": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
-          "uk": "Ноутбук зовсім не підходить для вашого завдання. Скажіть «Цей ноутбук не приносить користі»"
+          "ru": "Сосед по скамье спрашивает, чей жилет. Он вашего брата. Скажите полной фразой: «Это спасательный жилет моего брата»",
+          "uk": "Сусід по лаві питає, чий жилет. Він вашого брата. Скажіть повною фразою: «Це рятувальний жилет мого брата»"
         },
         "orderedTokens": [
           "This",
-          "laptop",
           "is",
-          "useless"
+          "my",
+          "brother's",
+          "lifejacket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "brother"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ноутбук совсем не подходит для вашей задачи. Скажите «Этот ноутбук бесполезен»",
+            "testedDimension": "Сосед по скамье спрашивает, чей жилет. Он вашего брата. Скажите полной фразой: «Это спасательный жилет моего брата»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This laptop is useless.`",
-              "uk": "тут потрібно `is` — `This laptop is useless.`"
+              "ru": "здесь нужно `brother's` — `This is my brother's lifejacket.`",
+              "uk": "тут потрібно `brother's` — `This is my brother's lifejacket.`"
             }
           }
         ],
@@ -49,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-46:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-46:word:deck",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — deck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:word:deck:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — deck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:word:deck:audio",
+          "transcript": "deck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:word:deck:r1",
+            "targetText": "deck",
+            "meaningByLocale": {
+              "ru": "палуба. My friend's bag is on the deck. — «Сумка моей подруги на палубе». О верхней открытой части парома.",
+              "uk": "палуба. My friend's bag is on the deck. — «Сумка моєї подруги на палубі». Про верхню відкриту частину порома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "deck",
+          "definitionByLocale": {
+            "ru": "палуба. My friend's bag is on the deck. — «Сумка моей подруги на палубе». О верхней открытой части парома.",
+            "uk": "палуба. My friend's bag is on the deck. — «Сумка моєї подруги на палубі». Про верхню відкриту частину порома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-46:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i02:r1",
-          "text": "ferry"
+          "text": "The lifejacket is on the deck."
         },
         {
           "responseId": "en:lesson-05:session-46:i02:r2",
-          "text": "airport"
+          "text": "The lifejacket is in the deck."
         },
         {
           "responseId": "en:lesson-05:session-46:i02:r3",
-          "text": "pantry"
+          "text": "The jacket is on the deck."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i02:audio",
-          "transcript": "ferry"
+          "transcript": "The lifejacket is on the deck."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-46:i02:r1",
-            "targetText": "ferry",
+            "targetText": "The lifejacket is on the deck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i02:r2",
-            "targetText": "airport",
+            "targetText": "The lifejacket is in the deck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i02:r3",
-            "targetText": "pantry",
+            "targetText": "The jacket is on the deck.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-46:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ferry`, а в этом варианте — `airport`.",
-              "uk": "У записі перше слово — `ferry`, а в цьому варіанті — `airport`."
+              "ru": "В записи `on` — на палубе, а в этом варианте `in` — внутри палубы.",
+              "uk": "У записі `on` — на палубі, а в цьому варіанті `in` — всередині палуби."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `ferry`, а в этом варианте — `pantry`.",
-              "uk": "У записі перше слово — `ferry`, а в цьому варіанті — `pantry`."
+              "ru": "В записи вещь — `lifejacket`, спасательный жилет, а в этом варианте — `jacket`, куртка.",
+              "uk": "У записі річ — `lifejacket`, рятувальний жилет, а в цьому варіанті — `jacket`, куртка."
             }
           }
         ],
@@ -125,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-46:word:seagull",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seagull",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:word:seagull:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seagull",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:word:seagull:audio",
+          "transcript": "seagull"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:word:seagull:r1",
+            "targetText": "seagull",
+            "meaningByLocale": {
+              "ru": "чайка. The seagull is big. — «Чайка большая». О большой белой морской птице.",
+              "uk": "чайка. The seagull is big. — «Чайка велика». Про великого білого морського птаха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seagull",
+          "definitionByLocale": {
+            "ru": "чайка. The seagull is big. — «Чайка большая». О большой белой морской птице.",
+            "uk": "чайка. The seagull is big. — «Чайка велика». Про великого білого морського птаха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-46:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите паром",
+      "prompt": "Чайка села на сумку вашего дяди. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i03:r1",
-          "text": "ferry"
+          "text": "uncle's"
         },
         {
           "responseId": "en:lesson-05:session-46:i03:r2",
-          "text": "airport"
+          "text": "uncle"
         },
         {
           "responseId": "en:lesson-05:session-46:i03:r3",
-          "text": "laptop"
+          "text": "uncles"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите паром",
+      "accessibilityLabel": "Чайка села на сумку вашего дяди. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите паром",
-          "uk": "Назвіть пором"
+          "ru": "Чайка села на сумку вашего дяди. Выберите слово",
+          "uk": "Чайка сіла на сумку вашого дядька. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The seagull is on my ___ bag.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-46:i03:r1",
-            "text": "ferry"
+            "text": "uncle's"
           },
           {
             "responseId": "en:lesson-05:session-46:i03:r2",
-            "text": "airport"
+            "text": "uncle"
           },
           {
             "responseId": "en:lesson-05:session-46:i03:r3",
-            "text": "laptop"
+            "text": "uncles"
           }
         ],
-        "testedDimension": "Назовите паром",
+        "testedDimension": "Чайка села на сумку вашего дяди. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите паром",
+            "testedDimension": "Чайка села на сумку вашего дяди. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`airport` — аэропорт; паром — `ferry`.",
-              "uk": "`airport` — аеропорт; пором — `ferry`."
+              "ru": "Так получилось бы, что сумка — это сам дядя. Хозяина называем через `'s`: `uncle's`.",
+              "uk": "Так вийшло б, що сумка — це сам дядько. Господаря називаємо через `'s`: `uncle's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите паром",
+            "testedDimension": "Чайка села на сумку вашего дяди. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`laptop` — ноутбук; паром — `ferry`.",
-              "uk": "`laptop` — ноутбук; пором — `ferry`."
+              "ru": "`uncles` — это «дяди», несколько человек; чтобы назвать хозяина, нужно `uncle's`.",
+              "uk": "`uncles` — це «дядьки», кілька людей; щоб назвати господаря, потрібно `uncle's`."
             }
           }
         ]
@@ -195,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-46:i04:p1",
-            "target": "ferry",
+            "target": "lifejacket",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "спасательный жилет",
+              "uk": "рятувальний жилет"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i04:p2",
-            "target": "laptop",
+            "target": "deck",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "палуба",
+              "uk": "палуба"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i04:p3",
-            "target": "airport",
+            "target": "seagull",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "чайка",
+              "uk": "чайка"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i04:p4",
-            "target": "pantry",
+            "target": "anchor",
             "meaningByLocale": {
-              "ru": "кладовая для продуктов",
-              "uk": "комора для продуктів"
+              "ru": "якорь",
+              "uk": "якір"
             }
           }
         ],
         "leftColumn": [
-          "ferry",
-          "laptop",
-          "airport",
-          "pantry"
+          "lifejacket",
+          "deck",
+          "seagull",
+          "anchor"
         ],
         "rightColumn": [
-          "паром",
-          "ноутбук",
-          "аэропорт",
-          "кладовая для продуктов"
+          "спасательный жилет",
+          "палуба",
+          "чайка",
+          "якорь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +397,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-46:word:anchor",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — anchor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-46:word:anchor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — anchor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-46:word:anchor:audio",
+          "transcript": "anchor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-46:word:anchor:r1",
+            "targetText": "anchor",
+            "meaningByLocale": {
+              "ru": "якорь. The anchor is black. — «Якорь чёрный». О тяжёлом железном крюке, который держит паром у берега.",
+              "uk": "якір. The anchor is black. — «Якір чорний». Про важкий залізний гак, який тримає пором біля берега."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "anchor",
+          "definitionByLocale": {
+            "ru": "якорь. The anchor is black. — «Якорь чёрный». О тяжёлом железном крюке, который держит паром у берега.",
+            "uk": "якір. The anchor is black. — «Якір чорний». Про важкий залізний гак, який тримає пором біля берега."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-46:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте брата и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте брата и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i05:audio",
-          "transcript": "Where is the ferry?"
+          "transcript": "The anchor is heavy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the ferry?",
+        "hiddenTargetPhrase": "The anchor is heavy.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "anchor",
           "is",
-          "the",
-          "ferry"
+          "heavy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-46:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте брата и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The anchor is heavy.`",
+              "uk": "тут потрібно `is` — `The anchor is heavy.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,41 +489,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Сумка в кладовой для продуктов»",
+      "prompt": "Вы увидели на палубе сумку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это сумка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Сумка в кладовой для продуктов»",
+      "accessibilityLabel": "Вы увидели на палубе сумку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это сумка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bag is in the pantry.",
+        "targetPhrase": "Whose bag is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Сумка в кладовой для продуктов»",
-          "uk": "Скажіть «Сумка в коморі для продуктів»"
+          "ru": "Вы увидели на палубе сумку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это сумка?»",
+          "uk": "Ви побачили на палубі сумку й питаєте сусіда, чия вона. Поставте питання: «Чия це сумка?»"
         },
         "orderedTokens": [
-          "The",
+          "Whose",
           "bag",
           "is",
-          "in",
-          "the",
-          "pantry"
+          "this"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Сумка в кладовой для продуктов»",
+            "testedDimension": "Вы увидели на палубе сумку и спрашиваете соседа, чья она. Задайте вопрос: «Чья это сумка?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bag is in the pantry.`",
-              "uk": "тут потрібно `is` — `The bag is in the pantry.`"
+              "ru": "здесь нужно `Whose` — `Whose bag is this?`",
+              "uk": "тут потрібно `Whose` — `Whose bag is this?`"
             }
           }
         ],
@@ -351,25 +534,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы увидели паром. Скажите «Паром здесь»",
+      "prompt": "Сосед спрашивает, где сумка вашей сестры. Она на палубе. Скажите: «Сумка моей сестры на палубе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Вы увидели паром. Скажите «Паром здесь»",
+      "accessibilityLabel": "Сосед спрашивает, где сумка вашей сестры. Она на палубе. Скажите: «Сумка моей сестры на палубе»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i07:audio",
-          "transcript": "The ferry is here."
+          "transcript": "My sister's bag is on the deck."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The ferry is here.",
+        "targetPhrase": "My sister's bag is on the deck.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,11 +567,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце ноутбука",
+      "prompt": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i08:r1",
@@ -400,19 +583,19 @@
         },
         {
           "responseId": "en:lesson-05:session-46:i08:r3",
-          "text": "am"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце ноутбука",
+      "accessibilityLabel": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце ноутбука",
-          "uk": "Запитайте про власника ноутбука"
+          "ru": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
+          "uk": "Ви показуєте сусідові чайку. Вона сидить на палубі. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose laptop ___ this?",
+        "gappedTargetPhrase": "The seagull ___ on the deck.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-46:i08:r1",
@@ -424,27 +607,27 @@
           },
           {
             "responseId": "en:lesson-05:session-46:i08:r3",
-            "text": "am"
+            "text": "has"
           }
         ],
-        "testedDimension": "Спросите о владельце ноутбука",
+        "testedDimension": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце ноутбука",
+            "testedDimension": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Один ноутбук: `is this`.",
-              "uk": "Один ноутбук: `is this`."
+              "ru": "Чайка одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Чайка одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце ноутбука",
+            "testedDimension": "Вы показываете соседу чайку. Она сидит на палубе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `is this`.",
-              "uk": "`am` використовується з `I`; тут `is this`."
+              "ru": "`has` значит «имеет», а здесь нужно сказать, где чайка: `is`.",
+              "uk": "`has` означає «має», а тут треба сказати, де чайка: `is`."
             }
           }
         ]
@@ -453,51 +636,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какую вещь называет Том",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i09:r1",
-          "text": "This is Anna's laptop."
+          "text": "Whose lifejacket is this?"
         },
         {
           "responseId": "en:lesson-05:session-46:i09:r2",
-          "text": "This is Anna's bicycle."
+          "text": "Whose lifejackets are these?"
         },
         {
           "responseId": "en:lesson-05:session-46:i09:r3",
-          "text": "This is Anna's ring."
+          "text": "Whose anchor is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какую вещь называет Том",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i09:audio",
-          "transcript": "This is Anna's laptop."
+          "transcript": "Whose lifejacket is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-46:i09:r1",
-            "targetText": "This is Anna's laptop.",
+            "targetText": "Whose lifejacket is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i09:r2",
-            "targetText": "This is Anna's bicycle.",
+            "targetText": "Whose lifejackets are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i09:r3",
-            "targetText": "This is Anna's ring.",
+            "targetText": "Whose anchor is this?",
             "meaningByLocale": null
           }
         ],
@@ -506,19 +689,19 @@
           {
             "responseId": "en:lesson-05:session-46:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет Том",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `bicycle`.",
-              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи `lifejacket is this` — один жилет, а в этом варианте `lifejackets are these` — несколько жилетов.",
+              "uk": "У записі `lifejacket is this` — один жилет, а в цьому варіанті `lifejackets are these` — кілька жилетів."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет Том",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laptop`, а в этом варианте — `ring`.",
-              "uk": "У записі останнє слово — `laptop`, а в цьому варіанті — `ring`."
+              "ru": "В записи вещь — `lifejacket`, а в этом варианте — `anchor`.",
+              "uk": "У записі річ — `lifejacket`, а в цьому варіанті — `anchor`."
             }
           }
         ],
@@ -529,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -543,48 +726,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-46:i10:p1",
-            "target": "ferry",
+            "target": "seagull",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "чайка",
+              "uk": "чайка"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i10:p2",
-            "target": "useless",
+            "target": "anchor",
             "meaningByLocale": {
-              "ru": "бесполезный",
-              "uk": "некорисний"
+              "ru": "якорь",
+              "uk": "якір"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i10:p3",
-            "target": "pantry",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "кладовая для продуктов",
-              "uk": "комора для продуктів"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i10:p4",
-            "target": "laptop",
+            "target": "jacket",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "куртка",
+              "uk": "куртка"
             }
           }
         ],
         "leftColumn": [
-          "ferry",
-          "useless",
-          "pantry",
-          "laptop"
+          "seagull",
+          "anchor",
+          "bag",
+          "jacket"
         ],
         "rightColumn": [
-          "паром",
-          "бесполезный",
-          "кладовая для продуктов",
-          "ноутбук"
+          "чайка",
+          "якорь",
+          "сумка",
+          "куртка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,31 +785,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i11:audio",
-          "transcript": "Tom is at the airport."
+          "transcript": "My friend's lifejacket is on the deck."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom is at the airport.",
+        "hiddenTargetPhrase": "My friend's lifejacket is on the deck.",
         "orderedTokens": [
-          "Tom",
+          "My",
+          "friend's",
+          "lifejacket",
           "is",
-          "at",
+          "on",
           "the",
-          "airport"
+          "deck"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -635,10 +820,10 @@
           {
             "responseId": "en:lesson-05:session-46:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom is at the airport.`",
-              "uk": "тут потрібно `is` — `Tom is at the airport.`"
+              "ru": "здесь нужно `is` — `My friend's lifejacket is on the deck.`",
+              "uk": "тут потрібно `is` — `My friend's lifejacket is on the deck.`"
             }
           }
         ],
@@ -651,39 +836,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+      "prompt": "Подруга показывает на чайку. Она сидит на куртке вашего брата. Скажите: «Чайка на куртке моего брата»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+      "accessibilityLabel": "Подруга показывает на чайку. Она сидит на куртке вашего брата. Скажите: «Чайка на куртке моего брата»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The laptop is hers.",
+        "targetPhrase": "The seagull is on my brother's jacket.",
         "localizedMeaning": {
-          "ru": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
-          "uk": "Ноутбук належить Анні. Скажіть «Ноутбук її»"
+          "ru": "Подруга показывает на чайку. Она сидит на куртке вашего брата. Скажите: «Чайка на куртке моего брата»",
+          "uk": "Подруга показує на чайку. Вона сидить на куртці вашого брата. Скажіть: «Чайка на куртці мого брата»"
         },
         "orderedTokens": [
           "The",
-          "laptop",
+          "seagull",
           "is",
-          "hers"
+          "on",
+          "my",
+          "brother's",
+          "jacket"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "brother"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ноутбук принадлежит Анне. Скажите «Ноутбук её»",
+            "testedDimension": "Подруга показывает на чайку. Она сидит на куртке вашего брата. Скажите: «Чайка на куртке моего брата»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The laptop is hers.`",
-              "uk": "тут потрібно `is` — `The laptop is hers.`"
+              "ru": "здесь нужно `brother's` — `The seagull is on my brother's jacket.`",
+              "uk": "тут потрібно `brother's` — `The seagull is on my brother's jacket.`"
             }
           }
         ],
@@ -696,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите Анне «Твой ноутбук у меня»",
+      "prompt": "Подруга спрашивает, чей это жилет. Он её. Скажите: «Жилет её»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i13:audio"
       ],
-      "accessibilityLabel": "Скажите Анне «Твой ноутбук у меня»",
+      "accessibilityLabel": "Подруга спрашивает, чей это жилет. Он её. Скажите: «Жилет её»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i13:audio",
-          "transcript": "I have your laptop."
+          "transcript": "The lifejacket is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your laptop.",
+        "targetPhrase": "The lifejacket is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -729,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите, где паром",
+      "prompt": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i14:r1",
-          "text": "Where"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-46:i14:r2",
-          "text": "Whose"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-46:i14:r3",
-          "text": "Who"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите, где паром",
+      "accessibilityLabel": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где паром",
-          "uk": "Запитайте, де пором"
+          "ru": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
+          "uk": "На палубі лежать якір і жилет. Скажіть про це сусідові. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ is the ferry?",
+        "gappedTargetPhrase": "The anchor and the lifejacket ___ on the deck.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-46:i14:r1",
-            "text": "Where"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-46:i14:r2",
-            "text": "Whose"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-46:i14:r3",
-            "text": "Who"
+            "text": "has"
           }
         ],
-        "testedDimension": "Спросите, где паром",
+        "testedDimension": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-46:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите, где паром",
+            "testedDimension": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Whose` — чей; где — `Where`.",
-              "uk": "`Whose` — чий; де — `Where`."
+              "ru": "Вещей две, поэтому нужно `are`, а не `is`.",
+              "uk": "Речей дві, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите, где паром",
+            "testedDimension": "На палубе лежат якорь и жилет. Скажите об этом соседу. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; где — `Where`.",
-              "uk": "`Who` — хто; де — `Where`."
+              "ru": "`has` значит «имеет», а здесь нужно сказать, где вещи: `are`.",
+              "uk": "`has` означає «має», а тут треба сказати, де речі: `are`."
             }
           }
         ]
@@ -798,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей ноутбук здесь",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-46:i15:r1",
-          "text": "Your laptop is here."
+          "text": "The anchor is on the deck."
         },
         {
           "responseId": "en:lesson-05:session-46:i15:r2",
-          "text": "My laptop is here."
+          "text": "The anchor is under the deck."
         },
         {
           "responseId": "en:lesson-05:session-46:i15:r3",
-          "text": "His laptop is here."
+          "text": "The seagull is on the deck."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей ноутбук здесь",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i15:audio",
-          "transcript": "Your laptop is here."
+          "transcript": "The anchor is on the deck."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-46:i15:r1",
-            "targetText": "Your laptop is here.",
+            "targetText": "The anchor is on the deck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i15:r2",
-            "targetText": "My laptop is here.",
+            "targetText": "The anchor is under the deck.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-46:i15:r3",
-            "targetText": "His laptop is here.",
+            "targetText": "The seagull is on the deck.",
             "meaningByLocale": null
           }
         ],
@@ -851,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-46:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `on` — на палубе, а в этом варианте `under` — под палубой.",
+              "uk": "У записі `on` — на палубі, а в цьому варіанті `under` — під палубою."
             }
           },
           {
             "responseId": "en:lesson-05:session-46:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей ноутбук здесь",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `anchor`, якорь, а в этом варианте — `seagull`, чайка.",
+              "uk": "У записі річ — `anchor`, якір, а в цьому варіанті — `seagull`, чайка."
             }
           }
         ],
@@ -874,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -888,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-46:i16:p1",
-            "target": "ferry",
+            "target": "lifejacket",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "спасательный жилет",
+              "uk": "рятувальний жилет"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i16:p2",
-            "target": "useless",
+            "target": "deck",
             "meaningByLocale": {
-              "ru": "бесполезный",
-              "uk": "некорисний"
+              "ru": "палуба",
+              "uk": "палуба"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i16:p3",
-            "target": "airport",
+            "target": "seagull",
             "meaningByLocale": {
-              "ru": "аэропорт",
-              "uk": "аеропорт"
+              "ru": "чайка",
+              "uk": "чайка"
             }
           },
           {
             "pairId": "en:lesson-05:session-46:i16:p4",
-            "target": "laptop",
+            "target": "anchor",
             "meaningByLocale": {
-              "ru": "ноутбук",
-              "uk": "ноутбук"
+              "ru": "якорь",
+              "uk": "якір"
             }
           }
         ],
         "leftColumn": [
-          "ferry",
-          "useless",
-          "airport",
-          "laptop"
+          "lifejacket",
+          "deck",
+          "seagull",
+          "anchor"
         ],
         "rightColumn": [
-          "паром",
-          "бесполезный",
-          "аэропорт",
-          "ноутбук"
+          "спасательный жилет",
+          "палуба",
+          "чайка",
+          "якорь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -947,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-46:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед поездкой вы нашли ноутбук. Спросите друзей «Чей это ноутбук?»",
+      "prompt": "Сосед спрашивает, чей это жилет. Он ваш. Ответьте: «Жилет мой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-46:i17:audio"
       ],
-      "accessibilityLabel": "Перед поездкой вы нашли ноутбук. Спросите друзей «Чей это ноутбук?»",
+      "accessibilityLabel": "Сосед спрашивает, чей это жилет. Он ваш. Ответьте: «Жилет мой»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-46:i17:audio",
-          "transcript": "Whose laptop is this?"
+          "transcript": "The lifejacket is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose laptop is this?",
+        "targetPhrase": "The lifejacket is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -987,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "463dfc8b9c246b613c3efbc9342039491bcfbaa26a1654ed8c92a0e596b2dc65"
+  "learnerFingerprint": "087edb5be5b4212974aa7c29a11dac0d5575d4b1f7f3d19241b1c6eeb2c66949"
 }

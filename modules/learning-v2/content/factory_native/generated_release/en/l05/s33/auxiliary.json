@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-33:intro1:r2": {
-          "ru": "Один предмет `watch`: нужна форма `is`.",
-          "uk": "Один предмет `watch`: потрібна форма `is`."
+          "ru": "Это «Где бейдж?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де бейдж?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-33:intro1:r3": {
-          "ru": "Без названия вещи нужна форма `mine`.",
-          "uk": "Без назви речі потрібна форма `mine`."
+          "ru": "Бейдж один, поэтому нужно is this.",
+          "uk": "Бейдж один, тому потрібно is this."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-33:intro2:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         },
         "en:lesson-05:session-33:intro2:r3": {
-          "ru": "Один предмет `watch`: `is this`.",
-          "uk": "Один предмет `watch`: `is this`."
+          "ru": "Планшет один, поэтому нужно is. Форма am только с I.",
+          "uk": "Планшет один, тому потрібно is. Форма am лише з I."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-33:intro3:r2": {
-          "ru": "Это «Где ланчбокс?»; вопрос о владельце начинается с `Whose`.",
-          "uk": "Це «Де ланчбокс?»; запитання про власника починається з `Whose`."
+          "ru": "После слова manager нужно 's: my manager's briefcase.",
+          "uk": "Після слова manager потрібно 's: my manager's briefcase."
         },
         "en:lesson-05:session-33:intro3:r3": {
-          "ru": "Один ланчбокс: `is this`.",
-          "uk": "Один ланчбокс: `is this`."
+          "ru": "client — клиент, а портфель принадлежит менеджеру: нужно manager's.",
+          "uk": "client — клієнт, а портфель належить менеджеру: потрібно manager's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d21c1aacbb6f0233397e62209c2e26a8e8ff856729bf52f91efc174345275b2f"
+  "auxiliaryFingerprint": "98aa30da1c6410e4d9bbd799ab79ac4a11356affc9f8c51e3088c7d6cc9250cc"
 }

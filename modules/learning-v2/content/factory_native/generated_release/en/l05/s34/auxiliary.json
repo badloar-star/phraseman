@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-34:intro1:r2": {
-          "ru": "Это «Где кольцо?»; о владельце спрашиваем с `Whose`.",
-          "uk": "Це «Де каблучка?»; про власника запитуємо з `Whose`."
+          "ru": "his — его, а брошь принадлежит сестре: нужно hers.",
+          "uk": "his — його, а брошка належить сестрі: потрібно hers."
         },
         "en:lesson-05:session-34:intro1:r3": {
-          "ru": "Одно кольцо: `is this`.",
-          "uk": "Одна каблучка: `is this`."
+          "ru": "Без названия вещи нужно hers, а не her.",
+          "uk": "Без назви речі потрібно hers, а не her."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-34:intro2:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "Это «Где кулон?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де кулон?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-34:intro2:r3": {
-          "ru": "`bored` — скучно; страшно — `afraid`.",
-          "uk": "`bored` — нудно; страшно — `afraid`."
+          "ru": "Кулон один, поэтому нужно is this.",
+          "uk": "Кулон один, тому потрібно is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-34:intro3:r2": {
-          "ru": "К имени владельца добавляем `’s`: `Tom’s ring`.",
-          "uk": "До імені власника додаємо `’s`: `Tom’s ring`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         },
         "en:lesson-05:session-34:intro3:r3": {
-          "ru": "Это кольцо Анны; здесь владелец Том.",
-          "uk": "Це каблучка Анни; тут власник Том."
+          "ru": "Ответ «нет» начинаем с No, а не с Yes.",
+          "uk": "Відповідь «ні» починаємо з No, а не з Yes."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "eec76c53b706a168300caf0811269d7862a385ce165b2dfe362c40d91be5a998"
+  "auxiliaryFingerprint": "b84b23fe58ba086e83fdc4a6021a7789b77e9ae27dcf306b567b1ba062aedfe9"
 }

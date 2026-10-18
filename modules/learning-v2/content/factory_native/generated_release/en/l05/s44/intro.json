@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-44",
   "learningOutcomeByLocale": {
-    "ru": "уточнить владельца велосипеда и очков и спросить о месте",
-    "uk": "уточнити власника велосипеда й окулярів і запитати про місце"
+    "ru": "спросить, где вещь и чья она, сказать, что у велосипеда сломана деталь, и выбрать is или are",
+    "uk": "спитати, де річ і чия вона, сказати, що у велосипеда зламана деталь, і вибрати is чи are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два колеса и педали",
-        "uk": "Два колеса й педалі"
+        "ru": "Где насос?",
+        "uk": "Де насос?"
       },
       "bodyByLocale": {
-        "ru": "`bicycle` — «велосипед». `Whose bicycle is this?` — «Чей это велосипед?» `The bicycle is mine` — «Велосипед мой». `This is Anna’s bicycle` — «Это велосипед Анны». У велосипеда два колеса, но владелец может быть один — вопрос всё равно стоит задать.",
-        "uk": "`bicycle` — «велосипед». `Whose bicycle is this?` — «Чий це велосипед?» `The bicycle is mine` — «Велосипед мій». `This is Anna’s bicycle` — «Це велосипед Анни». У велосипеда два колеса, але власник може бути один — запитати все одно варто."
+        "ru": "Вы с подругой собираетесь на велопрогулку по городу, но колесо её велосипеда спущено. Нужен насос, и вы спрашиваете соседа, где он. pump — «насос»: им качают воздух в колесо. О месте спрашиваем со словом Where: Where is the pump? — «Где насос?»",
+        "uk": "Ви з подругою збираєтеся на велопрогулянку містом, але колесо її велосипеда спущене. Потрібен насос, і ви питаєте сусіда, де він. pump — «насос»: ним накачують повітря в колесо. Про місце питаємо зі словом Where: Where is the pump? — «Де насос?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце велосипеда.",
-          "uk": "Запитайте про власника велосипеда."
+          "ru": "Колесо велосипеда подруги спущено. Спросите соседа: «Где насос?»",
+          "uk": "Колесо велосипеда подруги спущене. Спитайте сусіда: «Де насос?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-44:intro1:r1",
-              "text": "Whose bicycle is this?"
+              "text": "Where is the pump?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro1:r2",
-              "text": "Where is the bicycle?"
+              "text": "Whose pump is this?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro1:r3",
-              "text": "Whose bicycle are these?"
+              "text": "Where are the pump?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-44:intro1:r1",
-              "text": "Whose bicycle is this?"
+              "text": "Where is the pump?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro1:r2",
-              "text": "Where is the bicycle?"
+              "text": "Whose pump is this?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro1:r3",
-              "text": "Whose bicycle are these?"
+              "text": "Where are the pump?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце велосипеда.",
-          "uk": "Запитайте про власника велосипеда."
+          "ru": "Колесо велосипеда подруги спущено. Спросите соседа: «Где насос?»",
+          "uk": "Колесо велосипеда подруги спущене. Спитайте сусіда: «Де насос?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Очки и любопытство",
-        "uk": "Окуляри й цікавість"
+        "ru": "Чей руль?",
+        "uk": "Чиє кермо?"
       },
       "bodyByLocale": {
-        "ru": "`sunglasses` — «солнцезащитные очки». `Whose sunglasses are these?` — «Чьи это солнцезащитные очки?» Очки требуют `are these`. `The sunglasses are hers` — «Солнцезащитные очки её». `curious` здесь — «любопытный», желающий узнать больше: `You are curious` — «Ты любопытный / любопытная».",
-        "uk": "`sunglasses` — «сонцезахисні окуляри». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» Окуляри потребують `are these`. `The sunglasses are hers` — «Сонцезахисні окуляри її». `curious` тут — «допитливий», охочий дізнатися більше: `You are curious` — «Ти допитливий / допитлива»."
+        "ru": "Сосед выкатил из сарая во двор два велосипеда. Рядом на траве лежит ещё один чёрный руль, и вы спрашиваете подругу, чей он. handlebars — «руль»: в английском это слово всегда во множественном числе, поэтому нужно are these: Whose handlebars are these?",
+        "uk": "Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у множині, тому потрібно are these: Whose handlebars are these?"
       },
       "question": {
         "interactionId": "en:lesson-05:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Ты любопытный» без сокращения.",
-          "uk": "Скажіть «Ти допитливий» без скорочення."
+          "ru": "На траве лежит руль. Спросите подругу: «Чей это руль?»",
+          "uk": "На траві лежить кермо. Спитайте подругу: «Чиє це кермо?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-44:intro2:r1",
-              "text": "You are curious."
+              "text": "Whose handlebars are these?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro2:r2",
-              "text": "You is curious."
+              "text": "Whose handlebars is this?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro2:r3",
-              "text": "You are patient."
+              "text": "Who handlebars are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-44:intro2:r1",
-              "text": "You are curious."
+              "text": "Whose handlebars are these?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro2:r2",
-              "text": "You is curious."
+              "text": "Whose handlebars is this?"
             },
             {
               "responseId": "en:lesson-05:session-44:intro2:r3",
-              "text": "You are patient."
+              "text": "Who handlebars are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Ты любопытный» без сокращения.",
-          "uk": "Скажіть «Ти допитливий» без скорочення."
+          "ru": "На траве лежит руль. Спросите подругу: «Чей это руль?»",
+          "uk": "На траві лежить кермо. Спитайте подругу: «Чиє це кермо?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В городе и на кухне",
-        "uk": "У місті й на кухні"
+        "ru": "Сломанная педаль",
+        "uk": "Зламана педаль"
       },
       "bodyByLocale": {
-        "ru": "`hotels` — «отели», `freezer` — «морозильник». `Where are the hotels?` — «Где отели?» `The freezer is in the kitchen` — «Морозильник на кухне». `I have your sunglasses` — «Твои солнцезащитные очки у меня».",
-        "uk": "`hotels` — «готелі», `freezer` — «морозильник». `Where are the hotels?` — «Де готелі?» `The freezer is in the kitchen` — «Морозильник на кухні». `I have your sunglasses` — «Твої сонцезахисні окуляри в мене»."
+        "ru": "Подруга спрашивает, почему вы не едете со всеми. Дело в вашем велосипеде: у него сломана одна педаль. pedal — «педаль», на неё нажимают ногой. Когда у вещи есть часть, говорим has: My bicycle has a broken pedal — «У моего велосипеда сломана педаль».",
+        "uk": "Подруга питає, чому ви не їдете з усіма. Річ у вашому велосипеді: у нього зламана одна педаль. pedal — «педаль», на неї натискають ногою. Коли в речі є частина, кажемо has: My bicycle has a broken pedal — «У мого велосипеда зламана педаль»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Где отели?»",
-          "uk": "Запитайте «Де готелі?»"
+          "ru": "Подруга спрашивает, почему вы не едете. У вашего велосипеда сломана педаль. Скажите ей: «У моего велосипеда сломана педаль».",
+          "uk": "Подруга питає, чому ви не їдете. У вашого велосипеда зламана педаль. Скажіть їй: «У мого велосипеда зламана педаль»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-44:intro3:r1",
-              "text": "Where are the hotels?"
+              "text": "My bicycle has a broken pedal."
             },
             {
               "responseId": "en:lesson-05:session-44:intro3:r2",
-              "text": "Where is the hotels?"
+              "text": "My bicycle have a broken pedal."
             },
             {
               "responseId": "en:lesson-05:session-44:intro3:r3",
-              "text": "Whose hotels are these?"
+              "text": "My bicycle is a broken pedal."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-44:intro3:r1",
-              "text": "Where are the hotels?"
+              "text": "My bicycle has a broken pedal."
             },
             {
               "responseId": "en:lesson-05:session-44:intro3:r2",
-              "text": "Where is the hotels?"
+              "text": "My bicycle have a broken pedal."
             },
             {
               "responseId": "en:lesson-05:session-44:intro3:r3",
-              "text": "Whose hotels are these?"
+              "text": "My bicycle is a broken pedal."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Где отели?»",
-          "uk": "Запитайте «Де готелі?»"
+          "ru": "Подруга спрашивает, почему вы не едете. У вашего велосипеда сломана педаль. Скажите ей: «У моего велосипеда сломана педаль».",
+          "uk": "Подруга питає, чому ви не їдете. У вашого велосипеда зламана педаль. Скажіть їй: «У мого велосипеда зламана педаль»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a81627ae54ea66ab706e84c81a177d58d5646976ffbd4f9debbcc6df082378f7"
+  "introFingerprint": "5bb24b0b5dc971d5c8a94006ce55ada86c3ae6a223544d317cc1106cd822e1e4"
 }

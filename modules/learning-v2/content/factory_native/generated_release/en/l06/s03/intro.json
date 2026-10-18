@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-03",
   "learningOutcomeByLocale": {
-    "ru": "назвать посылку, спросить о владельце и описать своё отношение к новости",
-    "uk": "назвати посилку, запитати про власника й описати своє ставлення до новини"
+    "ru": "сказать, что вы делаете вместе: We mow, We trim, We pick — без are",
+    "uk": "сказати, що ви робите разом: We mow, We trim, We pick — без are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что принесли?",
-        "uk": "Що принесли?"
+        "ru": "Трава выше ботинок",
+        "uk": "Трава вища за черевики"
       },
       "bodyByLocale": {
-        "ru": "`parcel` — «посылка». `This is my parcel` — «Это моя посылка». `Whose parcel is this?` — «Чья это посылка?» `The parcel is mine` — «Посылка моя». Посылка уже добралась до стола, хотя сама адреса не читает.",
-        "uk": "`parcel` — «посилка». `This is my parcel` — «Це моя посилка». `Whose parcel is this?` — «Чия це посилка?» `The parcel is mine` — «Посилка моя». Посилка вже дісталася столу, хоча сама адреси не читає."
+        "ru": "За неделю трава на лужайке выросла выше ботинок. В субботу утром вы с сестрой достаёте из сарая тяжёлую технику и идёте к лужайке перед домом. mow — «косить» траву. Когда вы делаете дело вместе, говорим We: We mow the lawn — «Мы косим лужайку».",
+        "uk": "За тиждень трава на галявині виросла вища за черевики. У суботу вранці ви із сестрою дістаєте із сараю важку техніку й ідете до галявини перед будинком. mow — «косити» траву. Коли ви робите справу разом, кажемо We: We mow the lawn — «Ми косимо галявину»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-03:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце посылки.",
-          "uk": "Запитайте про власника посилки."
+          "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Вы косите лужайку. Скажите: «Мы косим лужайку».",
+          "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Ви косите галявину. Скажіть: «Ми косимо галявину»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-03:intro1:r1",
-              "text": "Whose parcel is this?"
+              "text": "We mow the lawn."
             },
             {
               "responseId": "en:lesson-06:session-03:intro1:r2",
-              "text": "Where is the parcel?"
+              "text": "We are mow the lawn."
             },
             {
               "responseId": "en:lesson-06:session-03:intro1:r3",
-              "text": "Whose parcel are these?"
+              "text": "We mow the garden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-03:intro1:r1",
-              "text": "Whose parcel is this?"
+              "text": "We mow the lawn."
             },
             {
               "responseId": "en:lesson-06:session-03:intro1:r2",
-              "text": "Where is the parcel?"
+              "text": "We are mow the lawn."
             },
             {
               "responseId": "en:lesson-06:session-03:intro1:r3",
-              "text": "Whose parcel are these?"
+              "text": "We mow the garden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце посылки.",
-          "uk": "Запитайте про власника посилки."
+          "ru": "Соседка через забор спрашивает, чем вы с сестрой заняты. Вы косите лужайку. Скажите: «Мы косим лужайку».",
+          "uk": "Сусідка через паркан питає, чим ви із сестрою зайняті. Ви косите галявину. Скажіть: «Ми косимо галявину»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Место работы и вещи",
-        "uk": "Місце роботи й речі"
+        "ru": "Кусты у забора",
+        "uk": "Кущі біля паркану"
       },
       "bodyByLocale": {
-        "ru": "`bank` — «банк», `desk` — «письменный стол», `stadium` — «стадион». `I work in a bank` — «Я работаю в банке». `The parcel is on the desk` — «Посылка на письменном столе». `The bank is near the stadium` — «Банк возле стадиона». Перед `work` в этой фразе не нужно `am`.",
-        "uk": "`bank` — «банк», `desk` — «письмовий стіл», `stadium` — «стадіон». `I work in a bank` — «Я працюю в банку». `The parcel is on the desk` — «Посилка на письмовому столі». `The bank is near the stadium` — «Банк біля стадіону». Перед `work` у цій фразі не потрібне `am`."
+        "ru": "Живая изгородь вдоль забора разрослась и лезет на дорожку. Вы с братом берёте большие садовые ножницы и медленно идёте вдоль неё, ветка за веткой. trim — «подрезать» кусты или ветки. Вы работаете вдвоём, поэтому We: We trim the hedge — «Мы подрезаем живую изгородь».",
+        "uk": "Жива огорожа вздовж паркану розрослася й лізе на доріжку. Ви з братом берете великі садові ножиці й повільно ідете вздовж неї, гілка за гілкою. trim — «підрізати» кущі або гілки. Ви працюєте вдвох, тому We: We trim the hedge — «Ми підрізаємо живу огорожу»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-03:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю в банке».",
-          "uk": "Скажіть «Я працюю в банку»."
+          "ru": "Сестра спрашивает, чем вы с братом занимаетесь у забора. Вы подрезаете живую изгородь. Скажите: «Мы подрезаем живую изгородь».",
+          "uk": "Сестра питає, чим ви з братом займаєтеся біля паркану. Ви підрізаєте живу огорожу. Скажіть: «Ми підрізаємо живу огорожу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-03:intro2:r1",
-              "text": "I work in a bank."
+              "text": "We trim the hedge."
             },
             {
               "responseId": "en:lesson-06:session-03:intro2:r2",
-              "text": "I am work in a bank."
+              "text": "We are trim the hedge."
             },
             {
               "responseId": "en:lesson-06:session-03:intro2:r3",
-              "text": "I work in a library."
+              "text": "We trim the fence."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-03:intro2:r1",
-              "text": "I work in a bank."
+              "text": "We trim the hedge."
             },
             {
               "responseId": "en:lesson-06:session-03:intro2:r2",
-              "text": "I am work in a bank."
+              "text": "We are trim the hedge."
             },
             {
               "responseId": "en:lesson-06:session-03:intro2:r3",
-              "text": "I work in a library."
+              "text": "We trim the fence."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю в банке».",
-          "uk": "Скажіть «Я працюю в банку»."
+          "ru": "Сестра спрашивает, чем вы с братом занимаетесь у забора. Вы подрезаете живую изгородь. Скажите: «Мы подрезаем живую изгородь».",
+          "uk": "Сестра питає, чим ви з братом займаєтеся біля паркану. Ви підрізаєте живу огорожу. Скажіть: «Ми підрізаємо живу огорожу»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Знать, верить, беспокоиться",
-        "uk": "Знати, вірити, непокоїтися"
+        "ru": "Груши на ветке",
+        "uk": "Груші на гілці"
       },
       "bodyByLocale": {
-        "ru": "`aware` — «осведомлён»: `I am aware` — «Я в курсе», когда понятно, о чём речь. `convinced` — «убеждён»: `I am convinced` — «Я убеждён / убеждена», когда понятно, в чём. `concerned` — «обеспокоен»: `I am concerned` — «Я обеспокоен / обеспокоена». Знать о новости, верить утверждению и беспокоиться — разные состояния. Во всех трёх фразах с `I` нужно `am`.",
-        "uk": "`aware` — «обізнаний»: `I am aware` — «Я в курсі», коли зрозуміло, про що йдеться. `convinced` — «переконаний»: `I am convinced` — «Я переконаний / переконана», коли зрозуміло, у чому. `concerned` — «стурбований»: `I am concerned` — «Я стурбований / стурбована». Знати про новину, вірити твердженню й непокоїтися — різні стани. У всіх трьох фразах з `I` потрібне `am`."
+        "ru": "В конце лета груши на старом дереве созрели и тянут ветки вниз. Подруга держит под деревом большую плетёную корзину, а вы тянетесь к самым нижним веткам. pick — «срывать, собирать» плоды. Груш много, поэтому говорим pears: We pick pears — «Мы собираем груши».",
+        "uk": "Наприкінці літа груші на старому дереві дозріли й тягнуть гілки вниз. Подруга тримає під деревом великий плетений кошик, а ви тягнетеся до найнижчих гілок. pick — «зривати, збирати» плоди. Груш багато, тому кажемо pears: We pick pears — «Ми збираємо груші»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-03:intro3:q",
         "promptByLocale": {
-          "ru": "Вы уже знаете о задержке. Скажите «Я в курсе» без сокращения.",
-          "uk": "Ви вже знаєте про затримку. Скажіть «Я в курсі» без скорочення."
+          "ru": "Подруга держит корзину под грушей. Скажите ей: «Мы собираем груши».",
+          "uk": "Подруга тримає кошик під грушею. Скажіть їй: «Ми збираємо груші»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-03:intro3:r1",
-              "text": "I am aware."
+              "text": "We pick pears."
             },
             {
               "responseId": "en:lesson-06:session-03:intro3:r2",
-              "text": "I aware."
+              "text": "We are pick pears."
             },
             {
               "responseId": "en:lesson-06:session-03:intro3:r3",
-              "text": "I am concerned."
+              "text": "We pick a pear."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-03:intro3:r1",
-              "text": "I am aware."
+              "text": "We pick pears."
             },
             {
               "responseId": "en:lesson-06:session-03:intro3:r2",
-              "text": "I aware."
+              "text": "We are pick pears."
             },
             {
               "responseId": "en:lesson-06:session-03:intro3:r3",
-              "text": "I am concerned."
+              "text": "We pick a pear."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы уже знаете о задержке. Скажите «Я в курсе» без сокращения.",
-          "uk": "Ви вже знаєте про затримку. Скажіть «Я в курсі» без скорочення."
+          "ru": "Подруга держит корзину под грушей. Скажите ей: «Мы собираем груши».",
+          "uk": "Подруга тримає кошик під грушею. Скажіть їй: «Ми збираємо груші»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d990c2ce044d096c15c8e264267340e323fa360ec10d5a12a8b539749efce0d2"
+  "introFingerprint": "9b7e481641928d0acc1698e1f623f8bd76f173756407a7b9ba56731d3e0d6058"
 }

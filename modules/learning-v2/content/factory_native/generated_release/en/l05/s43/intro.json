@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-43",
   "learningOutcomeByLocale": {
-    "ru": "вернуть найденную вещь и объяснить, где находятся люди и предметы",
-    "uk": "повернути знайдену річ і пояснити, де перебувають люди та предмети"
+    "ru": "вернуть найденную вещь хозяину, спросить «чья» и сказать, где она лежит",
+    "uk": "повернути знайдену річ господареві, спитати «чия» і сказати, де вона лежить"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Нашли браслет",
-        "uk": "Знайшли браслет"
+        "ru": "Медальон на диване",
+        "uk": "Медальйон на дивані"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `bracelet` — «браслет». `Whose bracelet is this?` — «Чей это браслет?» `This is Anna’s bracelet` — «Это браслет Анны». `The bracelet is hers` — «Браслет её»: после `hers` название вещи уже не нужно.",
-        "uk": "Повторимо: `bracelet` — «браслет». `Whose bracelet is this?` — «Чий це браслет?» `This is Anna’s bracelet` — «Це браслет Анни». `The bracelet is hers` — «Браслет її»: після `hers` назва речі вже не потрібна."
+        "ru": "Перед отъездом подруга ищет медальон и очень расстроена. Вы нашли его утром на диване в холле и убрали в карман. locket — «медальон»: маленькая подвеска с местом для фото. Скажите подруге, что он у вас: I have your locket — «Твой медальон у меня».",
+        "uk": "Перед від’їздом подруга шукає медальйон і дуже засмучена. Ви знайшли його вранці на дивані в холі й сховали до кишені. locket — «медальйон»: маленька підвіска з місцем для фото. Скажіть подрузі, що він у вас: I have your locket — «Твій медальйон у мене»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце браслета.",
-          "uk": "Запитайте про власника браслета."
+          "ru": "Подруга ищет медальон. Он у вас. Скажите ей: «Твой медальон у меня».",
+          "uk": "Подруга шукає медальйон. Він у вас. Скажіть їй: «Твій медальйон у мене»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-43:intro1:r1",
-              "text": "Whose bracelet is this?"
+              "text": "I have your locket."
             },
             {
               "responseId": "en:lesson-05:session-43:intro1:r2",
-              "text": "Where is the bracelet?"
+              "text": "I has your locket."
             },
             {
               "responseId": "en:lesson-05:session-43:intro1:r3",
-              "text": "Whose bracelet are these?"
+              "text": "I have my locket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-43:intro1:r1",
-              "text": "Whose bracelet is this?"
+              "text": "I have your locket."
             },
             {
               "responseId": "en:lesson-05:session-43:intro1:r2",
-              "text": "Where is the bracelet?"
+              "text": "I has your locket."
             },
             {
               "responseId": "en:lesson-05:session-43:intro1:r3",
-              "text": "Whose bracelet are these?"
+              "text": "I have my locket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце браслета.",
-          "uk": "Запитайте про власника браслета."
+          "ru": "Подруга ищет медальон. Он у вас. Скажите ей: «Твой медальон у меня».",
+          "uk": "Подруга шукає медальйон. Він у вас. Скажіть їй: «Твій медальйон у мене»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ждём без спешки",
-        "uk": "Чекаємо без поспіху"
+        "ru": "Заколка за стойкой",
+        "uk": "Заколка за стійкою"
       },
       "bodyByLocale": {
-        "ru": "`patient` здесь — «терпеливый»: `You are patient` — «Ты терпеливый / терпеливая». `tram` — «трамвай». `The tram is here` — «Трамвай здесь». Терпеливый друг умеет ждать, но трамвай такого обещания не давал.",
-        "uk": "`patient` тут — «терплячий»: `You are patient` — «Ти терплячий / терпляча». `tram` — «трамвай». `The tram is here` — «Трамвай тут». Терплячий друг уміє чекати, але трамвай такої обіцянки не давав."
+        "ru": "Перед отъездом подруга ищет в холле заколку для волос. Вы видели её у администратора: она лежит позади стойки. hairclip — «заколка»: ею закалывают волосы. Где именно, говорим словом behind: The hairclip is behind the desk — «Заколка за стойкой».",
+        "uk": "Перед від’їздом подруга шукає в холі заколку для волосся. Ви бачили її в адміністратора: вона лежить позаду стійки. hairclip — «заколка»: нею закріплюють волосся. Де саме, кажемо словом behind: The hairclip is behind the desk — «Заколка за стійкою»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Похвалите терпение друга: «Ты терпеливый», без сокращения.",
-          "uk": "Похваліть терпіння друга: «Ти терплячий», без скорочення."
+          "ru": "Подруга ищет заколку. Она лежит за стойкой. Скажите ей: «Заколка за стойкой».",
+          "uk": "Подруга шукає заколку. Вона лежить за стійкою. Скажіть їй: «Заколка за стійкою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-43:intro2:r1",
-              "text": "You are patient."
+              "text": "The hairclip is behind the desk."
             },
             {
               "responseId": "en:lesson-05:session-43:intro2:r2",
-              "text": "You is patient."
+              "text": "The hairclip is under the desk."
             },
             {
               "responseId": "en:lesson-05:session-43:intro2:r3",
-              "text": "You are polite."
+              "text": "The hairclips are behind the desk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-43:intro2:r1",
-              "text": "You are patient."
+              "text": "The hairclip is behind the desk."
             },
             {
               "responseId": "en:lesson-05:session-43:intro2:r2",
-              "text": "You is patient."
+              "text": "The hairclip is under the desk."
             },
             {
               "responseId": "en:lesson-05:session-43:intro2:r3",
-              "text": "You are polite."
+              "text": "The hairclips are behind the desk."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Похвалите терпение друга: «Ты терпеливый», без сокращения.",
-          "uk": "Похваліть терпіння друга: «Ти терплячий», без скорочення."
+          "ru": "Подруга ищет заколку. Она лежит за стойкой. Скажите ей: «Заколка за стойкой».",
+          "uk": "Подруга шукає заколку. Вона лежить за стійкою. Скажіть їй: «Заколка за стійкою»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Комнаты и контейнер",
-        "uk": "Кімнати й контейнер"
+        "ru": "Шляпа на стуле",
+        "uk": "Капелюх на стільці"
       },
       "bodyByLocale": {
-        "ru": "`bedrooms` — «спальни», `recycling bin` — «контейнер для переработки», куда кладут материалы для последующей переработки. `The bedrooms are small` — «Спальни маленькие». `Tom is next to the recycling bin` — «Том рядом с контейнером для переработки». `I have your bracelet` — «Твой браслет у меня».",
-        "uk": "`bedrooms` — «спальні», `recycling bin` — «контейнер для переробки», куди кладуть матеріали для подальшої переробки. `The bedrooms are small` — «Спальні маленькі». `Tom is next to the recycling bin` — «Том поруч із контейнером для переробки». `I have your bracelet` — «Твій браслет у мене»."
+        "ru": "Брат торопится к трамваю и показывает на шляпу от солнца на стуле: чья она? Она вашей подруги, и вы это знаете. sunhat — «шляпа от солнца»: лёгкая, светлая, с широкими полями. Хозяйку называем с 's: The sunhat is my friend's — «Шляпа моей подруги».",
+        "uk": "Брат поспішає до трамвая й показує на капелюх від сонця на стільці: чий він? Він вашої подруги, і ви це знаєте. sunhat — «капелюх від сонця»: легкий, світлий, із широкими крисами. Господиню називаємо з 's: The sunhat is my friend's — «Капелюх моєї подруги»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Спальни маленькие».",
-          "uk": "Скажіть «Спальні маленькі»."
+          "ru": "Брат спрашивает, чья шляпа от солнца на стуле. Она вашей подруги. Скажите ему: «Шляпа моей подруги».",
+          "uk": "Брат питає, чий капелюх від сонця на стільці. Він вашої подруги. Скажіть йому: «Капелюх моєї подруги»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-43:intro3:r1",
-              "text": "The bedrooms are small."
+              "text": "The sunhat is my friend's."
             },
             {
               "responseId": "en:lesson-05:session-43:intro3:r2",
-              "text": "The bedrooms is small."
+              "text": "The sunhat is my friend."
             },
             {
               "responseId": "en:lesson-05:session-43:intro3:r3",
-              "text": "The bedroom is small."
+              "text": "The sunhat is my brother's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-43:intro3:r1",
-              "text": "The bedrooms are small."
+              "text": "The sunhat is my friend's."
             },
             {
               "responseId": "en:lesson-05:session-43:intro3:r2",
-              "text": "The bedrooms is small."
+              "text": "The sunhat is my friend."
             },
             {
               "responseId": "en:lesson-05:session-43:intro3:r3",
-              "text": "The bedroom is small."
+              "text": "The sunhat is my brother's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Спальни маленькие».",
-          "uk": "Скажіть «Спальні маленькі»."
+          "ru": "Брат спрашивает, чья шляпа от солнца на стуле. Она вашей подруги. Скажите ему: «Шляпа моей подруги».",
+          "uk": "Брат питає, чий капелюх від сонця на стільці. Він вашої подруги. Скажіть йому: «Капелюх моєї подруги»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e8d7d70104141c1c72223c808e27200952bbe92bb3325bfa09573b9771b295c0"
+  "introFingerprint": "815e7760d37b5d3e8b3d4e8f7f5c0a6a956c67979c8fce3b895a1c7143bb476f"
 }

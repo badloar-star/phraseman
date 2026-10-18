@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-46",
   "learningOutcomeByLocale": {
-    "ru": "спросить о месте отправления и вернуть ноутбук владельцу",
-    "uk": "запитати про місце відправлення й повернути ноутбук власникові"
+    "ru": "спросить, чья вещь, сказать, где она лежит, и выбрать is или are, если вещей две",
+    "uk": "спитати, чия річ, сказати, де вона лежить, і вибрати is чи are, якщо речей дві"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Через воду",
-        "uk": "Через воду"
+        "ru": "Жилет на скамье",
+        "uk": "Жилет на лаві"
       },
       "bodyByLocale": {
-        "ru": "`ferry` — «паром», судно, которое перевозит людей, а иногда и машины через воду. `Where is the ferry?` — «Где паром?» `The ferry is here` — «Паром здесь». Паром перевезёт сумку, но собирать её всё-таки придётся вам.",
-        "uk": "`ferry` — «пором», судно, яке перевозить людей, а іноді й машини через воду. `Where is the ferry?` — «Де пором?» `The ferry is here` — «Пором тут». Пором перевезе сумку, але збирати її все-таки доведеться вам."
+        "ru": "Паром скоро отплывает. Вы нашли на скамье яркий спасательный жилет. Рядом сидит сосед, и вы спрашиваете, чей он. lifejacket — «спасательный жилет»: он держит человека на воде. О хозяине спрашиваем так: Whose lifejacket is this? — «Чей это жилет?»",
+        "uk": "Пором скоро відпливає. Ви знайшли на лаві яскравий рятувальний жилет. Поруч сидить сусід, і ви питаєте, чий він. lifejacket — «рятувальний жилет»: він тримає людину на воді. Про господаря питаємо так: Whose lifejacket is this? — «Чий це жилет?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-46:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Где паром?»",
-          "uk": "Запитайте «Де пором?»"
+          "ru": "На скамье лежит спасательный жилет. Спросите соседа: «Чей это жилет?»",
+          "uk": "На лаві лежить рятувальний жилет. Спитайте сусіда: «Чий це жилет?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-46:intro1:r1",
-              "text": "Where is the ferry?"
+              "text": "Whose lifejacket is this?"
             },
             {
               "responseId": "en:lesson-05:session-46:intro1:r2",
-              "text": "Whose ferry is this?"
+              "text": "Whose lifejacket are these?"
             },
             {
               "responseId": "en:lesson-05:session-46:intro1:r3",
-              "text": "Where are the ferry?"
+              "text": "Who lifejacket is this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-46:intro1:r1",
-              "text": "Where is the ferry?"
+              "text": "Whose lifejacket is this?"
             },
             {
               "responseId": "en:lesson-05:session-46:intro1:r2",
-              "text": "Whose ferry is this?"
+              "text": "Whose lifejacket are these?"
             },
             {
               "responseId": "en:lesson-05:session-46:intro1:r3",
-              "text": "Where are the ferry?"
+              "text": "Who lifejacket is this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Где паром?»",
-          "uk": "Запитайте «Де пором?»"
+          "ru": "На скамье лежит спасательный жилет. Спросите соседа: «Чей это жилет?»",
+          "uk": "На лаві лежить рятувальний жилет. Спитайте сусіда: «Чий це жилет?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Чей ноутбук?",
-        "uk": "Чий ноутбук?"
+        "ru": "Куртка на палубе",
+        "uk": "Куртка на палубі"
       },
       "bodyByLocale": {
-        "ru": "`laptop` — «ноутбук». `Whose laptop is this?` — «Чей это ноутбук?» `This is Anna’s laptop` — «Это ноутбук Анны». `The laptop is hers` — «Ноутбук её». `I have your laptop` — «Твой ноутбук у меня».",
-        "uk": "`laptop` — «ноутбук». `Whose laptop is this?` — «Чий це ноутбук?» `This is Anna’s laptop` — «Це ноутбук Анни». `The laptop is hers` — «Ноутбук її». `I have your laptop` — «Твій ноутбук у мене»."
+        "ru": "На палубе парома дует холодный ветер, и подруга замёрзла. Она спрашивает, где именно ваша куртка. Вы оставили её наверху. deck — «палуба»: верхняя открытая часть парома. Место называем со словом on: My jacket is on the deck — «Моя куртка на палубе».",
+        "uk": "На палубі порома віє холодний вітер, і подруга змерзла. Вона питає, де саме ваша куртка. Ви залишили її нагорі. deck — «палуба»: верхня відкрита частина порома. Місце називаємо зі словом on: My jacket is on the deck — «Моя куртка на палубі»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-46:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Ноутбук её».",
-          "uk": "Скажіть «Ноутбук її»."
+          "ru": "Подруга замёрзла и спрашивает, где ваша куртка. Она на палубе. Скажите ей: «Моя куртка на палубе».",
+          "uk": "Подруга змерзла й питає, де ваша куртка. Вона на палубі. Скажіть їй: «Моя куртка на палубі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-46:intro2:r1",
-              "text": "The laptop is hers."
+              "text": "My jacket is on the deck."
             },
             {
               "responseId": "en:lesson-05:session-46:intro2:r2",
-              "text": "The laptop is her."
+              "text": "My jacket is in the deck."
             },
             {
               "responseId": "en:lesson-05:session-46:intro2:r3",
-              "text": "The laptop are hers."
+              "text": "My jacket are on the deck."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-46:intro2:r1",
-              "text": "The laptop is hers."
+              "text": "My jacket is on the deck."
             },
             {
               "responseId": "en:lesson-05:session-46:intro2:r2",
-              "text": "The laptop is her."
+              "text": "My jacket is in the deck."
             },
             {
               "responseId": "en:lesson-05:session-46:intro2:r3",
-              "text": "The laptop are hers."
+              "text": "My jacket are on the deck."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Ноутбук её».",
-          "uk": "Скажіть «Ноутбук її»."
+          "ru": "Подруга замёрзла и спрашивает, где ваша куртка. Она на палубе. Скажите ей: «Моя куртка на палубе».",
+          "uk": "Подруга змерзла й питає, де ваша куртка. Вона на палубі. Скажіть їй: «Моя куртка на палубі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Место и польза",
-        "uk": "Місце й користь"
+        "ru": "Чайка на сумке",
+        "uk": "Чайка на сумці"
       },
       "bodyByLocale": {
-        "ru": "`airport` — «аэропорт», `pantry` — «кладовая для продуктов». `Tom is at the airport` — «Том в аэропорту». `The bag is in the pantry` — «Сумка в кладовой». `useless` — «бесполезный»: `This laptop is useless` — «Этот ноутбук бесполезен», например если для вашей задачи он совсем не подходит.",
-        "uk": "`airport` — «аеропорт», `pantry` — «комора для продуктів». `Tom is at the airport` — «Том в аеропорту». `The bag is in the pantry` — «Сумка в коморі». `useless` — «некорисний»: `This laptop is useless` — «Цей ноутбук не приносить користі», наприклад якщо для вашого завдання він зовсім не підходить."
+        "ru": "Паром стоит у старого причала, и ваша сестра фотографирует воду. Пока она снимает, на её сумку села чайка. seagull — «чайка». Брат показывает на неё. Хозяйку сумки называем с 's: The seagull is on my sister's bag — «Чайка на сумке моей сестры».",
+        "uk": "Пором стоїть біля старого причалу, і ваша сестра фотографує воду. Поки вона знімає, на її сумку сіла чайка. seagull — «чайка». Брат показує на неї. Господиню сумки називаємо з 's: The seagull is on my sister's bag — «Чайка на сумці моєї сестри»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-46:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Этот ноутбук бесполезен».",
-          "uk": "Скажіть «Цей ноутбук не приносить користі»."
+          "ru": "Брат показывает на чайку. Она сидит на сумке вашей сестры. Скажите ему: «Чайка на сумке моей сестры».",
+          "uk": "Брат показує на чайку. Вона сидить на сумці вашої сестри. Скажіть йому: «Чайка на сумці моєї сестри»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-46:intro3:r1",
-              "text": "This laptop is useless."
+              "text": "The seagull is on my sister's bag."
             },
             {
               "responseId": "en:lesson-05:session-46:intro3:r2",
-              "text": "This laptop are useless."
+              "text": "The seagull is on my sister bag."
             },
             {
               "responseId": "en:lesson-05:session-46:intro3:r3",
-              "text": "This laptop is useful."
+              "text": "The seagulls are on my sister's bag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-46:intro3:r1",
-              "text": "This laptop is useless."
+              "text": "The seagull is on my sister's bag."
             },
             {
               "responseId": "en:lesson-05:session-46:intro3:r2",
-              "text": "This laptop are useless."
+              "text": "The seagull is on my sister bag."
             },
             {
               "responseId": "en:lesson-05:session-46:intro3:r3",
-              "text": "This laptop is useful."
+              "text": "The seagulls are on my sister's bag."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Этот ноутбук бесполезен».",
-          "uk": "Скажіть «Цей ноутбук не приносить користі»."
+          "ru": "Брат показывает на чайку. Она сидит на сумке вашей сестры. Скажите ему: «Чайка на сумке моей сестры».",
+          "uk": "Брат показує на чайку. Вона сидить на сумці вашої сестри. Скажіть йому: «Чайка на сумці моєї сестри»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "73497fa527d5d656a6c55e856eb0be40916e04ee77977f3e9a515d56b1c2cfee"
+  "introFingerprint": "d87bc7fbc57673461746cd34d83c325ff259e90c71279ddf6608abf632c6ea45"
 }

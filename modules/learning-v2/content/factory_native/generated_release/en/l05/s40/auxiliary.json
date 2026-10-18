@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-40:intro1:r2": {
-          "ru": "Одни наручные часы — `a watch`, единственное число: `is this`.",
-          "uk": "Один наручний годинник — `a watch`, однина: `is this`."
+          "ru": "Это «Где кубок?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де кубок?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-40:intro1:r3": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Кубок один, поэтому нужно is this.",
+          "uk": "Кубок один, тому потрібно is this."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-40:intro2:r2": {
-          "ru": "`earrings` — множественное число, нужна форма `are`.",
-          "uk": "`earrings` — множина, потрібна форма `are`."
+          "ru": "hers — её, а медаль получил брат: нужно his.",
+          "uk": "hers — її, а медаль отримав брат: потрібно his."
         },
         "en:lesson-05:session-40:intro2:r3": {
-          "ru": "Без следующего существительного нужна самостоятельная форма `hers`.",
-          "uk": "Без наступного іменника потрібна самостійна форма `hers`."
+          "ru": "Без названия вещи нужно his, а не he.",
+          "uk": "Без назви речі потрібно his, а не he."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-40:intro3:r2": {
-          "ru": "С `I` используется `have`.",
-          "uk": "З `I` використовується `have`."
+          "ru": "Без названия вещи нужно theirs, а не their.",
+          "uk": "Без назви речі потрібно theirs, а не their."
         },
         "en:lesson-05:session-40:intro3:r3": {
-          "ru": "`my` — мой; здесь нужен твой: `your`.",
-          "uk": "`my` — мій; тут потрібне твій: `your`."
+          "ru": "ours — наша, а маска принадлежит близнецам: нужно theirs.",
+          "uk": "ours — наша, а маска належить близнюкам: потрібно theirs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "767aad00130c21094a0c9b0a93f2450242b8633cd692c7fef8a47d488bfcbd5c"
+  "auxiliaryFingerprint": "847e72cae088ae3388a7657ef0c4f6c05aff7bd1de7c6258bddf599c49134eda"
 }

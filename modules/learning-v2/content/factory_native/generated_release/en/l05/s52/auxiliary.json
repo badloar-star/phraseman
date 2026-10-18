@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-52:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-52:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "Это «Где ласты?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де ласти?». Про господаря питаємо з whose."
         },
         "en:lesson-05:session-52:intro1:r3": {
-          "ru": "Один бассейн: `is`.",
-          "uk": "Один басейн: `is`."
+          "ru": "Ласт две, поэтому нужно are these.",
+          "uk": "Ласт дві, тому потрібно are these."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-52:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-52:intro2:r2": {
-          "ru": "Один велосипед: `is`.",
-          "uk": "Один велосипед: `is`."
+          "ru": "Нарукавники два, поэтому нужно are.",
+          "uk": "Нарукавники два, тому потрібно are."
         },
         "en:lesson-05:session-52:intro2:r3": {
-          "ru": "`heavy` — тяжёлый; лёгкий — `light`.",
-          "uk": "`heavy` — важкий; легкий — `light`."
+          "ru": "Без названия вещи нужно ours, а не our.",
+          "uk": "Без назви речі потрібно ours, а не our."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-52:intro3:r2": {
-          "ru": "Несколько станций: `stations`, нужна форма `are`.",
-          "uk": "Кілька станцій: `stations`, потрібна форма `are`."
+          "ru": "Без названия вещи нужно theirs, а не their.",
+          "uk": "Без назви речі потрібно theirs, а не their."
         },
         "en:lesson-05:session-52:intro3:r3": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "ours — наш, а круг принесла соседская семья: нужно theirs.",
+          "uk": "ours — наш, а коло принесла сусідська родина: потрібно theirs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bf1027a4b90ec896682ec9e8fedb2731c1d13b25f8a476462da9dcd75e901422"
+  "auxiliaryFingerprint": "644cf45904bb97ec53333f0aa9abd97c02b2bcd7775aa24df202697185c1a418"
 }

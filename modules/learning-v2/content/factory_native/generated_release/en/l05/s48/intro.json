@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-48",
   "learningOutcomeByLocale": {
-    "ru": "различать вопросы о месте и владельце в знакомых ситуациях",
-    "uk": "розрізняти запитання про місце та власника у знайомих ситуаціях"
+    "ru": "самому выбрать, как спросить «чей» и «где», как назвать хозяина и когда нужны is, are, has или have",
+    "uk": "самому вибрати, як спитати «чий» і «де», як назвати господаря і коли потрібні is, are, has чи have"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вещи в гостевом доме",
-        "uk": "Речі в гостьовому будинку"
+        "ru": "Тачка на дорожке",
+        "uk": "Візок на доріжці"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `community kitchen` — «общая кухня», `locker` — «шкафчик». `Anna is in the community kitchen` — «Анна на общей кухне». `Whose locker is this?` — «Чей это шкафчик?» `This locker is mine` — «Этот шкафчик мой». Кухня общая, а шкафчик может быть личным: не всё вокруг автоматически «наше».",
-        "uk": "Повторимо: `community kitchen` — «спільна кухня», `locker` — «шафка». `Anna is in the community kitchen` — «Анна на спільній кухні». `Whose locker is this?` — «Чия це шафка?» `This locker is mine` — «Ця шафка моя». Кухня спільна, а шафка може бути особистою: не все навколо автоматично «наше»."
+        "ru": "Перед отъездом вы помогаете хозяйке гостевого дома навести порядок во дворе. Посреди дорожки стоит садовая тачка, и вы спрашиваете соседа по комнате, чья она. wheelbarrow — «садовая тачка»: в ней возят землю и листья. Whose wheelbarrow is this?",
+        "uk": "Перед від’їздом ви допомагаєте господині гостьового дому навести лад у дворі. Посеред доріжки стоїть садовий візок, і ви питаєте сусіда по кімнаті, чий він. wheelbarrow — «садовий візок»: у ньому возять землю й листя. Whose wheelbarrow is this?"
       },
       "question": {
         "interactionId": "en:lesson-05:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце шкафчика.",
-          "uk": "Запитайте про власника шафки."
+          "ru": "Посреди дорожки стоит садовая тачка. Спросите соседа по комнате: «Чья это тачка?»",
+          "uk": "Посеред доріжки стоїть садовий візок. Спитайте сусіда по кімнаті: «Чий це візок?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-48:intro1:r1",
-              "text": "Whose locker is this?"
+              "text": "Whose wheelbarrow is this?"
             },
             {
               "responseId": "en:lesson-05:session-48:intro1:r2",
-              "text": "Where is the locker?"
+              "text": "Whose wheelbarrow are these?"
             },
             {
               "responseId": "en:lesson-05:session-48:intro1:r3",
-              "text": "Whose locker are these?"
+              "text": "Where is the wheelbarrow?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-48:intro1:r1",
-              "text": "Whose locker is this?"
+              "text": "Whose wheelbarrow is this?"
             },
             {
               "responseId": "en:lesson-05:session-48:intro1:r2",
-              "text": "Where is the locker?"
+              "text": "Whose wheelbarrow are these?"
             },
             {
               "responseId": "en:lesson-05:session-48:intro1:r3",
-              "text": "Whose locker are these?"
+              "text": "Where is the wheelbarrow?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце шкафчика.",
-          "uk": "Запитайте про власника шафки."
+          "ru": "Посреди дорожки стоит садовая тачка. Спросите соседа по комнате: «Чья это тачка?»",
+          "uk": "Посеред доріжки стоїть садовий візок. Спитайте сусіда по кімнаті: «Чий це візок?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Чей транспорт?",
-        "uk": "Чий транспорт?"
+        "ru": "Грабли в сарае",
+        "uk": "Граблі в сараї"
       },
       "bodyByLocale": {
-        "ru": "`scooter` здесь — «самокат», `bicycle` — «велосипед», `motorbike` — «мотоцикл». `Whose bicycle is this?` — «Чей это велосипед?» `This is Tom’s scooter` — «Это самокат Тома». `The motorbike is hers` — «Мотоцикл её». Для одной вещи используется `is`, независимо от количества колёс.",
-        "uk": "`scooter` тут — «самокат», `bicycle` — «велосипед», `motorbike` — «мотоцикл». `Whose bicycle is this?` — «Чий це велосипед?» `This is Tom’s scooter` — «Це самокат Тома». `The motorbike is hers` — «Мотоцикл її». Для однієї речі використовується `is`, незалежно від кількості коліс."
+        "ru": "Хозяйка гостевого дома просит грабли, чтобы собрать листья. Вы помните, что вечером убрали их в сарай. rake — «грабли»: ими собирают листья. По-русски «грабли» — несколько, а по-английски rake — одна вещь, поэтому is: The rake is in the shed.",
+        "uk": "Господиня гостьового дому просить граблі, щоб зібрати листя. Ви пам’ятаєте, що ввечері прибрали їх у сарай. rake — «граблі»: ними збирають листя. Українською «граблі» — кілька, а англійською rake — одна річ, тому is: The rake is in the shed."
       },
       "question": {
         "interactionId": "en:lesson-05:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Мотоцикл её».",
-          "uk": "Скажіть «Мотоцикл її»."
+          "ru": "Хозяйка просит грабли. Они в сарае. Скажите ей: «Грабли в сарае».",
+          "uk": "Господиня просить граблі. Вони в сараї. Скажіть їй: «Граблі в сараї»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-48:intro2:r1",
-              "text": "The motorbike is hers."
+              "text": "The rake is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-48:intro2:r2",
-              "text": "The motorbike is her."
+              "text": "The rake are in the shed."
             },
             {
               "responseId": "en:lesson-05:session-48:intro2:r3",
-              "text": "The motorbike are hers."
+              "text": "The rake is on the shed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-48:intro2:r1",
-              "text": "The motorbike is hers."
+              "text": "The rake is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-48:intro2:r2",
-              "text": "The motorbike is her."
+              "text": "The rake are in the shed."
             },
             {
               "responseId": "en:lesson-05:session-48:intro2:r3",
-              "text": "The motorbike are hers."
+              "text": "The rake is on the shed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мотоцикл её».",
-          "uk": "Скажіть «Мотоцикл її»."
+          "ru": "Хозяйка просит грабли. Они в сарае. Скажите ей: «Грабли в сарае».",
+          "uk": "Господиня просить граблі. Вони в сараї. Скажіть їй: «Граблі в сараї»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где транспорт?",
-        "uk": "Де транспорт?"
+        "ru": "Шланг у калитки",
+        "uk": "Шланг біля хвіртки"
       },
       "bodyByLocale": {
-        "ru": "`ferry` — «паром», `subway` — «метро» в американском английском. `Where is the ferry?` — «Где паром?» `The subway is near the hotel` — «Метро рядом с отелем». `Where` спрашивает о месте, `Whose` — о владельце.",
-        "uk": "`ferry` — «пором», `subway` — «метро» в американській англійській. `Where is the ferry?` — «Де пором?» `The subway is near the hotel` — «Метро поруч із готелем». `Where` запитує про місце, `Whose` — про власника."
+        "ru": "У калитки лежит длинный садовый шланг, и хозяйка спрашивает, чей он. Вы знаете, что его принёс сосед, который живёт рядом. hose — «шланг»: из него льётся вода для полива. Хозяина называем с 's: The hose is my neighbour's — «Шланг моего соседа».",
+        "uk": "Біля хвіртки лежить довгий садовий шланг, і господиня питає, чий він. Ви знаєте, що його приніс сусід, який живе поруч. hose — «шланг»: із нього ллється вода для поливу. Господаря називаємо з 's: The hose is my neighbour's — «Шланг мого сусіда»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, где паром.",
-          "uk": "Запитайте, де пором."
+          "ru": "Хозяйка спрашивает, чей шланг у калитки. Он вашего соседа. Скажите ей: «Шланг моего соседа».",
+          "uk": "Господиня питає, чий шланг біля хвіртки. Він вашого сусіда. Скажіть їй: «Шланг мого сусіда»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-48:intro3:r1",
-              "text": "Where is the ferry?"
+              "text": "The hose is my neighbour's."
             },
             {
               "responseId": "en:lesson-05:session-48:intro3:r2",
-              "text": "Whose ferry is this?"
+              "text": "The hose is my neighbour."
             },
             {
               "responseId": "en:lesson-05:session-48:intro3:r3",
-              "text": "Where are the ferry?"
+              "text": "The hoses are my neighbour's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-48:intro3:r1",
-              "text": "Where is the ferry?"
+              "text": "The hose is my neighbour's."
             },
             {
               "responseId": "en:lesson-05:session-48:intro3:r2",
-              "text": "Whose ferry is this?"
+              "text": "The hose is my neighbour."
             },
             {
               "responseId": "en:lesson-05:session-48:intro3:r3",
-              "text": "Where are the ferry?"
+              "text": "The hoses are my neighbour's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, где паром.",
-          "uk": "Запитайте, де пором."
+          "ru": "Хозяйка спрашивает, чей шланг у калитки. Он вашего соседа. Скажите ей: «Шланг моего соседа».",
+          "uk": "Господиня питає, чий шланг біля хвіртки. Він вашого сусіда. Скажіть їй: «Шланг мого сусіда»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c334da3bb6d28c2cb5ad474272cbb244ede6eda1824bde1b42dc4d30f83bb471"
+  "introFingerprint": "eee1e10c4b53c9f4d83a5d2de7af3542cb9f6f60555466aca6acb15a3038fe8f"
 }

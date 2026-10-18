@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-36:intro1:r2": {
-          "ru": "`sunglasses` — множественное число: `are these`.",
-          "uk": "`sunglasses` — множина: `are these`."
+          "ru": "binoculars — множественное число, поэтому нужно are these.",
+          "uk": "binoculars — множина, тому потрібно are these."
         },
         "en:lesson-05:session-36:intro1:r3": {
-          "ru": "Это «Где очки?»; о владельце спрашиваем с `Whose`.",
-          "uk": "Це «Де окуляри?»; про власника запитуємо з `Whose`."
+          "ru": "Это «Где бинокль?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де бінокль?». Про господаря питаємо з whose."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-36:intro2:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "Наушников несколько, поэтому нужно They are, а не It is.",
+          "uk": "Навушників кілька, тому потрібно They are, а не It is."
         },
         "en:lesson-05:session-36:intro2:r3": {
-          "ru": "`asleep` — уже сплю; хочется спать — `sleepy`.",
-          "uk": "`asleep` — уже сплю; хочеться спати — `sleepy`."
+          "ru": "Без названия вещи нужно mine, а не my.",
+          "uk": "Без назви речі потрібно mine, а не my."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-36:intro3:r2": {
-          "ru": "Одна ключ-карта: `is this`.",
-          "uk": "Одна ключ-картка: `is this`."
+          "ru": "Запонок несколько, поэтому нужно These are.",
+          "uk": "Запонок кілька, тому потрібно These are."
         },
         "en:lesson-05:session-36:intro3:r3": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "После слова uncle нужно 's: my uncle's cufflinks.",
+          "uk": "Після слова uncle потрібно 's: my uncle's cufflinks."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b7984572e87d5a7900ea106181b84fc6f432697ae258cbe76bac6e6fb718cc46"
+  "auxiliaryFingerprint": "7afc2dc99372824c0a476de4e7be64cbf13692c4bfa1a8b2a8ef258b9d81633f"
 }

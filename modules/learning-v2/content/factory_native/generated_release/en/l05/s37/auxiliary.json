@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-37:intro1:r2": {
-          "ru": "`earrings` — множественное число: `are these`.",
-          "uk": "`earrings` — множина: `are these`."
+          "ru": "earrings — множественное число, поэтому нужно are.",
+          "uk": "earrings — множина, тому потрібно are."
         },
         "en:lesson-05:session-37:intro1:r3": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "his — его, а серьги принадлежат сестре: нужно hers.",
+          "uk": "his — його, а сережки належать сестрі: потрібно hers."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-37:intro2:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "Скейтборд один, поэтому нужно is this.",
+          "uk": "Скейтборд один, тому потрібно is this."
         },
         "en:lesson-05:session-37:intro2:r3": {
-          "ru": "Это «Я один»; чувство одиночества — `lonely`.",
-          "uk": "Це «Я сам»; почуття самотності — `lonely`."
+          "ru": "Это «Где скейтборд?». О хозяине спрашиваем с whose.",
+          "uk": "Це «Де скейтборд?». Про господаря питаємо з whose."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-37:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-37:intro3:r2": {
-          "ru": "Один скейтборд: `is this`.",
-          "uk": "Один скейтборд: `is this`."
+          "ru": "Так получилось бы, что штатив — это сам брат. Хозяина называем через 's: your brother's.",
+          "uk": "Так вийшло б, що штатив — це сам брат. Господаря називаємо через 's: your brother's."
         },
         "en:lesson-05:session-37:intro3:r3": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Штатив один, поэтому вопрос начинаем с Is.",
+          "uk": "Штатив один, тому питання починаємо з Is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b97ec0fbc47daa0f7f2ba96cd0ea6637b88c1315311afd0ccb2d1fd1ff914de5"
+  "auxiliaryFingerprint": "02d829559e17a5d9ad952655043f5e71ace9d2420e6010d1f35ca433139b9d42"
 }

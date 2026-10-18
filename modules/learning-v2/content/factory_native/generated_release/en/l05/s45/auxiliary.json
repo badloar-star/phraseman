@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-45:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Так получилось бы, что гарнитура — это сама коллега. Хозяйку называем через 's.",
+          "uk": "Так вийшло б, що гарнітура — це сама колега. Господиню називаємо через 's."
         },
         "en:lesson-05:session-45:intro1:r3": {
-          "ru": "Один мотоцикл: `is this`.",
-          "uk": "Один мотоцикл: `is this`."
+          "ru": "Гарнитура одна, поэтому нужно The headset is.",
+          "uk": "Гарнітура одна, тому потрібно The headset is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-45:intro2:r2": {
-          "ru": "`earrings` — множественное число: `are`.",
-          "uk": "`earrings` — множина: `are`."
+          "ru": "Маркер один, поэтому вопрос начинаем с Is.",
+          "uk": "Маркер один, тому питання починаємо з Is."
         },
         "en:lesson-05:session-45:intro2:r3": {
-          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
-          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+          "ru": "В конце вопроса, без вещи после слова, нужно yours, а не your.",
+          "uk": "Наприкінці питання, без речі після слова, потрібно yours, а не your."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-45:intro3:r2": {
-          "ru": "Одна печь: `is`.",
-          "uk": "Одна піч: `is`."
+          "ru": "Точилок несколько, поэтому нужно are.",
+          "uk": "Стругачок кілька, тому потрібно are."
         },
         "en:lesson-05:session-45:intro3:r3": {
-          "ru": "`curious` — любопытный; полезный — `useful`.",
-          "uk": "`curious` — допитливий; корисний — `useful`."
+          "ru": "on значит «на», а точилки внутри ящика: нужно in.",
+          "uk": "on означає «на», а стругачки всередині шухляди: потрібно in."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2ef4e51c8dc2bcc99ad8e3c718a08c99a1b74111f6fb3d996ee9d850123a2d49"
+  "auxiliaryFingerprint": "9c96d60d81d978af9dda7250e2443f051b1c7341c489201227a5cd0f700f04d3"
 }

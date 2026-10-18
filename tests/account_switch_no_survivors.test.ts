@@ -191,8 +191,14 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     await consent.setAnalyticsConsent('granted');
     expect(consent.getAnalyticsConsentState()).toBe('granted');
     await AsyncStorage.multiSet([['onboarding_terms_privacy_accepted_v1', '1'], ['onboarding_done', '1'], ['app_lang', 'en']]);
+    // зачем (Ревизор 18.10): выход A → вход B без перезапуска — корень получает событие и показывает экран согласия сразу
+    // DeviceEventEmitter в jest — заглушка без подписчиков, поэтому проверяем сам вызов отправки события
+    const events = await import('../app/events');
+    const emitSpy = jest.spyOn(events, 'emitAppEvent');
 
     await wipeLocalAccountData(undefined, { mode: 'signout' });
+    expect(emitSpy.mock.calls.filter(([name]) => name === 'consent_regate_requested')).toEqual([['consent_regate_requested', { source: 'signout_wipe' }]]);
+    emitSpy.mockRestore();
 
     expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['analytics_consent_v1']));
     expect(SIGNOUT_DEVICE_KEEP_KEYS).not.toEqual(expect.arrayContaining(['onboarding_terms_privacy_accepted_v1']));

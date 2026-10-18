@@ -6419,6 +6419,12 @@ async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promi
     await closePhoneStateBeforeLocalWipe();
     markWipeStage('closePhoneState');
     await wipeLocalAccountDataUnsafeBody(mode);
+    if (mode === 'signout') {
+      // зачем (Ревизор 18.10 по 04bcd2d89): человек B, вошедший сразу после выхода A без перезапуска, тоже принимает
+      // Условия сам — стирание прошло, согласия сброшены, корень (_layout) открывает экран согласия сейчас же.
+      console.log('[CONSENT-REGATE] emit consent_regate_requested source=signout_wipe'); // guard-ok: одна строка на выход
+      emitAppEvent('consent_regate_requested', { source: 'signout_wipe' });
+    }
   } catch (error) {
     failure = identityErrorCode(error);
     throw error;

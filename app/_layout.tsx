@@ -3415,6 +3415,35 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     setShow(false);
   }, []);
 
+  // зачем (Ревизор 18.10 по 04bcd2d89): выход/смена в этой же сессии — экран согласия сразу, а не только при следующем
+  // запуске; иначе B, вошедший без перезапуска, остался бы без принятых Условий. Решение — то же resolveConsentRegate.
+  useEffect(() => {
+    const sub = onAppEvent('consent_regate_requested', ({ source }) => {
+      if (showOnboarding) {
+        console.log(`[CONSENT-REGATE] event source=${source} show=false reason=onboarding_already_shown`); // guard-ok: ранний выход пишет причину
+        return;
+      }
+      void AsyncStorage.multiGet([LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE, CONSENT_REGATE_PENDING_KEY])
+        .then((rows) => {
+          const values = new Map(rows);
+          const legalRaw = values.get(LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE) ?? null;
+          const pendingRaw = values.get(CONSENT_REGATE_PENDING_KEY) ?? null;
+          // онбординг на устройстве пройден (метка устройства пишется до стирания) — решают метка выхода и Условия
+          const decision = resolveConsentRegate('1', legalRaw, pendingRaw);
+          console.log(`[CONSENT-REGATE] event source=${source} show=${decision.show} reason=${decision.reason} legal=${legalRaw ?? 'null'} pending=${pendingRaw ?? 'null'}`); // guard-ok: решение по событию
+          if (!decision.show) return;
+          onboardingDoneHandledRef.current = false;
+          onboardingShowReasonRef.current = 'event consent_regate';
+          setOnboardingConsentOnly(true);
+          setShow(true);
+        })
+        .catch((error: unknown) => {
+          console.warn(`[CONSENT-REGATE] event source=${source} read_failed code=${error instanceof Error ? error.name : typeof error} — покажем при следующем запуске`); // guard-ok: catch пишет причину
+        });
+    });
+    return () => sub.remove();
+  }, [showOnboarding]);
+
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {
     await startIntroFullAccessAfterOnboarding(Date.now(), lang);
     emitAppEvent('intro_full_access_changed');

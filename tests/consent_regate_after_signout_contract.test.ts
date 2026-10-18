@@ -45,6 +45,16 @@ describe('проводка экрана согласия', () => {
     expect(layout).toContain('onDone={onboardingConsentOnly ? handleConsentRegateDone : handleOnboardingDone}');
   });
 
+  it('выход A → вход B без перезапуска: событие выхода сразу открывает экран согласия (то же решение, журнал)', () => {
+    const cloudSync = read('app/cloud_sync.ts');
+    expect(cloudSync).toMatch(/await wipeLocalAccountDataUnsafeBody\(mode\);\s*if \(mode === 'signout'\) \{[\s\S]{0,400}emitAppEvent\('consent_regate_requested', \{ source: 'signout_wipe' \}\);/);
+    const handler = layout.slice(layout.indexOf("onAppEvent('consent_regate_requested'"), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
+    expect(handler).toContain("resolveConsentRegate('1', legalRaw, pendingRaw)");
+    expect(handler).toContain('[CONSENT-REGATE] event source=${source} show=${decision.show} reason=${decision.reason}');
+    expect(handler).toMatch(/if \(!decision\.show\) return;\s*onboardingDoneHandledRef\.current = false;[\s\S]*setOnboardingConsentOnly\(true\);\s*setShow\(true\);/);
+    expect(handler).toContain('reason=onboarding_already_shown');
+  });
+
   it('завершение согласия не запускает сценарий нового ученика (пуши, бонус, приветствие)', () => {
     const fn = layout.slice(layout.indexOf('const handleConsentRegateDone = useCallback('), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
     expect(fn).toContain('setShow(false)');

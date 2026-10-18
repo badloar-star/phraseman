@@ -51,6 +51,8 @@ export type AppEventMap = {
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;
+  // зачем (Ревизор 18.10 по 04bcd2d89): после выхода/смены — экран согласия сразу в этой же сессии, не только на старте
+  consent_regate_requested: { source: 'signout_wipe' };
   identity_retired: {
     source: 'cloud_mutation' | 'startup' | 'nickname' | 'provider_sign_in';
     subject: 'stable' | 'auth' | 'closure' | 'unknown';

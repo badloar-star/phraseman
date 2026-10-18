@@ -283,6 +283,18 @@ export default function DialogueV2BriefingRoute() {
     };
   }, [scenarioId, studyTarget]);
 
+  // зачем (координатор 18.10, Optimistic UI): ответ «согласие на ИИ» читаем с диска, пока человек читает брифинг, — к тапу «Начать»
+  // он уже в памяти (readStartConsent без ожидания). Порядок «согласие до сессии» не меняется: только чтение, без шторки и без записи.
+  useEffect(() => {
+    if (isAiDialogConsentHydrated()) return;
+    const startedAt = Date.now();
+    void hydrateAiDialogConsentFromStorage().then(() => {
+      console.log('[AI-CONSENT-ENERGY] briefing:consent preloaded', JSON.stringify({ ms: Date.now() - startedAt, granted: isAiDialogConsentGranted() })); // guard-ok: одна строка на первый брифинг за запуск
+    }).catch((error: unknown) => {
+      console.warn('[AI-CONSENT-ENERGY] briefing:consent preload failed → read on start', error instanceof Error ? error.message : String(error));
+    });
+  }, []);
+
   const model: DialogueV2BriefingModel | null = useMemo(() => {
     if (state.kind !== 'available' || !scenarioId || !supportedTarget(studyTarget)) return null;
     return buildDialogueV2BriefingModel({

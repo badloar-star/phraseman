@@ -314,6 +314,9 @@ let themeHydratedInProcess = false;
 let followSystemInProcess = false;
 // Чтение трёх ключей занимает единицы мс; 400 мс — страховка от зависшего хранилища.
 const THEME_HYDRATION_CEILING_MS = 400;
+// зачем ([THEME-BOOT] 18.10): лог первых кадров загрузки темы — не больше 12 строк за запуск, чтобы не шуметь в боевой сборке.
+const THEME_BOOT_LOG_FRAMES = 12;
+const THEME_BOOT_T0 = Date.now();
 
 const logThemeWriteError = (key: string) => (e: unknown) => {
   DebugLogger.error(`ThemeContext:${key}:write`, e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -382,6 +385,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId);
   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
+  // зачем (координатор 18.10, первый запуск: «первый экран, онбординг и первая Главная — правильная тема с первого кадра, без вспышки другой темы»; правило «сперва логи»):
+  // какая пара реально отрисована в каждом из первых кадров и ПОЧЕМУ: системная схема, следование системе, сохранённая/применённая тема (peek или хранилище),
+  // выбранная для кадра, оформление, готов ли выбор (пока нет — стартовая заставка закрывает экран). Кадр = номер рендера провайдера с монтирования. Префикс [THEME-BOOT].
+  const bootFrameRef = useRef(0);
+  bootFrameRef.current += 1;
+  useEffect(() => {
+    if (bootFrameRef.current > THEME_BOOT_LOG_FRAMES) return;
+    console.log(`[THEME-BOOT] frame ${JSON.stringify({ frame: bootFrameRef.current, msSinceBoot: Date.now() - THEME_BOOT_T0, systemScheme: String(systemScheme), followSystem, savedTheme: appliedLiquidGlassThemeId, savedAppearance: savedLiquidGlassAppearance, chosenTheme: liquidGlassThemeId, chosenAppearance: liquidGlassAppearance, choiceReady: liquidGlassChoiceReady, hydratedInProcess: themeHydratedInProcess, covered: !liquidGlassChoiceReady })}`); // guard-ok: строка на первые кадры загрузки
+  }, [systemScheme, followSystem, appliedLiquidGlassThemeId, savedLiquidGlassAppearance, liquidGlassThemeId, liquidGlassAppearance, liquidGlassChoiceReady]);
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const fontSizeRef = useRef<FontSize>('medium');
@@ -490,6 +502,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const ceiling = setTimeout(() => {
       if (cancelled || themeHydratedInProcess) return;
       DebugLogger.error('ThemeContext:hydration_ceiling', new Error(`theme read exceeded ${THEME_HYDRATION_CEILING_MS}ms`), 'warning');
+      // зачем ([THEME-BOOT]): потолок сработал раньше хранилища — заставка снимется с ТЕМОЙ ПО УМОЛЧАНИЮ, это и есть возможная вспышка; в журнал причина и время
+      console.warn(`[THEME-BOOT] ceiling ${JSON.stringify({ ceilingMs: THEME_HYDRATION_CEILING_MS, msSinceBoot: Date.now() - THEME_BOOT_T0, reason: 'storage_read_slower_than_ceiling' })}`); // guard-ok: потолок чтения темы
       themeHydratedInProcess = true;
       setLiquidGlassChoiceReady(true);
     }, THEME_HYDRATION_CEILING_MS);
@@ -510,6 +524,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         onboardingDone: pairs[4]?.[1] ?? null,
         followSystemMarker: pairs[5]?.[1] ?? null,
       });
+      console.log(`[THEME-BOOT] hydrate ${JSON.stringify({ msSinceBoot: Date.now() - THEME_BOOT_T0, storedTheme: storedId, storedAppearance: pairs[2]?.[1] ?? null, storedIntensity: pairs[3]?.[1] ?? null, onboardingDone: pairs[4]?.[1] ?? null, followMarker: pairs[5]?.[1] ?? null, bootScheme: String(Appearance.getColorScheme()), decision: `${firstRun.kind}/${firstRun.reason}` })}`); // guard-ok: одна строка на старт
       console.log(`[THEME-DEFAULT] ${firstRun.kind} ${JSON.stringify({ reason: firstRun.reason, apply: firstRun.apply, ...(firstRun.kind === 'new_user' ? { themeId: firstRun.themeId, intensity: firstRun.intensity } : {}) })}`);
       const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
       const storedResolved = resolveLiquidGlassTheme(storedId);

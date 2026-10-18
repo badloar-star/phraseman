@@ -63,7 +63,7 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   /** Строка-ответ на тап по недоступному микрофону («не работает на этом устройстве»). */
   voiceNotice?: string | null;
   /** R52: сбой хода — плашка с «Повторить» под лентой (как в сценарном диалоге), а не весь экран «недоступно». */
-  turnError?: Readonly<{ message: string; retryLabel: string; onRetry: () => void }> | null;
+  turnError?: Readonly<{ message: string; retryLabel?: string; onRetry?: () => void }> | null;
 }>;
 
 /** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */

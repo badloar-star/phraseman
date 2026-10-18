@@ -19,6 +19,11 @@ import {
   sendDialogueV2FreeformTurn,
   startDialogueV2FreeformSession,
 } from './dialogue_v2_freeform_client';
+
+/** Отказ «на сегодня всё» (DialogueV2FreeformUnavailableError.reason) — по полю, без instanceof: модуль клиента подменяют в тестах. */
+function isFreeformDailyCap(error: unknown): boolean {
+  return (error as { reason?: unknown } | null)?.reason === 'daily_cap';
+}
 import {
   resolveBundledDialogueV2FreeformPreparedBotVoiceAsset,
 } from './dialogue_v2_freeform_prepared_bot_voice_asset_registry';
@@ -71,6 +76,8 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
     plus: triLang(lang, { ru: 'Свободный разговор доступен в Plus', uk: 'Вільна розмова доступна в Plus', en: 'Free conversation is available with Plus', es: 'La conversación libre está disponible con Plus', 'pt-BR': 'A conversa livre está disponível no Plus', vi: 'Trò chuyện tự do có trong Plus', id: 'Obrolan bebas tersedia di Plus', tr: 'Serbest sohbet Plus ile kullanılabilir', pl: 'Swobodna rozmowa jest dostępna w Plus', fr: 'La conversation libre est disponible avec Plus', de: 'Freies Gespräch ist mit Plus verfügbar' }),
     openPlus: triLang(lang, { ru: 'Открыть Plus', uk: 'Відкрити Plus', en: 'Open Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus', fr: 'Ouvrir Plus', de: 'Plus öffnen' }),
     unavailable: triLang(lang, { ru: 'Не удалось продолжить разговор', uk: 'Не вдалося продовжити розмову', en: 'Couldn’t continue the chat', es: 'No se pudo continuar la conversación', 'pt-BR': 'Não foi possível continuar a conversa', vi: 'Không thể tiếp tục trò chuyện', id: 'Obrolan tidak dapat dilanjutkan', tr: 'Sohbete devam edilemedi', pl: 'Nie udało się kontynuować rozmowy', fr: 'Impossible de poursuivre la conversation', de: 'Das Gespräch konnte nicht fortgesetzt werden' }),
+    // зачем (координатор 18.10): дневной потолок ИИ — спокойное «на сегодня всё», без технических слов и без «Повторить».
+    dailyCap: triLang(lang, { ru: 'На сегодня разговоров достаточно. Продолжим завтра.', uk: 'На сьогодні розмов досить. Продовжимо завтра.', en: "That's enough talking for today. Let's continue tomorrow.", es: 'Por hoy ya hemos hablado bastante. Seguimos mañana.', 'pt-BR': 'Por hoje já conversamos bastante. Continuamos amanhã.', vi: 'Hôm nay trò chuyện vậy là đủ rồi. Mai mình nói tiếp nhé.', id: 'Untuk hari ini sudah cukup mengobrol. Kita lanjut besok.', tr: 'Bugünlük bu kadar sohbet yeter. Yarın devam ederiz.', pl: 'Na dziś wystarczy rozmów. Kontynuujemy jutro.', fr: 'Assez discuté pour aujourd’hui. On continue demain.', de: 'Für heute ist genug geredet. Morgen geht es weiter.' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
   });
 }
@@ -110,6 +117,8 @@ export default function DialogueV2FreeformRoute() {
   // зачем (аудит кнопок R52, координатор 15.10): один сбой ХОДА превращал весь экран в «Не удалось продолжить разговор» — лента и черновик
   // пропадали. Сбой хода теперь — плашка с «Повторить» под лентой (как в сценарном диалоге); полный экран остаётся только для сбоя старта.
   const [turnFailed, setTurnFailed] = useState(false);
+  // «На сегодня всё» от сервера: плашка без «Повторить», ввод закрыт; сбрасывается при смене языка/входа.
+  const [dailyCap, setDailyCap] = useState(false);
   const turnFailedRef = useRef(false);
   turnFailedRef.current = turnFailed;
   const sessionRef = useRef<ServerSession | null>(null);
@@ -218,6 +227,11 @@ export default function DialogueV2FreeformRoute() {
       const message = error instanceof Error ? error.message : String(error);
       if (!current) {
         console.log('[DIALOGUE-V2] freeform: start failure ignored — contour changed', { generation, studyTarget: target, message }); // guard-ok
+      } else if (isFreeformDailyCap(error)) {
+        // зачем: до завтра сервер ответит тем же — тихие повторы и уход в хаб бессмысленны, показываем «на сегодня всё».
+        console.warn('[DIALOGUE-V2] freeform: start → daily cap, no retry', { generation, studyTarget: target });
+        setDailyCap(true);
+        setTurnFailed(true);
       } else {
         handleStartFailure(message);
       }
@@ -243,6 +257,7 @@ export default function DialogueV2FreeformRoute() {
     setSending(false);
     setUnavailable(false);
     setTurnFailed(false);
+    setDailyCap(false);
     if (!accessResolved || !hasPremiumAccess || !isSupportedTarget(studyTarget)) return undefined;
     void startCurrentSession(studyTarget, generation);
     return undefined;
@@ -289,6 +304,10 @@ export default function DialogueV2FreeformRoute() {
     } catch (error: unknown) {
       const current = isCurrentPending(pending);
       console.warn('[DIALOGUE-V2] freeform: turn → failed', { turnId: pending.turnId, current, message: error instanceof Error ? error.message : String(error) });
+      if (current && isFreeformDailyCap(error)) {
+        console.warn('[DIALOGUE-V2] freeform: turn → daily cap', { turnId: pending.turnId });
+        setDailyCap(true);
+      }
       if (current) setTurnFailed(true); // R52: плашка под лентой, лента и черновик на месте
     } finally {
       if (isCurrentPending(pending)) {
@@ -482,5 +501,5 @@ export default function DialogueV2FreeformRoute() {
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={turnFailed ? { message: labels.unavailable, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: labels.unavailable, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

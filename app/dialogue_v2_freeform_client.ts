@@ -1,6 +1,7 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { getDevDialogFail, getDevDialogSend } from './dev_dialog_state';
+import { isAiDailyCapError } from './ai_daily_cap_signal';
 
 import {
   parseDialogueV2FreeformSessionStartShape,
@@ -39,11 +40,19 @@ export type DialogueV2FreeformPreparedBotVoiceTextOnlyResponse = Readonly<{
 }>;
 
 /** Callable failures may include internal provider details; UI gets one neutral state. */
+/** 'daily_cap' — сервер сказал «на сегодня всё» (общий дневной потолок ИИ или дневное окно); повтор бессмыслен до завтра. */
+export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap';
+
 export class DialogueV2FreeformUnavailableError extends Error {
-  constructor() {
+  constructor(readonly reason: DialogueV2FreeformFailureReason = 'unavailable') {
     super('dialogue_v2_freeform_unavailable');
     this.name = 'DialogueV2FreeformUnavailableError';
   }
+}
+
+/** Ошибка старта/хода свободного разговора → наружу: причина «на сегодня всё» или обычное «недоступно». */
+function freeformFailure(error: unknown): DialogueV2FreeformUnavailableError {
+  return new DialogueV2FreeformUnavailableError(isAiDailyCapError(error) ? 'daily_cap' : 'unavailable');
 }
 
 type PlainRecord = Record<string, unknown>;
@@ -162,7 +171,7 @@ export async function startDialogueV2FreeformSession(
     return validStartResponse((await callable(request)).data);
   } catch (error) {
     logFreeformFailure('start', startedAt, error);
-    throw new DialogueV2FreeformUnavailableError();
+    throw freeformFailure(error);
   }
 }
 
@@ -199,7 +208,7 @@ export async function sendDialogueV2FreeformTurn(
     return validTurnResponse((await callable(request)).data, request);
   } catch (error) {
     logFreeformFailure('turn', startedAt, error);
-    throw new DialogueV2FreeformUnavailableError();
+    throw freeformFailure(error);
   }
 }
 

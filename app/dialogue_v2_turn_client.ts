@@ -2,6 +2,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { getDevDialogSend } from './dev_dialog_state';
 import { devDialogSessionId } from './dev_dialog_send';
+import { isAiDailyCapError } from './ai_daily_cap_signal';
 
 import {
   isDialogueV2PreparedBotVoiceToken,
@@ -331,7 +332,8 @@ export async function sendDialogueV2TextTurn(
       code: String((error as { code?: unknown })?.code ?? '').slice(0, 60),
       reason: String((error as { message?: unknown })?.message ?? error).slice(0, 120),
     }));
-    if (isPlusDailyCapError(error)) throw new DialogueV2PlusDailyCapError();
+    // зачем (координатор 18.10): общий дневной потолок ИИ и дневные окна uid/IP — тот же «на сегодня всё», что и потолок Plus.
+    if (isPlusDailyCapError(error) || isAiDailyCapError(error)) throw new DialogueV2PlusDailyCapError();
     throw new DialogueV2TextTurnUnavailableError();
   }
 }

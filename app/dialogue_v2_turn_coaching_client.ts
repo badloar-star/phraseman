@@ -12,6 +12,7 @@ import { readAiDialogMonthlyQuota } from './ai_dialog_daily_quota';
 import { captureAccountGeneration } from './account_generation';
 import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { DialogueV2TextTurnUnavailableError, type DialogueV2TextTurnStudyTarget } from './dialogue_v2_turn_client';
+import { isAiDailyCapError } from './ai_daily_cap_signal';
 
 // зачем (владелец 2026-09-30, D112): клиент 2.0 шлёт ход V2 с языком интерфейса и получает
 // вместе с репликой разбор: перевод, «Почему так», «Лучше так», подсказку, настроение
@@ -246,6 +247,8 @@ export function classifyDialogueV2TurnFailure(error: unknown): DialogueV2TurnFai
   const { code, message } = errorText(error);
   if (message.includes('dialog_free_limit')) return 'quota_exhausted';
   if (message.includes('plus_daily_cap')) return 'plus_daily_cap';
+  // зачем (координатор 18.10): общий дневной потолок ИИ и дневные окна uid/IP — «на сегодня всё», ввод закрыт, без повтора.
+  if (isAiDailyCapError(error)) return 'plus_daily_cap';
   if (message.includes('dialog_rate_limited') || code.includes('resource-exhausted')) return 'rate_limited';
   if (message.includes('dialogue_v2_turn_release_unavailable') || message.includes('ai_globally_disabled')) return 'paused';
   if (message.includes('dialogue_v2_turn_unavailable') || message.includes('dialogue_v2_session_')

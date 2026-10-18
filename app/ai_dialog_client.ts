@@ -10,6 +10,7 @@ import {
   AiOfflineError,
   AI_GLOBAL_BUDGET_ERROR_CODE,
 } from './ai_kill_switch_copy';
+import { isAiDailyCapError } from './ai_daily_cap_signal';
 import {
   warmAiFunction,
   withAiCallableRetry,
@@ -161,6 +162,9 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   // зачем (D123): тихий суточный потолок Plus (300 ответов) — тот же спокойный
   // «продолжим завтра», что и прежний кап; проверяем ДО общего resource-exhausted.
   if (text.includes('dialog_premium_cap') || text.includes('plus_daily_cap')) return 'premium_limit';
+  // зачем (координатор 18.10): общий дневной потолок расходов и дневные окна uid/IP — тот же спокойный «продолжим
+  // завтра» без Plus и без повтора; ДО общего resource-exhausted, иначе уехало бы в «слишком много подряд».
+  if (isAiDailyCapError(error)) return 'premium_limit';
   // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
   // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
   // resource-exhausted, иначе это ошибочно уедет в 'rate_limited'.

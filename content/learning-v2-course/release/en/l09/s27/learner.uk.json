@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-27:word:sled",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:word:sled:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:word:sled:audio",
+          "transcript": "sled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:word:sled:r1",
+            "targetText": "sled",
+            "meaningByLocale": {
+              "ru": "«санки». В английском a sled — один предмет: The sled is sliding. — «Санки скользят».",
+              "uk": "«санки». В англійській a sled — один предмет: The sled is sliding. — «Санки ковзають»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sled",
+          "definitionByLocale": {
+            "ru": "«санки». В английском a sled — один предмет: The sled is sliding. — «Санки скользят».",
+            "uk": "«санки». В англійській a sled — один предмет: The sled is sliding. — «Санки ковзають»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i01:r1",
+          "text": "The sled is sliding."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i01:r2",
+          "text": "The sled is not sliding."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i01:r3",
+          "text": "The sled is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i01:audio",
+          "transcript": "The sled is sliding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:i01:r1",
+            "targetText": "The sled is sliding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i01:r2",
+            "targetText": "The sled is not sliding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i01:r3",
+            "targetText": "The sled is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sled is sliding.",
+              "uk": "У записі звучить The sled is sliding."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sled is sliding.",
+              "uk": "У записі звучить The sled is sliding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Санки зараз ковзають. Поставте now наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Санки зараз ковзають. Поставте now наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sled is sliding now.",
+        "localizedMeaning": {
+          "ru": "Санки сейчас скользят. Поставьте now в конце",
+          "uk": "Санки зараз ковзають. Поставте now наприкінці"
+        },
+        "orderedTokens": [
+          "The",
+          "sled",
+          "is",
+          "sliding",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для одних санок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для одних санок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одних санок",
+          "uk": "Виберіть форму для одних санок"
+        },
+        "gappedTargetPhrase": "The sled ___ sliding.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-27:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму для одних санок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одних санок",
+            "feedbackByLocale": {
+              "ru": "В английском sled — единственное число: is.",
+              "uk": "В англійській sled — однина: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одних санок",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-27:i04:p1",
+            "target": "sled",
+            "meaningByLocale": {
+              "ru": "санки",
+              "uk": "санки"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i04:p2",
+            "target": "slide",
+            "meaningByLocale": {
+              "ru": "скользить",
+              "uk": "ковзати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i04:p3",
+            "target": "snow",
+            "meaningByLocale": {
+              "ru": "снег",
+              "uk": "сніг"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i04:p4",
+            "target": "now",
+            "meaningByLocale": {
+              "ru": "сейчас",
+              "uk": "зараз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sled",
+          "slide",
+          "snow",
+          "now"
+        ],
+        "rightColumn": [
+          "санки",
+          "ковзати",
+          "сніг",
+          "зараз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i05:audio",
+          "transcript": "Is the sled sliding?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the sled sliding?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "sled",
+          "sliding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:word:slope",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slope",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:word:slope:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slope",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:word:slope:audio",
+          "transcript": "slope"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:word:slope:r1",
+            "targetText": "slope",
+            "meaningByLocale": {
+              "ru": "«склон». Down the slope — «вниз по склону». The slope is small. — «Склон небольшой».",
+              "uk": "«схил». Down the slope — «униз схилом». The slope is small. — «Схил невеликий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slope",
+          "definitionByLocale": {
+            "ru": "«склон». Down the slope — «вниз по склону». The slope is small. — «Склон небольшой».",
+            "uk": "«схил». Down the slope — «униз схилом». The slope is small. — «Схил невеликий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте про рух санок униз схилом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте про рух санок униз схилом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sled is sliding down the slope.",
+        "localizedMeaning": {
+          "ru": "Сообщите о движении санок вниз по склону",
+          "uk": "Повідомте про рух санок униз схилом"
+        },
+        "orderedTokens": [
+          "The",
+          "sled",
+          "is",
+          "sliding",
+          "down",
+          "the",
+          "slope"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:word:runner",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — runner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:word:runner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — runner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:word:runner:audio",
+          "transcript": "runner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:word:runner:r1",
+            "targetText": "runner",
+            "meaningByLocale": {
+              "ru": "«полоз санок». Здесь деталь, на которой скользят санки, не бегун. The runner is sliding. — «Полоз скользит».",
+              "uk": "«полоз санок». Тут деталь, на якій ковзають санки, не бігун. The runner is sliding. — «Полоз ковзає»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "runner",
+          "definitionByLocale": {
+            "ru": "«полоз санок». Здесь деталь, на которой скользят санки, не бегун. The runner is sliding. — «Полоз скользит».",
+            "uk": "«полоз санок». Тут деталь, на якій ковзають санки, не бігун. The runner is sliding. — «Полоз ковзає»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Майстер показує, як полоз ковзає по дошці. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Майстер показує, як полоз ковзає по дошці. Скажіть про це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i07:audio",
+          "transcript": "The runner is sliding."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The runner is sliding.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії зараз",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i08:r1",
+          "text": "sliding"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i08:r2",
+          "text": "slide"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i08:r3",
+          "text": "slides"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії зараз",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия сейчас",
+          "uk": "Виберіть форму дії зараз"
+        },
+        "gappedTargetPhrase": "The runner is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-27:i08:r1",
+            "text": "sliding"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i08:r2",
+            "text": "slide"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i08:r3",
+            "text": "slides"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії зараз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "После is нужна форма sliding.",
+              "uk": "Після is потрібна форма sliding."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії зараз",
+            "feedbackByLocale": {
+              "ru": "Здесь is sliding, не is slides.",
+              "uk": "Тут is sliding, не is slides."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i09:r1",
+          "text": "The runner is not sliding."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i09:r2",
+          "text": "The runner is sliding."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i09:r3",
+          "text": "The sled is not sliding."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i09:audio",
+          "transcript": "The runner is not sliding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:i09:r1",
+            "targetText": "The runner is not sliding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i09:r2",
+            "targetText": "The runner is sliding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i09:r3",
+            "targetText": "The sled is not sliding.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The runner is not sliding.",
+              "uk": "У записі звучить The runner is not sliding."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The runner is not sliding.",
+              "uk": "У записі звучить The runner is not sliding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-27:i10:p1",
+            "target": "sled",
+            "meaningByLocale": {
+              "ru": "санки",
+              "uk": "санки"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i10:p2",
+            "target": "slope",
+            "meaningByLocale": {
+              "ru": "склон",
+              "uk": "схил"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i10:p3",
+            "target": "runner",
+            "meaningByLocale": {
+              "ru": "полоз санок",
+              "uk": "полоз санок"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i10:p4",
+            "target": "slide",
+            "meaningByLocale": {
+              "ru": "скользить",
+              "uk": "ковзати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sled",
+          "slope",
+          "runner",
+          "slide"
+        ],
+        "rightColumn": [
+          "санки",
+          "схил",
+          "полоз санок",
+          "ковзати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте фразу про звичку й складіть її",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте фразу про звичку й складіть її",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i11:audio",
+          "transcript": "I often walk here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I often walk here.",
+        "orderedTokens": [
+          "I",
+          "often",
+          "walk",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:word:snowball",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — snowball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:word:snowball:audio"
+      ],
+      "accessibilityLabel": "Картка слова — snowball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:word:snowball:audio",
+          "transcript": "snowball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:word:snowball:r1",
+            "targetText": "snowball",
+            "meaningByLocale": {
+              "ru": "«снежок». Маленький шар из снега. The snowball is small. — «Снежок маленький».",
+              "uk": "«сніжка». Маленька куля зі снігу. The snowball is small. — «Сніжка маленька»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snowball",
+          "definitionByLocale": {
+            "ru": "«снежок». Маленький шар из снега. The snowball is small. — «Снежок маленький».",
+            "uk": "«сніжка». Маленька куля зі снігу. The snowball is small. — «Сніжка маленька»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i12:r1",
+          "text": "The snowball is small."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i12:r2",
+          "text": "The sled is small."
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i12:r3",
+          "text": "The slope is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i12:audio",
+          "transcript": "The snowball is small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-27:i12:r1",
+            "targetText": "The snowball is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i12:r2",
+            "targetText": "The sled is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i12:r3",
+            "targetText": "The slope is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The snowball is small.",
+              "uk": "У записі звучить The snowball is small."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The snowball is small.",
+              "uk": "У записі звучить The snowball is small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг хоче кинути сніжку, потрібну для оздоби. Попросіть не кидати її",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Друг хоче кинути сніжку, потрібну для оздоби. Попросіть не кидати її",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i13:audio",
+          "transcript": "Don't throw the snowball, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Don't throw the snowball, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть початок запитання про санки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-27:i14:r1",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i14:r2",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-09:session-27:i14:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть початок запитання про санки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало вопроса о санках",
+          "uk": "Виберіть початок запитання про санки"
+        },
+        "gappedTargetPhrase": "___ the sled sliding?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-27:i14:r1",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i14:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Виберіть початок запитання про санки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-27:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть початок запитання про санки",
+            "feedbackByLocale": {
+              "ru": "Sled в единственном числе: is.",
+              "uk": "Sled в однині: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-27:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть початок запитання про санки",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Санки зупинилися. Складіть заперечення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Санки зупинилися. Складіть заперечення",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sled is not sliding.",
+        "localizedMeaning": {
+          "ru": "Санки остановились. Соберите отрицание",
+          "uk": "Санки зупинилися. Складіть заперечення"
+        },
+        "orderedTokens": [
+          "The",
+          "sled",
+          "is",
+          "not",
+          "sliding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-27:i16:p1",
+            "target": "sled",
+            "meaningByLocale": {
+              "ru": "санки",
+              "uk": "санки"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i16:p2",
+            "target": "slope",
+            "meaningByLocale": {
+              "ru": "склон",
+              "uk": "схил"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i16:p3",
+            "target": "runner",
+            "meaningByLocale": {
+              "ru": "полоз санок",
+              "uk": "полоз санок"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-27:i16:p4",
+            "target": "snowball",
+            "meaningByLocale": {
+              "ru": "снежок",
+              "uk": "сніжка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sled",
+          "slope",
+          "runner",
+          "snowball"
+        ],
+        "rightColumn": [
+          "санки",
+          "схил",
+          "полоз санок",
+          "сніжка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На вітрині зимових іграшок увімкнули рухомий макет. Ви не бачите маленьких санок, а друг стоїть ближче й спостерігає за ними. Запитайте: «Санки ковзають?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "На вітрині зимових іграшок увімкнули рухомий макет. Ви не бачите маленьких санок, а друг стоїть ближче й спостерігає за ними. Запитайте: «Санки ковзають?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-27:i17:audio",
+          "transcript": "Is the sled sliding?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the sled sliding?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a5d910958efc3c512cdef05dc7c16ad80d671d8df14ab7a29a31a76eff91232a"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "is sliding / is not sliding; вопрос о движении сейчас",
+    "uk": "is sliding / is not sliding; запитання про рух зараз"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Санки уехали из кадра",
+        "uk": "Санки виїхали з кадру"
+      },
+      "bodyByLocale": {
+        "ru": "Вы фотографируете пустые санки на небольшом снежном склоне. Они медленно съезжают, пока друг выбирает ракурс. Sled — «санки», slope — «склон». The sled is sliding down the slope — «Санки скользят вниз по склону». В английском a sled — один предмет, поэтому is, хотя по-русски «санки» стоят во множественном числе. Slide здесь значит «скользить»; в sliding конечная e исчезает. Модель решила не ждать фотографа.",
+        "uk": "Ви фотографуєте порожні санки на невеликому сніговому схилі. Вони повільно з’їжджають, поки друг обирає ракурс. Sled — «санки», slope — «схил». The sled is sliding down the slope — «Санки ковзають униз схилом». В англійській a sled — один предмет, тому is, хоча українською «санки» стоять у множині. Slide тут означає «ковзати»; у sliding кінцева e зникає. Модель вирішила не чекати фотографа."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r1",
+              "text": "The sled is sliding down the slope."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r2",
+              "text": "The sled are sliding down the slope."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r3",
+              "text": "The sled is slide down the slope."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r1",
+              "text": "The sled is sliding down the slope."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r2",
+              "text": "The sled are sliding down the slope."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro1:r3",
+              "text": "The sled is slide down the slope."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Испытание одной детали",
+        "uk": "Випробування однієї деталі"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской делают миниатюрные санки. Мастер кладёт один полоз на наклонную гладкую доску, чтобы показать его движение. Runner здесь — «полоз», деталь под санками, а не бегун. Is the runner sliding? — «Полоз скользит?» Вы уточняете, движется ли деталь сейчас. Вопрос начинается с is; ответ наблюдателя: The runner is sliding.",
+        "uk": "У майстерні роблять мініатюрні санки. Майстер кладе один полоз на похилу гладку дошку, щоб показати його рух. Runner тут — «полоз», деталь під санками, а не бігун. Is the runner sliding? — «Полоз ковзає?» Ви уточнюєте, чи рухається деталь зараз. Запитання починається з is; відповідь спостерігача: The runner is sliding."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r1",
+              "text": "Is the runner sliding?"
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r2",
+              "text": "Are the runner sliding?"
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r3",
+              "text": "Is the runner slide?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r1",
+              "text": "Is the runner sliding?"
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r2",
+              "text": "Are the runner sliding?"
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro2:r3",
+              "text": "Is the runner slide?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Снежок для украшения",
+        "uk": "Сніжка для оздоби"
+      },
+      "bodyByLocale": {
+        "ru": "Вы украшаете снежную крепость маленькими снежками. Друг берёт один и замахивается, хотя он нужен для башни. Snowball — «снежок». Don’t throw the snowball, please — «Не бросай снежок, пожалуйста». Это знакомая вежливая просьба не делать действие: don’t + throw. Здесь мы не описываем скольжение: снежок пока в руке. У этой снежной крепости мирные планы.",
+        "uk": "Ви оздоблюєте снігову фортецю маленькими сніжками. Друг бере одну й замахується, хоча вона потрібна для вежі. Snowball — «сніжка». Don’t throw the snowball, please — «Не кидай сніжку, будь ласка». Це знайоме ввічливе прохання не робити дію: don’t + throw. Тут ми не описуємо ковзання: сніжка поки в руці. У цієї снігової фортеці мирні плани."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r1",
+              "text": "Don't throw the snowball, please."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r2",
+              "text": "Don't throws the snowball, please."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r3",
+              "text": "Not throw the snowball, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r1",
+              "text": "Don't throw the snowball, please."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r2",
+              "text": "Don't throws the snowball, please."
+            },
+            {
+              "responseId": "en:lesson-09:session-27:intro3:r3",
+              "text": "Not throw the snowball, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b1b60bf6ef98bb93dcd6c309f335e5385a02e56229a1b858df1c9e96bb2ccab6"
+}

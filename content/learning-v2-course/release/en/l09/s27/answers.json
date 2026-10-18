@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-27:word:sled",
+    "correctText": "sled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i01",
+    "correctText": "The sled is sliding.",
+    "correctResponseId": "en:lesson-09:session-27:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i02",
+    "correctText": "The sled is sliding now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i04",
+    "correctText": "en:lesson-09:session-27:i04:p1=sled\nen:lesson-09:session-27:i04:p2=slide\nen:lesson-09:session-27:i04:p3=snow\nen:lesson-09:session-27:i04:p4=now",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i05",
+    "correctText": "Is the sled sliding?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:word:slope",
+    "correctText": "slope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i06",
+    "correctText": "The sled is sliding down the slope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:word:runner",
+    "correctText": "runner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i07",
+    "correctText": "The runner is sliding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i08",
+    "correctText": "sliding",
+    "correctResponseId": "en:lesson-09:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i09",
+    "correctText": "The runner is not sliding.",
+    "correctResponseId": "en:lesson-09:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i10",
+    "correctText": "en:lesson-09:session-27:i10:p1=sled\nen:lesson-09:session-27:i10:p2=slope\nen:lesson-09:session-27:i10:p3=runner\nen:lesson-09:session-27:i10:p4=slide",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i11",
+    "correctText": "I often walk here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:word:snowball",
+    "correctText": "snowball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i12",
+    "correctText": "The snowball is small.",
+    "correctResponseId": "en:lesson-09:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i13",
+    "correctText": "Don't throw the snowball, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i14",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-09:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i15",
+    "correctText": "The sled is not sliding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i16",
+    "correctText": "en:lesson-09:session-27:i16:p1=sled\nen:lesson-09:session-27:i16:p2=slope\nen:lesson-09:session-27:i16:p3=runner\nen:lesson-09:session-27:i16:p4=snowball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-27:i17",
+    "correctText": "Is the sled sliding?",
+    "correctResponseId": null
+  }
+]

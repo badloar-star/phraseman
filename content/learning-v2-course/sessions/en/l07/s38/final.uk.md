@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 38 — Часто прасую одяг
+# Англійська · Урок 7 · Заняття 38 — Вільний час
 
-**Ситуація.** Ви розповідаєте про догляд за одягом, місце відпочинку й дзвінки знайомої.
+**Ситуація.** Ви розповідаєте про вільний час: де допомагаєте волонтером, як подруга відповідає на повідомлення й куди ходить брат.
 
-**Що ви опануєте:** використовувати often і usually перед дією, зберігаючи потрібну форму дієслова
-**Нові слова:** iron
+**Що ви опануєте:** використовувати often і usually перед дією та ставити s після he і she
+**Нові слова:** volunteer, reply, attend, text
+**Повертаються:** library, message, lecture, class, club, sister, evening
 
 ---
 
 ## Інтро 1
 
-### Одяг без складок
+### Допомога в бібліотеці
 
-Друг запитує, чи часто ви прасуєте одяг. `iron` тут — «прасувати». `I often iron` — «Я часто прасую одяг». Із розмови зрозуміло, що йдеться про одяг. `Often` стоїть перед дією `iron`. Сорочці теж хочеться почати день без складок.
+Сусідка питає, чим ви займаєтеся у вільний час. Ви безкоштовно допомагаєте в міській бібліотеці. volunteer — «працювати волонтером». Скажіть: I often volunteer at the library — «Я часто працюю волонтером у бібліотеці». Слово often стоїть перед volunteer.
 
-**Відповідайте другові: «Я часто прасую одяг».**
+**Сусідка питає про вільний час. Відповідьте: «Я часто працюю волонтером у бібліотеці».**
 
-- ✅ **I often iron.**
-- ❌ I often irons. — *Після `I` потрібне `iron`, без `s`.*
-- ❌ I often ironing. — *Тут потрібна форма `iron`.*
+- ✅ **I often volunteer at the library.**
+- ❌ I often volunteers at the library. — *Після I потрібно volunteer, без s.*
+- ❌ I often volunteering at the library. — *Для звичної дії тут потрібна форма volunteer, без -ing.*
 
 ---
 
 ## Інтро 2
 
-### Улюблене місце відпочинку
+### Повідомлення без відповіді
 
-Ви показуєте гостеві крісло, у якому зазвичай відпочиваєте. `I usually rest here` — «Я зазвичай відпочиваю тут». `Usually` стоїть перед дією `rest`, а `here` указує на це місце.
+Друг пише вашій подрузі й переживає, що відповіді довго нема. Ви знаєте її краще: вона зазвичай повертається до повідомлень, коли звільняється. reply — «відповідати». Скажіть: She usually replies to messages — «Вона зазвичай відповідає на повідомлення». Після she у reply змінюємо y на ies: replies. Відповідати на повідомлення — reply to messages; перед messages потрібне to.
 
-**Покажіть крісло й скажіть: «Я зазвичай відпочиваю тут».**
+**Друг переживає, що подруга мовчить. Заспокойте його: «Вона зазвичай відповідає на повідомлення».**
 
-- ✅ **I usually rest here.**
-- ❌ I usually rests here. — *Після `I` потрібне `rest`.*
-- ❌ I usually resting here. — *Тут потрібна форма `rest`.*
+- ✅ **She usually replies to messages.**
+- ❌ She usually reply to messages. — *Після she потрібно replies.*
+- ❌ She usually replying to messages. — *Тут потрібна форма replies.*
 
 ---
 
 ## Інтро 3
 
-### Часті дзвінки
+### Вечірні лекції
 
-Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` у дії залишається закінчення `s`.
+Брат записався на вечірні курси й після роботи щотижня поспішає на заняття. Знайомий питає, чим він зайнятий увечері. attend — «відвідувати». Скажіть: He often attends lectures — «Він часто відвідує лекції». Після he до attend додаємо s, а слово often лишається перед attends.
 
-**Скажіть про знайому: «Вона часто телефонує».**
+**Знайомий питає про вечори брата. Відповідьте: «Він часто відвідує лекції».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *Після `she` потрібне `calls`.*
-- ❌ She often calling. — *Тут потрібна форма `calls`.*
+- ✅ **He often attends lectures.**
+- ❌ He often attend lectures. — *Після he потрібно attends, з s.*
+- ❌ He often attending lectures. — *Тут потрібна форма attends.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто прасую одяг»**
+**1 · Картка слова — volunteer**
+<!-- interaction_id: en:lesson-07:session-38:word:volunteer; family: word_card -->
+> **volunteer** — працювати волонтером. I often volunteer at the library. — «Я часто працюю волонтером у бібліотеці». Добровільно виконувати роботу без оплати; тут — допомагати в бібліотеці.
+
+**2 · Сусідка питає, чим ви зайняті у вихідні. Скажіть: «Я часто працюю волонтером у бібліотеці»**
 <!-- interaction_id: en:lesson-07:session-38:i01; family: phrase_builder -->
-Плитки: `iron` `often` `I` → **I often iron.**
+Плитки: `library` `usually` `the` `at` `volunteer` `often` `I` → **I often volunteer at the library.**
+*(плитка `usually` зайва: тут потрібно `often` — `I often volunteer at the library.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — attend**
+<!-- interaction_id: en:lesson-07:session-38:word:attend; family: word_card -->
+> **attend** — відвідувати. He often attends lectures. — «Він часто відвідує лекції». Бути присутнім на занятті, зустрічі чи іншому заході; attend lectures — без to.
+
+**4 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-38:i02; family: listen_choose -->
-🔊 *iron* → **iron** · rest · travel
-- rest — *У записі перше слово — `iron`, а в цьому варіанті — `rest`.*
-- travel — *У записі перше слово — `iron`, а в цьому варіанті — `travel`.*
+🔊 *attend* → **attend** · arrive · answer
+- arrive — *У записі перше слово — `attend`, а в цьому варіанті — `arrive`.*
+- answer — *У записі перше слово — `attend`, а в цьому варіанті — `answer`.*
 
-**3 · Скажіть «Я часто прасую одяг»**
+**5 · Картка слова — reply**
+<!-- interaction_id: en:lesson-07:session-38:word:reply; family: word_card -->
+> **reply** — відповідати. She usually replies to messages. — «Вона зазвичай відповідає на повідомлення». Написати чи сказати щось у відповідь.
+
+**6 · Друг питає про вашу подругу. Скажіть: «Вона зазвичай відповідає на повідомлення». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-38:i03; family: context_gap_grammar -->
-I often ___. → **iron** · irons · ironing
-- irons — *Після `I` потрібне `iron`.*
-- ironing — *Тут потрібна форма `iron`.*
+She usually ___ to messages. → **replies** · reply · replying
+- reply — *Після `She` потрібно `replies`.*
+- replying — *Тут потрібна форма `replies`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-38:i04; family: speed_match -->
-iron — прасувати одяг · rest — відпочивати · ticket — квиток · laptop — ноутбук
+volunteer — бути волонтером · attend — відвідувати · reply — відповідати · message — повідомлення
 
-**5 · Послухайте й складіть фразу**
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-38:i05; family: listen_build_dictation -->
-🔊 *I often iron.* Плитки: `iron` `often` `I` → **I often iron.**
+🔊 *I often volunteer at the library.* Плитки: `library` `volunteers` `the` `at` `volunteer` `often` `I` → **I often volunteer at the library.**
+*(плитка `volunteers` зайва: тут потрібно `volunteer` — `I often volunteer at the library.`)*
 
-**6 · Покажіть крісло: «Я зазвичай відпочиваю тут»**
+**9 · Картка слова — text**
+<!-- interaction_id: en:lesson-07:session-38:word:text; family: word_card -->
+> **text** — писати повідомлення. I usually text my sister. — «Я зазвичай пишу сестрі повідомлення». Надсилати короткі повідомлення з телефона.
+
+**10 · Колега питає, як ви зазвичай зв’язуєтеся із сестрою. Скажіть: «Я зазвичай пишу сестрі повідомлення»**
 <!-- interaction_id: en:lesson-07:session-38:i06; family: phrase_builder -->
-Плитки: `here` `rest` `usually` `I` → **I usually rest here.**
+Плитки: `sister` `often` `my` `text` `usually` `I` → **I usually text my sister.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually text my sister.`)*
 
-**7 · Скажіть про знайому «Вона часто телефонує»**
+**11 · Знайомий питає про вашого брата. Скажіть: «Він часто відвідує лекції»**
 <!-- interaction_id: en:lesson-07:session-38:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **He often attends lectures.**
 
-**8 · Скажіть «Вона часто телефонує»**
+**12 · Гість питає про вашу подругу. Скажіть: «Вона часто пише сестрі повідомлення». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-38:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *Після `she` потрібне `calls`.*
-- calling — *Тут потрібна форма `calls`.*
+She often ___ her sister. → **texts** · text · texting
+- text — *Після `She` потрібно `texts`.*
+- texting — *Тут потрібна форма `texts`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-38:i09; family: listen_choose -->
-🔊 *I often iron.* → **I often iron.** · I often walk. · I often call.
-- I often walk. — *У записі останнє слово — `iron`, а в цьому варіанті — `walk`.*
-- I often call. — *У записі останнє слово — `iron`, а в цьому варіанті — `call`.*
+🔊 *I often volunteer at the library.* → **I often volunteer at the library.** · I often volunteer at the school. · I often volunteer at the club.
+- I often volunteer at the school. — *У записі останнє слово — `library`, а в цьому варіанті — `school`.*
+- I often volunteer at the club. — *У записі останнє слово — `library`, а в цьому варіанті — `club`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-38:i10; family: speed_match -->
-travel — подорожувати · iron — прасувати одяг · ticket — квиток · rest — відпочивати
+text — писати повідомлення · reply — відповідати · attend — відвідувати · volunteer — бути волонтером
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-38:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *She usually replies to messages.* Плитки: `messages` `reply` `to` `replies` `usually` `She` → **She usually replies to messages.**
+*(плитка `reply` зайва: тут потрібно `replies` — `She usually replies to messages.`)*
 
-**12 · Ви обговорюєте роботу в поїздці. Запитайте подругу «У тебе є ноутбук?»**
+**16 · Ви розповідаєте про брата. Скажіть: «Він часто працює волонтером у бібліотеці»**
 <!-- interaction_id: en:lesson-07:session-38:i12; family: phrase_builder -->
-Плитки: `laptop` `a` `have` `you` `Do` → **Do you have a laptop?**
+Плитки: `library` `volunteer` `the` `at` `volunteers` `often` `He` → **He often volunteers at the library.**
+*(плитка `volunteer` зайва: тут потрібно `volunteers` — `He often volunteers at the library.`)*
 
-**13 · Дізнайтеся звичні напрямки поїздок колеги**
+**17 · Гість питає про вашу подругу. Скажіть: «Вона часто пише сестрі повідомлення»**
 <!-- interaction_id: en:lesson-07:session-38:i13; family: scripted_repeat_compare -->
-🎙 **Where do you travel?**
+🎙 **She often texts her sister.**
 
-**14 · Скажіть «Я зазвичай відпочиваю тут»**
+**18 · Ви розповідаєте про заняття. Скажіть: «Я часто відвідую лекції». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-38:i14; family: context_gap_grammar -->
-I ___ rest here. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `rest`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `rest` не ставимо.*
+I ___ attend lectures. → **often** · does · am
+- does — *Для «часто» потрібно `often` перед `attend`.*
+- am — *Для «часто» потрібно `often`; `am` перед `attend` не ставимо.*
 
-**15 · Послухайте й виберіть запитання**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-38:i15; family: listen_choose -->
-🔊 *Do you have a ticket?* → **Do you have a ticket?** · Do you have a laptop? · Do you have a phone?
-- Do you have a laptop? — *У записі останнє слово — `ticket`, а в цьому варіанті — `laptop`.*
-- Do you have a phone? — *У записі останнє слово — `ticket`, а в цьому варіанті — `phone`.*
+🔊 *He often attends lectures.* → **He often attends lectures.** · He often attends classes. · He often attends concerts.
+- He often attends classes. — *У записі останнє слово — `lectures`, а в цьому варіанті — `classes`.*
+- He often attends concerts. — *У записі останнє слово — `lectures`, а в цьому варіанті — `concerts`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-38:i16; family: speed_match -->
-iron — прасувати одяг · laptop — ноутбук · travel — подорожувати · ticket — квиток
+attend — відвідувати · text — писати повідомлення · volunteer — бути волонтером · library — бібліотека
 
-**17 · Друг запитує про домашні справи Тома. Скажіть «Том часто прасує одяг»**
+**21 · Сусід питає, коли відповідає на повідомлення ваша сестра. Скажіть: «Вона зазвичай відповідає ввечері». Використайте reply**
 <!-- interaction_id: en:lesson-07:session-38:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often irons.**
-
+🎙 **She usually replies in the evening.**

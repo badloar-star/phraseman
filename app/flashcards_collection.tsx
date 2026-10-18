@@ -1515,7 +1515,9 @@ export default function FlashcardsScreen() {
       title={savedScreenTitle}
       cardCount={savedCardsForPackLanguage.length}
       // зачем: кадр 7 «Пусто» — только заголовок; поиск нужен, пока он активен (результат «ничего не найдено»)
-      titleOnly={isEmpty && !loadError && searchQuery.trim().length === 0 && searchInput.length === 0}
+      // зачем (Макеты cards-039, эталон «Сейчас недоступно»): при ошибке загрузки счётчика «0» рядом с заголовком тоже нет —
+      // раньше `!loadError` оставлял его; непустой список (isEmpty=false) по-прежнему показывает число.
+      titleOnly={isEmpty && searchQuery.trim().length === 0 && searchInput.length === 0}
       // зачем: поле поиска в заголовке остаётся только для пустого результата (иначе негде поправить запрос); при сетке оно в полосе масштаба
       showSearch={isEmpty && !loadError && (searchQuery.trim().length > 0 || searchInput.length > 0)}
       searchInput={searchInput}

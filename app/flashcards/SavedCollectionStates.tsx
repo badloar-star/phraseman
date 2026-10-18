@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { useTheme } from '../../components/ThemeContext';
@@ -112,8 +113,32 @@ function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; on
     ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Revisa tu conexión',
     'pt-BR': 'Verifique a internet', vi: 'Kiểm tra kết nối mạng', id: 'Periksa koneksi internet', tr: 'İnternetini kontrol et', pl: 'Sprawdź internet',
   });
-  return <KitEmpty g={g} testID="fc-saved-unavailable" icon="cloud-offline-outline" title={title} detail={hint} action={action} actionIcon="refresh" onAction={onRetry} actionTestID="fc-saved-try-again" />;
+  // зачем (Макеты cards-039, эталон t16): кнопка здесь светлая нейтральная с тёмной надписью, а не акцентная (мятная) KitCta;
+  // значок — ↺ (против часовой). Только это состояние — общую KitCta не трогаем. Цвета — пара «текст темы / фон темы»:
+  // в тёмных темах белая кнопка с тёмной надписью (как эталон), в светлых — тёмная со светлой, ни в одной не сливается с фоном.
+  const retryButton = (
+    <Pressable
+      testID="fc-saved-try-again"
+      accessibilityRole="button"
+      accessibilityLabel={action}
+      onPress={onRetry}
+      style={({ pressed }) => [retryStyles.retry, { backgroundColor: g.text }, pressed && retryStyles.retryPressed]}
+    >
+      <Ionicons name="refresh" size={20} color={g.bg} style={retryStyles.retryIconCcw} />
+      <Text style={[retryStyles.retryText, { color: g.bg }]}>{action}</Text>
+    </Pressable>
+  );
+  return <KitEmpty g={g} testID="fc-saved-unavailable" icon="cloud-offline-outline" title={title} detail={hint} action={action} onAction={onRetry} actionNode={retryButton} />;
 }
+
+const retryStyles = StyleSheet.create({
+  // тот же размер и форма, что у KitCta (48, r24, поля 28, зазор 12, 16/700) — отличается только цвет
+  retry: { minHeight: 48, paddingVertical: 6, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
+  retryPressed: { opacity: 0.85, transform: [{ scale: 0.97 }] },
+  retryText: { fontSize: 16, fontWeight: '700' },
+  // Ionicons «refresh» нарисован по часовой (↻) — зеркалим, чтобы вышел ↺ эталона
+  retryIconCcw: { transform: [{ scaleX: -1 }] },
+});
 
 // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section кадр 7 «Пусто»): блок стоит
 // по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,

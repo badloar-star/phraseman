@@ -226,7 +226,7 @@ const EMPTY_CENTER_SHIFT = 0.46;
  * Блок «Пусто»: плитка 61, заголовок 24/30, подпись, кнопка — по ЦЕНТРУ ЭКРАНА (top:50%, translateY(-46%) макета),
  * а не под заголовком. Верх родителя меряем в окне, чтобы центрировать именно по экрану.
  */
-export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID, hideAction, inline }: Readonly<{
+export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID, hideAction, inline, actionNode }: Readonly<{
   g: GlassTokens;
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
@@ -243,6 +243,11 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
    * приложение центрировало его по окну (плитка на y≈630 против 395). inline — блок встаёт в обычный поток родителя (без absolute и замеров окна).
    */
   inline?: boolean;
+  /**
+   * Своя кнопка вместо общей KitCta — только для состояния, у которого в эталоне другая кнопка
+   * (координатор 18.10, cards-039: «Сейчас недоступно» — светлая нейтральная). Без пропа всё как раньше.
+   */
+  actionNode?: React.ReactNode;
 }>) {
   const { height } = useWindowDimensions();
   const lh = useLineScale();
@@ -300,7 +305,7 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
         <Text style={[styles.emptyDetail, { color: g.secondary, lineHeight: lh(22) }]}>{detail}</Text>
         {hideAction ? null : (
           <View style={styles.emptyCtaWrap}>
-            <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
+            {actionNode ?? <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />}
           </View>
         )}
       </View>
@@ -316,7 +321,7 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
         <Text style={[styles.emptyDetail, { color: g.secondary, lineHeight: lh(22) }]}>{detail}</Text>
         {hideAction ? null : (
           <View style={styles.emptyCtaWrap}>
-            <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
+            {actionNode ?? <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />}
           </View>
         )}
       </View>

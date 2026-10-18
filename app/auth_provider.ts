@@ -269,6 +269,36 @@ async function requestAnonOwnershipStampForPrefetch(localStableId: string): Prom
   return invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
 }
 
+const APPLE_VERIFIED_EMAIL_LINK_TIMEOUT_MS = 15_000;
+
+/**
+ * Решение владельца 18.10 «Входить само»: Apple ID с почтой, уже занятой аккаунтом с Google (без Apple), — Firebase отвечает
+ * auth/email-already-in-use и в аккаунт не пускает. Серверная функция Ядра проверяет Apple ID token (подпись, aud, срок,
+ * email_verified, nonce), привязывает apple.com к аккаунту с этой почтой и выдаёт custom token. null — функции нет/отказ:
+ * вызывающий идёт прежним путём, причина в журнале [AUTH-APPLE].
+ */
+async function requestAppleLinkByVerifiedEmail(idToken: string, rawNonce: string | null): Promise<string | null> {
+  const startedAt = Date.now();
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authAppleLinkByVerifiedEmail');
+    const payload = { idToken, rawNonce };
+    const { invokeAuthCallable } = await import('./auth_callable_fetch');
+    const response = await invokeAuthCallable<typeof payload, { customToken?: unknown }>(
+      'authAppleLinkByVerifiedEmail', payload, () => fn(payload), { timeoutMs: APPLE_VERIFIED_EMAIL_LINK_TIMEOUT_MS },
+    );
+    const customToken = typeof response?.data?.customToken === 'string' ? response.data.customToken : '';
+    console.log(`[AUTH-APPLE] verified_email_link outcome=${customToken ? 'token' : 'no_token'} ms=${Date.now() - startedAt}`); // guard-ok: исход без токена
+    return customToken || null;
+  } catch (error) {
+    console.warn(`[AUTH-APPLE] verified_email_link failed code=${identityErrorCode(error)} ms=${Date.now() - startedAt}`); // guard-ok: catch пишет причину
+    return null;
+  }
+}
+
 async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
   try {
@@ -3082,7 +3112,22 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:stamp_anon_ownership', ms: Date.now() - stampStartedAtMs }));
           const signInStartedAtMs = Date.now();
           // зачем (блокер 18.10): после неудачной привязки — обновлённый credential из ошибки (Apple: исходный nonce уже израсходован)
-          userCredential = await auth.signInWithCredential(conflictUpdatedCredential ?? credential);
+          // зачем (решение владельца 18.10 «Входить само», iPhone 13:05): Apple + email-already-in-use без обновлённого credential —
+          // почта занята аккаунтом с Google; тот же токен даёт auth/unknown. Сервер привязывает Apple к аккаунту с этой почтой
+          // и выдаёт custom token. Функции нет/отказ — прежний путь (причина в [AUTH-APPLE]).
+          const appleEmailInUse = provider === 'apple'
+            && (linkCode === 'auth/email-already-in-use' || linkCode === 'auth/account-exists-with-different-credential')
+            && !conflictUpdatedCredential;
+          let appleCustomToken: string | null = null;
+          if (appleEmailInUse) {
+            console.warn('[AUTH-APPLE] email_in_use branch=verified_email_link next=server_function'); // guard-ok: ветка решения
+            appleCustomToken = await requestAppleLinkByVerifiedEmail(cred.idToken, cred.appleNonce ?? null);
+            if (!appleCustomToken) console.warn('[AUTH-APPLE] email_in_use branch=legacy_credential reason=no_custom_token'); // guard-ok: ранний путь пишет причину
+          }
+          userCredential = appleCustomToken
+            ? await auth.signInWithCustomToken(appleCustomToken)
+            : await auth.signInWithCredential(conflictUpdatedCredential ?? credential);
+          if (appleCustomToken) console.log('[AUTH-APPLE] email_in_use signed_in via=custom_token'); // guard-ok: итог ветки
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:signInWithCredential', ms: Date.now() - signInStartedAtMs, updatedCredential: conflictUpdatedCredential !== null }));
           const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff signed_in', {

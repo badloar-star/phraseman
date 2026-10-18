@@ -34,7 +34,9 @@ export const AUTH_REGION_EU_FLAG = 'auth_region_eu_v1';
 const DEV_ENV_ON = process.env.EXPO_PUBLIC_AUTH_CALLABLES_FETCH === '1';
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
 
-export type AuthCallableName = 'authEnsureStableLink' | 'authStampAnonOwnership' | 'authMergeStableAccounts';
+// зачем (решение владельца 18.10 «Входить само», Apple на iPhone): authAppleLinkByVerifiedEmail — привязка Apple к аккаунту с той же
+// подтверждённой почтой и custom token; не идемпотентна → запасной путь на США только при not-found (правило authRegionFallbackReason).
+export type AuthCallableName = 'authEnsureStableLink' | 'authStampAnonOwnership' | 'authMergeStableAccounts' | 'authAppleLinkByVerifiedEmail';
 
 /** Ошибка в форме SDK: code `functions/<status>`, message и details сервера — классификаторы читают её как раньше. */
 export class AuthCallableFetchError extends Error {

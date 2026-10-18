@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-08",
   "learningOutcomeByLocale": {
-    "ru": "повторить can для умений и слова главы",
-    "uk": "повторити can для вмінь і слова розділу"
+    "ru": "закрепить can для умений и повторить вопрос «чей?»",
+    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мячи в воздухе",
-        "uk": "М’ячі в повітрі"
+        "ru": "Какой мастер-класс выбрать",
+        "uk": "Який майстер-клас обрати"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает несколько мячей и спрашивает, умеете ли вы жонглировать. `I can juggle` — «Я умею жонглировать». После `can` нужно `juggle`, без `to` и окончания `s`. Подбросить все мячи сразу ещё не значит уметь жонглировать — их ведь надо поймать.",
-        "uk": "Друг показує кілька м’ячів і запитує, чи вмієте ви жонглювати. `I can juggle` — «Я вмію жонглювати». Після `can` потрібне `juggle`, без `to` й закінчення `s`. Підкинути всі м’ячі одразу ще не означає вміти жонглювати — їх же треба впіймати."
+        "ru": "В клубе рукоделия есть группа для новичков и группа для тех, кто уже вяжет. Администратор уточняет ваше умение. `Knit` — «вязать спицами». `I can knit` — «Я умею вязать спицами». После `can` нужно `knit`, без `to` и окончания `s`. Вы отвечаете об умении, чтобы выбрать подходящую группу.",
+        "uk": "У клубі рукоділля є група для початківців і група для тих, хто вже в’яже. Адміністратор уточнює ваше вміння. `Knit` — «в’язати спицями». `I can knit` — «Я вмію в’язати спицями». Після `can` потрібне `knit`, без `to` й закінчення `s`. Ви відповідаєте про вміння, щоб обрати відповідну групу."
       },
       "question": {
         "interactionId": "en:lesson-08:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу о своём умении.",
-          "uk": "Скажіть другові про своє вміння."
+          "ru": "Скажите администратору, что умеете вязать спицами.",
+          "uk": "Скажіть адміністратору, що вмієте в’язати спицями."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-08:intro1:r1",
-              "text": "I can juggle."
+              "text": "I can knit."
             },
             {
               "responseId": "en:lesson-08:session-08:intro1:r2",
-              "text": "I can to juggle."
+              "text": "I can to knit."
             },
             {
               "responseId": "en:lesson-08:session-08:intro1:r3",
-              "text": "I can juggles."
+              "text": "I can knits."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-08:intro1:r1",
-              "text": "I can juggle."
+              "text": "I can knit."
             },
             {
               "responseId": "en:lesson-08:session-08:intro1:r2",
-              "text": "I can to juggle."
+              "text": "I can to knit."
             },
             {
               "responseId": "en:lesson-08:session-08:intro1:r3",
-              "text": "I can juggles."
+              "text": "I can knits."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу о своём умении.",
-          "uk": "Скажіть другові про своє вміння."
+          "ru": "Скажите администратору, что умеете вязать спицами.",
+          "uk": "Скажіть адміністратору, що вмієте в’язати спицями."
         }
       }
     },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто переведёт текст",
-        "uk": "Хто перекладе текст"
+        "ru": "Эмблема для команды",
+        "uk": "Емблема для команди"
       },
       "bodyByLocale": {
-        "ru": "Коллега ищет человека, который умеет переводить тексты. Вы знаете такую девушку. `She can translate` — «Она умеет переводить». `Can` не меняется после `she`; после него нужно `translate`, без окончания `s`.",
-        "uk": "Колега шукає людину, яка вміє перекладати тексти. Ви знаєте таку дівчину. `She can translate` — «Вона вміє перекладати». `Can` не змінюється після `she`; після нього потрібне `translate`, без закінчення `s`."
+        "ru": "Команда хочет вышить эмблему на форме. Организатор ищет человека, который умеет работать иглой и цветными нитками. Embroider — «вышивать». Вы предлагаете знакомую с таким умением. `She can embroider` — «Она умеет вышивать». `Can` не меняется после `she`; после него нужно `embroider`, без окончания `s`.",
+        "uk": "Команда хоче вишити емблему на формі. Організатор шукає людину, яка вміє працювати голкою й кольоровими нитками. Embroider — «вишивати». Ви пропонуєте знайому з таким умінням. `She can embroider` — «Вона вміє вишивати». `Can` не змінюється після `she`; після нього потрібне `embroider`, без закінчення `s`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-08:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-08:intro2:r1",
-              "text": "She can translate."
+              "text": "She can embroider."
             },
             {
               "responseId": "en:lesson-08:session-08:intro2:r2",
-              "text": "She cans translate."
+              "text": "She cans embroider."
             },
             {
               "responseId": "en:lesson-08:session-08:intro2:r3",
-              "text": "She can translates."
+              "text": "She can embroiders."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-08:intro2:r1",
-              "text": "She can translate."
+              "text": "She can embroider."
             },
             {
               "responseId": "en:lesson-08:session-08:intro2:r2",
-              "text": "She cans translate."
+              "text": "She cans embroider."
             },
             {
               "responseId": "en:lesson-08:session-08:intro2:r3",
-              "text": "She can translates."
+              "text": "She can embroiders."
             }
           ]
         },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Забытая папка",
-        "uk": "Забута папка"
+        "ru": "На полу у швейного стола",
+        "uk": "На підлозі біля швейного столу"
       },
       "bodyByLocale": {
-        "ru": "После встречи на столе осталась папка. Вы ищете её владельца. `Whose folder is this?` — «Чья это папка?» Сначала `whose folder`, затем `is this`.",
-        "uk": "Після зустрічі на столі залишилася папка. Ви шукаєте її власника. `Whose folder is this?` — «Чия це папка?» Спочатку `whose folder`, потім `is this`."
+        "ru": "В мастерской вы заметили на полу металлический колпачок для пальца. Thimble — «напёрсток»: он защищает палец, когда проталкивают иглу через ткань. Вы поднимаете его и спрашиваете участниц, кому он принадлежит. `Whose thimble is this?` — «Чей это напёрсток?» Сначала `whose thimble` — «чей напёрсток», затем `is this`.",
+        "uk": "У майстерні ви помітили на підлозі металевий ковпачок для пальця. Thimble — «наперсток»: він захищає палець, коли проштовхують голку крізь тканину. Ви піднімаєте його й запитуєте учасниць, кому він належить. `Whose thimble is this?` — «Чий це наперсток?» Спочатку `whose thimble` — «чий наперсток», потім `is this`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чья это папка.",
-          "uk": "Запитайте колег, чия це папка."
+          "ru": "Спросите участниц, чей это напёрсток.",
+          "uk": "Запитайте учасниць, чий це наперсток."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-08:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose thimble is this?"
             },
             {
               "responseId": "en:lesson-08:session-08:intro3:r2",
-              "text": "Who folder is this?"
+              "text": "Who thimble is this?"
             },
             {
               "responseId": "en:lesson-08:session-08:intro3:r3",
-              "text": "Whose folder are this?"
+              "text": "Whose thimble are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-08:intro3:r1",
-              "text": "Whose folder is this?"
+              "text": "Whose thimble is this?"
             },
             {
               "responseId": "en:lesson-08:session-08:intro3:r2",
-              "text": "Who folder is this?"
+              "text": "Who thimble is this?"
             },
             {
               "responseId": "en:lesson-08:session-08:intro3:r3",
-              "text": "Whose folder are this?"
+              "text": "Whose thimble are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чья это папка.",
-          "uk": "Запитайте колег, чия це папка."
+          "ru": "Спросите участниц, чей это напёрсток.",
+          "uk": "Запитайте учасниць, чий це наперсток."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56c57693bc05243c2a0d1ad43403f55fa820e38bd4c70db683e8b719a8548f02"
+  "introFingerprint": "0e3a1265fb8d5be431482b6e6d6c3b13462b8af8397adc792af71ca648ddb26b"
 }

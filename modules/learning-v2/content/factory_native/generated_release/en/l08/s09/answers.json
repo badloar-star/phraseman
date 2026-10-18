@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-09:word:skate",
+    "correctText": "skate",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-09:i01",
     "correctText": "I can’t skate.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-09:i04",
-    "correctText": "en:lesson-08:session-09:i04:p1=skate\nen:lesson-08:session-09:i04:p2=dentist\nen:lesson-08:session-09:i04:p3=manager\nen:lesson-08:session-09:i04:p4=whistle",
+    "correctText": "en:lesson-08:session-09:i04:p1=skate\nen:lesson-08:session-09:i04:p2=swim\nen:lesson-08:session-09:i04:p3=ball\nen:lesson-08:session-09:i04:p4=coat",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-09:word:ski",
+    "correctText": "ski",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-09:i06",
-    "correctText": "She can’t whistle.",
+    "correctText": "She can’t ski.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:word:dive",
+    "correctText": "dive",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-09:i07",
-    "correctText": "He can’t swim.",
+    "correctText": "He can’t dive.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-09:i08",
-    "correctText": "whistle",
+    "correctText": "ski",
     "correctResponseId": "en:lesson-08:session-09:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-09:i10",
-    "correctText": "en:lesson-08:session-09:i10:p1=start\nen:lesson-08:session-09:i10:p2=skate\nen:lesson-08:session-09:i10:p3=dentist\nen:lesson-08:session-09:i10:p4=manager",
+    "correctText": "en:lesson-08:session-09:i10:p1=skate\nen:lesson-08:session-09:i10:p2=ski\nen:lesson-08:session-09:i10:p3=dive\nen:lesson-08:session-09:i10:p4=swim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-09:i11",
-    "correctText": "He can’t swim.",
+    "correctText": "He can’t dive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-09:word:surf",
+    "correctText": "surf",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-09:i12",
-    "correctText": "My manager is here.",
+    "correctText": "I can’t surf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-09:i13",
-    "correctText": "I usually start early.",
+    "correctText": "She can’t surf.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-09:i15",
-    "correctText": "Where is the dentist?",
+    "correctText": "She can’t surf.",
     "correctResponseId": "en:lesson-08:session-09:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-09:i16",
-    "correctText": "en:lesson-08:session-09:i16:p1=skate\nen:lesson-08:session-09:i16:p2=whistle\nen:lesson-08:session-09:i16:p3=start\nen:lesson-08:session-09:i16:p4=dentist",
+    "correctText": "en:lesson-08:session-09:i16:p1=skate\nen:lesson-08:session-09:i16:p2=ski\nen:lesson-08:session-09:i16:p3=dive\nen:lesson-08:session-09:i16:p4=surf",
     "correctResponseId": null
   },
   {

@@ -23,8 +23,8 @@
           "uk": "Після `she` потрібне `can`, без `s`."
         },
         "en:lesson-08:session-06:intro2:r3": {
-          "ru": "После `can` нужно `translate`, без `s`.",
-          "uk": "Після `can` потрібне `translate`, без `s`."
+          "ru": "После `can` нужно `juggle`, без `s`.",
+          "uk": "Після `can` потрібне `juggle`, без `s`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-06:intro3:r2": {
-          "ru": "Для «чья» нужно `whose`, а не `who`.",
-          "uk": "Для «чия» потрібне `whose`, а не `who`."
+          "ru": "Для «чей» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
         },
         "en:lesson-08:session-06:intro3:r3": {
-          "ru": "Закладка одна: нужно `is this`.",
-          "uk": "Закладка одна: потрібне `is this`."
+          "ru": "Мешочек один: нужно `is this`.",
+          "uk": "Мішечок один: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6e116e70a5e939fcc27ba6158f32b0ffeec75076843e16c7cdc084af637ae8e8"
+  "auxiliaryFingerprint": "f3f7eced62e3f1b211ca60631a7b81bf5ad2fa5d1bd462494246fb2f9bea4c1e"
 }

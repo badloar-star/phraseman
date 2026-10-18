@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-08:i01",
+      "interactionId": "en:lesson-08:session-08:word:knit",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — knit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-08:word:knit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — knit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-08:word:knit:audio",
+          "transcript": "knit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-08:word:knit:r1",
+            "targetText": "knit",
+            "meaningByLocale": {
+              "ru": "вязать спицами. I can knit. — «Я умею вязать спицами». Создавать петли из нити с помощью спиц.",
+              "uk": "в’язати спицями. I can knit. — «Я вмію в’язати спицями». Створювати петлі з нитки за допомогою спиць."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knit",
+          "definitionByLocale": {
+            "ru": "вязать спицами. I can knit. — «Я умею вязать спицами». Создавать петли из нити с помощью спиц.",
+            "uk": "в’язати спицями. I can knit. — «Я вмію в’язати спицями». Створювати петлі з нитки за допомогою спиць."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-08:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я вмію жонглювати»",
+      "prompt": "Скажіть «Я вмію в’язати спицями»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію жонглювати»",
+      "accessibilityLabel": "Скажіть «Я вмію в’язати спицями»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can juggle.",
+        "targetPhrase": "I can knit.",
         "localizedMeaning": {
-          "ru": "Скажите «Я умею жонглировать»",
-          "uk": "Скажіть «Я вмію жонглювати»"
+          "ru": "Скажите «Я умею вязать спицами»",
+          "uk": "Скажіть «Я вмію в’язати спицями»"
         },
         "orderedTokens": [
           "I",
           "can",
-          "juggle"
+          "knit"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +88,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i02:r1",
-          "text": "whisper"
+          "text": "knit"
         },
         {
           "responseId": "en:lesson-08:session-08:i02:r2",
-          "text": "whistle"
+          "text": "speak"
         },
         {
           "responseId": "en:lesson-08:session-08:i02:r3",
-          "text": "climb"
+          "text": "tune"
         }
       ],
       "mediaIds": [],
@@ -65,23 +108,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i02:audio",
-          "transcript": "whisper"
+          "transcript": "knit"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-08:i02:r1",
-            "targetText": "whisper",
+            "targetText": "knit",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i02:r2",
-            "targetText": "whistle",
+            "targetText": "speak",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i02:r3",
-            "targetText": "climb",
+            "targetText": "tune",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `whisper`, а в этом варианте — `whistle`.",
-              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `whistle`."
+              "ru": "В записи слово — `knit`, а в этом варианте — `speak`.",
+              "uk": "У записі слово — `knit`, а в цьому варіанті — `speak`."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `whisper`, а в этом варианте — `climb`.",
-              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `climb`."
+              "ru": "В записи knit — «вязать спицами», а в этом варианте tune — «настраивать».",
+              "uk": "У записі knit — «в’язати спицями», а в цьому варіанті tune — «налаштовувати»."
             }
           }
         ],
@@ -113,67 +156,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє перекладати»",
+      "prompt": "Виберіть слово: «Я вмію в’язати спицями»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i03:r1",
-          "text": "translate"
+          "text": "knit"
         },
         {
           "responseId": "en:lesson-08:session-08:i03:r2",
-          "text": "translates"
+          "text": "to knit"
         },
         {
           "responseId": "en:lesson-08:session-08:i03:r3",
-          "text": "to translate"
+          "text": "knits"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє перекладати»",
+      "accessibilityLabel": "Виберіть слово: «Я вмію в’язати спицями»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет переводить»",
-          "uk": "Скажіть «Вона вміє перекладати»"
+          "ru": "Выберите слово: «Я умею вязать спицами»",
+          "uk": "Виберіть слово: «Я вмію в’язати спицями»"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-08:i03:r1",
-            "text": "translate"
+            "text": "knit"
           },
           {
             "responseId": "en:lesson-08:session-08:i03:r2",
-            "text": "translates"
+            "text": "to knit"
           },
           {
             "responseId": "en:lesson-08:session-08:i03:r3",
-            "text": "to translate"
+            "text": "knits"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє перекладати»",
+        "testedDimension": "Виберіть слово: «Я вмію в’язати спицями»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-08:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє перекладати»",
+            "testedDimension": "Виберіть слово: «Я вмію в’язати спицями»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `translate`, без `s`.",
-              "uk": "Після `can` потрібне `translate`, без `s`."
+              "ru": "После `can` нужно `knit`, без `to`.",
+              "uk": "Після `can` потрібне `knit`, без `to`."
             }
           },
           {
             "responseId": "en:lesson-08:session-08:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє перекладати»",
+            "testedDimension": "Виберіть слово: «Я вмію в’язати спицями»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `translate`, без `to`.",
-              "uk": "Після `can` потрібне `translate`, без `to`."
+              "ru": "После `can` нужно `knit`, без `s`.",
+              "uk": "Після `can` потрібне `knit`, без `s`."
             }
           }
         ]
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +239,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-08:i04:p1",
-            "target": "whistle",
+            "target": "knit",
             "meaningByLocale": {
-              "ru": "свистеть",
-              "uk": "свистіти"
+              "ru": "вязать спицами",
+              "uk": "в’язати спицями"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i04:p2",
-            "target": "juggle",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "жонглировать",
-              "uk": "жонглювати"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i04:p3",
-            "target": "type",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i04:p4",
-            "target": "balance",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "держать равновесие",
-              "uk": "тримати рівновагу"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "whistle",
-          "juggle",
-          "type",
-          "balance"
+          "knit",
+          "ball",
+          "coat",
+          "door"
         ],
         "rightColumn": [
-          "свистіти",
-          "жонглювати",
-          "друкувати на клавіатурі",
-          "тримати рівновагу"
+          "в’язати спицями",
+          "м’яч",
+          "пальто",
+          "двері"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,46 +313,89 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i05:audio",
-          "transcript": "She can translate."
+          "transcript": "I can knit."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can translate.",
+        "hiddenTargetPhrase": "I can knit.",
         "orderedTokens": [
-          "She",
+          "I",
           "can",
-          "translate"
+          "knit"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-08:word:embroider",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — embroider",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-08:word:embroider:audio"
+      ],
+      "accessibilityLabel": "Картка слова — embroider",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-08:word:embroider:audio",
+          "transcript": "embroider"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-08:word:embroider:r1",
+            "targetText": "embroider",
+            "meaningByLocale": {
+              "ru": "вышивать. She can embroider. — «Она умеет вышивать». Украшать ткань узором из ниток с помощью иглы.",
+              "uk": "вишивати. She can embroider. — «Вона вміє вишивати». Прикрашати тканину візерунком із ниток за допомогою голки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "embroider",
+          "definitionByLocale": {
+            "ru": "вышивать. She can embroider. — «Она умеет вышивать». Украшать ткань узором из ниток с помощью иглы.",
+            "uk": "вишивати. She can embroider. — «Вона вміє вишивати». Прикрашати тканину візерунком із ниток за допомогою голки."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-08:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує про вашу роботу з клавіатурою. Скажіть «Я вмію друкувати на клавіатурі»",
+      "prompt": "Скажіть про знайому «Вона вміє вишивати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує про вашу роботу з клавіатурою. Скажіть «Я вмію друкувати на клавіатурі»",
+      "accessibilityLabel": "Скажіть про знайому «Вона вміє вишивати»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can type.",
+        "targetPhrase": "She can embroider.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает о вашей работе с клавиатурой. Скажите «Я умею печатать на клавиатуре»",
-          "uk": "Колега запитує про вашу роботу з клавіатурою. Скажіть «Я вмію друкувати на клавіатурі»"
+          "ru": "Скажите о знакомой «Она умеет вышивать»",
+          "uk": "Скажіть про знайому «Вона вміє вишивати»"
         },
         "orderedTokens": [
-          "I",
+          "She",
           "can",
-          "type"
+          "embroider"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-08:word:thimble",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thimble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-08:word:thimble:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thimble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-08:word:thimble:audio",
+          "transcript": "thimble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-08:word:thimble:r1",
+            "targetText": "thimble",
+            "meaningByLocale": {
+              "ru": "напёрсток. Whose thimble is this? — «Чей это напёрсток?». Колпачок для защиты пальца при шитье.",
+              "uk": "наперсток. Whose thimble is this? — «Чий це наперсток?». Ковпачок для захисту пальця під час шиття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thimble",
+          "definitionByLocale": {
+            "ru": "напёрсток. Whose thimble is this? — «Чей это напёрсток?». Колпачок для защиты пальца при шитье.",
+            "uk": "наперсток. Whose thimble is this? — «Чий це наперсток?». Ковпачок для захисту пальця під час шиття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-08:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте колег «Чия це папка?»",
+      "prompt": "Запитайте учасниць «Чий це наперсток?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-08:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте колег «Чия це папка?»",
+      "accessibilityLabel": "Запитайте учасниць «Чий це наперсток?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i07:audio",
-          "transcript": "Whose folder is this?"
+          "transcript": "Whose thimble is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose folder is this?",
+        "targetPhrase": "Whose thimble is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє тримати рівновагу»",
+      "prompt": "Виберіть слово: «Вона вміє вишивати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i08:r1",
-          "text": "can"
+          "text": "embroider"
         },
         {
           "responseId": "en:lesson-08:session-08:i08:r2",
-          "text": "cans"
+          "text": "embroiders"
         },
         {
           "responseId": "en:lesson-08:session-08:i08:r3",
-          "text": "is can"
+          "text": "to embroider"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє тримати рівновагу»",
+      "accessibilityLabel": "Виберіть слово: «Вона вміє вишивати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет держать равновесие»",
-          "uk": "Скажіть «Вона вміє тримати рівновагу»"
+          "ru": "Выберите слово: «Она умеет вышивать»",
+          "uk": "Виберіть слово: «Вона вміє вишивати»"
         },
-        "gappedTargetPhrase": "She ___ balance.",
+        "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-08:i08:r1",
-            "text": "can"
+            "text": "embroider"
           },
           {
             "responseId": "en:lesson-08:session-08:i08:r2",
-            "text": "cans"
+            "text": "embroiders"
           },
           {
             "responseId": "en:lesson-08:session-08:i08:r3",
-            "text": "is can"
+            "text": "to embroider"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+        "testedDimension": "Виберіть слово: «Вона вміє вишивати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+            "testedDimension": "Виберіть слово: «Вона вміє вишивати»",
             "feedbackByLocale": {
-              "ru": "`Can` не меняется после `she`, окончание `s` не нужно.",
-              "uk": "`Can` не змінюється після `she`, закінчення `s` не потрібне."
+              "ru": "После `can` нужно `embroider`, без `s`.",
+              "uk": "Після `can` потрібне `embroider`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+            "testedDimension": "Виберіть слово: «Вона вміє вишивати»",
             "feedbackByLocale": {
-              "ru": "Достаточно `she can`; `is` не нужно.",
-              "uk": "Достатньо `she can`; `is` не потрібне."
+              "ru": "После `can` нужно `embroider`, без `to`.",
+              "uk": "Після `can` потрібне `embroider`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,15 +561,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i09:r1",
-          "text": "I can climb."
+          "text": "I can knit."
         },
         {
           "responseId": "en:lesson-08:session-08:i09:r2",
-          "text": "I can whistle."
+          "text": "I can speak."
         },
         {
           "responseId": "en:lesson-08:session-08:i09:r3",
-          "text": "I can whisper."
+          "text": "I can embroider."
         }
       ],
       "mediaIds": [],
@@ -452,23 +581,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i09:audio",
-          "transcript": "I can climb."
+          "transcript": "I can knit."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-08:i09:r1",
-            "targetText": "I can climb.",
+            "targetText": "I can knit.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i09:r2",
-            "targetText": "I can whistle.",
+            "targetText": "I can speak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i09:r3",
-            "targetText": "I can whisper.",
+            "targetText": "I can embroider.",
             "meaningByLocale": null
           }
         ],
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `climb`, а в этом варианте — `whistle`.",
-              "uk": "У записі останнє слово — `climb`, а в цьому варіанті — `whistle`."
+              "ru": "В записи последнее слово — `knit`, а в этом варианте — `speak`.",
+              "uk": "У записі останнє слово — `knit`, а в цьому варіанті — `speak`."
             }
           },
           {
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `climb`, а в этом варианте — `whisper`.",
-              "uk": "У записі останнє слово — `climb`, а в цьому варіанті — `whisper`."
+              "ru": "В записи последнее слово — `knit`, а в этом варианте — `embroider`.",
+              "uk": "У записі останнє слово — `knit`, а в цьому варіанті — `embroider`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +643,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-08:i10:p1",
-            "target": "translate",
+            "target": "embroider",
             "meaningByLocale": {
-              "ru": "переводить на другой язык",
-              "uk": "перекладати іншою мовою"
+              "ru": "вышивать",
+              "uk": "вишивати"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i10:p2",
-            "target": "whisper",
+            "target": "knit",
             "meaningByLocale": {
-              "ru": "шептать",
-              "uk": "шепотіти"
+              "ru": "вязать спицами",
+              "uk": "в’язати спицями"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i10:p3",
-            "target": "climb",
+            "target": "thimble",
             "meaningByLocale": {
-              "ru": "лазать",
-              "uk": "лазити"
+              "ru": "напёрсток",
+              "uk": "наперсток"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i10:p4",
-            "target": "neighbourhood",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "район",
-              "uk": "район"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           }
         ],
         "leftColumn": [
-          "translate",
-          "whisper",
-          "climb",
-          "neighbourhood"
+          "embroider",
+          "knit",
+          "thimble",
+          "ball"
         ],
         "rightColumn": [
-          "перекладати іншою мовою",
-          "шепотіти",
-          "лазити",
-          "район"
+          "вишивати",
+          "в’язати спицями",
+          "наперсток",
+          "м’яч"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i11:audio",
-          "transcript": "Whose folder is this?"
+          "transcript": "Whose thimble is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose folder is this?",
+        "hiddenTargetPhrase": "Whose thimble is this?",
         "orderedTokens": [
           "Whose",
-          "folder",
+          "thimble",
           "is",
           "this"
         ],
@@ -608,29 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-08:word:yarn",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — yarn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-08:word:yarn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — yarn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-08:word:yarn:audio",
+          "transcript": "yarn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-08:word:yarn:r1",
+            "targetText": "yarn",
+            "meaningByLocale": {
+              "ru": "пряжа. Whose yarn is this? — «Чья это пряжа?» Толстая нить для вязания. Yarn здесь обозначает материал, поэтому нужно is, без a перед yarn.",
+              "uk": "пряжа. Whose yarn is this? — «Чия це пряжа?» Товста нитка для в’язання. Yarn тут позначає матеріал, тому потрібне is, без a перед yarn."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yarn",
+          "definitionByLocale": {
+            "ru": "пряжа. Whose yarn is this? — «Чья это пряжа?» Толстая нить для вязания. Yarn здесь обозначает материал, поэтому нужно is, без a перед yarn.",
+            "uk": "пряжа. Whose yarn is this? — «Чия це пряжа?» Товста нитка для в’язання. Yarn тут позначає матеріал, тому потрібне is, без a перед yarn."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-08:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»",
+      "prompt": "На столі лежить пряжа для в’язання. Запитайте: «Чия це пряжа?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»",
+      "accessibilityLabel": "На столі лежить пряжа для в’язання. Запитайте: «Чия це пряжа?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often dance at home.",
+        "targetPhrase": "Whose yarn is this?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, что вы делаете дома под музыку. Скажите «Я часто танцую дома»",
-          "uk": "Друг запитує, що ви робите вдома під музику. Скажіть «Я часто танцюю вдома»"
+          "ru": "На столе лежит пряжа для вязания. Спросите: «Чья это пряжа?»",
+          "uk": "На столі лежить пряжа для в’язання. Запитайте: «Чия це пряжа?»"
         },
         "orderedTokens": [
-          "I",
-          "often",
-          "dance",
-          "at",
-          "home"
+          "Whose",
+          "yarn",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -643,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На скеледромі друг запитує про вміння вашої знайомої. Скажіть «Вона вміє лазити»",
+      "prompt": "Учасниця шукає свою пряжу. Скажіть: «Це моя пряжа».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-08:i13:audio"
       ],
-      "accessibilityLabel": "На скеледромі друг запитує про вміння вашої знайомої. Скажіть «Вона вміє лазити»",
+      "accessibilityLabel": "Учасниця шукає свою пряжу. Скажіть: «Це моя пряжа».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i13:audio",
-          "transcript": "She can climb."
+          "transcript": "This is my yarn."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She can climb.",
+        "targetPhrase": "This is my yarn.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -676,67 +847,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я вмію свистіти»",
+      "prompt": "Виберіть форму: «Чия це пряжа?»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i14:r1",
-          "text": "whistle"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-08:session-08:i14:r2",
-          "text": "whistles"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-08:session-08:i14:r3",
-          "text": "to whistle"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію свистіти»",
+      "accessibilityLabel": "Виберіть форму: «Чия це пряжа?»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я умею свистеть»",
-          "uk": "Скажіть «Я вмію свистіти»"
+          "ru": "Выберите форму: «Чья это пряжа?»",
+          "uk": "Виберіть форму: «Чия це пряжа?»"
         },
-        "gappedTargetPhrase": "I can ___.",
+        "gappedTargetPhrase": "Whose yarn ___ this?",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-08:i14:r1",
-            "text": "whistle"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-08:session-08:i14:r2",
-            "text": "whistles"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-08:session-08:i14:r3",
-            "text": "to whistle"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я вмію свистіти»",
+        "testedDimension": "Виберіть форму: «Чия це пряжа?»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-08:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію свистіти»",
+            "testedDimension": "Виберіть форму: «Чия це пряжа?»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "Yarn обозначает материал: нужно is this.",
+              "uk": "Yarn позначає матеріал: потрібне is this."
             }
           },
           {
             "responseId": "en:lesson-08:session-08:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію свистіти»",
+            "testedDimension": "Виберіть форму: «Чия це пряжа?»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "Am используется с I; здесь нужно is.",
+              "uk": "Am вживається з I; тут потрібне is."
             }
           }
         ]
@@ -745,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -753,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-08:i15:r1",
-          "text": "I can type."
+          "text": "This is my yarn."
         },
         {
           "responseId": "en:lesson-08:session-08:i15:r2",
-          "text": "I can translate."
+          "text": "This is your yarn."
         },
         {
           "responseId": "en:lesson-08:session-08:i15:r3",
-          "text": "I can juggle."
+          "text": "This is my thimble."
         }
       ],
       "mediaIds": [],
@@ -773,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i15:audio",
-          "transcript": "I can type."
+          "transcript": "This is my yarn."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-08:i15:r1",
-            "targetText": "I can type.",
+            "targetText": "This is my yarn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i15:r2",
-            "targetText": "I can translate.",
+            "targetText": "This is your yarn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-08:i15:r3",
-            "targetText": "I can juggle.",
+            "targetText": "This is my thimble.",
             "meaningByLocale": null
           }
         ],
@@ -800,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `type`, а в этом варианте — `translate`.",
-              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `translate`."
+              "ru": "В записи my — «моя», а не your.",
+              "uk": "У записі my — «моя», а не your."
             }
           },
           {
@@ -809,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `type`, а в этом варианте — `juggle`.",
-              "uk": "У записі останнє слово — `type`, а в цьому варіанті — `juggle`."
+              "ru": "В записи yarn — «пряжа», а не thimble.",
+              "uk": "У записі yarn — «пряжа», а не thimble."
             }
           }
         ],
@@ -821,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,48 +1006,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-08:i16:p1",
-            "target": "balance",
+            "target": "knit",
             "meaningByLocale": {
-              "ru": "держать равновесие",
-              "uk": "тримати рівновагу"
+              "ru": "вязать спицами",
+              "uk": "в’язати спицями"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i16:p2",
-            "target": "translate",
+            "target": "embroider",
             "meaningByLocale": {
-              "ru": "переводить на другой язык",
-              "uk": "перекладати іншою мовою"
+              "ru": "вышивать",
+              "uk": "вишивати"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i16:p3",
-            "target": "whisper",
+            "target": "thimble",
             "meaningByLocale": {
-              "ru": "шептать",
-              "uk": "шепотіти"
+              "ru": "напёрсток",
+              "uk": "наперсток"
             }
           },
           {
             "pairId": "en:lesson-08:session-08:i16:p4",
-            "target": "climb",
+            "target": "yarn",
             "meaningByLocale": {
-              "ru": "лазать",
-              "uk": "лазити"
+              "ru": "пряжа",
+              "uk": "пряжа"
             }
           }
         ],
         "leftColumn": [
-          "balance",
-          "translate",
-          "whisper",
-          "climb"
+          "knit",
+          "embroider",
+          "thimble",
+          "yarn"
         ],
         "rightColumn": [
-          "тримати рівновагу",
-          "перекладати іншою мовою",
-          "шепотіти",
-          "лазити"
+          "в’язати спицями",
+          "вишивати",
+          "наперсток",
+          "пряжа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,25 +1065,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-08:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи вміє Том передавати слова пошепки під час гри. Скажіть «Том уміє шепотіти»",
+      "prompt": "Організатор шукає ще одну людину для вишивання емблеми. Скажіть: «Том уміє вишивати».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-08:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи вміє Том передавати слова пошепки під час гри. Скажіть «Том уміє шепотіти»",
+      "accessibilityLabel": "Організатор шукає ще одну людину для вишивання емблеми. Скажіть: «Том уміє вишивати».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-08:i17:audio",
-          "transcript": "Tom can whisper."
+          "transcript": "Tom can embroider."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can whisper.",
+        "targetPhrase": "Tom can embroider.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "58870e049c48aff39306a4a6a1c9d2667b528866bf4f7862e0aa1eb5e74a0f08"
+  "learnerFingerprint": "fddc7a9d8d077065cbc15453360e8b18b961a646d2746f220d59164512cdb1fa"
 }

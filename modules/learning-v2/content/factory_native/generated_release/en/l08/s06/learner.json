@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-06:i01",
+      "interactionId": "en:lesson-08:session-06:word:whisper",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — whisper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:word:whisper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — whisper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:word:whisper:audio",
+          "transcript": "whisper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:word:whisper:r1",
+            "targetText": "whisper",
+            "meaningByLocale": {
+              "ru": "шептать. I can whisper. — «Я умею шептать». Говорить очень тихо, шёпотом.",
+              "uk": "шепотіти. I can whisper. — «Я вмію шепотіти». Говорити дуже тихо, пошепки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "whisper",
+          "definitionByLocale": {
+            "ru": "шептать. I can whisper. — «Я умею шептать». Говорить очень тихо, шёпотом.",
+            "uk": "шепотіти. I can whisper. — «Я вмію шепотіти». Говорити дуже тихо, пошепки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -49,11 +92,11 @@
         },
         {
           "responseId": "en:lesson-08:session-06:i02:r2",
-          "text": "whistle"
+          "text": "speak"
         },
         {
           "responseId": "en:lesson-08:session-06:i02:r3",
-          "text": "translate"
+          "text": "tune"
         }
       ],
       "mediaIds": [],
@@ -76,12 +119,12 @@
           },
           {
             "responseId": "en:lesson-08:session-06:i02:r2",
-            "targetText": "whistle",
+            "targetText": "speak",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-06:i02:r3",
-            "targetText": "translate",
+            "targetText": "tune",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `whisper`, а в этом варианте — `whistle`.",
-              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `whistle`."
+              "ru": "В записи первое слово — `whisper`, а в этом варианте — `speak`.",
+              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `speak`."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `whisper`, а в этом варианте — `translate`.",
-              "uk": "У записі перше слово — `whisper`, а в цьому варіанті — `translate`."
+              "ru": "В записи whisper — «шептать», а в этом варианте tune — «настраивать».",
+              "uk": "У записі whisper — «шепотіти», а в цьому варіанті tune — «налаштовувати»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я умею шептать»",
+      "prompt": "Выберите слово: «Я умею шептать»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-06:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я умею шептать»",
+      "accessibilityLabel": "Выберите слово: «Я умею шептать»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я умею шептать»",
-          "uk": "Скажіть «Я вмію шепотіти»"
+          "ru": "Выберите слово: «Я умею шептать»",
+          "uk": "Виберіть слово: «Я вмію шепотіти»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "whispers"
           }
         ],
-        "testedDimension": "Скажите «Я умею шептать»",
+        "testedDimension": "Выберите слово: «Я умею шептать»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-06:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я умею шептать»",
+            "testedDimension": "Выберите слово: «Я умею шептать»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `whisper`, без `to`.",
               "uk": "Після `can` потрібне `whisper`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-06:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я умею шептать»",
+            "testedDimension": "Выберите слово: «Я умею шептать»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `whisper`, без `s`.",
               "uk": "Після `can` потрібне `whisper`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,40 +247,40 @@
           },
           {
             "pairId": "en:lesson-08:session-06:i04:p2",
-            "target": "clinic",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "клиника",
-              "uk": "клініка"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-06:i04:p3",
-            "target": "bookmark",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "закладка",
-              "uk": "закладка"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           },
           {
             "pairId": "en:lesson-08:session-06:i04:p4",
-            "target": "customer",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "покупатель",
-              "uk": "покупець"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
           "whisper",
-          "clinic",
-          "bookmark",
-          "customer"
+          "ball",
+          "coat",
+          "door"
         ],
         "rightColumn": [
           "шептать",
-          "клиника",
-          "закладка",
-          "покупатель"
+          "мяч",
+          "пальто",
+          "дверь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-06:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-06:word:juggle",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — juggle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:word:juggle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — juggle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:word:juggle:audio",
+          "transcript": "juggle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:word:juggle:r1",
+            "targetText": "juggle",
+            "meaningByLocale": {
+              "ru": "жонглировать. She can juggle. — «Она умеет жонглировать». Подбрасывать несколько предметов и ловить их по очереди.",
+              "uk": "жонглювати. She can juggle. — «Вона вміє жонглювати». Підкидати кілька предметів і ловити їх по черзі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "juggle",
+          "definitionByLocale": {
+            "ru": "жонглировать. She can juggle. — «Она умеет жонглировать». Подбрасывать несколько предметов и ловить их по очереди.",
+            "uk": "жонглювати. She can juggle. — «Вона вміє жонглювати». Підкидати кілька предметів і ловити їх по черзі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о знакомой «Она умеет переводить»",
+      "prompt": "Скажите о знакомой «Она умеет жонглировать»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о знакомой «Она умеет переводить»",
+      "accessibilityLabel": "Скажите о знакомой «Она умеет жонглировать»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can translate.",
+        "targetPhrase": "She can juggle.",
         "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она умеет переводить»",
-          "uk": "Скажіть про знайому «Вона вміє перекладати»"
+          "ru": "Скажите о знакомой «Она умеет жонглировать»",
+          "uk": "Скажіть про знайому «Вона вміє жонглювати»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "translate"
+          "juggle"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-06:word:pouch",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pouch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:word:pouch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pouch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:word:pouch:audio",
+          "transcript": "pouch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:word:pouch:r1",
+            "targetText": "pouch",
+            "meaningByLocale": {
+              "ru": "мешочек. Whose pouch is this? — «Чей это мешочек?». Небольшая мягкая сумочка для мелочей.",
+              "uk": "мішечок. Whose pouch is this? — «Чий це мішечок?». Невелика м’яка сумочка для дрібниць."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pouch",
+          "definitionByLocale": {
+            "ru": "мешочек. Whose pouch is this? — «Чей это мешочек?». Небольшая мягкая сумочка для мелочей.",
+            "uk": "мішечок. Whose pouch is this? — «Чий це мішечок?». Невелика м’яка сумочка для дрібниць."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-06:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите друзей «Чья это закладка?»",
+      "prompt": "Спросите друзей «Чей это мешочек?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-06:i07:audio"
       ],
-      "accessibilityLabel": "Спросите друзей «Чья это закладка?»",
+      "accessibilityLabel": "Спросите друзей «Чей это мешочек?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-06:i07:audio",
-          "transcript": "Whose bookmark is this?"
+          "transcript": "Whose pouch is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bookmark is this?",
+        "targetPhrase": "Whose pouch is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она умеет переводить»",
+      "prompt": "Выберите слово: «Она умеет жонглировать»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-06:i08:r1",
-          "text": "translate"
+          "text": "juggle"
         },
         {
           "responseId": "en:lesson-08:session-06:i08:r2",
-          "text": "translates"
+          "text": "juggles"
         },
         {
           "responseId": "en:lesson-08:session-06:i08:r3",
-          "text": "to translate"
+          "text": "to juggle"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она умеет переводить»",
+      "accessibilityLabel": "Выберите слово: «Она умеет жонглировать»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет переводить»",
-          "uk": "Скажіть «Вона вміє перекладати»"
+          "ru": "Выберите слово: «Она умеет жонглировать»",
+          "uk": "Виберіть слово: «Вона вміє жонглювати»"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-06:i08:r1",
-            "text": "translate"
+            "text": "juggle"
           },
           {
             "responseId": "en:lesson-08:session-06:i08:r2",
-            "text": "translates"
+            "text": "juggles"
           },
           {
             "responseId": "en:lesson-08:session-06:i08:r3",
-            "text": "to translate"
+            "text": "to juggle"
           }
         ],
-        "testedDimension": "Скажите «Она умеет переводить»",
+        "testedDimension": "Выберите слово: «Она умеет жонглировать»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-06:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет переводить»",
+            "testedDimension": "Выберите слово: «Она умеет жонглировать»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `translate`, без `s`.",
-              "uk": "Після `can` потрібне `translate`, без `s`."
+              "ru": "После `can` нужно `juggle`, без `s`.",
+              "uk": "Після `can` потрібне `juggle`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-06:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет переводить»",
+            "testedDimension": "Выберите слово: «Она умеет жонглировать»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `translate`, без `to`.",
-              "uk": "Після `can` потрібне `translate`, без `to`."
+              "ru": "После `can` нужно `juggle`, без `to`.",
+              "uk": "Після `can` потрібне `juggle`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -436,11 +565,11 @@
         },
         {
           "responseId": "en:lesson-08:session-06:i09:r2",
-          "text": "I can whistle."
+          "text": "I can speak."
         },
         {
           "responseId": "en:lesson-08:session-06:i09:r3",
-          "text": "I can translate."
+          "text": "I can juggle."
         }
       ],
       "mediaIds": [],
@@ -463,12 +592,12 @@
           },
           {
             "responseId": "en:lesson-08:session-06:i09:r2",
-            "targetText": "I can whistle.",
+            "targetText": "I can speak.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-06:i09:r3",
-            "targetText": "I can translate.",
+            "targetText": "I can juggle.",
             "meaningByLocale": null
           }
         ],
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `whistle`.",
-              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `whistle`."
+              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `speak`.",
+              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `speak`."
             }
           },
           {
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `translate`.",
-              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `translate`."
+              "ru": "В записи последнее слово — `whisper`, а в этом варианте — `juggle`.",
+              "uk": "У записі останнє слово — `whisper`, а в цьому варіанті — `juggle`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,10 +643,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-06:i10:p1",
-            "target": "browse",
+            "target": "juggle",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "жонглировать",
+              "uk": "жонглювати"
             }
           },
           {
@@ -530,32 +659,32 @@
           },
           {
             "pairId": "en:lesson-08:session-06:i10:p3",
-            "target": "clinic",
+            "target": "pouch",
             "meaningByLocale": {
-              "ru": "клиника",
-              "uk": "клініка"
+              "ru": "мешочек",
+              "uk": "мішечок"
             }
           },
           {
             "pairId": "en:lesson-08:session-06:i10:p4",
-            "target": "customer",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "покупатель",
-              "uk": "покупець"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           }
         ],
         "leftColumn": [
-          "browse",
+          "juggle",
           "whisper",
-          "clinic",
-          "customer"
+          "pouch",
+          "ball"
         ],
         "rightColumn": [
-          "просматривать",
+          "жонглировать",
           "шептать",
-          "клиника",
-          "покупатель"
+          "мешочек",
+          "мяч"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-06:i11:audio",
-          "transcript": "Whose bookmark is this?"
+          "transcript": "Whose pouch is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose bookmark is this?",
+        "hiddenTargetPhrase": "Whose pouch is this?",
         "orderedTokens": [
           "Whose",
-          "bookmark",
+          "pouch",
           "is",
           "this"
         ],
@@ -608,28 +737,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-06:word:balance",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — balance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-06:word:balance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — balance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-06:word:balance:audio",
+          "transcript": "balance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-06:word:balance:r1",
+            "targetText": "balance",
+            "meaningByLocale": {
+              "ru": "держать равновесие. I can balance. — «Я умею держать равновесие». Удерживаться в устойчивом положении, не падая.",
+              "uk": "тримати рівновагу. I can balance. — «Я вмію тримати рівновагу». Утримуватися в стійкому положенні, не падаючи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "balance",
+          "definitionByLocale": {
+            "ru": "держать равновесие. I can balance. — «Я умею держать равновесие». Удерживаться в устойчивом положении, не падая.",
+            "uk": "тримати рівновагу. I can balance. — «Я вмію тримати рівновагу». Утримуватися в стійкому положенні, не падаючи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-06:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покупатель пришёл в магазин. Скажите коллеге «Покупатель здесь»",
+      "prompt": "На занятии гимнастикой тренер спрашивает о равновесии. Скажите: «Я умею держать равновесие».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покупатель пришёл в магазин. Скажите коллеге «Покупатель здесь»",
+      "accessibilityLabel": "На занятии гимнастикой тренер спрашивает о равновесии. Скажите: «Я умею держать равновесие».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The customer is here.",
+        "targetPhrase": "I can balance.",
         "localizedMeaning": {
-          "ru": "Покупатель пришёл в магазин. Скажите коллеге «Покупатель здесь»",
-          "uk": "Покупець прийшов до магазину. Скажіть колезі «Покупець тут»"
+          "ru": "На занятии гимнастикой тренер спрашивает о равновесии. Скажите: «Я умею держать равновесие».",
+          "uk": "На занятті гімнастикою тренер питає про рівновагу. Скажіть: «Я вмію тримати рівновагу»."
         },
         "orderedTokens": [
-          "The",
-          "customer",
-          "is",
-          "here"
+          "I",
+          "can",
+          "balance"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -642,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о привычках в интернете. Скажите «Я обычно просматриваю сайты»",
+      "prompt": "Тренер спрашивает о сестре. Скажите: «Она умеет держать равновесие».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-06:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о привычках в интернете. Скажите «Я обычно просматриваю сайты»",
+      "accessibilityLabel": "Тренер спрашивает о сестре. Скажите: «Она умеет держать равновесие».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-06:i13:audio",
-          "transcript": "I usually browse online."
+          "transcript": "She can balance."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I usually browse online.",
+        "targetPhrase": "She can balance.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,11 +846,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она умеет шептать»",
+      "prompt": "Выберите форму: «Она умеет держать равновесие»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-06:i14:r1",
@@ -696,14 +867,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она умеет шептать»",
+      "accessibilityLabel": "Выберите форму: «Она умеет держать равновесие»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет шептать»",
-          "uk": "Скажіть «Вона вміє шепотіти»"
+          "ru": "Выберите форму: «Она умеет держать равновесие»",
+          "uk": "Виберіть форму: «Вона вміє тримати рівновагу»"
         },
-        "gappedTargetPhrase": "She ___ whisper.",
+        "gappedTargetPhrase": "She ___ balance.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-06:i14:r1",
@@ -718,24 +889,24 @@
             "text": "is can"
           }
         ],
-        "testedDimension": "Скажите «Она умеет шептать»",
+        "testedDimension": "Выберите форму: «Она умеет держать равновесие»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-06:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет шептать»",
+            "testedDimension": "Выберите форму: «Она умеет держать равновесие»",
             "feedbackByLocale": {
-              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
-              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+              "ru": "Can не меняется после she.",
+              "uk": "Can не змінюється після she."
             }
           },
           {
             "responseId": "en:lesson-08:session-06:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она умеет шептать»",
+            "testedDimension": "Выберите форму: «Она умеет держать равновесие»",
             "feedbackByLocale": {
-              "ru": "Достаточно `she can`; `is` не нужно.",
-              "uk": "Достатньо `she can`; `is` не потрібне."
+              "ru": "Нужно she can, без is.",
+              "uk": "Потрібно she can, без is."
             }
           }
         ]
@@ -744,51 +915,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте тренера и выберите фразу",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-06:i15:r1",
-          "text": "Where is the clinic?"
+          "text": "She can balance."
         },
         {
           "responseId": "en:lesson-08:session-06:i15:r2",
-          "text": "Where is the pharmacy?"
+          "text": "He can balance."
         },
         {
           "responseId": "en:lesson-08:session-06:i15:r3",
-          "text": "Where is the bank?"
+          "text": "She can juggle."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-06:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте тренера и выберите фразу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-06:i15:audio",
-          "transcript": "Where is the clinic?"
+          "transcript": "She can balance."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-06:i15:r1",
-            "targetText": "Where is the clinic?",
+            "targetText": "She can balance.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-06:i15:r2",
-            "targetText": "Where is the pharmacy?",
+            "targetText": "He can balance.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-06:i15:r3",
-            "targetText": "Where is the bank?",
+            "targetText": "She can juggle.",
             "meaningByLocale": null
           }
         ],
@@ -797,19 +968,19 @@
           {
             "responseId": "en:lesson-08:session-06:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте тренера и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clinic`, а в этом варианте — `pharmacy`.",
-              "uk": "У записі останнє слово — `clinic`, а в цьому варіанті — `pharmacy`."
+              "ru": "В записи She — «она», а не He.",
+              "uk": "У записі She — «вона», а не He."
             }
           },
           {
             "responseId": "en:lesson-08:session-06:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте тренера и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `clinic`, а в этом варианте — `bank`.",
-              "uk": "У записі останнє слово — `clinic`, а в цьому варіанті — `bank`."
+              "ru": "В записи balance — «держать равновесие», а не juggle.",
+              "uk": "У записі balance — «тримати рівновагу», а не juggle."
             }
           }
         ],
@@ -820,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -842,40 +1013,40 @@
           },
           {
             "pairId": "en:lesson-08:session-06:i16:p2",
-            "target": "bookmark",
+            "target": "juggle",
             "meaningByLocale": {
-              "ru": "закладка",
-              "uk": "закладка"
+              "ru": "жонглировать",
+              "uk": "жонглювати"
             }
           },
           {
             "pairId": "en:lesson-08:session-06:i16:p3",
-            "target": "customer",
+            "target": "pouch",
             "meaningByLocale": {
-              "ru": "покупатель",
-              "uk": "покупець"
+              "ru": "мешочек",
+              "uk": "мішечок"
             }
           },
           {
             "pairId": "en:lesson-08:session-06:i16:p4",
-            "target": "browse",
+            "target": "balance",
             "meaningByLocale": {
-              "ru": "просматривать",
-              "uk": "переглядати"
+              "ru": "держать равновесие",
+              "uk": "тримати рівновагу"
             }
           }
         ],
         "leftColumn": [
           "whisper",
-          "bookmark",
-          "customer",
-          "browse"
+          "juggle",
+          "pouch",
+          "balance"
         ],
         "rightColumn": [
           "шептать",
-          "закладка",
-          "покупатель",
-          "просматривать"
+          "жонглировать",
+          "мешочек",
+          "держать равновесие"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,7 +1064,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-06:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -933,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0fc1e32ec87a0b72c221da9ae05f8c430004edf8c36fcbd281ebdd299d4b7edb"
+  "learnerFingerprint": "53a8e8242847bb4adb09d7e71470efbf435e3a9747ef5dfc2a314f22ecb92b46"
 }

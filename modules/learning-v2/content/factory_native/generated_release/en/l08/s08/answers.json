@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-08:word:knit",
+    "correctText": "knit",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-08:i01",
-    "correctText": "I can juggle.",
+    "correctText": "I can knit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i02",
-    "correctText": "whisper",
+    "correctText": "knit",
     "correctResponseId": "en:lesson-08:session-08:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i03",
-    "correctText": "translate",
+    "correctText": "knit",
     "correctResponseId": "en:lesson-08:session-08:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i04",
-    "correctText": "en:lesson-08:session-08:i04:p1=whistle\nen:lesson-08:session-08:i04:p2=juggle\nen:lesson-08:session-08:i04:p3=type\nen:lesson-08:session-08:i04:p4=balance",
+    "correctText": "en:lesson-08:session-08:i04:p1=knit\nen:lesson-08:session-08:i04:p2=ball\nen:lesson-08:session-08:i04:p3=coat\nen:lesson-08:session-08:i04:p4=door",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i05",
-    "correctText": "She can translate.",
+    "correctText": "I can knit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:word:embroider",
+    "correctText": "embroider",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i06",
-    "correctText": "I can type.",
+    "correctText": "She can embroider.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:word:thimble",
+    "correctText": "thimble",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i07",
-    "correctText": "Whose folder is this?",
+    "correctText": "Whose thimble is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i08",
-    "correctText": "can",
+    "correctText": "embroider",
     "correctResponseId": "en:lesson-08:session-08:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i09",
-    "correctText": "I can climb.",
+    "correctText": "I can knit.",
     "correctResponseId": "en:lesson-08:session-08:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i10",
-    "correctText": "en:lesson-08:session-08:i10:p1=translate\nen:lesson-08:session-08:i10:p2=whisper\nen:lesson-08:session-08:i10:p3=climb\nen:lesson-08:session-08:i10:p4=neighbourhood",
+    "correctText": "en:lesson-08:session-08:i10:p1=embroider\nen:lesson-08:session-08:i10:p2=knit\nen:lesson-08:session-08:i10:p3=thimble\nen:lesson-08:session-08:i10:p4=ball",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i11",
-    "correctText": "Whose folder is this?",
+    "correctText": "Whose thimble is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-08:word:yarn",
+    "correctText": "yarn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i12",
-    "correctText": "I often dance at home.",
+    "correctText": "Whose yarn is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i13",
-    "correctText": "She can climb.",
+    "correctText": "This is my yarn.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i14",
-    "correctText": "whistle",
+    "correctText": "is",
     "correctResponseId": "en:lesson-08:session-08:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i15",
-    "correctText": "I can type.",
+    "correctText": "This is my yarn.",
     "correctResponseId": "en:lesson-08:session-08:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-08:i16",
-    "correctText": "en:lesson-08:session-08:i16:p1=balance\nen:lesson-08:session-08:i16:p2=translate\nen:lesson-08:session-08:i16:p3=whisper\nen:lesson-08:session-08:i16:p4=climb",
+    "correctText": "en:lesson-08:session-08:i16:p1=knit\nen:lesson-08:session-08:i16:p2=embroider\nen:lesson-08:session-08:i16:p3=thimble\nen:lesson-08:session-08:i16:p4=yarn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-08:i17",
-    "correctText": "Tom can whisper.",
+    "correctText": "Tom can embroider.",
     "correctResponseId": null
   }
 ]

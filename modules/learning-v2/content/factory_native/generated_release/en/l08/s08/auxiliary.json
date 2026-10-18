@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-08:intro1:r2": {
-          "ru": "После `can` нужно `juggle`, без `to`.",
-          "uk": "Після `can` потрібне `juggle`, без `to`."
+          "ru": "После `can` нужно `knit`, без `to`.",
+          "uk": "Після `can` потрібне `knit`, без `to`."
         },
         "en:lesson-08:session-08:intro1:r3": {
-          "ru": "После `can` нужно `juggle`, без `s`.",
-          "uk": "Після `can` потрібне `juggle`, без `s`."
+          "ru": "После `can` нужно `knit`, без `s`.",
+          "uk": "Після `can` потрібне `knit`, без `s`."
         }
       }
     },
@@ -23,8 +23,8 @@
           "uk": "Після `she` потрібне `can`, без `s`."
         },
         "en:lesson-08:session-08:intro2:r3": {
-          "ru": "После `can` нужно `translate`, без `s`.",
-          "uk": "Після `can` потрібне `translate`, без `s`."
+          "ru": "После `can` нужно `embroider`, без `s`.",
+          "uk": "Після `can` потрібне `embroider`, без `s`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-08:intro3:r2": {
-          "ru": "Для «чья» нужно `whose`, а не `who`.",
-          "uk": "Для «чия» потрібне `whose`, а не `who`."
+          "ru": "Для «чей» нужно `whose`, а не `who`.",
+          "uk": "Для «чий» потрібне `whose`, а не `who`."
         },
         "en:lesson-08:session-08:intro3:r3": {
-          "ru": "Папка одна: нужно `is this`.",
-          "uk": "Папка одна: потрібне `is this`."
+          "ru": "Напёрсток один: нужно `is this`.",
+          "uk": "Наперсток один: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "58b6d3b6c2c839c16bbee9a9496e2df41cfbc4850792b718e6edf948b2a609d9"
+  "auxiliaryFingerprint": "8aa10096fc9eda15688aba5b77f42250a583764cd33da5daeeea529c3a07d072"
 }

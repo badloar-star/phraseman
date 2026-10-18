@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-07:i01",
+      "interactionId": "en:lesson-08:session-07:word:crawl",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crawl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-07:word:crawl:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crawl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-07:word:crawl:audio",
+          "transcript": "crawl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-07:word:crawl:r1",
+            "targetText": "crawl",
+            "meaningByLocale": {
+              "ru": "ползать. I can crawl. — «Я умею ползать». Передвигаться на руках и коленях.",
+              "uk": "повзати. I can crawl. — «Я вмію повзати». Пересуватися на руках і колінах."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crawl",
+          "definitionByLocale": {
+            "ru": "ползать. I can crawl. — «Я умею ползать». Передвигаться на руках и коленях.",
+            "uk": "повзати. I can crawl. — «Я вмію повзати». Пересуватися на руках і колінах."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-07:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я вмію лазити»",
+      "prompt": "Скажіть «Я вмію повзати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію лазити»",
+      "accessibilityLabel": "Скажіть «Я вмію повзати»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can climb.",
+        "targetPhrase": "I can crawl.",
         "localizedMeaning": {
-          "ru": "Скажите «Я умею лазать»",
-          "uk": "Скажіть «Я вмію лазити»"
+          "ru": "Скажите «Я умею ползать»",
+          "uk": "Скажіть «Я вмію повзати»"
         },
         "orderedTokens": [
           "I",
           "can",
-          "climb"
+          "crawl"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,11 +88,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i02:r1",
-          "text": "climb"
+          "text": "crawl"
         },
         {
           "responseId": "en:lesson-08:session-07:i02:r2",
-          "text": "balance"
+          "text": "climb"
         },
         {
           "responseId": "en:lesson-08:session-07:i02:r3",
@@ -65,18 +108,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i02:audio",
-          "transcript": "climb"
+          "transcript": "crawl"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-07:i02:r1",
-            "targetText": "climb",
+            "targetText": "crawl",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-07:i02:r2",
-            "targetText": "balance",
+            "targetText": "climb",
             "meaningByLocale": null
           },
           {
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `climb`, а в этом варианте — `balance`.",
-              "uk": "У записі перше слово — `climb`, а в цьому варіанті — `balance`."
+              "ru": "В записи crawl — «ползать», а не climb — «лазать».",
+              "uk": "У записі crawl — «повзати», а не climb — «лазити»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `climb`, а в этом варианте — `whisper`.",
-              "uk": "У записі перше слово — `climb`, а в цьому варіанті — `whisper`."
+              "ru": "В записи crawl, а не whisper — «шептать».",
+              "uk": "У записі crawl, а не whisper — «шепотіти»."
             }
           }
         ],
@@ -113,67 +156,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я вмію лазити»",
+      "prompt": "Виберіть слово: «Я вмію повзати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i03:r1",
-          "text": "climb"
+          "text": "crawl"
         },
         {
           "responseId": "en:lesson-08:session-07:i03:r2",
-          "text": "to climb"
+          "text": "to crawl"
         },
         {
           "responseId": "en:lesson-08:session-07:i03:r3",
-          "text": "climbs"
+          "text": "crawls"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я вмію лазити»",
+      "accessibilityLabel": "Виберіть слово: «Я вмію повзати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я умею лазать»",
-          "uk": "Скажіть «Я вмію лазити»"
+          "ru": "Выберите слово: «Я умею ползать»",
+          "uk": "Виберіть слово: «Я вмію повзати»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-07:i03:r1",
-            "text": "climb"
+            "text": "crawl"
           },
           {
             "responseId": "en:lesson-08:session-07:i03:r2",
-            "text": "to climb"
+            "text": "to crawl"
           },
           {
             "responseId": "en:lesson-08:session-07:i03:r3",
-            "text": "climbs"
+            "text": "crawls"
           }
         ],
-        "testedDimension": "Скажіть «Я вмію лазити»",
+        "testedDimension": "Виберіть слово: «Я вмію повзати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-07:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію лазити»",
+            "testedDimension": "Виберіть слово: «Я вмію повзати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `climb`, без `to`.",
-              "uk": "Після `can` потрібне `climb`, без `to`."
+              "ru": "После `can` нужно `crawl`, без `to`.",
+              "uk": "Після `can` потрібне `crawl`, без `to`."
             }
           },
           {
             "responseId": "en:lesson-08:session-07:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я вмію лазити»",
+            "testedDimension": "Виберіть слово: «Я вмію повзати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `climb`, без `s`.",
-              "uk": "Після `can` потрібне `climb`, без `s`."
+              "ru": "После `can` нужно `crawl`, без `s`.",
+              "uk": "Після `can` потрібне `crawl`, без `s`."
             }
           }
         ]
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +239,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-07:i04:p1",
-            "target": "climb",
+            "target": "crawl",
             "meaningByLocale": {
-              "ru": "лазать",
-              "uk": "лазити"
+              "ru": "ползать",
+              "uk": "повзати"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i04:p2",
-            "target": "playground",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "детская площадка",
-              "uk": "дитячий майданчик"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i04:p3",
-            "target": "calendar",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i04:p4",
-            "target": "schedule",
+            "target": "door",
             "meaningByLocale": {
-              "ru": "расписание",
-              "uk": "розклад"
+              "ru": "дверь",
+              "uk": "двері"
             }
           }
         ],
         "leftColumn": [
-          "climb",
-          "playground",
-          "calendar",
-          "schedule"
+          "crawl",
+          "ball",
+          "coat",
+          "door"
         ],
         "rightColumn": [
-          "лазити",
-          "дитячий майданчик",
-          "календар",
-          "розклад"
+          "повзати",
+          "м’яч",
+          "пальто",
+          "двері"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,46 +313,89 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i05:audio",
-          "transcript": "I can climb."
+          "transcript": "I can crawl."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can climb.",
+        "hiddenTargetPhrase": "I can crawl.",
         "orderedTokens": [
           "I",
           "can",
-          "climb"
+          "crawl"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-07:word:paddle",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — paddle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-07:word:paddle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — paddle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-07:word:paddle:audio",
+          "transcript": "paddle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-07:word:paddle:r1",
+            "targetText": "paddle",
+            "meaningByLocale": {
+              "ru": "грести веслом. She can paddle. — «Она умеет грести веслом». Так двигаются на каяке или каноэ.",
+              "uk": "веслувати. She can paddle. — «Вона вміє веслувати». Так рухаються на каяку чи каное."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paddle",
+          "definitionByLocale": {
+            "ru": "грести веслом. She can paddle. — «Она умеет грести веслом». Так двигаются на каяке или каноэ.",
+            "uk": "веслувати. She can paddle. — «Вона вміє веслувати». Так рухаються на каяку чи каное."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-07:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про знайому «Вона вміє тримати рівновагу»",
+      "prompt": "Скажіть про знайому «Вона вміє веслувати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про знайому «Вона вміє тримати рівновагу»",
+      "accessibilityLabel": "Скажіть про знайому «Вона вміє веслувати»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can balance.",
+        "targetPhrase": "She can paddle.",
         "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она умеет держать равновесие»",
-          "uk": "Скажіть про знайому «Вона вміє тримати рівновагу»"
+          "ru": "Скажите о знакомой «Она умеет грести веслом»",
+          "uk": "Скажіть про знайому «Вона вміє веслувати»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "balance"
+          "paddle"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-07:word:harness",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — harness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-07:word:harness:audio"
+      ],
+      "accessibilityLabel": "Картка слова — harness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-07:word:harness:audio",
+          "transcript": "harness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-07:word:harness:r1",
+            "targetText": "harness",
+            "meaningByLocale": {
+              "ru": "страховочная система. Whose harness is this? — «Чья это страховочная система?» Ремни для страховки на теле.",
+              "uk": "страхувальна система. Whose harness is this? — «Чия це страхувальна система?» Ремені для страхування на тілі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "harness",
+          "definitionByLocale": {
+            "ru": "страховочная система. Whose harness is this? — «Чья это страховочная система?» Ремни для страховки на теле.",
+            "uk": "страхувальна система. Whose harness is this? — «Чия це страхувальна система?» Ремені для страхування на тілі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-07:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте колег «Чий це календар?»",
+      "prompt": "Запитайте учасників «Чия це страхувальна система?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-07:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте колег «Чий це календар?»",
+      "accessibilityLabel": "Запитайте учасників «Чия це страхувальна система?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i07:audio",
-          "transcript": "Whose calendar is this?"
+          "transcript": "Whose harness is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose calendar is this?",
+        "targetPhrase": "Whose harness is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє тримати рівновагу»",
+      "prompt": "Виберіть слово: «Вона вміє веслувати»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i08:r1",
-          "text": "balance"
+          "text": "paddle"
         },
         {
           "responseId": "en:lesson-08:session-07:i08:r2",
-          "text": "balances"
+          "text": "paddles"
         },
         {
           "responseId": "en:lesson-08:session-07:i08:r3",
-          "text": "to balance"
+          "text": "to paddle"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє тримати рівновагу»",
+      "accessibilityLabel": "Виберіть слово: «Вона вміє веслувати»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет держать равновесие»",
-          "uk": "Скажіть «Вона вміє тримати рівновагу»"
+          "ru": "Выберите слово: «Она умеет грести веслом»",
+          "uk": "Виберіть слово: «Вона вміє веслувати»"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-07:i08:r1",
-            "text": "balance"
+            "text": "paddle"
           },
           {
             "responseId": "en:lesson-08:session-07:i08:r2",
-            "text": "balances"
+            "text": "paddles"
           },
           {
             "responseId": "en:lesson-08:session-07:i08:r3",
-            "text": "to balance"
+            "text": "to paddle"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+        "testedDimension": "Виберіть слово: «Вона вміє веслувати»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+            "testedDimension": "Виберіть слово: «Вона вміє веслувати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `balance`, без `s`.",
-              "uk": "Після `can` потрібне `balance`, без `s`."
+              "ru": "После `can` нужно `paddle`, без `s`.",
+              "uk": "Після `can` потрібне `paddle`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє тримати рівновагу»",
+            "testedDimension": "Виберіть слово: «Вона вміє веслувати»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `balance`, без `to`.",
-              "uk": "Після `can` потрібне `balance`, без `to`."
+              "ru": "После `can` нужно `paddle`, без `to`.",
+              "uk": "Після `can` потрібне `paddle`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,11 +561,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i09:r1",
-          "text": "I can climb."
+          "text": "I can crawl."
         },
         {
           "responseId": "en:lesson-08:session-07:i09:r2",
-          "text": "I can balance."
+          "text": "I can paddle."
         },
         {
           "responseId": "en:lesson-08:session-07:i09:r3",
@@ -452,18 +581,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i09:audio",
-          "transcript": "I can climb."
+          "transcript": "I can crawl."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-07:i09:r1",
-            "targetText": "I can climb.",
+            "targetText": "I can crawl.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-07:i09:r2",
-            "targetText": "I can balance.",
+            "targetText": "I can paddle.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `climb`, а в этом варианте — `balance`.",
-              "uk": "У записі останнє слово — `climb`, а в цьому варіанті — `balance`."
+              "ru": "В записи последнее слово — `crawl`, а в этом варианте — `paddle`.",
+              "uk": "У записі останнє слово — `crawl`, а в цьому варіанті — `paddle`."
             }
           },
           {
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `climb`, а в этом варианте — `whisper`.",
-              "uk": "У записі останнє слово — `climb`, а в цьому варіанті — `whisper`."
+              "ru": "В записи последнее слово — `crawl`, а в этом варианте — `whisper`.",
+              "uk": "У записі останнє слово — `crawl`, а в цьому варіанті — `whisper`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +643,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-07:i10:p1",
-            "target": "stream",
+            "target": "paddle",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "грести веслом",
+              "uk": "веслувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i10:p2",
+            "target": "crawl",
+            "meaningByLocale": {
+              "ru": "ползать",
+              "uk": "повзати"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-07:i10:p3",
+            "target": "harness",
+            "meaningByLocale": {
+              "ru": "страховочная система",
+              "uk": "страхувальна система"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-07:i10:p4",
             "target": "climb",
             "meaningByLocale": {
               "ru": "лазать",
               "uk": "лазити"
             }
-          },
-          {
-            "pairId": "en:lesson-08:session-07:i10:p3",
-            "target": "playground",
-            "meaningByLocale": {
-              "ru": "детская площадка",
-              "uk": "дитячий майданчик"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-07:i10:p4",
-            "target": "schedule",
-            "meaningByLocale": {
-              "ru": "расписание",
-              "uk": "розклад"
-            }
           }
         ],
         "leftColumn": [
-          "stream",
-          "climb",
-          "playground",
-          "schedule"
+          "paddle",
+          "crawl",
+          "harness",
+          "climb"
         ],
         "rightColumn": [
-          "дивитися онлайн",
-          "лазити",
-          "дитячий майданчик",
-          "розклад"
+          "веслувати",
+          "повзати",
+          "страхувальна система",
+          "лазити"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i11:audio",
-          "transcript": "Whose calendar is this?"
+          "transcript": "Whose harness is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose calendar is this?",
+        "hiddenTargetPhrase": "Whose harness is this?",
         "orderedTokens": [
           "Whose",
-          "calendar",
+          "harness",
           "is",
           "this"
         ],
@@ -608,28 +737,70 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-07:word:kneel",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kneel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-07:word:kneel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kneel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-07:word:kneel:audio",
+          "transcript": "kneel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-07:word:kneel:r1",
+            "targetText": "kneel",
+            "meaningByLocale": {
+              "ru": "вставать на колени. I can kneel. — «Я могу встать на колени». Здесь can обозначает физическую возможность выполнить движение.",
+              "uk": "ставати на коліна. I can kneel. — «Я можу стати на коліна». Тут can позначає фізичну можливість виконати рух."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kneel",
+          "definitionByLocale": {
+            "ru": "вставать на колени. I can kneel. — «Я могу встать на колени». Здесь can обозначает физическую возможность выполнить движение.",
+            "uk": "ставати на коліна. I can kneel. — «Я можу стати на коліна». Тут can позначає фізичну можливість виконати рух."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-07:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли роздруківку особистого розкладу. Запитайте колег «Чий це розклад?»",
+      "prompt": "Для вправи на килимку потрібно опуститися на коліна. Скажіть: «Я можу стати на коліна».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли роздруківку особистого розкладу. Запитайте колег «Чий це розклад?»",
+      "accessibilityLabel": "Для вправи на килимку потрібно опуститися на коліна. Скажіть: «Я можу стати на коліна».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose schedule is this?",
+        "targetPhrase": "I can kneel.",
         "localizedMeaning": {
-          "ru": "Вы нашли распечатку личного расписания. Спросите коллег «Чьё это расписание?»",
-          "uk": "Ви знайшли роздруківку особистого розкладу. Запитайте колег «Чий це розклад?»"
+          "ru": "Для упражнения на коврике нужно опуститься на колени. Скажите: «Я могу встать на колени».",
+          "uk": "Для вправи на килимку потрібно опуститися на коліна. Скажіть: «Я можу стати на коліна»."
         },
         "orderedTokens": [
-          "Whose",
-          "schedule",
-          "is",
-          "this"
+          "I",
+          "can",
+          "kneel"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -642,25 +813,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, як ви дивитеся фільми. Скажіть «Я часто дивлюся фільми онлайн»",
+      "prompt": "Інструктор запитує про сестру перед тією самою вправою. Скажіть: «Вона може стати на коліна».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-07:i13:audio"
       ],
-      "accessibilityLabel": "Друг запитує, як ви дивитеся фільми. Скажіть «Я часто дивлюся фільми онлайн»",
+      "accessibilityLabel": "Інструктор запитує про сестру перед тією самою вправою. Скажіть: «Вона може стати на коліна».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i13:audio",
-          "transcript": "I often stream films."
+          "transcript": "She can kneel."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often stream films.",
+        "targetPhrase": "She can kneel.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -675,11 +846,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє лазити»",
+      "prompt": "Виберіть форму: «Вона може стати на коліна»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i14:r1",
@@ -696,14 +867,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє лазити»",
+      "accessibilityLabel": "Виберіть форму: «Вона може стати на коліна»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет лазать»",
-          "uk": "Скажіть «Вона вміє лазити»"
+          "ru": "Выберите форму: «Она может встать на колени»",
+          "uk": "Виберіть форму: «Вона може стати на коліна»"
         },
-        "gappedTargetPhrase": "She ___ climb.",
+        "gappedTargetPhrase": "She ___ kneel.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-07:i14:r1",
@@ -718,24 +889,24 @@
             "text": "is can"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє лазити»",
+        "testedDimension": "Виберіть форму: «Вона може стати на коліна»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-07:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє лазити»",
+            "testedDimension": "Виберіть форму: «Вона може стати на коліна»",
             "feedbackByLocale": {
-              "ru": "`Can` не меняется после `she`: окончание `s` не нужно.",
-              "uk": "`Can` не змінюється після `she`: закінчення `s` не потрібне."
+              "ru": "После she нужно can, без s.",
+              "uk": "Після she потрібне can, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-07:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє лазити»",
+            "testedDimension": "Виберіть форму: «Вона може стати на коліна»",
             "feedbackByLocale": {
-              "ru": "Достаточно `she can`; `is` не нужно.",
-              "uk": "Достатньо `she can`; `is` не потрібне."
+              "ru": "Перед can не нужно is.",
+              "uk": "Перед can не потрібне is."
             }
           }
         ]
@@ -744,7 +915,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -752,15 +923,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-07:i15:r1",
-          "text": "Where is the playground?"
+          "text": "She can kneel."
         },
         {
           "responseId": "en:lesson-08:session-07:i15:r2",
-          "text": "Where is the garden?"
+          "text": "She can paddle."
         },
         {
           "responseId": "en:lesson-08:session-07:i15:r3",
-          "text": "Where is the library?"
+          "text": "He can kneel."
         }
       ],
       "mediaIds": [],
@@ -772,23 +943,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i15:audio",
-          "transcript": "Where is the playground?"
+          "transcript": "She can kneel."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-07:i15:r1",
-            "targetText": "Where is the playground?",
+            "targetText": "She can kneel.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-07:i15:r2",
-            "targetText": "Where is the garden?",
+            "targetText": "She can paddle.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-07:i15:r3",
-            "targetText": "Where is the library?",
+            "targetText": "He can kneel.",
             "meaningByLocale": null
           }
         ],
@@ -799,8 +970,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `playground`, а в этом варианте — `garden`.",
-              "uk": "У записі останнє слово — `playground`, а в цьому варіанті — `garden`."
+              "ru": "В записи kneel — «встать на колени», а не paddle.",
+              "uk": "У записі kneel — «стати на коліна», а не paddle."
             }
           },
           {
@@ -808,8 +979,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `playground`, а в этом варианте — `library`.",
-              "uk": "У записі останнє слово — `playground`, а в цьому варіанті — `library`."
+              "ru": "В записи She — «она», а не He.",
+              "uk": "У записі She — «вона», а не He."
             }
           }
         ],
@@ -820,7 +991,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -834,48 +1005,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-07:i16:p1",
-            "target": "climb",
+            "target": "crawl",
             "meaningByLocale": {
-              "ru": "лазать",
-              "uk": "лазити"
+              "ru": "ползать",
+              "uk": "повзати"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i16:p2",
-            "target": "calendar",
+            "target": "paddle",
             "meaningByLocale": {
-              "ru": "календарь",
-              "uk": "календар"
+              "ru": "грести веслом",
+              "uk": "веслувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i16:p3",
-            "target": "schedule",
+            "target": "harness",
             "meaningByLocale": {
-              "ru": "расписание",
-              "uk": "розклад"
+              "ru": "страховочная система",
+              "uk": "страхувальна система"
             }
           },
           {
             "pairId": "en:lesson-08:session-07:i16:p4",
-            "target": "stream",
+            "target": "kneel",
             "meaningByLocale": {
-              "ru": "смотреть онлайн",
-              "uk": "дивитися онлайн"
+              "ru": "вставать на колени",
+              "uk": "ставати на коліна"
             }
           }
         ],
         "leftColumn": [
-          "climb",
-          "calendar",
-          "schedule",
-          "stream"
+          "crawl",
+          "paddle",
+          "harness",
+          "kneel"
         ],
         "rightColumn": [
-          "лазити",
-          "календар",
-          "розклад",
-          "дивитися онлайн"
+          "повзати",
+          "веслувати",
+          "страхувальна система",
+          "ставати на коліна"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -893,25 +1064,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-07:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На скеледромі друг запитує про вміння Тома. Скажіть «Том уміє лазити»",
+      "prompt": "Перед низьким тунелем друг запитує про вміння Тома. Скажіть «Том уміє повзати»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-07:i17:audio"
       ],
-      "accessibilityLabel": "На скеледромі друг запитує про вміння Тома. Скажіть «Том уміє лазити»",
+      "accessibilityLabel": "Перед низьким тунелем друг запитує про вміння Тома. Скажіть «Том уміє повзати»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-07:i17:audio",
-          "transcript": "Tom can climb."
+          "transcript": "Tom can crawl."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can climb.",
+        "targetPhrase": "Tom can crawl.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -933,11 +1104,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1e91b027d143d63c0f45dcee5bc5bfb0f6d234caa47cf16e3c41e0bf438f7cc4"
+  "learnerFingerprint": "6b2d32322e10270d76742a0541b13f7c1f03720063193012b3da329e9dbf503b"
 }

@@ -234,7 +234,10 @@ function IntroBlockCard({
   const cardRadius = 20;
   // Android keeps a bounded number of live blur roots while later cards retain
   // the same translucent tint, edge, and sheen layers below.
-  const enableLiveBlur = Platform.OS !== 'android' || index < 3;
+  // зачем (владелец 18.10 08:36, «вот это свечение текста убери»): на Android dimezis-BlurView без blurTarget снимает
+  // весь экран вместе с текстом этой же карточки и кладёт его размытую копию под текст — у всего текста был ореол.
+  // На Android живой блюр у карточки интро выключен; тон, кромка и блик ниже остаются — вид карточки тот же.
+  const enableLiveBlur = Platform.OS !== 'android';
 
   return (
     <Animated.View

@@ -67,5 +67,5 @@ test('интро урока: размеры макета C1–C3 и сохран
   assert.ok(intro.includes('setRevealedCount((n) => Math.min(n + 1, totalBlocks))'), 'тап-раскрытие не менялось');
   assert.ok(intro.includes('onComplete();'), 'старт урока не менялся');
   assert.ok(intro.includes('testID="lesson-intro-start"') && intro.includes('testID="lesson-intro-back"'), 'testID кнопок сохранены');
-  assert.ok(intro.includes('const enableLiveBlur = Platform.OS !== \'android\' || index < 3;'), 'ограничение размытия на Android сохранено');
+  assert.ok(intro.includes('const enableLiveBlur = Platform.OS !== \'android\';'), 'на Android живого размытия у карточек интро нет — dimezis давал ореол у текста (владелец 18.10)');
 });

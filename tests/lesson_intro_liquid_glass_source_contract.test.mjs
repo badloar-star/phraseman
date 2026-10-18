@@ -28,7 +28,7 @@ test('intro derives contrast and tangible glass layers from the rendered Liquid 
   assert.ok(intro.includes('<BlurView'), 'each of the bounded intro cards gets a real blur layer');
   assert.ok(intro.includes("Platform.OS === 'android' ? 'dimezisBlurView' : 'none'"), 'Android uses the approved experimental blur implementation');
   assert.ok(intro.includes("intensity={Platform.OS === 'android' ? 8 : 12}"), 'blur intensity stays low for the three animated cards');
-  assert.ok(intro.includes("const enableLiveBlur = Platform.OS !== 'android' || index < 3;"), 'Android live blur is deterministically bounded to three intro cards');
+  assert.ok(intro.includes("const enableLiveBlur = Platform.OS !== 'android';"), 'Android: no live blur on intro cards (dimezis captured the card text and drew a glow under it, owner 18.10)');
   assert.ok(intro.includes('{enableLiveBlur ? (\n          <BlurView'), 'the bound gates the real BlurView rather than only documenting it');
   assert.ok(intro.includes('pointerEvents="none"'), 'decorative glass layers do not intercept reveal or CTA taps');
 });

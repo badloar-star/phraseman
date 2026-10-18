@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-29:word:piano",
+    "correctText": "piano",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-29:i01",
-    "correctText": "Anna is online.",
+    "correctText": "My aunt's piano is in the hall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:word:drum",
+    "correctText": "drum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i02",
-    "correctText": "skateboard",
+    "correctText": "My cousin's drum is on the sofa.",
     "correctResponseId": "en:lesson-05:session-29:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-29:word:flute",
+    "correctText": "flute",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-29:i03",
-    "correctText": "skateboard",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-29:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-29:i04",
-    "correctText": "en:lesson-05:session-29:i04:p1=skateboard\nen:lesson-05:session-29:i04:p2=local\nen:lesson-05:session-29:i04:p3=foreign\nen:lesson-05:session-29:i04:p4=online",
+    "correctText": "en:lesson-05:session-29:i04:p1=piano\nen:lesson-05:session-29:i04:p2=drum\nen:lesson-05:session-29:i04:p3=flute\nen:lesson-05:session-29:i04:p4=trumpet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-29:word:trumpet",
+    "correctText": "trumpet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i05",
-    "correctText": "This is Tom's skateboard.",
+    "correctText": "My uncle's trumpet is loud.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i06",
-    "correctText": "Anna's necklace is on the table.",
+    "correctText": "My cousin's here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i07",
-    "correctText": "The shop is local.",
+    "correctText": "My aunt's in the kitchen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i08",
-    "correctText": "Anna's",
+    "correctText": "drum",
     "correctResponseId": "en:lesson-05:session-29:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-29:i09",
-    "correctText": "The car is foreign.",
+    "correctText": "My aunt's home.",
     "correctResponseId": "en:lesson-05:session-29:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-29:i10",
-    "correctText": "en:lesson-05:session-29:i10:p1=skateboard\nen:lesson-05:session-29:i10:p2=tables\nen:lesson-05:session-29:i10:p3=bus stop\nen:lesson-05:session-29:i10:p4=necklace",
+    "correctText": "en:lesson-05:session-29:i10:p1=piano\nen:lesson-05:session-29:i10:p2=drum\nen:lesson-05:session-29:i10:p3=sofa\nen:lesson-05:session-29:i10:p4=hall",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i11",
-    "correctText": "Tom is at the bus stop.",
+    "correctText": "My friend's flute is on the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i12",
-    "correctText": "The tables are outside.",
+    "correctText": "My aunt has a piano.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i13",
-    "correctText": "Where is my skateboard?",
+    "correctText": "This is my cousin's drum.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i14",
-    "correctText": "hers",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-29:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-29:i15",
-    "correctText": "Your skateboard is here.",
+    "correctText": "My friend's flute is here.",
     "correctResponseId": "en:lesson-05:session-29:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-29:i16",
-    "correctText": "en:lesson-05:session-29:i16:p1=skateboard\nen:lesson-05:session-29:i16:p2=tables\nen:lesson-05:session-29:i16:p3=bus stop\nen:lesson-05:session-29:i16:p4=necklace",
+    "correctText": "en:lesson-05:session-29:i16:p1=piano\nen:lesson-05:session-29:i16:p2=drum\nen:lesson-05:session-29:i16:p3=flute\nen:lesson-05:session-29:i16:p4=trumpet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-29:i17",
-    "correctText": "This is Tom's skateboard.",
+    "correctText": "My cousin's here.",
     "correctResponseId": null
   }
 ]

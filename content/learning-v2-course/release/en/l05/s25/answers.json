@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-25:word:thermos",
+    "correctText": "thermos",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-25:i01",
-    "correctText": "I am surprised.",
+    "correctText": "This is my brother's thermos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-25:word:napkin",
+    "correctText": "napkin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i02",
-    "correctText": "lunchbox",
+    "correctText": "The napkin is on my aunt's plate.",
     "correctResponseId": "en:lesson-05:session-25:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-25:word:frisbee",
+    "correctText": "frisbee",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-25:i03",
-    "correctText": "lunchbox",
+    "correctText": "sister's",
     "correctResponseId": "en:lesson-05:session-25:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-25:i04",
-    "correctText": "en:lesson-05:session-25:i04:p1=lunchbox\nen:lesson-05:session-25:i04:p2=proud\nen:lesson-05:session-25:i04:p3=ashamed\nen:lesson-05:session-25:i04:p4=surprised",
+    "correctText": "en:lesson-05:session-25:i04:p1=thermos\nen:lesson-05:session-25:i04:p2=napkin\nen:lesson-05:session-25:i04:p3=frisbee\nen:lesson-05:session-25:i04:p4=sunscreen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-25:word:sunscreen",
+    "correctText": "sunscreen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i05",
-    "correctText": "This is Anna's lunchbox.",
+    "correctText": "My sister's sunscreen is in the bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i06",
-    "correctText": "Tom's jacket is here.",
+    "correctText": "Is this your grandmother's backpack?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i07",
-    "correctText": "I am proud.",
+    "correctText": "This is my aunt's basket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i08",
-    "correctText": "Tom's",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-25:i09",
-    "correctText": "I am ashamed.",
+    "correctText": "Is this your sister's camera?",
     "correctResponseId": "en:lesson-05:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-25:i10",
-    "correctText": "en:lesson-05:session-25:i10:p1=lunchbox\nen:lesson-05:session-25:i10:p2=dogs\nen:lesson-05:session-25:i10:p3=sink\nen:lesson-05:session-25:i10:p4=jacket",
+    "correctText": "en:lesson-05:session-25:i10:p1=thermos\nen:lesson-05:session-25:i10:p2=basket\nen:lesson-05:session-25:i10:p3=sunscreen\nen:lesson-05:session-25:i10:p4=frisbee",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i11",
-    "correctText": "Anna's lunchbox is next to the sink.",
+    "correctText": "My uncle's umbrella is behind the tree.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i12",
-    "correctText": "My friend's jacket is on the chair.",
+    "correctText": "My sister has your thermos.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i13",
-    "correctText": "The dogs are outside.",
+    "correctText": "I have my uncle's napkin.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i14",
-    "correctText": "dog's",
+    "correctText": "'s",
     "correctResponseId": "en:lesson-05:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-25:i15",
-    "correctText": "Her lunchbox is on the table.",
+    "correctText": "My friend's sunscreen is here.",
     "correctResponseId": "en:lesson-05:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-25:i16",
-    "correctText": "en:lesson-05:session-25:i16:p1=lunchbox\nen:lesson-05:session-25:i16:p2=dogs\nen:lesson-05:session-25:i16:p3=sink\nen:lesson-05:session-25:i16:p4=jacket",
+    "correctText": "en:lesson-05:session-25:i16:p1=thermos\nen:lesson-05:session-25:i16:p2=napkin\nen:lesson-05:session-25:i16:p3=frisbee\nen:lesson-05:session-25:i16:p4=sunscreen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-25:i17",
-    "correctText": "This is Anna's lunchbox.",
+    "correctText": "This is your brother's frisbee.",
     "correctResponseId": null
   }
 ]

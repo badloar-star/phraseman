@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-23",
   "learningOutcomeByLocale": {
-    "ru": "уточнить владельца вещей и описать людей",
-    "uk": "уточнити власника речей і описати людей"
+    "ru": "сказать о родственниках, чьё что и что у кого есть: my grandfather’s, My nephew has, The twins have",
+    "uk": "сказати про родичів, чиє що і що в кого є: my grandfather’s, My nephew has, The twins have"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто берёт камеру",
-        "uk": "Хто бере камеру"
+        "ru": "Старый стул у окна",
+        "uk": "Старий стілець біля вікна"
       },
       "bodyByLocale": {
-        "ru": "`camera` — «камера, фотоаппарат». Здесь это устройство для съёмки. `The camera is mine` — «Камера моя». `Your camera is on the table` — «Твоя камера на столе». `my camera` — с названием вещи; `mine` — без повторения названия. Камера готова снимать поездку, но пока снимается только со стола.",
-        "uk": "`camera` — «камера, фотоапарат». Тут це пристрій для знімання. `The camera is mine` — «Камера моя». `Your camera is on the table` — «Твоя камера на столі». `my camera` — з назвою речі; `mine` — без повторення назви. Камера готова знімати поїздку, але поки її лише знімають зі столу."
+        "ru": "Подруга зашла к вам и хочет сесть на старый деревянный стул у окна, но сначала спрашивает: Whose chair is this? — «Чей это стул?» Стул принадлежит вашему дедушке. grandfather — «дедушка». Отвечаем с ’s: It is my grandfather’s — «Он моего дедушки».",
+        "uk": "Подруга зайшла до вас і хоче сісти на старий дерев’яний стілець біля вікна, але спершу питає: Whose chair is this? — «Чий це стілець?» Стілець належить вашому дідусеві. grandfather — «дідусь». Відповідаємо з ’s: It is my grandfather’s — «Він мого дідуся»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Камера моя».",
-          "uk": "Скажіть «Камера моя»."
+          "ru": "Подруга показывает на стул и спрашивает: «Whose chair is this?» Стул принадлежит вашему дедушке. Ответьте ей.",
+          "uk": "Подруга показує на стілець і питає: «Whose chair is this?» Стілець належить вашому дідусеві. Відповідьте їй."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-23:intro1:r1",
-              "text": "The camera is mine."
+              "text": "It is my grandfather’s."
             },
             {
               "responseId": "en:lesson-05:session-23:intro1:r2",
-              "text": "The camera is my."
+              "text": "It is my grandfather."
             },
             {
               "responseId": "en:lesson-05:session-23:intro1:r3",
-              "text": "The camera is yours."
+              "text": "It is my grandfathers."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-23:intro1:r1",
-              "text": "The camera is mine."
+              "text": "It is my grandfather’s."
             },
             {
               "responseId": "en:lesson-05:session-23:intro1:r2",
-              "text": "The camera is my."
+              "text": "It is my grandfather."
             },
             {
               "responseId": "en:lesson-05:session-23:intro1:r3",
-              "text": "The camera is yours."
+              "text": "It is my grandfathers."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Камера моя».",
-          "uk": "Скажіть «Камера моя»."
+          "ru": "Подруга показывает на стул и спрашивает: «Whose chair is this?» Стул принадлежит вашему дедушке. Ответьте ей.",
+          "uk": "Подруга показує на стілець і питає: «Whose chair is this?» Стілець належить вашому дідусеві. Відповідьте їй."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Люди и различия",
-        "uk": "Люди й відмінності"
+        "ru": "Мальчик со щенком",
+        "uk": "Хлопчик зі щеням"
       },
       "bodyByLocale": {
-        "ru": "`married` — «состоит в браке»: `They are married` — «Они женаты / состоят в браке». `single` в разговоре об отношениях — «без партнёра»: `I am single` — «Я не в отношениях». В анкетах `single` может означать «не состоит в браке». `different` — «разные»: `The tickets are different` — «Билеты разные». Само слово не объясняет, чем именно они отличаются.",
-        "uk": "`married` — «перебуває у шлюбі»: `They are married` — «Вони одружені / перебувають у шлюбі». `single` у розмові про стосунки — «без партнера»: `I am single` — «Я не у стосунках». В анкетах `single` може означати «не перебуває у шлюбі». `different` — «різні»: `The tickets are different` — «Квитки різні». Саме слово не пояснює, чим вони відрізняються."
+        "ru": "Подруга листает фотографии и надолго останавливается на снимке, где мальчик держит маленького щенка. Это сын вашего старшего брата. nephew — «племянник». О том, что у него есть щенок, говорим с has: My nephew has a puppy — «У моего племянника есть щенок».",
+        "uk": "Подруга гортає фотографії й надовго зупиняється на знімку, де хлопчик тримає маленьке цуценя. Це син вашого старшого брата. nephew — «племінник». Про те, що в нього є цуценя, кажемо з has: My nephew has a puppy — «У мого племінника є цуценя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Билеты отличаются друг от друга. Скажите «Билеты разные».",
-          "uk": "Квитки відрізняються один від одного. Скажіть «Квитки різні»."
+          "ru": "Подруга показывает на мальчика со щенком на фотографии. Это сын вашего брата. Скажите ей: «У моего племянника есть щенок».",
+          "uk": "Подруга показує на хлопчика зі щеням на фотографії. Це син вашого брата. Скажіть їй: «У мого племінника є цуценя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-23:intro2:r1",
-              "text": "The tickets are different."
+              "text": "My nephew has a puppy."
             },
             {
               "responseId": "en:lesson-05:session-23:intro2:r2",
-              "text": "The tickets is different."
+              "text": "My nephew have a puppy."
             },
             {
               "responseId": "en:lesson-05:session-23:intro2:r3",
-              "text": "The tickets are married."
+              "text": "My nephew is a puppy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-23:intro2:r1",
-              "text": "The tickets are different."
+              "text": "My nephew has a puppy."
             },
             {
               "responseId": "en:lesson-05:session-23:intro2:r2",
-              "text": "The tickets is different."
+              "text": "My nephew have a puppy."
             },
             {
               "responseId": "en:lesson-05:session-23:intro2:r3",
-              "text": "The tickets are married."
+              "text": "My nephew is a puppy."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Билеты отличаются друг от друга. Скажите «Билеты разные».",
-          "uk": "Квитки відрізняються один від одного. Скажіть «Квитки різні»."
+          "ru": "Подруга показывает на мальчика со щенком на фотографии. Это сын вашего брата. Скажите ей: «У моего племянника есть щенок».",
+          "uk": "Подруга показує на хлопчика зі щеням на фотографії. Це син вашого брата. Скажіть їй: «У мого племінника є цуценя»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Билеты, сыр и шлем",
-        "uk": "Квитки, сир і шолом"
+        "ru": "Близнецы с собакой",
+        "uk": "Близнюки з собакою"
       },
       "bodyByLocale": {
-        "ru": "`tickets` — «билеты», `cheese` — «сыр», `helmet` — «шлем». `The tickets are ours` — «Билеты наши». `The helmet is hers` — «Шлем её». `There is no cheese` — «Сыра нет»: здесь `cheese` не считаем поштучно, поэтому `is`. `Where is my camera?` — «Где моя камера?»",
-        "uk": "`tickets` — «квитки», `cheese` — «сир», `helmet` — «шолом». `The tickets are ours` — «Квитки наші». `The helmet is hers` — «Шолом її». `There is no cheese` — «Сиру немає»: тут `cheese` не рахуємо поштучно, тому `is`. `Where is my camera?` — «Де моя камера?»"
+        "ru": "На другой фотографии двое одинаковых мальчиков в красных шапках стоят рядом с большой собакой. twins — «близнецы». Их двое, как they, поэтому говорим have, а не has: The twins have a dog — «У близнецов есть собака». Подруга удивляется, как они похожи.",
+        "uk": "На іншій фотографії двоє однакових хлопчиків у червоних шапках стоять поруч із великою собакою. twins — «близнюки». Їх двоє, як they, тому кажемо have, а не has: The twins have a dog — «У близнюків є собака». Подруга дивується, як вони схожі."
       },
       "question": {
         "interactionId": "en:lesson-05:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Шлем принадлежит подруге. Скажите «Шлем её».",
-          "uk": "Шолом належить подрузі. Скажіть «Шолом її»."
+          "ru": "Подруга показывает на двух одинаковых мальчиков с собакой. Скажите ей: «У близнецов есть собака».",
+          "uk": "Подруга показує на двох однакових хлопчиків із собакою. Скажіть їй: «У близнюків є собака»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-23:intro3:r1",
-              "text": "The helmet is hers."
+              "text": "The twins have a dog."
             },
             {
               "responseId": "en:lesson-05:session-23:intro3:r2",
-              "text": "The helmet is her."
+              "text": "The twins has a dog."
             },
             {
               "responseId": "en:lesson-05:session-23:intro3:r3",
-              "text": "The helmet is his."
+              "text": "The twin have a dog."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-23:intro3:r1",
-              "text": "The helmet is hers."
+              "text": "The twins have a dog."
             },
             {
               "responseId": "en:lesson-05:session-23:intro3:r2",
-              "text": "The helmet is her."
+              "text": "The twins has a dog."
             },
             {
               "responseId": "en:lesson-05:session-23:intro3:r3",
-              "text": "The helmet is his."
+              "text": "The twin have a dog."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Шлем принадлежит подруге. Скажите «Шлем её».",
-          "uk": "Шолом належить подрузі. Скажіть «Шолом її»."
+          "ru": "Подруга показывает на двух одинаковых мальчиков с собакой. Скажите ей: «У близнецов есть собака».",
+          "uk": "Подруга показує на двох однакових хлопчиків із собакою. Скажіть їй: «У близнюків є собака»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "728d5d0b293a7376cb3b4365324481a503de70c4df5cbceae5a375c6c31cfcf3"
+  "introFingerprint": "3749f1f94146907213ac77a977e6876b5b22b8626670579e1239d6961674f5cf"
 }

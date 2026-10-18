@@ -4,39 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-28:i01",
+      "interactionId": "en:lesson-05:session-28:word:screwdriver",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — screwdriver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:word:screwdriver:audio"
+      ],
+      "accessibilityLabel": "Картка слова — screwdriver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:word:screwdriver:audio",
+          "transcript": "screwdriver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:word:screwdriver:r1",
+            "targetText": "screwdriver",
+            "meaningByLocale": {
+              "ru": "отвёртка. My aunt's screwdriver is small. — «Отвёртка моей тёти маленькая». Об инструменте, которым закручивают винты.",
+              "uk": "викрутка. My aunt's screwdriver is small. — «Викрутка моєї тітки маленька». Про інструмент, яким закручують гвинти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "screwdriver",
+          "definitionByLocale": {
+            "ru": "отвёртка. My aunt's screwdriver is small. — «Отвёртка моей тёти маленькая». Об инструменте, которым закручивают винты.",
+            "uk": "викрутка. My aunt's screwdriver is small. — «Викрутка моєї тітки маленька». Про інструмент, яким закручують гвинти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+      "prompt": "Дядько питає, чия це викрутка. Вона вашої тітки. Скажіть: «Це викрутка моєї тітки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+      "accessibilityLabel": "Дядько питає, чия це викрутка. Вона вашої тітки. Скажіть: «Це викрутка моєї тітки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "That is correct.",
+        "targetPhrase": "This is my aunt's screwdriver.",
         "localizedMeaning": {
-          "ru": "Друг назвал правильный номер. Подтвердите «Это верно» без сокращения",
-          "uk": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення"
+          "ru": "Дядя спрашивает, чья это отвёртка. Она вашей тёти. Скажите: «Это отвёртка моей тёти»",
+          "uk": "Дядько питає, чия це викрутка. Вона вашої тітки. Скажіть: «Це викрутка моєї тітки»"
         },
         "orderedTokens": [
-          "That",
+          "This",
           "is",
-          "correct"
+          "my",
+          "aunt's",
+          "screwdriver"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aunt"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Друг назвав правильний номер. Підтвердьте «Це правильно» без скорочення",
+            "testedDimension": "Дядько питає, чия це викрутка. Вона вашої тітки. Скажіть: «Це викрутка моєї тітки»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `That is correct.`",
-              "uk": "тут потрібно `is` — `That is correct.`"
+              "ru": "здесь нужно `aunt's` — `This is my aunt's screwdriver.`",
+              "uk": "тут потрібно `aunt's` — `This is my aunt's screwdriver.`"
             }
           }
         ],
@@ -48,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-28:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-28:word:saw",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — saw",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:word:saw:audio"
+      ],
+      "accessibilityLabel": "Картка слова — saw",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:word:saw:audio",
+          "transcript": "saw"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:word:saw:r1",
+            "targetText": "saw",
+            "meaningByLocale": {
+              "ru": "пила. My uncle's saw is sharp. — «Пила моего дяди острая». Об инструменте, которым пилят дерево.",
+              "uk": "пилка. My uncle's saw is sharp. — «Пилка мого дядька гостра». Про інструмент, яким пиляють дерево."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "saw",
+          "definitionByLocale": {
+            "ru": "пила. My uncle's saw is sharp. — «Пила моего дяди острая». Об инструменте, которым пилят дерево.",
+            "uk": "пилка. My uncle's saw is sharp. — «Пилка мого дядька гостра». Про інструмент, яким пиляють дерево."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-28:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте дядька",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i02:r1",
-          "text": "keycard"
+          "text": "My uncle's saw is in the shed."
         },
         {
           "responseId": "en:lesson-05:session-28:i02:r2",
-          "text": "key"
+          "text": "My uncle's saw is in the garden."
         },
         {
           "responseId": "en:lesson-05:session-28:i02:r3",
-          "text": "passport"
+          "text": "My uncle has a saw in the shed."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте дядька",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i02:audio",
-          "transcript": "keycard"
+          "transcript": "My uncle's saw is in the shed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-28:i02:r1",
-            "targetText": "keycard",
+            "targetText": "My uncle's saw is in the shed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i02:r2",
-            "targetText": "key",
+            "targetText": "My uncle's saw is in the garden.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i02:r3",
-            "targetText": "passport",
+            "targetText": "My uncle has a saw in the shed.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-28:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `keycard`, а в этом варианте — `key`.",
-              "uk": "У записі перше слово — `keycard`, а в цьому варіанті — `key`."
+              "ru": "В записи последнее слово — `shed`, сарай, а в этом варианте — `garden`, сад.",
+              "uk": "У записі останнє слово — `shed`, сарай, а в цьому варіанті — `garden`, сад."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `keycard`, а в этом варианте — `passport`.",
-              "uk": "У записі перше слово — `keycard`, а в цьому варіанті — `passport`."
+              "ru": "В записи «пила дяди» — `uncle's saw`, а в этом варианте `has a saw` — «у дяди есть пила».",
+              "uk": "У записі «пилка дядька» — `uncle's saw`, а в цьому варіанті `has a saw` — «у дядька є пилка»."
             }
           }
         ],
@@ -124,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-28:word:spade",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spade",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:word:spade:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spade",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:word:spade:audio",
+          "transcript": "spade"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:word:spade:r1",
+            "targetText": "spade",
+            "meaningByLocale": {
+              "ru": "лопата. My grandmother's spade is red. — «Лопата моей бабушки красная». Об инструменте, которым копают землю.",
+              "uk": "лопата. My grandmother's spade is red. — «Лопата моєї бабусі червона». Про інструмент, яким копають землю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spade",
+          "definitionByLocale": {
+            "ru": "лопата. My grandmother's spade is red. — «Лопата моей бабушки красная». Об инструменте, которым копают землю.",
+            "uk": "лопата. My grandmother's spade is red. — «Лопата моєї бабусі червона». Про інструмент, яким копають землю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-28:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть ключ-картку для дверей",
+      "prompt": "Лопата належить вашій бабусі. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i03:r1",
-          "text": "keycard"
+          "text": "grandmother's"
         },
         {
           "responseId": "en:lesson-05:session-28:i03:r2",
-          "text": "badge"
+          "text": "grandmother"
         },
         {
           "responseId": "en:lesson-05:session-28:i03:r3",
-          "text": "scarf"
+          "text": "grandmothers"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть ключ-картку для дверей",
+      "accessibilityLabel": "Лопата належить вашій бабусі. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите ключ-карту для двери",
-          "uk": "Назвіть ключ-картку для дверей"
+          "ru": "Лопата принадлежит вашей бабушке. Выберите слово",
+          "uk": "Лопата належить вашій бабусі. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "This is my ___ spade.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-28:i03:r1",
-            "text": "keycard"
+            "text": "grandmother's"
           },
           {
             "responseId": "en:lesson-05:session-28:i03:r2",
-            "text": "badge"
+            "text": "grandmother"
           },
           {
             "responseId": "en:lesson-05:session-28:i03:r3",
-            "text": "scarf"
+            "text": "grandmothers"
           }
         ],
-        "testedDimension": "Назвіть ключ-картку для дверей",
+        "testedDimension": "Лопата належить вашій бабусі. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть ключ-картку для дверей",
+            "testedDimension": "Лопата належить вашій бабусі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`badge` — значок; ключ-карта — `keycard`.",
-              "uk": "`badge` — значок; ключ-картка — `keycard`."
+              "ru": "После слова grandmother нужно `'s`: `grandmother's spade` — «лопата бабушки».",
+              "uk": "Після слова grandmother потрібно `'s`: `grandmother's spade` — «лопата бабусі»."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть ключ-картку для дверей",
+            "testedDimension": "Лопата належить вашій бабусі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`scarf` — шарф; ключ-карта — `keycard`.",
-              "uk": "`scarf` — шарф; ключ-картка — `keycard`."
+              "ru": "`grandmothers` — это «бабушки», несколько человек; чтобы назвать хозяйку, нужно `grandmother's`.",
+              "uk": "`grandmothers` — це «бабусі», кілька людей; щоб назвати господиню, потрібно `grandmother's`."
             }
           }
         ]
@@ -194,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-28:i04:p1",
-            "target": "keycard",
+            "target": "screwdriver",
             "meaningByLocale": {
-              "ru": "ключ-карта",
-              "uk": "ключ-картка"
+              "ru": "отвёртка",
+              "uk": "викрутка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i04:p2",
-            "target": "correct",
+            "target": "toolbox",
             "meaningByLocale": {
-              "ru": "правильный",
-              "uk": "правильний"
+              "ru": "ящик для инструментов",
+              "uk": "скриня для інструментів"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i04:p3",
-            "target": "certain",
+            "target": "saw",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "упевнений"
+              "ru": "пила",
+              "uk": "пилка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i04:p4",
-            "target": "serious",
+            "target": "spade",
             "meaningByLocale": {
-              "ru": "серьёзный",
-              "uk": "серйозний"
+              "ru": "лопата",
+              "uk": "лопата"
             }
           }
         ],
         "leftColumn": [
-          "keycard",
-          "correct",
-          "certain",
-          "serious"
+          "screwdriver",
+          "toolbox",
+          "saw",
+          "spade"
         ],
         "rightColumn": [
-          "ключ-картка",
-          "правильний",
-          "упевнений",
-          "серйозний"
+          "викрутка",
+          "скриня для інструментів",
+          "пилка",
+          "лопата"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,31 +397,77 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-28:word:toolbox",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toolbox",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-28:word:toolbox:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toolbox",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-28:word:toolbox:audio",
+          "transcript": "toolbox"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-28:word:toolbox:r1",
+            "targetText": "toolbox",
+            "meaningByLocale": {
+              "ru": "ящик для инструментов. My cousin's toolbox is heavy. — «Ящик с инструментами моего двоюродного брата тяжёлый». О ящике, в котором хранят инструменты.",
+              "uk": "скриня для інструментів. My cousin's toolbox is heavy. — «Скриня з інструментами мого двоюрідного брата важка». Про скриню, у якій зберігають інструменти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toolbox",
+          "definitionByLocale": {
+            "ru": "ящик для инструментов. My cousin's toolbox is heavy. — «Ящик с инструментами моего двоюродного брата тяжёлый». О ящике, в котором хранят инструменты.",
+            "uk": "скриня для інструментів. My cousin's toolbox is heavy. — «Скриня з інструментами мого двоюрідного брата важка». Про скриню, у якій зберігають інструменти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-28:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте дядька й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте дядька й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i05:audio",
-          "transcript": "This is Anna's keycard."
+          "transcript": "My uncle's toolbox is under the bench."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is Anna's keycard.",
+        "hiddenTargetPhrase": "My uncle's toolbox is under the bench.",
         "orderedTokens": [
-          "This",
+          "My",
+          "uncle's",
+          "toolbox",
           "is",
-          "Anna's",
-          "keycard"
+          "under",
+          "the",
+          "bench"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -299,10 +476,10 @@
           {
             "responseId": "en:lesson-05:session-28:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте дядька й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is Anna's keycard.`",
-              "uk": "тут потрібно `is` — `This is Anna's keycard.`"
+              "ru": "здесь нужно `is` — `My uncle's toolbox is under the bench.`",
+              "uk": "тут потрібно `is` — `My uncle's toolbox is under the bench.`"
             }
           }
         ],
@@ -315,39 +492,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+      "prompt": "Ви знайшли в сараї пилку й питаєте двоюрідного брата, чи не його дядька вона. Задайте питання: «Це пилка твого дядька?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+      "accessibilityLabel": "Ви знайшли в сараї пилку й питаєте двоюрідного брата, чи не його дядька вона. Задайте питання: «Це пилка твого дядька?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom's keycard is here.",
+        "targetPhrase": "Is this your uncle's saw?",
         "localizedMeaning": {
-          "ru": "Вы нашли ключ-карту Тома. Скажите «Ключ-карта Тома здесь»",
-          "uk": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»"
+          "ru": "Вы нашли в сарае пилу и спрашиваете двоюродного брата, не его ли дяди она. Задайте вопрос: «Это пила твоего дяди?»",
+          "uk": "Ви знайшли в сараї пилку й питаєте двоюрідного брата, чи не його дядька вона. Задайте питання: «Це пилка твого дядька?»"
         },
         "orderedTokens": [
-          "Tom's",
-          "keycard",
-          "is",
-          "here"
+          "Is",
+          "this",
+          "your",
+          "uncle's",
+          "saw"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви знайшли ключ-картку Тома. Скажіть «Ключ-картка Тома тут»",
+            "testedDimension": "Ви знайшли в сараї пилку й питаєте двоюрідного брата, чи не його дядька вона. Задайте питання: «Це пилка твого дядька?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom's keycard is here.`",
-              "uk": "тут потрібно `is` — `Tom's keycard is here.`"
+              "ru": "здесь нужно `Is` — `Is this your uncle's saw?`",
+              "uk": "тут потрібно `Is` — `Is this your uncle's saw?`"
             }
           }
         ],
@@ -360,25 +538,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви не сумніваєтеся в номері кімнати. Скажіть «Я впевнений» з certain, без скорочення",
+      "prompt": "Дядько шукає лопату. Ви взяли її в бабусі. Скажіть йому: «У мене лопата моєї бабусі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i07:audio"
       ],
-      "accessibilityLabel": "Ви не сумніваєтеся в номері кімнати. Скажіть «Я впевнений» з certain, без скорочення",
+      "accessibilityLabel": "Дядько шукає лопату. Ви взяли її в бабусі. Скажіть йому: «У мене лопата моєї бабусі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i07:audio",
-          "transcript": "I am certain."
+          "transcript": "I have my grandmother's spade."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am certain.",
+        "targetPhrase": "I have my grandmother's spade.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,67 +571,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шарф належить Анні. Укажіть власницю",
+      "prompt": "Ножиці вашої тітки лежать у сараї. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i08:r1",
-          "text": "Anna's"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-28:i08:r2",
-          "text": "Anna"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-28:i08:r3",
-          "text": "Tom's"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шарф належить Анні. Укажіть власницю",
+      "accessibilityLabel": "Ножиці вашої тітки лежать у сараї. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шарф принадлежит Анне. Укажите владельца",
-          "uk": "Шарф належить Анні. Укажіть власницю"
+          "ru": "Ножницы вашей тёти лежат в сарае. Выберите слово",
+          "uk": "Ножиці вашої тітки лежать у сараї. Виберіть слово"
         },
-        "gappedTargetPhrase": "This is ___ scarf.",
+        "gappedTargetPhrase": "My aunt's scissors ___ in the shed.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-28:i08:r1",
-            "text": "Anna's"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-28:i08:r2",
-            "text": "Anna"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-28:i08:r3",
-            "text": "Tom's"
+            "text": "has"
           }
         ],
-        "testedDimension": "Шарф належить Анні. Укажіть власницю",
+        "testedDimension": "Ножиці вашої тітки лежать у сараї. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i08:r2",
             "correct": false,
-            "testedDimension": "Шарф належить Анні. Укажіть власницю",
+            "testedDimension": "Ножиці вашої тітки лежать у сараї. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
-              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+              "ru": "Ножницы — пара лезвий, поэтому нужно `are`, а не `is`.",
+              "uk": "Ножиці — пара лез, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i08:r3",
             "correct": false,
-            "testedDimension": "Шарф належить Анні. Укажіть власницю",
+            "testedDimension": "Ножиці вашої тітки лежать у сараї. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Это принадлежность Тому; здесь владелица Анна.",
-              "uk": "Це належність Тому; тут власниця Анна."
+              "ru": "`has` значит «иметь», а здесь мы говорим, где лежат ножницы: нужно `are`.",
+              "uk": "`has` означає «мати», а тут ми кажемо, де лежать ножиці: потрібно `are`."
             }
           }
         ]
@@ -462,51 +640,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг каже про себе",
+      "prompt": "Послухайте двоюрідного брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i09:r1",
-          "text": "I am serious."
+          "text": "Where is my uncle's spade?"
         },
         {
           "responseId": "en:lesson-05:session-28:i09:r2",
-          "text": "I am certain."
+          "text": "Where is my aunt's spade?"
         },
         {
           "responseId": "en:lesson-05:session-28:i09:r3",
-          "text": "I am worried."
+          "text": "Where is my uncle's saw?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг каже про себе",
+      "accessibilityLabel": "Послухайте двоюрідного брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i09:audio",
-          "transcript": "I am serious."
+          "transcript": "Where is my uncle's spade?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-28:i09:r1",
-            "targetText": "I am serious.",
+            "targetText": "Where is my uncle's spade?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i09:r2",
-            "targetText": "I am certain.",
+            "targetText": "Where is my aunt's spade?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i09:r3",
-            "targetText": "I am worried.",
+            "targetText": "Where is my uncle's saw?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +693,19 @@
           {
             "responseId": "en:lesson-05:session-28:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг каже про себе",
+            "testedDimension": "Послухайте двоюрідного брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `serious`, а в этом варианте — `certain`.",
-              "uk": "У записі останнє слово — `serious`, а в цьому варіанті — `certain`."
+              "ru": "В записи хозяин — `uncle's`, дядя, а в этом варианте — `aunt's`, тётя.",
+              "uk": "У записі господар — `uncle's`, дядько, а в цьому варіанті — `aunt's`, тітка."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг каже про себе",
+            "testedDimension": "Послухайте двоюрідного брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `serious`, а в этом варианте — `worried`.",
-              "uk": "У записі останнє слово — `serious`, а в цьому варіанті — `worried`."
+              "ru": "В записи последнее слово — `spade`, лопата, а в этом варианте — `saw`, пила.",
+              "uk": "У записі останнє слово — `spade`, лопата, а в цьому варіанті — `saw`, пилка."
             }
           }
         ],
@@ -538,8 +716,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -552,48 +730,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-28:i10:p1",
-            "target": "keycard",
+            "target": "screwdriver",
             "meaningByLocale": {
-              "ru": "ключ-карта",
-              "uk": "ключ-картка"
+              "ru": "отвёртка",
+              "uk": "викрутка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i10:p2",
-            "target": "chairs",
+            "target": "saw",
             "meaningByLocale": {
-              "ru": "стулья",
-              "uk": "стільці"
+              "ru": "пила",
+              "uk": "пилка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i10:p3",
-            "target": "alley",
+            "target": "hammer",
             "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
+              "ru": "молоток",
+              "uk": "молоток"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i10:p4",
-            "target": "scarf",
+            "target": "ladder",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "лестница-стремянка",
+              "uk": "драбина"
             }
           }
         ],
         "leftColumn": [
-          "keycard",
-          "chairs",
-          "alley",
-          "scarf"
+          "screwdriver",
+          "saw",
+          "hammer",
+          "ladder"
         ],
         "rightColumn": [
-          "ключ-картка",
-          "стільці",
-          "провулок",
-          "шарф"
+          "викрутка",
+          "пилка",
+          "молоток",
+          "драбина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,32 +789,34 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте тітку й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте тітку й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i11:audio",
-          "transcript": "Anna's scarf is on the chair."
+          "transcript": "My aunt's spade is next to the shed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna's scarf is on the chair.",
+        "hiddenTargetPhrase": "My aunt's spade is next to the shed.",
         "orderedTokens": [
-          "Anna's",
-          "scarf",
+          "My",
+          "aunt's",
+          "spade",
           "is",
-          "on",
+          "next",
+          "to",
           "the",
-          "chair"
+          "shed"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -645,10 +825,10 @@
           {
             "responseId": "en:lesson-05:session-28:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте тітку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna's scarf is on the chair.`",
-              "uk": "тут потрібно `is` — `Anna's scarf is on the chair.`"
+              "ru": "здесь нужно `is` — `My aunt's spade is next to the shed.`",
+              "uk": "тут потрібно `is` — `My aunt's spade is next to the shed.`"
             }
           }
         ],
@@ -661,41 +841,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+      "prompt": "Двоюрідний брат шукає свою викрутку. Вона у вашого дядька. Скажіть йому: «Твоя викрутка у мого дядька»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+      "accessibilityLabel": "Двоюрідний брат шукає свою викрутку. Вона у вашого дядька. Скажіть йому: «Твоя викрутка у мого дядька»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The chairs are in the alley.",
+        "targetPhrase": "My uncle has your screwdriver.",
         "localizedMeaning": {
-          "ru": "Стулья вынесли в переулок. Скажите «Стулья в переулке»",
-          "uk": "Стільці винесли в провулок. Скажіть «Стільці в провулку»"
+          "ru": "Двоюродный брат ищет свою отвёртку. Она у вашего дяди. Скажите ему: «Твоя отвёртка у моего дяди»",
+          "uk": "Двоюрідний брат шукає свою викрутку. Вона у вашого дядька. Скажіть йому: «Твоя викрутка у мого дядька»"
         },
         "orderedTokens": [
-          "The",
-          "chairs",
-          "are",
-          "in",
-          "the",
-          "alley"
+          "My",
+          "uncle",
+          "has",
+          "your",
+          "screwdriver"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Стільці винесли в провулок. Скажіть «Стільці в провулку»",
+            "testedDimension": "Двоюрідний брат шукає свою викрутку. Вона у вашого дядька. Скажіть йому: «Твоя викрутка у мого дядька»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The chairs are in the alley.`",
-              "uk": "тут потрібно `are` — `The chairs are in the alley.`"
+              "ru": "здесь нужно `has` — `My uncle has your screwdriver.`",
+              "uk": "тут потрібно `has` — `My uncle has your screwdriver.`"
             }
           }
         ],
@@ -708,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви шукаєте свою ключ-картку. Запитайте «Де моя ключ-картка?»",
+      "prompt": "Тітка питає, чия це пилка. Вона вашого дядька. Скажіть: «Вона мого дядька»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i13:audio"
       ],
-      "accessibilityLabel": "Ви шукаєте свою ключ-картку. Запитайте «Де моя ключ-картка?»",
+      "accessibilityLabel": "Тітка питає, чия це пилка. Вона вашого дядька. Скажіть: «Вона мого дядька»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i13:audio",
-          "transcript": "Where is my keycard?"
+          "transcript": "It is my uncle's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my keycard?",
+        "targetPhrase": "It is my uncle's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -741,67 +920,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+      "prompt": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i14:r1",
-          "text": "hers"
+          "text": "in"
         },
         {
           "responseId": "en:lesson-05:session-28:i14:r2",
-          "text": "her"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-05:session-28:i14:r3",
-          "text": "ours"
+          "text": "under"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+      "accessibilityLabel": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её»",
-          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»"
+          "ru": "Отвёртка лежит внутри ящика вашей тёти. Выберите слово",
+          "uk": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово"
         },
-        "gappedTargetPhrase": "The keycard is ___.",
+        "gappedTargetPhrase": "The screwdriver is ___ my aunt's toolbox.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-28:i14:r1",
-            "text": "hers"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-05:session-28:i14:r2",
-            "text": "her"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-05:session-28:i14:r3",
-            "text": "ours"
+            "text": "under"
           }
         ],
-        "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+        "testedDimension": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-28:i14:r2",
             "correct": false,
-            "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+            "testedDimension": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "on — «на», а отвёртка лежит внутри ящика: нужно `in`.",
+              "uk": "on — «на», а викрутка лежить усередині скрині: потрібно `in`."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i14:r3",
             "correct": false,
-            "testedDimension": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»",
+            "testedDimension": "Викрутка лежить усередині скрині вашої тітки. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`ours` — наша; её — `hers`.",
-              "uk": "`ours` — наша; її — `hers`."
+              "ru": "under — «под», а отвёртка лежит внутри ящика: нужно `in`.",
+              "uk": "under — «під», а викрутка лежить усередині скрині: потрібно `in`."
             }
           }
         ]
@@ -810,51 +989,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де ключ-картка",
+      "prompt": "Послухайте дядька",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-28:i15:r1",
-          "text": "Your keycard is on the table."
+          "text": "The spade is my grandmother's."
         },
         {
           "responseId": "en:lesson-05:session-28:i15:r2",
-          "text": "My keycard is on the table."
+          "text": "The saw is my grandmother's."
         },
         {
           "responseId": "en:lesson-05:session-28:i15:r3",
-          "text": "Your keycard is on the desk."
+          "text": "The spade is my aunt's."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де ключ-картка",
+      "accessibilityLabel": "Послухайте дядька",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i15:audio",
-          "transcript": "Your keycard is on the table."
+          "transcript": "The spade is my grandmother's."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-28:i15:r1",
-            "targetText": "Your keycard is on the table.",
+            "targetText": "The spade is my grandmother's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i15:r2",
-            "targetText": "My keycard is on the table.",
+            "targetText": "The saw is my grandmother's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-28:i15:r3",
-            "targetText": "Your keycard is on the desk.",
+            "targetText": "The spade is my aunt's.",
             "meaningByLocale": null
           }
         ],
@@ -863,19 +1042,19 @@
           {
             "responseId": "en:lesson-05:session-28:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де ключ-картка",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи вещь — `spade`, лопата, а в этом варианте — `saw`, пила.",
+              "uk": "У записі річ — `spade`, лопата, а в цьому варіанті — `saw`, пилка."
             }
           },
           {
             "responseId": "en:lesson-05:session-28:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де ключ-картка",
+            "testedDimension": "Послухайте дядька",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `table`, а в этом варианте — `desk`.",
-              "uk": "У записі останнє слово — `table`, а в цьому варіанті — `desk`."
+              "ru": "В записи хозяйка — `grandmother's`, бабушка, а в этом варианте — `aunt's`, тётя.",
+              "uk": "У записі господиня — `grandmother's`, бабуся, а в цьому варіанті — `aunt's`, тітка."
             }
           }
         ],
@@ -886,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -900,48 +1079,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-28:i16:p1",
-            "target": "keycard",
+            "target": "screwdriver",
             "meaningByLocale": {
-              "ru": "ключ-карта",
-              "uk": "ключ-картка"
+              "ru": "отвёртка",
+              "uk": "викрутка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i16:p2",
-            "target": "chairs",
+            "target": "toolbox",
             "meaningByLocale": {
-              "ru": "стулья",
-              "uk": "стільці"
+              "ru": "ящик для инструментов",
+              "uk": "скриня для інструментів"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i16:p3",
-            "target": "alley",
+            "target": "saw",
             "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
+              "ru": "пила",
+              "uk": "пилка"
             }
           },
           {
             "pairId": "en:lesson-05:session-28:i16:p4",
-            "target": "scarf",
+            "target": "spade",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "лопата",
+              "uk": "лопата"
             }
           }
         ],
         "leftColumn": [
-          "keycard",
-          "chairs",
-          "alley",
-          "scarf"
+          "screwdriver",
+          "toolbox",
+          "saw",
+          "spade"
         ],
         "rightColumn": [
-          "ключ-картка",
-          "стільці",
-          "провулок",
-          "шарф"
+          "викрутка",
+          "скриня для інструментів",
+          "пилка",
+          "лопата"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -959,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-28:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знайдена ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "prompt": "Дядько питає, чия це скриня з інструментами. Вона вашої тітки. Скажіть: «Це скриня з інструментами моєї тітки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-28:i17:audio"
       ],
-      "accessibilityLabel": "Знайдена ключ-картка належить Анні. Скажіть «Це ключ-картка Анни»",
+      "accessibilityLabel": "Дядько питає, чия це скриня з інструментами. Вона вашої тітки. Скажіть: «Це скриня з інструментами моєї тітки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-28:i17:audio",
-          "transcript": "This is Anna's keycard."
+          "transcript": "This is my aunt's toolbox."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is Anna's keycard.",
+        "targetPhrase": "This is my aunt's toolbox.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -999,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2c56faa7058f3368a7aba8917eebcb2102a1146e2eabd2823f4670e8cb20de94"
+  "learnerFingerprint": "8eccc2206d4aaa876ac403b1f5b1221847ab77b14420cc52d710f1744e53c6cc"
 }

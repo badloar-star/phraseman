@@ -1,0 +1,2469 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-32:word:jug",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:jug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:jug:audio",
+            "transcript": "jug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:jug:r1",
+              "targetText": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин. My aunt's jug is full. — «Кувшин моей тёти полный». О высоком сосуде с ручкой, из которого наливают воду или сок.",
+                "uk": "глечик. My aunt's jug is full. — «Глечик моєї тітки повний». Про високу посудину з ручкою, з якої наливають воду або сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jug",
+            "definitionByLocale": {
+              "ru": "кувшин. My aunt's jug is full. — «Кувшин моей тёти полный». О высоком сосуде с ручкой, из которого наливают воду или сок.",
+              "uk": "глечик. My aunt's jug is full. — «Глечик моєї тітки повний». Про високу посудину з ручкою, з якої наливають воду або сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тётя ищет кувшин. Он вашей бабушки и стоит на столе. Скажите: «Кувшин моей бабушки на столе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тётя ищет кувшин. Он вашей бабушки и стоит на столе. Скажите: «Кувшин моей бабушки на столе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandmother's jug is on the table.",
+          "localizedMeaning": {
+            "ru": "Тётя ищет кувшин. Он вашей бабушки и стоит на столе. Скажите: «Кувшин моей бабушки на столе»",
+            "uk": "Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»"
+          },
+          "orderedTokens": [
+            "My",
+            "grandmother's",
+            "jug",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "grandmother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тётя ищет кувшин. Он вашей бабушки и стоит на столе. Скажите: «Кувшин моей бабушки на столе»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grandmother's` — `My grandmother's jug is on the table.`",
+                "uk": "тут потрібно `grandmother's` — `My grandmother's jug is on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:tablecloth",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tablecloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:tablecloth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tablecloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:tablecloth:audio",
+            "transcript": "tablecloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:tablecloth:r1",
+              "targetText": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть. My grandmother's tablecloth is white. — «Скатерть моей бабушки белая». О ткани, которой накрывают стол.",
+                "uk": "скатертина. My grandmother's tablecloth is white. — «Скатертина моєї бабусі біла». Про тканину, якою накривають стіл."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tablecloth",
+            "definitionByLocale": {
+              "ru": "скатерть. My grandmother's tablecloth is white. — «Скатерть моей бабушки белая». О ткани, которой накрывают стол.",
+              "uk": "скатертина. My grandmother's tablecloth is white. — «Скатертина моєї бабусі біла». Про тканину, якою накривають стіл."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i02:r1",
+            "text": "The tablecloth is my aunt's."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i02:r2",
+            "text": "The tablecloth is my uncle's."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i02:r3",
+            "text": "The jug is my aunt's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i02:audio",
+            "transcript": "The tablecloth is my aunt's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i02:r1",
+              "targetText": "The tablecloth is my aunt's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r2",
+              "targetText": "The tablecloth is my uncle's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r3",
+              "targetText": "The jug is my aunt's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `aunt's`, тётя, а в этом варианте — `uncle's`, дядя.",
+                "uk": "У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tablecloth`, а в этом варианте — `jug`.",
+                "uk": "У записі річ — `tablecloth`, а в цьому варіанті — `jug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:cutlery",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cutlery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:cutlery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cutlery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:cutlery:audio",
+            "transcript": "cutlery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:cutlery:r1",
+              "targetText": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы. My uncle's cutlery is old. — «Столовые приборы моего дяди старые». О вилках, ложках и ножах вместе. Слово ведёт себя как одна вещь.",
+                "uk": "столові прибори. My uncle's cutlery is old. — «Столові прибори мого дядька старі». Про виделки, ложки й ножі разом. Слово поводиться як одна річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cutlery",
+            "definitionByLocale": {
+              "ru": "столовые приборы. My uncle's cutlery is old. — «Столовые приборы моего дяди старые». О вилках, ложках и ножах вместе. Слово ведёт себя как одна вещь.",
+              "uk": "столові прибори. My uncle's cutlery is old. — «Столові прибори мого дядька старі». Про виделки, ложки й ножі разом. Слово поводиться як одна річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i03:r1",
+            "text": "uncle's"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i03:r2",
+            "text": "uncle"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i03:r3",
+            "text": "uncles"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+            "uk": "Столові прибори належать вашому дядькові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cutlery is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i03:r1",
+              "text": "uncle's"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r2",
+              "text": "uncle"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r3",
+              "text": "uncles"
+            }
+          ],
+          "testedDimension": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что приборы — это сам дядя. Хозяина называем через `'s`: `uncle's`.",
+                "uk": "Так вийшло б, що прибори — це сам дядько. Господаря називаємо через `'s`: `uncle's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`uncles` — это «дяди», несколько человек; чтобы назвать хозяина, нужно `uncle's`.",
+                "uk": "`uncles` — це «дядьки», кілька людей; щоб назвати господаря, потрібно `uncle's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i04:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p3",
+              "target": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы",
+                "uk": "столові прибори"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p4",
+              "target": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга",
+                "uk": "кулінарна книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "cutlery",
+            "cookbook"
+          ],
+          "rightColumn": [
+            "кувшин",
+            "скатерть",
+            "столовые приборы",
+            "кулинарная книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:cookbook",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cookbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:cookbook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cookbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:cookbook:audio",
+            "transcript": "cookbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:cookbook:r1",
+              "targetText": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга. My aunt's cookbook is thick. — «Кулинарная книга моей тёти толстая». О книге с рецептами.",
+                "uk": "кулінарна книга. My aunt's cookbook is thick. — «Кулінарна книга моєї тітки товста». Про книгу з рецептами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cookbook",
+            "definitionByLocale": {
+              "ru": "кулинарная книга. My aunt's cookbook is thick. — «Кулинарная книга моей тёти толстая». О книге с рецептами.",
+              "uk": "кулінарна книга. My aunt's cookbook is thick. — «Кулінарна книга моєї тітки товста». Про книгу з рецептами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тётю и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте тётю и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i05:audio",
+            "transcript": "My aunt's cookbook is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My aunt's cookbook is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "aunt's",
+            "cookbook",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тётю и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My aunt's cookbook is on the shelf.`",
+                "uk": "тут потрібно `is` — `My aunt's cookbook is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете двоюродному брату скатерть и спрашиваете, не его ли бабушки она. Задайте вопрос: «Это скатерть твоей бабушки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете двоюродному брату скатерть и спрашиваете, не его ли бабушки она. Задайте вопрос: «Это скатерть твоей бабушки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this tablecloth your grandmother's?",
+          "localizedMeaning": {
+            "ru": "Вы показываете двоюродному брату скатерть и спрашиваете, не его ли бабушки она. Задайте вопрос: «Это скатерть твоей бабушки?»",
+            "uk": "Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "tablecloth",
+            "your",
+            "grandmother's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете двоюродному брату скатерть и спрашиваете, не его ли бабушки она. Задайте вопрос: «Это скатерть твоей бабушки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this tablecloth your grandmother's?`",
+                "uk": "тут потрібно `Is` — `Is this tablecloth your grandmother's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тётя спрашивает, чей это кувшин. Он вашего дяди. Скажите: «Он моего дяди»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Тётя спрашивает, чей это кувшин. Он вашего дяди. Скажите: «Он моего дяди»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i07:audio",
+            "transcript": "It is my uncle's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my uncle's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i08:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+            "uk": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `it is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `it is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а на вопрос «это её?» отвечаем `it is`.",
+                "uk": "`has` означає «мати», а на питання «це її?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i09:r1",
+            "text": "Is this cutlery your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i09:r2",
+            "text": "Is this cutlery your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i09:r3",
+            "text": "Is this cookbook your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i09:audio",
+            "transcript": "Is this cutlery your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i09:r1",
+              "targetText": "Is this cutlery your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r2",
+              "targetText": "Is this cutlery your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r3",
+              "targetText": "Is this cookbook your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `cutlery`, а в этом варианте — `cookbook`.",
+                "uk": "У записі річ — `cutlery`, а в цьому варіанті — `cookbook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i10:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p3",
+              "target": "fork",
+              "meaningByLocale": {
+                "ru": "вилка",
+                "uk": "виделка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p4",
+              "target": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка",
+                "uk": "тарілка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "fork",
+            "plate"
+          ],
+          "rightColumn": [
+            "кувшин",
+            "скатерть",
+            "вилка",
+            "тарелка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте бабушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i11:audio",
+            "transcript": "My cousin's cookbook is next to the jug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's cookbook is next to the jug.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "cookbook",
+            "is",
+            "next",
+            "to",
+            "the",
+            "jug"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My cousin's cookbook is next to the jug.`",
+                "uk": "тут потрібно `is` — `My cousin's cookbook is next to the jug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вашей тёти есть кулинарная книга. Скажите подруге: «У моей тёти есть кулинарная книга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вашей тёти есть кулинарная книга. Скажите подруге: «У моей тёти есть кулинарная книга»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My aunt has a cookbook.",
+          "localizedMeaning": {
+            "ru": "У вашей тёти есть кулинарная книга. Скажите подруге: «У моей тёти есть кулинарная книга»",
+            "uk": "У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»"
+          },
+          "orderedTokens": [
+            "My",
+            "aunt",
+            "has",
+            "a",
+            "cookbook"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У вашей тёти есть кулинарная книга. Скажите подруге: «У моей тёти есть кулинарная книга»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My aunt has a cookbook.`",
+                "uk": "тут потрібно `has` — `My aunt has a cookbook.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабушка спрашивает, где двоюродный брат. Он на кухне. Скажите ей: «Мой двоюродный брат на кухне»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Бабушка спрашивает, где двоюродный брат. Он на кухне. Скажите ей: «Мой двоюродный брат на кухне»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i13:audio",
+            "transcript": "My cousin's in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My cousin's in the kitchen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+            "uk": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My aunt's cutlery ___ in the drawer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`cutlery` — один набор, поэтому нужно `is`, а не `are`.",
+                "uk": "`cutlery` — один набір, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат приборы: нужно `is`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать прибори: потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i15:r1",
+            "text": "My cousin's in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i15:r2",
+            "text": "My cousin's cookbook is in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i15:r3",
+            "text": "My cousin's in the hall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i15:audio",
+            "transcript": "My cousin's in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i15:r1",
+              "targetText": "My cousin's in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r2",
+              "targetText": "My cousin's cookbook is in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r3",
+              "targetText": "My cousin's in the hall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи после `cousin's` нет вещи, это `cousin is`: брат сам на кухне, а в этом варианте речь о его кулинарной книге.",
+                "uk": "У записі після `cousin's` немає речі, це `cousin is`: брат сам на кухні, а в цьому варіанті мова про його кулінарну книгу."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kitchen`, кухня, а в этом варианте — `hall`, холл.",
+                "uk": "У записі останнє слово — `kitchen`, кухня, а в цьому варіанті — `hall`, хол."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i16:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p3",
+              "target": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы",
+                "uk": "столові прибори"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p4",
+              "target": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга",
+                "uk": "кулінарна книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "cutlery",
+            "cookbook"
+          ],
+          "rightColumn": [
+            "кувшин",
+            "скатерть",
+            "столовые приборы",
+            "кулинарная книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабушка спрашивает, чья это скатерть. Она вашей тёти. Скажите: «Это скатерть моей тёти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Бабушка спрашивает, чья это скатерть. Она вашей тёти. Скажите: «Это скатерть моей тёти»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i17:audio",
+            "transcript": "This is my aunt's tablecloth."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my aunt's tablecloth.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-32:word:jug",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:jug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:jug:audio",
+            "transcript": "jug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:jug:r1",
+              "targetText": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин. My aunt's jug is full. — «Кувшин моей тёти полный». О высоком сосуде с ручкой, из которого наливают воду или сок.",
+                "uk": "глечик. My aunt's jug is full. — «Глечик моєї тітки повний». Про високу посудину з ручкою, з якої наливають воду або сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jug",
+            "definitionByLocale": {
+              "ru": "кувшин. My aunt's jug is full. — «Кувшин моей тёти полный». О высоком сосуде с ручкой, из которого наливают воду или сок.",
+              "uk": "глечик. My aunt's jug is full. — «Глечик моєї тітки повний». Про високу посудину з ручкою, з якої наливають воду або сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandmother's jug is on the table.",
+          "localizedMeaning": {
+            "ru": "Тётя ищет кувшин. Он вашей бабушки и стоит на столе. Скажите: «Кувшин моей бабушки на столе»",
+            "uk": "Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»"
+          },
+          "orderedTokens": [
+            "My",
+            "grandmother's",
+            "jug",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "grandmother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grandmother's` — `My grandmother's jug is on the table.`",
+                "uk": "тут потрібно `grandmother's` — `My grandmother's jug is on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:tablecloth",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tablecloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:tablecloth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tablecloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:tablecloth:audio",
+            "transcript": "tablecloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:tablecloth:r1",
+              "targetText": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть. My grandmother's tablecloth is white. — «Скатерть моей бабушки белая». О ткани, которой накрывают стол.",
+                "uk": "скатертина. My grandmother's tablecloth is white. — «Скатертина моєї бабусі біла». Про тканину, якою накривають стіл."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tablecloth",
+            "definitionByLocale": {
+              "ru": "скатерть. My grandmother's tablecloth is white. — «Скатерть моей бабушки белая». О ткани, которой накрывают стол.",
+              "uk": "скатертина. My grandmother's tablecloth is white. — «Скатертина моєї бабусі біла». Про тканину, якою накривають стіл."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i02:r1",
+            "text": "The tablecloth is my aunt's."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i02:r2",
+            "text": "The tablecloth is my uncle's."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i02:r3",
+            "text": "The jug is my aunt's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i02:audio",
+            "transcript": "The tablecloth is my aunt's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i02:r1",
+              "targetText": "The tablecloth is my aunt's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r2",
+              "targetText": "The tablecloth is my uncle's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r3",
+              "targetText": "The jug is my aunt's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `aunt's`, тётя, а в этом варианте — `uncle's`, дядя.",
+                "uk": "У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tablecloth`, а в этом варианте — `jug`.",
+                "uk": "У записі річ — `tablecloth`, а в цьому варіанті — `jug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:cutlery",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cutlery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:cutlery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cutlery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:cutlery:audio",
+            "transcript": "cutlery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:cutlery:r1",
+              "targetText": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы. My uncle's cutlery is old. — «Столовые приборы моего дяди старые». О вилках, ложках и ножах вместе. Слово ведёт себя как одна вещь.",
+                "uk": "столові прибори. My uncle's cutlery is old. — «Столові прибори мого дядька старі». Про виделки, ложки й ножі разом. Слово поводиться як одна річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cutlery",
+            "definitionByLocale": {
+              "ru": "столовые приборы. My uncle's cutlery is old. — «Столовые приборы моего дяди старые». О вилках, ложках и ножах вместе. Слово ведёт себя как одна вещь.",
+              "uk": "столові прибори. My uncle's cutlery is old. — «Столові прибори мого дядька старі». Про виделки, ложки й ножі разом. Слово поводиться як одна річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Столові прибори належать вашому дядькові. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i03:r1",
+            "text": "uncle's"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i03:r2",
+            "text": "uncle"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i03:r3",
+            "text": "uncles"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Столові прибори належать вашому дядькові. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Столовые приборы принадлежат вашему дяде. Выберите слово",
+            "uk": "Столові прибори належать вашому дядькові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The cutlery is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i03:r1",
+              "text": "uncle's"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r2",
+              "text": "uncle"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r3",
+              "text": "uncles"
+            }
+          ],
+          "testedDimension": "Столові прибори належать вашому дядькові. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Столові прибори належать вашому дядькові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что приборы — это сам дядя. Хозяина называем через `'s`: `uncle's`.",
+                "uk": "Так вийшло б, що прибори — це сам дядько. Господаря називаємо через `'s`: `uncle's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Столові прибори належать вашому дядькові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`uncles` — это «дяди», несколько человек; чтобы назвать хозяина, нужно `uncle's`.",
+                "uk": "`uncles` — це «дядьки», кілька людей; щоб назвати господаря, потрібно `uncle's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i04:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p3",
+              "target": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы",
+                "uk": "столові прибори"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i04:p4",
+              "target": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга",
+                "uk": "кулінарна книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "cutlery",
+            "cookbook"
+          ],
+          "rightColumn": [
+            "глечик",
+            "скатертина",
+            "столові прибори",
+            "кулінарна книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:word:cookbook",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cookbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:word:cookbook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cookbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:word:cookbook:audio",
+            "transcript": "cookbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:word:cookbook:r1",
+              "targetText": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга. My aunt's cookbook is thick. — «Кулинарная книга моей тёти толстая». О книге с рецептами.",
+                "uk": "кулінарна книга. My aunt's cookbook is thick. — «Кулінарна книга моєї тітки товста». Про книгу з рецептами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cookbook",
+            "definitionByLocale": {
+              "ru": "кулинарная книга. My aunt's cookbook is thick. — «Кулинарная книга моей тёти толстая». О книге с рецептами.",
+              "uk": "кулінарна книга. My aunt's cookbook is thick. — «Кулінарна книга моєї тітки товста». Про книгу з рецептами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тітку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте тітку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i05:audio",
+            "transcript": "My aunt's cookbook is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My aunt's cookbook is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "aunt's",
+            "cookbook",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тітку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My aunt's cookbook is on the shelf.`",
+                "uk": "тут потрібно `is` — `My aunt's cookbook is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this tablecloth your grandmother's?",
+          "localizedMeaning": {
+            "ru": "Вы показываете двоюродному брату скатерть и спрашиваете, не его ли бабушки она. Задайте вопрос: «Это скатерть твоей бабушки?»",
+            "uk": "Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "tablecloth",
+            "your",
+            "grandmother's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this tablecloth your grandmother's?`",
+                "uk": "тут потрібно `Is` — `Is this tablecloth your grandmother's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тітка питає, чий це глечик. Він вашого дядька. Скажіть: «Він мого дядька»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i07:audio"
+        ],
+        "accessibilityLabel": "Тітка питає, чий це глечик. Він вашого дядька. Скажіть: «Він мого дядька»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i07:audio",
+            "transcript": "It is my uncle's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my uncle's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i08:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this jug your aunt's?» Да, это её кувшин. Выберите продолжение ответа",
+            "uk": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді"
+          },
+          "gappedTargetPhrase": "Yes, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r2",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді",
+              "feedbackByLocale": {
+                "ru": "После Yes ответ утвердительный: нужно `it is`.",
+                "uk": "Після Yes відповідь ствердна: потрібно `it is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а на вопрос «это её?» отвечаем `it is`.",
+                "uk": "`has` означає «мати», а на питання «це її?» відповідаємо `it is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i09:r1",
+            "text": "Is this cutlery your sister's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i09:r2",
+            "text": "Is this cutlery your brother's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i09:r3",
+            "text": "Is this cookbook your sister's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i09:audio",
+            "transcript": "Is this cutlery your sister's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i09:r1",
+              "targetText": "Is this cutlery your sister's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r2",
+              "targetText": "Is this cutlery your brother's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r3",
+              "targetText": "Is this cookbook your sister's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `cutlery`, а в этом варианте — `cookbook`.",
+                "uk": "У записі річ — `cutlery`, а в цьому варіанті — `cookbook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i10:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p3",
+              "target": "fork",
+              "meaningByLocale": {
+                "ru": "вилка",
+                "uk": "виделка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i10:p4",
+              "target": "plate",
+              "meaningByLocale": {
+                "ru": "тарелка",
+                "uk": "тарілка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "fork",
+            "plate"
+          ],
+          "rightColumn": [
+            "глечик",
+            "скатертина",
+            "виделка",
+            "тарілка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте бабусю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i11:audio",
+            "transcript": "My cousin's cookbook is next to the jug."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's cookbook is next to the jug.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "cookbook",
+            "is",
+            "next",
+            "to",
+            "the",
+            "jug"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My cousin's cookbook is next to the jug.`",
+                "uk": "тут потрібно `is` — `My cousin's cookbook is next to the jug.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My aunt has a cookbook.",
+          "localizedMeaning": {
+            "ru": "У вашей тёти есть кулинарная книга. Скажите подруге: «У моей тёти есть кулинарная книга»",
+            "uk": "У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»"
+          },
+          "orderedTokens": [
+            "My",
+            "aunt",
+            "has",
+            "a",
+            "cookbook"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My aunt has a cookbook.`",
+                "uk": "тут потрібно `has` — `My aunt has a cookbook.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабуся питає, де двоюрідний брат. Він на кухні. Скажіть їй: «Мій двоюрідний брат на кухні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Бабуся питає, де двоюрідний брат. Він на кухні. Скажіть їй: «Мій двоюрідний брат на кухні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i13:audio",
+            "transcript": "My cousin's in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My cousin's in the kitchen.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Приборы вашей тёти лежат в ящике стола. Выберите слово",
+            "uk": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My aunt's cutlery ___ in the drawer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-32:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`cutlery` — один набор, поэтому нужно `is`, а не `are`.",
+                "uk": "`cutlery` — один набір, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Прибори вашої тітки лежать у шухляді стола. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат приборы: нужно `is`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать прибори: потрібно `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-32:i15:r1",
+            "text": "My cousin's in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i15:r2",
+            "text": "My cousin's cookbook is in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-05:session-32:i15:r3",
+            "text": "My cousin's in the hall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i15:audio",
+            "transcript": "My cousin's in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-32:i15:r1",
+              "targetText": "My cousin's in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r2",
+              "targetText": "My cousin's cookbook is in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r3",
+              "targetText": "My cousin's in the hall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-32:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи после `cousin's` нет вещи, это `cousin is`: брат сам на кухне, а в этом варианте речь о его кулинарной книге.",
+                "uk": "У записі після `cousin's` немає речі, це `cousin is`: брат сам на кухні, а в цьому варіанті мова про його кулінарну книгу."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-32:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kitchen`, кухня, а в этом варианте — `hall`, холл.",
+                "uk": "У записі останнє слово — `kitchen`, кухня, а в цьому варіанті — `hall`, хол."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-32:i16:p1",
+              "target": "jug",
+              "meaningByLocale": {
+                "ru": "кувшин",
+                "uk": "глечик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p2",
+              "target": "tablecloth",
+              "meaningByLocale": {
+                "ru": "скатерть",
+                "uk": "скатертина"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p3",
+              "target": "cutlery",
+              "meaningByLocale": {
+                "ru": "столовые приборы",
+                "uk": "столові прибори"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-32:i16:p4",
+              "target": "cookbook",
+              "meaningByLocale": {
+                "ru": "кулинарная книга",
+                "uk": "кулінарна книга"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jug",
+            "tablecloth",
+            "cutlery",
+            "cookbook"
+          ],
+          "rightColumn": [
+            "глечик",
+            "скатертина",
+            "столові прибори",
+            "кулінарна книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-32:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабуся питає, чия це скатертина. Вона вашої тітки. Скажіть: «Це скатертина моєї тітки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Бабуся питає, чия це скатертина. Вона вашої тітки. Скажіть: «Це скатертина моєї тітки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-32:i17:audio",
+            "transcript": "This is my aunt's tablecloth."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my aunt's tablecloth.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-32:word:jug",
+      "correctText": "jug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i01",
+      "correctText": "My grandmother's jug is on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:word:tablecloth",
+      "correctText": "tablecloth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i02",
+      "correctText": "The tablecloth is my aunt's.",
+      "correctResponseId": "en:lesson-05:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:word:cutlery",
+      "correctText": "cutlery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i03",
+      "correctText": "uncle's",
+      "correctResponseId": "en:lesson-05:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:word:cookbook",
+      "correctText": "cookbook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i05",
+      "correctText": "My aunt's cookbook is on the shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i06",
+      "correctText": "Is this tablecloth your grandmother's?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i07",
+      "correctText": "It is my uncle's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i09",
+      "correctText": "Is this cutlery your sister's?",
+      "correctResponseId": "en:lesson-05:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i11",
+      "correctText": "My cousin's cookbook is next to the jug.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i12",
+      "correctText": "My aunt has a cookbook.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i13",
+      "correctText": "My cousin's in the kitchen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i15",
+      "correctText": "My cousin's in the kitchen.",
+      "correctResponseId": "en:lesson-05:session-32:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-32:i17",
+      "correctText": "This is my aunt's tablecloth.",
+      "correctResponseId": null
+    }
+  ]
+}

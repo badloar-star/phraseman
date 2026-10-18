@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-29:intro1:r2": {
-          "ru": "После имени владельца нужно `’s`: `Tom’s skateboard`.",
-          "uk": "Після імені власника потрібне `’s`: `Tom’s skateboard`."
+          "ru": "После слова aunt нужно 's: my aunt's piano.",
+          "uk": "Після слова aunt потрібно 's: my aunt's piano."
         },
         "en:lesson-05:session-29:intro1:r3": {
-          "ru": "Это скейтборд Анны; здесь владелец Том.",
-          "uk": "Це скейтборд Анни; тут власник Том."
+          "ru": "Пианино одно, поэтому нужно is, а не are.",
+          "uk": "Піаніно одне, тому потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-29:intro2:r2": {
-          "ru": "С одним человеком нужна форма `is`.",
-          "uk": "З однією людиною потрібна форма `is`."
+          "ru": "Без is фраза не складывается: нужно 's, то есть is.",
+          "uk": "Без is фраза не складається: потрібно 's, тобто is."
         },
         "en:lesson-05:session-29:intro2:r3": {
-          "ru": "`outside` — снаружи; в сети — `online`.",
-          "uk": "`outside` — зовні; у мережі — `online`."
+          "ru": "Так мы сказали бы про барабан: «барабан двоюродного брата здесь». Нужно сказать, что пришёл он сам.",
+          "uk": "Так ми сказали б про барабан: «барабан двоюрідного брата тут». Потрібно сказати, що прийшов він сам."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-29:intro3:r2": {
-          "ru": "Один Том: `Tom is`.",
-          "uk": "Один Том: `Tom is`."
+          "ru": "Так сказали бы о самой подруге: «моя подруга здесь». Флейту называем после 's.",
+          "uk": "Так сказали б про саму подругу: «моя подруга тут». Флейту називаємо після 's."
         },
         "en:lesson-05:session-29:intro3:r3": {
-          "ru": "Это об Анне; здесь нужно назвать Тома.",
-          "uk": "Це про Анну; тут потрібно назвати Тома."
+          "ru": "После слова friend нужно 's: my friend's flute.",
+          "uk": "Після слова friend потрібно 's: my friend's flute."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "bbb88447389247b9a899f69852de61c46b1ac73509cf74d2f193c638ecf28a6c"
+  "auxiliaryFingerprint": "540e3b9edd36a3b9eb344efebd7283705dcc79328234ed94e5b5c15f10d68526"
 }

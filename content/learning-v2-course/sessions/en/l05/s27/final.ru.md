@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 27 — Паспорт перед выездом
+# Английский · Урок 5 · Занятие 27 — Вещи после урока
 
-**Ситуация.** Раннее утро в гостинице. Анна уже проснулась, Том ещё спит. Вы проверяете документы и узнаёте, есть ли свободная машина.
+**Ситуация.** В классе после урока английского остались вещи учительницы и учеников. Нужно разобраться, что чьё, и не называть вещь дважды.
 
-**Что вы освоите:** уточнить владельца документа, состояние человека и доступность машины
-**Новые слова:** passport
+**Что вы освоите:** спросить, чья вещь, и ответить, не повторяя её название: Is this textbook the teacher's? It is my brother's
+**Новые слова:** marker, whiteboard, calculator, textbook
+**Возвращаются:** teacher, cousin, brother, sister, friend, desk, chair, notebook, ruler, pencil, bag
 
 ---
 
 ## Интро 1
 
-### Главный документ
+### Маркер со стола
 
-`passport` — «паспорт». `This is Anna’s passport` — «Это паспорт Анны». `Tom’s passport is here` — «Паспорт Тома здесь». Имя владельца с `’s` ставим перед вещью. Паспорт уже на столе: к поездке он готов, осталось разбудить владельца.
+После урока двоюродный брат взял со стола маркер и собрался убрать его в рюкзак. marker — «маркер», им пишут на белой доске. Но маркер не его. Скажите, чей он: The marker is the teacher's — «Маркер учительницы». Название вещи после 's повторять не нужно.
 
-**Покажите паспорт Анны.**
+**Двоюродный брат берёт маркер со стола. Маркер принадлежит учительнице. Скажите ему: «Маркер учительницы».**
 
-- ✅ **This is Anna's passport.**
-- ❌ This is Anna passport. — *К имени владельца добавляем `’s`: `Anna’s passport`.*
-- ❌ This is Tom's passport. — *Это паспорт Тома; здесь владелица Анна.*
+- ✅ **The marker is the teacher's.**
+- ❌ The marker is the teacher. — *Так получилось бы, что маркер — это сама учительница. Хозяйку называем через 's: the teacher's.*
+- ❌ The marker is the cousin's. — *cousin — двоюродный брат, а маркер принадлежит учительнице: нужно teacher's.*
 
 ---
 
 ## Интро 2
 
-### Кто проснулся
+### Чей калькулятор
 
-`awake` — «не спит», `asleep` — «спит». `Anna is awake` — «Анна не спит», `Tom is asleep` — «Том спит». Это состояния: здесь нужна форма `is`. `available` — «доступен, свободен»: `The car is available` — «Машина доступна», её можно взять. Это не значит, что она бесплатная.
+Подруга показывает на калькулятор на парте среди тетрадей и спрашивает, не ваш ли он. calculator — «калькулятор», на нём считают числа. Он не ваш, а вашего брата. Название вещи можно не повторять: It is my brother's — «Он моего брата». Вещь и так понятна.
 
-**Том ещё спит. Выберите фразу.**
+**Подруга спрашивает, ваш ли это калькулятор. Он вашего брата. Скажите ей: «Он моего брата».**
 
-- ✅ **Tom is asleep.**
-- ❌ Tom is awake. — *`awake` — не спит; спит — `asleep`.*
-- ❌ Tom are asleep. — *Один Том: `Tom is`.*
+- ✅ **It is my brother's.**
+- ❌ It is my brother. — *Так получилось бы, что калькулятор — это сам брат. Хозяина называем через 's: my brother's.*
+- ❌ It is your brother's. — *your — твоего, а брат ваш: нужно my.*
 
 ---
 
 ## Интро 3
 
-### Машины у входа
+### Учебник на стуле
 
-`cars` — «машины», `awning` — «навес», `tablet` — «планшет». `The cars are under the awning` — «Машины под навесом». `Anna’s tablet is on the table` — «Планшет Анны на столе». `Where is my passport?` — «Где мой паспорт?» С несколькими машинами — `are`, с одним планшетом или паспортом — `is`.
+На стуле у двери лежит учебник. textbook — «учебник», по нему учатся на уроках и дома. Он совсем новый, и вы думаете, что его оставила учительница, когда уходила. Спросите двоюродного брата: Is this textbook the teacher's? — «Это учебник учительницы?»
 
-**Машину можно взять. Скажите «Машина доступна».**
+**Вы нашли на стуле учебник. Спросите двоюродного брата, не учительницы ли он.**
 
-- ✅ **The car is available.**
-- ❌ The car are available. — *Одна машина: `car is`.*
-- ❌ The car is asleep. — *`asleep` — спит; доступна — `available`.*
+- ✅ **Is this textbook the teacher's?**
+- ❌ Is this textbook the teacher? — *Так получилось бы, что учебник — это сама учительница. Хозяйку называем через 's: the teacher's.*
+- ❌ Are this textbook the teacher's? — *Учебник один, поэтому вопрос начинаем с Is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Анна уже не спит. Скажите «Анна не спит», используя слово awake**
+**1 · Карточка слова — marker**
+<!-- interaction_id: en:lesson-05:session-27:word:marker; family: word_card -->
+> **marker** — маркер. This is my sister's marker. — «Это маркер моей сестры». О толстом фломастере, которым пишут на белой доске.
+
+**2 · Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»**
 <!-- interaction_id: en:lesson-05:session-27:i01; family: phrase_builder -->
-Плитки: `awake` `is` `Anna` `are` → **Anna is awake.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna is awake.`)*
+Плитки: `marker` `friend's` `my` `is` `This` `friend` → **This is my friend's marker.**
+*(плитка `friend` лишняя: здесь нужно `friend's` — `This is my friend's marker.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — calculator**
+<!-- interaction_id: en:lesson-05:session-27:word:calculator; family: word_card -->
+> **calculator** — калькулятор. My cousin's calculator is new. — «Калькулятор моего двоюродного брата новый». О приборе, на котором считают числа.
+
+**4 · Послушайте двоюродного брата**
 <!-- interaction_id: en:lesson-05:session-27:i02; family: listen_choose -->
-🔊 *passport* → **passport** · tablet · badge
-- tablet — *В записи первое слово — `passport`, а в этом варианте — `tablet`.*
-- badge — *В записи первое слово — `passport`, а в этом варианте — `badge`.*
+🔊 *The calculator is my cousin's.* → **The calculator is my cousin's.** · The calculator is my brother's. · The textbook is my cousin's.
+- The calculator is my brother's. — *В записи хозяин — `cousin's`, двоюродный брат, а в этом варианте — `brother's`, брат.*
+- The textbook is my cousin's. — *В записи вещь — `calculator`, а в этом варианте — `textbook`.*
 
-**3 · Назовите паспорт**
+**5 · Карточка слова — textbook**
+<!-- interaction_id: en:lesson-05:session-27:word:textbook; family: word_card -->
+> **textbook** — учебник. My friend's textbook is here. — «Учебник моей подруги здесь». О книге, по которой учатся.
+
+**6 · Учебник принадлежит вашей сестре. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-27:i03; family: context_gap_grammar -->
-___ → **passport** · lunchbox · tablet
-- lunchbox — *`lunchbox` — контейнер для обеда; паспорт — `passport`.*
-- tablet — *`tablet` — планшет; паспорт — `passport`.*
+The textbook is my ___. → **sister's** · sister · sisters
+- sister — *Так получилось бы, что учебник — это сама сестра. Хозяйку называем через `'s`: `sister's`.*
+- sisters — *`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-27:i04; family: speed_match -->
-passport — паспорт · awake — не спит · asleep — спит · available — доступен
+marker — маркер · whiteboard — белая доска · calculator — калькулятор · textbook — учебник
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — whiteboard**
+<!-- interaction_id: en:lesson-05:session-27:word:whiteboard; family: word_card -->
+> **whiteboard** — белая доска. The teacher's whiteboard is big. — «Белая доска учительницы большая». О гладкой белой доске, на которой пишут маркером.
+
+**9 · Послушайте учительницу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-27:i05; family: listen_build_dictation -->
-🔊 *This is Anna's passport.* Плитки: `passport` `Anna's` `is` `This` `are` → **This is Anna's passport.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is Anna's passport.`)*
+🔊 *The whiteboard is the teacher's.* Плитки: `whiteboard` `teacher's` `is` `The` `the` `are` → **The whiteboard is the teacher's.**
+*(плитка `are` лишняя: здесь нужно `is` — `The whiteboard is the teacher's.`)*
 
-**6 · Паспорт принадлежит Тому. Скажите «Паспорт Тома здесь»**
+**10 · Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»**
 <!-- interaction_id: en:lesson-05:session-27:i06; family: phrase_builder -->
-Плитки: `here` `is` `passport` `Tom's` `are` → **Tom's passport is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom's passport is here.`)*
+Плитки: `calculator` `this` `your` `cousin's` `Is` `Are` → **Is this calculator your cousin's?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this calculator your cousin's?`)*
 
-**7 · Том ещё спит. Скажите «Том спит», используя asleep**
+**11 · Подруга спрашивает, чей это маркер. Он вашей сестры. Скажите: «Он моей сестры»**
 <!-- interaction_id: en:lesson-05:session-27:i07; family: scripted_repeat_compare -->
-🎙 **Tom is asleep.**
+🎙 **It is my sister's.**
 
-**8 · Планшет принадлежит Анне. Укажите владельца**
+**12 · Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа**
 <!-- interaction_id: en:lesson-05:session-27:i08; family: context_gap_grammar -->
-This is ___ tablet. → **Anna's** · Anna · Tom's
-- Anna — *К имени владельца добавляем `’s`: `Anna’s`.*
-- Tom's — *Это принадлежность Тому; здесь владелица Анна.*
+No, it ___. → **isn't** · is · aren't
+- is — *После No говорят it isn't, а не it is.*
+- aren't — *К слову it подходит isn't: это одна вещь.*
 
-**9 · Послушайте, что друг сообщает о машине**
+**13 · Послушайте двоюродного брата**
 <!-- interaction_id: en:lesson-05:session-27:i09; family: listen_choose -->
-🔊 *The car is available.* → **The car is available.** · The car is here. · The car is yours.
-- The car is here. — *В записи последнее слово — `available`, а в этом варианте — `here`.*
-- The car is yours. — *В записи последнее слово — `available`, а в этом варианте — `yours`.*
+🔊 *Is this textbook the teacher's?* → **Is this textbook the teacher's?** · Is this textbook your cousin's? · Is this notebook the teacher's?
+- Is this textbook your cousin's? — *В записи хозяйка — `teacher's`, учительница, а в этом варианте — `cousin's`, двоюродный брат.*
+- Is this notebook the teacher's? — *В записи вещь — `textbook`, а в этом варианте — `notebook`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-27:i10; family: speed_match -->
-passport — паспорт · cars — машины · awning — навес · tablet — планшет
+marker — маркер · ruler — линейка · whiteboard — белая доска · notebook — тетрадь
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-27:i11; family: listen_build_dictation -->
-🔊 *The cars are under the awning.* Плитки: `awning` `the` `under` `are` `cars` `The` `is` → **The cars are under the awning.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cars are under the awning.`)*
+🔊 *My cousin's calculator is on the desk.* Плитки: `calculator` `cousin's` `is` `on` `the` `desk` `My` `are` → **My cousin's calculator is on the desk.**
+*(плитка `are` лишняя: здесь нужно `is` — `My cousin's calculator is on the desk.`)*
 
-**12 · Скажите «Планшет Анны на столе»**
+**16 · Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»**
 <!-- interaction_id: en:lesson-05:session-27:i12; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `tablet` `Anna's` `are` → **Anna's tablet is on the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna's tablet is on the table.`)*
+Плитки: `teacher` `has` `your` `textbook` `The` `have` → **The teacher has your textbook.**
+*(плитка `have` лишняя: здесь нужно `has` — `The teacher has your textbook.`)*
 
-**13 · Вы ищете свой документ. Спросите «Где мой паспорт?»**
+**17 · Учительница спрашивает, чей это калькулятор. Он вашей подруги. Скажите: «Он моей подруги»**
 <!-- interaction_id: en:lesson-05:session-27:i13; family: scripted_repeat_compare -->
-🎙 **Where is my passport?**
+🎙 **It is my friend's.**
 
-**14 · Паспорт принадлежит другу-мужчине. Скажите «Паспорт его»**
+**18 · Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово**
 <!-- interaction_id: en:lesson-05:session-27:i14; family: context_gap_grammar -->
-The passport is ___. → **his** · hers · ours
-- hers — *`hers` — её; его — `his`.*
-- ours — *`ours` — наш; его — `his`.*
+My cousin ___ a calculator. → **has** · have · is
+- have — *К слову `cousin` нужно `has`, а не `have`.*
+- is — *`is` значит «есть, находится», а здесь нужно «у двоюродного брата есть»: `has`.*
 
-**15 · Послушайте, где паспорт**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-27:i15; family: listen_choose -->
-🔊 *Your passport is in the bag.* → **Your passport is in the bag.** · My passport is in the bag. · Your passport is in the backpack.
-- My passport is in the bag. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- Your passport is in the backpack. — *В записи последнее слово — `bag`, а в этом варианте — `backpack`.*
+🔊 *The textbook is my friend's.* → **The textbook is my friend's.** · The textbook is my brother's. · The notebook is my friend's.
+- The textbook is my brother's. — *В записи хозяин — `friend's`, друг, а в этом варианте — `brother's`, брат.*
+- The notebook is my friend's. — *В записи вещь — `textbook`, а в этом варианте — `notebook`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-27:i16; family: speed_match -->
-passport — паспорт · cars — машины · awning — навес · tablet — планшет
+marker — маркер · whiteboard — белая доска · calculator — калькулятор · textbook — учебник
 
-**17 · Друг нашёл документ Анны. Назовите владельца: «Это паспорт Анны»**
+**21 · Учительница спрашивает, чей это учебник. Он вашего двоюродного брата. Скажите: «Он моего двоюродного брата»**
 <!-- interaction_id: en:lesson-05:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Anna's passport.**
-
+🎙 **It is my cousin's.**

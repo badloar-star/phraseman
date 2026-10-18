@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 20 — Шарф перед прогулянкою
+# Англійська · Урок 5 · Заняття 20 — Речі чоловіка, дружини й дітей
 
-**Ситуація.** Перед прогулянкою ви з другом розбираєте шарфи, карти й зошити. На маршруті ви звіряєтеся з картою та помічаєте гриб біля дерева.
+**Ситуація.** Подруга на кухні, охоронець в офісі й сусід на подвір’ї хочуть дізнатися, чия річ. Власник — чоловік, дружина, син чи донька, і його називаємо з ’s: The mug is my husband’s.
 
-**Що ви опануєте:** назвати власника речей і описати готовність до прогулянки
-**Нові слова:** scarf
+**Що ви опануєте:** назвати власника речі з ’s: my husband’s, his wife’s, my son’s
+**Нові слова:** husband, wife, son, daughter
+**Повертаються:** mug, football, umbrella, key, backpack, scarf, ball
 
 ---
 
 ## Інтро 1
 
-### Тепло для шиї
+### Кухоль на полиці
 
-`scarf` — «шарф». `The scarf is mine` — «Шарф мій». `Your scarf is here` — «Твій шарф тут». Перед назвою речі — `my`, без повторення назви — `mine`. `The scarf is hers` — «Шарф її». Шарф уже на шиї, а ви шукаєте його в сумці: він готовий до прогулянки раніше за вас.
+Ви з подругою після вечері прибираєте спільну кухню. На полиці стоїть кухоль, і подруга питає, чий він. Кухоль вашого чоловіка. husband — «чоловік». Щоб назвати власника, додаємо ’s: my husband’s — «мого чоловіка». The mug is my husband’s — «Кухоль мого чоловіка».
 
-**Скажіть «Шарф мій».**
+**Подруга показує на кухоль і питає, чий він. Кухоль вашого чоловіка. Скажіть їй: «Кухоль мого чоловіка».**
 
-- ✅ **The scarf is mine.**
-- ❌ The scarf is my. — *Без назви речі потрібна форма `mine`.*
-- ❌ The scarf is yours. — *`yours` — твій; мій — `mine`.*
+- ✅ **The mug is my husband’s.**
+- ❌ The mug is my husband. — *Без ’s вийде «кухоль — це мій чоловік». Щоб назвати власника, потрібно ’s.*
+- ❌ The mug is mine husband’s. — *Перед словом husband потрібно my, а mine стоїть без назви.*
 
 ---
 
 ## Інтро 2
 
-### Підготовлені й обережні
+### Парасолька біля дверей
 
-`prepared` — «підготовлений / підготовлені», `careful` — «обережний / обережні», `lost` — «заблукав / заблукали», коли йдеться про людей, які не знають дороги. `We are prepared` — «Ми підготовлені». `We are careful` — «Ми обережні». `We are lost` — «Ми заблукали». Ці слова описують стан; з `We` ставимо `are`.
+В офісі наприкінці робочого дня охоронець помічає біля дверей парасольку й питає, чия вона. Парасолька належить дружині вашого колеги, а колега стоїть поруч. wife — «дружина». Колега — «він», тому his, і знову ’s: The umbrella is his wife’s — «Парасолька його дружини».
 
-**У вас є карти й усе потрібне для прогулянки. Скажіть «Ми підготовлені».**
+**Охоронець питає, чия парасолька біля дверей. Парасолька належить дружині вашого колеги. Скажіть йому: «Парасолька його дружини».**
 
-- ✅ **We are prepared.**
-- ❌ We is prepared. — *З `We` потрібна форма `are`.*
-- ❌ We are lost. — *`lost` — заблукали; підготовлені — `prepared`.*
+- ✅ **The umbrella is his wife’s.**
+- ❌ The umbrella is his wife. — *Без ’s вийде «парасолька — це його дружина». Щоб назвати власницю, потрібно ’s.*
+- ❌ The umbrella is her wife’s. — *her — її, а колега чоловік: потрібно his.*
 
 ---
 
 ## Інтро 3
 
-### Карта, гриб і зошит
+### М’яч на подвір’ї
 
-`maps` — «карти», `mushroom` — «гриб», `notebook` — «зошит». `The maps are ours` — «Карти наші». `The notebook is his` — «Зошит його». `There is a mushroom next to the tree` — «Поруч із деревом є гриб». `Where is my scarf?` — «Де мій шарф?» З однією річчю — `is`, з кількома картами — `are`.
+Сусід по площадці знайшов на подвір’ї синій м’яч і питає, чий він. М’яч належить вашому синові, йому три роки. son — «син». Власника називаємо так само: my son’s — «мого сина». The ball is my son’s — «М’яч мого сина». Для доньки було б my daughter’s.
 
-**Карти належать вам і другові. Скажіть «Карти наші».**
+**Сусід тримає м’яч і питає, чий він. М’яч вашого сина. Скажіть йому: «М’яч мого сина».**
 
-- ✅ **The maps are ours.**
-- ❌ The maps is ours. — *Кілька карт: `maps are`.*
-- ❌ The maps are our. — *Без назви речі потрібна форма `ours`.*
+- ✅ **The ball is my son’s.**
+- ❌ The ball is my son. — *Без ’s вийде «м’яч — це мій син». Щоб назвати власника, потрібно ’s.*
+- ❌ The ball is mine son’s. — *Перед словом son потрібно my, а mine стоїть без назви.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Карти й усе потрібне у вас із собою. Скажіть «Ми підготовлені» без скорочення**
+**1 · Картка слова — husband**
+<!-- interaction_id: en:lesson-05:session-20:word:husband; family: word_card -->
+> **husband** — чоловік. My husband is here. — «Мій чоловік тут». Про чоловіка, з яким людина одружена.
+
+**2 · Подруга питає, чий кухоль. Він належить вашому чоловікові. Скажіть їй повною фразою: «Кухоль мого чоловіка»**
 <!-- interaction_id: en:lesson-05:session-20:i01; family: phrase_builder -->
-Плитки: `prepared` `are` `We` `is` → **We are prepared.**
-*(плитка `is` зайва: тут потрібно `are` — `We are prepared.`)*
+Плитки: `mug` `is` `my` `husband’s` `The` `your` → **The mug is my husband’s.**
+*(плитка `your` зайва: тут потрібно `my` — `The mug is my husband’s.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — wife**
+<!-- interaction_id: en:lesson-05:session-20:word:wife; family: word_card -->
+> **wife** — дружина. His wife is here. — «Його дружина тут». Про жінку, з якою людина одружена.
+
+**4 · Послухайте охоронця**
 <!-- interaction_id: en:lesson-05:session-20:i02; family: listen_choose -->
-🔊 *scarf* → **scarf** · coat · shirt
-- coat — *У записі перше слово — `scarf`, а в цьому варіанті — `coat`.*
-- shirt — *У записі перше слово — `scarf`, а в цьому варіанті — `shirt`.*
+🔊 *The umbrella is his wife’s.* → **The umbrella is his wife’s.** · The umbrella is his wife. · The scarf is his wife’s.
+- The umbrella is his wife. — *У записі `wife’s` — «дружини» (чия річ), а в цьому варіанті `wife` — сама дружина.*
+- The scarf is his wife’s. — *У записі говорять про парасольку `umbrella`, а в цьому варіанті — про шарф `scarf`.*
 
-**3 · Назвіть шарф**
+**5 · Картка слова — son**
+<!-- interaction_id: en:lesson-05:session-20:word:son; family: word_card -->
+> **son** — син. My son is here. — «Мій син тут». Про хлопчика чи чоловіка щодо його батьків.
+
+**6 · Хлопчик щодо своїх батьків. Як його називають англійською?**
 <!-- interaction_id: en:lesson-05:session-20:i03; family: context_gap_grammar -->
-___ → **scarf** · jacket · gloves
-- jacket — *`jacket` — куртка; шарф — `scarf`.*
-- gloves — *`gloves` — рукавички; шарф — `scarf`.*
+___ → **son** · brother · uncle
+- brother — *brother — це брат, а хлопчик щодо батьків — son.*
+- uncle — *uncle — це дядько, а хлопчик щодо батьків — son.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-20:i04; family: speed_match -->
-scarf — шарф · lost — заблукали · prepared — підготовлені · careful — обережні
+husband — чоловік · wife — дружина · son — син · daughter — донька
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — daughter**
+<!-- interaction_id: en:lesson-05:session-20:word:daughter; family: word_card -->
+> **daughter** — донька. Her daughter is here. — «Її донька тут». Про дівчинку чи жінку щодо її батьків.
+
+**9 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-20:i05; family: listen_build_dictation -->
-🔊 *Your scarf is here.* Плитки: `here` `is` `scarf` `Your` `are` → **Your scarf is here.**
-*(плитка `are` зайва: тут потрібно `is` — `Your scarf is here.`)*
+🔊 *The bag is my daughter’s.* Плитки: `bag` `is` `my` `daughter’s` `The` `your` → **The bag is my daughter’s.**
+*(плитка `your` зайва: тут потрібно `my` — `The bag is my daughter’s.`)*
 
-**6 · Карти належать вам і другові. Скажіть «Карти наші»**
+**10 · Ви питаєте сусідку, чи не її сина футбольний м’яч. Задайте питання повністю: «Футбольний м’яч вашого сина?»**
 <!-- interaction_id: en:lesson-05:session-20:i06; family: phrase_builder -->
-Плитки: `ours` `are` `maps` `The` `is` → **The maps are ours.**
-*(плитка `is` зайва: тут потрібно `are` — `The maps are ours.`)*
+Плитки: `football` `your` `son’s` `the` `Is` `Are` → **Is the football your son’s?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is the football your son’s?`)*
 
-**7 · Ви з другом не знаєте, як повернутися. Скажіть «Ми заблукали» без скорочення**
+**11 · Охоронець питає, чия парасолька. Вона належить вашій дружині. Відповідьте: «Парасолька моєї дружини»**
 <!-- interaction_id: en:lesson-05:session-20:i07; family: scripted_repeat_compare -->
-🎙 **We are lost.**
+🎙 **The umbrella is my wife’s.**
 
-**8 · Шарф належить подрузі. Скажіть «Шарф її»**
+**12 · Подруга питає, чий м’яч. Він належить вашому синові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-20:i08; family: context_gap_grammar -->
-The scarf is ___. → **hers** · her · ours
-- her — *Без назви речі потрібна форма `hers`.*
-- ours — *`ours` — наш; її — `hers`.*
+The ball is my ___. → **son’s** · son · sons
+- son — *Без ’s вийде «м’яч — це мій син». Щоб назвати власника, потрібно ’s.*
+- sons — *sons — це «сини», а щоб назвати власника м’яча, потрібно ’s.*
 
-**9 · Послухайте, як друг описує вашу обережність**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-20:i09; family: listen_choose -->
-🔊 *We are careful.* → **We are careful.** · We are prepared. · We are lost.
-- We are prepared. — *У записі останнє слово — `careful`, а в цьому варіанті — `prepared`.*
-- We are lost. — *У записі останнє слово — `careful`, а в цьому варіанті — `lost`.*
+🔊 *It is my daughter’s bag.* → **It is my daughter’s bag.** · It is my son’s bag. · It is my daughter’s ball.
+- It is my son’s bag. — *У записі `daughter’s` — доньки, а в цьому варіанті `son’s` — сина.*
+- It is my daughter’s ball. — *У записі останнє слово `bag` — сумка, а в цьому варіанті `ball` — м’яч.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-20:i10; family: speed_match -->
-scarf — шарф · maps — карти · mushroom — гриб · notebook — зошит
+mug — кухоль · football — футбольний м’яч · key — ключ · backpack — рюкзак
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-20:i11; family: listen_build_dictation -->
-🔊 *Where is my scarf?* Плитки: `scarf` `my` `is` `Where` → **Where is my scarf?**
+🔊 *The football is her son’s.* Плитки: `football` `is` `her` `son’s` `The` `his` → **The football is her son’s.**
+*(плитка `his` зайва: тут потрібно `her` — `The football is her son’s.`)*
 
-**12 · Зошит належить другові-чоловікові. Скажіть «Зошит його»**
+**16 · Подруга питає, чий ключ лежить на столі. Він належить вашій дружині. Скажіть їй повною фразою: «Ключ моєї дружини»**
 <!-- interaction_id: en:lesson-05:session-20:i12; family: phrase_builder -->
-Плитки: `his` `is` `notebook` `The` `are` → **The notebook is his.**
-*(плитка `are` зайва: тут потрібно `is` — `The notebook is his.`)*
+Плитки: `key` `is` `my` `wife’s` `The` `your` → **The key is my wife’s.**
+*(плитка `your` зайва: тут потрібно `my` — `The key is my wife’s.`)*
 
-**13 · Ви помітили один гриб поруч із деревом. Повідомте «Поруч із деревом є гриб»**
+**17 · Охоронець питає про шарф біля дверей. Він належить вашій доньці. Відповідьте: «Шарф моєї доньки»**
 <!-- interaction_id: en:lesson-05:session-20:i13; family: scripted_repeat_compare -->
-🎙 **There is a mushroom next to the tree.**
+🎙 **The scarf is my daughter’s.**
 
-**14 · Немає жодної карти. Виберіть форму для множини**
+**18 · Подруга питає, чий рюкзак. Він належить вашому чоловікові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-20:i14; family: context_gap_grammar -->
-There ___ no maps. → **are** · is · am
-- is — *`maps` — множина: `There are`.*
-- am — *`am` використовується з `I`; тут `There are`.*
+The backpack is my ___. → **husband’s** · husband · wife’s
+- husband — *Без ’s вийде «рюкзак — це мій чоловік». Щоб назвати власника, потрібно ’s.*
+- wife’s — *wife’s — дружини, а рюкзак чоловіка: потрібно husband’s.*
 
-**15 · Послухайте, кому належить шарф**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-20:i15; family: listen_choose -->
-🔊 *The scarf is yours.* → **The scarf is yours.** · The scarf is mine. · The scarf is theirs.
-- The scarf is mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- The scarf is theirs. — *У записі останнє слово — `yours`, а в цьому варіанті — `theirs`.*
+🔊 *Is the mug your wife’s?* → **Is the mug your wife’s?** · Is the mug your husband’s? · Is the mug your son’s?
+- Is the mug your husband’s? — *У записі `wife’s` — дружини, а в цьому варіанті `husband’s` — чоловіка.*
+- Is the mug your son’s? — *У записі `wife’s` — дружини, а в цьому варіанті `son’s` — сина.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-20:i16; family: speed_match -->
-scarf — шарф · maps — карти · mushroom — гриб · notebook — зошит
+husband — чоловік · wife — дружина · umbrella — парасолька · ball — м’яч
 
-**17 · Друг знайшов ваш шарф і запитує про власника. Скажіть «Шарф мій»**
+**21 · Сусід бере м’яч вашого сина. Скажіть йому: «М’яч мого сина»**
 <!-- interaction_id: en:lesson-05:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The scarf is mine.**
-
+🎙 **The ball is my son’s.**

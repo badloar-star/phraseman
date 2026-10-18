@@ -4,39 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-22:i01",
+      "interactionId": "en:lesson-05:session-22:word:keyboard",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keyboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:word:keyboard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keyboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:word:keyboard:audio",
+          "transcript": "keyboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:word:keyboard:r1",
+            "targetText": "keyboard",
+            "meaningByLocale": {
+              "ru": "клавиатура. The keyboard is on the desk. — «Клавиатура на столе». О панели с кнопками для набора текста на компьютере.",
+              "uk": "клавіатура. The keyboard is on the desk. — «Клавіатура на столі». Про панель із кнопками для набору тексту на комп’ютері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keyboard",
+          "definitionByLocale": {
+            "ru": "клавиатура. The keyboard is on the desk. — «Клавиатура на столе». О панели с кнопками для набора текста на компьютере.",
+            "uk": "клавіатура. The keyboard is on the desk. — «Клавіатура на столі». Про панель із кнопками для набору тексту на комп’ютері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+      "prompt": "Вы нашли в переговорной клавиатуру. Спросите коллегу полной фразой: «Чья это клавиатура?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+      "accessibilityLabel": "Вы нашли в переговорной клавиатуру. Спросите коллегу полной фразой: «Чья это клавиатура?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are famous.",
+        "targetPhrase": "Whose keyboard is this?",
         "localizedMeaning": {
-          "ru": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
-          "uk": "Мандрівників знають багато людей. Скажіть «Вони знамениті» без скорочення"
+          "ru": "Вы нашли в переговорной клавиатуру. Спросите коллегу полной фразой: «Чья это клавиатура?»",
+          "uk": "Ви знайшли в переговорній клавіатуру. Спитайте колегу повною фразою: «Чия це клавіатура?»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "famous"
+          "Whose",
+          "keyboard",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Путешественников знают многие. Скажите «Они знаменитые» без сокращения",
+            "testedDimension": "Вы нашли в переговорной клавиатуру. Спросите коллегу полной фразой: «Чья это клавиатура?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are famous.`",
-              "uk": "тут потрібно `are` — `They are famous.`"
+              "ru": "здесь нужно `Whose` — `Whose keyboard is this?`",
+              "uk": "тут потрібно `Whose` — `Whose keyboard is this?`"
             }
           }
         ],
@@ -48,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-22:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-22:word:gloves",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — gloves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:word:gloves:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gloves",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:word:gloves:audio",
+          "transcript": "gloves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:word:gloves:r1",
+            "targetText": "gloves",
+            "meaningByLocale": {
+              "ru": "перчатки. The gloves are here. — «Перчатки здесь». О паре, которую надевают на руки в холод.",
+              "uk": "рукавички. The gloves are here. — «Рукавички тут». Про пару, яку одягають на руки в холод."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gloves",
+          "definitionByLocale": {
+            "ru": "перчатки. The gloves are here. — «Перчатки здесь». О паре, которую надевают на руки в холод.",
+            "uk": "рукавички. The gloves are here. — «Рукавички тут». Про пару, яку одягають на руки в холод."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-22:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i02:r1",
-          "text": "boots"
+          "text": "Whose gloves are these?"
         },
         {
           "responseId": "en:lesson-05:session-22:i02:r2",
-          "text": "books"
+          "text": "Whose gloves are those?"
         },
         {
           "responseId": "en:lesson-05:session-22:i02:r3",
-          "text": "gloves"
+          "text": "Whose glove is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i02:audio",
-          "transcript": "boots"
+          "transcript": "Whose gloves are these?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-22:i02:r1",
-            "targetText": "boots",
+            "targetText": "Whose gloves are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i02:r2",
-            "targetText": "books",
+            "targetText": "Whose gloves are those?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i02:r3",
-            "targetText": "gloves",
+            "targetText": "Whose glove is this?",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +189,19 @@
           {
             "responseId": "en:lesson-05:session-22:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `boots`, а в этом варианте — `books`.",
-              "uk": "У записі перше слово — `boots`, а в цьому варіанті — `books`."
+              "ru": "В записи `these` — эти, рядом, а в этом варианте `those` — те, подальше.",
+              "uk": "У записі `these` — ці, поруч, а в цьому варіанті `those` — ті, подалі."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `boots`, а в этом варианте — `gloves`.",
-              "uk": "У записі перше слово — `boots`, а в цьому варіанті — `gloves`."
+              "ru": "В записи `gloves are` — несколько перчаток, а в этом варианте `glove is` — одна.",
+              "uk": "У записі `gloves are` — кілька рукавичок, а в цьому варіанті `glove is` — одна."
             }
           }
         ],
@@ -124,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-22:word:microphone",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — microphone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:word:microphone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — microphone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:word:microphone:audio",
+          "transcript": "microphone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:word:microphone:r1",
+            "targetText": "microphone",
+            "meaningByLocale": {
+              "ru": "микрофон. The microphone is here. — «Микрофон здесь». О приборе, в который говорят, чтобы голос стал громче.",
+              "uk": "мікрофон. The microphone is here. — «Мікрофон тут». Про прилад, у який говорять, щоб голос став гучнішим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "microphone",
+          "definitionByLocale": {
+            "ru": "микрофон. The microphone is here. — «Микрофон здесь». О приборе, в который говорят, чтобы голос стал громче.",
+            "uk": "мікрофон. The microphone is here. — «Мікрофон тут». Про прилад, у який говорять, щоб голос став гучнішим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-22:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите ботинки",
+      "prompt": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i03:r1",
-          "text": "boots"
+          "text": "microphone"
         },
         {
           "responseId": "en:lesson-05:session-22:i03:r2",
-          "text": "gloves"
+          "text": "keyboard"
         },
         {
           "responseId": "en:lesson-05:session-22:i03:r3",
-          "text": "scarf"
+          "text": "key"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите ботинки",
+      "accessibilityLabel": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите ботинки",
-          "uk": "Назвіть черевики"
+          "ru": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
+          "uk": "Ведуча на сцені говорить у цей прилад, щоб голос став гучнішим. Як він називається англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-22:i03:r1",
-            "text": "boots"
+            "text": "microphone"
           },
           {
             "responseId": "en:lesson-05:session-22:i03:r2",
-            "text": "gloves"
+            "text": "keyboard"
           },
           {
             "responseId": "en:lesson-05:session-22:i03:r3",
-            "text": "scarf"
+            "text": "key"
           }
         ],
-        "testedDimension": "Назовите ботинки",
+        "testedDimension": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите ботинки",
+            "testedDimension": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`gloves` — перчатки; ботинки — `boots`.",
-              "uk": "`gloves` — рукавички; черевики — `boots`."
+              "ru": "keyboard — это клавиатура, а прибор для голоса называется microphone.",
+              "uk": "keyboard — це клавіатура, а прилад для голосу називається microphone."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите ботинки",
+            "testedDimension": "Ведущая на сцене говорит в этот прибор, чтобы голос стал громче. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`scarf` — шарф; ботинки — `boots`.",
-              "uk": "`scarf` — шарф; черевики — `boots`."
+              "ru": "key — это ключ, а прибор для голоса называется microphone.",
+              "uk": "key — це ключ, а прилад для голосу називається microphone."
             }
           }
         ]
@@ -194,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-22:i04:p1",
-            "target": "boots",
+            "target": "keyboard",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "клавиатура",
+              "uk": "клавіатура"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i04:p2",
-            "target": "rich",
+            "target": "gloves",
             "meaningByLocale": {
-              "ru": "богатые",
-              "uk": "багаті"
+              "ru": "перчатки",
+              "uk": "рукавички"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i04:p3",
-            "target": "poor",
+            "target": "microphone",
             "meaningByLocale": {
-              "ru": "бедные",
-              "uk": "бідні"
+              "ru": "микрофон",
+              "uk": "мікрофон"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i04:p4",
-            "target": "famous",
+            "target": "calendar",
             "meaningByLocale": {
-              "ru": "знаменитые",
-              "uk": "знамениті"
+              "ru": "календарь",
+              "uk": "календар"
             }
           }
         ],
         "leftColumn": [
-          "boots",
-          "rich",
-          "poor",
-          "famous"
+          "keyboard",
+          "gloves",
+          "microphone",
+          "calendar"
         ],
         "rightColumn": [
-          "ботинки",
-          "богатые",
-          "бедные",
-          "знаменитые"
+          "клавиатура",
+          "перчатки",
+          "микрофон",
+          "календарь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,46 +396,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-22:word:calendar",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calendar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-22:word:calendar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calendar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-22:word:calendar:audio",
+          "transcript": "calendar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-22:word:calendar:r1",
+            "targetText": "calendar",
+            "meaningByLocale": {
+              "ru": "календарь. My calendar is on the wall. — «Мой календарь на стене». О листах с днями и месяцами года.",
+              "uk": "календар. My calendar is on the wall. — «Мій календар на стіні». Про аркуші з днями й місяцями року."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calendar",
+          "definitionByLocale": {
+            "ru": "календарь. My calendar is on the wall. — «Мой календарь на стене». О листах с днями и месяцами года.",
+            "uk": "календар. My calendar is on the wall. — «Мій календар на стіні». Про аркуші з днями й місяцями року."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-22:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i05:audio",
-          "transcript": "My boots are next to your suitcase."
+          "transcript": "Whose calendar is that?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "My boots are next to your suitcase.",
+        "hiddenTargetPhrase": "Whose calendar is that?",
         "orderedTokens": [
-          "My",
-          "boots",
-          "are",
-          "next",
-          "to",
-          "your",
-          "suitcase"
+          "Whose",
+          "calendar",
+          "is",
+          "that"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте коллегу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `My boots are next to your suitcase.`",
-              "uk": "тут потрібно `are` — `My boots are next to your suitcase.`"
+              "ru": "здесь нужно `Whose` — `Whose calendar is that?`",
+              "uk": "тут потрібно `Whose` — `Whose calendar is that?`"
             }
           }
         ],
@@ -318,27 +488,26 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+      "prompt": "Коллега показывает перчатки и спрашивает, чьи они. Они ваши. Скажите полной фразой: «Они мои»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+      "accessibilityLabel": "Коллега показывает перчатки и спрашивает, чьи они. Они ваши. Скажите полной фразой: «Они мои»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cups are ours.",
+        "targetPhrase": "They are mine.",
         "localizedMeaning": {
-          "ru": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
-          "uk": "Чашки належать вам і другові. Скажіть «Чашки наші»"
+          "ru": "Коллега показывает перчатки и спрашивает, чьи они. Они ваши. Скажите полной фразой: «Они мои»",
+          "uk": "Колега показує рукавички й питає, чиї вони. Вони ваші. Скажіть повною фразою: «Вони мої»"
         },
         "orderedTokens": [
-          "The",
-          "cups",
+          "They",
           "are",
-          "ours"
+          "mine"
         ],
         "authoredDistractorTokens": [
           "is"
@@ -347,10 +516,10 @@
           {
             "responseId": "en:lesson-05:session-22:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Чашки принадлежат вам и другу. Скажите «Чашки наши»",
+            "testedDimension": "Коллега показывает перчатки и спрашивает, чьи они. Они ваши. Скажите полной фразой: «Они мои»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cups are ours.`",
-              "uk": "тут потрібно `are` — `The cups are ours.`"
+              "ru": "здесь нужно `are` — `They are mine.`",
+              "uk": "тут потрібно `are` — `They are mine.`"
             }
           }
         ],
@@ -363,25 +532,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Речь о достатке людей. Скажите «Они богатые» без сокращения",
+      "prompt": "Коллега держит календарь. Спросите его: «Чей это календарь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Речь о достатке людей. Скажите «Они богатые» без сокращения",
+      "accessibilityLabel": "Коллега держит календарь. Спросите его: «Чей это календарь?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i07:audio",
-          "transcript": "They are rich."
+          "transcript": "Whose calendar is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They are rich.",
+        "targetPhrase": "Whose calendar is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,67 +565,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+      "prompt": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i08:r1",
-          "text": "hers"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-22:i08:r2",
-          "text": "her"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-22:i08:r3",
-          "text": "ours"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+      "accessibilityLabel": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
-          "uk": "Валіза належить подрузі. Скажіть «Валіза її»"
+          "ru": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
+          "uk": "Ви показуєте подрузі рукавички й питаєте, чиї вони. Виберіть слово"
         },
-        "gappedTargetPhrase": "The suitcase is ___.",
+        "gappedTargetPhrase": "Whose gloves ___ these?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-22:i08:r1",
-            "text": "hers"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-22:i08:r2",
-            "text": "her"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-22:i08:r3",
-            "text": "ours"
+            "text": "has"
           }
         ],
-        "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+        "testedDimension": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+            "testedDimension": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "Перчаток две, поэтому нужно are, а не is.",
+              "uk": "Рукавичок дві, тому потрібно are, а не is."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Чемодан принадлежит подруге. Скажите «Чемодан её»",
+            "testedDimension": "Вы показываете подруге перчатки и спрашиваете, чьи они. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`ours` — наш; её — `hers`.",
-              "uk": "`ours` — наша; її — `hers`."
+              "ru": "has значит «имеет», а для вопроса «чьи это» нужно are.",
+              "uk": "has означає «має», а для питання «чиї це» потрібно are."
             }
           }
         ]
@@ -465,51 +634,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, как друг описывает достаток людей",
+      "prompt": "Послушайте организатора",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i09:r1",
-          "text": "They are poor."
+          "text": "Whose microphone is that?"
         },
         {
           "responseId": "en:lesson-05:session-22:i09:r2",
-          "text": "They are rich."
+          "text": "Whose microphone is this?"
         },
         {
           "responseId": "en:lesson-05:session-22:i09:r3",
-          "text": "They are famous."
+          "text": "Whose keyboard is that?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, как друг описывает достаток людей",
+      "accessibilityLabel": "Послушайте организатора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i09:audio",
-          "transcript": "They are poor."
+          "transcript": "Whose microphone is that?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-22:i09:r1",
-            "targetText": "They are poor.",
+            "targetText": "Whose microphone is that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i09:r2",
-            "targetText": "They are rich.",
+            "targetText": "Whose microphone is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i09:r3",
-            "targetText": "They are famous.",
+            "targetText": "Whose keyboard is that?",
             "meaningByLocale": null
           }
         ],
@@ -518,19 +687,19 @@
           {
             "responseId": "en:lesson-05:session-22:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, как друг описывает достаток людей",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `poor`, а в этом варианте — `rich`.",
-              "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `rich`."
+              "ru": "В записи `that` — то, подальше, а в этом варианте `this` — это, рядом.",
+              "uk": "У записі `that` — те, подалі, а в цьому варіанті `this` — це, поруч."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, как друг описывает достаток людей",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `poor`, а в этом варианте — `famous`.",
-              "uk": "У записі останнє слово — `poor`, а в цьому варіанті — `famous`."
+              "ru": "В записи говорят о микрофоне `microphone`, а в этом варианте — о клавиатуре `keyboard`.",
+              "uk": "У записі говорять про мікрофон `microphone`, а в цьому варіанті — про клавіатуру `keyboard`."
             }
           }
         ],
@@ -541,8 +710,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -555,48 +724,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-22:i10:p1",
-            "target": "boots",
+            "target": "keyboard",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "клавиатура",
+              "uk": "клавіатура"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i10:p2",
-            "target": "cups",
+            "target": "calendar",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "календарь",
+              "uk": "календар"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i10:p3",
-            "target": "carrot",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "рабочий стол",
+              "uk": "робочий стіл"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i10:p4",
-            "target": "suitcase",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "boots",
-          "cups",
-          "carrot",
-          "suitcase"
+          "keyboard",
+          "calendar",
+          "desk",
+          "key"
         ],
         "rightColumn": [
-          "ботинки",
-          "чашки",
-          "морковка",
-          "чемодан"
+          "клавиатура",
+          "календарь",
+          "рабочий стол",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,33 +783,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i11:audio",
-          "transcript": "Where are my boots?"
+          "transcript": "The gloves are hers."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where are my boots?",
+        "hiddenTargetPhrase": "The gloves are hers.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "gloves",
           "are",
-          "my",
-          "boots"
+          "hers"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "her"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `hers` — `The gloves are hers.`",
+              "uk": "тут потрібно `hers` — `The gloves are hers.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -650,39 +831,38 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+      "prompt": "Организатор спрашивает, чей календарь. Он принадлежит вашему другу. Скажите полной фразой: «Он его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+      "accessibilityLabel": "Организатор спрашивает, чей календарь. Он принадлежит вашему другу. Скажите полной фразой: «Он его»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The carrot is his.",
+        "targetPhrase": "It is his.",
         "localizedMeaning": {
-          "ru": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
-          "uk": "Морквина належить другові-чоловікові. Скажіть «Морквина його»"
+          "ru": "Организатор спрашивает, чей календарь. Он принадлежит вашему другу. Скажите полной фразой: «Он его»",
+          "uk": "Організатор питає, чий календар. Він належить вашому другові. Скажіть повною фразою: «Він його»"
         },
         "orderedTokens": [
-          "The",
-          "carrot",
+          "It",
           "is",
           "his"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "he"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Морковка принадлежит другу-мужчине. Скажите «Морковка его»",
+            "testedDimension": "Организатор спрашивает, чей календарь. Он принадлежит вашему другу. Скажите полной фразой: «Он его»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The carrot is his.`",
-              "uk": "тут потрібно `is` — `The carrot is his.`"
+              "ru": "здесь нужно `his` — `It is his.`",
+              "uk": "тут потрібно `his` — `It is his.`"
             }
           }
         ],
@@ -695,25 +875,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ботинки друга у вас. Скажите ему «Твои ботинки у меня»",
+      "prompt": "Коллега держит клавиатуру и спрашивает: «Whose keyboard is this?» Она ваша. Ответьте: «Она моя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i13:audio"
       ],
-      "accessibilityLabel": "Ботинки друга у вас. Скажите ему «Твои ботинки у меня»",
+      "accessibilityLabel": "Коллега держит клавиатуру и спрашивает: «Whose keyboard is this?» Она ваша. Ответьте: «Она моя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i13:audio",
-          "transcript": "I have your boots."
+          "transcript": "It is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your boots.",
+        "targetPhrase": "It is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -728,67 +908,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Нет ни одной чашки. Выберите форму для множественного числа",
+      "prompt": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-05:session-22:i14:r2",
           "text": "is"
         },
         {
+          "responseId": "en:lesson-05:session-22:i14:r2",
+          "text": "are"
+        },
+        {
           "responseId": "en:lesson-05:session-22:i14:r3",
-          "text": "am"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Нет ни одной чашки. Выберите форму для множественного числа",
+      "accessibilityLabel": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Нет ни одной чашки. Выберите форму для множественного числа",
-          "uk": "Немає жодної чашки. Виберіть форму для множини"
+          "ru": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
+          "uk": "Ви показуєте подрузі календар і питаєте, чий він. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no cups.",
+        "gappedTargetPhrase": "Whose calendar ___ this?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-22:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-05:session-22:i14:r2",
             "text": "is"
           },
           {
+            "responseId": "en:lesson-05:session-22:i14:r2",
+            "text": "are"
+          },
+          {
             "responseId": "en:lesson-05:session-22:i14:r3",
-            "text": "am"
+            "text": "has"
           }
         ],
-        "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+        "testedDimension": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-22:i14:r2",
             "correct": false,
-            "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+            "testedDimension": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`cups` — множественное число: `There are`.",
-              "uk": "`cups` — множина: `There are`."
+              "ru": "Календарь один, поэтому нужно is, а не are.",
+              "uk": "Календар один, тому потрібно is, а не are."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i14:r3",
             "correct": false,
-            "testedDimension": "Нет ни одной чашки. Выберите форму для множественного числа",
+            "testedDimension": "Вы показываете подруге календарь и спрашиваете, чей он. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `There are`.",
-              "uk": "`am` використовується з `I`; тут `There are`."
+              "ru": "has значит «имеет», а для вопроса «чей это» нужно is.",
+              "uk": "has означає «має», а для питання «чий це» потрібно is."
             }
           }
         ]
@@ -797,51 +977,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежат ботинки",
+      "prompt": "Послушайте организатора",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-22:i15:r1",
-          "text": "The boots are yours."
+          "text": "The microphone is hers."
         },
         {
           "responseId": "en:lesson-05:session-22:i15:r2",
-          "text": "The boots are mine."
+          "text": "The microphone is his."
         },
         {
           "responseId": "en:lesson-05:session-22:i15:r3",
-          "text": "The boots are theirs."
+          "text": "The keyboard is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежат ботинки",
+      "accessibilityLabel": "Послушайте организатора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i15:audio",
-          "transcript": "The boots are yours."
+          "transcript": "The microphone is hers."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-22:i15:r1",
-            "targetText": "The boots are yours.",
+            "targetText": "The microphone is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i15:r2",
-            "targetText": "The boots are mine.",
+            "targetText": "The microphone is his.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-22:i15:r3",
-            "targetText": "The boots are theirs.",
+            "targetText": "The keyboard is hers.",
             "meaningByLocale": null
           }
         ],
@@ -850,19 +1030,19 @@
           {
             "responseId": "en:lesson-05:session-22:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи последнее слово `hers` — её, а в этом варианте `his` — его.",
+              "uk": "У записі останнє слово `hers` — її, а в цьому варіанті `his` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-22:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат ботинки",
+            "testedDimension": "Послушайте организатора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+              "ru": "В записи говорят о микрофоне `microphone`, а в этом варианте — о клавиатуре `keyboard`.",
+              "uk": "У записі говорять про мікрофон `microphone`, а в цьому варіанті — про клавіатуру `keyboard`."
             }
           }
         ],
@@ -873,7 +1053,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -887,48 +1067,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-22:i16:p1",
-            "target": "boots",
+            "target": "microphone",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "микрофон",
+              "uk": "мікрофон"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i16:p2",
-            "target": "cups",
+            "target": "gloves",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "перчатки",
+              "uk": "рукавички"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i16:p3",
-            "target": "carrot",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           },
           {
             "pairId": "en:lesson-05:session-22:i16:p4",
-            "target": "suitcase",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "чемодан",
-              "uk": "валіза"
+              "ru": "рабочий стол",
+              "uk": "робочий стіл"
             }
           }
         ],
         "leftColumn": [
-          "boots",
-          "cups",
-          "carrot",
-          "suitcase"
+          "microphone",
+          "gloves",
+          "umbrella",
+          "desk"
         ],
         "rightColumn": [
-          "ботинки",
-          "чашки",
-          "морковка",
-          "чемодан"
+          "микрофон",
+          "перчатки",
+          "зонт",
+          "рабочий стол"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -946,25 +1126,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг нашёл ваши ботинки. Уточните «Ботинки мои»",
+      "prompt": "Вы нашли в гардеробе перчатки. Спросите у подруги: «Чьи это перчатки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Друг нашёл ваши ботинки. Уточните «Ботинки мои»",
+      "accessibilityLabel": "Вы нашли в гардеробе перчатки. Спросите у подруги: «Чьи это перчатки?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-22:i17:audio",
-          "transcript": "The boots are mine."
+          "transcript": "Whose gloves are these?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The boots are mine.",
+        "targetPhrase": "Whose gloves are these?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -986,11 +1166,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89ca90b9ea28cb5f0a2da8f522a2e0dbeb795abd488cf8ea0225933f5d005e66"
+  "learnerFingerprint": "ddcd351ad99a4c77fe9f79b70d6d6ed2890c410271314360fe810c2d270d6bdb"
 }

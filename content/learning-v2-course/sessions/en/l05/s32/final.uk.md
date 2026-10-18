@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 32 — Зустрічаємося біля фонтана
+# Англійська · Урок 5 · Заняття 32 — Вечеря в тітки
 
-**Ситуація.** Після прогулянки друзі зустрілися біля фонтана. Треба повернути речі власникам і перевірити, у кого документи й ключ-картка.
+**Ситуація.** Родина готує вечерю в квартирі вашої тітки. Скатертину, посуд і книгу рецептів принесли з різних домівок, і треба розібратися, що чиє. Нової граматики немає: ви самі вибираєте 's, has чи is і ставите питання.
 
-**Що ви опануєте:** уточнити власника, місце й наявність знайомих речей
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати, як сказати про господаря речі: 's, has чи is, у ствердженні, питанні та короткій відповіді
+**Нові слова:** jug, tablecloth, cutlery, cookbook
+**Повертаються:** aunt, uncle, grandmother, cousin, sister, brother, table, shelf, kitchen, drawer, cupboard, plate, fork
 
 ---
 
 ## Інтро 1
 
-### Обід і документи
+### Глечик для води
 
-Повторімо: `fountain` — «фонтан», `lunchbox` — «ланчбокс», `badge` — «значок», `passport` — «паспорт». `Tom is next to the fountain` — «Том поруч із фонтаном». `This is Anna’s lunchbox` — «Це ланчбокс Анни». `Tom’s passport is in the bag` — «Паспорт Тома в сумці». Після імені власника додаємо `’s`.
+Бабуся накриває стіл до вечері й просить глечик для води. Він стоїть у вашої тітки в шафці, поруч із чашками. jug — «глечик», у ньому подають воду або сік. Скажіть бабусі, де він: The jug is in my aunt's cupboard — «Глечик у шафці моєї тітки».
 
-**Укажіть на ланчбокс Анни.**
+**Бабуся просить глечик для води. Він у шафці вашої тітки. Скажіть їй: «Глечик у шафці моєї тітки».**
 
-- ✅ **This is Anna's lunchbox.**
-- ❌ This is Anna lunchbox. — *До імені власниці додаємо `’s`: `Anna’s lunchbox`.*
-- ❌ This is Tom's lunchbox. — *Це ланчбокс Тома; тут власниця Анна.*
+- ✅ **The jug is in my aunt's cupboard.**
+- ❌ The jug is in my aunt cupboard. — *Після слова aunt потрібно 's: my aunt's cupboard.*
+- ❌ The jug is in my uncle's cupboard. — *uncle — дядько, а шафка належить тітці: потрібно aunt's.*
 
 ---
 
 ## Інтро 2
 
-### Картка, дошка й музика
+### Скатертина на столі
 
-`keycard` — «ключ-картка», `skateboard` — «скейтборд», `headphones` — «навушники», `guitar` — «гітара». `These are Tom’s headphones` — «Це навушники Тома»: власник один, але `headphones` — множина, тому `are`. `Anna’s guitar is here` — «Гітара Анни тут». Навушники знайшли поруч із гітарою: мабуть, музичні речі тримаються разом.
+Двоюрідний брат розстеляє на столі білу скатертину й питає, чия вона. tablecloth — «скатертина». Її принесла ваша бабуся. Назву речі після 's можна не повторювати: The tablecloth is my grandmother's — «Скатертина моєї бабусі». І так зрозуміло, про що мова.
 
-**Укажіть на навушники Тома.**
+**Двоюрідний брат питає, чия скатертина на столі. Вона вашої бабусі. Скажіть йому: «Скатертина моєї бабусі».**
 
-- ✅ **These are Tom's headphones.**
-- ❌ These is Tom's headphones. — *З `These` і `headphones` потрібна форма `are`.*
-- ❌ These are Tom headphones. — *Для належності потрібне `Tom’s headphones`.*
+- ✅ **The tablecloth is my grandmother's.**
+- ❌ The tablecloth is my grandmother. — *Так вийшло б, що скатертина — це сама бабуся. Господиню називаємо через 's: my grandmother's.*
+- ❌ The tablecloth is my aunt's. — *aunt — тітка, а скатертину принесла бабуся: потрібно grandmother's.*
 
 ---
 
 ## Інтро 3
 
-### Що в кого
+### Виделки й ножі
 
-`I have your keycard` — «Твоя ключ-картка в мене». `The skateboard is his` — «Скейтборд його»: після `his` назву речі не повторюємо. `Where is my badge?` — «Де мій значок?» `There is no fountain here` — «Тут немає фонтана»: так можна пояснити, що ви прийшли не туди.
+Ви розкладаєте на столі виделки, ложки й ножі, які принесли в одній коробці, та питаєте подругу, чи не її сестри вони. cutlery — «столові прибори»: усі разом, як один набір. Тому кажемо this та is: Is this cutlery your sister's? — «Це прибори твоєї сестри?»
 
-**Ключ-картка друга у вас. Скажіть йому «Твоя ключ-картка в мене».**
+**Ви розкладаєте виделки, ложки й ножі. Спитайте подругу, чи не її сестри ці прибори.**
 
-- ✅ **I have your keycard.**
-- ❌ I has your keycard. — *З `I` потрібне `have`.*
-- ❌ I have my keycard. — *Другові говоримо про його ключ-картку: `your keycard`.*
+- ✅ **Is this cutlery your sister's?**
+- ❌ Are this cutlery your sister's? — *Столові прибори — один набір, тому питання починаємо з Is.*
+- ❌ Is this cutlery your sister? — *Так вийшло б, що прибори — це сама сестра. Господиню називаємо через 's: your sister's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Том чекає поруч із фонтаном. Скажіть «Том поруч із фонтаном»**
+**1 · Картка слова — jug**
+<!-- interaction_id: en:lesson-05:session-32:word:jug; family: word_card -->
+> **jug** — глечик. My aunt's jug is full. — «Глечик моєї тітки повний». Про високу посудину з ручкою, з якої наливають воду або сік.
+
+**2 · Тітка шукає глечик. Він вашої бабусі й стоїть на столі. Скажіть: «Глечик моєї бабусі на столі»**
 <!-- interaction_id: en:lesson-05:session-32:i01; family: phrase_builder -->
-Плитки: `fountain` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the fountain.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is next to the fountain.`)*
+Плитки: `jug` `grandmother's` `is` `on` `the` `table` `My` `grandmother` → **My grandmother's jug is on the table.**
+*(плитка `grandmother` зайва: тут потрібно `grandmother's` — `My grandmother's jug is on the table.`)*
 
-**2 · Послухайте, яку річ називає друг**
+**3 · Картка слова — tablecloth**
+<!-- interaction_id: en:lesson-05:session-32:word:tablecloth; family: word_card -->
+> **tablecloth** — скатертина. My grandmother's tablecloth is white. — «Скатертина моєї бабусі біла». Про тканину, якою накривають стіл.
+
+**4 · Послухайте двоюрідного брата**
 <!-- interaction_id: en:lesson-05:session-32:i02; family: listen_choose -->
-🔊 *This is Anna's lunchbox.* → **This is Anna's lunchbox.** · This is Anna's guitar. · This is Anna's passport.
-- This is Anna's guitar. — *У записі останнє слово — `lunchbox`, а в цьому варіанті — `guitar`.*
-- This is Anna's passport. — *У записі останнє слово — `lunchbox`, а в цьому варіанті — `passport`.*
+🔊 *The tablecloth is my aunt's.* → **The tablecloth is my aunt's.** · The tablecloth is my uncle's. · The jug is my aunt's.
+- The tablecloth is my uncle's. — *У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько.*
+- The jug is my aunt's. — *У записі річ — `tablecloth`, а в цьому варіанті — `jug`.*
 
-**3 · Значок належить Тому. Укажіть власника**
+**5 · Картка слова — cutlery**
+<!-- interaction_id: en:lesson-05:session-32:word:cutlery; family: word_card -->
+> **cutlery** — столові прибори. My uncle's cutlery is old. — «Столові прибори мого дядька старі». Про виделки, ложки й ножі разом. Слово поводиться як одна річ.
+
+**6 · Столові прибори належать вашому дядькові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-32:i03; family: context_gap_grammar -->
-This is ___ badge. → **Tom's** · Tom · Anna's
-- Tom — *До імені власника додаємо `’s`: `Tom’s`.*
-- Anna's — *Це належність Анні; тут власник Том.*
+The cutlery is my ___. → **uncle's** · uncle · uncles
+- uncle — *Так вийшло б, що прибори — це сам дядько. Господаря називаємо через `'s`: `uncle's`.*
+- uncles — *`uncles` — це «дядьки», кілька людей; щоб назвати господаря, потрібно `uncle's`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-32:i04; family: speed_match -->
-fountain — фонтан · lunchbox — ланчбокс · badge — значок · passport — паспорт
+jug — глечик · tablecloth — скатертина · cutlery — столові прибори · cookbook — кулінарна книга
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — cookbook**
+<!-- interaction_id: en:lesson-05:session-32:word:cookbook; family: word_card -->
+> **cookbook** — кулінарна книга. My aunt's cookbook is thick. — «Кулінарна книга моєї тітки товста». Про книгу з рецептами.
+
+**9 · Послухайте тітку й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-32:i05; family: listen_build_dictation -->
-🔊 *Tom's passport is in the bag.* Плитки: `bag` `the` `in` `is` `passport` `Tom's` `are` → **Tom's passport is in the bag.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom's passport is in the bag.`)*
+🔊 *My aunt's cookbook is on the shelf.* Плитки: `cookbook` `aunt's` `is` `on` `the` `shelf` `My` `are` → **My aunt's cookbook is on the shelf.**
+*(плитка `are` зайва: тут потрібно `is` — `My aunt's cookbook is on the shelf.`)*
 
-**6 · Навушники належать Тому. Скажіть «Це навушники Тома»**
+**10 · Ви показуєте двоюрідному братові скатертину й питаєте, чи не його бабусі вона. Задайте питання: «Це скатертина твоєї бабусі?»**
 <!-- interaction_id: en:lesson-05:session-32:i06; family: phrase_builder -->
-Плитки: `headphones` `Tom's` `are` `These` `is` → **These are Tom's headphones.**
-*(плитка `is` зайва: тут потрібно `are` — `These are Tom's headphones.`)*
+Плитки: `tablecloth` `this` `your` `grandmother's` `Is` `Are` → **Is this tablecloth your grandmother's?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this tablecloth your grandmother's?`)*
 
-**7 · Ключ-картка друга у вас. Скажіть йому «Твоя ключ-картка в мене»**
+**11 · Тітка питає, чий це глечик. Він вашого дядька. Скажіть: «Він мого дядька»**
 <!-- interaction_id: en:lesson-05:session-32:i07; family: scripted_repeat_compare -->
-🎙 **I have your keycard.**
+🎙 **It is my uncle's.**
 
-**8 · Скейтборд належить другові-чоловікові. Скажіть «Скейтборд його»**
+**12 · Двоюрідний брат питає: «Is this jug your aunt's?» Так, це її глечик. Виберіть продовження відповіді**
 <!-- interaction_id: en:lesson-05:session-32:i08; family: context_gap_grammar -->
-The skateboard is ___. → **his** · hers · ours
-- hers — *`hers` — її; його — `his`.*
-- ours — *`ours` — наш; його — `his`.*
+Yes, it ___. → **is** · isn't · has
+- isn't — *Після Yes відповідь ствердна: потрібно `it is`.*
+- has — *`has` означає «мати», а на питання «це її?» відповідаємо `it is`.*
 
-**9 · Послухайте, чия гітара тут**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-32:i09; family: listen_choose -->
-🔊 *Anna's guitar is here.* → **Anna's guitar is here.** · Tom's guitar is here. · Anna's guitar is upstairs.
-- Tom's guitar is here. — *У записі перше слово — `Anna's`, а в цьому варіанті — `Tom's`.*
-- Anna's guitar is upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Is this cutlery your sister's?* → **Is this cutlery your sister's?** · Is this cutlery your brother's? · Is this cookbook your sister's?
+- Is this cutlery your brother's? — *У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат.*
+- Is this cookbook your sister's? — *У записі річ — `cutlery`, а в цьому варіанті — `cookbook`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-32:i10; family: speed_match -->
-keycard — ключ-картка · skateboard — скейтборд · headphones — навушники · guitar — гітара
+jug — глечик · tablecloth — скатертина · fork — виделка · plate — тарілка
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте бабусю й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-32:i11; family: listen_build_dictation -->
-🔊 *Where is my badge?* Плитки: `badge` `my` `is` `Where` → **Where is my badge?**
+🔊 *My cousin's cookbook is next to the jug.* Плитки: `cookbook` `cousin's` `is` `next` `to` `the` `jug` `My` `are` → **My cousin's cookbook is next to the jug.**
+*(плитка `are` зайва: тут потрібно `is` — `My cousin's cookbook is next to the jug.`)*
 
-**12 · Ви прийшли не до того місця зустрічі. Скажіть «Тут немає фонтана»**
+**16 · У вашої тітки є кулінарна книга. Скажіть подрузі: «У моєї тітки є кулінарна книга»**
 <!-- interaction_id: en:lesson-05:session-32:i12; family: phrase_builder -->
-Плитки: `here` `fountain` `no` `is` `There` `are` → **There is no fountain here.**
-*(плитка `are` зайва: тут потрібно `is` — `There is no fountain here.`)*
+Плитки: `aunt` `has` `a` `cookbook` `My` `have` → **My aunt has a cookbook.**
+*(плитка `have` зайва: тут потрібно `has` — `My aunt has a cookbook.`)*
 
-**13 · Скейтборд Анни під столом. Повідомте про це, назвавши Анну**
+**17 · Бабуся питає, де двоюрідний брат. Він на кухні. Скажіть їй: «Мій двоюрідний брат на кухні»**
 <!-- interaction_id: en:lesson-05:session-32:i13; family: scripted_repeat_compare -->
-🎙 **Anna's skateboard is under the table.**
+🎙 **My cousin's in the kitchen.**
 
-**14 · Навушники Тома в сумці. Виберіть форму**
+**18 · Прибори вашої тітки лежать у шухляді стола. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-32:i14; family: context_gap_grammar -->
-Tom's headphones ___ in the bag. → **are** · is · has
-- is — *`headphones` — множина: `are`.*
-- has — *Тут повідомляємо місце: `headphones are in the bag`.*
+My aunt's cutlery ___ in the drawer. → **is** · are · has
+- are — *`cutlery` — один набір, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «мати», а тут ми кажемо, де лежать прибори: потрібно `is`.*
 
-**15 · Послухайте, чия ключ-картка тут**
+**19 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-05:session-32:i15; family: listen_choose -->
-🔊 *Your keycard is here.* → **Your keycard is here.** · My keycard is here. · Her keycard is here.
-- My keycard is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- Her keycard is here. — *У записі перше слово — `Your`, а в цьому варіанті — `Her`.*
+🔊 *My cousin's in the kitchen.* → **My cousin's in the kitchen.** · My cousin's cookbook is in the kitchen. · My cousin's in the hall.
+- My cousin's cookbook is in the kitchen. — *У записі після `cousin's` немає речі, це `cousin is`: брат сам на кухні, а в цьому варіанті мова про його кулінарну книгу.*
+- My cousin's in the hall. — *У записі останнє слово — `kitchen`, кухня, а в цьому варіанті — `hall`, хол.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-32:i16; family: speed_match -->
-keycard — ключ-картка · skateboard — скейтборд · headphones — навушники · guitar — гітара
+jug — глечик · tablecloth — скатертина · cutlery — столові прибори · cookbook — кулінарна книга
 
-**17 · Друг запитує про власника знайдених навушників. Вони належать Тому. Скажіть «Це навушники Тома»**
+**21 · Бабуся питає, чия це скатертина. Вона вашої тітки. Скажіть: «Це скатертина моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-32:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **These are Tom's headphones.**
-
+🎙 **This is my aunt's tablecloth.**

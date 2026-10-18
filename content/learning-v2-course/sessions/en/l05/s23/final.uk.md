@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 23 — Камера для поїздки
+# Англійська · Урок 5 · Заняття 23 — Родина на фотографіях
 
-**Ситуація.** Друзі збираються в поїздку: перевіряють квитки, камеру й шолом. За перекусом знайомляться з іншими учасниками.
+**Ситуація.** Подруга прийшла в гості й гортає ваші сімейні фотографії. Ви називаєте родичів, кажете, чиє що, і що в кого є: grandfather’s, My nephew has, The twins have.
 
-**Що ви опануєте:** уточнити власника речей і описати людей
-**Нові слова:** camera
+**Що ви опануєте:** сказати про родичів, чиє що і що в кого є: my grandfather’s, My nephew has, The twins have
+**Нові слова:** grandfather, nephew, niece, twins
+**Повертаються:** chair, puppy, dog, kite, ball, diary, guitar
 
 ---
 
 ## Інтро 1
 
-### Хто бере камеру
+### Старий стілець біля вікна
 
-`camera` — «камера, фотоапарат». Тут це пристрій для знімання. `The camera is mine` — «Камера моя». `Your camera is on the table` — «Твоя камера на столі». `my camera` — з назвою речі; `mine` — без повторення назви. Камера готова знімати поїздку, але поки її лише знімають зі столу.
+Подруга зайшла до вас і хоче сісти на старий дерев’яний стілець біля вікна, але спершу питає: Whose chair is this? — «Чий це стілець?» Стілець належить вашому дідусеві. grandfather — «дідусь». Відповідаємо з ’s: It is my grandfather’s — «Він мого дідуся».
 
-**Скажіть «Камера моя».**
+**Подруга показує на стілець і питає: «Whose chair is this?» Стілець належить вашому дідусеві. Відповідьте їй.**
 
-- ✅ **The camera is mine.**
-- ❌ The camera is my. — *Без назви речі потрібна форма `mine`.*
-- ❌ The camera is yours. — *`yours` — твоя; моя — `mine`.*
+- ✅ **It is my grandfather’s.**
+- ❌ It is my grandfather. — *Без ’s вийде «це мій дідусь». Щоб назвати власника, потрібно ’s.*
+- ❌ It is my grandfathers. — *Без апострофа слово означає «дідусі» у множині. Власника називаємо з ’s.*
 
 ---
 
 ## Інтро 2
 
-### Люди й відмінності
+### Хлопчик зі щеням
 
-`married` — «перебуває у шлюбі»: `They are married` — «Вони одружені / перебувають у шлюбі». `single` у розмові про стосунки — «без партнера»: `I am single` — «Я не у стосунках». В анкетах `single` може означати «не перебуває у шлюбі». `different` — «різні»: `The tickets are different` — «Квитки різні». Саме слово не пояснює, чим вони відрізняються.
+Подруга гортає фотографії й надовго зупиняється на знімку, де хлопчик тримає маленьке цуценя. Це син вашого старшого брата. nephew — «племінник». Про те, що в нього є цуценя, кажемо з has: My nephew has a puppy — «У мого племінника є цуценя».
 
-**Квитки відрізняються один від одного. Скажіть «Квитки різні».**
+**Подруга показує на хлопчика зі щеням на фотографії. Це син вашого брата. Скажіть їй: «У мого племінника є цуценя».**
 
-- ✅ **The tickets are different.**
-- ❌ The tickets is different. — *Кілька квитків: `tickets are`.*
-- ❌ The tickets are married. — *`married` описує сімейний стан людей; різні — `different`.*
+- ✅ **My nephew has a puppy.**
+- ❌ My nephew have a puppy. — *Племінник один, як he, тому потрібно has, а не have.*
+- ❌ My nephew is a puppy. — *is означає «є, являється»: вийде «мій племінник — цуценя». Щоб сказати «є», потрібно has.*
 
 ---
 
 ## Інтро 3
 
-### Квитки, сир і шолом
+### Близнюки з собакою
 
-`tickets` — «квитки», `cheese` — «сир», `helmet` — «шолом». `The tickets are ours` — «Квитки наші». `The helmet is hers` — «Шолом її». `There is no cheese` — «Сиру немає»: тут `cheese` не рахуємо поштучно, тому `is`. `Where is my camera?` — «Де моя камера?»
+На іншій фотографії двоє однакових хлопчиків у червоних шапках стоять поруч із великою собакою. twins — «близнюки». Їх двоє, як they, тому кажемо have, а не has: The twins have a dog — «У близнюків є собака». Подруга дивується, як вони схожі.
 
-**Шолом належить подрузі. Скажіть «Шолом її».**
+**Подруга показує на двох однакових хлопчиків із собакою. Скажіть їй: «У близнюків є собака».**
 
-- ✅ **The helmet is hers.**
-- ❌ The helmet is her. — *Без назви речі потрібна форма `hers`.*
-- ❌ The helmet is his. — *`his` — його; її — `hers`.*
+- ✅ **The twins have a dog.**
+- ❌ The twins has a dog. — *Близнюків двоє, як they, тому потрібно have, а не has.*
+- ❌ The twin have a dog. — *twin — один близнюк, а на знімку двоє: потрібно twins.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення**
+**1 · Картка слова — grandfather**
+<!-- interaction_id: en:lesson-05:session-23:word:grandfather; family: word_card -->
+> **grandfather** — дідусь. My grandfather is here. — «Мій дідусь тут». Про батька батька або матері.
+
+**2 · Подруга питає, чий це стілець. Він належить вашому дідусеві. Скажіть їй повною фразою: «Стілець мого дідуся»**
 <!-- interaction_id: en:lesson-05:session-23:i01; family: phrase_builder -->
-Плитки: `married` `are` `They` `is` → **They are married.**
-*(плитка `is` зайва: тут потрібно `are` — `They are married.`)*
+Плитки: `chair` `is` `my` `grandfather’s` `The` `your` → **The chair is my grandfather’s.**
+*(плитка `your` зайва: тут потрібно `my` — `The chair is my grandfather’s.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — nephew**
+<!-- interaction_id: en:lesson-05:session-23:word:nephew; family: word_card -->
+> **nephew** — племінник. His nephew is here. — «Його племінник тут». Про сина брата або сестри.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-23:i02; family: listen_choose -->
-🔊 *camera* → **camera** · tablet · helmet
-- tablet — *У записі перше слово — `camera`, а в цьому варіанті — `tablet`.*
-- helmet — *У записі перше слово — `camera`, а в цьому варіанті — `helmet`.*
+🔊 *My nephew has a puppy.* → **My nephew has a puppy.** · My nephew have a puppy. · My nephew has a ball.
+- My nephew have a puppy. — *У записі `has` — в однієї людини, а в цьому варіанті `have` — форма для двох або для I, you.*
+- My nephew has a ball. — *У записі останнє слово `puppy` — цуценя, а в цьому варіанті `ball` — м’яч.*
 
-**3 · Назвіть камеру для знімання**
+**5 · Картка слова — twins**
+<!-- interaction_id: en:lesson-05:session-23:word:twins; family: word_card -->
+> **twins** — близнюки. The twins are here. — «Близнюки тут». Про двох дітей, які народилися в один день в однієї матері.
+
+**6 · Двоє дітей, які народилися в один день в однієї матері. Як їх називають англійською?**
 <!-- interaction_id: en:lesson-05:session-23:i03; family: context_gap_grammar -->
-___ → **camera** · charger · helmet
-- charger — *`charger` — зарядка; камера — `camera`.*
-- helmet — *`helmet` — шолом; камера — `camera`.*
+___ → **twins** · cousins · brothers
+- cousins — *cousins — це двоюрідні брати й сестри, а двоє дітей одного дня народження — twins.*
+- brothers — *brothers — це брати, а двоє дітей одного дня народження — twins.*
 
-**4 · З’єднайте слова зі значеннями; single тут про стосунки**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-23:i04; family: speed_match -->
-camera — камера для знімання · married — перебувають у шлюбі · single — не у стосунках · different — різні
+grandfather — дідусь · nephew — племінник · niece — племінниця · twins — близнюки
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — niece**
+<!-- interaction_id: en:lesson-05:session-23:word:niece; family: word_card -->
+> **niece** — племінниця. Her niece is here. — «Її племінниця тут». Про доньку брата або сестри.
+
+**9 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-23:i05; family: listen_build_dictation -->
-🔊 *Your camera is on the table.* Плитки: `table` `the` `on` `is` `camera` `Your` `are` → **Your camera is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `Your camera is on the table.`)*
+🔊 *My niece has a diary.* Плитки: `niece` `has` `a` `diary` `My` `have` → **My niece has a diary.**
+*(плитка `have` зайва: тут потрібно `has` — `My niece has a diary.`)*
 
-**6 · Квитки належать вам і другові. Скажіть «Квитки наші»**
+**10 · Ви показуєте подрузі м’яч і питаєте, чи не її племінника він. Задайте питання повністю: «Це м’яч твого племінника?»**
 <!-- interaction_id: en:lesson-05:session-23:i06; family: phrase_builder -->
-Плитки: `ours` `are` `tickets` `The` `is` → **The tickets are ours.**
-*(плитка `is` зайва: тут потрібно `are` — `The tickets are ours.`)*
+Плитки: `ball` `this` `your` `nephew’s` `Is` `Are` → **Is this your nephew’s ball?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is this your nephew’s ball?`)*
 
-**7 · У розмові про стосунки скажіть «Я не у стосунках» без скорочення**
+**11 · Подруга питає: «Whose chair is this?» Стілець належить вашому дідусеві. Відповідьте: «Він мого дідуся»**
 <!-- interaction_id: en:lesson-05:session-23:i07; family: scripted_repeat_compare -->
-🎙 **I am single.**
+🎙 **It is my grandfather’s.**
 
-**8 · Шолом належить подрузі. Скажіть «Шолом її»**
+**12 · Подруга питає про двох близнюків на фотографії. У них є собака. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-23:i08; family: context_gap_grammar -->
-The helmet is ___. → **hers** · her · ours
-- her — *Без назви речі потрібна форма `hers`.*
-- ours — *`ours` — наш; її — `hers`.*
+The twins ___ a dog. → **have** · has · is
+- has — *Близнюків двоє, як they, тому потрібно have, а не has.*
+- is — *is означає «є, являється», а для «є» потрібно have.*
 
-**9 · Послухайте, що друг зауважує про квитки**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-23:i09; family: listen_choose -->
-🔊 *The tickets are different.* → **The tickets are different.** · The tickets are here. · The tickets are ours.
-- The tickets are here. — *У записі останнє слово — `different`, а в цьому варіанті — `here`.*
-- The tickets are ours. — *У записі останнє слово — `different`, а в цьому варіанті — `ours`.*
+🔊 *My niece has a kite.* → **My niece has a kite.** · My nephew has a kite. · My niece has a diary.
+- My nephew has a kite. — *У записі `niece` — племінниця, а в цьому варіанті `nephew` — племінник.*
+- My niece has a diary. — *У записі останнє слово `kite` — змій, а в цьому варіанті `diary` — щоденник.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-23:i10; family: speed_match -->
-camera — камера · tickets — квитки · cheese — сир · helmet — шолом
+nephew — племінник · twins — близнюки · kite — повітряний змій · dog — собака
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-23:i11; family: listen_build_dictation -->
-🔊 *Where is my camera?* Плитки: `camera` `my` `is` `Where` → **Where is my camera?**
+🔊 *The twins have a kite.* Плитки: `twins` `have` `a` `kite` `The` `has` → **The twins have a kite.**
+*(плитка `has` зайва: тут потрібно `have` — `The twins have a kite.`)*
 
-**12 · Сир закінчився. Скажіть «Сиру немає»**
+**16 · Подруга питає, чия собака на подвір’ї. Вона належить вашій племінниці. Скажіть їй повною фразою: «Собака моєї племінниці»**
 <!-- interaction_id: en:lesson-05:session-23:i12; family: phrase_builder -->
-Плитки: `cheese` `no` `is` `There` `are` → **There is no cheese.**
-*(плитка `are` зайва: тут потрібно `is` — `There is no cheese.`)*
+Плитки: `dog` `is` `my` `niece’s` `The` `your` → **The dog is my niece’s.**
+*(плитка `your` зайва: тут потрібно `my` — `The dog is my niece’s.`)*
 
-**13 · Камера друга у вас. Скажіть йому «Твоя камера в мене»**
+**17 · Подруга питає, чи є у вашого дідуся гітара. Так, є. Відповідьте: «У мого дідуся є гітара»**
 <!-- interaction_id: en:lesson-05:session-23:i13; family: scripted_repeat_compare -->
-🎙 **I have your camera.**
+🎙 **My grandfather has a guitar.**
 
-**14 · Камера належить друзям. Скажіть «Камера їхня»**
+**18 · Ви розповідаєте подрузі про дідуся. У нього є собака. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-23:i14; family: context_gap_grammar -->
-The camera is ___. → **theirs** · their · mine
-- their — *Без назви речі потрібна форма `theirs`.*
-- mine — *`mine` — моя; їхня — `theirs`.*
+My grandfather ___ a dog. → **has** · have · is
+- have — *Дідусь один, як he, тому потрібно has, а не have.*
+- is — *is означає «є, являється», а для «є» потрібно has.*
 
-**15 · Послухайте, кому належить камера**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-23:i15; family: listen_choose -->
-🔊 *The camera is yours.* → **The camera is yours.** · The camera is mine. · The camera is his.
-- The camera is mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- The camera is his. — *У записі останнє слово — `yours`, а в цьому варіанті — `his`.*
+🔊 *The kite is my nephew’s.* → **The kite is my nephew’s.** · The kite is my niece’s. · The kite is my nephew.
+- The kite is my niece’s. — *У записі `nephew’s` — племінника, а в цьому варіанті `niece’s` — племінниці.*
+- The kite is my nephew. — *У записі є ’s: змій належить племінникові. Без ’s вийде «змій — це племінник».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-23:i16; family: speed_match -->
-camera — камера · tickets — квитки · cheese — сир · helmet — шолом
+grandfather — дідусь · niece — племінниця · chair — стілець · guitar — гітара
 
-**17 · Друг знайшов вашу камеру. Уточніть «Камера моя»**
+**21 · Подруга показує на двох хлопчиків на фотографії. Це близнюки, у них є цуценя. Скажіть їй: «У близнюків є цуценя»**
 <!-- interaction_id: en:lesson-05:session-23:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The camera is mine.**
-
+🎙 **The twins have a puppy.**

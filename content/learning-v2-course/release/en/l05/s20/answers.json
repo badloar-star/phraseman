@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-20:word:husband",
+    "correctText": "husband",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-20:i01",
-    "correctText": "We are prepared.",
+    "correctText": "The mug is my husband’s.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:word:wife",
+    "correctText": "wife",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i02",
-    "correctText": "scarf",
+    "correctText": "The umbrella is his wife’s.",
     "correctResponseId": "en:lesson-05:session-20:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-20:word:son",
+    "correctText": "son",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-20:i03",
-    "correctText": "scarf",
+    "correctText": "son",
     "correctResponseId": "en:lesson-05:session-20:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-20:i04",
-    "correctText": "en:lesson-05:session-20:i04:p1=scarf\nen:lesson-05:session-20:i04:p2=lost\nen:lesson-05:session-20:i04:p3=prepared\nen:lesson-05:session-20:i04:p4=careful",
+    "correctText": "en:lesson-05:session-20:i04:p1=husband\nen:lesson-05:session-20:i04:p2=wife\nen:lesson-05:session-20:i04:p3=son\nen:lesson-05:session-20:i04:p4=daughter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-20:word:daughter",
+    "correctText": "daughter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i05",
-    "correctText": "Your scarf is here.",
+    "correctText": "The bag is my daughter’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i06",
-    "correctText": "The maps are ours.",
+    "correctText": "Is the football your son’s?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i07",
-    "correctText": "We are lost.",
+    "correctText": "The umbrella is my wife’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i08",
-    "correctText": "hers",
+    "correctText": "son’s",
     "correctResponseId": "en:lesson-05:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-20:i09",
-    "correctText": "We are careful.",
+    "correctText": "It is my daughter’s bag.",
     "correctResponseId": "en:lesson-05:session-20:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-20:i10",
-    "correctText": "en:lesson-05:session-20:i10:p1=scarf\nen:lesson-05:session-20:i10:p2=maps\nen:lesson-05:session-20:i10:p3=mushroom\nen:lesson-05:session-20:i10:p4=notebook",
+    "correctText": "en:lesson-05:session-20:i10:p1=mug\nen:lesson-05:session-20:i10:p2=football\nen:lesson-05:session-20:i10:p3=key\nen:lesson-05:session-20:i10:p4=backpack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i11",
-    "correctText": "Where is my scarf?",
+    "correctText": "The football is her son’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i12",
-    "correctText": "The notebook is his.",
+    "correctText": "The key is my wife’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i13",
-    "correctText": "There is a mushroom next to the tree.",
+    "correctText": "The scarf is my daughter’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i14",
-    "correctText": "are",
+    "correctText": "husband’s",
     "correctResponseId": "en:lesson-05:session-20:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-20:i15",
-    "correctText": "The scarf is yours.",
+    "correctText": "Is the mug your wife’s?",
     "correctResponseId": "en:lesson-05:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-20:i16",
-    "correctText": "en:lesson-05:session-20:i16:p1=scarf\nen:lesson-05:session-20:i16:p2=maps\nen:lesson-05:session-20:i16:p3=mushroom\nen:lesson-05:session-20:i16:p4=notebook",
+    "correctText": "en:lesson-05:session-20:i16:p1=husband\nen:lesson-05:session-20:i16:p2=wife\nen:lesson-05:session-20:i16:p3=umbrella\nen:lesson-05:session-20:i16:p4=ball",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-20:i17",
-    "correctText": "The scarf is mine.",
+    "correctText": "The ball is my son’s.",
     "correctResponseId": null
   }
 ]

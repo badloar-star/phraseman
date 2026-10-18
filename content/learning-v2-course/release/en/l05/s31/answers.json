@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-31:word:cage",
+    "correctText": "cage",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-31:i01",
-    "correctText": "The bags are similar.",
+    "correctText": "The bird's cage is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:word:hamster",
+    "correctText": "hamster",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i02",
-    "correctText": "guitar",
+    "correctText": "My cousin has a hamster.",
     "correctResponseId": "en:lesson-05:session-31:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-31:word:rabbit",
+    "correctText": "rabbit",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-31:i03",
-    "correctText": "guitar",
+    "correctText": "rabbit's",
     "correctResponseId": "en:lesson-05:session-31:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-31:i04",
-    "correctText": "en:lesson-05:session-31:i04:p1=guitar\nen:lesson-05:session-31:i04:p2=equal\nen:lesson-05:session-31:i04:p3=similar\nen:lesson-05:session-31:i04:p4=separate",
+    "correctText": "en:lesson-05:session-31:i04:p1=cage\nen:lesson-05:session-31:i04:p2=hamster\nen:lesson-05:session-31:i04:p3=rabbit\nen:lesson-05:session-31:i04:p4=aquarium",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-31:word:aquarium",
+    "correctText": "aquarium",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i05",
-    "correctText": "This is Tom's guitar.",
+    "correctText": "My cousin's aquarium is next to the sofa.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i06",
-    "correctText": "Anna's camera is on the table.",
+    "correctText": "Is this the rabbit's cage?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i07",
-    "correctText": "The numbers are equal.",
+    "correctText": "This is the hamster's cage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i08",
-    "correctText": "Anna's",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-31:i09",
-    "correctText": "The rooms are separate.",
+    "correctText": "Where is the hamster's cage?",
     "correctResponseId": "en:lesson-05:session-31:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-31:i10",
-    "correctText": "en:lesson-05:session-31:i10:p1=guitar\nen:lesson-05:session-31:i10:p2=parks\nen:lesson-05:session-31:i10:p3=car park\nen:lesson-05:session-31:i10:p4=camera",
+    "correctText": "en:lesson-05:session-31:i10:p1=hamster\nen:lesson-05:session-31:i10:p2=rabbit\nen:lesson-05:session-31:i10:p3=bowl\nen:lesson-05:session-31:i10:p4=cage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i11",
-    "correctText": "Tom is in the car park.",
+    "correctText": "The rabbit's bowl is under the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i12",
-    "correctText": "The parks are open.",
+    "correctText": "My cousin has a rabbit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i13",
-    "correctText": "Where is my guitar?",
+    "correctText": "I have the hamster's bowl.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i14",
-    "correctText": "hers",
+    "correctText": "its",
     "correctResponseId": "en:lesson-05:session-31:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-31:i15",
-    "correctText": "Your guitar is here.",
+    "correctText": "The hamster's cage is behind the sofa.",
     "correctResponseId": "en:lesson-05:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-31:i16",
-    "correctText": "en:lesson-05:session-31:i16:p1=guitar\nen:lesson-05:session-31:i16:p2=parks\nen:lesson-05:session-31:i16:p3=car park\nen:lesson-05:session-31:i16:p4=camera",
+    "correctText": "en:lesson-05:session-31:i16:p1=cage\nen:lesson-05:session-31:i16:p2=hamster\nen:lesson-05:session-31:i16:p3=rabbit\nen:lesson-05:session-31:i16:p4=aquarium",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-31:i17",
-    "correctText": "This is Tom's guitar.",
+    "correctText": "This is my cousin's aquarium.",
     "correctResponseId": null
   }
 ]

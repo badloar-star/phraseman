@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-25:intro1:r2": {
-          "ru": "После имени владельца нужно `’s`: `Anna’s lunchbox`.",
-          "uk": "Після імені власниці потрібне `’s`: `Anna’s lunchbox`."
+          "ru": "После слова sister нужно 's: my sister's thermos.",
+          "uk": "Після слова sister потрібно 's: my sister's thermos."
         },
         "en:lesson-05:session-25:intro1:r3": {
-          "ru": "Это ланчбокс Тома; здесь владелица Анна.",
-          "uk": "Це ланчбокс Тома; тут власниця Анна."
+          "ru": "brother — это брат, а термос принадлежит сестре: нужно sister's.",
+          "uk": "brother — це брат, а термос належить сестрі: потрібно sister's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-25:intro2:r2": {
-          "ru": "Для принадлежности нужно `Tom’s jacket`.",
-          "uk": "Для належності потрібне `Tom’s jacket`."
+          "ru": "После слова uncle нужно 's: my uncle's basket.",
+          "uk": "Після слова uncle потрібно 's: my uncle's basket."
         },
         "en:lesson-05:session-25:intro2:r3": {
-          "ru": "Одна куртка: `jacket is`.",
-          "uk": "Одна куртка: `jacket is`."
+          "ru": "on — «на», а салфетка лежит внутри корзины: нужно in.",
+          "uk": "on — «на», а серветка лежить усередині кошика: потрібно in."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-25:intro3:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "Вопрос начинаем с Is: Is this…?",
+          "uk": "Питання починаємо з Is: Is this…?"
         },
         "en:lesson-05:session-25:intro3:r3": {
-          "ru": "`ashamed` — стыдно; удивлён — `surprised`.",
-          "uk": "`ashamed` — соромно; здивований — `surprised`."
+          "ru": "my — мой, а вы спрашиваете о брате подруги: нужно your.",
+          "uk": "my — мій, а ви питаєте про брата подруги: потрібно your."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a365ea249152e90ae23d277362f7e8f8fcddb11b0518fc406cc43b4fe032a6d8"
+  "auxiliaryFingerprint": "cf219879349ea79fe1463df498a9ed1e58c88e4f24639547f524ad03fb855389"
 }

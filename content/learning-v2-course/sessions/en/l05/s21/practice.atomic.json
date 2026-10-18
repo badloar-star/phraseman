@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-21:word:neighbour",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — neighbour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:neighbour:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — neighbour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:neighbour:audio",
+            "transcript": "neighbour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:neighbour:r1",
+              "targetText": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка. The neighbour is here. — «Сосед здесь». О человеке, который живёт рядом, за стеной или на той же лестнице.",
+                "uk": "сусід, сусідка. The neighbour is here. — «Сусід тут». Про людину, яка живе поруч, за стіною чи на тих самих сходах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "neighbour",
+            "definitionByLocale": {
+              "ru": "сосед, соседка. The neighbour is here. — «Сосед здесь». О человеке, который живёт рядом, за стеной или на той же лестнице.",
+              "uk": "сусід, сусідка. The neighbour is here. — «Сусід тут». Про людину, яка живе поруч, за стіною чи на тих самих сходах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog is the neighbour’s.",
+          "localizedMeaning": {
+            "ru": "Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»",
+            "uk": "Подруга чує гавкіт і питає, чия це собака. Собака сусіда. Скажіть їй повною фразою: «Собака сусіда»"
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "is",
+            "the",
+            "neighbour’s"
+          ],
+          "authoredDistractorTokens": [
+            "neighbour"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `neighbour’s` — `The dog is the neighbour’s.`",
+                "uk": "тут потрібно `neighbour’s` — `The dog is the neighbour’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:student",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — student",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:student:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — student",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:student:audio",
+            "transcript": "student"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:student:r1",
+              "targetText": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка. The student is here. — «Студентка здесь». О человеке, который учится в институте или университете.",
+                "uk": "студент, студентка. The student is here. — «Студентка тут». Про людину, яка вчиться в інституті чи університеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "student",
+            "definitionByLocale": {
+              "ru": "студент, студентка. The student is here. — «Студентка здесь». О человеке, который учится в институте или университете.",
+              "uk": "студент, студентка. The student is here. — «Студентка тут». Про людину, яка вчиться в інституті чи університеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте учительницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i02:r1",
+            "text": "This is the student’s notebook."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r2",
+            "text": "This is the student’s pencil."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r3",
+            "text": "This is the teacher’s notebook."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i02:audio",
+            "transcript": "This is the student’s notebook."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i02:r1",
+              "targetText": "This is the student’s notebook.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r2",
+              "targetText": "This is the student’s pencil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r3",
+              "targetText": "This is the teacher’s notebook.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `notebook` — тетрадь, а в этом варианте `pencil` — карандаш.",
+                "uk": "У записі останнє слово `notebook` — зошит, а в цьому варіанті `pencil` — олівець."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу",
+              "feedbackByLocale": {
+                "ru": "В записи `student’s` — студентки, а в этом варианте `teacher’s` — учительницы.",
+                "uk": "У записі `student’s` — студентки, а в цьому варіанті `teacher’s` — вчительки."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:manager",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — manager",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:manager:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — manager",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:manager:audio",
+            "transcript": "manager"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:manager:r1",
+              "targetText": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель. The manager is here. — «Руководитель здесь». О человеке, который отвечает за работу других людей.",
+                "uk": "керівник. The manager is here. — «Керівник тут». Про людину, яка відповідає за роботу інших людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "manager",
+            "definitionByLocale": {
+              "ru": "руководитель. The manager is here. — «Руководитель здесь». О человеке, который отвечает за работу других людей.",
+              "uk": "керівник. The manager is here. — «Керівник тут». Про людину, яка відповідає за роботу інших людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i03:r1",
+            "text": "manager"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r2",
+            "text": "teacher"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r3",
+            "text": "nurse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+            "uk": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i03:r1",
+              "text": "manager"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r2",
+              "text": "teacher"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r3",
+              "text": "nurse"
+            }
+          ],
+          "testedDimension": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+              "feedbackByLocale": {
+                "ru": "teacher — это учитель, а тот, кто отвечает за работу в офисе, — manager.",
+                "uk": "teacher — це вчитель, а той, хто відповідає за роботу в офісі, — manager."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+              "feedbackByLocale": {
+                "ru": "nurse — это медсестра, а тот, кто отвечает за работу в офисе, — manager.",
+                "uk": "nurse — це медсестра, а той, хто відповідає за роботу в офісі, — manager."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i04:p1",
+              "target": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка",
+                "uk": "сусід, сусідка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p2",
+              "target": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка",
+                "uk": "студент, студентка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p3",
+              "target": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p4",
+              "target": "client",
+              "meaningByLocale": {
+                "ru": "клиент",
+                "uk": "клієнт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "neighbour",
+            "student",
+            "manager",
+            "client"
+          ],
+          "rightColumn": [
+            "сосед, соседка",
+            "студент, студентка",
+            "руководитель",
+            "клиент"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:client",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — client",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:client:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — client",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:client:audio",
+            "transcript": "client"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:client:r1",
+              "targetText": "client",
+              "meaningByLocale": {
+                "ru": "клиент. The client is here. — «Клиент здесь». О человеке, который платит за товар или услугу.",
+                "uk": "клієнт. The client is here. — «Клієнт тут». Про людину, яка платить за товар чи послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "client",
+            "definitionByLocale": {
+              "ru": "клиент. The client is here. — «Клиент здесь». О человеке, который платит за товар или услугу.",
+              "uk": "клієнт. The client is here. — «Клієнт тут». Про людину, яка платить за товар чи послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте администратора и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте администратора и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i05:audio",
+            "transcript": "The pen is the client’s."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The pen is the client’s.",
+          "orderedTokens": [
+            "The",
+            "pen",
+            "is",
+            "the",
+            "client’s"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте администратора и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client’s` — `The pen is the client’s.`",
+                "uk": "тут потрібно `client’s` — `The pen is the client’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this the manager’s desk?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»",
+            "uk": "Ви питаєте колегу про стіл. Задайте питання повністю: «Це стіл керівника?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "the",
+            "manager’s",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this the manager’s desk?`",
+                "uk": "тут потрібно `Is` — `Is this the manager’s desk?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, чья это собака. Собака соседа. Ответьте: «Это собака соседа»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, чья это собака. Собака соседа. Ответьте: «Это собака соседа»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i07:audio",
+            "transcript": "It is the neighbour’s dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is the neighbour’s dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i08:r1",
+            "text": "student’s"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r2",
+            "text": "student"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r3",
+            "text": "students"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+            "uk": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is the ___ notebook.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i08:r1",
+              "text": "student’s"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r2",
+              "text": "student"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r3",
+              "text": "students"
+            }
+          ],
+          "testedDimension": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без ’s не видно, что тетрадь принадлежит студентке. Нужно student’s.",
+                "uk": "Без ’s не видно, що зошит належить студентці. Потрібно student’s."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "students — это «студенты», а чтобы назвать хозяйку тетради, нужно student’s.",
+                "uk": "students — це «студенти», а щоб назвати власницю зошита, потрібно student’s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i09:r1",
+            "text": "The key is the manager’s."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r2",
+            "text": "The key is the client’s."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r3",
+            "text": "The bag is the manager’s."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i09:audio",
+            "transcript": "The key is the manager’s."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i09:r1",
+              "targetText": "The key is the manager’s.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r2",
+              "targetText": "The key is the client’s.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r3",
+              "targetText": "The bag is the manager’s.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи `manager’s` — руководителя, а в этом варианте `client’s` — клиента.",
+                "uk": "У записі `manager’s` — керівника, а в цьому варіанті `client’s` — клієнта."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о ключе `key`, а в этом варианте — о сумке `bag`.",
+                "uk": "У записі говорять про ключ `key`, а в цьому варіанті — про сумку `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i10:p1",
+              "target": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка",
+                "uk": "студент, студентка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p2",
+              "target": "client",
+              "meaningByLocale": {
+                "ru": "клиент",
+                "uk": "клієнт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p3",
+              "target": "dog",
+              "meaningByLocale": {
+                "ru": "собака",
+                "uk": "собака"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p4",
+              "target": "notebook",
+              "meaningByLocale": {
+                "ru": "тетрадь",
+                "uk": "зошит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "student",
+            "client",
+            "dog",
+            "notebook"
+          ],
+          "rightColumn": [
+            "студент, студентка",
+            "клиент",
+            "собака",
+            "тетрадь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте учительницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i11:audio",
+            "transcript": "The bag is the student’s."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bag is the student’s.",
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "the",
+            "student’s"
+          ],
+          "authoredDistractorTokens": [
+            "student"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `student’s` — `The bag is the student’s.`",
+                "uk": "тут потрібно `student’s` — `The bag is the student’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The umbrella is the client’s.",
+          "localizedMeaning": {
+            "ru": "Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»",
+            "uk": "Адміністратор питає, чия парасолька біля дверей. Вона належить клієнтові. Скажіть йому повною фразою: «Парасолька клієнта»"
+          },
+          "orderedTokens": [
+            "The",
+            "umbrella",
+            "is",
+            "the",
+            "client’s"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client’s` — `The umbrella is the client’s.`",
+                "uk": "тут потрібно `client’s` — `The umbrella is the client’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый сотрудник спрашивает, чей это стол. Стол руководителя. Ответьте: «Это стол руководителя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Новый сотрудник спрашивает, чей это стол. Стол руководителя. Ответьте: «Это стол руководителя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i13:audio",
+            "transcript": "It is the manager’s desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is the manager’s desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i14:r1",
+            "text": "neighbour’s"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r2",
+            "text": "neighbour"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r3",
+            "text": "neighbours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+            "uk": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The dog is the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i14:r1",
+              "text": "neighbour’s"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r2",
+              "text": "neighbour"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r3",
+              "text": "neighbours"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Без ’s получится «собака — это сосед». Чтобы назвать хозяина, нужно ’s.",
+                "uk": "Без ’s вийде «собака — це сусід». Щоб назвати власника, потрібно ’s."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "neighbours — это «соседи», а чтобы назвать хозяина собаки, нужно neighbour’s.",
+                "uk": "neighbours — це «сусіди», а щоб назвати власника собаки, потрібно neighbour’s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i15:r1",
+            "text": "Is the dog the neighbour’s?"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r2",
+            "text": "Is the dog the client’s?"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r3",
+            "text": "Is the cat the neighbour’s?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i15:audio",
+            "transcript": "Is the dog the neighbour’s?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i15:r1",
+              "targetText": "Is the dog the neighbour’s?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r2",
+              "targetText": "Is the dog the client’s?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r3",
+              "targetText": "Is the cat the neighbour’s?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `neighbour’s` — соседа, а в этом варианте `client’s` — клиента.",
+                "uk": "У записі `neighbour’s` — сусіда, а в цьому варіанті `client’s` — клієнта."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о собаке `dog`, а в этом варианте — о кошке `cat`.",
+                "uk": "У записі говорять про собаку `dog`, а в цьому варіанті — про кішку `cat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i16:p1",
+              "target": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p2",
+              "target": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка",
+                "uk": "сусід, сусідка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "manager",
+            "neighbour",
+            "desk",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "руководитель",
+            "сосед, соседка",
+            "рабочий стол",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница держит тетрадь и спрашивает, чья она. Тетрадь студентки. Ответьте: «Это тетрадь студентки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Учительница держит тетрадь и спрашивает, чья она. Тетрадь студентки. Ответьте: «Это тетрадь студентки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i17:audio",
+            "transcript": "This is the student’s notebook."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is the student’s notebook.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-21:word:neighbour",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — neighbour",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:neighbour:audio"
+        ],
+        "accessibilityLabel": "Картка слова — neighbour",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:neighbour:audio",
+            "transcript": "neighbour"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:neighbour:r1",
+              "targetText": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка. The neighbour is here. — «Сосед здесь». О человеке, который живёт рядом, за стеной или на той же лестнице.",
+                "uk": "сусід, сусідка. The neighbour is here. — «Сусід тут». Про людину, яка живе поруч, за стіною чи на тих самих сходах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "neighbour",
+            "definitionByLocale": {
+              "ru": "сосед, соседка. The neighbour is here. — «Сосед здесь». О человеке, который живёт рядом, за стеной или на той же лестнице.",
+              "uk": "сусід, сусідка. The neighbour is here. — «Сусід тут». Про людину, яка живе поруч, за стіною чи на тих самих сходах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга чує гавкіт і питає, чия це собака. Собака сусіда. Скажіть їй повною фразою: «Собака сусіда»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга чує гавкіт і питає, чия це собака. Собака сусіда. Скажіть їй повною фразою: «Собака сусіда»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog is the neighbour’s.",
+          "localizedMeaning": {
+            "ru": "Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»",
+            "uk": "Подруга чує гавкіт і питає, чия це собака. Собака сусіда. Скажіть їй повною фразою: «Собака сусіда»"
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "is",
+            "the",
+            "neighbour’s"
+          ],
+          "authoredDistractorTokens": [
+            "neighbour"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга чує гавкіт і питає, чия це собака. Собака сусіда. Скажіть їй повною фразою: «Собака сусіда»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `neighbour’s` — `The dog is the neighbour’s.`",
+                "uk": "тут потрібно `neighbour’s` — `The dog is the neighbour’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:student",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — student",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:student:audio"
+        ],
+        "accessibilityLabel": "Картка слова — student",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:student:audio",
+            "transcript": "student"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:student:r1",
+              "targetText": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка. The student is here. — «Студентка здесь». О человеке, который учится в институте или университете.",
+                "uk": "студент, студентка. The student is here. — «Студентка тут». Про людину, яка вчиться в інституті чи університеті."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "student",
+            "definitionByLocale": {
+              "ru": "студент, студентка. The student is here. — «Студентка здесь». О человеке, который учится в институте или университете.",
+              "uk": "студент, студентка. The student is here. — «Студентка тут». Про людину, яка вчиться в інституті чи університеті."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте вчительку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i02:r1",
+            "text": "This is the student’s notebook."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r2",
+            "text": "This is the student’s pencil."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i02:r3",
+            "text": "This is the teacher’s notebook."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i02:audio",
+            "transcript": "This is the student’s notebook."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i02:r1",
+              "targetText": "This is the student’s notebook.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r2",
+              "targetText": "This is the student’s pencil.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r3",
+              "targetText": "This is the teacher’s notebook.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `notebook` — тетрадь, а в этом варианте `pencil` — карандаш.",
+                "uk": "У записі останнє слово `notebook` — зошит, а в цьому варіанті `pencil` — олівець."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку",
+              "feedbackByLocale": {
+                "ru": "В записи `student’s` — студентки, а в этом варианте `teacher’s` — учительницы.",
+                "uk": "У записі `student’s` — студентки, а в цьому варіанті `teacher’s` — вчительки."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:manager",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — manager",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:manager:audio"
+        ],
+        "accessibilityLabel": "Картка слова — manager",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:manager:audio",
+            "transcript": "manager"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:manager:r1",
+              "targetText": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель. The manager is here. — «Руководитель здесь». О человеке, который отвечает за работу других людей.",
+                "uk": "керівник. The manager is here. — «Керівник тут». Про людину, яка відповідає за роботу інших людей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "manager",
+            "definitionByLocale": {
+              "ru": "руководитель. The manager is here. — «Руководитель здесь». О человеке, который отвечает за работу других людей.",
+              "uk": "керівник. The manager is here. — «Керівник тут». Про людину, яка відповідає за роботу інших людей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i03:r1",
+            "text": "manager"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r2",
+            "text": "teacher"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i03:r3",
+            "text": "nurse"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?",
+            "uk": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i03:r1",
+              "text": "manager"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r2",
+              "text": "teacher"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r3",
+              "text": "nurse"
+            }
+          ],
+          "testedDimension": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?",
+              "feedbackByLocale": {
+                "ru": "teacher — это учитель, а тот, кто отвечает за работу в офисе, — manager.",
+                "uk": "teacher — це вчитель, а той, хто відповідає за роботу в офісі, — manager."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Людина, яка відповідає за роботу інших людей в офісі. Як її називають англійською?",
+              "feedbackByLocale": {
+                "ru": "nurse — это медсестра, а тот, кто отвечает за работу в офисе, — manager.",
+                "uk": "nurse — це медсестра, а той, хто відповідає за роботу в офісі, — manager."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i04:p1",
+              "target": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка",
+                "uk": "сусід, сусідка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p2",
+              "target": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка",
+                "uk": "студент, студентка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p3",
+              "target": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i04:p4",
+              "target": "client",
+              "meaningByLocale": {
+                "ru": "клиент",
+                "uk": "клієнт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "neighbour",
+            "student",
+            "manager",
+            "client"
+          ],
+          "rightColumn": [
+            "сусід, сусідка",
+            "студент, студентка",
+            "керівник",
+            "клієнт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:word:client",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — client",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:word:client:audio"
+        ],
+        "accessibilityLabel": "Картка слова — client",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:word:client:audio",
+            "transcript": "client"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:word:client:r1",
+              "targetText": "client",
+              "meaningByLocale": {
+                "ru": "клиент. The client is here. — «Клиент здесь». О человеке, который платит за товар или услугу.",
+                "uk": "клієнт. The client is here. — «Клієнт тут». Про людину, яка платить за товар чи послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "client",
+            "definitionByLocale": {
+              "ru": "клиент. The client is here. — «Клиент здесь». О человеке, который платит за товар или услугу.",
+              "uk": "клієнт. The client is here. — «Клієнт тут». Про людину, яка платить за товар чи послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте адміністратора й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте адміністратора й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i05:audio",
+            "transcript": "The pen is the client’s."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The pen is the client’s.",
+          "orderedTokens": [
+            "The",
+            "pen",
+            "is",
+            "the",
+            "client’s"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте адміністратора й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client’s` — `The pen is the client’s.`",
+                "uk": "тут потрібно `client’s` — `The pen is the client’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви питаєте колегу про стіл. Задайте питання повністю: «Це стіл керівника?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви питаєте колегу про стіл. Задайте питання повністю: «Це стіл керівника?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this the manager’s desk?",
+          "localizedMeaning": {
+            "ru": "Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»",
+            "uk": "Ви питаєте колегу про стіл. Задайте питання повністю: «Це стіл керівника?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "the",
+            "manager’s",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви питаєте колегу про стіл. Задайте питання повністю: «Це стіл керівника?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this the manager’s desk?`",
+                "uk": "тут потрібно `Is` — `Is this the manager’s desk?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чия це собака. Собака сусіда. Відповідьте: «Це собака сусіда»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чия це собака. Собака сусіда. Відповідьте: «Це собака сусіда»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i07:audio",
+            "transcript": "It is the neighbour’s dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is the neighbour’s dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i08:r1",
+            "text": "student’s"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r2",
+            "text": "student"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i08:r3",
+            "text": "students"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово",
+            "uk": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is the ___ notebook.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i08:r1",
+              "text": "student’s"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r2",
+              "text": "student"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r3",
+              "text": "students"
+            }
+          ],
+          "testedDimension": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без ’s не видно, что тетрадь принадлежит студентке. Нужно student’s.",
+                "uk": "Без ’s не видно, що зошит належить студентці. Потрібно student’s."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Вчителька питає, чий це зошит. Зошит належить студентці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "students — это «студенты», а чтобы назвать хозяйку тетради, нужно student’s.",
+                "uk": "students — це «студенти», а щоб назвати власницю зошита, потрібно student’s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i09:r1",
+            "text": "The key is the manager’s."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r2",
+            "text": "The key is the client’s."
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i09:r3",
+            "text": "The bag is the manager’s."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i09:audio",
+            "transcript": "The key is the manager’s."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i09:r1",
+              "targetText": "The key is the manager’s.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r2",
+              "targetText": "The key is the client’s.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r3",
+              "targetText": "The bag is the manager’s.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи `manager’s` — руководителя, а в этом варианте `client’s` — клиента.",
+                "uk": "У записі `manager’s` — керівника, а в цьому варіанті `client’s` — клієнта."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о ключе `key`, а в этом варианте — о сумке `bag`.",
+                "uk": "У записі говорять про ключ `key`, а в цьому варіанті — про сумку `bag`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i10:p1",
+              "target": "student",
+              "meaningByLocale": {
+                "ru": "студент, студентка",
+                "uk": "студент, студентка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p2",
+              "target": "client",
+              "meaningByLocale": {
+                "ru": "клиент",
+                "uk": "клієнт"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p3",
+              "target": "dog",
+              "meaningByLocale": {
+                "ru": "собака",
+                "uk": "собака"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i10:p4",
+              "target": "notebook",
+              "meaningByLocale": {
+                "ru": "тетрадь",
+                "uk": "зошит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "student",
+            "client",
+            "dog",
+            "notebook"
+          ],
+          "rightColumn": [
+            "студент, студентка",
+            "клієнт",
+            "собака",
+            "зошит"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте вчительку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i11:audio",
+            "transcript": "The bag is the student’s."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bag is the student’s.",
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "the",
+            "student’s"
+          ],
+          "authoredDistractorTokens": [
+            "student"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `student’s` — `The bag is the student’s.`",
+                "uk": "тут потрібно `student’s` — `The bag is the student’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Адміністратор питає, чия парасолька біля дверей. Вона належить клієнтові. Скажіть йому повною фразою: «Парасолька клієнта»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Адміністратор питає, чия парасолька біля дверей. Вона належить клієнтові. Скажіть йому повною фразою: «Парасолька клієнта»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The umbrella is the client’s.",
+          "localizedMeaning": {
+            "ru": "Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»",
+            "uk": "Адміністратор питає, чия парасолька біля дверей. Вона належить клієнтові. Скажіть йому повною фразою: «Парасолька клієнта»"
+          },
+          "orderedTokens": [
+            "The",
+            "umbrella",
+            "is",
+            "the",
+            "client’s"
+          ],
+          "authoredDistractorTokens": [
+            "client"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Адміністратор питає, чия парасолька біля дверей. Вона належить клієнтові. Скажіть йому повною фразою: «Парасолька клієнта»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `client’s` — `The umbrella is the client’s.`",
+                "uk": "тут потрібно `client’s` — `The umbrella is the client’s.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий співробітник питає, чий це стіл. Стіл керівника. Відповідьте: «Це стіл керівника»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Новий співробітник питає, чий це стіл. Стіл керівника. Відповідьте: «Це стіл керівника»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i13:audio",
+            "transcript": "It is the manager’s desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is the manager’s desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i14:r1",
+            "text": "neighbour’s"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r2",
+            "text": "neighbour"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i14:r3",
+            "text": "neighbours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово",
+            "uk": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The dog is the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-21:i14:r1",
+              "text": "neighbour’s"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r2",
+              "text": "neighbour"
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r3",
+              "text": "neighbours"
+            }
+          ],
+          "testedDimension": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Без ’s получится «собака — это сосед». Чтобы назвать хозяина, нужно ’s.",
+                "uk": "Без ’s вийде «собака — це сусід». Щоб назвати власника, потрібно ’s."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, чия собака гавкає на сходах. Собака сусіда. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "neighbours — это «соседи», а чтобы назвать хозяина собаки, нужно neighbour’s.",
+                "uk": "neighbours — це «сусіди», а щоб назвати власника собаки, потрібно neighbour’s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-21:i15:r1",
+            "text": "Is the dog the neighbour’s?"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r2",
+            "text": "Is the dog the client’s?"
+          },
+          {
+            "responseId": "en:lesson-05:session-21:i15:r3",
+            "text": "Is the cat the neighbour’s?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i15:audio",
+            "transcript": "Is the dog the neighbour’s?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-21:i15:r1",
+              "targetText": "Is the dog the neighbour’s?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r2",
+              "targetText": "Is the dog the client’s?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r3",
+              "targetText": "Is the cat the neighbour’s?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `neighbour’s` — соседа, а в этом варианте `client’s` — клиента.",
+                "uk": "У записі `neighbour’s` — сусіда, а в цьому варіанті `client’s` — клієнта."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о собаке `dog`, а в этом варианте — о кошке `cat`.",
+                "uk": "У записі говорять про собаку `dog`, а в цьому варіанті — про кішку `cat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-21:i16:p1",
+              "target": "manager",
+              "meaningByLocale": {
+                "ru": "руководитель",
+                "uk": "керівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p2",
+              "target": "neighbour",
+              "meaningByLocale": {
+                "ru": "сосед, соседка",
+                "uk": "сусід, сусідка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-21:i16:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "manager",
+            "neighbour",
+            "desk",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "керівник",
+            "сусід, сусідка",
+            "робочий стіл",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька тримає зошит і питає, чий він. Зошит студентки. Відповідьте: «Це зошит студентки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Вчителька тримає зошит і питає, чий він. Зошит студентки. Відповідьте: «Це зошит студентки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-21:i17:audio",
+            "transcript": "This is the student’s notebook."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is the student’s notebook.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-21:word:neighbour",
+      "correctText": "neighbour",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i01",
+      "correctText": "The dog is the neighbour’s.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:word:student",
+      "correctText": "student",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i02",
+      "correctText": "This is the student’s notebook.",
+      "correctResponseId": "en:lesson-05:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:word:manager",
+      "correctText": "manager",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i03",
+      "correctText": "manager",
+      "correctResponseId": "en:lesson-05:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:word:client",
+      "correctText": "client",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i05",
+      "correctText": "The pen is the client’s.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i06",
+      "correctText": "Is this the manager’s desk?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i07",
+      "correctText": "It is the neighbour’s dog.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i08",
+      "correctText": "student’s",
+      "correctResponseId": "en:lesson-05:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i09",
+      "correctText": "The key is the manager’s.",
+      "correctResponseId": "en:lesson-05:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i11",
+      "correctText": "The bag is the student’s.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i12",
+      "correctText": "The umbrella is the client’s.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i13",
+      "correctText": "It is the manager’s desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i14",
+      "correctText": "neighbour’s",
+      "correctResponseId": "en:lesson-05:session-21:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i15",
+      "correctText": "Is the dog the neighbour’s?",
+      "correctResponseId": "en:lesson-05:session-21:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-21:i17",
+      "correctText": "This is the student’s notebook.",
+      "correctResponseId": null
+    }
+  ]
+}

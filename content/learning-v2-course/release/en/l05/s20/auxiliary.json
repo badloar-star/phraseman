@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-20:intro1:r2": {
-          "ru": "Без названия вещи нужна форма `mine`.",
-          "uk": "Без назви речі потрібна форма `mine`."
+          "ru": "Без ’s получится «кружка — это мой муж». Чтобы назвать хозяина, нужно ’s.",
+          "uk": "Без ’s вийде «кухоль — це мій чоловік». Щоб назвати власника, потрібно ’s."
         },
         "en:lesson-05:session-20:intro1:r3": {
-          "ru": "`yours` — твой; мой — `mine`.",
-          "uk": "`yours` — твій; мій — `mine`."
+          "ru": "Перед словом husband нужно my, а mine стоит без названия.",
+          "uk": "Перед словом husband потрібно my, а mine стоїть без назви."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-20:intro2:r2": {
-          "ru": "С `We` нужна форма `are`.",
-          "uk": "З `We` потрібна форма `are`."
+          "ru": "Без ’s получится «зонт — это его жена». Чтобы назвать хозяйку, нужно ’s.",
+          "uk": "Без ’s вийде «парасолька — це його дружина». Щоб назвати власницю, потрібно ’s."
         },
         "en:lesson-05:session-20:intro2:r3": {
-          "ru": "`lost` — заблудились; подготовлены — `prepared`.",
-          "uk": "`lost` — заблукали; підготовлені — `prepared`."
+          "ru": "her — её, а коллега мужчина: нужно his.",
+          "uk": "her — її, а колега чоловік: потрібно his."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-20:intro3:r2": {
-          "ru": "Несколько карт: `maps are`.",
-          "uk": "Кілька карт: `maps are`."
+          "ru": "Без ’s получится «мяч — это мой сын». Чтобы назвать хозяина, нужно ’s.",
+          "uk": "Без ’s вийде «м’яч — це мій син». Щоб назвати власника, потрібно ’s."
         },
         "en:lesson-05:session-20:intro3:r3": {
-          "ru": "Без названия вещи нужна форма `ours`.",
-          "uk": "Без назви речі потрібна форма `ours`."
+          "ru": "Перед словом son нужно my, а mine стоит без названия.",
+          "uk": "Перед словом son потрібно my, а mine стоїть без назви."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e893003d6504220c8fbf9441bf907796d19864b6b60c95cdbeaf03bbe041ae85"
+  "auxiliaryFingerprint": "686938cbd6909c6684f1567b31db6510bcf608338a669325966bc8c40115058e"
 }

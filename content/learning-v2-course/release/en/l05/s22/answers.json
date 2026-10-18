@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-22:word:keyboard",
+    "correctText": "keyboard",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-22:i01",
-    "correctText": "They are famous.",
+    "correctText": "Whose keyboard is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:word:gloves",
+    "correctText": "gloves",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i02",
-    "correctText": "boots",
+    "correctText": "Whose gloves are these?",
     "correctResponseId": "en:lesson-05:session-22:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-22:word:microphone",
+    "correctText": "microphone",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-22:i03",
-    "correctText": "boots",
+    "correctText": "microphone",
     "correctResponseId": "en:lesson-05:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-22:i04",
-    "correctText": "en:lesson-05:session-22:i04:p1=boots\nen:lesson-05:session-22:i04:p2=rich\nen:lesson-05:session-22:i04:p3=poor\nen:lesson-05:session-22:i04:p4=famous",
+    "correctText": "en:lesson-05:session-22:i04:p1=keyboard\nen:lesson-05:session-22:i04:p2=gloves\nen:lesson-05:session-22:i04:p3=microphone\nen:lesson-05:session-22:i04:p4=calendar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-22:word:calendar",
+    "correctText": "calendar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i05",
-    "correctText": "My boots are next to your suitcase.",
+    "correctText": "Whose calendar is that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i06",
-    "correctText": "The cups are ours.",
+    "correctText": "They are mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i07",
-    "correctText": "They are rich.",
+    "correctText": "Whose calendar is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i08",
-    "correctText": "hers",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-22:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-22:i09",
-    "correctText": "They are poor.",
+    "correctText": "Whose microphone is that?",
     "correctResponseId": "en:lesson-05:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-22:i10",
-    "correctText": "en:lesson-05:session-22:i10:p1=boots\nen:lesson-05:session-22:i10:p2=cups\nen:lesson-05:session-22:i10:p3=carrot\nen:lesson-05:session-22:i10:p4=suitcase",
+    "correctText": "en:lesson-05:session-22:i10:p1=keyboard\nen:lesson-05:session-22:i10:p2=calendar\nen:lesson-05:session-22:i10:p3=desk\nen:lesson-05:session-22:i10:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i11",
-    "correctText": "Where are my boots?",
+    "correctText": "The gloves are hers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i12",
-    "correctText": "The carrot is his.",
+    "correctText": "It is his.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i13",
-    "correctText": "I have your boots.",
+    "correctText": "It is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-22:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-22:i15",
-    "correctText": "The boots are yours.",
+    "correctText": "The microphone is hers.",
     "correctResponseId": "en:lesson-05:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-22:i16",
-    "correctText": "en:lesson-05:session-22:i16:p1=boots\nen:lesson-05:session-22:i16:p2=cups\nen:lesson-05:session-22:i16:p3=carrot\nen:lesson-05:session-22:i16:p4=suitcase",
+    "correctText": "en:lesson-05:session-22:i16:p1=microphone\nen:lesson-05:session-22:i16:p2=gloves\nen:lesson-05:session-22:i16:p3=umbrella\nen:lesson-05:session-22:i16:p4=desk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-22:i17",
-    "correctText": "The boots are mine.",
+    "correctText": "Whose gloves are these?",
     "correctResponseId": null
   }
 ]

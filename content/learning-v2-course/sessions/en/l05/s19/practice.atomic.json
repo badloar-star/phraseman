@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-19:word:kite",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:kite:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:kite:audio",
+            "transcript": "kite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:kite:r1",
+              "targetText": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей. The kite is red. — «Змей красный». О лёгкой игрушке, которую запускают на верёвке в ветреный день.",
+                "uk": "повітряний змій. The kite is red. — «Змій червоний». Про легку іграшку, яку запускають на мотузці у вітряний день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kite",
+            "definitionByLocale": {
+              "ru": "воздушный змей. The kite is red. — «Змей красный». О лёгкой игрушке, которую запускают на верёвке в ветреный день.",
+              "uk": "повітряний змій. The kite is red. — «Змій червоний». Про легку іграшку, яку запускають на мотузці у вітряний день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The kite is ours.",
+          "localizedMeaning": {
+            "ru": "Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»",
+            "uk": "Хлопчик на пляжі питає, чий змій. Він ваш із сестрою. Скажіть йому повною фразою: «Змій наш»"
+          },
+          "orderedTokens": [
+            "The",
+            "kite",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "our"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The kite is ours.`",
+                "uk": "тут потрібно `ours` — `The kite is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:puzzle",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — puzzle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:puzzle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — puzzle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:puzzle:audio",
+            "transcript": "puzzle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:puzzle:r1",
+              "targetText": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл. The puzzle is on the floor. — «Пазл на полу». О картинке из множества частей, которые нужно сложить.",
+                "uk": "пазл. The puzzle is on the floor. — «Пазл на підлозі». Про картинку з багатьох частин, які треба скласти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "puzzle",
+            "definitionByLocale": {
+              "ru": "пазл. The puzzle is on the floor. — «Пазл на полу». О картинке из множества частей, которые нужно сложить.",
+              "uk": "пазл. The puzzle is on the floor. — «Пазл на підлозі». Про картинку з багатьох частин, які треба скласти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i02:r1",
+            "text": "The puzzle is theirs."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r2",
+            "text": "The puzzle is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r3",
+            "text": "The puzzle is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i02:audio",
+            "transcript": "The puzzle is theirs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i02:r1",
+              "targetText": "The puzzle is theirs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r2",
+              "targetText": "The puzzle is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r3",
+              "targetText": "The puzzle is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `theirs` — их, а в этом варианте `ours` — наш.",
+                "uk": "У записі останнє слово `theirs` — їхній, а в цьому варіанті `ours` — наш."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `theirs` — их, а в этом варианте `hers` — её.",
+                "uk": "У записі останнє слово `theirs` — їхній, а в цьому варіанті `hers` — її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:racket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — racket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:racket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — racket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:racket:audio",
+            "transcript": "racket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:racket:r1",
+              "targetText": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка. The racket is here. — «Ракетка здесь». О предмете, которым бьют по мячу в теннисе.",
+                "uk": "ракетка. The racket is here. — «Ракетка тут». Про предмет, яким б’ють по м’ячу в тенісі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "racket",
+            "definitionByLocale": {
+              "ru": "ракетка. The racket is here. — «Ракетка здесь». О предмете, которым бьют по мячу в теннисе.",
+              "uk": "ракетка. The racket is here. — «Ракетка тут». Про предмет, яким б’ють по м’ячу в тенісі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i03:r1",
+            "text": "racket"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r2",
+            "text": "kite"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r3",
+            "text": "puzzle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+            "uk": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i03:r1",
+              "text": "racket"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r2",
+              "text": "kite"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r3",
+              "text": "puzzle"
+            }
+          ],
+          "testedDimension": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "kite — это воздушный змей, а предмет для тенниса называется racket.",
+                "uk": "kite — це повітряний змій, а предмет для тенісу називається racket."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+              "feedbackByLocale": {
+                "ru": "puzzle — это пазл, а предмет для тенниса называется racket.",
+                "uk": "puzzle — це пазл, а предмет для тенісу називається racket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i04:p1",
+              "target": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей",
+                "uk": "повітряний змій"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл",
+                "uk": "пазл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p3",
+              "target": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка",
+                "uk": "ракетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p4",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч",
+                "uk": "футбольний м’яч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kite",
+            "puzzle",
+            "racket",
+            "football"
+          ],
+          "rightColumn": [
+            "воздушный змей",
+            "пазл",
+            "ракетка",
+            "футбольный мяч"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:football",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — football",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:football:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — football",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:football:audio",
+            "transcript": "football"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:football:r1",
+              "targetText": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч. My football is here. — «Мой футбольный мяч здесь». О большом круглом мяче для игры ногами.",
+                "uk": "футбольний м’яч. My football is here. — «Мій футбольний м’яч тут». Про великий круглий м’яч для гри ногами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "football",
+            "definitionByLocale": {
+              "ru": "футбольный мяч. My football is here. — «Мой футбольный мяч здесь». О большом круглом мяче для игры ногами.",
+              "uk": "футбольний м’яч. My football is here. — «Мій футбольний м’яч тут». Про великий круглий м’яч для гри ногами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i05:audio",
+            "transcript": "The football is ours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The football is ours.",
+          "orderedTokens": [
+            "The",
+            "football",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The football is ours.`",
+                "uk": "тут потрібно `ours` — `The football is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the kite ours?",
+          "localizedMeaning": {
+            "ru": "Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»",
+            "uk": "Ви хочете уточнити в сестри, чи ваш із нею змій. Задайте питання повністю: «Змій наш?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "kite",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is the kite ours?`",
+                "uk": "тут потрібно `Is` — `Is the kite ours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер спрашивает, чьи это ракетки. Они принадлежат соседям. Ответьте: «Ракетки их»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер спрашивает, чьи это ракетки. Они принадлежат соседям. Ответьте: «Ракетки их»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i07:audio",
+            "transcript": "The rackets are theirs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rackets are theirs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+            "uk": "Футбольний м’яч належить сусідським дітям. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The football is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r3",
+              "text": "ours"
+            }
+          ],
+          "testedDimension": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После is одно their не ставят: без названия вещи нужно theirs.",
+                "uk": "Після is саме their не ставлять: без назви речі потрібно theirs."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "ours — наш, а мяч соседских детей: нужно theirs.",
+                "uk": "ours — наш, а м’яч сусідських дітей: потрібно theirs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i09:r1",
+            "text": "Are the rackets ours?"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r2",
+            "text": "Are the rackets theirs?"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r3",
+            "text": "Is the racket ours?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i09:audio",
+            "transcript": "Are the rackets ours?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i09:r1",
+              "targetText": "Are the rackets ours?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r2",
+              "targetText": "Are the rackets theirs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r3",
+              "targetText": "Is the racket ours?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `ours` — наши, а в этом варианте `theirs` — их.",
+                "uk": "У записі останнє слово `ours` — наші, а в цьому варіанті `theirs` — їхні."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи ракеток несколько, поэтому `Are the rackets`, а в этом варианте одна: `Is the racket`.",
+                "uk": "У записі ракеток кілька, тому `Are the rackets`, а в цьому варіанті одна: `Is the racket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i10:p1",
+              "target": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей",
+                "uk": "повітряний змій"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p2",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч",
+                "uk": "футбольний м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p3",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kite",
+            "football",
+            "table",
+            "bag"
+          ],
+          "rightColumn": [
+            "воздушный змей",
+            "футбольный мяч",
+            "стол",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте сестру и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i11:audio",
+            "transcript": "The puzzle is not ours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The puzzle is not ours.",
+          "orderedTokens": [
+            "The",
+            "puzzle",
+            "is",
+            "not",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте сестру и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The puzzle is not ours.`",
+                "uk": "тут потрібно `ours` — `The puzzle is not ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bag is ours.",
+          "localizedMeaning": {
+            "ru": "Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»",
+            "uk": "Хлопчик на пляжі питає, чия сумка лежить на піску. Вона ваша із сестрою. Скажіть повною фразою: «Сумка наша»"
+          },
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The bag is ours.`",
+                "uk": "тут потрібно `ours` — `The bag is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, чей пазл. Пазл ваш с братом. Ответьте: «Пазл наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, чей пазл. Пазл ваш с братом. Ответьте: «Пазл наш»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i13:audio",
+            "transcript": "The puzzle is ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The puzzle is ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Две ракетки принадлежат соседям. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Две ракетки принадлежат соседям. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две ракетки принадлежат соседям. Выберите слово",
+            "uk": "Дві ракетки належать сусідам. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The rackets ___ theirs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Две ракетки принадлежат соседям. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Две ракетки принадлежат соседям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Ракеток две, поэтому нужно are, а не is.",
+                "uk": "Ракеток дві, тому потрібно are, а не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Две ракетки принадлежат соседям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "has значит «имеет», а для «ракетки их» нужно are.",
+                "uk": "has означає «має», а для «ракетки їхні» потрібно are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i15:r1",
+            "text": "The football is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r2",
+            "text": "The football is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r3",
+            "text": "The kite is ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i15:audio",
+            "transcript": "The football is ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i15:r1",
+              "targetText": "The football is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r2",
+              "targetText": "The football is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r3",
+              "targetText": "The kite is ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `ours` — наш, а в этом варианте `yours` — твой.",
+                "uk": "У записі останнє слово `ours` — наш, а в цьому варіанті `yours` — твій."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о футбольном мяче `football`, а в этом варианте — о змее `kite`.",
+                "uk": "У записі говорять про футбольний м’яч `football`, а в цьому варіанті — про змія `kite`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i16:p1",
+              "target": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка",
+                "uk": "ракетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл",
+                "uk": "пазл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p4",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "racket",
+            "puzzle",
+            "desk",
+            "key"
+          ],
+          "rightColumn": [
+            "ракетка",
+            "пазл",
+            "рабочий стол",
+            "ключ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мальчик берёт змей, который ваш с сестрой. Скажите ему: «Змей наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Мальчик берёт змей, который ваш с сестрой. Скажите ему: «Змей наш»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i17:audio",
+            "transcript": "The kite is ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The kite is ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-19:word:kite",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:kite:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:kite:audio",
+            "transcript": "kite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:kite:r1",
+              "targetText": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей. The kite is red. — «Змей красный». О лёгкой игрушке, которую запускают на верёвке в ветреный день.",
+                "uk": "повітряний змій. The kite is red. — «Змій червоний». Про легку іграшку, яку запускають на мотузці у вітряний день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kite",
+            "definitionByLocale": {
+              "ru": "воздушный змей. The kite is red. — «Змей красный». О лёгкой игрушке, которую запускают на верёвке в ветреный день.",
+              "uk": "повітряний змій. The kite is red. — «Змій червоний». Про легку іграшку, яку запускають на мотузці у вітряний день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Хлопчик на пляжі питає, чий змій. Він ваш із сестрою. Скажіть йому повною фразою: «Змій наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хлопчик на пляжі питає, чий змій. Він ваш із сестрою. Скажіть йому повною фразою: «Змій наш»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The kite is ours.",
+          "localizedMeaning": {
+            "ru": "Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»",
+            "uk": "Хлопчик на пляжі питає, чий змій. Він ваш із сестрою. Скажіть йому повною фразою: «Змій наш»"
+          },
+          "orderedTokens": [
+            "The",
+            "kite",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "our"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Хлопчик на пляжі питає, чий змій. Він ваш із сестрою. Скажіть йому повною фразою: «Змій наш»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The kite is ours.`",
+                "uk": "тут потрібно `ours` — `The kite is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:puzzle",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — puzzle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:puzzle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — puzzle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:puzzle:audio",
+            "transcript": "puzzle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:puzzle:r1",
+              "targetText": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл. The puzzle is on the floor. — «Пазл на полу». О картинке из множества частей, которые нужно сложить.",
+                "uk": "пазл. The puzzle is on the floor. — «Пазл на підлозі». Про картинку з багатьох частин, які треба скласти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "puzzle",
+            "definitionByLocale": {
+              "ru": "пазл. The puzzle is on the floor. — «Пазл на полу». О картинке из множества частей, которые нужно сложить.",
+              "uk": "пазл. The puzzle is on the floor. — «Пазл на підлозі». Про картинку з багатьох частин, які треба скласти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i02:r1",
+            "text": "The puzzle is theirs."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r2",
+            "text": "The puzzle is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i02:r3",
+            "text": "The puzzle is hers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i02:audio",
+            "transcript": "The puzzle is theirs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i02:r1",
+              "targetText": "The puzzle is theirs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r2",
+              "targetText": "The puzzle is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r3",
+              "targetText": "The puzzle is hers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `theirs` — их, а в этом варианте `ours` — наш.",
+                "uk": "У записі останнє слово `theirs` — їхній, а в цьому варіанті `ours` — наш."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `theirs` — их, а в этом варианте `hers` — её.",
+                "uk": "У записі останнє слово `theirs` — їхній, а в цьому варіанті `hers` — її."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:racket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — racket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:racket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — racket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:racket:audio",
+            "transcript": "racket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:racket:r1",
+              "targetText": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка. The racket is here. — «Ракетка здесь». О предмете, которым бьют по мячу в теннисе.",
+                "uk": "ракетка. The racket is here. — «Ракетка тут». Про предмет, яким б’ють по м’ячу в тенісі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "racket",
+            "definitionByLocale": {
+              "ru": "ракетка. The racket is here. — «Ракетка здесь». О предмете, которым бьют по мячу в теннисе.",
+              "uk": "ракетка. The racket is here. — «Ракетка тут». Про предмет, яким б’ють по м’ячу в тенісі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i03:r1",
+            "text": "racket"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r2",
+            "text": "kite"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i03:r3",
+            "text": "puzzle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?",
+            "uk": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i03:r1",
+              "text": "racket"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r2",
+              "text": "kite"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r3",
+              "text": "puzzle"
+            }
+          ],
+          "testedDimension": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "kite — это воздушный змей, а предмет для тенниса называется racket.",
+                "uk": "kite — це повітряний змій, а предмет для тенісу називається racket."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Предмет, яким б’ють по м’ячу в тенісі. Як він називається англійською?",
+              "feedbackByLocale": {
+                "ru": "puzzle — это пазл, а предмет для тенниса называется racket.",
+                "uk": "puzzle — це пазл, а предмет для тенісу називається racket."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i04:p1",
+              "target": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей",
+                "uk": "повітряний змій"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл",
+                "uk": "пазл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p3",
+              "target": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка",
+                "uk": "ракетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i04:p4",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч",
+                "uk": "футбольний м’яч"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kite",
+            "puzzle",
+            "racket",
+            "football"
+          ],
+          "rightColumn": [
+            "повітряний змій",
+            "пазл",
+            "ракетка",
+            "футбольний м’яч"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:word:football",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — football",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:word:football:audio"
+        ],
+        "accessibilityLabel": "Картка слова — football",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:word:football:audio",
+            "transcript": "football"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:word:football:r1",
+              "targetText": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч. My football is here. — «Мой футбольный мяч здесь». О большом круглом мяче для игры ногами.",
+                "uk": "футбольний м’яч. My football is here. — «Мій футбольний м’яч тут». Про великий круглий м’яч для гри ногами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "football",
+            "definitionByLocale": {
+              "ru": "футбольный мяч. My football is here. — «Мой футбольный мяч здесь». О большом круглом мяче для игры ногами.",
+              "uk": "футбольний м’яч. My football is here. — «Мій футбольний м’яч тут». Про великий круглий м’яч для гри ногами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i05:audio",
+            "transcript": "The football is ours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The football is ours.",
+          "orderedTokens": [
+            "The",
+            "football",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The football is ours.`",
+                "uk": "тут потрібно `ours` — `The football is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете уточнити в сестри, чи ваш із нею змій. Задайте питання повністю: «Змій наш?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете уточнити в сестри, чи ваш із нею змій. Задайте питання повністю: «Змій наш?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the kite ours?",
+          "localizedMeaning": {
+            "ru": "Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»",
+            "uk": "Ви хочете уточнити в сестри, чи ваш із нею змій. Задайте питання повністю: «Змій наш?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "kite",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви хочете уточнити в сестри, чи ваш із нею змій. Задайте питання повністю: «Змій наш?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is the kite ours?`",
+                "uk": "тут потрібно `Is` — `Is the kite ours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер питає, чиї це ракетки. Вони належать сусідам. Відповідьте: «Ракетки їхні»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Тренер питає, чиї це ракетки. Вони належать сусідам. Відповідьте: «Ракетки їхні»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i07:audio",
+            "transcript": "The rackets are theirs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rackets are theirs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Футбольний м’яч належить сусідським дітям. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i08:r1",
+            "text": "theirs"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r2",
+            "text": "their"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i08:r3",
+            "text": "ours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Футбольний м’яч належить сусідським дітям. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Футбольный мяч принадлежит соседским детям. Выберите слово",
+            "uk": "Футбольний м’яч належить сусідським дітям. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The football is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i08:r1",
+              "text": "theirs"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r2",
+              "text": "their"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r3",
+              "text": "ours"
+            }
+          ],
+          "testedDimension": "Футбольний м’яч належить сусідським дітям. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Футбольний м’яч належить сусідським дітям. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После is одно their не ставят: без названия вещи нужно theirs.",
+                "uk": "Після is саме their не ставлять: без назви речі потрібно theirs."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Футбольний м’яч належить сусідським дітям. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "ours — наш, а мяч соседских детей: нужно theirs.",
+                "uk": "ours — наш, а м’яч сусідських дітей: потрібно theirs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i09:r1",
+            "text": "Are the rackets ours?"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r2",
+            "text": "Are the rackets theirs?"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i09:r3",
+            "text": "Is the racket ours?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i09:audio",
+            "transcript": "Are the rackets ours?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i09:r1",
+              "targetText": "Are the rackets ours?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r2",
+              "targetText": "Are the rackets theirs?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r3",
+              "targetText": "Is the racket ours?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `ours` — наши, а в этом варианте `theirs` — их.",
+                "uk": "У записі останнє слово `ours` — наші, а в цьому варіанті `theirs` — їхні."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи ракеток несколько, поэтому `Are the rackets`, а в этом варианте одна: `Is the racket`.",
+                "uk": "У записі ракеток кілька, тому `Are the rackets`, а в цьому варіанті одна: `Is the racket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i10:p1",
+              "target": "kite",
+              "meaningByLocale": {
+                "ru": "воздушный змей",
+                "uk": "повітряний змій"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p2",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбольный мяч",
+                "uk": "футбольний м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p3",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i10:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kite",
+            "football",
+            "table",
+            "bag"
+          ],
+          "rightColumn": [
+            "повітряний змій",
+            "футбольний м’яч",
+            "стіл",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сестру й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i11:audio",
+            "transcript": "The puzzle is not ours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The puzzle is not ours.",
+          "orderedTokens": [
+            "The",
+            "puzzle",
+            "is",
+            "not",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сестру й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The puzzle is not ours.`",
+                "uk": "тут потрібно `ours` — `The puzzle is not ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Хлопчик на пляжі питає, чия сумка лежить на піску. Вона ваша із сестрою. Скажіть повною фразою: «Сумка наша»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хлопчик на пляжі питає, чия сумка лежить на піску. Вона ваша із сестрою. Скажіть повною фразою: «Сумка наша»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bag is ours.",
+          "localizedMeaning": {
+            "ru": "Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»",
+            "uk": "Хлопчик на пляжі питає, чия сумка лежить на піску. Вона ваша із сестрою. Скажіть повною фразою: «Сумка наша»"
+          },
+          "orderedTokens": [
+            "The",
+            "bag",
+            "is",
+            "ours"
+          ],
+          "authoredDistractorTokens": [
+            "theirs"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Хлопчик на пляжі питає, чия сумка лежить на піску. Вона ваша із сестрою. Скажіть повною фразою: «Сумка наша»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ours` — `The bag is ours.`",
+                "uk": "тут потрібно `ours` — `The bag is ours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає, чий пазл. Пазл ваш із братом. Відповідьте: «Пазл наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра питає, чий пазл. Пазл ваш із братом. Відповідьте: «Пазл наш»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i13:audio",
+            "transcript": "The puzzle is ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The puzzle is ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дві ракетки належать сусідам. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i14:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дві ракетки належать сусідам. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Две ракетки принадлежат соседям. Выберите слово",
+            "uk": "Дві ракетки належать сусідам. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The rackets ___ theirs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-19:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Дві ракетки належать сусідам. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Дві ракетки належать сусідам. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Ракеток две, поэтому нужно are, а не is.",
+                "uk": "Ракеток дві, тому потрібно are, а не is."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Дві ракетки належать сусідам. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "has значит «имеет», а для «ракетки их» нужно are.",
+                "uk": "has означає «має», а для «ракетки їхні» потрібно are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-19:i15:r1",
+            "text": "The football is ours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r2",
+            "text": "The football is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-19:i15:r3",
+            "text": "The kite is ours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i15:audio",
+            "transcript": "The football is ours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-19:i15:r1",
+              "targetText": "The football is ours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r2",
+              "targetText": "The football is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r3",
+              "targetText": "The kite is ours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `ours` — наш, а в этом варианте `yours` — твой.",
+                "uk": "У записі останнє слово `ours` — наш, а в цьому варіанті `yours` — твій."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о футбольном мяче `football`, а в этом варианте — о змее `kite`.",
+                "uk": "У записі говорять про футбольний м’яч `football`, а в цьому варіанті — про змія `kite`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-19:i16:p1",
+              "target": "racket",
+              "meaningByLocale": {
+                "ru": "ракетка",
+                "uk": "ракетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p2",
+              "target": "puzzle",
+              "meaningByLocale": {
+                "ru": "пазл",
+                "uk": "пазл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-19:i16:p4",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            }
+          ],
+          "leftColumn": [
+            "racket",
+            "puzzle",
+            "desk",
+            "key"
+          ],
+          "rightColumn": [
+            "ракетка",
+            "пазл",
+            "робочий стіл",
+            "ключ"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Хлопчик бере змія, який ваш із сестрою. Скажіть йому: «Змій наш»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Хлопчик бере змія, який ваш із сестрою. Скажіть йому: «Змій наш»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-19:i17:audio",
+            "transcript": "The kite is ours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The kite is ours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-19:word:kite",
+      "correctText": "kite",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i01",
+      "correctText": "The kite is ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:word:puzzle",
+      "correctText": "puzzle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i02",
+      "correctText": "The puzzle is theirs.",
+      "correctResponseId": "en:lesson-05:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:word:racket",
+      "correctText": "racket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i03",
+      "correctText": "racket",
+      "correctResponseId": "en:lesson-05:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:word:football",
+      "correctText": "football",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i05",
+      "correctText": "The football is ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i06",
+      "correctText": "Is the kite ours?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i07",
+      "correctText": "The rackets are theirs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i08",
+      "correctText": "theirs",
+      "correctResponseId": "en:lesson-05:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i09",
+      "correctText": "Are the rackets ours?",
+      "correctResponseId": "en:lesson-05:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i11",
+      "correctText": "The puzzle is not ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i12",
+      "correctText": "The bag is ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i13",
+      "correctText": "The puzzle is ours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-19:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i15",
+      "correctText": "The football is ours.",
+      "correctResponseId": "en:lesson-05:session-19:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-19:i17",
+      "correctText": "The kite is ours.",
+      "correctResponseId": null
+    }
+  ]
+}

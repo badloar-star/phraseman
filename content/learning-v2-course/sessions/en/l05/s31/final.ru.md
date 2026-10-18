@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 31 — Гитара для встречи
+# Английский · Урок 5 · Занятие 31 — Животные двоюродной сестры
 
-**Ситуация.** Анна и Том собираются встретиться в парке. У них похожие сумки, гитара и камера. Сначала нужно найти друг друга на автостоянке.
+**Ситуация.** Двоюродная сестра уехала на выходные, и вы присматриваете за её животными. Нужно знать, где чья клетка и миска, и отвечать ей по телефону.
 
-**Что вы освоите:** назвать владельца вещей и сравнить знакомые предметы
-**Новые слова:** guitar
+**Что вы освоите:** называть вещи животных через 's (the bird's cage) и не путать это с has и с its
+**Новые слова:** cage, hamster, rabbit, aquarium
+**Возвращаются:** cousin, bird, cat, dog, bowl, carrot, window, door, sofa, table, small, empty
 
 ---
 
 ## Интро 1
 
-### Музыка с собой
+### Клетка у окна
 
-`guitar` — «гитара». `This is Tom’s guitar` — «Это гитара Тома». `Anna’s guitar is here` — «Гитара Анны здесь». Имя владельца с `’s` ставим перед вещью. Гитара уже в сумке: пока это самый тихий участник встречи.
+Двоюродная сестра уехала на выходные, и вы присматриваете за её животными, пока она в отъезде. Она звонит и спрашивает, где клетка птицы. cage — «клетка». Птица — the bird, и клетка её: the bird's cage. Она стоит у окна: The bird's cage is next to the window.
 
-**Укажите на гитару Тома.**
+**Двоюродная сестра звонит и спрашивает, где клетка птицы. Она у окна. Скажите ей: «Клетка птицы у окна».**
 
-- ✅ **This is Tom's guitar.**
-- ❌ This is Tom guitar. — *К имени владельца добавляем `’s`: `Tom’s guitar`.*
-- ❌ This is Anna's guitar. — *Это гитара Анны; здесь владелец Том.*
+- ✅ **The bird's cage is next to the window.**
+- ❌ The bird cage is next to the window. — *После слова bird нужно 's: the bird's cage.*
+- ❌ The bird's cage is next to the door. — *door — «дверь», а клетка стоит у окна: нужно window.*
 
 ---
 
 ## Интро 2
 
-### Равные, похожие, отдельные
+### Зверёк в клетке
 
-`equal` — «равные», `similar` — «похожие», `separate` — «отдельные, раздельные». `The numbers are equal` — «Числа равны»: например, пять и пять. `The bags are similar` — «Сумки похожи»: не обязательно одинаковы во всём. `The rooms are separate` — «Комнаты отдельные»: это разные помещения. После множественного числа здесь нужно `are`.
+Подруга зашла в гости и удивилась: на столе в клетке шуршит маленький зверёк с большими щеками. hamster — «хомяк». Он живёт у вашей двоюродной сестры. О том, что животное у неё есть, говорим с has, без 's: My cousin has a hamster — «У моей двоюродной сестры есть хомяк».
 
-**Сумки похожи друг на друга. Скажите «Сумки похожи».**
+**Подруга удивлена зверьком в клетке. Скажите ей, что хомяк живёт у вашей двоюродной сестры: «У моей двоюродной сестры есть хомяк».**
 
-- ✅ **The bags are similar.**
-- ❌ The bags is similar. — *Несколько сумок: `bags are`.*
-- ❌ The bags are equal. — *Здесь речь о сходстве, не о равенстве: `similar`.*
+- ✅ **My cousin has a hamster.**
+- ❌ My cousin have a hamster. — *К слову cousin нужно has, а не have.*
+- ❌ My cousin's a hamster. — *Так получилось бы «моя двоюродная сестра — хомяк»: 's без вещи значит is. Для «есть» нужно has.*
 
 ---
 
 ## Интро 3
 
-### Парк и стоянка
+### Пустая миска
 
-`parks` — «парки», `car park` — «автостоянка», `camera` — «камера». `The parks are open` — «Парки открыты». `Tom is in the car park` — «Том на автостоянке». `Anna’s camera is on the table` — «Камера Анны на столе». `Where is my guitar?` — «Где моя гитара?» Не путайте парк для прогулок и `car park` для машин.
+Вечером вы кормите животных. Кролик сидит возле пустой миски и смотрит на вас. rabbit — «кролик». Миска его, поэтому после rabbit добавляем 's: The rabbit's bowl is empty — «Миска кролика пустая». Скажите это двоюродной сестре, пока насыпаете корм.
 
-**Том ждёт на автостоянке. Выберите фразу.**
+**Кролик сидит у пустой миски. Скажите двоюродной сестре по телефону: «Миска кролика пустая».**
 
-- ✅ **Tom is in the car park.**
-- ❌ Tom are in the car park. — *Один Том: `Tom is`.*
-- ❌ Tom is in the park. — *`park` — парк; автостоянка — `car park`.*
+- ✅ **The rabbit's bowl is empty.**
+- ❌ The rabbit bowl is empty. — *После слова rabbit нужно 's: the rabbit's bowl.*
+- ❌ The rabbit's bowl are empty. — *Миска одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Сумки похожи друг на друга. Скажите «Сумки похожи»**
+**1 · Карточка слова — cage**
+<!-- interaction_id: en:lesson-05:session-31:word:cage; family: word_card -->
+> **cage** — клетка. The bird's cage is small. — «Клетка птицы маленькая». О клетке, в которой живёт птица или маленький зверёк.
+
+**2 · Двоюродная сестра спрашивает, где клетка птицы. Она на столе. Скажите: «Клетка птицы на столе»**
 <!-- interaction_id: en:lesson-05:session-31:i01; family: phrase_builder -->
-Плитки: `similar` `are` `bags` `The` `is` → **The bags are similar.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bags are similar.`)*
+Плитки: `cage` `bird's` `is` `on` `the` `table` `The` `bird` → **The bird's cage is on the table.**
+*(плитка `bird` лишняя: здесь нужно `bird's` — `The bird's cage is on the table.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — hamster**
+<!-- interaction_id: en:lesson-05:session-31:word:hamster; family: word_card -->
+> **hamster** — хомяк. My cousin's hamster is small. — «Хомяк моей двоюродной сестры маленький». О маленьком пушистом зверьке с большими щеками.
+
+**4 · Послушайте двоюродную сестру**
 <!-- interaction_id: en:lesson-05:session-31:i02; family: listen_choose -->
-🔊 *guitar* → **guitar** · camera · tablet
-- camera — *В записи первое слово — `guitar`, а в этом варианте — `camera`.*
-- tablet — *В записи первое слово — `guitar`, а в этом варианте — `tablet`.*
+🔊 *My cousin has a hamster.* → **My cousin has a hamster.** · My cousin has a bird. · My brother has a hamster.
+- My cousin has a bird. — *В записи последнее слово — `hamster`, а в этом варианте — `bird`, птица.*
+- My brother has a hamster. — *В записи животное у двоюродной сестры, `cousin`, а в этом варианте — у брата, `brother`.*
 
-**3 · Назовите гитару**
+**5 · Карточка слова — rabbit**
+<!-- interaction_id: en:lesson-05:session-31:word:rabbit; family: word_card -->
+> **rabbit** — кролик. This is my brother's rabbit. — «Это кролик моего брата». О пушистом зверьке с длинными ушами.
+
+**6 · Миска принадлежит кролику. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-31:i03; family: context_gap_grammar -->
-___ → **guitar** · camera · headphones
-- camera — *`camera` — камера; гитара — `guitar`.*
-- headphones — *`headphones` — наушники; гитара — `guitar`.*
+This is the ___ bowl. → **rabbit's** · rabbit · rabbits
+- rabbit — *После слова rabbit нужно `'s`: `rabbit's bowl` — «миска кролика».*
+- rabbits — *`rabbits` — это «кролики», несколько животных; чтобы назвать хозяина, нужно `rabbit's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-31:i04; family: speed_match -->
-guitar — гитара · equal — равные · similar — похожие · separate — отдельные
+cage — клетка · hamster — хомяк · rabbit — кролик · aquarium — аквариум
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — aquarium**
+<!-- interaction_id: en:lesson-05:session-31:word:aquarium; family: word_card -->
+> **aquarium** — аквариум. My cousin's aquarium is big. — «Аквариум моей двоюродной сестры большой». О стеклянном ящике с водой, в котором живут рыбки.
+
+**9 · Послушайте двоюродную сестру и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-31:i05; family: listen_build_dictation -->
-🔊 *This is Tom's guitar.* Плитки: `guitar` `Tom's` `is` `This` `are` → **This is Tom's guitar.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is Tom's guitar.`)*
+🔊 *My cousin's aquarium is next to the sofa.* Плитки: `aquarium` `cousin's` `is` `next` `to` `the` `sofa` `My` `are` → **My cousin's aquarium is next to the sofa.**
+*(плитка `are` лишняя: здесь нужно `is` — `My cousin's aquarium is next to the sofa.`)*
 
-**6 · Скажите «Камера Анны на столе»**
+**10 · Вы нашли клетку и спрашиваете двоюродного брата, не кролика ли она. Задайте вопрос: «Это клетка кролика?»**
 <!-- interaction_id: en:lesson-05:session-31:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `camera` `Anna's` `are` → **Anna's camera is on the table.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna's camera is on the table.`)*
+Плитки: `cage` `this` `the` `rabbit's` `Is` `Are` → **Is this the rabbit's cage?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this the rabbit's cage?`)*
 
-**7 · Перед вами два одинаковых числа. Скажите «Числа равны»**
+**11 · Подруга спрашивает, чья клетка у окна. Она хомяка. Скажите: «Это клетка хомяка»**
 <!-- interaction_id: en:lesson-05:session-31:i07; family: scripted_repeat_compare -->
-🎙 **The numbers are equal.**
+🎙 **This is the hamster's cage.**
 
-**8 · Гитара принадлежит Анне. Укажите владельца**
+**12 · Морковь лежит в миске кролика. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-31:i08; family: context_gap_grammar -->
-This is ___ guitar. → **Anna's** · Anna · Tom's
-- Anna — *К имени владельца добавляем `’s`: `Anna’s`.*
-- Tom's — *Это принадлежность Тому; здесь владелица Анна.*
+The rabbit's carrots ___ in the bowl. → **are** · is · has
+- is — *Морковок несколько, поэтому нужно `are`, а не `is`.*
+- has — *`has` значит «иметь», а здесь мы говорим, где лежит морковь: нужно `are`.*
 
-**9 · Послушайте, что друг сообщает о комнатах**
+**13 · Послушайте двоюродную сестру**
 <!-- interaction_id: en:lesson-05:session-31:i09; family: listen_choose -->
-🔊 *The rooms are separate.* → **The rooms are separate.** · The rooms are similar. · The rooms are open.
-- The rooms are similar. — *В записи последнее слово — `separate`, а в этом варианте — `similar`.*
-- The rooms are open. — *В записи последнее слово — `separate`, а в этом варианте — `open`.*
+🔊 *Where is the hamster's cage?* → **Where is the hamster's cage?** · Where is the rabbit's cage? · Where is the hamster's bowl?
+- Where is the rabbit's cage? — *В записи хозяин — `hamster's`, хомяк, а в этом варианте — `rabbit's`, кролик.*
+- Where is the hamster's bowl? — *В записи последнее слово — `cage`, клетка, а в этом варианте — `bowl`, миска.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-31:i10; family: speed_match -->
-guitar — гитара · parks — парки · car park — автостоянка · camera — камера
+hamster — хомяк · rabbit — кролик · bowl — миска · cage — клетка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте двоюродную сестру и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-31:i11; family: listen_build_dictation -->
-🔊 *Tom is in the car park.* Плитки: `park` `car` `the` `in` `is` `Tom` `are` → **Tom is in the car park.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom is in the car park.`)*
+🔊 *The rabbit's bowl is under the table.* Плитки: `bowl` `rabbit's` `is` `under` `the` `table` `The` `are` → **The rabbit's bowl is under the table.**
+*(плитка `are` лишняя: здесь нужно `is` — `The rabbit's bowl is under the table.`)*
 
-**12 · В парки можно войти. Скажите «Парки открыты»**
+**16 · У вашей двоюродной сестры есть кролик. Скажите подруге: «У моей двоюродной сестры есть кролик»**
 <!-- interaction_id: en:lesson-05:session-31:i12; family: phrase_builder -->
-Плитки: `open` `are` `parks` `The` `is` → **The parks are open.**
-*(плитка `is` лишняя: здесь нужно `are` — `The parks are open.`)*
+Плитки: `cousin` `has` `a` `rabbit` `My` `have` → **My cousin has a rabbit.**
+*(плитка `have` лишняя: здесь нужно `has` — `My cousin has a rabbit.`)*
 
-**13 · Вы ищете свою гитару. Спросите «Где моя гитара?»**
+**17 · Двоюродная сестра ищет миску хомяка. Она у вас. Скажите ей: «У меня миска хомяка»**
 <!-- interaction_id: en:lesson-05:session-31:i13; family: scripted_repeat_compare -->
-🎙 **Where is my guitar?**
+🎙 **I have the hamster's bowl.**
 
-**14 · Камера принадлежит подруге. Скажите «Камера её»**
+**18 · Хомяк маленький, и клетка у него тоже маленькая. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-31:i14; family: context_gap_grammar -->
-The camera is ___. → **hers** · her · his
-- her — *Без названия вещи нужна форма `hers`.*
-- his — *`his` — его; её — `hers`.*
+The hamster is small and ___ cage is small. → **its** · it's · my
+- it's — *`it's` — это it is; перед клеткой нужно `its` без апострофа.*
+- my — *`my` — «моя», а клетка принадлежит хомяку: нужно `its`.*
 
-**15 · Послушайте, чья гитара здесь**
+**19 · Послушайте двоюродную сестру**
 <!-- interaction_id: en:lesson-05:session-31:i15; family: listen_choose -->
-🔊 *Your guitar is here.* → **Your guitar is here.** · My guitar is here. · His guitar is here.
-- My guitar is here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- His guitar is here. — *В записи первое слово — `Your`, а в этом варианте — `His`.*
+🔊 *The hamster's cage is behind the sofa.* → **The hamster's cage is behind the sofa.** · The hamster's cage is under the sofa. · The rabbit's cage is behind the sofa.
+- The hamster's cage is under the sofa. — *В записи последнее слово — `behind`, «за», а в этом варианте — `under`, «под».*
+- The rabbit's cage is behind the sofa. — *В записи хозяин — `hamster's`, хомяк, а в этом варианте — `rabbit's`, кролик.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-31:i16; family: speed_match -->
-guitar — гитара · parks — парки · car park — автостоянка · camera — камера
+cage — клетка · hamster — хомяк · rabbit — кролик · aquarium — аквариум
 
-**17 · Друг спрашивает о владельце гитары. Она принадлежит Тому. Скажите «Это гитара Тома»**
+**21 · Подруга спрашивает, чей аквариум стоит у стены. Он вашей двоюродной сестры. Скажите: «Это аквариум моей двоюродной сестры»**
 <!-- interaction_id: en:lesson-05:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Tom's guitar.**
-
+🎙 **This is my cousin's aquarium.**

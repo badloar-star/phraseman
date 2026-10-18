@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 21 — Ожерелье наверху
+# Английский · Урок 5 · Занятие 21 — Вещи соседа, студентки, руководителя
 
-**Ситуация.** После встречи друзья забирают вещи из дома. Ожерелье осталось наверху, ручки лежат в коробке, а зонт ждёт у входа.
+**Ситуация.** На лестнице, в аудитории и в офисе нужно сказать, чья вещь, когда хозяин — не «я» и не «ты», а сосед, студентка или руководитель. Роль называем с the и ’s: the neighbour’s.
 
-**Что вы освоите:** уточнить место и владельца найденной вещи
-**Новые слова:** necklace
+**Что вы освоите:** назвать хозяина вещи по роли: the neighbour’s, the student’s, the manager’s
+**Новые слова:** neighbour, student, manager, client
+**Возвращаются:** dog, notebook, desk, key, umbrella, pen, bag
 
 ---
 
 ## Интро 1
 
-### Украшение на шею
+### Лай за дверью
 
-`necklace` — «ожерелье», украшение на шею. `The necklace is mine` — «Ожерелье моё». `Her necklace is here` — «Её ожерелье здесь», но `The necklace is hers` — «Ожерелье её»: без названия вещи используем `hers`, не `her`. Ожерелье лежит на столе: сегодня оно украшает мебель.
+Вы с подругой поднимаетесь по лестнице и слышите громкий лай за дверью соседней квартиры. Подруга спрашивает, чья это собака. Она принадлежит соседу. neighbour — «сосед, соседка». Перед ним ставим the и добавляем ’s: The dog is the neighbour’s — «Собака соседа».
 
-**Скажите «Ожерелье её», не повторяя название после указания владельца.**
+**Подруга слышит лай и спрашивает, чья это собака. Она принадлежит соседу. Скажите ей: «Собака соседа».**
 
-- ✅ **The necklace is hers.**
-- ❌ The necklace is her. — *Без названия вещи нужна форма `hers`.*
-- ❌ The necklace is his. — *`his` — его; её — `hers`.*
+- ✅ **The dog is the neighbour’s.**
+- ❌ The dog is the neighbour. — *Без ’s получится «собака — это сосед». Чтобы назвать хозяина, нужно ’s.*
+- ❌ The dog is neighbour’s. — *Перед словом neighbour нужно the: the neighbour’s.*
 
 ---
 
 ## Интро 2
 
-### Внутри, снаружи, наверху
+### Тетрадь на парте
 
-`inside` — «внутри», `outside` — «снаружи», `upstairs` — «наверху, на верхнем этаже». `She is inside` — «Она внутри». `He is outside` — «Он снаружи». `The necklace is upstairs` — «Ожерелье наверху». Здесь эти слова сами указывают место: перед `upstairs` не ставим `in` или `on`.
+Учительница нашла в пустой аудитории после лекции тетрадь и спрашивает, чья она. Тетрадь принадлежит студентке в синем свитере. student — «студент, студентка». Хозяина называем перед вещью: This is the student’s notebook — «Это тетрадь студентки».
 
-**Друг стоит снаружи дома. Скажите «Он снаружи» без сокращения.**
+**Учительница держит тетрадь и спрашивает, чья она. Тетрадь принадлежит студентке. Скажите ей: «Это тетрадь студентки».**
 
-- ✅ **He is outside.**
-- ❌ He is inside. — *`inside` — внутри; снаружи — `outside`.*
-- ❌ He are outside. — *С `He` нужна форма `is`.*
+- ✅ **This is the student’s notebook.**
+- ❌ This is the notebook student’s. — *Хозяин стоит перед вещью: the student’s notebook.*
+- ❌ This is the student notebook. — *Без ’s не видно, что тетрадь принадлежит студентке. Нужно the student’s notebook.*
 
 ---
 
 ## Интро 3
 
-### Ручки, сок и зонт
+### Стол у окна
 
-`pens` — «ручки», `juice` — «сок», `umbrella` — «зонт». `The pens are ours` — «Ручки наши». `The umbrella is yours` — «Зонт твой». `There is no juice` — «Сока нет»: здесь `juice` не считаем поштучно, поэтому `is`. `Where is my necklace?` — «Где моё ожерелье?»
+Новый сотрудник в первый день ищет свободное место и показывает на стол у окна. Он спрашивает вас, не ваш ли это стол. Стол принадлежит руководителю. manager — «руководитель». Вы отвечаете коротко: No, it is the manager’s desk — «Нет, это стол руководителя».
 
-**Ручки принадлежат вам и другу. Скажите «Ручки наши».**
+**Новый сотрудник показывает на стол и спрашивает, не ваш ли он. Стол принадлежит руководителю. Ответьте ему: «Нет, это стол руководителя».**
 
-- ✅ **The pens are ours.**
-- ❌ The pens is ours. — *Несколько ручек: `pens are`.*
-- ❌ The pens are our. — *Без названия вещи нужна форма `ours`.*
+- ✅ **No, it is the manager’s desk.**
+- ❌ No, it is the manager desk. — *Без ’s не видно, что стол принадлежит руководителю. Нужно the manager’s desk.*
+- ❌ Yes, it is the manager’s desk. — *Yes — «да», а стол не ваш: нужно No.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Подруга находится внутри дома. Скажите «Она внутри» без сокращения**
+**1 · Карточка слова — neighbour**
+<!-- interaction_id: en:lesson-05:session-21:word:neighbour; family: word_card -->
+> **neighbour** — сосед, соседка. The neighbour is here. — «Сосед здесь». О человеке, который живёт рядом, за стеной или на той же лестнице.
+
+**2 · Подруга слышит лай и спрашивает, чья это собака. Собака соседа. Скажите ей полной фразой: «Собака соседа»**
 <!-- interaction_id: en:lesson-05:session-21:i01; family: phrase_builder -->
-Плитки: `inside` `is` `She` `are` → **She is inside.**
-*(плитка `are` лишняя: здесь нужно `is` — `She is inside.`)*
+Плитки: `dog` `is` `the` `neighbour’s` `The` `neighbour` → **The dog is the neighbour’s.**
+*(плитка `neighbour` лишняя: здесь нужно `neighbour’s` — `The dog is the neighbour’s.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — student**
+<!-- interaction_id: en:lesson-05:session-21:word:student; family: word_card -->
+> **student** — студент, студентка. The student is here. — «Студентка здесь». О человеке, который учится в институте или университете.
+
+**4 · Послушайте учительницу**
 <!-- interaction_id: en:lesson-05:session-21:i02; family: listen_choose -->
-🔊 *necklace* → **necklace** · scarf · jacket
-- scarf — *В записи первое слово — `necklace`, а в этом варианте — `scarf`.*
-- jacket — *В записи первое слово — `necklace`, а в этом варианте — `jacket`.*
+🔊 *This is the student’s notebook.* → **This is the student’s notebook.** · This is the student’s pencil. · This is the teacher’s notebook.
+- This is the student’s pencil. — *В записи последнее слово `notebook` — тетрадь, а в этом варианте `pencil` — карандаш.*
+- This is the teacher’s notebook. — *В записи `student’s` — студентки, а в этом варианте `teacher’s` — учительницы.*
 
-**3 · Назовите ожерелье**
+**5 · Карточка слова — manager**
+<!-- interaction_id: en:lesson-05:session-21:word:manager; family: word_card -->
+> **manager** — руководитель. The manager is here. — «Руководитель здесь». О человеке, который отвечает за работу других людей.
+
+**6 · Человек, который отвечает за работу других людей в офисе. Как его называют по-английски?**
 <!-- interaction_id: en:lesson-05:session-21:i03; family: context_gap_grammar -->
-___ → **necklace** · scarf · umbrella
-- scarf — *`scarf` — шарф; ожерелье — `necklace`.*
-- umbrella — *`umbrella` — зонт; ожерелье — `necklace`.*
+___ → **manager** · teacher · nurse
+- teacher — *teacher — это учитель, а тот, кто отвечает за работу в офисе, — manager.*
+- nurse — *nurse — это медсестра, а тот, кто отвечает за работу в офисе, — manager.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-21:i04; family: speed_match -->
-necklace — ожерелье · inside — внутри · outside — снаружи · upstairs — на верхнем этаже
+neighbour — сосед, соседка · student — студент, студентка · manager — руководитель · client — клиент
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — client**
+<!-- interaction_id: en:lesson-05:session-21:word:client; family: word_card -->
+> **client** — клиент. The client is here. — «Клиент здесь». О человеке, который платит за товар или услугу.
+
+**9 · Послушайте администратора и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-21:i05; family: listen_build_dictation -->
-🔊 *The necklace is upstairs.* Плитки: `upstairs` `is` `necklace` `The` `are` → **The necklace is upstairs.**
-*(плитка `are` лишняя: здесь нужно `is` — `The necklace is upstairs.`)*
+🔊 *The pen is the client’s.* Плитки: `pen` `is` `the` `client’s` `The` `client` → **The pen is the client’s.**
+*(плитка `client` лишняя: здесь нужно `client’s` — `The pen is the client’s.`)*
 
-**6 · Ручки принадлежат вам и другу. Скажите «Ручки наши»**
+**10 · Вы спрашиваете коллегу про стол. Задайте вопрос полностью: «Это стол руководителя?»**
 <!-- interaction_id: en:lesson-05:session-21:i06; family: phrase_builder -->
-Плитки: `ours` `are` `pens` `The` `is` → **The pens are ours.**
-*(плитка `is` лишняя: здесь нужно `are` — `The pens are ours.`)*
+Плитки: `desk` `this` `the` `manager’s` `Is` `Are` → **Is this the manager’s desk?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this the manager’s desk?`)*
 
-**7 · Друг ждёт снаружи дома. Скажите «Он снаружи» без сокращения**
+**11 · Подруга спрашивает, чья это собака. Собака соседа. Ответьте: «Это собака соседа»**
 <!-- interaction_id: en:lesson-05:session-21:i07; family: scripted_repeat_compare -->
-🎙 **He is outside.**
+🎙 **It is the neighbour’s dog.**
 
-**8 · Ожерелье принадлежит подруге. Скажите «Ожерелье её»**
+**12 · Учительница спрашивает, чья это тетрадь. Тетрадь принадлежит студентке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-21:i08; family: context_gap_grammar -->
-The necklace is ___. → **hers** · her · his
-- her — *Без названия вещи нужна форма `hers`.*
-- his — *`his` — его; её — `hers`.*
+This is the ___ notebook. → **student’s** · student · students
+- student — *Без ’s не видно, что тетрадь принадлежит студентке. Нужно student’s.*
+- students — *students — это «студенты», а чтобы назвать хозяйку тетради, нужно student’s.*
 
-**9 · Послушайте, кому принадлежит зонт**
+**13 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-05:session-21:i09; family: listen_choose -->
-🔊 *The umbrella is yours.* → **The umbrella is yours.** · The umbrella is mine. · The umbrella is theirs.
-- The umbrella is mine. — *В записи последнее слово — `yours`, а в этом варианте — `mine`.*
-- The umbrella is theirs. — *В записи последнее слово — `yours`, а в этом варианте — `theirs`.*
+🔊 *The key is the manager’s.* → **The key is the manager’s.** · The key is the client’s. · The bag is the manager’s.
+- The key is the client’s. — *В записи `manager’s` — руководителя, а в этом варианте `client’s` — клиента.*
+- The bag is the manager’s. — *В записи говорят о ключе `key`, а в этом варианте — о сумке `bag`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-21:i10; family: speed_match -->
-necklace — ожерелье · pens — ручки · juice — сок · umbrella — зонт
+student — студент, студентка · client — клиент · dog — собака · notebook — тетрадь
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте учительницу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-21:i11; family: listen_build_dictation -->
-🔊 *Where is my necklace?* Плитки: `necklace` `my` `is` `Where` → **Where is my necklace?**
+🔊 *The bag is the student’s.* Плитки: `bag` `is` `the` `student’s` `The` `student` → **The bag is the student’s.**
+*(плитка `student` лишняя: здесь нужно `student’s` — `The bag is the student’s.`)*
 
-**12 · Сок закончился. Скажите «Сока нет»**
+**16 · Администратор спрашивает, чей зонт у двери. Он принадлежит клиенту. Скажите ему полной фразой: «Зонт клиента»**
 <!-- interaction_id: en:lesson-05:session-21:i12; family: phrase_builder -->
-Плитки: `juice` `no` `is` `There` `are` → **There is no juice.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is no juice.`)*
+Плитки: `umbrella` `is` `the` `client’s` `The` `client` → **The umbrella is the client’s.**
+*(плитка `client` лишняя: здесь нужно `client’s` — `The umbrella is the client’s.`)*
 
-**13 · Ожерелье подруги у вас. Скажите ей «Твоё ожерелье у меня»**
+**17 · Новый сотрудник спрашивает, чей это стол. Стол руководителя. Ответьте: «Это стол руководителя»**
 <!-- interaction_id: en:lesson-05:session-21:i13; family: scripted_repeat_compare -->
-🎙 **I have your necklace.**
+🎙 **It is the manager’s desk.**
 
-**14 · Ручки лежат в коробке. Выберите форму для нескольких ручек**
+**18 · Подруга спрашивает, чья собака лает на лестнице. Собака соседа. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-21:i14; family: context_gap_grammar -->
-The pens ___ in the box. → **are** · is · has
-- is — *Несколько ручек: `pens are`.*
-- has — *Место нескольких ручек: `pens are in the box`.*
+The dog is the ___. → **neighbour’s** · neighbour · neighbours
+- neighbour — *Без ’s получится «собака — это сосед». Чтобы назвать хозяина, нужно ’s.*
+- neighbours — *neighbours — это «соседи», а чтобы назвать хозяина собаки, нужно neighbour’s.*
 
-**15 · Послушайте, чьё ожерелье здесь**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-21:i15; family: listen_choose -->
-🔊 *Her necklace is here.* → **Her necklace is here.** · His necklace is here. · My necklace is here.
-- His necklace is here. — *В записи первое слово — `Her`, а в этом варианте — `His`.*
-- My necklace is here. — *В записи первое слово — `Her`, а в этом варианте — `My`.*
+🔊 *Is the dog the neighbour’s?* → **Is the dog the neighbour’s?** · Is the dog the client’s? · Is the cat the neighbour’s?
+- Is the dog the client’s? — *В записи `neighbour’s` — соседа, а в этом варианте `client’s` — клиента.*
+- Is the cat the neighbour’s? — *В записи говорят о собаке `dog`, а в этом варианте — о кошке `cat`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-21:i16; family: speed_match -->
-necklace — ожерелье · pens — ручки · juice — сок · umbrella — зонт
+manager — руководитель · neighbour — сосед, соседка · desk — рабочий стол · umbrella — зонт
 
-**17 · Друг нашёл ваше ожерелье. Уточните «Ожерелье моё»**
+**21 · Учительница держит тетрадь и спрашивает, чья она. Тетрадь студентки. Ответьте: «Это тетрадь студентки»**
 <!-- interaction_id: en:lesson-05:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The necklace is mine.**
-
+🎙 **This is the student’s notebook.**

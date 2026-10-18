@@ -1,0 +1,2463 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-25:word:thermos",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thermos",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:thermos:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thermos",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:thermos:audio",
+            "transcript": "thermos"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:thermos:r1",
+              "targetText": "thermos",
+              "meaningByLocale": {
+                "ru": "термос. My sister's thermos is on the bench. — «Термос моей сестры на скамейке». О бутылке с крышкой, в которой долго держится тепло.",
+                "uk": "термос. My sister's thermos is on the bench. — «Термос моєї сестри на лавці». Про пляшку з кришкою, у якій довго тримається тепло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thermos",
+            "definitionByLocale": {
+              "ru": "термос. My sister's thermos is on the bench. — «Термос моей сестры на скамейке». О бутылке с крышкой, в которой долго держится тепло.",
+              "uk": "термос. My sister's thermos is on the bench. — «Термос моєї сестри на лавці». Про пляшку з кришкою, у якій довго тримається тепло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, чей термос на траве. Он вашего брата. Скажите: «Это термос моего брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, чей термос на траве. Он вашего брата. Скажите: «Это термос моего брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my brother's thermos.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, чей термос на траве. Он вашего брата. Скажите: «Это термос моего брата»",
+            "uk": "Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "brother's",
+            "thermos"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, чей термос на траве. Он вашего брата. Скажите: «Это термос моего брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `This is my brother's thermos.`",
+                "uk": "тут потрібно `brother's` — `This is my brother's thermos.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:napkin",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — napkin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:napkin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — napkin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:napkin:audio",
+            "transcript": "napkin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:napkin:r1",
+              "targetText": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка. My uncle's napkin is on the table. — «Салфетка моего дяди на столе». О бумажке, которой вытирают руки и рот за едой.",
+                "uk": "серветка. My uncle's napkin is on the table. — «Серветка мого дядька на столі». Про папірець, яким витирають руки й рот під час їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "napkin",
+            "definitionByLocale": {
+              "ru": "салфетка. My uncle's napkin is on the table. — «Салфетка моего дяди на столе». О бумажке, которой вытирают руки и рот за едой.",
+              "uk": "серветка. My uncle's napkin is on the table. — «Серветка мого дядька на столі». Про папірець, яким витирають руки й рот під час їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i02:r1",
+            "text": "The napkin is on my aunt's plate."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r2",
+            "text": "The napkin is on my aunt's cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r3",
+            "text": "The napkin is on my uncle's plate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i02:audio",
+            "transcript": "The napkin is on my aunt's plate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i02:r1",
+              "targetText": "The napkin is on my aunt's plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r2",
+              "targetText": "The napkin is on my aunt's cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r3",
+              "targetText": "The napkin is on my uncle's plate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plate`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `plate`, а в цьому варіанті — `cup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `aunt's`, тётя, а в этом варианте — `uncle's`, дядя.",
+                "uk": "У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:frisbee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frisbee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:frisbee:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frisbee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:frisbee:audio",
+            "transcript": "frisbee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:frisbee:r1",
+              "targetText": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби. The baby's frisbee is under the tree. — «Фрисби малыша под деревом». О пластиковом диске, который бросают друг другу.",
+                "uk": "фрісбі. The baby's frisbee is under the tree. — «Фрісбі малюка під деревом». Про пластиковий диск, який кидають одне одному."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frisbee",
+            "definitionByLocale": {
+              "ru": "фрисби. The baby's frisbee is under the tree. — «Фрисби малыша под деревом». О пластиковом диске, который бросают друг другу.",
+              "uk": "фрісбі. The baby's frisbee is under the tree. — «Фрісбі малюка під деревом». Про пластиковий диск, який кидають одне одному."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Фрисби принадлежит вашей сестре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Фрисби принадлежит вашей сестре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Фрисби принадлежит вашей сестре. Выберите слово",
+            "uk": "Фрісбі належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is my ___ frisbee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Фрисби принадлежит вашей сестре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Фрисби принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После слова sister нужно `'s`: `sister's frisbee` — «фрисби сестры».",
+                "uk": "Після слова sister потрібно `'s`: `sister's frisbee` — «фрісбі сестри»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Фрисби принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i04:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p2",
+              "target": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка",
+                "uk": "серветка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p3",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p4",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "napkin",
+            "frisbee",
+            "sunscreen"
+          ],
+          "rightColumn": [
+            "термос",
+            "салфетка",
+            "фрисби",
+            "крем от солнца"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:sunscreen",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sunscreen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:sunscreen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sunscreen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:sunscreen:audio",
+            "transcript": "sunscreen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:sunscreen:r1",
+              "targetText": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца. My friend's sunscreen is here. — «Крем от солнца моей подруги здесь». О креме, которым мажут кожу, чтобы не обгореть.",
+                "uk": "крем від сонця. My friend's sunscreen is here. — «Крем від сонця моєї подруги тут». Про крем, яким мастять шкіру, щоб не обгоріти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunscreen",
+            "definitionByLocale": {
+              "ru": "крем от солнца. My friend's sunscreen is here. — «Крем от солнца моей подруги здесь». О креме, которым мажут кожу, чтобы не обгореть.",
+              "uk": "крем від сонця. My friend's sunscreen is here. — «Крем від сонця моєї подруги тут». Про крем, яким мастять шкіру, щоб не обгоріти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i05:audio",
+            "transcript": "My sister's sunscreen is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My sister's sunscreen is in the bag.",
+          "orderedTokens": [
+            "My",
+            "sister's",
+            "sunscreen",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My sister's sunscreen is in the bag.`",
+                "uk": "тут потрібно `is` — `My sister's sunscreen is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли на скамейке рюкзак и спрашиваете подругу, не её ли бабушки он. Задайте вопрос: «Это рюкзак твоей бабушки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли на скамейке рюкзак и спрашиваете подругу, не её ли бабушки он. Задайте вопрос: «Это рюкзак твоей бабушки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this your grandmother's backpack?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на скамейке рюкзак и спрашиваете подругу, не её ли бабушки он. Задайте вопрос: «Это рюкзак твоей бабушки?»",
+            "uk": "Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "your",
+            "grandmother's",
+            "backpack"
+          ],
+          "authoredDistractorTokens": [
+            "grandmother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли на скамейке рюкзак и спрашиваете подругу, не её ли бабушки он. Задайте вопрос: «Это рюкзак твоей бабушки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grandmother's` — `Is this your grandmother's backpack?`",
+                "uk": "тут потрібно `grandmother's` — `Is this your grandmother's backpack?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, чья корзина с булочками. Она вашей тёти. Скажите: «Это корзина моей тёти»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, чья корзина с булочками. Она вашей тёти. Скажите: «Это корзина моей тёти»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i07:audio",
+            "transcript": "This is my aunt's basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my aunt's basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+            "uk": "Сандалі вашого брата лежать під лавкою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother's sandals ___ under the bench.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Сандалии — пара, поэтому нужно `are`, а не `is`.",
+                "uk": "Сандалі — пара, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат сандалии: нужно `are`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать сандалі: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i09:r1",
+            "text": "Is this your sister's camera?"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r2",
+            "text": "Is this your sister's thermos?"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r3",
+            "text": "Is this my sister's camera?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i09:audio",
+            "transcript": "Is this your sister's camera?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i09:r1",
+              "targetText": "Is this your sister's camera?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r2",
+              "targetText": "Is this your sister's thermos?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r3",
+              "targetText": "Is this my sister's camera?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `camera`, а в этом варианте — `thermos`.",
+                "uk": "У записі останнє слово — `camera`, а в цьому варіанті — `thermos`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твоей, а в этом варианте `my` — моей.",
+                "uk": "У записі `your` — твоєї, а в цьому варіанті `my` — моєї."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i10:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p3",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p4",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "basket",
+            "sunscreen",
+            "frisbee"
+          ],
+          "rightColumn": [
+            "термос",
+            "корзина",
+            "крем от солнца",
+            "фрисби"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i11:audio",
+            "transcript": "My uncle's umbrella is behind the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My uncle's umbrella is behind the tree.",
+          "orderedTokens": [
+            "My",
+            "uncle's",
+            "umbrella",
+            "is",
+            "behind",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My uncle's umbrella is behind the tree.`",
+                "uk": "тут потрібно `is` — `My uncle's umbrella is behind the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат ищет свой термос. Он у вашей сестры. Скажите ему: «Твой термос у моей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат ищет свой термос. Он у вашей сестры. Скажите ему: «Твой термос у моей сестры»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My sister has your thermos.",
+          "localizedMeaning": {
+            "ru": "Брат ищет свой термос. Он у вашей сестры. Скажите ему: «Твой термос у моей сестры»",
+            "uk": "Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»"
+          },
+          "orderedTokens": [
+            "My",
+            "sister",
+            "has",
+            "your",
+            "thermos"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат ищет свой термос. Он у вашей сестры. Скажите ему: «Твой термос у моей сестры»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My sister has your thermos.`",
+                "uk": "тут потрібно `has` — `My sister has your thermos.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дядя просил передать его салфетку, и она у вас. Скажите подруге: «У меня салфетка моего дяди»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Дядя просил передать его салфетку, и она у вас. Скажите подруге: «У меня салфетка моего дяди»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i13:audio",
+            "transcript": "I have my uncle's napkin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have my uncle's napkin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i14:r1",
+            "text": "'s"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+            "uk": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне"
+          },
+          "gappedTargetPhrase": "My uncle ___ thermos is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i14:r1",
+              "text": "'s"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь»; «термос дяди» говорим через `'s`: `my uncle's thermos`.",
+                "uk": "`has` означає «мати»; «термос дядька» кажемо через `'s`: `my uncle's thermos`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+              "feedbackByLocale": {
+                "ru": "`have` к слову `uncle` не подходит; «термос дяди» — это `uncle's thermos`.",
+                "uk": "`have` до слова `uncle` не підходить; «термос дядька» — це `uncle's thermos`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i15:r1",
+            "text": "My friend's sunscreen is here."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r2",
+            "text": "My friend's sunscreen is there."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r3",
+            "text": "My friend's blanket is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i15:audio",
+            "transcript": "My friend's sunscreen is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i15:r1",
+              "targetText": "My friend's sunscreen is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r2",
+              "targetText": "My friend's sunscreen is there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r3",
+              "targetText": "My friend's blanket is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, «здесь», а в этом варианте — `there`, «там».",
+                "uk": "У записі останнє слово — `here`, «тут», а в цьому варіанті — `there`, «там»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `sunscreen`, а в этом варианте — `blanket`.",
+                "uk": "У записі річ — `sunscreen`, а в цьому варіанті — `blanket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i16:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p2",
+              "target": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка",
+                "uk": "серветка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p3",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p4",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "napkin",
+            "frisbee",
+            "sunscreen"
+          ],
+          "rightColumn": [
+            "термос",
+            "салфетка",
+            "фрисби",
+            "крем от солнца"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы возвращаете диск подруге. Он её брата. Скажите ей: «Это фрисби твоего брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Вы возвращаете диск подруге. Он её брата. Скажите ей: «Это фрисби твоего брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i17:audio",
+            "transcript": "This is your brother's frisbee."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is your brother's frisbee.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-25:word:thermos",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thermos",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:thermos:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thermos",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:thermos:audio",
+            "transcript": "thermos"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:thermos:r1",
+              "targetText": "thermos",
+              "meaningByLocale": {
+                "ru": "термос. My sister's thermos is on the bench. — «Термос моей сестры на скамейке». О бутылке с крышкой, в которой долго держится тепло.",
+                "uk": "термос. My sister's thermos is on the bench. — «Термос моєї сестри на лавці». Про пляшку з кришкою, у якій довго тримається тепло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thermos",
+            "definitionByLocale": {
+              "ru": "термос. My sister's thermos is on the bench. — «Термос моей сестры на скамейке». О бутылке с крышкой, в которой долго держится тепло.",
+              "uk": "термос. My sister's thermos is on the bench. — «Термос моєї сестри на лавці». Про пляшку з кришкою, у якій довго тримається тепло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my brother's thermos.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, чей термос на траве. Он вашего брата. Скажите: «Это термос моего брата»",
+            "uk": "Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "brother's",
+            "thermos"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `This is my brother's thermos.`",
+                "uk": "тут потрібно `brother's` — `This is my brother's thermos.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:napkin",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — napkin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:napkin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — napkin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:napkin:audio",
+            "transcript": "napkin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:napkin:r1",
+              "targetText": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка. My uncle's napkin is on the table. — «Салфетка моего дяди на столе». О бумажке, которой вытирают руки и рот за едой.",
+                "uk": "серветка. My uncle's napkin is on the table. — «Серветка мого дядька на столі». Про папірець, яким витирають руки й рот під час їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "napkin",
+            "definitionByLocale": {
+              "ru": "салфетка. My uncle's napkin is on the table. — «Салфетка моего дяди на столе». О бумажке, которой вытирают руки и рот за едой.",
+              "uk": "серветка. My uncle's napkin is on the table. — «Серветка мого дядька на столі». Про папірець, яким витирають руки й рот під час їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i02:r1",
+            "text": "The napkin is on my aunt's plate."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r2",
+            "text": "The napkin is on my aunt's cup."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i02:r3",
+            "text": "The napkin is on my uncle's plate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i02:audio",
+            "transcript": "The napkin is on my aunt's plate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i02:r1",
+              "targetText": "The napkin is on my aunt's plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r2",
+              "targetText": "The napkin is on my aunt's cup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r3",
+              "targetText": "The napkin is on my uncle's plate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plate`, а в этом варианте — `cup`.",
+                "uk": "У записі останнє слово — `plate`, а в цьому варіанті — `cup`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `aunt's`, тётя, а в этом варианте — `uncle's`, дядя.",
+                "uk": "У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:frisbee",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frisbee",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:frisbee:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frisbee",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:frisbee:audio",
+            "transcript": "frisbee"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:frisbee:r1",
+              "targetText": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби. The baby's frisbee is under the tree. — «Фрисби малыша под деревом». О пластиковом диске, который бросают друг другу.",
+                "uk": "фрісбі. The baby's frisbee is under the tree. — «Фрісбі малюка під деревом». Про пластиковий диск, який кидають одне одному."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frisbee",
+            "definitionByLocale": {
+              "ru": "фрисби. The baby's frisbee is under the tree. — «Фрисби малыша под деревом». О пластиковом диске, который бросают друг другу.",
+              "uk": "фрісбі. The baby's frisbee is under the tree. — «Фрісбі малюка під деревом». Про пластиковий диск, який кидають одне одному."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Фрісбі належить вашій сестрі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Фрісбі належить вашій сестрі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Фрисби принадлежит вашей сестре. Выберите слово",
+            "uk": "Фрісбі належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is my ___ frisbee.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Фрісбі належить вашій сестрі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Фрісбі належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После слова sister нужно `'s`: `sister's frisbee` — «фрисби сестры».",
+                "uk": "Після слова sister потрібно `'s`: `sister's frisbee` — «фрісбі сестри»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Фрісбі належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i04:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p2",
+              "target": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка",
+                "uk": "серветка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p3",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i04:p4",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "napkin",
+            "frisbee",
+            "sunscreen"
+          ],
+          "rightColumn": [
+            "термос",
+            "серветка",
+            "фрісбі",
+            "крем від сонця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:word:sunscreen",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sunscreen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:word:sunscreen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sunscreen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:word:sunscreen:audio",
+            "transcript": "sunscreen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:word:sunscreen:r1",
+              "targetText": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца. My friend's sunscreen is here. — «Крем от солнца моей подруги здесь». О креме, которым мажут кожу, чтобы не обгореть.",
+                "uk": "крем від сонця. My friend's sunscreen is here. — «Крем від сонця моєї подруги тут». Про крем, яким мастять шкіру, щоб не обгоріти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sunscreen",
+            "definitionByLocale": {
+              "ru": "крем от солнца. My friend's sunscreen is here. — «Крем от солнца моей подруги здесь». О креме, которым мажут кожу, чтобы не обгореть.",
+              "uk": "крем від сонця. My friend's sunscreen is here. — «Крем від сонця моєї подруги тут». Про крем, яким мастять шкіру, щоб не обгоріти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i05:audio",
+            "transcript": "My sister's sunscreen is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My sister's sunscreen is in the bag.",
+          "orderedTokens": [
+            "My",
+            "sister's",
+            "sunscreen",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My sister's sunscreen is in the bag.`",
+                "uk": "тут потрібно `is` — `My sister's sunscreen is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this your grandmother's backpack?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на скамейке рюкзак и спрашиваете подругу, не её ли бабушки он. Задайте вопрос: «Это рюкзак твоей бабушки?»",
+            "uk": "Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "your",
+            "grandmother's",
+            "backpack"
+          ],
+          "authoredDistractorTokens": [
+            "grandmother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grandmother's` — `Is this your grandmother's backpack?`",
+                "uk": "тут потрібно `grandmother's` — `Is this your grandmother's backpack?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чий кошик з булочками. Він вашої тітки. Скажіть: «Це кошик моєї тітки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чий кошик з булочками. Він вашої тітки. Скажіть: «Це кошик моєї тітки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i07:audio",
+            "transcript": "This is my aunt's basket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my aunt's basket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сандалі вашого брата лежать під лавкою. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сандалі вашого брата лежать під лавкою. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сандалии вашего брата лежат под скамейкой. Выберите слово",
+            "uk": "Сандалі вашого брата лежать під лавкою. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother's sandals ___ under the bench.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Сандалі вашого брата лежать під лавкою. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Сандалі вашого брата лежать під лавкою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Сандалии — пара, поэтому нужно `are`, а не `is`.",
+                "uk": "Сандалі — пара, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Сандалі вашого брата лежать під лавкою. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат сандалии: нужно `are`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать сандалі: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i09:r1",
+            "text": "Is this your sister's camera?"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r2",
+            "text": "Is this your sister's thermos?"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i09:r3",
+            "text": "Is this my sister's camera?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i09:audio",
+            "transcript": "Is this your sister's camera?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i09:r1",
+              "targetText": "Is this your sister's camera?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r2",
+              "targetText": "Is this your sister's thermos?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r3",
+              "targetText": "Is this my sister's camera?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `camera`, а в этом варианте — `thermos`.",
+                "uk": "У записі останнє слово — `camera`, а в цьому варіанті — `thermos`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `your` — твоей, а в этом варианте `my` — моей.",
+                "uk": "У записі `your` — твоєї, а в цьому варіанті `my` — моєї."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i10:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p2",
+              "target": "basket",
+              "meaningByLocale": {
+                "ru": "корзина",
+                "uk": "кошик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p3",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i10:p4",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "basket",
+            "sunscreen",
+            "frisbee"
+          ],
+          "rightColumn": [
+            "термос",
+            "кошик",
+            "крем від сонця",
+            "фрісбі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i11:audio",
+            "transcript": "My uncle's umbrella is behind the tree."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My uncle's umbrella is behind the tree.",
+          "orderedTokens": [
+            "My",
+            "uncle's",
+            "umbrella",
+            "is",
+            "behind",
+            "the",
+            "tree"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My uncle's umbrella is behind the tree.`",
+                "uk": "тут потрібно `is` — `My uncle's umbrella is behind the tree.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My sister has your thermos.",
+          "localizedMeaning": {
+            "ru": "Брат ищет свой термос. Он у вашей сестры. Скажите ему: «Твой термос у моей сестры»",
+            "uk": "Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»"
+          },
+          "orderedTokens": [
+            "My",
+            "sister",
+            "has",
+            "your",
+            "thermos"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My sister has your thermos.`",
+                "uk": "тут потрібно `has` — `My sister has your thermos.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дядько просив передати його серветку, і вона у вас. Скажіть подрузі: «У мене серветка мого дядька»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i13:audio"
+        ],
+        "accessibilityLabel": "Дядько просив передати його серветку, і вона у вас. Скажіть подрузі: «У мене серветка мого дядька»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i13:audio",
+            "transcript": "I have my uncle's napkin."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have my uncle's napkin.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i14:r1",
+            "text": "'s"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i14:r3",
+            "text": "have"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Термос принадлежит вашему дяде, и он стоит здесь. Выберите нужное",
+            "uk": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне"
+          },
+          "gappedTargetPhrase": "My uncle ___ thermos is here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-25:i14:r1",
+              "text": "'s"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r3",
+              "text": "have"
+            }
+          ],
+          "testedDimension": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i14:r2",
+              "correct": false,
+              "testedDimension": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь»; «термос дяди» говорим через `'s`: `my uncle's thermos`.",
+                "uk": "`has` означає «мати»; «термос дядька» кажемо через `'s`: `my uncle's thermos`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i14:r3",
+              "correct": false,
+              "testedDimension": "Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне",
+              "feedbackByLocale": {
+                "ru": "`have` к слову `uncle` не подходит; «термос дяди» — это `uncle's thermos`.",
+                "uk": "`have` до слова `uncle` не підходить; «термос дядька» — це `uncle's thermos`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-25:i15:r1",
+            "text": "My friend's sunscreen is here."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r2",
+            "text": "My friend's sunscreen is there."
+          },
+          {
+            "responseId": "en:lesson-05:session-25:i15:r3",
+            "text": "My friend's blanket is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i15:audio",
+            "transcript": "My friend's sunscreen is here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-25:i15:r1",
+              "targetText": "My friend's sunscreen is here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r2",
+              "targetText": "My friend's sunscreen is there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r3",
+              "targetText": "My friend's blanket is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-25:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, «здесь», а в этом варианте — `there`, «там».",
+                "uk": "У записі останнє слово — `here`, «тут», а в цьому варіанті — `there`, «там»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-25:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `sunscreen`, а в этом варианте — `blanket`.",
+                "uk": "У записі річ — `sunscreen`, а в цьому варіанті — `blanket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-25:i16:p1",
+              "target": "thermos",
+              "meaningByLocale": {
+                "ru": "термос",
+                "uk": "термос"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p2",
+              "target": "napkin",
+              "meaningByLocale": {
+                "ru": "салфетка",
+                "uk": "серветка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p3",
+              "target": "frisbee",
+              "meaningByLocale": {
+                "ru": "фрисби",
+                "uk": "фрісбі"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-25:i16:p4",
+              "target": "sunscreen",
+              "meaningByLocale": {
+                "ru": "крем от солнца",
+                "uk": "крем від сонця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "thermos",
+            "napkin",
+            "frisbee",
+            "sunscreen"
+          ],
+          "rightColumn": [
+            "термос",
+            "серветка",
+            "фрісбі",
+            "крем від сонця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-25:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви повертаєте диск подрузі. Він її брата. Скажіть їй: «Це фрісбі твого брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Ви повертаєте диск подрузі. Він її брата. Скажіть їй: «Це фрісбі твого брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-25:i17:audio",
+            "transcript": "This is your brother's frisbee."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is your brother's frisbee.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-25:word:thermos",
+      "correctText": "thermos",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i01",
+      "correctText": "This is my brother's thermos.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:word:napkin",
+      "correctText": "napkin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i02",
+      "correctText": "The napkin is on my aunt's plate.",
+      "correctResponseId": "en:lesson-05:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:word:frisbee",
+      "correctText": "frisbee",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i03",
+      "correctText": "sister's",
+      "correctResponseId": "en:lesson-05:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:word:sunscreen",
+      "correctText": "sunscreen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i05",
+      "correctText": "My sister's sunscreen is in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i06",
+      "correctText": "Is this your grandmother's backpack?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i07",
+      "correctText": "This is my aunt's basket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i09",
+      "correctText": "Is this your sister's camera?",
+      "correctResponseId": "en:lesson-05:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i11",
+      "correctText": "My uncle's umbrella is behind the tree.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i12",
+      "correctText": "My sister has your thermos.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i13",
+      "correctText": "I have my uncle's napkin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i14",
+      "correctText": "'s",
+      "correctResponseId": "en:lesson-05:session-25:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i15",
+      "correctText": "My friend's sunscreen is here.",
+      "correctResponseId": "en:lesson-05:session-25:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-25:i17",
+      "correctText": "This is your brother's frisbee.",
+      "correctResponseId": null
+    }
+  ]
+}

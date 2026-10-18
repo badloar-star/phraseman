@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 17 — Куртка моя
+# Англійська · Урок 5 · Заняття 17 — Шолом, гітара, папка
 
-**Ситуація.** Після зустрічі друзі розбирають речі біля дверей. Куртки схожі, зарядка одна, а книжки лежать окремим стосом.
+**Ситуація.** Речі лежать на стійці, біля входу й на спільному столі, і треба сказати, чия яка. Назву не повторюємо: замість my helmet кажемо The helmet is mine, а про річ співрозмовника — yours.
 
-**Що ви опануєте:** вказати власника без повторення назви речі
-**Нові слова:** jacket
+**Що ви опануєте:** сказати, чия річ, одним словом без назви: mine (мій) і yours (твій)
+**Нові слова:** helmet, guitar, folder, diary
+**Повертаються:** desk, table, umbrella, key, jacket
 
 ---
 
 ## Інтро 1
 
-### Можна не повторювати
+### Який шолом ваш
 
-`jacket` — «куртка». `my jacket` — «моя куртка», але `The jacket is mine` — «Куртка моя». `mine` уже означає «мій / моя / моє / мої», тому після нього назву речі не повторюємо. `yours` — «твій / ваш» без назви речі: `The charger is yours` — «Зарядка твоя». Куртки схожі, але кишеня з вашою забутою ягодою — переконлива підказка.
+Ви з подругою залишили велосипеди біля стійки, і поруч лежать два схожі шоломи, сірий і синій. Подруга питає, який ваш. helmet — «шолом». Коли річ уже названо, після is ставимо mine — «мій»: The helmet is mine — «Шолом мій». Назву вдруге не повторюємо.
 
-**Куртка належить вам. Виберіть фразу.**
+**Подруга показує на шолом і питає, чий він. Шолом ваш. Скажіть їй: «Шолом мій».**
 
-- ✅ **The jacket is mine.**
-- ❌ The jacket is my. — *Без назви речі використовуємо `mine`; `my` потрібне перед назвою: `my jacket`.*
-- ❌ The jacket is yours. — *`yours` — твоя / ваша; моя — `mine`.*
+- ✅ **The helmet is mine.**
+- ❌ The helmet is my. — *Після is саме my не ставлять: коли назви речі немає, потрібно mine.*
+- ❌ The helmet is yours. — *yours — твій, а шолом ваш: потрібно mine.*
 
 ---
 
 ## Інтро 2
 
-### Його, її, наші, їхні
+### Гітара біля входу
 
-Без назви речі: `his` — «його», `hers` — «її», `ours` — «наш / наші», `theirs` — «їхній / їхні». `his` однакове в `his jacket` і `The jacket is his`. Порівняйте: `her jacket`, але `The jacket is hers`. `The books are ours` — «Книжки наші»: кілька книжок, тому `are`.
+Після вечірки біля входу залишилася гітара: її забув друг. Він саме повернувся й роззирається. Ви тримаєте її в руках. guitar — «гітара». Про річ співрозмовника кажемо yours — «твій, твоя»: The guitar is yours — «Гітара твоя». Для вашої речі підійшло б mine.
 
-**Книжки належать вам і вашому другові. Скажіть «Книжки наші».**
+**Друг повернувся по гітару, яку забув у вас. Скажіть йому: «Гітара твоя».**
 
-- ✅ **The books are ours.**
-- ❌ The books are our. — *Без назви речі потрібна форма `ours`.*
-- ❌ The books is ours. — *Кілька книжок: `books are`.*
+- ✅ **The guitar is yours.**
+- ❌ The guitar is your. — *Після is саме your не ставлять: без назви речі потрібно yours.*
+- ❌ The guitar is mine. — *mine — моя, а гітара друга: потрібно yours.*
 
 ---
 
 ## Інтро 3
 
-### Речі в безпеці
+### Папка на спільному столі
 
-Повторімо: `welcome` — «бажаний», `safe` — «у безпеці», `right` — «має рацію», `books` — «книжки», `berry` — «ягода», `charger` — «зарядка». `You are welcome here` — «Тобі тут раді». `You are right` — «Ти маєш рацію». `The books are safe` — «Книжки в безпеці». `The berry is hers` — «Ягода її». Форма `hers` говорить про власницю, а `is` — про одну ягоду.
+Колега приніс зі спільного столу папку з паперами й питає, чи не ваша вона. folder — «папка». Питання звучить так: Is the folder yours? — «Папка твоя?» Папка ваша, і ви відповідаєте коротко, без повтору назви: Yes, it is mine — «Так, вона моя».
 
-**Друг правильно визначив власника. Скажіть «Ти маєш рацію» без скорочення.**
+**Колега тримає папку й питає: «Is the folder yours?» Папка ваша. Відповідьте йому коротко.**
 
-- ✅ **You are right.**
-- ❌ You is right. — *З `You` потрібне `are`.*
-- ❌ You are safe. — *`safe` — у безпеці; мати рацію — `be right`.*
+- ✅ **Yes, it is mine.**
+- ❌ Yes, it is my. — *Після is саме my не ставлять: потрібно mine.*
+- ❌ Yes, it is yours. — *yours — твоя, а папка ваша: потрібно mine.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть гостю «Тобі тут раді» без скорочення**
+**1 · Картка слова — helmet**
+<!-- interaction_id: en:lesson-05:session-17:word:helmet; family: word_card -->
+> **helmet** — шолом. The helmet is on the table. — «Шолом на столі». Про тверду шапку, яка захищає голову на велосипеді.
+
+**2 · Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»**
 <!-- interaction_id: en:lesson-05:session-17:i01; family: phrase_builder -->
-Плитки: `here` `welcome` `are` `You` `is` → **You are welcome here.**
-*(плитка `is` зайва: тут потрібно `are` — `You are welcome here.`)*
+Плитки: `helmet` `is` `mine` `This` `my` → **This helmet is mine.**
+*(плитка `my` зайва: тут потрібно `mine` — `This helmet is mine.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — guitar**
+<!-- interaction_id: en:lesson-05:session-17:word:guitar; family: word_card -->
+> **guitar** — гітара. My guitar is here. — «Моя гітара тут». Про музичний інструмент зі струнами.
+
+**4 · Послухайте друга**
 <!-- interaction_id: en:lesson-05:session-17:i02; family: listen_choose -->
-🔊 *jacket* → **jacket** · jackets · coat
-- jackets — *У записі перше слово — `jacket`, а в цьому варіанті — `jackets`.*
-- coat — *У записі перше слово — `jacket`, а в цьому варіанті — `coat`.*
+🔊 *The guitar is yours.* → **The guitar is yours.** · The guitar is mine. · The jacket is yours.
+- The guitar is mine. — *У записі останнє слово `yours` — твоя, а в цьому варіанті `mine` — моя.*
+- The jacket is yours. — *У записі говорять про гітару `guitar`, а в цьому варіанті — про куртку `jacket`.*
 
-**3 · Назвіть куртку, не пальто**
+**5 · Картка слова — folder**
+<!-- interaction_id: en:lesson-05:session-17:word:folder; family: word_card -->
+> **folder** — папка. The folder is on the desk. — «Папка на столі». Про м’яку або тверду обкладинку, у якій зберігають папери.
+
+**6 · Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-17:i03; family: context_gap_grammar -->
-___ → **jacket** · charger · coat
-- charger — *`charger` — зарядка; куртка — `jacket`.*
-- coat — *`coat` — пальто; куртка — `jacket`.*
+The folder is ___. → **mine** · my · yours
+- my — *Після is саме my не ставлять: потрібно mine.*
+- yours — *yours — твоя, а папка ваша: потрібно mine.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-17:i04; family: speed_match -->
-jacket — куртка · welcome — бажаний · safe — у безпеці · right — має рацію
+helmet — шолом · guitar — гітара · folder — папка для паперів · diary — щоденник
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — diary**
+<!-- interaction_id: en:lesson-05:session-17:word:diary; family: word_card -->
+> **diary** — щоденник. The diary is in my bag. — «Щоденник у моїй сумці». Про зошит, куди записують, що було за день.
+
+**9 · Послухайте друга й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-17:i05; family: listen_build_dictation -->
-🔊 *The jacket is mine.* Плитки: `mine` `is` `jacket` `The` → **The jacket is mine.**
+🔊 *The diary is yours.* Плитки: `diary` `is` `yours` `The` `your` → **The diary is yours.**
+*(плитка `your` зайва: тут потрібно `yours` — `The diary is yours.`)*
 
-**6 · Зарядка належить другові. Скажіть йому «Зарядка твоя»**
+**10 · Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»**
 <!-- interaction_id: en:lesson-05:session-17:i06; family: phrase_builder -->
-Плитки: `yours` `is` `charger` `The` `are` → **The charger is yours.**
-*(плитка `are` зайва: тут потрібно `is` — `The charger is yours.`)*
+Плитки: `folder` `yours` `the` `Is` `Are` → **Is the folder yours?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is the folder yours?`)*
 
-**7 · Друг правильно впізнав свою річ. Скажіть «Ти маєш рацію» без скорочення**
+**11 · Друг питає, чия це гітара. Гітара ваша. Відповідьте: «Гітара моя»**
 <!-- interaction_id: en:lesson-05:session-17:i07; family: scripted_repeat_compare -->
-🎙 **You are right.**
+🎙 **The guitar is mine.**
 
-**8 · Ягода належить подрузі. Скажіть «Ягода її»**
+**12 · Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-17:i08; family: context_gap_grammar -->
-The berry is ___. → **hers** · her · ours
-- her — *Без назви речі потрібна форма `hers`.*
-- ours — *`ours` — наша; її — `hers`.*
+The umbrella is ___. → **yours** · your · mine
+- your — *Після is саме your не ставлять: без назви речі потрібно yours.*
+- mine — *mine — мій, а парасолька належить колезі: потрібно yours.*
 
-**9 · Послухайте, кому належать книжки**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-17:i09; family: listen_choose -->
-🔊 *The books are ours.* → **The books are ours.** · The books are theirs. · The books are yours.
-- The books are theirs. — *У записі останнє слово — `ours`, а в цьому варіанті — `theirs`.*
-- The books are yours. — *У записі останнє слово — `ours`, а в цьому варіанті — `yours`.*
+🔊 *Is the diary yours?* → **Is the diary yours?** · Is the diary mine? · Is the folder yours?
+- Is the diary mine? — *У записі останнє слово `yours` — твій, а в цьому варіанті `mine` — мій.*
+- Is the folder yours? — *У записі говорять про щоденник `diary`, а в цьому варіанті — про папку `folder`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-17:i10; family: speed_match -->
-jacket — куртка · books — книжки · berry — ягода · charger — зарядка
+folder — папка для паперів · diary — щоденник · desk — робочий стіл · umbrella — парасолька
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-17:i11; family: listen_build_dictation -->
-🔊 *The jacket is his.* Плитки: `his` `is` `jacket` `The` `are` → **The jacket is his.**
-*(плитка `are` зайва: тут потрібно `is` — `The jacket is his.`)*
+🔊 *Yes, it is mine.* Плитки: `it` `is` `mine` `Yes` `yours` → **Yes, it is mine.**
+*(плитка `yours` зайва: тут потрібно `mine` — `Yes, it is mine.`)*
 
-**12 · Книжки поклали в надійне місце. Скажіть «Книжки в безпеці»**
+**16 · Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»**
 <!-- interaction_id: en:lesson-05:session-17:i12; family: phrase_builder -->
-Плитки: `safe` `are` `books` `The` `is` → **The books are safe.**
-*(плитка `is` зайва: тут потрібно `are` — `The books are safe.`)*
+Плитки: `it` `is` `not` `mine` `yours` → **It is not mine.**
+*(плитка `yours` зайва: тут потрібно `mine` — `It is not mine.`)*
 
-**13 · Зарядка належить друзям. Скажіть «Зарядка їхня»**
+**17 · Колега питає, чи не ваш щоденник. Щоденник ваш. Відповідьте: «Так, він мій»**
 <!-- interaction_id: en:lesson-05:session-17:i13; family: scripted_repeat_compare -->
-🎙 **The charger is theirs.**
+🎙 **Yes, it is mine.**
 
-**14 · Куртка належить співрозмовникові. Скажіть йому «Куртка твоя»**
+**18 · Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-17:i14; family: context_gap_grammar -->
-The jacket is ___. → **yours** · your · mine
-- your — *Без назви речі потрібна форма `yours`.*
-- mine — *`mine` — моя; твоя — `yours`.*
+The helmet is ___. → **yours** · your · mine
+- your — *Після is саме your не ставлять: без назви речі потрібно yours.*
+- mine — *mine — мій, а шолом друга: потрібно yours.*
 
-**15 · Послухайте, кому належать книжки**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-17:i15; family: listen_choose -->
-🔊 *The books are hers.* → **The books are hers.** · The books are his. · The books are mine.
-- The books are his. — *У записі останнє слово — `hers`, а в цьому варіанті — `his`.*
-- The books are mine. — *У записі останнє слово — `hers`, а в цьому варіанті — `mine`.*
+🔊 *The folder is mine.* → **The folder is mine.** · The folder is yours. · The diary is mine.
+- The folder is yours. — *У записі останнє слово `mine` — моя, а в цьому варіанті `yours` — твоя.*
+- The diary is mine. — *У записі говорять про папку `folder`, а в цьому варіанті — про щоденник `diary`.*
 
-**16 · З’єднайте форми зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-17:i16; family: speed_match -->
-mine — мій без назви речі · yours — твій без назви речі · ours — наш без назви речі · theirs — їхній без назви речі
+helmet — шолом · guitar — гітара · key — ключ · jacket — куртка
 
-**17 · Друг збирається взяти вашу куртку. Уточніть «Куртка моя»**
+**21 · Друг бере ваш шолом, думаючи, що шолом його. Скажіть йому: «Шолом мій»**
 <!-- interaction_id: en:lesson-05:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The jacket is mine.**
-
+🎙 **The helmet is mine.**

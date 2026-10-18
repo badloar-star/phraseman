@@ -1,138 +1,154 @@
-# Англійська · Урок 5 · Заняття 29 — Скейтборд біля зупинки
+# Англійська · Урок 5 · Заняття 29 — Музика на сімейному святі
 
-**Ситуація.** Анна й Том зустрічаються біля автобусної зупинки поруч із кафе. Том приніс скейтборд, а Анна шукає своє намисто.
+**Ситуація.** У тітки сімейне свято: у вітальні стоять інструменти, а гості приходять по одному. Треба казати і чий інструмент, і хто вже прийшов.
 
-**Що ви опануєте:** назвати власника речей і уточнити місце зустрічі
-**Нові слова:** skateboard
+**Що ви опануєте:** розрізняти два значення 's: «чий» (my aunt's piano) і «є, перебуває» (my cousin's here)
+**Нові слова:** piano, drum, flute, trumpet
+**Повертаються:** aunt, uncle, cousin, friend, grandmother, sofa, hall, home, kitchen, here, tired, old, loud, phone
 
 ---
 
 ## Інтро 1
 
-### Дошка на колесах
+### Старе піаніно
 
-`skateboard` — «скейтборд». `This is Tom’s skateboard` — «Це скейтборд Тома». `Anna’s skateboard is here` — «Скейтборд Анни тут». Ім’я власника з `’s` ставимо перед назвою речі. Скейтборд уже біля зупинки: сьогодні його колеса відпочивають, їдемо автобусом.
+На святі в тітки у вітальні стоїть піаніно із закритою кришкою, і подруга питає, яке воно. piano — «піаніно». Воно вашої тітки й дуже старе: йому понад сто років. Коли після 's іде річ, 's каже, чия вона: My aunt's piano is old — «Піаніно моєї тітки старе».
 
-**Укажіть на скейтборд Тома.**
+**Подруга питає про піаніно. Воно вашої тітки й дуже старе. Скажіть: «Піаніно моєї тітки старе».**
 
-- ✅ **This is Tom's skateboard.**
-- ❌ This is Tom skateboard. — *Після імені власника потрібне `’s`: `Tom’s skateboard`.*
-- ❌ This is Anna's skateboard. — *Це скейтборд Анни; тут власник Том.*
+- ✅ **My aunt's piano is old.**
+- ❌ My aunt piano is old. — *Після слова aunt потрібно 's: my aunt's piano.*
+- ❌ My aunt's piano are old. — *Піаніно одне, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 2
 
-### Місцевий, іноземний, у мережі
+### Барабан у передпокої
 
-`local` — «місцевий», `foreign` — «іноземний», `online` — «у мережі». `The shop is local` — «Магазин місцевий». `The car is foreign` — «Машина іноземна», тобто з іншої країни. `Anna is online` — «Анна в мережі». Тут `online` описує присутність в інтернеті, а не місце на вулиці.
+Усі вже сіли за стіл, і тут у двері подзвонили. З передпокою чути стукіт: прийшов двоюрідний брат із барабаном. drum — «барабан». Якщо після 's речі немає, то 's — це is: My cousin's here — «Мій двоюрідний брат тут». Бабуся чекає саме на нього, скажіть їй.
 
-**Анна зараз у мережі. Виберіть фразу.**
+**У передпокої чути барабан. Скажіть бабусі, що двоюрідний брат уже прийшов: «Мій двоюрідний брат тут».**
 
-- ✅ **Anna is online.**
-- ❌ Anna are online. — *З однією людиною потрібна форма `is`.*
-- ❌ Anna is outside. — *`outside` — зовні; у мережі — `online`.*
+- ✅ **My cousin's here.**
+- ❌ My cousin here. — *Без is фраза не складається: потрібно 's, тобто is.*
+- ❌ My cousin's drum is here. — *Так ми сказали б про барабан: «барабан двоюрідного брата тут». Потрібно сказати, що прийшов він сам.*
 
 ---
 
 ## Інтро 3
 
-### Кафе біля зупинки
+### Флейта на дивані
 
-`tables` — «столи», `bus stop` — «автобусна зупинка», `necklace` — «намисто». `The tables are outside` — «Столи зовні». `Tom is at the bus stop` — «Том на автобусній зупинці». `Anna’s necklace is on the table` — «Намисто Анни на столі». `Where is my skateboard?` — «Де мій скейтборд?»
+Подруга ще в дорозі, але її флейта вже лежить на дивані: вона залишила її зранку, ще до свята. flute — «флейта», у неї дмуть, щоб грати мелодію. Тепер після 's знову йде річ, тому 's означає «чия»: My friend's flute is here — «Флейта моєї подруги тут».
 
-**Том чекає на автобусній зупинці. Виберіть фразу.**
+**Подруги ще немає, але її флейта лежить на дивані. Скажіть бабусі: «Флейта моєї подруги тут».**
 
-- ✅ **Tom is at the bus stop.**
-- ❌ Tom are at the bus stop. — *Один Том: `Tom is`.*
-- ❌ Anna is at the bus stop. — *Це про Анну; тут потрібно назвати Тома.*
+- ✅ **My friend's flute is here.**
+- ❌ My friend's here. — *Так сказали б про саму подругу: «моя подруга тут». Флейту називаємо після 's.*
+- ❌ My friend flute is here. — *Після слова friend потрібно 's: my friend's flute.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Анна зараз у мережі. Скажіть «Анна в мережі»**
+**1 · Картка слова — piano**
+<!-- interaction_id: en:lesson-05:session-29:word:piano; family: word_card -->
+> **piano** — піаніно. My friend's piano is big. — «Піаніно моєї подруги велике». Про великий музичний інструмент із клавішами.
+
+**2 · Подруга питає, де піаніно вашої тітки. Воно в холі. Скажіть: «Піаніно моєї тітки в холі»**
 <!-- interaction_id: en:lesson-05:session-29:i01; family: phrase_builder -->
-Плитки: `online` `is` `Anna` `are` → **Anna is online.**
-*(плитка `are` зайва: тут потрібно `is` — `Anna is online.`)*
+Плитки: `piano` `aunt's` `is` `in` `the` `hall` `My` `aunt` → **My aunt's piano is in the hall.**
+*(плитка `aunt` зайва: тут потрібно `aunt's` — `My aunt's piano is in the hall.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — drum**
+<!-- interaction_id: en:lesson-05:session-29:word:drum; family: word_card -->
+> **drum** — барабан. My cousin's drum is loud. — «Барабан мого двоюрідного брата гучний». Про інструмент, по якому б’ють паличками.
+
+**4 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-05:session-29:i02; family: listen_choose -->
-🔊 *skateboard* → **skateboard** · tablet · suitcase
-- tablet — *У записі перше слово — `skateboard`, а в цьому варіанті — `tablet`.*
-- suitcase — *У записі перше слово — `skateboard`, а в цьому варіанті — `suitcase`.*
+🔊 *My cousin's drum is on the sofa.* → **My cousin's drum is on the sofa.** · My cousin's drum is on the floor. · My cousin's on the sofa.
+- My cousin's drum is on the floor. — *У записі останнє слово — `sofa`, диван, а в цьому варіанті — `floor`, підлога.*
+- My cousin's on the sofa. — *У записі після `cousin's` іде `drum` — барабан двоюрідного брата, а в цьому варіанті `cousin's` — це `cousin is`: брат сам сидить на дивані.*
 
-**3 · Назвіть скейтборд**
+**5 · Картка слова — flute**
+<!-- interaction_id: en:lesson-05:session-29:word:flute; family: word_card -->
+> **flute** — флейта. My friend's flute is small. — «Флейта моєї подруги маленька». Про тонку трубку, у яку дмуть, щоб грати мелодію.
+
+**6 · Подруга прийшла, а її флейта залишилася вдома. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-29:i03; family: context_gap_grammar -->
-___ → **skateboard** · necklace · helmet
-- necklace — *`necklace` — намисто; скейтборд — `skateboard`.*
-- helmet — *`helmet` — шолом; скейтборд — `skateboard`.*
+My friend's flute ___ at home. → **is** · are · has
+- are — *Флейта одна, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «мати», а тут ми кажемо, де лежить флейта: потрібно `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-29:i04; family: speed_match -->
-skateboard — скейтборд · local — місцевий · foreign — іноземний · online — у мережі
+piano — піаніно · drum — барабан · flute — флейта · trumpet — труба
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — trumpet**
+<!-- interaction_id: en:lesson-05:session-29:word:trumpet; family: word_card -->
+> **trumpet** — труба. My uncle's trumpet is shiny. — «Труба мого дядька блискуча». Про інструмент, у який дмуть, і він звучить гучно й яскраво.
+
+**9 · Послухайте дядька й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-29:i05; family: listen_build_dictation -->
-🔊 *This is Tom's skateboard.* Плитки: `skateboard` `Tom's` `is` `This` `are` → **This is Tom's skateboard.**
-*(плитка `are` зайва: тут потрібно `is` — `This is Tom's skateboard.`)*
+🔊 *My uncle's trumpet is loud.* Плитки: `trumpet` `uncle's` `is` `loud` `My` `are` → **My uncle's trumpet is loud.**
+*(плитка `are` зайва: тут потрібно `is` — `My uncle's trumpet is loud.`)*
 
-**6 · Скажіть «Намисто Анни на столі»**
+**10 · Бабуся чекає двоюрідного брата. Він уже прийшов. Скажіть їй: «Мій двоюрідний брат тут»**
 <!-- interaction_id: en:lesson-05:session-29:i06; family: phrase_builder -->
-Плитки: `table` `the` `on` `is` `necklace` `Anna's` `are` → **Anna's necklace is on the table.**
-*(плитка `are` зайва: тут потрібно `is` — `Anna's necklace is on the table.`)*
+Плитки: `cousin's` `here` `My` `cousin` → **My cousin's here.**
+*(плитка `cousin` зайва: тут потрібно `cousin's` — `My cousin's here.`)*
 
-**7 · Магазин розташований у вашій місцевості. Скажіть «Магазин місцевий»**
+**11 · Бабуся питає, де тітка. Вона на кухні. Скажіть: «Моя тітка на кухні»**
 <!-- interaction_id: en:lesson-05:session-29:i07; family: scripted_repeat_compare -->
-🎙 **The shop is local.**
+🎙 **My aunt's in the kitchen.**
 
-**8 · Скейтборд належить Анні. Укажіть власницю**
+**12 · Ви говорите про барабан двоюрідного брата. Виберіть слово, яке підходить**
 <!-- interaction_id: en:lesson-05:session-29:i08; family: context_gap_grammar -->
-This is ___ skateboard. → **Anna's** · Anna · Tom's
-- Anna — *До імені власниці додаємо `’s`: `Anna’s`.*
-- Tom's — *Це належність Тому; тут власниця Анна.*
+My cousin's ___ is on the sofa. → **drum** · tired · here
+- tired — *Після 's річ, чия вона: `tired` — «втомлений», це не річ.*
+- here — *Після 's річ, чия вона: `here` — «тут», це не річ.*
 
-**9 · Послухайте, що друг повідомляє про машину**
+**13 · Послухайте тітку**
 <!-- interaction_id: en:lesson-05:session-29:i09; family: listen_choose -->
-🔊 *The car is foreign.* → **The car is foreign.** · The car is local. · The car is available.
-- The car is local. — *У записі останнє слово — `foreign`, а в цьому варіанті — `local`.*
-- The car is available. — *У записі останнє слово — `foreign`, а в цьому варіанті — `available`.*
+🔊 *My aunt's home.* → **My aunt's home.** · My aunt's phone. · My aunt's late.
+- My aunt's phone. — *У записі `home` — «вдома»: тітка прийшла додому, а в цьому варіанті `phone` — «телефон тітки».*
+- My aunt's late. — *У записі `home` — «вдома», а в цьому варіанті `late` — «спізнилася».*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-29:i10; family: speed_match -->
-skateboard — скейтборд · tables — столи · bus stop — автобусна зупинка · necklace — намисто
+piano — піаніно · drum — барабан · sofa — диван · hall — хол, коридор
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-29:i11; family: listen_build_dictation -->
-🔊 *Tom is at the bus stop.* Плитки: `stop` `bus` `the` `at` `is` `Tom` `are` → **Tom is at the bus stop.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is at the bus stop.`)*
+🔊 *My friend's flute is on the sofa.* Плитки: `flute` `friend's` `is` `on` `the` `sofa` `My` `are` → **My friend's flute is on the sofa.**
+*(плитка `are` зайва: тут потрібно `is` — `My friend's flute is on the sofa.`)*
 
-**12 · Столи кафе стоять зовні. Скажіть «Столи зовні»**
+**16 · У вашої тітки є піаніно. Скажіть подрузі: «У моєї тітки є піаніно»**
 <!-- interaction_id: en:lesson-05:session-29:i12; family: phrase_builder -->
-Плитки: `outside` `are` `tables` `The` `is` → **The tables are outside.**
-*(плитка `is` зайва: тут потрібно `are` — `The tables are outside.`)*
+Плитки: `aunt` `has` `a` `piano` `My` `have` → **My aunt has a piano.**
+*(плитка `have` зайва: тут потрібно `has` — `My aunt has a piano.`)*
 
-**13 · Ви шукаєте свій скейтборд. Запитайте «Де мій скейтборд?»**
+**17 · Подруга питає, чий барабан біля дверей. Він вашого двоюрідного брата. Скажіть: «Це барабан мого двоюрідного брата»**
 <!-- interaction_id: en:lesson-05:session-29:i13; family: scripted_repeat_compare -->
-🎙 **Where is my skateboard?**
+🎙 **This is my cousin's drum.**
 
-**14 · Намисто належить подрузі. Скажіть «Намисто її»**
+**18 · У вашої тітки є флейта. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-29:i14; family: context_gap_grammar -->
-The necklace is ___. → **hers** · her · his
-- her — *Без назви речі потрібна форма `hers`.*
-- his — *`his` — його; її — `hers`.*
+My aunt ___ a flute. → **has** · 's · have
+- 's — *Після 's без речі це `is`: вийшло б «тітка — флейта». Коли у тітки є флейта, потрібно `has`.*
+- have — *До слова `aunt` потрібно `has`, а не `have`.*
 
-**15 · Послухайте, чий скейтборд тут**
+**19 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-05:session-29:i15; family: listen_choose -->
-🔊 *Your skateboard is here.* → **Your skateboard is here.** · My skateboard is here. · His skateboard is here.
-- My skateboard is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His skateboard is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *My friend's flute is here.* → **My friend's flute is here.** · My friend's here. · My friend's flute is there.
+- My friend's here. — *У записі після `friend's` іде `flute` — флейта подруги, а в цьому варіанті `friend's here` — «подруга тут».*
+- My friend's flute is there. — *У записі останнє слово — `here`, «тут», а в цьому варіанті — `there`, «там».*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-29:i16; family: speed_match -->
-skateboard — скейтборд · tables — столи · bus stop — автобусна зупинка · necklace — намисто
+piano — піаніно · drum — барабан · flute — флейта · trumpet — труба
 
-**17 · Друг запитує про власника скейтборда. Він належить Тому. Скажіть «Це скейтборд Тома»**
+**21 · Бабуся питає, де ваш двоюрідний брат. Він уже тут. Скажіть їй: «Мій двоюрідний брат тут»**
 <!-- interaction_id: en:lesson-05:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Tom's skateboard.**
-
+🎙 **My cousin's here.**

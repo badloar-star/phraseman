@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-27:word:marker",
+    "correctText": "marker",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-27:i01",
-    "correctText": "Anna is awake.",
+    "correctText": "This is my friend's marker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:word:calculator",
+    "correctText": "calculator",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i02",
-    "correctText": "passport",
+    "correctText": "The calculator is my cousin's.",
     "correctResponseId": "en:lesson-05:session-27:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-27:word:textbook",
+    "correctText": "textbook",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-27:i03",
-    "correctText": "passport",
+    "correctText": "sister's",
     "correctResponseId": "en:lesson-05:session-27:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-27:i04",
-    "correctText": "en:lesson-05:session-27:i04:p1=passport\nen:lesson-05:session-27:i04:p2=awake\nen:lesson-05:session-27:i04:p3=asleep\nen:lesson-05:session-27:i04:p4=available",
+    "correctText": "en:lesson-05:session-27:i04:p1=marker\nen:lesson-05:session-27:i04:p2=whiteboard\nen:lesson-05:session-27:i04:p3=calculator\nen:lesson-05:session-27:i04:p4=textbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-27:word:whiteboard",
+    "correctText": "whiteboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i05",
-    "correctText": "This is Anna's passport.",
+    "correctText": "The whiteboard is the teacher's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i06",
-    "correctText": "Tom's passport is here.",
+    "correctText": "Is this calculator your cousin's?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i07",
-    "correctText": "Tom is asleep.",
+    "correctText": "It is my sister's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i08",
-    "correctText": "Anna's",
+    "correctText": "isn't",
     "correctResponseId": "en:lesson-05:session-27:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-27:i09",
-    "correctText": "The car is available.",
+    "correctText": "Is this textbook the teacher's?",
     "correctResponseId": "en:lesson-05:session-27:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-27:i10",
-    "correctText": "en:lesson-05:session-27:i10:p1=passport\nen:lesson-05:session-27:i10:p2=cars\nen:lesson-05:session-27:i10:p3=awning\nen:lesson-05:session-27:i10:p4=tablet",
+    "correctText": "en:lesson-05:session-27:i10:p1=marker\nen:lesson-05:session-27:i10:p2=ruler\nen:lesson-05:session-27:i10:p3=whiteboard\nen:lesson-05:session-27:i10:p4=notebook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i11",
-    "correctText": "The cars are under the awning.",
+    "correctText": "My cousin's calculator is on the desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i12",
-    "correctText": "Anna's tablet is on the table.",
+    "correctText": "The teacher has your textbook.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i13",
-    "correctText": "Where is my passport?",
+    "correctText": "It is my friend's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i14",
-    "correctText": "his",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-27:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-27:i15",
-    "correctText": "Your passport is in the bag.",
+    "correctText": "The textbook is my friend's.",
     "correctResponseId": "en:lesson-05:session-27:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-27:i16",
-    "correctText": "en:lesson-05:session-27:i16:p1=passport\nen:lesson-05:session-27:i16:p2=cars\nen:lesson-05:session-27:i16:p3=awning\nen:lesson-05:session-27:i16:p4=tablet",
+    "correctText": "en:lesson-05:session-27:i16:p1=marker\nen:lesson-05:session-27:i16:p2=whiteboard\nen:lesson-05:session-27:i16:p3=calculator\nen:lesson-05:session-27:i16:p4=textbook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-27:i17",
-    "correctText": "This is Anna's passport.",
+    "correctText": "It is my cousin's.",
     "correctResponseId": null
   }
 ]

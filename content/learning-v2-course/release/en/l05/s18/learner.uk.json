@@ -4,39 +4,83 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-18:i01",
+      "interactionId": "en:lesson-05:session-18:word:razor",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — razor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:word:razor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — razor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:word:razor:audio",
+          "transcript": "razor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:word:razor:r1",
+            "targetText": "razor",
+            "meaningByLocale": {
+              "ru": "бритва. The razor is on the shelf. — «Бритва на полке». Об инструменте, которым бреют бороду и щёки.",
+              "uk": "бритва. The razor is on the shelf. — «Бритва на полиці». Про інструмент, яким голять бороду й щоки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "razor",
+          "definitionByLocale": {
+            "ru": "бритва. The razor is on the shelf. — «Бритва на полке». Об инструменте, которым бреют бороду и щёки.",
+            "uk": "бритва. The razor is on the shelf. — «Бритва на полиці». Про інструмент, яким голять бороду й щоки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+      "prompt": "Подруга питає, чия бритва. Вона належить братові. Скажіть їй повною фразою: «Бритва його»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+      "accessibilityLabel": "Подруга питає, чия бритва. Вона належить братові. Скажіть їй повною фразою: «Бритва його»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is early.",
+        "targetPhrase": "The razor is his.",
         "localizedMeaning": {
-          "ru": "До обычного времени выхода ещё далеко. Скажите «Сейчас рано» без сокращения",
-          "uk": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення"
+          "ru": "Подруга спрашивает, чья бритва. Она принадлежит брату. Скажите ей полной фразой: «Бритва его»",
+          "uk": "Подруга питає, чия бритва. Вона належить братові. Скажіть їй повною фразою: «Бритва його»"
         },
         "orderedTokens": [
-          "It",
+          "The",
+          "razor",
           "is",
-          "early"
+          "his"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "hers"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i01:tile:d1",
             "correct": false,
-            "testedDimension": "До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення",
+            "testedDimension": "Подруга питає, чия бритва. Вона належить братові. Скажіть їй повною фразою: «Бритва його»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is early.`",
-              "uk": "тут потрібно `is` — `It is early.`"
+              "ru": "здесь нужно `his` — `The razor is his.`",
+              "uk": "тут потрібно `his` — `The razor is his.`"
             }
           }
         ],
@@ -48,52 +92,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-18:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-18:word:perfume",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — perfume",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:word:perfume:audio"
+      ],
+      "accessibilityLabel": "Картка слова — perfume",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:word:perfume:audio",
+          "transcript": "perfume"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:word:perfume:r1",
+            "targetText": "perfume",
+            "meaningByLocale": {
+              "ru": "духи. The perfume is here. — «Духи здесь». О жидкости с приятным запахом; слово одно, поэтому is.",
+              "uk": "парфуми. The perfume is here. — «Парфуми тут». Про рідину з приємним запахом; слово одне, тому is."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perfume",
+          "definitionByLocale": {
+            "ru": "духи. The perfume is here. — «Духи здесь». О жидкости с приятным запахом; слово одно, поэтому is.",
+            "uk": "парфуми. The perfume is here. — «Парфуми тут». Про рідину з приємним запахом; слово одне, тому is."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-18:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i02:r1",
-          "text": "gloves"
+          "text": "The perfume is hers."
         },
         {
           "responseId": "en:lesson-05:session-18:i02:r2",
-          "text": "glove"
+          "text": "The perfume is his."
         },
         {
           "responseId": "en:lesson-05:session-18:i02:r3",
-          "text": "jacket"
+          "text": "The perfume is mine."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i02:audio",
-          "transcript": "gloves"
+          "transcript": "The perfume is hers."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-18:i02:r1",
-            "targetText": "gloves",
+            "targetText": "The perfume is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i02:r2",
-            "targetText": "glove",
+            "targetText": "The perfume is his.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i02:r3",
-            "targetText": "jacket",
+            "targetText": "The perfume is mine.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +189,19 @@
           {
             "responseId": "en:lesson-05:session-18:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `gloves`, а в этом варианте — `glove`.",
-              "uk": "У записі перше слово — `gloves`, а в цьому варіанті — `glove`."
+              "ru": "В записи последнее слово `hers` — её, а в этом варианте `his` — его.",
+              "uk": "У записі останнє слово `hers` — її, а в цьому варіанті `his` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `gloves`, а в этом варианте — `jacket`.",
-              "uk": "У записі перше слово — `gloves`, а в цьому варіанті — `jacket`."
+              "ru": "В записи последнее слово `hers` — её, а в этом варианте `mine` — моя.",
+              "uk": "У записі останнє слово `hers` — її, а в цьому варіанті `mine` — моя."
             }
           }
         ],
@@ -124,68 +211,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-18:word:ring",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:word:ring:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:word:ring:audio",
+          "transcript": "ring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:word:ring:r1",
+            "targetText": "ring",
+            "meaningByLocale": {
+              "ru": "кольцо. Her ring is here. — «Её кольцо здесь». Об украшении, которое носят на пальце.",
+              "uk": "каблучка. Her ring is here. — «Її каблучка тут». Про прикрасу, яку носять на пальці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ring",
+          "definitionByLocale": {
+            "ru": "кольцо. Her ring is here. — «Её кольцо здесь». Об украшении, которое носят на пальце.",
+            "uk": "каблучка. Her ring is here. — «Її каблучка тут». Про прикрасу, яку носять на пальці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-18:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть рукавички",
+      "prompt": "Прикраса, яку носять на пальці. Як вона називається англійською?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i03:r1",
-          "text": "gloves"
+          "text": "ring"
         },
         {
           "responseId": "en:lesson-05:session-18:i03:r2",
-          "text": "boxes"
+          "text": "razor"
         },
         {
           "responseId": "en:lesson-05:session-18:i03:r3",
-          "text": "jacket"
+          "text": "key"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть рукавички",
+      "accessibilityLabel": "Прикраса, яку носять на пальці. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите перчатки",
-          "uk": "Назвіть рукавички"
+          "ru": "Украшение, которое носят на пальце. Как оно называется по-английски?",
+          "uk": "Прикраса, яку носять на пальці. Як вона називається англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-18:i03:r1",
-            "text": "gloves"
+            "text": "ring"
           },
           {
             "responseId": "en:lesson-05:session-18:i03:r2",
-            "text": "boxes"
+            "text": "razor"
           },
           {
             "responseId": "en:lesson-05:session-18:i03:r3",
-            "text": "jacket"
+            "text": "key"
           }
         ],
-        "testedDimension": "Назвіть рукавички",
+        "testedDimension": "Прикраса, яку носять на пальці. Як вона називається англійською?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть рукавички",
+            "testedDimension": "Прикраса, яку носять на пальці. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`boxes` — коробки; перчатки — `gloves`.",
-              "uk": "`boxes` — коробки; рукавички — `gloves`."
+              "ru": "razor — это бритва, а украшение на пальце называется ring.",
+              "uk": "razor — це бритва, а прикраса на пальці називається ring."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть рукавички",
+            "testedDimension": "Прикраса, яку носять на пальці. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`jacket` — куртка; перчатки — `gloves`.",
-              "uk": "`jacket` — куртка; рукавички — `gloves`."
+              "ru": "key — это ключ, а украшение на пальце называется ring.",
+              "uk": "key — це ключ, а прикраса на пальці називається ring."
             }
           }
         ]
@@ -194,7 +324,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +338,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-18:i04:p1",
-            "target": "gloves",
+            "target": "razor",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "бритва",
+              "uk": "бритва"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i04:p2",
-            "target": "wrong",
+            "target": "perfume",
             "meaningByLocale": {
-              "ru": "неправ",
-              "uk": "не має рації"
+              "ru": "духи",
+              "uk": "парфуми"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i04:p3",
-            "target": "early",
+            "target": "lipstick",
             "meaningByLocale": {
-              "ru": "рано",
-              "uk": "рано"
+              "ru": "губная помада",
+              "uk": "губна помада"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i04:p4",
-            "target": "lucky",
+            "target": "ring",
             "meaningByLocale": {
-              "ru": "везучий",
-              "uk": "везучий"
+              "ru": "кольцо",
+              "uk": "каблучка"
             }
           }
         ],
         "leftColumn": [
-          "gloves",
-          "wrong",
-          "early",
-          "lucky"
+          "razor",
+          "perfume",
+          "lipstick",
+          "ring"
         ],
         "rightColumn": [
-          "рукавички",
-          "не має рації",
-          "рано",
-          "везучий"
+          "бритва",
+          "парфуми",
+          "губна помада",
+          "каблучка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,45 +396,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-18:word:lipstick",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lipstick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-18:word:lipstick:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lipstick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-18:word:lipstick:audio",
+          "transcript": "lipstick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-18:word:lipstick:r1",
+            "targetText": "lipstick",
+            "meaningByLocale": {
+              "ru": "губная помада. The lipstick is in my bag. — «Губная помада в моей сумке». О цветной помаде, которой красят губы.",
+              "uk": "губна помада. The lipstick is in my bag. — «Губна помада в моїй сумці». Про кольорову помаду, якою фарбують губи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lipstick",
+          "definitionByLocale": {
+            "ru": "губная помада. The lipstick is in my bag. — «Губная помада в моей сумке». О цветной помаде, которой красят губы.",
+            "uk": "губна помада. The lipstick is in my bag. — «Губна помада в моїй сумці». Про кольорову помаду, якою фарбують губи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-18:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте сестру й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сестру й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i05:audio",
-          "transcript": "The gloves are in my pocket."
+          "transcript": "The lipstick is hers."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The gloves are in my pocket.",
+        "hiddenTargetPhrase": "The lipstick is hers.",
         "orderedTokens": [
           "The",
-          "gloves",
-          "are",
-          "in",
-          "my",
-          "pocket"
+          "lipstick",
+          "is",
+          "hers"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "her"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте сестру й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The gloves are in my pocket.`",
-              "uk": "тут потрібно `are` — `The gloves are in my pocket.`"
+              "ru": "здесь нужно `hers` — `The lipstick is hers.`",
+              "uk": "тут потрібно `hers` — `The lipstick is hers.`"
             }
           }
         ],
@@ -317,39 +488,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+      "prompt": "Ви питаєте сестру, чи не братова це каблучка. Задайте питання повністю: «Каблучка його?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+      "accessibilityLabel": "Ви питаєте сестру, чи не братова це каблучка. Задайте питання повністю: «Каблучка його?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The boxes are ours.",
+        "targetPhrase": "Is the ring his?",
         "localizedMeaning": {
-          "ru": "Коробки принадлежат вам и другу. Скажите «Коробки наши»",
-          "uk": "Коробки належать вам і другові. Скажіть «Коробки наші»"
+          "ru": "Вы спрашиваете сестру, не братово ли кольцо. Задайте вопрос полностью: «Кольцо его?»",
+          "uk": "Ви питаєте сестру, чи не братова це каблучка. Задайте питання повністю: «Каблучка його?»"
         },
         "orderedTokens": [
-          "The",
-          "boxes",
-          "are",
-          "ours"
+          "Is",
+          "the",
+          "ring",
+          "his"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Коробки належать вам і другові. Скажіть «Коробки наші»",
+            "testedDimension": "Ви питаєте сестру, чи не братова це каблучка. Задайте питання повністю: «Каблучка його?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The boxes are ours.`",
-              "uk": "тут потрібно `are` — `The boxes are ours.`"
+              "ru": "здесь нужно `Is` — `Is the ring his?`",
+              "uk": "тут потрібно `Is` — `Is the ring his?`"
             }
           }
         ],
@@ -362,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви помилилися щодо загублених рукавичок. Визнайте «Я не маю рації» без скорочення",
+      "prompt": "Офіціант питає, чия це каблучка. Вона братова. Відповідьте: «Каблучка його»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Ви помилилися щодо загублених рукавичок. Визнайте «Я не маю рації» без скорочення",
+      "accessibilityLabel": "Офіціант питає, чия це каблучка. Вона братова. Відповідьте: «Каблучка його»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i07:audio",
-          "transcript": "I am wrong."
+          "transcript": "The ring is his."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am wrong.",
+        "targetPhrase": "The ring is his.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,11 +566,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+      "prompt": "Сестра шукає свої парфуми. Вони її. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i08:r1",
@@ -416,14 +587,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+      "accessibilityLabel": "Сестра шукає свої парфуми. Вони її. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перчатки принадлежат подруге. Скажите «Перчатки её»",
-          "uk": "Рукавички належать подрузі. Скажіть «Рукавички її»"
+          "ru": "Сестра ищет свои духи. Они её. Выберите слово",
+          "uk": "Сестра шукає свої парфуми. Вони її. Виберіть слово"
         },
-        "gappedTargetPhrase": "The gloves are ___.",
+        "gappedTargetPhrase": "The perfume is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-18:i08:r1",
@@ -438,24 +609,24 @@
             "text": "his"
           }
         ],
-        "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+        "testedDimension": "Сестра шукає свої парфуми. Вони її. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+            "testedDimension": "Сестра шукає свої парфуми. Вони її. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "После is одно her не ставят: без названия вещи нужно hers.",
+              "uk": "Після is саме her не ставлять: без назви речі потрібно hers."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Рукавички належать подрузі. Скажіть «Рукавички її»",
+            "testedDimension": "Сестра шукає свої парфуми. Вони її. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`his` — его; её — `hers`.",
-              "uk": "`his` — його; її — `hers`."
+              "ru": "his — его, а духи принадлежат сестре: нужно hers.",
+              "uk": "his — його, а парфуми належать сестрі: потрібно hers."
             }
           }
         ]
@@ -464,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг каже вам після знахідки",
+      "prompt": "Послухайте продавця",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i09:r1",
-          "text": "You are lucky."
+          "text": "Is the lipstick hers?"
         },
         {
           "responseId": "en:lesson-05:session-18:i09:r2",
-          "text": "You are early."
+          "text": "Is the lipstick his?"
         },
         {
           "responseId": "en:lesson-05:session-18:i09:r3",
-          "text": "You are wrong."
+          "text": "Is the razor hers?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг каже вам після знахідки",
+      "accessibilityLabel": "Послухайте продавця",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i09:audio",
-          "transcript": "You are lucky."
+          "transcript": "Is the lipstick hers?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-18:i09:r1",
-            "targetText": "You are lucky.",
+            "targetText": "Is the lipstick hers?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i09:r2",
-            "targetText": "You are early.",
+            "targetText": "Is the lipstick his?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i09:r3",
-            "targetText": "You are wrong.",
+            "targetText": "Is the razor hers?",
             "meaningByLocale": null
           }
         ],
@@ -517,19 +688,19 @@
           {
             "responseId": "en:lesson-05:session-18:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг каже вам після знахідки",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lucky`, а в этом варианте — `early`.",
-              "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `early`."
+              "ru": "В записи последнее слово `hers` — её, а в этом варианте `his` — его.",
+              "uk": "У записі останнє слово `hers` — її, а в цьому варіанті `his` — його."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг каже вам після знахідки",
+            "testedDimension": "Послухайте продавця",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `lucky`, а в этом варианте — `wrong`.",
-              "uk": "У записі останнє слово — `lucky`, а в цьому варіанті — `wrong`."
+              "ru": "В записи говорят о помаде `lipstick`, а в этом варианте — о бритве `razor`.",
+              "uk": "У записі говорять про помаду `lipstick`, а в цьому варіанті — про бритву `razor`."
             }
           }
         ],
@@ -540,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -554,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-18:i10:p1",
-            "target": "gloves",
+            "target": "razor",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "бритва",
+              "uk": "бритва"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i10:p2",
-            "target": "boxes",
+            "target": "lipstick",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "губная помада",
+              "uk": "губна помада"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i10:p3",
-            "target": "milk",
+            "target": "bag",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "сумка",
+              "uk": "сумка"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i10:p4",
-            "target": "pocket",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           }
         ],
         "leftColumn": [
-          "gloves",
-          "boxes",
-          "milk",
-          "pocket"
+          "razor",
+          "lipstick",
+          "bag",
+          "key"
         ],
         "rightColumn": [
-          "рукавички",
-          "коробки",
-          "молоко",
-          "кишеня"
+          "бритва",
+          "губна помада",
+          "сумка",
+          "ключ"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -613,33 +784,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i11:audio",
-          "transcript": "Where are your gloves?"
+          "transcript": "It is not hers."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where are your gloves?",
+        "hiddenTargetPhrase": "It is not hers.",
         "orderedTokens": [
-          "Where",
-          "are",
-          "your",
-          "gloves"
+          "It",
+          "is",
+          "not",
+          "hers"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "his"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-18:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `hers` — `It is not hers.`",
+              "uk": "тут потрібно `hers` — `It is not hers.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -649,39 +832,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Молоко закінчилося. Скажіть «Молока немає»",
+      "prompt": "Подруга питає, чия парасолька. Вона належить вашому братові. Скажіть їй повною фразою: «Парасолька його»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Молоко закінчилося. Скажіть «Молока немає»",
+      "accessibilityLabel": "Подруга питає, чия парасолька. Вона належить вашому братові. Скажіть їй повною фразою: «Парасолька його»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is no milk.",
+        "targetPhrase": "The umbrella is his.",
         "localizedMeaning": {
-          "ru": "Молоко закончилось. Скажите «Молока нет»",
-          "uk": "Молоко закінчилося. Скажіть «Молока немає»"
+          "ru": "Подруга спрашивает, чей зонт. Он принадлежит вашему брату. Скажите ей полной фразой: «Зонт его»",
+          "uk": "Подруга питає, чия парасолька. Вона належить вашому братові. Скажіть їй повною фразою: «Парасолька його»"
         },
         "orderedTokens": [
-          "There",
+          "The",
+          "umbrella",
           "is",
-          "no",
-          "milk"
+          "his"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "hers"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Молоко закінчилося. Скажіть «Молока немає»",
+            "testedDimension": "Подруга питає, чия парасолька. Вона належить вашому братові. Скажіть їй повною фразою: «Парасолька його»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is no milk.`",
-              "uk": "тут потрібно `is` — `There is no milk.`"
+              "ru": "здесь нужно `his` — `The umbrella is his.`",
+              "uk": "тут потрібно `his` — `The umbrella is his.`"
             }
           }
         ],
@@ -694,25 +877,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Рукавички друга у вас. Скажіть йому «Твої рукавички в мене»",
+      "prompt": "Брат питає, чий ключ лежить на столі. Ключ сестри. Відповідьте: «Ключ її»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i13:audio"
       ],
-      "accessibilityLabel": "Рукавички друга у вас. Скажіть йому «Твої рукавички в мене»",
+      "accessibilityLabel": "Брат питає, чий ключ лежить на столі. Ключ сестри. Відповідьте: «Ключ її»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i13:audio",
-          "transcript": "I have your gloves."
+          "transcript": "The key is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your gloves.",
+        "targetPhrase": "The key is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -727,67 +910,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Немає жодної коробки. Виберіть форму для множини",
+      "prompt": "Каблучка належить вашому братові. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i14:r1",
-          "text": "are"
+          "text": "his"
         },
         {
           "responseId": "en:lesson-05:session-18:i14:r2",
-          "text": "is"
+          "text": "he"
         },
         {
           "responseId": "en:lesson-05:session-18:i14:r3",
-          "text": "am"
+          "text": "hers"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Немає жодної коробки. Виберіть форму для множини",
+      "accessibilityLabel": "Каблучка належить вашому братові. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Нет ни одной коробки. Выберите форму для множественного числа",
-          "uk": "Немає жодної коробки. Виберіть форму для множини"
+          "ru": "Кольцо принадлежит вашему брату. Выберите слово",
+          "uk": "Каблучка належить вашому братові. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no boxes.",
+        "gappedTargetPhrase": "The ring is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-18:i14:r1",
-            "text": "are"
+            "text": "his"
           },
           {
             "responseId": "en:lesson-05:session-18:i14:r2",
-            "text": "is"
+            "text": "he"
           },
           {
             "responseId": "en:lesson-05:session-18:i14:r3",
-            "text": "am"
+            "text": "hers"
           }
         ],
-        "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+        "testedDimension": "Каблучка належить вашому братові. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-18:i14:r2",
             "correct": false,
-            "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+            "testedDimension": "Каблучка належить вашому братові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`boxes` — множественное число: `There are`.",
-              "uk": "`boxes` — множина: `There are`."
+              "ru": "he — «он», а «его» без названия вещи — his.",
+              "uk": "he — «він», а «його» без назви речі — his."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i14:r3",
             "correct": false,
-            "testedDimension": "Немає жодної коробки. Виберіть форму для множини",
+            "testedDimension": "Каблучка належить вашому братові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `There are`.",
-              "uk": "`am` використовується з `I`; тут `There are`."
+              "ru": "hers — её, а кольцо брата: нужно his.",
+              "uk": "hers — її, а каблучка брата: потрібно his."
             }
           }
         ]
@@ -796,51 +979,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, кому належать рукавички",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-18:i15:r1",
-          "text": "The gloves are yours."
+          "text": "The razor is his."
         },
         {
           "responseId": "en:lesson-05:session-18:i15:r2",
-          "text": "The gloves are mine."
+          "text": "The razor is hers."
         },
         {
           "responseId": "en:lesson-05:session-18:i15:r3",
-          "text": "The gloves are theirs."
+          "text": "The razor is mine."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, кому належать рукавички",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i15:audio",
-          "transcript": "The gloves are yours."
+          "transcript": "The razor is his."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-18:i15:r1",
-            "targetText": "The gloves are yours.",
+            "targetText": "The razor is his.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i15:r2",
-            "targetText": "The gloves are mine.",
+            "targetText": "The razor is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-18:i15:r3",
-            "targetText": "The gloves are theirs.",
+            "targetText": "The razor is mine.",
             "meaningByLocale": null
           }
         ],
@@ -849,19 +1032,19 @@
           {
             "responseId": "en:lesson-05:session-18:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать рукавички",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи последнее слово `his` — его, а в этом варианте `hers` — её.",
+              "uk": "У записі останнє слово `his` — його, а в цьому варіанті `hers` — її."
             }
           },
           {
             "responseId": "en:lesson-05:session-18:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, кому належать рукавички",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+              "ru": "В записи последнее слово `his` — его, а в этом варианте `mine` — моя.",
+              "uk": "У записі останнє слово `his` — його, а в цьому варіанті `mine` — моя."
             }
           }
         ],
@@ -872,7 +1055,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -886,48 +1069,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-18:i16:p1",
-            "target": "gloves",
+            "target": "perfume",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "духи",
+              "uk": "парфуми"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i16:p2",
-            "target": "boxes",
+            "target": "ring",
             "meaningByLocale": {
-              "ru": "коробки",
-              "uk": "коробки"
+              "ru": "кольцо",
+              "uk": "каблучка"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i16:p3",
-            "target": "milk",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "молоко",
-              "uk": "молоко"
+              "ru": "рабочий стол",
+              "uk": "робочий стіл"
             }
           },
           {
             "pairId": "en:lesson-05:session-18:i16:p4",
-            "target": "pocket",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "карман",
-              "uk": "кишеня"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           }
         ],
         "leftColumn": [
-          "gloves",
-          "boxes",
-          "milk",
-          "pocket"
+          "perfume",
+          "ring",
+          "desk",
+          "umbrella"
         ],
         "rightColumn": [
-          "рукавички",
-          "коробки",
-          "молоко",
-          "кишеня"
+          "парфуми",
+          "каблучка",
+          "робочий стіл",
+          "парасолька"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -945,25 +1128,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-18:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, кому належать знайдені рукавички. Дайте відповідь «Рукавички мої»",
+      "prompt": "Брат думає, що помада його. Помада належить сестрі. Скажіть йому: «Помада її»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-18:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, кому належать знайдені рукавички. Дайте відповідь «Рукавички мої»",
+      "accessibilityLabel": "Брат думає, що помада його. Помада належить сестрі. Скажіть йому: «Помада її»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-18:i17:audio",
-          "transcript": "The gloves are mine."
+          "transcript": "The lipstick is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The gloves are mine.",
+        "targetPhrase": "The lipstick is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -985,11 +1168,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1c4d93fb39aa2e08e8a007cf155dc92de8ead2badca5ad432d815554d52309b2"
+  "learnerFingerprint": "96f7284763853d58e8ddadba6553bc9078254761c69ceb26b2bd0790bf78310d"
 }

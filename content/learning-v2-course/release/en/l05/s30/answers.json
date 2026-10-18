@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-30:word:mittens",
+    "correctText": "mittens",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-30:i01",
-    "correctText": "The tree is alive.",
+    "correctText": "The guest's mittens are in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:word:hoodie",
+    "correctText": "hoodie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i02",
-    "correctText": "headphones",
+    "correctText": "The hoodie is the tourist's.",
     "correctResponseId": "en:lesson-05:session-30:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-30:word:sneakers",
+    "correctText": "sneakers",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-30:i03",
-    "correctText": "headphones",
+    "correctText": "guest's",
     "correctResponseId": "en:lesson-05:session-30:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-30:i04",
-    "correctText": "en:lesson-05:session-30:i04:p1=headphones\nen:lesson-05:session-30:i04:p2=alive\nen:lesson-05:session-30:i04:p3=dead\nen:lesson-05:session-30:i04:p4=missing",
+    "correctText": "en:lesson-05:session-30:i04:p1=mittens\nen:lesson-05:session-30:i04:p2=hoodie\nen:lesson-05:session-30:i04:p3=sneakers\nen:lesson-05:session-30:i04:p4=lanyard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-30:word:lanyard",
+    "correctText": "lanyard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i05",
-    "correctText": "These are Anna's headphones.",
+    "correctText": "The guest's lanyard is on the desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i06",
-    "correctText": "Tom's boots are next to the door.",
+    "correctText": "Is this hoodie the tourist's?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i07",
-    "correctText": "My headphones are missing.",
+    "correctText": "They are the tourist's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i08",
-    "correctText": "Tom's",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-30:i09",
-    "correctText": "The tree is dead.",
+    "correctText": "Is this lanyard the guest's?",
     "correctResponseId": "en:lesson-05:session-30:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-30:i10",
-    "correctText": "en:lesson-05:session-30:i10:p1=headphones\nen:lesson-05:session-30:i10:p2=windows\nen:lesson-05:session-30:i10:p3=signpost\nen:lesson-05:session-30:i10:p4=boots",
+    "correctText": "en:lesson-05:session-30:i10:p1=mittens\nen:lesson-05:session-30:i10:p2=hoodie\nen:lesson-05:session-30:i10:p3=hat\nen:lesson-05:session-30:i10:p4=coat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i11",
-    "correctText": "Anna is next to the signpost.",
+    "correctText": "The tourist's sneakers are in the hall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i12",
-    "correctText": "The windows are open.",
+    "correctText": "The guest has a hoodie.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i13",
-    "correctText": "Where are my headphones?",
+    "correctText": "It is the guest's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i14",
-    "correctText": "hers",
+    "correctText": "on",
     "correctResponseId": "en:lesson-05:session-30:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-30:i15",
-    "correctText": "Tom's headphones are here.",
+    "correctText": "The tourist's mittens are on the desk.",
     "correctResponseId": "en:lesson-05:session-30:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-30:i16",
-    "correctText": "en:lesson-05:session-30:i16:p1=headphones\nen:lesson-05:session-30:i16:p2=windows\nen:lesson-05:session-30:i16:p3=signpost\nen:lesson-05:session-30:i16:p4=boots",
+    "correctText": "en:lesson-05:session-30:i16:p1=mittens\nen:lesson-05:session-30:i16:p2=hoodie\nen:lesson-05:session-30:i16:p3=sneakers\nen:lesson-05:session-30:i16:p4=lanyard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-30:i17",
-    "correctText": "These are Anna's headphones.",
+    "correctText": "These are the tourist's sneakers.",
     "correctResponseId": null
   }
 ]

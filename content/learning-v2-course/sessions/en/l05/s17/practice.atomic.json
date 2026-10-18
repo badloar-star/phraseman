@@ -1,0 +1,2445 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-17:word:helmet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — helmet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:helmet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — helmet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:helmet:audio",
+            "transcript": "helmet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:helmet:r1",
+              "targetText": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем. The helmet is on the table. — «Шлем на столе». О жёсткой шапке, которая защищает голову на велосипеде.",
+                "uk": "шолом. The helmet is on the table. — «Шолом на столі». Про тверду шапку, яка захищає голову на велосипеді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "helmet",
+            "definitionByLocale": {
+              "ru": "шлем. The helmet is on the table. — «Шлем на столе». О жёсткой шапке, которая защищает голову на велосипеде.",
+              "uk": "шолом. The helmet is on the table. — «Шолом на столі». Про тверду шапку, яка захищає голову на велосипеді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, какой из двух шлемов ваш. Скажите ей полной фразой: «Этот шлем мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, какой из двух шлемов ваш. Скажите ей полной фразой: «Этот шлем мой»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This helmet is mine.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, какой из двух шлемов ваш. Скажите ей полной фразой: «Этот шлем мой»",
+            "uk": "Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»"
+          },
+          "orderedTokens": [
+            "This",
+            "helmet",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, какой из двух шлемов ваш. Скажите ей полной фразой: «Этот шлем мой»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `This helmet is mine.`",
+                "uk": "тут потрібно `mine` — `This helmet is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:guitar",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guitar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:guitar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guitar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:guitar:audio",
+            "transcript": "guitar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:guitar:r1",
+              "targetText": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара. My guitar is here. — «Моя гитара здесь». О музыкальном инструменте со струнами.",
+                "uk": "гітара. My guitar is here. — «Моя гітара тут». Про музичний інструмент зі струнами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar",
+            "definitionByLocale": {
+              "ru": "гитара. My guitar is here. — «Моя гитара здесь». О музыкальном инструменте со струнами.",
+              "uk": "гітара. My guitar is here. — «Моя гітара тут». Про музичний інструмент зі струнами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i02:r1",
+            "text": "The guitar is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i02:r2",
+            "text": "The guitar is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i02:r3",
+            "text": "The jacket is yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i02:audio",
+            "transcript": "The guitar is yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i02:r1",
+              "targetText": "The guitar is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r2",
+              "targetText": "The guitar is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r3",
+              "targetText": "The jacket is yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `yours` — твоя, а в этом варианте `mine` — моя.",
+                "uk": "У записі останнє слово `yours` — твоя, а в цьому варіанті `mine` — моя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о гитаре `guitar`, а в этом варианте — о куртке `jacket`.",
+                "uk": "У записі говорять про гітару `guitar`, а в цьому варіанті — про куртку `jacket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:folder",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — folder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:folder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — folder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:folder:audio",
+            "transcript": "folder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:folder:r1",
+              "targetText": "folder",
+              "meaningByLocale": {
+                "ru": "папка. The folder is on the desk. — «Папка на столе». О мягкой или твёрдой обложке, в которой хранят бумаги.",
+                "uk": "папка. The folder is on the desk. — «Папка на столі». Про м’яку або тверду обкладинку, у якій зберігають папери."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "folder",
+            "definitionByLocale": {
+              "ru": "папка. The folder is on the desk. — «Папка на столе». О мягкой или твёрдой обложке, в которой хранят бумаги.",
+              "uk": "папка. The folder is on the desk. — «Папка на столі». Про м’яку або тверду обкладинку, у якій зберігають папери."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+            "uk": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The folder is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После is одно my не ставят: нужно mine.",
+                "uk": "Після is саме my не ставлять: потрібно mine."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "yours — твоя, а папка ваша: нужно mine.",
+                "uk": "yours — твоя, а папка ваша: потрібно mine."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i04:p1",
+              "target": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем",
+                "uk": "шолом"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p2",
+              "target": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара",
+                "uk": "гітара"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p3",
+              "target": "folder",
+              "meaningByLocale": {
+                "ru": "папка для бумаг",
+                "uk": "папка для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p4",
+              "target": "diary",
+              "meaningByLocale": {
+                "ru": "дневник",
+                "uk": "щоденник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "helmet",
+            "guitar",
+            "folder",
+            "diary"
+          ],
+          "rightColumn": [
+            "шлем",
+            "гитара",
+            "папка для бумаг",
+            "дневник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:diary",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:diary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:diary:audio",
+            "transcript": "diary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:diary:r1",
+              "targetText": "diary",
+              "meaningByLocale": {
+                "ru": "дневник. The diary is in my bag. — «Дневник в моей сумке». О тетради, куда записывают, что было за день.",
+                "uk": "щоденник. The diary is in my bag. — «Щоденник у моїй сумці». Про зошит, куди записують, що було за день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diary",
+            "definitionByLocale": {
+              "ru": "дневник. The diary is in my bag. — «Дневник в моей сумке». О тетради, куда записывают, что было за день.",
+              "uk": "щоденник. The diary is in my bag. — «Щоденник у моїй сумці». Про зошит, куди записують, що було за день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i05:audio",
+            "transcript": "The diary is yours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The diary is yours.",
+          "orderedTokens": [
+            "The",
+            "diary",
+            "is",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "your"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `yours` — `The diary is yours.`",
+                "uk": "тут потрібно `yours` — `The diary is yours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хочет узнать, ваша ли папка. Задайте ей вопрос полностью: «Папка твоя?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хочет узнать, ваша ли папка. Задайте ей вопрос полностью: «Папка твоя?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the folder yours?",
+          "localizedMeaning": {
+            "ru": "Подруга хочет узнать, ваша ли папка. Задайте ей вопрос полностью: «Папка твоя?»",
+            "uk": "Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "folder",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хочет узнать, ваша ли папка. Задайте ей вопрос полностью: «Папка твоя?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is the folder yours?`",
+                "uk": "тут потрібно `Is` — `Is the folder yours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, чья это гитара. Гитара ваша. Ответьте: «Гитара моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, чья это гитара. Гитара ваша. Ответьте: «Гитара моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i07:audio",
+            "transcript": "The guitar is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The guitar is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i08:r3",
+            "text": "mine"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+            "uk": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The umbrella is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i08:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r3",
+              "text": "mine"
+            }
+          ],
+          "testedDimension": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После is одно your не ставят: без названия вещи нужно yours.",
+                "uk": "Після is саме your не ставлять: без назви речі потрібно yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "mine — мой, а зонт принадлежит коллеге: нужно yours.",
+                "uk": "mine — мій, а парасолька належить колезі: потрібно yours."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i09:r1",
+            "text": "Is the diary yours?"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i09:r2",
+            "text": "Is the diary mine?"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i09:r3",
+            "text": "Is the folder yours?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i09:audio",
+            "transcript": "Is the diary yours?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i09:r1",
+              "targetText": "Is the diary yours?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r2",
+              "targetText": "Is the diary mine?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r3",
+              "targetText": "Is the folder yours?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `yours` — твой, а в этом варианте `mine` — мой.",
+                "uk": "У записі останнє слово `yours` — твій, а в цьому варіанті `mine` — мій."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о дневнике `diary`, а в этом варианте — о папке `folder`.",
+                "uk": "У записі говорять про щоденник `diary`, а в цьому варіанті — про папку `folder`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i10:p1",
+              "target": "folder",
+              "meaningByLocale": {
+                "ru": "папка для бумаг",
+                "uk": "папка для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p2",
+              "target": "diary",
+              "meaningByLocale": {
+                "ru": "дневник",
+                "uk": "щоденник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "folder",
+            "diary",
+            "desk",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "папка для бумаг",
+            "дневник",
+            "рабочий стол",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i11:audio",
+            "transcript": "Yes, it is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Yes, it is mine.",
+          "orderedTokens": [
+            "Yes,",
+            "it",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "yours"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `Yes, it is mine.`",
+                "uk": "тут потрібно `mine` — `Yes, it is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега показывает чужую папку и спрашивает, ваша ли она. Папка не ваша. Скажите полной фразой: «Она не моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега показывает чужую папку и спрашивает, ваша ли она. Папка не ваша. Скажите полной фразой: «Она не моя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not mine.",
+          "localizedMeaning": {
+            "ru": "Коллега показывает чужую папку и спрашивает, ваша ли она. Папка не ваша. Скажите полной фразой: «Она не моя»",
+            "uk": "Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "yours"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Коллега показывает чужую папку и спрашивает, ваша ли она. Папка не ваша. Скажите полной фразой: «Она не моя»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `It is not mine.`",
+                "uk": "тут потрібно `mine` — `It is not mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, не ваш ли дневник. Дневник ваш. Ответьте: «Да, он мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, не ваш ли дневник. Дневник ваш. Ответьте: «Да, он мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i13:audio",
+            "transcript": "Yes, it is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, it is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i14:r3",
+            "text": "mine"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+            "uk": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The helmet is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r3",
+              "text": "mine"
+            }
+          ],
+          "testedDimension": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После is одно your не ставят: без названия вещи нужно yours.",
+                "uk": "Після is саме your не ставлять: без назви речі потрібно yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "mine — мой, а шлем друга: нужно yours.",
+                "uk": "mine — мій, а шолом друга: потрібно yours."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i15:r1",
+            "text": "The folder is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i15:r2",
+            "text": "The folder is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i15:r3",
+            "text": "The diary is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i15:audio",
+            "transcript": "The folder is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i15:r1",
+              "targetText": "The folder is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r2",
+              "targetText": "The folder is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r3",
+              "targetText": "The diary is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `mine` — моя, а в этом варианте `yours` — твоя.",
+                "uk": "У записі останнє слово `mine` — моя, а в цьому варіанті `yours` — твоя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о папке `folder`, а в этом варианте — о дневнике `diary`.",
+                "uk": "У записі говорять про папку `folder`, а в цьому варіанті — про щоденник `diary`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i16:p1",
+              "target": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем",
+                "uk": "шолом"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p2",
+              "target": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара",
+                "uk": "гітара"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p3",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "helmet",
+            "guitar",
+            "key",
+            "jacket"
+          ],
+          "rightColumn": [
+            "шлем",
+            "гитара",
+            "ключ",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг берёт ваш шлем, думая, что шлем его. Скажите ему: «Шлем мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Друг берёт ваш шлем, думая, что шлем его. Скажите ему: «Шлем мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i17:audio",
+            "transcript": "The helmet is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The helmet is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-17:word:helmet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — helmet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:helmet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — helmet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:helmet:audio",
+            "transcript": "helmet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:helmet:r1",
+              "targetText": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем. The helmet is on the table. — «Шлем на столе». О жёсткой шапке, которая защищает голову на велосипеде.",
+                "uk": "шолом. The helmet is on the table. — «Шолом на столі». Про тверду шапку, яка захищає голову на велосипеді."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "helmet",
+            "definitionByLocale": {
+              "ru": "шлем. The helmet is on the table. — «Шлем на столе». О жёсткой шапке, которая защищает голову на велосипеде.",
+              "uk": "шолом. The helmet is on the table. — «Шолом на столі». Про тверду шапку, яка захищає голову на велосипеді."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This helmet is mine.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, какой из двух шлемов ваш. Скажите ей полной фразой: «Этот шлем мой»",
+            "uk": "Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»"
+          },
+          "orderedTokens": [
+            "This",
+            "helmet",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "my"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає, який із двох шоломів ваш. Скажіть їй повною фразою: «Цей шолом мій»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `This helmet is mine.`",
+                "uk": "тут потрібно `mine` — `This helmet is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:guitar",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guitar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:guitar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guitar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:guitar:audio",
+            "transcript": "guitar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:guitar:r1",
+              "targetText": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара. My guitar is here. — «Моя гитара здесь». О музыкальном инструменте со струнами.",
+                "uk": "гітара. My guitar is here. — «Моя гітара тут». Про музичний інструмент зі струнами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guitar",
+            "definitionByLocale": {
+              "ru": "гитара. My guitar is here. — «Моя гитара здесь». О музыкальном инструменте со струнами.",
+              "uk": "гітара. My guitar is here. — «Моя гітара тут». Про музичний інструмент зі струнами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i02:r1",
+            "text": "The guitar is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i02:r2",
+            "text": "The guitar is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i02:r3",
+            "text": "The jacket is yours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i02:audio",
+            "transcript": "The guitar is yours."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i02:r1",
+              "targetText": "The guitar is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r2",
+              "targetText": "The guitar is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r3",
+              "targetText": "The jacket is yours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `yours` — твоя, а в этом варианте `mine` — моя.",
+                "uk": "У записі останнє слово `yours` — твоя, а в цьому варіанті `mine` — моя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о гитаре `guitar`, а в этом варианте — о куртке `jacket`.",
+                "uk": "У записі говорять про гітару `guitar`, а в цьому варіанті — про куртку `jacket`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:folder",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — folder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:folder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — folder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:folder:audio",
+            "transcript": "folder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:folder:r1",
+              "targetText": "folder",
+              "meaningByLocale": {
+                "ru": "папка. The folder is on the desk. — «Папка на столе». О мягкой или твёрдой обложке, в которой хранят бумаги.",
+                "uk": "папка. The folder is on the desk. — «Папка на столі». Про м’яку або тверду обкладинку, у якій зберігають папери."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "folder",
+            "definitionByLocale": {
+              "ru": "папка. The folder is on the desk. — «Папка на столе». О мягкой или твёрдой обложке, в которой хранят бумаги.",
+              "uk": "папка. The folder is on the desk. — «Папка на столі». Про м’яку або тверду обкладинку, у якій зберігають папери."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i03:r1",
+            "text": "mine"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i03:r2",
+            "text": "my"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i03:r3",
+            "text": "yours"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает про папку, которая лежит на столе. Папка ваша. Выберите слово",
+            "uk": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The folder is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i03:r1",
+              "text": "mine"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r2",
+              "text": "my"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r3",
+              "text": "yours"
+            }
+          ],
+          "testedDimension": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После is одно my не ставят: нужно mine.",
+                "uk": "Після is саме my не ставлять: потрібно mine."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Колега питає про папку, яка лежить на столі. Папка ваша. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "yours — твоя, а папка ваша: нужно mine.",
+                "uk": "yours — твоя, а папка ваша: потрібно mine."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i04:p1",
+              "target": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем",
+                "uk": "шолом"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p2",
+              "target": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара",
+                "uk": "гітара"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p3",
+              "target": "folder",
+              "meaningByLocale": {
+                "ru": "папка для бумаг",
+                "uk": "папка для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i04:p4",
+              "target": "diary",
+              "meaningByLocale": {
+                "ru": "дневник",
+                "uk": "щоденник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "helmet",
+            "guitar",
+            "folder",
+            "diary"
+          ],
+          "rightColumn": [
+            "шолом",
+            "гітара",
+            "папка для паперів",
+            "щоденник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:word:diary",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:word:diary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:word:diary:audio",
+            "transcript": "diary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:word:diary:r1",
+              "targetText": "diary",
+              "meaningByLocale": {
+                "ru": "дневник. The diary is in my bag. — «Дневник в моей сумке». О тетради, куда записывают, что было за день.",
+                "uk": "щоденник. The diary is in my bag. — «Щоденник у моїй сумці». Про зошит, куди записують, що було за день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diary",
+            "definitionByLocale": {
+              "ru": "дневник. The diary is in my bag. — «Дневник в моей сумке». О тетради, куда записывают, что было за день.",
+              "uk": "щоденник. The diary is in my bag. — «Щоденник у моїй сумці». Про зошит, куди записують, що було за день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i05:audio",
+            "transcript": "The diary is yours."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The diary is yours.",
+          "orderedTokens": [
+            "The",
+            "diary",
+            "is",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "your"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `yours` — `The diary is yours.`",
+                "uk": "тут потрібно `yours` — `The diary is yours.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the folder yours?",
+          "localizedMeaning": {
+            "ru": "Подруга хочет узнать, ваша ли папка. Задайте ей вопрос полностью: «Папка твоя?»",
+            "uk": "Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "folder",
+            "yours"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга хоче дізнатися, чи ваша папка. Задайте їй питання повністю: «Папка твоя?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is the folder yours?`",
+                "uk": "тут потрібно `Is` — `Is the folder yours?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, чия це гітара. Гітара ваша. Відповідьте: «Гітара моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i07:audio"
+        ],
+        "accessibilityLabel": "Друг питає, чия це гітара. Гітара ваша. Відповідьте: «Гітара моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i07:audio",
+            "transcript": "The guitar is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The guitar is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i08:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i08:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i08:r3",
+            "text": "mine"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега показывает зонт, который стоит у вашего стола, но зонт его. Выберите слово",
+            "uk": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The umbrella is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i08:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r3",
+              "text": "mine"
+            }
+          ],
+          "testedDimension": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После is одно your не ставят: без названия вещи нужно yours.",
+                "uk": "Після is саме your не ставлять: без назви речі потрібно yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Колега показує парасольку, яка стоїть біля вашого столу, але парасолька його. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "mine — мой, а зонт принадлежит коллеге: нужно yours.",
+                "uk": "mine — мій, а парасолька належить колезі: потрібно yours."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i09:r1",
+            "text": "Is the diary yours?"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i09:r2",
+            "text": "Is the diary mine?"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i09:r3",
+            "text": "Is the folder yours?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i09:audio",
+            "transcript": "Is the diary yours?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i09:r1",
+              "targetText": "Is the diary yours?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r2",
+              "targetText": "Is the diary mine?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r3",
+              "targetText": "Is the folder yours?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `yours` — твой, а в этом варианте `mine` — мой.",
+                "uk": "У записі останнє слово `yours` — твій, а в цьому варіанті `mine` — мій."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о дневнике `diary`, а в этом варианте — о папке `folder`.",
+                "uk": "У записі говорять про щоденник `diary`, а в цьому варіанті — про папку `folder`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i10:p1",
+              "target": "folder",
+              "meaningByLocale": {
+                "ru": "папка для бумаг",
+                "uk": "папка для паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p2",
+              "target": "diary",
+              "meaningByLocale": {
+                "ru": "дневник",
+                "uk": "щоденник"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "рабочий стол",
+                "uk": "робочий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "folder",
+            "diary",
+            "desk",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "папка для паперів",
+            "щоденник",
+            "робочий стіл",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i11:audio",
+            "transcript": "Yes, it is mine."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Yes, it is mine.",
+          "orderedTokens": [
+            "Yes,",
+            "it",
+            "is",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "yours"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `Yes, it is mine.`",
+                "uk": "тут потрібно `mine` — `Yes, it is mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "It is not mine.",
+          "localizedMeaning": {
+            "ru": "Коллега показывает чужую папку и спрашивает, ваша ли она. Папка не ваша. Скажите полной фразой: «Она не моя»",
+            "uk": "Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "not",
+            "mine"
+          ],
+          "authoredDistractorTokens": [
+            "yours"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Колега показує чужу папку й питає, чи ваша вона. Папка не ваша. Скажіть повною фразою: «Вона не моя»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mine` — `It is not mine.`",
+                "uk": "тут потрібно `mine` — `It is not mine.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега питає, чи не ваш щоденник. Щоденник ваш. Відповідьте: «Так, він мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i13:audio"
+        ],
+        "accessibilityLabel": "Колега питає, чи не ваш щоденник. Щоденник ваш. Відповідьте: «Так, він мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i13:audio",
+            "transcript": "Yes, it is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yes, it is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i14:r1",
+            "text": "yours"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i14:r2",
+            "text": "your"
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i14:r3",
+            "text": "mine"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возвращаете другу шлем, который он оставил у вас. Выберите слово",
+            "uk": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The helmet is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-17:i14:r1",
+              "text": "yours"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r2",
+              "text": "your"
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r3",
+              "text": "mine"
+            }
+          ],
+          "testedDimension": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После is одно your не ставят: без названия вещи нужно yours.",
+                "uk": "Після is саме your не ставлять: без назви речі потрібно yours."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви повертаєте другові шолом, який він залишив у вас. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "mine — мой, а шлем друга: нужно yours.",
+                "uk": "mine — мій, а шолом друга: потрібно yours."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-17:i15:r1",
+            "text": "The folder is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i15:r2",
+            "text": "The folder is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-17:i15:r3",
+            "text": "The diary is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i15:audio",
+            "transcript": "The folder is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-17:i15:r1",
+              "targetText": "The folder is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r2",
+              "targetText": "The folder is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r3",
+              "targetText": "The diary is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-17:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово `mine` — моя, а в этом варианте `yours` — твоя.",
+                "uk": "У записі останнє слово `mine` — моя, а в цьому варіанті `yours` — твоя."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-17:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи говорят о папке `folder`, а в этом варианте — о дневнике `diary`.",
+                "uk": "У записі говорять про папку `folder`, а в цьому варіанті — про щоденник `diary`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-17:i16:p1",
+              "target": "helmet",
+              "meaningByLocale": {
+                "ru": "шлем",
+                "uk": "шолом"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p2",
+              "target": "guitar",
+              "meaningByLocale": {
+                "ru": "гитара",
+                "uk": "гітара"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p3",
+              "target": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-17:i16:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "helmet",
+            "guitar",
+            "key",
+            "jacket"
+          ],
+          "rightColumn": [
+            "шолом",
+            "гітара",
+            "ключ",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-17:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг бере ваш шолом, думаючи, що шолом його. Скажіть йому: «Шолом мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Друг бере ваш шолом, думаючи, що шолом його. Скажіть йому: «Шолом мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-17:i17:audio",
+            "transcript": "The helmet is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The helmet is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-17:word:helmet",
+      "correctText": "helmet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i01",
+      "correctText": "This helmet is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:word:guitar",
+      "correctText": "guitar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i02",
+      "correctText": "The guitar is yours.",
+      "correctResponseId": "en:lesson-05:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:word:folder",
+      "correctText": "folder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i03",
+      "correctText": "mine",
+      "correctResponseId": "en:lesson-05:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:word:diary",
+      "correctText": "diary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i05",
+      "correctText": "The diary is yours.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i06",
+      "correctText": "Is the folder yours?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i07",
+      "correctText": "The guitar is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i08",
+      "correctText": "yours",
+      "correctResponseId": "en:lesson-05:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i09",
+      "correctText": "Is the diary yours?",
+      "correctResponseId": "en:lesson-05:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i11",
+      "correctText": "Yes, it is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i12",
+      "correctText": "It is not mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i13",
+      "correctText": "Yes, it is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i14",
+      "correctText": "yours",
+      "correctResponseId": "en:lesson-05:session-17:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i15",
+      "correctText": "The folder is mine.",
+      "correctResponseId": "en:lesson-05:session-17:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-17:i17",
+      "correctText": "The helmet is mine.",
+      "correctResponseId": null
+    }
+  ]
+}

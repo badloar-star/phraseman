@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 24 — Всё своё забрали?
+# Английский · Урок 5 · Занятие 24 — В бюро находок
 
-**Ситуация.** Вы с друзьями уезжаете из гостиницы. После завтрака нужно разобрать вещи и вернуть каждому его одежду и технику.
+**Ситуация.** Вы пришли в бюро находок аэропорта: пропали очки, чемодан и куртка. Новой грамматики нет: вы сами выбираете my или mine, his или hers, ’s, whose, has или have и is или are.
 
-**Что вы освоите:** найти вещи и назвать их владельцев без повторения названий
-**Новые слова:** —
+**Что вы освоите:** самому выбрать, как сказать о вещах и людях: my или mine, ’s, whose, has или have
+**Новые слова:** glasses, moustache, tattoo, freckles
+**Возвращаются:** jacket, suitcase, umbrella, bag, beard, ring, friend
 
 ---
 
 ## Интро 1
 
-### Завтрак и одежда
+### Очки на стойке
 
-Повторим: `yoghurt` — «йогурт», `jacket` — «куртка», `gloves` — «перчатки», `tablet` — «планшет». `There is no yoghurt` — «Йогурта нет». `The jacket is mine` — «Куртка моя», но `The gloves are yours` — «Перчатки твои»: форму `is` или `are` выбираем по вещи, не по владельцу.
+В бюро находок аэропорта вы ищете очки вашей сестры. Сотрудница кладёт очки на стойку и спрашивает: Whose glasses are these? — «Чьи это очки?» glasses — «очки», это пара, поэтому are. Хозяйку называем с ’s: They are my sister’s — «Они моей сестры».
 
-**Перчатки принадлежат другу. Скажите ему «Перчатки твои».**
+**Сотрудница бюро находок показывает очки и спрашивает: «Whose glasses are these?» Очки принадлежат вашей сестре. Ответьте ей.**
 
-- ✅ **The gloves are yours.**
-- ❌ The gloves is yours. — *`gloves` — множественное число, нужна форма `are`.*
-- ❌ The gloves are your. — *Без названия вещи нужна форма `yours`.*
+- ✅ **They are my sister’s.**
+- ❌ It is my sister’s. — *Очки — пара, поэтому нужно They are, а не It is.*
+- ❌ They are my sister. — *Без ’s получится «они — моя сестра». Чтобы назвать хозяйку, нужно ’s.*
 
 ---
 
 ## Интро 2
 
-### Украшение, обувь и камера
+### Усы владельца чемодана
 
-`scarf` — «шарф», `necklace` — «ожерелье», `boots` — «ботинки», `camera` — «камера». `The scarf is his` — «Шарф его». `The necklace is hers` — «Ожерелье её». `The boots are theirs` — «Ботинки их». `The camera is ours` — «Камера наша». Здесь `his`, `hers`, `theirs`, `ours` стоят без следующего названия вещи.
+Теперь сотрудница ищет красный чемодан мужа вашей сестры и просит коротко описать его владельца. У мужчины густые усы. moustache — «усы». Говорим о том, что у человека есть, с has: He has a moustache — «У него усы». Усы одни, поэтому a moustache.
 
-**Камера принадлежит вам и другу. Скажите «Камера наша».**
+**Сотрудница просит описать мужа вашей сестры. У него усы. Скажите ей: «У него усы».**
 
-- ✅ **The camera is ours.**
-- ❌ The camera is our. — *Без названия вещи нужна форма `ours`.*
-- ❌ The camera are ours. — *Одна камера: `camera is`.*
+- ✅ **He has a moustache.**
+- ❌ He have a moustache. — *Мужчина один, как he, поэтому нужно has, а не have.*
+- ❌ He is a moustache. — *is значит «является»: получится «он — усы». Чтобы сказать «у него», нужно has.*
 
 ---
 
 ## Интро 3
 
-### Последний обход
+### Татуировка на руке
 
-`Where is my tablet?` — «Где мой планшет?» `Your boots are under the bed` — «Твои ботинки под кроватью». `I have your scarf` — «Твой шарф у меня». `My jacket is next to your gloves` — «Моя куртка рядом с твоими перчатками». Ботинки под кроватью: похоже, они решили продлить отпуск.
+Сотрудница просит назвать ещё одну важную примету владельца чемодана. На его руке маленькая татуировка. tattoo — «татуировка». Слово-владелец стоит перед вещью, как всегда: His tattoo is small — «Его татуировка маленькая». Татуировка одна, поэтому is.
 
-**Шарф друга у вас. Скажите ему «Твой шарф у меня».**
+**Сотрудница просит ещё одну примету владельца. У него на руке маленькая татуировка. Скажите ей: «Его татуировка маленькая».**
 
-- ✅ **I have your scarf.**
-- ❌ I has your scarf. — *С `I` нужно `have`.*
-- ❌ I have my scarf. — *Другу говорим о его шарфе: `your scarf`, не `my scarf`.*
+- ✅ **His tattoo is small.**
+- ❌ He tattoo is small. — *He — «он», а перед вещью нужно слово-владелец his.*
+- ❌ His tattoo are small. — *Татуировка одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Куртка принадлежит вам. Скажите «Куртка моя»**
+**1 · Карточка слова — glasses**
+<!-- interaction_id: en:lesson-05:session-24:word:glasses; family: word_card -->
+> **glasses** — очки. My glasses are here. — «Мои очки здесь». О паре стёкол в оправе, которые надевают, чтобы лучше видеть.
+
+**2 · Сотрудница показывает очки. Они принадлежат вашей сестре. Скажите ей полной фразой: «Это очки моей сестры»**
 <!-- interaction_id: en:lesson-05:session-24:i01; family: phrase_builder -->
-Плитки: `mine` `is` `jacket` `The` `are` → **The jacket is mine.**
-*(плитка `are` лишняя: здесь нужно `is` — `The jacket is mine.`)*
+Плитки: `glasses` `are` `my` `sister’s` `These` `is` → **These are my sister’s glasses.**
+*(плитка `is` лишняя: здесь нужно `are` — `These are my sister’s glasses.`)*
 
-**2 · Послушайте, кому принадлежат перчатки**
+**3 · Карточка слова — moustache**
+<!-- interaction_id: en:lesson-05:session-24:word:moustache; family: word_card -->
+> **moustache** — усы. He has a moustache. — «У него усы». О волосах над верхней губой у мужчины.
+
+**4 · Послушайте сотрудницу**
 <!-- interaction_id: en:lesson-05:session-24:i02; family: listen_choose -->
-🔊 *The gloves are yours.* → **The gloves are yours.** · The gloves are mine. · The gloves are hers.
-- The gloves are mine. — *В записи последнее слово — `yours`, а в этом варианте — `mine`.*
-- The gloves are hers. — *В записи последнее слово — `yours`, а в этом варианте — `hers`.*
+🔊 *He has a moustache.* → **He has a moustache.** · He have a moustache. · He has a beard.
+- He have a moustache. — *В записи `has` — у одного человека, а в этом варианте `have` — форма для двоих или для I, you.*
+- He has a beard. — *В записи последнее слово `moustache` — усы, а в этом варианте `beard` — борода.*
 
-**3 · Йогурт закончился. Выберите форму**
+**5 · Карточка слова — tattoo**
+<!-- interaction_id: en:lesson-05:session-24:word:tattoo; family: word_card -->
+> **tattoo** — татуировка. Her tattoo is small. — «Её татуировка маленькая». О рисунке на коже, который остаётся надолго.
+
+**6 · Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-05:session-24:i03; family: context_gap_grammar -->
-There ___ no yoghurt. → **is** · are · am
-- are — *`yoghurt` здесь не считаем поштучно: `There is`.*
-- am — *`am` используется с `I`; здесь `There is`.*
+___ → **tattoo** · beard · ring
+- beard — *beard — это борода, а рисунок на коже называется tattoo.*
+- ring — *ring — это кольцо, а рисунок на коже называется tattoo.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-24:i04; family: speed_match -->
-yoghurt — йогурт · jacket — куртка · gloves — перчатки · tablet — планшет
+moustache — усы · glasses — очки · freckles — веснушки · tattoo — татуировка
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — freckles**
+<!-- interaction_id: en:lesson-05:session-24:word:freckles; family: word_card -->
+> **freckles** — веснушки. She has freckles. — «У неё веснушки». О маленьких коричневых пятнышках на коже лица.
+
+**9 · Послушайте сотрудницу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-24:i05; family: listen_build_dictation -->
-🔊 *Where is my tablet?* Плитки: `tablet` `my` `is` `Where` → **Where is my tablet?**
+🔊 *She has freckles.* Плитки: `freckles` `has` `She` `have` → **She has freckles.**
+*(плитка `have` лишняя: здесь нужно `has` — `She has freckles.`)*
 
-**6 · Шарф принадлежит другу-мужчине. Скажите «Шарф его»**
+**10 · Вы нашли очки на скамейке и спрашиваете подругу, чьи они. Задайте вопрос полностью: «Чьи это очки?»**
 <!-- interaction_id: en:lesson-05:session-24:i06; family: phrase_builder -->
-Плитки: `his` `is` `scarf` `The` `are` → **The scarf is his.**
-*(плитка `are` лишняя: здесь нужно `is` — `The scarf is his.`)*
+Плитки: `glasses` `are` `these` `Whose` `Who` → **Whose glasses are these?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose glasses are these?`)*
 
-**7 · Камера принадлежит вам и другу. Скажите «Камера наша»**
+**11 · Сотрудница спрашивает, чья куртка. Она принадлежит вашему брату. Ответьте: «Куртка его»**
 <!-- interaction_id: en:lesson-05:session-24:i07; family: scripted_repeat_compare -->
-🎙 **The camera is ours.**
+🎙 **The jacket is his.**
 
-**8 · Ожерелье принадлежит подруге. Скажите «Ожерелье её»**
+**12 · Вы описываете сотруднице своего брата. У него усы. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-24:i08; family: context_gap_grammar -->
-The necklace is ___. → **hers** · her · his
-- her — *Без названия вещи нужна форма `hers`.*
-- his — *`his` — его; её — `hers`.*
+My brother ___ a moustache. → **has** · have · is
+- have — *Брат один, как he, поэтому нужно has, а не have.*
+- is — *is значит «является», а для «у него» нужно has.*
 
-**9 · Послушайте, где ботинки**
+**13 · Послушайте сотрудницу**
 <!-- interaction_id: en:lesson-05:session-24:i09; family: listen_choose -->
-🔊 *Your boots are under the bed.* → **Your boots are under the bed.** · Your boots are under the table. · My boots are under the bed.
-- Your boots are under the table. — *В записи последнее слово — `bed`, а в этом варианте — `table`.*
-- My boots are under the bed. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
+🔊 *Whose glasses are these?* → **Whose glasses are these?** · Whose glasses is this? · Whose glass are these?
+- Whose glasses is this? — *В записи `glasses are these` — очки, пара, а в этом варианте `is this` — как про одну вещь.*
+- Whose glass are these? — *В записи `glasses` — очки, а в этом варианте `glass` — стакан.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-24:i10; family: speed_match -->
-scarf — шарф · necklace — ожерелье · boots — ботинки · camera — камера
+glasses — очки · tattoo — татуировка · jacket — куртка · umbrella — зонт
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте сотрудницу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-24:i11; family: listen_build_dictation -->
-🔊 *I have your scarf.* Плитки: `scarf` `your` `have` `I` → **I have your scarf.**
+🔊 *The suitcase is theirs.* Плитки: `suitcase` `is` `theirs` `The` `their` → **The suitcase is theirs.**
+*(плитка `their` лишняя: здесь нужно `theirs` — `The suitcase is theirs.`)*
 
-**12 · Скажите другу «Моя куртка рядом с твоими перчатками»**
+**16 · Сотрудница спрашивает, чья сумка. Она принадлежит вашей подруге. Скажите ей полной фразой: «Сумка моей подруги»**
 <!-- interaction_id: en:lesson-05:session-24:i12; family: phrase_builder -->
-Плитки: `gloves` `your` `to` `next` `is` `jacket` `My` `are` → **My jacket is next to your gloves.**
-*(плитка `are` лишняя: здесь нужно `is` — `My jacket is next to your gloves.`)*
+Плитки: `bag` `is` `my` `friend’s` `The` `your` → **The bag is my friend’s.**
+*(плитка `your` лишняя: здесь нужно `my` — `The bag is my friend’s.`)*
 
-**13 · Ботинки принадлежат друзьям. Скажите «Ботинки их»**
+**17 · Сотрудница просит описать вашу подругу. У неё веснушки. Скажите ей: «У моей подруги веснушки»**
 <!-- interaction_id: en:lesson-05:session-24:i13; family: scripted_repeat_compare -->
-🎙 **The boots are theirs.**
+🎙 **My friend has freckles.**
 
-**14 · Планшет принадлежит собеседнику. Скажите ему «Планшет твой»**
+**18 · Вы показываете сотруднице свои очки. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-24:i14; family: context_gap_grammar -->
-The tablet is ___. → **yours** · your · mine
-- your — *Без названия вещи нужна форма `yours`.*
-- mine — *`mine` — мой; твой — `yours`.*
+The glasses ___ mine. → **are** · is · has
+- is — *Очки — пара, поэтому нужно are, а не is.*
+- has — *has значит «имеет», а здесь нужно «являются»: are.*
 
-**15 · Послушайте, чья камера здесь**
+**19 · Послушайте сотрудницу**
 <!-- interaction_id: en:lesson-05:session-24:i15; family: listen_choose -->
-🔊 *Her camera is here.* → **Her camera is here.** · His camera is here. · My camera is here.
-- His camera is here. — *В записи первое слово — `Her`, а в этом варианте — `His`.*
-- My camera is here. — *В записи первое слово — `Her`, а в этом варианте — `My`.*
+🔊 *His tattoo is small.* → **His tattoo is small.** · Her tattoo is small. · His tattoo is big.
+- Her tattoo is small. — *В записи `His` — его, а в этом варианте `Her` — её.*
+- His tattoo is big. — *В записи последнее слово `small` — маленькая, а в этом варианте `big` — большая.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-24:i16; family: speed_match -->
-scarf — шарф · necklace — ожерелье · boots — ботинки · camera — камера
+moustache — усы · freckles — веснушки · suitcase — чемодан · ring — кольцо
 
-**17 · Друг спрашивает, кому принадлежит камера. Она общая — ваша и вашего спутника. Скажите «Камера наша»**
+**21 · Сотрудница показывает очки и спрашивает, чьи они. Очки ваши. Ответьте: «Они мои»**
 <!-- interaction_id: en:lesson-05:session-24:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The camera is ours.**
-
+🎙 **They are mine.**

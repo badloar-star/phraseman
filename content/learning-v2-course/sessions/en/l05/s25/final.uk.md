@@ -1,138 +1,154 @@
-# Англійська · Урок 5 · Заняття 25 — Чий обід біля дверей?
+# Англійська · Урок 5 · Заняття 25 — Пікнік біля озера
 
-**Ситуація.** Анна й Том збираються на прогулянку із собаками. Біля дверей стоять контейнери з обідом і лежить куртка. Треба назвати господаря кожної речі.
+**Ситуація.** Родина вибралася на пікнік до озера, і речі лежать на траві впереміш. Треба зрозуміти, що чиє, і повернути кожну річ господареві.
 
-**Що ви опануєте:** вказати власника через ім’я чи іменник з апострофом і s
-**Нові слова:** lunchbox
+**Що ви опануєте:** сказати, чия річ, додавши 's до назви людини: my sister's thermos
+**Нові слова:** thermos, napkin, frisbee, sunscreen
+**Повертаються:** sister, brother, uncle, aunt, grandmother, friend, bag, basket, bench, tree, plate, cup, sandals, umbrella, backpack, camera
 
 ---
 
 ## Інтро 1
 
-### Обід із собою
+### Термос на лавці
 
-`lunchbox` — «ланчбокс, контейнер для обіду». `Anna’s lunchbox` — «ланчбокс Анни»: спочатку власник, потім `’s`, потім річ. `This is Anna’s lunchbox` — «Це ланчбокс Анни». Ланчбокс уже біля дверей: обід готовий до прогулянки раніше за господарів.
+На пікніку біля озера подруга показує на термос на лавці й питає, чий він. Це термос вашої сестри: вона налила в нього гарячий чай ще вдома, перед виїздом. thermos — «термос». Господаря називаємо через 's: my sister's thermos — «термос моєї сестри».
 
-**Назвіть ланчбокс Анни.**
+**Подруга питає, чий термос на лавці. Він вашої сестри. Скажіть: «Це термос моєї сестри».**
 
-- ✅ **This is Anna's lunchbox.**
-- ❌ This is Anna lunchbox. — *Після імені власниці потрібне `’s`: `Anna’s lunchbox`.*
-- ❌ This is Tom's lunchbox. — *Це ланчбокс Тома; тут власниця Анна.*
+- ✅ **This is my sister's thermos.**
+- ❌ This is my sister thermos. — *Після слова sister потрібно 's: my sister's thermos.*
+- ❌ This is my brother's thermos. — *brother — це брат, а термос належить сестрі: потрібно sister's.*
 
 ---
 
 ## Інтро 2
 
-### Ім’я чи слово-власник
+### Серветка для бабусі
 
-`Tom’s jacket` — «куртка Тома». `My friend’s jacket` — «куртка мого друга»: власник один, `my friend`, до нього додаємо `’s`. `The dog’s bowl` — «миска собаки»: тут теж одна собака. У таких сполученнях `’s` показує належність, а не скорочує `is`. `dogs` без апострофа — «собаки», кілька тварин.
+Бабуся дістала булочки, насипала крихт на коліна й просить серветку, щоб витерти руки. Серветки лежать на самому дні кошика, який зібрав ваш дядько. napkin — «серветка». Місце теж називаємо через 's: in my uncle's basket — «у кошику мого дядька».
 
-**Скажіть «Куртка Тома тут».**
+**Бабуся просить серветку. Вона в кошику вашого дядька. Скажіть: «Серветка в кошику мого дядька».**
 
-- ✅ **Tom's jacket is here.**
-- ❌ Tom jacket is here. — *Для належності потрібне `Tom’s jacket`.*
-- ❌ Tom's jacket are here. — *Одна куртка: `jacket is`.*
+- ✅ **The napkin is in my uncle's basket.**
+- ❌ The napkin is in my uncle basket. — *Після слова uncle потрібно 's: my uncle's basket.*
+- ❌ The napkin is on my uncle's basket. — *on — «на», а серветка лежить усередині кошика: потрібно in.*
 
 ---
 
 ## Інтро 3
 
-### Реакції на збори
+### Диск під деревом
 
-`proud` — «гордий», `ashamed` — «той, кому соромно», `surprised` — «здивований». `I am proud` — «Я пишаюся», `I am ashamed` — «Мені соромно», `I am surprised` — «Я здивований / здивована». `sink` — «раковина», `jacket` — «куртка», `dogs` — «собаки». `Anna’s lunchbox is next to the sink` — «Ланчбокс Анни поруч із раковиною».
+Під деревом лежить пластиковий диск. frisbee — «фрісбі»: такі диски кидають одне одному на траві. Подруга прийшла на пікнік із братом, а він любить такі ігри, тож диск, схоже, його. Спитайте її: Is this your brother's frisbee? — «Це фрісбі твого брата?»
 
-**Збори закінчилися несподівано швидко. Скажіть «Я здивований» без скорочення.**
+**Диск лежить під деревом. Спитайте подругу, чи не її брата це фрісбі.**
 
-- ✅ **I am surprised.**
-- ❌ I is surprised. — *З `I` потрібна форма `am`.*
-- ❌ I am ashamed. — *`ashamed` — соромно; здивований — `surprised`.*
+- ✅ **Is this your brother's frisbee?**
+- ❌ This is your brother's frisbee? — *Питання починаємо з Is: Is this…?*
+- ❌ Is this my brother's frisbee? — *my — мій, а ви питаєте про брата подруги: потрібно your.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Друг уже все зібрав, і ви здивовані. Скажіть «Я здивований» без скорочення**
+**1 · Картка слова — thermos**
+<!-- interaction_id: en:lesson-05:session-25:word:thermos; family: word_card -->
+> **thermos** — термос. My sister's thermos is on the bench. — «Термос моєї сестри на лавці». Про пляшку з кришкою, у якій довго тримається тепло.
+
+**2 · Подруга питає, чий термос на траві. Він вашого брата. Скажіть: «Це термос мого брата»**
 <!-- interaction_id: en:lesson-05:session-25:i01; family: phrase_builder -->
-Плитки: `surprised` `am` `I` `is` → **I am surprised.**
-*(плитка `is` зайва: тут потрібно `am` — `I am surprised.`)*
+Плитки: `thermos` `brother's` `This` `is` `my` `brother` → **This is my brother's thermos.**
+*(плитка `brother` зайва: тут потрібно `brother's` — `This is my brother's thermos.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — napkin**
+<!-- interaction_id: en:lesson-05:session-25:word:napkin; family: word_card -->
+> **napkin** — серветка. My uncle's napkin is on the table. — «Серветка мого дядька на столі». Про папірець, яким витирають руки й рот під час їжі.
+
+**4 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-05:session-25:i02; family: listen_choose -->
-🔊 *lunchbox* → **lunchbox** · backpack · suitcase
-- backpack — *У записі перше слово — `lunchbox`, а в цьому варіанті — `backpack`.*
-- suitcase — *У записі перше слово — `lunchbox`, а в цьому варіанті — `suitcase`.*
+🔊 *The napkin is on my aunt's plate.* → **The napkin is on my aunt's plate.** · The napkin is on my aunt's cup. · The napkin is on my uncle's plate.
+- The napkin is on my aunt's cup. — *У записі останнє слово — `plate`, а в цьому варіанті — `cup`.*
+- The napkin is on my uncle's plate. — *У записі господиня — `aunt's`, тітка, а в цьому варіанті — `uncle's`, дядько.*
 
-**3 · Назвіть контейнер для обіду**
+**5 · Картка слова — frisbee**
+<!-- interaction_id: en:lesson-05:session-25:word:frisbee; family: word_card -->
+> **frisbee** — фрісбі. The baby's frisbee is under the tree. — «Фрісбі малюка під деревом». Про пластиковий диск, який кидають одне одному.
+
+**6 · Фрісбі належить вашій сестрі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-25:i03; family: context_gap_grammar -->
-___ → **lunchbox** · jacket · sink
-- jacket — *`jacket` — куртка; контейнер для обіду — `lunchbox`.*
-- sink — *`sink` — раковина; контейнер для обіду — `lunchbox`.*
+This is my ___ frisbee. → **sister's** · sister · sisters
+- sister — *Після слова sister потрібно `'s`: `sister's frisbee` — «фрісбі сестри».*
+- sisters — *`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-25:i04; family: speed_match -->
-lunchbox — ланчбокс · proud — гордий · ashamed — той, кому соромно · surprised — здивований
+thermos — термос · napkin — серветка · frisbee — фрісбі · sunscreen — крем від сонця
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — sunscreen**
+<!-- interaction_id: en:lesson-05:session-25:word:sunscreen; family: word_card -->
+> **sunscreen** — крем від сонця. My friend's sunscreen is here. — «Крем від сонця моєї подруги тут». Про крем, яким мастять шкіру, щоб не обгоріти.
+
+**9 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-25:i05; family: listen_build_dictation -->
-🔊 *This is Anna's lunchbox.* Плитки: `lunchbox` `Anna's` `is` `This` `are` → **This is Anna's lunchbox.**
-*(плитка `are` зайва: тут потрібно `is` — `This is Anna's lunchbox.`)*
+🔊 *My sister's sunscreen is in the bag.* Плитки: `sunscreen` `sister's` `is` `in` `the` `bag` `My` `are` → **My sister's sunscreen is in the bag.**
+*(плитка `are` зайва: тут потрібно `is` — `My sister's sunscreen is in the bag.`)*
 
-**6 · Куртка належить Тому. Скажіть «Куртка Тома тут»**
+**10 · Ви знайшли на лавці рюкзак і питаєте подругу, чи не її бабусі він. Задайте питання: «Це рюкзак твоєї бабусі?»**
 <!-- interaction_id: en:lesson-05:session-25:i06; family: phrase_builder -->
-Плитки: `here` `is` `jacket` `Tom's` `are` → **Tom's jacket is here.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom's jacket is here.`)*
+Плитки: `backpack` `grandmother's` `your` `this` `Is` `grandmother` → **Is this your grandmother's backpack?**
+*(плитка `grandmother` зайва: тут потрібно `grandmother's` — `Is this your grandmother's backpack?`)*
 
-**7 · Ви задоволені своїм досягненням. Скажіть «Я пишаюся» без скорочення**
+**11 · Подруга питає, чий кошик з булочками. Він вашої тітки. Скажіть: «Це кошик моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-25:i07; family: scripted_repeat_compare -->
-🎙 **I am proud.**
+🎙 **This is my aunt's basket.**
 
-**8 · Укажіть на ланчбокс Тома**
+**12 · Сандалі вашого брата лежать під лавкою. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-25:i08; family: context_gap_grammar -->
-This is ___ lunchbox. → **Tom's** · Tom · Anna's
-- Tom — *До імені власника додаємо `’s`: `Tom’s`.*
-- Anna's — *Це належність Анні; тут власник Том.*
+My brother's sandals ___ under the bench. → **are** · is · has
+- is — *Сандалі — пара, тому потрібно `are`, а не `is`.*
+- has — *`has` означає «мати», а тут ми кажемо, де лежать сандалі: потрібно `are`.*
 
-**9 · Послухайте, яке почуття називає друг**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-25:i09; family: listen_choose -->
-🔊 *I am ashamed.* → **I am ashamed.** · I am proud. · I am surprised.
-- I am proud. — *У записі останнє слово — `ashamed`, а в цьому варіанті — `proud`.*
-- I am surprised. — *У записі останнє слово — `ashamed`, а в цьому варіанті — `surprised`.*
+🔊 *Is this your sister's camera?* → **Is this your sister's camera?** · Is this your sister's thermos? · Is this my sister's camera?
+- Is this your sister's thermos? — *У записі останнє слово — `camera`, а в цьому варіанті — `thermos`.*
+- Is this my sister's camera? — *У записі `your` — твоєї, а в цьому варіанті `my` — моєї.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-25:i10; family: speed_match -->
-lunchbox — ланчбокс · dogs — собаки · sink — раковина · jacket — куртка
+thermos — термос · basket — кошик · sunscreen — крем від сонця · frisbee — фрісбі
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-25:i11; family: listen_build_dictation -->
-🔊 *Anna's lunchbox is next to the sink.* Плитки: `sink` `the` `to` `next` `is` `lunchbox` `Anna's` `are` → **Anna's lunchbox is next to the sink.**
-*(плитка `are` зайва: тут потрібно `is` — `Anna's lunchbox is next to the sink.`)*
+🔊 *My uncle's umbrella is behind the tree.* Плитки: `umbrella` `uncle's` `is` `behind` `the` `tree` `My` `are` → **My uncle's umbrella is behind the tree.**
+*(плитка `are` зайва: тут потрібно `is` — `My uncle's umbrella is behind the tree.`)*
 
-**12 · У вас один друг; його куртка на стільці. Скажіть «Куртка мого друга на стільці»**
+**16 · Брат шукає свій термос. Він у вашої сестри. Скажіть йому: «Твій термос у моєї сестри»**
 <!-- interaction_id: en:lesson-05:session-25:i12; family: phrase_builder -->
-Плитки: `chair` `the` `on` `is` `jacket` `friend's` `My` `are` → **My friend's jacket is on the chair.**
-*(плитка `are` зайва: тут потрібно `is` — `My friend's jacket is on the chair.`)*
+Плитки: `sister` `has` `your` `thermos` `My` `have` → **My sister has your thermos.**
+*(плитка `have` зайва: тут потрібно `has` — `My sister has your thermos.`)*
 
-**13 · Собаки чекають зовні будинку. Скажіть «Собаки зовні»**
+**17 · Дядько просив передати його серветку, і вона у вас. Скажіть подрузі: «У мене серветка мого дядька»**
 <!-- interaction_id: en:lesson-05:session-25:i13; family: scripted_repeat_compare -->
-🎙 **The dogs are outside.**
+🎙 **I have my uncle's napkin.**
 
-**14 · Миска належить одній собаці. Укажіть власника**
+**18 · Термос належить вашому дядькові, і він стоїть тут. Виберіть потрібне**
 <!-- interaction_id: en:lesson-05:session-25:i14; family: context_gap_grammar -->
-The ___ bowl is here. → **dog's** · dog · dogs
-- dog — *Для належності одній собаці потрібне `dog’s`.*
-- dogs — *`dogs` — кілька собак; одній собаці належить `the dog’s bowl`.*
+My uncle ___ thermos is here. → **'s** · has · have
+- has — *`has` означає «мати»; «термос дядька» кажемо через `'s`: `my uncle's thermos`.*
+- have — *`have` до слова `uncle` не підходить; «термос дядька» — це `uncle's thermos`.*
 
-**15 · Послухайте, де ланчбокс**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-05:session-25:i15; family: listen_choose -->
-🔊 *Her lunchbox is on the table.* → **Her lunchbox is on the table.** · His lunchbox is on the table. · Her lunchbox is on the chair.
-- His lunchbox is on the table. — *У записі перше слово — `Her`, а в цьому варіанті — `His`.*
-- Her lunchbox is on the chair. — *У записі останнє слово — `table`, а в цьому варіанті — `chair`.*
+🔊 *My friend's sunscreen is here.* → **My friend's sunscreen is here.** · My friend's sunscreen is there. · My friend's blanket is here.
+- My friend's sunscreen is there. — *У записі останнє слово — `here`, «тут», а в цьому варіанті — `there`, «там».*
+- My friend's blanket is here. — *У записі річ — `sunscreen`, а в цьому варіанті — `blanket`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-25:i16; family: speed_match -->
-lunchbox — ланчбокс · dogs — собаки · sink — раковина · jacket — куртка
+thermos — термос · napkin — серветка · frisbee — фрісбі · sunscreen — крем від сонця
 
-**17 · Друг запитує про власника контейнера з обідом. Він належить Анні. Скажіть «Це ланчбокс Анни»**
+**21 · Ви повертаєте диск подрузі. Він її брата. Скажіть їй: «Це фрісбі твого брата»**
 <!-- interaction_id: en:lesson-05:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Anna's lunchbox.**
-
+🎙 **This is your brother's frisbee.**

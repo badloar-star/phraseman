@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-28",
   "learningOutcomeByLocale": {
-    "ru": "назвать владельца ключ-карты и подтвердить информацию",
-    "uk": "назвати власника ключ-картки й підтвердити інформацію"
+    "ru": "различать на слух, чей инструмент: my uncle's saw, my aunt's spade, и не путать это с has",
+    "uk": "розрізняти на слух, чий інструмент: my uncle's saw, my aunt's spade, і не плутати це з has"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ключ в виде карты",
-        "uk": "Ключ у вигляді картки"
+        "ru": "Отвёртка для калитки",
+        "uk": "Викрутка для хвіртки"
       },
       "bodyByLocale": {
-        "ru": "`keycard` — «ключ-карта», карточка для открытия двери. `This is Anna’s keycard` — «Это ключ-карта Анны». `Tom’s keycard is here` — «Ключ-карта Тома здесь». После имени владельца добавляем `’s`. Ключ-карта тонкая, но без неё даже большая дверь не уступает.",
-        "uk": "`keycard` — «ключ-картка», картка для відчинення дверей. `This is Anna’s keycard` — «Це ключ-картка Анни». `Tom’s keycard is here` — «Ключ-картка Тома тут». Після імені власника додаємо `’s`. Ключ-картка тонка, але без неї навіть великі двері не поступаються."
+        "ru": "Дядя чинит калитку в саду и спрашивает, где отвёртка. Она лежит в сарае, на полке. screwdriver — «отвёртка», ею закручивают винты. Отвёртка вашей тёти: my aunt's screwdriver. Скажите дяде, где она: My aunt's screwdriver is in the shed — «Отвёртка моей тёти в сарае».",
+        "uk": "Дядько лагодить хвіртку в саду й питає, де викрутка. Вона лежить у сараї, на полиці. screwdriver — «викрутка», нею закручують гвинти. Викрутка вашої тітки: my aunt's screwdriver. Скажіть дядькові, де вона: My aunt's screwdriver is in the shed — «Викрутка моєї тітки в сараї»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на ключ-карту Анны.",
-          "uk": "Укажіть на ключ-картку Анни."
+          "ru": "Дядя спрашивает, где отвёртка. Она в сарае, и она вашей тёти. Скажите ему: «Отвёртка моей тёти в сарае».",
+          "uk": "Дядько питає, де викрутка. Вона в сараї, і вона вашої тітки. Скажіть йому: «Викрутка моєї тітки в сараї»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-28:intro1:r1",
-              "text": "This is Anna's keycard."
+              "text": "My aunt's screwdriver is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-28:intro1:r2",
-              "text": "This is Anna keycard."
+              "text": "My aunt screwdriver is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-28:intro1:r3",
-              "text": "This is Tom's keycard."
+              "text": "My aunt's screwdriver is in the garden."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-28:intro1:r1",
-              "text": "This is Anna's keycard."
+              "text": "My aunt's screwdriver is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-28:intro1:r2",
-              "text": "This is Anna keycard."
+              "text": "My aunt screwdriver is in the shed."
             },
             {
               "responseId": "en:lesson-05:session-28:intro1:r3",
-              "text": "This is Tom's keycard."
+              "text": "My aunt's screwdriver is in the garden."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на ключ-карту Анны.",
-          "uk": "Укажіть на ключ-картку Анни."
+          "ru": "Дядя спрашивает, где отвёртка. Она в сарае, и она вашей тёти. Скажите ему: «Отвёртка моей тёти в сарае».",
+          "uk": "Дядько питає, де викрутка. Вона в сараї, і вона вашої тітки. Скажіть йому: «Викрутка моєї тітки в сараї»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Верно и уверенно",
-        "uk": "Правильно й упевнено"
+        "ru": "Пила на стене",
+        "uk": "Пилка на стіні"
       },
       "bodyByLocale": {
-        "ru": "`correct` — «правильный, верный»: `That is correct` — «Это верно». `certain` — «уверен»: `I am certain` — «Я уверен / уверена». `serious` — «серьёзный»: `I am serious` — «Я серьёзно», то есть не шучу. `correct` оценивает верность информации, а `certain` — уверенность говорящего.",
-        "uk": "`correct` — «правильний»: `That is correct` — «Це правильно». `certain` — «упевнений»: `I am certain` — «Я впевнений / впевнена». `serious` — «серйозний»: `I am serious` — «Я серйозно», тобто не жартую. `correct` оцінює правильність інформації, а `certain` — упевненість мовця."
+        "ru": "В сарае двоюродный брат снимает со стены пилу: ему нужно распилить доску для скамейки. saw — «пила». Но пила не его, а вашего дяди. Слово saw после 's не повторяем: The saw is my uncle's — «Пила моего дяди». Скажите брату это, пока он не начал пилить.",
+        "uk": "У сараї двоюрідний брат знімає зі стіни пилку: йому треба розпиляти дошку. saw — «пилка». Але пилка не його, а вашого дядька. Слово saw після 's не повторюємо: The saw is my uncle's — «Пилка мого дядька». Скажіть це братові, поки він не почав пиляти."
       },
       "question": {
         "interactionId": "en:lesson-05:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Друг верно назвал номер комнаты. Подтвердите «Это верно» без сокращения.",
-          "uk": "Друг правильно назвав номер кімнати. Підтвердьте «Це правильно» без скорочення."
+          "ru": "Двоюродный брат берёт пилу со стены. Она принадлежит вашему дяде. Скажите ему: «Пила моего дяди».",
+          "uk": "Двоюрідний брат бере пилку зі стіни. Вона належить вашому дядькові. Скажіть йому: «Пилка мого дядька»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-28:intro2:r1",
-              "text": "That is correct."
+              "text": "The saw is my uncle's."
             },
             {
               "responseId": "en:lesson-05:session-28:intro2:r2",
-              "text": "That are correct."
+              "text": "The saw is my uncle."
             },
             {
               "responseId": "en:lesson-05:session-28:intro2:r3",
-              "text": "I am certain."
+              "text": "The saw is my aunt's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-28:intro2:r1",
-              "text": "That is correct."
+              "text": "The saw is my uncle's."
             },
             {
               "responseId": "en:lesson-05:session-28:intro2:r2",
-              "text": "That are correct."
+              "text": "The saw is my uncle."
             },
             {
               "responseId": "en:lesson-05:session-28:intro2:r3",
-              "text": "I am certain."
+              "text": "The saw is my aunt's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг верно назвал номер комнаты. Подтвердите «Это верно» без сокращения.",
-          "uk": "Друг правильно назвав номер кімнати. Підтвердьте «Це правильно» без скорочення."
+          "ru": "Двоюродный брат берёт пилу со стены. Она принадлежит вашему дяде. Скажите ему: «Пила моего дяди».",
+          "uk": "Двоюрідний брат бере пилку зі стіни. Вона належить вашому дядькові. Скажіть йому: «Пилка мого дядька»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Шарф и стулья",
-        "uk": "Шарф і стільці"
+        "ru": "Лопата у грядки",
+        "uk": "Лопата біля грядки"
       },
       "bodyByLocale": {
-        "ru": "`chairs` — «стулья», `alley` — «переулок», `scarf` — «шарф». `Anna’s scarf is on the chair` — «Шарф Анны на стуле». `The chairs are in the alley` — «Стулья в переулке». `Where is my keycard?` — «Где моя ключ-карта?» `The keycard is hers` — «Ключ-карта её»: `hers` стоит без названия вещи.",
-        "uk": "`chairs` — «стільці», `alley` — «провулок», `scarf` — «шарф». `Anna’s scarf is on the chair` — «Шарф Анни на стільці». `The chairs are in the alley` — «Стільці в провулку». `Where is my keycard?` — «Де моя ключ-картка?» `The keycard is hers` — «Ключ-картка її»: `hers` стоїть без назви речі."
+        "ru": "У грядки в углу сада стоит лопата с зелёной ручкой, и подруга спрашивает, чья она. spade — «лопата», ею копают землю. Лопата вашей бабушки: она каждую весну сажает здесь цветы. Скажите подруге: This is my grandmother's spade — «Это лопата моей бабушки».",
+        "uk": "Біля грядки в кутку саду стоїть лопата із зеленим держаком, і подруга питає, чия вона. spade — «лопата», нею копають землю. Лопата вашої бабусі: вона щовесни садить тут квіти. Скажіть подрузі: This is my grandmother's spade — «Це лопата моєї бабусі»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её».",
-          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»."
+          "ru": "Подруга спрашивает, чья лопата у грядки. Она вашей бабушки. Скажите: «Это лопата моей бабушки».",
+          "uk": "Подруга питає, чия лопата біля грядки. Вона вашої бабусі. Скажіть: «Це лопата моєї бабусі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-28:intro3:r1",
-              "text": "The keycard is hers."
+              "text": "This is my grandmother's spade."
             },
             {
               "responseId": "en:lesson-05:session-28:intro3:r2",
-              "text": "The keycard is her."
+              "text": "This is my grandmother spade."
             },
             {
               "responseId": "en:lesson-05:session-28:intro3:r3",
-              "text": "The keycard is his."
+              "text": "This is my grandmother's saw."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-28:intro3:r1",
-              "text": "The keycard is hers."
+              "text": "This is my grandmother's spade."
             },
             {
               "responseId": "en:lesson-05:session-28:intro3:r2",
-              "text": "The keycard is her."
+              "text": "This is my grandmother spade."
             },
             {
               "responseId": "en:lesson-05:session-28:intro3:r3",
-              "text": "The keycard is his."
+              "text": "This is my grandmother's saw."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ключ-карта принадлежит подруге. Скажите «Ключ-карта её».",
-          "uk": "Ключ-картка належить подрузі. Скажіть «Ключ-картка її»."
+          "ru": "Подруга спрашивает, чья лопата у грядки. Она вашей бабушки. Скажите: «Это лопата моей бабушки».",
+          "uk": "Подруга питає, чия лопата біля грядки. Вона вашої бабусі. Скажіть: «Це лопата моєї бабусі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "216fd9d64ef69d24bfbf9aba256c0407ff533e8482dffec5e8336dee090e4a24"
+  "introFingerprint": "4fa5711e12029cf73fe5dc2d2ba5fe4b8cc6267a2aceb3207a41675f3be67b9a"
 }

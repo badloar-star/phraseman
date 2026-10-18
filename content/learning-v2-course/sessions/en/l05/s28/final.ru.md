@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 28 — Карта от номера
+# Английский · Урок 5 · Занятие 28 — Инструменты в сарае
 
-**Ситуация.** Анна и Том вернулись в гостиницу. Нужно найти ключ-карту, проверить номер комнаты и забрать шарф со стула.
+**Ситуация.** Вы помогаете дяде чинить калитку в саду. Инструменты лежат в сарае и во дворе, и нужно на слух понять, чей инструмент нужен.
 
-**Что вы освоите:** назвать владельца ключ-карты и подтвердить информацию
-**Новые слова:** keycard
+**Что вы освоите:** различать на слух, чей инструмент: my uncle's saw, my aunt's spade, и не путать это с has
+**Новые слова:** screwdriver, toolbox, saw, spade
+**Возвращаются:** uncle, aunt, grandmother, cousin, brother, friend, shed, garden, bench, gate, hammer, ladder, scissors, bag
 
 ---
 
 ## Интро 1
 
-### Ключ в виде карты
+### Отвёртка для калитки
 
-`keycard` — «ключ-карта», карточка для открытия двери. `This is Anna’s keycard` — «Это ключ-карта Анны». `Tom’s keycard is here` — «Ключ-карта Тома здесь». После имени владельца добавляем `’s`. Ключ-карта тонкая, но без неё даже большая дверь не уступает.
+Дядя чинит калитку в саду и спрашивает, где отвёртка. Она лежит в сарае, на полке. screwdriver — «отвёртка», ею закручивают винты. Отвёртка вашей тёти: my aunt's screwdriver. Скажите дяде, где она: My aunt's screwdriver is in the shed — «Отвёртка моей тёти в сарае».
 
-**Укажите на ключ-карту Анны.**
+**Дядя спрашивает, где отвёртка. Она в сарае, и она вашей тёти. Скажите ему: «Отвёртка моей тёти в сарае».**
 
-- ✅ **This is Anna's keycard.**
-- ❌ This is Anna keycard. — *К имени владельца добавляем `’s`: `Anna’s keycard`.*
-- ❌ This is Tom's keycard. — *Это ключ-карта Тома; здесь владелица Анна.*
+- ✅ **My aunt's screwdriver is in the shed.**
+- ❌ My aunt screwdriver is in the shed. — *После слова aunt нужно 's: my aunt's screwdriver.*
+- ❌ My aunt's screwdriver is in the garden. — *garden — «сад», а отвёртка лежит в сарае: нужно shed.*
 
 ---
 
 ## Интро 2
 
-### Верно и уверенно
+### Пила на стене
 
-`correct` — «правильный, верный»: `That is correct` — «Это верно». `certain` — «уверен»: `I am certain` — «Я уверен / уверена». `serious` — «серьёзный»: `I am serious` — «Я серьёзно», то есть не шучу. `correct` оценивает верность информации, а `certain` — уверенность говорящего.
+В сарае двоюродный брат снимает со стены пилу: ему нужно распилить доску для скамейки. saw — «пила». Но пила не его, а вашего дяди. Слово saw после 's не повторяем: The saw is my uncle's — «Пила моего дяди». Скажите брату это, пока он не начал пилить.
 
-**Друг верно назвал номер комнаты. Подтвердите «Это верно» без сокращения.**
+**Двоюродный брат берёт пилу со стены. Она принадлежит вашему дяде. Скажите ему: «Пила моего дяди».**
 
-- ✅ **That is correct.**
-- ❌ That are correct. — *С `That` нужна форма `is`.*
-- ❌ I am certain. — *Это «Я уверен»; подтвердить «Это верно» — `That is correct`.*
+- ✅ **The saw is my uncle's.**
+- ❌ The saw is my uncle. — *Так получилось бы, что пила — это сам дядя. Хозяина называем через 's: my uncle's.*
+- ❌ The saw is my aunt's. — *aunt — тётя, а пила принадлежит дяде: нужно uncle's.*
 
 ---
 
 ## Интро 3
 
-### Шарф и стулья
+### Лопата у грядки
 
-`chairs` — «стулья», `alley` — «переулок», `scarf` — «шарф». `Anna’s scarf is on the chair` — «Шарф Анны на стуле». `The chairs are in the alley` — «Стулья в переулке». `Where is my keycard?` — «Где моя ключ-карта?» `The keycard is hers` — «Ключ-карта её»: `hers` стоит без названия вещи.
+У грядки в углу сада стоит лопата с зелёной ручкой, и подруга спрашивает, чья она. spade — «лопата», ею копают землю. Лопата вашей бабушки: она каждую весну сажает здесь цветы. Скажите подруге: This is my grandmother's spade — «Это лопата моей бабушки».
 
-**Ключ-карта принадлежит подруге. Скажите «Ключ-карта её».**
+**Подруга спрашивает, чья лопата у грядки. Она вашей бабушки. Скажите: «Это лопата моей бабушки».**
 
-- ✅ **The keycard is hers.**
-- ❌ The keycard is her. — *Без названия вещи нужна форма `hers`.*
-- ❌ The keycard is his. — *`his` — его; её — `hers`.*
+- ✅ **This is my grandmother's spade.**
+- ❌ This is my grandmother spade. — *После слова grandmother нужно 's: my grandmother's spade.*
+- ❌ This is my grandmother's saw. — *saw — «пила», а у грядки стоит лопата: нужно spade.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Друг назвал правильный номер. Подтвердите «Это верно» без сокращения**
+**1 · Карточка слова — screwdriver**
+<!-- interaction_id: en:lesson-05:session-28:word:screwdriver; family: word_card -->
+> **screwdriver** — отвёртка. My aunt's screwdriver is small. — «Отвёртка моей тёти маленькая». Об инструменте, которым закручивают винты.
+
+**2 · Дядя спрашивает, чья это отвёртка. Она вашей тёти. Скажите: «Это отвёртка моей тёти»**
 <!-- interaction_id: en:lesson-05:session-28:i01; family: phrase_builder -->
-Плитки: `correct` `is` `That` `are` → **That is correct.**
-*(плитка `are` лишняя: здесь нужно `is` — `That is correct.`)*
+Плитки: `screwdriver` `aunt's` `my` `is` `This` `aunt` → **This is my aunt's screwdriver.**
+*(плитка `aunt` лишняя: здесь нужно `aunt's` — `This is my aunt's screwdriver.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — saw**
+<!-- interaction_id: en:lesson-05:session-28:word:saw; family: word_card -->
+> **saw** — пила. My uncle's saw is sharp. — «Пила моего дяди острая». Об инструменте, которым пилят дерево.
+
+**4 · Послушайте дядю**
 <!-- interaction_id: en:lesson-05:session-28:i02; family: listen_choose -->
-🔊 *keycard* → **keycard** · key · passport
-- key — *В записи первое слово — `keycard`, а в этом варианте — `key`.*
-- passport — *В записи первое слово — `keycard`, а в этом варианте — `passport`.*
+🔊 *My uncle's saw is in the shed.* → **My uncle's saw is in the shed.** · My uncle's saw is in the garden. · My uncle has a saw in the shed.
+- My uncle's saw is in the garden. — *В записи последнее слово — `shed`, сарай, а в этом варианте — `garden`, сад.*
+- My uncle has a saw in the shed. — *В записи «пила дяди» — `uncle's saw`, а в этом варианте `has a saw` — «у дяди есть пила».*
 
-**3 · Назовите ключ-карту для двери**
+**5 · Карточка слова — spade**
+<!-- interaction_id: en:lesson-05:session-28:word:spade; family: word_card -->
+> **spade** — лопата. My grandmother's spade is red. — «Лопата моей бабушки красная». Об инструменте, которым копают землю.
+
+**6 · Лопата принадлежит вашей бабушке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-28:i03; family: context_gap_grammar -->
-___ → **keycard** · badge · scarf
-- badge — *`badge` — значок; ключ-карта — `keycard`.*
-- scarf — *`scarf` — шарф; ключ-карта — `keycard`.*
+This is my ___ spade. → **grandmother's** · grandmother · grandmothers
+- grandmother — *После слова grandmother нужно `'s`: `grandmother's spade` — «лопата бабушки».*
+- grandmothers — *`grandmothers` — это «бабушки», несколько человек; чтобы назвать хозяйку, нужно `grandmother's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-28:i04; family: speed_match -->
-keycard — ключ-карта · correct — правильный · certain — уверен · serious — серьёзный
+screwdriver — отвёртка · toolbox — ящик для инструментов · saw — пила · spade — лопата
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — toolbox**
+<!-- interaction_id: en:lesson-05:session-28:word:toolbox; family: word_card -->
+> **toolbox** — ящик для инструментов. My cousin's toolbox is heavy. — «Ящик с инструментами моего двоюродного брата тяжёлый». О ящике, в котором хранят инструменты.
+
+**9 · Послушайте дядю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-28:i05; family: listen_build_dictation -->
-🔊 *This is Anna's keycard.* Плитки: `keycard` `Anna's` `is` `This` `are` → **This is Anna's keycard.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is Anna's keycard.`)*
+🔊 *My uncle's toolbox is under the bench.* Плитки: `toolbox` `uncle's` `is` `under` `the` `bench` `My` `are` → **My uncle's toolbox is under the bench.**
+*(плитка `are` лишняя: здесь нужно `is` — `My uncle's toolbox is under the bench.`)*
 
-**6 · Вы нашли ключ-карту Тома. Скажите «Ключ-карта Тома здесь»**
+**10 · Вы нашли в сарае пилу и спрашиваете двоюродного брата, не его ли дяди она. Задайте вопрос: «Это пила твоего дяди?»**
 <!-- interaction_id: en:lesson-05:session-28:i06; family: phrase_builder -->
-Плитки: `here` `is` `keycard` `Tom's` `are` → **Tom's keycard is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom's keycard is here.`)*
+Плитки: `saw` `this` `your` `uncle's` `Is` `Are` → **Is this your uncle's saw?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this your uncle's saw?`)*
 
-**7 · Вы не сомневаетесь в номере комнаты. Скажите «Я уверен» с certain, без сокращения**
+**11 · Дядя ищет лопату. Вы взяли её у бабушки. Скажите ему: «У меня лопата моей бабушки»**
 <!-- interaction_id: en:lesson-05:session-28:i07; family: scripted_repeat_compare -->
-🎙 **I am certain.**
+🎙 **I have my grandmother's spade.**
 
-**8 · Шарф принадлежит Анне. Укажите владельца**
+**12 · Ножницы вашей тёти лежат в сарае. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-28:i08; family: context_gap_grammar -->
-This is ___ scarf. → **Anna's** · Anna · Tom's
-- Anna — *К имени владельца добавляем `’s`: `Anna’s`.*
-- Tom's — *Это принадлежность Тому; здесь владелица Анна.*
+My aunt's scissors ___ in the shed. → **are** · is · has
+- is — *Ножницы — пара лезвий, поэтому нужно `are`, а не `is`.*
+- has — *`has` значит «иметь», а здесь мы говорим, где лежат ножницы: нужно `are`.*
 
-**9 · Послушайте, что друг говорит о себе**
+**13 · Послушайте двоюродного брата**
 <!-- interaction_id: en:lesson-05:session-28:i09; family: listen_choose -->
-🔊 *I am serious.* → **I am serious.** · I am certain. · I am worried.
-- I am certain. — *В записи последнее слово — `serious`, а в этом варианте — `certain`.*
-- I am worried. — *В записи последнее слово — `serious`, а в этом варианте — `worried`.*
+🔊 *Where is my uncle's spade?* → **Where is my uncle's spade?** · Where is my aunt's spade? · Where is my uncle's saw?
+- Where is my aunt's spade? — *В записи хозяин — `uncle's`, дядя, а в этом варианте — `aunt's`, тётя.*
+- Where is my uncle's saw? — *В записи последнее слово — `spade`, лопата, а в этом варианте — `saw`, пила.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-28:i10; family: speed_match -->
-keycard — ключ-карта · chairs — стулья · alley — переулок · scarf — шарф
+screwdriver — отвёртка · saw — пила · hammer — молоток · ladder — лестница-стремянка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте тётю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-28:i11; family: listen_build_dictation -->
-🔊 *Anna's scarf is on the chair.* Плитки: `chair` `the` `on` `is` `scarf` `Anna's` `are` → **Anna's scarf is on the chair.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna's scarf is on the chair.`)*
+🔊 *My aunt's spade is next to the shed.* Плитки: `spade` `aunt's` `is` `next` `to` `the` `shed` `My` `are` → **My aunt's spade is next to the shed.**
+*(плитка `are` лишняя: здесь нужно `is` — `My aunt's spade is next to the shed.`)*
 
-**12 · Стулья вынесли в переулок. Скажите «Стулья в переулке»**
+**16 · Двоюродный брат ищет свою отвёртку. Она у вашего дяди. Скажите ему: «Твоя отвёртка у моего дяди»**
 <!-- interaction_id: en:lesson-05:session-28:i12; family: phrase_builder -->
-Плитки: `alley` `the` `in` `are` `chairs` `The` `is` → **The chairs are in the alley.**
-*(плитка `is` лишняя: здесь нужно `are` — `The chairs are in the alley.`)*
+Плитки: `uncle` `has` `your` `screwdriver` `My` `have` → **My uncle has your screwdriver.**
+*(плитка `have` лишняя: здесь нужно `has` — `My uncle has your screwdriver.`)*
 
-**13 · Вы ищете свою ключ-карту. Спросите «Где моя ключ-карта?»**
+**17 · Тётя спрашивает, чья это пила. Она вашего дяди. Скажите: «Она моего дяди»**
 <!-- interaction_id: en:lesson-05:session-28:i13; family: scripted_repeat_compare -->
-🎙 **Where is my keycard?**
+🎙 **It is my uncle's.**
 
-**14 · Ключ-карта принадлежит подруге. Скажите «Ключ-карта её»**
+**18 · Отвёртка лежит внутри ящика вашей тёти. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-28:i14; family: context_gap_grammar -->
-The keycard is ___. → **hers** · her · ours
-- her — *Без названия вещи нужна форма `hers`.*
-- ours — *`ours` — наша; её — `hers`.*
+The screwdriver is ___ my aunt's toolbox. → **in** · on · under
+- on — *on — «на», а отвёртка лежит внутри ящика: нужно `in`.*
+- under — *under — «под», а отвёртка лежит внутри ящика: нужно `in`.*
 
-**15 · Послушайте, где ключ-карта**
+**19 · Послушайте дядю**
 <!-- interaction_id: en:lesson-05:session-28:i15; family: listen_choose -->
-🔊 *Your keycard is on the table.* → **Your keycard is on the table.** · My keycard is on the table. · Your keycard is on the desk.
-- My keycard is on the table. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- Your keycard is on the desk. — *В записи последнее слово — `table`, а в этом варианте — `desk`.*
+🔊 *The spade is my grandmother's.* → **The spade is my grandmother's.** · The saw is my grandmother's. · The spade is my aunt's.
+- The saw is my grandmother's. — *В записи вещь — `spade`, лопата, а в этом варианте — `saw`, пила.*
+- The spade is my aunt's. — *В записи хозяйка — `grandmother's`, бабушка, а в этом варианте — `aunt's`, тётя.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-28:i16; family: speed_match -->
-keycard — ключ-карта · chairs — стулья · alley — переулок · scarf — шарф
+screwdriver — отвёртка · toolbox — ящик для инструментов · saw — пила · spade — лопата
 
-**17 · Найденная ключ-карта принадлежит Анне. Скажите «Это ключ-карта Анны»**
+**21 · Дядя спрашивает, чей это ящик с инструментами. Он вашей тёти. Скажите: «Это ящик с инструментами моей тёти»**
 <!-- interaction_id: en:lesson-05:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Anna's keycard.**
-
+🎙 **This is my aunt's toolbox.**

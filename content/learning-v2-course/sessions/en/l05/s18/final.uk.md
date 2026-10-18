@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 18 — Рукавички знайшлися
+# Англійська · Урок 5 · Заняття 18 — Бритва, парфуми, каблучка
 
-**Ситуація.** Ви з другом збираєтеся вийти рано-вранці. Рукавички знайшлися в кишені, коробки вже біля дверей, але молоко для сніданку закінчилося.
+**Ситуація.** Удома й у кафе знайшлися речі брата, сестри й подруги. Коли назву вже сказано, про «його» і «її» говоримо одним словом: The razor is his, The perfume is hers.
 
-**Що ви опануєте:** знайти речі й уточнити їхнього власника
-**Нові слова:** gloves
+**Що ви опануєте:** сказати, чия річ, одним словом без назви: his (його) і hers (її)
+**Нові слова:** razor, perfume, lipstick, ring
+**Повертаються:** bag, key, umbrella, table, desk
 
 ---
 
 ## Інтро 1
 
-### Дві руки — рукавички
+### Бритва на полиці
 
-`gloves` — «рукавички», множина. `The gloves are mine` — «Рукавички мої»: з кількома рукавичками потрібне `are`. `my gloves` — «мої рукавички», але без повторення назви — `mine`. `The gloves are in my pocket` — «Рукавички в моїй кишені». Рукавички вже в кишені, а руки досі мерзнуть: речі зібралися швидше за господаря.
+Ви з подругою прибираєте у ванній. На полиці стоїть бритва, і подруга питає, чия вона. razor — «бритва». Вона належить вашому братові, тобто «йому», тому після is ставимо his — «його»: The razor is his — «Бритва його». Назву вдруге не повторюємо.
 
-**Скажіть «Рукавички мої».**
+**Подруга показує на бритву й питає, чия вона. Бритва вашого брата. Скажіть їй: «Бритва його».**
 
-- ✅ **The gloves are mine.**
-- ❌ The gloves is mine. — *Рукавички — множина: `gloves are`.*
-- ❌ The gloves are my. — *Без назви речі потрібна форма `mine`.*
+- ✅ **The razor is his.**
+- ❌ The razor is he. — *he — «він», а «його» без назви речі — his.*
+- ❌ The razor is hers. — *hers — її, а бритва брата: потрібно his.*
 
 ---
 
 ## Інтро 2
 
-### Рано, пощастило, помилилися
+### Забуті парфуми
 
-`early` — «рано»: `It is early` — «Зараз рано». `lucky` — «везучий»: `You are lucky` — «Тобі пощастило». `wrong` — «не має рації»: `I am wrong` — «Я не маю рації». Тут `wrong` означає помилку в думці, а не поганий характер.
+Подруга йшла від вас похапцем і залишила на столі скляний флакон із квітковим запахом. Брат принюхується й питає, чиї це парфуми. perfume — «парфуми»; англійською слово одне, тому is. Подруга — «вона», отже hers — «її»: The perfume is hers — «Парфуми її».
 
-**Ви помилилися, вирішивши, що рукавички загубилися. Скажіть «Я не маю рації» без скорочення.**
+**Брат питає, чиї парфуми стоять на столі. Вони належать вашій подрузі. Скажіть йому: «Парфуми її».**
 
-- ✅ **I am wrong.**
-- ❌ I is wrong. — *З `I` потрібна форма `am`.*
-- ❌ I am lucky. — *`lucky` — везучий; не мати рації — `be wrong`.*
+- ✅ **The perfume is hers.**
+- ❌ The perfume is her. — *Після is саме her не ставлять: без назви речі потрібно hers.*
+- ❌ The perfume are hers. — *perfume — одне слово, тому is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Коробки, кишеня та молоко
+### Каблучка на столі
 
-`boxes` — «коробки», `pocket` — «кишеня», `milk` — «молоко». `The boxes are ours` — «Коробки наші». `Where are your gloves?` — «Де твої рукавички?» `There is no milk` — «Молока немає»: у цьому значенні `milk` не рахуємо поштучно, тому `is`. `There are no boxes` — «Немає коробок»: множина, тому `are`.
+Ви сидите в кафе з братом і сестрою. Офіціант знайшов на столі каблучку, показує на сестру й питає: Is the ring hers? — «Каблучка її?» ring — «каблучка». Каблучка не її, а вашого брата, і ви відповідаєте коротко: No, it is his — «Ні, вона його».
 
-**Повідомте, що молока немає.**
+**Офіціант питає про вашу сестру: «Is the ring hers?» Каблучка належить вашому братові. Відповідьте йому.**
 
-- ✅ **There is no milk.**
-- ❌ There are no milk. — *З `milk` тут потрібна форма `is`.*
-- ❌ There is milk. — *Це означає, що молоко є; для відсутності потрібне `no`.*
+- ✅ **No, it is his.**
+- ❌ No, it is hers. — *hers — її, а каблучка брата: потрібно his.*
+- ❌ No, it is he. — *he — «він», а «його» без назви речі — his.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · До звичного часу виходу ще далеко. Скажіть «Зараз рано» без скорочення**
+**1 · Картка слова — razor**
+<!-- interaction_id: en:lesson-05:session-18:word:razor; family: word_card -->
+> **razor** — бритва. The razor is on the shelf. — «Бритва на полиці». Про інструмент, яким голять бороду й щоки.
+
+**2 · Подруга питає, чия бритва. Вона належить братові. Скажіть їй повною фразою: «Бритва його»**
 <!-- interaction_id: en:lesson-05:session-18:i01; family: phrase_builder -->
-Плитки: `early` `is` `It` `are` → **It is early.**
-*(плитка `are` зайва: тут потрібно `is` — `It is early.`)*
+Плитки: `razor` `is` `his` `The` `hers` → **The razor is his.**
+*(плитка `hers` зайва: тут потрібно `his` — `The razor is his.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — perfume**
+<!-- interaction_id: en:lesson-05:session-18:word:perfume; family: word_card -->
+> **perfume** — парфуми. The perfume is here. — «Парфуми тут». Про рідину з приємним запахом; слово одне, тому is.
+
+**4 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-18:i02; family: listen_choose -->
-🔊 *gloves* → **gloves** · glove · jacket
-- glove — *У записі перше слово — `gloves`, а в цьому варіанті — `glove`.*
-- jacket — *У записі перше слово — `gloves`, а в цьому варіанті — `jacket`.*
+🔊 *The perfume is hers.* → **The perfume is hers.** · The perfume is his. · The perfume is mine.
+- The perfume is his. — *У записі останнє слово `hers` — її, а в цьому варіанті `his` — його.*
+- The perfume is mine. — *У записі останнє слово `hers` — її, а в цьому варіанті `mine` — моя.*
 
-**3 · Назвіть рукавички**
+**5 · Картка слова — ring**
+<!-- interaction_id: en:lesson-05:session-18:word:ring; family: word_card -->
+> **ring** — каблучка. Her ring is here. — «Її каблучка тут». Про прикрасу, яку носять на пальці.
+
+**6 · Прикраса, яку носять на пальці. Як вона називається англійською?**
 <!-- interaction_id: en:lesson-05:session-18:i03; family: context_gap_grammar -->
-___ → **gloves** · boxes · jacket
-- boxes — *`boxes` — коробки; рукавички — `gloves`.*
-- jacket — *`jacket` — куртка; рукавички — `gloves`.*
+___ → **ring** · razor · key
+- razor — *razor — це бритва, а прикраса на пальці називається ring.*
+- key — *key — це ключ, а прикраса на пальці називається ring.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-18:i04; family: speed_match -->
-gloves — рукавички · wrong — не має рації · early — рано · lucky — везучий
+razor — бритва · perfume — парфуми · lipstick — губна помада · ring — каблучка
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — lipstick**
+<!-- interaction_id: en:lesson-05:session-18:word:lipstick; family: word_card -->
+> **lipstick** — губна помада. The lipstick is in my bag. — «Губна помада в моїй сумці». Про кольорову помаду, якою фарбують губи.
+
+**9 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-18:i05; family: listen_build_dictation -->
-🔊 *The gloves are in my pocket.* Плитки: `pocket` `my` `in` `are` `gloves` `The` `is` → **The gloves are in my pocket.**
-*(плитка `is` зайва: тут потрібно `are` — `The gloves are in my pocket.`)*
+🔊 *The lipstick is hers.* Плитки: `lipstick` `is` `hers` `The` `her` → **The lipstick is hers.**
+*(плитка `her` зайва: тут потрібно `hers` — `The lipstick is hers.`)*
 
-**6 · Коробки належать вам і другові. Скажіть «Коробки наші»**
+**10 · Ви питаєте сестру, чи не братова це каблучка. Задайте питання повністю: «Каблучка його?»**
 <!-- interaction_id: en:lesson-05:session-18:i06; family: phrase_builder -->
-Плитки: `ours` `are` `boxes` `The` `is` → **The boxes are ours.**
-*(плитка `is` зайва: тут потрібно `are` — `The boxes are ours.`)*
+Плитки: `ring` `his` `the` `Is` `Are` → **Is the ring his?**
+*(плитка `Are` зайва: тут потрібно `Is` — `Is the ring his?`)*
 
-**7 · Ви помилилися щодо загублених рукавичок. Визнайте «Я не маю рації» без скорочення**
+**11 · Офіціант питає, чия це каблучка. Вона братова. Відповідьте: «Каблучка його»**
 <!-- interaction_id: en:lesson-05:session-18:i07; family: scripted_repeat_compare -->
-🎙 **I am wrong.**
+🎙 **The ring is his.**
 
-**8 · Рукавички належать подрузі. Скажіть «Рукавички її»**
+**12 · Сестра шукає свої парфуми. Вони її. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-18:i08; family: context_gap_grammar -->
-The gloves are ___. → **hers** · her · his
-- her — *Без назви речі потрібна форма `hers`.*
-- his — *`his` — його; її — `hers`.*
+The perfume is ___. → **hers** · her · his
+- her — *Після is саме her не ставлять: без назви речі потрібно hers.*
+- his — *his — його, а парфуми належать сестрі: потрібно hers.*
 
-**9 · Послухайте, що друг каже вам після знахідки**
+**13 · Послухайте продавця**
 <!-- interaction_id: en:lesson-05:session-18:i09; family: listen_choose -->
-🔊 *You are lucky.* → **You are lucky.** · You are early. · You are wrong.
-- You are early. — *У записі останнє слово — `lucky`, а в цьому варіанті — `early`.*
-- You are wrong. — *У записі останнє слово — `lucky`, а в цьому варіанті — `wrong`.*
+🔊 *Is the lipstick hers?* → **Is the lipstick hers?** · Is the lipstick his? · Is the razor hers?
+- Is the lipstick his? — *У записі останнє слово `hers` — її, а в цьому варіанті `his` — його.*
+- Is the razor hers? — *У записі говорять про помаду `lipstick`, а в цьому варіанті — про бритву `razor`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-18:i10; family: speed_match -->
-gloves — рукавички · boxes — коробки · milk — молоко · pocket — кишеня
+razor — бритва · lipstick — губна помада · bag — сумка · key — ключ
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-18:i11; family: listen_build_dictation -->
-🔊 *Where are your gloves?* Плитки: `gloves` `your` `are` `Where` → **Where are your gloves?**
+🔊 *It is not hers.* Плитки: `it` `is` `not` `hers` `his` → **It is not hers.**
+*(плитка `his` зайва: тут потрібно `hers` — `It is not hers.`)*
 
-**12 · Молоко закінчилося. Скажіть «Молока немає»**
+**16 · Подруга питає, чия парасолька. Вона належить вашому братові. Скажіть їй повною фразою: «Парасолька його»**
 <!-- interaction_id: en:lesson-05:session-18:i12; family: phrase_builder -->
-Плитки: `milk` `no` `is` `There` `are` → **There is no milk.**
-*(плитка `are` зайва: тут потрібно `is` — `There is no milk.`)*
+Плитки: `umbrella` `is` `his` `The` `hers` → **The umbrella is his.**
+*(плитка `hers` зайва: тут потрібно `his` — `The umbrella is his.`)*
 
-**13 · Рукавички друга у вас. Скажіть йому «Твої рукавички в мене»**
+**17 · Брат питає, чий ключ лежить на столі. Ключ сестри. Відповідьте: «Ключ її»**
 <!-- interaction_id: en:lesson-05:session-18:i13; family: scripted_repeat_compare -->
-🎙 **I have your gloves.**
+🎙 **The key is hers.**
 
-**14 · Немає жодної коробки. Виберіть форму для множини**
+**18 · Каблучка належить вашому братові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-18:i14; family: context_gap_grammar -->
-There ___ no boxes. → **are** · is · am
-- is — *`boxes` — множина: `There are`.*
-- am — *`am` використовується з `I`; тут `There are`.*
+The ring is ___. → **his** · he · hers
+- he — *he — «він», а «його» без назви речі — his.*
+- hers — *hers — її, а каблучка брата: потрібно his.*
 
-**15 · Послухайте, кому належать рукавички**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-18:i15; family: listen_choose -->
-🔊 *The gloves are yours.* → **The gloves are yours.** · The gloves are mine. · The gloves are theirs.
-- The gloves are mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- The gloves are theirs. — *У записі останнє слово — `yours`, а в цьому варіанті — `theirs`.*
+🔊 *The razor is his.* → **The razor is his.** · The razor is hers. · The razor is mine.
+- The razor is hers. — *У записі останнє слово `his` — його, а в цьому варіанті `hers` — її.*
+- The razor is mine. — *У записі останнє слово `his` — його, а в цьому варіанті `mine` — моя.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-18:i16; family: speed_match -->
-gloves — рукавички · boxes — коробки · milk — молоко · pocket — кишеня
+perfume — парфуми · ring — каблучка · desk — робочий стіл · umbrella — парасолька
 
-**17 · Друг запитує, кому належать знайдені рукавички. Дайте відповідь «Рукавички мої»**
+**21 · Брат думає, що помада його. Помада належить сестрі. Скажіть йому: «Помада її»**
 <!-- interaction_id: en:lesson-05:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The gloves are mine.**
-
+🎙 **The lipstick is hers.**

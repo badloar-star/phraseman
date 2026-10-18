@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 19 — Планшет в рюкзаке
+# Английский · Урок 5 · Занятие 19 — Змей, пазл, ракетки
 
-**Ситуация.** Вы с другом встретились в кафе. Нужно найти планшет, убрать сумки и узнать, есть ли суп.
+**Ситуация.** На пляже, дома и на корте надо сказать, что вещь общая или чужая. Название не повторяем: The kite is ours, The puzzle is theirs, а вещей несколько — are.
 
-**Что вы освоите:** уточнить, где вещи и кому они принадлежат
-**Новые слова:** tablet
+**Что вы освоите:** сказать, чья вещь, одним словом без названия: ours (наш) и theirs (их)
+**Новые слова:** kite, puzzle, racket, football
+**Возвращаются:** table, bag, key, desk
 
 ---
 
 ## Интро 1
 
-### Планшет, не стол
+### Змей на песке
 
-`tablet` — «планшет», переносное устройство с экраном. `The tablet is mine` — «Планшет мой». `My tablet is in your backpack` — «Мой планшет в твоём рюкзаке». `my` стоит перед названием вещи, а `mine` заменяет «мой» вместе с подразумеваемой вещью. Планшет в рюкзаке друга: экран ваш, носит друг — удобное распределение обязанностей.
+Вы с сестрой пришли на пляж с воздушным змеем. Мальчик подбегает и спрашивает, чей змей лежит на песке. kite — «воздушный змей». Змей общий, ваш с сестрой, и после is ставим ours — «наш»: The kite is ours — «Змей наш». Название повторять не нужно.
 
-**Скажите «Планшет мой».**
+**Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему: «Змей наш».**
 
-- ✅ **The tablet is mine.**
-- ❌ The tablet is my. — *Без названия вещи нужна форма `mine`.*
-- ❌ The tablet is yours. — *`yours` — твой; мой — `mine`.*
+- ✅ **The kite is ours.**
+- ❌ The kite is our. — *После is одно our не ставят: без названия вещи нужно ours.*
+- ❌ The kite is theirs. — *theirs — их, а змей ваш с сестрой: нужно ours.*
 
 ---
 
 ## Интро 2
 
-### Вместе или одни
+### Пазл на полу
 
-`together` — «вместе», `alone` — «один / одни, без других», `nearby` — «рядом, поблизости». `We are together` — «Мы вместе». `I am alone` — «Я один / одна». `She is nearby` — «Она поблизости». `nearby` здесь используется самостоятельно; для «рядом с рюкзаком» подойдёт знакомое `next to the backpack`.
+У вас в гостиной на полу лежит большой пазл с кораблём, который собрали соседские дети. Сестра заходит с улицы и спрашивает, чей он. puzzle — «пазл». Дети — это «они», поэтому пазл их: после is ставим theirs — «их»: The puzzle is theirs — «Пазл их».
 
-**Друг спрашивает, далеко ли подруга. Она поблизости. Выберите фразу.**
+**Сестра спрашивает, чей пазл на полу. Его собрали соседские дети. Скажите ей: «Пазл их».**
 
-- ✅ **She is nearby.**
-- ❌ She are nearby. — *С `She` нужна форма `is`.*
-- ❌ She is alone. — *`alone` — одна; поблизости — `nearby`.*
+- ✅ **The puzzle is theirs.**
+- ❌ The puzzle is their. — *После is одно their не ставят: без названия вещи нужно theirs.*
+- ❌ The puzzle is ours. — *ours — наш, а пазл детей соседей: нужно theirs.*
 
 ---
 
 ## Интро 3
 
-### Сумки и обед
+### Две ракетки на корте
 
-`bags` — «сумки», `soup` — «суп», `backpack` — «рюкзак». `The bags are ours` — «Сумки наши». `Where is my tablet?` — «Где мой планшет?» `There is no soup` — «Супа нет»: здесь `soup` не считаем поштучно, поэтому `is`. `The backpack is hers` — «Рюкзак её»: `hers` указывает на владелицу без повторения названия вещи.
+Вы с другом утром пришли на теннисный корт. Тренер показывает две новые ракетки и спрашивает, чьи они. racket — «ракетка». Их две, поэтому are. Ракетки ваши общие, поэтому ours: The rackets are ours — «Ракетки наши». Для ракеток соседей сказали бы theirs.
 
-**Сумки принадлежат вам и другу. Скажите «Сумки наши».**
+**Тренер показывает две ракетки и спрашивает, чьи они. Они ваши с другом. Скажите ему: «Ракетки наши».**
 
-- ✅ **The bags are ours.**
-- ❌ The bags is ours. — *Несколько сумок: `bags are`.*
-- ❌ The bags are our. — *Без названия вещи нужна форма `ours`.*
+- ✅ **The rackets are ours.**
+- ❌ The rackets is ours. — *Ракеток две, поэтому нужно are, а не is.*
+- ❌ The rackets are theirs. — *theirs — их, а ракетки ваши с другом: нужно ours.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы с другом пришли вдвоём. Скажите «Мы вместе» без сокращения**
+**1 · Карточка слова — kite**
+<!-- interaction_id: en:lesson-05:session-19:word:kite; family: word_card -->
+> **kite** — воздушный змей. The kite is red. — «Змей красный». О лёгкой игрушке, которую запускают на верёвке в ветреный день.
+
+**2 · Мальчик на пляже спрашивает, чей змей. Он ваш с сестрой. Скажите ему полной фразой: «Змей наш»**
 <!-- interaction_id: en:lesson-05:session-19:i01; family: phrase_builder -->
-Плитки: `together` `are` `We` `is` → **We are together.**
-*(плитка `is` лишняя: здесь нужно `are` — `We are together.`)*
+Плитки: `kite` `is` `ours` `The` `our` → **The kite is ours.**
+*(плитка `our` лишняя: здесь нужно `ours` — `The kite is ours.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — puzzle**
+<!-- interaction_id: en:lesson-05:session-19:word:puzzle; family: word_card -->
+> **puzzle** — пазл. The puzzle is on the floor. — «Пазл на полу». О картинке из множества частей, которые нужно сложить.
+
+**4 · Послушайте сестру**
 <!-- interaction_id: en:lesson-05:session-19:i02; family: listen_choose -->
-🔊 *tablet* → **tablet** · table · backpack
-- table — *В записи первое слово — `tablet`, а в этом варианте — `table`.*
-- backpack — *В записи первое слово — `tablet`, а в этом варианте — `backpack`.*
+🔊 *The puzzle is theirs.* → **The puzzle is theirs.** · The puzzle is ours. · The puzzle is hers.
+- The puzzle is ours. — *В записи последнее слово `theirs` — их, а в этом варианте `ours` — наш.*
+- The puzzle is hers. — *В записи последнее слово `theirs` — их, а в этом варианте `hers` — её.*
 
-**3 · Назовите планшет — устройство с экраном**
+**5 · Карточка слова — racket**
+<!-- interaction_id: en:lesson-05:session-19:word:racket; family: word_card -->
+> **racket** — ракетка. The racket is here. — «Ракетка здесь». О предмете, которым бьют по мячу в теннисе.
+
+**6 · Предмет, которым бьют по мячу в теннисе. Как он называется по-английски?**
 <!-- interaction_id: en:lesson-05:session-19:i03; family: context_gap_grammar -->
-___ → **tablet** · table · charger
-- table — *`table` — стол; планшет — `tablet`.*
-- charger — *`charger` — зарядка; планшет — `tablet`.*
+___ → **racket** · kite · puzzle
+- kite — *kite — это воздушный змей, а предмет для тенниса называется racket.*
+- puzzle — *puzzle — это пазл, а предмет для тенниса называется racket.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-19:i04; family: speed_match -->
-tablet — планшет · together — вместе · alone — один, без других · nearby — поблизости
+kite — воздушный змей · puzzle — пазл · racket — ракетка · football — футбольный мяч
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — football**
+<!-- interaction_id: en:lesson-05:session-19:word:football; family: word_card -->
+> **football** — футбольный мяч. My football is here. — «Мой футбольный мяч здесь». О большом круглом мяче для игры ногами.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-19:i05; family: listen_build_dictation -->
-🔊 *My tablet is in your backpack.* Плитки: `backpack` `your` `in` `is` `tablet` `My` `are` → **My tablet is in your backpack.**
-*(плитка `are` лишняя: здесь нужно `is` — `My tablet is in your backpack.`)*
+🔊 *The football is ours.* Плитки: `football` `is` `ours` `The` `theirs` → **The football is ours.**
+*(плитка `theirs` лишняя: здесь нужно `ours` — `The football is ours.`)*
 
-**6 · Сумки принадлежат вам и другу. Скажите «Сумки наши»**
+**10 · Вы хотите уточнить у сестры, ваш ли с ней змей. Задайте вопрос полностью: «Змей наш?»**
 <!-- interaction_id: en:lesson-05:session-19:i06; family: phrase_builder -->
-Плитки: `ours` `are` `bags` `The` `is` → **The bags are ours.**
-*(плитка `is` лишняя: здесь нужно `are` — `The bags are ours.`)*
+Плитки: `kite` `ours` `the` `Is` `Are` → **Is the kite ours?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is the kite ours?`)*
 
-**7 · Вы сидите без компании. Скажите «Я один» без сокращения**
+**11 · Тренер спрашивает, чьи это ракетки. Они принадлежат соседям. Ответьте: «Ракетки их»**
 <!-- interaction_id: en:lesson-05:session-19:i07; family: scripted_repeat_compare -->
-🎙 **I am alone.**
+🎙 **The rackets are theirs.**
 
-**8 · Планшет принадлежит другу-мужчине. Скажите «Планшет его»**
+**12 · Футбольный мяч принадлежит соседским детям. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-19:i08; family: context_gap_grammar -->
-The tablet is ___. → **his** · hers · ours
-- hers — *`hers` — её; его — `his`.*
-- ours — *`ours` — наш; его — `his`.*
+The football is ___. → **theirs** · their · ours
+- their — *После is одно their не ставят: без названия вещи нужно theirs.*
+- ours — *ours — наш, а мяч соседских детей: нужно theirs.*
 
-**9 · Послушайте, что друг сообщает о подруге**
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-05:session-19:i09; family: listen_choose -->
-🔊 *She is nearby.* → **She is nearby.** · She is alone. · He is nearby.
-- She is alone. — *В записи последнее слово — `nearby`, а в этом варианте — `alone`.*
-- He is nearby. — *В записи первое слово — `She`, а в этом варианте — `He`.*
+🔊 *Are the rackets ours?* → **Are the rackets ours?** · Are the rackets theirs? · Is the racket ours?
+- Are the rackets theirs? — *В записи последнее слово `ours` — наши, а в этом варианте `theirs` — их.*
+- Is the racket ours? — *В записи ракеток несколько, поэтому `Are the rackets`, а в этом варианте одна: `Is the racket`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-19:i10; family: speed_match -->
-tablet — планшет · bags — сумки · soup — суп · backpack — рюкзак
+kite — воздушный змей · football — футбольный мяч · table — стол · bag — сумка
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте сестру и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-19:i11; family: listen_build_dictation -->
-🔊 *Where is my tablet?* Плитки: `tablet` `my` `is` `Where` → **Where is my tablet?**
+🔊 *The puzzle is not ours.* Плитки: `puzzle` `is` `not` `ours` `The` `theirs` → **The puzzle is not ours.**
+*(плитка `theirs` лишняя: здесь нужно `ours` — `The puzzle is not ours.`)*
 
-**12 · Суп закончился. Скажите «Супа нет»**
+**16 · Мальчик на пляже спрашивает, чья сумка лежит на песке. Она ваша с сестрой. Скажите полной фразой: «Сумка наша»**
 <!-- interaction_id: en:lesson-05:session-19:i12; family: phrase_builder -->
-Плитки: `soup` `no` `is` `There` `are` → **There is no soup.**
-*(плитка `are` лишняя: здесь нужно `is` — `There is no soup.`)*
+Плитки: `bag` `is` `ours` `The` `theirs` → **The bag is ours.**
+*(плитка `theirs` лишняя: здесь нужно `ours` — `The bag is ours.`)*
 
-**13 · Планшет друга у вас. Скажите ему «Твой планшет у меня»**
+**17 · Сестра спрашивает, чей пазл. Пазл ваш с братом. Ответьте: «Пазл наш»**
 <!-- interaction_id: en:lesson-05:session-19:i13; family: scripted_repeat_compare -->
-🎙 **I have your tablet.**
+🎙 **The puzzle is ours.**
 
-**14 · Рюкзак принадлежит подруге. Скажите «Рюкзак её»**
+**18 · Две ракетки принадлежат соседям. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-19:i14; family: context_gap_grammar -->
-The backpack is ___. → **hers** · her · theirs
-- her — *Без названия вещи нужна форма `hers`.*
-- theirs — *`theirs` — их; её — `hers`.*
+The rackets ___ theirs. → **are** · is · has
+- is — *Ракеток две, поэтому нужно are, а не is.*
+- has — *has значит «имеет», а для «ракетки их» нужно are.*
 
-**15 · Послушайте, кому принадлежит планшет**
+**19 · Послушайте тренера**
 <!-- interaction_id: en:lesson-05:session-19:i15; family: listen_choose -->
-🔊 *The tablet is yours.* → **The tablet is yours.** · The tablet is mine. · The tablet is theirs.
-- The tablet is mine. — *В записи последнее слово — `yours`, а в этом варианте — `mine`.*
-- The tablet is theirs. — *В записи последнее слово — `yours`, а в этом варианте — `theirs`.*
+🔊 *The football is ours.* → **The football is ours.** · The football is yours. · The kite is ours.
+- The football is yours. — *В записи последнее слово `ours` — наш, а в этом варианте `yours` — твой.*
+- The kite is ours. — *В записи говорят о футбольном мяче `football`, а в этом варианте — о змее `kite`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-19:i16; family: speed_match -->
-tablet — планшет · bags — сумки · soup — суп · backpack — рюкзак
+racket — ракетка · puzzle — пазл · desk — рабочий стол · key — ключ
 
-**17 · На столе нашли ваш планшет. Уточните «Планшет мой»**
+**21 · Мальчик берёт змей, который ваш с сестрой. Скажите ему: «Змей наш»**
 <!-- interaction_id: en:lesson-05:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The tablet is mine.**
-
+🎙 **The kite is ours.**

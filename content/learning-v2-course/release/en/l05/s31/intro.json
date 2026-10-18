@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-31",
   "learningOutcomeByLocale": {
-    "ru": "назвать владельца вещей и сравнить знакомые предметы",
-    "uk": "назвати власника речей і порівняти знайомі предмети"
+    "ru": "называть вещи животных через 's (the bird's cage) и не путать это с has и с its",
+    "uk": "називати речі тварин через 's (the bird's cage) і не плутати це з has та its"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Музыка с собой",
-        "uk": "Музика із собою"
+        "ru": "Клетка у окна",
+        "uk": "Клітка біля вікна"
       },
       "bodyByLocale": {
-        "ru": "`guitar` — «гитара». `This is Tom’s guitar` — «Это гитара Тома». `Anna’s guitar is here` — «Гитара Анны здесь». Имя владельца с `’s` ставим перед вещью. Гитара уже в сумке: пока это самый тихий участник встречи.",
-        "uk": "`guitar` — «гітара». `This is Tom’s guitar` — «Це гітара Тома». `Anna’s guitar is here` — «Гітара Анни тут». Ім’я власника з `’s` ставимо перед річчю. Гітара вже в сумці: поки це найтихіший учасник зустрічі."
+        "ru": "Двоюродная сестра уехала на выходные, и вы присматриваете за её животными, пока она в отъезде. Она звонит и спрашивает, где клетка птицы. cage — «клетка». Птица — the bird, и клетка её: the bird's cage. Она стоит у окна: The bird's cage is next to the window.",
+        "uk": "Двоюрідна сестра поїхала на вихідні, і ви доглядаєте за її тваринами, поки вона у від’їзді. Вона дзвонить і питає, де клітка птаха. cage — «клітка». Птах — the bird, і клітка його: the bird's cage. Вона стоїть біля вікна: The bird's cage is next to the window."
       },
       "question": {
         "interactionId": "en:lesson-05:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на гитару Тома.",
-          "uk": "Укажіть на гітару Тома."
+          "ru": "Двоюродная сестра звонит и спрашивает, где клетка птицы. Она у окна. Скажите ей: «Клетка птицы у окна».",
+          "uk": "Двоюрідна сестра дзвонить і питає, де клітка птаха. Вона біля вікна. Скажіть їй: «Клітка птаха біля вікна»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-31:intro1:r1",
-              "text": "This is Tom's guitar."
+              "text": "The bird's cage is next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r2",
-              "text": "This is Tom guitar."
+              "text": "The bird cage is next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r3",
-              "text": "This is Anna's guitar."
+              "text": "The bird's cage is next to the door."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-31:intro1:r1",
-              "text": "This is Tom's guitar."
+              "text": "The bird's cage is next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r2",
-              "text": "This is Tom guitar."
+              "text": "The bird cage is next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r3",
-              "text": "This is Anna's guitar."
+              "text": "The bird's cage is next to the door."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на гитару Тома.",
-          "uk": "Укажіть на гітару Тома."
+          "ru": "Двоюродная сестра звонит и спрашивает, где клетка птицы. Она у окна. Скажите ей: «Клетка птицы у окна».",
+          "uk": "Двоюрідна сестра дзвонить і питає, де клітка птаха. Вона біля вікна. Скажіть їй: «Клітка птаха біля вікна»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Равные, похожие, отдельные",
-        "uk": "Рівні, схожі, окремі"
+        "ru": "Зверёк в клетке",
+        "uk": "Звірятко в клітці"
       },
       "bodyByLocale": {
-        "ru": "`equal` — «равные», `similar` — «похожие», `separate` — «отдельные, раздельные». `The numbers are equal` — «Числа равны»: например, пять и пять. `The bags are similar` — «Сумки похожи»: не обязательно одинаковы во всём. `The rooms are separate` — «Комнаты отдельные»: это разные помещения. После множественного числа здесь нужно `are`.",
-        "uk": "`equal` — «рівні», `similar` — «схожі», `separate` — «окремі, роздільні». `The numbers are equal` — «Числа рівні»: наприклад, п’ять і п’ять. `The bags are similar` — «Сумки схожі»: не обов’язково однакові в усьому. `The rooms are separate` — «Кімнати окремі»: це різні приміщення. Після множини тут потрібне `are`."
+        "ru": "Подруга зашла в гости и удивилась: на столе в клетке шуршит маленький зверёк с большими щеками. hamster — «хомяк». Он живёт у вашей двоюродной сестры. О том, что животное у неё есть, говорим с has, без 's: My cousin has a hamster — «У моей двоюродной сестры есть хомяк».",
+        "uk": "Подруга зайшла в гості й здивувалася: на столі в клітці шурхотить маленьке звірятко з великими щоками. hamster — «хом’як». Він живе у вашої двоюрідної сестри. Про те, що тварина в неї є, кажемо з has, без 's: My cousin has a hamster — «У моєї двоюрідної сестри є хом’як»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи».",
-          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»."
+          "ru": "Подруга удивлена зверьком в клетке. Скажите ей, что хомяк живёт у вашей двоюродной сестры: «У моей двоюродной сестры есть хомяк».",
+          "uk": "Подруга здивована звірятком у клітці. Скажіть їй, що хом’як живе у вашої двоюрідної сестри: «У моєї двоюрідної сестри є хом’як»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-31:intro2:r1",
-              "text": "The bags are similar."
+              "text": "My cousin has a hamster."
             },
             {
               "responseId": "en:lesson-05:session-31:intro2:r2",
-              "text": "The bags is similar."
+              "text": "My cousin have a hamster."
             },
             {
               "responseId": "en:lesson-05:session-31:intro2:r3",
-              "text": "The bags are equal."
+              "text": "My cousin's a hamster."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-31:intro2:r1",
-              "text": "The bags are similar."
+              "text": "My cousin has a hamster."
             },
             {
               "responseId": "en:lesson-05:session-31:intro2:r2",
-              "text": "The bags is similar."
+              "text": "My cousin have a hamster."
             },
             {
               "responseId": "en:lesson-05:session-31:intro2:r3",
-              "text": "The bags are equal."
+              "text": "My cousin's a hamster."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи».",
-          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»."
+          "ru": "Подруга удивлена зверьком в клетке. Скажите ей, что хомяк живёт у вашей двоюродной сестры: «У моей двоюродной сестры есть хомяк».",
+          "uk": "Подруга здивована звірятком у клітці. Скажіть їй, що хом’як живе у вашої двоюрідної сестри: «У моєї двоюрідної сестри є хом’як»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Парк и стоянка",
-        "uk": "Парк і стоянка"
+        "ru": "Пустая миска",
+        "uk": "Порожня миска"
       },
       "bodyByLocale": {
-        "ru": "`parks` — «парки», `car park` — «автостоянка», `camera` — «камера». `The parks are open` — «Парки открыты». `Tom is in the car park` — «Том на автостоянке». `Anna’s camera is on the table` — «Камера Анны на столе». `Where is my guitar?` — «Где моя гитара?» Не путайте парк для прогулок и `car park` для машин.",
-        "uk": "`parks` — «парки», `car park` — «автостоянка», `camera` — «камера». `The parks are open` — «Парки відкриті». `Tom is in the car park` — «Том на автостоянці». `Anna’s camera is on the table` — «Камера Анни на столі». `Where is my guitar?` — «Де моя гітара?» Не плутайте парк для прогулянок і `car park` для машин."
+        "ru": "Вечером вы кормите животных. Кролик сидит возле пустой миски и смотрит на вас. rabbit — «кролик». Миска его, поэтому после rabbit добавляем 's: The rabbit's bowl is empty — «Миска кролика пустая». Скажите это двоюродной сестре, пока насыпаете корм.",
+        "uk": "Увечері ви годуєте тварин. Кролик сидить біля порожньої миски й дивиться на вас. rabbit — «кролик». Миска його, тому після rabbit додаємо 's: The rabbit's bowl is empty — «Миска кролика порожня». Скажіть це двоюрідній сестрі, поки насипаєте корм."
       },
       "question": {
         "interactionId": "en:lesson-05:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Том ждёт на автостоянке. Выберите фразу.",
-          "uk": "Том чекає на автостоянці. Виберіть фразу."
+          "ru": "Кролик сидит у пустой миски. Скажите двоюродной сестре по телефону: «Миска кролика пустая».",
+          "uk": "Кролик сидить біля порожньої миски. Скажіть двоюрідній сестрі по телефону: «Миска кролика порожня»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-31:intro3:r1",
-              "text": "Tom is in the car park."
+              "text": "The rabbit's bowl is empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r2",
-              "text": "Tom are in the car park."
+              "text": "The rabbit bowl is empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r3",
-              "text": "Tom is in the park."
+              "text": "The rabbit's bowl are empty."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-31:intro3:r1",
-              "text": "Tom is in the car park."
+              "text": "The rabbit's bowl is empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r2",
-              "text": "Tom are in the car park."
+              "text": "The rabbit bowl is empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r3",
-              "text": "Tom is in the park."
+              "text": "The rabbit's bowl are empty."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Том ждёт на автостоянке. Выберите фразу.",
-          "uk": "Том чекає на автостоянці. Виберіть фразу."
+          "ru": "Кролик сидит у пустой миски. Скажите двоюродной сестре по телефону: «Миска кролика пустая».",
+          "uk": "Кролик сидить біля порожньої миски. Скажіть двоюрідній сестрі по телефону: «Миска кролика порожня»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "567d212d7c731ee7afe8fb2aab18576395c5caad25defa88d0d21affb4722de5"
+  "introFingerprint": "fbe6b9a05503f429432165f92f120c07f4477ca28f86cda1b9d0736ada5e8024"
 }

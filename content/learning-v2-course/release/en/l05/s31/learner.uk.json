@@ -4,40 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-31:i01",
+      "interactionId": "en:lesson-05:session-31:word:cage",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:word:cage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:word:cage:audio",
+          "transcript": "cage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:word:cage:r1",
+            "targetText": "cage",
+            "meaningByLocale": {
+              "ru": "клетка. The bird's cage is small. — «Клетка птицы маленькая». О клетке, в которой живёт птица или маленький зверёк.",
+              "uk": "клітка. The bird's cage is small. — «Клітка птаха маленька». Про клітку, у якій живе птах або маленьке звірятко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cage",
+          "definitionByLocale": {
+            "ru": "клетка. The bird's cage is small. — «Клетка птицы маленькая». О клетке, в которой живёт птица или маленький зверёк.",
+            "uk": "клітка. The bird's cage is small. — «Клітка птаха маленька». Про клітку, у якій живе птах або маленьке звірятко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сумки схожі одна на одну. Скажіть «Сумки схожі»",
+      "prompt": "Двоюрідна сестра питає, де клітка птаха. Вона на столі. Скажіть: «Клітка птаха на столі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумки схожі одна на одну. Скажіть «Сумки схожі»",
+      "accessibilityLabel": "Двоюрідна сестра питає, де клітка птаха. Вона на столі. Скажіть: «Клітка птаха на столі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bags are similar.",
+        "targetPhrase": "The bird's cage is on the table.",
         "localizedMeaning": {
-          "ru": "Сумки похожи друг на друга. Скажите «Сумки похожи»",
-          "uk": "Сумки схожі одна на одну. Скажіть «Сумки схожі»"
+          "ru": "Двоюродная сестра спрашивает, где клетка птицы. Она на столе. Скажите: «Клетка птицы на столе»",
+          "uk": "Двоюрідна сестра питає, де клітка птаха. Вона на столі. Скажіть: «Клітка птаха на столі»"
         },
         "orderedTokens": [
           "The",
-          "bags",
-          "are",
-          "similar"
+          "bird's",
+          "cage",
+          "is",
+          "on",
+          "the",
+          "table"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "bird"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Сумки схожі одна на одну. Скажіть «Сумки схожі»",
+            "testedDimension": "Двоюрідна сестра питає, де клітка птаха. Вона на столі. Скажіть: «Клітка птаха на столі»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bags are similar.`",
-              "uk": "тут потрібно `are` — `The bags are similar.`"
+              "ru": "здесь нужно `bird's` — `The bird's cage is on the table.`",
+              "uk": "тут потрібно `bird's` — `The bird's cage is on the table.`"
             }
           }
         ],
@@ -49,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-31:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-31:word:hamster",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — hamster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:word:hamster:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hamster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:word:hamster:audio",
+          "transcript": "hamster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:word:hamster:r1",
+            "targetText": "hamster",
+            "meaningByLocale": {
+              "ru": "хомяк. My cousin's hamster is small. — «Хомяк моей двоюродной сестры маленький». О маленьком пушистом зверьке с большими щеками.",
+              "uk": "хом’як. My cousin's hamster is small. — «Хом’як моєї двоюрідної сестри маленький». Про маленьке пухнасте звірятко з великими щоками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hamster",
+          "definitionByLocale": {
+            "ru": "хомяк. My cousin's hamster is small. — «Хомяк моей двоюродной сестры маленький». О маленьком пушистом зверьке с большими щеками.",
+            "uk": "хом’як. My cousin's hamster is small. — «Хом’як моєї двоюрідної сестри маленький». Про маленьке пухнасте звірятко з великими щоками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-31:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте двоюрідну сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i02:r1",
-          "text": "guitar"
+          "text": "My cousin has a hamster."
         },
         {
           "responseId": "en:lesson-05:session-31:i02:r2",
-          "text": "camera"
+          "text": "My cousin has a bird."
         },
         {
           "responseId": "en:lesson-05:session-31:i02:r3",
-          "text": "tablet"
+          "text": "My brother has a hamster."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте двоюрідну сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i02:audio",
-          "transcript": "guitar"
+          "transcript": "My cousin has a hamster."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-31:i02:r1",
-            "targetText": "guitar",
+            "targetText": "My cousin has a hamster.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i02:r2",
-            "targetText": "camera",
+            "targetText": "My cousin has a bird.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i02:r3",
-            "targetText": "tablet",
+            "targetText": "My brother has a hamster.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-31:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `guitar`, а в этом варианте — `camera`.",
-              "uk": "У записі перше слово — `guitar`, а в цьому варіанті — `camera`."
+              "ru": "В записи последнее слово — `hamster`, а в этом варианте — `bird`, птица.",
+              "uk": "У записі останнє слово — `hamster`, а в цьому варіанті — `bird`, птах."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `guitar`, а в этом варианте — `tablet`.",
-              "uk": "У записі перше слово — `guitar`, а в цьому варіанті — `tablet`."
+              "ru": "В записи животное у двоюродной сестры, `cousin`, а в этом варианте — у брата, `brother`.",
+              "uk": "У записі тварина у двоюрідної сестри, `cousin`, а в цьому варіанті — у брата, `brother`."
             }
           }
         ],
@@ -125,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-31:word:rabbit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rabbit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:word:rabbit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rabbit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:word:rabbit:audio",
+          "transcript": "rabbit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:word:rabbit:r1",
+            "targetText": "rabbit",
+            "meaningByLocale": {
+              "ru": "кролик. This is my brother's rabbit. — «Это кролик моего брата». О пушистом зверьке с длинными ушами.",
+              "uk": "кролик. This is my brother's rabbit. — «Це кролик мого брата». Про пухнасте звірятко з довгими вухами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rabbit",
+          "definitionByLocale": {
+            "ru": "кролик. This is my brother's rabbit. — «Это кролик моего брата». О пушистом зверьке с длинными ушами.",
+            "uk": "кролик. This is my brother's rabbit. — «Це кролик мого брата». Про пухнасте звірятко з довгими вухами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-31:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть гітару",
+      "prompt": "Миска належить кролику. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i03:r1",
-          "text": "guitar"
+          "text": "rabbit's"
         },
         {
           "responseId": "en:lesson-05:session-31:i03:r2",
-          "text": "camera"
+          "text": "rabbit"
         },
         {
           "responseId": "en:lesson-05:session-31:i03:r3",
-          "text": "headphones"
+          "text": "rabbits"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть гітару",
+      "accessibilityLabel": "Миска належить кролику. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите гитару",
-          "uk": "Назвіть гітару"
+          "ru": "Миска принадлежит кролику. Выберите слово",
+          "uk": "Миска належить кролику. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "This is the ___ bowl.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-31:i03:r1",
-            "text": "guitar"
+            "text": "rabbit's"
           },
           {
             "responseId": "en:lesson-05:session-31:i03:r2",
-            "text": "camera"
+            "text": "rabbit"
           },
           {
             "responseId": "en:lesson-05:session-31:i03:r3",
-            "text": "headphones"
+            "text": "rabbits"
           }
         ],
-        "testedDimension": "Назвіть гітару",
+        "testedDimension": "Миска належить кролику. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть гітару",
+            "testedDimension": "Миска належить кролику. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`camera` — камера; гитара — `guitar`.",
-              "uk": "`camera` — камера; гітара — `guitar`."
+              "ru": "После слова rabbit нужно `'s`: `rabbit's bowl` — «миска кролика».",
+              "uk": "Після слова rabbit потрібно `'s`: `rabbit's bowl` — «миска кролика»."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть гітару",
+            "testedDimension": "Миска належить кролику. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`headphones` — наушники; гитара — `guitar`.",
-              "uk": "`headphones` — навушники; гітара — `guitar`."
+              "ru": "`rabbits` — это «кролики», несколько животных; чтобы назвать хозяина, нужно `rabbit's`.",
+              "uk": "`rabbits` — це «кролики», кілька тварин; щоб назвати господаря, потрібно `rabbit's`."
             }
           }
         ]
@@ -195,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-31:i04:p1",
-            "target": "guitar",
+            "target": "cage",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "клетка",
+              "uk": "клітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i04:p2",
-            "target": "equal",
+            "target": "hamster",
             "meaningByLocale": {
-              "ru": "равные",
-              "uk": "рівні"
+              "ru": "хомяк",
+              "uk": "хом’як"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i04:p3",
-            "target": "similar",
+            "target": "rabbit",
             "meaningByLocale": {
-              "ru": "похожие",
-              "uk": "схожі"
+              "ru": "кролик",
+              "uk": "кролик"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i04:p4",
-            "target": "separate",
+            "target": "aquarium",
             "meaningByLocale": {
-              "ru": "отдельные",
-              "uk": "окремі"
+              "ru": "аквариум",
+              "uk": "акваріум"
             }
           }
         ],
         "leftColumn": [
-          "guitar",
-          "equal",
-          "similar",
-          "separate"
+          "cage",
+          "hamster",
+          "rabbit",
+          "aquarium"
         ],
         "rightColumn": [
-          "гітара",
-          "рівні",
-          "схожі",
-          "окремі"
+          "клітка",
+          "хом’як",
+          "кролик",
+          "акваріум"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,31 +399,78 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-31:word:aquarium",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — aquarium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-31:word:aquarium:audio"
+      ],
+      "accessibilityLabel": "Картка слова — aquarium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-31:word:aquarium:audio",
+          "transcript": "aquarium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-31:word:aquarium:r1",
+            "targetText": "aquarium",
+            "meaningByLocale": {
+              "ru": "аквариум. My cousin's aquarium is big. — «Аквариум моей двоюродной сестры большой». О стеклянном ящике с водой, в котором живут рыбки.",
+              "uk": "акваріум. My cousin's aquarium is big. — «Акваріум моєї двоюрідної сестри великий». Про скляну скриню з водою, у якій живуть рибки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aquarium",
+          "definitionByLocale": {
+            "ru": "аквариум. My cousin's aquarium is big. — «Аквариум моей двоюродной сестры большой». О стеклянном ящике с водой, в котором живут рыбки.",
+            "uk": "акваріум. My cousin's aquarium is big. — «Акваріум моєї двоюрідної сестри великий». Про скляну скриню з водою, у якій живуть рибки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-31:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте двоюрідну сестру й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте двоюрідну сестру й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i05:audio",
-          "transcript": "This is Tom's guitar."
+          "transcript": "My cousin's aquarium is next to the sofa."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is Tom's guitar.",
+        "hiddenTargetPhrase": "My cousin's aquarium is next to the sofa.",
         "orderedTokens": [
-          "This",
+          "My",
+          "cousin's",
+          "aquarium",
           "is",
-          "Tom's",
-          "guitar"
+          "next",
+          "to",
+          "the",
+          "sofa"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -300,10 +479,10 @@
           {
             "responseId": "en:lesson-05:session-31:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте двоюрідну сестру й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is Tom's guitar.`",
-              "uk": "тут потрібно `is` — `This is Tom's guitar.`"
+              "ru": "здесь нужно `is` — `My cousin's aquarium is next to the sofa.`",
+              "uk": "тут потрібно `is` — `My cousin's aquarium is next to the sofa.`"
             }
           }
         ],
@@ -316,41 +495,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Камера Анни на столі»",
+      "prompt": "Ви знайшли клітку й питаєте двоюрідного брата, чи не кролика вона. Задайте питання: «Це клітка кролика?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Камера Анни на столі»",
+      "accessibilityLabel": "Ви знайшли клітку й питаєте двоюрідного брата, чи не кролика вона. Задайте питання: «Це клітка кролика?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Anna's camera is on the table.",
+        "targetPhrase": "Is this the rabbit's cage?",
         "localizedMeaning": {
-          "ru": "Скажите «Камера Анны на столе»",
-          "uk": "Скажіть «Камера Анни на столі»"
+          "ru": "Вы нашли клетку и спрашиваете двоюродного брата, не кролика ли она. Задайте вопрос: «Это клетка кролика?»",
+          "uk": "Ви знайшли клітку й питаєте двоюрідного брата, чи не кролика вона. Задайте питання: «Це клітка кролика?»"
         },
         "orderedTokens": [
-          "Anna's",
-          "camera",
-          "is",
-          "on",
+          "Is",
+          "this",
           "the",
-          "table"
+          "rabbit's",
+          "cage"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Камера Анни на столі»",
+            "testedDimension": "Ви знайшли клітку й питаєте двоюрідного брата, чи не кролика вона. Задайте питання: «Це клітка кролика?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna's camera is on the table.`",
-              "uk": "тут потрібно `is` — `Anna's camera is on the table.`"
+              "ru": "здесь нужно `Is` — `Is this the rabbit's cage?`",
+              "uk": "тут потрібно `Is` — `Is this the rabbit's cage?`"
             }
           }
         ],
@@ -363,25 +541,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед вами два однакові числа. Скажіть «Числа рівні»",
+      "prompt": "Подруга питає, чия клітка біля вікна. Вона хом’яка. Скажіть: «Це клітка хом’яка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i07:audio"
       ],
-      "accessibilityLabel": "Перед вами два однакові числа. Скажіть «Числа рівні»",
+      "accessibilityLabel": "Подруга питає, чия клітка біля вікна. Вона хом’яка. Скажіть: «Це клітка хом’яка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i07:audio",
-          "transcript": "The numbers are equal."
+          "transcript": "This is the hamster's cage."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The numbers are equal.",
+        "targetPhrase": "This is the hamster's cage.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,67 +574,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Гітара належить Анні. Укажіть власницю",
+      "prompt": "Морква лежить у мисці кролика. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i08:r1",
-          "text": "Anna's"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-31:i08:r2",
-          "text": "Anna"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-31:i08:r3",
-          "text": "Tom's"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гітара належить Анні. Укажіть власницю",
+      "accessibilityLabel": "Морква лежить у мисці кролика. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Гитара принадлежит Анне. Укажите владельца",
-          "uk": "Гітара належить Анні. Укажіть власницю"
+          "ru": "Морковь лежит в миске кролика. Выберите слово",
+          "uk": "Морква лежить у мисці кролика. Виберіть слово"
         },
-        "gappedTargetPhrase": "This is ___ guitar.",
+        "gappedTargetPhrase": "The rabbit's carrots ___ in the bowl.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-31:i08:r1",
-            "text": "Anna's"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-31:i08:r2",
-            "text": "Anna"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-31:i08:r3",
-            "text": "Tom's"
+            "text": "has"
           }
         ],
-        "testedDimension": "Гітара належить Анні. Укажіть власницю",
+        "testedDimension": "Морква лежить у мисці кролика. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Гітара належить Анні. Укажіть власницю",
+            "testedDimension": "Морква лежить у мисці кролика. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
-              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+              "ru": "Морковок несколько, поэтому нужно `are`, а не `is`.",
+              "uk": "Морквин кілька, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Гітара належить Анні. Укажіть власницю",
+            "testedDimension": "Морква лежить у мисці кролика. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Это принадлежность Тому; здесь владелица Анна.",
-              "uk": "Це належність Тому; тут власниця Анна."
+              "ru": "`has` значит «иметь», а здесь мы говорим, где лежит морковь: нужно `are`.",
+              "uk": "`has` означає «мати», а тут ми кажемо, де лежить морква: потрібно `are`."
             }
           }
         ]
@@ -465,51 +643,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг повідомляє про кімнати",
+      "prompt": "Послухайте двоюрідну сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i09:r1",
-          "text": "The rooms are separate."
+          "text": "Where is the hamster's cage?"
         },
         {
           "responseId": "en:lesson-05:session-31:i09:r2",
-          "text": "The rooms are similar."
+          "text": "Where is the rabbit's cage?"
         },
         {
           "responseId": "en:lesson-05:session-31:i09:r3",
-          "text": "The rooms are open."
+          "text": "Where is the hamster's bowl?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг повідомляє про кімнати",
+      "accessibilityLabel": "Послухайте двоюрідну сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i09:audio",
-          "transcript": "The rooms are separate."
+          "transcript": "Where is the hamster's cage?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-31:i09:r1",
-            "targetText": "The rooms are separate.",
+            "targetText": "Where is the hamster's cage?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i09:r2",
-            "targetText": "The rooms are similar.",
+            "targetText": "Where is the rabbit's cage?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i09:r3",
-            "targetText": "The rooms are open.",
+            "targetText": "Where is the hamster's bowl?",
             "meaningByLocale": null
           }
         ],
@@ -518,19 +696,19 @@
           {
             "responseId": "en:lesson-05:session-31:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про кімнати",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `separate`, а в этом варианте — `similar`.",
-              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `similar`."
+              "ru": "В записи хозяин — `hamster's`, хомяк, а в этом варианте — `rabbit's`, кролик.",
+              "uk": "У записі господар — `hamster's`, хом’як, а в цьому варіанті — `rabbit's`, кролик."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про кімнати",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `separate`, а в этом варианте — `open`.",
-              "uk": "У записі останнє слово — `separate`, а в цьому варіанті — `open`."
+              "ru": "В записи последнее слово — `cage`, клетка, а в этом варианте — `bowl`, миска.",
+              "uk": "У записі останнє слово — `cage`, клітка, а в цьому варіанті — `bowl`, миска."
             }
           }
         ],
@@ -541,8 +719,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -555,48 +733,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-31:i10:p1",
-            "target": "guitar",
+            "target": "hamster",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "хомяк",
+              "uk": "хом’як"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i10:p2",
-            "target": "parks",
+            "target": "rabbit",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "кролик",
+              "uk": "кролик"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i10:p3",
-            "target": "car park",
+            "target": "bowl",
             "meaningByLocale": {
-              "ru": "автостоянка",
-              "uk": "автостоянка"
+              "ru": "миска",
+              "uk": "миска"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i10:p4",
-            "target": "camera",
+            "target": "cage",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "клетка",
+              "uk": "клітка"
             }
           }
         ],
         "leftColumn": [
-          "guitar",
-          "parks",
-          "car park",
-          "camera"
+          "hamster",
+          "rabbit",
+          "bowl",
+          "cage"
         ],
         "rightColumn": [
-          "гітара",
-          "парки",
-          "автостоянка",
-          "камера"
+          "хом’як",
+          "кролик",
+          "миска",
+          "клітка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,32 +792,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте двоюрідну сестру й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте двоюрідну сестру й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i11:audio",
-          "transcript": "Tom is in the car park."
+          "transcript": "The rabbit's bowl is under the table."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom is in the car park.",
+        "hiddenTargetPhrase": "The rabbit's bowl is under the table.",
         "orderedTokens": [
-          "Tom",
+          "The",
+          "rabbit's",
+          "bowl",
           "is",
-          "in",
+          "under",
           "the",
-          "car",
-          "park"
+          "table"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -648,10 +827,10 @@
           {
             "responseId": "en:lesson-05:session-31:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте двоюрідну сестру й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom is in the car park.`",
-              "uk": "тут потрібно `is` — `Tom is in the car park.`"
+              "ru": "здесь нужно `is` — `The rabbit's bowl is under the table.`",
+              "uk": "тут потрібно `is` — `The rabbit's bowl is under the table.`"
             }
           }
         ],
@@ -664,39 +843,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "До парків можна зайти. Скажіть «Парки відкриті»",
+      "prompt": "У вашої двоюрідної сестри є кролик. Скажіть подрузі: «У моєї двоюрідної сестри є кролик»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "До парків можна зайти. Скажіть «Парки відкриті»",
+      "accessibilityLabel": "У вашої двоюрідної сестри є кролик. Скажіть подрузі: «У моєї двоюрідної сестри є кролик»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The parks are open.",
+        "targetPhrase": "My cousin has a rabbit.",
         "localizedMeaning": {
-          "ru": "В парки можно войти. Скажите «Парки открыты»",
-          "uk": "До парків можна зайти. Скажіть «Парки відкриті»"
+          "ru": "У вашей двоюродной сестры есть кролик. Скажите подруге: «У моей двоюродной сестры есть кролик»",
+          "uk": "У вашої двоюрідної сестри є кролик. Скажіть подрузі: «У моєї двоюрідної сестри є кролик»"
         },
         "orderedTokens": [
-          "The",
-          "parks",
-          "are",
-          "open"
+          "My",
+          "cousin",
+          "has",
+          "a",
+          "rabbit"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i12:tile:d1",
             "correct": false,
-            "testedDimension": "До парків можна зайти. Скажіть «Парки відкриті»",
+            "testedDimension": "У вашої двоюрідної сестри є кролик. Скажіть подрузі: «У моєї двоюрідної сестри є кролик»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The parks are open.`",
-              "uk": "тут потрібно `are` — `The parks are open.`"
+              "ru": "здесь нужно `has` — `My cousin has a rabbit.`",
+              "uk": "тут потрібно `has` — `My cousin has a rabbit.`"
             }
           }
         ],
@@ -709,25 +889,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви шукаєте свою гітару. Запитайте «Де моя гітара?»",
+      "prompt": "Двоюрідна сестра шукає миску хом’яка. Вона у вас. Скажіть їй: «У мене миска хом’яка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i13:audio"
       ],
-      "accessibilityLabel": "Ви шукаєте свою гітару. Запитайте «Де моя гітара?»",
+      "accessibilityLabel": "Двоюрідна сестра шукає миску хом’яка. Вона у вас. Скажіть їй: «У мене миска хом’яка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i13:audio",
-          "transcript": "Where is my guitar?"
+          "transcript": "I have the hamster's bowl."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my guitar?",
+        "targetPhrase": "I have the hamster's bowl.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -742,67 +922,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Камера належить подрузі. Скажіть «Камера її»",
+      "prompt": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i14:r1",
-          "text": "hers"
+          "text": "its"
         },
         {
           "responseId": "en:lesson-05:session-31:i14:r2",
-          "text": "her"
+          "text": "it's"
         },
         {
           "responseId": "en:lesson-05:session-31:i14:r3",
-          "text": "his"
+          "text": "my"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Камера належить подрузі. Скажіть «Камера її»",
+      "accessibilityLabel": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Камера принадлежит подруге. Скажите «Камера её»",
-          "uk": "Камера належить подрузі. Скажіть «Камера її»"
+          "ru": "Хомяк маленький, и клетка у него тоже маленькая. Выберите слово",
+          "uk": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово"
         },
-        "gappedTargetPhrase": "The camera is ___.",
+        "gappedTargetPhrase": "The hamster is small and ___ cage is small.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-31:i14:r1",
-            "text": "hers"
+            "text": "its"
           },
           {
             "responseId": "en:lesson-05:session-31:i14:r2",
-            "text": "her"
+            "text": "it's"
           },
           {
             "responseId": "en:lesson-05:session-31:i14:r3",
-            "text": "his"
+            "text": "my"
           }
         ],
-        "testedDimension": "Камера належить подрузі. Скажіть «Камера її»",
+        "testedDimension": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-31:i14:r2",
             "correct": false,
-            "testedDimension": "Камера належить подрузі. Скажіть «Камера її»",
+            "testedDimension": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "`it's` — это it is; перед клеткой нужно `its` без апострофа.",
+              "uk": "`it's` — це it is; перед кліткою потрібно `its` без апострофа."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i14:r3",
             "correct": false,
-            "testedDimension": "Камера належить подрузі. Скажіть «Камера її»",
+            "testedDimension": "Хом’як маленький, і клітка в нього теж маленька. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`his` — его; её — `hers`.",
-              "uk": "`his` — його; її — `hers`."
+              "ru": "`my` — «моя», а клетка принадлежит хомяку: нужно `its`.",
+              "uk": "`my` — «моя», а клітка належить хом’якові: потрібно `its`."
             }
           }
         ]
@@ -811,51 +991,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чия гітара тут",
+      "prompt": "Послухайте двоюрідну сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-31:i15:r1",
-          "text": "Your guitar is here."
+          "text": "The hamster's cage is behind the sofa."
         },
         {
           "responseId": "en:lesson-05:session-31:i15:r2",
-          "text": "My guitar is here."
+          "text": "The hamster's cage is under the sofa."
         },
         {
           "responseId": "en:lesson-05:session-31:i15:r3",
-          "text": "His guitar is here."
+          "text": "The rabbit's cage is behind the sofa."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чия гітара тут",
+      "accessibilityLabel": "Послухайте двоюрідну сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i15:audio",
-          "transcript": "Your guitar is here."
+          "transcript": "The hamster's cage is behind the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-31:i15:r1",
-            "targetText": "Your guitar is here.",
+            "targetText": "The hamster's cage is behind the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i15:r2",
-            "targetText": "My guitar is here.",
+            "targetText": "The hamster's cage is under the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-31:i15:r3",
-            "targetText": "His guitar is here.",
+            "targetText": "The rabbit's cage is behind the sofa.",
             "meaningByLocale": null
           }
         ],
@@ -864,19 +1044,19 @@
           {
             "responseId": "en:lesson-05:session-31:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чия гітара тут",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи последнее слово — `behind`, «за», а в этом варианте — `under`, «под».",
+              "uk": "У записі слово місця — `behind`, «за», а в цьому варіанті — `under`, «під»."
             }
           },
           {
             "responseId": "en:lesson-05:session-31:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чия гітара тут",
+            "testedDimension": "Послухайте двоюрідну сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи хозяин — `hamster's`, хомяк, а в этом варианте — `rabbit's`, кролик.",
+              "uk": "У записі господар — `hamster's`, хом’як, а в цьому варіанті — `rabbit's`, кролик."
             }
           }
         ],
@@ -887,7 +1067,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -901,48 +1081,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-31:i16:p1",
-            "target": "guitar",
+            "target": "cage",
             "meaningByLocale": {
-              "ru": "гитара",
-              "uk": "гітара"
+              "ru": "клетка",
+              "uk": "клітка"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i16:p2",
-            "target": "parks",
+            "target": "hamster",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "хомяк",
+              "uk": "хом’як"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i16:p3",
-            "target": "car park",
+            "target": "rabbit",
             "meaningByLocale": {
-              "ru": "автостоянка",
-              "uk": "автостоянка"
+              "ru": "кролик",
+              "uk": "кролик"
             }
           },
           {
             "pairId": "en:lesson-05:session-31:i16:p4",
-            "target": "camera",
+            "target": "aquarium",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "аквариум",
+              "uk": "акваріум"
             }
           }
         ],
         "leftColumn": [
-          "guitar",
-          "parks",
-          "car park",
-          "camera"
+          "cage",
+          "hamster",
+          "rabbit",
+          "aquarium"
         ],
         "rightColumn": [
-          "гітара",
-          "парки",
-          "автостоянка",
-          "камера"
+          "клітка",
+          "хом’як",
+          "кролик",
+          "акваріум"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -960,25 +1140,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує про власника гітари. Вона належить Тому. Скажіть «Це гітара Тома»",
+      "prompt": "Подруга питає, чий акваріум стоїть біля стіни. Він вашої двоюрідної сестри. Скажіть: «Це акваріум моєї двоюрідної сестри»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує про власника гітари. Вона належить Тому. Скажіть «Це гітара Тома»",
+      "accessibilityLabel": "Подруга питає, чий акваріум стоїть біля стіни. Він вашої двоюрідної сестри. Скажіть: «Це акваріум моєї двоюрідної сестри»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-31:i17:audio",
-          "transcript": "This is Tom's guitar."
+          "transcript": "This is my cousin's aquarium."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is Tom's guitar.",
+        "targetPhrase": "This is my cousin's aquarium.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1000,11 +1180,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "257250037ec736d4532d5bfe006ef626faaef8fd35f01f3c715bf2d5c62153c1"
+  "learnerFingerprint": "e113facc184d0faec0cf50608300385fa3b3699a9ea7856cc33e38b97f0633b6"
 }

@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 30 — Наушники перед прогулкой
+# Английский · Урок 5 · Занятие 30 — Забытые вещи в гостинице
 
-**Ситуация.** Анна и Том собираются выйти из дома. Наушники куда-то делись, ботинки стоят у двери. За окном видны деревья и указатель.
+**Ситуация.** Вы подменяете подругу на стойке гостиницы. Туристы вернулись с экскурсии, и нужно найти забытые вещи и отдать каждую хозяину.
 
-**Что вы освоите:** назвать владельца вещей и сообщить об их отсутствии
-**Новые слова:** headphones
+**Что вы освоите:** называть хозяина через 's и в паре вещей: the tourist's mittens are on the desk
+**Новые слова:** mittens, hoodie, sneakers, lanyard
+**Возвращаются:** guest, tourist, instructor, desk, chair, bag, hall, jacket, hat, coat, gym
 
 ---
 
 ## Интро 1
 
-### Наушники — are
+### Варежки на стойке
 
-`headphones` — «наушники». В английском это множественное число: `The headphones are mine` — «Наушники мои». `These are Anna’s headphones` — «Это наушники Анны»: владелица одна, но наушники требуют `are`. `Tom’s headphones are here` — «Наушники Тома здесь». Наушники не слышат, как их зовут: искать всё равно придётся глазами.
+Вы дежурите на стойке. Турист вернулся в гостиницу с прогулки по снегу, руки у него замёрзли, и он ищет варежки. mittens — «варежки», это пара, поэтому are. Они лежат на стойке: The tourist's mittens are on the desk — «Варежки туриста на стойке».
 
-**Укажите на наушники Анны.**
+**Турист ищет варежки. Они лежат на стойке. Скажите ему: «Варежки туриста на стойке».**
 
-- ✅ **These are Anna's headphones.**
-- ❌ These is Anna's headphones. — *С `These` и множественным `headphones` нужно `are`.*
-- ❌ These are Anna headphones. — *К имени владельца добавляем `’s`: `Anna’s headphones`.*
+- ✅ **The tourist's mittens are on the desk.**
+- ❌ The tourist's mittens is on the desk. — *Варежки — пара, поэтому нужно are, а не is.*
+- ❌ The tourist mittens are on the desk. — *После слова tourist нужно 's: the tourist's mittens.*
 
 ---
 
 ## Интро 2
 
-### Живое и пропавшее
+### Чужая толстовка
 
-`alive` — «живой», `dead` — «мёртвый», `missing` — «пропавший, отсутствующий». `The tree is alive` — «Дерево живо». `The tree is dead` — «Дерево погибло»: речь о его нынешнем состоянии. `My headphones are missing` — «Мои наушники пропали»: их нет на месте, но это не значит, что они сломаны.
+В холле гостиницы на стуле висит толстовка с капюшоном. hoodie — «толстовка с капюшоном». Стул занимает турист, но толстовка не его, а гостя из соседнего номера. Подруга просит объяснить: The guest's hoodie is on the tourist's chair. Здесь два хозяина.
 
-**Наушники не удаётся найти. Скажите «Мои наушники пропали».**
+**Толстовка висит на стуле туриста, но она гостя. Скажите подруге: «Толстовка гостя на стуле туриста».**
 
-- ✅ **My headphones are missing.**
-- ❌ My headphones is missing. — *`headphones` — множественное число: `are`.*
-- ❌ My headphones are here. — *Это «Мои наушники здесь»; пропали — `are missing`.*
+- ✅ **The guest's hoodie is on the tourist's chair.**
+- ❌ The guest hoodie is on the tourist's chair. — *После слова guest нужно 's: the guest's hoodie.*
+- ❌ The guest's hoodie is on the guest's chair. — *Стул занимает турист, а не гость: нужно tourist's.*
 
 ---
 
 ## Интро 3
 
-### Окна, указатель и ботинки
+### Кроссовки в спортзале
 
-`windows` — «окна», `signpost` — «указатель», `boots` — «ботинки». `The windows are open` — «Окна открыты». `Tom’s boots are next to the door` — «Ботинки Тома рядом с дверью». `Anna is next to the signpost` — «Анна рядом с указателем». `Where are my headphones?` — «Где мои наушники?»
+После утренней зарядки для гостей в спортзале гостиницы остались кроссовки. sneakers — «кроссовки», это пара. Вы спрашиваете инструктора, не гостя ли они: Are these the guest's sneakers? — «Это кроссовки гостя?» Вопрос начинаем с Are, потому что кроссовок две.
 
-**Окна открыты. Выберите фразу.**
+**В спортзале стоят кроссовки. Спросите инструктора, не гостя ли они.**
 
-- ✅ **The windows are open.**
-- ❌ The windows is open. — *Несколько окон: `windows are`.*
-- ❌ The windows are closed. — *`closed` — закрыты; открыты — `open`.*
+- ✅ **Are these the guest's sneakers?**
+- ❌ Is these the guest's sneakers? — *Кроссовки — пара, поэтому вопрос начинаем с Are, а не с Is.*
+- ❌ Are these the guest sneakers? — *После слова guest нужно 's: the guest's sneakers.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дерево живо. Сообщите об этом со словом alive**
+**1 · Карточка слова — mittens**
+<!-- interaction_id: en:lesson-05:session-30:word:mittens; family: word_card -->
+> **mittens** — варежки. The guest's mittens are warm. — «Варежки гостя тёплые». О тёплых перчатках, в которых все пальцы кроме большого лежат вместе.
+
+**2 · Гость ищет свои варежки. Они в сумке. Скажите ему: «Варежки гостя в сумке»**
 <!-- interaction_id: en:lesson-05:session-30:i01; family: phrase_builder -->
-Плитки: `alive` `is` `tree` `The` `are` → **The tree is alive.**
-*(плитка `are` лишняя: здесь нужно `is` — `The tree is alive.`)*
+Плитки: `mittens` `guest's` `are` `in` `the` `bag` `The` `is` → **The guest's mittens are in the bag.**
+*(плитка `is` лишняя: здесь нужно `are` — `The guest's mittens are in the bag.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — hoodie**
+<!-- interaction_id: en:lesson-05:session-30:word:hoodie; family: word_card -->
+> **hoodie** — толстовка с капюшоном. The tourist's hoodie is grey. — «Толстовка туриста серая». О мягкой кофте с капюшоном.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-30:i02; family: listen_choose -->
-🔊 *headphones* → **headphones** · helmet · gloves
-- helmet — *В записи первое слово — `headphones`, а в этом варианте — `helmet`.*
-- gloves — *В записи первое слово — `headphones`, а в этом варианте — `gloves`.*
+🔊 *The hoodie is the tourist's.* → **The hoodie is the tourist's.** · The hoodie is the guest's. · The jacket is the tourist's.
+- The hoodie is the guest's. — *В записи хозяин — `tourist's`, турист, а в этом варианте — `guest's`, гость.*
+- The jacket is the tourist's. — *В записи вещь — `hoodie`, а в этом варианте — `jacket`, куртка.*
 
-**3 · Назовите наушники**
+**5 · Карточка слова — sneakers**
+<!-- interaction_id: en:lesson-05:session-30:word:sneakers; family: word_card -->
+> **sneakers** — кроссовки. The guest's sneakers are new. — «Кроссовки гостя новые». О лёгкой спортивной обуви.
+
+**6 · Кроссовки принадлежат гостю. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-30:i03; family: context_gap_grammar -->
-___ → **headphones** · boots · camera
-- boots — *`boots` — ботинки; наушники — `headphones`.*
-- camera — *`camera` — камера; наушники — `headphones`.*
+These are the ___ sneakers. → **guest's** · guest · guests
+- guest — *После слова guest нужно `'s`: `guest's sneakers` — «кроссовки гостя».*
+- guests — *`guests` — это «гости», несколько человек; чтобы назвать хозяина, нужно `guest's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-30:i04; family: speed_match -->
-headphones — наушники · alive — живой · dead — мёртвый · missing — пропавший
+mittens — варежки · hoodie — толстовка с капюшоном · sneakers — кроссовки · lanyard — шнурок для бейджа
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — lanyard**
+<!-- interaction_id: en:lesson-05:session-30:word:lanyard; family: word_card -->
+> **lanyard** — шнурок для бейджа. The guest's lanyard is blue. — «Шнурок гостя синий». О шнурке, на котором носят пропуск на шее.
+
+**9 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-30:i05; family: listen_build_dictation -->
-🔊 *These are Anna's headphones.* Плитки: `headphones` `Anna's` `are` `These` `is` → **These are Anna's headphones.**
-*(плитка `is` лишняя: здесь нужно `are` — `These are Anna's headphones.`)*
+🔊 *The guest's lanyard is on the desk.* Плитки: `lanyard` `guest's` `is` `on` `the` `desk` `The` `are` → **The guest's lanyard is on the desk.**
+*(плитка `are` лишняя: здесь нужно `is` — `The guest's lanyard is on the desk.`)*
 
-**6 · Скажите «Ботинки Тома рядом с дверью»**
+**10 · Вы нашли толстовку и спрашиваете инструктора, не туриста ли она. Задайте вопрос: «Это толстовка туриста?»**
 <!-- interaction_id: en:lesson-05:session-30:i06; family: phrase_builder -->
-Плитки: `door` `the` `to` `next` `are` `boots` `Tom's` `is` → **Tom's boots are next to the door.**
-*(плитка `is` лишняя: здесь нужно `are` — `Tom's boots are next to the door.`)*
+Плитки: `hoodie` `this` `the` `tourist's` `Is` `Are` → **Is this hoodie the tourist's?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this hoodie the tourist's?`)*
 
-**7 · Вы не можете найти свои наушники. Скажите «Мои наушники пропали»**
+**11 · Гость спрашивает, чьи варежки на стойке. Они туриста. Скажите: «Они туриста»**
 <!-- interaction_id: en:lesson-05:session-30:i07; family: scripted_repeat_compare -->
-🎙 **My headphones are missing.**
+🎙 **They are the tourist's.**
 
-**8 · Ботинки принадлежат Тому. Укажите владельца**
+**12 · Гость спрашивает: «Are these my sneakers?» Да, это его кроссовки. Выберите ответ**
 <!-- interaction_id: en:lesson-05:session-30:i08; family: context_gap_grammar -->
-These are ___ boots. → **Tom's** · Tom · Anna's
-- Tom — *К имени владельца добавляем `’s`: `Tom’s`.*
-- Anna's — *Это принадлежность Анне; здесь владелец Том.*
+Yes, they ___. → **are** · is · have
+- is — *После `they` нужно `are`, а не `is`.*
+- have — *`have` значит «иметь», а на вопрос «это мои?» отвечаем `they are`.*
 
-**9 · Послушайте, что друг сообщает о дереве**
+**13 · Послушайте инструктора**
 <!-- interaction_id: en:lesson-05:session-30:i09; family: listen_choose -->
-🔊 *The tree is dead.* → **The tree is dead.** · The tree is alive. · The tree is here.
-- The tree is alive. — *В записи последнее слово — `dead`, а в этом варианте — `alive`.*
-- The tree is here. — *В записи последнее слово — `dead`, а в этом варианте — `here`.*
+🔊 *Is this lanyard the guest's?* → **Is this lanyard the guest's?** · Is this lanyard the tourist's? · Is this hoodie the guest's?
+- Is this lanyard the tourist's? — *В записи хозяин — `guest's`, гость, а в этом варианте — `tourist's`, турист.*
+- Is this hoodie the guest's? — *В записи вещь — `lanyard`, а в этом варианте — `hoodie`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-30:i10; family: speed_match -->
-headphones — наушники · windows — окна · signpost — указатель · boots — ботинки
+mittens — варежки · hoodie — толстовка с капюшоном · hat — шляпа · coat — пальто
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте гостя и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-30:i11; family: listen_build_dictation -->
-🔊 *Anna is next to the signpost.* Плитки: `signpost` `the` `to` `next` `is` `Anna` `are` → **Anna is next to the signpost.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna is next to the signpost.`)*
+🔊 *The tourist's sneakers are in the hall.* Плитки: `sneakers` `tourist's` `are` `in` `the` `hall` `The` `is` → **The tourist's sneakers are in the hall.**
+*(плитка `is` лишняя: здесь нужно `are` — `The tourist's sneakers are in the hall.`)*
 
-**12 · Сообщите «Окна открыты»**
+**16 · У гостя есть толстовка. Скажите подруге: «У гостя есть толстовка»**
 <!-- interaction_id: en:lesson-05:session-30:i12; family: phrase_builder -->
-Плитки: `open` `are` `windows` `The` `is` → **The windows are open.**
-*(плитка `is` лишняя: здесь нужно `are` — `The windows are open.`)*
+Плитки: `guest` `has` `a` `hoodie` `The` `have` → **The guest has a hoodie.**
+*(плитка `have` лишняя: здесь нужно `has` — `The guest has a hoodie.`)*
 
-**13 · Спросите друга «Где мои наушники?»**
+**17 · Инструктор спрашивает, чей это шнурок. Он гостя. Скажите: «Он гостя»**
 <!-- interaction_id: en:lesson-05:session-30:i13; family: scripted_repeat_compare -->
-🎙 **Where are my headphones?**
+🎙 **It is the guest's.**
 
-**14 · Наушники принадлежат подруге. Скажите «Наушники её»**
+**18 · Варежки туриста лежат сверху на стойке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-30:i14; family: context_gap_grammar -->
-The headphones are ___. → **hers** · her · ours
-- her — *Без названия вещи нужна форма `hers`.*
-- ours — *`ours` — наши; её — `hers`.*
+The tourist's mittens are ___ the desk. → **on** · in · under
+- in — *in — «внутри», а варежки лежат сверху: нужно `on`.*
+- under — *under — «под», а варежки лежат сверху: нужно `on`.*
 
-**15 · Послушайте, что друг сообщает о наушниках**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-30:i15; family: listen_choose -->
-🔊 *Tom's headphones are here.* → **Tom's headphones are here.** · Anna's headphones are here. · Tom's headphones are missing.
-- Anna's headphones are here. — *В записи первое слово — `Tom's`, а в этом варианте — `Anna's`.*
-- Tom's headphones are missing. — *В записи последнее слово — `here`, а в этом варианте — `missing`.*
+🔊 *The tourist's mittens are on the desk.* → **The tourist's mittens are on the desk.** · The guest's mittens are on the desk. · The tourist's mittens are on the chair.
+- The guest's mittens are on the desk. — *В записи хозяин — `tourist's`, турист, а в этом варианте — `guest's`, гость.*
+- The tourist's mittens are on the chair. — *В записи последнее слово — `desk`, стойка, а в этом варианте — `chair`, стул.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-30:i16; family: speed_match -->
-headphones — наушники · windows — окна · signpost — указатель · boots — ботинки
+mittens — варежки · hoodie — толстовка с капюшоном · sneakers — кроссовки · lanyard — шнурок для бейджа
 
-**17 · Найденные наушники принадлежат Анне. Скажите «Это наушники Анны»**
+**21 · Гость спрашивает, чьи это кроссовки. Они туриста. Скажите: «Это кроссовки туриста»**
 <!-- interaction_id: en:lesson-05:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **These are Anna's headphones.**
-
+🎙 **These are the tourist's sneakers.**

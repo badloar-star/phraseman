@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 22 — Черевики біля валізи
+# Англійська · Урок 5 · Заняття 22 — Чия це річ
 
-**Ситуація.** Ви з другом збираєтеся в поїздку. На столі чашки й морквина для перекусу, біля валізи — черевики. По телевізору показують відомих мандрівників.
+**Ситуація.** В офісі, в гардеробі й на сцені лежать чужі речі, і треба спитати, чиї вони. Питання починається зі слова whose, а відповідь коротка: It is hers, They are mine.
 
-**Що ви опануєте:** назвати власника речей і описати людей
-**Нові слова:** boots
+**Що ви опануєте:** спитати, чия річ, словом whose й відповісти одним словом: Whose keyboard is this?
+**Нові слова:** keyboard, gloves, microphone, calendar
+**Повертаються:** key, desk, umbrella
 
 ---
 
 ## Інтро 1
 
-### Пара черевиків
+### Клавіатура в переговорній
 
-`boots` — «черевики», взуття, що закриває щиколотки або вище. `The boots are mine` — «Черевики мої». Кілька черевиків — `are`, навіть якщо це одна пара. `My boots are next to your suitcase` — «Мої черевики поруч із твоєю валізою». Черевики вже стоять біля валізи: здається, вони теж чекають на відпустку.
+У великій переговорній після довгої зустрічі залишилася клавіатура. Ви берете її в руки й хочете дізнатися в колеги, чия вона. keyboard — «клавіатура». Щоб спитати «чий, чия, чиє», ставимо whose перед річчю: Whose keyboard is this? — «Чия це клавіатура?»
 
-**Скажіть «Черевики мої».**
+**Ви знайшли в переговорній клавіатуру. Спитайте колегу: «Чия це клавіатура?»**
 
-- ✅ **The boots are mine.**
-- ❌ The boots is mine. — *`boots` — множина: `are`.*
-- ❌ The boots are my. — *Без назви речі потрібна форма `mine`.*
+- ✅ **Whose keyboard is this?**
+- ❌ Who keyboard is this? — *Who — «хто». Щоб спитати «чия», потрібно whose.*
+- ❌ Whose is keyboard this? — *Порядок слів інший: спочатку whose і річ, потім is this.*
 
 ---
 
 ## Інтро 2
 
-### Гроші й відомість
+### Рукавички в гардеробі
 
-`rich` — «багатий / багаті», `poor` — «бідний / бідні», `famous` — «знаменитий / знамениті». `They are rich` — «Вони багаті». `They are poor` — «Вони бідні». `They are famous` — «Вони знамениті». Тут `rich` і `poor` описують достаток, а `famous` — відомість: відома людина не обов’язково багата.
+У гардеробі театру після вистави залишилися рукавички, і ви показуєте їх подрузі. gloves — «рукавички». Їх дві, тому кажемо are і these: Whose gloves are these? — «Чиї це рукавички?» Для однієї речі було б is і this, як у питанні про клавіатуру.
 
-**Цих мандрівників знають багато людей. Скажіть саме «Вони знамениті».**
+**Ви знайшли в гардеробі рукавички й показуєте їх подрузі. Спитайте: «Чиї це рукавички?»**
 
-- ✅ **They are famous.**
-- ❌ They are rich. — *`rich` — багаті; знамениті — `famous`.*
-- ❌ They is famous. — *З `They` потрібна форма `are`.*
+- ✅ **Whose gloves are these?**
+- ❌ Whose gloves is this? — *Рукавичок дві, тому потрібно are these, а не is this.*
+- ❌ Whose glove are these? — *Після are потрібно «рукавички» у множині: gloves.*
 
 ---
 
 ## Інтро 3
 
-### Що беремо із собою
+### Мікрофон на сцені
 
-`cups` — «чашки», `carrot` — «морквина», `suitcase` — «валіза». `The cups are ours` — «Чашки наші». `The carrot is his` — «Морквина його». `The suitcase is hers` — «Валіза її». `Where are my boots?` — «Де мої черевики?» `his`, `hers`, `ours` указують власника без повторення назви речі.
+На сцені великого шкільного концерту стоїть мікрофон, і організатор питає: Whose microphone is that? — «Чий там мікрофон?» microphone — «мікрофон». Він належить вашій колезі. На питання з whose можна відповісти одним словом: It is hers — «Він її».
 
-**Валіза належить подрузі. Скажіть «Валіза її».**
+**Організатор показує на мікрофон і питає: «Whose microphone is that?» Він належить вашій колезі. Відповідьте йому.**
 
-- ✅ **The suitcase is hers.**
-- ❌ The suitcase is her. — *Без назви речі потрібна форма `hers`.*
-- ❌ The suitcase is his. — *`his` — його; її — `hers`.*
+- ✅ **It is hers.**
+- ❌ It is her. — *Після is саме her не ставлять: без назви речі потрібно hers.*
+- ❌ It is his. — *his — його, а мікрофон належить колезі-жінці: потрібно hers.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Мандрівників знають багато людей. Скажіть «Вони знамениті» без скорочення**
+**1 · Картка слова — keyboard**
+<!-- interaction_id: en:lesson-05:session-22:word:keyboard; family: word_card -->
+> **keyboard** — клавіатура. The keyboard is on the desk. — «Клавіатура на столі». Про панель із кнопками для набору тексту на комп’ютері.
+
+**2 · Ви знайшли в переговорній клавіатуру. Спитайте колегу повною фразою: «Чия це клавіатура?»**
 <!-- interaction_id: en:lesson-05:session-22:i01; family: phrase_builder -->
-Плитки: `famous` `are` `They` `is` → **They are famous.**
-*(плитка `is` зайва: тут потрібно `are` — `They are famous.`)*
+Плитки: `keyboard` `is` `this` `Whose` `Who` → **Whose keyboard is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose keyboard is this?`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — gloves**
+<!-- interaction_id: en:lesson-05:session-22:word:gloves; family: word_card -->
+> **gloves** — рукавички. The gloves are here. — «Рукавички тут». Про пару, яку одягають на руки в холод.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-22:i02; family: listen_choose -->
-🔊 *boots* → **boots** · books · gloves
-- books — *У записі перше слово — `boots`, а в цьому варіанті — `books`.*
-- gloves — *У записі перше слово — `boots`, а в цьому варіанті — `gloves`.*
+🔊 *Whose gloves are these?* → **Whose gloves are these?** · Whose gloves are those? · Whose glove is this?
+- Whose gloves are those? — *У записі `these` — ці, поруч, а в цьому варіанті `those` — ті, подалі.*
+- Whose glove is this? — *У записі `gloves are` — кілька рукавичок, а в цьому варіанті `glove is` — одна.*
 
-**3 · Назвіть черевики**
+**5 · Картка слова — microphone**
+<!-- interaction_id: en:lesson-05:session-22:word:microphone; family: word_card -->
+> **microphone** — мікрофон. The microphone is here. — «Мікрофон тут». Про прилад, у який говорять, щоб голос став гучнішим.
+
+**6 · Ведуча на сцені говорить у цей прилад, щоб голос став гучнішим. Як він називається англійською?**
 <!-- interaction_id: en:lesson-05:session-22:i03; family: context_gap_grammar -->
-___ → **boots** · gloves · scarf
-- gloves — *`gloves` — рукавички; черевики — `boots`.*
-- scarf — *`scarf` — шарф; черевики — `boots`.*
+___ → **microphone** · keyboard · key
+- keyboard — *keyboard — це клавіатура, а прилад для голосу називається microphone.*
+- key — *key — це ключ, а прилад для голосу називається microphone.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-22:i04; family: speed_match -->
-boots — черевики · rich — багаті · poor — бідні · famous — знамениті
+keyboard — клавіатура · gloves — рукавички · microphone — мікрофон · calendar — календар
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — calendar**
+<!-- interaction_id: en:lesson-05:session-22:word:calendar; family: word_card -->
+> **calendar** — календар. My calendar is on the wall. — «Мій календар на стіні». Про аркуші з днями й місяцями року.
+
+**9 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-22:i05; family: listen_build_dictation -->
-🔊 *My boots are next to your suitcase.* Плитки: `suitcase` `your` `to` `next` `are` `boots` `My` `is` → **My boots are next to your suitcase.**
-*(плитка `is` зайва: тут потрібно `are` — `My boots are next to your suitcase.`)*
+🔊 *Whose calendar is that?* Плитки: `calendar` `is` `that` `Whose` `Who` → **Whose calendar is that?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose calendar is that?`)*
 
-**6 · Чашки належать вам і другові. Скажіть «Чашки наші»**
+**10 · Колега показує рукавички й питає, чиї вони. Вони ваші. Скажіть повною фразою: «Вони мої»**
 <!-- interaction_id: en:lesson-05:session-22:i06; family: phrase_builder -->
-Плитки: `ours` `are` `cups` `The` `is` → **The cups are ours.**
-*(плитка `is` зайва: тут потрібно `are` — `The cups are ours.`)*
+Плитки: `They` `are` `mine` `is` → **They are mine.**
+*(плитка `is` зайва: тут потрібно `are` — `They are mine.`)*
 
-**7 · Ідеться про достаток людей. Скажіть «Вони багаті» без скорочення**
+**11 · Колега тримає календар. Спитайте його: «Чий це календар?»**
 <!-- interaction_id: en:lesson-05:session-22:i07; family: scripted_repeat_compare -->
-🎙 **They are rich.**
+🎙 **Whose calendar is this?**
 
-**8 · Валіза належить подрузі. Скажіть «Валіза її»**
+**12 · Ви показуєте подрузі рукавички й питаєте, чиї вони. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-22:i08; family: context_gap_grammar -->
-The suitcase is ___. → **hers** · her · ours
-- her — *Без назви речі потрібна форма `hers`.*
-- ours — *`ours` — наша; її — `hers`.*
+Whose gloves ___ these? → **are** · is · has
+- is — *Рукавичок дві, тому потрібно are, а не is.*
+- has — *has означає «має», а для питання «чиї це» потрібно are.*
 
-**9 · Послухайте, як друг описує достаток людей**
+**13 · Послухайте організатора**
 <!-- interaction_id: en:lesson-05:session-22:i09; family: listen_choose -->
-🔊 *They are poor.* → **They are poor.** · They are rich. · They are famous.
-- They are rich. — *У записі останнє слово — `poor`, а в цьому варіанті — `rich`.*
-- They are famous. — *У записі останнє слово — `poor`, а в цьому варіанті — `famous`.*
+🔊 *Whose microphone is that?* → **Whose microphone is that?** · Whose microphone is this? · Whose keyboard is that?
+- Whose microphone is this? — *У записі `that` — те, подалі, а в цьому варіанті `this` — це, поруч.*
+- Whose keyboard is that? — *У записі говорять про мікрофон `microphone`, а в цьому варіанті — про клавіатуру `keyboard`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-22:i10; family: speed_match -->
-boots — черевики · cups — чашки · carrot — морквина · suitcase — валіза
+keyboard — клавіатура · calendar — календар · desk — робочий стіл · key — ключ
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-22:i11; family: listen_build_dictation -->
-🔊 *Where are my boots?* Плитки: `boots` `my` `are` `Where` → **Where are my boots?**
+🔊 *The gloves are hers.* Плитки: `gloves` `are` `hers` `The` `her` → **The gloves are hers.**
+*(плитка `her` зайва: тут потрібно `hers` — `The gloves are hers.`)*
 
-**12 · Морквина належить другові-чоловікові. Скажіть «Морквина його»**
+**16 · Організатор питає, чий календар. Він належить вашому другові. Скажіть повною фразою: «Він його»**
 <!-- interaction_id: en:lesson-05:session-22:i12; family: phrase_builder -->
-Плитки: `his` `is` `carrot` `The` `are` → **The carrot is his.**
-*(плитка `are` зайва: тут потрібно `is` — `The carrot is his.`)*
+Плитки: `is` `his` `It` `he` → **It is his.**
+*(плитка `he` зайва: тут потрібно `his` — `It is his.`)*
 
-**13 · Черевики друга у вас. Скажіть йому «Твої черевики в мене»**
+**17 · Колега тримає клавіатуру й питає: «Whose keyboard is this?» Вона ваша. Відповідьте: «Вона моя»**
 <!-- interaction_id: en:lesson-05:session-22:i13; family: scripted_repeat_compare -->
-🎙 **I have your boots.**
+🎙 **It is mine.**
 
-**14 · Немає жодної чашки. Виберіть форму для множини**
+**18 · Ви показуєте подрузі календар і питаєте, чий він. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-22:i14; family: context_gap_grammar -->
-There ___ no cups. → **are** · is · am
-- is — *`cups` — множина: `There are`.*
-- am — *`am` використовується з `I`; тут `There are`.*
+Whose calendar ___ this? → **is** · are · has
+- are — *Календар один, тому потрібно is, а не are.*
+- has — *has означає «має», а для питання «чий це» потрібно is.*
 
-**15 · Послухайте, кому належать черевики**
+**19 · Послухайте організатора**
 <!-- interaction_id: en:lesson-05:session-22:i15; family: listen_choose -->
-🔊 *The boots are yours.* → **The boots are yours.** · The boots are mine. · The boots are theirs.
-- The boots are mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- The boots are theirs. — *У записі останнє слово — `yours`, а в цьому варіанті — `theirs`.*
+🔊 *The microphone is hers.* → **The microphone is hers.** · The microphone is his. · The keyboard is hers.
+- The microphone is his. — *У записі останнє слово `hers` — її, а в цьому варіанті `his` — його.*
+- The keyboard is hers. — *У записі говорять про мікрофон `microphone`, а в цьому варіанті — про клавіатуру `keyboard`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-22:i16; family: speed_match -->
-boots — черевики · cups — чашки · carrot — морквина · suitcase — валіза
+microphone — мікрофон · gloves — рукавички · umbrella — парасолька · desk — робочий стіл
 
-**17 · Друг знайшов ваші черевики. Уточніть «Черевики мої»**
+**21 · Ви знайшли в гардеробі рукавички. Спитайте в подруги: «Чиї це рукавички?»**
 <!-- interaction_id: en:lesson-05:session-22:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The boots are mine.**
-
+🎙 **Whose gloves are these?**

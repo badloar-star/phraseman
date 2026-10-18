@@ -4,40 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-30:i01",
+      "interactionId": "en:lesson-05:session-30:word:mittens",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mittens",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-30:word:mittens:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mittens",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-30:word:mittens:audio",
+          "transcript": "mittens"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-30:word:mittens:r1",
+            "targetText": "mittens",
+            "meaningByLocale": {
+              "ru": "варежки. The guest's mittens are warm. — «Варежки гостя тёплые». О тёплых перчатках, в которых все пальцы кроме большого лежат вместе.",
+              "uk": "рукавиці. The guest's mittens are warm. — «Рукавиці гостя теплі». Про теплі рукавички, у яких усі пальці, крім великого, лежать разом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mittens",
+          "definitionByLocale": {
+            "ru": "варежки. The guest's mittens are warm. — «Варежки гостя тёплые». О тёплых перчатках, в которых все пальцы кроме большого лежат вместе.",
+            "uk": "рукавиці. The guest's mittens are warm. — «Рукавиці гостя теплі». Про теплі рукавички, у яких усі пальці, крім великого, лежать разом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-30:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дерево живе. Повідомте про це зі словом alive",
+      "prompt": "Гість шукає свої рукавиці. Вони в сумці. Скажіть йому: «Рукавиці гостя в сумці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дерево живе. Повідомте про це зі словом alive",
+      "accessibilityLabel": "Гість шукає свої рукавиці. Вони в сумці. Скажіть йому: «Рукавиці гостя в сумці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tree is alive.",
+        "targetPhrase": "The guest's mittens are in the bag.",
         "localizedMeaning": {
-          "ru": "Дерево живо. Сообщите об этом со словом alive",
-          "uk": "Дерево живе. Повідомте про це зі словом alive"
+          "ru": "Гость ищет свои варежки. Они в сумке. Скажите ему: «Варежки гостя в сумке»",
+          "uk": "Гість шукає свої рукавиці. Вони в сумці. Скажіть йому: «Рукавиці гостя в сумці»"
         },
         "orderedTokens": [
           "The",
-          "tree",
-          "is",
-          "alive"
+          "guest's",
+          "mittens",
+          "are",
+          "in",
+          "the",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Дерево живе. Повідомте про це зі словом alive",
+            "testedDimension": "Гість шукає свої рукавиці. Вони в сумці. Скажіть йому: «Рукавиці гостя в сумці»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The tree is alive.`",
-              "uk": "тут потрібно `is` — `The tree is alive.`"
+              "ru": "здесь нужно `are` — `The guest's mittens are in the bag.`",
+              "uk": "тут потрібно `are` — `The guest's mittens are in the bag.`"
             }
           }
         ],
@@ -49,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-30:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-30:word:hoodie",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — hoodie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-30:word:hoodie:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hoodie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-30:word:hoodie:audio",
+          "transcript": "hoodie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-30:word:hoodie:r1",
+            "targetText": "hoodie",
+            "meaningByLocale": {
+              "ru": "толстовка с капюшоном. The tourist's hoodie is grey. — «Толстовка туриста серая». О мягкой кофте с капюшоном.",
+              "uk": "толстовка з каптуром. The tourist's hoodie is grey. — «Толстовка туриста сіра». Про м’яку кофту з каптуром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hoodie",
+          "definitionByLocale": {
+            "ru": "толстовка с капюшоном. The tourist's hoodie is grey. — «Толстовка туриста серая». О мягкой кофте с капюшоном.",
+            "uk": "толстовка з каптуром. The tourist's hoodie is grey. — «Толстовка туриста сіра». Про м’яку кофту з каптуром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-30:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i02:r1",
-          "text": "headphones"
+          "text": "The hoodie is the tourist's."
         },
         {
           "responseId": "en:lesson-05:session-30:i02:r2",
-          "text": "helmet"
+          "text": "The hoodie is the guest's."
         },
         {
           "responseId": "en:lesson-05:session-30:i02:r3",
-          "text": "gloves"
+          "text": "The jacket is the tourist's."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i02:audio",
-          "transcript": "headphones"
+          "transcript": "The hoodie is the tourist's."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-30:i02:r1",
-            "targetText": "headphones",
+            "targetText": "The hoodie is the tourist's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i02:r2",
-            "targetText": "helmet",
+            "targetText": "The hoodie is the guest's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i02:r3",
-            "targetText": "gloves",
+            "targetText": "The jacket is the tourist's.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-30:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `headphones`, а в этом варианте — `helmet`.",
-              "uk": "У записі перше слово — `headphones`, а в цьому варіанті — `helmet`."
+              "ru": "В записи хозяин — `tourist's`, турист, а в этом варианте — `guest's`, гость.",
+              "uk": "У записі господар — `tourist's`, турист, а в цьому варіанті — `guest's`, гість."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `headphones`, а в этом варианте — `gloves`.",
-              "uk": "У записі перше слово — `headphones`, а в цьому варіанті — `gloves`."
+              "ru": "В записи вещь — `hoodie`, а в этом варианте — `jacket`, куртка.",
+              "uk": "У записі річ — `hoodie`, а в цьому варіанті — `jacket`, куртка."
             }
           }
         ],
@@ -125,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-30:word:sneakers",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sneakers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-30:word:sneakers:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sneakers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-30:word:sneakers:audio",
+          "transcript": "sneakers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-30:word:sneakers:r1",
+            "targetText": "sneakers",
+            "meaningByLocale": {
+              "ru": "кроссовки. The guest's sneakers are new. — «Кроссовки гостя новые». О лёгкой спортивной обуви.",
+              "uk": "кросівки. The guest's sneakers are new. — «Кросівки гостя нові». Про легке спортивне взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sneakers",
+          "definitionByLocale": {
+            "ru": "кроссовки. The guest's sneakers are new. — «Кроссовки гостя новые». О лёгкой спортивной обуви.",
+            "uk": "кросівки. The guest's sneakers are new. — «Кросівки гостя нові». Про легке спортивне взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-30:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть навушники",
+      "prompt": "Кросівки належать гостеві. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i03:r1",
-          "text": "headphones"
+          "text": "guest's"
         },
         {
           "responseId": "en:lesson-05:session-30:i03:r2",
-          "text": "boots"
+          "text": "guest"
         },
         {
           "responseId": "en:lesson-05:session-30:i03:r3",
-          "text": "camera"
+          "text": "guests"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть навушники",
+      "accessibilityLabel": "Кросівки належать гостеві. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите наушники",
-          "uk": "Назвіть навушники"
+          "ru": "Кроссовки принадлежат гостю. Выберите слово",
+          "uk": "Кросівки належать гостеві. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "These are the ___ sneakers.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-30:i03:r1",
-            "text": "headphones"
+            "text": "guest's"
           },
           {
             "responseId": "en:lesson-05:session-30:i03:r2",
-            "text": "boots"
+            "text": "guest"
           },
           {
             "responseId": "en:lesson-05:session-30:i03:r3",
-            "text": "camera"
+            "text": "guests"
           }
         ],
-        "testedDimension": "Назвіть навушники",
+        "testedDimension": "Кросівки належать гостеві. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть навушники",
+            "testedDimension": "Кросівки належать гостеві. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`boots` — ботинки; наушники — `headphones`.",
-              "uk": "`boots` — черевики; навушники — `headphones`."
+              "ru": "После слова guest нужно `'s`: `guest's sneakers` — «кроссовки гостя».",
+              "uk": "Після слова guest потрібно `'s`: `guest's sneakers` — «кросівки гостя»."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть навушники",
+            "testedDimension": "Кросівки належать гостеві. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`camera` — камера; наушники — `headphones`.",
-              "uk": "`camera` — камера; навушники — `headphones`."
+              "ru": "`guests` — это «гости», несколько человек; чтобы назвать хозяина, нужно `guest's`.",
+              "uk": "`guests` — це «гості», кілька людей; щоб назвати господаря, потрібно `guest's`."
             }
           }
         ]
@@ -195,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-30:i04:p1",
-            "target": "headphones",
+            "target": "mittens",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "варежки",
+              "uk": "рукавиці"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i04:p2",
-            "target": "alive",
+            "target": "hoodie",
             "meaningByLocale": {
-              "ru": "живой",
-              "uk": "живий"
+              "ru": "толстовка с капюшоном",
+              "uk": "толстовка з каптуром"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i04:p3",
-            "target": "dead",
+            "target": "sneakers",
             "meaningByLocale": {
-              "ru": "мёртвый",
-              "uk": "мертвий"
+              "ru": "кроссовки",
+              "uk": "кросівки"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i04:p4",
-            "target": "missing",
+            "target": "lanyard",
             "meaningByLocale": {
-              "ru": "пропавший",
-              "uk": "зниклий"
+              "ru": "шнурок для бейджа",
+              "uk": "шнурок для бейджа"
             }
           }
         ],
         "leftColumn": [
-          "headphones",
-          "alive",
-          "dead",
-          "missing"
+          "mittens",
+          "hoodie",
+          "sneakers",
+          "lanyard"
         ],
         "rightColumn": [
-          "навушники",
-          "живий",
-          "мертвий",
-          "зниклий"
+          "рукавиці",
+          "толстовка з каптуром",
+          "кросівки",
+          "шнурок для бейджа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,43 +399,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-30:word:lanyard",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lanyard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-30:word:lanyard:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lanyard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-30:word:lanyard:audio",
+          "transcript": "lanyard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-30:word:lanyard:r1",
+            "targetText": "lanyard",
+            "meaningByLocale": {
+              "ru": "шнурок для бейджа. The guest's lanyard is blue. — «Шнурок гостя синий». О шнурке, на котором носят пропуск на шее.",
+              "uk": "шнурок для бейджа. The guest's lanyard is blue. — «Шнурок гостя синій». Про шнурок, на якому носять перепустку на шиї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lanyard",
+          "definitionByLocale": {
+            "ru": "шнурок для бейджа. The guest's lanyard is blue. — «Шнурок гостя синий». О шнурке, на котором носят пропуск на шее.",
+            "uk": "шнурок для бейджа. The guest's lanyard is blue. — «Шнурок гостя синій». Про шнурок, на якому носять перепустку на шиї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-30:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i05:audio",
-          "transcript": "These are Anna's headphones."
+          "transcript": "The guest's lanyard is on the desk."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "These are Anna's headphones.",
+        "hiddenTargetPhrase": "The guest's lanyard is on the desk.",
         "orderedTokens": [
-          "These",
-          "are",
-          "Anna's",
-          "headphones"
+          "The",
+          "guest's",
+          "lanyard",
+          "is",
+          "on",
+          "the",
+          "desk"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `These are Anna's headphones.`",
-              "uk": "тут потрібно `are` — `These are Anna's headphones.`"
+              "ru": "здесь нужно `is` — `The guest's lanyard is on the desk.`",
+              "uk": "тут потрібно `is` — `The guest's lanyard is on the desk.`"
             }
           }
         ],
@@ -316,42 +494,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Черевики Тома поруч із дверима»",
+      "prompt": "Ви знайшли толстовку й питаєте інструктора, чи не туриста вона. Задайте питання: «Це толстовка туриста?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Черевики Тома поруч із дверима»",
+      "accessibilityLabel": "Ви знайшли толстовку й питаєте інструктора, чи не туриста вона. Задайте питання: «Це толстовка туриста?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom's boots are next to the door.",
+        "targetPhrase": "Is this hoodie the tourist's?",
         "localizedMeaning": {
-          "ru": "Скажите «Ботинки Тома рядом с дверью»",
-          "uk": "Скажіть «Черевики Тома поруч із дверима»"
+          "ru": "Вы нашли толстовку и спрашиваете инструктора, не туриста ли она. Задайте вопрос: «Это толстовка туриста?»",
+          "uk": "Ви знайшли толстовку й питаєте інструктора, чи не туриста вона. Задайте питання: «Це толстовка туриста?»"
         },
         "orderedTokens": [
-          "Tom's",
-          "boots",
-          "are",
-          "next",
-          "to",
+          "Is",
+          "this",
+          "hoodie",
           "the",
-          "door"
+          "tourist's"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Черевики Тома поруч із дверима»",
+            "testedDimension": "Ви знайшли толстовку й питаєте інструктора, чи не туриста вона. Задайте питання: «Це толстовка туриста?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Tom's boots are next to the door.`",
-              "uk": "тут потрібно `are` — `Tom's boots are next to the door.`"
+              "ru": "здесь нужно `Is` — `Is this hoodie the tourist's?`",
+              "uk": "тут потрібно `Is` — `Is this hoodie the tourist's?`"
             }
           }
         ],
@@ -364,25 +540,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви не можете знайти свої навушники. Скажіть «Мої навушники зникли»",
+      "prompt": "Гість питає, чиї рукавиці на стійці. Вони туриста. Скажіть: «Вони туриста»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i07:audio"
       ],
-      "accessibilityLabel": "Ви не можете знайти свої навушники. Скажіть «Мої навушники зникли»",
+      "accessibilityLabel": "Гість питає, чиї рукавиці на стійці. Вони туриста. Скажіть: «Вони туриста»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i07:audio",
-          "transcript": "My headphones are missing."
+          "transcript": "They are the tourist's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "My headphones are missing.",
+        "targetPhrase": "They are the tourist's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -397,67 +573,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Черевики належать Тому. Укажіть власника",
+      "prompt": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i08:r1",
-          "text": "Tom's"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-30:i08:r2",
-          "text": "Tom"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-30:i08:r3",
-          "text": "Anna's"
+          "text": "have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Черевики належать Тому. Укажіть власника",
+      "accessibilityLabel": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ботинки принадлежат Тому. Укажите владельца",
-          "uk": "Черевики належать Тому. Укажіть власника"
+          "ru": "Гость спрашивает: «Are these my sneakers?» Да, это его кроссовки. Выберите ответ",
+          "uk": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь"
         },
-        "gappedTargetPhrase": "These are ___ boots.",
+        "gappedTargetPhrase": "Yes, they ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-30:i08:r1",
-            "text": "Tom's"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-30:i08:r2",
-            "text": "Tom"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-30:i08:r3",
-            "text": "Anna's"
+            "text": "have"
           }
         ],
-        "testedDimension": "Черевики належать Тому. Укажіть власника",
+        "testedDimension": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Черевики належать Тому. Укажіть власника",
+            "testedDimension": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь",
             "feedbackByLocale": {
-              "ru": "К имени владельца добавляем `’s`: `Tom’s`.",
-              "uk": "До імені власника додаємо `’s`: `Tom’s`."
+              "ru": "После `they` нужно `are`, а не `is`.",
+              "uk": "Після `they` потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Черевики належать Тому. Укажіть власника",
+            "testedDimension": "Гість питає: «Are these my sneakers?» Так, це його кросівки. Виберіть відповідь",
             "feedbackByLocale": {
-              "ru": "Это принадлежность Анне; здесь владелец Том.",
-              "uk": "Це належність Анні; тут власник Том."
+              "ru": "`have` значит «иметь», а на вопрос «это мои?» отвечаем `they are`.",
+              "uk": "`have` означає «мати», а на питання «це мої?» відповідаємо `they are`."
             }
           }
         ]
@@ -466,51 +642,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг повідомляє про дерево",
+      "prompt": "Послухайте інструктора",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i09:r1",
-          "text": "The tree is dead."
+          "text": "Is this lanyard the guest's?"
         },
         {
           "responseId": "en:lesson-05:session-30:i09:r2",
-          "text": "The tree is alive."
+          "text": "Is this lanyard the tourist's?"
         },
         {
           "responseId": "en:lesson-05:session-30:i09:r3",
-          "text": "The tree is here."
+          "text": "Is this hoodie the guest's?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг повідомляє про дерево",
+      "accessibilityLabel": "Послухайте інструктора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i09:audio",
-          "transcript": "The tree is dead."
+          "transcript": "Is this lanyard the guest's?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-30:i09:r1",
-            "targetText": "The tree is dead.",
+            "targetText": "Is this lanyard the guest's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i09:r2",
-            "targetText": "The tree is alive.",
+            "targetText": "Is this lanyard the tourist's?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i09:r3",
-            "targetText": "The tree is here.",
+            "targetText": "Is this hoodie the guest's?",
             "meaningByLocale": null
           }
         ],
@@ -519,19 +695,19 @@
           {
             "responseId": "en:lesson-05:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про дерево",
+            "testedDimension": "Послухайте інструктора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `alive`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `alive`."
+              "ru": "В записи хозяин — `guest's`, гость, а в этом варианте — `tourist's`, турист.",
+              "uk": "У записі господар — `guest's`, гість, а в цьому варіанті — `tourist's`, турист."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про дерево",
+            "testedDimension": "Послухайте інструктора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dead`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `dead`, а в цьому варіанті — `here`."
+              "ru": "В записи вещь — `lanyard`, а в этом варианте — `hoodie`.",
+              "uk": "У записі річ — `lanyard`, а в цьому варіанті — `hoodie`."
             }
           }
         ],
@@ -542,8 +718,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -556,48 +732,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-30:i10:p1",
-            "target": "headphones",
+            "target": "mittens",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "варежки",
+              "uk": "рукавиці"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i10:p2",
-            "target": "windows",
+            "target": "hoodie",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "толстовка с капюшоном",
+              "uk": "толстовка з каптуром"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i10:p3",
-            "target": "signpost",
+            "target": "hat",
             "meaningByLocale": {
-              "ru": "указатель",
-              "uk": "вказівник"
+              "ru": "шляпа",
+              "uk": "капелюх"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i10:p4",
-            "target": "boots",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           }
         ],
         "leftColumn": [
-          "headphones",
-          "windows",
-          "signpost",
-          "boots"
+          "mittens",
+          "hoodie",
+          "hat",
+          "coat"
         ],
         "rightColumn": [
-          "навушники",
-          "вікна",
-          "вказівник",
-          "черевики"
+          "рукавиці",
+          "толстовка з каптуром",
+          "капелюх",
+          "пальто"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,44 +791,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте гостя й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте гостя й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i11:audio",
-          "transcript": "Anna is next to the signpost."
+          "transcript": "The tourist's sneakers are in the hall."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna is next to the signpost.",
+        "hiddenTargetPhrase": "The tourist's sneakers are in the hall.",
         "orderedTokens": [
-          "Anna",
-          "is",
-          "next",
-          "to",
+          "The",
+          "tourist's",
+          "sneakers",
+          "are",
+          "in",
           "the",
-          "signpost"
+          "hall"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте гостя й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna is next to the signpost.`",
-              "uk": "тут потрібно `is` — `Anna is next to the signpost.`"
+              "ru": "здесь нужно `are` — `The tourist's sneakers are in the hall.`",
+              "uk": "тут потрібно `are` — `The tourist's sneakers are in the hall.`"
             }
           }
         ],
@@ -665,39 +842,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Повідомте «Вікна відчинені»",
+      "prompt": "У гостя є толстовка. Скажіть подрузі: «У гостя є толстовка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Вікна відчинені»",
+      "accessibilityLabel": "У гостя є толстовка. Скажіть подрузі: «У гостя є толстовка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The windows are open.",
+        "targetPhrase": "The guest has a hoodie.",
         "localizedMeaning": {
-          "ru": "Сообщите «Окна открыты»",
-          "uk": "Повідомте «Вікна відчинені»"
+          "ru": "У гостя есть толстовка. Скажите подруге: «У гостя есть толстовка»",
+          "uk": "У гостя є толстовка. Скажіть подрузі: «У гостя є толстовка»"
         },
         "orderedTokens": [
           "The",
-          "windows",
-          "are",
-          "open"
+          "guest",
+          "has",
+          "a",
+          "hoodie"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Повідомте «Вікна відчинені»",
+            "testedDimension": "У гостя є толстовка. Скажіть подрузі: «У гостя є толстовка»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The windows are open.`",
-              "uk": "тут потрібно `are` — `The windows are open.`"
+              "ru": "здесь нужно `has` — `The guest has a hoodie.`",
+              "uk": "тут потрібно `has` — `The guest has a hoodie.`"
             }
           }
         ],
@@ -710,25 +888,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте друга «Де мої навушники?»",
+      "prompt": "Інструктор питає, чий це шнурок. Він гостя. Скажіть: «Він гостя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i13:audio"
       ],
-      "accessibilityLabel": "Запитайте друга «Де мої навушники?»",
+      "accessibilityLabel": "Інструктор питає, чий це шнурок. Він гостя. Скажіть: «Він гостя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i13:audio",
-          "transcript": "Where are my headphones?"
+          "transcript": "It is the guest's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where are my headphones?",
+        "targetPhrase": "It is the guest's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -743,67 +921,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Навушники належать подрузі. Скажіть «Навушники її»",
+      "prompt": "Рукавиці туриста лежать зверху на стійці. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i14:r1",
-          "text": "hers"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-05:session-30:i14:r2",
-          "text": "her"
+          "text": "in"
         },
         {
           "responseId": "en:lesson-05:session-30:i14:r3",
-          "text": "ours"
+          "text": "under"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Навушники належать подрузі. Скажіть «Навушники її»",
+      "accessibilityLabel": "Рукавиці туриста лежать зверху на стійці. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Наушники принадлежат подруге. Скажите «Наушники её»",
-          "uk": "Навушники належать подрузі. Скажіть «Навушники її»"
+          "ru": "Варежки туриста лежат сверху на стойке. Выберите слово",
+          "uk": "Рукавиці туриста лежать зверху на стійці. Виберіть слово"
         },
-        "gappedTargetPhrase": "The headphones are ___.",
+        "gappedTargetPhrase": "The tourist's mittens are ___ the desk.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-30:i14:r1",
-            "text": "hers"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-05:session-30:i14:r2",
-            "text": "her"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-05:session-30:i14:r3",
-            "text": "ours"
+            "text": "under"
           }
         ],
-        "testedDimension": "Навушники належать подрузі. Скажіть «Навушники її»",
+        "testedDimension": "Рукавиці туриста лежать зверху на стійці. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Навушники належать подрузі. Скажіть «Навушники її»",
+            "testedDimension": "Рукавиці туриста лежать зверху на стійці. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "in — «внутри», а варежки лежат сверху: нужно `on`.",
+              "uk": "in — «всередині», а рукавиці лежать зверху: потрібно `on`."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Навушники належать подрузі. Скажіть «Навушники її»",
+            "testedDimension": "Рукавиці туриста лежать зверху на стійці. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`ours` — наши; её — `hers`.",
-              "uk": "`ours` — наші; її — `hers`."
+              "ru": "under — «под», а варежки лежат сверху: нужно `on`.",
+              "uk": "under — «під», а рукавиці лежать зверху: потрібно `on`."
             }
           }
         ]
@@ -812,51 +990,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг повідомляє про навушники",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-30:i15:r1",
-          "text": "Tom's headphones are here."
+          "text": "The tourist's mittens are on the desk."
         },
         {
           "responseId": "en:lesson-05:session-30:i15:r2",
-          "text": "Anna's headphones are here."
+          "text": "The guest's mittens are on the desk."
         },
         {
           "responseId": "en:lesson-05:session-30:i15:r3",
-          "text": "Tom's headphones are missing."
+          "text": "The tourist's mittens are on the chair."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, що друг повідомляє про навушники",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i15:audio",
-          "transcript": "Tom's headphones are here."
+          "transcript": "The tourist's mittens are on the desk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-30:i15:r1",
-            "targetText": "Tom's headphones are here.",
+            "targetText": "The tourist's mittens are on the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i15:r2",
-            "targetText": "Anna's headphones are here.",
+            "targetText": "The guest's mittens are on the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-30:i15:r3",
-            "targetText": "Tom's headphones are missing.",
+            "targetText": "The tourist's mittens are on the chair.",
             "meaningByLocale": null
           }
         ],
@@ -865,19 +1043,19 @@
           {
             "responseId": "en:lesson-05:session-30:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про навушники",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Tom's`, а в этом варианте — `Anna's`.",
-              "uk": "У записі перше слово — `Tom's`, а в цьому варіанті — `Anna's`."
+              "ru": "В записи хозяин — `tourist's`, турист, а в этом варианте — `guest's`, гость.",
+              "uk": "У записі господар — `tourist's`, турист, а в цьому варіанті — `guest's`, гість."
             }
           },
           {
             "responseId": "en:lesson-05:session-30:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, що друг повідомляє про навушники",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `missing`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `missing`."
+              "ru": "В записи последнее слово — `desk`, стойка, а в этом варианте — `chair`, стул.",
+              "uk": "У записі останнє слово — `desk`, стійка, а в цьому варіанті — `chair`, стілець."
             }
           }
         ],
@@ -888,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -902,48 +1080,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-30:i16:p1",
-            "target": "headphones",
+            "target": "mittens",
             "meaningByLocale": {
-              "ru": "наушники",
-              "uk": "навушники"
+              "ru": "варежки",
+              "uk": "рукавиці"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i16:p2",
-            "target": "windows",
+            "target": "hoodie",
             "meaningByLocale": {
-              "ru": "окна",
-              "uk": "вікна"
+              "ru": "толстовка с капюшоном",
+              "uk": "толстовка з каптуром"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i16:p3",
-            "target": "signpost",
+            "target": "sneakers",
             "meaningByLocale": {
-              "ru": "указатель",
-              "uk": "вказівник"
+              "ru": "кроссовки",
+              "uk": "кросівки"
             }
           },
           {
             "pairId": "en:lesson-05:session-30:i16:p4",
-            "target": "boots",
+            "target": "lanyard",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "шнурок для бейджа",
+              "uk": "шнурок для бейджа"
             }
           }
         ],
         "leftColumn": [
-          "headphones",
-          "windows",
-          "signpost",
-          "boots"
+          "mittens",
+          "hoodie",
+          "sneakers",
+          "lanyard"
         ],
         "rightColumn": [
-          "навушники",
-          "вікна",
-          "вказівник",
-          "черевики"
+          "рукавиці",
+          "толстовка з каптуром",
+          "кросівки",
+          "шнурок для бейджа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -961,25 +1139,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-30:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знайдені навушники належать Анні. Скажіть «Це навушники Анни»",
+      "prompt": "Гість питає, чиї це кросівки. Вони туриста. Скажіть: «Це кросівки туриста»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Знайдені навушники належать Анні. Скажіть «Це навушники Анни»",
+      "accessibilityLabel": "Гість питає, чиї це кросівки. Вони туриста. Скажіть: «Це кросівки туриста»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-30:i17:audio",
-          "transcript": "These are Anna's headphones."
+          "transcript": "These are the tourist's sneakers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These are Anna's headphones.",
+        "targetPhrase": "These are the tourist's sneakers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1001,11 +1179,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ee406a2a18bc2f60a31e3668f3f641eadc27e19abab38a658c9536b53858f17c"
+  "learnerFingerprint": "a0b5868d0da21bcc6572d0d73bb4591c8b1aacf2f0af068ae18f45b2d63146f4"
 }

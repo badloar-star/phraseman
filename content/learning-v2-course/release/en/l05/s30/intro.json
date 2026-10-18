@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-30",
   "learningOutcomeByLocale": {
-    "ru": "назвать владельца вещей и сообщить об их отсутствии",
-    "uk": "назвати власника речей і повідомити про їхню відсутність"
+    "ru": "называть хозяина через 's и в паре вещей: the tourist's mittens are on the desk",
+    "uk": "називати господаря через 's і в парі речей: the tourist's mittens are on the desk"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Наушники — are",
-        "uk": "Навушники — are"
+        "ru": "Варежки на стойке",
+        "uk": "Рукавиці на стійці"
       },
       "bodyByLocale": {
-        "ru": "`headphones` — «наушники». В английском это множественное число: `The headphones are mine` — «Наушники мои». `These are Anna’s headphones` — «Это наушники Анны»: владелица одна, но наушники требуют `are`. `Tom’s headphones are here` — «Наушники Тома здесь». Наушники не слышат, как их зовут: искать всё равно придётся глазами.",
-        "uk": "`headphones` — «навушники». В англійській це множина: `The headphones are mine` — «Навушники мої». `These are Anna’s headphones` — «Це навушники Анни»: власниця одна, але навушники потребують `are`. `Tom’s headphones are here` — «Навушники Тома тут». Навушники не чують, як їх кличуть: шукати все одно доведеться очима."
+        "ru": "Вы дежурите на стойке. Турист вернулся в гостиницу с прогулки по снегу, руки у него замёрзли, и он ищет варежки. mittens — «варежки», это пара, поэтому are. Они лежат на стойке: The tourist's mittens are on the desk — «Варежки туриста на стойке».",
+        "uk": "Ви чергуєте на стійці. Турист повернувся до готелю з прогулянки по снігу, руки в нього змерзли, і він шукає рукавиці. mittens — «рукавиці», це пара, тому are. Вони лежать на стійці: The tourist's mittens are on the desk — «Рукавиці туриста на стійці»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-30:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на наушники Анны.",
-          "uk": "Укажіть на навушники Анни."
+          "ru": "Турист ищет варежки. Они лежат на стойке. Скажите ему: «Варежки туриста на стойке».",
+          "uk": "Турист шукає рукавиці. Вони лежать на стійці. Скажіть йому: «Рукавиці туриста на стійці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-30:intro1:r1",
-              "text": "These are Anna's headphones."
+              "text": "The tourist's mittens are on the desk."
             },
             {
               "responseId": "en:lesson-05:session-30:intro1:r2",
-              "text": "These is Anna's headphones."
+              "text": "The tourist's mittens is on the desk."
             },
             {
               "responseId": "en:lesson-05:session-30:intro1:r3",
-              "text": "These are Anna headphones."
+              "text": "The tourist mittens are on the desk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-30:intro1:r1",
-              "text": "These are Anna's headphones."
+              "text": "The tourist's mittens are on the desk."
             },
             {
               "responseId": "en:lesson-05:session-30:intro1:r2",
-              "text": "These is Anna's headphones."
+              "text": "The tourist's mittens is on the desk."
             },
             {
               "responseId": "en:lesson-05:session-30:intro1:r3",
-              "text": "These are Anna headphones."
+              "text": "The tourist mittens are on the desk."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на наушники Анны.",
-          "uk": "Укажіть на навушники Анни."
+          "ru": "Турист ищет варежки. Они лежат на стойке. Скажите ему: «Варежки туриста на стойке».",
+          "uk": "Турист шукає рукавиці. Вони лежать на стійці. Скажіть йому: «Рукавиці туриста на стійці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Живое и пропавшее",
-        "uk": "Живе й зникле"
+        "ru": "Чужая толстовка",
+        "uk": "Чужа толстовка"
       },
       "bodyByLocale": {
-        "ru": "`alive` — «живой», `dead` — «мёртвый», `missing` — «пропавший, отсутствующий». `The tree is alive` — «Дерево живо». `The tree is dead` — «Дерево погибло»: речь о его нынешнем состоянии. `My headphones are missing` — «Мои наушники пропали»: их нет на месте, но это не значит, что они сломаны.",
-        "uk": "`alive` — «живий», `dead` — «мертвий», `missing` — «зниклий, відсутній». `The tree is alive` — «Дерево живе». `The tree is dead` — «Дерево загинуло»: ідеться про його теперішній стан. `My headphones are missing` — «Мої навушники зникли»: їх немає на місці, але це не означає, що вони зламані."
+        "ru": "В холле гостиницы на стуле висит толстовка с капюшоном. hoodie — «толстовка с капюшоном». Стул занимает турист, но толстовка не его, а гостя из соседнего номера. Подруга просит объяснить: The guest's hoodie is on the tourist's chair. Здесь два хозяина.",
+        "uk": "У холі готелю на стільці висить толстовка з каптуром. hoodie — «толстовка з каптуром». Стілець займає турист, але толстовка не його, а гостя із сусіднього номера. Подруга просить пояснити: The guest's hoodie is on the tourist's chair. Тут двоє господарів."
       },
       "question": {
         "interactionId": "en:lesson-05:session-30:intro2:q",
         "promptByLocale": {
-          "ru": "Наушники не удаётся найти. Скажите «Мои наушники пропали».",
-          "uk": "Навушники не вдається знайти. Скажіть «Мої навушники зникли»."
+          "ru": "Толстовка висит на стуле туриста, но она гостя. Скажите подруге: «Толстовка гостя на стуле туриста».",
+          "uk": "Толстовка висить на стільці туриста, але вона гостя. Скажіть подрузі: «Толстовка гостя на стільці туриста»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-30:intro2:r1",
-              "text": "My headphones are missing."
+              "text": "The guest's hoodie is on the tourist's chair."
             },
             {
               "responseId": "en:lesson-05:session-30:intro2:r2",
-              "text": "My headphones is missing."
+              "text": "The guest hoodie is on the tourist's chair."
             },
             {
               "responseId": "en:lesson-05:session-30:intro2:r3",
-              "text": "My headphones are here."
+              "text": "The guest's hoodie is on the guest's chair."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-30:intro2:r1",
-              "text": "My headphones are missing."
+              "text": "The guest's hoodie is on the tourist's chair."
             },
             {
               "responseId": "en:lesson-05:session-30:intro2:r2",
-              "text": "My headphones is missing."
+              "text": "The guest hoodie is on the tourist's chair."
             },
             {
               "responseId": "en:lesson-05:session-30:intro2:r3",
-              "text": "My headphones are here."
+              "text": "The guest's hoodie is on the guest's chair."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Наушники не удаётся найти. Скажите «Мои наушники пропали».",
-          "uk": "Навушники не вдається знайти. Скажіть «Мої навушники зникли»."
+          "ru": "Толстовка висит на стуле туриста, но она гостя. Скажите подруге: «Толстовка гостя на стуле туриста».",
+          "uk": "Толстовка висить на стільці туриста, але вона гостя. Скажіть подрузі: «Толстовка гостя на стільці туриста»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Окна, указатель и ботинки",
-        "uk": "Вікна, вказівник і черевики"
+        "ru": "Кроссовки в спортзале",
+        "uk": "Кросівки в спортзалі"
       },
       "bodyByLocale": {
-        "ru": "`windows` — «окна», `signpost` — «указатель», `boots` — «ботинки». `The windows are open` — «Окна открыты». `Tom’s boots are next to the door` — «Ботинки Тома рядом с дверью». `Anna is next to the signpost` — «Анна рядом с указателем». `Where are my headphones?` — «Где мои наушники?»",
-        "uk": "`windows` — «вікна», `signpost` — «вказівник», `boots` — «черевики». `The windows are open` — «Вікна відчинені». `Tom’s boots are next to the door` — «Черевики Тома поруч із дверима». `Anna is next to the signpost` — «Анна поруч із вказівником». `Where are my headphones?` — «Де мої навушники?»"
+        "ru": "После утренней зарядки для гостей в спортзале гостиницы остались кроссовки. sneakers — «кроссовки», это пара. Вы спрашиваете инструктора, не гостя ли они: Are these the guest's sneakers? — «Это кроссовки гостя?» Вопрос начинаем с Are, потому что кроссовок две.",
+        "uk": "Після ранкової зарядки для гостей у спортзалі готелю залишилися кросівки. sneakers — «кросівки», це пара. Ви питаєте інструктора, чи не гостя вони: Are these the guest's sneakers? — «Це кросівки гостя?» Питання починаємо з Are, бо кросівок дві."
       },
       "question": {
         "interactionId": "en:lesson-05:session-30:intro3:q",
         "promptByLocale": {
-          "ru": "Окна открыты. Выберите фразу.",
-          "uk": "Вікна відчинені. Виберіть фразу."
+          "ru": "В спортзале стоят кроссовки. Спросите инструктора, не гостя ли они.",
+          "uk": "У спортзалі стоять кросівки. Спитайте інструктора, чи не гостя вони."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-30:intro3:r1",
-              "text": "The windows are open."
+              "text": "Are these the guest's sneakers?"
             },
             {
               "responseId": "en:lesson-05:session-30:intro3:r2",
-              "text": "The windows is open."
+              "text": "Is these the guest's sneakers?"
             },
             {
               "responseId": "en:lesson-05:session-30:intro3:r3",
-              "text": "The windows are closed."
+              "text": "Are these the guest sneakers?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-30:intro3:r1",
-              "text": "The windows are open."
+              "text": "Are these the guest's sneakers?"
             },
             {
               "responseId": "en:lesson-05:session-30:intro3:r2",
-              "text": "The windows is open."
+              "text": "Is these the guest's sneakers?"
             },
             {
               "responseId": "en:lesson-05:session-30:intro3:r3",
-              "text": "The windows are closed."
+              "text": "Are these the guest sneakers?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Окна открыты. Выберите фразу.",
-          "uk": "Вікна відчинені. Виберіть фразу."
+          "ru": "В спортзале стоят кроссовки. Спросите инструктора, не гостя ли они.",
+          "uk": "У спортзалі стоять кросівки. Спитайте інструктора, чи не гостя вони."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "175497899b5ebdf177a9647e0966a423fad35f8de4d4aea7437b455ecc4ea3ae"
+  "introFingerprint": "cea7d94c9a1caeeb26c368102b3ae430ddc7ddb3482ac183a226e4c52d2f55d1"
 }

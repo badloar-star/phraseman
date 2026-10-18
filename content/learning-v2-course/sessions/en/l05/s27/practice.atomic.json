@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-27",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-27:word:marker",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — marker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:marker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — marker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:marker:audio",
+            "transcript": "marker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:marker:r1",
+              "targetText": "marker",
+              "meaningByLocale": {
+                "ru": "маркер. This is my sister's marker. — «Это маркер моей сестры». О толстом фломастере, которым пишут на белой доске.",
+                "uk": "маркер. This is my sister's marker. — «Це маркер моєї сестри». Про товстий фломастер, яким пишуть на білій дошці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "marker",
+            "definitionByLocale": {
+              "ru": "маркер. This is my sister's marker. — «Это маркер моей сестры». О толстом фломастере, которым пишут на белой доске.",
+              "uk": "маркер. This is my sister's marker. — «Це маркер моєї сестри». Про товстий фломастер, яким пишуть на білій дошці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my friend's marker.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»",
+            "uk": "Двоюрідний брат питає, чий маркер. Він вашої подруги. Скажіть: «Це маркер моєї подруги»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "friend's",
+            "marker"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `This is my friend's marker.`",
+                "uk": "тут потрібно `friend's` — `This is my friend's marker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:calculator",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — calculator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:calculator:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — calculator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:calculator:audio",
+            "transcript": "calculator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:calculator:r1",
+              "targetText": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор. My cousin's calculator is new. — «Калькулятор моего двоюродного брата новый». О приборе, на котором считают числа.",
+                "uk": "калькулятор. My cousin's calculator is new. — «Калькулятор мого двоюрідного брата новий». Про прилад, на якому рахують числа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calculator",
+            "definitionByLocale": {
+              "ru": "калькулятор. My cousin's calculator is new. — «Калькулятор моего двоюродного брата новый». О приборе, на котором считают числа.",
+              "uk": "калькулятор. My cousin's calculator is new. — «Калькулятор мого двоюрідного брата новий». Про прилад, на якому рахують числа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i02:r1",
+            "text": "The calculator is my cousin's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r2",
+            "text": "The calculator is my brother's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r3",
+            "text": "The textbook is my cousin's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i02:audio",
+            "transcript": "The calculator is my cousin's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i02:r1",
+              "targetText": "The calculator is my cousin's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r2",
+              "targetText": "The calculator is my brother's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r3",
+              "targetText": "The textbook is my cousin's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `cousin's`, двоюродный брат, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `cousin's`, двоюрідний брат, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `calculator`, а в этом варианте — `textbook`.",
+                "uk": "У записі річ — `calculator`, а в цьому варіанті — `textbook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:textbook",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — textbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:textbook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — textbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:textbook:audio",
+            "transcript": "textbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:textbook:r1",
+              "targetText": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник. My friend's textbook is here. — «Учебник моей подруги здесь». О книге, по которой учатся.",
+                "uk": "підручник. My friend's textbook is here. — «Підручник моєї подруги тут». Про книжку, за якою навчаються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "textbook",
+            "definitionByLocale": {
+              "ru": "учебник. My friend's textbook is here. — «Учебник моей подруги здесь». О книге, по которой учатся.",
+              "uk": "підручник. My friend's textbook is here. — «Підручник моєї подруги тут». Про книжку, за якою навчаються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учебник принадлежит вашей сестре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учебник принадлежит вашей сестре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учебник принадлежит вашей сестре. Выберите слово",
+            "uk": "Підручник належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The textbook is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Учебник принадлежит вашей сестре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Учебник принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что учебник — это сама сестра. Хозяйку называем через `'s`: `sister's`.",
+                "uk": "Так вийшло б, що підручник — це сама сестра. Господиню називаємо через `'s`: `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Учебник принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i04:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p2",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p3",
+              "target": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор",
+                "uk": "калькулятор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p4",
+              "target": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник",
+                "uk": "підручник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "whiteboard",
+            "calculator",
+            "textbook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "белая доска",
+            "калькулятор",
+            "учебник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:whiteboard",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — whiteboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:whiteboard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — whiteboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:whiteboard:audio",
+            "transcript": "whiteboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:whiteboard:r1",
+              "targetText": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска. The teacher's whiteboard is big. — «Белая доска учительницы большая». О гладкой белой доске, на которой пишут маркером.",
+                "uk": "біла дошка. The teacher's whiteboard is big. — «Біла дошка вчительки велика». Про гладеньку білу дошку, на якій пишуть маркером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whiteboard",
+            "definitionByLocale": {
+              "ru": "белая доска. The teacher's whiteboard is big. — «Белая доска учительницы большая». О гладкой белой доске, на которой пишут маркером.",
+              "uk": "біла дошка. The teacher's whiteboard is big. — «Біла дошка вчительки велика». Про гладеньку білу дошку, на якій пишуть маркером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте учительницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте учительницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i05:audio",
+            "transcript": "The whiteboard is the teacher's."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The whiteboard is the teacher's.",
+          "orderedTokens": [
+            "The",
+            "whiteboard",
+            "is",
+            "the",
+            "teacher's"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте учительницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The whiteboard is the teacher's.`",
+                "uk": "тут потрібно `is` — `The whiteboard is the teacher's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this calculator your cousin's?",
+          "localizedMeaning": {
+            "ru": "Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»",
+            "uk": "Ви знайшли калькулятор і питаєте подругу, чи не її двоюрідного брата він. Задайте питання: «Цей калькулятор твого двоюрідного брата?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "calculator",
+            "your",
+            "cousin's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this calculator your cousin's?`",
+                "uk": "тут потрібно `Is` — `Is this calculator your cousin's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, чей это маркер. Он вашей сестры. Скажите: «Он моей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, чей это маркер. Он вашей сестры. Скажите: «Он моей сестры»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i07:audio",
+            "transcript": "It is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+            "uk": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i08:r1",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r3",
+              "text": "aren't"
+            }
+          ],
+          "testedDimension": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+              "feedbackByLocale": {
+                "ru": "После No говорят it isn't, а не it is.",
+                "uk": "Після No кажуть it isn't, а не it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+              "feedbackByLocale": {
+                "ru": "К слову it подходит isn't: это одна вещь.",
+                "uk": "До слова it підходить isn't: це одна річ."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте двоюродного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i09:r1",
+            "text": "Is this textbook the teacher's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r2",
+            "text": "Is this textbook your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r3",
+            "text": "Is this notebook the teacher's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте двоюродного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i09:audio",
+            "transcript": "Is this textbook the teacher's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i09:r1",
+              "targetText": "Is this textbook the teacher's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r2",
+              "targetText": "Is this textbook your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r3",
+              "targetText": "Is this notebook the teacher's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `teacher's`, учительница, а в этом варианте — `cousin's`, двоюродный брат.",
+                "uk": "У записі господиня — `teacher's`, вчителька, а в цьому варіанті — `cousin's`, двоюрідний брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте двоюродного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `textbook`, а в этом варианте — `notebook`.",
+                "uk": "У записі річ — `textbook`, а в цьому варіанті — `notebook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i10:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p2",
+              "target": "ruler",
+              "meaningByLocale": {
+                "ru": "линейка",
+                "uk": "лінійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p3",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p4",
+              "target": "notebook",
+              "meaningByLocale": {
+                "ru": "тетрадь",
+                "uk": "зошит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "ruler",
+            "whiteboard",
+            "notebook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "линейка",
+            "белая доска",
+            "тетрадь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i11:audio",
+            "transcript": "My cousin's calculator is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's calculator is on the desk.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "calculator",
+            "is",
+            "on",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My cousin's calculator is on the desk.`",
+                "uk": "тут потрібно `is` — `My cousin's calculator is on the desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The teacher has your textbook.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»",
+            "uk": "Двоюрідний брат шукає свій підручник. Він у вчительки. Скажіть йому: «Твій підручник у вчительки»"
+          },
+          "orderedTokens": [
+            "The",
+            "teacher",
+            "has",
+            "your",
+            "textbook"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The teacher has your textbook.`",
+                "uk": "тут потрібно `has` — `The teacher has your textbook.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница спрашивает, чей это калькулятор. Он вашей подруги. Скажите: «Он моей подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i13:audio"
+        ],
+        "accessibilityLabel": "Учительница спрашивает, чей это калькулятор. Он вашей подруги. Скажите: «Он моей подруги»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i13:audio",
+            "transcript": "It is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my friend's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+            "uk": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "My cousin ___ a calculator.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i14:r2",
+              "correct": false,
+              "testedDimension": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "К слову `cousin` нужно `has`, а не `have`.",
+                "uk": "До слова `cousin` потрібно `has`, а не `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r3",
+              "correct": false,
+              "testedDimension": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «есть, находится», а здесь нужно «у двоюродного брата есть»: `has`.",
+                "uk": "`is` означає «є, знаходиться», а тут потрібно «у двоюрідного брата є»: `has`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i15:r1",
+            "text": "The textbook is my friend's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r2",
+            "text": "The textbook is my brother's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r3",
+            "text": "The notebook is my friend's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i15:audio",
+            "transcript": "The textbook is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i15:r1",
+              "targetText": "The textbook is my friend's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r2",
+              "targetText": "The textbook is my brother's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r3",
+              "targetText": "The notebook is my friend's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `friend's`, друг, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `friend's`, друг, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `textbook`, а в этом варианте — `notebook`.",
+                "uk": "У записі річ — `textbook`, а в цьому варіанті — `notebook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i16:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p2",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p3",
+              "target": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор",
+                "uk": "калькулятор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p4",
+              "target": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник",
+                "uk": "підручник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "whiteboard",
+            "calculator",
+            "textbook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "белая доска",
+            "калькулятор",
+            "учебник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Учительница спрашивает, чей это учебник. Он вашего двоюродного брата. Скажите: «Он моего двоюродного брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Учительница спрашивает, чей это учебник. Он вашего двоюродного брата. Скажите: «Он моего двоюродного брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i17:audio",
+            "transcript": "It is my cousin's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my cousin's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-27:word:marker",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — marker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:marker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — marker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:marker:audio",
+            "transcript": "marker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:marker:r1",
+              "targetText": "marker",
+              "meaningByLocale": {
+                "ru": "маркер. This is my sister's marker. — «Это маркер моей сестры». О толстом фломастере, которым пишут на белой доске.",
+                "uk": "маркер. This is my sister's marker. — «Це маркер моєї сестри». Про товстий фломастер, яким пишуть на білій дошці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "marker",
+            "definitionByLocale": {
+              "ru": "маркер. This is my sister's marker. — «Это маркер моей сестры». О толстом фломастере, которым пишут на белой доске.",
+              "uk": "маркер. This is my sister's marker. — «Це маркер моєї сестри». Про товстий фломастер, яким пишуть на білій дошці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюрідний брат питає, чий маркер. Він вашої подруги. Скажіть: «Це маркер моєї подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат питає, чий маркер. Він вашої подруги. Скажіть: «Це маркер моєї подруги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my friend's marker.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат спрашивает, чей маркер. Он вашей подруги. Скажите: «Это маркер моей подруги»",
+            "uk": "Двоюрідний брат питає, чий маркер. Він вашої подруги. Скажіть: «Це маркер моєї подруги»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "friend's",
+            "marker"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає, чий маркер. Він вашої подруги. Скажіть: «Це маркер моєї подруги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `This is my friend's marker.`",
+                "uk": "тут потрібно `friend's` — `This is my friend's marker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:calculator",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — calculator",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:calculator:audio"
+        ],
+        "accessibilityLabel": "Картка слова — calculator",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:calculator:audio",
+            "transcript": "calculator"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:calculator:r1",
+              "targetText": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор. My cousin's calculator is new. — «Калькулятор моего двоюродного брата новый». О приборе, на котором считают числа.",
+                "uk": "калькулятор. My cousin's calculator is new. — «Калькулятор мого двоюрідного брата новий». Про прилад, на якому рахують числа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "calculator",
+            "definitionByLocale": {
+              "ru": "калькулятор. My cousin's calculator is new. — «Калькулятор моего двоюродного брата новый». О приборе, на котором считают числа.",
+              "uk": "калькулятор. My cousin's calculator is new. — «Калькулятор мого двоюрідного брата новий». Про прилад, на якому рахують числа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i02:r1",
+            "text": "The calculator is my cousin's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r2",
+            "text": "The calculator is my brother's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i02:r3",
+            "text": "The textbook is my cousin's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i02:audio",
+            "transcript": "The calculator is my cousin's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i02:r1",
+              "targetText": "The calculator is my cousin's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r2",
+              "targetText": "The calculator is my brother's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r3",
+              "targetText": "The textbook is my cousin's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `cousin's`, двоюродный брат, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `cousin's`, двоюрідний брат, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `calculator`, а в этом варианте — `textbook`.",
+                "uk": "У записі річ — `calculator`, а в цьому варіанті — `textbook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:textbook",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — textbook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:textbook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — textbook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:textbook:audio",
+            "transcript": "textbook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:textbook:r1",
+              "targetText": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник. My friend's textbook is here. — «Учебник моей подруги здесь». О книге, по которой учатся.",
+                "uk": "підручник. My friend's textbook is here. — «Підручник моєї подруги тут». Про книжку, за якою навчаються."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "textbook",
+            "definitionByLocale": {
+              "ru": "учебник. My friend's textbook is here. — «Учебник моей подруги здесь». О книге, по которой учатся.",
+              "uk": "підручник. My friend's textbook is here. — «Підручник моєї подруги тут». Про книжку, за якою навчаються."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підручник належить вашій сестрі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підручник належить вашій сестрі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Учебник принадлежит вашей сестре. Выберите слово",
+            "uk": "Підручник належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The textbook is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Підручник належить вашій сестрі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i03:r2",
+              "correct": false,
+              "testedDimension": "Підручник належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что учебник — это сама сестра. Хозяйку называем через `'s`: `sister's`.",
+                "uk": "Так вийшло б, що підручник — це сама сестра. Господиню називаємо через `'s`: `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i03:r3",
+              "correct": false,
+              "testedDimension": "Підручник належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i04:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p2",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p3",
+              "target": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор",
+                "uk": "калькулятор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i04:p4",
+              "target": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник",
+                "uk": "підручник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "whiteboard",
+            "calculator",
+            "textbook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "біла дошка",
+            "калькулятор",
+            "підручник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:word:whiteboard",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — whiteboard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:word:whiteboard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — whiteboard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:word:whiteboard:audio",
+            "transcript": "whiteboard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:word:whiteboard:r1",
+              "targetText": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска. The teacher's whiteboard is big. — «Белая доска учительницы большая». О гладкой белой доске, на которой пишут маркером.",
+                "uk": "біла дошка. The teacher's whiteboard is big. — «Біла дошка вчительки велика». Про гладеньку білу дошку, на якій пишуть маркером."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whiteboard",
+            "definitionByLocale": {
+              "ru": "белая доска. The teacher's whiteboard is big. — «Белая доска учительницы большая». О гладкой белой доске, на которой пишут маркером.",
+              "uk": "біла дошка. The teacher's whiteboard is big. — «Біла дошка вчительки велика». Про гладеньку білу дошку, на якій пишуть маркером."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте вчительку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте вчительку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i05:audio",
+            "transcript": "The whiteboard is the teacher's."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The whiteboard is the teacher's.",
+          "orderedTokens": [
+            "The",
+            "whiteboard",
+            "is",
+            "the",
+            "teacher's"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте вчительку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The whiteboard is the teacher's.`",
+                "uk": "тут потрібно `is` — `The whiteboard is the teacher's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли калькулятор і питаєте подругу, чи не її двоюрідного брата він. Задайте питання: «Цей калькулятор твого двоюрідного брата?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли калькулятор і питаєте подругу, чи не її двоюрідного брата він. Задайте питання: «Цей калькулятор твого двоюрідного брата?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this calculator your cousin's?",
+          "localizedMeaning": {
+            "ru": "Вы нашли калькулятор и спрашиваете подругу, не её ли двоюродного брата он. Задайте вопрос: «Этот калькулятор твоего двоюродного брата?»",
+            "uk": "Ви знайшли калькулятор і питаєте подругу, чи не її двоюрідного брата він. Задайте питання: «Цей калькулятор твого двоюрідного брата?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "calculator",
+            "your",
+            "cousin's"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли калькулятор і питаєте подругу, чи не її двоюрідного брата він. Задайте питання: «Цей калькулятор твого двоюрідного брата?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this calculator your cousin's?`",
+                "uk": "тут потрібно `Is` — `Is this calculator your cousin's?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чий це маркер. Він вашої сестри. Скажіть: «Він моєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чий це маркер. Він вашої сестри. Скажіть: «Він моєї сестри»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i07:audio",
+            "transcript": "It is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i08:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i08:r3",
+            "text": "aren't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат спрашивает: «Is this textbook your brother's?» Нет, не его. Выберите продолжение ответа",
+            "uk": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i08:r1",
+              "text": "isn't"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r3",
+              "text": "aren't"
+            }
+          ],
+          "testedDimension": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді",
+              "feedbackByLocale": {
+                "ru": "После No говорят it isn't, а не it is.",
+                "uk": "Після No кажуть it isn't, а не it is."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат питає: «Is this textbook your brother's?» Ні, не його. Виберіть продовження відповіді",
+              "feedbackByLocale": {
+                "ru": "К слову it подходит isn't: это одна вещь.",
+                "uk": "До слова it підходить isn't: це одна річ."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте двоюрідного брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i09:r1",
+            "text": "Is this textbook the teacher's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r2",
+            "text": "Is this textbook your cousin's?"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i09:r3",
+            "text": "Is this notebook the teacher's?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте двоюрідного брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i09:audio",
+            "transcript": "Is this textbook the teacher's?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i09:r1",
+              "targetText": "Is this textbook the teacher's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r2",
+              "targetText": "Is this textbook your cousin's?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r3",
+              "targetText": "Is this notebook the teacher's?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `teacher's`, учительница, а в этом варианте — `cousin's`, двоюродный брат.",
+                "uk": "У записі господиня — `teacher's`, вчителька, а в цьому варіанті — `cousin's`, двоюрідний брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте двоюрідного брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `textbook`, а в этом варианте — `notebook`.",
+                "uk": "У записі річ — `textbook`, а в цьому варіанті — `notebook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i10:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p2",
+              "target": "ruler",
+              "meaningByLocale": {
+                "ru": "линейка",
+                "uk": "лінійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p3",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i10:p4",
+              "target": "notebook",
+              "meaningByLocale": {
+                "ru": "тетрадь",
+                "uk": "зошит"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "ruler",
+            "whiteboard",
+            "notebook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "лінійка",
+            "біла дошка",
+            "зошит"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i11:audio",
+            "transcript": "My cousin's calculator is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My cousin's calculator is on the desk.",
+          "orderedTokens": [
+            "My",
+            "cousin's",
+            "calculator",
+            "is",
+            "on",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My cousin's calculator is on the desk.`",
+                "uk": "тут потрібно `is` — `My cousin's calculator is on the desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоюрідний брат шукає свій підручник. Він у вчительки. Скажіть йому: «Твій підручник у вчительки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат шукає свій підручник. Він у вчительки. Скажіть йому: «Твій підручник у вчительки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The teacher has your textbook.",
+          "localizedMeaning": {
+            "ru": "Двоюродный брат ищет свой учебник. Он у учительницы. Скажите ему: «Твой учебник у учительницы»",
+            "uk": "Двоюрідний брат шукає свій підручник. Він у вчительки. Скажіть йому: «Твій підручник у вчительки»"
+          },
+          "orderedTokens": [
+            "The",
+            "teacher",
+            "has",
+            "your",
+            "textbook"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат шукає свій підручник. Він у вчительки. Скажіть йому: «Твій підручник у вчительки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The teacher has your textbook.`",
+                "uk": "тут потрібно `has` — `The teacher has your textbook.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька питає, чий це калькулятор. Він вашої подруги. Скажіть: «Він моєї подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i13:audio"
+        ],
+        "accessibilityLabel": "Вчителька питає, чий це калькулятор. Він вашої подруги. Скажіть: «Він моєї подруги»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i13:audio",
+            "transcript": "It is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my friend's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двоюродный брат пришёл на урок с калькулятором. Выберите нужное слово",
+            "uk": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово"
+          },
+          "gappedTargetPhrase": "My cousin ___ a calculator.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-27:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i14:r2",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "К слову `cousin` нужно `has`, а не `have`.",
+                "uk": "До слова `cousin` потрібно `has`, а не `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i14:r3",
+              "correct": false,
+              "testedDimension": "Двоюрідний брат прийшов на урок із калькулятором. Виберіть потрібне слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «есть, находится», а здесь нужно «у двоюродного брата есть»: `has`.",
+                "uk": "`is` означає «є, знаходиться», а тут потрібно «у двоюрідного брата є»: `has`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-27:i15:r1",
+            "text": "The textbook is my friend's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r2",
+            "text": "The textbook is my brother's."
+          },
+          {
+            "responseId": "en:lesson-05:session-27:i15:r3",
+            "text": "The notebook is my friend's."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i15:audio",
+            "transcript": "The textbook is my friend's."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-27:i15:r1",
+              "targetText": "The textbook is my friend's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r2",
+              "targetText": "The textbook is my brother's.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r3",
+              "targetText": "The notebook is my friend's.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-27:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи хозяин — `friend's`, друг, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господар — `friend's`, друг, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-27:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `textbook`, а в этом варианте — `notebook`.",
+                "uk": "У записі річ — `textbook`, а в цьому варіанті — `notebook`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-27:i16:p1",
+              "target": "marker",
+              "meaningByLocale": {
+                "ru": "маркер",
+                "uk": "маркер"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p2",
+              "target": "whiteboard",
+              "meaningByLocale": {
+                "ru": "белая доска",
+                "uk": "біла дошка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p3",
+              "target": "calculator",
+              "meaningByLocale": {
+                "ru": "калькулятор",
+                "uk": "калькулятор"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-27:i16:p4",
+              "target": "textbook",
+              "meaningByLocale": {
+                "ru": "учебник",
+                "uk": "підручник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "marker",
+            "whiteboard",
+            "calculator",
+            "textbook"
+          ],
+          "rightColumn": [
+            "маркер",
+            "біла дошка",
+            "калькулятор",
+            "підручник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-27:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вчителька питає, чий це підручник. Він вашого двоюрідного брата. Скажіть: «Він мого двоюрідного брата»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-27:i17:audio"
+        ],
+        "accessibilityLabel": "Вчителька питає, чий це підручник. Він вашого двоюрідного брата. Скажіть: «Він мого двоюрідного брата»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-27:i17:audio",
+            "transcript": "It is my cousin's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my cousin's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-27:word:marker",
+      "correctText": "marker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i01",
+      "correctText": "This is my friend's marker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:word:calculator",
+      "correctText": "calculator",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i02",
+      "correctText": "The calculator is my cousin's.",
+      "correctResponseId": "en:lesson-05:session-27:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:word:textbook",
+      "correctText": "textbook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i03",
+      "correctText": "sister's",
+      "correctResponseId": "en:lesson-05:session-27:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:word:whiteboard",
+      "correctText": "whiteboard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i05",
+      "correctText": "The whiteboard is the teacher's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i06",
+      "correctText": "Is this calculator your cousin's?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i07",
+      "correctText": "It is my sister's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i08",
+      "correctText": "isn't",
+      "correctResponseId": "en:lesson-05:session-27:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i09",
+      "correctText": "Is this textbook the teacher's?",
+      "correctResponseId": "en:lesson-05:session-27:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i11",
+      "correctText": "My cousin's calculator is on the desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i12",
+      "correctText": "The teacher has your textbook.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i13",
+      "correctText": "It is my friend's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-27:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i15",
+      "correctText": "The textbook is my friend's.",
+      "correctResponseId": "en:lesson-05:session-27:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-27:i17",
+      "correctText": "It is my cousin's.",
+      "correctResponseId": null
+    }
+  ]
+}

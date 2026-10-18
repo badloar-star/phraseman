@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-32",
   "learningOutcomeByLocale": {
-    "ru": "уточнить владельца, место и наличие знакомых вещей",
-    "uk": "уточнити власника, місце й наявність знайомих речей"
+    "ru": "самому выбрать, как сказать о хозяине вещи: 's, has или is, в утверждении, вопросе и коротком ответе",
+    "uk": "самому вибрати, як сказати про господаря речі: 's, has чи is, у ствердженні, питанні та короткій відповіді"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обед и документы",
-        "uk": "Обід і документи"
+        "ru": "Кувшин для воды",
+        "uk": "Глечик для води"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `fountain` — «фонтан», `lunchbox` — «ланчбокс», `badge` — «значок», `passport` — «паспорт». `Tom is next to the fountain` — «Том рядом с фонтаном». `This is Anna’s lunchbox` — «Это ланчбокс Анны». `Tom’s passport is in the bag` — «Паспорт Тома в сумке». После имени владельца добавляем `’s`.",
-        "uk": "Повторімо: `fountain` — «фонтан», `lunchbox` — «ланчбокс», `badge` — «значок», `passport` — «паспорт». `Tom is next to the fountain` — «Том поруч із фонтаном». `This is Anna’s lunchbox` — «Це ланчбокс Анни». `Tom’s passport is in the bag` — «Паспорт Тома в сумці». Після імені власника додаємо `’s`."
+        "ru": "Бабушка накрывает стол к ужину и просит кувшин для воды. Он стоит у вашей тёти в шкафчике, рядом с чашками. jug — «кувшин», в нём подают воду или сок. Скажите бабушке, где он: The jug is in my aunt's cupboard — «Кувшин в шкафчике моей тёти».",
+        "uk": "Бабуся накриває стіл до вечері й просить глечик для води. Він стоїть у вашої тітки в шафці, поруч із чашками. jug — «глечик», у ньому подають воду або сік. Скажіть бабусі, де він: The jug is in my aunt's cupboard — «Глечик у шафці моєї тітки»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на ланчбокс Анны.",
-          "uk": "Укажіть на ланчбокс Анни."
+          "ru": "Бабушка просит кувшин для воды. Он в шкафчике вашей тёти. Скажите ей: «Кувшин в шкафчике моей тёти».",
+          "uk": "Бабуся просить глечик для води. Він у шафці вашої тітки. Скажіть їй: «Глечик у шафці моєї тітки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-32:intro1:r1",
-              "text": "This is Anna's lunchbox."
+              "text": "The jug is in my aunt's cupboard."
             },
             {
               "responseId": "en:lesson-05:session-32:intro1:r2",
-              "text": "This is Anna lunchbox."
+              "text": "The jug is in my aunt cupboard."
             },
             {
               "responseId": "en:lesson-05:session-32:intro1:r3",
-              "text": "This is Tom's lunchbox."
+              "text": "The jug is in my uncle's cupboard."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-32:intro1:r1",
-              "text": "This is Anna's lunchbox."
+              "text": "The jug is in my aunt's cupboard."
             },
             {
               "responseId": "en:lesson-05:session-32:intro1:r2",
-              "text": "This is Anna lunchbox."
+              "text": "The jug is in my aunt cupboard."
             },
             {
               "responseId": "en:lesson-05:session-32:intro1:r3",
-              "text": "This is Tom's lunchbox."
+              "text": "The jug is in my uncle's cupboard."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на ланчбокс Анны.",
-          "uk": "Укажіть на ланчбокс Анни."
+          "ru": "Бабушка просит кувшин для воды. Он в шкафчике вашей тёти. Скажите ей: «Кувшин в шкафчике моей тёти».",
+          "uk": "Бабуся просить глечик для води. Він у шафці вашої тітки. Скажіть їй: «Глечик у шафці моєї тітки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Карта, доска и музыка",
-        "uk": "Картка, дошка й музика"
+        "ru": "Скатерть на столе",
+        "uk": "Скатертина на столі"
       },
       "bodyByLocale": {
-        "ru": "`keycard` — «ключ-карта», `skateboard` — «скейтборд», `headphones` — «наушники», `guitar` — «гитара». `These are Tom’s headphones` — «Это наушники Тома»: владелец один, но `headphones` — множественное число, поэтому `are`. `Anna’s guitar is here` — «Гитара Анны здесь». Наушники нашли рядом с гитарой: видимо, музыкальные вещи держатся вместе.",
-        "uk": "`keycard` — «ключ-картка», `skateboard` — «скейтборд», `headphones` — «навушники», `guitar` — «гітара». `These are Tom’s headphones` — «Це навушники Тома»: власник один, але `headphones` — множина, тому `are`. `Anna’s guitar is here` — «Гітара Анни тут». Навушники знайшли поруч із гітарою: мабуть, музичні речі тримаються разом."
+        "ru": "Двоюродный брат расстилает на столе белую скатерть и спрашивает, чья она. tablecloth — «скатерть». Её принесла ваша бабушка. Название вещи после 's можно не повторять: The tablecloth is my grandmother's — «Скатерть моей бабушки». И так понятно, о чём речь.",
+        "uk": "Двоюрідний брат розстеляє на столі білу скатертину й питає, чия вона. tablecloth — «скатертина». Її принесла ваша бабуся. Назву речі після 's можна не повторювати: The tablecloth is my grandmother's — «Скатертина моєї бабусі». І так зрозуміло, про що мова."
       },
       "question": {
         "interactionId": "en:lesson-05:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Укажите на наушники Тома.",
-          "uk": "Укажіть на навушники Тома."
+          "ru": "Двоюродный брат спрашивает, чья скатерть на столе. Она вашей бабушки. Скажите ему: «Скатерть моей бабушки».",
+          "uk": "Двоюрідний брат питає, чия скатертина на столі. Вона вашої бабусі. Скажіть йому: «Скатертина моєї бабусі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-32:intro2:r1",
-              "text": "These are Tom's headphones."
+              "text": "The tablecloth is my grandmother's."
             },
             {
               "responseId": "en:lesson-05:session-32:intro2:r2",
-              "text": "These is Tom's headphones."
+              "text": "The tablecloth is my grandmother."
             },
             {
               "responseId": "en:lesson-05:session-32:intro2:r3",
-              "text": "These are Tom headphones."
+              "text": "The tablecloth is my aunt's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-32:intro2:r1",
-              "text": "These are Tom's headphones."
+              "text": "The tablecloth is my grandmother's."
             },
             {
               "responseId": "en:lesson-05:session-32:intro2:r2",
-              "text": "These is Tom's headphones."
+              "text": "The tablecloth is my grandmother."
             },
             {
               "responseId": "en:lesson-05:session-32:intro2:r3",
-              "text": "These are Tom headphones."
+              "text": "The tablecloth is my aunt's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на наушники Тома.",
-          "uk": "Укажіть на навушники Тома."
+          "ru": "Двоюродный брат спрашивает, чья скатерть на столе. Она вашей бабушки. Скажите ему: «Скатерть моей бабушки».",
+          "uk": "Двоюрідний брат питає, чия скатертина на столі. Вона вашої бабусі. Скажіть йому: «Скатертина моєї бабусі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что у кого",
-        "uk": "Що в кого"
+        "ru": "Вилки и ножи",
+        "uk": "Виделки й ножі"
       },
       "bodyByLocale": {
-        "ru": "`I have your keycard` — «Твоя ключ-карта у меня». `The skateboard is his` — «Скейтборд его»: после `his` название вещи не повторяем. `Where is my badge?` — «Где мой значок?» `There is no fountain here` — «Здесь нет фонтана»: так можно объяснить, что вы пришли не туда.",
-        "uk": "`I have your keycard` — «Твоя ключ-картка в мене». `The skateboard is his` — «Скейтборд його»: після `his` назву речі не повторюємо. `Where is my badge?` — «Де мій значок?» `There is no fountain here` — «Тут немає фонтана»: так можна пояснити, що ви прийшли не туди."
+        "ru": "Вы раскладываете на столе вилки, ложки и ножи, которые принесли в одной коробке, и спрашиваете подругу, не её ли сестры они. cutlery — «столовые приборы»: все вместе, как один набор. Поэтому говорим this и is: Is this cutlery your sister's? — «Это приборы твоей сестры?»",
+        "uk": "Ви розкладаєте на столі виделки, ложки й ножі, які принесли в одній коробці, та питаєте подругу, чи не її сестри вони. cutlery — «столові прибори»: усі разом, як один набір. Тому кажемо this та is: Is this cutlery your sister's? — «Це прибори твоєї сестри?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Ключ-карта друга у вас. Скажите ему «Твоя ключ-карта у меня».",
-          "uk": "Ключ-картка друга у вас. Скажіть йому «Твоя ключ-картка в мене»."
+          "ru": "Вы раскладываете вилки, ложки и ножи. Спросите подругу, не её ли сестры эти приборы.",
+          "uk": "Ви розкладаєте виделки, ложки й ножі. Спитайте подругу, чи не її сестри ці прибори."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-32:intro3:r1",
-              "text": "I have your keycard."
+              "text": "Is this cutlery your sister's?"
             },
             {
               "responseId": "en:lesson-05:session-32:intro3:r2",
-              "text": "I has your keycard."
+              "text": "Are this cutlery your sister's?"
             },
             {
               "responseId": "en:lesson-05:session-32:intro3:r3",
-              "text": "I have my keycard."
+              "text": "Is this cutlery your sister?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-32:intro3:r1",
-              "text": "I have your keycard."
+              "text": "Is this cutlery your sister's?"
             },
             {
               "responseId": "en:lesson-05:session-32:intro3:r2",
-              "text": "I has your keycard."
+              "text": "Are this cutlery your sister's?"
             },
             {
               "responseId": "en:lesson-05:session-32:intro3:r3",
-              "text": "I have my keycard."
+              "text": "Is this cutlery your sister?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ключ-карта друга у вас. Скажите ему «Твоя ключ-карта у меня».",
-          "uk": "Ключ-картка друга у вас. Скажіть йому «Твоя ключ-картка в мене»."
+          "ru": "Вы раскладываете вилки, ложки и ножи. Спросите подругу, не её ли сестры эти приборы.",
+          "uk": "Ви розкладаєте виделки, ложки й ножі. Спитайте подругу, чи не її сестри ці прибори."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "097ab6f0a7788ef1f042c82b12190c619d6c84184c8f59eb05dea5a501234f0d"
+  "introFingerprint": "44fa86932222d8c40a7f45c8ebee3bbe726b4144b589c907277a4aaef82315c8"
 }

@@ -1,138 +1,154 @@
-# Английский · Урок 5 · Занятие 26 — Значок нашёлся
+# Английский · Урок 5 · Занятие 26 — Помогаем с малышом
 
-**Ситуация.** Анна и Том собираются на встречу. Значок пропал, перчатки остались на кухне, а кошки наблюдают за поисками.
+**Ситуация.** Вы приехали к сестре помочь с маленьким ребёнком, и детские вещи лежат по квартире вперемешку. Нужно сказать, что чьё и где лежит.
 
-**Что вы освоите:** найти вещи, назвать владельца и описать своё состояние
-**Новые слова:** badge
+**Что вы освоите:** называть вещи малыша и сказать, где они: the baby's nappy, in my sister's bag
+**Новые слова:** nappy, rattle, bib, crib
+**Возвращаются:** sister, brother, grandmother, baby, bag, shelf, table, sofa, bed, floor, window, bottle, blanket, slippers
 
 ---
 
 ## Интро 1
 
-### Маленький значок
+### Подгузник на полке
 
-`badge` — «значок», который можно прикрепить к одежде. `This is Anna’s badge` — «Это значок Анны». `Tom’s badge is here` — «Значок Тома здесь». После имени владельца добавляем `’s`. Значок маленький, зато поиски заняли всю кухню.
+Вы приехали к сестре помочь с малышом. Она переодевает его на диване и просит подать чистый подгузник: он лежит на высокой полке у окна, а руки у неё заняты. nappy — «подгузник». Малыш — the baby, поэтому подгузник — the baby's nappy, «подгузник малыша».
 
-**Укажите на значок Анны.**
+**Сестра просит подгузник. Он лежит на полке. Скажите ей: «Подгузник малыша на полке».**
 
-- ✅ **This is Anna's badge.**
-- ❌ This is Anna badge. — *После имени владельца нужно `’s`: `Anna’s badge`.*
-- ❌ This is Tom's badge. — *Это значок Тома; здесь владелица Анна.*
+- ✅ **The baby's nappy is on the shelf.**
+- ❌ The baby nappy is on the shelf. — *После слова baby нужно 's: the baby's nappy.*
+- ❌ The baby's nappy is on the table. — *table — «стол», а подгузник лежит на полке: нужно shelf.*
 
 ---
 
 ## Интро 2
 
-### Что вы чувствуете
+### Где погремушка
 
-`bored` — «скучающий»: `I am bored` — «Мне скучно». `confused` — «растерянный, не понимающий, что происходит»: `I am confused` — «Я растерян / растеряна». `worried` — «обеспокоенный»: `I am worried` — «Я волнуюсь». Здесь эти слова описывают человека: после `I` нужна форма `am`.
+Малыш заплакал и покраснел, и сестра хочет его отвлечь, но любимая погремушка куда-то закатилась, а искать её некогда. rattle — «погремушка», игрушка, которая гремит, когда её трясут. Спросите сестру, где она: Where is the baby's rattle? — «Где погремушка малыша?»
 
-**Вы переживаете из-за пропавшего значка. Скажите «Я волнуюсь» без сокращения.**
+**Малыш плачет, а погремушки не видно. Спросите сестру, где погремушка малыша.**
 
-- ✅ **I am worried.**
-- ❌ I is worried. — *С `I` нужна форма `am`.*
-- ❌ I am bored. — *`bored` — скучно; волнуюсь — `worried`.*
+- ✅ **Where is the baby's rattle?**
+- ❌ Where is the baby rattle? — *После слова baby нужно 's: the baby's rattle.*
+- ❌ Where are the baby's rattle? — *Погремушка одна, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 3
 
-### На кухне
+### Слюнявчик для каши
 
-`cats` — «кошки», `worktop` — «кухонная столешница», `gloves` — «перчатки». `Anna’s gloves are on the worktop` — «Перчатки Анны на кухонной столешнице»: несколько перчаток, поэтому `are`, хотя владелица одна. `The cats are under the table` — «Кошки под столом». `Where is my badge?` — «Где мой значок?»
+Бабушка пришла кормить малыша тёплой кашей и просит слюнявчик, пока каша не остыла. bib — «слюнявчик»: его повязывают на шею, чтобы не испачкать одежду. Он лежит в сумке вашей сестры. Здесь два хозяина: the baby's bib is in my sister's bag.
 
-**Перчатки Анны на кухонной столешнице. Выберите фразу.**
+**Бабушка просит слюнявчик малыша. Он в сумке вашей сестры. Скажите ей: «Слюнявчик малыша в сумке моей сестры».**
 
-- ✅ **Anna's gloves are on the worktop.**
-- ❌ Anna's gloves is on the worktop. — *Несколько перчаток: `gloves are`.*
-- ❌ Tom's gloves are on the worktop. — *Это перчатки Тома; здесь владелица Анна.*
+- ✅ **The baby's bib is in my sister's bag.**
+- ❌ The baby's bib is in my sister bag. — *Хозяйка сумки тоже называется через 's: my sister's bag.*
+- ❌ The baby's bib is in my brother's bag. — *brother — это брат, а сумка принадлежит сестре: нужно sister's.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Вы переживаете из-за пропавшей вещи. Скажите «Я волнуюсь» без сокращения**
+**1 · Карточка слова — nappy**
+<!-- interaction_id: en:lesson-05:session-26:word:nappy; family: word_card -->
+> **nappy** — подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.
+
+**2 · Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»**
 <!-- interaction_id: en:lesson-05:session-26:i01; family: phrase_builder -->
-Плитки: `worried` `am` `I` `is` → **I am worried.**
-*(плитка `is` лишняя: здесь нужно `am` — `I am worried.`)*
+Плитки: `nappy` `baby's` `is` `in` `the` `bag` `The` `baby` → **The baby's nappy is in the bag.**
+*(плитка `baby` лишняя: здесь нужно `baby's` — `The baby's nappy is in the bag.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — rattle**
+<!-- interaction_id: en:lesson-05:session-26:word:rattle; family: word_card -->
+> **rattle** — погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.
+
+**4 · Послушайте сестру**
 <!-- interaction_id: en:lesson-05:session-26:i02; family: listen_choose -->
-🔊 *badge* → **badge** · bag · jacket
-- bag — *В записи первое слово — `badge`, а в этом варианте — `bag`.*
-- jacket — *В записи первое слово — `badge`, а в этом варианте — `jacket`.*
+🔊 *The baby's rattle is under the sofa.* → **The baby's rattle is under the sofa.** · The baby's rattle is under the bed. · The baby's bottle is under the sofa.
+- The baby's rattle is under the bed. — *В записи последнее слово — `sofa`, а в этом варианте — `bed`.*
+- The baby's bottle is under the sofa. — *В записи вещь — `rattle`, а в этом варианте — `bottle`.*
 
-**3 · Назовите значок на одежде**
+**5 · Карточка слова — bib**
+<!-- interaction_id: en:lesson-05:session-26:word:bib; family: word_card -->
+> **bib** — слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.
+
+**6 · Слюнявчик принадлежит малышу. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-26:i03; family: context_gap_grammar -->
-___ → **badge** · gloves · lunchbox
-- gloves — *`gloves` — перчатки; значок — `badge`.*
-- lunchbox — *`lunchbox` — контейнер для обеда; значок — `badge`.*
+This is the ___ bib. → **baby's** · baby · babies
+- baby — *После слова baby нужно `'s`: `baby's bib` — «слюнявчик малыша».*
+- babies — *`babies` — это «малыши», несколько детей; чтобы назвать хозяина, нужно `baby's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-26:i04; family: speed_match -->
-badge — значок · bored — скучающий · confused — растерянный · worried — обеспокоенный
+nappy — подгузник · rattle — погремушка · bib — слюнявчик · crib — детская кроватка
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — crib**
+<!-- interaction_id: en:lesson-05:session-26:word:crib; family: word_card -->
+> **crib** — детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.
+
+**9 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-26:i05; family: listen_build_dictation -->
-🔊 *This is Anna's badge.* Плитки: `badge` `Anna's` `is` `This` `are` → **This is Anna's badge.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is Anna's badge.`)*
+🔊 *The baby's crib is next to the window.* Плитки: `crib` `baby's` `is` `next` `to` `the` `window` `The` `are` → **The baby's crib is next to the window.**
+*(плитка `are` лишняя: здесь нужно `is` — `The baby's crib is next to the window.`)*
 
-**6 · Вы нашли значок Тома. Скажите «Значок Тома здесь»**
+**10 · Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»**
 <!-- interaction_id: en:lesson-05:session-26:i06; family: phrase_builder -->
-Плитки: `here` `is` `badge` `Tom's` `are` → **Tom's badge is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `Tom's badge is here.`)*
+Плитки: `rattle` `this` `the` `baby's` `Is` `Are` → **Is this the baby's rattle?**
+*(плитка `Are` лишняя: здесь нужно `Is` — `Is this the baby's rattle?`)*
 
-**7 · Вы долго ждёте без дела. Скажите «Мне скучно» без сокращения**
+**11 · Сестра спрашивает, чья кроватка у окна. Она малыша. Скажите: «Это кроватка малыша»**
 <!-- interaction_id: en:lesson-05:session-26:i07; family: scripted_repeat_compare -->
-🎙 **I am bored.**
+🎙 **This is the baby's crib.**
 
-**8 · Перчатки принадлежат Анне. Укажите владельца**
+**12 · Тапочки малыша лежат на ковре. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-26:i08; family: context_gap_grammar -->
-These are ___ gloves. → **Anna's** · Anna · Tom's
-- Anna — *К имени владельца добавляем `’s`: `Anna’s`.*
-- Tom's — *Это принадлежность Тому; здесь владелица Анна.*
+The baby's slippers ___ on the rug. → **are** · is · has
+- is — *Тапочки — пара, поэтому нужно `are`, а не `is`.*
+- has — *`has` значит «иметь», а здесь мы говорим, где лежат тапочки: нужно `are`.*
 
-**9 · Послушайте, какое состояние называет друг**
+**13 · Послушайте бабушку**
 <!-- interaction_id: en:lesson-05:session-26:i09; family: listen_choose -->
-🔊 *I am confused.* → **I am confused.** · I am worried. · I am bored.
-- I am worried. — *В записи последнее слово — `confused`, а в этом варианте — `worried`.*
-- I am bored. — *В записи последнее слово — `confused`, а в этом варианте — `bored`.*
+🔊 *Where is my sister's bag?* → **Where is my sister's bag?** · Where is my brother's bag? · Where is my sister's book?
+- Where is my brother's bag? — *В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.*
+- Where is my sister's book? — *В записи последнее слово — `bag`, а в этом варианте — `book`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-26:i10; family: speed_match -->
-badge — значок · cats — кошки · worktop — кухонная столешница · gloves — перчатки
+nappy — подгузник · rattle — погремушка · crib — детская кроватка · blanket — плед
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте бабушку и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-26:i11; family: listen_build_dictation -->
-🔊 *Anna's gloves are on the worktop.* Плитки: `worktop` `the` `on` `are` `gloves` `Anna's` `is` → **Anna's gloves are on the worktop.**
-*(плитка `is` лишняя: здесь нужно `are` — `Anna's gloves are on the worktop.`)*
+🔊 *My sister's baby has a rattle.* Плитки: `baby` `has` `a` `rattle` `My` `sister's` `have` → **My sister's baby has a rattle.**
+*(плитка `have` лишняя: здесь нужно `has` — `My sister's baby has a rattle.`)*
 
-**12 · Кошки спрятались под столом. Скажите «Кошки под столом»**
+**16 · Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»**
 <!-- interaction_id: en:lesson-05:session-26:i12; family: phrase_builder -->
-Плитки: `table` `the` `under` `are` `cats` `The` `is` → **The cats are under the table.**
-*(плитка `is` лишняя: здесь нужно `are` — `The cats are under the table.`)*
+Плитки: `bib` `is` `in` `the` `baby's` `crib` `The` `are` → **The bib is in the baby's crib.**
+*(плитка `are` лишняя: здесь нужно `is` — `The bib is in the baby's crib.`)*
 
-**13 · Вы ищете свой значок. Спросите «Где мой значок?»**
+**17 · Сестра ищет погремушку. Она у вас. Скажите ей: «У меня погремушка малыша»**
 <!-- interaction_id: en:lesson-05:session-26:i13; family: scripted_repeat_compare -->
-🎙 **Where is my badge?**
+🎙 **I have the baby's rattle.**
 
-**14 · Значок принадлежит подруге. Скажите «Значок её»**
+**18 · Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное**
 <!-- interaction_id: en:lesson-05:session-26:i14; family: context_gap_grammar -->
-The badge is ___. → **hers** · her · ours
-- her — *Без названия вещи нужна форма `hers`.*
-- ours — *`ours` — наш; её — `hers`.*
+My sister ___ baby is asleep. → **'s** · has · is
+- has — *`has` значит «иметь»; «малыш сестры» говорим через `'s`: `my sister's baby`.*
+- is — *Слово `is` здесь не нужно: «малыш сестры» — это `my sister's baby`.*
 
-**15 · Послушайте, где значок**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-05:session-26:i15; family: listen_choose -->
-🔊 *Your badge is on the worktop.* → **Your badge is on the worktop.** · My badge is on the worktop. · Your badge is on the table.
-- My badge is on the worktop. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- Your badge is on the table. — *В записи последнее слово — `worktop`, а в этом варианте — `table`.*
+🔊 *The baby's nappy is in my brother's bag.* → **The baby's nappy is in my brother's bag.** · The baby's nappy is in my sister's bag. · The baby's bib is in my brother's bag.
+- The baby's nappy is in my sister's bag. — *В записи сумка брата, `brother's`, а в этом варианте — сестры, `sister's`.*
+- The baby's bib is in my brother's bag. — *В записи вещь — `nappy`, а в этом варианте — `bib`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-26:i16; family: speed_match -->
-badge — значок · cats — кошки · worktop — кухонная столешница · gloves — перчатки
+nappy — подгузник · rattle — погремушка · bib — слюнявчик · crib — детская кроватка
 
-**17 · Друг спрашивает, кому принадлежит найденный значок. Он принадлежит Анне. Скажите «Это значок Анны»**
+**21 · Бабушка спрашивает, где погремушка малыша. Она на полу. Скажите ей: «Погремушка малыша на полу»**
 <!-- interaction_id: en:lesson-05:session-26:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This is Anna's badge.**
-
+🎙 **The baby's rattle is on the floor.**

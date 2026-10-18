@@ -1,0 +1,2471 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-26:word:nappy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nappy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:nappy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nappy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:nappy:audio",
+            "transcript": "nappy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:nappy:r1",
+              "targetText": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+                "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nappy",
+            "definitionByLocale": {
+              "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+              "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The baby's nappy is in the bag.",
+          "localizedMeaning": {
+            "ru": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+            "uk": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»"
+          },
+          "orderedTokens": [
+            "The",
+            "baby's",
+            "nappy",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "baby"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `baby's` — `The baby's nappy is in the bag.`",
+                "uk": "тут потрібно `baby's` — `The baby's nappy is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:rattle",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rattle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:rattle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rattle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:rattle:audio",
+            "transcript": "rattle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:rattle:r1",
+              "targetText": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+                "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rattle",
+            "definitionByLocale": {
+              "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+              "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i02:r1",
+            "text": "The baby's rattle is under the sofa."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r2",
+            "text": "The baby's rattle is under the bed."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r3",
+            "text": "The baby's bottle is under the sofa."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i02:audio",
+            "transcript": "The baby's rattle is under the sofa."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i02:r1",
+              "targetText": "The baby's rattle is under the sofa.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r2",
+              "targetText": "The baby's rattle is under the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r3",
+              "targetText": "The baby's bottle is under the sofa.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `rattle`, а в этом варианте — `bottle`.",
+                "uk": "У записі річ — `rattle`, а в цьому варіанті — `bottle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:bib",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:bib:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:bib:audio",
+            "transcript": "bib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:bib:r1",
+              "targetText": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+                "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bib",
+            "definitionByLocale": {
+              "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+              "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Слюнявчик принадлежит малышу. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i03:r1",
+            "text": "baby's"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r2",
+            "text": "baby"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r3",
+            "text": "babies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Слюнявчик принадлежит малышу. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Слюнявчик принадлежит малышу. Выберите слово",
+            "uk": "Слинявчик належить малюкові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is the ___ bib.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i03:r1",
+              "text": "baby's"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r2",
+              "text": "baby"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r3",
+              "text": "babies"
+            }
+          ],
+          "testedDimension": "Слюнявчик принадлежит малышу. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Слюнявчик принадлежит малышу. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После слова baby нужно `'s`: `baby's bib` — «слюнявчик малыша».",
+                "uk": "Після слова baby потрібно `'s`: `baby's bib` — «слинявчик малюка»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Слюнявчик принадлежит малышу. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`babies` — это «малыши», несколько детей; чтобы назвать хозяина, нужно `baby's`.",
+                "uk": "`babies` — це «малюки», кілька дітей; щоб назвати господаря, потрібно `baby's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i04:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p3",
+              "target": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик",
+                "uk": "слинявчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p4",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "bib",
+            "crib"
+          ],
+          "rightColumn": [
+            "подгузник",
+            "погремушка",
+            "слюнявчик",
+            "детская кроватка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:crib",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:crib:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:crib:audio",
+            "transcript": "crib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:crib:r1",
+              "targetText": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+                "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crib",
+            "definitionByLocale": {
+              "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+              "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i05:audio",
+            "transcript": "The baby's crib is next to the window."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby's crib is next to the window.",
+          "orderedTokens": [
+            "The",
+            "baby's",
+            "crib",
+            "is",
+            "next",
+            "to",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The baby's crib is next to the window.`",
+                "uk": "тут потрібно `is` — `The baby's crib is next to the window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this the baby's rattle?",
+          "localizedMeaning": {
+            "ru": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+            "uk": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "the",
+            "baby's",
+            "rattle"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this the baby's rattle?`",
+                "uk": "тут потрібно `Is` — `Is this the baby's rattle?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, чья кроватка у окна. Она малыша. Скажите: «Это кроватка малыша»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, чья кроватка у окна. Она малыша. Скажите: «Это кроватка малыша»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i07:audio",
+            "transcript": "This is the baby's crib."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is the baby's crib.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тапочки малыша лежат на ковре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тапочки малыша лежат на ковре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тапочки малыша лежат на ковре. Выберите слово",
+            "uk": "Капці малюка лежать на килимку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The baby's slippers ___ on the rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Тапочки малыша лежат на ковре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Тапочки малыша лежат на ковре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Тапочки — пара, поэтому нужно `are`, а не `is`.",
+                "uk": "Капці — пара, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Тапочки малыша лежат на ковре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат тапочки: нужно `are`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать капці: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i09:r1",
+            "text": "Where is my sister's bag?"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r2",
+            "text": "Where is my brother's bag?"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r3",
+            "text": "Where is my sister's book?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i09:audio",
+            "transcript": "Where is my sister's bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i09:r1",
+              "targetText": "Where is my sister's bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r2",
+              "targetText": "Where is my brother's bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r3",
+              "targetText": "Where is my sister's book?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `book`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `book`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i10:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p3",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p4",
+              "target": "blanket",
+              "meaningByLocale": {
+                "ru": "плед",
+                "uk": "плед"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "crib",
+            "blanket"
+          ],
+          "rightColumn": [
+            "подгузник",
+            "погремушка",
+            "детская кроватка",
+            "плед"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте бабушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i11:audio",
+            "transcript": "My sister's baby has a rattle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My sister's baby has a rattle.",
+          "orderedTokens": [
+            "My",
+            "sister's",
+            "baby",
+            "has",
+            "a",
+            "rattle"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My sister's baby has a rattle.`",
+                "uk": "тут потрібно `has` — `My sister's baby has a rattle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bib is in the baby's crib.",
+          "localizedMeaning": {
+            "ru": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+            "uk": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»"
+          },
+          "orderedTokens": [
+            "The",
+            "bib",
+            "is",
+            "in",
+            "the",
+            "baby's",
+            "crib"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bib is in the baby's crib.`",
+                "uk": "тут потрібно `is` — `The bib is in the baby's crib.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра ищет погремушку. Она у вас. Скажите ей: «У меня погремушка малыша»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра ищет погремушку. Она у вас. Скажите ей: «У меня погремушка малыша»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i13:audio",
+            "transcript": "I have the baby's rattle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have the baby's rattle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i14:r1",
+            "text": "'s"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+            "uk": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне"
+          },
+          "gappedTargetPhrase": "My sister ___ baby is asleep.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i14:r1",
+              "text": "'s"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь»; «малыш сестры» говорим через `'s`: `my sister's baby`.",
+                "uk": "`has` означає «мати»; «малюк сестри» кажемо через `'s`: `my sister's baby`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+              "feedbackByLocale": {
+                "ru": "Слово `is` здесь не нужно: «малыш сестры» — это `my sister's baby`.",
+                "uk": "Слово `is` тут не потрібне: «малюк сестри» — це `my sister's baby`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i15:r1",
+            "text": "The baby's nappy is in my brother's bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r2",
+            "text": "The baby's nappy is in my sister's bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r3",
+            "text": "The baby's bib is in my brother's bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i15:audio",
+            "transcript": "The baby's nappy is in my brother's bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i15:r1",
+              "targetText": "The baby's nappy is in my brother's bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r2",
+              "targetText": "The baby's nappy is in my sister's bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r3",
+              "targetText": "The baby's bib is in my brother's bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи сумка брата, `brother's`, а в этом варианте — сестры, `sister's`.",
+                "uk": "У записі сумка брата, `brother's`, а в цьому варіанті — сестри, `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `nappy`, а в этом варианте — `bib`.",
+                "uk": "У записі річ — `nappy`, а в цьому варіанті — `bib`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i16:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p3",
+              "target": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик",
+                "uk": "слинявчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p4",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "bib",
+            "crib"
+          ],
+          "rightColumn": [
+            "подгузник",
+            "погремушка",
+            "слюнявчик",
+            "детская кроватка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабушка спрашивает, где погремушка малыша. Она на полу. Скажите ей: «Погремушка малыша на полу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Бабушка спрашивает, где погремушка малыша. Она на полу. Скажите ей: «Погремушка малыша на полу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i17:audio",
+            "transcript": "The baby's rattle is on the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The baby's rattle is on the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-26:word:nappy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nappy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:nappy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nappy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:nappy:audio",
+            "transcript": "nappy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:nappy:r1",
+              "targetText": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+                "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nappy",
+            "definitionByLocale": {
+              "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+              "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The baby's nappy is in the bag.",
+          "localizedMeaning": {
+            "ru": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+            "uk": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»"
+          },
+          "orderedTokens": [
+            "The",
+            "baby's",
+            "nappy",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "baby"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `baby's` — `The baby's nappy is in the bag.`",
+                "uk": "тут потрібно `baby's` — `The baby's nappy is in the bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:rattle",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rattle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:rattle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rattle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:rattle:audio",
+            "transcript": "rattle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:rattle:r1",
+              "targetText": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+                "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rattle",
+            "definitionByLocale": {
+              "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+              "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i02:r1",
+            "text": "The baby's rattle is under the sofa."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r2",
+            "text": "The baby's rattle is under the bed."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i02:r3",
+            "text": "The baby's bottle is under the sofa."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i02:audio",
+            "transcript": "The baby's rattle is under the sofa."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i02:r1",
+              "targetText": "The baby's rattle is under the sofa.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r2",
+              "targetText": "The baby's rattle is under the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r3",
+              "targetText": "The baby's bottle is under the sofa.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+                "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `rattle`, а в этом варианте — `bottle`.",
+                "uk": "У записі річ — `rattle`, а в цьому варіанті — `bottle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:bib",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:bib:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:bib:audio",
+            "transcript": "bib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:bib:r1",
+              "targetText": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+                "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bib",
+            "definitionByLocale": {
+              "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+              "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Слинявчик належить малюкові. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i03:r1",
+            "text": "baby's"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r2",
+            "text": "baby"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i03:r3",
+            "text": "babies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Слинявчик належить малюкові. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Слюнявчик принадлежит малышу. Выберите слово",
+            "uk": "Слинявчик належить малюкові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "This is the ___ bib.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i03:r1",
+              "text": "baby's"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r2",
+              "text": "baby"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r3",
+              "text": "babies"
+            }
+          ],
+          "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После слова baby нужно `'s`: `baby's bib` — «слюнявчик малыша».",
+                "uk": "Після слова baby потрібно `'s`: `baby's bib` — «слинявчик малюка»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`babies` — это «малыши», несколько детей; чтобы назвать хозяина, нужно `baby's`.",
+                "uk": "`babies` — це «малюки», кілька дітей; щоб назвати господаря, потрібно `baby's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i04:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p3",
+              "target": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик",
+                "uk": "слинявчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i04:p4",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "bib",
+            "crib"
+          ],
+          "rightColumn": [
+            "підгузок",
+            "брязкальце",
+            "слинявчик",
+            "дитяче ліжечко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:word:crib",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:word:crib:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:word:crib:audio",
+            "transcript": "crib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:word:crib:r1",
+              "targetText": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+                "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crib",
+            "definitionByLocale": {
+              "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+              "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i05:audio",
+            "transcript": "The baby's crib is next to the window."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The baby's crib is next to the window.",
+          "orderedTokens": [
+            "The",
+            "baby's",
+            "crib",
+            "is",
+            "next",
+            "to",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The baby's crib is next to the window.`",
+                "uk": "тут потрібно `is` — `The baby's crib is next to the window.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is this the baby's rattle?",
+          "localizedMeaning": {
+            "ru": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+            "uk": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»"
+          },
+          "orderedTokens": [
+            "Is",
+            "this",
+            "the",
+            "baby's",
+            "rattle"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Is` — `Is this the baby's rattle?`",
+                "uk": "тут потрібно `Is` — `Is this the baby's rattle?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає, чиє ліжечко біля вікна. Воно малюка. Скажіть: «Це ліжечко малюка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Сестра питає, чиє ліжечко біля вікна. Воно малюка. Скажіть: «Це ліжечко малюка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i07:audio",
+            "transcript": "This is the baby's crib."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is the baby's crib.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Капці малюка лежать на килимку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Капці малюка лежать на килимку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Тапочки малыша лежат на ковре. Выберите слово",
+            "uk": "Капці малюка лежать на килимку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The baby's slippers ___ on the rug.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i08:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Тапочки — пара, поэтому нужно `are`, а не `is`.",
+                "uk": "Капці — пара, тому потрібно `are`, а не `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь», а здесь мы говорим, где лежат тапочки: нужно `are`.",
+                "uk": "`has` означає «мати», а тут ми кажемо, де лежать капці: потрібно `are`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i09:r1",
+            "text": "Where is my sister's bag?"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r2",
+            "text": "Where is my brother's bag?"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i09:r3",
+            "text": "Where is my sister's book?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i09:audio",
+            "transcript": "Where is my sister's bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i09:r1",
+              "targetText": "Where is my sister's bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r2",
+              "targetText": "Where is my brother's bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r3",
+              "targetText": "Where is my sister's book?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+                "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bag`, а в этом варианте — `book`.",
+                "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `book`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i10:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p3",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i10:p4",
+              "target": "blanket",
+              "meaningByLocale": {
+                "ru": "плед",
+                "uk": "плед"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "crib",
+            "blanket"
+          ],
+          "rightColumn": [
+            "підгузок",
+            "брязкальце",
+            "дитяче ліжечко",
+            "плед"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте бабусю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i11:audio",
+            "transcript": "My sister's baby has a rattle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My sister's baby has a rattle.",
+          "orderedTokens": [
+            "My",
+            "sister's",
+            "baby",
+            "has",
+            "a",
+            "rattle"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My sister's baby has a rattle.`",
+                "uk": "тут потрібно `has` — `My sister's baby has a rattle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The bib is in the baby's crib.",
+          "localizedMeaning": {
+            "ru": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+            "uk": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»"
+          },
+          "orderedTokens": [
+            "The",
+            "bib",
+            "is",
+            "in",
+            "the",
+            "baby's",
+            "crib"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bib is in the baby's crib.`",
+                "uk": "тут потрібно `is` — `The bib is in the baby's crib.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра шукає брязкальце. Воно у вас. Скажіть їй: «У мене брязкальце малюка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра шукає брязкальце. Воно у вас. Скажіть їй: «У мене брязкальце малюка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i13:audio",
+            "transcript": "I have the baby's rattle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have the baby's rattle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i14:r1",
+            "text": "'s"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+            "uk": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне"
+          },
+          "gappedTargetPhrase": "My sister ___ baby is asleep.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-26:i14:r1",
+              "text": "'s"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
+              "feedbackByLocale": {
+                "ru": "`has` значит «иметь»; «малыш сестры» говорим через `'s`: `my sister's baby`.",
+                "uk": "`has` означає «мати»; «малюк сестри» кажемо через `'s`: `my sister's baby`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
+              "feedbackByLocale": {
+                "ru": "Слово `is` здесь не нужно: «малыш сестры» — это `my sister's baby`.",
+                "uk": "Слово `is` тут не потрібне: «малюк сестри» — це `my sister's baby`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-26:i15:r1",
+            "text": "The baby's nappy is in my brother's bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r2",
+            "text": "The baby's nappy is in my sister's bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-26:i15:r3",
+            "text": "The baby's bib is in my brother's bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i15:audio",
+            "transcript": "The baby's nappy is in my brother's bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-26:i15:r1",
+              "targetText": "The baby's nappy is in my brother's bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r2",
+              "targetText": "The baby's nappy is in my sister's bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r3",
+              "targetText": "The baby's bib is in my brother's bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи сумка брата, `brother's`, а в этом варианте — сестры, `sister's`.",
+                "uk": "У записі сумка брата, `brother's`, а в цьому варіанті — сестри, `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `nappy`, а в этом варианте — `bib`.",
+                "uk": "У записі річ — `nappy`, а в цьому варіанті — `bib`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-26:i16:p1",
+              "target": "nappy",
+              "meaningByLocale": {
+                "ru": "подгузник",
+                "uk": "підгузок"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p2",
+              "target": "rattle",
+              "meaningByLocale": {
+                "ru": "погремушка",
+                "uk": "брязкальце"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p3",
+              "target": "bib",
+              "meaningByLocale": {
+                "ru": "слюнявчик",
+                "uk": "слинявчик"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-26:i16:p4",
+              "target": "crib",
+              "meaningByLocale": {
+                "ru": "детская кроватка",
+                "uk": "дитяче ліжечко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "nappy",
+            "rattle",
+            "bib",
+            "crib"
+          ],
+          "rightColumn": [
+            "підгузок",
+            "брязкальце",
+            "слинявчик",
+            "дитяче ліжечко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бабуся питає, де брязкальце малюка. Воно на підлозі. Скажіть їй: «Брязкальце малюка на підлозі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Бабуся питає, де брязкальце малюка. Воно на підлозі. Скажіть їй: «Брязкальце малюка на підлозі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-26:i17:audio",
+            "transcript": "The baby's rattle is on the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The baby's rattle is on the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-26:word:nappy",
+      "correctText": "nappy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i01",
+      "correctText": "The baby's nappy is in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:word:rattle",
+      "correctText": "rattle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i02",
+      "correctText": "The baby's rattle is under the sofa.",
+      "correctResponseId": "en:lesson-05:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:word:bib",
+      "correctText": "bib",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i03",
+      "correctText": "baby's",
+      "correctResponseId": "en:lesson-05:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:word:crib",
+      "correctText": "crib",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i05",
+      "correctText": "The baby's crib is next to the window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i06",
+      "correctText": "Is this the baby's rattle?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i07",
+      "correctText": "This is the baby's crib.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i08",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-05:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i09",
+      "correctText": "Where is my sister's bag?",
+      "correctResponseId": "en:lesson-05:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i11",
+      "correctText": "My sister's baby has a rattle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i12",
+      "correctText": "The bib is in the baby's crib.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i13",
+      "correctText": "I have the baby's rattle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i14",
+      "correctText": "'s",
+      "correctResponseId": "en:lesson-05:session-26:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i15",
+      "correctText": "The baby's nappy is in my brother's bag.",
+      "correctResponseId": "en:lesson-05:session-26:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i17",
+      "correctText": "The baby's rattle is on the floor.",
+      "correctResponseId": null
+    }
+  ]
+}

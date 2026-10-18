@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-21:word:neighbour",
+    "correctText": "neighbour",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-21:i01",
-    "correctText": "She is inside.",
+    "correctText": "The dog is the neighbour’s.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:word:student",
+    "correctText": "student",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i02",
-    "correctText": "necklace",
+    "correctText": "This is the student’s notebook.",
     "correctResponseId": "en:lesson-05:session-21:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-21:word:manager",
+    "correctText": "manager",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-21:i03",
-    "correctText": "necklace",
+    "correctText": "manager",
     "correctResponseId": "en:lesson-05:session-21:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-21:i04",
-    "correctText": "en:lesson-05:session-21:i04:p1=necklace\nen:lesson-05:session-21:i04:p2=inside\nen:lesson-05:session-21:i04:p3=outside\nen:lesson-05:session-21:i04:p4=upstairs",
+    "correctText": "en:lesson-05:session-21:i04:p1=neighbour\nen:lesson-05:session-21:i04:p2=student\nen:lesson-05:session-21:i04:p3=manager\nen:lesson-05:session-21:i04:p4=client",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-21:word:client",
+    "correctText": "client",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i05",
-    "correctText": "The necklace is upstairs.",
+    "correctText": "The pen is the client’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i06",
-    "correctText": "The pens are ours.",
+    "correctText": "Is this the manager’s desk?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i07",
-    "correctText": "He is outside.",
+    "correctText": "It is the neighbour’s dog.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i08",
-    "correctText": "hers",
+    "correctText": "student’s",
     "correctResponseId": "en:lesson-05:session-21:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-21:i09",
-    "correctText": "The umbrella is yours.",
+    "correctText": "The key is the manager’s.",
     "correctResponseId": "en:lesson-05:session-21:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-21:i10",
-    "correctText": "en:lesson-05:session-21:i10:p1=necklace\nen:lesson-05:session-21:i10:p2=pens\nen:lesson-05:session-21:i10:p3=juice\nen:lesson-05:session-21:i10:p4=umbrella",
+    "correctText": "en:lesson-05:session-21:i10:p1=student\nen:lesson-05:session-21:i10:p2=client\nen:lesson-05:session-21:i10:p3=dog\nen:lesson-05:session-21:i10:p4=notebook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i11",
-    "correctText": "Where is my necklace?",
+    "correctText": "The bag is the student’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i12",
-    "correctText": "There is no juice.",
+    "correctText": "The umbrella is the client’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i13",
-    "correctText": "I have your necklace.",
+    "correctText": "It is the manager’s desk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i14",
-    "correctText": "are",
+    "correctText": "neighbour’s",
     "correctResponseId": "en:lesson-05:session-21:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-21:i15",
-    "correctText": "Her necklace is here.",
+    "correctText": "Is the dog the neighbour’s?",
     "correctResponseId": "en:lesson-05:session-21:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-21:i16",
-    "correctText": "en:lesson-05:session-21:i16:p1=necklace\nen:lesson-05:session-21:i16:p2=pens\nen:lesson-05:session-21:i16:p3=juice\nen:lesson-05:session-21:i16:p4=umbrella",
+    "correctText": "en:lesson-05:session-21:i16:p1=manager\nen:lesson-05:session-21:i16:p2=neighbour\nen:lesson-05:session-21:i16:p3=desk\nen:lesson-05:session-21:i16:p4=umbrella",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-21:i17",
-    "correctText": "The necklace is mine.",
+    "correctText": "This is the student’s notebook.",
     "correctResponseId": null
   }
 ]

@@ -4,40 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-24:i01",
+      "interactionId": "en:lesson-05:session-24:word:glasses",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glasses",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-24:word:glasses:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glasses",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-24:word:glasses:audio",
+          "transcript": "glasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-24:word:glasses:r1",
+            "targetText": "glasses",
+            "meaningByLocale": {
+              "ru": "очки. My glasses are here. — «Мои очки здесь». О паре стёкол в оправе, которые надевают, чтобы лучше видеть.",
+              "uk": "окуляри. My glasses are here. — «Мої окуляри тут». Про пару скелець в оправі, які одягають, щоб краще бачити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glasses",
+          "definitionByLocale": {
+            "ru": "очки. My glasses are here. — «Мои очки здесь». О паре стёкол в оправе, которые надевают, чтобы лучше видеть.",
+            "uk": "окуляри. My glasses are here. — «Мої окуляри тут». Про пару скелець в оправі, які одягають, щоб краще бачити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-24:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Куртка принадлежит вам. Скажите «Куртка моя»",
+      "prompt": "Сотрудница показывает очки. Они принадлежат вашей сестре. Скажите ей полной фразой: «Это очки моей сестры»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Куртка принадлежит вам. Скажите «Куртка моя»",
+      "accessibilityLabel": "Сотрудница показывает очки. Они принадлежат вашей сестре. Скажите ей полной фразой: «Это очки моей сестры»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The jacket is mine.",
+        "targetPhrase": "These are my sister’s glasses.",
         "localizedMeaning": {
-          "ru": "Куртка принадлежит вам. Скажите «Куртка моя»",
-          "uk": "Куртка належить вам. Скажіть «Куртка моя»"
+          "ru": "Сотрудница показывает очки. Они принадлежат вашей сестре. Скажите ей полной фразой: «Это очки моей сестры»",
+          "uk": "Працівниця показує окуляри. Вони належать вашій сестрі. Скажіть їй повною фразою: «Це окуляри моєї сестри»"
         },
         "orderedTokens": [
-          "The",
-          "jacket",
-          "is",
-          "mine"
+          "These",
+          "are",
+          "my",
+          "sister’s",
+          "glasses"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Куртка принадлежит вам. Скажите «Куртка моя»",
+            "testedDimension": "Сотрудница показывает очки. Они принадлежат вашей сестре. Скажите ей полной фразой: «Это очки моей сестры»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The jacket is mine.`",
-              "uk": "тут потрібно `is` — `The jacket is mine.`"
+              "ru": "здесь нужно `are` — `These are my sister’s glasses.`",
+              "uk": "тут потрібно `are` — `These are my sister’s glasses.`"
             }
           }
         ],
@@ -49,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-24:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-24:word:moustache",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежат перчатки",
+      "prompt": "Карточка слова — moustache",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-24:word:moustache:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — moustache",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-24:word:moustache:audio",
+          "transcript": "moustache"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-24:word:moustache:r1",
+            "targetText": "moustache",
+            "meaningByLocale": {
+              "ru": "усы. He has a moustache. — «У него усы». О волосах над верхней губой у мужчины.",
+              "uk": "вуса. He has a moustache. — «У нього вуса». Про волосся над верхньою губою в чоловіка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moustache",
+          "definitionByLocale": {
+            "ru": "усы. He has a moustache. — «У него усы». О волосах над верхней губой у мужчины.",
+            "uk": "вуса. He has a moustache. — «У нього вуса». Про волосся над верхньою губою в чоловіка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-24:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте сотрудницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i02:r1",
-          "text": "The gloves are yours."
+          "text": "He has a moustache."
         },
         {
           "responseId": "en:lesson-05:session-24:i02:r2",
-          "text": "The gloves are mine."
+          "text": "He have a moustache."
         },
         {
           "responseId": "en:lesson-05:session-24:i02:r3",
-          "text": "The gloves are hers."
+          "text": "He has a beard."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежат перчатки",
+      "accessibilityLabel": "Послушайте сотрудницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i02:audio",
-          "transcript": "The gloves are yours."
+          "transcript": "He has a moustache."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-24:i02:r1",
-            "targetText": "The gloves are yours.",
+            "targetText": "He has a moustache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i02:r2",
-            "targetText": "The gloves are mine.",
+            "targetText": "He have a moustache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i02:r3",
-            "targetText": "The gloves are hers.",
+            "targetText": "He has a beard.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-24:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат перчатки",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи `has` — у одного человека, а в этом варианте `have` — форма для двоих или для I, you.",
+              "uk": "У записі `has` — в однієї людини, а в цьому варіанті `have` — форма для двох або для I, you."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежат перчатки",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `hers`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `hers`."
+              "ru": "В записи последнее слово `moustache` — усы, а в этом варианте `beard` — борода.",
+              "uk": "У записі останнє слово `moustache` — вуса, а в цьому варіанті `beard` — борода."
             }
           }
         ],
@@ -125,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-24:word:tattoo",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tattoo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-24:word:tattoo:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tattoo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-24:word:tattoo:audio",
+          "transcript": "tattoo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-24:word:tattoo:r1",
+            "targetText": "tattoo",
+            "meaningByLocale": {
+              "ru": "татуировка. Her tattoo is small. — «Её татуировка маленькая». О рисунке на коже, который остаётся надолго.",
+              "uk": "татуювання. Her tattoo is small. — «Її татуювання маленьке». Про малюнок на шкірі, який залишається надовго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tattoo",
+          "definitionByLocale": {
+            "ru": "татуировка. Her tattoo is small. — «Её татуировка маленькая». О рисунке на коже, который остаётся надолго.",
+            "uk": "татуювання. Her tattoo is small. — «Її татуювання маленьке». Про малюнок на шкірі, який залишається надовго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-24:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Йогурт закончился. Выберите форму",
+      "prompt": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i03:r1",
-          "text": "is"
+          "text": "tattoo"
         },
         {
           "responseId": "en:lesson-05:session-24:i03:r2",
-          "text": "are"
+          "text": "beard"
         },
         {
           "responseId": "en:lesson-05:session-24:i03:r3",
-          "text": "am"
+          "text": "ring"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Йогурт закончился. Выберите форму",
+      "accessibilityLabel": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Йогурт закончился. Выберите форму",
-          "uk": "Йогурт закінчився. Виберіть форму"
+          "ru": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
+          "uk": "Малюнок на шкірі, який залишається на все життя. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ no yoghurt.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-24:i03:r1",
-            "text": "is"
+            "text": "tattoo"
           },
           {
             "responseId": "en:lesson-05:session-24:i03:r2",
-            "text": "are"
+            "text": "beard"
           },
           {
             "responseId": "en:lesson-05:session-24:i03:r3",
-            "text": "am"
+            "text": "ring"
           }
         ],
-        "testedDimension": "Йогурт закончился. Выберите форму",
+        "testedDimension": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i03:r2",
             "correct": false,
-            "testedDimension": "Йогурт закончился. Выберите форму",
+            "testedDimension": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`yoghurt` здесь не считаем поштучно: `There is`.",
-              "uk": "`yoghurt` тут не рахуємо поштучно: `There is`."
+              "ru": "beard — это борода, а рисунок на коже называется tattoo.",
+              "uk": "beard — це борода, а малюнок на шкірі називається tattoo."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i03:r3",
             "correct": false,
-            "testedDimension": "Йогурт закончился. Выберите форму",
+            "testedDimension": "Рисунок на коже, который остаётся на всю жизнь. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `There is`.",
-              "uk": "`am` використовується з `I`; тут `There is`."
+              "ru": "ring — это кольцо, а рисунок на коже называется tattoo.",
+              "uk": "ring — це каблучка, а малюнок на шкірі називається tattoo."
             }
           }
         ]
@@ -195,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-24:i04:p1",
-            "target": "yoghurt",
+            "target": "moustache",
             "meaningByLocale": {
-              "ru": "йогурт",
-              "uk": "йогурт"
+              "ru": "усы",
+              "uk": "вуса"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i04:p2",
-            "target": "jacket",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "куртка",
-              "uk": "куртка"
+              "ru": "очки",
+              "uk": "окуляри"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i04:p3",
-            "target": "gloves",
+            "target": "freckles",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "веснушки",
+              "uk": "ластовиння"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i04:p4",
-            "target": "tablet",
+            "target": "tattoo",
             "meaningByLocale": {
-              "ru": "планшет",
-              "uk": "планшет"
+              "ru": "татуировка",
+              "uk": "татуювання"
             }
           }
         ],
         "leftColumn": [
-          "yoghurt",
-          "jacket",
-          "gloves",
-          "tablet"
+          "moustache",
+          "glasses",
+          "freckles",
+          "tattoo"
         ],
         "rightColumn": [
-          "йогурт",
-          "куртка",
-          "перчатки",
-          "планшет"
+          "усы",
+          "очки",
+          "веснушки",
+          "татуировка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +397,88 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-24:word:freckles",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — freckles",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-24:word:freckles:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — freckles",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-24:word:freckles:audio",
+          "transcript": "freckles"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-24:word:freckles:r1",
+            "targetText": "freckles",
+            "meaningByLocale": {
+              "ru": "веснушки. She has freckles. — «У неё веснушки». О маленьких коричневых пятнышках на коже лица.",
+              "uk": "ластовиння. She has freckles. — «У неї ластовиння». Про маленькі коричневі цяточки на шкірі обличчя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freckles",
+          "definitionByLocale": {
+            "ru": "веснушки. She has freckles. — «У неё веснушки». О маленьких коричневых пятнышках на коже лица.",
+            "uk": "ластовиння. She has freckles. — «У неї ластовиння». Про маленькі коричневі цяточки на шкірі обличчя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-24:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте сотрудницу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте сотрудницу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i05:audio",
-          "transcript": "Where is my tablet?"
+          "transcript": "She has freckles."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is my tablet?",
+        "hiddenTargetPhrase": "She has freckles.",
         "orderedTokens": [
-          "Where",
-          "is",
-          "my",
-          "tablet"
+          "She",
+          "has",
+          "freckles"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "have"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-24:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте сотрудницу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `has` — `She has freckles.`",
+              "uk": "тут потрібно `has` — `She has freckles.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,39 +488,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Шарф принадлежит другу-мужчине. Скажите «Шарф его»",
+      "prompt": "Вы нашли очки на скамейке и спрашиваете подругу, чьи они. Задайте вопрос полностью: «Чьи это очки?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шарф принадлежит другу-мужчине. Скажите «Шарф его»",
+      "accessibilityLabel": "Вы нашли очки на скамейке и спрашиваете подругу, чьи они. Задайте вопрос полностью: «Чьи это очки?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The scarf is his.",
+        "targetPhrase": "Whose glasses are these?",
         "localizedMeaning": {
-          "ru": "Шарф принадлежит другу-мужчине. Скажите «Шарф его»",
-          "uk": "Шарф належить другові-чоловікові. Скажіть «Шарф його»"
+          "ru": "Вы нашли очки на скамейке и спрашиваете подругу, чьи они. Задайте вопрос полностью: «Чьи это очки?»",
+          "uk": "Ви знайшли окуляри на лавці й питаєте подругу, чиї вони. Задайте питання повністю: «Чиї це окуляри?»"
         },
         "orderedTokens": [
-          "The",
-          "scarf",
-          "is",
-          "his"
+          "Whose",
+          "glasses",
+          "are",
+          "these"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Шарф принадлежит другу-мужчине. Скажите «Шарф его»",
+            "testedDimension": "Вы нашли очки на скамейке и спрашиваете подругу, чьи они. Задайте вопрос полностью: «Чьи это очки?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The scarf is his.`",
-              "uk": "тут потрібно `is` — `The scarf is his.`"
+              "ru": "здесь нужно `Whose` — `Whose glasses are these?`",
+              "uk": "тут потрібно `Whose` — `Whose glasses are these?`"
             }
           }
         ],
@@ -349,25 +533,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Камера принадлежит вам и другу. Скажите «Камера наша»",
+      "prompt": "Сотрудница спрашивает, чья куртка. Она принадлежит вашему брату. Ответьте: «Куртка его»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i07:audio"
       ],
-      "accessibilityLabel": "Камера принадлежит вам и другу. Скажите «Камера наша»",
+      "accessibilityLabel": "Сотрудница спрашивает, чья куртка. Она принадлежит вашему брату. Ответьте: «Куртка его»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i07:audio",
-          "transcript": "The camera is ours."
+          "transcript": "The jacket is his."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The camera is ours.",
+        "targetPhrase": "The jacket is his.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,67 +566,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "prompt": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i08:r1",
-          "text": "hers"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-24:i08:r2",
-          "text": "her"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-24:i08:r3",
-          "text": "his"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "accessibilityLabel": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
-          "uk": "Намисто належить подрузі. Скажіть «Намисто її»"
+          "ru": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
+          "uk": "Ви описуєте працівниці свого брата. У нього вуса. Виберіть слово"
         },
-        "gappedTargetPhrase": "The necklace is ___.",
+        "gappedTargetPhrase": "My brother ___ a moustache.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-24:i08:r1",
-            "text": "hers"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-24:i08:r2",
-            "text": "her"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-24:i08:r3",
-            "text": "his"
+            "text": "is"
           }
         ],
-        "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+        "testedDimension": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "testedDimension": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "Брат один, как he, поэтому нужно has, а не have.",
+              "uk": "Брат один, як he, тому потрібно has, а не have."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "testedDimension": "Вы описываете сотруднице своего брата. У него усы. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`his` — его; её — `hers`.",
-              "uk": "`his` — його; її — `hers`."
+              "ru": "is значит «является», а для «у него» нужно has.",
+              "uk": "is означає «є, являється», а для «у нього» потрібно has."
             }
           }
         ]
@@ -451,51 +635,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где ботинки",
+      "prompt": "Послушайте сотрудницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i09:r1",
-          "text": "Your boots are under the bed."
+          "text": "Whose glasses are these?"
         },
         {
           "responseId": "en:lesson-05:session-24:i09:r2",
-          "text": "Your boots are under the table."
+          "text": "Whose glasses is this?"
         },
         {
           "responseId": "en:lesson-05:session-24:i09:r3",
-          "text": "My boots are under the bed."
+          "text": "Whose glass are these?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где ботинки",
+      "accessibilityLabel": "Послушайте сотрудницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i09:audio",
-          "transcript": "Your boots are under the bed."
+          "transcript": "Whose glasses are these?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-24:i09:r1",
-            "targetText": "Your boots are under the bed.",
+            "targetText": "Whose glasses are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i09:r2",
-            "targetText": "Your boots are under the table.",
+            "targetText": "Whose glasses is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i09:r3",
-            "targetText": "My boots are under the bed.",
+            "targetText": "Whose glass are these?",
             "meaningByLocale": null
           }
         ],
@@ -504,19 +688,19 @@
           {
             "responseId": "en:lesson-05:session-24:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где ботинки",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bed`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `bed`, а в цьому варіанті — `table`."
+              "ru": "В записи `glasses are these` — очки, пара, а в этом варианте `is this` — как про одну вещь.",
+              "uk": "У записі `glasses are these` — окуляри, пара, а в цьому варіанті `is this` — як про одну річ."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где ботинки",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `glasses` — очки, а в этом варианте `glass` — стакан.",
+              "uk": "У записі `glasses` — окуляри, а в цьому варіанті `glass` — склянка."
             }
           }
         ],
@@ -527,8 +711,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -541,48 +725,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-24:i10:p1",
-            "target": "scarf",
+            "target": "glasses",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "очки",
+              "uk": "окуляри"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i10:p2",
-            "target": "necklace",
+            "target": "tattoo",
             "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
+              "ru": "татуировка",
+              "uk": "татуювання"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i10:p3",
-            "target": "boots",
+            "target": "jacket",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "куртка",
+              "uk": "куртка"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i10:p4",
-            "target": "camera",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           }
         ],
         "leftColumn": [
-          "scarf",
-          "necklace",
-          "boots",
-          "camera"
+          "glasses",
+          "tattoo",
+          "jacket",
+          "umbrella"
         ],
         "rightColumn": [
-          "шарф",
-          "ожерелье",
-          "ботинки",
-          "камера"
+          "очки",
+          "татуировка",
+          "куртка",
+          "зонт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -600,33 +784,45 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте сотрудницу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте сотрудницу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i11:audio",
-          "transcript": "I have your scarf."
+          "transcript": "The suitcase is theirs."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have your scarf.",
+        "hiddenTargetPhrase": "The suitcase is theirs.",
         "orderedTokens": [
-          "I",
-          "have",
-          "your",
-          "scarf"
+          "The",
+          "suitcase",
+          "is",
+          "theirs"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "their"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте сотрудницу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `theirs` — `The suitcase is theirs.`",
+              "uk": "тут потрібно `theirs` — `The suitcase is theirs.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -636,42 +832,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите другу «Моя куртка рядом с твоими перчатками»",
+      "prompt": "Сотрудница спрашивает, чья сумка. Она принадлежит вашей подруге. Скажите ей полной фразой: «Сумка моей подруги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите другу «Моя куртка рядом с твоими перчатками»",
+      "accessibilityLabel": "Сотрудница спрашивает, чья сумка. Она принадлежит вашей подруге. Скажите ей полной фразой: «Сумка моей подруги»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "My jacket is next to your gloves.",
+        "targetPhrase": "The bag is my friend’s.",
         "localizedMeaning": {
-          "ru": "Скажите другу «Моя куртка рядом с твоими перчатками»",
-          "uk": "Скажіть другові «Моя куртка поруч із твоїми рукавичками»"
+          "ru": "Сотрудница спрашивает, чья сумка. Она принадлежит вашей подруге. Скажите ей полной фразой: «Сумка моей подруги»",
+          "uk": "Працівниця питає, чия сумка. Вона належить вашій подрузі. Скажіть їй повною фразою: «Сумка моєї подруги»"
         },
         "orderedTokens": [
-          "My",
-          "jacket",
+          "The",
+          "bag",
           "is",
-          "next",
-          "to",
-          "your",
-          "gloves"
+          "my",
+          "friend’s"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите другу «Моя куртка рядом с твоими перчатками»",
+            "testedDimension": "Сотрудница спрашивает, чья сумка. Она принадлежит вашей подруге. Скажите ей полной фразой: «Сумка моей подруги»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `My jacket is next to your gloves.`",
-              "uk": "тут потрібно `is` — `My jacket is next to your gloves.`"
+              "ru": "здесь нужно `my` — `The bag is my friend’s.`",
+              "uk": "тут потрібно `my` — `The bag is my friend’s.`"
             }
           }
         ],
@@ -684,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ботинки принадлежат друзьям. Скажите «Ботинки их»",
+      "prompt": "Сотрудница просит описать вашу подругу. У неё веснушки. Скажите ей: «У моей подруги веснушки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i13:audio"
       ],
-      "accessibilityLabel": "Ботинки принадлежат друзьям. Скажите «Ботинки их»",
+      "accessibilityLabel": "Сотрудница просит описать вашу подругу. У неё веснушки. Скажите ей: «У моей подруги веснушки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i13:audio",
-          "transcript": "The boots are theirs."
+          "transcript": "My friend has freckles."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The boots are theirs.",
+        "targetPhrase": "My friend has freckles.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -717,67 +911,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
+      "prompt": "Вы показываете сотруднице свои очки. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i14:r1",
-          "text": "yours"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-24:i14:r2",
-          "text": "your"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-24:i14:r3",
-          "text": "mine"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
+      "accessibilityLabel": "Вы показываете сотруднице свои очки. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
-          "uk": "Планшет належить співрозмовникові. Скажіть йому «Планшет твій»"
+          "ru": "Вы показываете сотруднице свои очки. Выберите слово",
+          "uk": "Ви показуєте працівниці свої окуляри. Виберіть слово"
         },
-        "gappedTargetPhrase": "The tablet is ___.",
+        "gappedTargetPhrase": "The glasses ___ mine.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-24:i14:r1",
-            "text": "yours"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-24:i14:r2",
-            "text": "your"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-24:i14:r3",
-            "text": "mine"
+            "text": "has"
           }
         ],
-        "testedDimension": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
+        "testedDimension": "Вы показываете сотруднице свои очки. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-24:i14:r2",
             "correct": false,
-            "testedDimension": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
+            "testedDimension": "Вы показываете сотруднице свои очки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `yours`.",
-              "uk": "Без назви речі потрібна форма `yours`."
+              "ru": "Очки — пара, поэтому нужно are, а не is.",
+              "uk": "Окуляри — пара, тому потрібно are, а не is."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i14:r3",
             "correct": false,
-            "testedDimension": "Планшет принадлежит собеседнику. Скажите ему «Планшет твой»",
+            "testedDimension": "Вы показываете сотруднице свои очки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`mine` — мой; твой — `yours`.",
-              "uk": "`mine` — мій; твій — `yours`."
+              "ru": "has значит «имеет», а здесь нужно «являются»: are.",
+              "uk": "has означає «має», а тут потрібно «є»: are."
             }
           }
         ]
@@ -786,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чья камера здесь",
+      "prompt": "Послушайте сотрудницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-24:i15:r1",
-          "text": "Her camera is here."
+          "text": "His tattoo is small."
         },
         {
           "responseId": "en:lesson-05:session-24:i15:r2",
-          "text": "His camera is here."
+          "text": "Her tattoo is small."
         },
         {
           "responseId": "en:lesson-05:session-24:i15:r3",
-          "text": "My camera is here."
+          "text": "His tattoo is big."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чья камера здесь",
+      "accessibilityLabel": "Послушайте сотрудницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i15:audio",
-          "transcript": "Her camera is here."
+          "transcript": "His tattoo is small."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-24:i15:r1",
-            "targetText": "Her camera is here.",
+            "targetText": "His tattoo is small.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i15:r2",
-            "targetText": "His camera is here.",
+            "targetText": "Her tattoo is small.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-24:i15:r3",
-            "targetText": "My camera is here.",
+            "targetText": "His tattoo is big.",
             "meaningByLocale": null
           }
         ],
@@ -839,19 +1033,19 @@
           {
             "responseId": "en:lesson-05:session-24:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чья камера здесь",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `His`."
+              "ru": "В записи `His` — его, а в этом варианте `Her` — её.",
+              "uk": "У записі `His` — його, а в цьому варіанті `Her` — її."
             }
           },
           {
             "responseId": "en:lesson-05:session-24:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чья камера здесь",
+            "testedDimension": "Послушайте сотрудницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Her`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Her`, а в цьому варіанті — `My`."
+              "ru": "В записи последнее слово `small` — маленькая, а в этом варианте `big` — большая.",
+              "uk": "У записі останнє слово `small` — маленьке, а в цьому варіанті `big` — велике."
             }
           }
         ],
@@ -862,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -876,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-24:i16:p1",
-            "target": "scarf",
+            "target": "moustache",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "усы",
+              "uk": "вуса"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i16:p2",
-            "target": "necklace",
+            "target": "freckles",
             "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
+              "ru": "веснушки",
+              "uk": "ластовиння"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i16:p3",
-            "target": "boots",
+            "target": "suitcase",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "чемодан",
+              "uk": "валіза"
             }
           },
           {
             "pairId": "en:lesson-05:session-24:i16:p4",
-            "target": "camera",
+            "target": "ring",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "кольцо",
+              "uk": "каблучка"
             }
           }
         ],
         "leftColumn": [
-          "scarf",
-          "necklace",
-          "boots",
-          "camera"
+          "moustache",
+          "freckles",
+          "suitcase",
+          "ring"
         ],
         "rightColumn": [
-          "шарф",
-          "ожерелье",
-          "ботинки",
-          "камера"
+          "усы",
+          "веснушки",
+          "чемодан",
+          "кольцо"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -935,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-24:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, кому принадлежит камера. Она общая — ваша и вашего спутника. Скажите «Камера наша»",
+      "prompt": "Сотрудница показывает очки и спрашивает, чьи они. Очки ваши. Ответьте: «Они мои»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-24:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, кому принадлежит камера. Она общая — ваша и вашего спутника. Скажите «Камера наша»",
+      "accessibilityLabel": "Сотрудница показывает очки и спрашивает, чьи они. Очки ваши. Ответьте: «Они мои»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-24:i17:audio",
-          "transcript": "The camera is ours."
+          "transcript": "They are mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The camera is ours.",
+        "targetPhrase": "They are mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -975,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d52c30797a5968ba834c651c9427910ab5e23366d1da744566fd341581a54c3c"
+  "learnerFingerprint": "49ad8d3ef7b301baeb32218d23f5dacc32eb570ed2cdbdd1702f533ac762e937"
 }

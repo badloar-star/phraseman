@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 27 — Где ты останавливаешься?
+# Английский · Урок 7 · Занятие 27 — Обед на работе
 
-**Ситуация.** Вы узнаёте, где знакомый обычно останавливается в поездках, где друг тренируется и когда коллега начинает работу.
+**Ситуация.** Вы устроились на новую работу и разбираетесь с едой: узнаёте у коллеги, когда открывается столовая, у подруги — когда она обедает, а у коллеги — где ест её муж.
 
-**Что вы освоите:** спрашивать о месте привычного действия с where и о времени с when
-**Новые слова:** stay
+**Что вы освоите:** спрашивать о времени открытия, времени обеда и обычном месте питания с When и Where
+**Новые слова:** eat, lunch, canteen, dinner
+**Возвращаются:** have, open, close, work, library, cafe, restaurant
 
 ---
 
 ## Интро 1
 
-### Ночлег в поездках
+### Здание напротив
 
-Знакомый часто ездит в один город. Вы спрашиваете, где он обычно останавливается на время поездки. `stay` здесь — «останавливаться, временно проживать». `Where do you stay?` — «Где ты останавливаешься?» После `where` идут `do you stay`. Чемодан сам гостиницу не выберет.
+В первый рабочий день вы нашли столовую напротив офиса, но дверь ещё заперта. canteen — «столовая». Узнайте у коллеги время открытия: When does the canteen open? — «Когда открывается столовая?» When спрашивает о времени. Здесь open — «открываться», а перед the canteen ставим does. После does пишем open, без s. Изучать меню через запертую дверь можно долго, но сытнее не станет.
 
-**Спросите о привычном месте проживания в поездках: «Где ты останавливаешься?»**
+**Коллега показывает на здание напротив. Спросите её: «Когда открывается столовая?»**
 
-- ✅ **Where do you stay?**
-- ❌ Where does you stay? — *С `you` нужно `do`.*
-- ❌ Where you stay? — *После `where` здесь нужно `do`.*
+- ✅ **When does the canteen open?**
+- ❌ When do the canteen open? — *В этом вопросе перед the canteen нужно does.*
+- ❌ When does the canteen opens? — *После does нужно open, без s.*
 
 ---
 
 ## Интро 2
 
-### Место тренировок
+### Приглашение подруги
 
-Друг рассказывает, что регулярно тренируется. `Where do you exercise?` — «Где ты тренируешься?» `Where` спрашивает о месте его обычных тренировок. После `do you` ставим `exercise`, без `s`.
+Подруга из соседнего отдела предлагает обедать вместе. lunch — «обед», have lunch — «обедать». Узнайте её обычное время обеда: When do you have lunch? — «Когда ты обедаешь?» С you здесь нужно do, затем have lunch. Так вы узнаете время, а не то, что у неё сегодня в тарелке.
 
-**Узнайте место тренировок друга.**
+**Подруга зовёт пообедать вместе. Спросите её: «Когда ты обедаешь?»**
 
-- ✅ **Where do you exercise?**
-- ❌ Where does you exercise? — *С `you` нужно `do`.*
-- ❌ Where do you exercises? — *После `do you` нужно `exercise`, без `s`.*
+- ✅ **When do you have lunch?**
+- ❌ When does you have lunch? — *С you нужно do.*
+- ❌ When do you has lunch? — *После do you нужно have, не has.*
 
 ---
 
 ## Интро 3
 
-### Начало смены
+### Муж коллеги
 
-Вы обсуждаете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» В этом разговоре имеется в виду начало её работы. `When` спрашивает о времени; с `she` используем `does`, затем `start`, без `s`.
+Муж коллеги работает в соседнем здании. Она хочет пригласить его обедать с вами, но не знает, устроит ли его ваша столовая. eat — «есть, питаться». Спросите, где он обычно ест: Where does he eat? — «Где он ест?» Where спрашивает о месте. С he здесь нужно does, затем eat, без s.
 
-**Спросите о начале её работы: «Когда она начинает?»**
+**Коллега говорит о своём муже. Спросите её: «Где он ест?»**
 
-- ✅ **When does she start?**
-- ❌ When do she start? — *С `she` нужно `does`.*
-- ❌ When does she starts? — *После `does` нужно `start`, без `s`.*
+- ✅ **Where does he eat?**
+- ❌ Where do he eat? — *С he нужно does.*
+- ❌ Where does he eats? — *После does нужно eat, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Узнайте привычное место проживания в поездках: «Где ты останавливаешься?»**
+**1 · Карточка слова — canteen**
+<!-- interaction_id: en:lesson-07:session-27:word:canteen; family: word_card -->
+> **canteen** — столовая. The canteen is open. — «Столовая открыта». Место на работе или в школе, где можно поесть.
+
+**2 · Коллега показывает на здание напротив. Спросите её: «Когда открывается столовая?»**
 <!-- interaction_id: en:lesson-07:session-27:i01; family: phrase_builder -->
-Плитки: `stay` `you` `do` `Where` → **Where do you stay?**
+Плитки: `open` `canteen` `the` `does` `When` → **When does the canteen open?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-07:session-27:i02; family: listen_choose -->
-🔊 *stay* → **stay** · exercise · passport
-- exercise — *В записи первое слово — `stay`, а в этом варианте — `exercise`.*
-- passport — *В записи первое слово — `stay`, а в этом варианте — `passport`.*
+🔊 *When does the canteen open?* → **When does the canteen open?** · When does the canteen close? · When does the library open?
+- When does the canteen close? — *В записи последнее слово — `open`, открываться, а в этом варианте — `close`, закрываться.*
+- When does the library open? — *В записи четвёртое слово — `canteen`, столовая, а в этом варианте — `library`, библиотека.*
 
-**3 · Спросите о привычном месте ночлега в поездках**
+**4 · Спросите: «Когда открывается столовая?» Вставьте слово**
 <!-- interaction_id: en:lesson-07:session-27:i03; family: context_gap_grammar -->
-Where ___ you stay? → **do** · does · are
-- does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `stay` строим с `do`.*
+When ___ the canteen open? → **does** · do · are
+- do — *Спрашиваем об открытии столовой: здесь нужно `does`.*
+- are — *Перед the canteen здесь нужно does. Are не подходит к одной столовой.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-27:i04; family: speed_match -->
-stay — останавливаться на время поездки · exercise — тренироваться · passport — паспорт · cars — машины
+canteen — столовая · open — открываться · close — закрываться · work — работать
 
-**5 · Послушайте и соберите вопрос**
+**6 · Карточка слова — lunch**
+<!-- interaction_id: en:lesson-07:session-27:word:lunch; family: word_card -->
+> **lunch** — обед. Lunch is ready. — «Обед готов». Еда в середине дня.
+
+**7 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-27:i05; family: listen_build_dictation -->
-🔊 *Where do you stay?* Плитки: `stay` `you` `do` `Where` → **Where do you stay?**
+🔊 *When do you have lunch?* Плитки: `lunch` `have` `you` `do` `When` → **When do you have lunch?**
 
-**6 · Спросите друга «Где ты тренируешься?»**
+**8 · Карточка слова — eat**
+<!-- interaction_id: en:lesson-07:session-27:word:eat; family: word_card -->
+> **eat** — есть, питаться. Where does he eat? — «Где он ест?» Принимать пищу.
+
+**9 · Коллега говорит о своём муже. Спросите её: «Где он ест?»**
 <!-- interaction_id: en:lesson-07:session-27:i06; family: phrase_builder -->
-Плитки: `exercise` `you` `do` `Where` → **Where do you exercise?**
+Плитки: `eat` `he` `does` `Where` → **Where does he eat?**
 
-**7 · Спросите о начале работы коллеги «Когда она начинает?»**
+**10 · Карточка слова — dinner**
+<!-- interaction_id: en:lesson-07:session-27:word:dinner; family: word_card -->
+> **dinner** — ужин. Dinner is ready. — «Ужин готов». Главный приём пищи за день; в этих ситуациях — вечерний ужин.
+
+**11 · Вы хотите прийти к брату после ужина и узнаёте обычное время ужина его семьи. Спросите брата: «Когда вы ужинаете?»**
 <!-- interaction_id: en:lesson-07:session-27:i07; family: scripted_repeat_compare -->
-🎙 **When does she start?**
+🎙 **When do you have dinner?**
 
-**8 · Спросите о начале её работы**
+**12 · Спросите брата об ужине. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-27:i08; family: context_gap_grammar -->
-When does she ___? → **start** · starts · is start
-- starts — *После `does` нужно `start`.*
-- is start — *Здесь нужно `start`, без `is`.*
+When do you ___ dinner? → **have** · has · is have
+- has — *После `do you` нужно `have`, не `has`.*
+- is have — *Здесь нужно `have`, без `is`.*
 
-**9 · Послушайте и выберите вопрос**
+**13 · Послушайте коллегу**
 <!-- interaction_id: en:lesson-07:session-27:i09; family: listen_choose -->
-🔊 *Where do you stay?* → **Where do you stay?** · When do you stay? · Where do you work?
-- When do you stay? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you work? — *В записи последнее слово — `stay`, а в этом варианте — `work`.*
+🔊 *Where does he eat?* → **Where does he eat?** · Where does he work? · Where does she eat?
+- Where does he work? — *В записи последнее слово — `eat`, есть, а в этом варианте — `work`, работать.*
+- Where does she eat? — *В записи третье слово — `he`, он, а в этом варианте — `she`, она.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-27:i10; family: speed_match -->
-complain — жаловаться · stay — останавливаться на время поездки · cars — машины · exercise — тренироваться
+lunch — обед · cafe — кафе · restaurant — ресторан · canteen — столовая
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте брата и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-27:i11; family: listen_build_dictation -->
-🔊 *Where do you exercise?* Плитки: `exercise` `you` `do` `Where` → **Where do you exercise?**
+🔊 *Where do you eat?* Плитки: `eat` `you` `do` `Where` → **Where do you eat?**
 
-**12 · Перед поездкой спросите друга «У тебя есть паспорт?»**
+**16 · Вы с подругой входите в новую рабочую команду и узнаёте её обычный распорядок. Спросите: «Где мы обедаем?»**
 <!-- interaction_id: en:lesson-07:session-27:i12; family: phrase_builder -->
-Плитки: `passport` `a` `have` `you` `Do` → **Do you have a passport?**
+Плитки: `lunch` `have` `we` `do` `Where` → **Where do we have lunch?**
 
-**13 · Обсуждая привычки, скажите «Я не жалуюсь»**
+**17 · Коллега говорит о своём муже. Спросите её: «Когда он ужинает?»**
 <!-- interaction_id: en:lesson-07:session-27:i13; family: scripted_repeat_compare -->
-🎙 **I don’t complain.**
+🎙 **When does he have dinner?**
 
-**14 · Узнайте привычное место проживания Тома в поездках**
+**18 · Спросите коллегу о её муже. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-27:i14; family: context_gap_grammar -->
-Where does Tom ___? → **stay** · stays · is stay
-- stays — *После `does` нужно `stay`.*
-- is stay — *Здесь нужно `stay`, без `is`.*
+Where does he ___? → **eat** · eats · is eat
+- eats — *После `does` нужно `eat`, без `s`.*
+- is eat — *Здесь нужно `eat`, без `is`.*
 
-**15 · Послушайте, где машины**
+**19 · Послушайте подругу**
 <!-- interaction_id: en:lesson-07:session-27:i15; family: listen_choose -->
-🔊 *The cars are here.* → **The cars are here.** · The cars are there. · The cars are outside.
-- The cars are there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The cars are outside. — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *When do you have lunch?* → **When do you have lunch?** · When do you have dinner? · When do we have lunch?
+- When do you have dinner? — *В записи последнее слово — `lunch`, обед, а в этом варианте — `dinner`, ужин.*
+- When do we have lunch? — *В записи третье слово — `you`, вы, а в этом варианте — `we`, мы.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-27:i16; family: speed_match -->
-stay — останавливаться на время поездки · passport — паспорт · complain — жаловаться · cars — машины
+dinner — ужин · eat — есть, питаться · canteen — столовая · lunch — обед
 
-**17 · Друг упоминает регулярные тренировки Тома. Спросите «Где Том тренируется?»**
+**21 · Вы снова у столовой. Спросите коллегу: «Когда открывается столовая?»**
 <!-- interaction_id: en:lesson-07:session-27:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Where does Tom exercise?**
-
+🎙 **When does the canteen open?**

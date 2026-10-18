@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-27:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "В этом вопросе перед the canteen нужно does.",
+          "uk": "У цьому запитанні перед the canteen потрібне does."
         },
         "en:lesson-07:session-27:intro1:r3": {
-          "ru": "После `where` здесь нужно `do`.",
-          "uk": "Після `where` тут потрібне `do`."
+          "ru": "После does нужно open, без s.",
+          "uk": "Після does потрібно open, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-27:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-27:intro2:r3": {
-          "ru": "После `do you` нужно `exercise`, без `s`.",
-          "uk": "Після `do you` потрібне `exercise`, без `s`."
+          "ru": "После do you нужно have, не has.",
+          "uk": "Після do you потрібно have, не has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-27:intro3:r2": {
-          "ru": "С `she` нужно `does`.",
-          "uk": "З `she` потрібне `does`."
+          "ru": "С he нужно does.",
+          "uk": "З he потрібно does."
         },
         "en:lesson-07:session-27:intro3:r3": {
-          "ru": "После `does` нужно `start`, без `s`.",
-          "uk": "Після `does` потрібне `start`, без `s`."
+          "ru": "После does нужно eat, без s.",
+          "uk": "Після does потрібно eat, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a8b1ae4bdf39d82461a5f1e643212bdf5546fdd26a9850b4e1e54af8bbf60542"
+  "auxiliaryFingerprint": "122e18fa9572ff3fad2a90f5513823dce543df18be30b94888e55cd57fc597a1"
 }

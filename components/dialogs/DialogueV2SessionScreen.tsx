@@ -69,6 +69,8 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
     betterPhrasing?: string;
     /** Сервер реплику не принял (лимит, dialogs-035): пузырь остаётся с отметкой «Не отправлено». */
     unsent?: boolean;
+    /** Реплика не на изучаемом языке (владелец 18.10): не ушла на сервер и не считается ходом. */
+    offLanguage?: boolean;
     translation?: never;
     explanation?: never;
   }>
@@ -83,6 +85,7 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
     }>;
     betterPhrasing?: never;
     unsent?: never;
+    offLanguage?: never;
     /** Перевод реплики на язык интерфейса (D112). */
     translation?: string;
     /** «Почему так» — разбор реплики на языке интерфейса (D112). */

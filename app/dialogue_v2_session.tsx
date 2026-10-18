@@ -14,6 +14,7 @@ import {
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
 import { startDialogueV2TextSession } from './dialogue_v2_turn_client';
+import { detectDialogueOffLanguage, pickDialogueNotUnderstoodReply } from './dialogue_v2_off_language';
 import { logDialogueV2Latency, logDialogueV2OptimisticFrame, logDialogueV2OptimisticStep, markDialogueV2OptimisticTap } from './dialogue_v2_optimistic_trace';
 import { peekDialogueV2LastWarmAtMs } from './dialogue_v2_warmup';
 import { aiDialogMonthlyLimitText } from '../components/dialog_limit_text';
@@ -177,7 +178,10 @@ function SessionContent() {
   // зачем (координатор 12.10, dialogs-038, «сперва логи»): номер реплики ученика для [DIALOG-END] — замыкание
   // appendReplies отстаёт на одну отрисовку, ref всегда видит текущую ленту.
   const learnerTurnsRef = useRef(0);
-  learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0);
+  // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд; подпись — первый собеседник сценария.
+  const offLanguageReplyIndexRef = useRef<number | null>(null);
+  // зачем (владелец 18.10): реплика не на изучаемом языке ходом не считается.
+  learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' && !message.offLanguage ? count + 1 : count), 0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   // зачем (координатор 18.10, К2): подпись под «…» собеседника — через 5 с «Мила печатает…», через 15 с «Отвечает дольше обычного».
@@ -629,6 +633,25 @@ function SessionContent() {
       }));
       return;
     }
+    // зачем (владелец 18.10 через координатора 09:58): реплика не на изучаемом языке (учит английский, пишет по-русски/по-французски)
+    // — собеседник отвечает на изучаемом языке «извини, не понимаю» каждый раз другой фразой; на сервер не уходит (ни квоты, ни энергии,
+    // ни вызова ИИ), ходом и в итоге не считается. Повтор зависшего хода сюда не попадает (pendingTurnRef).
+    if (!pendingTurnRef.current) {
+      const offLanguagePersonaLabel = model?.participants?.[0]?.displayName;
+      const verdict = detectDialogueOffLanguage(userMessage, studyTarget);
+      if (verdict.offLanguage) {
+        const reply = pickDialogueNotUnderstoodReply(studyTarget, offLanguageReplyIndexRef.current);
+        offLanguageReplyIndexRef.current = reply.index;
+        console.log('[DIALOG-OFF-LANG]', JSON.stringify({ scenarioId, target: studyTarget, reason: verdict.reason, detected: verdict.detected, length: userMessage.length, replyIndex: reply.index, learnerTurn: learnerTurnsRef.current })); // guard-ok: ветка «не тот язык» называет решение
+        setDraft('');
+        setMessages((current) => Object.freeze([
+          ...current,
+          Object.freeze({ id: `learner_${current.length + 1}`, author: 'learner' as const, text: userMessage, offLanguage: true }),
+          Object.freeze({ id: `persona_${current.length + 2}`, author: 'persona' as const, authorLabel: offLanguagePersonaLabel, text: reply.text }),
+        ]));
+        return;
+      }
+    }
     turnStartingRef.current = true;
     let pending = pendingTurnRef.current;
     // зачем (координатор 18.10, Optimistic UI): «отправить» → кадр со своим пузырём → ответ собеседника / откат.
@@ -699,7 +722,7 @@ function SessionContent() {
       console.warn('[DIALOGUE-V2] summary:open → no session', { scenarioId });
       return;
     }
-    const learnerMessages = messages.filter((message) => message.author === 'learner');
+    const learnerMessages = messages.filter((message) => message.author === 'learner' && !message.offLanguage);
     const learnerTurns = learnerMessages.length;
     if (learnerTurns === 0) refundEmptyDialogue('summary');
     if (typeof __DEV__ !== 'undefined' && __DEV__) {

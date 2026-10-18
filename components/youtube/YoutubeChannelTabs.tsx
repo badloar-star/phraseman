@@ -17,7 +17,8 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const labels = {
-    home: triLang(lang, { ru: 'Главная', uk: 'Головна', en: 'Home', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chính', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }),
+    // зачем (координатор 18.10, Сверка 6/11, предложение Переводчика 98a1f2cf6): «Главная» внутри «Видео» путалась с главной вкладкой приложения — внутренняя вкладка зовётся «Новое» (свежие ролики и премьера); слова той же длины, что «Плейлисты»/«Наборы».
+    home: triLang(lang, { ru: 'Новое', uk: 'Нове', en: 'New', es: 'Nuevo', 'pt-BR': 'Novidades', vi: 'Mới', id: 'Terbaru', tr: 'Yeni', pl: 'Nowe' }),
     playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', en: 'Playlists', es: 'Listas de reproducción', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
     packs: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }),
   };

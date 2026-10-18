@@ -202,7 +202,7 @@ describe('auth provider stable-id linking', () => {
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
       const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');
       const lock = branch.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
-      const wipe = branch.indexOf("await wipeLocalAccountData(transitionLease, { mode: 'signout' });", lock);
+      const wipe = branch.indexOf('await wipeLocalAccountData(transitionLease);', lock);
       const setStable = branch.indexOf('await setStableId(canonicalStableId);');
       const activate = branch.indexOf('beginAccountGeneration(canonicalStableId);');
       const lockEnd = branch.indexOf('});', activate);
@@ -276,7 +276,7 @@ describe('auth provider stable-id linking', () => {
 
   test('remote stable-id swap uses the full cloud sync account wipe before restore', () => {
     const lock = mergeSwapSource.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
-    const wipe = mergeSwapSource.indexOf("await wipeLocalAccountData(transitionLease, { mode: 'signout' });", lock);
+    const wipe = mergeSwapSource.indexOf('await wipeLocalAccountData(transitionLease);', lock);
     const setStable = mergeSwapSource.indexOf('await setStableId(canonicalStableId)', wipe);
     const lockEnd = mergeSwapSource.indexOf('});', setStable);
     expect(lock).toBeGreaterThan(0);

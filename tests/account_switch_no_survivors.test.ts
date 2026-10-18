@@ -29,7 +29,11 @@ jest.mock('../app/user_id_policy', () => ({
 // eslint-disable-next-line import/first
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 // eslint-disable-next-line import/first
-import { accountOwnedStorageKeysFrom, SIGNOUT_DEVICE_KEEP_KEYS, wipeLocalAccountData } from '../app/cloud_sync';
+import { __cloudSyncTestHooks, accountOwnedStorageKeysFrom, SIGNOUT_DEVICE_KEEP_KEYS, wipeLocalAccountData } from '../app/cloud_sync';
+// eslint-disable-next-line import/first
+import { DEVICE_ONBOARDING_DONE_KEY, DEVICE_ONBOARDING_MARK_KEYS, resolveBootOnboardingDone } from '../app/device_onboarding_marks';
+// eslint-disable-next-line import/first
+import { languageProfileKey } from '../app/study_languages';
 // eslint-disable-next-line import/first
 import { ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE } from '../app/account_deleted_notice';
 
@@ -132,32 +136,60 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     expect({ survivors }).toEqual({ survivors: [] });
   });
 
-  // зачем (координатор 18.10 03:08, решение Ядра 15.10; R132): «разрешено выжить» превращено в «ОБЯЗАН выжить» для выхода.
-  it('выход/смена (mode signout): онбординг, согласия и языки устройства остаются с прежними значениями', async () => {
+  // зачем (координатор 18.10 04:16, Ревизор 3.76 / 596051245): держать при выходе ключи СИНХРОНИЗАЦИИ нельзя — при входе B они
+  // сливались с его облаком. Сохраняются только ключи устройства вне SYNC_KEYS, онбординг держат метки устройства.
+  it('ни один ключ, сохраняемый при выходе, не входит в опись аккаунта (SYNC_KEYS и копию)', () => {
+    const accountOwned = new Set(accountOwnedStorageKeysFrom([]));
+    expect(SIGNOUT_DEVICE_KEEP_KEYS.filter((key) => accountOwned.has(key))).toEqual([]);
+    expect(DEVICE_ONBOARDING_MARK_KEYS.filter((key) => accountOwned.has(key))).toEqual([]);
+  });
+
+  it('A вышел → вошёл B с облачными языками и профилем: у B ровно его языки и профиль, от A ничего не осталось', async () => {
+    const profileKey = languageProfileKey('fr');
+    await AsyncStorage.multiSet([
+      ['onboarding_done', '1'], ['app_lang', 'en'], ['lang', 'en'],
+      ['study_languages_started_v1', JSON.stringify(['en', 'fr'])], [profileKey, JSON.stringify({ owner: 'A' })],
+    ]);
     for (const key of SIGNOUT_DEVICE_KEEP_KEYS) await AsyncStorage.setItem(key, `device:${key}`);
-    for (const key of ACCOUNT_A_KEYS_FROM_AUDIT) await AsyncStorage.setItem(key, 'a');
 
     await wipeLocalAccountData(undefined, { mode: 'signout' });
 
-    const kept = await AsyncStorage.multiGet([...SIGNOUT_DEVICE_KEEP_KEYS]);
-    expect(kept).toEqual(SIGNOUT_DEVICE_KEEP_KEYS.map((key) => [key, `device:${key}`]));
-    const left = await AsyncStorage.getAllKeys();
-    expect(ACCOUNT_A_KEYS_FROM_AUDIT.filter((key) => left.includes(key))).toEqual([]);
-    expect(logSpy.mock.calls.some((call) => String(call[0]) === '[ACCOUNT-WIPE]' && String(call[1]).includes('"mode":"signout"')
-      && String(call[1]).includes('onboarding_done'))).toBe(true);
+    // ключи синхронизации A стёрты — в облако B от A уйти нечему
+    const syncLeft = await AsyncStorage.multiGet(['onboarding_done', 'app_lang', 'lang', 'study_languages_started_v1', profileKey]);
+    expect(syncLeft.filter(([, value]) => value != null)).toEqual([]);
+    // ключи устройства вне синхронизации и метки устройства на месте
+    expect(await AsyncStorage.multiGet([...SIGNOUT_DEVICE_KEEP_KEYS])).toEqual(SIGNOUT_DEVICE_KEEP_KEYS.map((key) => [key, `device:${key}`]));
+    expect(await AsyncStorage.multiGet([...DEVICE_ONBOARDING_MARK_KEYS])).toEqual([['device_onboarding_done_v1', '1'], ['device_ui_lang_v1', 'en']]);
+    expect(logSpy.mock.calls.some((call) => String(call[0]) === '[ACCOUNT-WIPE]'
+      && String(call[1]).includes('"deviceMarks":["device_onboarding_done_v1","device_ui_lang_v1"]'))).toBe(true);
+
+    // вход B: восстановление из облака B — у B ровно его [en, es] и его профиль
+    beginAccountGeneration('stable-b');
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+      exists: true,
+      data: () => ({ progress: { study_languages_started_v1: JSON.stringify(['en', 'es']), [profileKey]: JSON.stringify({ owner: 'B' }) } }),
+    });
+    expect(restored).toBe(true);
+    expect(JSON.parse((await AsyncStorage.getItem('study_languages_started_v1')) ?? '[]')).toEqual(['en', 'es']);
+    expect(await AsyncStorage.getItem(profileKey)).toBe(JSON.stringify({ owner: 'B' }));
   });
 
-  it('полное стирание (удаление, вход со сменой): ключи аккаунта из этого набора исчезают, онбординг удаления сбрасывается явно', async () => {
-    const accountOwned = new Set(accountOwnedStorageKeysFrom([]));
-    const accountKeysInSet = SIGNOUT_DEVICE_KEEP_KEYS.filter((key) => accountOwned.has(key));
-    expect(accountKeysInSet).toEqual(expect.arrayContaining(['onboarding_done', 'app_lang']));
-    for (const key of accountKeysInSet) await AsyncStorage.setItem(key, 'a');
+  it('A вышел → холодный старт: онбординг не показан (метка устройства), у нового гостя своя отметка', async () => {
+    await AsyncStorage.setItem('onboarding_done', '1');
+    await wipeLocalAccountData(undefined, { mode: 'signout' });
+    const [[, accountDone], [, deviceDone]] = await AsyncStorage.multiGet(['onboarding_done', DEVICE_ONBOARDING_DONE_KEY]);
+    expect(accountDone).toBeNull();
+    expect(resolveBootOnboardingDone(accountDone, deviceDone)).toEqual({ value: '1', source: 'device' });
+    expect(resolveBootOnboardingDone(null, null)).toEqual({ value: null, source: 'none' });
+  });
+
+  it('полное стирание (удаление, вход со сменой) снимает метки устройства — после удаления онбординг показывается', async () => {
+    await AsyncStorage.multiSet([[DEVICE_ONBOARDING_DONE_KEY, '1'], ['device_ui_lang_v1', 'en'], ['onboarding_done', '1']]);
 
     await wipeLocalAccountData();
 
-    const left = await AsyncStorage.getAllKeys();
-    expect(accountKeysInSet.filter((key) => left.includes(key))).toEqual([]);
-    // удаление аккаунта сбрасывает онбординг своим списком (account_deleted_notice) — не через режим выхода
+    expect((await AsyncStorage.multiGet([...DEVICE_ONBOARDING_MARK_KEYS, 'onboarding_done'])).filter(([, value]) => value != null)).toEqual([]);
+    expect(resolveBootOnboardingDone(null, null).value).toBeNull();
     expect(ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE).toEqual(expect.arrayContaining(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']));
   });
 

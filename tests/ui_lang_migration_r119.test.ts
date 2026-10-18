@@ -68,7 +68,9 @@ describe('R119: язык существующих установок при от
   test('LangContext зовёт перенос, только когда app_lang пуст, и не затирает выбор человека', () => {
     const source = fs.readFileSync(path.join(__dirname, '..', 'components', 'LangContext.tsx'), 'utf8');
     expect(source).toContain("import { migrateUiLangForExistingInstallOnce } from '../app/ui_lang_migration';");
-    expect(source).toMatch(/if \(typeof v === 'string'\) \{[\s\S]{0,200}?return;\s*\}[\s\S]{0,400}?return migrateUiLangForExistingInstallOnce\(\)/u);
+    // координатор 18.10 04:16: между пустым app_lang и переносом — язык из метки устройства после выхода (device_ui_lang_v1); окно 400 → 1600.
+    expect(source).toMatch(/if \(typeof v === 'string'\) \{[\s\S]{0,200}?return;\s*\}[\s\S]{0,1600}?return migrateUiLangForExistingInstallOnce\(\)/u);
+    expect(source).toMatch(/return readDeviceUiLang\(\)\.then\([\s\S]{0,1400}?return migrateUiLangForExistingInstallOnce\(\)/u);
     expect(source).toMatch(/if \(userChangedLangRef\.current\) \{\s*console\.log\(`\[UI-LANG-MIGRATE\] apply_skipped/u);
   });
 });

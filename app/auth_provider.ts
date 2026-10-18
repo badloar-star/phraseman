@@ -3563,8 +3563,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       swapStage('entitlement_transition_begun');
       await withAccountTransitionLock(async (transitionLease) => {
         swapStage('transition_lock_acquired');
-        // зачем (координатор 18.10 03:42): вход со сменой — как выход: онбординг, согласия и языки устройства не повторяются.
-        await wipeLocalAccountData(transitionLease, { mode: 'signout' });
+        await wipeLocalAccountData(transitionLease);
         swapStage('wipe_done');
         await setStableId(canonicalStableId);
         // зачем (прогон 12.10: wipe_done → stable_id_installed 2,2 с): разложить хвост под замком.
@@ -3670,8 +3669,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         await quiesceSyncBeforeStableIdSwap();
         await beginEntitlementSafeAccountTransition();
         await withAccountTransitionLock(async (transitionLease) => {
-          // зачем (координатор 18.10 03:42): вход со сменой — как выход: онбординг, согласия и языки устройства не повторяются.
-          await wipeLocalAccountData(transitionLease, { mode: 'signout' });
+          await wipeLocalAccountData(transitionLease);
           await setStableId(canonicalStableId);
           if (providerHandoffMarker) {
             await clearProviderCredentialHandoff(providerHandoffMarker);

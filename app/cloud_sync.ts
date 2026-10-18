@@ -6346,28 +6346,23 @@ export function prewarmAccountWipeModules(source: string): void {
 }
 
 /**
- * зачем (координатор 18.10 03:08, решение Ядра 15.10; R132): при ВЫХОДЕ и СМЕНЕ аккаунта онбординг, согласия и выбор языков —
- * настройки устройства, а не аккаунта. Раньше onboarding_done уходил вместе с SYNC_KEYS, и после выхода и холодного старта
- * человек заново проходил онбординг. Удаление аккаунта (mode 'full') сбрасывает их, как и раньше (account_deleted_notice).
+ * зачем (координатор 18.10 04:16, Ревизор 3.76 / 596051245): при выходе и смене остаются ТОЛЬКО ключи устройства вне SYNC_KEYS
+ * (они и так не входят в опись аккаунта). Ключи из SYNC_KEYS (onboarding_done, app_lang, lang, study_languages_started_v1,
+ * language_profile_v1::*) держать нельзя: при входе B они сливались с его облаком — данные A уходили к B. Вместо них перед
+ * стиранием пишутся метки устройства (device_onboarding_marks.ts). Сторож: tests/account_switch_no_survivors (KEEP ∩ SYNC = ∅).
  */
 export const SIGNOUT_DEVICE_KEEP_KEYS: readonly string[] = [
-  'onboarding_done',
   'onboarding_completed_at_ms_v1',
   'onboarding_step',
   'onboarding_flow_version_v1',
   'onboarding_terms_privacy_accepted_v1',
   'analytics_consent_v1',
-  'app_lang',
-  'lang',
   'study_target_v1',
-  'study_languages_started_v1',
-  // зачем (координатор 18.10 03:42): профили языков (уровень/выбор по языку) — настройки устройства, как выбранные языки.
-  ...SYNC_STUDY_TARGETS.map(languageProfileKey),
 ];
 
 /**
- * 'full' — удаление аккаунта и восстановление чистой установки (как было);
- * 'signout' — выход, смена аккаунта и вход со сменой (координатор 18.10 03:42): онбординг, согласия, языки устройства остаются.
+ * 'full' — удаление аккаунта, вход со сменой (swap/merge), восстановление чистой установки;
+ * 'signout' — выход и смена аккаунта: перед стиранием пишутся метки устройства (онбординг пройден, язык интерфейса).
  */
 export type AccountWipeMode = 'full' | 'signout';
 
@@ -6428,7 +6423,17 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
   const wipedCelebrationSeen = await AsyncStorage.multiGet([...ACCOUNT_SWITCH_CELEBRATION_SEEN_KEYS])
     .then((rows) => rows.filter(([, value]) => value != null).map(([key]) => key))
     .catch((error: unknown) => [`read_failed:${identityErrorCode(error)}`]);
-  console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort(), wipedCelebrationSeen })); // guard-ok: одна строка на стирание, только имена ключей
+  // зачем (координатор 18.10 04:16): при выходе — метки устройства ДО стирания (onboarding_done/app_lang сейчас уйдут).
+  // Полное стирание (удаление аккаунта, вход со сменой) метки устройства снимает: после удаления онбординг обязан показаться.
+  const marksModule = await import('./device_onboarding_marks');
+  const deviceMarks = mode === 'signout' ? await marksModule.writeDeviceMarksBeforeSignoutWipe() : [];
+  const deviceMarksCleared = mode === 'full'
+    ? await AsyncStorage.multiRemove([...marksModule.DEVICE_ONBOARDING_MARK_KEYS]).then(() => true, (error: unknown) => {
+      console.warn('[ACCOUNT-WIPE]', JSON.stringify({ step: 'device_marks_clear_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+      return false;
+    })
+    : false;
+  console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort(), wipedCelebrationSeen, deviceMarks, deviceMarksCleared })); // guard-ok: одна строка на стирание, только имена ключей
   const removeExactly = async (keys: readonly string[]): Promise<void> => {
     const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
     const chunkSize = 128;

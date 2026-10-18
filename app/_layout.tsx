@@ -350,6 +350,7 @@ import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
 import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
 import { rememberOnboardingDonePeek } from './onboarding_done_peek';
+import { DEVICE_ONBOARDING_DONE_KEY, resolveBootOnboardingDone } from './device_onboarding_marks';
 import { armMemTick, setMemTickRoute } from './mem_tick';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
@@ -2806,7 +2807,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (координатор 12.10): метка очистки кэша Firestore после удаления аккаунта читается этим же чтением — ни одного
       // отдельного нативного вызова на старте (было ~20 мс SecureStore у каждого).
       // + зеркало замка удаления: процесс могли убить между стиранием и записью метки (координатор 12.10) — тем же чтением.
-      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY];
+      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY, DEVICE_ONBOARDING_DONE_KEY];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
       // Обработчик метки вешается РАНЬШЕ всех остальных потребителей этого чтения (восстановление из облака ниже) — clearPersistence
@@ -2988,7 +2989,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       try {
         const startupIdentityPairs = await startupIdentityPairsPromise;
         const startupIdentity = new Map(startupIdentityPairs);
-        const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null);
+        // зачем (координатор 18.10 04:16, Ревизор 3.76): после выхода onboarding_done (ключ синхронизации) стёрт, а метка устройства
+        // осталась — онбординг заново не показываем и ставим новому гостю его собственную отметку, как это делает сам онбординг.
+        const bootOnboarding = forceOnboardingForQA
+          ? { value: null, source: 'none' as const }
+          : resolveBootOnboardingDone(startupIdentity.get('onboarding_done') ?? null, startupIdentity.get(DEVICE_ONBOARDING_DONE_KEY) ?? null);
+        const val = bootOnboarding.value;
+        if (bootOnboarding.source === 'device') {
+          console.log('[ONB-SHOW] device_mark onboarding_done=null device=1 → онбординг не показан, отметка гостю'); // guard-ok: одна строка на запуск после выхода
+          void AsyncStorage.setItem('onboarding_done', '1').catch(noteSwallowedAs('_layout:bootstrap.deviceOnboardingDone', undefined));
+        }
         // зачем (HOME-COLD_cold1: Главная ждала свой multiGet ~6 с): тот же флаг Главной — из памяти, сразу.
         rememberOnboardingDonePeek(val === '1');
 

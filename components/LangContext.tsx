@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, resolveBootstrapLocaleDecision, type Lang } from '../constants/i18n';
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
+import { readDeviceUiLang } from '../app/device_onboarding_marks';
 import { publishResolvedUiLang } from '../app/ui_lang_resolved';
 import { peekDevUiLang, subscribeDevUiLang, type DevUiLangRequest } from '../app/dev_ui_lang';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
@@ -1268,6 +1269,20 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
             setLangState('ru');
             return;
           }
+          // зачем (координатор 18.10 04:16): после выхода app_lang (ключ синхронизации) стёрт — язык устройства берём из метки
+          // device_ui_lang_v1 (только память, app_lang не пишем), пока облако нового аккаунта не принесло свой выбор.
+          return readDeviceUiLang().then((deviceRaw) => {
+            const deviceLang = coerceInterfaceLang(deviceRaw);
+            if (deviceLang && isInterfaceLangEnabled(deviceLang)) {
+              if (userChangedLangRef.current) {
+                console.log(`[LANG-SWITCH] device_ui_lang_skipped lang=${deviceLang} reason=user_changed_before_hydration`); // guard-ok: ранний выход
+                return;
+              }
+              console.log(`[LANG-SWITCH] device_ui_lang_applied lang=${deviceLang} reason=app_lang_missing_after_signout`); // guard-ok: одна строка на запуск после выхода
+              writePeekAppLang(deviceLang);
+              setLangState(deviceLang);
+              return;
+            }
           // зачем (R119, координатор 17.10): явного выбора языка не было. Существующая установка сохраняет язык прежнего
           // правила (до открытия английского) — интерфейс не меняется сам с русского на английский; новая — новое правило.
           return migrateUiLangForExistingInstallOnce().then((result) => {
@@ -1278,6 +1293,7 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
             }
             writePeekAppLang(result.lang);
             setLangState(result.lang);
+          });
           });
         }
         setLangState(storedLang);

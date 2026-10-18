@@ -132,6 +132,7 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
   <div class="row" id="r-exp"></div>
   <div class="spec">
     <div><b>Место.</b> Шторка объяснения открывается как обычно. Верх&nbsp;— твой ответ и правильный (это есть на устройстве и без ИИ). Вместо текста объяснения&nbsp;— та же карточка.</div>
+    <div><b>Plus здесь нет.</b> Дневной запас объяснений общий для всех, Plus его не увеличивает&nbsp;— строки про Plus нет ни у кого.</div>
     <div><b>Выход.</b> Одна главная кнопка «Понятно» закрывает шторку. На тёмной&nbsp;— светлая кнопка, на светлой&nbsp;— тёмная: с карточкой не сливается.</div>
   </div>
 
@@ -150,9 +151,9 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
 
   <h2>Тексты (для Переводчика)</h2>
   <div class="tbl"><table>
-    <tr><th>Место</th><th>Заголовок</th><th>Текст</th><th>Plus (только Free, личный дневной запас)</th></tr>
+    <tr><th>Место</th><th>Заголовок</th><th>Текст</th><th>Plus (только Free, только Диалоги)</th></tr>
     <tr><td>Диалоги</td><td>На сегодня разговоров достаточно</td><td>Собеседник снова ответит завтра.</td><td>Больше разговоров в день&nbsp;— с Plus</td></tr>
-    <tr><td>Объяснить ошибку</td><td>Объяснения на сегодня закончились</td><td>Правильный вариант&nbsp;— выше. Почему так, разберём завтра.</td><td>Больше объяснений в день&nbsp;— с Plus</td></tr>
+    <tr><td>Объяснить ошибку</td><td>Объяснения на сегодня закончились</td><td>Правильный вариант&nbsp;— выше. Почему так, разберём завтра.</td><td>—</td></tr>
     <tr><td>Хаб ошибок</td><td colspan="3">Новых строк нет — обычный совет по правилам</td></tr>
     <tr><td>Общее</td><td colspan="3">Метка «Снова завтра» · поле ввода «Продолжим завтра» · кнопка «Понятно»</td></tr>
   </table></div>
@@ -161,7 +162,8 @@ td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; bor
   <div class="tbl"><table>
     <tr><th>Отказ сервера</th><th>Вариант</th></tr>
     <tr><td><code>daily_spend_cap</code> (общий потолок)</td><td>Карточка без Plus&nbsp;— блок 4</td></tr>
-    <tr><td>Личный дневной запас Free (окна <code>dlg_free_ip</code>, <code>dlg_tr_free</code>, <code>mistake_explain_ip</code>, <code>explain_*_ip</code>)</td><td>Карточка + строка Plus&nbsp;— блоки 1–2</td></tr>
+    <tr><td>Дневной запас Free в Диалогах (<code>dlg_free_ip</code>, <code>dlg_tr_free</code>)&nbsp;— только у Free; Free или Plus клиент решает по <code>hasPremiumAccess</code></td><td>Карточка + строка Plus&nbsp;— блок 1</td></tr>
+    <tr><td>Окна объяснений (<code>explain_phrase_ip</code>, <code>explain_choice_ip</code>, <code>mistake_explain_ip</code>)&nbsp;— бьют по всем</td><td>Карточка без Plus&nbsp;— блок 2</td></tr>
     <tr><td>Дневной запас Plus (<code>plus_daily_cap</code>)</td><td>Карточка без Plus</td></tr>
     <tr><td><code>hub_advice_ip</code> и любой отказ совета</td><td>Совет по правилам, без строк и без Plus&nbsp;— блок 3</td></tr>
     <tr><td>Часовые окна, <code>spend_cap_busy</code>, сеть</td><td>Не это состояние: «подожди немного» / «попробуй ещё раз»</td></tr>
@@ -198,7 +200,7 @@ const explain = (cls, plus) => `<div class="ph ${cls}" role="img" aria-label="О
   <div class="scrim"></div>
   <div class="sheet"><div class="grab"></div><div class="sh-t">Объяснение</div>
     <div class="ans"><div><div class="l">Твой ответ</div><div class="v x">I am agree with you</div></div><div><div class="l">Правильно</div><div class="v">I agree with you</div></div></div>
-    ${rest('Объяснения на сегодня закончились', 'Правильный вариант — выше. Почему так, разберём завтра.', plus ? 'Больше объяснений в день — с Plus' : '')}
+    ${rest('Объяснения на сегодня закончились', 'Правильный вариант — выше. Почему так, разберём завтра.', '')}
     <div class="btn">Понятно</div>
   </div><div class="hi"></div></div>`;
 
@@ -212,7 +214,7 @@ const hub = (cls) => `<div class="ph ${cls}" role="img" aria-label="Хаб ош�
 
 const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
 document.getElementById('r-dlg').innerHTML = col('Тёмная · Free', dialog('', true)) + col('Светлая · Free', dialog('lt', true));
-document.getElementById('r-exp').innerHTML = col('Тёмная · Free', explain('', true)) + col('Светлая · Free', explain('lt', true));
+document.getElementById('r-exp').innerHTML = col('Тёмная', explain('', false)) + col('Светлая', explain('lt', false));
 document.getElementById('r-hub').innerHTML = col('Тёмная', hub('')) + col('Светлая', hub('lt'));
-document.getElementById('r-cap').innerHTML = col('Диалоги · тёмная · общий потолок', dialog('', false)) + col('Объяснение · светлая · общий потолок', explain('lt', false));
+document.getElementById('r-cap').innerHTML = col('Диалоги · тёмная · общий потолок', dialog('', false)) + col('Диалоги · светлая · общий потолок', dialog('lt', false));
 </script>

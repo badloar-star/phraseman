@@ -1,0 +1,245 @@
+<title>Состояния входа</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Эталон состояний входа PhraseMan 2.0 (координатор 18.10, «все ресурсы на авторизацию»): окно входа RegistrationPromptModal в покое,
+   нажатие провайдера, долгий вход, сбой, шторка гостя (guest-switch-warning.html) и «Аккаунт» после входа. Стиль «Тень», тёмная (графит)
+   и светлая («Сумерки»). Состав окна и тексты — из кода (components/RegistrationPromptModal.tsx, app/auth_error_copy.ts,
+   прежний эталон accounts-gaps-states.html); новое по заданию: строка «Входим…» с 3 с и сбой без красного. */
+:root {
+  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-line: rgba(23,24,30,.10); --page-chip: rgba(23,24,30,.06);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
+:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
+
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
+h2 { font-size: 21px; line-height: 27px; font-weight: 700; letter-spacing: -.2px; margin: 48px 0 0; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 70ch; }
+.lead a, .spec a { color: var(--page-ink); font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 22px; justify-content: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
+.spec { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px 28px; }
+.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); min-width: 0; }
+.spec b { color: var(--page-ink); font-weight: 600; }
+table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; line-height: 20px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; vertical-align: top; border-bottom: 1px solid var(--page-line); }
+th { font-weight: 600; color: var(--page-sec); font-size: 13px; }
+td code { font-size: 12.5px; background: var(--page-chip); padding: 1px 6px; border-radius: 6px; white-space: nowrap; }
+.tbl { overflow-x: auto; }
+.ref { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: var(--page-chip); max-width: 640px; }
+.ref b { display: block; font-size: 15px; }
+.ref span { font-size: 14px; line-height: 20px; color: var(--page-sec); }
+
+/* ── телефон 390 × 844 ── */
+.ph { --bg: #0C0C0D; --bg-top: #151516; --text: #FFFFFF; --sec: #A6A6A8; --muted: #7C7C80; --card: #151517; --tile: #242426; --sheet: #1B1B1D;
+  --line: rgba(255,255,255,.08); --scrim: rgba(0,0,0,.6); --sb: #fff; --grab: #4A4A4E;
+  --cta: #F2F1F6; --cta-ink: #0B0C0E; --btn2: #2E2E32; --btn2-ink: #FFFFFF;
+  --g-bg: #F2F1F6; --g-ink: #0B0C0E; --g-sh: inset 0 1px 0 #fff, 0 10px 24px -14px rgba(0,0,0,.8);
+  --a-bg: #FFFFFF; --a-ink: #000000; --a-sh: 0 10px 24px -14px rgba(0,0,0,.8);
+  --soft: #232326; --soft-sh: inset 0 1px 0 rgba(255,255,255,.06);
+  --sheet-sh: 0 -18px 40px -16px rgba(0,0,0,.8); --btn2-sh: inset 0 1px 0 rgba(255,255,255,.07), 0 6px 16px -10px rgba(0,0,0,.8);
+  --card-sh: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px -16px rgba(0,0,0,.9); --chip: #2A2A2D; --del: #FF9A98;
+  position: relative; width: 390px; max-width: 100%; aspect-ratio: 390 / 844; border-radius: 52px; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); color: var(--text);
+  box-shadow: 0 0 0 10px #1A1A1C, 0 30px 60px -30px rgba(0,0,0,.6); font-family: var(--font); }
+.ph.lt { --bg: #ECEEF9; --bg-top: #F3F4FD; --text: #17181E; --sec: #595A63; --muted: #7E7F8A; --card: #FFFFFF; --tile: #E4E5F3; --sheet: #FCFCFF;
+  --line: rgba(23,24,30,.08); --scrim: rgba(23,24,30,.38); --sb: #111; --grab: #C9CADB;
+  --cta: #1D1D2F; --cta-ink: #FFFFFF; --btn2: #E4E5F3; --btn2-ink: #17181E;
+  --g-bg: #FFFFFF; --g-ink: #17181E; --g-sh: 0 0 0 1px rgba(23,24,30,.10), 0 8px 18px -12px rgba(51,51,87,.45);
+  --a-bg: #000000; --a-ink: #FFFFFF; --a-sh: 0 10px 22px -12px rgba(0,0,0,.45);
+  --soft: #EEEFF9; --soft-sh: inset 0 1px 0 #fff;
+  --sheet-sh: 0 -18px 40px -18px rgba(51,51,87,.35); --btn2-sh: inset 0 1px 0 rgba(255,255,255,.9), 0 6px 14px -10px rgba(51,51,87,.45);
+  --card-sh: 0 8px 22px -14px rgba(51,51,87,.40); --chip: #E4E5F3; --del: #C2413B;
+  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); box-shadow: 0 0 0 10px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.sbar { position: absolute; top: 0; left: 0; right: 0; height: 48px; padding: 16px 30px 0; display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--sb); z-index: 5; }
+.scr { position: absolute; inset: 48px 0 0; padding: 8px 18px; }
+.hi { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--text); opacity: .9; z-index: 30; }
+.i { width: 20px; height: 20px; flex: none; display: block; }
+
+/* «Аккаунт» */
+.rb { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text); }
+.ttl { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; }
+.hero { display: flex; flex-direction: column; align-items: center; margin-top: 18px; }
+.hero img { width: 92px; height: 92px; }
+.hero .nm { font-size: 20px; line-height: 26px; font-weight: 700; margin-top: 8px; }
+.chipbtn { margin-top: 8px; height: 32px; padding: 0 14px; border-radius: 16px; background: var(--chip); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; }
+.eb { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin: 20px 4px 8px; }
+.list { border-radius: 20px; background: var(--card); box-shadow: var(--card-sh); overflow: hidden; }
+.lr { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 14px; }
+.lr + .lr { box-shadow: inset 0 1px 0 var(--line); }
+.lr .tl { width: 36px; height: 36px; border-radius: 11px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+.lr .tl .i { width: 18px; height: 18px; }
+.lr .cp { flex: 1; min-width: 0; }
+.lr .t1 { font-size: 16px; line-height: 21px; font-weight: 600; }
+.lr .t2 { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr .vl { font-size: 15px; color: var(--sec); font-weight: 500; flex: none; }
+.lr .ch { color: var(--muted); }
+.lr .mini { height: 30px; padding: 0 12px; border-radius: 15px; background: var(--chip); font-size: 13px; font-weight: 600; display: flex; align-items: center; flex: none; }
+.lr.del .t1 { color: var(--del); }
+
+/* окно входа (шторка) */
+.under { opacity: .4; }
+.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 10; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--sheet); border-radius: 30px 30px 0 0; box-shadow: var(--sheet-sh); padding: 10px 20px 30px; }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--grab); margin: 0 auto; }
+.xr { display: flex; justify-content: flex-end; margin-top: 4px; }
+.x { width: 36px; height: 36px; border-radius: 50%; background: var(--btn2); display: flex; align-items: center; justify-content: center; color: var(--sec); }
+.x .i { width: 16px; height: 16px; }
+.hd { display: flex; gap: 14px; align-items: center; margin-top: 2px; }
+.hd .ic { width: 48px; height: 48px; border-radius: 15px; background: var(--tile); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+.hd .ic .i { width: 24px; height: 24px; }
+.st { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.2px; }
+.ss { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.sb2 { font-size: 15px; line-height: 22px; color: var(--sec); margin-top: 14px; }
+.prov { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; margin-top: 10px; position: relative; transition: opacity 200ms cubic-bezier(.23,1,.32,1); }
+.prov.g { background: var(--g-bg); color: var(--g-ink); box-shadow: var(--g-sh); margin-top: 18px; }
+.prov.a { background: var(--a-bg); color: var(--a-ink); box-shadow: var(--a-sh); }
+.gl { font-weight: 800; font-size: 19px; color: #4285F4; width: 20px; text-align: center; }
+.trust { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+.trust .i { width: 14px; height: 14px; }
+.later { height: 50px; border-radius: 25px; background: var(--btn2); color: var(--btn2-ink); box-shadow: var(--btn2-sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin-top: 12px; }
+.legal { text-align: center; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--sec); margin-top: 12px; }
+.dim { opacity: .38; }
+/* нажатие: индикатор на месте значка */
+.spin { width: 20px; height: 20px; border-radius: 50%; border: 2.4px solid currentColor; border-right-color: transparent; opacity: .75; animation: sp 800ms linear infinite; flex: none; }
+@keyframes sp { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; border-right-color: currentColor; opacity: .35; } }
+/* «Входим…» — спокойная строка */
+.slow { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 15px; line-height: 21px; font-weight: 600; color: var(--sec); }
+.dots { display: inline-flex; gap: 4px; }
+.dots i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: dt 1.2s ease-in-out infinite; }
+.dots i:nth-child(2) { animation-delay: .2s; } .dots i:nth-child(3) { animation-delay: .4s; }
+@keyframes dt { 0%, 70%, 100% { opacity: .3; } 35% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .dots i { animation: none; opacity: .6; } }
+/* сбой — мягкая карточка, без красного */
+.oops { margin-top: 16px; border-radius: 18px; background: var(--soft); box-shadow: var(--soft-sh); padding: 14px 14px 14px 16px; }
+.oops .r1 { display: flex; gap: 12px; align-items: flex-start; }
+.oops .r1 .i { width: 20px; height: 20px; color: var(--sec); margin-top: 1px; }
+.oops .h { font-size: 16px; line-height: 21px; font-weight: 700; }
+.oops .p { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 2px; }
+.retry { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--cta); color: var(--cta-ink); font-size: 15px; font-weight: 700; margin: 12px 0 0 32px; }
+.retry .i { width: 16px; height: 16px; }
+</style>
+
+<div class="wrap">
+  <h1>Состояния входа</h1>
+  <p class="lead">Эталон для Сверки и Авторизации. Окно входа — шторка «Всё в безопасности» (как в коде): в покое, при нажатии Google или Apple, при долгом входе, при сбое. Ниже — шторка гостя и экран «Аккаунт» после входа. Каждое состояние в тёмной и светлой теме. Без технических слов и без красного.</p>
+
+  <h2>1. Вход в покое</h2>
+  <div class="row" id="r-idle"></div>
+  <div class="spec">
+    <div><b>Кнопки.</b> Google и Apple — по 54, радиус 27, зазор 10. Тёмная тема: Google светлая, Apple белая (на тёмной плите чёрная сливалась). Светлая: Google белая с тонкой линией и тенью, Apple чёрная — как требуют Google и Apple.</div>
+    <div><b>«Позже»</b> — второй тон с тенью, 50. Ниже ссылки на политику и условия. Крестик закрывает так же, как «Позже».</div>
+  </div>
+
+  <h2>2. Нажата Google или Apple</h2>
+  <div class="row" id="r-press"></div>
+  <div class="spec">
+    <div><b>Индикатор на кнопке.</b> На месте значка — тонкое кольцо, надпись остаётся, кнопка на месте и не меняет размер. Отклик сразу по тапу, до любого ответа.</div>
+    <div><b>Остальное приглушено</b> до 38 % и не нажимается: вторая кнопка, «Позже», крестик. Шторка не закрывается смахиванием, пока идёт вход (так уже в коде).</div>
+  </div>
+
+  <h2>3. Вход идёт дольше 3 секунд</h2>
+  <div class="row" id="r-slow"></div>
+  <div class="spec">
+    <div><b>Строка «Входим…»</b> под кнопками, вторым цветом, с тремя мягко мигающими точками. Без «сервер», «ожидание ответа», без процентов.</div>
+    <div><b>Через 8 секунд</b> (уже есть в коде) строка сменяется на «Вход занимает больше времени. Можно закрыть это окно — вход продолжится», и «Позже» снова нажимается.</div>
+  </div>
+
+  <h2>4. Сбой входа</h2>
+  <div class="row" id="r-fail"></div>
+  <div class="spec">
+    <div><b>Мягкая карточка</b> над кнопками, тоном, без красного и без рамки: что случилось — человеческими словами, ниже «Попробовать ещё раз» (повторяет тот же способ). Кнопки входа снова активны — можно выбрать другой способ.</div>
+    <div><b>Тексты по причине</b> — в таблице ниже. Коды ошибок только в журнал <code>[AUTH-…]</code>, на экран — никогда.</div>
+  </div>
+
+  <h2>5. Шторка гостя</h2>
+  <div class="ref"><div><b>Уже есть: «Войти в другой аккаунт?»</b><span>Гость с прогрессом входит в существующий аккаунт — одна шторка перед входом. Файл <a href="guest-switch-warning.html">guest-switch-warning.html</a>, эталон принят координатором 18.10.</span></div></div>
+
+  <h2>6. «Аккаунт» после входа</h2>
+  <div class="row" id="r-acc"></div>
+  <div class="spec">
+    <div><b>Как в коде</b> (app/account_details.tsx, прежний эталон): монета ранга, имя, «Изменить имя»; «Данные» — имя, почта с «Скопировать», способ входа, дата; «Аккаунт» — «Выйти и войти под другим аккаунтом» и «Удалить аккаунт».</div>
+    <div><b>Переход.</b> После удачного входа шторка уезжает вниз, «Аккаунт» сразу показывает почту и способ входа — без отдельного экрана «успех» и без спиннера на весь экран.</div>
+  </div>
+
+  <h2>Тексты</h2>
+  <div class="tbl"><table>
+    <tr><th>Место</th><th>Текст</th><th>Откуда</th></tr>
+    <tr><td>Заголовок окна</td><td>Всё в безопасности</td><td>код</td></tr>
+    <tr><td>Подзаголовок</td><td>Твой путь сохранится и дождётся тебя</td><td>код</td></tr>
+    <tr><td>Текст</td><td>Быстрый вход. Прогресс будет на всех твоих устройствах.</td><td>прежний эталон</td></tr>
+    <tr><td>Кнопки</td><td>Войти через Google · Войти через Apple · Позже</td><td>код</td></tr>
+    <tr><td>Под кнопками</td><td>Данные на устройстве сохранятся</td><td>код</td></tr>
+    <tr><td>Дольше 3 с</td><td>Входим…</td><td>новое</td></tr>
+    <tr><td>Дольше 8 с</td><td>Вход занимает больше времени. Можно закрыть это окно — вход продолжится.</td><td>код (короче)</td></tr>
+    <tr><td>Сбой · заголовок</td><td>Не получилось войти</td><td>новое</td></tr>
+    <tr><td>Сбой · нет связи</td><td>Связь пропала. Попробуй ещё раз.</td><td>код, <code>network</code></td></tr>
+    <tr><td>Сбой · много попыток</td><td>Слишком много попыток подряд. Подожди пару минут и попробуй снова.</td><td>код, <code>too_many</code> — кнопки повтора нет</td></tr>
+    <tr><td>Сбой · окно закрыли</td><td>Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или выбери другой способ.</td><td>код, отмена</td></tr>
+    <tr><td>Сбой · другое</td><td>Вход не завершился. Попробуй ещё раз или выбери другой способ.</td><td>новое</td></tr>
+    <tr><td>Кнопка повтора</td><td>Попробовать ещё раз</td><td>новое</td></tr>
+  </table></div>
+  <p class="lead">Отличия от кода сейчас: строка «Входим…» появляется с 3 с (в коде первая строка — с 8 с); ошибка — мягкая карточка над кнопками вместо красного текста под ними (прежний эталон accounts-gaps-states.html в этой части заменяется этим файлом).</p>
+</div>
+
+<script>
+const sv = (d, w = 20) => `<svg class="i" width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const I = {
+  back: sv('<path d="M15 5l-7 7 7 7"/>'),
+  close: sv('<path d="M6 6l12 12M18 6 6 18"/>'),
+  fwd: sv('<path d="m9 6 6 6-6 6"/>'),
+  shield: sv('<path d="M12 3.5 5 6v5.5c0 4.2 2.9 7.7 7 9 4.1-1.3 7-4.8 7-9V6Z"/><path d="m9 12 2.2 2.2L15.5 10"/>'),
+  lock: sv('<rect x="5.5" y="10.5" width="13" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>'),
+  cloudOff: sv('<path d="M7.5 18.5h9a4 4 0 0 0 1-7.9A6 6 0 0 0 7 8.6"/><path d="M5.6 10.4A4 4 0 0 0 7.5 18.5"/><path d="M3.5 3.5l17 17"/>'),
+  again: sv('<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"/><path d="M4.5 4.5V9H9"/>'),
+  user: sv('<circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c.8-3.3 3.6-5 7-5s6.2 1.7 7 5"/>'),
+  mail: sv('<rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="m4.5 7.5 7.5 5.5 7.5-5.5"/>'),
+  key: sv('<circle cx="8" cy="12" r="3.5"/><path d="M11.5 12H20m-3 0v3"/>'),
+  cal: sv('<rect x="4" y="5.5" width="16" height="14" rx="3"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>'),
+  swap: sv('<path d="M7 7h11l-3-3M17 17H6l3 3"/>'),
+  trash: sv('<path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/>'),
+};
+const APPLE = `<svg width="20" height="20" viewBox="0 0 24 24" style="display:block;flex:none" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" fill="currentColor"/></svg>`;
+const sbar = `<div class="sbar"><span>9:41</span><span>●●●</span></div>`;
+
+const list = (rows) => `<div class="list">${rows.join('')}</div>`;
+const lr = (ic, t1, o = {}) => `<div class="lr${o.del ? ' del' : ''}"><div class="tl">${ic}</div><div class="cp"><div class="t1">${t1}</div>${o.t2 ? `<div class="t2">${o.t2}</div>` : ''}</div>${o.vl ? `<div class="vl">${o.vl}</div>` : ''}${o.mini ? `<div class="mini">${o.mini}</div>` : ''}${o.vl || o.mini || o.noCh ? '' : `<span class="ch">${I.fwd}</span>`}</div>`;
+const account = (linked) => `<div class="rb">${I.back}</div><div class="ttl">Аккаунт</div>
+  <div class="hero"><img src="assets/coin_rank_05.webp" alt=""><div class="nm">${linked ? 'Алекс' : 'Не задано'}</div><div class="chipbtn">Изменить имя</div></div>
+  <div class="eb">Данные</div>${list([lr(I.user, 'Имя', { vl: linked ? 'Алекс' : 'Не задано' }), ...(linked ? [lr(I.mail, 'Email', { t2: 'alex@example.com', mini: 'Скопировать' }), lr(I.key, 'Способ входа', { vl: 'Google' })] : []), lr(I.cal, 'С нами с', { vl: '12.08.2025' })])}
+  <div class="eb">Аккаунт</div>${list([...(linked ? [lr(I.swap, 'Выйти и войти под другим аккаунтом')] : []), lr(I.trash, 'Удалить аккаунт', { del: 1, noCh: 1 })])}`;
+
+/* state: idle | press | slow | fail */
+const signIn = (cls, state) => {
+  const busy = state === 'press' || state === 'slow';
+  const d = busy ? ' dim' : '';
+  const g = `<div class="prov g">${busy ? '<span class="spin" role="progressbar" aria-label="Входим"></span>' : '<span class="gl">G</span>'}Войти через Google</div>`;
+  const a = `<div class="prov a${d}">${APPLE}Войти через Apple</div>`;
+  const oops = state === 'fail' ? `<div class="oops"><div class="r1">${I.cloudOff}<div><div class="h">Не получилось войти</div><div class="p">Связь пропала. Попробуй ещё раз.</div></div></div><div class="retry">${I.again}Попробовать ещё раз</div></div>` : '';
+  const slow = state === 'slow' ? `<div class="slow" role="status">Входим<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>` : `<div class="trust${d}">${I.lock}Данные на устройстве сохранятся</div>`;
+  return `<div class="ph ${cls}" role="img" aria-label="Окно входа: ${state}">${sbar}
+  <div class="scr under">${account(false)}</div><div class="scrim"></div>
+  <div class="sheet"><div class="grab"></div><div class="xr"><div class="x${d}">${I.close}</div></div>
+    <div class="hd"><div class="ic">${I.shield}</div><div><div class="st">Всё в безопасности</div><div class="ss">Твой путь сохранится и дождётся тебя</div></div></div>
+    <div class="sb2">Быстрый вход. Прогресс будет на всех твоих устройствах.</div>
+    ${oops}${g}${a}${slow}
+    <div class="later${d}">Позже</div><div class="legal${d}">Политика конфиденциальности<br>Условия использования</div>
+  </div><div class="hi"></div></div>`;
+};
+const accPhone = (cls) => `<div class="ph ${cls}" role="img" aria-label="Аккаунт после входа">${sbar}<div class="scr">${account(true)}</div><div class="hi"></div></div>`;
+
+const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
+const pair = (id, f) => { document.getElementById(id).innerHTML = col('Тёмная', f('')) + col('Светлая', f('lt')); };
+pair('r-idle', (c) => signIn(c, 'idle'));
+pair('r-press', (c) => signIn(c, 'press'));
+pair('r-slow', (c) => signIn(c, 'slow'));
+pair('r-fail', (c) => signIn(c, 'fail'));
+pair('r-acc', (c) => accPhone(c));
+</script>

@@ -1,0 +1,13 @@
+10-18 01:51:47.913 I/ReactNativeJS(12689): [AUDIO-PLAYERS] census_install ok
+10-18 01:51:55.239 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=1
+10-18 01:51:56.888 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=2
+10-18 01:51:57.231 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=3
+10-18 01:51:57.921 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=4
+10-18 01:51:58.493 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=5
+10-18 01:51:58.844 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=6
+10-18 01:51:59.161 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=7
+10-18 01:51:59.572 I/ReactNativeJS(12689): [AUDIO-PLAYERS] create owner=proxy<ensure live=8
+10-18 01:52:48.486 I/ReactNativeJS(12689): [AUDIO-PLAYERS] summary {"live":8,"created":8,"released":0,"peakLive":8,"byOwner":{"proxy<ensure":8}}
+10-18 01:53:47.967 I/ReactNativeJS(12689): [AUDIO-PLAYERS] summary {"live":8,"created":8,"released":0,"peakLive":8,"byOwner":{"proxy<ensure":8}}
+10-18 01:54:47.953 I/ReactNativeJS(12689): [AUDIO-PLAYERS] summary {"live":8,"created":8,"released":0,"peakLive":8,"byOwner":{"proxy<ensure":8}}
+10-18 01:55:47.970 I/ReactNativeJS(12689): [AUDIO-PLAYERS] summary {"live":8,"created":8,"released":0,"peakLive":8,"byOwner":{"proxy<ensure":8}}

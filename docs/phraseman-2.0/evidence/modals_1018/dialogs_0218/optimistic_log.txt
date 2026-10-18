@@ -1,0 +1,5 @@
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"hub_tap","step":"tap","key":"social_01","status":"available","prestart":true,"studyTarget":"en"}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"hub_tap","step":"briefing_first_frame","key":"social_01","ms":364,"kind":"available","scenarioId":"social_01"}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"start_tap","step":"tap","key":"social_01","freeTier":true,"energyUnlimited":false}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"start_tap","step":"consent_read","key":"social_01","ms":39,"consent":"undecided"}'
+'[DIALOGUE-V2-OPTIMISTIC]', '{"flow":"start_tap","step":"button_feedback_frame","key":"social_01","ms":42}'

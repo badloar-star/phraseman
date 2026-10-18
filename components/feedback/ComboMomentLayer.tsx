@@ -12,9 +12,8 @@ import Reanimated, { useAnimatedProps, useAnimatedStyle, useReducedMotion, useSh
 import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
-import MomentCoin, { type MomentCoinEmote, type MomentCoinMood } from '../moments/MomentCoin';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, markComboMomentBusy, type ComboBeat } from './combo_moment_gate';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
 import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
@@ -25,7 +24,6 @@ const ZAP_LEN = 1200;
 const ZAP_STROKE = MOMENT_ART.zapStroke;
 const ZAP_GLOW = MOMENT_ART.zapGlow;
 const FLASH = '#FFFFFF'; // theme-exempt: вспышка эталона `.flash` — белая
-const COIN_SIZE = 52;
 
 function playBreakSound(): void {
   try {
@@ -41,9 +39,9 @@ function playBreakSound(): void {
   }
 }
 
-type CoinState = Readonly<{ mood: MomentCoinMood; emote?: MomentCoinEmote; key: number }>;
+type CoinState = Omit<ComboCoinShow, 'rank'>;
 
-const COIN_FOR: Readonly<Record<Exclude<ComboBeat, 'spark'>, Readonly<{ mood: MomentCoinMood; emote?: MomentCoinEmote }>>> = {
+const COIN_FOR: Readonly<Record<Exclude<ComboBeat, 'spark'>, Omit<ComboCoinShow, 'key' | 'rank'>>> = {
   lightning: { mood: 'peek' },
   storm: { mood: 'cheer', emote: 'bang' },
   break: { mood: 'shiver', emote: 'sweat' },
@@ -60,7 +58,13 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
   // зачем (Ревизор 15.10, баг «монета залипает»): таймер скрытия живёт в ref, а не в cleanup эффекта — иначе следующий ответ без удара
   // (5 → 6) отменял таймер и выходил рано, монета оставалась на уроке навсегда. Сбрасывает таймер только новый удар или размонтирование.
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // зачем (координатор 18.10, вариант «а»): монету рисует полоса плашки «N подряд» в шапке (ComboHeatSlot); слой лишь сообщает, какую и сколько держать
+  useEffect(() => {
+    publishComboCoin(coin ? { ...coin, rank: coinRank } : null);
+    console.log(`${COMBO_TRACE} слой: монета → шапка ${coin ? `${coin.mood}${coin.emote ? `+${coin.emote}` : ''} #${coin.key}` : 'скрыта'}`); // guard-ok: строка на смену монеты
+  }, [coin, coinRank]);
   useEffect(() => () => {
+    publishComboCoin(null);
     if (hideTimerRef.current === null) return;
     clearTimeout(hideTimerRef.current);
     hideTimerRef.current = null;
@@ -131,18 +135,8 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
           <AnimatedPath d={ZAP_D} stroke={ZAP_STROKE} strokeWidth={4} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
         </Svg>
       </Reanimated.View>
-      {coin ? (
-        // эталон `[data-cc]`: монета 52 по центру под шапкой урока, без тени
-        <View style={s.coinRow}>
-          <MomentCoin rank={coinRank} size={COIN_SIZE} mood={coin.mood} moodKey={coin.key} shadow={false} emote={coin.emote} emoteKey={coin.emote ? coin.key : undefined} testID="lesson1-combo-coin" />
-        </View>
-      ) : null}
     </View>
   );
 }
-
-const s = StyleSheet.create({
-  coinRow: { position: 'absolute', left: 0, right: 0, top: 118, alignItems: 'center' },
-});
 
 export default memo(ComboMomentLayer);

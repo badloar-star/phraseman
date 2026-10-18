@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
-import { render, screen, act } from '@testing-library/react-native';
+import { render, screen, act, within } from '@testing-library/react-native';
 
 jest.mock('react-native', () => {
   const R = jest.requireActual('react');
@@ -97,27 +97,42 @@ describe('m08 · кольцо в шапке', () => {
   });
 });
 
+// зачем (координатор 18.10, вариант «а»): монету решает слой, а рисует шапка (справа от плашки «N подряд») — проверяем их вместе, как в уроке
+const Pair = ({ n }: { n: number }) => (<>
+  <ComboMomentLayer comboCount={n} />
+  <ComboHeatSlot comboCount={n} lang="ru" />
+</>);
+
 describe('m08 · быстрые ответы подряд не оставляют залипших окон (Ревизор 15.10)', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
   it('монета: 4 → 5 (выглядывает) → 6 сразу же — через 1,8 с монеты нет', async () => {
-    const r = await render(<ComboMomentLayer comboCount={4} />);
-    await r.rerender(<ComboMomentLayer comboCount={5} />);
+    const r = await render(<Pair n={4} />);
+    await r.rerender(<Pair n={5} />);
     expect(screen.getByTestId('lesson1-combo-coin')).toBeTruthy();
-    await r.rerender(<ComboMomentLayer comboCount={6} />);
-    await r.rerender(<ComboMomentLayer comboCount={7} />);
+    await r.rerender(<Pair n={6} />);
+    await r.rerender(<Pair n={7} />);
     await act(async () => { jest.advanceTimersByTime(1900); });
     expect(screen.queryByTestId('lesson1-combo-coin')).toBeNull();
   });
 
   it('монета: обрыв 6 → 0 и сразу верный 0 → 1 — монета уходит по таймеру', async () => {
-    const r = await render(<ComboMomentLayer comboCount={6} />);
-    await r.rerender(<ComboMomentLayer comboCount={0} />);
+    const r = await render(<Pair n={6} />);
+    await r.rerender(<Pair n={0} />);
     expect(screen.getByTestId('lesson1-combo-coin')).toBeTruthy();
-    await r.rerender(<ComboMomentLayer comboCount={1} />);
+    await r.rerender(<Pair n={1} />);
     await act(async () => { jest.advanceTimersByTime(1900); });
     expect(screen.queryByTestId('lesson1-combo-coin')).toBeNull();
+  });
+
+  it('монета стоит в шапке справа от плашки, а не под шапкой (top:118) поверх задания', async () => {
+    const r = await render(<Pair n={4} />);
+    await r.rerender(<Pair n={5} />);
+    const heat = screen.getByTestId('lesson1-combo-heat');
+    expect(within(heat).getByTestId('lesson1-combo-coin')).toBeTruthy();
+    expect(within(screen.getByTestId('lesson1-combo-layer')).queryByTestId('lesson1-combo-coin')).toBeNull();
+    expect(fs.readFileSync(path.join(__dirname, '..', 'components/feedback/ComboMomentLayer.tsx'), 'utf8')).not.toContain('top: 118');
   });
 
   it('«серия сброшена»: обрыв и сразу два верных — надпись уходит через 1,6 с', async () => {

@@ -62,3 +62,24 @@ export function comboMomentBusyLeftMs(nowMs: number): number {
 export function __resetComboMomentBusy(): void {
   comboMomentBusyUntilMs = 0;
 }
+
+/**
+ * Монета m08 на экране: слой момента (ComboMomentLayer) решает, КАКУЮ монету и на сколько показать, а рисует её полоса плашки «N подряд»
+ * в шапке (ComboHeatSlot) — справа от плашки. зачем (координатор 18.10, вариант «а»): в эталоне монета стоит на top:118 под шапкой, где у макета пустая
+ * полоса, а в живом уроке там строка задания — монета закрывала «Он». В шапке монета не раздвигает её и не закрывает задание ни на кадр;
+ * удар и тайминги прежние, меняется только точка. Только память процесса.
+ */
+export type ComboCoinShow = Readonly<{ mood: 'peek' | 'cheer' | 'shiver'; emote?: 'bang' | 'sweat'; key: number; rank: number | null }>;
+let comboCoinShow: ComboCoinShow | null = null;
+const comboCoinListeners = new Set<() => void>();
+export function publishComboCoin(next: ComboCoinShow | null): void {
+  comboCoinShow = next;
+  comboCoinListeners.forEach((l) => l());
+}
+export function subscribeComboCoin(listener: () => void): () => void {
+  comboCoinListeners.add(listener);
+  return () => { comboCoinListeners.delete(listener); };
+}
+export function getComboCoin(): ComboCoinShow | null {
+  return comboCoinShow;
+}

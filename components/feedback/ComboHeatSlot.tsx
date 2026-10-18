@@ -6,7 +6,7 @@
 // Без флага кольцо в шапке прежнее (появляется с 3 подряд и исчезает при ошибке); этот блок грузится require'ом только при moments_v3 и после обрыва держит «серия сброшена»
 // ещё 1,6 с. Звук порога уже играет ComboRing (lightning), здесь только хаптик. reduced-motion — без встряски и пружины. Журнал [MOMENT-m08].
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 
@@ -15,12 +15,15 @@ import { comboLevelFor } from '../../app/feedback/combo_engine';
 import { hapticHeavyImpact, hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
 import ComboRing from './ComboRing';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
+import MomentCoin from '../moments/MomentCoin';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, getComboCoin, subscribeComboCoin, type ComboBeat } from './combo_moment_gate';
 import { comboMomentText } from './combo_moment_strings';
 
 const EASE_POP = Easing.bezier(0.3, 1.6, 0.5, 1);
 /** Ширина полосы под плашку «N подряд» / «серия сброшена»: самая длинная строка 9 языков при 13/800 укладывается с запасом. */
 const TIP_LANE = 200;
+/** Монета m08 в шапке: уменьшенная до высоты плашки с запасом (эталонная 52 стояла под шапкой — там в живом уроке задание). */
+const HEADER_COIN = 28;
 
 function haptic(beat: ComboBeat): void {
   const run = beat === 'storm' ? hapticHeavyImpact : beat === 'lightning' ? hapticMediumImpact : hapticLightImpact;
@@ -85,12 +88,27 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: удар решается только сменой серии
   }, [comboCount]);
 
+  // зачем (координатор 18.10, вариант «а»): монета m08 — справа от плашки «N подряд», в той же полосе: шапка не раздвигается, задание не закрыто ни на кадр
+  const coinShow = useSyncExternalStore(subscribeComboCoin, getComboCoin, getComboCoin);
+  const coinNode = coinShow ? (
+    <View style={s.coin}>
+      <MomentCoin rank={coinShow.rank} size={HEADER_COIN} mood={coinShow.mood} moodKey={coinShow.key} shadow={false} emote={coinShow.emote} emoteKey={coinShow.emote ? coinShow.key : undefined} testID="lesson1-combo-coin" />
+    </View>
+  ) : null;
+
   const tipStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, tip.value * 1.4), transform: [{ scale: 0.4 + 0.6 * tip.value }] }));
   const shakeStyle = useAnimatedStyle(() => ({ transform: [{ translateX: shake.value }] }));
 
   // зачем (Сверка моментов v3, 15.10): место под кольцо держим с первого кадра урока — раньше слот появлялся только на 3 подряд, правый блок шапки
   // становился шире и «Урок 1» переносилось на две строки. Пустая рамка того же размера — ширина шапки не меняется весь урок.
-  if (comboCount < 3 && broken == null) return <View style={{ width: size, height: size }} testID="lesson1-combo-heat-reserve" />;
+  if (comboCount < 3 && broken == null) {
+    // после «серия сброшена» монета (дрожит) живёт свои 1,8 с — дольше надписи 1,6 с; держим её на том же месте без плашки
+    return (
+      <View style={{ width: size, height: size }} testID="lesson1-combo-heat-reserve">
+        {coinNode ? <View pointerEvents="none" style={[s.tipLane, { top: size + 4 }]}>{coinNode}</View> : null}
+      </View>
+    );
+  }
   const level = comboLevelFor(comboCount);
   // зачем (эталон `.heat.h1/h2/h3`): акцент → тёплый → горячий; токены темы, работает во всех темах
   const heat = level >= 3 ? t.wrong : level >= 2 ? t.gold : (t.accentGraphic ?? t.accent);
@@ -104,6 +122,7 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
         <Reanimated.View key={tipKey} style={[s.tip, { backgroundColor: t.bgSurface2 ?? t.bgCard }, tipStyle]}>
           <Text numberOfLines={1} style={[s.tipText, { color: t.textPrimary }]} testID="lesson1-combo-tip">{label}</Text>
         </Reanimated.View>
+        {coinNode}
       </View>
     </Reanimated.View>
   );
@@ -112,7 +131,8 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
 const s = StyleSheet.create({
   wrap: { alignItems: 'center', zIndex: 5 },
   // `.heat .tip`: padding 4/9, радиус 10, 12/800, без переноса
-  tipLane: { position: 'absolute', right: 0, width: TIP_LANE, alignItems: 'flex-end' },
+  tipLane: { position: 'absolute', right: 0, width: TIP_LANE, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4 },
+  coin: { width: HEADER_COIN, height: HEADER_COIN, alignItems: 'center', justifyContent: 'center' },
   tip: { paddingVertical: 4, paddingHorizontal: 9, borderRadius: 10 },
   tipText: { fontSize: 13, lineHeight: 17, fontWeight: '800' }, // D145: шкала 13/16 (в эталоне 12)
 });

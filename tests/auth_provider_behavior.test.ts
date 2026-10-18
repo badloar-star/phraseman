@@ -661,8 +661,10 @@ test('provider handoff fails retryably when transition-lock acquisition reaches 
   expect(result).toEqual({ result: 'error', error: 'firebase_provider_handoff_lock_timeout' });
   expect(authState.calls).toContain('link');
   expect(authState.calls).not.toContain('signin');
+  // зачем (прогон Сверки 18.10, шаг 4): обрыв в фазе prepared ничего не тронул — запись снимается, иначе она сама запирала
+  // следующий вход (provider_handoff_active). Раньше тест требовал оставить её «для повтора».
   await expect(lastLoadedAuthProviderStorage.getItem('account_provider_handoff_v1'))
-    .resolves.not.toBeNull();
+    .resolves.toBeNull();
 });
 
 test('clean post-switch anonymous identity can enter an existing Apple account', async () => {

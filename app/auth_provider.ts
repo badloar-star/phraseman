@@ -650,6 +650,10 @@ const AUTH_LINK_RETRY_BACKOFF_MS = [700, 1500];
  */
 const SIGNIN_CLOUD_SYNC_TIMEOUT_MS = 20_000;
 const ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS = 1_500;
+// зачем (прогон Сверки 18.10, шаг 4: provider_handoff_lock_timeout сразу после смены гостя): только что активированное поколение
+// гостя пишет своё под замком 1–2,6 с (курсор Learning V2, withLocalAccountLock) — 1,5 с передаче входа не хватало, человек получал
+// ошибку. Передача ждёт замок и тишину до 8 с: на экране «Входим…», ничего ещё не тронуто.
+const PROVIDER_HANDOFF_LOCK_WAIT_MS = 8_000;
 
 /**
  * Best-effort долив аварийной копии «Сменить аккаунт» после restoreFromCloud.
@@ -2637,13 +2641,18 @@ async function retainProviderHandoffTransitionLease(
     resolveLease = resolve;
     rejectLease = reject;
   });
+  const lockWaitStartedAt = Date.now();
   const lockTask = withAccountTransitionLockWithDeadline(async (lease) => {
+    console.log(`[AUTH-HANDOFF] lock_acquired waitedMs=${Date.now() - lockWaitStartedAt}`); // guard-ok: сколько ждали замок перехода
     scope.lease = lease;
     resolveLease(lease);
     await barrier;
-  }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
+  }, PROVIDER_HANDOFF_LOCK_WAIT_MS);
   void lockTask.then((result) => {
-    if (!result.completed) rejectLease(new Error('provider_handoff_lock_timeout'));
+    if (!result.completed) {
+      console.warn(`[AUTH-HANDOFF] lock_wait_timeout waitedMs=${Date.now() - lockWaitStartedAt} limitMs=${PROVIDER_HANDOFF_LOCK_WAIT_MS}`); // guard-ok: ранний отказ пишет причину
+      rejectLease(new Error('provider_handoff_lock_timeout'));
+    }
   }, rejectLease);
   scope.release = async () => {
     const release = scope.release;
@@ -3002,10 +3011,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           // every other account writer cannot land after the clean proof.
           await beginEntitlementSafeAccountTransition();
           const [restoreIdle, cloudIdle] = await Promise.all([
-            waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-            quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+            waitForRestoreApplicationIdleWithDeadline(PROVIDER_HANDOFF_LOCK_WAIT_MS),
+            quiesceCloudSyncForAccountTransition(PROVIDER_HANDOFF_LOCK_WAIT_MS),
           ]);
-          if (!restoreIdle || !cloudIdle) throw new Error('provider_handoff_quiesce_failed');
+          if (!restoreIdle || !cloudIdle) {
+            console.warn(`[AUTH-HANDOFF] quiesce_failed restoreIdle=${restoreIdle} cloudIdle=${cloudIdle} limitMs=${PROVIDER_HANDOFF_LOCK_WAIT_MS}`); // guard-ok: ранний отказ пишет причину
+            throw new Error('provider_handoff_quiesce_failed');
+          }
           // зачем (ревью Opus 15.10, R15): первая проверка чистоты шла ДО замка и тишины синхронизации — запись в этом окне
           // (начисление, урок) стёрлась бы без копии. Раньше ответ почти всегда был «не чист»; теперь свежий гость «чист»,
           // поэтому при «чист» перепроверяем уже под замком перехода. Стало «не чист» — обычное окно смены аккаунта ниже.
@@ -3122,10 +3134,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // зачем (блокер 18.10, журнал iPhone 08:41–08:48): запись передачи после провала оставалась — каждый следующий вход ЛЮБОГО
       // провайдера падал на provider_handoff_active до перезапуска. Если Firebase ОТКЛОНИЛ вход (фаза credential_ready — запись стоит прямо
       // перед signInWithCredential) и сессия не сменилась (текущий uid — тот же гость), передачи не было: снимаем запись и возвращаем
-      // поколение гостя, как в ранней ветке account_switch_required. Фаза prepared (обрыв раньше, напр. по замку перехода) — прежнее
-      // поведение: запись остаётся для безопасного повтора (сторож auth_provider_behavior «transition-lock … deadline»).
+      // поколение гостя, как в ранней ветке account_switch_required.
+      // зачем (прогон Сверки 18.10, шаг 4): фаза prepared (обрыв раньше — замок перехода, тишина синхронизации) тоже ничего не тронула:
+      // запись, оставленная «для повтора», сама запирала следующий вход (provider_handoff_active). При том же госте — снимаем.
       const currentUidNow = String(auth.currentUser?.uid ?? '').trim();
-      const sessionUnchanged = providerHandoffMarker.phase === 'credential_ready'
+      const sessionUnchanged = (providerHandoffMarker.phase === 'credential_ready' || providerHandoffMarker.phase === 'prepared')
         && (!currentUidNow || currentUidNow === providerHandoffMarker.ownerAuthUid);
       if (sessionUnchanged) {
         try {

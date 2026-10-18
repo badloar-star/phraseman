@@ -145,7 +145,12 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Диалоги: пилюля N/30', what: 'число и значок (text) к заливке buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
   { element: 'Диалоги: капсула энергии', what: 'заливка к странице — тон', min: TONE, after: (t) => ratio(solid(t.buttonFill!), solid(t.bg!)) },
   { element: 'Диалоги: капсула энергии', what: 'число и молния (text) к заливке buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
-  { element: 'Диалоги: капсула энергии', what: 'низкий заряд (bad, подогнан lowChargeInk) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
+  // ── бейдж лимита в шапке сессии диалога (DialogQuotaBadge: плашка plateFillFrom с тенью, значок iconTint: тёмная — accentBright, светлая «Спокойно» — secondary)
+  { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'плашка к странице — тон (плашка отделена тенью)', min: TONE, floor: 1.05, after: (t) => ratio(solid(t.plateFillFrom!), solid(t.bg!)) },
+  { element: 'Диалоги: бейдж лимита (шапка сессии)', what: '«—/30», «N/30» (text) к плашке', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
+  { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'значок к плашке', min: GRAPHIC, after: (t) => ratio(solid(String(t.isLight) === 'true' ? t.secondary! : t.accentBright!), solid(t.plateFillFrom!)) },
+  { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'срок сброса (secondary) к плашке', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.plateFillFrom!)) },
+  { element: 'Диалоги: капсула энергии', what: 'низкий заряд (красный из токена темы, сдвинут по яркости) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
 ];
 
 const INTENSITIES = [0, 0.25, 0.5, 0.75, 1];

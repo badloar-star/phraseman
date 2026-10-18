@@ -73,6 +73,26 @@ function traceNick(line: string): void {
 const NAME_APPLY_DEBOUNCE_MS = 400;
 type LiveNameStatus = 'idle' | 'checking' | 'applied' | 'taken' | 'rate_limited' | 'invalid';
 
+/**
+ * «Сменить имя можно через 12 мин» — для ветки rate_limited, когда сервер знает оставшееся время (лимит 5 смен в час).
+ * зачем (координатор 18.10, Переводчик): сокращение единицы не склоняется — верно при 1, 2, 5, 21 мин; число и «мин» не
+ * разрываются переносом (неразрывный пробел); дробные минуты округляются вверх, минимум 1.
+ */
+export function nickRetryInMinutesText(lang: Parameters<typeof triLang>[0], minutes: number): string {
+  const n = Math.max(1, Math.ceil(Number.isFinite(minutes) ? minutes : 1));
+  return triLang(lang, {
+    ru: `Сменить имя можно через ${n} мин`,
+    uk: `Змінити ім'я можна через ${n} хв`,
+    en: `You can change your name in ${n} min`,
+    es: `Podrás cambiar el nombre en ${n} min`,
+    'pt-BR': `Você pode mudar o nome em ${n} min`,
+    vi: `Có thể đổi tên sau ${n} phút`,
+    id: `Nama bisa diganti dalam ${n} mnt`,
+    tr: `Adını ${n} dk sonra değiştirebilirsin`,
+    pl: `Nazwę możesz zmienić za ${n} min`,
+  });
+}
+
 interface NicknameEditModalProps {
   visible: boolean;
   /** Текущее имя — стартовое значение поля при каждом открытии. */

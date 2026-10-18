@@ -350,7 +350,13 @@ import { DebugLogger } from './debug-logger';
 import { traceLessonExit } from './lesson_exit_trace';
 import { consumeInitialDeepLinkTarget } from './initial_deep_link_store';
 import { rememberOnboardingDonePeek } from './onboarding_done_peek';
-import { DEVICE_ONBOARDING_DONE_KEY, resolveBootOnboardingDone } from './device_onboarding_marks';
+import {
+  CONSENT_REGATE_PENDING_KEY,
+  DEVICE_ONBOARDING_DONE_KEY,
+  LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE,
+  resolveBootOnboardingDone,
+  resolveConsentRegate,
+} from './device_onboarding_marks';
 import { armMemTick, setMemTickRoute } from './mem_tick';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
@@ -1044,6 +1050,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // монтируем сразу на 'name' без блокирующего async-резолва A/B (иначе пустой
   // «resolving»-экран + ожидание Keychain getStableId = «думает» после кнопки).
   const [onboardingStartAtName, setOnboardingStartAtName] = useState(false);
+  // зачем (координатор 18.10 07:10, вариант А): после выхода — только экран согласия онбординга (consentOnly).
+  const [onboardingConsentOnly, setOnboardingConsentOnly] = useState(false);
   // true, пока активен онбординг-пейвол (роут paywall_a/b/c, source=onboarding_plan).
   // Управляет presentation статических <Stack.Screen> ниже: онбординг открывает пейвол
   // как ОБЫЧНЫЙ экран (card, без выезда снизу), все прочие источники — modal slide_from_bottom.
@@ -2807,7 +2815,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (координатор 12.10): метка очистки кэша Firestore после удаления аккаунта читается этим же чтением — ни одного
       // отдельного нативного вызова на старте (было ~20 мс SecureStore у каждого).
       // + зеркало замка удаления: процесс могли убить между стиранием и записью метки (координатор 12.10) — тем же чтением.
-      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY, DEVICE_ONBOARDING_DONE_KEY];
+      const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY, DEVICE_ONBOARDING_DONE_KEY, CONSENT_REGATE_PENDING_KEY, LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
       // Обработчик метки вешается РАНЬШЕ всех остальных потребителей этого чтения (восстановление из облака ниже) — clearPersistence
@@ -3034,9 +3042,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 	        } else {
             shouldPrimeLessonsAfterReveal = true;
 	        }
+        // зачем (координатор 18.10 07:10, вариант А): после выхода согласия сброшены, онбординг пропущен по метке устройства —
+        // показываем ТОЛЬКО экран согласия. Решение по метке выхода и ключу Условий; в журнал — значения, которые решили.
+        const legalRaw = startupIdentity.get(LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE) ?? null;
+        const pendingRaw = startupIdentity.get(CONSENT_REGATE_PENDING_KEY) ?? null;
+        const consentRegate = willShowOnboarding
+          ? { show: false, reason: 'full_onboarding' as const }
+          : resolveConsentRegate(val, legalRaw, pendingRaw);
+        console.log(`[CONSENT-REGATE] boot show=${consentRegate.show} reason=${consentRegate.reason} onboarding_done=${val ?? 'null'} legal=${legalRaw ?? 'null'} pending=${pendingRaw ?? 'null'}`); // guard-ok: одна строка на запуск
 
-        onboardingShowReasonRef.current = `boot onboarding_done=${val === null ? 'null' : val} qa=${forceOnboardingForQA ? 'on' : 'off'}`;
-        setShow(willShowOnboarding);
+        onboardingShowReasonRef.current = consentRegate.show
+          ? 'boot consent_regate'
+          : `boot onboarding_done=${val === null ? 'null' : val} qa=${forceOnboardingForQA ? 'on' : 'off'}`;
+        setOnboardingConsentOnly(consentRegate.show);
+        setShow(willShowOnboarding || consentRegate.show);
       } catch (e) {
         if (__DEV__) console.warn('[_layout]', e);
       }
@@ -3182,6 +3201,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // onboardingStartAtName=true (от прошлого пейвол-события nickname_ready) монтирует
       // новый онбординг сразу на шаге «имя» — минуя план/пейвол/порядок шагов.
       setOnboardingStartAtName(false);
+      // после удаления — полный онбординг, не «только согласие» (вариант А, 18.10)
+      setOnboardingConsentOnly(false);
       setOnboardingPaywallActive(false);
       // Destroy all native modal/pageSheet presentations in one React commit.
       // This is the deterministic reset; router.replace also normalizes the URL
@@ -3384,6 +3405,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
     })();
   }, [armPostOnboardingGoldBridge, hasVerifiedRealPremiumOrVip, lang, router]);
+
+  // зачем (координатор 18.10 07:10, вариант А): экран согласия после выхода — не новый ученик. Только снимаем оверлей:
+  // без приветствия, запроса пушей, бонуса на старт и отложенного тутора энергии.
+  const handleConsentRegateDone = useCallback(() => {
+    console.log('[CONSENT-REGATE] done → оверлей снят'); // guard-ok: итог показа
+    onboardingShowReasonRef.current = 'consent_regate_done';
+    setOnboardingConsentOnly(false);
+    setShow(false);
+  }, []);
 
   const handleOnboardingIntroFullAccessStart = useCallback(async () => {
     await startIntroFullAccessAfterOnboarding(Date.now(), lang);
@@ -3848,8 +3878,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         {OnboardingScreen ? (
           <OnboardingScreen
             startAtNameStep={onboardingStartAtName}
+            consentOnly={onboardingConsentOnly}
             initialLang={lang}
-            onDone={handleOnboardingDone}
+            onDone={onboardingConsentOnly ? handleConsentRegateDone : handleOnboardingDone}
             onLangSelect={handleLangSelect}
             onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
           />

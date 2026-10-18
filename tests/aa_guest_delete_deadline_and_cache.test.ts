@@ -108,7 +108,7 @@ describe('B(2) очистка кэша Firestore SDK', () => {
   it('СТОРОЖ порядка: метка — ключ уже существующего стартового multiGet; обработчик раньше восстановления из облака', () => {
     const layout = read('app/_layout.tsx');
     // координатор 18.10 04:16: тем же чтением — метка устройства «онбординг пройден» (после выхода).
-    expect(layout).toContain("const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY, DEVICE_ONBOARDING_DONE_KEY];");
+    expect(layout).toContain("const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done', BOOT_RESTORE_OWNER_KEY, FIRESTORE_CACHE_CLEAR_MARKER_KEY, ACCOUNT_DELETE_PENDING_AUTH_KEY, DEVICE_ONBOARDING_DONE_KEY, CONSENT_REGATE_PENDING_KEY, LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE];");
     const handler = layout.indexOf('void startupIdentityPairsPromise.then((pairs) => {\n          const startupValues = new Map(pairs);\n          return runFirestoreCacheClearFromStartupRead(');
     expect(handler).toBeGreaterThan(layout.indexOf('const startupIdentityPairsPromise'));
     expect(layout.slice(handler, handler + 400)).toContain('startupValues.get(ACCOUNT_DELETE_PENDING_AUTH_KEY) ?? null');

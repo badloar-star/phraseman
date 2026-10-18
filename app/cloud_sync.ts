@@ -6386,12 +6386,20 @@ async function resetConsentsBeforeSignoutWipe(): Promise<void> {
       analyticsReset = false;
       console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_reset_analytics_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
     });
+  // зачем (координатор 18.10 07:10, вариант А): метка «при следующем запуске показать экран согласия» (device_onboarding_marks)
+  let regatePending = true;
+  const { CONSENT_REGATE_PENDING_KEY } = await import('./device_onboarding_marks');
+  await AsyncStorage.setItem(CONSENT_REGATE_PENDING_KEY, '1').catch((error: unknown) => {
+    regatePending = false;
+    console.warn('[CONSENT-REGATE]', JSON.stringify({ stage: 'pending_mark_write_failed', code: identityErrorCode(error) })); // guard-ok: catch пишет причину
+  });
   console.log('[AUTH-LOGOUT]', JSON.stringify({ // guard-ok: одна строка на выход, только имена ключей и выбор
     stage: 'consent_reset',
     keys: SIGNOUT_CONSENT_RESET_KEYS,
     before: Object.fromEntries(before.map(([key, value]) => [key, value ?? null])),
     legalRemoved,
     analyticsReset,
+    regatePending,
   }));
 }
 

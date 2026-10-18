@@ -31,7 +31,9 @@ import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app
 // eslint-disable-next-line import/first
 import { __cloudSyncTestHooks, accountOwnedStorageKeysFrom, SIGNOUT_DEVICE_KEEP_KEYS, wipeLocalAccountData } from '../app/cloud_sync';
 // eslint-disable-next-line import/first
-import { DEVICE_ONBOARDING_DONE_KEY, DEVICE_ONBOARDING_MARK_KEYS, resolveBootOnboardingDone } from '../app/device_onboarding_marks';
+import {
+  CONSENT_REGATE_PENDING_KEY, DEVICE_ONBOARDING_DONE_KEY, DEVICE_ONBOARDING_MARK_KEYS, resolveBootOnboardingDone, resolveConsentRegate,
+} from '../app/device_onboarding_marks';
 // eslint-disable-next-line import/first
 import { languageProfileKey } from '../app/study_languages';
 // eslint-disable-next-line import/first
@@ -201,6 +203,14 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     expect([null, 'unset']).toContain(await AsyncStorage.getItem('analytics_consent_v1'));
     // онбординг устройства не тронут
     expect(await AsyncStorage.getItem(DEVICE_ONBOARDING_DONE_KEY)).toBe('1');
+    // зачем (координатор 18.10 07:10, вариант А): после выхода при следующем запуске показан экран согласия
+    const [[, accountDone], [, deviceDone], [, legal], [, pending]] = await AsyncStorage.multiGet([
+      'onboarding_done', DEVICE_ONBOARDING_DONE_KEY, 'onboarding_terms_privacy_accepted_v1', CONSENT_REGATE_PENDING_KEY,
+    ]);
+    expect(pending).toBe('1');
+    const boot = resolveBootOnboardingDone(accountDone, deviceDone);
+    expect(boot).toEqual({ value: '1', source: 'device' });
+    expect(resolveConsentRegate(boot.value, legal, pending)).toEqual({ show: true, reason: 'pending_after_signout' });
     const resetLog = logSpy.mock.calls.find((call) => String(call[0]) === '[AUTH-LOGOUT]' && String(call[1]).includes('"stage":"consent_reset"'));
     expect(resetLog).toBeDefined();
     expect(JSON.parse(String(resetLog![1]))).toMatchObject({
@@ -208,6 +218,7 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
       before: { analytics_consent_v1: 'granted', onboarding_terms_privacy_accepted_v1: '1' },
       legalRemoved: true,
       analyticsReset: true,
+      regatePending: true,
     });
   });
 

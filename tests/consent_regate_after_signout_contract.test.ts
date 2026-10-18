@@ -1,0 +1,73 @@
+// зачем (координатор 18.10 07:10, вариант А): после выхода/смены аккаунта при следующем запуске — ТОЛЬКО экран согласия
+// онбординга (Условия + аналитика + возраст), остальной онбординг не повторяется. Условия принимает сам человек,
+// аналитика выключена до его выбора. Решение показа — по метке выхода, в журнал [CONSENT-REGATE].
+import fs from 'node:fs';
+import path from 'node:path';
+
+jest.mock('../app/user_id_policy', () => ({
+  clearArenaAuthUidCache: jest.fn(),
+  getAuthUserId: jest.fn(() => null),
+  getCanonicalUserId: jest.fn(async () => 'stable-a'),
+}));
+
+// eslint-disable-next-line import/first
+import { CONSENT_REGATE_PENDING_KEY, resolveConsentRegate } from '../app/device_onboarding_marks';
+// eslint-disable-next-line import/first
+import { accountOwnedStorageKeysFrom, SYNC_KEYS } from '../app/cloud_sync';
+
+const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
+
+describe('решение показа экрана согласия на старте', () => {
+  it('показ только при пройденном онбординге, метке выхода и непринятых Условиях', () => {
+    expect(resolveConsentRegate('1', null, '1')).toEqual({ show: true, reason: 'pending_after_signout' });
+    expect(resolveConsentRegate('1', '1', '1')).toEqual({ show: false, reason: 'legal_already_accepted' });
+    // старый пользователь без ключа Условий (вход «уже есть аккаунт») и без метки выхода — экран не тревожит
+    expect(resolveConsentRegate('1', null, null)).toEqual({ show: false, reason: 'no_pending_mark' });
+    // онбординг не пройден — идёт полный онбординг, согласие спросит он сам
+    expect(resolveConsentRegate(null, null, '1')).toEqual({ show: false, reason: 'onboarding_not_done' });
+  });
+
+  it('метка выхода — ключ устройства: не синхронизируется и не входит в опись аккаунта', () => {
+    expect(SYNC_KEYS).not.toContain(CONSENT_REGATE_PENDING_KEY);
+    expect(accountOwnedStorageKeysFrom([CONSENT_REGATE_PENDING_KEY])).not.toContain(CONSENT_REGATE_PENDING_KEY);
+  });
+});
+
+describe('проводка экрана согласия', () => {
+  const layout = read('app/_layout.tsx');
+  const onboarding = read('components/CleanOnboarding.tsx');
+
+  it('старт: решение по метке и ключу Условий, значения в журнале, онбординг в режиме consentOnly', () => {
+    expect(layout).toContain('resolveConsentRegate(val, legalRaw, pendingRaw)');
+    expect(layout).toContain('[CONSENT-REGATE] boot show=${consentRegate.show} reason=${consentRegate.reason}');
+    expect(layout).toContain('setShow(willShowOnboarding || consentRegate.show);');
+    expect(layout).toContain('consentOnly={onboardingConsentOnly}');
+    expect(layout).toContain('onDone={onboardingConsentOnly ? handleConsentRegateDone : handleOnboardingDone}');
+  });
+
+  it('завершение согласия не запускает сценарий нового ученика (пуши, бонус, приветствие)', () => {
+    const fn = layout.slice(layout.indexOf('const handleConsentRegateDone = useCallback('), layout.indexOf('const handleOnboardingIntroFullAccessStart'));
+    expect(fn).toContain('setShow(false)');
+    expect(fn).not.toMatch(/requestNotificationPermission|startIntroFullAccessAfterOnboarding|pm\.app\.welcome|router\.replace/);
+  });
+
+  it('онбординг: сразу шаг согласия, без стрелки назад, без восстановления шага и метрики воронки', () => {
+    expect(onboarding).toContain("useState<CleanOnboardingStep>(startAtNameStep || consentOnly ? 'name' : 'welcome')");
+    expect(onboarding).toContain('onBack={consentOnly ? undefined : back}');
+    expect(onboarding).toMatch(/if \(consentOnly\) \{\s*\/\/[^\n]*\n\s*console\.log\('\[CONSENT-REGATE\] onboarding mounted/);
+    expect(onboarding).toMatch(/if \(consentOnly\) return;\s*void recordOnboardingFunnelStart\(\);/);
+    expect(onboarding).toContain('void (consentOnly ? finishConsentOnly() : finish());');
+  });
+
+  it('«Продолжить»: Условия принимает сам человек, аналитика — по его галочке (по умолчанию снята), метка снимается', () => {
+    expect(onboarding).toContain('const [analyticsAllowed, setAnalyticsAllowed] = useState(false);');
+    const fn = onboarding.slice(onboarding.indexOf('const finishConsentOnly = useCallback('), onboarding.indexOf('const finish = useCallback('));
+    expect(fn).toContain("if (ageAnswer !== 'yes')");
+    expect(fn).toContain('[LEGAL_ACCEPTED_KEY, \'1\']');
+    expect(fn).toContain("const analyticsChoice = analyticsAllowed ? 'granted' : 'denied';");
+    expect(fn).toContain('AsyncStorage.removeItem(CONSENT_REGATE_PENDING_KEY)');
+    expect(fn).toContain('[CONSENT-REGATE] accepted');
+    // анкету и профиль нового ученика не пишет
+    expect(fn).not.toMatch(/user_profile|GENERATED_NICKNAME_PENDING_KEY|DONE_KEY, '1'|go\(/);
+  });
+});

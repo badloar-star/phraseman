@@ -41,6 +41,34 @@ export function resolveBootOnboardingDone(onboardingDoneRaw: string | null, devi
   return { value: null, source: 'none' };
 }
 
+/**
+ * зачем (координатор 18.10 07:10, вариант А): после выхода/смены согласие на аналитику и принятие Условий сброшены
+ * (cloud_sync resetConsentsBeforeSignoutWipe), а онбординг пропускается по метке устройства. Эта метка просит при
+ * следующем запуске показать ТОЛЬКО экран согласия. Ключ устройства: не в SYNC_KEYS и не в описи аккаунта.
+ */
+export const CONSENT_REGATE_PENDING_KEY = 'consent_regate_pending_v1';
+export const LEGAL_ACCEPTED_STORAGE_KEY_FOR_REGATE = 'onboarding_terms_privacy_accepted_v1';
+
+export type ConsentRegateDecision = Readonly<{
+  show: boolean;
+  reason: 'onboarding_not_done' | 'no_pending_mark' | 'legal_already_accepted' | 'pending_after_signout';
+}>;
+
+/**
+ * Показывать ли экран согласия на старте. Только по метке выхода: у старых пользователей ключ Условий мог не
+ * записаться (вход «уже есть аккаунт») — без метки их экран согласия не тревожит.
+ */
+export function resolveConsentRegate(
+  onboardingDoneValue: string | null,
+  legalAcceptedRaw: string | null,
+  pendingRaw: string | null,
+): ConsentRegateDecision {
+  if (onboardingDoneValue !== '1') return { show: false, reason: 'onboarding_not_done' };
+  if (pendingRaw !== '1') return { show: false, reason: 'no_pending_mark' };
+  if (legalAcceptedRaw === '1') return { show: false, reason: 'legal_already_accepted' };
+  return { show: true, reason: 'pending_after_signout' };
+}
+
 /** Язык интерфейса устройства из метки (только код; проверку «язык включён» делает вызывающий). */
 export async function readDeviceUiLang(): Promise<string | null> {
   try {

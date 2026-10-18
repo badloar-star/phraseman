@@ -128,6 +128,7 @@ import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText
 import { reportSwallowed, swallowError } from '../app/debug-logger';
 import { identityErrorCode } from '../app/identity_trace';
 import { authErrorKind, authErrorLogCode, authErrorTextForKind } from '../app/auth_error_copy';
+import { CONSENT_REGATE_PENDING_KEY } from '../app/device_onboarding_marks';
 import {
   abandonOnboardingAuthAttempt,
   beginOnboardingAuthAttempt,
@@ -163,6 +164,8 @@ export type OnboardingProps = {
   onLangSelect?: (lang: Lang) => Promise<void> | void;
   onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void;
   startAtNameStep?: boolean;
+  /** зачем (координатор 18.10 07:10, вариант А): после выхода — только экран согласия (шаг 'name'), без остального онбординга. */
+  consentOnly?: boolean;
 };
 
 export type CleanOnboardingStep =
@@ -2458,6 +2461,7 @@ function CleanOnboarding({
   onDone,
   initialLang,
   startAtNameStep,
+  consentOnly = false,
 }: OnboardingProps) {
   const P = useOnboardingPalette();
   const styles = createStyles(P);
@@ -2470,7 +2474,7 @@ function CleanOnboarding({
   // subtitle), ужимают его этим флагом — ScreenFrame их стилями не управляет.
   const { height: onboardingWindowHeight } = useWindowDimensions();
   const shortScreen = isShortScreen(onboardingWindowHeight);
-  const [step, setStep] = useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome');
+  const [step, setStep] = useState<CleanOnboardingStep>(startAtNameStep || consentOnly ? 'name' : 'welcome');
   const [restored, setRestored] = useState(false);
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
@@ -2770,6 +2774,12 @@ function CleanOnboarding({
       void completeOnboardingRef.current();
       return () => { active = false; };
     }
+    if (consentOnly) {
+      // зачем (вариант А): только экран согласия — сохранённый шаг не восстанавливаем и не пишем, анкета не нужна.
+      console.log('[CONSENT-REGATE] onboarding mounted step=name consentOnly=true'); // guard-ok: одна строка на показ
+      setRestored(true);
+      return () => { active = false; };
+    }
     AsyncStorage.multiGet([FLOW_VERSION_KEY, STEP_KEY, ONBOARDING_REQUESTED_STUDY_TARGET_KEY, PLAN_LEVEL_KEY, DISCOVERY_SOURCE_KEY])
       .then((rows) => {
         if (!active) return;
@@ -2790,15 +2800,17 @@ function CleanOnboarding({
       })
       .finally(() => { if (active) setRestored(true); });
     return () => { active = false; };
-  }, [enabledOrder, persistStep, startAtNameStep]);
+  }, [consentOnly, enabledOrder, persistStep, startAtNameStep]);
 
   // Aggregate-only operational metric: it is independent of analytics consent
   // and carries no user/device/stable identifier. The helper persists one opaque
   // attempt token locally and the server deduplicates retries.
   useEffect(() => {
     if (!restored) return;
+    // экран согласия после выхода — не новый вход в воронку онбординга
+    if (consentOnly) return;
     void recordOnboardingFunnelStart();
-  }, [restored]);
+  }, [consentOnly, restored]);
 
   useEffect(() => {
     if (appleAvailable !== null) return undefined;
@@ -3528,6 +3540,45 @@ function CleanOnboarding({
       }
     }
   }, [closeCodeSheet, codeBusy, codeSheet, codeValue]);
+
+  // зачем (координатор 18.10 07:10, вариант А): после выхода — только согласия. Условия принимает сам человек нажатием
+  // «Продолжить» (строка Условий под кнопкой), аналитика — по его галочке (по умолчанию снята). Анкету, профиль, автоник,
+  // пейвол и пробный не трогаем; метку повторного согласия снимаем, оверлей закрывается сразу после локальной записи.
+  const finishConsentOnly = useCallback(async () => {
+    if (finishingRef.current) {
+      console.log('[CONSENT-REGATE] continue ignored reason=already_finishing'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    setLegalError(null);
+    if (ageAnswer !== 'yes') {
+      console.log(`[CONSENT-REGATE] continue blocked age=${ageAnswer ?? 'none'}`); // guard-ok: ранний выход пишет причину
+      setLegalError(
+        ageAnswer === 'no'
+          ? fill(oc.ageNotice, { age: MIN_FULL_ACCESS_AGE })
+          : fill(oc.ageConfirm, { age: MIN_FULL_ACCESS_AGE }),
+      );
+      return;
+    }
+    finishingRef.current = true;
+    const startedAt = Date.now();
+    const analyticsChoice = analyticsAllowed ? 'granted' : 'denied';
+    let written = true;
+    try {
+      await AsyncStorage.multiSet([
+        [LEGAL_ACCEPTED_KEY, '1'],
+        [ANALYTICS_HELP_KEY, analyticsAllowed ? '1' : '0'],
+      ]);
+      await AsyncStorage.removeItem(CONSENT_REGATE_PENDING_KEY);
+    } catch (error: unknown) {
+      written = false;
+      console.warn(`[CONSENT-REGATE] write_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+    }
+    await confirmAdultAgeAttestation().catch(noteSwallowedAs('CleanOnboarding:finishConsentOnly.confirmAdultAgeAttestation', null));
+    await setAnalyticsConsent(analyticsChoice).catch(noteSwallowedAs('CleanOnboarding:finishConsentOnly.setAnalyticsConsent', null));
+    console.log(`[CONSENT-REGATE] accepted legal=1 analytics=${analyticsChoice} age=yes written=${written} tookMs=${Date.now() - startedAt}`); // guard-ok: итог экрана согласия
+    finishingRef.current = false;
+    onDone();
+  }, [ageAnswer, analyticsAllowed, oc, onDone]);
 
   const finish = useCallback(async () => {
     if (finishingRef.current || paywallTransitionBusyRef.current) return;
@@ -4435,7 +4486,8 @@ function CleanOnboarding({
   const renderName = () => (
     <ScreenFrame
       step="name"
-      onBack={back}
+      // зачем (вариант А): в режиме «только согласие» назад некуда — стрелки нет
+      onBack={consentOnly ? undefined : back}
       footer={(
         <>
           {/* «Продолжить», не «Начать обучение»: впереди ещё пробный и цены. */}
@@ -4443,7 +4495,7 @@ function CleanOnboarding({
             label={oc.continue}
             onPress={() => {
               Keyboard.dismiss();
-              void finish();
+              void (consentOnly ? finishConsentOnly() : finish());
             }}
             disabled={ageAnswer !== 'yes'}
             testID="onboarding-finish"

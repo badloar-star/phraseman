@@ -57,3 +57,8 @@ export function authErrorTextForKind(kind: AuthErrorKind, lang: Lang): string | 
   if (kind === 'too_many') return authTooManyAttemptsText(lang);
   return null;
 }
+
+/* expo-router route shim: app/ files are treated as routes and need a default export. */
+export default function __AuthErrorCopyRouteShim() {
+  return null;
+}

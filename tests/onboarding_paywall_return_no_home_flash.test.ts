@@ -117,7 +117,8 @@ describe('onboarding ← paywall return: no home flash, no 4s stall', () => {
     // The fast path no longer needs any stable-id read at all, so there is no
     // Keychain/AsyncStorage identity await before handing control back.
     expect(code).not.toContain('getStableId');
-    expect(code).toContain("useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome')");
+    // 18.10: consentOnly (экран согласия после выхода) тоже стартует сразу на 'name' — без async-гейта
+    expect(code).toContain("useState<CleanOnboardingStep>(startAtNameStep || consentOnly ? 'name' : 'welcome')");
     expect(code).toContain("if (startAtNameStep) {");
     expect(code).toContain('void completeOnboardingRef.current();');
   });

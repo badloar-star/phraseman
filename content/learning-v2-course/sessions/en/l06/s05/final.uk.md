@@ -1,136 +1,154 @@
-# Англійська · Урок 6 · Заняття 5 — Брелок у шухляді
+# Англійська · Урок 6 · Заняття 5 — Ринок у вихідний
 
-**Ситуація.** Анна показує Томові своє робоче місце в супермаркеті. У шухляді столу лежить брелок у вигляді маленького ключа.
+**Ситуація.** У вихідний ви йдете на ринок по фрукти. Самі вибираєте, хто робить справу: I, You, We або They. Після будь-якого з них одразу йде дієслово.
 
-**Що ви опануєте:** назвати брелок, запитати про власника й розповісти про місце роботи
-**Нові слова:** keychain
+**Що ви опануєте:** вибрати, хто робить справу, і сказати про це: I buy, They weigh, We pack, You weigh — без am і are
+**Нові слова:** buy, weigh, pack, scales
+**Повертаються:** apple, plum, pear, bag, box, table, bench
 
 ---
 
 ## Інтро 1
 
-### Маленька річ для ключів
+### Біля прилавка
 
-`keychain` — «брелок», невелика річ, яку прикріплюють до ключів. `This is my keychain` — «Це мій брелок». `Whose keychain is this?` — «Чий це брелок?» `The keychain is mine` — «Брелок мій». Брелок допомагає впізнати ключі, але сам двері відчиняти не зобов’язаний.
+Ринок відкрився, і ви йдете вздовж прилавків із великим кошиком. На одному лежать яскраві червоні яблука із зеленим листям. Продавець питає, що вам потрібно. buy — «купувати». Про себе кажемо I: I buy apples — «Я купую яблука». Яблук кілька — apples.
 
-**Запитайте про власника брелока.**
+**Продавець питає, що ви берете. Ви берете яблука. Скажіть йому: «Я купую яблука».**
 
-- ✅ **Whose keychain is this?**
-- ❌ Where is the keychain? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose keychain are these? — *Один брелок: `is this`.*
+- ✅ **I buy apples.**
+- ❌ I am buy apples. — *Перед buy слово am не потрібне: I buy.*
+- ❌ I buy apple. — *Яблук кілька, тому потрібно apples.*
 
 ---
 
 ## Інтро 2
 
-### У шухляді столу
+### Сливи на вагах
 
-`drawer` — «шухляда», висувна частина меблів. `The keychain is in the drawer` — «Брелок у шухляді». `real` — «справжній»: `This is a real key` — «Це справжній ключ», а не його іграшкова копія. `That keychain is yours` — «Той брелок твій»: `that` указує на річ далі від мовця.
+У сусідньому ряду двоє продавців кладуть сливи на старі ваги з великою стрілкою. Подруга стоїть поруч із вами, тримає кошик і дивиться на цифри. weigh — «зважувати». Про двох продавців кажемо They: They weigh the plums — «Вони зважують сливи».
 
-**Скажіть «Це справжній ключ».**
+**Подруга дивиться на сусідній прилавок і питає, що роблять продавці. Скажіть: «Вони зважують сливи».**
 
-- ✅ **This is a real key.**
-- ❌ This are a real key. — *Один ключ: `This is`.*
-- ❌ This is a keychain. — *Це «Це брелок»; потрібен справжній ключ: `a real key`.*
+- ✅ **They weigh the plums.**
+- ❌ They are weigh the plums. — *Перед weigh слово are не потрібне: They weigh.*
+- ❌ They weigh the pears. — *Продавці зважують сливи: потрібно plums, а pears — груші.*
 
 ---
 
 ## Інтро 3
 
-### Робота й орієнтир
+### Сумки біля виходу
 
-`supermarket` — «супермаркет», `court` — спортивний «корт». `I work in a supermarket` — «Я працюю в супермаркеті». Перед `work` у цій фразі не потрібне `am`. `The supermarket is near the court` — «Супермаркет біля корту». `I have a keychain` — «У мене є брелок».
+Покупки зроблено, і ви з братом зупиняєтеся біля виходу з ринку після довгої прогулянки рядами. Фрукти треба акуратно покласти в сумки, щоб вони не пом’ялися дорогою. pack — «пакувати, укладати». Про себе й брата кажемо We: We pack the bags — «Ми пакуємо сумки».
 
-**Скажіть «Я працюю в супермаркеті».**
+**Брат стоїть біля виходу з порожніми сумками. Скажіть йому: «Ми пакуємо сумки».**
 
-- ✅ **I work in a supermarket.**
-- ❌ I am work in a supermarket. — *Тут дія: `I work`, без `am`.*
-- ❌ I work in a bank. — *`bank` — банк; супермаркет — `supermarket`.*
+- ✅ **We pack the bags.**
+- ❌ We are pack the bags. — *Перед pack слово are не потрібне: We pack.*
+- ❌ I pack the bags. — *Ви з братом робите це разом: потрібно We, а не I.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про місце роботи: «Я працюю в супермаркеті»**
+**1 · Картка слова — buy**
+<!-- interaction_id: en:lesson-06:session-05:word:buy; family: word_card -->
+> **buy** — купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього.
+
+**2 · Продавець питає, що ви берете. Скажіть: «Я купую яблука»**
 <!-- interaction_id: en:lesson-06:session-05:i01; family: phrase_builder -->
-Плитки: `supermarket` `a` `in` `work` `I` → **I work in a supermarket.**
+Плитки: `apples` `buy` `I` `am` → **I buy apples.**
+*(плитка `am` зайва: тут потрібно `buy` — `I buy apples.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — weigh**
+<!-- interaction_id: en:lesson-06:session-05:word:weigh; family: word_card -->
+> **weigh** — зважувати. They weigh the plums. — «Вони зважують сливи». Про те, як дізнаються вагу речі на вагах.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-05:i02; family: listen_choose -->
-🔊 *keychain* → **keychain** · receipt · drawer
-- receipt — *У записі перше слово — `keychain`, а в цьому варіанті — `receipt`.*
-- drawer — *У записі перше слово — `keychain`, а в цьому варіанті — `drawer`.*
+🔊 *They weigh the plums.* → **They weigh the plums.** · They weigh the pears. · They have the plums.
+- They weigh the pears. — *У записі останнє слово — `plums`, сливи, а в цьому варіанті — `pears`, груші.*
+- They have the plums. — *У записі `weigh` — зважувати, а в цьому варіанті `have` — мати.*
 
-**3 · Назвіть брелок**
+**5 · Картка слова — pack**
+<!-- interaction_id: en:lesson-06:session-05:word:pack; family: word_card -->
+> **pack** — пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку.
+
+**6 · Ви з братом кладете фрукти в сумки. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i03; family: context_gap_grammar -->
-___ → **keychain** · receipt · drawer
-- receipt — *`receipt` — чек; брелок — `keychain`.*
-- drawer — *`drawer` — шухляда; брелок — `keychain`.*
+We ___ the bags. → **pack** · are pack · am pack
+- are pack — *Після `We` одразу ставимо `pack`, без `are`.*
+- am pack — *`am` ставиться тільки після `I`; тут потрібно `We pack`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-05:i04; family: speed_match -->
-keychain — брелок · real — справжній · supermarket — супермаркет · drawer — шухляда
+buy — купувати · weigh — зважувати · pack — пакувати · scales — ваги
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — scales**
+<!-- interaction_id: en:lesson-06:session-05:word:scales; family: word_card -->
+> **scales** — ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are.
+
+**9 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-05:i05; family: listen_build_dictation -->
-🔊 *This is my keychain.* Плитки: `keychain` `my` `is` `This` `are` → **This is my keychain.**
-*(плитка `are` зайва: тут потрібно `is` — `This is my keychain.`)*
+🔊 *The scales are on the table.* Плитки: `scales` `The` `the` `on` `table` `are` `is` → **The scales are on the table.**
+*(плитка `is` зайва: тут потрібно `are` — `The scales are on the table.`)*
 
-**6 · Запитайте «Чий це брелок?»**
+**10 · Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»**
 <!-- interaction_id: en:lesson-06:session-05:i06; family: phrase_builder -->
-Плитки: `this` `is` `keychain` `Whose` → **Whose keychain is this?**
+Плитки: `scales` `these` `are` `Whose` `Who` → **Whose scales are these?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose scales are these?`)*
 
-**7 · Перед вами справжній ключ, не іграшка. Скажіть «Це справжній ключ»**
+**11 · Подруга питає, що ви робите на ринку. Скажіть: «Я купую яблука»**
 <!-- interaction_id: en:lesson-06:session-05:i07; family: scripted_repeat_compare -->
-🎙 **This is a real key.**
+🎙 **I buy apples.**
 
-**8 · Брелок усередині шухляди. Виберіть прийменник**
+**12 · Двоє продавців кладуть сливи на ваги. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i08; family: context_gap_grammar -->
-The keychain is ___ the drawer. → **in** · under · behind
-- under — *Усередині — `in`; `under` — під шухлядою.*
-- behind — *Усередині — `in`; `behind` — за шухлядою.*
+They ___ the plums. → **weigh** · are weigh · is weigh
+- are weigh — *Після `They` одразу ставимо `weigh`, без `are`.*
+- is weigh — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They weigh`.*
 
-**9 · Послухайте, кому належить той брелок**
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-05:i09; family: listen_choose -->
-🔊 *That keychain is yours.* → **That keychain is yours.** · That keychain is mine. · That keychain is hers.
-- That keychain is mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- That keychain is hers. — *У записі останнє слово — `yours`, а в цьому варіанті — `hers`.*
+🔊 *We pack the bags.* → **We pack the bags.** · We pack the boxes. · We have the bags.
+- We pack the boxes. — *У записі останнє слово — `bags`, сумки, а в цьому варіанті — `boxes`, коробки.*
+- We have the bags. — *У записі `pack` — укладати, а в цьому варіанті `have` — мати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-05:i10; family: speed_match -->
-keychain — брелок · court — корт · real — справжній · drawer — шухляда
+weigh — зважувати · plum — слива · bag — сумка · scales — ваги
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте продавця й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-05:i11; family: listen_build_dictation -->
-🔊 *The supermarket is near the court.* Плитки: `court` `the` `near` `is` `supermarket` `The` `are` → **The supermarket is near the court.**
-*(плитка `are` зайва: тут потрібно `is` — `The supermarket is near the court.`)*
+🔊 *You weigh the plums.* Плитки: `plums` `the` `weigh` `You` `I` → **You weigh the plums.**
+*(плитка `I` зайва: тут потрібно `You` — `You weigh the plums.`)*
 
-**12 · Брелок належить вам. Скажіть «Брелок мій»**
+**16 · Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»**
 <!-- interaction_id: en:lesson-06:session-05:i12; family: phrase_builder -->
-Плитки: `mine` `is` `keychain` `The` `are` → **The keychain is mine.**
-*(плитка `are` зайва: тут потрібно `is` — `The keychain is mine.`)*
+Плитки: `apples` `box` `the` `a` `in` `pack` `We` `are` → **We pack the apples in a box.**
+*(плитка `are` зайва: тут потрібно `pack` — `We pack the apples in a box.`)*
 
-**13 · Скажіть «У мене є брелок»**
+**17 · Брат питає, що роблять продавці. Скажіть: «Вони зважують сливи»**
 <!-- interaction_id: en:lesson-06:session-05:i13; family: scripted_repeat_compare -->
-🎙 **I have a keychain.**
+🎙 **They weigh the plums.**
 
-**14 · Скажіть «Я працюю тут»**
+**18 · Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-05:i14; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
-- am work — *Тут дія: `I work`, без `am`.*
-- is work — *Тут потрібно `I work`, без `is`.*
+I ___ apples. → **buy** · am buy · are buy
+- am buy — *Після `I` одразу ставимо `buy`, без `am`.*
+- are buy — *Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I buy`.*
 
-**15 · Послухайте, чий брелок тут**
+**19 · Послухайте продавця**
 <!-- interaction_id: en:lesson-06:session-05:i15; family: listen_choose -->
-🔊 *My keychain is here.* → **My keychain is here.** · Your keychain is here. · His keychain is here.
-- Your keychain is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His keychain is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *The scales are on the table.* → **The scales are on the table.** · The scales are on the bench. · The scales are in the box.
+- The scales are on the bench. — *У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка.*
+- The scales are in the box. — *У записі ваги на столі — `on`, а в цьому варіанті в коробці — `in`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-05:i16; family: speed_match -->
-keychain — брелок · real — справжній · supermarket — супермаркет · court — корт
+scales — ваги · buy — купувати · apple — яблуко · box — коробка
 
-**17 · У шухляді лежить брелок. Запитайте колегу «Чий це брелок?»**
+**21 · Ви з братом укладаєте покупки. Скажіть продавцеві: «Ми пакуємо сумки»**
 <!-- interaction_id: en:lesson-06:session-05:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose keychain is this?**
-
+🎙 **We pack the bags.**

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-08:intro1:r2": {
-          "ru": "Перед `work` здесь не нужно `am`.",
-          "uk": "Перед `work` тут не потрібно `am`."
+          "ru": "Перед fold слово are не нужно: We fold.",
+          "uk": "Перед fold слово are не потрібне: We fold."
         },
         "en:lesson-06:session-08:intro1:r3": {
-          "ru": "`in that` — в том; в этом — `in this`.",
-          "uk": "`in that` — у тому; у цьому — `in this`."
+          "ru": "Складываете полотенца: нужно towels, а sheets — простыни.",
+          "uk": "Складаєте рушники: потрібно towels, а sheets — простирадла."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-08:intro2:r2": {
-          "ru": "Это вопрос о месте; о владельце — `Whose`.",
-          "uk": "Це запитання про місце; про власника — `Whose`."
+          "ru": "Перед hang слово am не нужно: I hang.",
+          "uk": "Перед hang слово am не потрібне: I hang."
         },
         "en:lesson-06:session-08:intro2:r3": {
-          "ru": "Один чек: `is this`.",
-          "uk": "Один чек: `is this`."
+          "ru": "Рубашки вешают на верёвку: нужно on, а не in.",
+          "uk": "Сорочки вішають на мотузку: потрібно on, а не in."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-08:intro3:r2": {
-          "ru": "`Your` — твой; мой — `My`.",
-          "uk": "`Your` — твій; мій — `My`."
+          "ru": "Перед sort слово are не нужно: They sort.",
+          "uk": "Перед sort слово are не потрібне: They sort."
         },
         "en:lesson-06:session-08:intro3:r3": {
-          "ru": "Один календарь: `is`.",
-          "uk": "Один календар: `is`."
+          "ru": "Разбирают носки: нужно socks, а shirts — рубашки.",
+          "uk": "Розбирають шкарпетки: потрібно socks, а shirts — сорочки."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a46528ce44884bf140c9a370abba69e53c5a6a319b1beb98f2d204ccc1d1205d"
+  "auxiliaryFingerprint": "03330a4c735b34ec38b35f2f91b8e91dfd011d555376163b3041993570b03d75"
 }

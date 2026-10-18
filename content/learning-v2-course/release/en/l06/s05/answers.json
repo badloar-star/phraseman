@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-05:word:buy",
+    "correctText": "buy",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-05:i01",
-    "correctText": "I work in a supermarket.",
+    "correctText": "I buy apples.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-05:word:weigh",
+    "correctText": "weigh",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i02",
-    "correctText": "keychain",
+    "correctText": "They weigh the plums.",
     "correctResponseId": "en:lesson-06:session-05:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-05:word:pack",
+    "correctText": "pack",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-05:i03",
-    "correctText": "keychain",
+    "correctText": "pack",
     "correctResponseId": "en:lesson-06:session-05:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-05:i04",
-    "correctText": "en:lesson-06:session-05:i04:p1=keychain\nen:lesson-06:session-05:i04:p2=real\nen:lesson-06:session-05:i04:p3=supermarket\nen:lesson-06:session-05:i04:p4=drawer",
+    "correctText": "en:lesson-06:session-05:i04:p1=buy\nen:lesson-06:session-05:i04:p2=weigh\nen:lesson-06:session-05:i04:p3=pack\nen:lesson-06:session-05:i04:p4=scales",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-05:word:scales",
+    "correctText": "scales",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i05",
-    "correctText": "This is my keychain.",
+    "correctText": "The scales are on the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i06",
-    "correctText": "Whose keychain is this?",
+    "correctText": "Whose scales are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i07",
-    "correctText": "This is a real key.",
+    "correctText": "I buy apples.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i08",
-    "correctText": "in",
+    "correctText": "weigh",
     "correctResponseId": "en:lesson-06:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-05:i09",
-    "correctText": "That keychain is yours.",
+    "correctText": "We pack the bags.",
     "correctResponseId": "en:lesson-06:session-05:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-05:i10",
-    "correctText": "en:lesson-06:session-05:i10:p1=keychain\nen:lesson-06:session-05:i10:p2=court\nen:lesson-06:session-05:i10:p3=real\nen:lesson-06:session-05:i10:p4=drawer",
+    "correctText": "en:lesson-06:session-05:i10:p1=weigh\nen:lesson-06:session-05:i10:p2=plum\nen:lesson-06:session-05:i10:p3=bag\nen:lesson-06:session-05:i10:p4=scales",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i11",
-    "correctText": "The supermarket is near the court.",
+    "correctText": "You weigh the plums.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i12",
-    "correctText": "The keychain is mine.",
+    "correctText": "We pack the apples in a box.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i13",
-    "correctText": "I have a keychain.",
+    "correctText": "They weigh the plums.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i14",
-    "correctText": "work",
+    "correctText": "buy",
     "correctResponseId": "en:lesson-06:session-05:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-05:i15",
-    "correctText": "My keychain is here.",
+    "correctText": "The scales are on the table.",
     "correctResponseId": "en:lesson-06:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-05:i16",
-    "correctText": "en:lesson-06:session-05:i16:p1=keychain\nen:lesson-06:session-05:i16:p2=real\nen:lesson-06:session-05:i16:p3=supermarket\nen:lesson-06:session-05:i16:p4=court",
+    "correctText": "en:lesson-06:session-05:i16:p1=scales\nen:lesson-06:session-05:i16:p2=buy\nen:lesson-06:session-05:i16:p3=apple\nen:lesson-06:session-05:i16:p4=box",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-05:i17",
-    "correctText": "Whose keychain is this?",
+    "correctText": "We pack the bags.",
     "correctResponseId": null
   }
 ]

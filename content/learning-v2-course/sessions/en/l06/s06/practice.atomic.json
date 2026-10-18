@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-06",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-06:word:play",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — play",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:play:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — play",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:play:audio",
+            "transcript": "play"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:play:r1",
+              "targetText": "play",
+              "meaningByLocale": {
+                "ru": "играть. We play football in the yard. — «Мы играем в футбол во дворе». О том, как играют в игру или в спорт.",
+                "uk": "грати. We play football in the yard. — «Ми граємо у футбол у дворі». Про те, як грають в гру чи в спорт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "play",
+            "definitionByLocale": {
+              "ru": "играть. We play football in the yard. — «Мы играем в футбол во дворе». О том, как играют в игру или в спорт.",
+              "uk": "грати. We play football in the yard. — «Ми граємо у футбол у дворі». Про те, як грають в гру чи в спорт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We play football.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»"
+          },
+          "orderedTokens": [
+            "We",
+            "play",
+            "football"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `play` — `We play football.`",
+                "uk": "тут потрібно `play` — `We play football.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:run",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — run",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:run:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — run",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:run:audio",
+            "transcript": "run"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:run:r1",
+              "targetText": "run",
+              "meaningByLocale": {
+                "ru": "бегать. They run in the park. — «Они бегают в парке». О быстром движении на ногах.",
+                "uk": "бігати. They run in the park. — «Вони бігають у парку». Про швидкий рух на ногах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "run",
+            "definitionByLocale": {
+              "ru": "бегать. They run in the park. — «Они бегают в парке». О быстром движении на ногах.",
+              "uk": "бігати. They run in the park. — «Вони бігають у парку». Про швидкий рух на ногах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i02:r1",
+            "text": "They run in the park."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i02:r2",
+            "text": "They run in the yard."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i02:r3",
+            "text": "They play in the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i02:audio",
+            "transcript": "They run in the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i02:r1",
+              "targetText": "They run in the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r2",
+              "targetText": "They run in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r3",
+              "targetText": "They play in the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, парк, а в этом варианте — `yard`, двор.",
+                "uk": "У записі останнє слово — `park`, парк, а в цьому варіанті — `yard`, двір."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `run` — бегать, а в этом варианте `play` — играть.",
+                "uk": "У записі `run` — бігати, а в цьому варіанті `play` — грати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:ride",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ride",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:ride:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ride",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:ride:audio",
+            "transcript": "ride"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:ride:r1",
+              "targetText": "ride",
+              "meaningByLocale": {
+                "ru": "ехать, кататься. I ride a bicycle. — «Я езжу на велосипеде». О поездке на велосипеде или на лошади.",
+                "uk": "їхати, кататися. I ride a bicycle. — «Я їжджу на велосипеді». Про поїздку на велосипеді чи на коні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ride",
+            "definitionByLocale": {
+              "ru": "ехать, кататься. I ride a bicycle. — «Я езжу на велосипеде». О поездке на велосипеде или на лошади.",
+              "uk": "їхати, кататися. I ride a bicycle. — «Я їжджу на велосипеді». Про поїздку на велосипеді чи на коні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i03:r1",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i03:r2",
+            "text": "am ride"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i03:r3",
+            "text": "are ride"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+            "uk": "Сусід питає, як ви добираєтеся до парку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ a bicycle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i03:r1",
+              "text": "ride"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r2",
+              "text": "am ride"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r3",
+              "text": "are ride"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `ride`, без `am`.",
+                "uk": "Після `I` одразу ставимо `ride`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I ride`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I ride`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i04:p1",
+              "target": "play",
+              "meaningByLocale": {
+                "ru": "играть",
+                "uk": "грати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p2",
+              "target": "run",
+              "meaningByLocale": {
+                "ru": "бегать",
+                "uk": "бігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p3",
+              "target": "ride",
+              "meaningByLocale": {
+                "ru": "ехать верхом, кататься",
+                "uk": "їздити верхи, кататися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p4",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "play",
+            "run",
+            "ride",
+            "whistle"
+          ],
+          "rightColumn": [
+            "играть",
+            "бегать",
+            "ехать верхом, кататься",
+            "свисток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:whistle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — whistle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:whistle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — whistle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:whistle:audio",
+            "transcript": "whistle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:whistle:r1",
+              "targetText": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток. The whistle is in my bag. — «Свисток в моей сумке». Маленькая трубка: в неё дует тренер, чтобы все услышали.",
+                "uk": "свисток. The whistle is in my bag. — «Свисток у моїй сумці». Маленька трубка: у неї дме тренер, щоб усі почули."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whistle",
+            "definitionByLocale": {
+              "ru": "свисток. The whistle is in my bag. — «Свисток в моей сумке». Маленькая трубка: в неё дует тренер, чтобы все услышали.",
+              "uk": "свисток. The whistle is in my bag. — «Свисток у моїй сумці». Маленька трубка: у неї дме тренер, щоб усі почули."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i05:audio",
+            "transcript": "The whistle is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The whistle is in my bag.",
+          "orderedTokens": [
+            "The",
+            "whistle",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The whistle is in my bag.`",
+                "uk": "тут потрібно `is` — `The whistle is in my bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose whistle is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»",
+            "uk": "Ви знайшли на лавці свисток і питаєте тренера, чий він. Поставте питання: «Чий це свисток?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "whistle",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose whistle is this?`",
+                "uk": "тут потрібно `Whose` — `Whose whistle is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, чем вы заняты во дворе. Скажите: «Мы играем в футбол во дворе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, чем вы заняты во дворе. Скажите: «Мы играем в футбол во дворе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i07:audio",
+            "transcript": "We play football in the yard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We play football in the yard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i08:r1",
+            "text": "run"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i08:r2",
+            "text": "are run"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i08:r3",
+            "text": "is run"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+            "uk": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the park.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i08:r1",
+              "text": "run"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r2",
+              "text": "are run"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r3",
+              "text": "is run"
+            }
+          ],
+          "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `run`, без `are`.",
+                "uk": "Після `They` одразу ставимо `run`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They run`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They run`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i09:r1",
+            "text": "I ride a bicycle."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i09:r2",
+            "text": "I ride a bus."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i09:r3",
+            "text": "I have a bicycle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i09:audio",
+            "transcript": "I ride a bicycle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i09:r1",
+              "targetText": "I ride a bicycle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r2",
+              "targetText": "I ride a bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r3",
+              "targetText": "I have a bicycle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bicycle`, велосипед, а в этом варианте — `bus`, автобус.",
+                "uk": "У записі останнє слово — `bicycle`, велосипед, а в цьому варіанті — `bus`, автобус."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи `ride` — ехать, кататься, а в этом варианте `have` — иметь.",
+                "uk": "У записі `ride` — їхати, кататися, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i10:p1",
+              "target": "run",
+              "meaningByLocale": {
+                "ru": "бегать",
+                "uk": "бігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p2",
+              "target": "ride",
+              "meaningByLocale": {
+                "ru": "ехать верхом, кататься",
+                "uk": "їздити верхи, кататися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p3",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p4",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "run",
+            "ride",
+            "ball",
+            "whistle"
+          ],
+          "rightColumn": [
+            "бегать",
+            "ехать верхом, кататься",
+            "мяч",
+            "свисток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i11:audio",
+            "transcript": "You run in the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You run in the park.",
+          "orderedTokens": [
+            "You",
+            "run",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You run in the park.`",
+                "uk": "тут потрібно `You` — `You run in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I ride a bicycle in the park.",
+          "localizedMeaning": {
+            "ru": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»"
+          },
+          "orderedTokens": [
+            "I",
+            "ride",
+            "a",
+            "bicycle",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ride` — `I ride a bicycle in the park.`",
+                "uk": "тут потрібно `ride` — `I ride a bicycle in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i13:audio",
+            "transcript": "They run in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They run in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i14:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i14:r2",
+            "text": "are play"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i14:r3",
+            "text": "am play"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+            "uk": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ football in the yard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i14:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r2",
+              "text": "are play"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r3",
+              "text": "am play"
+            }
+          ],
+          "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `We` сразу ставим `play`, без `are`.",
+                "uk": "Після `We` одразу ставимо `play`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставится только после `I`; здесь нужно `We play`.",
+                "uk": "`am` ставиться тільки після `I`; тут потрібно `We play`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i15:r1",
+            "text": "The whistle is in my bag."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i15:r2",
+            "text": "The whistle is in my box."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i15:r3",
+            "text": "The ball is in my bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i15:audio",
+            "transcript": "The whistle is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i15:r1",
+              "targetText": "The whistle is in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r2",
+              "targetText": "The whistle is in my box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r3",
+              "targetText": "The ball is in my bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи место — `bag`, сумка, а в этом варианте — `box`, коробка.",
+                "uk": "У записі місце — `bag`, сумка, а в цьому варіанті — `box`, коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `whistle`, свисток, а в этом варианте — `ball`, мяч.",
+                "uk": "У записі річ — `whistle`, свисток, а в цьому варіанті — `ball`, м’яч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i16:p1",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p2",
+              "target": "play",
+              "meaningByLocale": {
+                "ru": "играть",
+                "uk": "грати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p3",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбол",
+                "uk": "футбол"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "whistle",
+            "play",
+            "football",
+            "park"
+          ],
+          "rightColumn": [
+            "свисток",
+            "играть",
+            "футбол",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, на чём вы ездите. Скажите: «Я езжу на велосипеде»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, на чём вы ездите. Скажите: «Я езжу на велосипеде»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i17:audio",
+            "transcript": "I ride a bicycle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I ride a bicycle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-06:word:play",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — play",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:play:audio"
+        ],
+        "accessibilityLabel": "Картка слова — play",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:play:audio",
+            "transcript": "play"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:play:r1",
+              "targetText": "play",
+              "meaningByLocale": {
+                "ru": "играть. We play football in the yard. — «Мы играем в футбол во дворе». О том, как играют в игру или в спорт.",
+                "uk": "грати. We play football in the yard. — «Ми граємо у футбол у дворі». Про те, як грають в гру чи в спорт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "play",
+            "definitionByLocale": {
+              "ru": "играть. We play football in the yard. — «Мы играем в футбол во дворе». О том, как играют в игру или в спорт.",
+              "uk": "грати. We play football in the yard. — «Ми граємо у футбол у дворі». Про те, як грають в гру чи в спорт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We play football.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»",
+            "uk": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»"
+          },
+          "orderedTokens": [
+            "We",
+            "play",
+            "football"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка питає, чим ви з друзями зайняті. Скажіть: «Ми граємо у футбол»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `play` — `We play football.`",
+                "uk": "тут потрібно `play` — `We play football.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:run",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — run",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:run:audio"
+        ],
+        "accessibilityLabel": "Картка слова — run",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:run:audio",
+            "transcript": "run"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:run:r1",
+              "targetText": "run",
+              "meaningByLocale": {
+                "ru": "бегать. They run in the park. — «Они бегают в парке». О быстром движении на ногах.",
+                "uk": "бігати. They run in the park. — «Вони бігають у парку». Про швидкий рух на ногах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "run",
+            "definitionByLocale": {
+              "ru": "бегать. They run in the park. — «Они бегают в парке». О быстром движении на ногах.",
+              "uk": "бігати. They run in the park. — «Вони бігають у парку». Про швидкий рух на ногах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i02:r1",
+            "text": "They run in the park."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i02:r2",
+            "text": "They run in the yard."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i02:r3",
+            "text": "They play in the park."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i02:audio",
+            "transcript": "They run in the park."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i02:r1",
+              "targetText": "They run in the park.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r2",
+              "targetText": "They run in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r3",
+              "targetText": "They play in the park.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `park`, парк, а в этом варианте — `yard`, двор.",
+                "uk": "У записі останнє слово — `park`, парк, а в цьому варіанті — `yard`, двір."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `run` — бегать, а в этом варианте `play` — играть.",
+                "uk": "У записі `run` — бігати, а в цьому варіанті `play` — грати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:ride",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ride",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:ride:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ride",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:ride:audio",
+            "transcript": "ride"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:ride:r1",
+              "targetText": "ride",
+              "meaningByLocale": {
+                "ru": "ехать, кататься. I ride a bicycle. — «Я езжу на велосипеде». О поездке на велосипеде или на лошади.",
+                "uk": "їхати, кататися. I ride a bicycle. — «Я їжджу на велосипеді». Про поїздку на велосипеді чи на коні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ride",
+            "definitionByLocale": {
+              "ru": "ехать, кататься. I ride a bicycle. — «Я езжу на велосипеде». О поездке на велосипеде или на лошади.",
+              "uk": "їхати, кататися. I ride a bicycle. — «Я їжджу на велосипеді». Про поїздку на велосипеді чи на коні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i03:r1",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i03:r2",
+            "text": "am ride"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i03:r3",
+            "text": "are ride"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, как вы добираетесь до парка. Выберите слово",
+            "uk": "Сусід питає, як ви добираєтеся до парку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ a bicycle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i03:r1",
+              "text": "ride"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r2",
+              "text": "am ride"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r3",
+              "text": "are ride"
+            }
+          ],
+          "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i03:r2",
+              "correct": false,
+              "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `ride`, без `am`.",
+                "uk": "Після `I` одразу ставимо `ride`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i03:r3",
+              "correct": false,
+              "testedDimension": "Сусід питає, як ви добираєтеся до парку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I ride`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I ride`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i04:p1",
+              "target": "play",
+              "meaningByLocale": {
+                "ru": "играть",
+                "uk": "грати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p2",
+              "target": "run",
+              "meaningByLocale": {
+                "ru": "бегать",
+                "uk": "бігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p3",
+              "target": "ride",
+              "meaningByLocale": {
+                "ru": "ехать верхом, кататься",
+                "uk": "їздити верхи, кататися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i04:p4",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "play",
+            "run",
+            "ride",
+            "whistle"
+          ],
+          "rightColumn": [
+            "грати",
+            "бігати",
+            "їздити верхи, кататися",
+            "свисток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:word:whistle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — whistle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:word:whistle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — whistle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:word:whistle:audio",
+            "transcript": "whistle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:word:whistle:r1",
+              "targetText": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток. The whistle is in my bag. — «Свисток в моей сумке». Маленькая трубка: в неё дует тренер, чтобы все услышали.",
+                "uk": "свисток. The whistle is in my bag. — «Свисток у моїй сумці». Маленька трубка: у неї дме тренер, щоб усі почули."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "whistle",
+            "definitionByLocale": {
+              "ru": "свисток. The whistle is in my bag. — «Свисток в моей сумке». Маленькая трубка: в неё дует тренер, чтобы все услышали.",
+              "uk": "свисток. The whistle is in my bag. — «Свисток у моїй сумці». Маленька трубка: у неї дме тренер, щоб усі почули."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i05:audio",
+            "transcript": "The whistle is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The whistle is in my bag.",
+          "orderedTokens": [
+            "The",
+            "whistle",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The whistle is in my bag.`",
+                "uk": "тут потрібно `is` — `The whistle is in my bag.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли на лавці свисток і питаєте тренера, чий він. Поставте питання: «Чий це свисток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли на лавці свисток і питаєте тренера, чий він. Поставте питання: «Чий це свисток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose whistle is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»",
+            "uk": "Ви знайшли на лавці свисток і питаєте тренера, чий він. Поставте питання: «Чий це свисток?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "whistle",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли на лавці свисток і питаєте тренера, чий він. Поставте питання: «Чий це свисток?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose whistle is this?`",
+                "uk": "тут потрібно `Whose` — `Whose whistle is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, чим ви зайняті у дворі. Скажіть: «Ми граємо у футбол у дворі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, чим ви зайняті у дворі. Скажіть: «Ми граємо у футбол у дворі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i07:audio",
+            "transcript": "We play football in the yard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We play football in the yard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i08:r1",
+            "text": "run"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i08:r2",
+            "text": "are run"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i08:r3",
+            "text": "is run"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово",
+            "uk": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the park.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i08:r1",
+              "text": "run"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r2",
+              "text": "are run"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r3",
+              "text": "is run"
+            }
+          ],
+          "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i08:r2",
+              "correct": false,
+              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `run`, без `are`.",
+                "uk": "Після `They` одразу ставимо `run`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i08:r3",
+              "correct": false,
+              "testedDimension": "Діти вибігають на алею. Скажіть сестрі, що вони бігають у парку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They run`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They run`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i09:r1",
+            "text": "I ride a bicycle."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i09:r2",
+            "text": "I ride a bus."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i09:r3",
+            "text": "I have a bicycle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i09:audio",
+            "transcript": "I ride a bicycle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i09:r1",
+              "targetText": "I ride a bicycle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r2",
+              "targetText": "I ride a bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r3",
+              "targetText": "I have a bicycle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bicycle`, велосипед, а в этом варианте — `bus`, автобус.",
+                "uk": "У записі останнє слово — `bicycle`, велосипед, а в цьому варіанті — `bus`, автобус."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи `ride` — ехать, кататься, а в этом варианте `have` — иметь.",
+                "uk": "У записі `ride` — їхати, кататися, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i10:p1",
+              "target": "run",
+              "meaningByLocale": {
+                "ru": "бегать",
+                "uk": "бігати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p2",
+              "target": "ride",
+              "meaningByLocale": {
+                "ru": "ехать верхом, кататься",
+                "uk": "їздити верхи, кататися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p3",
+              "target": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i10:p4",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "run",
+            "ride",
+            "ball",
+            "whistle"
+          ],
+          "rightColumn": [
+            "бігати",
+            "їздити верхи, кататися",
+            "м’яч",
+            "свисток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i11:audio",
+            "transcript": "You run in the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You run in the park.",
+          "orderedTokens": [
+            "You",
+            "run",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You run in the park.`",
+                "uk": "тут потрібно `You` — `You run in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I ride a bicycle in the park.",
+          "localizedMeaning": {
+            "ru": "Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»",
+            "uk": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»"
+          },
+          "orderedTokens": [
+            "I",
+            "ride",
+            "a",
+            "bicycle",
+            "in",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви зустріли сусіда біля ставка. Скажіть йому: «Я їжджу на велосипеді в парку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `ride` — `I ride a bicycle in the park.`",
+                "uk": "тут потрібно `ride` — `I ride a bicycle in the park.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра питає, що роблять діти в парку. Скажіть: «Вони бігають у парку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i13:audio"
+        ],
+        "accessibilityLabel": "Сестра питає, що роблять діти в парку. Скажіть: «Вони бігають у парку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i13:audio",
+            "transcript": "They run in the park."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They run in the park.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i14:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i14:r2",
+            "text": "are play"
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i14:r3",
+            "text": "am play"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями вышли во двор с мячом. Выберите слово",
+            "uk": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ football in the yard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-06:i14:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r2",
+              "text": "are play"
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r3",
+              "text": "am play"
+            }
+          ],
+          "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `We` сразу ставим `play`, без `are`.",
+                "uk": "Після `We` одразу ставимо `play`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви з друзями вийшли у двір із м’ячем. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставится только после `I`; здесь нужно `We play`.",
+                "uk": "`am` ставиться тільки після `I`; тут потрібно `We play`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-06:i15:r1",
+            "text": "The whistle is in my bag."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i15:r2",
+            "text": "The whistle is in my box."
+          },
+          {
+            "responseId": "en:lesson-06:session-06:i15:r3",
+            "text": "The ball is in my bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i15:audio",
+            "transcript": "The whistle is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-06:i15:r1",
+              "targetText": "The whistle is in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r2",
+              "targetText": "The whistle is in my box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r3",
+              "targetText": "The ball is in my bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи место — `bag`, сумка, а в этом варианте — `box`, коробка.",
+                "uk": "У записі місце — `bag`, сумка, а в цьому варіанті — `box`, коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `whistle`, свисток, а в этом варианте — `ball`, мяч.",
+                "uk": "У записі річ — `whistle`, свисток, а в цьому варіанті — `ball`, м’яч."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-06:i16:p1",
+              "target": "whistle",
+              "meaningByLocale": {
+                "ru": "свисток",
+                "uk": "свисток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p2",
+              "target": "play",
+              "meaningByLocale": {
+                "ru": "играть",
+                "uk": "грати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p3",
+              "target": "football",
+              "meaningByLocale": {
+                "ru": "футбол",
+                "uk": "футбол"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-06:i16:p4",
+              "target": "park",
+              "meaningByLocale": {
+                "ru": "парк",
+                "uk": "парк"
+              }
+            }
+          ],
+          "leftColumn": [
+            "whistle",
+            "play",
+            "football",
+            "park"
+          ],
+          "rightColumn": [
+            "свисток",
+            "грати",
+            "футбол",
+            "парк"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-06:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, на чому ви їздите. Скажіть: «Я їжджу на велосипеді»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-06:i17:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, на чому ви їздите. Скажіть: «Я їжджу на велосипеді»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-06:i17:audio",
+            "transcript": "I ride a bicycle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I ride a bicycle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-06:word:play",
+      "correctText": "play",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i01",
+      "correctText": "We play football.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:word:run",
+      "correctText": "run",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i02",
+      "correctText": "They run in the park.",
+      "correctResponseId": "en:lesson-06:session-06:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:word:ride",
+      "correctText": "ride",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i03",
+      "correctText": "ride",
+      "correctResponseId": "en:lesson-06:session-06:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:word:whistle",
+      "correctText": "whistle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i05",
+      "correctText": "The whistle is in my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i06",
+      "correctText": "Whose whistle is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i07",
+      "correctText": "We play football in the yard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i08",
+      "correctText": "run",
+      "correctResponseId": "en:lesson-06:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i09",
+      "correctText": "I ride a bicycle.",
+      "correctResponseId": "en:lesson-06:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i11",
+      "correctText": "You run in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i12",
+      "correctText": "I ride a bicycle in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i13",
+      "correctText": "They run in the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i14",
+      "correctText": "play",
+      "correctResponseId": "en:lesson-06:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i15",
+      "correctText": "The whistle is in my bag.",
+      "correctResponseId": "en:lesson-06:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-06:i17",
+      "correctText": "I ride a bicycle.",
+      "correctResponseId": null
+    }
+  ]
+}

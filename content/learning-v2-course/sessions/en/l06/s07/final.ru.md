@@ -1,136 +1,154 @@
-# Английский · Урок 6 · Занятие 7 — Календарь на стене
+# Английский · Урок 6 · Занятие 7 — На кухне кафе
 
-**Ситуация.** Том помогает Анне обустроить комнату сотрудников рядом с детской площадкой. На столе лежат календарь и пульт.
+**Ситуация.** Вы помогаете на кухне маленького кафе. Одно дело следует за другим, поэтому в рассказе два действия через and, и подлежащее повторяется: I chop onions and I stir the soup.
 
-**Что вы освоите:** назвать календарь, спросить о владельце и объяснить, что необходимо
-**Новые слова:** calendar
+**Что вы освоите:** рассказать о двух действиях подряд: I chop onions and I stir the soup
+**Новые слова:** chop, stir, serve, spatula
+**Возвращаются:** onion, soup, salad, bowl, drawer, ladle
 
 ---
 
 ## Интро 1
 
-### Дни перед глазами
+### Лук для супа
 
-`calendar` — «календарь». `This is my calendar` — «Это мой календарь». `Whose calendar is this?` — «Чей это календарь?» Календарь помогает не забыть день рождения. Подарок, к сожалению, сам не покупает.
+Утром в кафе нужно приготовить большой суп на весь день. Повар кладёт перед вами доску, нож и гору лука и просит помочь до открытия. chop — «нарезать, рубить» на мелкие кусочки. О себе говорим I: I chop onions — «Я режу лук». Лука много — onions.
 
-**Спросите «Чей это календарь?»**
+**Повар спрашивает, что вы делаете у доски. Скажите ему: «Я режу лук».**
 
-- ✅ **Whose calendar is this?**
-- ❌ Where is the calendar? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose calendar are these? — *Один календарь: `is this`.*
+- ✅ **I chop onions.**
+- ❌ I am chop onions. — *Перед chop слово am не нужно: I chop.*
+- ❌ I chop onion. — *Лука много, поэтому нужно onions.*
 
 ---
 
 ## Интро 2
 
-### Нужно, а не просто красиво
+### Кастрюля на плите
 
-`necessary` — «необходимый». `The calendar is necessary` — «Календарь необходим»: например, в нём отмечены рабочие дни. `remote` — «пульт». `That remote is yours` — «Тот пульт твой»: `that` указывает на предмет дальше от говорящего.
+Лук уже в большой кастрюле, и суп начинает тихо кипеть. Двое поваров в белых фартуках стоят у плиты и водят по кругу длинными ложками, чтобы ничего не пригорело. stir — «помешивать». О поварах говорим They: They stir the soup — «Они помешивают суп».
 
-**Скажите «Календарь необходим».**
+**Помощница спрашивает, что делают повара у плиты. Скажите: «Они помешивают суп».**
 
-- ✅ **The calendar is necessary.**
-- ❌ The calendar are necessary. — *Один календарь: `is`.*
-- ❌ The calendar is fake. — *`fake` — поддельный; необходимый — `necessary`.*
+- ✅ **They stir the soup.**
+- ❌ They are stir the soup. — *Перед stir слово are не нужно: They stir.*
+- ❌ They stir the salad. — *Помешивают суп: нужно soup, а salad — салат.*
 
 ---
 
 ## Интро 3
 
-### Рядом с площадкой
+### Суп гостям
 
-`playground` — «детская площадка», `mural` — «настенная роспись». `I work near the playground` — «Я работаю возле детской площадки». Перед `work` не нужно `am`. `The mural is on the wall` — «Настенная роспись на стене».
+Суп готов, и в зал входят первые гости. Новый официант стоит у кухонного окна с чистым полотенцем на плече и ждёт ваших слов. serve — «подавать на стол». Вы говорите ему: You serve the soup — «Ты подаёшь суп». К собеседнику обращаемся словом You.
 
-**Скажите «Я работаю возле детской площадки».**
+**Новый официант спрашивает, что ему делать с готовым супом. Скажите ему: «Ты подаёшь суп».**
 
-- ✅ **I work near the playground.**
-- ❌ I am work near the playground. — *Говорим о действии: `I work`, без `am`.*
-- ❌ I work near the bank. — *`bank` — банк; детская площадка — `playground`.*
+- ✅ **You serve the soup.**
+- ❌ You are serve the soup. — *Перед serve слово are не нужно: You serve.*
+- ❌ I serve the soup. — *Вы говорите официанту, а не о себе: нужно You, а не I.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я работаю возле детской площадки»**
+**1 · Карточка слова — chop**
+<!-- interaction_id: en:lesson-06:session-07:word:chop; family: word_card -->
+> **chop** — нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.
+
+**2 · Повар спрашивает, что вы делаете. Скажите: «Я режу лук»**
 <!-- interaction_id: en:lesson-06:session-07:i01; family: phrase_builder -->
-Плитки: `playground` `the` `near` `work` `I` → **I work near the playground.**
+Плитки: `onions` `chop` `I` `am` → **I chop onions.**
+*(плитка `am` лишняя: здесь нужно `chop` — `I chop onions.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — stir**
+<!-- interaction_id: en:lesson-06:session-07:word:stir; family: word_card -->
+> **stir** — помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.
+
+**4 · Послушайте помощницу**
 <!-- interaction_id: en:lesson-06:session-07:i02; family: listen_choose -->
-🔊 *calendar* → **calendar** · bookmark · folder
-- bookmark — *В записи первое слово — `calendar`, а в этом варианте — `bookmark`.*
-- folder — *В записи первое слово — `calendar`, а в этом варианте — `folder`.*
+🔊 *They stir the soup.* → **They stir the soup.** · They stir the salad. · They have the soup.
+- They stir the salad. — *В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.*
+- They have the soup. — *В записи `stir` — помешивать, а в этом варианте `have` — иметь.*
 
-**3 · Назовите календарь**
+**5 · Карточка слова — serve**
+<!-- interaction_id: en:lesson-06:session-07:word:serve; family: word_card -->
+> **serve** — подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.
+
+**6 · Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-07:i03; family: context_gap_grammar -->
-___ → **calendar** · bookmark · folder
-- bookmark — *`bookmark` — закладка; календарь — `calendar`.*
-- folder — *`folder` — папка; календарь — `calendar`.*
+You ___ the soup. → **serve** · are serve · is serve
+- are serve — *После `You` сразу ставим `serve`, без `are`.*
+- is serve — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `You serve`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-07:i04; family: speed_match -->
-calendar — календарь · necessary — необходимый · remote — пульт · playground — детская площадка
+chop — рубить, шинковать · stir — помешивать · serve — подавать на стол · spatula — лопатка
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — spatula**
+<!-- interaction_id: en:lesson-06:session-07:word:spatula; family: word_card -->
+> **spatula** — лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.
+
+**9 · Послушайте повара и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-07:i05; family: listen_build_dictation -->
-🔊 *This is my calendar.* Плитки: `calendar` `my` `is` `This` `are` → **This is my calendar.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is my calendar.`)*
+🔊 *The spatula is in the drawer.* Плитки: `spatula` `The` `the` `in` `drawer` `is` `are` → **The spatula is in the drawer.**
+*(плитка `are` лишняя: здесь нужно `is` — `The spatula is in the drawer.`)*
 
-**6 · Спросите «Чей это календарь?»**
+**10 · Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»**
 <!-- interaction_id: en:lesson-06:session-07:i06; family: phrase_builder -->
-Плитки: `this` `is` `calendar` `Whose` → **Whose calendar is this?**
+Плитки: `spatula` `this` `is` `Whose` `Who` → **Whose spatula is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose spatula is this?`)*
 
-**7 · В календаре отмечены рабочие дни. Скажите «Календарь необходим»**
+**11 · Повар спрашивает, что вы делаете у доски. Скажите: «Я режу лук»**
 <!-- interaction_id: en:lesson-06:session-07:i07; family: scripted_repeat_compare -->
-🎙 **The calendar is necessary.**
+🎙 **I chop onions.**
 
-**8 · Скажите «Тот пульт твой»**
+**12 · Двое поваров стоят у большой кастрюли. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-07:i08; family: context_gap_grammar -->
-That remote is ___. → **yours** · your · you
-- your — *После `your` нужно название вещи; здесь оно уже названо, поэтому `yours`.*
-- you — *`you` — ты или вы; здесь «твой» без названия вещи — `yours`.*
+They ___ the soup. → **stir** · are stir · is stir
+- are stir — *После `They` сразу ставим `stir`, без `are`.*
+- is stir — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They stir`.*
 
-**9 · Послушайте, где календарь**
+**13 · Послушайте повара**
 <!-- interaction_id: en:lesson-06:session-07:i09; family: listen_choose -->
-🔊 *The calendar is here.* → **The calendar is here.** · The calendar is there. · The calendar is upstairs.
-- The calendar is there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The calendar is upstairs. — *В записи последнее слово — `here`, а в этом варианте — `upstairs`.*
+🔊 *You serve the soup.* → **You serve the soup.** · You serve the salad. · You have the soup.
+- You serve the salad. — *В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.*
+- You have the soup. — *В записи `serve` — подавать на стол, а в этом варианте `have` — иметь.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-07:i10; family: speed_match -->
-calendar — календарь · mural — настенная роспись · remote — пульт · necessary — необходимый
+stir — помешивать · onion — лук (луковица) · soup — суп · spatula — лопатка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте повара и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-07:i11; family: listen_build_dictation -->
-🔊 *The mural is on the wall.* Плитки: `wall` `the` `on` `is` `mural` `The` `are` → **The mural is on the wall.**
-*(плитка `are` лишняя: здесь нужно `is` — `The mural is on the wall.`)*
+🔊 *I chop onions and I stir the soup.* Плитки: `onions` `soup` `the` `and` `chop` `stir` `I` `I` `am` → **I chop onions and I stir the soup.**
+*(плитка `am` лишняя: здесь нужно `chop` — `I chop onions and I stir the soup.`)*
 
-**12 · Скажите «Календарь на письменном столе»**
+**16 · Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»**
 <!-- interaction_id: en:lesson-06:session-07:i12; family: phrase_builder -->
-Плитки: `desk` `the` `on` `is` `calendar` `The` `are` → **The calendar is on the desk.**
-*(плитка `are` лишняя: здесь нужно `is` — `The calendar is on the desk.`)*
+Плитки: `onions` `soup` `the` `and` `chop` `stir` `They` `they` `are` → **They chop onions and they stir the soup.**
+*(плитка `are` лишняя: здесь нужно `chop` — `They chop onions and they stir the soup.`)*
 
-**13 · Скажите «У меня есть календарь»**
+**17 · Новый официант спрашивает, что ему делать с супом. Скажите: «Ты подаёшь суп»**
 <!-- interaction_id: en:lesson-06:session-07:i13; family: scripted_repeat_compare -->
-🎙 **I have a calendar.**
+🎙 **You serve the soup.**
 
-**14 · Скажите «Я работаю здесь»**
+**18 · Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-07:i14; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
-- am work — *Действие: `I work`, без `am`.*
-- is work — *Здесь нужно `I work`, без `is`.*
+I ___ onions. → **chop** · am chop · are chop
+- am chop — *После `I` сразу ставим `chop`, без `am`.*
+- are chop — *Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I chop`.*
 
-**15 · Послушайте, чей календарь синий**
+**19 · Послушайте помощницу**
 <!-- interaction_id: en:lesson-06:session-07:i15; family: listen_choose -->
-🔊 *My calendar is blue.* → **My calendar is blue.** · Your calendar is blue. · His calendar is blue.
-- Your calendar is blue. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His calendar is blue. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The spatula is in the drawer.* → **The spatula is in the drawer.** · The spatula is in the bowl. · The ladle is in the drawer.
+- The spatula is in the bowl. — *В записи место — `drawer`, ящик, а в этом варианте — `bowl`, миска.*
+- The ladle is in the drawer. — *В записи вещь — `spatula`, лопатка, а в этом варианте — `ladle`, половник.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-07:i16; family: speed_match -->
-calendar — календарь · playground — детская площадка · mural — настенная роспись · necessary — необходимый
+spatula — лопатка · serve — подавать на стол · bowl — миска · drawer — выдвижной ящик
 
-**17 · Анна находит календарь на столе. Спросите от её лица «Чей это календарь?»**
+**21 · Вы работаете на кухне кафе. Расскажите повару о своих делах: «Я режу лук и я помешиваю суп»**
 <!-- interaction_id: en:lesson-06:session-07:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose calendar is this?**
-
+🎙 **I chop onions and I stir the soup.**

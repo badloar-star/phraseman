@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-07:word:chop",
+    "correctText": "chop",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-07:i01",
-    "correctText": "I work near the playground.",
+    "correctText": "I chop onions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-07:word:stir",
+    "correctText": "stir",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i02",
-    "correctText": "calendar",
+    "correctText": "They stir the soup.",
     "correctResponseId": "en:lesson-06:session-07:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-07:word:serve",
+    "correctText": "serve",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-07:i03",
-    "correctText": "calendar",
+    "correctText": "serve",
     "correctResponseId": "en:lesson-06:session-07:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-07:i04",
-    "correctText": "en:lesson-06:session-07:i04:p1=calendar\nen:lesson-06:session-07:i04:p2=necessary\nen:lesson-06:session-07:i04:p3=remote\nen:lesson-06:session-07:i04:p4=playground",
+    "correctText": "en:lesson-06:session-07:i04:p1=chop\nen:lesson-06:session-07:i04:p2=stir\nen:lesson-06:session-07:i04:p3=serve\nen:lesson-06:session-07:i04:p4=spatula",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-07:word:spatula",
+    "correctText": "spatula",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i05",
-    "correctText": "This is my calendar.",
+    "correctText": "The spatula is in the drawer.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i06",
-    "correctText": "Whose calendar is this?",
+    "correctText": "Whose spatula is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i07",
-    "correctText": "The calendar is necessary.",
+    "correctText": "I chop onions.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i08",
-    "correctText": "yours",
+    "correctText": "stir",
     "correctResponseId": "en:lesson-06:session-07:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-07:i09",
-    "correctText": "The calendar is here.",
+    "correctText": "You serve the soup.",
     "correctResponseId": "en:lesson-06:session-07:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-07:i10",
-    "correctText": "en:lesson-06:session-07:i10:p1=calendar\nen:lesson-06:session-07:i10:p2=mural\nen:lesson-06:session-07:i10:p3=remote\nen:lesson-06:session-07:i10:p4=necessary",
+    "correctText": "en:lesson-06:session-07:i10:p1=stir\nen:lesson-06:session-07:i10:p2=onion\nen:lesson-06:session-07:i10:p3=soup\nen:lesson-06:session-07:i10:p4=spatula",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i11",
-    "correctText": "The mural is on the wall.",
+    "correctText": "I chop onions and I stir the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i12",
-    "correctText": "The calendar is on the desk.",
+    "correctText": "They chop onions and they stir the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i13",
-    "correctText": "I have a calendar.",
+    "correctText": "You serve the soup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i14",
-    "correctText": "work",
+    "correctText": "chop",
     "correctResponseId": "en:lesson-06:session-07:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-07:i15",
-    "correctText": "My calendar is blue.",
+    "correctText": "The spatula is in the drawer.",
     "correctResponseId": "en:lesson-06:session-07:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-07:i16",
-    "correctText": "en:lesson-06:session-07:i16:p1=calendar\nen:lesson-06:session-07:i16:p2=playground\nen:lesson-06:session-07:i16:p3=mural\nen:lesson-06:session-07:i16:p4=necessary",
+    "correctText": "en:lesson-06:session-07:i16:p1=spatula\nen:lesson-06:session-07:i16:p2=serve\nen:lesson-06:session-07:i16:p3=bowl\nen:lesson-06:session-07:i16:p4=drawer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-07:i17",
-    "correctText": "Whose calendar is this?",
+    "correctText": "I chop onions and I stir the soup.",
     "correctResponseId": null
   }
 ]

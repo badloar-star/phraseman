@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-06:word:play",
+    "correctText": "play",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-06:i01",
-    "correctText": "I work in a clinic.",
+    "correctText": "We play football.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-06:word:run",
+    "correctText": "run",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i02",
-    "correctText": "bookmark",
+    "correctText": "They run in the park.",
     "correctResponseId": "en:lesson-06:session-06:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-06:word:ride",
+    "correctText": "ride",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-06:i03",
-    "correctText": "bookmark",
+    "correctText": "ride",
     "correctResponseId": "en:lesson-06:session-06:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-06:i04",
-    "correctText": "en:lesson-06:session-06:i04:p1=bookmark\nen:lesson-06:session-06:i04:p2=fake\nen:lesson-06:session-06:i04:p3=clinic\nen:lesson-06:session-06:i04:p4=ceiling",
+    "correctText": "en:lesson-06:session-06:i04:p1=play\nen:lesson-06:session-06:i04:p2=run\nen:lesson-06:session-06:i04:p3=ride\nen:lesson-06:session-06:i04:p4=whistle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-06:word:whistle",
+    "correctText": "whistle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i05",
-    "correctText": "This is my bookmark.",
+    "correctText": "The whistle is in my bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i06",
-    "correctText": "Whose bookmark is this?",
+    "correctText": "Whose whistle is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i07",
-    "correctText": "This is a fake ring.",
+    "correctText": "We play football in the yard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i08",
-    "correctText": "in",
+    "correctText": "run",
     "correctResponseId": "en:lesson-06:session-06:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-06:i09",
-    "correctText": "That bookmark is yours.",
+    "correctText": "I ride a bicycle.",
     "correctResponseId": "en:lesson-06:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-06:i10",
-    "correctText": "en:lesson-06:session-06:i10:p1=bookmark\nen:lesson-06:session-06:i10:p2=kiosk\nen:lesson-06:session-06:i10:p3=fake\nen:lesson-06:session-06:i10:p4=ceiling",
+    "correctText": "en:lesson-06:session-06:i10:p1=run\nen:lesson-06:session-06:i10:p2=ride\nen:lesson-06:session-06:i10:p3=ball\nen:lesson-06:session-06:i10:p4=whistle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i11",
-    "correctText": "The clinic is near the kiosk.",
+    "correctText": "You run in the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i12",
-    "correctText": "The ceiling is white.",
+    "correctText": "I ride a bicycle in the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i13",
-    "correctText": "I have a bookmark.",
+    "correctText": "They run in the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i14",
-    "correctText": "work",
+    "correctText": "play",
     "correctResponseId": "en:lesson-06:session-06:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-06:i15",
-    "correctText": "My bookmark is here.",
+    "correctText": "The whistle is in my bag.",
     "correctResponseId": "en:lesson-06:session-06:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-06:i16",
-    "correctText": "en:lesson-06:session-06:i16:p1=bookmark\nen:lesson-06:session-06:i16:p2=fake\nen:lesson-06:session-06:i16:p3=clinic\nen:lesson-06:session-06:i16:p4=kiosk",
+    "correctText": "en:lesson-06:session-06:i16:p1=whistle\nen:lesson-06:session-06:i16:p2=play\nen:lesson-06:session-06:i16:p3=football\nen:lesson-06:session-06:i16:p4=park",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-06:i17",
-    "correctText": "Whose bookmark is this?",
+    "correctText": "I ride a bicycle.",
     "correctResponseId": null
   }
 ]

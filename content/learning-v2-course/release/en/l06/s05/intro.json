@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-05",
   "learningOutcomeByLocale": {
-    "ru": "назвать брелок, спросить о владельце и рассказать о месте работы",
-    "uk": "назвати брелок, запитати про власника й розповісти про місце роботи"
+    "ru": "выбрать, кто делает дело, и сказать об этом: I buy, They weigh, We pack, You weigh — без am и are",
+    "uk": "вибрати, хто робить справу, і сказати про це: I buy, They weigh, We pack, You weigh — без am і are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маленькая вещь для ключей",
-        "uk": "Маленька річ для ключів"
+        "ru": "У прилавка",
+        "uk": "Біля прилавка"
       },
       "bodyByLocale": {
-        "ru": "`keychain` — «брелок», небольшая вещь, которую прикрепляют к ключам. `This is my keychain` — «Это мой брелок». `Whose keychain is this?` — «Чей это брелок?» `The keychain is mine` — «Брелок мой». Брелок помогает узнать ключи, но сам дверь открывать не обязан.",
-        "uk": "`keychain` — «брелок», невелика річ, яку прикріплюють до ключів. `This is my keychain` — «Це мій брелок». `Whose keychain is this?` — «Чий це брелок?» `The keychain is mine` — «Брелок мій». Брелок допомагає впізнати ключі, але сам двері відчиняти не зобов’язаний."
+        "ru": "Рынок открылся, и вы идёте вдоль прилавков с большой корзиной. На одном лежат яркие красные яблоки с зелёными листьями. Продавец спрашивает, что вам нужно. buy — «покупать». О себе говорим I: I buy apples — «Я покупаю яблоки». Яблок несколько — apples.",
+        "uk": "Ринок відкрився, і ви йдете вздовж прилавків із великим кошиком. На одному лежать яскраві червоні яблука із зеленим листям. Продавець питає, що вам потрібно. buy — «купувати». Про себе кажемо I: I buy apples — «Я купую яблука». Яблук кілька — apples."
       },
       "question": {
         "interactionId": "en:lesson-06:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце брелока.",
-          "uk": "Запитайте про власника брелока."
+          "ru": "Продавец спрашивает, что вы берёте. Вы берёте яблоки. Скажите ему: «Я покупаю яблоки».",
+          "uk": "Продавець питає, що ви берете. Ви берете яблука. Скажіть йому: «Я купую яблука»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-05:intro1:r1",
-              "text": "Whose keychain is this?"
+              "text": "I buy apples."
             },
             {
               "responseId": "en:lesson-06:session-05:intro1:r2",
-              "text": "Where is the keychain?"
+              "text": "I am buy apples."
             },
             {
               "responseId": "en:lesson-06:session-05:intro1:r3",
-              "text": "Whose keychain are these?"
+              "text": "I buy apple."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-05:intro1:r1",
-              "text": "Whose keychain is this?"
+              "text": "I buy apples."
             },
             {
               "responseId": "en:lesson-06:session-05:intro1:r2",
-              "text": "Where is the keychain?"
+              "text": "I am buy apples."
             },
             {
               "responseId": "en:lesson-06:session-05:intro1:r3",
-              "text": "Whose keychain are these?"
+              "text": "I buy apple."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце брелока.",
-          "uk": "Запитайте про власника брелока."
+          "ru": "Продавец спрашивает, что вы берёте. Вы берёте яблоки. Скажите ему: «Я покупаю яблоки».",
+          "uk": "Продавець питає, що ви берете. Ви берете яблука. Скажіть йому: «Я купую яблука»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "В ящике стола",
-        "uk": "У шухляді столу"
+        "ru": "Сливы на весах",
+        "uk": "Сливи на вагах"
       },
       "bodyByLocale": {
-        "ru": "`drawer` — «ящик», выдвижная часть мебели. `The keychain is in the drawer` — «Брелок в ящике». `real` — «настоящий»: `This is a real key` — «Это настоящий ключ», а не его игрушечная копия. `That keychain is yours` — «Тот брелок твой»: `that` указывает на вещь дальше от говорящего.",
-        "uk": "`drawer` — «шухляда», висувна частина меблів. `The keychain is in the drawer` — «Брелок у шухляді». `real` — «справжній»: `This is a real key` — «Це справжній ключ», а не його іграшкова копія. `That keychain is yours` — «Той брелок твій»: `that` указує на річ далі від мовця."
+        "ru": "В соседнем ряду двое продавцов кладут сливы на старые весы с большой стрелкой. Подруга стоит рядом с вами, держит корзину и смотрит на цифры. weigh — «взвешивать». О двух продавцах говорим They: They weigh the plums — «Они взвешивают сливы».",
+        "uk": "У сусідньому ряду двоє продавців кладуть сливи на старі ваги з великою стрілкою. Подруга стоїть поруч із вами, тримає кошик і дивиться на цифри. weigh — «зважувати». Про двох продавців кажемо They: They weigh the plums — «Вони зважують сливи»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Это настоящий ключ».",
-          "uk": "Скажіть «Це справжній ключ»."
+          "ru": "Подруга смотрит на соседний прилавок и спрашивает, что делают продавцы. Скажите: «Они взвешивают сливы».",
+          "uk": "Подруга дивиться на сусідній прилавок і питає, що роблять продавці. Скажіть: «Вони зважують сливи»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-05:intro2:r1",
-              "text": "This is a real key."
+              "text": "They weigh the plums."
             },
             {
               "responseId": "en:lesson-06:session-05:intro2:r2",
-              "text": "This are a real key."
+              "text": "They are weigh the plums."
             },
             {
               "responseId": "en:lesson-06:session-05:intro2:r3",
-              "text": "This is a keychain."
+              "text": "They weigh the pears."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-05:intro2:r1",
-              "text": "This is a real key."
+              "text": "They weigh the plums."
             },
             {
               "responseId": "en:lesson-06:session-05:intro2:r2",
-              "text": "This are a real key."
+              "text": "They are weigh the plums."
             },
             {
               "responseId": "en:lesson-06:session-05:intro2:r3",
-              "text": "This is a keychain."
+              "text": "They weigh the pears."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это настоящий ключ».",
-          "uk": "Скажіть «Це справжній ключ»."
+          "ru": "Подруга смотрит на соседний прилавок и спрашивает, что делают продавцы. Скажите: «Они взвешивают сливы».",
+          "uk": "Подруга дивиться на сусідній прилавок і питає, що роблять продавці. Скажіть: «Вони зважують сливи»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Работа и ориентир",
-        "uk": "Робота й орієнтир"
+        "ru": "Сумки у выхода",
+        "uk": "Сумки біля виходу"
       },
       "bodyByLocale": {
-        "ru": "`supermarket` — «супермаркет», `court` — спортивный «корт». `I work in a supermarket` — «Я работаю в супермаркете». Перед `work` в этой фразе не нужно `am`. `The supermarket is near the court` — «Супермаркет возле корта». `I have a keychain` — «У меня есть брелок».",
-        "uk": "`supermarket` — «супермаркет», `court` — спортивний «корт». `I work in a supermarket` — «Я працюю в супермаркеті». Перед `work` у цій фразі не потрібне `am`. `The supermarket is near the court` — «Супермаркет біля корту». `I have a keychain` — «У мене є брелок»."
+        "ru": "Покупки сделаны, и вы с братом останавливаетесь у выхода с рынка после долгой прогулки по рядам. Фрукты нужно аккуратно уложить в сумки, чтобы они не помялись по дороге. pack — «упаковывать, укладывать». О себе и брате говорим We: We pack the bags — «Мы пакуем сумки».",
+        "uk": "Покупки зроблено, і ви з братом зупиняєтеся біля виходу з ринку після довгої прогулянки рядами. Фрукти треба акуратно покласти в сумки, щоб вони не пом’ялися дорогою. pack — «пакувати, укладати». Про себе й брата кажемо We: We pack the bags — «Ми пакуємо сумки»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю в супермаркете».",
-          "uk": "Скажіть «Я працюю в супермаркеті»."
+          "ru": "Брат стоит у выхода с пустыми сумками. Скажите ему: «Мы пакуем сумки».",
+          "uk": "Брат стоїть біля виходу з порожніми сумками. Скажіть йому: «Ми пакуємо сумки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-05:intro3:r1",
-              "text": "I work in a supermarket."
+              "text": "We pack the bags."
             },
             {
               "responseId": "en:lesson-06:session-05:intro3:r2",
-              "text": "I am work in a supermarket."
+              "text": "We are pack the bags."
             },
             {
               "responseId": "en:lesson-06:session-05:intro3:r3",
-              "text": "I work in a bank."
+              "text": "I pack the bags."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-05:intro3:r1",
-              "text": "I work in a supermarket."
+              "text": "We pack the bags."
             },
             {
               "responseId": "en:lesson-06:session-05:intro3:r2",
-              "text": "I am work in a supermarket."
+              "text": "We are pack the bags."
             },
             {
               "responseId": "en:lesson-06:session-05:intro3:r3",
-              "text": "I work in a bank."
+              "text": "I pack the bags."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю в супермаркете».",
-          "uk": "Скажіть «Я працюю в супермаркеті»."
+          "ru": "Брат стоит у выхода с пустыми сумками. Скажите ему: «Мы пакуем сумки».",
+          "uk": "Брат стоїть біля виходу з порожніми сумками. Скажіть йому: «Ми пакуємо сумки»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f770b9db1c0d61a8e13c706fefa8ac51f438ba4cacfc1c8484d92ba9a70a6c28"
+  "introFingerprint": "07387290f1e496f71a116b78120c3c9683ed6364fc298ce4713dbc1679749c99"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-02",
   "learningOutcomeByLocale": {
-    "ru": "назвать рабочую вещь, спросить о её владельце и описать своё состояние",
-    "uk": "назвати робочу річ, запитати про її власника й описати свій стан"
+    "ru": "сказать собеседнику, что он делает: You sweep, You carry, You wash — без are",
+    "uk": "сказати співрозмовникові, що він робить: You sweep, You carry, You wash — без are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бумаги на месте",
-        "uk": "Папери на місці"
+        "ru": "Пол утром",
+        "uk": "Підлога зранку"
       },
       "bodyByLocale": {
-        "ru": "`folder` — «папка»; здесь папка для бумажных документов. `This is my folder` — «Это моя папка». `Whose folder is this?` — «Чья это папка?» `The folder is mine` — «Папка моя». Папка держит бумаги вместе, но заполнять их за вас не обещает.",
-        "uk": "`folder` — «папка»; тут папка для паперових документів. `This is my folder` — «Це моя папка». `Whose folder is this?` — «Чия це папка?» `The folder is mine` — «Папка моя». Папка тримає папери разом, але заповнювати їх за вас не обіцяє."
+        "ru": "Новая помощница пришла в кафе в первый день и растерянно стоит у двери. Вы показываете ей на пол и объясняете, что утром она убирает зал. sweep — «подметать». Когда говорим собеседнику, начинаем с You: You sweep the floor — «Ты подметаешь пол».",
+        "uk": "Нова помічниця прийшла в кафе в перший день і розгублено стоїть біля дверей. Ви показуєте їй на підлогу й пояснюєте, що вранці вона прибирає зал. sweep — «підмітати». Коли говоримо співрозмовникові, починаємо з You: You sweep the floor — «Ти підмітаєш підлогу»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-02:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце папки.",
-          "uk": "Запитайте про власника папки."
+          "ru": "Помощница спрашивает, что ей делать утром. Скажите ей: «Ты подметаешь пол».",
+          "uk": "Помічниця питає, що їй робити вранці. Скажіть їй: «Ти підмітаєш підлогу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-02:intro1:r1",
-              "text": "Whose folder is this?"
+              "text": "You sweep the floor."
             },
             {
               "responseId": "en:lesson-06:session-02:intro1:r2",
-              "text": "Where is the folder?"
+              "text": "You are sweep the floor."
             },
             {
               "responseId": "en:lesson-06:session-02:intro1:r3",
-              "text": "Whose folder are these?"
+              "text": "I sweep the floor."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-02:intro1:r1",
-              "text": "Whose folder is this?"
+              "text": "You sweep the floor."
             },
             {
               "responseId": "en:lesson-06:session-02:intro1:r2",
-              "text": "Where is the folder?"
+              "text": "You are sweep the floor."
             },
             {
               "responseId": "en:lesson-06:session-02:intro1:r3",
-              "text": "Whose folder are these?"
+              "text": "I sweep the floor."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце папки.",
-          "uk": "Запитайте про власника папки."
+          "ru": "Помощница спрашивает, что ей делать утром. Скажите ей: «Ты подметаешь пол».",
+          "uk": "Помічниця питає, що їй робити вранці. Скажіть їй: «Ти підмітаєш підлогу»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа и сад",
-        "uk": "Робота й сад"
+        "ru": "Подносы в обед",
+        "uk": "Таці в обід"
       },
       "bodyByLocale": {
-        "ru": "`garden` — «сад». `The garden is near the office` — «Сад возле офиса». `I work here` — «Я работаю здесь»: перед `work` в этой фразе не нужно `am`. `I have a folder` — «У меня есть папка». Если показываем одну папку рядом — `this folder`, дальше от нас — `that folder`: `That folder is yours` — «Та папка твоя».",
-        "uk": "`garden` — «сад». `The garden is near the office` — «Сад біля офісу». `I work here` — «Я працюю тут»: перед `work` у цій фразі не потрібне `am`. `I have a folder` — «У мене є папка». Якщо показуємо одну папку поруч — `this folder`, далі від нас — `that folder`: `That folder is yours` — «Та папка твоя»."
+        "ru": "В обед в кафе полно людей. На кухонном окне уже стоят три подноса с супом, а помощница ждёт указаний. carry — «нести». Вы объясняете ей, что она относит подносы к столикам: You carry the trays — «Ты носишь подносы». Подносов несколько — trays.",
+        "uk": "В обід у кафе повно людей. На кухонному вікні вже стоять три таці з супом, а помічниця стоїть поруч і чекає вказівок. carry — «нести». Ви пояснюєте їй, що вона відносить таці до столиків: You carry the trays — «Ти носиш таці». Тацьок кілька — trays."
       },
       "question": {
         "interactionId": "en:lesson-06:session-02:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю здесь».",
-          "uk": "Скажіть «Я працюю тут»."
+          "ru": "Помощница ждёт указаний у кухонного окна. Скажите ей: «Ты носишь подносы».",
+          "uk": "Помічниця чекає вказівок біля кухонного вікна. Скажіть їй: «Ти носиш таці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-02:intro2:r1",
-              "text": "I work here."
+              "text": "You carry the trays."
             },
             {
               "responseId": "en:lesson-06:session-02:intro2:r2",
-              "text": "I am work here."
+              "text": "You are carry the trays."
             },
             {
               "responseId": "en:lesson-06:session-02:intro2:r3",
-              "text": "I work there."
+              "text": "You carry the tray."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-02:intro2:r1",
-              "text": "I work here."
+              "text": "You carry the trays."
             },
             {
               "responseId": "en:lesson-06:session-02:intro2:r2",
-              "text": "I am work here."
+              "text": "You are carry the trays."
             },
             {
               "responseId": "en:lesson-06:session-02:intro2:r3",
-              "text": "I work there."
+              "text": "You carry the tray."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю здесь».",
-          "uk": "Скажіть «Я працюю тут»."
+          "ru": "Помощница ждёт указаний у кухонного окна. Скажите ей: «Ты носишь подносы».",
+          "uk": "Помічниця чекає вказівок біля кухонного вікна. Скажіть їй: «Ти носиш таці»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как вы себя чувствуете",
-        "uk": "Як ви почуваєтеся"
+        "ru": "Блюдца после кофе",
+        "uk": "Блюдця після кави"
       },
       "bodyByLocale": {
-        "ru": "`confident` — «уверенный в себе»: `I am confident` — «Я уверен / уверена в себе». `relaxed` — «расслабленный»: `I am relaxed` — «Я расслаблен / расслаблена». `satisfied` — «довольный»: `I am satisfied` — «Я доволен / довольна». Эти слова описывают состояние, поэтому в данных фразах используется `am`.",
-        "uk": "`confident` — «впевнений у собі»: `I am confident` — «Я впевнений / впевнена в собі». `relaxed` — «розслаблений»: `I am relaxed` — «Я розслаблений / розслаблена». `satisfied` — «задоволений»: `I am satisfied` — «Я задоволений / задоволена». Ці слова описують стан, тому в цих фразах використовується `am`."
+        "ru": "Посетители ушли, и на столе осталась стопка блюдец от кофейных чашек. Помощница уже стоит у раковины и закатывает рукава. saucer — «блюдце», маленькая тарелка под чашкой. Вы говорите ей, что она моет блюдца: You wash the saucers — «Ты моешь блюдца».",
+        "uk": "Відвідувачі пішли, і на столі лишилася стопка блюдець від кавових чашок. Помічниця вже стоїть біля раковини й закочує рукави. saucer — «блюдце», маленька тарілка під чашкою. Ви кажете їй, що вона миє блюдця: You wash the saucers — «Ти миєш блюдця»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-02:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я доволен» без сокращения.",
-          "uk": "Скажіть «Я задоволений» без скорочення."
+          "ru": "Помощница стоит у раковины. Скажите ей: «Ты моешь блюдца».",
+          "uk": "Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-02:intro3:r1",
-              "text": "I am satisfied."
+              "text": "You wash the saucers."
             },
             {
               "responseId": "en:lesson-06:session-02:intro3:r2",
-              "text": "I satisfied."
+              "text": "You are wash the saucers."
             },
             {
               "responseId": "en:lesson-06:session-02:intro3:r3",
-              "text": "I am relaxed."
+              "text": "You wash the saucer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-02:intro3:r1",
-              "text": "I am satisfied."
+              "text": "You wash the saucers."
             },
             {
               "responseId": "en:lesson-06:session-02:intro3:r2",
-              "text": "I satisfied."
+              "text": "You are wash the saucers."
             },
             {
               "responseId": "en:lesson-06:session-02:intro3:r3",
-              "text": "I am relaxed."
+              "text": "You wash the saucer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я доволен» без сокращения.",
-          "uk": "Скажіть «Я задоволений» без скорочення."
+          "ru": "Помощница стоит у раковины. Скажите ей: «Ты моешь блюдца».",
+          "uk": "Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3add67b20d98a405490df5fe3d7f5a664a91fc14cb7c7dbedd70ba1cbfdd6b87"
+  "introFingerprint": "58aed1ef7cb70dabc7ed248c7ea65396ed2bb47c07f6d90184e625f7c35cbe08"
 }

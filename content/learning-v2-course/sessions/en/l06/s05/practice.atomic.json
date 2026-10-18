@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-05:word:buy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — buy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:buy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — buy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:buy:audio",
+            "transcript": "buy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:buy:r1",
+              "targetText": "buy",
+              "meaningByLocale": {
+                "ru": "покупать. I buy apples. — «Я покупаю яблоки». О том, как человек берёт товар и платит за него.",
+                "uk": "купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buy",
+            "definitionByLocale": {
+              "ru": "покупать. I buy apples. — «Я покупаю яблоки». О том, как человек берёт товар и платит за него.",
+              "uk": "купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I buy apples.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
+            "uk": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»"
+          },
+          "orderedTokens": [
+            "I",
+            "buy",
+            "apples"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `buy` — `I buy apples.`",
+                "uk": "тут потрібно `buy` — `I buy apples.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:weigh",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — weigh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:weigh:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — weigh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:weigh:audio",
+            "transcript": "weigh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:weigh:r1",
+              "targetText": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать. They weigh the plums. — «Они взвешивают сливы». О том, как узнают вес вещи на весах.",
+                "uk": "зважувати. They weigh the plums. — «Вони зважують сливи». Про те, як дізнаються вагу речі на вагах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weigh",
+            "definitionByLocale": {
+              "ru": "взвешивать. They weigh the plums. — «Они взвешивают сливы». О том, как узнают вес вещи на весах.",
+              "uk": "зважувати. They weigh the plums. — «Вони зважують сливи». Про те, як дізнаються вагу речі на вагах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i02:r1",
+            "text": "They weigh the plums."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r2",
+            "text": "They weigh the pears."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r3",
+            "text": "They have the plums."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i02:audio",
+            "transcript": "They weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i02:r1",
+              "targetText": "They weigh the plums.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r2",
+              "targetText": "They weigh the pears.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r3",
+              "targetText": "They have the plums.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plums`, сливы, а в этом варианте — `pears`, груши.",
+                "uk": "У записі останнє слово — `plums`, сливи, а в цьому варіанті — `pears`, груші."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `weigh` — взвешивать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `weigh` — зважувати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:pack",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:pack:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:pack:audio",
+            "transcript": "pack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:pack:r1",
+              "targetText": "pack",
+              "meaningByLocale": {
+                "ru": "упаковывать, укладывать. We pack the bags. — «Мы пакуем сумки». О том, как кладут вещи в сумку или коробку.",
+                "uk": "пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack",
+            "definitionByLocale": {
+              "ru": "упаковывать, укладывать. We pack the bags. — «Мы пакуем сумки». О том, как кладут вещи в сумку или коробку.",
+              "uk": "пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i03:r1",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r2",
+            "text": "are pack"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r3",
+            "text": "am pack"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+            "uk": "Ви з братом кладете фрукти в сумки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ the bags.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i03:r1",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r2",
+              "text": "are pack"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r3",
+              "text": "am pack"
+            }
+          ],
+          "testedDimension": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `We` сразу ставим `pack`, без `are`.",
+                "uk": "Після `We` одразу ставимо `pack`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставится только после `I`; здесь нужно `We pack`.",
+                "uk": "`am` ставиться тільки після `I`; тут потрібно `We pack`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i04:p1",
+              "target": "buy",
+              "meaningByLocale": {
+                "ru": "покупать",
+                "uk": "купувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p2",
+              "target": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать",
+                "uk": "зважувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p3",
+              "target": "pack",
+              "meaningByLocale": {
+                "ru": "упаковывать",
+                "uk": "пакувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p4",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "buy",
+            "weigh",
+            "pack",
+            "scales"
+          ],
+          "rightColumn": [
+            "покупать",
+            "взвешивать",
+            "упаковывать",
+            "весы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:scales",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scales",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:scales:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scales",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:scales:audio",
+            "transcript": "scales"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:scales:r1",
+              "targetText": "scales",
+              "meaningByLocale": {
+                "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
+                "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scales",
+            "definitionByLocale": {
+              "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
+              "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i05:audio",
+            "transcript": "The scales are on the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The scales are on the table.",
+          "orderedTokens": [
+            "The",
+            "scales",
+            "are",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The scales are on the table.`",
+                "uk": "тут потрібно `are` — `The scales are on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы увидели на прилавке весы и спрашиваете продавца, чьи они. Задайте вопрос: «Чьи это весы?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы увидели на прилавке весы и спрашиваете продавца, чьи они. Задайте вопрос: «Чьи это весы?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose scales are these?",
+          "localizedMeaning": {
+            "ru": "Вы увидели на прилавке весы и спрашиваете продавца, чьи они. Задайте вопрос: «Чьи это весы?»",
+            "uk": "Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "scales",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы увидели на прилавке весы и спрашиваете продавца, чьи они. Задайте вопрос: «Чьи это весы?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose scales are these?`",
+                "uk": "тут потрібно `Whose` — `Whose scales are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, что вы делаете на рынке. Скажите: «Я покупаю яблоки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, что вы делаете на рынке. Скажите: «Я покупаю яблоки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i07:audio",
+            "transcript": "I buy apples."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I buy apples.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двое продавцов кладут сливы на весы. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i08:r1",
+            "text": "weigh"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r2",
+            "text": "are weigh"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r3",
+            "text": "is weigh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое продавцов кладут сливы на весы. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое продавцов кладут сливы на весы. Выберите слово",
+            "uk": "Двоє продавців кладуть сливи на ваги. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the plums.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i08:r1",
+              "text": "weigh"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r2",
+              "text": "are weigh"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r3",
+              "text": "is weigh"
+            }
+          ],
+          "testedDimension": "Двое продавцов кладут сливы на весы. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Двое продавцов кладут сливы на весы. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `weigh`, без `are`.",
+                "uk": "Після `They` одразу ставимо `weigh`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Двое продавцов кладут сливы на весы. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They weigh`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They weigh`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i09:r1",
+            "text": "We pack the bags."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r2",
+            "text": "We pack the boxes."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r3",
+            "text": "We have the bags."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i09:audio",
+            "transcript": "We pack the bags."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i09:r1",
+              "targetText": "We pack the bags.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r2",
+              "targetText": "We pack the boxes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r3",
+              "targetText": "We have the bags.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bags`, сумки, а в этом варианте — `boxes`, коробки.",
+                "uk": "У записі останнє слово — `bags`, сумки, а в цьому варіанті — `boxes`, коробки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `pack` — укладывать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `pack` — укладати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i10:p1",
+              "target": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать",
+                "uk": "зважувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p2",
+              "target": "plum",
+              "meaningByLocale": {
+                "ru": "слива",
+                "uk": "слива"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p3",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p4",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "weigh",
+            "plum",
+            "bag",
+            "scales"
+          ],
+          "rightColumn": [
+            "взвешивать",
+            "слива",
+            "сумка",
+            "весы"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте продавца и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i11:audio",
+            "transcript": "You weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You weigh the plums.",
+          "orderedTokens": [
+            "You",
+            "weigh",
+            "the",
+            "plums"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You weigh the plums.`",
+                "uk": "тут потрібно `You` — `You weigh the plums.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We pack the apples in a box.",
+          "localizedMeaning": {
+            "ru": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
+            "uk": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»"
+          },
+          "orderedTokens": [
+            "We",
+            "pack",
+            "the",
+            "apples",
+            "in",
+            "a",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pack` — `We pack the apples in a box.`",
+                "uk": "тут потрібно `pack` — `We pack the apples in a box.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, что делают продавцы. Скажите: «Они взвешивают сливы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i13:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, что делают продавцы. Скажите: «Они взвешивают сливы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i13:audio",
+            "transcript": "They weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They weigh the plums.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i14:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r2",
+            "text": "am buy"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r3",
+            "text": "are buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+            "uk": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ apples.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i14:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r2",
+              "text": "am buy"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r3",
+              "text": "are buy"
+            }
+          ],
+          "testedDimension": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `buy`, без `am`.",
+                "uk": "Після `I` одразу ставимо `buy`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I buy`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I buy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте продавца",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i15:r1",
+            "text": "The scales are on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r2",
+            "text": "The scales are on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r3",
+            "text": "The scales are in the box."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте продавца",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i15:audio",
+            "transcript": "The scales are on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i15:r1",
+              "targetText": "The scales are on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r2",
+              "targetText": "The scales are on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r3",
+              "targetText": "The scales are in the box.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте продавца",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте продавца",
+              "feedbackByLocale": {
+                "ru": "В записи весы на столе — `on`, а в этом варианте в коробке — `in`.",
+                "uk": "У записі ваги на столі — `on`, а в цьому варіанті в коробці — `in`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i16:p1",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p2",
+              "target": "buy",
+              "meaningByLocale": {
+                "ru": "покупать",
+                "uk": "купувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p3",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scales",
+            "buy",
+            "apple",
+            "box"
+          ],
+          "rightColumn": [
+            "весы",
+            "покупать",
+            "яблоко",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с братом укладываете покупки. Скажите продавцу: «Мы пакуем сумки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с братом укладываете покупки. Скажите продавцу: «Мы пакуем сумки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i17:audio",
+            "transcript": "We pack the bags."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We pack the bags.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-05:word:buy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — buy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:buy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — buy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:buy:audio",
+            "transcript": "buy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:buy:r1",
+              "targetText": "buy",
+              "meaningByLocale": {
+                "ru": "покупать. I buy apples. — «Я покупаю яблоки». О том, как человек берёт товар и платит за него.",
+                "uk": "купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buy",
+            "definitionByLocale": {
+              "ru": "покупать. I buy apples. — «Я покупаю яблоки». О том, как человек берёт товар и платит за него.",
+              "uk": "купувати. I buy apples. — «Я купую яблука». Про те, як людина бере товар і платить за нього."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I buy apples.",
+          "localizedMeaning": {
+            "ru": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
+            "uk": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»"
+          },
+          "orderedTokens": [
+            "I",
+            "buy",
+            "apples"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `buy` — `I buy apples.`",
+                "uk": "тут потрібно `buy` — `I buy apples.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:weigh",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — weigh",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:weigh:audio"
+        ],
+        "accessibilityLabel": "Картка слова — weigh",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:weigh:audio",
+            "transcript": "weigh"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:weigh:r1",
+              "targetText": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать. They weigh the plums. — «Они взвешивают сливы». О том, как узнают вес вещи на весах.",
+                "uk": "зважувати. They weigh the plums. — «Вони зважують сливи». Про те, як дізнаються вагу речі на вагах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "weigh",
+            "definitionByLocale": {
+              "ru": "взвешивать. They weigh the plums. — «Они взвешивают сливы». О том, как узнают вес вещи на весах.",
+              "uk": "зважувати. They weigh the plums. — «Вони зважують сливи». Про те, як дізнаються вагу речі на вагах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i02:r1",
+            "text": "They weigh the plums."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r2",
+            "text": "They weigh the pears."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i02:r3",
+            "text": "They have the plums."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i02:audio",
+            "transcript": "They weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i02:r1",
+              "targetText": "They weigh the plums.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r2",
+              "targetText": "They weigh the pears.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r3",
+              "targetText": "They have the plums.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `plums`, сливы, а в этом варианте — `pears`, груши.",
+                "uk": "У записі останнє слово — `plums`, сливи, а в цьому варіанті — `pears`, груші."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `weigh` — взвешивать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `weigh` — зважувати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:pack",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pack",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:pack:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pack",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:pack:audio",
+            "transcript": "pack"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:pack:r1",
+              "targetText": "pack",
+              "meaningByLocale": {
+                "ru": "упаковывать, укладывать. We pack the bags. — «Мы пакуем сумки». О том, как кладут вещи в сумку или коробку.",
+                "uk": "пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pack",
+            "definitionByLocale": {
+              "ru": "упаковывать, укладывать. We pack the bags. — «Мы пакуем сумки». О том, как кладут вещи в сумку или коробку.",
+              "uk": "пакувати, укладати. We pack the bags. — «Ми пакуємо сумки». Про те, як кладуть речі в сумку чи коробку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i03:r1",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r2",
+            "text": "are pack"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i03:r3",
+            "text": "am pack"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с братом кладёте фрукты в сумки. Выберите слово",
+            "uk": "Ви з братом кладете фрукти в сумки. Виберіть слово"
+          },
+          "gappedTargetPhrase": "We ___ the bags.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i03:r1",
+              "text": "pack"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r2",
+              "text": "are pack"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r3",
+              "text": "am pack"
+            }
+          ],
+          "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `We` сразу ставим `pack`, без `are`.",
+                "uk": "Після `We` одразу ставимо `pack`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` ставится только после `I`; здесь нужно `We pack`.",
+                "uk": "`am` ставиться тільки після `I`; тут потрібно `We pack`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i04:p1",
+              "target": "buy",
+              "meaningByLocale": {
+                "ru": "покупать",
+                "uk": "купувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p2",
+              "target": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать",
+                "uk": "зважувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p3",
+              "target": "pack",
+              "meaningByLocale": {
+                "ru": "упаковывать",
+                "uk": "пакувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i04:p4",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "buy",
+            "weigh",
+            "pack",
+            "scales"
+          ],
+          "rightColumn": [
+            "купувати",
+            "зважувати",
+            "пакувати",
+            "ваги"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:word:scales",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scales",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:word:scales:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scales",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:word:scales:audio",
+            "transcript": "scales"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:word:scales:r1",
+              "targetText": "scales",
+              "meaningByLocale": {
+                "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
+                "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scales",
+            "definitionByLocale": {
+              "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
+              "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i05:audio",
+            "transcript": "The scales are on the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The scales are on the table.",
+          "orderedTokens": [
+            "The",
+            "scales",
+            "are",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `are` — `The scales are on the table.`",
+                "uk": "тут потрібно `are` — `The scales are on the table.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose scales are these?",
+          "localizedMeaning": {
+            "ru": "Вы увидели на прилавке весы и спрашиваете продавца, чьи они. Задайте вопрос: «Чьи это весы?»",
+            "uk": "Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "scales",
+            "are",
+            "these"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви побачили на прилавку ваги й питаєте продавця, чиї вони. Поставте питання: «Чиї це ваги?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose scales are these?`",
+                "uk": "тут потрібно `Whose` — `Whose scales are these?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, що ви робите на ринку. Скажіть: «Я купую яблука»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, що ви робите на ринку. Скажіть: «Я купую яблука»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i07:audio",
+            "transcript": "I buy apples."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I buy apples.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i08:r1",
+            "text": "weigh"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r2",
+            "text": "are weigh"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i08:r3",
+            "text": "is weigh"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое продавцов кладут сливы на весы. Выберите слово",
+            "uk": "Двоє продавців кладуть сливи на ваги. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the plums.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i08:r1",
+              "text": "weigh"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r2",
+              "text": "are weigh"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r3",
+              "text": "is weigh"
+            }
+          ],
+          "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `weigh`, без `are`.",
+                "uk": "Після `They` одразу ставимо `weigh`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They weigh`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They weigh`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i09:r1",
+            "text": "We pack the bags."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r2",
+            "text": "We pack the boxes."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i09:r3",
+            "text": "We have the bags."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i09:audio",
+            "transcript": "We pack the bags."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i09:r1",
+              "targetText": "We pack the bags.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r2",
+              "targetText": "We pack the boxes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r3",
+              "targetText": "We have the bags.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bags`, сумки, а в этом варианте — `boxes`, коробки.",
+                "uk": "У записі останнє слово — `bags`, сумки, а в цьому варіанті — `boxes`, коробки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `pack` — укладывать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `pack` — укладати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i10:p1",
+              "target": "weigh",
+              "meaningByLocale": {
+                "ru": "взвешивать",
+                "uk": "зважувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p2",
+              "target": "plum",
+              "meaningByLocale": {
+                "ru": "слива",
+                "uk": "слива"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p3",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i10:p4",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "weigh",
+            "plum",
+            "bag",
+            "scales"
+          ],
+          "rightColumn": [
+            "зважувати",
+            "слива",
+            "сумка",
+            "ваги"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте продавця й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i11:audio",
+            "transcript": "You weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You weigh the plums.",
+          "orderedTokens": [
+            "You",
+            "weigh",
+            "the",
+            "plums"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте продавця й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You weigh the plums.`",
+                "uk": "тут потрібно `You` — `You weigh the plums.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We pack the apples in a box.",
+          "localizedMeaning": {
+            "ru": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
+            "uk": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»"
+          },
+          "orderedTokens": [
+            "We",
+            "pack",
+            "the",
+            "apples",
+            "in",
+            "a",
+            "box"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `pack` — `We pack the apples in a box.`",
+                "uk": "тут потрібно `pack` — `We pack the apples in a box.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, що роблять продавці. Скажіть: «Вони зважують сливи»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i13:audio"
+        ],
+        "accessibilityLabel": "Брат питає, що роблять продавці. Скажіть: «Вони зважують сливи»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i13:audio",
+            "transcript": "They weigh the plums."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They weigh the plums.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i14:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r2",
+            "text": "am buy"
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i14:r3",
+            "text": "are buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
+            "uk": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ apples.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-05:i14:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r2",
+              "text": "am buy"
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r3",
+              "text": "are buy"
+            }
+          ],
+          "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `buy`, без `am`.",
+                "uk": "Після `I` одразу ставимо `buy`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I buy`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I buy`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте продавця",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-05:i15:r1",
+            "text": "The scales are on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r2",
+            "text": "The scales are on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-05:i15:r3",
+            "text": "The scales are in the box."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте продавця",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i15:audio",
+            "transcript": "The scales are on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-05:i15:r1",
+              "targetText": "The scales are on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r2",
+              "targetText": "The scales are on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r3",
+              "targetText": "The scales are in the box.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-05:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте продавця",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-05:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте продавця",
+              "feedbackByLocale": {
+                "ru": "В записи весы на столе — `on`, а в этом варианте в коробке — `in`.",
+                "uk": "У записі ваги на столі — `on`, а в цьому варіанті в коробці — `in`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-05:i16:p1",
+              "target": "scales",
+              "meaningByLocale": {
+                "ru": "весы",
+                "uk": "ваги"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p2",
+              "target": "buy",
+              "meaningByLocale": {
+                "ru": "покупать",
+                "uk": "купувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p3",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-05:i16:p4",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scales",
+            "buy",
+            "apple",
+            "box"
+          ],
+          "rightColumn": [
+            "ваги",
+            "купувати",
+            "яблуко",
+            "коробка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-05:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з братом укладаєте покупки. Скажіть продавцеві: «Ми пакуємо сумки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з братом укладаєте покупки. Скажіть продавцеві: «Ми пакуємо сумки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-05:i17:audio",
+            "transcript": "We pack the bags."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We pack the bags.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-05:word:buy",
+      "correctText": "buy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i01",
+      "correctText": "I buy apples.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:word:weigh",
+      "correctText": "weigh",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i02",
+      "correctText": "They weigh the plums.",
+      "correctResponseId": "en:lesson-06:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:word:pack",
+      "correctText": "pack",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i03",
+      "correctText": "pack",
+      "correctResponseId": "en:lesson-06:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:word:scales",
+      "correctText": "scales",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i05",
+      "correctText": "The scales are on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i06",
+      "correctText": "Whose scales are these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i07",
+      "correctText": "I buy apples.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i08",
+      "correctText": "weigh",
+      "correctResponseId": "en:lesson-06:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i09",
+      "correctText": "We pack the bags.",
+      "correctResponseId": "en:lesson-06:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i11",
+      "correctText": "You weigh the plums.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i12",
+      "correctText": "We pack the apples in a box.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i13",
+      "correctText": "They weigh the plums.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i14",
+      "correctText": "buy",
+      "correctResponseId": "en:lesson-06:session-05:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i15",
+      "correctText": "The scales are on the table.",
+      "correctResponseId": "en:lesson-06:session-05:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-05:i17",
+      "correctText": "We pack the bags.",
+      "correctResponseId": null
+    }
+  ]
+}

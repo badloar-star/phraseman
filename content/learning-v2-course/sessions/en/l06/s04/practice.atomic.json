@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-04:word:build",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — build",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:build:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — build",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:build:audio",
+            "transcript": "build"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:build:r1",
+              "targetText": "build",
+              "meaningByLocale": {
+                "ru": "строить. They build a wall. — «Они строят стену». О том, как из кирпича или блоков ставят стену или дом.",
+                "uk": "будувати. They build a wall. — «Вони будують стіну». Про те, як із цегли або блоків ставлять стіну чи будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "build",
+            "definitionByLocale": {
+              "ru": "строить. They build a wall. — «Они строят стену». О том, как из кирпича или блоков ставят стену или дом.",
+              "uk": "будувати. They build a wall. — «Вони будують стіну». Про те, як із цегли або блоків ставлять стіну чи будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They build a wall.",
+          "localizedMeaning": {
+            "ru": "Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»",
+            "uk": "Сестра дивиться з вікна на робітників. Скажіть: «Вони будують стіну»"
+          },
+          "orderedTokens": [
+            "They",
+            "build",
+            "a",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `build` — `They build a wall.`",
+                "uk": "тут потрібно `build` — `They build a wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:dig",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:dig:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:dig:audio",
+            "transcript": "dig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:dig:r1",
+              "targetText": "dig",
+              "meaningByLocale": {
+                "ru": "копать. They dig in the yard. — «Они копают во дворе». О том, как лопатой делают яму в земле.",
+                "uk": "копати. They dig in the yard. — «Вони копають у дворі». Про те, як лопатою роблять яму в землі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dig",
+            "definitionByLocale": {
+              "ru": "копать. They dig in the yard. — «Они копают во дворе». О том, как лопатой делают яму в земле.",
+              "uk": "копати. They dig in the yard. — «Вони копають у дворі». Про те, як лопатою роблять яму в землі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i02:r1",
+            "text": "They dig in the yard."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r2",
+            "text": "They dig in the garden."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r3",
+            "text": "They build in the yard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i02:audio",
+            "transcript": "They dig in the yard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i02:r1",
+              "targetText": "They dig in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r2",
+              "targetText": "They dig in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r3",
+              "targetText": "They build in the yard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `yard`, двор, а в этом варианте — `garden`, сад.",
+                "uk": "У записі останнє слово — `yard`, двір, а в цьому варіанті — `garden`, сад."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `dig` — копать, а в этом варианте `build` — строить.",
+                "uk": "У записі `dig` — копати, а в цьому варіанті `build` — будувати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:mix",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mix",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:mix:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mix",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:mix:audio",
+            "transcript": "mix"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:mix:r1",
+              "targetText": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать. They mix the salad. — «Они мешают салат». О том, как соединяют несколько вещей в одну смесь.",
+                "uk": "мішати, змішувати. They mix the salad. — «Вони мішають салат». Про те, як з’єднують кілька речей в одну суміш."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mix",
+            "definitionByLocale": {
+              "ru": "мешать, смешивать. They mix the salad. — «Они мешают салат». О том, как соединяют несколько вещей в одну смесь.",
+              "uk": "мішати, змішувати. They mix the salad. — «Вони мішають салат». Про те, як з’єднують кілька речей в одну суміш."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i03:r1",
+            "text": "mix"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r2",
+            "text": "are mix"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r3",
+            "text": "is mix"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+            "uk": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the salad.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i03:r1",
+              "text": "mix"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r2",
+              "text": "are mix"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r3",
+              "text": "is mix"
+            }
+          ],
+          "testedDimension": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `mix`, без `are`.",
+                "uk": "Після `They` одразу ставимо `mix`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They mix`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They mix`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i04:p1",
+              "target": "build",
+              "meaningByLocale": {
+                "ru": "строить",
+                "uk": "будувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p2",
+              "target": "dig",
+              "meaningByLocale": {
+                "ru": "копать",
+                "uk": "копати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p3",
+              "target": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать",
+                "uk": "мішати, змішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p4",
+              "target": "cement",
+              "meaningByLocale": {
+                "ru": "цемент",
+                "uk": "цемент"
+              }
+            }
+          ],
+          "leftColumn": [
+            "build",
+            "dig",
+            "mix",
+            "cement"
+          ],
+          "rightColumn": [
+            "строить",
+            "копать",
+            "мешать, смешивать",
+            "цемент"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:cement",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:cement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:cement:audio",
+            "transcript": "cement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:cement:r1",
+              "targetText": "cement",
+              "meaningByLocale": {
+                "ru": "цемент. They carry the cement. — «Они несут цемент». Серый порошок: если смешать его с водой, получится раствор.",
+                "uk": "цемент. They carry the cement. — «Вони несуть цемент». Сірий порошок: якщо змішати його з водою, вийде розчин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cement",
+            "definitionByLocale": {
+              "ru": "цемент. They carry the cement. — «Они несут цемент». Серый порошок: если смешать его с водой, получится раствор.",
+              "uk": "цемент. They carry the cement. — «Вони несуть цемент». Сірий порошок: якщо змішати його з водою, вийде розчин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i05:audio",
+            "transcript": "The cement is in the sack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cement is in the sack.",
+          "orderedTokens": [
+            "The",
+            "cement",
+            "is",
+            "in",
+            "the",
+            "sack"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The cement is in the sack.`",
+                "uk": "тут потрібно `is` — `The cement is in the sack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли у ворот мешок цемента и спрашиваете рабочего, чей он. Задайте вопрос: «Чей это цемент?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли у ворот мешок цемента и спрашиваете рабочего, чей он. Задайте вопрос: «Чей это цемент?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose cement is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли у ворот мешок цемента и спрашиваете рабочего, чей он. Задайте вопрос: «Чей это цемент?»",
+            "uk": "Ви знайшли біля воріт мішок цементу й питаєте робітника, чий він. Поставте питання: «Чий це цемент?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "cement",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли у ворот мешок цемента и спрашиваете рабочего, чей он. Задайте вопрос: «Чей это цемент?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose cement is this?`",
+                "uk": "тут потрібно `Whose` — `Whose cement is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг по телефону спрашивает, что делают рабочие у ворот. Скажите: «Они копают во дворе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Друг по телефону спрашивает, что делают рабочие у ворот. Скажите: «Они копают во дворе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i07:audio",
+            "transcript": "They dig in the yard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They dig in the yard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рабочие ставят стену новой кладовой. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i08:r1",
+            "text": "build"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r2",
+            "text": "are build"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r3",
+            "text": "is build"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рабочие ставят стену новой кладовой. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рабочие ставят стену новой кладовой. Выберите слово",
+            "uk": "Робітники ставлять стіну нової комори. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ a wall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i08:r1",
+              "text": "build"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r2",
+              "text": "are build"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r3",
+              "text": "is build"
+            }
+          ],
+          "testedDimension": "Рабочие ставят стену новой кладовой. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Рабочие ставят стену новой кладовой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `build`, без `are`.",
+                "uk": "Після `They` одразу ставимо `build`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Рабочие ставят стену новой кладовой. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They build`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They build`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i09:r1",
+            "text": "They mix the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r2",
+            "text": "They mix the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r3",
+            "text": "They have the salad."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i09:audio",
+            "transcript": "They mix the salad."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i09:r1",
+              "targetText": "They mix the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r2",
+              "targetText": "They mix the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r3",
+              "targetText": "They have the salad.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, салат, а в этом варианте — `soup`, суп.",
+                "uk": "У записі останнє слово — `salad`, салат, а в цьому варіанті — `soup`, суп."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `mix` — мешать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `mix` — мішати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i10:p1",
+              "target": "dig",
+              "meaningByLocale": {
+                "ru": "копать",
+                "uk": "копати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p2",
+              "target": "cement",
+              "meaningByLocale": {
+                "ru": "цемент",
+                "uk": "цемент"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p3",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dig",
+            "cement",
+            "wall",
+            "yard"
+          ],
+          "rightColumn": [
+            "копать",
+            "цемент",
+            "стена",
+            "двор"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте друга и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте друга и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i11:audio",
+            "transcript": "They carry the cement."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They carry the cement.",
+          "orderedTokens": [
+            "They",
+            "carry",
+            "the",
+            "cement"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте друга и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They carry the cement.`",
+                "uk": "тут потрібно `They` — `They carry the cement.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They mix the salad in a bowl.",
+          "localizedMeaning": {
+            "ru": "Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»",
+            "uk": "Робітники обідають у дворі. Скажіть другові: «Вони мішають салат у мисці»"
+          },
+          "orderedTokens": [
+            "They",
+            "mix",
+            "the",
+            "salad",
+            "in",
+            "a",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mix` — `They mix the salad in a bowl.`",
+                "uk": "тут потрібно `mix` — `They mix the salad in a bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что делают рабочие в обед. Скажите: «Они мешают салат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что делают рабочие в обед. Скажите: «Они мешают салат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i13:audio",
+            "transcript": "They mix the salad."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They mix the salad.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Рабочие копают яму у ворот. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i14:r1",
+            "text": "dig"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r2",
+            "text": "are dig"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r3",
+            "text": "is dig"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Рабочие копают яму у ворот. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рабочие копают яму у ворот. Выберите слово",
+            "uk": "Робітники копають яму біля воріт. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the yard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i14:r1",
+              "text": "dig"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r2",
+              "text": "are dig"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r3",
+              "text": "is dig"
+            }
+          ],
+          "testedDimension": "Рабочие копают яму у ворот. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Рабочие копают яму у ворот. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `dig`, без `are`.",
+                "uk": "Після `They` одразу ставимо `dig`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Рабочие копают яму у ворот. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They dig`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They dig`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте рабочего",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i15:r1",
+            "text": "The cement is in the sack."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r2",
+            "text": "The cement is in the bucket."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r3",
+            "text": "The salt is in the sack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте рабочего",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i15:audio",
+            "transcript": "The cement is in the sack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i15:r1",
+              "targetText": "The cement is in the sack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r2",
+              "targetText": "The cement is in the bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r3",
+              "targetText": "The salt is in the sack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте рабочего",
+              "feedbackByLocale": {
+                "ru": "В записи место — `sack`, мешок, а в этом варианте — `bucket`, ведро.",
+                "uk": "У записі місце — `sack`, мішок, а в цьому варіанті — `bucket`, відро."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте рабочего",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `cement`, цемент, а в этом варианте — `salt`, соль.",
+                "uk": "У записі річ — `cement`, цемент, а в цьому варіанті — `salt`, сіль."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i16:p1",
+              "target": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать",
+                "uk": "мішати, змішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p2",
+              "target": "build",
+              "meaningByLocale": {
+                "ru": "строить",
+                "uk": "будувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p3",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p4",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mix",
+            "build",
+            "bucket",
+            "sack"
+          ],
+          "rightColumn": [
+            "мешать, смешивать",
+            "строить",
+            "ведро",
+            "мешок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг по телефону спрашивает, что делают рабочие у машины. Скажите: «Они несут цемент»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Друг по телефону спрашивает, что делают рабочие у машины. Скажите: «Они несут цемент»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i17:audio",
+            "transcript": "They carry the cement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They carry the cement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-04:word:build",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — build",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:build:audio"
+        ],
+        "accessibilityLabel": "Картка слова — build",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:build:audio",
+            "transcript": "build"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:build:r1",
+              "targetText": "build",
+              "meaningByLocale": {
+                "ru": "строить. They build a wall. — «Они строят стену». О том, как из кирпича или блоков ставят стену или дом.",
+                "uk": "будувати. They build a wall. — «Вони будують стіну». Про те, як із цегли або блоків ставлять стіну чи будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "build",
+            "definitionByLocale": {
+              "ru": "строить. They build a wall. — «Они строят стену». О том, как из кирпича или блоков ставят стену или дом.",
+              "uk": "будувати. They build a wall. — «Вони будують стіну». Про те, як із цегли або блоків ставлять стіну чи будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра дивиться з вікна на робітників. Скажіть: «Вони будують стіну»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра дивиться з вікна на робітників. Скажіть: «Вони будують стіну»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They build a wall.",
+          "localizedMeaning": {
+            "ru": "Сестра смотрит из окна на рабочих. Скажите: «Они строят стену»",
+            "uk": "Сестра дивиться з вікна на робітників. Скажіть: «Вони будують стіну»"
+          },
+          "orderedTokens": [
+            "They",
+            "build",
+            "a",
+            "wall"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сестра дивиться з вікна на робітників. Скажіть: «Вони будують стіну»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `build` — `They build a wall.`",
+                "uk": "тут потрібно `build` — `They build a wall.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:dig",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:dig:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:dig:audio",
+            "transcript": "dig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:dig:r1",
+              "targetText": "dig",
+              "meaningByLocale": {
+                "ru": "копать. They dig in the yard. — «Они копают во дворе». О том, как лопатой делают яму в земле.",
+                "uk": "копати. They dig in the yard. — «Вони копають у дворі». Про те, як лопатою роблять яму в землі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dig",
+            "definitionByLocale": {
+              "ru": "копать. They dig in the yard. — «Они копают во дворе». О том, как лопатой делают яму в земле.",
+              "uk": "копати. They dig in the yard. — «Вони копають у дворі». Про те, як лопатою роблять яму в землі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте друга",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i02:r1",
+            "text": "They dig in the yard."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r2",
+            "text": "They dig in the garden."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i02:r3",
+            "text": "They build in the yard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i02:audio",
+            "transcript": "They dig in the yard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i02:r1",
+              "targetText": "They dig in the yard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r2",
+              "targetText": "They dig in the garden.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r3",
+              "targetText": "They build in the yard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `yard`, двор, а в этом варианте — `garden`, сад.",
+                "uk": "У записі останнє слово — `yard`, двір, а в цьому варіанті — `garden`, сад."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте друга",
+              "feedbackByLocale": {
+                "ru": "В записи `dig` — копать, а в этом варианте `build` — строить.",
+                "uk": "У записі `dig` — копати, а в цьому варіанті `build` — будувати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:mix",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mix",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:mix:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mix",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:mix:audio",
+            "transcript": "mix"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:mix:r1",
+              "targetText": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать. They mix the salad. — «Они мешают салат». О том, как соединяют несколько вещей в одну смесь.",
+                "uk": "мішати, змішувати. They mix the salad. — «Вони мішають салат». Про те, як з’єднують кілька речей в одну суміш."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mix",
+            "definitionByLocale": {
+              "ru": "мешать, смешивать. They mix the salad. — «Они мешают салат». О том, как соединяют несколько вещей в одну смесь.",
+              "uk": "мішати, змішувати. They mix the salad. — «Вони мішають салат». Про те, як з’єднують кілька речей в одну суміш."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i03:r1",
+            "text": "mix"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r2",
+            "text": "are mix"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i03:r3",
+            "text": "is mix"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обед рабочие готовят салат. Скажите, что они его мешают. Выберите слово",
+            "uk": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the salad.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i03:r1",
+              "text": "mix"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r2",
+              "text": "are mix"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r3",
+              "text": "is mix"
+            }
+          ],
+          "testedDimension": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `mix`, без `are`.",
+                "uk": "Після `They` одразу ставимо `mix`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "В обід робітники готують салат. Скажіть, що вони його мішають. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They mix`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They mix`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i04:p1",
+              "target": "build",
+              "meaningByLocale": {
+                "ru": "строить",
+                "uk": "будувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p2",
+              "target": "dig",
+              "meaningByLocale": {
+                "ru": "копать",
+                "uk": "копати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p3",
+              "target": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать",
+                "uk": "мішати, змішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i04:p4",
+              "target": "cement",
+              "meaningByLocale": {
+                "ru": "цемент",
+                "uk": "цемент"
+              }
+            }
+          ],
+          "leftColumn": [
+            "build",
+            "dig",
+            "mix",
+            "cement"
+          ],
+          "rightColumn": [
+            "будувати",
+            "копати",
+            "мішати, змішувати",
+            "цемент"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:word:cement",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:word:cement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:word:cement:audio",
+            "transcript": "cement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:word:cement:r1",
+              "targetText": "cement",
+              "meaningByLocale": {
+                "ru": "цемент. They carry the cement. — «Они несут цемент». Серый порошок: если смешать его с водой, получится раствор.",
+                "uk": "цемент. They carry the cement. — «Вони несуть цемент». Сірий порошок: якщо змішати його з водою, вийде розчин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cement",
+            "definitionByLocale": {
+              "ru": "цемент. They carry the cement. — «Они несут цемент». Серый порошок: если смешать его с водой, получится раствор.",
+              "uk": "цемент. They carry the cement. — «Вони несуть цемент». Сірий порошок: якщо змішати його з водою, вийде розчин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i05:audio",
+            "transcript": "The cement is in the sack."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cement is in the sack.",
+          "orderedTokens": [
+            "The",
+            "cement",
+            "is",
+            "in",
+            "the",
+            "sack"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The cement is in the sack.`",
+                "uk": "тут потрібно `is` — `The cement is in the sack.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли біля воріт мішок цементу й питаєте робітника, чий він. Поставте питання: «Чий це цемент?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли біля воріт мішок цементу й питаєте робітника, чий він. Поставте питання: «Чий це цемент?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose cement is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли у ворот мешок цемента и спрашиваете рабочего, чей он. Задайте вопрос: «Чей это цемент?»",
+            "uk": "Ви знайшли біля воріт мішок цементу й питаєте робітника, чий він. Поставте питання: «Чий це цемент?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "cement",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли біля воріт мішок цементу й питаєте робітника, чий він. Поставте питання: «Чий це цемент?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose cement is this?`",
+                "uk": "тут потрібно `Whose` — `Whose cement is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг по телефону питає, що роблять робітники біля воріт. Скажіть: «Вони копають у дворі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i07:audio"
+        ],
+        "accessibilityLabel": "Друг по телефону питає, що роблять робітники біля воріт. Скажіть: «Вони копають у дворі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i07:audio",
+            "transcript": "They dig in the yard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They dig in the yard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Робітники ставлять стіну нової комори. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i08:r1",
+            "text": "build"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r2",
+            "text": "are build"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i08:r3",
+            "text": "is build"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робітники ставлять стіну нової комори. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рабочие ставят стену новой кладовой. Выберите слово",
+            "uk": "Робітники ставлять стіну нової комори. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ a wall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i08:r1",
+              "text": "build"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r2",
+              "text": "are build"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r3",
+              "text": "is build"
+            }
+          ],
+          "testedDimension": "Робітники ставлять стіну нової комори. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Робітники ставлять стіну нової комори. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `build`, без `are`.",
+                "uk": "Після `They` одразу ставимо `build`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Робітники ставлять стіну нової комори. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They build`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They build`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сестру",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i09:r1",
+            "text": "They mix the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r2",
+            "text": "They mix the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i09:r3",
+            "text": "They have the salad."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сестру",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i09:audio",
+            "transcript": "They mix the salad."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i09:r1",
+              "targetText": "They mix the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r2",
+              "targetText": "They mix the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r3",
+              "targetText": "They have the salad.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `salad`, салат, а в этом варианте — `soup`, суп.",
+                "uk": "У записі останнє слово — `salad`, салат, а в цьому варіанті — `soup`, суп."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сестру",
+              "feedbackByLocale": {
+                "ru": "В записи `mix` — мешать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `mix` — мішати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i10:p1",
+              "target": "dig",
+              "meaningByLocale": {
+                "ru": "копать",
+                "uk": "копати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p2",
+              "target": "cement",
+              "meaningByLocale": {
+                "ru": "цемент",
+                "uk": "цемент"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p3",
+              "target": "wall",
+              "meaningByLocale": {
+                "ru": "стена",
+                "uk": "стіна"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i10:p4",
+              "target": "yard",
+              "meaningByLocale": {
+                "ru": "двор",
+                "uk": "двір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dig",
+            "cement",
+            "wall",
+            "yard"
+          ],
+          "rightColumn": [
+            "копати",
+            "цемент",
+            "стіна",
+            "двір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте друга й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте друга й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i11:audio",
+            "transcript": "They carry the cement."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They carry the cement.",
+          "orderedTokens": [
+            "They",
+            "carry",
+            "the",
+            "cement"
+          ],
+          "authoredDistractorTokens": [
+            "We"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте друга й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `They` — `They carry the cement.`",
+                "uk": "тут потрібно `They` — `They carry the cement.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Робітники обідають у дворі. Скажіть другові: «Вони мішають салат у мисці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робітники обідають у дворі. Скажіть другові: «Вони мішають салат у мисці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They mix the salad in a bowl.",
+          "localizedMeaning": {
+            "ru": "Рабочие обедают во дворе. Скажите другу: «Они мешают салат в миске»",
+            "uk": "Робітники обідають у дворі. Скажіть другові: «Вони мішають салат у мисці»"
+          },
+          "orderedTokens": [
+            "They",
+            "mix",
+            "the",
+            "salad",
+            "in",
+            "a",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Робітники обідають у дворі. Скажіть другові: «Вони мішають салат у мисці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mix` — `They mix the salad in a bowl.`",
+                "uk": "тут потрібно `mix` — `They mix the salad in a bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, що роблять робітники в обід. Скажіть: «Вони мішають салат»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i13:audio"
+        ],
+        "accessibilityLabel": "Друг питає, що роблять робітники в обід. Скажіть: «Вони мішають салат»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i13:audio",
+            "transcript": "They mix the salad."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They mix the salad.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Робітники копають яму біля воріт. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i14:r1",
+            "text": "dig"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r2",
+            "text": "are dig"
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i14:r3",
+            "text": "is dig"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Робітники копають яму біля воріт. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рабочие копают яму у ворот. Выберите слово",
+            "uk": "Робітники копають яму біля воріт. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ in the yard.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-04:i14:r1",
+              "text": "dig"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r2",
+              "text": "are dig"
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r3",
+              "text": "is dig"
+            }
+          ],
+          "testedDimension": "Робітники копають яму біля воріт. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i14:r2",
+              "correct": false,
+              "testedDimension": "Робітники копають яму біля воріт. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `dig`, без `are`.",
+                "uk": "Після `They` одразу ставимо `dig`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i14:r3",
+              "correct": false,
+              "testedDimension": "Робітники копають яму біля воріт. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They dig`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They dig`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте робітника",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-04:i15:r1",
+            "text": "The cement is in the sack."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r2",
+            "text": "The cement is in the bucket."
+          },
+          {
+            "responseId": "en:lesson-06:session-04:i15:r3",
+            "text": "The salt is in the sack."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте робітника",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i15:audio",
+            "transcript": "The cement is in the sack."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-04:i15:r1",
+              "targetText": "The cement is in the sack.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r2",
+              "targetText": "The cement is in the bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r3",
+              "targetText": "The salt is in the sack.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-04:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте робітника",
+              "feedbackByLocale": {
+                "ru": "В записи место — `sack`, мешок, а в этом варианте — `bucket`, ведро.",
+                "uk": "У записі місце — `sack`, мішок, а в цьому варіанті — `bucket`, відро."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-04:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте робітника",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `cement`, цемент, а в этом варианте — `salt`, соль.",
+                "uk": "У записі річ — `cement`, цемент, а в цьому варіанті — `salt`, сіль."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-04:i16:p1",
+              "target": "mix",
+              "meaningByLocale": {
+                "ru": "мешать, смешивать",
+                "uk": "мішати, змішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p2",
+              "target": "build",
+              "meaningByLocale": {
+                "ru": "строить",
+                "uk": "будувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p3",
+              "target": "bucket",
+              "meaningByLocale": {
+                "ru": "ведро",
+                "uk": "відро"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-04:i16:p4",
+              "target": "sack",
+              "meaningByLocale": {
+                "ru": "мешок",
+                "uk": "мішок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mix",
+            "build",
+            "bucket",
+            "sack"
+          ],
+          "rightColumn": [
+            "мішати, змішувати",
+            "будувати",
+            "відро",
+            "мішок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-04:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг по телефону питає, що роблять робітники біля машини. Скажіть: «Вони несуть цемент»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Друг по телефону питає, що роблять робітники біля машини. Скажіть: «Вони несуть цемент»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-04:i17:audio",
+            "transcript": "They carry the cement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They carry the cement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-04:word:build",
+      "correctText": "build",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i01",
+      "correctText": "They build a wall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:word:dig",
+      "correctText": "dig",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i02",
+      "correctText": "They dig in the yard.",
+      "correctResponseId": "en:lesson-06:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:word:mix",
+      "correctText": "mix",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i03",
+      "correctText": "mix",
+      "correctResponseId": "en:lesson-06:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:word:cement",
+      "correctText": "cement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i05",
+      "correctText": "The cement is in the sack.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i06",
+      "correctText": "Whose cement is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i07",
+      "correctText": "They dig in the yard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i08",
+      "correctText": "build",
+      "correctResponseId": "en:lesson-06:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i09",
+      "correctText": "They mix the salad.",
+      "correctResponseId": "en:lesson-06:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i11",
+      "correctText": "They carry the cement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i12",
+      "correctText": "They mix the salad in a bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i13",
+      "correctText": "They mix the salad.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i14",
+      "correctText": "dig",
+      "correctResponseId": "en:lesson-06:session-04:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i15",
+      "correctText": "The cement is in the sack.",
+      "correctResponseId": "en:lesson-06:session-04:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-04:i17",
+      "correctText": "They carry the cement.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -4,31 +4,87 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-01:i01",
+      "interactionId": "en:lesson-06:session-01:word:work",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — work",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-01:word:work:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — work",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-01:word:work:audio",
+          "transcript": "work"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-01:word:work:r1",
+            "targetText": "work",
+            "meaningByLocale": {
+              "ru": "работать. I work in a pharmacy. — «Я работаю в аптеке». О том, чем человек занимается каждый рабочий день.",
+              "uk": "працювати. I work in a pharmacy. — «Я працюю в аптеці». Про те, чим людина займається щодня на роботі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "work",
+          "definitionByLocale": {
+            "ru": "работать. I work in a pharmacy. — «Я работаю в аптеке». О том, чем человек занимается каждый рабочий день.",
+            "uk": "працювати. I work in a pharmacy. — «Я працюю в аптеці». Про те, чим людина займається щодня на роботі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-01:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «У меня есть письменный стол»",
+      "prompt": "Сосед в лифте спрашивает, где вы работаете. Скажите: «Я работаю в аптеке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «У меня есть письменный стол»",
+      "accessibilityLabel": "Сосед в лифте спрашивает, где вы работаете. Скажите: «Я работаю в аптеке»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have a desk.",
+        "targetPhrase": "I work in a pharmacy.",
         "localizedMeaning": {
-          "ru": "Скажите «У меня есть письменный стол»",
-          "uk": "Скажіть «У мене є письмовий стіл»"
+          "ru": "Сосед в лифте спрашивает, где вы работаете. Скажите: «Я работаю в аптеке»",
+          "uk": "Сусід у ліфті питає, де ви працюєте. Скажіть: «Я працюю в аптеці»"
         },
         "orderedTokens": [
           "I",
-          "have",
+          "work",
+          "in",
           "a",
-          "desk"
+          "pharmacy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-01:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед в лифте спрашивает, где вы работаете. Скажите: «Я работаю в аптеке»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `work` — `I work in a pharmacy.`",
+              "uk": "тут потрібно `work` — `I work in a pharmacy.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-01:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-06:session-01:word:bake",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — bake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-01:word:bake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-01:word:bake:audio",
+          "transcript": "bake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-01:word:bake:r1",
+            "targetText": "bake",
+            "meaningByLocale": {
+              "ru": "печь. I bake bread. — «Я пеку хлеб». О еде, которую готовят в духовке.",
+              "uk": "пекти. I bake bread. — «Я печу хліб». Про їжу, яку готують у духовці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bake",
+          "definitionByLocale": {
+            "ru": "печь. I bake bread. — «Я пеку хлеб». О еде, которую готовят в духовке.",
+            "uk": "пекти. I bake bread. — «Я печу хліб». Про їжу, яку готують у духовці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-01:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i02:r1",
-          "text": "work"
+          "text": "I bake bread."
         },
         {
           "responseId": "en:lesson-06:session-01:i02:r2",
-          "text": "walk"
+          "text": "I have bread."
         },
         {
           "responseId": "en:lesson-06:session-01:i02:r3",
-          "text": "word"
+          "text": "I bake a pie."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i02:audio",
-          "transcript": "work"
+          "transcript": "I bake bread."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-01:i02:r1",
-            "targetText": "work",
+            "targetText": "I bake bread.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i02:r2",
-            "targetText": "walk",
+            "targetText": "I have bread.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i02:r3",
-            "targetText": "word",
+            "targetText": "I bake a pie.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +190,19 @@
           {
             "responseId": "en:lesson-06:session-01:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `work`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `work`, а в цьому варіанті — `walk`."
+              "ru": "В записи `bake` — печь, а в этом варианте `have` — иметь.",
+              "uk": "У записі `bake` — пекти, а в цьому варіанті `have` — мати."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `work`, а в этом варианте — `word`.",
-              "uk": "У записі перше слово — `work`, а в цьому варіанті — `word`."
+              "ru": "В записи последнее слово — `bread`, хлеб, а в этом варианте — `pie`, пирог.",
+              "uk": "У записі останнє слово — `bread`, хліб, а в цьому варіанті — `pie`, пиріг."
             }
           }
         ],
@@ -113,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-01:word:wash",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-01:word:wash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-01:word:wash:audio",
+          "transcript": "wash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-01:word:wash:r1",
+            "targetText": "wash",
+            "meaningByLocale": {
+              "ru": "мыть. I wash the plates. — «Я мою тарелки». О том, как убирают грязь водой.",
+              "uk": "мити. I wash the plates. — «Я мию тарілки». Про те, як прибирають бруд водою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wash",
+          "definitionByLocale": {
+            "ru": "мыть. I wash the plates. — «Я мою тарелки». О том, как убирают грязь водой.",
+            "uk": "мити. I wash the plates. — «Я мию тарілки». Про те, як прибирають бруд водою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-01:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Расскажите об обычном месте работы: «Я работаю здесь»",
+      "prompt": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i03:r1",
-          "text": "work"
+          "text": "wash"
         },
         {
           "responseId": "en:lesson-06:session-01:i03:r2",
-          "text": "am work"
+          "text": "am wash"
         },
         {
           "responseId": "en:lesson-06:session-01:i03:r3",
-          "text": "is work"
+          "text": "is wash"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите об обычном месте работы: «Я работаю здесь»",
+      "accessibilityLabel": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Расскажите об обычном месте работы: «Я работаю здесь»",
-          "uk": "Розкажіть про звичайне місце роботи: «Я працюю тут»"
+          "ru": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
+          "uk": "Ви стоїте біля раковини після вечері. Скажіть, що ви миєте тарілки. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ here.",
+        "gappedTargetPhrase": "I ___ the plates.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-01:i03:r1",
-            "text": "work"
+            "text": "wash"
           },
           {
             "responseId": "en:lesson-06:session-01:i03:r2",
-            "text": "am work"
+            "text": "am wash"
           },
           {
             "responseId": "en:lesson-06:session-01:i03:r3",
-            "text": "is work"
+            "text": "is wash"
           }
         ],
-        "testedDimension": "Расскажите об обычном месте работы: «Я работаю здесь»",
+        "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i03:r2",
             "correct": false,
-            "testedDimension": "Расскажите об обычном месте работы: «Я работаю здесь»",
+            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `I work`, без `am`.",
-              "uk": "Тут потрібно `I work`, без `am`."
+              "ru": "После `I` сразу ставим `wash`, без `am`.",
+              "uk": "Після `I` одразу ставимо `wash`, без `am`."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i03:r3",
             "correct": false,
-            "testedDimension": "Расскажите об обычном месте работы: «Я работаю здесь»",
+            "testedDimension": "Вы стоите у раковины после ужина. Скажите, что вы моете тарелки. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `I work`, без `is`.",
-              "uk": "Тут потрібно `I work`, без `is`."
+              "ru": "С `I` слово `is` не используется; нужно `I wash`.",
+              "uk": "З `I` слово `is` не вживається; потрібно `I wash`."
             }
           }
         ]
@@ -183,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +347,40 @@
           },
           {
             "pairId": "en:lesson-06:session-01:i04:p2",
-            "target": "pharmacy",
+            "target": "bake",
             "meaningByLocale": {
-              "ru": "аптека",
-              "uk": "аптека"
+              "ru": "печь",
+              "uk": "пекти"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i04:p3",
-            "target": "library",
+            "target": "wash",
             "meaningByLocale": {
-              "ru": "библиотека",
-              "uk": "бібліотека"
+              "ru": "мыть",
+              "uk": "мити"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i04:p4",
-            "target": "bakery",
+            "target": "ladle",
             "meaningByLocale": {
-              "ru": "пекарня",
-              "uk": "пекарня"
+              "ru": "половник",
+              "uk": "черпак"
             }
           }
         ],
         "leftColumn": [
           "work",
-          "pharmacy",
-          "library",
-          "bakery"
+          "bake",
+          "wash",
+          "ladle"
         ],
         "rightColumn": [
           "работать",
-          "аптека",
-          "библиотека",
-          "пекарня"
+          "печь",
+          "мыть",
+          "половник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,35 +397,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-01:word:ladle",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ladle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-01:word:ladle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ladle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-01:word:ladle:audio",
+          "transcript": "ladle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-01:word:ladle:r1",
+            "targetText": "ladle",
+            "meaningByLocale": {
+              "ru": "половник. This is my ladle. — «Это мой половник». Большая ложка с глубокой чашей: ею разливают суп.",
+              "uk": "черпак. This is my ladle. — «Це мій черпак». Велика ложка з глибокою чашею: нею розливають суп."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ladle",
+          "definitionByLocale": {
+            "ru": "половник. This is my ladle. — «Это мой половник». Большая ложка с глубокой чашей: ею разливают суп.",
+            "uk": "черпак. This is my ladle. — «Це мій черпак». Велика ложка з глибокою чашею: нею розливають суп."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-01:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i05:audio",
-          "transcript": "I work in a pharmacy."
+          "transcript": "I have a ladle."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I work in a pharmacy.",
+        "hiddenTargetPhrase": "I have a ladle.",
         "orderedTokens": [
           "I",
-          "work",
-          "in",
+          "have",
           "a",
-          "pharmacy"
+          "ladle"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-01:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседку и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `I have a ladle.`",
+              "uk": "тут потрібно `have` — `I have a ladle.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -293,31 +489,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Расскажите о своей работе: «Я работаю в библиотеке»",
+      "prompt": "Вы нашли на кухне половник и спрашиваете брата, чей он. Задайте вопрос: «Чей это половник?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Расскажите о своей работе: «Я работаю в библиотеке»",
+      "accessibilityLabel": "Вы нашли на кухне половник и спрашиваете брата, чей он. Задайте вопрос: «Чей это половник?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I work in a library.",
+        "targetPhrase": "Whose ladle is this?",
         "localizedMeaning": {
-          "ru": "Расскажите о своей работе: «Я работаю в библиотеке»",
-          "uk": "Розкажіть про свою роботу: «Я працюю в бібліотеці»"
+          "ru": "Вы нашли на кухне половник и спрашиваете брата, чей он. Задайте вопрос: «Чей это половник?»",
+          "uk": "Ви знайшли на кухні черпак і питаєте брата, чий він. Поставте питання: «Чий це черпак?»"
         },
         "orderedTokens": [
-          "I",
-          "work",
-          "in",
-          "a",
-          "library"
+          "Whose",
+          "ladle",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы нашли на кухне половник и спрашиваете брата, чей он. Задайте вопрос: «Чей это половник?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose ladle is this?`",
+              "uk": "тут потрібно `Whose` — `Whose ladle is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -327,25 +534,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Мне комфортно» без сокращения",
+      "prompt": "Соседка спрашивает, чем вы занимаетесь. Вы пекарь. Скажите: «Я пеку хлеб»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Мне комфортно» без сокращения",
+      "accessibilityLabel": "Соседка спрашивает, чем вы занимаетесь. Вы пекарь. Скажите: «Я пеку хлеб»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i07:audio",
-          "transcript": "I am comfortable."
+          "transcript": "I bake bread."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am comfortable.",
+        "targetPhrase": "I bake bread.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -360,67 +567,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «У меня есть сумка»",
+      "prompt": "Вы рассказываете соседу, где вы работаете. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i08:r1",
-          "text": "have"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-06:session-01:i08:r2",
-          "text": "am have"
+          "text": "am work"
         },
         {
           "responseId": "en:lesson-06:session-01:i08:r3",
-          "text": "has"
+          "text": "is work"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «У меня есть сумка»",
+      "accessibilityLabel": "Вы рассказываете соседу, где вы работаете. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «У меня есть сумка»",
-          "uk": "Скажіть «У мене є сумка»"
+          "ru": "Вы рассказываете соседу, где вы работаете. Выберите слово",
+          "uk": "Ви розповідаєте сусідові, де ви працюєте. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ a bag.",
+        "gappedTargetPhrase": "I ___ in a pharmacy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-01:i08:r1",
-            "text": "have"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-06:session-01:i08:r2",
-            "text": "am have"
+            "text": "am work"
           },
           {
             "responseId": "en:lesson-06:session-01:i08:r3",
-            "text": "has"
+            "text": "is work"
           }
         ],
-        "testedDimension": "Скажите «У меня есть сумка»",
+        "testedDimension": "Вы рассказываете соседу, где вы работаете. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «У меня есть сумка»",
+            "testedDimension": "Вы рассказываете соседу, где вы работаете. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Перед `have` здесь не нужно `am`.",
-              "uk": "Перед `have` тут не потрібне `am`."
+              "ru": "Здесь нужно `I work`, без `am`.",
+              "uk": "Тут потрібно `I work`, без `am`."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «У меня есть сумка»",
+            "testedDimension": "Вы рассказываете соседу, где вы работаете. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `I` используется `have`.",
-              "uk": "З `I` використовується `have`."
+              "ru": "Здесь нужно `I work`, без `is`.",
+              "uk": "Тут потрібно `I work`, без `is`."
             }
           }
         ]
@@ -429,51 +636,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где работает Анна",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i09:r1",
-          "text": "I work in a bakery."
+          "text": "I wash the plates."
         },
         {
           "responseId": "en:lesson-06:session-01:i09:r2",
-          "text": "I work in a library."
+          "text": "I wash the cups."
         },
         {
           "responseId": "en:lesson-06:session-01:i09:r3",
-          "text": "I work in a garage."
+          "text": "I have the plates."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, где работает Анна",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i09:audio",
-          "transcript": "I work in a bakery."
+          "transcript": "I wash the plates."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-01:i09:r1",
-            "targetText": "I work in a bakery.",
+            "targetText": "I wash the plates.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i09:r2",
-            "targetText": "I work in a library.",
+            "targetText": "I wash the cups.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i09:r3",
-            "targetText": "I work in a garage.",
+            "targetText": "I have the plates.",
             "meaningByLocale": null
           }
         ],
@@ -482,19 +689,19 @@
           {
             "responseId": "en:lesson-06:session-01:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где работает Анна",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bakery`, а в этом варианте — `library`.",
-              "uk": "У записі останнє слово — `bakery`, а в цьому варіанті — `library`."
+              "ru": "В записи последнее слово — `plates`, тарелки, а в этом варианте — `cups`, чашки.",
+              "uk": "У записі останнє слово — `plates`, тарілки, а в цьому варіанті — `cups`, чашки."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где работает Анна",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bakery`, а в этом варианте — `garage`.",
-              "uk": "У записі останнє слово — `bakery`, а в цьому варіанті — `garage`."
+              "ru": "В записи `wash` — мыть, а в этом варианте `have` — иметь.",
+              "uk": "У записі `wash` — мити, а в цьому варіанті `have` — мати."
             }
           }
         ],
@@ -505,8 +712,8 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -519,48 +726,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-01:i10:p1",
-            "target": "work",
+            "target": "bake",
             "meaningByLocale": {
-              "ru": "работать",
-              "uk": "працювати"
+              "ru": "печь",
+              "uk": "пекти"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i10:p2",
-            "target": "sure",
+            "target": "bread",
             "meaningByLocale": {
-              "ru": "уверен",
-              "uk": "впевнений"
+              "ru": "хлеб",
+              "uk": "хліб"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i10:p3",
-            "target": "interested",
+            "target": "plate",
             "meaningByLocale": {
-              "ru": "заинтересован",
-              "uk": "зацікавлений"
+              "ru": "тарелка",
+              "uk": "тарілка"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i10:p4",
-            "target": "comfortable",
+            "target": "ladle",
             "meaningByLocale": {
-              "ru": "чувствует себя комфортно",
-              "uk": "почувається комфортно"
+              "ru": "половник",
+              "uk": "черпак"
             }
           }
         ],
         "leftColumn": [
-          "work",
-          "sure",
-          "interested",
-          "comfortable"
+          "bake",
+          "bread",
+          "plate",
+          "ladle"
         ],
         "rightColumn": [
-          "работать",
-          "уверен",
-          "заинтересован",
-          "чувствует себя комфортно"
+          "печь",
+          "хлеб",
+          "тарелка",
+          "половник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,34 +785,46 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i11:audio",
-          "transcript": "I work in a garage."
+          "transcript": "You work in a pharmacy."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I work in a garage.",
+        "hiddenTargetPhrase": "You work in a pharmacy.",
         "orderedTokens": [
-          "I",
+          "You",
           "work",
           "in",
           "a",
-          "garage"
+          "pharmacy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "I"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-01:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседа и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `You` — `You work in a pharmacy.`",
+              "uk": "тут потрібно `You` — `You work in a pharmacy.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -615,38 +834,41 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я уверен» без сокращения",
+      "prompt": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я уверен» без сокращения",
+      "accessibilityLabel": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am sure.",
+        "targetPhrase": "I bake bread in a bakery.",
         "localizedMeaning": {
-          "ru": "Скажите «Я уверен» без сокращения",
-          "uk": "Скажіть «Я впевнений» без скорочення"
+          "ru": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
+          "uk": "Ви пекар. Скажіть сусідці повною фразою: «Я печу хліб у пекарні»"
         },
         "orderedTokens": [
           "I",
-          "am",
-          "sure"
+          "bake",
+          "bread",
+          "in",
+          "a",
+          "bakery"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "am"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Я уверен» без сокращения",
+            "testedDimension": "Вы пекарь. Скажите соседке полной фразой: «Я пеку хлеб в пекарне»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am sure.`",
-              "uk": "тут потрібно `am` — `I am sure.`"
+              "ru": "здесь нужно `bake` — `I bake bread in a bakery.`",
+              "uk": "тут потрібно `bake` — `I bake bread in a bakery.`"
             }
           }
         ],
@@ -659,25 +881,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Предложение о работе вас заинтересовало. Скажите «Я заинтересован» без сокращения",
+      "prompt": "Брат спрашивает, что вы делаете у раковины. Скажите: «Я мою тарелки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i13:audio"
       ],
-      "accessibilityLabel": "Предложение о работе вас заинтересовало. Скажите «Я заинтересован» без сокращения",
+      "accessibilityLabel": "Брат спрашивает, что вы делаете у раковины. Скажите: «Я мою тарелки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i13:audio",
-          "transcript": "I am interested."
+          "transcript": "I wash the plates."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am interested.",
+        "targetPhrase": "I wash the plates.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -692,67 +914,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я работаю в пекарне»",
+      "prompt": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i14:r1",
-          "text": "work"
+          "text": "bake"
         },
         {
           "responseId": "en:lesson-06:session-01:i14:r2",
-          "text": "am work"
+          "text": "am bake"
         },
         {
           "responseId": "en:lesson-06:session-01:i14:r3",
-          "text": "is work"
+          "text": "is bake"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я работаю в пекарне»",
+      "accessibilityLabel": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я работаю в пекарне»",
-          "uk": "Скажіть «Я працюю в пекарні»"
+          "ru": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
+          "uk": "Ви дістали з духовки хліб. Скажіть сусідці, що ви його печете. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ in a bakery.",
+        "gappedTargetPhrase": "I ___ bread.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-01:i14:r1",
-            "text": "work"
+            "text": "bake"
           },
           {
             "responseId": "en:lesson-06:session-01:i14:r2",
-            "text": "am work"
+            "text": "am bake"
           },
           {
             "responseId": "en:lesson-06:session-01:i14:r3",
-            "text": "is work"
+            "text": "is bake"
           }
         ],
-        "testedDimension": "Скажите «Я работаю в пекарне»",
+        "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-01:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю в пекарне»",
+            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` сразу ставим `work`, без `am`.",
-              "uk": "Після `I` одразу ставимо `work`, без `am`."
+              "ru": "После `I` сразу ставим `bake`, без `am`.",
+              "uk": "Після `I` одразу ставимо `bake`, без `am`."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я работаю в пекарне»",
+            "testedDimension": "Вы достали из духовки хлеб. Скажите соседке, что вы его печёте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` сразу ставим `work`, без `is`.",
-              "uk": "Після `I` одразу ставимо `work`, без `is`."
+              "ru": "С `I` слово `is` не используется; нужно `I bake`.",
+              "uk": "З `I` слово `is` не вживається; потрібно `I bake`."
             }
           }
         ]
@@ -761,51 +983,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где работает Том",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-01:i15:r1",
-          "text": "I work here."
+          "text": "I work in a pharmacy."
         },
         {
           "responseId": "en:lesson-06:session-01:i15:r2",
-          "text": "I work there."
+          "text": "I work in a bakery."
         },
         {
           "responseId": "en:lesson-06:session-01:i15:r3",
-          "text": "I work nearby."
+          "text": "I work in a library."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где работает Том",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i15:audio",
-          "transcript": "I work here."
+          "transcript": "I work in a pharmacy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-01:i15:r1",
-            "targetText": "I work here.",
+            "targetText": "I work in a pharmacy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i15:r2",
-            "targetText": "I work there.",
+            "targetText": "I work in a bakery.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-01:i15:r3",
-            "targetText": "I work nearby.",
+            "targetText": "I work in a library.",
             "meaningByLocale": null
           }
         ],
@@ -814,19 +1036,19 @@
           {
             "responseId": "en:lesson-06:session-01:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где работает Том",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `pharmacy`, а в этом варианте — `bakery`.",
+              "uk": "У записі останнє слово — `pharmacy`, а в цьому варіанті — `bakery`."
             }
           },
           {
             "responseId": "en:lesson-06:session-01:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где работает Том",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `nearby`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `nearby`."
+              "ru": "В записи последнее слово — `pharmacy`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `pharmacy`, а в цьому варіанті — `library`."
             }
           }
         ],
@@ -837,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -851,48 +1073,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-01:i16:p1",
-            "target": "garage",
+            "target": "wash",
             "meaningByLocale": {
-              "ru": "гараж",
-              "uk": "гараж"
+              "ru": "мыть",
+              "uk": "мити"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i16:p2",
-            "target": "pharmacy",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "аптека",
-              "uk": "аптека"
+              "ru": "работать",
+              "uk": "працювати"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i16:p3",
-            "target": "library",
+            "target": "ladle",
             "meaningByLocale": {
-              "ru": "библиотека",
-              "uk": "бібліотека"
+              "ru": "половник",
+              "uk": "черпак"
             }
           },
           {
             "pairId": "en:lesson-06:session-01:i16:p4",
-            "target": "bakery",
+            "target": "cup",
             "meaningByLocale": {
-              "ru": "пекарня",
-              "uk": "пекарня"
+              "ru": "чашка",
+              "uk": "чашка"
             }
           }
         ],
         "leftColumn": [
-          "garage",
-          "pharmacy",
-          "library",
-          "bakery"
+          "wash",
+          "work",
+          "ladle",
+          "cup"
         ],
         "rightColumn": [
-          "гараж",
-          "аптека",
-          "библиотека",
-          "пекарня"
+          "мыть",
+          "работать",
+          "половник",
+          "чашка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -910,25 +1132,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-01:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы знакомитесь с новым соседом. Расскажите о своей работе: «Я работаю в библиотеке»",
+      "prompt": "Вы знакомитесь с новым соседом. Скажите, что вы работаете в пекарне: «Я работаю в пекарне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-01:i17:audio"
       ],
-      "accessibilityLabel": "Вы знакомитесь с новым соседом. Расскажите о своей работе: «Я работаю в библиотеке»",
+      "accessibilityLabel": "Вы знакомитесь с новым соседом. Скажите, что вы работаете в пекарне: «Я работаю в пекарне»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-01:i17:audio",
-          "transcript": "I work in a library."
+          "transcript": "I work in a bakery."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I work in a library.",
+        "targetPhrase": "I work in a bakery.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -950,11 +1172,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "efbe5dd57cd7c01ae3465bd02e9b0ad530187fa5f7766d3acffa572201423dbe"
+  "learnerFingerprint": "21306aa76f5ffa5f625f26158f122cc29697aee49d0ab42f3e7481ea7e2a08fd"
 }

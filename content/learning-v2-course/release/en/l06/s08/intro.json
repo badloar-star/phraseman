@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-08",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о работе, назвать знакомые вещи и спросить, кому они принадлежат",
-    "uk": "розповісти про роботу, назвати знайомі речі й запитати, кому вони належать"
+    "ru": "самому выбрать подлежащее и глагол и рассказать о двух действиях подряд через and",
+    "uk": "самому вибрати підмет і дієслово та розповісти про дві дії поспіль через and"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Знакомый район",
-        "uk": "Знайомий район"
+        "ru": "Полотенца на диване",
+        "uk": "Рушники на дивані"
       },
       "bodyByLocale": {
-        "ru": "`neighbourhood` — «район», окрестности дома или другого места. `I work in this neighbourhood` — «Я работаю в этом районе». Здесь `I work`, без `am`: вы говорите, что делаете. `This is my folder` — «Это моя папка».",
-        "uk": "`neighbourhood` — «район», околиці будинку чи іншого місця. `I work in this neighbourhood` — «Я працюю в цьому районі». Тут `I work`, без `am`: ви кажете, що робите. `This is my folder` — «Це моя папка»."
+        "ru": "Стирка закончилась, и чистые полотенца лежат горой на диване, ещё тёплые из сушилки. Сестра садится рядом, берёт верхнее полотенце и ждёт, когда вы начнёте. fold — «складывать». Вы работаете вместе, поэтому We: We fold the towels — «Мы складываем полотенца».",
+        "uk": "Прання закінчилося, і чисті рушники лежать горою на дивані, ще теплі із сушарки. Сестра сідає поруч, бере верхній чистий рушник і чекає, коли ви почнете. fold — «складати». Ви працюєте разом, тому We: We fold the towels — «Ми складаємо рушники»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-08:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю в этом районе».",
-          "uk": "Скажіть «Я працюю в цьому районі»."
+          "ru": "Сестра села рядом с горой полотенец. Скажите ей: «Мы складываем полотенца».",
+          "uk": "Сестра сіла поруч із горою рушників. Скажіть їй: «Ми складаємо рушники»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-08:intro1:r1",
-              "text": "I work in this neighbourhood."
+              "text": "We fold the towels."
             },
             {
               "responseId": "en:lesson-06:session-08:intro1:r2",
-              "text": "I am work in this neighbourhood."
+              "text": "We are fold the towels."
             },
             {
               "responseId": "en:lesson-06:session-08:intro1:r3",
-              "text": "I work in that neighbourhood."
+              "text": "We fold the sheets."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-08:intro1:r1",
-              "text": "I work in this neighbourhood."
+              "text": "We fold the towels."
             },
             {
               "responseId": "en:lesson-06:session-08:intro1:r2",
-              "text": "I am work in this neighbourhood."
+              "text": "We are fold the towels."
             },
             {
               "responseId": "en:lesson-06:session-08:intro1:r3",
-              "text": "I work in that neighbourhood."
+              "text": "We fold the sheets."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю в этом районе».",
-          "uk": "Скажіть «Я працюю в цьому районі»."
+          "ru": "Сестра села рядом с горой полотенец. Скажите ей: «Мы складываем полотенца».",
+          "uk": "Сестра сіла поруч із горою рушників. Скажіть їй: «Ми складаємо рушники»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Посылка и чек",
-        "uk": "Посилка й чек"
+        "ru": "Рубашки на солнце",
+        "uk": "Сорочки на сонці"
       },
       "bodyByLocale": {
-        "ru": "`parcel` — «посылка», `receipt` — «чек». `That parcel is yours` — «Та посылка твоя». `Whose receipt is this?` — «Чей это чек?» Переезд: вещей много, а фраза «это не моё» уже у всех готова. Вопрос с `Whose` помогает найти владельца.",
-        "uk": "`parcel` — «посилка», `receipt` — «чек». `That parcel is yours` — «Та посилка твоя». `Whose receipt is this?` — «Чий це чек?» Переїзд: речей багато, а фраза «це не моє» вже в усіх напоготові. Запитання з `Whose` допомагає знайти власника."
+        "ru": "Во дворе натянута длинная белая верёвка, а солнце уже высоко. Вы выносите таз с мокрыми рубашками, и сосед с чашкой кофе смотрит на вас через забор. hang — «вешать». О себе говорим I: I hang the shirts on the line — «Я вешаю рубашки на верёвку».",
+        "uk": "У дворі натягнута довга біла мотузка, а сонце вже високо. Ви виносите таз із мокрими сорочками, і сусід із чашкою кави дивиться на вас через паркан. hang — «вішати». Про себе кажемо I: I hang the shirts on the line — «Я вішаю сорочки на мотузку»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-08:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это чек?»",
-          "uk": "Запитайте «Чий це чек?»"
+          "ru": "Сосед смотрит через забор и спрашивает, что вы делаете. Скажите: «Я вешаю рубашки на верёвку».",
+          "uk": "Сусід дивиться через паркан і питає, що ви робите. Скажіть: «Я вішаю сорочки на мотузку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-08:intro2:r1",
-              "text": "Whose receipt is this?"
+              "text": "I hang the shirts on the line."
             },
             {
               "responseId": "en:lesson-06:session-08:intro2:r2",
-              "text": "Where is the receipt?"
+              "text": "I am hang the shirts on the line."
             },
             {
               "responseId": "en:lesson-06:session-08:intro2:r3",
-              "text": "Whose receipt are these?"
+              "text": "I hang the shirts in the line."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-08:intro2:r1",
-              "text": "Whose receipt is this?"
+              "text": "I hang the shirts on the line."
             },
             {
               "responseId": "en:lesson-06:session-08:intro2:r2",
-              "text": "Where is the receipt?"
+              "text": "I am hang the shirts on the line."
             },
             {
               "responseId": "en:lesson-06:session-08:intro2:r3",
-              "text": "Whose receipt are these?"
+              "text": "I hang the shirts in the line."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это чек?»",
-          "uk": "Запитайте «Чий це чек?»"
+          "ru": "Сосед смотрит через забор и спрашивает, что вы делаете. Скажите: «Я вешаю рубашки на верёвку».",
+          "uk": "Сусід дивиться через паркан і питає, що ви робите. Скажіть: «Я вішаю сорочки на мотузку»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мелочи тоже нужны",
-        "uk": "Дрібниці теж потрібні"
+        "ru": "Носки в прачечной",
+        "uk": "Шкарпетки в пральні"
       },
       "bodyByLocale": {
-        "ru": "`keychain` — «брелок», `bookmark` — «закладка», `calendar` — «календарь». `The keychain is in the drawer` — «Брелок в ящике». `The bookmark is in the book` — «Закладка в книге». `My calendar is here` — «Мой календарь здесь».",
-        "uk": "`keychain` — «брелок», `bookmark` — «закладка», `calendar` — «календар». `The keychain is in the drawer` — «Брелок у шухляді». `The bookmark is in the book` — «Закладка в книжці». `My calendar is here` — «Мій календар тут»."
+        "ru": "В прачечной на углу двое работников стоят у длинного стола. Перед ними гора чужих носков, и каждый носок нужно найти в пару. Подруга ждёт вас у входа и с интересом смотрит на них. sort — «сортировать». О работниках говорим They: They sort the socks.",
+        "uk": "У пральні на розі двоє працівників стоять біля довгого столу. Перед ними гора чужих шкарпеток, і кожну шкарпетку треба знайти в пару. Подруга чекає вас біля входу й з цікавістю дивиться на них. sort — «сортувати». Про працівників кажемо They: They sort the socks."
       },
       "question": {
         "interactionId": "en:lesson-06:session-08:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Мой календарь здесь».",
-          "uk": "Скажіть «Мій календар тут»."
+          "ru": "Подруга смотрит на двух работников прачечной. Скажите ей: «Они сортируют носки».",
+          "uk": "Подруга дивиться на двох працівників пральні. Скажіть їй: «Вони сортують шкарпетки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-08:intro3:r1",
-              "text": "My calendar is here."
+              "text": "They sort the socks."
             },
             {
               "responseId": "en:lesson-06:session-08:intro3:r2",
-              "text": "Your calendar is here."
+              "text": "They are sort the socks."
             },
             {
               "responseId": "en:lesson-06:session-08:intro3:r3",
-              "text": "My calendar are here."
+              "text": "They sort the shirts."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-08:intro3:r1",
-              "text": "My calendar is here."
+              "text": "They sort the socks."
             },
             {
               "responseId": "en:lesson-06:session-08:intro3:r2",
-              "text": "Your calendar is here."
+              "text": "They are sort the socks."
             },
             {
               "responseId": "en:lesson-06:session-08:intro3:r3",
-              "text": "My calendar are here."
+              "text": "They sort the shirts."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Мой календарь здесь».",
-          "uk": "Скажіть «Мій календар тут»."
+          "ru": "Подруга смотрит на двух работников прачечной. Скажите ей: «Они сортируют носки».",
+          "uk": "Подруга дивиться на двох працівників пральні. Скажіть їй: «Вони сортують шкарпетки»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5bfabc2e596b5e1da8a9d415a32f0da63f0348a350648325bb0ca7bd51bca28e"
+  "introFingerprint": "98680a753f44c67f6e90693aa4e78c28bf3c27661e40292f5c6d5a97659d45ee"
 }

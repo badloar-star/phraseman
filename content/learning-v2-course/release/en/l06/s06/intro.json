@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-06",
   "learningOutcomeByLocale": {
-    "ru": "назвать закладку, уточнить владельца и рассказать о работе",
-    "uk": "назвати закладку, уточнити власника й розповісти про роботу"
+    "ru": "сказать, что вы делаете и где: We play football in the yard, They run in the park, I ride a bicycle",
+    "uk": "сказати, що ви робите і де: We play football in the yard, They run in the park, I ride a bicycle"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Чтобы не потерять страницу",
-        "uk": "Щоб не загубити сторінку"
+        "ru": "Мяч во дворе",
+        "uk": "М’яч у дворі"
       },
       "bodyByLocale": {
-        "ru": "`bookmark` — «закладка»; здесь полоска бумаги или другой предмет, которым отмечают страницу книги. `This is my bookmark` — «Это моя закладка». `Whose bookmark is this?` — «Чья это закладка?» `The bookmark is in the book` — «Закладка в книге». Закладка помнит страницу, даже если читатель уже забыл сюжет.",
-        "uk": "`bookmark` — «закладка»; тут смужка паперу або інший предмет, яким позначають сторінку книжки. `This is my bookmark` — «Це моя закладка». `Whose bookmark is this?` — «Чия це закладка?» `The bookmark is in the book` — «Закладка в книжці». Закладка пам’ятає сторінку, навіть якщо читач уже забув сюжет."
+        "ru": "В субботу во дворе собрались дети и соседи. Вы с друзьями выходите на площадку с мячом, а соседка смотрит из окна второго этажа и машет рукой. play — «играть». Мы играем вместе, поэтому We: We play football in the yard — «Мы играем в футбол во дворе».",
+        "uk": "У суботу у дворі зібралися діти й сусіди. Ви з друзями виходите на майданчик із м’ячем, а сусідка дивиться з вікна другого поверху й махає рукою. play — «грати». Ми граємо разом, тому We: We play football in the yard — «Ми граємо у футбол у дворі»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-06:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце закладки.",
-          "uk": "Запитайте про власника закладки."
+          "ru": "Соседка выглядывает из окна и спрашивает, чем вы заняты. Скажите: «Мы играем в футбол во дворе».",
+          "uk": "Сусідка визирає з вікна й питає, чим ви зайняті. Скажіть: «Ми граємо у футбол у дворі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-06:intro1:r1",
-              "text": "Whose bookmark is this?"
+              "text": "We play football in the yard."
             },
             {
               "responseId": "en:lesson-06:session-06:intro1:r2",
-              "text": "Where is the bookmark?"
+              "text": "We are play football in the yard."
             },
             {
               "responseId": "en:lesson-06:session-06:intro1:r3",
-              "text": "Whose bookmark are these?"
+              "text": "We play football in the pool."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-06:intro1:r1",
-              "text": "Whose bookmark is this?"
+              "text": "We play football in the yard."
             },
             {
               "responseId": "en:lesson-06:session-06:intro1:r2",
-              "text": "Where is the bookmark?"
+              "text": "We are play football in the yard."
             },
             {
               "responseId": "en:lesson-06:session-06:intro1:r3",
-              "text": "Whose bookmark are these?"
+              "text": "We play football in the pool."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце закладки.",
-          "uk": "Запитайте про власника закладки."
+          "ru": "Соседка выглядывает из окна и спрашивает, чем вы заняты. Скажите: «Мы играем в футбол во дворе».",
+          "uk": "Сусідка визирає з вікна й питає, чим ви зайняті. Скажіть: «Ми граємо у футбол у дворі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Настоящее и поддельное",
-        "uk": "Справжнє й підроблене"
+        "ru": "Дети в парке",
+        "uk": "Діти в парку"
       },
       "bodyByLocale": {
-        "ru": "`fake` — «поддельный», не настоящий. `This is a fake ring` — «Это поддельное кольцо», например имитация, выдаваемая за подлинное изделие. Это не просто «дешёвое»: цена сама по себе не делает вещь поддельной. `That bookmark is yours` — «Та закладка твоя»: `that` указывает на вещь дальше от говорящего.",
-        "uk": "`fake` — «підроблений», не справжній. `This is a fake ring` — «Це підроблена каблучка», наприклад імітація, яку видають за справжній виріб. Це не просто «дешеве»: ціна сама собою не робить річ підробленою. `That bookmark is yours` — «Та закладка твоя»: `that` указує на річ далі від мовця."
+        "ru": "Через дорогу от дома большой парк. После школы дети выбегают на длинную аллею и мчатся наперегонки до самого пруда. Сестра стоит рядом с вами на балконе и держит чашку чая. run — «бегать». О детях говорим They: They run in the park — «Они бегают в парке».",
+        "uk": "Через дорогу від будинку великий парк. Після школи діти вибігають на довгу алею й мчать наввипередки до самого ставка. Сестра стоїть поруч із вами на балконі й тримає чашку чаю. run — «бігати». Про дітей кажемо They: They run in the park — «Вони бігають у парку»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-06:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Это поддельное кольцо».",
-          "uk": "Скажіть «Це підроблена каблучка»."
+          "ru": "Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке».",
+          "uk": "Сестра питає, що роблять діти в парку. Скажіть: «Вони бігають у парку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-06:intro2:r1",
-              "text": "This is a fake ring."
+              "text": "They run in the park."
             },
             {
               "responseId": "en:lesson-06:session-06:intro2:r2",
-              "text": "This are a fake ring."
+              "text": "They are run in the park."
             },
             {
               "responseId": "en:lesson-06:session-06:intro2:r3",
-              "text": "This is a real ring."
+              "text": "They run in the yard."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-06:intro2:r1",
-              "text": "This is a fake ring."
+              "text": "They run in the park."
             },
             {
               "responseId": "en:lesson-06:session-06:intro2:r2",
-              "text": "This are a fake ring."
+              "text": "They are run in the park."
             },
             {
               "responseId": "en:lesson-06:session-06:intro2:r3",
-              "text": "This is a real ring."
+              "text": "They run in the yard."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это поддельное кольцо».",
-          "uk": "Скажіть «Це підроблена каблучка»."
+          "ru": "Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке».",
+          "uk": "Сестра питає, що роблять діти в парку. Скажіть: «Вони бігають у парку»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Комната в клинике",
-        "uk": "Кімната в клініці"
+        "ru": "Велосипед у пруда",
+        "uk": "Велосипед біля ставка"
       },
       "bodyByLocale": {
-        "ru": "`clinic` — «клиника», `ceiling` — «потолок», `kiosk` — «киоск». `I work in a clinic` — «Я работаю в клинике», без `am` перед `work`. `The ceiling is white` — «Потолок белый». `The clinic is near the kiosk` — «Клиника возле киоска».",
-        "uk": "`clinic` — «клініка», `ceiling` — «стеля», `kiosk` — «кіоск». `I work in a clinic` — «Я працюю в клініці», без `am` перед `work`. `The ceiling is white` — «Стеля біла». `The clinic is near the kiosk` — «Клініка біля кіоску»."
+        "ru": "Вы встречаете в парке соседа и останавливаетесь у пруда. Рядом стоит ваш велосипед с корзиной на руле. Сосед спрашивает, как вы добираетесь до парка. ride — «ехать, кататься» на велосипеде. О себе говорим I: I ride a bicycle — «Я езжу на велосипеде».",
+        "uk": "Ви зустрічаєте в парку сусіда й зупиняєтеся біля ставка. Поруч стоїть ваш велосипед із кошиком на кермі. Сусід питає, як ви добираєтеся до парку. ride — «їхати, кататися» на велосипеді. Про себе кажемо I: I ride a bicycle — «Я їжджу на велосипеді»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-06:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю в клинике».",
-          "uk": "Скажіть «Я працюю в клініці»."
+          "ru": "Сосед спрашивает, на чём вы ездите в парк. Скажите ему: «Я езжу на велосипеде».",
+          "uk": "Сусід питає, на чому ви їздите до парку. Скажіть йому: «Я їжджу на велосипеді»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-06:intro3:r1",
-              "text": "I work in a clinic."
+              "text": "I ride a bicycle."
             },
             {
               "responseId": "en:lesson-06:session-06:intro3:r2",
-              "text": "I am work in a clinic."
+              "text": "I am ride a bicycle."
             },
             {
               "responseId": "en:lesson-06:session-06:intro3:r3",
-              "text": "I work in a bank."
+              "text": "I ride a bus."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-06:intro3:r1",
-              "text": "I work in a clinic."
+              "text": "I ride a bicycle."
             },
             {
               "responseId": "en:lesson-06:session-06:intro3:r2",
-              "text": "I am work in a clinic."
+              "text": "I am ride a bicycle."
             },
             {
               "responseId": "en:lesson-06:session-06:intro3:r3",
-              "text": "I work in a bank."
+              "text": "I ride a bus."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю в клинике».",
-          "uk": "Скажіть «Я працюю в клініці»."
+          "ru": "Сосед спрашивает, на чём вы ездите в парк. Скажите ему: «Я езжу на велосипеде».",
+          "uk": "Сусід питає, на чому ви їздите до парку. Скажіть йому: «Я їжджу на велосипеді»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6ef5eb87c74212dd01ec652b99733a7adb34c908aaa939e303f84240b21cac9b"
+  "introFingerprint": "4bc332001977a6782b6a604219411125ff2c5d1c261bb270c462b51d80b3756d"
 }

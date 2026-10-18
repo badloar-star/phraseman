@@ -1,136 +1,154 @@
-# Англійська · Урок 6 · Заняття 8 — Речі після переїзду
+# Англійська · Урок 6 · Заняття 8 — Прання й білизна
 
-**Ситуація.** Анна й Том розбирають речі в новому офісі. Посилка вже відкрита, але папка, чек і ключі ще лежать упереміш.
+**Ситуація.** У вихідний ви розбираєте чисту білизну вдома, у дворі й у пральні. Самі вибираєте, хто робить справу (I, You, We або They), і яке дієслово потрібне. Після підмета — одразу дієслово, без am і are.
 
-**Що ви опануєте:** розповісти про роботу, назвати знайомі речі й запитати, кому вони належать
-**Нові слова:** —
+**Що ви опануєте:** самому вибрати підмет і дієслово та розповісти про дві дії поспіль через and
+**Нові слова:** fold, hang, sort, peg
+**Повертаються:** bake, wash, carry, bread, plate, towel, sheet, shirt, sock, line
 
 ---
 
 ## Інтро 1
 
-### Знайомий район
+### Рушники на дивані
 
-`neighbourhood` — «район», околиці будинку чи іншого місця. `I work in this neighbourhood` — «Я працюю в цьому районі». Тут `I work`, без `am`: ви кажете, що робите. `This is my folder` — «Це моя папка».
+Прання закінчилося, і чисті рушники лежать горою на дивані, ще теплі із сушарки. Сестра сідає поруч, бере верхній чистий рушник і чекає, коли ви почнете. fold — «складати». Ви працюєте разом, тому We: We fold the towels — «Ми складаємо рушники».
 
-**Скажіть «Я працюю в цьому районі».**
+**Сестра сіла поруч із горою рушників. Скажіть їй: «Ми складаємо рушники».**
 
-- ✅ **I work in this neighbourhood.**
-- ❌ I am work in this neighbourhood. — *Перед `work` тут не потрібно `am`.*
-- ❌ I work in that neighbourhood. — *`in that` — у тому; у цьому — `in this`.*
+- ✅ **We fold the towels.**
+- ❌ We are fold the towels. — *Перед fold слово are не потрібне: We fold.*
+- ❌ We fold the sheets. — *Складаєте рушники: потрібно towels, а sheets — простирадла.*
 
 ---
 
 ## Інтро 2
 
-### Посилка й чек
+### Сорочки на сонці
 
-`parcel` — «посилка», `receipt` — «чек». `That parcel is yours` — «Та посилка твоя». `Whose receipt is this?` — «Чий це чек?» Переїзд: речей багато, а фраза «це не моє» вже в усіх напоготові. Запитання з `Whose` допомагає знайти власника.
+У дворі натягнута довга біла мотузка, а сонце вже високо. Ви виносите таз із мокрими сорочками, і сусід із чашкою кави дивиться на вас через паркан. hang — «вішати». Про себе кажемо I: I hang the shirts on the line — «Я вішаю сорочки на мотузку».
 
-**Запитайте «Чий це чек?»**
+**Сусід дивиться через паркан і питає, що ви робите. Скажіть: «Я вішаю сорочки на мотузку».**
 
-- ✅ **Whose receipt is this?**
-- ❌ Where is the receipt? — *Це запитання про місце; про власника — `Whose`.*
-- ❌ Whose receipt are these? — *Один чек: `is this`.*
+- ✅ **I hang the shirts on the line.**
+- ❌ I am hang the shirts on the line. — *Перед hang слово am не потрібне: I hang.*
+- ❌ I hang the shirts in the line. — *Сорочки вішають на мотузку: потрібно on, а не in.*
 
 ---
 
 ## Інтро 3
 
-### Дрібниці теж потрібні
+### Шкарпетки в пральні
 
-`keychain` — «брелок», `bookmark` — «закладка», `calendar` — «календар». `The keychain is in the drawer` — «Брелок у шухляді». `The bookmark is in the book` — «Закладка в книжці». `My calendar is here` — «Мій календар тут».
+У пральні на розі двоє працівників стоять біля довгого столу. Перед ними гора чужих шкарпеток, і кожну шкарпетку треба знайти в пару. Подруга чекає вас біля входу й з цікавістю дивиться на них. sort — «сортувати». Про працівників кажемо They: They sort the socks.
 
-**Скажіть «Мій календар тут».**
+**Подруга дивиться на двох працівників пральні. Скажіть їй: «Вони сортують шкарпетки».**
 
-- ✅ **My calendar is here.**
-- ❌ Your calendar is here. — *`Your` — твій; мій — `My`.*
-- ❌ My calendar are here. — *Один календар: `is`.*
+- ✅ **They sort the socks.**
+- ❌ They are sort the socks. — *Перед sort слово are не потрібне: They sort.*
+- ❌ They sort the shirts. — *Розбирають шкарпетки: потрібно socks, а shirts — сорочки.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я працюю в цьому районі»**
+**1 · Картка слова — fold**
+<!-- interaction_id: en:lesson-06:session-08:word:fold; family: word_card -->
+> **fold** — складати. We fold the towels. — «Ми складаємо рушники». Про те, як річ роблять пласкою й охайною стосом.
+
+**2 · Сестра сіла поруч із горою рушників. Скажіть: «Ми складаємо рушники»**
 <!-- interaction_id: en:lesson-06:session-08:i01; family: phrase_builder -->
-Плитки: `neighbourhood` `this` `in` `work` `I` → **I work in this neighbourhood.**
+Плитки: `towels` `the` `fold` `We` `are` → **We fold the towels.**
+*(плитка `are` зайва: тут потрібно `fold` — `We fold the towels.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — hang**
+<!-- interaction_id: en:lesson-06:session-08:word:hang; family: word_card -->
+> **hang** — вішати. I hang the shirts on the line. — «Я вішаю сорочки на мотузку». Про те, як річ підвішують, щоб вона висіла.
+
+**4 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-08:i02; family: listen_choose -->
-🔊 *receipt* → **receipt** · parcel · folder
-- parcel — *У записі перше слово — `receipt`, а в цьому варіанті — `parcel`.*
-- folder — *У записі перше слово — `receipt`, а в цьому варіанті — `folder`.*
+🔊 *I hang the shirts on the line.* → **I hang the shirts on the line.** · I hang the socks on the line. · I have the shirts on the line.
+- I hang the socks on the line. — *У записі річ — `shirts`, сорочки, а в цьому варіанті — `socks`, шкарпетки.*
+- I have the shirts on the line. — *У записі `hang` — вішати, а в цьому варіанті `have` — мати.*
 
-**3 · Скажіть «Та посилка твоя»**
+**5 · Картка слова — sort**
+<!-- interaction_id: en:lesson-06:session-08:word:sort; family: word_card -->
+> **sort** — сортувати. They sort the socks. — «Вони сортують шкарпетки». Про те, як розкладають речі за парами чи групами.
+
+**6 · Двоє працівників пральні стоять над горою шкарпеток. Скажіть, що вони їх сортують. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-08:i03; family: context_gap_grammar -->
-That parcel is ___. → **yours** · your · you
-- your — *Без назви речі після слова «твій» потрібно `yours`.*
-- you — *`you` — ти або ви; «твоя» тут — `yours`.*
+They ___ the socks. → **sort** · are sort · is sort
+- are sort — *Після `They` одразу ставимо `sort`, без `are`.*
+- is sort — *Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They sort`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-08:i04; family: speed_match -->
-folder — папка · parcel — посилка · receipt — чек · keychain — брелок
+fold — складати · hang — вішати · sort — сортувати · peg — прищіпка
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — peg**
+<!-- interaction_id: en:lesson-06:session-08:word:peg; family: word_card -->
+> **peg** — прищіпка. The peg is on the line. — «Прищіпка на мотузці». Маленький затискач: ним тримають білизну на мотузці.
+
+**9 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-08:i05; family: listen_build_dictation -->
-🔊 *This is my folder.* Плитки: `folder` `my` `is` `This` `are` → **This is my folder.**
-*(плитка `are` зайва: тут потрібно `is` — `This is my folder.`)*
+🔊 *The peg is on the line.* Плитки: `peg` `The` `the` `on` `line` `is` `are` → **The peg is on the line.**
+*(плитка `are` зайва: тут потрібно `is` — `The peg is on the line.`)*
 
-**6 · Запитайте «Чий це чек?»**
+**10 · Ви знайшли на мотузці прищіпку й питаєте сусіда, чия вона. Поставте питання: «Чия це прищіпка?»**
 <!-- interaction_id: en:lesson-06:session-08:i06; family: phrase_builder -->
-Плитки: `this` `is` `receipt` `Whose` → **Whose receipt is this?**
+Плитки: `peg` `this` `is` `Whose` `Who` → **Whose peg is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose peg is this?`)*
 
-**7 · Скажіть «Закладка в книжці»**
+**11 · Сестра питає, що ви робите з рушниками. Скажіть: «Ми складаємо рушники»**
 <!-- interaction_id: en:lesson-06:session-08:i07; family: scripted_repeat_compare -->
-🎙 **The bookmark is in the book.**
+🎙 **We fold the towels.**
 
-**8 · Брелок усередині шухляди. Виберіть прийменник**
+**12 · Сусід дивиться, як ви розвішуєте сорочки. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-08:i08; family: context_gap_grammar -->
-The keychain is ___ the drawer. → **in** · under · behind
-- under — *Усередині — `in`; `under` — під шухлядою.*
-- behind — *Усередині — `in`; `behind` — за шухлядою.*
+I ___ the shirts on the line. → **hang** · am hang · are hang
+- am hang — *Після `I` одразу ставимо `hang`, без `am`.*
+- are hang — *Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I hang`.*
 
-**9 · Послухайте, чий календар тут**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-08:i09; family: listen_choose -->
-🔊 *My calendar is here.* → **My calendar is here.** · Your calendar is here. · His calendar is here.
-- Your calendar is here. — *У записі перше слово — `My`, а в цьому варіанті — `Your`.*
-- His calendar is here. — *У записі перше слово — `My`, а в цьому варіанті — `His`.*
+🔊 *They sort the socks.* → **They sort the socks.** · They sort the shirts. · They wash the socks.
+- They sort the shirts. — *У записі річ — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки.*
+- They wash the socks. — *У записі `sort` — сортувати, а в цьому варіанті `wash` — мити.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-08:i10; family: speed_match -->
-bookmark — закладка · calendar — календар · neighbourhood — район · work — працювати
+sort — сортувати · sock — шкарпетка · towel — рушник · peg — прищіпка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сестру й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-08:i11; family: listen_build_dictation -->
-🔊 *The parcel is on the desk.* Плитки: `desk` `the` `on` `is` `parcel` `The` `are` → **The parcel is on the desk.**
-*(плитка `are` зайва: тут потрібно `is` — `The parcel is on the desk.`)*
+🔊 *We bake bread and we wash the plates.* Плитки: `bread` `plates` `the` `and` `bake` `wash` `We` `we` `are` → **We bake bread and we wash the plates.**
+*(плитка `are` зайва: тут потрібно `bake` — `We bake bread and we wash the plates.`)*
 
-**12 · Скажіть «Та папка моя»**
+**16 · Дві подруги розбирають білизну. Розкажіть сусідові: «Вони несуть рушники і вони складають простирадла»**
 <!-- interaction_id: en:lesson-06:session-08:i12; family: phrase_builder -->
-Плитки: `mine` `is` `folder` `That` `are` → **That folder is mine.**
-*(плитка `are` зайва: тут потрібно `is` — `That folder is mine.`)*
+Плитки: `towels` `sheets` `the` `the` `and` `carry` `fold` `They` `they` `are` → **They carry the towels and they fold the sheets.**
+*(плитка `are` зайва: тут потрібно `carry` — `They carry the towels and they fold the sheets.`)*
 
-**13 · Скажіть «У мене є закладка»**
+**17 · Сусід питає, що ви робите у дворі. Скажіть: «Я вішаю сорочки на мотузку»**
 <!-- interaction_id: en:lesson-06:session-08:i13; family: scripted_repeat_compare -->
-🎙 **I have a bookmark.**
+🎙 **I hang the shirts on the line.**
 
-**14 · Скажіть «Я працюю тут»**
+**18 · Ви із сестрою стоїте над купою чистої білизни. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-08:i14; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
-- am work — *Кажемо `I work`, без `am`.*
-- is work — *Кажемо `I work`, без `is`.*
+We ___ the towels. → **fold** · are fold · am fold
+- are fold — *Після `We` одразу ставимо `fold`, без `are`.*
+- am fold — *`am` ставиться тільки після `I`; тут потрібно `We fold`.*
 
-**15 · Послухайте, де чек**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-08:i15; family: listen_choose -->
-🔊 *The receipt is here.* → **The receipt is here.** · The receipt is there. · The receipt is upstairs.
-- The receipt is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The receipt is upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Whose peg is this?* → **Whose peg is this?** · Whose pegs are these? · Whose sock is this?
+- Whose pegs are these? — *У записі прищіпка одна — `peg is this`, а в цьому варіанті кілька — `pegs are these`.*
+- Whose sock is this? — *У записі річ — `peg`, прищіпка, а в цьому варіанті — `sock`, шкарпетка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-08:i16; family: speed_match -->
-keychain — брелок · calendar — календар · neighbourhood — район · work — працювати
+peg — прищіпка · fold — складати · hang — вішати · line — мотузка для білизни
 
-**17 · На столі залишився календар. Запитайте Тома «Чий це календар?»**
+**21 · Подруга питає, чим ви із сестрою зайняті. Розкажіть про дві справи: «Ми складаємо рушники і ми вішаємо сорочки»**
 <!-- interaction_id: en:lesson-06:session-08:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose calendar is this?**
-
+🎙 **We fold the towels and we hang the shirts.**

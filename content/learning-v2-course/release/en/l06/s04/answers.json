@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-04:word:build",
+    "correctText": "build",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-04:i01",
-    "correctText": "I work in a post office.",
+    "correctText": "They build a wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-04:word:dig",
+    "correctText": "dig",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i02",
-    "correctText": "receipt",
+    "correctText": "They dig in the yard.",
     "correctResponseId": "en:lesson-06:session-04:i02:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-04:word:mix",
+    "correctText": "mix",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-04:i03",
-    "correctText": "receipt",
+    "correctText": "mix",
     "correctResponseId": "en:lesson-06:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-04:i04",
-    "correctText": "en:lesson-06:session-04:i04:p1=receipt\nen:lesson-06:session-04:i04:p2=visible\nen:lesson-06:session-04:i04:p3=hidden\nen:lesson-06:session-04:i04:p4=clear",
+    "correctText": "en:lesson-06:session-04:i04:p1=build\nen:lesson-06:session-04:i04:p2=dig\nen:lesson-06:session-04:i04:p3=mix\nen:lesson-06:session-04:i04:p4=cement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-04:word:cement",
+    "correctText": "cement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i05",
-    "correctText": "This is my receipt.",
+    "correctText": "The cement is in the sack.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i06",
-    "correctText": "Whose receipt is this?",
+    "correctText": "Whose cement is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i07",
-    "correctText": "The pool is visible.",
+    "correctText": "They dig in the yard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i08",
-    "correctText": "hidden",
+    "correctText": "build",
     "correctResponseId": "en:lesson-06:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-06:session-04:i09",
-    "correctText": "That receipt is yours.",
+    "correctText": "They mix the salad.",
     "correctResponseId": "en:lesson-06:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-04:i10",
-    "correctText": "en:lesson-06:session-04:i10:p1=receipt\nen:lesson-06:session-04:i10:p2=post office\nen:lesson-06:session-04:i10:p3=curtain\nen:lesson-06:session-04:i10:p4=pool",
+    "correctText": "en:lesson-06:session-04:i10:p1=dig\nen:lesson-06:session-04:i10:p2=cement\nen:lesson-06:session-04:i10:p3=wall\nen:lesson-06:session-04:i10:p4=yard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i11",
-    "correctText": "The bag is behind the curtain.",
+    "correctText": "They carry the cement.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i12",
-    "correctText": "The post office is near the pool.",
+    "correctText": "They mix the salad in a bowl.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i13",
-    "correctText": "This is clear.",
+    "correctText": "They mix the salad.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i14",
-    "correctText": "work",
+    "correctText": "dig",
     "correctResponseId": "en:lesson-06:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-04:i15",
-    "correctText": "The receipt is mine.",
+    "correctText": "The cement is in the sack.",
     "correctResponseId": "en:lesson-06:session-04:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-04:i16",
-    "correctText": "en:lesson-06:session-04:i16:p1=receipt\nen:lesson-06:session-04:i16:p2=visible\nen:lesson-06:session-04:i16:p3=hidden\nen:lesson-06:session-04:i16:p4=clear",
+    "correctText": "en:lesson-06:session-04:i16:p1=mix\nen:lesson-06:session-04:i16:p2=build\nen:lesson-06:session-04:i16:p3=bucket\nen:lesson-06:session-04:i16:p4=sack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-04:i17",
-    "correctText": "Whose receipt is this?",
+    "correctText": "They carry the cement.",
     "correctResponseId": null
   }
 ]

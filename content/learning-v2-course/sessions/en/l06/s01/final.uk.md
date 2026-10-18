@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 1 — Де я працюю
+# Англійська · Урок 6 · Заняття 1 — Чим я займаюся
 
-**Ситуація.** Анна знайомиться з Томом. Вона розповідає, де працює, і показує свій робочий стіл.
+**Ситуація.** Ви щойно переїхали до нового будинку й знайомитеся із сусідами. Кожен питає, чим ви займаєтеся. Відповідати треба коротко: I і одразу дієслово.
 
-**Що ви опануєте:** сказати про свою роботу за допомогою смислового дієслова
-**Нові слова:** work
+**Що ви опануєте:** сказати про свою роботу й заняття: I work, I bake, I wash — без am
+**Нові слова:** work, bake, wash, ladle
+**Повертаються:** pharmacy, bakery, library, bread, plate, cup, pie
 
 ---
 
 ## Інтро 1
 
-### Дія без am
+### Сусід у ліфті
 
-`work` — «працювати». `I work here` — «Я працюю тут». Це звичайне місце роботи, а не обов’язково дія саме зараз. Після `I` одразу ставимо `work`; `am` до цієї фрази не додаємо. Порівняйте: `I am sure` — «Я впевнений / впевнена», але `I work` — «Я працюю». Слово `am` може відпочити: у `work` уже є своя робота.
+Ви їдете в ліфті з пакетом із крамниці, і новий сусід питає, де ви працюєте. Ви працюєте в аптеці на розі, поруч із будинком. work — «працювати». Кажемо I work: перед work слово am не потрібне. Скажіть: I work in a pharmacy — «Я працюю в аптеці».
 
-**Скажіть «Я працюю тут».**
+**Сусід у ліфті питає, де ви працюєте. Ви працюєте в аптеці. Скажіть: «Я працюю в аптеці».**
 
-- ✅ **I work here.**
-- ❌ I am work here. — *Перед смисловим дієсловом `work` у цій фразі не потрібне `am`.*
-- ❌ I work there. — *`there` — там; тут — `here`.*
+- ✅ **I work in a pharmacy.**
+- ❌ I am work in a pharmacy. — *Перед work слово am не потрібне: I work.*
+- ❌ I work in a library. — *Ви працюєте в аптеці, а library — бібліотека: потрібно pharmacy.*
 
 ---
 
 ## Інтро 2
 
-### Місця роботи
+### Запах хліба
 
-Повторимо: `pharmacy` — «аптека», `library` — «бібліотека», `bakery` — «пекарня», `garage` — «гараж». `I work in a pharmacy` — «Я працюю в аптеці». `I work in a library` — «Я працюю в бібліотеці». `I work in a bakery` — «Я працюю в пекарні». `I work in a garage` — «Я працюю в гаражі». Перед одним таким місцем у цих фразах використовуємо `a`.
+Сусідка по сходовому майданчику стукає у двері: з вашої кухні на весь під’їзд пахне свіжим хлібом. Ви щойно дістали його з духовки, він ще гарячий. bake — «пекти» в духовці. Скажіть, що ви робите: I bake bread — «Я печу хліб». Слово am тут знову не потрібне.
 
-**Скажіть «Я працюю в бібліотеці».**
+**Сусідка питає, чим так смачно пахне. Ви печете хліб. Скажіть їй: «Я печу хліб».**
 
-- ✅ **I work in a library.**
-- ❌ I am work in a library. — *Тут дія: `I work`, без `am`.*
-- ❌ I work in a bakery. — *`bakery` — пекарня; бібліотека — `library`.*
+- ✅ **I bake bread.**
+- ❌ I am bake bread. — *Перед bake слово am не потрібне: I bake.*
+- ❌ You bake bread. — *You — «ти» або «ви», а про себе кажемо I.*
 
 ---
 
 ## Інтро 3
 
-### Робота, стан і речі
+### Гора тарілок
 
-`interested` — «зацікавлений»: `I am interested` — «Я зацікавлений / зацікавлена». `comfortable` — «почувається комфортно»: `I am comfortable` — «Мені комфортно». Це стани, тому тут є `am`. `have` — «мати»: `I have a desk` — «У мене є письмовий стіл». Як і в `I work`, перед `have` тут не потрібне `am`.
+Гості пішли, і в раковині лишилася гора тарілок після великої вечері. Брат стоїть поруч із рушником у руках і чекає. wash — «мити». Ви берете губку, вмикаєте теплу воду й кажете: I wash the plates — «Я мию тарілки». Тарілок багато, тому plates.
 
-**Скажіть «У мене є письмовий стіл».**
+**Брат питає, що ви робите біля раковини. Ви миєте тарілки. Скажіть: «Я мию тарілки».**
 
-- ✅ **I have a desk.**
-- ❌ I am have a desk. — *Перед `have` у цій фразі не потрібне `am`.*
-- ❌ I has a desk. — *З `I` використовується `have`.*
+- ✅ **I wash the plates.**
+- ❌ I am wash the plates. — *Перед wash слово am не потрібне: I wash.*
+- ❌ I wash the plate. — *Тарілок багато, тому потрібно plates.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «У мене є письмовий стіл»**
+**1 · Картка слова — work**
+<!-- interaction_id: en:lesson-06:session-01:word:work; family: word_card -->
+> **work** — працювати. I work in a pharmacy. — «Я працюю в аптеці». Про те, чим людина займається щодня на роботі.
+
+**2 · Сусід у ліфті питає, де ви працюєте. Скажіть: «Я працюю в аптеці»**
 <!-- interaction_id: en:lesson-06:session-01:i01; family: phrase_builder -->
-Плитки: `desk` `a` `have` `I` → **I have a desk.**
+Плитки: `pharmacy` `a` `in` `work` `I` `am` → **I work in a pharmacy.**
+*(плитка `am` зайва: тут потрібно `work` — `I work in a pharmacy.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — bake**
+<!-- interaction_id: en:lesson-06:session-01:word:bake; family: word_card -->
+> **bake** — пекти. I bake bread. — «Я печу хліб». Про їжу, яку готують у духовці.
+
+**4 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-01:i02; family: listen_choose -->
-🔊 *work* → **work** · walk · word
-- walk — *У записі перше слово — `work`, а в цьому варіанті — `walk`.*
-- word — *У записі перше слово — `work`, а в цьому варіанті — `word`.*
+🔊 *I bake bread.* → **I bake bread.** · I have bread. · I bake a pie.
+- I have bread. — *У записі `bake` — пекти, а в цьому варіанті `have` — мати.*
+- I bake a pie. — *У записі останнє слово — `bread`, хліб, а в цьому варіанті — `pie`, пиріг.*
 
-**3 · Розкажіть про звичайне місце роботи: «Я працюю тут»**
+**5 · Картка слова — wash**
+<!-- interaction_id: en:lesson-06:session-01:word:wash; family: word_card -->
+> **wash** — мити. I wash the plates. — «Я мию тарілки». Про те, як прибирають бруд водою.
+
+**6 · Ви стоїте біля раковини після вечері. Скажіть, що ви миєте тарілки. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-01:i03; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
+I ___ the plates. → **wash** · am wash · is wash
+- am wash — *Після `I` одразу ставимо `wash`, без `am`.*
+- is wash — *З `I` слово `is` не вживається; потрібно `I wash`.*
+
+**7 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-06:session-01:i04; family: speed_match -->
+work — працювати · bake — пекти · wash — мити · ladle — черпак
+
+**8 · Картка слова — ladle**
+<!-- interaction_id: en:lesson-06:session-01:word:ladle; family: word_card -->
+> **ladle** — черпак. This is my ladle. — «Це мій черпак». Велика ложка з глибокою чашею: нею розливають суп.
+
+**9 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-06:session-01:i05; family: listen_build_dictation -->
+🔊 *I have a ladle.* Плитки: `ladle` `have` `a` `I` `am` → **I have a ladle.**
+*(плитка `am` зайва: тут потрібно `have` — `I have a ladle.`)*
+
+**10 · Ви знайшли на кухні черпак і питаєте брата, чий він. Поставте питання: «Чий це черпак?»**
+<!-- interaction_id: en:lesson-06:session-01:i06; family: phrase_builder -->
+Плитки: `ladle` `this` `is` `Whose` `Who` → **Whose ladle is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose ladle is this?`)*
+
+**11 · Сусідка питає, чим ви займаєтеся. Ви пекар. Скажіть: «Я печу хліб»**
+<!-- interaction_id: en:lesson-06:session-01:i07; family: scripted_repeat_compare -->
+🎙 **I bake bread.**
+
+**12 · Ви розповідаєте сусідові, де ви працюєте. Виберіть слово**
+<!-- interaction_id: en:lesson-06:session-01:i08; family: context_gap_grammar -->
+I ___ in a pharmacy. → **work** · am work · is work
 - am work — *Тут потрібно `I work`, без `am`.*
 - is work — *Тут потрібно `I work`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-06:session-01:i04; family: speed_match -->
-work — працювати · pharmacy — аптека · library — бібліотека · bakery — пекарня
-
-**5 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-06:session-01:i05; family: listen_build_dictation -->
-🔊 *I work in a pharmacy.* Плитки: `pharmacy` `a` `in` `work` `I` → **I work in a pharmacy.**
-
-**6 · Розкажіть про свою роботу: «Я працюю в бібліотеці»**
-<!-- interaction_id: en:lesson-06:session-01:i06; family: phrase_builder -->
-Плитки: `library` `a` `in` `work` `I` → **I work in a library.**
-
-**7 · Скажіть «Мені комфортно» без скорочення**
-<!-- interaction_id: en:lesson-06:session-01:i07; family: scripted_repeat_compare -->
-🎙 **I am comfortable.**
-
-**8 · Скажіть «У мене є сумка»**
-<!-- interaction_id: en:lesson-06:session-01:i08; family: context_gap_grammar -->
-I ___ a bag. → **have** · am have · has
-- am have — *Перед `have` тут не потрібне `am`.*
-- has — *З `I` використовується `have`.*
-
-**9 · Послухайте, де працює Анна**
+**13 · Послухайте брата**
 <!-- interaction_id: en:lesson-06:session-01:i09; family: listen_choose -->
-🔊 *I work in a bakery.* → **I work in a bakery.** · I work in a library. · I work in a garage.
-- I work in a library. — *У записі останнє слово — `bakery`, а в цьому варіанті — `library`.*
-- I work in a garage. — *У записі останнє слово — `bakery`, а в цьому варіанті — `garage`.*
+🔊 *I wash the plates.* → **I wash the plates.** · I wash the cups. · I have the plates.
+- I wash the cups. — *У записі останнє слово — `plates`, тарілки, а в цьому варіанті — `cups`, чашки.*
+- I have the plates. — *У записі `wash` — мити, а в цьому варіанті `have` — мати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-01:i10; family: speed_match -->
-work — працювати · sure — впевнений · interested — зацікавлений · comfortable — почувається комфортно
+bake — пекти · bread — хліб · plate — тарілка · ladle — черпак
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-01:i11; family: listen_build_dictation -->
-🔊 *I work in a garage.* Плитки: `garage` `a` `in` `work` `I` → **I work in a garage.**
+🔊 *You work in a pharmacy.* Плитки: `pharmacy` `a` `in` `work` `You` `I` → **You work in a pharmacy.**
+*(плитка `I` зайва: тут потрібно `You` — `You work in a pharmacy.`)*
 
-**12 · Скажіть «Я впевнений» без скорочення**
+**16 · Ви пекар. Скажіть сусідці повною фразою: «Я печу хліб у пекарні»**
 <!-- interaction_id: en:lesson-06:session-01:i12; family: phrase_builder -->
-Плитки: `sure` `am` `I` `is` → **I am sure.**
-*(плитка `is` зайва: тут потрібно `am` — `I am sure.`)*
+Плитки: `bread` `bakery` `a` `in` `bake` `I` `am` → **I bake bread in a bakery.**
+*(плитка `am` зайва: тут потрібно `bake` — `I bake bread in a bakery.`)*
 
-**13 · Пропозиція роботи вас зацікавила. Скажіть «Я зацікавлений» без скорочення**
+**17 · Брат питає, що ви робите біля раковини. Скажіть: «Я мию тарілки»**
 <!-- interaction_id: en:lesson-06:session-01:i13; family: scripted_repeat_compare -->
-🎙 **I am interested.**
+🎙 **I wash the plates.**
 
-**14 · Скажіть «Я працюю в пекарні»**
+**18 · Ви дістали з духовки хліб. Скажіть сусідці, що ви його печете. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-01:i14; family: context_gap_grammar -->
-I ___ in a bakery. → **work** · am work · is work
-- am work — *Після `I` одразу ставимо `work`, без `am`.*
-- is work — *Після `I` одразу ставимо `work`, без `is`.*
+I ___ bread. → **bake** · am bake · is bake
+- am bake — *Після `I` одразу ставимо `bake`, без `am`.*
+- is bake — *З `I` слово `is` не вживається; потрібно `I bake`.*
 
-**15 · Послухайте, де працює Том**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-01:i15; family: listen_choose -->
-🔊 *I work here.* → **I work here.** · I work there. · I work nearby.
-- I work there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- I work nearby. — *У записі останнє слово — `here`, а в цьому варіанті — `nearby`.*
+🔊 *I work in a pharmacy.* → **I work in a pharmacy.** · I work in a bakery. · I work in a library.
+- I work in a bakery. — *У записі останнє слово — `pharmacy`, а в цьому варіанті — `bakery`.*
+- I work in a library. — *У записі останнє слово — `pharmacy`, а в цьому варіанті — `library`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-01:i16; family: speed_match -->
-garage — гараж · pharmacy — аптека · library — бібліотека · bakery — пекарня
+wash — мити · work — працювати · ladle — черпак · cup — чашка
 
-**17 · Ви знайомитеся з новим сусідом. Розкажіть про свою роботу: «Я працюю в бібліотеці»**
+**21 · Ви знайомитеся з новим сусідом. Скажіть, що ви працюєте в пекарні: «Я працюю в пекарні»**
 <!-- interaction_id: en:lesson-06:session-01:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I work in a library.**
-
+🎙 **I work in a bakery.**

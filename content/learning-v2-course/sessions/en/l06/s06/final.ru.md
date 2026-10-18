@@ -1,136 +1,154 @@
-# Английский · Урок 6 · Занятие 6 — Закладка в книге
+# Английский · Урок 6 · Занятие 6 — Выходной во дворе и в парке
 
-**Ситуация.** Анна показывает Тому комнату для отдыха сотрудников клиники. В книге на столе лежит закладка.
+**Ситуация.** В выходной двор и парк рядом с домом полны людей. Вы рассказываете, кто что делает и где: подлежащее, глагол без am и are, потом место.
 
-**Что вы освоите:** назвать закладку, уточнить владельца и рассказать о работе
-**Новые слова:** bookmark
+**Что вы освоите:** сказать, что вы делаете и где: We play football in the yard, They run in the park, I ride a bicycle
+**Новые слова:** play, run, ride, whistle
+**Возвращаются:** football, ball, yard, park, bicycle, bus, pool, bag, box
 
 ---
 
 ## Интро 1
 
-### Чтобы не потерять страницу
+### Мяч во дворе
 
-`bookmark` — «закладка»; здесь полоска бумаги или другой предмет, которым отмечают страницу книги. `This is my bookmark` — «Это моя закладка». `Whose bookmark is this?` — «Чья это закладка?» `The bookmark is in the book` — «Закладка в книге». Закладка помнит страницу, даже если читатель уже забыл сюжет.
+В субботу во дворе собрались дети и соседи. Вы с друзьями выходите на площадку с мячом, а соседка смотрит из окна второго этажа и машет рукой. play — «играть». Мы играем вместе, поэтому We: We play football in the yard — «Мы играем в футбол во дворе».
 
-**Спросите о владельце закладки.**
+**Соседка выглядывает из окна и спрашивает, чем вы заняты. Скажите: «Мы играем в футбол во дворе».**
 
-- ✅ **Whose bookmark is this?**
-- ❌ Where is the bookmark? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose bookmark are these? — *Одна закладка: `is this`.*
+- ✅ **We play football in the yard.**
+- ❌ We are play football in the yard. — *Перед play слово are не нужно: We play.*
+- ❌ We play football in the pool. — *Играют во дворе: нужно yard, а pool — бассейн.*
 
 ---
 
 ## Интро 2
 
-### Настоящее и поддельное
+### Дети в парке
 
-`fake` — «поддельный», не настоящий. `This is a fake ring` — «Это поддельное кольцо», например имитация, выдаваемая за подлинное изделие. Это не просто «дешёвое»: цена сама по себе не делает вещь поддельной. `That bookmark is yours` — «Та закладка твоя»: `that` указывает на вещь дальше от говорящего.
+Через дорогу от дома большой парк. После школы дети выбегают на длинную аллею и мчатся наперегонки до самого пруда. Сестра стоит рядом с вами на балконе и держит чашку чая. run — «бегать». О детях говорим They: They run in the park — «Они бегают в парке».
 
-**Скажите «Это поддельное кольцо».**
+**Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке».**
 
-- ✅ **This is a fake ring.**
-- ❌ This are a fake ring. — *Одно кольцо: `This is`.*
-- ❌ This is a real ring. — *`real` — настоящее; поддельное — `fake`.*
+- ✅ **They run in the park.**
+- ❌ They are run in the park. — *Перед run слово are не нужно: They run.*
+- ❌ They run in the yard. — *Дети бегают в парке: нужно park, а yard — двор.*
 
 ---
 
 ## Интро 3
 
-### Комната в клинике
+### Велосипед у пруда
 
-`clinic` — «клиника», `ceiling` — «потолок», `kiosk` — «киоск». `I work in a clinic` — «Я работаю в клинике», без `am` перед `work`. `The ceiling is white` — «Потолок белый». `The clinic is near the kiosk` — «Клиника возле киоска».
+Вы встречаете в парке соседа и останавливаетесь у пруда. Рядом стоит ваш велосипед с корзиной на руле. Сосед спрашивает, как вы добираетесь до парка. ride — «ехать, кататься» на велосипеде. О себе говорим I: I ride a bicycle — «Я езжу на велосипеде».
 
-**Скажите «Я работаю в клинике».**
+**Сосед спрашивает, на чём вы ездите в парк. Скажите ему: «Я езжу на велосипеде».**
 
-- ✅ **I work in a clinic.**
-- ❌ I am work in a clinic. — *Здесь действие: `I work`, без `am`.*
-- ❌ I work in a bank. — *`bank` — банк; клиника — `clinic`.*
+- ✅ **I ride a bicycle.**
+- ❌ I am ride a bicycle. — *Перед ride слово am не нужно: I ride.*
+- ❌ I ride a bus. — *Вы едете на велосипеде: нужно bicycle, а bus — автобус.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о месте работы: «Я работаю в клинике»**
+**1 · Карточка слова — play**
+<!-- interaction_id: en:lesson-06:session-06:word:play; family: word_card -->
+> **play** — играть. We play football in the yard. — «Мы играем в футбол во дворе». О том, как играют в игру или в спорт.
+
+**2 · Соседка спрашивает, чем вы с друзьями заняты. Скажите: «Мы играем в футбол»**
 <!-- interaction_id: en:lesson-06:session-06:i01; family: phrase_builder -->
-Плитки: `clinic` `a` `in` `work` `I` → **I work in a clinic.**
+Плитки: `football` `play` `We` `are` → **We play football.**
+*(плитка `are` лишняя: здесь нужно `play` — `We play football.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — run**
+<!-- interaction_id: en:lesson-06:session-06:word:run; family: word_card -->
+> **run** — бегать. They run in the park. — «Они бегают в парке». О быстром движении на ногах.
+
+**4 · Послушайте сестру**
 <!-- interaction_id: en:lesson-06:session-06:i02; family: listen_choose -->
-🔊 *bookmark* → **bookmark** · receipt · keychain
-- receipt — *В записи первое слово — `bookmark`, а в этом варианте — `receipt`.*
-- keychain — *В записи первое слово — `bookmark`, а в этом варианте — `keychain`.*
+🔊 *They run in the park.* → **They run in the park.** · They run in the yard. · They play in the park.
+- They run in the yard. — *В записи последнее слово — `park`, парк, а в этом варианте — `yard`, двор.*
+- They play in the park. — *В записи `run` — бегать, а в этом варианте `play` — играть.*
 
-**3 · Назовите закладку для книги**
+**5 · Карточка слова — ride**
+<!-- interaction_id: en:lesson-06:session-06:word:ride; family: word_card -->
+> **ride** — ехать, кататься. I ride a bicycle. — «Я езжу на велосипеде». О поездке на велосипеде или на лошади.
+
+**6 · Сосед спрашивает, как вы добираетесь до парка. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-06:i03; family: context_gap_grammar -->
-___ → **bookmark** · receipt · keychain
-- receipt — *`receipt` — чек; закладка — `bookmark`.*
-- keychain — *`keychain` — брелок; закладка — `bookmark`.*
+I ___ a bicycle. → **ride** · am ride · are ride
+- am ride — *После `I` сразу ставим `ride`, без `am`.*
+- are ride — *Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I ride`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-06:i04; family: speed_match -->
-bookmark — закладка · fake — поддельный · clinic — клиника · ceiling — потолок
+play — играть · run — бегать · ride — ехать верхом, кататься · whistle — свисток
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — whistle**
+<!-- interaction_id: en:lesson-06:session-06:word:whistle; family: word_card -->
+> **whistle** — свисток. The whistle is in my bag. — «Свисток в моей сумке». Маленькая трубка: в неё дует тренер, чтобы все услышали.
+
+**9 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-06:i05; family: listen_build_dictation -->
-🔊 *This is my bookmark.* Плитки: `bookmark` `my` `is` `This` `are` → **This is my bookmark.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is my bookmark.`)*
+🔊 *The whistle is in my bag.* Плитки: `whistle` `The` `my` `in` `bag` `is` `are` → **The whistle is in my bag.**
+*(плитка `are` лишняя: здесь нужно `is` — `The whistle is in my bag.`)*
 
-**6 · Спросите «Чья это закладка?»**
+**10 · Вы нашли на скамейке свисток и спрашиваете тренера, чей он. Задайте вопрос: «Чей это свисток?»**
 <!-- interaction_id: en:lesson-06:session-06:i06; family: phrase_builder -->
-Плитки: `this` `is` `bookmark` `Whose` → **Whose bookmark is this?**
+Плитки: `whistle` `this` `is` `Whose` `Who` → **Whose whistle is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose whistle is this?`)*
 
-**7 · Кольцо выдают за подлинное, но это имитация. Скажите «Это поддельное кольцо»**
+**11 · Соседка спрашивает, чем вы заняты во дворе. Скажите: «Мы играем в футбол во дворе»**
 <!-- interaction_id: en:lesson-06:session-06:i07; family: scripted_repeat_compare -->
-🎙 **This is a fake ring.**
+🎙 **We play football in the yard.**
 
-**8 · Закладка внутри книги. Выберите предлог**
+**12 · Дети выбегают на аллею. Скажите сестре, что они бегают в парке. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-06:i08; family: context_gap_grammar -->
-The bookmark is ___ the book. → **in** · under · behind
-- under — *Внутри — `in`; `under` — под книгой.*
-- behind — *Внутри — `in`; `behind` — за книгой.*
+They ___ in the park. → **run** · are run · is run
+- are run — *После `They` сразу ставим `run`, без `are`.*
+- is run — *Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They run`.*
 
-**9 · Послушайте, кому принадлежит та закладка**
+**13 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-06:i09; family: listen_choose -->
-🔊 *That bookmark is yours.* → **That bookmark is yours.** · That bookmark is mine. · That bookmark is hers.
-- That bookmark is mine. — *В записи последнее слово — `yours`, а в этом варианте — `mine`.*
-- That bookmark is hers. — *В записи последнее слово — `yours`, а в этом варианте — `hers`.*
+🔊 *I ride a bicycle.* → **I ride a bicycle.** · I ride a bus. · I have a bicycle.
+- I ride a bus. — *В записи последнее слово — `bicycle`, велосипед, а в этом варианте — `bus`, автобус.*
+- I have a bicycle. — *В записи `ride` — ехать, кататься, а в этом варианте `have` — иметь.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-06:i10; family: speed_match -->
-bookmark — закладка · kiosk — киоск · fake — поддельный · ceiling — потолок
+run — бегать · ride — ехать верхом, кататься · ball — мяч · whistle — свисток
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте тренера и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-06:i11; family: listen_build_dictation -->
-🔊 *The clinic is near the kiosk.* Плитки: `kiosk` `the` `near` `is` `clinic` `The` `are` → **The clinic is near the kiosk.**
-*(плитка `are` лишняя: здесь нужно `is` — `The clinic is near the kiosk.`)*
+🔊 *You run in the park.* Плитки: `park` `the` `in` `run` `You` `I` → **You run in the park.**
+*(плитка `I` лишняя: здесь нужно `You` — `You run in the park.`)*
 
-**12 · Скажите «Потолок белый»**
+**16 · Вы встретили соседа у пруда. Скажите ему: «Я езжу на велосипеде в парке»**
 <!-- interaction_id: en:lesson-06:session-06:i12; family: phrase_builder -->
-Плитки: `white` `is` `ceiling` `The` `are` → **The ceiling is white.**
-*(плитка `are` лишняя: здесь нужно `is` — `The ceiling is white.`)*
+Плитки: `bicycle` `park` `the` `a` `in` `ride` `I` `am` → **I ride a bicycle in the park.**
+*(плитка `am` лишняя: здесь нужно `ride` — `I ride a bicycle in the park.`)*
 
-**13 · Скажите «У меня есть закладка»**
+**17 · Сестра спрашивает, что делают дети в парке. Скажите: «Они бегают в парке»**
 <!-- interaction_id: en:lesson-06:session-06:i13; family: scripted_repeat_compare -->
-🎙 **I have a bookmark.**
+🎙 **They run in the park.**
 
-**14 · Скажите «Я работаю здесь»**
+**18 · Вы с друзьями вышли во двор с мячом. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-06:i14; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
-- am work — *Здесь действие: `I work`, без `am`.*
-- is work — *Здесь нужно `I work`, без `is`.*
+We ___ football in the yard. → **play** · are play · am play
+- are play — *После `We` сразу ставим `play`, без `are`.*
+- am play — *`am` ставится только после `I`; здесь нужно `We play`.*
 
-**15 · Послушайте, чья закладка здесь**
+**19 · Послушайте тренера**
 <!-- interaction_id: en:lesson-06:session-06:i15; family: listen_choose -->
-🔊 *My bookmark is here.* → **My bookmark is here.** · Your bookmark is here. · His bookmark is here.
-- Your bookmark is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His bookmark is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The whistle is in my bag.* → **The whistle is in my bag.** · The whistle is in my box. · The ball is in my bag.
+- The whistle is in my box. — *В записи место — `bag`, сумка, а в этом варианте — `box`, коробка.*
+- The ball is in my bag. — *В записи вещь — `whistle`, свисток, а в этом варианте — `ball`, мяч.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-06:i16; family: speed_match -->
-bookmark — закладка · fake — поддельный · clinic — клиника · kiosk — киоск
+whistle — свисток · play — играть · football — футбол · park — парк
 
-**17 · В книге лежит закладка. Спросите коллегу «Чья это закладка?»**
+**21 · Сосед спрашивает, на чём вы ездите. Скажите: «Я езжу на велосипеде»**
 <!-- interaction_id: en:lesson-06:session-06:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bookmark is this?**
-
+🎙 **I ride a bicycle.**

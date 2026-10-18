@@ -1,136 +1,154 @@
-# Англійська · Урок 6 · Заняття 2 — Папка на робочому столі
+# Англійська · Урок 6 · Заняття 2 — Перший день у кафе
 
-**Ситуація.** Анна показує Томові своє робоче місце. На столі лежить папка з паперами, за вікном видно сад.
+**Ситуація.** У маленькому кафе починає працювати нова помічниця. Ви пояснюєте їй, що вона робить. Про співрозмовника кажемо You і одразу дієслово.
 
-**Що ви опануєте:** назвати робочу річ, запитати про її власника й описати свій стан
-**Нові слова:** folder
+**Що ви опануєте:** сказати співрозмовникові, що він робить: You sweep, You carry, You wash — без are
+**Нові слова:** sweep, carry, saucer, dishcloth
+**Повертаються:** wash, floor, tray, cup, plate, cafe
 
 ---
 
 ## Інтро 1
 
-### Папери на місці
+### Підлога зранку
 
-`folder` — «папка»; тут папка для паперових документів. `This is my folder` — «Це моя папка». `Whose folder is this?` — «Чия це папка?» `The folder is mine` — «Папка моя». Папка тримає папери разом, але заповнювати їх за вас не обіцяє.
+Нова помічниця прийшла в кафе в перший день і розгублено стоїть біля дверей. Ви показуєте їй на підлогу й пояснюєте, що вранці вона прибирає зал. sweep — «підмітати». Коли говоримо співрозмовникові, починаємо з You: You sweep the floor — «Ти підмітаєш підлогу».
 
-**Запитайте про власника папки.**
+**Помічниця питає, що їй робити вранці. Скажіть їй: «Ти підмітаєш підлогу».**
 
-- ✅ **Whose folder is this?**
-- ❌ Where is the folder? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose folder are these? — *Одна папка: `is this`.*
+- ✅ **You sweep the floor.**
+- ❌ You are sweep the floor. — *Перед sweep слово are не потрібне: You sweep.*
+- ❌ I sweep the floor. — *I — це «я», а ви говорите помічниці: потрібно You.*
 
 ---
 
 ## Інтро 2
 
-### Робота й сад
+### Таці в обід
 
-`garden` — «сад». `The garden is near the office` — «Сад біля офісу». `I work here` — «Я працюю тут»: перед `work` у цій фразі не потрібне `am`. `I have a folder` — «У мене є папка». Якщо показуємо одну папку поруч — `this folder`, далі від нас — `that folder`: `That folder is yours` — «Та папка твоя».
+В обід у кафе повно людей. На кухонному вікні вже стоять три таці з супом, а помічниця стоїть поруч і чекає вказівок. carry — «нести». Ви пояснюєте їй, що вона відносить таці до столиків: You carry the trays — «Ти носиш таці». Тацьок кілька — trays.
 
-**Скажіть «Я працюю тут».**
+**Помічниця чекає вказівок біля кухонного вікна. Скажіть їй: «Ти носиш таці».**
 
-- ✅ **I work here.**
-- ❌ I am work here. — *У цій фразі потрібно `I work`, без `am`.*
-- ❌ I work there. — *`there` — там; тут — `here`.*
+- ✅ **You carry the trays.**
+- ❌ You are carry the trays. — *Перед carry слово are не потрібне: You carry.*
+- ❌ You carry the tray. — *Тацьок три, тому потрібно trays.*
 
 ---
 
 ## Інтро 3
 
-### Як ви почуваєтеся
+### Блюдця після кави
 
-`confident` — «впевнений у собі»: `I am confident` — «Я впевнений / впевнена в собі». `relaxed` — «розслаблений»: `I am relaxed` — «Я розслаблений / розслаблена». `satisfied` — «задоволений»: `I am satisfied` — «Я задоволений / задоволена». Ці слова описують стан, тому в цих фразах використовується `am`.
+Відвідувачі пішли, і на столі лишилася стопка блюдець від кавових чашок. Помічниця вже стоїть біля раковини й закочує рукави. saucer — «блюдце», маленька тарілка під чашкою. Ви кажете їй, що вона миє блюдця: You wash the saucers — «Ти миєш блюдця».
 
-**Скажіть «Я задоволений» без скорочення.**
+**Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця».**
 
-- ✅ **I am satisfied.**
-- ❌ I satisfied. — *Перед словом, що описує стан, тут потрібне `am`.*
-- ❌ I am relaxed. — *`relaxed` — розслаблений; задоволений — `satisfied`.*
+- ✅ **You wash the saucers.**
+- ❌ You are wash the saucers. — *Перед wash слово are не потрібне: You wash.*
+- ❌ You wash the saucer. — *Блюдець багато, тому потрібно saucers.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Розкажіть про місце роботи: «Я працюю тут»**
+**1 · Картка слова — sweep**
+<!-- interaction_id: en:lesson-06:session-02:word:sweep; family: word_card -->
+> **sweep** — підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою.
+
+**2 · Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»**
 <!-- interaction_id: en:lesson-06:session-02:i01; family: phrase_builder -->
-Плитки: `here` `work` `I` → **I work here.**
+Плитки: `floor` `the` `sweep` `You` `are` → **You sweep the floor.**
+*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — carry**
+<!-- interaction_id: en:lesson-06:session-02:word:carry; family: word_card -->
+> **carry** — нести. You carry the trays. — «Ти носиш таці». Про те, як людина тримає річ у руках і йде з нею.
+
+**4 · Послухайте кухаря**
 <!-- interaction_id: en:lesson-06:session-02:i02; family: listen_choose -->
-🔊 *folder* → **folder** · garden · desk
-- garden — *У записі перше слово — `folder`, а в цьому варіанті — `garden`.*
-- desk — *У записі перше слово — `folder`, а в цьому варіанті — `desk`.*
+🔊 *You carry the trays.* → **You carry the trays.** · You carry the cups. · You have the trays.
+- You carry the cups. — *У записі останнє слово — `trays`, таці, а в цьому варіанті — `cups`, чашки.*
+- You have the trays. — *У записі `carry` — нести, а в цьому варіанті `have` — мати.*
 
-**3 · Назвіть папку**
+**5 · Картка слова — saucer**
+<!-- interaction_id: en:lesson-06:session-02:word:saucer; family: word_card -->
+> **saucer** — блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку.
+
+**6 · Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i03; family: context_gap_grammar -->
-___ → **folder** · garden · desk
-- garden — *`garden` — сад; папка — `folder`.*
-- desk — *`desk` — письмовий стіл; папка — `folder`.*
+You wash the ___. → **saucers** · saucer · cups
+- saucer — *Блюдець багато, тому потрібно `saucers`.*
+- cups — *`cups` — чашки, а мити потрібно блюдця: `saucers`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-02:i04; family: speed_match -->
-folder — папка · confident — впевнений у собі · relaxed — розслаблений · satisfied — задоволений
+sweep — підмітати · carry — нести · saucer — блюдце · dishcloth — кухонна ганчірка
 
-**5 · Послухайте й складіть фразу**
+**8 · Картка слова — dishcloth**
+<!-- interaction_id: en:lesson-06:session-02:word:dishcloth; family: word_card -->
+> **dishcloth** — кухонна ганчірка. This is my dishcloth. — «Це моя кухонна ганчірка». Нею витирають стіл і посуд.
+
+**9 · Послухайте помічницю й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-02:i05; family: listen_build_dictation -->
-🔊 *This is my folder.* Плитки: `folder` `my` `is` `This` `are` → **This is my folder.**
-*(плитка `are` зайва: тут потрібно `is` — `This is my folder.`)*
+🔊 *This is my dishcloth.* Плитки: `dishcloth` `my` `is` `This` `are` → **This is my dishcloth.**
+*(плитка `are` зайва: тут потрібно `is` — `This is my dishcloth.`)*
 
-**6 · Запитайте «Чия це папка?»**
+**10 · Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»**
 <!-- interaction_id: en:lesson-06:session-02:i06; family: phrase_builder -->
-Плитки: `this` `is` `folder` `Whose` → **Whose folder is this?**
+Плитки: `dishcloth` `this` `is` `Whose` `Who` → **Whose dishcloth is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose dishcloth is this?`)*
 
-**7 · Скажіть «Я впевнений у собі» без скорочення**
+**11 · Помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»**
 <!-- interaction_id: en:lesson-06:session-02:i07; family: scripted_repeat_compare -->
-🎙 **I am confident.**
+🎙 **You sweep the floor.**
 
-**8 · Скажіть «Я задоволений» без скорочення**
+**12 · В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i08; family: context_gap_grammar -->
-I ___ satisfied. → **am** · is · are
-- is — *З `I` для опису стану потрібна форма `am`.*
-- are — *З `I` потрібна форма `am`.*
+You ___ the trays. → **carry** · are carry · is carry
+- are carry — *Після `You` одразу ставимо `carry`, без `are`.*
+- is carry — *З `You` слово `is` не вживається; потрібно `You carry`.*
 
-**9 · Послухайте, кому належить та папка**
+**13 · Послухайте кухаря**
 <!-- interaction_id: en:lesson-06:session-02:i09; family: listen_choose -->
-🔊 *That folder is yours.* → **That folder is yours.** · That folder is mine. · That folder is hers.
-- That folder is mine. — *У записі останнє слово — `yours`, а в цьому варіанті — `mine`.*
-- That folder is hers. — *У записі останнє слово — `yours`, а в цьому варіанті — `hers`.*
+🔊 *You wash the saucers.* → **You wash the saucers.** · You wash the plates. · You have the saucers.
+- You wash the plates. — *У записі останнє слово — `saucers`, блюдця, а в цьому варіанті — `plates`, тарілки.*
+- You have the saucers. — *У записі `wash` — мити, а в цьому варіанті `have` — мати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-02:i10; family: speed_match -->
-folder — папка · garden — сад · confident — впевнений у собі · relaxed — розслаблений
+carry — нести · tray — таця · saucer — блюдце · sweep — підмітати
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте кухаря й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-02:i11; family: listen_build_dictation -->
-🔊 *The garden is near the office.* Плитки: `office` `the` `near` `is` `garden` `The` `are` → **The garden is near the office.**
-*(плитка `are` зайва: тут потрібно `is` — `The garden is near the office.`)*
+🔊 *You carry the cups.* Плитки: `cups` `the` `carry` `You` `I` → **You carry the cups.**
+*(плитка `I` зайва: тут потрібно `You` — `You carry the cups.`)*
 
-**12 · Папка належить вам. Скажіть «Папка моя»**
+**16 · Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»**
 <!-- interaction_id: en:lesson-06:session-02:i12; family: phrase_builder -->
-Плитки: `mine` `is` `folder` `The` `are` → **The folder is mine.**
-*(плитка `are` зайва: тут потрібно `is` — `The folder is mine.`)*
+Плитки: `floor` `cafe` `the` `the` `in` `sweep` `You` `are` → **You sweep the floor in the cafe.**
+*(плитка `are` зайва: тут потрібно `sweep` — `You sweep the floor in the cafe.`)*
 
-**13 · Скажіть «Я розслаблений» без скорочення**
+**17 · Помічниця питає про таці. Скажіть їй: «Ти носиш таці»**
 <!-- interaction_id: en:lesson-06:session-02:i13; family: scripted_repeat_compare -->
-🎙 **I am relaxed.**
+🎙 **You carry the trays.**
 
-**14 · Скажіть «Я працюю в бібліотеці»**
+**18 · Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-02:i14; family: context_gap_grammar -->
-I ___ in a library. → **work** · am work · is work
-- am work — *Тут дія: `I work`, без `am`.*
-- is work — *Тут потрібно `I work`, без `is`.*
+You ___ the floor. → **sweep** · are sweep · is sweep
+- are sweep — *Після `You` одразу ставимо `sweep`, без `are`.*
+- is sweep — *З `You` слово `is` не вживається; потрібно `You sweep`.*
 
-**15 · Послухайте, що є в Анни**
+**19 · Послухайте помічницю**
 <!-- interaction_id: en:lesson-06:session-02:i15; family: listen_choose -->
-🔊 *I have a folder.* → **I have a folder.** · I have a bag. · I have a desk.
-- I have a bag. — *У записі останнє слово — `folder`, а в цьому варіанті — `bag`.*
-- I have a desk. — *У записі останнє слово — `folder`, а в цьому варіанті — `desk`.*
+🔊 *Whose saucer is this?* → **Whose saucer is this?** · Whose dishcloth is this? · Whose saucers are these?
+- Whose dishcloth is this? — *У записі річ — `saucer`, блюдце, а в цьому варіанті — `dishcloth`, кухонна ганчірка.*
+- Whose saucers are these? — *У записі блюдце одне — `saucer is this`, а в цьому варіанті кілька — `saucers are these`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-02:i16; family: speed_match -->
-folder — папка · garden — сад · satisfied — задоволений · confident — впевнений у собі
+dishcloth — кухонна ганчірка · sweep — підмітати · saucer — блюдце · tray — таця
 
-**17 · На робочому столі лежить папка. Запитайте колегу «Чия це папка?»**
+**21 · Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця»**
 <!-- interaction_id: en:lesson-06:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose folder is this?**
-
+🎙 **You wash the saucers.**

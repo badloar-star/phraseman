@@ -1,136 +1,154 @@
-# Английский · Урок 6 · Занятие 3 — Посылка на столе
+# Английский · Урок 6 · Занятие 3 — Работа в саду
 
-**Ситуация.** Том приходит к Анне на работу. На письменном столе лежит посылка; Том уточняет, кому она принадлежит.
+**Ситуация.** Вы с сестрой, братом и подругой следите за общим садом во дворе. Когда делаете дело вместе, говорим We и сразу глагол.
 
-**Что вы освоите:** назвать посылку, спросить о владельце и описать своё отношение к новости
-**Новые слова:** parcel
+**Что вы освоите:** сказать, что вы делаете вместе: We mow, We trim, We pick — без are
+**Новые слова:** mow, trim, pick, lawnmower
+**Возвращаются:** lawn, hedge, pear, plum, tree, garden, fence, shed, ladder
 
 ---
 
 ## Интро 1
 
-### Что принесли?
+### Трава выше ботинок
 
-`parcel` — «посылка». `This is my parcel` — «Это моя посылка». `Whose parcel is this?` — «Чья это посылка?» `The parcel is mine` — «Посылка моя». Посылка уже добралась до стола, хотя сама адреса не читает.
+За неделю трава на лужайке выросла выше ботинок. В субботу утром вы с сестрой достаёте из сарая тяжёлую технику и идёте к лужайке перед домом. mow — «косить» траву. Когда вы делаете дело вместе, говорим We: We mow the lawn — «Мы косим лужайку».
 
-**Спросите о владельце посылки.**
+**Соседка через забор спрашивает, чем вы с сестрой заняты. Вы косите лужайку. Скажите: «Мы косим лужайку».**
 
-- ✅ **Whose parcel is this?**
-- ❌ Where is the parcel? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose parcel are these? — *Одна посылка: `is this`.*
+- ✅ **We mow the lawn.**
+- ❌ We are mow the lawn. — *Перед mow слово are не нужно: We mow.*
+- ❌ We mow the garden. — *Косят траву на лужайке: нужно lawn, а garden — это весь сад.*
 
 ---
 
 ## Интро 2
 
-### Место работы и вещи
+### Кусты у забора
 
-`bank` — «банк», `desk` — «письменный стол», `stadium` — «стадион». `I work in a bank` — «Я работаю в банке». `The parcel is on the desk` — «Посылка на письменном столе». `The bank is near the stadium` — «Банк возле стадиона». Перед `work` в этой фразе не нужно `am`.
+Живая изгородь вдоль забора разрослась и лезет на дорожку. Вы с братом берёте большие садовые ножницы и медленно идёте вдоль неё, ветка за веткой. trim — «подрезать» кусты или ветки. Вы работаете вдвоём, поэтому We: We trim the hedge — «Мы подрезаем живую изгородь».
 
-**Скажите «Я работаю в банке».**
+**Сестра спрашивает, чем вы с братом занимаетесь у забора. Вы подрезаете живую изгородь. Скажите: «Мы подрезаем живую изгородь».**
 
-- ✅ **I work in a bank.**
-- ❌ I am work in a bank. — *Здесь действие: `I work`, без `am`.*
-- ❌ I work in a library. — *`library` — библиотека; банк — `bank`.*
+- ✅ **We trim the hedge.**
+- ❌ We are trim the hedge. — *Перед trim слово are не нужно: We trim.*
+- ❌ We trim the fence. — *fence — забор из досок, а подрезаем куст: нужно hedge.*
 
 ---
 
 ## Интро 3
 
-### Знать, верить, беспокоиться
+### Груши на ветке
 
-`aware` — «осведомлён»: `I am aware` — «Я в курсе», когда понятно, о чём речь. `convinced` — «убеждён»: `I am convinced` — «Я убеждён / убеждена», когда понятно, в чём. `concerned` — «обеспокоен»: `I am concerned` — «Я обеспокоен / обеспокоена». Знать о новости, верить утверждению и беспокоиться — разные состояния. Во всех трёх фразах с `I` нужно `am`.
+В конце лета груши на старом дереве созрели и тянут ветки вниз. Подруга держит под деревом большую плетёную корзину, а вы тянетесь к самым нижним веткам. pick — «срывать, собирать» плоды. Груш много, поэтому говорим pears: We pick pears — «Мы собираем груши».
 
-**Вы уже знаете о задержке. Скажите «Я в курсе» без сокращения.**
+**Подруга держит корзину под грушей. Скажите ей: «Мы собираем груши».**
 
-- ✅ **I am aware.**
-- ❌ I aware. — *Здесь состояние: нужно `I am aware`.*
-- ❌ I am concerned. — *Это «Я обеспокоен», а нужно сообщить, что вы в курсе: `aware`.*
+- ✅ **We pick pears.**
+- ❌ We are pick pears. — *Перед pick слово are не нужно: We pick.*
+- ❌ We pick a pear. — *Груш много, поэтому нужно pears.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите о месте работы: «Я работаю в банке»**
+**1 · Карточка слова — mow**
+<!-- interaction_id: en:lesson-06:session-03:word:mow; family: word_card -->
+> **mow** — косить. We mow the lawn. — «Мы косим лужайку». О том, как срезают траву машиной.
+
+**2 · Соседка через забор спрашивает, чем вы с сестрой заняты. Скажите: «Мы косим лужайку»**
 <!-- interaction_id: en:lesson-06:session-03:i01; family: phrase_builder -->
-Плитки: `bank` `a` `in` `work` `I` → **I work in a bank.**
+Плитки: `lawn` `the` `mow` `We` `are` → **We mow the lawn.**
+*(плитка `are` лишняя: здесь нужно `mow` — `We mow the lawn.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — trim**
+<!-- interaction_id: en:lesson-06:session-03:word:trim; family: word_card -->
+> **trim** — подрезать. We trim the hedge. — «Мы подрезаем живую изгородь». О том, как делают кусты и ветки короче и ровнее.
+
+**4 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-03:i02; family: listen_choose -->
-🔊 *parcel* → **parcel** · folder · desk
-- folder — *В записи первое слово — `parcel`, а в этом варианте — `folder`.*
-- desk — *В записи первое слово — `parcel`, а в этом варианте — `desk`.*
+🔊 *We trim the hedge.* → **We trim the hedge.** · We trim the tree. · We have the hedge.
+- We trim the tree. — *В записи последнее слово — `hedge`, живая изгородь, а в этом варианте — `tree`, дерево.*
+- We have the hedge. — *В записи `trim` — подрезать, а в этом варианте `have` — иметь.*
 
-**3 · Назовите посылку**
+**5 · Карточка слова — pick**
+<!-- interaction_id: en:lesson-06:session-03:word:pick; family: word_card -->
+> **pick** — собирать, срывать. We pick pears. — «Мы собираем груши». О том, как берут плоды с ветки.
+
+**6 · Груши на дереве созрели. Скажите подруге, что вы их собираете. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i03; family: context_gap_grammar -->
-___ → **parcel** · folder · desk
-- folder — *`folder` — папка; посылка — `parcel`.*
-- desk — *`desk` — письменный стол; посылка — `parcel`.*
+We ___ pears. → **pick** · are pick · am pick
+- are pick — *После `We` сразу ставим `pick`, без `are`.*
+- am pick — *`am` ставится только после `I`; здесь нужно `We pick`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-03:i04; family: speed_match -->
-parcel — посылка · aware — осведомлён · convinced — убеждён · concerned — обеспокоен
+mow — косить · trim — подрезать · pick — собирать · lawnmower — газонокосилка
 
-**5 · Послушайте и соберите фразу**
+**8 · Карточка слова — lawnmower**
+<!-- interaction_id: en:lesson-06:session-03:word:lawnmower; family: word_card -->
+> **lawnmower** — газонокосилка. The lawnmower is in the shed. — «Газонокосилка в сарае». Техника, которой косят траву.
+
+**9 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-03:i05; family: listen_build_dictation -->
-🔊 *This is my parcel.* Плитки: `parcel` `my` `is` `This` `are` → **This is my parcel.**
-*(плитка `are` лишняя: здесь нужно `is` — `This is my parcel.`)*
+🔊 *The lawnmower is in the shed.* Плитки: `lawnmower` `The` `the` `in` `shed` `is` `are` → **The lawnmower is in the shed.**
+*(плитка `are` лишняя: здесь нужно `is` — `The lawnmower is in the shed.`)*
 
-**6 · Спросите «Чья это посылка?»**
+**10 · Вы нашли у сарая газонокосилку и спрашиваете соседку, чья она. Задайте вопрос: «Чья это газонокосилка?»**
 <!-- interaction_id: en:lesson-06:session-03:i06; family: phrase_builder -->
-Плитки: `this` `is` `parcel` `Whose` → **Whose parcel is this?**
+Плитки: `lawnmower` `this` `is` `Whose` `Who` → **Whose lawnmower is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose lawnmower is this?`)*
 
-**7 · Вам сообщили о задержке, но вы уже знаете о ней. Скажите «Я в курсе» без сокращения**
+**11 · Сестра спрашивает, что вы делаете у забора. Скажите: «Мы подрезаем живую изгородь»**
 <!-- interaction_id: en:lesson-06:session-03:i07; family: scripted_repeat_compare -->
-🎙 **I am aware.**
+🎙 **We trim the hedge.**
 
-**8 · Скажите «Я обеспокоен» без сокращения**
+**12 · Трава во дворе слишком высокая. Скажите соседке, что вы её косите. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i08; family: context_gap_grammar -->
-I ___ concerned. → **am** · is · are
-- is — *С `I` для описания состояния нужна форма `am`.*
-- are — *С `I` нужна форма `am`.*
+We ___ the lawn. → **mow** · are mow · am mow
+- are mow — *После `We` сразу ставим `mow`, без `are`.*
+- am mow — *`am` ставится только после `I`; здесь нужно `We mow`.*
 
-**9 · Послушайте, кому принадлежит та посылка**
+**13 · Послушайте подругу**
 <!-- interaction_id: en:lesson-06:session-03:i09; family: listen_choose -->
-🔊 *That parcel is yours.* → **That parcel is yours.** · That parcel is mine. · That parcel is hers.
-- That parcel is mine. — *В записи последнее слово — `yours`, а в этом варианте — `mine`.*
-- That parcel is hers. — *В записи последнее слово — `yours`, а в этом варианте — `hers`.*
+🔊 *We pick pears.* → **We pick pears.** · We pick plums. · We have pears.
+- We pick plums. — *В записи последнее слово — `pears`, груши, а в этом варианте — `plums`, сливы.*
+- We have pears. — *В записи `pick` — собирать, а в этом варианте `have` — иметь.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-03:i10; family: speed_match -->
-parcel — посылка · bank — банк · desk — письменный стол · stadium — стадион
+trim — подрезать · hedge — живая изгородь · pear — груша · lawnmower — газонокосилка
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте соседку и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-03:i11; family: listen_build_dictation -->
-🔊 *The parcel is on the desk.* Плитки: `desk` `the` `on` `is` `parcel` `The` `are` → **The parcel is on the desk.**
-*(плитка `are` лишняя: здесь нужно `is` — `The parcel is on the desk.`)*
+🔊 *We mow the lawn in the garden.* Плитки: `lawn` `garden` `the` `the` `in` `mow` `We` `are` → **We mow the lawn in the garden.**
+*(плитка `are` лишняя: здесь нужно `mow` — `We mow the lawn in the garden.`)*
 
-**12 · Скажите «Банк возле стадиона»**
+**16 · Вы рассказываете подруге, где вы собираете груши. Скажите: «Мы собираем груши в саду»**
 <!-- interaction_id: en:lesson-06:session-03:i12; family: phrase_builder -->
-Плитки: `stadium` `the` `near` `is` `bank` `The` `are` → **The bank is near the stadium.**
-*(плитка `are` лишняя: здесь нужно `is` — `The bank is near the stadium.`)*
+Плитки: `pears` `garden` `the` `in` `pick` `We` `are` → **We pick pears in the garden.**
+*(плитка `are` лишняя: здесь нужно `pick` — `We pick pears in the garden.`)*
 
-**13 · Аргументы друга вас убедили. Скажите «Я убеждён» без сокращения**
+**17 · Подруга спрашивает, что вы делаете под деревом. Скажите: «Мы собираем груши»**
 <!-- interaction_id: en:lesson-06:session-03:i13; family: scripted_repeat_compare -->
-🎙 **I am convinced.**
+🎙 **We pick pears.**
 
-**14 · Скажите «Я работаю здесь»**
+**18 · Живая изгородь разрослась. Скажите брату, что вы её подрезаете. Выберите слово**
 <!-- interaction_id: en:lesson-06:session-03:i14; family: context_gap_grammar -->
-I ___ here. → **work** · am work · is work
-- am work — *Здесь действие: `I work`, без `am`.*
-- is work — *Здесь нужно `I work`, без `is`.*
+We ___ the hedge. → **trim** · are trim · am trim
+- are trim — *После `We` сразу ставим `trim`, без `are`.*
+- am trim — *`am` ставится только после `I`; здесь нужно `We trim`.*
 
-**15 · Послушайте, кому принадлежит посылка**
+**19 · Послушайте соседку**
 <!-- interaction_id: en:lesson-06:session-03:i15; family: listen_choose -->
-🔊 *The parcel is mine.* → **The parcel is mine.** · The parcel is hers. · The parcel is ours.
-- The parcel is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
-- The parcel is ours. — *В записи последнее слово — `mine`, а в этом варианте — `ours`.*
+🔊 *The lawnmower is in the shed.* → **The lawnmower is in the shed.** · The lawnmower is in the garden. · The ladder is in the shed.
+- The lawnmower is in the garden. — *В записи место — `shed`, сарай, а в этом варианте — `garden`, сад.*
+- The ladder is in the shed. — *В записи вещь — `lawnmower`, газонокосилка, а в этом варианте — `ladder`, лестница.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-03:i16; family: speed_match -->
-parcel — посылка · aware — осведомлён · convinced — убеждён · concerned — обеспокоен
+lawnmower — газонокосилка · pick — собирать · hedge — живая изгородь · shed — сарай
 
-**17 · На рабочем столе лежит посылка. Спросите коллегу «Чья это посылка?»**
+**21 · Вы с сестрой работаете во дворе. Скажите соседке, что вы косите лужайку: «Мы косим лужайку»**
 <!-- interaction_id: en:lesson-06:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose parcel is this?**
-
+🎙 **We mow the lawn.**

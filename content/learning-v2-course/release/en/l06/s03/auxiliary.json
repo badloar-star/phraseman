@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-03:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Перед mow слово are не нужно: We mow.",
+          "uk": "Перед mow слово are не потрібне: We mow."
         },
         "en:lesson-06:session-03:intro1:r3": {
-          "ru": "Одна посылка: `is this`.",
-          "uk": "Одна посилка: `is this`."
+          "ru": "Косят траву на лужайке: нужно lawn, а garden — это весь сад.",
+          "uk": "Косять траву на галявині: потрібно lawn, а garden — це весь сад."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-03:intro2:r2": {
-          "ru": "Здесь действие: `I work`, без `am`.",
-          "uk": "Тут дія: `I work`, без `am`."
+          "ru": "Перед trim слово are не нужно: We trim.",
+          "uk": "Перед trim слово are не потрібне: We trim."
         },
         "en:lesson-06:session-03:intro2:r3": {
-          "ru": "`library` — библиотека; банк — `bank`.",
-          "uk": "`library` — бібліотека; банк — `bank`."
+          "ru": "fence — забор из досок, а подрезаем куст: нужно hedge.",
+          "uk": "fence — паркан з дощок, а підрізаємо кущ: потрібно hedge."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-03:intro3:r2": {
-          "ru": "Здесь состояние: нужно `I am aware`.",
-          "uk": "Тут стан: потрібно `I am aware`."
+          "ru": "Перед pick слово are не нужно: We pick.",
+          "uk": "Перед pick слово are не потрібне: We pick."
         },
         "en:lesson-06:session-03:intro3:r3": {
-          "ru": "Это «Я обеспокоен», а нужно сообщить, что вы в курсе: `aware`.",
-          "uk": "Це «Я стурбований», а потрібно повідомити, що ви в курсі: `aware`."
+          "ru": "Груш много, поэтому нужно pears.",
+          "uk": "Груш багато, тому потрібно pears."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "18320edc6662d45e70fac232c634cb926fa4e6e23ee40fa1827a7480376f0ce2"
+  "auxiliaryFingerprint": "4f52f18c5ce9be8ff731731554b32145563482c787f034aceaf13092ee66b92f"
 }

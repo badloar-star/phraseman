@@ -1,0 +1,2451 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-02:word:sweep",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sweep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:sweep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sweep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:sweep:audio",
+            "transcript": "sweep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:sweep:r1",
+              "targetText": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать. You sweep the floor. — «Ты подметаешь пол». О том, как убирают сор с пола щёткой.",
+                "uk": "підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweep",
+            "definitionByLocale": {
+              "ru": "подметать. You sweep the floor. — «Ты подметаешь пол». О том, как убирают сор с пола щёткой.",
+              "uk": "підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You sweep the floor.",
+          "localizedMeaning": {
+            "ru": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+            "uk": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»"
+          },
+          "orderedTokens": [
+            "You",
+            "sweep",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sweep` — `You sweep the floor.`",
+                "uk": "тут потрібно `sweep` — `You sweep the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:carry",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:carry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:carry:audio",
+            "transcript": "carry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:carry:r1",
+              "targetText": "carry",
+              "meaningByLocale": {
+                "ru": "нести. You carry the trays. — «Ты носишь подносы». О том, как человек держит вещь в руках и идёт с ней.",
+                "uk": "нести. You carry the trays. — «Ти носиш таці». Про те, як людина тримає річ у руках і йде з нею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carry",
+            "definitionByLocale": {
+              "ru": "нести. You carry the trays. — «Ты носишь подносы». О том, как человек держит вещь в руках и идёт с ней.",
+              "uk": "нести. You carry the trays. — «Ти носиш таці». Про те, як людина тримає річ у руках і йде з нею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте повара",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i02:r1",
+            "text": "You carry the trays."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i02:r2",
+            "text": "You carry the cups."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i02:r3",
+            "text": "You have the trays."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i02:audio",
+            "transcript": "You carry the trays."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i02:r1",
+              "targetText": "You carry the trays.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r2",
+              "targetText": "You carry the cups.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r3",
+              "targetText": "You have the trays.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trays`, подносы, а в этом варианте — `cups`, чашки.",
+                "uk": "У записі останнє слово — `trays`, таці, а в цьому варіанті — `cups`, чашки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи `carry` — нести, а в этом варианте `have` — иметь.",
+                "uk": "У записі `carry` — нести, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:saucer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — saucer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:saucer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — saucer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:saucer:audio",
+            "transcript": "saucer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:saucer:r1",
+              "targetText": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце. You wash the saucers. — «Ты моешь блюдца». Маленькая тарелка, на которую ставят чашку.",
+                "uk": "блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "saucer",
+            "definitionByLocale": {
+              "ru": "блюдце. You wash the saucers. — «Ты моешь блюдца». Маленькая тарелка, на которую ставят чашку.",
+              "uk": "блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i03:r1",
+            "text": "saucers"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i03:r2",
+            "text": "saucer"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i03:r3",
+            "text": "cups"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+            "uk": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You wash the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i03:r1",
+              "text": "saucers"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r2",
+              "text": "saucer"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r3",
+              "text": "cups"
+            }
+          ],
+          "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Блюдец много, поэтому нужно `saucers`.",
+                "uk": "Блюдець багато, тому потрібно `saucers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`cups` — чашки, а мыть нужно блюдца: `saucers`.",
+                "uk": "`cups` — чашки, а мити потрібно блюдця: `saucers`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i04:p1",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p2",
+              "target": "carry",
+              "meaningByLocale": {
+                "ru": "нести",
+                "uk": "нести"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p4",
+              "target": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка",
+                "uk": "кухонна ганчірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweep",
+            "carry",
+            "saucer",
+            "dishcloth"
+          ],
+          "rightColumn": [
+            "подметать",
+            "нести",
+            "блюдце",
+            "кухонная тряпка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:dishcloth",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dishcloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:dishcloth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dishcloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:dishcloth:audio",
+            "transcript": "dishcloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:dishcloth:r1",
+              "targetText": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка. This is my dishcloth. — «Это моя кухонная тряпка». Ею вытирают стол и посуду.",
+                "uk": "кухонна ганчірка. This is my dishcloth. — «Це моя кухонна ганчірка». Нею витирають стіл і посуд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dishcloth",
+            "definitionByLocale": {
+              "ru": "кухонная тряпка. This is my dishcloth. — «Это моя кухонная тряпка». Ею вытирают стол и посуду.",
+              "uk": "кухонна ганчірка. This is my dishcloth. — «Це моя кухонна ганчірка». Нею витирають стіл і посуд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте помощницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте помощницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i05:audio",
+            "transcript": "This is my dishcloth."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is my dishcloth.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "dishcloth"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my dishcloth.`",
+                "uk": "тут потрібно `is` — `This is my dishcloth.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли на столе кухонную тряпку и спрашиваете помощницу, чья она. Задайте вопрос: «Чья это кухонная тряпка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли на столе кухонную тряпку и спрашиваете помощницу, чья она. Задайте вопрос: «Чья это кухонная тряпка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose dishcloth is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на столе кухонную тряпку и спрашиваете помощницу, чья она. Задайте вопрос: «Чья это кухонная тряпка?»",
+            "uk": "Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "dishcloth",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли на столе кухонную тряпку и спрашиваете помощницу, чья она. Задайте вопрос: «Чья это кухонная тряпка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose dishcloth is this?`",
+                "uk": "тут потрібно `Whose` — `Whose dishcloth is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i07:audio"
+        ],
+        "accessibilityLabel": "Помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i07:audio",
+            "transcript": "You sweep the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You sweep the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i08:r1",
+            "text": "carry"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i08:r2",
+            "text": "are carry"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i08:r3",
+            "text": "is carry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+            "uk": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the trays.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i08:r1",
+              "text": "carry"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r2",
+              "text": "are carry"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r3",
+              "text": "is carry"
+            }
+          ],
+          "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `carry`, без `are`.",
+                "uk": "Після `You` одразу ставимо `carry`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `You` слово `is` не используется; нужно `You carry`.",
+                "uk": "З `You` слово `is` не вживається; потрібно `You carry`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте повара",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i09:r1",
+            "text": "You wash the saucers."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i09:r2",
+            "text": "You wash the plates."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i09:r3",
+            "text": "You have the saucers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i09:audio",
+            "transcript": "You wash the saucers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i09:r1",
+              "targetText": "You wash the saucers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r2",
+              "targetText": "You wash the plates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r3",
+              "targetText": "You have the saucers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `saucers`, блюдца, а в этом варианте — `plates`, тарелки.",
+                "uk": "У записі останнє слово — `saucers`, блюдця, а в цьому варіанті — `plates`, тарілки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи `wash` — мыть, а в этом варианте `have` — иметь.",
+                "uk": "У записі `wash` — мити, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i10:p1",
+              "target": "carry",
+              "meaningByLocale": {
+                "ru": "нести",
+                "uk": "нести"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p2",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос",
+                "uk": "таця"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p4",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carry",
+            "tray",
+            "saucer",
+            "sweep"
+          ],
+          "rightColumn": [
+            "нести",
+            "поднос",
+            "блюдце",
+            "подметать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте повара и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i11:audio",
+            "transcript": "You carry the cups."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You carry the cups.",
+          "orderedTokens": [
+            "You",
+            "carry",
+            "the",
+            "cups"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте повара и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You carry the cups.`",
+                "uk": "тут потрібно `You` — `You carry the cups.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You sweep the floor in the cafe.",
+          "localizedMeaning": {
+            "ru": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+            "uk": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»"
+          },
+          "orderedTokens": [
+            "You",
+            "sweep",
+            "the",
+            "floor",
+            "in",
+            "the",
+            "cafe"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sweep` — `You sweep the floor in the cafe.`",
+                "uk": "тут потрібно `sweep` — `You sweep the floor in the cafe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помощница спрашивает про подносы. Скажите ей: «Ты носишь подносы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i13:audio"
+        ],
+        "accessibilityLabel": "Помощница спрашивает про подносы. Скажите ей: «Ты носишь подносы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i13:audio",
+            "transcript": "You carry the trays."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You carry the trays.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i14:r1",
+            "text": "sweep"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i14:r2",
+            "text": "are sweep"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i14:r3",
+            "text": "is sweep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+            "uk": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i14:r1",
+              "text": "sweep"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r2",
+              "text": "are sweep"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r3",
+              "text": "is sweep"
+            }
+          ],
+          "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i14:r2",
+              "correct": false,
+              "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `sweep`, без `are`.",
+                "uk": "Після `You` одразу ставимо `sweep`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r3",
+              "correct": false,
+              "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "С `You` слово `is` не используется; нужно `You sweep`.",
+                "uk": "З `You` слово `is` не вживається; потрібно `You sweep`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте помощницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i15:r1",
+            "text": "Whose saucer is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i15:r2",
+            "text": "Whose dishcloth is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i15:r3",
+            "text": "Whose saucers are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте помощницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i15:audio",
+            "transcript": "Whose saucer is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i15:r1",
+              "targetText": "Whose saucer is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r2",
+              "targetText": "Whose dishcloth is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r3",
+              "targetText": "Whose saucers are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `saucer`, блюдце, а в этом варианте — `dishcloth`, кухонная тряпка.",
+                "uk": "У записі річ — `saucer`, блюдце, а в цьому варіанті — `dishcloth`, кухонна ганчірка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи блюдце одно — `saucer is this`, а в этом варианте несколько — `saucers are these`.",
+                "uk": "У записі блюдце одне — `saucer is this`, а в цьому варіанті кілька — `saucers are these`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i16:p1",
+              "target": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка",
+                "uk": "кухонна ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p2",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p4",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос",
+                "uk": "таця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dishcloth",
+            "sweep",
+            "saucer",
+            "tray"
+          ],
+          "rightColumn": [
+            "кухонная тряпка",
+            "подметать",
+            "блюдце",
+            "поднос"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помощница стоит у раковины. Скажите ей: «Ты моешь блюдца»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Помощница стоит у раковины. Скажите ей: «Ты моешь блюдца»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i17:audio",
+            "transcript": "You wash the saucers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You wash the saucers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-02:word:sweep",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sweep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:sweep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sweep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:sweep:audio",
+            "transcript": "sweep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:sweep:r1",
+              "targetText": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать. You sweep the floor. — «Ты подметаешь пол». О том, как убирают сор с пола щёткой.",
+                "uk": "підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweep",
+            "definitionByLocale": {
+              "ru": "подметать. You sweep the floor. — «Ты подметаешь пол». О том, как убирают сор с пола щёткой.",
+              "uk": "підмітати. You sweep the floor. — «Ти підмітаєш підлогу». Про те, як прибирають сміття з підлоги щіткою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You sweep the floor.",
+          "localizedMeaning": {
+            "ru": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+            "uk": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»"
+          },
+          "orderedTokens": [
+            "You",
+            "sweep",
+            "the",
+            "floor"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sweep` — `You sweep the floor.`",
+                "uk": "тут потрібно `sweep` — `You sweep the floor.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:carry",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:carry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:carry:audio",
+            "transcript": "carry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:carry:r1",
+              "targetText": "carry",
+              "meaningByLocale": {
+                "ru": "нести. You carry the trays. — «Ты носишь подносы». О том, как человек держит вещь в руках и идёт с ней.",
+                "uk": "нести. You carry the trays. — «Ти носиш таці». Про те, як людина тримає річ у руках і йде з нею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carry",
+            "definitionByLocale": {
+              "ru": "нести. You carry the trays. — «Ты носишь подносы». О том, как человек держит вещь в руках и идёт с ней.",
+              "uk": "нести. You carry the trays. — «Ти носиш таці». Про те, як людина тримає річ у руках і йде з нею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кухаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i02:r1",
+            "text": "You carry the trays."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i02:r2",
+            "text": "You carry the cups."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i02:r3",
+            "text": "You have the trays."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i02:audio",
+            "transcript": "You carry the trays."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i02:r1",
+              "targetText": "You carry the trays.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r2",
+              "targetText": "You carry the cups.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r3",
+              "targetText": "You have the trays.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `trays`, подносы, а в этом варианте — `cups`, чашки.",
+                "uk": "У записі останнє слово — `trays`, таці, а в цьому варіанті — `cups`, чашки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи `carry` — нести, а в этом варианте `have` — иметь.",
+                "uk": "У записі `carry` — нести, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:saucer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — saucer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:saucer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — saucer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:saucer:audio",
+            "transcript": "saucer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:saucer:r1",
+              "targetText": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце. You wash the saucers. — «Ты моешь блюдца». Маленькая тарелка, на которую ставят чашку.",
+                "uk": "блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "saucer",
+            "definitionByLocale": {
+              "ru": "блюдце. You wash the saucers. — «Ты моешь блюдца». Маленькая тарелка, на которую ставят чашку.",
+              "uk": "блюдце. You wash the saucers. — «Ти миєш блюдця». Маленька тарілка, на яку ставлять чашку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i03:r1",
+            "text": "saucers"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i03:r2",
+            "text": "saucer"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i03:r3",
+            "text": "cups"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+            "uk": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You wash the ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i03:r1",
+              "text": "saucers"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r2",
+              "text": "saucer"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r3",
+              "text": "cups"
+            }
+          ],
+          "testedDimension": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Блюдец много, поэтому нужно `saucers`.",
+                "uk": "Блюдець багато, тому потрібно `saucers`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`cups` — чашки, а мыть нужно блюдца: `saucers`.",
+                "uk": "`cups` — чашки, а мити потрібно блюдця: `saucers`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i04:p1",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p2",
+              "target": "carry",
+              "meaningByLocale": {
+                "ru": "нести",
+                "uk": "нести"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i04:p4",
+              "target": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка",
+                "uk": "кухонна ганчірка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sweep",
+            "carry",
+            "saucer",
+            "dishcloth"
+          ],
+          "rightColumn": [
+            "підмітати",
+            "нести",
+            "блюдце",
+            "кухонна ганчірка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:word:dishcloth",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dishcloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:word:dishcloth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dishcloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:word:dishcloth:audio",
+            "transcript": "dishcloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:word:dishcloth:r1",
+              "targetText": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка. This is my dishcloth. — «Это моя кухонная тряпка». Ею вытирают стол и посуду.",
+                "uk": "кухонна ганчірка. This is my dishcloth. — «Це моя кухонна ганчірка». Нею витирають стіл і посуд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dishcloth",
+            "definitionByLocale": {
+              "ru": "кухонная тряпка. This is my dishcloth. — «Это моя кухонная тряпка». Ею вытирают стол и посуду.",
+              "uk": "кухонна ганчірка. This is my dishcloth. — «Це моя кухонна ганчірка». Нею витирають стіл і посуд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте помічницю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте помічницю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i05:audio",
+            "transcript": "This is my dishcloth."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is my dishcloth.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "dishcloth"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `This is my dishcloth.`",
+                "uk": "тут потрібно `is` — `This is my dishcloth.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose dishcloth is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на столе кухонную тряпку и спрашиваете помощницу, чья она. Задайте вопрос: «Чья это кухонная тряпка?»",
+            "uk": "Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "dishcloth",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли на столі кухонну ганчірку й питаєте помічницю, чия вона. Поставте питання: «Чия це кухонна ганчірка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose dishcloth is this?`",
+                "uk": "тут потрібно `Whose` — `Whose dishcloth is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i07:audio"
+        ],
+        "accessibilityLabel": "Помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i07:audio",
+            "transcript": "You sweep the floor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You sweep the floor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i08:r1",
+            "text": "carry"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i08:r2",
+            "text": "are carry"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i08:r3",
+            "text": "is carry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+            "uk": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the trays.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i08:r1",
+              "text": "carry"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r2",
+              "text": "are carry"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r3",
+              "text": "is carry"
+            }
+          ],
+          "testedDimension": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `carry`, без `are`.",
+                "uk": "Після `You` одразу ставимо `carry`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `You` слово `is` не используется; нужно `You carry`.",
+                "uk": "З `You` слово `is` не вживається; потрібно `You carry`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кухаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i09:r1",
+            "text": "You wash the saucers."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i09:r2",
+            "text": "You wash the plates."
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i09:r3",
+            "text": "You have the saucers."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i09:audio",
+            "transcript": "You wash the saucers."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i09:r1",
+              "targetText": "You wash the saucers.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r2",
+              "targetText": "You wash the plates.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r3",
+              "targetText": "You have the saucers.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `saucers`, блюдца, а в этом варианте — `plates`, тарелки.",
+                "uk": "У записі останнє слово — `saucers`, блюдця, а в цьому варіанті — `plates`, тарілки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи `wash` — мыть, а в этом варианте `have` — иметь.",
+                "uk": "У записі `wash` — мити, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i10:p1",
+              "target": "carry",
+              "meaningByLocale": {
+                "ru": "нести",
+                "uk": "нести"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p2",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос",
+                "uk": "таця"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i10:p4",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carry",
+            "tray",
+            "saucer",
+            "sweep"
+          ],
+          "rightColumn": [
+            "нести",
+            "таця",
+            "блюдце",
+            "підмітати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте кухаря й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i11:audio",
+            "transcript": "You carry the cups."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You carry the cups.",
+          "orderedTokens": [
+            "You",
+            "carry",
+            "the",
+            "cups"
+          ],
+          "authoredDistractorTokens": [
+            "I"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `You` — `You carry the cups.`",
+                "uk": "тут потрібно `You` — `You carry the cups.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You sweep the floor in the cafe.",
+          "localizedMeaning": {
+            "ru": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+            "uk": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»"
+          },
+          "orderedTokens": [
+            "You",
+            "sweep",
+            "the",
+            "floor",
+            "in",
+            "the",
+            "cafe"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sweep` — `You sweep the floor in the cafe.`",
+                "uk": "тут потрібно `sweep` — `You sweep the floor in the cafe.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помічниця питає про таці. Скажіть їй: «Ти носиш таці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i13:audio"
+        ],
+        "accessibilityLabel": "Помічниця питає про таці. Скажіть їй: «Ти носиш таці»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i13:audio",
+            "transcript": "You carry the trays."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You carry the trays.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i14:r1",
+            "text": "sweep"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i14:r2",
+            "text": "are sweep"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i14:r3",
+            "text": "is sweep"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+            "uk": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the floor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-02:i14:r1",
+              "text": "sweep"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r2",
+              "text": "are sweep"
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r3",
+              "text": "is sweep"
+            }
+          ],
+          "testedDimension": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i14:r2",
+              "correct": false,
+              "testedDimension": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `sweep`, без `are`.",
+                "uk": "Після `You` одразу ставимо `sweep`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i14:r3",
+              "correct": false,
+              "testedDimension": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "С `You` слово `is` не используется; нужно `You sweep`.",
+                "uk": "З `You` слово `is` не вживається; потрібно `You sweep`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте помічницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-02:i15:r1",
+            "text": "Whose saucer is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i15:r2",
+            "text": "Whose dishcloth is this?"
+          },
+          {
+            "responseId": "en:lesson-06:session-02:i15:r3",
+            "text": "Whose saucers are these?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте помічницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i15:audio",
+            "transcript": "Whose saucer is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-02:i15:r1",
+              "targetText": "Whose saucer is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r2",
+              "targetText": "Whose dishcloth is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r3",
+              "targetText": "Whose saucers are these?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-02:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `saucer`, блюдце, а в этом варианте — `dishcloth`, кухонная тряпка.",
+                "uk": "У записі річ — `saucer`, блюдце, а в цьому варіанті — `dishcloth`, кухонна ганчірка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-02:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи блюдце одно — `saucer is this`, а в этом варианте несколько — `saucers are these`.",
+                "uk": "У записі блюдце одне — `saucer is this`, а в цьому варіанті кілька — `saucers are these`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-02:i16:p1",
+              "target": "dishcloth",
+              "meaningByLocale": {
+                "ru": "кухонная тряпка",
+                "uk": "кухонна ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p2",
+              "target": "sweep",
+              "meaningByLocale": {
+                "ru": "подметать",
+                "uk": "підмітати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p3",
+              "target": "saucer",
+              "meaningByLocale": {
+                "ru": "блюдце",
+                "uk": "блюдце"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-02:i16:p4",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос",
+                "uk": "таця"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dishcloth",
+            "sweep",
+            "saucer",
+            "tray"
+          ],
+          "rightColumn": [
+            "кухонна ганчірка",
+            "підмітати",
+            "блюдце",
+            "таця"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-02:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Помічниця стоїть біля раковини. Скажіть їй: «Ти миєш блюдця»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-02:i17:audio",
+            "transcript": "You wash the saucers."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You wash the saucers.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-02:word:sweep",
+      "correctText": "sweep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i01",
+      "correctText": "You sweep the floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:word:carry",
+      "correctText": "carry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i02",
+      "correctText": "You carry the trays.",
+      "correctResponseId": "en:lesson-06:session-02:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:word:saucer",
+      "correctText": "saucer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i03",
+      "correctText": "saucers",
+      "correctResponseId": "en:lesson-06:session-02:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:word:dishcloth",
+      "correctText": "dishcloth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i05",
+      "correctText": "This is my dishcloth.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i06",
+      "correctText": "Whose dishcloth is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i07",
+      "correctText": "You sweep the floor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i08",
+      "correctText": "carry",
+      "correctResponseId": "en:lesson-06:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i09",
+      "correctText": "You wash the saucers.",
+      "correctResponseId": "en:lesson-06:session-02:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i11",
+      "correctText": "You carry the cups.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i12",
+      "correctText": "You sweep the floor in the cafe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i13",
+      "correctText": "You carry the trays.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i14",
+      "correctText": "sweep",
+      "correctResponseId": "en:lesson-06:session-02:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i15",
+      "correctText": "Whose saucer is this?",
+      "correctResponseId": "en:lesson-06:session-02:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-02:i17",
+      "correctText": "You wash the saucers.",
+      "correctResponseId": null
+    }
+  ]
+}

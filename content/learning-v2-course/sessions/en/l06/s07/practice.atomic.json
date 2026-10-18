@@ -1,0 +1,2463 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-07:word:chop",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:chop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:chop:audio",
+            "transcript": "chop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:chop:r1",
+              "targetText": "chop",
+              "meaningByLocale": {
+                "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+                "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chop",
+            "definitionByLocale": {
+              "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+              "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chop onions.",
+          "localizedMeaning": {
+            "ru": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+            "uk": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»"
+          },
+          "orderedTokens": [
+            "I",
+            "chop",
+            "onions"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `I chop onions.`",
+                "uk": "тут потрібно `chop` — `I chop onions.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:stir",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stir",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:stir:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stir",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:stir:audio",
+            "transcript": "stir"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:stir:r1",
+              "targetText": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+                "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stir",
+            "definitionByLocale": {
+              "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+              "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте помощницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i02:r1",
+            "text": "They stir the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r2",
+            "text": "They stir the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r3",
+            "text": "They have the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте помощницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i02:audio",
+            "transcript": "They stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i02:r1",
+              "targetText": "They stir the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r2",
+              "targetText": "They stir the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r3",
+              "targetText": "They have the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+                "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи `stir` — помешивать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `stir` — помішувати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:serve",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — serve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:serve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — serve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:serve:audio",
+            "transcript": "serve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:serve:r1",
+              "targetText": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+                "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "serve",
+            "definitionByLocale": {
+              "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+              "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i03:r1",
+            "text": "serve"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r2",
+            "text": "are serve"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r3",
+            "text": "is serve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+            "uk": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i03:r1",
+              "text": "serve"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r2",
+              "text": "are serve"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r3",
+              "text": "is serve"
+            }
+          ],
+          "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `serve`, без `are`.",
+                "uk": "Після `You` одразу ставимо `serve`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `You serve`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `You serve`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i04:p1",
+              "target": "chop",
+              "meaningByLocale": {
+                "ru": "рубить, шинковать",
+                "uk": "рубати, шаткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p2",
+              "target": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать",
+                "uk": "помішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p3",
+              "target": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол",
+                "uk": "подавати на стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p4",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chop",
+            "stir",
+            "serve",
+            "spatula"
+          ],
+          "rightColumn": [
+            "рубить, шинковать",
+            "помешивать",
+            "подавать на стол",
+            "лопатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:spatula",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spatula",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:spatula:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spatula",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:spatula:audio",
+            "transcript": "spatula"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:spatula:r1",
+              "targetText": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+                "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spatula",
+            "definitionByLocale": {
+              "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+              "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте повара и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i05:audio",
+            "transcript": "The spatula is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The spatula is in the drawer.",
+          "orderedTokens": [
+            "The",
+            "spatula",
+            "is",
+            "in",
+            "the",
+            "drawer"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте повара и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The spatula is in the drawer.`",
+                "uk": "тут потрібно `is` — `The spatula is in the drawer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose spatula is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+            "uk": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "spatula",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose spatula is this?`",
+                "uk": "тут потрібно `Whose` — `Whose spatula is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повар спрашивает, что вы делаете у доски. Скажите: «Я режу лук»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i07:audio"
+        ],
+        "accessibilityLabel": "Повар спрашивает, что вы делаете у доски. Скажите: «Я режу лук»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i07:audio",
+            "transcript": "I chop onions."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chop onions.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двое поваров стоят у большой кастрюли. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i08:r1",
+            "text": "stir"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r2",
+            "text": "are stir"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r3",
+            "text": "is stir"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое поваров стоят у большой кастрюли. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое поваров стоят у большой кастрюли. Выберите слово",
+            "uk": "Двоє кухарів стоять біля великої каструлі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i08:r1",
+              "text": "stir"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r2",
+              "text": "are stir"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r3",
+              "text": "is stir"
+            }
+          ],
+          "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `stir`, без `are`.",
+                "uk": "Після `They` одразу ставимо `stir`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Двое поваров стоят у большой кастрюли. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They stir`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They stir`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте повара",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i09:r1",
+            "text": "You serve the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r2",
+            "text": "You serve the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r3",
+            "text": "You have the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i09:audio",
+            "transcript": "You serve the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i09:r1",
+              "targetText": "You serve the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r2",
+              "targetText": "You serve the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r3",
+              "targetText": "You have the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+                "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте повара",
+              "feedbackByLocale": {
+                "ru": "В записи `serve` — подавать на стол, а в этом варианте `have` — иметь.",
+                "uk": "У записі `serve` — подавати на стіл, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i10:p1",
+              "target": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать",
+                "uk": "помішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p2",
+              "target": "onion",
+              "meaningByLocale": {
+                "ru": "лук (луковица)",
+                "uk": "цибуля (цибулина)"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p4",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stir",
+            "onion",
+            "soup",
+            "spatula"
+          ],
+          "rightColumn": [
+            "помешивать",
+            "лук (луковица)",
+            "суп",
+            "лопатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте повара и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте повара и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i11:audio",
+            "transcript": "I chop onions and I stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I chop onions and I stir the soup.",
+          "orderedTokens": [
+            "I",
+            "chop",
+            "onions",
+            "and",
+            "I",
+            "stir",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте повара и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `I chop onions and I stir the soup.`",
+                "uk": "тут потрібно `chop` — `I chop onions and I stir the soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They chop onions and they stir the soup.",
+          "localizedMeaning": {
+            "ru": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+            "uk": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»"
+          },
+          "orderedTokens": [
+            "They",
+            "chop",
+            "onions",
+            "and",
+            "they",
+            "stir",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `They chop onions and they stir the soup.`",
+                "uk": "тут потрібно `chop` — `They chop onions and they stir the soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новый официант спрашивает, что ему делать с супом. Скажите: «Ты подаёшь суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Новый официант спрашивает, что ему делать с супом. Скажите: «Ты подаёшь суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i13:audio",
+            "transcript": "You serve the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You serve the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i14:r1",
+            "text": "chop"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r2",
+            "text": "am chop"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r3",
+            "text": "are chop"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+            "uk": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ onions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i14:r1",
+              "text": "chop"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r2",
+              "text": "am chop"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r3",
+              "text": "are chop"
+            }
+          ],
+          "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `chop`, без `am`.",
+                "uk": "Після `I` одразу ставимо `chop`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I chop`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I chop`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте помощницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i15:r1",
+            "text": "The spatula is in the drawer."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r2",
+            "text": "The spatula is in the bowl."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r3",
+            "text": "The ladle is in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте помощницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i15:audio",
+            "transcript": "The spatula is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i15:r1",
+              "targetText": "The spatula is in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r2",
+              "targetText": "The spatula is in the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r3",
+              "targetText": "The ladle is in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи место — `drawer`, ящик, а в этом варианте — `bowl`, миска.",
+                "uk": "У записі місце — `drawer`, шухляда, а в цьому варіанті — `bowl`, миска."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте помощницу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `spatula`, лопатка, а в этом варианте — `ladle`, половник.",
+                "uk": "У записі річ — `spatula`, лопатка, а в цьому варіанті — `ladle`, черпак."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i16:p1",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p2",
+              "target": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол",
+                "uk": "подавати на стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p3",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p4",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spatula",
+            "serve",
+            "bowl",
+            "drawer"
+          ],
+          "rightColumn": [
+            "лопатка",
+            "подавать на стол",
+            "миска",
+            "выдвижной ящик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы работаете на кухне кафе. Расскажите повару о своих делах: «Я режу лук и я помешиваю суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Вы работаете на кухне кафе. Расскажите повару о своих делах: «Я режу лук и я помешиваю суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i17:audio",
+            "transcript": "I chop onions and I stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chop onions and I stir the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-07:word:chop",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:chop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:chop:audio",
+            "transcript": "chop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:chop:r1",
+              "targetText": "chop",
+              "meaningByLocale": {
+                "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+                "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chop",
+            "definitionByLocale": {
+              "ru": "нарезать, рубить. I chop onions. — «Я режу лук». О том, как ножом делят еду на мелкие кусочки.",
+              "uk": "нарізати, рубати. I chop onions. — «Я ріжу цибулю». Про те, як ножем ділять їжу на дрібні шматочки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I chop onions.",
+          "localizedMeaning": {
+            "ru": "Повар спрашивает, что вы делаете. Скажите: «Я режу лук»",
+            "uk": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»"
+          },
+          "orderedTokens": [
+            "I",
+            "chop",
+            "onions"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Кухар питає, що ви робите. Скажіть: «Я ріжу цибулю»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `I chop onions.`",
+                "uk": "тут потрібно `chop` — `I chop onions.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:stir",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stir",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:stir:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stir",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:stir:audio",
+            "transcript": "stir"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:stir:r1",
+              "targetText": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+                "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stir",
+            "definitionByLocale": {
+              "ru": "помешивать. They stir the soup. — «Они помешивают суп». О том, как ложкой водят по кругу в кастрюле.",
+              "uk": "помішувати. They stir the soup. — «Вони помішують суп». Про те, як ложкою водять по колу в каструлі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте помічницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i02:r1",
+            "text": "They stir the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r2",
+            "text": "They stir the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i02:r3",
+            "text": "They have the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте помічницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i02:audio",
+            "transcript": "They stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i02:r1",
+              "targetText": "They stir the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r2",
+              "targetText": "They stir the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r3",
+              "targetText": "They have the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+                "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи `stir` — помешивать, а в этом варианте `have` — иметь.",
+                "uk": "У записі `stir` — помішувати, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:serve",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — serve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:serve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — serve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:serve:audio",
+            "transcript": "serve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:serve:r1",
+              "targetText": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+                "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "serve",
+            "definitionByLocale": {
+              "ru": "подавать на стол. You serve the soup. — «Ты подаёшь суп». О том, как приносят готовую еду гостям.",
+              "uk": "подавати на стіл. You serve the soup. — «Ти подаєш суп». Про те, як приносять готову їжу гостям."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i03:r1",
+            "text": "serve"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r2",
+            "text": "are serve"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i03:r3",
+            "text": "is serve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Суп готов. Скажите новому официанту, что он подаёт суп гостям. Выберите слово",
+            "uk": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово"
+          },
+          "gappedTargetPhrase": "You ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i03:r1",
+              "text": "serve"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r2",
+              "text": "are serve"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r3",
+              "text": "is serve"
+            }
+          ],
+          "testedDimension": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `You` сразу ставим `serve`, без `are`.",
+                "uk": "Після `You` одразу ставимо `serve`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Суп готовий. Скажіть новому офіціантові, що він подає суп гостям. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `You serve`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `You serve`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i04:p1",
+              "target": "chop",
+              "meaningByLocale": {
+                "ru": "рубить, шинковать",
+                "uk": "рубати, шаткувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p2",
+              "target": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать",
+                "uk": "помішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p3",
+              "target": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол",
+                "uk": "подавати на стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i04:p4",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "chop",
+            "stir",
+            "serve",
+            "spatula"
+          ],
+          "rightColumn": [
+            "рубати, шаткувати",
+            "помішувати",
+            "подавати на стіл",
+            "лопатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:word:spatula",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spatula",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:word:spatula:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spatula",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:word:spatula:audio",
+            "transcript": "spatula"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:word:spatula:r1",
+              "targetText": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+                "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spatula",
+            "definitionByLocale": {
+              "ru": "лопатка. The spatula is in the drawer. — «Лопатка в ящике». Плоская кухонная лопатка: ею переворачивают еду на сковороде.",
+              "uk": "лопатка. The spatula is in the drawer. — «Лопатка в шухляді». Пласка кухонна лопатка: нею перевертають їжу на пательні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте кухаря й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i05:audio",
+            "transcript": "The spatula is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The spatula is in the drawer.",
+          "orderedTokens": [
+            "The",
+            "spatula",
+            "is",
+            "in",
+            "the",
+            "drawer"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The spatula is in the drawer.`",
+                "uk": "тут потрібно `is` — `The spatula is in the drawer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose spatula is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли на плите лопатку и спрашиваете повара, чья она. Задайте вопрос: «Чья это лопатка?»",
+            "uk": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "spatula",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли на плиті лопатку й питаєте кухаря, чия вона. Поставте питання: «Чия це лопатка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose spatula is this?`",
+                "uk": "тут потрібно `Whose` — `Whose spatula is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кухар питає, що ви робите біля дошки. Скажіть: «Я ріжу цибулю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i07:audio"
+        ],
+        "accessibilityLabel": "Кухар питає, що ви робите біля дошки. Скажіть: «Я ріжу цибулю»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i07:audio",
+            "transcript": "I chop onions."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chop onions.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Двоє кухарів стоять біля великої каструлі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i08:r1",
+            "text": "stir"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r2",
+            "text": "are stir"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i08:r3",
+            "text": "is stir"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє кухарів стоять біля великої каструлі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Двое поваров стоят у большой кастрюли. Выберите слово",
+            "uk": "Двоє кухарів стоять біля великої каструлі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "They ___ the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i08:r1",
+              "text": "stir"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r2",
+              "text": "are stir"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r3",
+              "text": "is stir"
+            }
+          ],
+          "testedDimension": "Двоє кухарів стоять біля великої каструлі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Двоє кухарів стоять біля великої каструлі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `They` сразу ставим `stir`, без `are`.",
+                "uk": "Після `They` одразу ставимо `stir`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Двоє кухарів стоять біля великої каструлі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They stir`.",
+                "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They stir`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кухаря",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i09:r1",
+            "text": "You serve the soup."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r2",
+            "text": "You serve the salad."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i09:r3",
+            "text": "You have the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i09:audio",
+            "transcript": "You serve the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i09:r1",
+              "targetText": "You serve the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r2",
+              "targetText": "You serve the salad.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r3",
+              "targetText": "You have the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `soup`, суп, а в этом варианте — `salad`, салат.",
+                "uk": "У записі останнє слово — `soup`, суп, а в цьому варіанті — `salad`, салат."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря",
+              "feedbackByLocale": {
+                "ru": "В записи `serve` — подавать на стол, а в этом варианте `have` — иметь.",
+                "uk": "У записі `serve` — подавати на стіл, а в цьому варіанті `have` — мати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i10:p1",
+              "target": "stir",
+              "meaningByLocale": {
+                "ru": "помешивать",
+                "uk": "помішувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p2",
+              "target": "onion",
+              "meaningByLocale": {
+                "ru": "лук (луковица)",
+                "uk": "цибуля (цибулина)"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p3",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i10:p4",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stir",
+            "onion",
+            "soup",
+            "spatula"
+          ],
+          "rightColumn": [
+            "помішувати",
+            "цибуля (цибулина)",
+            "суп",
+            "лопатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте кухаря й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте кухаря й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i11:audio",
+            "transcript": "I chop onions and I stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I chop onions and I stir the soup.",
+          "orderedTokens": [
+            "I",
+            "chop",
+            "onions",
+            "and",
+            "I",
+            "stir",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "am"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте кухаря й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `I chop onions and I stir the soup.`",
+                "uk": "тут потрібно `chop` — `I chop onions and I stir the soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They chop onions and they stir the soup.",
+          "localizedMeaning": {
+            "ru": "Двое поваров готовят суп. Расскажите помощнице: «Они режут лук и они помешивают суп»",
+            "uk": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»"
+          },
+          "orderedTokens": [
+            "They",
+            "chop",
+            "onions",
+            "and",
+            "they",
+            "stir",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Двоє кухарів готують суп. Розкажіть помічниці: «Вони ріжуть цибулю і вони помішують суп»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `chop` — `They chop onions and they stir the soup.`",
+                "uk": "тут потрібно `chop` — `They chop onions and they stir the soup.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Новий офіціант питає, що йому робити з супом. Скажіть: «Ти подаєш суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i13:audio"
+        ],
+        "accessibilityLabel": "Новий офіціант питає, що йому робити з супом. Скажіть: «Ти подаєш суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i13:audio",
+            "transcript": "You serve the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You serve the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i14:r1",
+            "text": "chop"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r2",
+            "text": "am chop"
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i14:r3",
+            "text": "are chop"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Перед вами гора лука. Скажите повару, что вы его режете. Выберите слово",
+            "uk": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ onions.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-07:i14:r1",
+              "text": "chop"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r2",
+              "text": "am chop"
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r3",
+              "text": "are chop"
+            }
+          ],
+          "testedDimension": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i14:r2",
+              "correct": false,
+              "testedDimension": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` сразу ставим `chop`, без `am`.",
+                "uk": "Після `I` одразу ставимо `chop`, без `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i14:r3",
+              "correct": false,
+              "testedDimension": "Перед вами гора цибулі. Скажіть кухареві, що ви її ріжете. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I chop`.",
+                "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I chop`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте помічницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-07:i15:r1",
+            "text": "The spatula is in the drawer."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r2",
+            "text": "The spatula is in the bowl."
+          },
+          {
+            "responseId": "en:lesson-06:session-07:i15:r3",
+            "text": "The ladle is in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте помічницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i15:audio",
+            "transcript": "The spatula is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-07:i15:r1",
+              "targetText": "The spatula is in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r2",
+              "targetText": "The spatula is in the bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r3",
+              "targetText": "The ladle is in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-07:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи место — `drawer`, ящик, а в этом варианте — `bowl`, миска.",
+                "uk": "У записі місце — `drawer`, шухляда, а в цьому варіанті — `bowl`, миска."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-07:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте помічницю",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `spatula`, лопатка, а в этом варианте — `ladle`, половник.",
+                "uk": "У записі річ — `spatula`, лопатка, а в цьому варіанті — `ladle`, черпак."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-07:i16:p1",
+              "target": "spatula",
+              "meaningByLocale": {
+                "ru": "лопатка",
+                "uk": "лопатка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p2",
+              "target": "serve",
+              "meaningByLocale": {
+                "ru": "подавать на стол",
+                "uk": "подавати на стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p3",
+              "target": "bowl",
+              "meaningByLocale": {
+                "ru": "миска",
+                "uk": "миска"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-07:i16:p4",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "spatula",
+            "serve",
+            "bowl",
+            "drawer"
+          ],
+          "rightColumn": [
+            "лопатка",
+            "подавати на стіл",
+            "миска",
+            "висувна шухляда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-07:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви працюєте на кухні кафе. Розкажіть кухареві про свої справи: «Я ріжу цибулю і я помішую суп»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Ви працюєте на кухні кафе. Розкажіть кухареві про свої справи: «Я ріжу цибулю і я помішую суп»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-07:i17:audio",
+            "transcript": "I chop onions and I stir the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I chop onions and I stir the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-07:word:chop",
+      "correctText": "chop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i01",
+      "correctText": "I chop onions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:word:stir",
+      "correctText": "stir",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i02",
+      "correctText": "They stir the soup.",
+      "correctResponseId": "en:lesson-06:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:word:serve",
+      "correctText": "serve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i03",
+      "correctText": "serve",
+      "correctResponseId": "en:lesson-06:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:word:spatula",
+      "correctText": "spatula",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i05",
+      "correctText": "The spatula is in the drawer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i06",
+      "correctText": "Whose spatula is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i07",
+      "correctText": "I chop onions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i08",
+      "correctText": "stir",
+      "correctResponseId": "en:lesson-06:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i09",
+      "correctText": "You serve the soup.",
+      "correctResponseId": "en:lesson-06:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i11",
+      "correctText": "I chop onions and I stir the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i12",
+      "correctText": "They chop onions and they stir the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i13",
+      "correctText": "You serve the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i14",
+      "correctText": "chop",
+      "correctResponseId": "en:lesson-06:session-07:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i15",
+      "correctText": "The spatula is in the drawer.",
+      "correctResponseId": "en:lesson-06:session-07:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-07:i17",
+      "correctText": "I chop onions and I stir the soup.",
+      "correctResponseId": null
+    }
+  ]
+}

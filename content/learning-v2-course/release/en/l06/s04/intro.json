@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-04",
   "learningOutcomeByLocale": {
-    "ru": "назвать чек, спросить о владельце и описать, что видно",
-    "uk": "назвати чек, запитати про власника й описати, що видно"
+    "ru": "рассказать, что делают другие люди: They build, They dig, They mix — без are",
+    "uk": "розповісти, що роблять інші люди: They build, They dig, They mix — без are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Подтверждение оплаты",
-        "uk": "Підтвердження оплати"
+        "ru": "Стена за забором",
+        "uk": "Стіна за парканом"
       },
       "bodyByLocale": {
-        "ru": "`receipt` — «чек», подтверждение оплаты. `This is my receipt` — «Это мой чек». `Whose receipt is this?` — «Чей это чек?» `The receipt is mine` — «Чек мой». В слове `receipt` буква `p` не произносится: она присутствует на бумаге, но молчит.",
-        "uk": "`receipt` — «чек», підтвердження оплати. `This is my receipt` — «Це мій чек». `Whose receipt is this?` — «Чий це чек?» `The receipt is mine` — «Чек мій». У слові `receipt` літера `p` не вимовляється: вона присутня на папері, але мовчить."
+        "ru": "Утром на соседнем участке появилась бригада в жёлтых касках и начала ставить стену новой кладовой. Сестра смотрит из окна и спрашивает, чем заняты рабочие. build — «строить». О нескольких людях говорим They: They build a wall — «Они строят стену».",
+        "uk": "Вранці на сусідній ділянці з’явилася бригада в жовтих касках і почала ставити стіну нової комори. Сестра дивиться з вікна й питає, чим зайняті робітники. build — «будувати». Про кількох людей кажемо They: They build a wall — «Вони будують стіну»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-04:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце чека.",
-          "uk": "Запитайте про власника чека."
+          "ru": "Сестра смотрит на рабочих из окна и спрашивает, что они делают. Они строят стену. Скажите: «Они строят стену».",
+          "uk": "Сестра дивиться на робітників із вікна й питає, що вони роблять. Вони будують стіну. Скажіть: «Вони будують стіну»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-04:intro1:r1",
-              "text": "Whose receipt is this?"
+              "text": "They build a wall."
             },
             {
               "responseId": "en:lesson-06:session-04:intro1:r2",
-              "text": "Where is the receipt?"
+              "text": "They are build a wall."
             },
             {
               "responseId": "en:lesson-06:session-04:intro1:r3",
-              "text": "Whose receipt are these?"
+              "text": "We build a wall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-04:intro1:r1",
-              "text": "Whose receipt is this?"
+              "text": "They build a wall."
             },
             {
               "responseId": "en:lesson-06:session-04:intro1:r2",
-              "text": "Where is the receipt?"
+              "text": "They are build a wall."
             },
             {
               "responseId": "en:lesson-06:session-04:intro1:r3",
-              "text": "Whose receipt are these?"
+              "text": "We build a wall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце чека.",
-          "uk": "Запитайте про власника чека."
+          "ru": "Сестра смотрит на рабочих из окна и спрашивает, что они делают. Они строят стену. Скажите: «Они строят стену».",
+          "uk": "Сестра дивиться на робітників із вікна й питає, що вони роблять. Вони будують стіну. Скажіть: «Вони будують стіну»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Видно или скрыто",
-        "uk": "Видно чи приховано"
+        "ru": "Яма у ворот",
+        "uk": "Яма біля воріт"
       },
       "bodyByLocale": {
-        "ru": "`visible` — «видимый»: `The pool is visible` — «Бассейн виден». `hidden` — «скрытый»: `The bag is hidden` — «Сумка скрыта». `curtain` — «занавеска»: `The bag is behind the curtain` — «Сумка за занавеской». `clear` — «ясный, понятный»: `This is clear` — «Это понятно». В этих примерах описываем состояние, поэтому нужен `is`.",
-        "uk": "`visible` — «видимий»: `The pool is visible` — «Басейн видно». `hidden` — «прихований»: `The bag is hidden` — «Сумку приховано». `curtain` — «фіранка»: `The bag is behind the curtain` — «Сумка за фіранкою». `clear` — «ясний, зрозумілий»: `This is clear` — «Це зрозуміло». У цих прикладах описуємо стан, тому потрібне `is`."
+        "ru": "Рабочие закончили стену и перешли ко двору: у ворот нужно место под новый столб. Они берут тяжёлые лопаты и начинают работать в земле под солнцем. dig — «копать». Вы рассказываете другу по телефону: They dig in the yard — «Они копают во дворе».",
+        "uk": "Робітники закінчили стіну й перейшли до двору: біля воріт потрібне місце під новий стовп. Вони беруть важкі лопати й починають працювати в землі під сонцем. dig — «копати». Ви розповідаєте другові по телефону: They dig in the yard — «Вони копають у дворі»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-04:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Бассейн виден».",
-          "uk": "Скажіть «Басейн видно»."
+          "ru": "Друг по телефону спрашивает, что делают рабочие у ворот. Они копают во дворе. Скажите: «Они копают во дворе».",
+          "uk": "Друг по телефону питає, що роблять робітники біля воріт. Вони копають у дворі. Скажіть: «Вони копають у дворі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-04:intro2:r1",
-              "text": "The pool is visible."
+              "text": "They dig in the yard."
             },
             {
               "responseId": "en:lesson-06:session-04:intro2:r2",
-              "text": "The pool are visible."
+              "text": "They are dig in the yard."
             },
             {
               "responseId": "en:lesson-06:session-04:intro2:r3",
-              "text": "The pool is hidden."
+              "text": "They dig on the roof."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-04:intro2:r1",
-              "text": "The pool is visible."
+              "text": "They dig in the yard."
             },
             {
               "responseId": "en:lesson-06:session-04:intro2:r2",
-              "text": "The pool are visible."
+              "text": "They are dig in the yard."
             },
             {
               "responseId": "en:lesson-06:session-04:intro2:r3",
-              "text": "The pool is hidden."
+              "text": "They dig on the roof."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Бассейн виден».",
-          "uk": "Скажіть «Басейн видно»."
+          "ru": "Друг по телефону спрашивает, что делают рабочие у ворот. Они копают во дворе. Скажите: «Они копают во дворе».",
+          "uk": "Друг по телефону питає, що роблять робітники біля воріт. Вони копають у дворі. Скажіть: «Вони копають у дворі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Работа на почте",
-        "uk": "Робота на пошті"
+        "ru": "Серые мешки",
+        "uk": "Сірі мішки"
       },
       "bodyByLocale": {
-        "ru": "`post office` — «почта», почтовое отделение. `I work in a post office` — «Я работаю на почте». Перед `work` в этой фразе нет `am`. `The post office is near the pool` — «Почта возле бассейна». Если показываем чек дальше от нас: `That receipt is yours` — «Тот чек твой».",
-        "uk": "`post office` — «пошта», поштове відділення. `I work in a post office` — «Я працюю на пошті». Перед `work` у цій фразі немає `am`. `The post office is near the pool` — «Пошта біля басейну». Якщо показуємо чек далі від нас: `That receipt is yours` — «Той чек твій»."
+        "ru": "Бригада закончила копать, и во двор подъехала старая машина с серыми бумажными мешками. cement — «цемент», серый порошок для раствора. Рабочие снимают мешки и несут их к воротам. Вы пересказываете другу: They carry the cement — «Они несут цемент».",
+        "uk": "Бригада закінчила копати, і у двір під’їхала стара машина із сірими паперовими мішками. cement — «цемент», сірий порошок для розчину. Робітники знімають мішки й несуть їх до воріт. Ви переказуєте другові: They carry the cement — «Вони несуть цемент»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-04:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Я работаю на почте».",
-          "uk": "Скажіть «Я працюю на пошті»."
+          "ru": "Друг по телефону спрашивает, что делают рабочие у машины. Они несут цемент. Скажите ему: «Они несут цемент».",
+          "uk": "Друг по телефону питає, що роблять робітники біля машини. Вони несуть цемент. Скажіть йому: «Вони несуть цемент»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-04:intro3:r1",
-              "text": "I work in a post office."
+              "text": "They carry the cement."
             },
             {
               "responseId": "en:lesson-06:session-04:intro3:r2",
-              "text": "I am work in a post office."
+              "text": "They are carry the cement."
             },
             {
               "responseId": "en:lesson-06:session-04:intro3:r3",
-              "text": "I work in a bank."
+              "text": "They carry the sack."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-04:intro3:r1",
-              "text": "I work in a post office."
+              "text": "They carry the cement."
             },
             {
               "responseId": "en:lesson-06:session-04:intro3:r2",
-              "text": "I am work in a post office."
+              "text": "They are carry the cement."
             },
             {
               "responseId": "en:lesson-06:session-04:intro3:r3",
-              "text": "I work in a bank."
+              "text": "They carry the sack."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Я работаю на почте».",
-          "uk": "Скажіть «Я працюю на пошті»."
+          "ru": "Друг по телефону спрашивает, что делают рабочие у машины. Они несут цемент. Скажите ему: «Они несут цемент».",
+          "uk": "Друг по телефону питає, що роблять робітники біля машини. Вони несуть цемент. Скажіть йому: «Вони несуть цемент»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee80be93d632a205f3bf66e30c87669796e060d872c4db3f3b5593ba40f4e439"
+  "introFingerprint": "7296eb87b81996a16438c7df59936ea2ddd202f4d4748197e3c69ebdb70c70a3"
 }

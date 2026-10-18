@@ -14,6 +14,7 @@ import {
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
 import { startDialogueV2TextSession } from './dialogue_v2_turn_client';
+import { logDialogueV2OptimisticFrame, logDialogueV2OptimisticStep, markDialogueV2OptimisticTap } from './dialogue_v2_optimistic_trace';
 import {
   DialogueV2TurnFailureError,
   sendDialogueV2CoachedTextTurn,
@@ -160,6 +161,8 @@ function SessionContent() {
     if (firstFrameKindRef.current === state.kind) return;
     const first = firstFrameKindRef.current === null;
     firstFrameKindRef.current = state.kind;
+    // зачем (координатор 18.10, Optimistic UI): тот же кадр — от тапа «Начать» на брифинге.
+    logDialogueV2OptimisticFrame('start_tap', first ? 'session_first_frame' : 'session_update_frame', { kind: state.kind });
     console.log(`[DIALOGS-FIRST-FRAME] session ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
   }, [state.kind]);
   const [startAttempt, setStartAttempt] = useState(0);
@@ -332,6 +335,7 @@ function SessionContent() {
       }
       setServerSession(started);
       setServerSessionState('ready');
+      logDialogueV2OptimisticStep('start_tap', 'server_session_ready', { attempt: startAttempt });
     }).catch((error: unknown) => {
       console.warn('[DIALOGUE-V2] session:start → failed, silent retry', { attempt: startAttempt, error: error instanceof Error ? error.message : String(error) });
       if (active) scheduleRetry();
@@ -506,8 +510,10 @@ function SessionContent() {
         userMessage: pending.userMessage,
         interfaceLang: interfaceLangFor(lang),
       });
+      logDialogueV2OptimisticStep('send_tap', 'server_reply', { kind: result.kind, replies: result.kind === 'reply' ? result.replies.length : 0 });
       if (result.kind === 'reply') {
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
+        logDialogueV2OptimisticFrame('send_tap', 'reply_frame');
       } else {
         // зачем (E3): ход отвечен без реплик — снимаем его из «в полёте», остаток прежний.
         coaching.applyQuota(null, pending.turnId);
@@ -517,6 +523,7 @@ function SessionContent() {
     } catch (error: unknown) {
       const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
       console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
+      logDialogueV2OptimisticStep('send_tap', 'rollback', { reason });
       if (reason === 'quota_exhausted') {
         // зачем (Сверка 05.10: реплика молча пропадала): пузырь ученика ОСТАЁТСЯ — человек видит, что написал, а
         // ниже сразу встаёт экран лимита с понятным выходом (Plus / подождать). Раньше пузырь удалялся, а экран
@@ -561,10 +568,14 @@ function SessionContent() {
       || userMessage.length < 1 || userMessage.length > 2_000) return;
     turnStartingRef.current = true;
     let pending = pendingTurnRef.current;
+    // зачем (координатор 18.10, Optimistic UI): «отправить» → кадр со своим пузырём → ответ собеседника / откат.
+    markDialogueV2OptimisticTap('send_tap', scenarioId, { learnerTurn: learnerTurnsRef.current, retryOfPending: pending !== null, sessionReady: serverSession !== null });
     try {
       if (!pending) {
         const learnerId = `learner_${messages.length + 1}`;
-        pending = Object.freeze({ turnId: await secureTurnId(), userMessage, learnerId });
+        const turnId = await secureTurnId();
+        logDialogueV2OptimisticStep('send_tap', 'turn_id_ready');
+        pending = Object.freeze({ turnId, userMessage, learnerId });
         pendingTurnRef.current = pending;
         const voiceAttachment = voice.takeVoiceAttachment(userMessage);
         setDraft('');
@@ -573,6 +584,7 @@ function SessionContent() {
           id: learnerId, author: 'learner' as const, text: userMessage,
           ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
         })]));
+        logDialogueV2OptimisticFrame('send_tap', 'bubble_frame', { queuedUntilSession: serverSession === null });
       }
       if (!serverSession) {
         // Сессия ещё стартует — пузырь уже на экране, ход уйдёт эффектом выше.

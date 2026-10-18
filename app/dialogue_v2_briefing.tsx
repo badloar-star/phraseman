@@ -13,6 +13,7 @@ import {
 } from './dialogue_v2_catalogue_client';
 import { prestartDialogueV2TextSession } from './dialogue_v2_turn_client';
 import { markDialogueV2StartTap } from './dialogue_v2_session_prestart';
+import { logDialogueV2OptimisticFrame, logDialogueV2OptimisticStep, markDialogueV2OptimisticTap } from './dialogue_v2_optimistic_trace';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { triLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
@@ -251,6 +252,8 @@ export default function DialogueV2BriefingRoute() {
     if (firstFrameKindRef.current === state.kind) return;
     const first = firstFrameKindRef.current === null;
     firstFrameKindRef.current = state.kind;
+    // зачем (координатор 18.10, Optimistic UI): тот же кадр — от тапа по сценке в хабе (ms=null — брифинг открыт не из хаба).
+    logDialogueV2OptimisticFrame('hub_tap', first ? 'briefing_first_frame' : 'briefing_update_frame', { kind: state.kind, scenarioId: scenarioId ?? null });
     console.log(`[DIALOGS-FIRST-FRAME] briefing ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
   }, [state.kind]);
 
@@ -306,6 +309,7 @@ export default function DialogueV2BriefingRoute() {
     if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());
     try {
       const result = await confirmSpendOne(energyIntent);
+      logDialogueV2OptimisticStep('start_tap', 'energy_confirmed', { result });
       console.log('[DIALOGUE-V2] start energy', { scenarioId, result, energyNow, operationId: energyIntent.operationId, attempt: dialogueAttempt, branch: result === 'cancelled' ? 'toast_start_failed' : result === 'insufficient' ? 'no_energy_modal' : 'open_session' }); // guard-ok: ранний выход старта логируется
       if (result === 'cancelled') {
         // зачем (владелец: ни одной мёртвой кнопки): отказ старта — понятная реакция и
@@ -323,6 +327,7 @@ export default function DialogueV2BriefingRoute() {
       // первом ходе возвращает энергию — сюда передаём номер операции (у Plus его нет).
       setDialogueAttempt((n) => n + 1);
       startNavigatedRef.current = true;
+      logDialogueV2OptimisticStep('start_tap', 'navigate_session', { energy: result });
       router.push({
         pathname: '/dialogue_v2_session',
         params: result === 'spent'
@@ -399,8 +404,12 @@ export default function DialogueV2BriefingRoute() {
         }
         startInFlightRef.current = true;
         setStarting(true);
+        // зачем (координатор 18.10, Optimistic UI): «Начать» → кадр, где кнопка уже в состоянии старта, и каждый шаг до перехода.
+        markDialogueV2OptimisticTap('start_tap', scenarioId ?? 'none', { freeTier, energyUnlimited });
+        logDialogueV2OptimisticFrame('start_tap', 'button_feedback_frame');
         void (async () => {
           const consent = await readStartConsent();
+          logDialogueV2OptimisticStep('start_tap', 'consent_read', { consent });
           console.log('[AI-CONSENT-ENERGY] briefing:start', JSON.stringify({ scenarioId, consent, energySpent: false })); // guard-ok: ветка старта
           if (consent !== 'granted') {
             // Согласия нет — шторка поверх брифинга, энергию НЕ трогаем.

@@ -47,6 +47,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
 import DialogQuotaBadge, { aiDialogMonthlyLimitText, formatAiDialogQuotaResetDate } from './DialogQuotaBadge';
+import { markDialogueV2OptimisticTap } from '../app/dialogue_v2_optimistic_trace';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
 import { captureAccountGeneration } from '../app/account_generation';
@@ -147,6 +148,9 @@ export default function DialogsTabContent({
   // зачем (Сверка cold5a/b 23:30: hub:render changed=["onPressItem"] на КАЖДОЙ перерисовке экрана): новая стрелка
   // в каждом рендере заставляла каталог перерисовываться вслед за шапкой. Стабильная ссылка + memo контейнера.
   const onPressCatalogueItem = useCallback((item: DialogueV2CatalogueLearnerItem) => {
+    // зачем (координатор 18.10, Optimistic UI): замер «тап по сценке → первый кадр брифинга».
+    const prestart = item.status === 'available' && (studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de');
+    markDialogueV2OptimisticTap('hub_tap', item.id, { status: item.status, prestart, studyTarget: String(studyTarget) });
     // зачем (владелец 01.10): сессия стартует фоном, пока человек читает брифинг;
     // энергия и квота при этом НЕ тратятся (энергия — на «Начать», квота — на ходе).
     if (item.status === 'available' && (studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de')) {

@@ -2,6 +2,9 @@
 
 Governance-ID: TG-B4180DA67805
 Governance-ID: TG-2799A41DB3F0
+Governance-ID: TG-FE5797EC6615
+Governance-ID: TG-CE0B67AD86ED
+Governance-ID: TG-5074C5773D85
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 03:50)
 Related epic/enabler: полный прогон 5028b4273, docs/work/full-run-red-tests-2026-10-18.md
@@ -15,6 +18,8 @@ Related epic/enabler: полный прогон 5028b4273, docs/work/full-run-re
 In scope: `tests/lessons_overlays_audit_r58.test.ts` (тип тоста без мёртвого `premium` — код `app/lesson_menu.tsx` не меняется), раннер .tsx (вписать четыре .tsx-теста, не стоящих ни в одном раннере), список карантина (отдельный список путей в одном месте + файл-причина), документ.
 
 Дополнение (координатор 18.10 03:56): (5) в тот же механизм карантина подключается список V2 из `docs/work/test-quarantine-v2-2026-10-18.md` (файл ведёт V2, я его не правлю; сторож сверяет, что каждая запись V2-списка исключена из основного раннера и наоборот); (6) тесты V2, падающие на СРЕДЕ, а не на контенте (`learning_v2_session_skip_interaction`, `learning_v2_mode_router_family_coverage` — нет мока gesture-handler и vector-icons; `learning_v2_session_intro_feedback_behavior` — TypeError в моке; `learning_v2_voice_physical_device_runner`) — чинить в настройке раннера, только если это безопасно для остальных зелёных; иначе — в карантин с причиной.
+
+Дополнение (координатор 18.10 04:45, Ревизор 3.81 группа «А — Дизайну, устаревшая проверка»): (7) семь тестов из карантина a09391f69 — `content_quality_gate_wiring`, `intro_reader_fixture_contract`, `intro_theme_contract`, `lesson_map_screen_contract`, `lexical_density_policy_v2`, `listen_choose_option_label_v1`, `voice_physical_device_runner_v1` — каждый приводится к текущему контракту и возвращается в обычный прогон (убирается из `testPathIgnorePatterns` по своим строкам), либо удаляется с объяснением в коммите, если проверка не нужна. Код выпуска ради теста не меняется; найденный настоящий дефект — сразу строкой координатору. Прогоны только через слот.
 
 Out of scope: сами тесты Густава/достижений/DE не правятся и не удаляются; решение о возврате или удалении — владельцу после релиза (слово координатора). `kimi_voice_capture_session_lifecycle` — Ядру. Чужие незакоммиченные правки раннера не берутся.
 

@@ -134,7 +134,8 @@ function installSuccessfulPlayer(): {
       );
     }),
     pause,
-    remove,
+    // зачем (разбор красных 18.10, Ревизор 3.81): раннер освобождает нативный плеер вызовом release() (expo-audio), а не устаревшим remove(); мок отдаёт тот же счётчик под новым именем
+    release: remove,
   };
   mockCreateAudioPlayer.mockReturnValue(player);
   return { pause, remove };

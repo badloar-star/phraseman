@@ -71,6 +71,20 @@ describe('раннеры тестов', () => {
       'tests/learning_v2_all_ready_tasks_runtime_audit.test.ts',
       'tests/learning_v2_factory_production_audio_contract.test.ts',
       'tests/learning_v2_factory_native_projection_v1.test.ts',
+      // семь устаревших проверок «А — Дизайну» (Ревизор 3.81, 18.10): приведены к текущему контракту и возвращены в обычный прогон; lesson_map_screen_contract удалён (экран снят в 5bef1e710)
+      'tests/learning_v2_content_quality_gate_wiring.test.ts',
+      'tests/learning_v2_intro_reader_fixture_contract.test.ts',
+      'tests/learning_v2_intro_theme_contract.test.ts',
+      'tests/learning_v2_lexical_density_policy_v2.test.ts',
+      'tests/learning_v2_listen_choose_option_label_v1.test.ts',
+      'tests/learning_v2_voice_physical_device_runner_v1.test.ts',
+      // шесть тестов фикстур V2 зелёные после 8f28a1e98 (прогон V2 без карантина: 6/6, 11/11) — возвращены в обычный прогон по просьбе V2
+      'tests/learning_v2_course_session_completed_spool_v1.test.ts',
+      'tests/learning_v2_course_session_save_card_v1.test.ts',
+      'tests/learning_v2_activity_released_session_submission_spool_v2.test.ts',
+      'tests/learning_v2_course_session_audio_readback_v1.test.ts',
+      'tests/learning_v2_course_session_audio_release_extension_v1.test.ts',
+      'tests/learning_v2_course_lesson_audio_release_index_v1.test.ts',
     ]);
     expect(listed.filter((f) => fs.existsSync(path.join(root, f)) && !ignored.has(f) && !restored.has(f))).toEqual([]);
   });

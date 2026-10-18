@@ -1,0 +1,47 @@
+[BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":1,"screen":"today_tasks","decision":"today_tasks → home","ms":3}
+[BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":22}
+[BACK-BTN] step {"seq":1,"step":"home_render","ms":69,"n":26}
+[BACK-BTN] step {"seq":1,"step":"today_unmount","ms":158}
+[BACK-BTN] step {"seq":1,"step":"home_effects_done","ms":188,"n":26}
+[BACK-BTN] step {"seq":1,"step":"home_render","ms":216,"n":27}
+[BACK-BTN] arrived {"seq":1,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":291}
+[BACK-BTN] long-frame {"seq":1,"ms":326,"atMs":326}
+[BACK-BTN] long-frame {"seq":1,"ms":103,"atMs":429}
+[BACK-BTN] frames {"seq":1,"frames":2,"long":2,"maxMs":326,"windowMs":429}
+[BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":2,"screen":"today_tasks","decision":"today_tasks → home","ms":7}
+[BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":21}
+[BACK-BTN] step {"seq":2,"step":"home_render","ms":82,"n":31}
+[BACK-BTN] step {"seq":2,"step":"today_unmount","ms":230}
+[BACK-BTN] step {"seq":2,"step":"home_effects_done","ms":260,"n":31}
+[BACK-BTN] step {"seq":2,"step":"home_render","ms":291,"n":32}
+[BACK-BTN] arrived {"seq":2,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":388}
+[BACK-BTN] long-frame {"seq":2,"ms":467,"atMs":467}
+[BACK-BTN] frames {"seq":2,"frames":1,"long":1,"maxMs":467,"windowMs":467}
+'[HOME-CHILD-COST]', '{"id":"header","phase":"update","window":6,"actualMs":8.1,"baseMs":14.9,"propsChanged":[{"name":"bellSlot","from":"el<HomeChildCost(bell)>","to":"el<HomeChildCost(bell)>"},{"name":"avatarSlot","from":"el<HomeChildCost(avatar_slot)>","to":"el<HomeChildCost(avatar_slot)>"},{"name":"stats","from":"arr[2]","to":"arr[2]"}]}'
+[BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":3,"screen":"today_tasks","decision":"today_tasks → home","ms":2}
+[BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":28}
+[BACK-BTN] step {"seq":3,"step":"home_render","ms":83,"n":36}
+'[HOME-CHILD-COST]', '{"id":"bell","phase":"nested-update","window":8,"actualMs":15.8,"baseMs":15.7,"propsChanged":[]}'
+'[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":8,"actualMs":15.9,"baseMs":25.9,"propsChanged":[{"name":"bellSlot","from":"el<HomeChildCost(bell)>","to":"el<HomeChildCost(bell)>"},{"name":"avatarSlot","from":"el<HomeChildCost(avatar_slot)>","to":"el<HomeChildCost(avatar_slot)>"},{"name":"stats","from":"arr[2]","to":"arr[2]"}]}'
+[BACK-BTN] step {"seq":3,"step":"today_unmount","ms":196}
+[BACK-BTN] step {"seq":3,"step":"home_effects_done","ms":224,"n":36}
+[BACK-BTN] step {"seq":3,"step":"home_render","ms":242,"n":37}
+[BACK-BTN] arrived {"seq":3,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":320}
+[BACK-BTN] long-frame {"seq":3,"ms":345,"atMs":345}
+[BACK-BTN] long-frame {"seq":3,"ms":60,"atMs":426}
+[BACK-BTN] frames {"seq":3,"frames":3,"long":2,"maxMs":345,"windowMs":426}
+[BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":4,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+[BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":15}
+[BACK-BTN] step {"seq":4,"step":"home_render","ms":55,"n":41}
+[BACK-BTN] step {"seq":4,"step":"today_unmount","ms":172}
+[BACK-BTN] step {"seq":4,"step":"home_effects_done","ms":202,"n":41}
+[BACK-BTN] step {"seq":4,"step":"home_render","ms":219,"n":42}
+[BACK-BTN] arrived {"seq":4,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":289}
+[BACK-BTN] long-frame {"seq":4,"ms":314,"atMs":314}
+[BACK-BTN] long-frame {"seq":4,"ms":53,"atMs":384}
+[BACK-BTN] long-frame {"seq":4,"ms":249,"atMs":633}
+[BACK-BTN] frames {"seq":4,"frames":4,"long":3,"maxMs":314,"windowMs":633}

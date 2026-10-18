@@ -71,7 +71,7 @@ function traceNick(line: string): void {
 
 /** Пауза после последней буквы до одного вызова брони (владелец 18.10: проверка «мгновенно», без запроса на каждую букву). */
 const NAME_APPLY_DEBOUNCE_MS = 400;
-type LiveNameStatus = 'idle' | 'checking' | 'applied' | 'taken' | 'invalid';
+type LiveNameStatus = 'idle' | 'checking' | 'applied' | 'taken' | 'rate_limited' | 'invalid';
 
 interface NicknameEditModalProps {
   visible: boolean;
@@ -191,7 +191,8 @@ export default function NicknameEditModal({
           if (stillTyped) setLiveStatus('applied');
           return;
         }
-        if (reservation.status === 'taken' || reservation.status === 'cooldown') {
+        // зачем (координатор 18.10): 'rate_limited' — лимит 30 смен в час; откат как у «занято», но имя не помечаем занятым.
+        if (reservation.status === 'taken' || reservation.status === 'cooldown' || reservation.status === 'rate_limited') {
           // зачем: откат только если за это время не применилось более свежее имя — поздний ответ не перетирает свежий ввод.
           if (appliedNameRef.current === name) {
             console.log(`[NAME-CHANGE] rollback reason=${reservation.status} seq=${seq}`); // guard-ok: причина отката
@@ -200,7 +201,7 @@ export default function NicknameEditModal({
             writeLocalName(previous, name);
           }
           if (reservation.status === 'taken') takenCacheRef.current.add(normalizeNameIndexKey(name));
-          if (stillTyped) setLiveStatus(reservation.status === 'taken' ? 'taken' : 'idle');
+          if (stillTyped) setLiveStatus(reservation.status === 'taken' || reservation.status === 'rate_limited' ? reservation.status : 'idle');
           if (!visibleRef.current && reservation.status === 'taken') onNotice(takenNotice());
           return;
         }
@@ -329,6 +330,9 @@ export default function NicknameEditModal({
     if (liveStatus === 'taken') {
       return L('Имя уже занято', 'Ім\'я вже зайняте', 'The name is already taken', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
     }
+    if (liveStatus === 'rate_limited') {
+      return L('Слишком часто, попробуй через минуту', 'Занадто часто, спробуй за хвилину', 'Too often — try again in a minute', 'Demasiado seguido, inténtalo en un minuto', 'Muitas vezes seguidas — tente em um minuto', 'Đổi quá nhiều lần, thử lại sau một phút', 'Terlalu sering, coba lagi dalam satu menit', 'Çok sık, bir dakika sonra tekrar dene', 'Zbyt często, spróbuj za minutę');
+    }
     if (liveStatus === 'invalid') return invalidMessage ?? '';
     return '';
   })();
@@ -346,7 +350,7 @@ export default function NicknameEditModal({
 
   // зачем: «свободно» — нейтральный текст темы с галочкой (зелёные поверхности/акценты убраны
   // владельцем); красным остаётся только «занято» — это семантика ошибки, а не декор.
-  const availabilityColor = availabilityStatus === 'taken' || availabilityStatus === 'invalid'
+  const availabilityColor = availabilityStatus === 'taken' || availabilityStatus === 'rate_limited' || availabilityStatus === 'invalid'
     ? t.wrong
     : availabilityStatus === 'applied'
       ? glass.text
@@ -442,7 +446,7 @@ export default function NicknameEditModal({
             <ActivityIndicator size="small" color={availabilityColor} />
           ) : availabilityStatus === 'applied' ? (
             <Ionicons name="checkmark-circle-outline" size={16} color={availabilityColor} />
-          ) : availabilityStatus === 'taken' || availabilityStatus === 'invalid' ? (
+          ) : availabilityStatus === 'taken' || availabilityStatus === 'rate_limited' || availabilityStatus === 'invalid' ? (
             <Ionicons name="close-circle-outline" size={16} color={availabilityColor} />
           ) : null}
           {availabilityMessage ? (

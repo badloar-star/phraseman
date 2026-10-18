@@ -65,6 +65,16 @@ describe('nickname rename pending sync', () => {
     expect(mockStore.get('user_name')).toBe('New name');
   });
 
+  it('rate limited → keeps the pending record, name stays, no «taken» notice', async () => {
+    mockStore.set('user_name', 'New name');
+    await pending.markNicknameRenamePending('New name', 'Old name');
+    mockReserve.mockResolvedValue({ status: 'rate_limited', nextChangeAt: 1 });
+    await pending.flushNicknameRenamePending('test');
+    expect(mockStore.has(pending.NICKNAME_RENAME_PENDING_KEY)).toBe(true);
+    expect(mockStore.get('user_name')).toBe('New name');
+    expect(await pending.takeNicknameRenameTakenNotice()).toBeNull();
+  });
+
   it('listens for app return only while a name is pending — no forever listener', async () => {
     const { AppState } = jest.requireMock('react-native') as { AppState: { addEventListener: jest.Mock } };
     const remove = jest.fn();

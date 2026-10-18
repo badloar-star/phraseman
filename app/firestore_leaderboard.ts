@@ -177,7 +177,8 @@ async function ensureNameReservationIdentityReady(timeoutMs: number): Promise<st
   return stableId;
 }
 
-export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'error';
+// зачем (координатор 18.10): 'rate_limited' — сервер отказал по лимиту 30 смен ника в час; клиент оставляет прежнее имя.
+export type ReserveNameStatus = 'ok' | 'taken' | 'cooldown' | 'rate_limited' | 'error';
 export type ReserveNameResult = {
   status: ReserveNameStatus;
   nextChangeAt?: number;
@@ -260,6 +261,7 @@ export async function reserveNameDetailed(
     nickLog('NICK-SAVE', `reserve:out server status=${data.status}`, { ...base, ok: data.ok, ms: Date.now() - startedAt });
     if (data.status === 'taken') return { status: 'taken' };
     if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
+    if (data.status === 'rate_limited') return { status: 'rate_limited', nextChangeAt: data.nextChangeAt };
     return { status: 'ok', nextChangeAt: data.nextChangeAt };
   } catch (e: any) {
     nickLog('NICK-SAVE', 'reserve:call_failed', { ...base, ...nickErrorFields(e), ms: Date.now() - startedAt }, true);
@@ -293,6 +295,7 @@ export async function reserveNameDetailed(
         nickLog('NICK-SAVE', `reserve:out server_retry status=${data.status}`, { ...base, ms: Date.now() - startedAt });
         if (data.status === 'taken') return { status: 'taken' };
         if (data.status === 'cooldown') return { status: 'cooldown', nextChangeAt: data.nextChangeAt };
+        if (data.status === 'rate_limited') return { status: 'rate_limited', nextChangeAt: data.nextChangeAt };
         return { status: 'ok', nextChangeAt: data.nextChangeAt };
       } catch (retryError) {
         nickLog('NICK-SAVE', 'reserve:out error reason=retry_call_failed', { ...base, ...nickErrorFields(retryError), ms: Date.now() - startedAt }, true);

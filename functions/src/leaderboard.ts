@@ -9,6 +9,10 @@ const NAME_INDEX = 'name_index';
 // зачем (владелец 18.10: «ник можно менять хоть каждую секунду, убери правило 14 дней»): кулдауна смены ника больше нет.
 // Поле nickname_change_available_at продолжает писаться (= момент смены), чтобы старые клиенты видели «можно сейчас».
 const NICKNAME_CHANGE_COOLDOWN_MS = 0;
+// зачем (Ревизор 28bdf6e12 🟡/💸, координатор 18.10): без кулдауна нужен предохранитель от злоупотреблений — не больше 30 смен
+// ника в час на аккаунт. Окно и счётчик живут в users/{uid}.progress и пишутся в той же транзакции (без лишних чтений).
+const NICKNAME_RENAME_WINDOW_MS = 60 * 60 * 1000;
+const NICKNAME_RENAME_LIMIT_PER_WINDOW = 30;
 const GENERATED_NICKNAME_WORDS = [
   'Alpha', 'Axiom', 'Cosmos', 'Delta', 'Helium', 'Ion', 'Lambda', 'Neon',
   'Nova', 'Omega', 'Orbit', 'Photon', 'Quark', 'Quantum', 'Radium', 'Sigma',
@@ -381,6 +385,7 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   // users/{uid} doc is missing or tombstoned (identityHidden/banned). That is
   // checked transactionally via txNameOwnerIsLive, keyed on the owner's USER doc.
   let cooldownUntil = 0;
+  let rateLimitedUntil = 0;
   try {
     await db.runTransaction(async (tx) => {
       const now = Date.now();
@@ -412,6 +417,18 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       // зачем (владелец 18.10): проверка 14-дневного кулдауна убрана — смена ника не ограничена по времени.
       // Ветка ответа 'cooldown' ниже остаётся для совместимости, но сервер её больше не выдаёт.
       void cooldownUntil;
+      const renameWindowStart = readProgressMs(userData, 'nickname_rename_window_start');
+      const renameWindowCount = readProgressCount(userData, 'nickname_rename_window_count') ?? 0;
+      const renameWindowActive = renameWindowStart > 0 && now - renameWindowStart < NICKNAME_RENAME_WINDOW_MS;
+      if (isNameChange && renameWindowActive && renameWindowCount >= NICKNAME_RENAME_LIMIT_PER_WINDOW) {
+        rateLimitedUntil = renameWindowStart + NICKNAME_RENAME_WINDOW_MS;
+        throw new HttpsError('resource-exhausted', 'name_change_rate_limited');
+      }
+      const nextRenameWindow = !isNameChange
+        ? null
+        : renameWindowActive
+          ? { start: renameWindowStart, count: renameWindowCount + 1 }
+          : { start: now, count: 1 };
 
       if (nameSnap.exists && !nameIndexDocIsHidden(nameSnap.data())) {
         const indexOwner = sanitizeString(nameSnap.data()?.uid, 180);
@@ -457,6 +474,10 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
           nickname_changed_at: String(nicknameChangedAt),
           nickname_change_available_at: String(nicknameChangedAt + NICKNAME_CHANGE_COOLDOWN_MS),
           ...(grantsFreeChange && storedGraceChanges === null ? { nickname_free_change_available: '1' } : {}),
+          ...(nextRenameWindow ? {
+            nickname_rename_window_start: String(nextRenameWindow.start),
+            nickname_rename_window_count: String(nextRenameWindow.count),
+          } : {}),
           ...(consumesGraceChange ? {
             nickname_grace_renames_remaining: String(graceChangesRemaining - 1),
             nickname_free_change_available: '0',
@@ -478,6 +499,9 @@ export const nameReserve = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
     }
     if (e instanceof HttpsError && e.message === 'name_change_cooldown') {
       return { ok: true, status: 'cooldown', nextChangeAt: cooldownUntil };
+    }
+    if (e instanceof HttpsError && e.message === 'name_change_rate_limited') {
+      return { ok: true, status: 'rate_limited', nextChangeAt: rateLimitedUntil };
     }
     throw e;
   }

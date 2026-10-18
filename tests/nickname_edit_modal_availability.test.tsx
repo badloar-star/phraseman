@@ -164,6 +164,25 @@ test('a taken name rolls back to the previous one and is not asked again in this
   expect(availabilityText(screen)).toContain('Имя уже занято');
 });
 
+// координатор 18.10: лимит 30 смен ника в час — прежнее имя остаётся, подпись «Слишком часто», имя не считается занятым.
+test('rate limit rolls back to the previous name, says «too often» and does not mark the name as taken', async () => {
+  mockReserveNameDetailed.mockResolvedValueOnce({ status: 'rate_limited', nextChangeAt: 1 }).mockResolvedValueOnce({ status: 'ok' });
+  const onRollback = jest.fn();
+  const screen = await renderModal({ onRollback });
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Fast name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+
+  expect(onRollback).toHaveBeenCalledWith('Current name');
+  expect(availabilityText(screen)).toContain('Слишком часто, попробуй через минуту');
+
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Other');
+  await fireEvent.changeText(screen.getByTestId('nickname-input'), 'Fast name');
+  await act(async () => { await jest.advanceTimersByTimeAsync(400); });
+  expect(mockReserveNameDetailed).toHaveBeenCalledTimes(2);
+  expect(availabilityText(screen)).toContain('Готово');
+});
+
 test('calls go one at a time: input during a call is queued, and the late answer does not override fresher input', async () => {
   const first = deferred<{ status: 'ok' }>();
   mockReserveNameDetailed.mockReturnValueOnce(first.promise).mockResolvedValueOnce({ status: 'ok' });

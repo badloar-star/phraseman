@@ -648,4 +648,39 @@ describe('settings rename grace policy', () => {
     );
     expect(blocked.status).toBe('ok');
   });
+
+  // 18.10 (Ревизор 🟡/💸, координатор): без кулдауна — предохранитель 30 смен ника в час на аккаунт, счётчик в той же транзакции.
+  it('allows 30 renames per hour, refuses the 31st as rate_limited, and opens again after the window', async () => {
+    const { store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'auth-a',
+          progress: { user_name: 'Start name', user_name_lower: 'start name' },
+        },
+      },
+      name_index: { 'start name': { uid: 'stable-a', name: 'Start name', nameLower: 'start name' } },
+    });
+
+    let oldName = 'Start name';
+    for (let i = 1; i <= 30; i += 1) {
+      const nextName = `Rename ${i}`;
+      const res: any = await callableRun(nameReserve, { stableId: 'stable-a', name: nextName, oldName, source: 'settings' }, 'auth-a');
+      expect(res.status).toBe('ok');
+      oldName = nextName;
+    }
+    const progress = () => store.users['stable-a']?.progress as Record<string, unknown>;
+    expect(progress().nickname_rename_window_count).toBe('30');
+
+    const limited: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 31', oldName, source: 'settings' }, 'auth-a');
+    expect(limited.status).toBe('rate_limited');
+    expect(limited.nextChangeAt).toBeGreaterThan(Date.now());
+    expect(store.name_index['rename 31']).toBeUndefined();
+    expect(progress().user_name).toBe('Rename 30');
+
+    // окно истекло — снова можно, счётчик начинается заново
+    progress().nickname_rename_window_start = String(Date.now() - 60 * 60 * 1000 - 1);
+    const reopened: any = await callableRun(nameReserve, { stableId: 'stable-a', name: 'Rename 31', oldName, source: 'settings' }, 'auth-a');
+    expect(reopened.status).toBe('ok');
+    expect(progress().nickname_rename_window_count).toBe('1');
+  });
 });

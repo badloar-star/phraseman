@@ -177,8 +177,8 @@ export function flushNicknameRenamePending(trigger: string): Promise<void> {
       log('flush:reverted_to_previous', { trigger, reason: result.status });
       return;
     }
-    // 'error' — ждём следующего возврата в приложение / смены входа.
-    log('flush:kept reason=reserve_error', { trigger });
+    // 'error' и 'rate_limited' (лимит 30 смен в час, координатор 18.10) — запись держим, ждём следующего возврата в приложение / смены входа.
+    log(`flush:kept reason=${result.status === 'rate_limited' ? 'rate_limited' : 'reserve_error'}`, { trigger });
     ensureListeners();
   })().catch((error: unknown) => {
     log('flush:failed', { trigger, message: error instanceof Error ? error.message : String(error) }, true);

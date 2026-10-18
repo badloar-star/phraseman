@@ -77,6 +77,9 @@ function compileModal() {
         View: 'View',
       };
     }
+    // зачем (R129, координатор 18.10): монета героя — expo-image (декод под размер вида), журнал [MEM-COIN] только в отладке
+    if (id === 'expo-image') return { Image: 'ExpoImage' };
+    if (id.endsWith('/mem_coin_probe')) return { logMemCoin() {} };
     if (id.endsWith('/HybridAlertShell')) return { __esModule: true, default: 'HybridAlertShell' };
     if (id.endsWith('/DuoPressable')) return { __esModule: true, default: 'DuoPressable' };
     if (id.endsWith('/SafeLinearGradient')) return { LinearGradient: 'LinearGradient' };
@@ -191,7 +194,7 @@ test('COM-04 invite shows canonical ranks 0 and 19 but never clamps missing or i
       onDecline() {},
     });
     const images = [];
-    walk(tree, (node) => { if (node.type === 'RNImage') images.push(node); });
+    walk(tree, (node) => { if (node.type === 'ExpoImage') images.push(node); });
     assert.equal(images.length, 1, `rank ${rank} renders one canonical image`);
     assert.deepEqual(images[0].props.source, { canonicalCoinRank: rank });
   }
@@ -204,7 +207,7 @@ test('COM-04 invite shows canonical ranks 0 and 19 but never clamps missing or i
       onDecline() {},
     });
     const images = [];
-    walk(tree, (node) => { if (node.type === 'RNImage') images.push(node); });
+    walk(tree, (node) => { if (node.type === 'ExpoImage') images.push(node); });
     assert.equal(images.length, 0, `invalid rank ${String(rank)} renders the neutral placeholder`);
   }
 });

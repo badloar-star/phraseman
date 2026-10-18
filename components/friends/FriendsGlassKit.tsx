@@ -1,7 +1,9 @@
 import React from 'react';
-import { ActivityIndicator, Image as RNImage, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
+import { logMemCoin } from '../coins/mem_coin_probe';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
@@ -68,13 +70,17 @@ export function FriendsCoin({ coinRank, name, size, glass }: {
 }) {
   const row = isValidCoinRank(coinRank) ? coinRankRowForDisplay(coinRank) : null;
   if (row) {
+    // зачем (координатор 18.10, R129): монета 768² в строке FlashList друзей — expo-image декодирует под размер вида (RN Image держал ~2,36 МБ на строку);
+    // recyclingKey по рангу — переиспользованная строка не мигает чужой монетой
+    logMemCoin('friends-list', size);
     return (
-      <RNImage
+      <Image
         testID="friends-coin"
         accessible={false}
         accessibilityElementsHidden
         importantForAccessibility="no"
-        resizeMode="contain"
+        contentFit="contain"
+        recyclingKey={`coin-${coinRank}`}
         source={row.source}
         style={{ width: size, height: size }}
       />

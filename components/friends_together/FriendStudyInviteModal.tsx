@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
-import { Image as RNImage, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
+import { logMemCoin } from '../coins/mem_coin_probe';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
@@ -38,13 +40,15 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           style={styles.hero}
         >
           {coinRow ? (
-            <RNImage
+            // зачем (R129): expo-image декодирует монету 768² под размер вида (68 dp), а не целиком
+            <Image
               accessible={false}
               accessibilityElementsHidden
               importantForAccessibility="no"
-              resizeMode="contain"
+              contentFit="contain"
               source={coinRow.source}
               style={styles.heroImage}
+              onLoad={() => logMemCoin('friend-study-invite', 68)}
             />
           ) : (
             <View

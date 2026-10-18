@@ -2,7 +2,7 @@
 // отказ с понятным кодом, хранение только хешей; пропуск только при UNAVAILABLE, таймаут/конфликт — отказ (Ревизор 3.116).
 import * as admin from 'firebase-admin';
 import { HttpsError } from 'firebase-functions/v2/https';
-import { callerIpFromRawRequest, callerIpInfoFromRawRequest, enforceCallerRateWindow, ipRateKey, resetCallerRateWindowStateForTest } from './caller_rate_window';
+import { callerIpFromRawRequest, callerIpInfoFromRawRequest, enforceCallerRateWindow, enforceLocalCallerWindow, ipRateKey, resetCallerRateWindowStateForTest } from './caller_rate_window';
 
 type Data = Record<string, unknown>;
 function makeDb() {
@@ -103,4 +103,14 @@ test('без IP и без потолка uid — пропуск; Firestore UNAVA
   await expect(call(failing(Object.assign(new Error('14 UNAVAILABLE'), { code: 14 })))).resolves.toBeUndefined();
   await expect(call(failing(Object.assign(new Error('10 ABORTED: too much contention'), { code: 10 })))).rejects.toMatchObject({ code: 'unavailable', message: 'rate_window_busy' });
   await expect(call(failing(new Error('caller_rate_window_timeout')))).rejects.toMatchObject({ code: 'unavailable', message: 'rate_window_busy' });
+});
+
+// зачем: вход не должен падать (владелец 18.10) — у привязки входа окно в базе заменено счётчиком в памяти экземпляра.
+test('счётчик в памяти: без базы, отказ только после порога на этом экземпляре, после окна снова можно', () => {
+  const call = (nowMs: number) => enforceLocalCallerWindow({ scope: 'ensure_link', authUid: 'u-local', maxPerUid: 3, nowMs });
+  call(T0); call(T0 + 1); call(T0 + 2);
+  expect(() => call(T0 + 3)).toThrow(expect.objectContaining({ code: 'resource-exhausted', message: 'ensure_link_rate_limited' }));
+  expect(() => call(T0 + 60 * 60 * 1000 + 5)).not.toThrow();
+  // без uid — пропуск
+  expect(() => enforceLocalCallerWindow({ scope: 'ensure_link', authUid: null, maxPerUid: 1, nowMs: T0 })).not.toThrow();
 });

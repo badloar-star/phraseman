@@ -99,6 +99,7 @@ const localWindows = new Map<string, LocalWindow>();
 /** Только для тестов: сброс предфильтра инстанса. */
 export function resetCallerRateWindowStateForTest(): void {
   localWindows.clear();
+  localOnlyWindows.clear();
   dbWarm = false;
 }
 
@@ -111,6 +112,35 @@ function rememberLocal(key: string, entry: LocalWindow): void {
 function isFirestoreUnavailable(error: unknown): boolean {
   const code = (error as { code?: unknown } | null)?.code;
   return code === 14 || code === 'unavailable' || code === 'firestore/unavailable';
+}
+
+/**
+ * Счётчик вызовов в памяти ОДНОГО экземпляра — без базы. Для пути входа.
+ * зачем: вход не должен падать (владелец 18.10, через координатора): «вход не может падать ни при каком сбое, кроме «нет
+ * сети»». Окно в базе при таймауте или конфликте отказывало во входе и добавляло транзакцию. Здесь — ни чтений, ни записей:
+ * отказ только когда один uid явно зациклился на этом экземпляре; холодный экземпляр начинает с нуля (при сомнении — пропуск).
+ */
+const localOnlyWindows = new Map<string, { windowStartMs: number; count: number }>();
+
+export function enforceLocalCallerWindow(input: Readonly<{
+  scope: string;
+  authUid: string | null | undefined;
+  maxPerUid: number;
+  windowMs?: number;
+  nowMs?: number;
+}>): void {
+  if (!input.authUid || input.maxPerUid <= 0) return;
+  const windowMs = input.windowMs ?? DEFAULT_WINDOW_MS;
+  const now = input.nowMs ?? Date.now();
+  const key = `${input.scope}:${input.authUid}`;
+  const current = localOnlyWindows.get(key);
+  const state = current && now - current.windowStartMs < windowMs ? current : { windowStartMs: now, count: 0 };
+  if (state.count >= input.maxPerUid) {
+    console.warn(LOG, JSON.stringify({ scope: input.scope, decision: 'refused', by: 'u', source: 'local_only', count: state.count, max: input.maxPerUid, windowMs }));
+    throw new HttpsError('resource-exhausted', `${input.scope}_rate_limited`);
+  }
+  if (!localOnlyWindows.has(key) && localOnlyWindows.size >= LOCAL_MAX_KEYS) localOnlyWindows.clear();
+  localOnlyWindows.set(key, { windowStartMs: state.windowStartMs, count: state.count + 1 });
 }
 
 export type CallerRateWindowInput = Readonly<{

@@ -32,7 +32,7 @@ import {
   type PreparedAccountMergeStarsTransfer,
 } from './auth_merge_stars_transfer';
 import { beginStarLedgerTransactionAttempt, normalizeStars } from './stars_ledger';
-import { callerIpFromRawRequest, enforceCallerRateWindow, ipRateKey } from './caller_rate_window';
+import { callerIpFromRawRequest, enforceLocalCallerWindow, ipRateKey } from './caller_rate_window';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -2432,9 +2432,10 @@ export const authEnsureStableLink = onCall({
   // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
   const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
   logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
-  // зачем (координатор 18.10, защита от накрутки): привязка в цепочке каждого входа — потолки щедрые (мобильный NAT делит IP
-  // на многих людей), но ферма анонимных аккаунтов с одного адреса упирается в окно. Сбой счётчика вход не ломает (fail-open).
-  await enforceCallerRateWindow({ scope: 'ensure_link', authUid, rawRequest: request.rawRequest, maxPerUid: 120, maxPerIp: 1200 });
+  // зачем: вход не должен падать (владелец 18.10). Окно вызовов в базе (транзакция на каждый вход) при таймауте или конфликте
+  // отказывало во входе — убрано. Остался счётчик в памяти экземпляра: без чтений и записей, отказ только при явном
+  // зацикливании одного uid (120 в час на экземпляр).
+  enforceLocalCallerWindow({ scope: 'ensure_link', authUid, maxPerUid: 120 });
   const trace = createAuthEnsureLinkTrace();
   trace.mark('start', { provider: signInProvider || 'none', hasMetadata: Boolean(metadata), hasNonce: Boolean(anonMergeNonce) });
   let linked: Awaited<ReturnType<typeof ensureStableLinkForAuth>>;

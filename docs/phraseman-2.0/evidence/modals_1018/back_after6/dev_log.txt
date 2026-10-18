@@ -1,0 +1,89 @@
+10-18 07:40:17.278 I/ReactNativeJS( 3761): [BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+10-18 07:40:17.281 I/ReactNativeJS( 3761): [BACK-BTN] decision {"seq":1,"screen":"today_tasks","decision":"today_tasks → home","ms":4}
+10-18 07:40:17.302 I/ReactNativeJS( 3761): [BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":24}
+10-18 07:40:17.359 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"tabs_layout_render","ms":77,"pathname":"/today_tasks","focusTick":1}
+10-18 07:40:17.360 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"tabs_cause","ms":82,"changed":["none (parent/context)"]}
+10-18 07:40:17.367 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_render","ms":89,"n":27}
+10-18 07:40:17.372 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_cause","ms":94,"changed":["parent_or_unlisted"]}
+10-18 07:40:17.373 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_ctx","ms":95,"total":21,"changed":[{"index":10,"name":"ctx#10","keys":["boolean"]}]}
+10-18 07:40:17.543 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"today_unmount","ms":264}
+10-18 07:40:17.551 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] deferred {"tickAtFocus":1,"focusTick":1,"fallbackMs":500}
+10-18 07:40:17.553 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_active_deferred","ms":274,"tickAtFocus":1,"focusTick":1,"fallbackMs":500}
+10-18 07:40:17.554 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_effects_done","ms":276,"n":27}
+10-18 07:40:17.559 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"tabs_focus_tick","ms":281}
+10-18 07:40:17.564 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"tabs_layout_render","ms":286,"pathname":"/today_tasks","focusTick":2}
+10-18 07:40:17.565 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"tabs_cause","ms":287,"changed":["focusTick:1→2"]}
+10-18 07:40:17.569 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_render","ms":291,"n":28}
+10-18 07:40:17.572 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_cause","ms":294,"changed":["homeRuntimeActive","focusTick"]}
+10-18 07:40:17.572 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":1,"step":"home_ctx","ms":295,"total":21,"changed":[{"index":9,"name":"ctx#9","keys":["number"]},{"index":13,"name":"ctx#13","keys":["number"]}]}
+10-18 07:40:17.753 I/ReactNativeJS( 3761): [BACK-BTN] arrived {"seq":1,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":474}
+10-18 07:40:17.760 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] settled {"via":"focus_tick","waitedMs":203,"tickAtFocus":1,"focusTick":2}
+10-18 07:40:18.090 I/ReactNativeJS( 3761): [BACK-BTN] long-frame {"seq":1,"ms":813,"atMs":813}
+10-18 07:40:18.091 I/ReactNativeJS( 3761): [BACK-BTN] frames {"seq":1,"frames":1,"long":1,"maxMs":813,"windowMs":813}
+10-18 07:40:25.036 I/ReactNativeJS( 3761): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 07:40:25.037 I/ReactNativeJS( 3761): [BACK-BTN] decision {"seq":2,"screen":"today_tasks","decision":"today_tasks → home","ms":2}
+10-18 07:40:25.125 I/ReactNativeJS( 3761): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":90}
+10-18 07:40:25.199 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"tabs_layout_render","ms":163,"pathname":"/today_tasks","focusTick":2}
+10-18 07:40:25.201 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"tabs_cause","ms":164,"changed":["none (parent/context)"]}
+10-18 07:40:25.218 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_render","ms":183,"n":32}
+10-18 07:40:25.224 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_cause","ms":188,"changed":["parent_or_unlisted"]}
+10-18 07:40:25.224 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_ctx","ms":189,"total":21,"changed":[{"index":10,"name":"ctx#10","keys":["boolean"]}]}
+10-18 07:40:25.361 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"today_unmount","ms":324}
+10-18 07:40:25.372 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] deferred {"tickAtFocus":2,"focusTick":2,"fallbackMs":500}
+10-18 07:40:25.374 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_active_deferred","ms":337,"tickAtFocus":2,"focusTick":2,"fallbackMs":500}
+10-18 07:40:25.377 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_effects_done","ms":340,"n":32}
+10-18 07:40:25.387 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"tabs_focus_tick","ms":350}
+10-18 07:40:25.393 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"tabs_layout_render","ms":357,"pathname":"/today_tasks","focusTick":3}
+10-18 07:40:25.395 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"tabs_cause","ms":359,"changed":["focusTick:2→3"]}
+10-18 07:40:25.402 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_render","ms":366,"n":33}
+10-18 07:40:25.409 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_cause","ms":373,"changed":["homeRuntimeActive","focusTick"]}
+10-18 07:40:25.410 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":2,"step":"home_ctx","ms":374,"total":21,"changed":[{"index":9,"name":"ctx#9","keys":["number"]},{"index":13,"name":"ctx#13","keys":["number"]}]}
+10-18 07:40:25.521 I/ReactNativeJS( 3761): [BACK-BTN] arrived {"seq":2,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":483}
+10-18 07:40:25.524 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] settled {"via":"focus_tick","waitedMs":151,"tickAtFocus":2,"focusTick":3}
+10-18 07:40:25.580 I/ReactNativeJS( 3761): [BACK-BTN] long-frame {"seq":2,"ms":543,"atMs":543}
+10-18 07:40:25.581 I/ReactNativeJS( 3761): [BACK-BTN] frames {"seq":2,"frames":1,"long":1,"maxMs":543,"windowMs":543}
+10-18 07:40:32.515 I/ReactNativeJS( 3761): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 07:40:32.516 I/ReactNativeJS( 3761): [BACK-BTN] decision {"seq":3,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+10-18 07:40:32.533 I/ReactNativeJS( 3761): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":18}
+10-18 07:40:32.595 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"tabs_layout_render","ms":79,"pathname":"/today_tasks","focusTick":3}
+10-18 07:40:32.596 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"tabs_cause","ms":80,"changed":["none (parent/context)"]}
+10-18 07:40:32.608 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_render","ms":92,"n":38}
+10-18 07:40:32.610 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_cause","ms":94,"changed":["parent_or_unlisted"]}
+10-18 07:40:32.610 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_ctx","ms":95,"total":21,"changed":[{"index":10,"name":"ctx#10","keys":["boolean"]}]}
+10-18 07:40:32.744 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"today_unmount","ms":228}
+10-18 07:40:32.753 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] deferred {"tickAtFocus":3,"focusTick":3,"fallbackMs":500}
+10-18 07:40:32.754 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_active_deferred","ms":238,"tickAtFocus":3,"focusTick":3,"fallbackMs":500}
+10-18 07:40:32.755 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_effects_done","ms":239,"n":38}
+10-18 07:40:32.764 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"tabs_focus_tick","ms":248}
+10-18 07:40:32.770 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"tabs_layout_render","ms":255,"pathname":"/today_tasks","focusTick":4}
+10-18 07:40:32.771 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"tabs_cause","ms":255,"changed":["focusTick:3→4"]}
+10-18 07:40:32.777 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_render","ms":261,"n":39}
+10-18 07:40:32.781 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_cause","ms":265,"changed":["homeRuntimeActive","focusTick"]}
+10-18 07:40:32.781 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":3,"step":"home_ctx","ms":266,"total":21,"changed":[{"index":9,"name":"ctx#9","keys":["number"]},{"index":13,"name":"ctx#13","keys":["number"]}]}
+10-18 07:40:32.878 I/ReactNativeJS( 3761): [BACK-BTN] arrived {"seq":3,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":361}
+10-18 07:40:32.880 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] settled {"via":"focus_tick","waitedMs":127,"tickAtFocus":3,"focusTick":4}
+10-18 07:40:32.907 I/ReactNativeJS( 3761): [BACK-BTN] long-frame {"seq":3,"ms":391,"atMs":391}
+10-18 07:40:32.947 I/ReactNativeJS( 3761): [BACK-BTN] long-frame {"seq":3,"ms":41,"atMs":432}
+10-18 07:40:32.947 I/ReactNativeJS( 3761): [BACK-BTN] frames {"seq":3,"frames":2,"long":2,"maxMs":391,"windowMs":432}
+10-18 07:40:40.317 I/ReactNativeJS( 3761): [BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+10-18 07:40:40.318 I/ReactNativeJS( 3761): [BACK-BTN] decision {"seq":4,"screen":"today_tasks","decision":"today_tasks → home","ms":7}
+10-18 07:40:40.337 I/ReactNativeJS( 3761): [BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":22}
+10-18 07:40:40.439 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"tabs_layout_render","ms":124,"pathname":"/today_tasks","focusTick":4}
+10-18 07:40:40.442 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"tabs_cause","ms":130,"changed":["none (parent/context)"]}
+10-18 07:40:40.470 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_render","ms":156,"n":44}
+10-18 07:40:40.481 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_cause","ms":169,"changed":["parent_or_unlisted"]}
+10-18 07:40:40.481 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_ctx","ms":170,"total":21,"changed":[{"index":10,"name":"ctx#10","keys":["boolean"]}]}
+10-18 07:40:40.687 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"today_unmount","ms":375}
+10-18 07:40:40.699 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] deferred {"tickAtFocus":4,"focusTick":4,"fallbackMs":500}
+10-18 07:40:40.701 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_active_deferred","ms":388,"tickAtFocus":4,"focusTick":4,"fallbackMs":500}
+10-18 07:40:40.704 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_effects_done","ms":391,"n":44}
+10-18 07:40:40.717 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"tabs_focus_tick","ms":404}
+10-18 07:40:40.726 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"tabs_layout_render","ms":414,"pathname":"/today_tasks","focusTick":5}
+10-18 07:40:40.728 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"tabs_cause","ms":415,"changed":["focusTick:4→5"]}
+10-18 07:40:40.740 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_render","ms":425,"n":45}
+10-18 07:40:40.748 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_cause","ms":436,"changed":["homeRuntimeActive","focusTick"]}
+10-18 07:40:40.750 I/ReactNativeJS( 3761): [BACK-BTN] step {"seq":4,"step":"home_ctx","ms":437,"total":21,"changed":[{"index":9,"name":"ctx#9","keys":["number"]},{"index":13,"name":"ctx#13","keys":["number"]}]}
+10-18 07:40:40.919 I/ReactNativeJS( 3761): [BACK-BTN] arrived {"seq":4,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":605}
+10-18 07:40:40.921 I/ReactNativeJS( 3761): [HOME-ACTIVE-SETTLE] settled {"via":"focus_tick","waitedMs":223,"tickAtFocus":4,"focusTick":5}
+10-18 07:40:41.011 I/ReactNativeJS( 3761): [BACK-BTN] long-frame {"seq":4,"ms":700,"atMs":700}
+10-18 07:40:41.012 I/ReactNativeJS( 3761): [BACK-BTN] frames {"seq":4,"frames":1,"long":1,"maxMs":700,"windowMs":700}

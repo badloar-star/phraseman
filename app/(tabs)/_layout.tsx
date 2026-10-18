@@ -489,6 +489,8 @@ const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
 // первым коммитом Главной и её [HOME-PAINT] — кадр откладывался на ≈2 с. Теперь при старте на Главной премаунт ждёт настоящий кадр Главной (whenHomePainted) и ещё короткую паузу под первые касания.
 // Потолок на случай, если кадр Главной так и не придёт. Если стартовая вкладка НЕ Главная — прежний путь (событие готовности контента + запасной таймер).
 const BACKGROUND_TAB_PREMOUNT_AFTER_PAINT_DELAY_MS = 500;
+/** Потолок idle для ранней загрузки модуля «Настроек» (без монтажа экрана). */
+const SETTINGS_MODULE_PREWARM_IDLE_TIMEOUT_MS = 2000;
 const BACKGROUND_TAB_PREMOUNT_HOME_PAINT_CEILING_MS = 6000;
 // зачем (аудит задержки открытия «Уроки»): было 160 — Уроки, будучи первым в
 // BACKGROUND_TAB_PREMOUNT_ORDER, всё равно ждали лишний кадр раньше, чем idle-
@@ -1239,6 +1241,20 @@ function ReleasedTabLayout() {
       void whenOnboardingSettled('tabs_premount').then((outcome) => {
         console.log('[LESSONS-REBUILD] premount_release', JSON.stringify({ reason, outcome, heldMs: Date.now() - requestedAt, cancelled })); // guard-ok: итог ожидания онбординга
         if (cancelled) return;
+        // зачем (координатор 18.10, путь до «Настроек» ~2,3 с: ~0,7 с синхронной загрузки модуля в момент тапа): модуль «Настроек» грузим
+        // заранее, в простое после первого кадра Главной — только require, без монтажа экрана (монтаж остаётся за премаунтом/тапом).
+        // В релизе (Hermes-байткод) загрузка заметно дешевле, чем в dev-бандле, — журнал покажет цену на устройстве.
+        if (!mountedTabsRef.current.has(4)) {
+          scheduleIdleTask(() => {
+            if (cancelled || mountedTabsRef.current.has(4)) {
+              console.log('[TABS-PREWARM] settings module skip', JSON.stringify({ reason: cancelled ? 'cancelled' : 'already_mounted' })); // guard-ok: ранний выход логирует причину
+              return;
+            }
+            const at = Date.now();
+            const ok = prewarmDeferredTabScreen(4);
+            console.log('[TABS-PREWARM] settings module', JSON.stringify({ ok, ms: Date.now() - at, sinceRequestMs: at - requestedAt })); // guard-ok: одна строка на старт
+          }, SETTINGS_MODULE_PREWARM_IDLE_TIMEOUT_MS);
+        }
         scheduleBackgroundPremount();
       });
     };

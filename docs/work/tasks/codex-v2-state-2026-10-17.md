@@ -284,3 +284,5 @@ Governance-ID: TG-A97C6033FD96
 Governance-ID: TG-DD78D225D0F5
 Governance-ID: TG-BB39DC4BE2FD
 Governance-ID: TG-B39BEABDEA29
+Governance-ID: TG-6D7E13F9097E
+(18.10 06:55: дополнение документа передачи Codex — решения координатора 06:52 и 06:54)

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "dig → digging с am/is/are; dig уже знакомо, сейчас закрепляем действие в процессе",
+    "uk": "dig → digging з am/is/are; dig уже знайоме, зараз закріплюємо дію в процесі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Место для садовой поилки",
+        "uk": "Місце для садової напувалки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы устанавливаете в саду поилку для птиц. Для её основания нужна яма, и вы сейчас её копаете. Hole — «яма, отверстие». I am digging a hole — «Я копаю яму». Dig уже знакомо; перед -ing конечная g удваивается: digging. Букв g стало две, а яма пока одна.",
+        "uk": "Ви встановлюєте в саду напувалку для птахів. Для її основи потрібна яма, і ви зараз її копаєте. Hole — «яма, отвір». I am digging a hole — «Я копаю яму». Dig уже знайоме; перед -ing кінцева g подвоюється: digging. Літер g стало дві, а яма поки одна."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r1",
+              "text": "I am digging a hole."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r2",
+              "text": "I digging a hole."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r3",
+              "text": "I am dig a hole."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r1",
+              "text": "I am digging a hole."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r2",
+              "text": "I digging a hole."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro1:r3",
+              "text": "I am dig a hole."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Снег у входа",
+        "uk": "Сніг біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "После снегопада соседка расчищает вход широкой лопатой. Shovel — «лопата для перемещения земли, снега или сыпучего материала». She is using a shovel — «Она пользуется лопатой». Знакомая spade обычно удобна для копания земли; shovel здесь — широкая лопата для снега. Сейчас она работает, поэтому is using.",
+        "uk": "Після снігопаду сусідка розчищає вхід широкою лопатою. Shovel — «лопата для переміщення землі, снігу або сипкого матеріалу». She is using a shovel — «Вона користується лопатою». Знайома spade зазвичай зручна для копання землі; shovel тут — широка лопата для снігу. Зараз вона працює, тому is using."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r1",
+              "text": "She is using a shovel."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r2",
+              "text": "She using a shovel."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r3",
+              "text": "She is use a shovel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r1",
+              "text": "She is using a shovel."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r2",
+              "text": "She using a shovel."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro2:r3",
+              "text": "She is use a shovel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Канал для садового кабеля",
+        "uk": "Канал для садового кабелю"
+      },
+      "bodyByLocale": {
+        "ru": "Рабочие прокладывают кабель к садовым фонарям. Сейчас они копают длинную узкую траншею. Trench — «траншея». They are digging a trench — «Они копают траншею». С they нужна are. Trench — длинное узкое углубление, а hole может быть просто отдельной ямой.",
+        "uk": "Робітники прокладають кабель до садових ліхтарів. Зараз вони копають довгу вузьку траншею. Trench — «траншея». They are digging a trench — «Вони копають траншею». Із they потрібне are. Trench — довге вузьке заглиблення, а hole може бути просто окремою ямою."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r1",
+              "text": "They are digging a trench."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r2",
+              "text": "They digging a trench."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r3",
+              "text": "They are dig a trench."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r1",
+              "text": "They are digging a trench."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r2",
+              "text": "They digging a trench."
+            },
+            {
+              "responseId": "en:lesson-09:session-06:intro3:r3",
+              "text": "They are dig a trench."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a9493f92d4ae3913136024bf95dfb99612050466622eee3fd6eea804784c3a57"
+}

@@ -250,12 +250,15 @@ function DeferredTabScreen({
   loadScreen,
   screenProps,
   shellTitle,
+  shellUnderlay = false,
 }: {
   shouldLoad: boolean;
   loadScreen: () => TabScreenComponent;
   screenProps?: TabScreenProps;
   /** Заголовок каркаса на время монтирования; нет — прежняя заглушка фоном. */
   shellTitle?: Readonly<Record<string, string>>;
+  /** Каркас уже лежит ПОД панелью (слот вкладки) — заглушка прозрачная, чтобы его не закрывать. */
+  shellUnderlay?: boolean;
 }) {
   const { theme: t } = useTheme();
   const Screen = shouldLoad ? loadScreen() : null;
@@ -269,7 +272,10 @@ function DeferredTabScreen({
     console.log(`[TABS-DEFERRED] placeholder end screen=${loadScreen.name || 'anonymous'} heldMs=${Date.now() - placeholderSinceRef.current}`); // guard-ok: трасса пустой вкладки
     placeholderSinceRef.current = null;
   }
-  if (!Screen) return shellTitle ? <TabShellSkeleton title={shellTitle} /> : <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
+  if (!Screen) {
+    if (shellUnderlay) return <View style={s.deferredTabPlaceholder} collapsable={false} />;
+    return shellTitle ? <TabShellSkeleton title={shellTitle} /> : <View style={[s.deferredTabPlaceholder, { backgroundColor: t.bgPrimary }]} collapsable={false} />;
+  }
   return <Screen {...screenProps} />;
 }
 
@@ -1394,11 +1400,13 @@ function ReleasedTabLayout() {
       ) : placeholder('ph-lessons'),
       show(2) ? <TabPane key="video" freezeWanted={freezeWanted(2)}><TabRenderProbe id="tab:video"><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadVideoScreen} /></TabRenderProbe></TabPane> : placeholder('ph-video'),
       show(3) ? <TabPane key="community" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadCommunityScreen} /></TabRenderProbe></TabPane> : placeholder('ph-community'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellTitle={SETTINGS_TAB_TITLE} /></TabRenderProbe></TabPane> : (
-        // зачем (пересъёмка 7e1c3c093: 1,8 с пусто после тапа): до первого посещения лента держит здесь заглушку — она и есть первый кадр
-        // после тапа/свайпа, поэтому каркас Настроек рисуется уже в ней, заранее, а не после монтажа экрана
-        <View key="ph-settings" style={{ width: tabPaneWidth, flex: 1 }} collapsable={false}><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
-      ),
+      // зачем (Сверка ae6a407fd: +1,6 с пустой фон, каркас на +2,1 с): каркас рисовался НОВЫМ элементом в момент выбора вкладки, а JS сразу
+      // занимала синхронная загрузка модуля Настроек — кадр с каркасом не успевал. Теперь каркас лежит в слоте вкладки ВСЕГДА (тот же экземпляр,
+      // смонтирован заранее), панель с экраном — поверх: лента сдвигается на UI-потоке и сразу показывает каркас; экран (ScreenGradient) его закрывает.
+      <View key="slot-settings" style={{ width: tabPaneWidth, flex: 1 }} collapsable={false}>
+        <View style={StyleSheet.absoluteFill} pointerEvents="none"><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
+        {show(4) ? <TabPane freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellUnderlay /></TabRenderProbe></TabPane> : null}
+      </View>,
     ];
     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);

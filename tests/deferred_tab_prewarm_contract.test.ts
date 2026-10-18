@@ -60,7 +60,10 @@ describe('background tab pre-mount contract', () => {
     expect(source).toContain("quietReason: isQuiet ? 'quiet' : 'ceiling'");
     expect(source).toContain('if (isQuiet || (quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS && !foregroundBusy)) {');
     // заглушка «Настроек» — каркас (заголовок + плашки), не пустой фон
-    expect(source).toContain('shellTitle={SETTINGS_TAB_TITLE}');
+    // Сверка ae6a407fd: каркас лежит в слоте вкладки всегда (смонтирован заранее), панель поверх, заглушка прозрачная
+    expect(source).toContain('<View key="slot-settings"');
+    expect(source).toContain('<TabShellSkeleton title={SETTINGS_TAB_TITLE} />');
+    expect(source).toContain('loadScreen={loadSettingsScreen} shellUnderlay');
     expect(source).toContain('testID="tab-shell-skeleton"');
     // обёртка отмечает касания, но их НЕ перехватывает (всегда false) и вида не меняет (flex: 1)
     expect(source).toContain('onStartShouldSetResponderCapture={markTouchForPremount}');

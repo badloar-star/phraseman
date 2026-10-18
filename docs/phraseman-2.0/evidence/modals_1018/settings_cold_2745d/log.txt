@@ -1,0 +1,10 @@
+10-18 09:39:52.185 I/[TAB-FIRST-FRAME] activate {"idx":0,"at":1792312792183,"mounted":true,"visited":true,"physicalPageIdx":0,"mountedCount":1}
+10-18 09:39:52.629 I/[THEME-BOOT] hydrate {"msSinceBoot":5064,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"}
+10-18 09:39:57.402 I/'[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-18 09:39:57.969 I/[TABS-DEFERRED] placeholder start screen=loadSettingsScreen shouldLoad=false
+10-18 09:39:58.068 I/[TAB-FIRST-FRAME] activate {"idx":4,"at":1792312798055,"mounted":false,"visited":true,"physicalPageIdx":4,"mountedCount":1}
+10-18 09:39:59.137 I/[TABS-DEFERRED] placeholder end screen=loadSettingsScreen heldMs=1167
+10-18 09:39:59.367 I/[TAB-FIRST-FRAME] settings:first_render {"idx":4,"sinceActivateMs":1307,"sinceModuleMs":9827}
+10-18 09:40:00.100 I/[TAB-FIRST-FRAME] settings:header_layout {"idx":4,"sinceActivateMs":2045}
+10-18 09:40:00.644 I/[TAB-FIRST-FRAME] settings:first_focus {"idx":4,"sinceActivateMs":2585,"sinceRenderMs":1291,"sinceCommitMs":489}
+10-18 09:40:03.514 I/'[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":5844,"quietReason":"quiet","quietWaitMs":4624,"cleanTicks":4,"lastLagMs":63,"maxLagMs":804,"sinceTouchMs":4448,"idleWaitMs":201,"prewarmMs":0,

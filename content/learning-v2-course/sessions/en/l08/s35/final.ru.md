@@ -1,133 +1,149 @@
 # Английский · Урок 8 · Занятие 35 — Не пролей
 
-**Ситуация.** Вы помогаете другу донести полный стакан, предупреждаете о краске и просите идти без вас.
+**Ситуация.** Беречь рисунок от воды, попросить не брызгаться и не замачивать кожаную сумку.
 
 **Что вы освоите:** предупредить «не делай» и вежливо попросить не ждать
-**Новые слова:** spill
+**Новые слова:** spill, splash, soak, stain
 
 ---
 
 ## Интро 1
 
-### Полный стакан
+### Вода для кисточки рядом с рисунком
 
-Друг несёт полный стакан воды и держит его под наклоном. `Spill` — «проливать». `Don’t spill it` — «Не пролей это». Здесь `it` относится к воде, а после `don’t` нужно `spill`, без `to` и `s`. Пол пока не просил пить.
+На занятии рисованием друг переносит стакан воды для кисточки над вашим рисунком. Стакан наклонён. Spill — «проливать». `Don’t spill it` — «Не пролей это». It здесь заменяет воду. После don’t нужно spill, без to и s.
 
 **Предупредите друга: «Не пролей это».**
 
 - ✅ **Don’t spill it.**
-- ❌ Don’t spills it. — *После `don’t` нужно `spill`, без `s`.*
-- ❌ Don’t to spill it. — *После `don’t` нужно `spill`, без `to`.*
+- ❌ Don’t spills it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to spill it. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 2
 
-### Только что покрашено
+### Книга у бассейна
 
-Друг хочет потрогать свежую краску на двери. Покажите на неё: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.
+Вы читаете у бассейна. Друг в воде начинает брызгаться в вашу сторону. Splash — «брызгать, плескаться». `Please don’t splash me` — «Пожалуйста, не брызгай на меня». Me указывает, на кого летят брызги.
 
-**Покажите на краску и скажите «Не трогай это».**
+**Вежливо попросите не брызгать на вас.**
 
-- ✅ **Don’t touch this.**
-- ❌ Don’t touches this. — *После `don’t` нужно `touch`, без `es`.*
-- ❌ Not touch this. — *В такой просьбе нужно `Don’t touch this`.*
+- ✅ **Please don’t splash me.**
+- ❌ Please don’t splashes me. — *После don’t нужна форма без s/es.*
+- ❌ Please don’t to splash me. — *После don’t не нужно to.*
 
 ---
 
 ## Интро 3
 
-### Вы ещё не готовы
+### Сумка и таз с водой
 
-Друг уже собрался уходить, а вы ещё ищете ключи. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.
+Друг помогает вам почистить кожаную сумку и собирается положить её в таз с водой. На ярлыке указано, что замачивать её нельзя. Soak — «замачивать». `Don’t soak it` — «Не замачивай её». It заменяет сумку; отдельного английского местоимения «её» для этой вещи здесь не нужно.
 
-**Попросите друга вежливо не ждать вас.**
+**Скажите другу не замачивать сумку.**
 
-- ✅ **Please don’t wait.**
-- ❌ Please doesn’t wait. — *В обращении к человеку нужно `don’t wait`.*
-- ❌ Please don’t to wait. — *После `don’t` нужно `wait`, без `to`.*
+- ✅ **Don’t soak it.**
+- ❌ Don’t soaks it. — *После don’t нужна форма без s/es.*
+- ❌ Don’t to soak it. — *После don’t не нужно to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Предупредите «Не пролей это»**
+**1 · Карточка слова — spill**
+<!-- interaction_id: en:lesson-08:session-35:word:spill; family: word_card -->
+> **spill** — проливать. Don’t spill it. — «Не пролей это». Дать жидкости вылиться из ёмкости.
+
+**2 · Предупредите «Не пролей это»**
 <!-- interaction_id: en:lesson-08:session-35:i01; family: phrase_builder -->
 Плитки: `it` `spill` `Don’t` → **Don’t spill it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-35:i02; family: listen_choose -->
 🔊 *spill* → **spill** · sleep · charge
 - sleep — *В записи первое слово — `spill`, а в этом варианте — `sleep`.*
 - charge — *В записи первое слово — `spill`, а в этом варианте — `charge`.*
 
-**3 · Скажите «Не пролей это»**
+**4 · Выберите форму для предупреждения «Не пролей это»**
 <!-- interaction_id: en:lesson-08:session-35:i03; family: context_gap_grammar -->
 Don’t ___ it. → **spill** · spills · to spill
 - spills — *После `don’t` нужно `spill`, без `s`.*
 - to spill — *После `don’t` нужно `spill`, без `to`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-35:i04; family: speed_match -->
 spill — проливать · ramp — пандус · sleep — спать · charge — зарядить
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-35:i05; family: listen_build_dictation -->
 🔊 *Don’t spill it.* Плитки: `it` `spill` `Don’t` → **Don’t spill it.**
 
-**6 · Покажите на краску: «Не трогай это»**
+**7 · Карточка слова — splash**
+<!-- interaction_id: en:lesson-08:session-35:word:splash; family: word_card -->
+> **splash** — брызгать, плескаться. Please don’t splash me. — «Пожалуйста, не брызгай на меня». Splash me — обрызгать меня.
+
+**8 · Попросите «Пожалуйста, не брызгай на меня»**
 <!-- interaction_id: en:lesson-08:session-35:i06; family: phrase_builder -->
-Плитки: `this` `touch` `Don’t` → **Don’t touch this.**
+Плитки: `me` `splash` `don’t` `Please` → **Please don’t splash me.**
 
-**7 · Вы ищете ключи. Скажите другу «Пожалуйста, не жди»**
+**9 · Карточка слова — soak**
+<!-- interaction_id: en:lesson-08:session-35:word:soak; family: word_card -->
+> **soak** — замачивать. Don’t soak it. — «Не замачивай её». Оставлять вещь в воде, чтобы она пропиталась.
+
+**10 · Сумку нельзя замачивать. Скажите «Не замачивай её»**
 <!-- interaction_id: en:lesson-08:session-35:i07; family: scripted_repeat_compare -->
-🎙 **Please don’t wait.**
+🎙 **Don’t soak it.**
 
-**8 · Попросите друга не ждать**
+**11 · Выберите форму для просьбы не ждать**
 <!-- interaction_id: en:lesson-08:session-35:i08; family: context_gap_grammar -->
 Please ___ wait. → **don’t** · doesn’t · not
 - doesn’t — *В обращении нужно `don’t wait`.*
 - not — *В этой просьбе нужно `don’t`: `Please don’t wait`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-35:i09; family: listen_choose -->
 🔊 *Don’t spill it.* → **Don’t spill it.** · Don’t spill this. · Don’t spill that.
 - Don’t spill this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Don’t spill that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-35:i10; family: speed_match -->
-commute — ездить на работу или учёбу · spill — проливать · sleep — спать · ramp — пандус
+spill — проливать · splash — брызгать · soak — замачивать · wait — ждать
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-35:i11; family: listen_build_dictation -->
 🔊 *Please don’t wait.* Плитки: `wait` `don’t` `Please` → **Please don’t wait.**
 
-**12 · Телефон разряжен. Дайте указание «Заряди его»**
+**15 · Карточка слова — stain**
+<!-- interaction_id: en:lesson-08:session-35:word:stain; family: word_card -->
+> **stain** — оставлять пятно, пачкать. Don’t stain the shirt. — «Не оставь пятно на рубашке». Например, испачкать светлую ткань кофе.
+
+**16 · Друг держит чашку кофе над белой рубашкой. Скажите «Не оставь пятно на рубашке»**
 <!-- interaction_id: en:lesson-08:session-35:i12; family: phrase_builder -->
-Плитки: `it` `Charge` → **Charge it.**
+Плитки: `shirt` `the` `stain` `Don’t` → **Don’t stain the shirt.**
 
-**13 · Скажите «Я часто езжу на работу» — используйте commute**
+**17 · Друг предлагает вам идти вместе, но вы задерживаетесь в раздевалке. Скажите «Пожалуйста, не жди»**
 <!-- interaction_id: en:lesson-08:session-35:i13; family: scripted_repeat_compare -->
-🎙 **I often commute.**
+🎙 **Please don’t wait.**
 
-**14 · Предупредите «Не трогай это»**
+**18 · Выберите форму для просьбы не замачивать сумку**
 <!-- interaction_id: en:lesson-08:session-35:i14; family: context_gap_grammar -->
-Don’t ___ this. → **touch** · touches · to touch
-- touches — *После `don’t` нужно `touch`, без `es`.*
-- to touch — *После `don’t` нужно `touch`, без `to`.*
+Don’t ___ it. → **soak** · soaks · to soak
+- soaks — *После don’t нужно soak, без s.*
+- to soak — *После don’t не нужно to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-35:i15; family: listen_choose -->
 🔊 *Don’t rush.* → **Don’t rush.** · Don’t wait. · Don’t shout.
 - Don’t wait. — *В записи последнее слово — `rush`, а в этом варианте — `wait`.*
 - Don’t shout. — *В записи последнее слово — `rush`, а в этом варианте — `shout`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-35:i16; family: speed_match -->
-spill — проливать · commute — ездить на работу или учёбу · charge — зарядить · ramp — пандус
+spill — проливать · splash — брызгать · soak — замачивать · stain — оставлять пятно
 
-**17 · Друг несёт чашку чая к дивану и наклоняет её. Предупредите «Не пролей это»**
+**21 · Друг несёт чашку чая к дивану и наклоняет её. Предупредите «Не пролей это»**
 <!-- interaction_id: en:lesson-08:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Don’t spill it.**
 

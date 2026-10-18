@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-35:word:spill",
+    "correctText": "spill",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-35:i01",
     "correctText": "Don’t spill it.",
     "correctResponseId": null
@@ -25,13 +30,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-35:word:splash",
+    "correctText": "splash",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-35:i06",
-    "correctText": "Don’t touch this.",
+    "correctText": "Please don’t splash me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-35:word:soak",
+    "correctText": "soak",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-35:i07",
-    "correctText": "Please don’t wait.",
+    "correctText": "Don’t soak it.",
     "correctResponseId": null
   },
   {
@@ -46,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-35:i10",
-    "correctText": "en:lesson-08:session-35:i10:p1=commute\nen:lesson-08:session-35:i10:p2=spill\nen:lesson-08:session-35:i10:p3=sleep\nen:lesson-08:session-35:i10:p4=ramp",
+    "correctText": "en:lesson-08:session-35:i10:p1=spill\nen:lesson-08:session-35:i10:p2=splash\nen:lesson-08:session-35:i10:p3=soak\nen:lesson-08:session-35:i10:p4=wait",
     "correctResponseId": null
   },
   {
@@ -55,18 +70,23 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-35:word:stain",
+    "correctText": "stain",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-35:i12",
-    "correctText": "Charge it.",
+    "correctText": "Don’t stain the shirt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-35:i13",
-    "correctText": "I often commute.",
+    "correctText": "Please don’t wait.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-35:i14",
-    "correctText": "touch",
+    "correctText": "soak",
     "correctResponseId": "en:lesson-08:session-35:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-35:i16",
-    "correctText": "en:lesson-08:session-35:i16:p1=spill\nen:lesson-08:session-35:i16:p2=commute\nen:lesson-08:session-35:i16:p3=charge\nen:lesson-08:session-35:i16:p4=ramp",
+    "correctText": "en:lesson-08:session-35:i16:p1=spill\nen:lesson-08:session-35:i16:p2=splash\nen:lesson-08:session-35:i16:p3=soak\nen:lesson-08:session-35:i16:p4=stain",
     "correctResponseId": null
   },
   {

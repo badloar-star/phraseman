@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Полный стакан",
-        "uk": "Повна склянка"
+        "ru": "Вода для кисточки рядом с рисунком",
+        "uk": "Вода для пензлика біля малюнка"
       },
       "bodyByLocale": {
-        "ru": "Друг несёт полный стакан воды и держит его под наклоном. `Spill` — «проливать». `Don’t spill it` — «Не пролей это». Здесь `it` относится к воде, а после `don’t` нужно `spill`, без `to` и `s`. Пол пока не просил пить.",
-        "uk": "Друг несе повну склянку води й тримає її під нахилом. `Spill` — «проливати». `Don’t spill it` — «Не пролий це». Тут `it` стосується води, а після `don’t` потрібне `spill`, без `to` і `s`. Підлога поки не просила пити."
+        "ru": "На занятии рисованием друг переносит стакан воды для кисточки над вашим рисунком. Стакан наклонён. Spill — «проливать». `Don’t spill it` — «Не пролей это». It здесь заменяет воду. После don’t нужно spill, без to и s.",
+        "uk": "На занятті малювання друг переносить склянку води для пензлика над вашим малюнком. Склянку нахилено. Spill — «проливати». `Don’t spill it` — «Не пролий це». It тут замінює воду. Після don’t потрібне spill, без to і s."
       },
       "question": {
         "interactionId": "en:lesson-08:session-35:intro1:q",
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Только что покрашено",
-        "uk": "Щойно пофарбовано"
+        "ru": "Книга у бассейна",
+        "uk": "Книжка біля басейну"
       },
       "bodyByLocale": {
-        "ru": "Друг хочет потрогать свежую краску на двери. Покажите на неё: `Don’t touch this` — «Не трогай это». `This` указывает на то, что вы показываете.",
-        "uk": "Друг хоче торкнутися свіжої фарби на дверях. Покажіть на неї: `Don’t touch this` — «Не чіпай це». `This` указує на те, що ви показуєте."
+        "ru": "Вы читаете у бассейна. Друг в воде начинает брызгаться в вашу сторону. Splash — «брызгать, плескаться». `Please don’t splash me` — «Пожалуйста, не брызгай на меня». Me указывает, на кого летят брызги.",
+        "uk": "Ви читаєте біля басейну. Друг у воді починає бризкатися у ваш бік. Splash — «бризкати, хлюпатися». `Please don’t splash me` — «Будь ласка, не бризкай на мене». Me вказує, на кого летять бризки."
       },
       "question": {
         "interactionId": "en:lesson-08:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на краску и скажите «Не трогай это».",
-          "uk": "Покажіть на фарбу й скажіть «Не чіпай це»."
+          "ru": "Вежливо попросите не брызгать на вас.",
+          "uk": "Ввічливо попросіть не бризкати на вас."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-35:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Please don’t splash me."
             },
             {
               "responseId": "en:lesson-08:session-35:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Please don’t splashes me."
             },
             {
               "responseId": "en:lesson-08:session-35:intro2:r3",
-              "text": "Not touch this."
+              "text": "Please don’t to splash me."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-35:intro2:r1",
-              "text": "Don’t touch this."
+              "text": "Please don’t splash me."
             },
             {
               "responseId": "en:lesson-08:session-35:intro2:r2",
-              "text": "Don’t touches this."
+              "text": "Please don’t splashes me."
             },
             {
               "responseId": "en:lesson-08:session-35:intro2:r3",
-              "text": "Not touch this."
+              "text": "Please don’t to splash me."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на краску и скажите «Не трогай это».",
-          "uk": "Покажіть на фарбу й скажіть «Не чіпай це»."
+          "ru": "Вежливо попросите не брызгать на вас.",
+          "uk": "Ввічливо попросіть не бризкати на вас."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вы ещё не готовы",
-        "uk": "Ви ще не готові"
+        "ru": "Сумка и таз с водой",
+        "uk": "Сумка й таз із водою"
       },
       "bodyByLocale": {
-        "ru": "Друг уже собрался уходить, а вы ещё ищете ключи. Пусть идёт без вас: `Please don’t wait` — «Пожалуйста, не жди». `Please` смягчает просьбу.",
-        "uk": "Друг уже зібрався йти, а ви ще шукаєте ключі. Нехай іде без вас: `Please don’t wait` — «Будь ласка, не чекай». `Please` пом’якшує прохання."
+        "ru": "Друг помогает вам почистить кожаную сумку и собирается положить её в таз с водой. На ярлыке указано, что замачивать её нельзя. Soak — «замачивать». `Don’t soak it` — «Не замачивай её». It заменяет сумку; отдельного английского местоимения «её» для этой вещи здесь не нужно.",
+        "uk": "Друг допомагає вам почистити шкіряну сумку й збирається покласти її в таз із водою. На ярлику вказано, що замочувати її не можна. Soak — «замочувати». `Don’t soak it` — «Не замочуй її». It замінює сумку; окремого англійського займенника «її» для цієї речі тут не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-08:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Скажите другу не замачивать сумку.",
+          "uk": "Скажіть другові не замочувати сумку."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-35:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t soak it."
             },
             {
               "responseId": "en:lesson-08:session-35:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t soaks it."
             },
             {
               "responseId": "en:lesson-08:session-35:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to soak it."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-35:intro3:r1",
-              "text": "Please don’t wait."
+              "text": "Don’t soak it."
             },
             {
               "responseId": "en:lesson-08:session-35:intro3:r2",
-              "text": "Please doesn’t wait."
+              "text": "Don’t soaks it."
             },
             {
               "responseId": "en:lesson-08:session-35:intro3:r3",
-              "text": "Please don’t to wait."
+              "text": "Don’t to soak it."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга вежливо не ждать вас.",
-          "uk": "Ввічливо попросіть друга не чекати на вас."
+          "ru": "Скажите другу не замачивать сумку.",
+          "uk": "Скажіть другові не замочувати сумку."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e2078cbae34d729bd3c97b42ad57daad2321daaf7c6df6bb8b23d529e5d95b98"
+  "introFingerprint": "e3228088747ae9b20157e476f345d4d3d6247ac57cef80e9a74de2637cd29963"
 }

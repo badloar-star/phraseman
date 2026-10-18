@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-35:intro1:r2": {
-          "ru": "После `don’t` нужно `spill`, без `s`.",
-          "uk": "Після `don’t` потрібне `spill`, без `s`."
+          "ru": "После don’t нужна форма без s/es.",
+          "uk": "Після don’t потрібна форма без s/es."
         },
         "en:lesson-08:session-35:intro1:r3": {
-          "ru": "После `don’t` нужно `spill`, без `to`.",
-          "uk": "Після `don’t` потрібне `spill`, без `to`."
+          "ru": "После don’t не нужно to.",
+          "uk": "Після don’t не потрібне to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-35:intro2:r2": {
-          "ru": "После `don’t` нужно `touch`, без `es`.",
-          "uk": "Після `don’t` потрібне `touch`, без `es`."
+          "ru": "После don’t нужна форма без s/es.",
+          "uk": "Після don’t потрібна форма без s/es."
         },
         "en:lesson-08:session-35:intro2:r3": {
-          "ru": "В такой просьбе нужно `Don’t touch this`.",
-          "uk": "У такому проханні потрібне `Don’t touch this`."
+          "ru": "После don’t не нужно to.",
+          "uk": "Після don’t не потрібне to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-35:intro3:r2": {
-          "ru": "В обращении к человеку нужно `don’t wait`.",
-          "uk": "У звертанні до людини потрібне `don’t wait`."
+          "ru": "После don’t нужна форма без s/es.",
+          "uk": "Після don’t потрібна форма без s/es."
         },
         "en:lesson-08:session-35:intro3:r3": {
-          "ru": "После `don’t` нужно `wait`, без `to`.",
-          "uk": "Після `don’t` потрібне `wait`, без `to`."
+          "ru": "После don’t не нужно to.",
+          "uk": "Після don’t не потрібне to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "98dcce290b28304e9b3c701acf830c348d91c99c8641f23c949d694861fdcc3f"
+  "auxiliaryFingerprint": "2a096d846d7b15d3a2c67aba458a56f77ac25c755292b06fd62d8323874cc419"
 }

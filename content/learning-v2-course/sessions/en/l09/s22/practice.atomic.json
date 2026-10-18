@@ -1,0 +1,2413 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-22:word:beetle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — beetle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:beetle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — beetle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:beetle:audio",
+            "transcript": "beetle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:beetle:r1",
+              "targetText": "beetle",
+              "meaningByLocale": {
+                "ru": "жук. The beetle is crawling. — «Жук ползёт».",
+                "uk": "жук. The beetle is crawling. — «Жук повзе»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beetle",
+            "definitionByLocale": {
+              "ru": "жук. The beetle is crawling. — «Жук ползёт».",
+              "uk": "жук. The beetle is crawling. — «Жук повзе»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите жука, который сейчас ползёт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите жука, который сейчас ползёт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The beetle is crawling.",
+          "localizedMeaning": {
+            "ru": "Опишите жука, который сейчас ползёт",
+            "uk": "Опишіть жука, який зараз повзе"
+          },
+          "orderedTokens": [
+            "The",
+            "beetle",
+            "is",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i02:r1",
+            "text": "beetle"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i02:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i02:r3",
+            "text": "battle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i02:audio",
+            "transcript": "beetle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i02:r1",
+              "targetText": "beetle",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r2",
+              "targetText": "bottle",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r3",
+              "targetText": "battle",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beetle",
+                "uk": "У записі звучить beetle"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beetle",
+                "uk": "У записі звучить beetle"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для одного жука",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для одного жука",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного жука",
+            "uk": "Виберіть форму для одного жука"
+          },
+          "gappedTargetPhrase": "The beetle ___ crawling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для одного жука",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного жука",
+              "feedbackByLocale": {
+                "ru": "Один жук соответствует it: is.",
+                "uk": "Один жук відповідає it: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного жука",
+              "feedbackByLocale": {
+                "ru": "Для одного жука нужно is.",
+                "uk": "Для одного жука потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i04:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p2",
+              "target": "crawl",
+              "meaningByLocale": {
+                "ru": "ползти",
+                "uk": "повзти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p3",
+              "target": "leaf",
+              "meaningByLocale": {
+                "ru": "лист",
+                "uk": "листок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p4",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "crawl",
+            "leaf",
+            "garden"
+          ],
+          "rightColumn": [
+            "жук",
+            "ползти",
+            "лист",
+            "сад"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i05:audio",
+            "transcript": "The beetle is crawling."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The beetle is crawling.",
+          "orderedTokens": [
+            "The",
+            "beetle",
+            "is",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:snail",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — snail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:snail:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — snail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:snail:audio",
+            "transcript": "snail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:snail:r1",
+              "targetText": "snail",
+              "meaningByLocale": {
+                "ru": "улитка. Is the snail crawling? — «Улитка ползёт?»",
+                "uk": "равлик. Is the snail crawling? — «Равлик повзе?»"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snail",
+            "definitionByLocale": {
+              "ru": "улитка. Is the snail crawling? — «Улитка ползёт?»",
+              "uk": "равлик. Is the snail crawling? — «Равлик повзе?»"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, ползёт ли улитка сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, ползёт ли улитка сейчас",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the snail crawling?",
+          "localizedMeaning": {
+            "ru": "Спросите, ползёт ли улитка сейчас",
+            "uk": "Запитайте, чи повзе равлик зараз"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "snail",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:moss",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — moss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:moss:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — moss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:moss:audio",
+            "transcript": "moss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:moss:r1",
+              "targetText": "moss",
+              "meaningByLocale": {
+                "ru": "мох. This is moss. — «Это мох». Здесь без артикля a.",
+                "uk": "мох. This is moss. — «Це мох». Тут без артикля a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "moss",
+            "definitionByLocale": {
+              "ru": "мох. This is moss. — «Это мох». Здесь без артикля a.",
+              "uk": "мох. This is moss. — «Це мох». Тут без артикля a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажите зелёный мох на камне: «Это мох»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Покажите зелёный мох на камне: «Это мох»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i07:audio",
+            "transcript": "This is moss."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is moss.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму движения сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i08:r1",
+            "text": "crawling"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i08:r2",
+            "text": "crawl"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i08:r3",
+            "text": "crawls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму движения сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму движения сейчас",
+            "uk": "Виберіть форму руху зараз"
+          },
+          "gappedTargetPhrase": "Is the snail ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i08:r1",
+              "text": "crawling"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r2",
+              "text": "crawl"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r3",
+              "text": "crawls"
+            }
+          ],
+          "testedDimension": "Выберите форму движения сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму движения сейчас",
+              "feedbackByLocale": {
+                "ru": "После is the snail для движения сейчас нужно crawling.",
+                "uk": "Після is the snail для руху зараз потрібне crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму движения сейчас",
+              "feedbackByLocale": {
+                "ru": "В этом вопросе используем crawling, не crawls.",
+                "uk": "У цьому запитанні вживаємо crawling, не crawls."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i09:r1",
+            "text": "The snail is crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i09:r2",
+            "text": "The snail is not crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i09:r3",
+            "text": "Is the snail crawling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i09:audio",
+            "transcript": "The snail is crawling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i09:r1",
+              "targetText": "The snail is crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r2",
+              "targetText": "The snail is not crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r3",
+              "targetText": "Is the snail crawling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The snail is crawling.",
+                "uk": "У записі звучить The snail is crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The snail is crawling.",
+                "uk": "У записі звучить The snail is crawling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i10:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p2",
+              "target": "snail",
+              "meaningByLocale": {
+                "ru": "улитка",
+                "uk": "равлик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p3",
+              "target": "moss",
+              "meaningByLocale": {
+                "ru": "мох",
+                "uk": "мох"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p4",
+              "target": "stone",
+              "meaningByLocale": {
+                "ru": "камень",
+                "uk": "камінь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "snail",
+            "moss",
+            "stone"
+          ],
+          "rightColumn": [
+            "жук",
+            "улитка",
+            "мох",
+            "камень"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i11:audio",
+            "transcript": "Please don’t touch the snail."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don’t touch the snail.",
+          "orderedTokens": [
+            "Please",
+            "don’t",
+            "touch",
+            "the",
+            "snail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:burrow",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — burrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:burrow:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — burrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:burrow:audio",
+            "transcript": "burrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:burrow:r1",
+              "targetText": "burrow",
+              "meaningByLocale": {
+                "ru": "нора, подземное укрытие животного. This is a burrow. — «Это нора».",
+                "uk": "нора, підземне укриття тварини. This is a burrow. — «Це нора»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "burrow",
+            "definitionByLocale": {
+              "ru": "нора, подземное укрытие животного. This is a burrow. — «Это нора».",
+              "uk": "нора, підземне укриття тварини. This is a burrow. — «Це нора»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i12:r1",
+            "text": "burrow"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i12:r2",
+            "text": "borrow"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i12:r3",
+            "text": "barrel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i12:audio",
+            "transcript": "burrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i12:r1",
+              "targetText": "burrow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r2",
+              "targetText": "borrow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r3",
+              "targetText": "barrel",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит burrow",
+                "uk": "У записі звучить burrow"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит burrow",
+                "uk": "У записі звучить burrow"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажите нору кролика: «Это нора»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Покажите нору кролика: «Это нора»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i13:audio",
+            "transcript": "This is a burrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a burrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для обычного действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i14:r1",
+            "text": "observe"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i14:r2",
+            "text": "observing"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i14:r3",
+            "text": "observes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для обычного действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для обычного действия",
+            "uk": "Виберіть форму для звичайної дії"
+          },
+          "gappedTargetPhrase": "I often ___ snails.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i14:r1",
+              "text": "observe"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r2",
+              "text": "observing"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r3",
+              "text": "observes"
+            }
+          ],
+          "testedDimension": "Выберите форму для обычного действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для обычного действия",
+              "feedbackByLocale": {
+                "ru": "Для обычного действия с I нужна форма observe.",
+                "uk": "Для звичайної дії з I потрібна форма observe."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для обычного действия",
+              "feedbackByLocale": {
+                "ru": "С I в этой фразе не добавляем -s.",
+                "uk": "Із I у цій фразі не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i15:r1",
+            "text": "The rabbit is not crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i15:r2",
+            "text": "The rabbit is crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i15:r3",
+            "text": "Is the rabbit crawling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i15:audio",
+            "transcript": "The rabbit is not crawling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i15:r1",
+              "targetText": "The rabbit is not crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r2",
+              "targetText": "The rabbit is crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r3",
+              "targetText": "Is the rabbit crawling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rabbit is not crawling.",
+                "uk": "У записі звучить The rabbit is not crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rabbit is not crawling.",
+                "uk": "У записі звучить The rabbit is not crawling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i16:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p2",
+              "target": "snail",
+              "meaningByLocale": {
+                "ru": "улитка",
+                "uk": "равлик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p3",
+              "target": "moss",
+              "meaningByLocale": {
+                "ru": "мох",
+                "uk": "мох"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p4",
+              "target": "burrow",
+              "meaningByLocale": {
+                "ru": "нора",
+                "uk": "нора"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "snail",
+            "moss",
+            "burrow"
+          ],
+          "rightColumn": [
+            "жук",
+            "улитка",
+            "мох",
+            "нора"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На краю цветочного горшка улитка едва заметно движется. Спросите друга: «Улитка ползёт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "На краю цветочного горшка улитка едва заметно движется. Спросите друга: «Улитка ползёт?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i17:audio",
+            "transcript": "Is the snail crawling?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is the snail crawling?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-22:word:beetle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — beetle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:beetle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — beetle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:beetle:audio",
+            "transcript": "beetle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:beetle:r1",
+              "targetText": "beetle",
+              "meaningByLocale": {
+                "ru": "жук. The beetle is crawling. — «Жук ползёт».",
+                "uk": "жук. The beetle is crawling. — «Жук повзе»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "beetle",
+            "definitionByLocale": {
+              "ru": "жук. The beetle is crawling. — «Жук ползёт».",
+              "uk": "жук. The beetle is crawling. — «Жук повзе»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть жука, який зараз повзе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть жука, який зараз повзе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The beetle is crawling.",
+          "localizedMeaning": {
+            "ru": "Опишите жука, который сейчас ползёт",
+            "uk": "Опишіть жука, який зараз повзе"
+          },
+          "orderedTokens": [
+            "The",
+            "beetle",
+            "is",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i02:r1",
+            "text": "beetle"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i02:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i02:r3",
+            "text": "battle"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i02:audio",
+            "transcript": "beetle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i02:r1",
+              "targetText": "beetle",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r2",
+              "targetText": "bottle",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r3",
+              "targetText": "battle",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beetle",
+                "uk": "У записі звучить beetle"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит beetle",
+                "uk": "У записі звучить beetle"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для одного жука",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для одного жука",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного жука",
+            "uk": "Виберіть форму для одного жука"
+          },
+          "gappedTargetPhrase": "The beetle ___ crawling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для одного жука",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного жука",
+              "feedbackByLocale": {
+                "ru": "Один жук соответствует it: is.",
+                "uk": "Один жук відповідає it: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного жука",
+              "feedbackByLocale": {
+                "ru": "Для одного жука нужно is.",
+                "uk": "Для одного жука потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i04:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p2",
+              "target": "crawl",
+              "meaningByLocale": {
+                "ru": "ползти",
+                "uk": "повзти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p3",
+              "target": "leaf",
+              "meaningByLocale": {
+                "ru": "лист",
+                "uk": "листок"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i04:p4",
+              "target": "garden",
+              "meaningByLocale": {
+                "ru": "сад",
+                "uk": "сад"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "crawl",
+            "leaf",
+            "garden"
+          ],
+          "rightColumn": [
+            "жук",
+            "повзти",
+            "листок",
+            "сад"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i05:audio",
+            "transcript": "The beetle is crawling."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The beetle is crawling.",
+          "orderedTokens": [
+            "The",
+            "beetle",
+            "is",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:snail",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — snail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:snail:audio"
+        ],
+        "accessibilityLabel": "Картка слова — snail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:snail:audio",
+            "transcript": "snail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:snail:r1",
+              "targetText": "snail",
+              "meaningByLocale": {
+                "ru": "улитка. Is the snail crawling? — «Улитка ползёт?»",
+                "uk": "равлик. Is the snail crawling? — «Равлик повзе?»"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "snail",
+            "definitionByLocale": {
+              "ru": "улитка. Is the snail crawling? — «Улитка ползёт?»",
+              "uk": "равлик. Is the snail crawling? — «Равлик повзе?»"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи повзе равлик зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи повзе равлик зараз",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Is the snail crawling?",
+          "localizedMeaning": {
+            "ru": "Спросите, ползёт ли улитка сейчас",
+            "uk": "Запитайте, чи повзе равлик зараз"
+          },
+          "orderedTokens": [
+            "Is",
+            "the",
+            "snail",
+            "crawling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:moss",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — moss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:moss:audio"
+        ],
+        "accessibilityLabel": "Картка слова — moss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:moss:audio",
+            "transcript": "moss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:moss:r1",
+              "targetText": "moss",
+              "meaningByLocale": {
+                "ru": "мох. This is moss. — «Это мох». Здесь без артикля a.",
+                "uk": "мох. This is moss. — «Це мох». Тут без артикля a."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "moss",
+            "definitionByLocale": {
+              "ru": "мох. This is moss. — «Это мох». Здесь без артикля a.",
+              "uk": "мох. This is moss. — «Це мох». Тут без артикля a."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажіть зелений мох на камені: «Це мох»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Покажіть зелений мох на камені: «Це мох»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i07:audio",
+            "transcript": "This is moss."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is moss.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму руху зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i08:r1",
+            "text": "crawling"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i08:r2",
+            "text": "crawl"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i08:r3",
+            "text": "crawls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму руху зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму движения сейчас",
+            "uk": "Виберіть форму руху зараз"
+          },
+          "gappedTargetPhrase": "Is the snail ___?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i08:r1",
+              "text": "crawling"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r2",
+              "text": "crawl"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r3",
+              "text": "crawls"
+            }
+          ],
+          "testedDimension": "Виберіть форму руху зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму руху зараз",
+              "feedbackByLocale": {
+                "ru": "После is the snail для движения сейчас нужно crawling.",
+                "uk": "Після is the snail для руху зараз потрібне crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму руху зараз",
+              "feedbackByLocale": {
+                "ru": "В этом вопросе используем crawling, не crawls.",
+                "uk": "У цьому запитанні вживаємо crawling, не crawls."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i09:r1",
+            "text": "The snail is crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i09:r2",
+            "text": "The snail is not crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i09:r3",
+            "text": "Is the snail crawling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i09:audio",
+            "transcript": "The snail is crawling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i09:r1",
+              "targetText": "The snail is crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r2",
+              "targetText": "The snail is not crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r3",
+              "targetText": "Is the snail crawling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The snail is crawling.",
+                "uk": "У записі звучить The snail is crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The snail is crawling.",
+                "uk": "У записі звучить The snail is crawling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i10:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p2",
+              "target": "snail",
+              "meaningByLocale": {
+                "ru": "улитка",
+                "uk": "равлик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p3",
+              "target": "moss",
+              "meaningByLocale": {
+                "ru": "мох",
+                "uk": "мох"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i10:p4",
+              "target": "stone",
+              "meaningByLocale": {
+                "ru": "камень",
+                "uk": "камінь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "snail",
+            "moss",
+            "stone"
+          ],
+          "rightColumn": [
+            "жук",
+            "равлик",
+            "мох",
+            "камінь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i11:audio",
+            "transcript": "Please don’t touch the snail."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don’t touch the snail.",
+          "orderedTokens": [
+            "Please",
+            "don’t",
+            "touch",
+            "the",
+            "snail"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:word:burrow",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — burrow",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:word:burrow:audio"
+        ],
+        "accessibilityLabel": "Картка слова — burrow",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:word:burrow:audio",
+            "transcript": "burrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:word:burrow:r1",
+              "targetText": "burrow",
+              "meaningByLocale": {
+                "ru": "нора, подземное укрытие животного. This is a burrow. — «Это нора».",
+                "uk": "нора, підземне укриття тварини. This is a burrow. — «Це нора»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "burrow",
+            "definitionByLocale": {
+              "ru": "нора, подземное укрытие животного. This is a burrow. — «Это нора».",
+              "uk": "нора, підземне укриття тварини. This is a burrow. — «Це нора»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i12:r1",
+            "text": "burrow"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i12:r2",
+            "text": "borrow"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i12:r3",
+            "text": "barrel"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i12:audio",
+            "transcript": "burrow"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i12:r1",
+              "targetText": "burrow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r2",
+              "targetText": "borrow",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r3",
+              "targetText": "barrel",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит burrow",
+                "uk": "У записі звучить burrow"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит burrow",
+                "uk": "У записі звучить burrow"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажіть нору кролика: «Це нора»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Покажіть нору кролика: «Це нора»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i13:audio",
+            "transcript": "This is a burrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a burrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для звичайної дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i14:r1",
+            "text": "observe"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i14:r2",
+            "text": "observing"
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i14:r3",
+            "text": "observes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для звичайної дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для обычного действия",
+            "uk": "Виберіть форму для звичайної дії"
+          },
+          "gappedTargetPhrase": "I often ___ snails.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-22:i14:r1",
+              "text": "observe"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r2",
+              "text": "observing"
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r3",
+              "text": "observes"
+            }
+          ],
+          "testedDimension": "Виберіть форму для звичайної дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для звичайної дії",
+              "feedbackByLocale": {
+                "ru": "Для обычного действия с I нужна форма observe.",
+                "uk": "Для звичайної дії з I потрібна форма observe."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для звичайної дії",
+              "feedbackByLocale": {
+                "ru": "С I в этой фразе не добавляем -s.",
+                "uk": "Із I у цій фразі не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-22:i15:r1",
+            "text": "The rabbit is not crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i15:r2",
+            "text": "The rabbit is crawling."
+          },
+          {
+            "responseId": "en:lesson-09:session-22:i15:r3",
+            "text": "Is the rabbit crawling?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i15:audio",
+            "transcript": "The rabbit is not crawling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-22:i15:r1",
+              "targetText": "The rabbit is not crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r2",
+              "targetText": "The rabbit is crawling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r3",
+              "targetText": "Is the rabbit crawling?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rabbit is not crawling.",
+                "uk": "У записі звучить The rabbit is not crawling."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rabbit is not crawling.",
+                "uk": "У записі звучить The rabbit is not crawling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-22:i16:p1",
+              "target": "beetle",
+              "meaningByLocale": {
+                "ru": "жук",
+                "uk": "жук"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p2",
+              "target": "snail",
+              "meaningByLocale": {
+                "ru": "улитка",
+                "uk": "равлик"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p3",
+              "target": "moss",
+              "meaningByLocale": {
+                "ru": "мох",
+                "uk": "мох"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-22:i16:p4",
+              "target": "burrow",
+              "meaningByLocale": {
+                "ru": "нора",
+                "uk": "нора"
+              }
+            }
+          ],
+          "leftColumn": [
+            "beetle",
+            "snail",
+            "moss",
+            "burrow"
+          ],
+          "rightColumn": [
+            "жук",
+            "равлик",
+            "мох",
+            "нора"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На краю квіткового горщика равлик ледь помітно рухається. Запитайте друга: «Равлик повзе?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "На краю квіткового горщика равлик ледь помітно рухається. Запитайте друга: «Равлик повзе?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-22:i17:audio",
+            "transcript": "Is the snail crawling?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is the snail crawling?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-22:word:beetle",
+      "correctText": "beetle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i01",
+      "correctText": "The beetle is crawling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i02",
+      "correctText": "beetle",
+      "correctResponseId": "en:lesson-09:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i05",
+      "correctText": "The beetle is crawling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:word:snail",
+      "correctText": "snail",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i06",
+      "correctText": "Is the snail crawling?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:word:moss",
+      "correctText": "moss",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i07",
+      "correctText": "This is moss.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i08",
+      "correctText": "crawling",
+      "correctResponseId": "en:lesson-09:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i09",
+      "correctText": "The snail is crawling.",
+      "correctResponseId": "en:lesson-09:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i11",
+      "correctText": "Please don’t touch the snail.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:word:burrow",
+      "correctText": "burrow",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i12",
+      "correctText": "burrow",
+      "correctResponseId": "en:lesson-09:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i13",
+      "correctText": "This is a burrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i14",
+      "correctText": "observe",
+      "correctResponseId": "en:lesson-09:session-22:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i15",
+      "correctText": "The rabbit is not crawling.",
+      "correctResponseId": "en:lesson-09:session-22:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-22:i17",
+      "correctText": "Is the snail crawling?",
+      "correctResponseId": null
+    }
+  ]
+}

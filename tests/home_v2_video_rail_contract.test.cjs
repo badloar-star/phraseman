@@ -113,7 +113,8 @@ test('Home header has one compact utility row without brand or tagline, and Vide
 
 test('compact Home utility row shrinks on narrow screens and preserves optional stat interactivity', () => {
   const header = fs.readFileSync(path.join(root, 'components/home/v2/HomeV2Header.tsx'), 'utf8');
-  assert.match(header, /statSlot: \{[^}]*flex: 1[^}]*minWidth: 0/);
+  // зачем (Макеты 18.10): плашка по ширине текста (эталон .p-pill), но ужимается на узком экране
+  assert.match(header, /statSlot: \{[^}]*flexShrink: 1[^}]*minWidth: 0/);
   assert.match(header, /stats: \{[^}]*flex: 1/);
   assert.match(header, /stat\.onPress \?/);
   assert.match(header, /accessibilityRole="text"/);

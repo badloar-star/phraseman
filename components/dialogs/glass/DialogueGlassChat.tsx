@@ -3,6 +3,7 @@ import { AccessibilityInfo, Animated, Easing, StyleSheet, Text, View, type TextS
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
+import { colorContrast } from '../../../constants/color_contrast';
 import type { DialogueGlass } from './DialogueGlassKit';
 
 // зачем (владелец 2026-09-30, макет dialogs.html C1–C17/F2): лента диалога — реплика
@@ -28,7 +29,11 @@ export function DialogueGlassAvatar({ glass, compact, icon }: Readonly<{ glass: 
 
 /** Цвета пузыря по автору: «Вы» — светлый (lightTint), собеседник — плашка с тенью. */
 export function dialogueGlassBubbleInk(glass: DialogueGlass, author: DialogueGlassAuthor): string {
-  return author === 'learner' ? glass.ctaInk : glass.text;
+  if (author !== 'learner') return glass.text;
+  // зачем (Макеты 18.10, light_turn_error.png; правило «текст ≥ 4,5»): в светлом оформлении градиентных тем пузырь «Вы» (lightTint) тёмный,
+  // а ctaInk тоже тёмный — 1,0–1,3:1, текст не читается (14 сочетаний из 138). Если ctaInk не держит 4,5 на пузыре — светлый фон темы (bg).
+  const tint = /^#[0-9a-f]{8}$/i.test(glass.lightTint) ? glass.lightTint.slice(0, 7) : glass.lightTint;
+  return colorContrast(glass.ctaInk, tint) >= 4.5 ? glass.ctaInk : glass.bg;
 }
 
 export interface DialogueGlassBubbleProps {

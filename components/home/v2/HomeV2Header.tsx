@@ -131,9 +131,12 @@ const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
   stats: { flex: 1, minWidth: 0, flexDirection: 'row', gap: 10 },
   actions: { flexDirection: 'row', flexShrink: 0, alignItems: 'center', gap: 7 },
-  statSlot: { flex: 1, minWidth: 0 },
+  // зачем (Макеты 18.10, memhome/cold.png; эталон home-concepts .p-pill — ширина по содержимому): равные половины давали «Сегодня ещё / нет» в 2 строки
+  // и раздутую плашку. Плашка берёт ширину своего текста; на узком экране по-прежнему ужимается (flexShrink), длинное переносится, не режется.
+  statSlot: { flexGrow: 0, flexShrink: 1, minWidth: 0 },
   stat: {
-    flex: 1,
+    flexGrow: 0,
+    flexShrink: 1,
     minWidth: 0,
     minHeight: 46,
     borderRadius: V2.radius.row,
@@ -143,7 +146,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 6,
   },
   statIcon: { width: 20, height: 20, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
-  statCopy: { flex: 1, minWidth: 0 },
+  statCopy: { flexShrink: 1, minWidth: 0 },
   statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
 });

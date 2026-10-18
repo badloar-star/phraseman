@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 41 — Разговор после занятий
+# Английский · Урок 6 · Занятие 41 — Рыбалка на озере
 
-**Ситуация.** Анна и Том показывают новому ученику место, где они обычно беседуют после занятий.
+**Ситуация.** Вы с братом рано утром приходите на озеро. Слово действия после I, we и they остаётся прежним, а после he и she получает s; после sh добавляем es.
 
-**Что вы освоите:** рассказать о привычке беседовать и повторить формы chats и studies
-**Новые слова:** chat
+**Что вы освоите:** рассказать, кто ловит рыбу, и сказать, где что лежит у озера
+**Новые слова:** fish, rod, bait, jetty
+**Возвращаются:** lake, brother, uncle, bucket, bench, walk, bridge
 
 ---
 
 ## Интро 1
 
-### Здесь мы болтаем
+### Вёдра по воскресеньям
 
-Новый ученик спрашивает, зачем вы собираетесь у этой скамейки. `chat` — «беседовать», «болтать». `We chat here` — «Мы беседуем здесь». После `we` — `chat`, без `s` и без `are`. Это обычный разговор: обещали обсудить урок пять минут, а потом вспомнили ещё одну историю.
+Сосед по даче видит, как вы рано утром идёте к озеру с вёдрами. Вы объясняете: по воскресеньям вы там ловите рыбу и до обеда сидите на берегу. fish — «ловить рыбу». Про себя говорим I fish at the lake — «Я ловлю рыбу на озере». После I слово остаётся fish, без es.
 
-**Объясните ученику «Мы беседуем здесь».**
+**Сосед спрашивает, что вы делаете на озере. Скажите: «Я ловлю рыбу на озере».**
 
-- ✅ **We chat here.**
-- ❌ We chats here. — *После `we` — `chat`, без `s`.*
-- ❌ We are chat here. — *Нужно `We chat`, без `are`.*
+- ✅ **I fish at the lake.**
+- ❌ I fishes at the lake. — *После I слово остаётся fish, без es.*
+- ❌ I am fish at the lake. — *Здесь действие: I fish, без am.*
 
 ---
 
 ## Интро 2
 
-### Том беседует с Анной
+### Брат с удочкой
 
-Ученику интересно, с кем Том обычно разговаривает. `He chats with Anna` — «Он беседует с Анной». После `he` добавляем `s`: `chat → chats`. Слово `with` означает «с»: `with Anna` — «с Анной». Речь о привычке Тома, а не обязательно о разговоре прямо сейчас.
+Ваш брат тоже ходит на озеро, но берёт с собой длинную удочку, чтобы забросить леску подальше от берега. rod — «удочка». Сосед спрашивает, как он ловит рыбу. Про брата говорим He fishes with a rod — «Он ловит рыбу удочкой». После he к fish добавляем es: fishes.
 
-**Расскажите о Томе «Он беседует с Анной».**
+**Сосед спрашивает, как брат ловит рыбу. Скажите: «Он ловит рыбу удочкой».**
 
-- ✅ **He chats with Anna.**
-- ❌ He chat with Anna. — *После `he` — `chats`.*
-- ❌ He is chats with Anna. — *Нужно `He chats`, без `is`.*
+- ✅ **He fishes with a rod.**
+- ❌ He fish with a rod. — *После he нужно fishes, с es.*
+- ❌ He is fishes with a rod. — *Здесь действие: He fishes, без is.*
 
 ---
 
 ## Интро 3
 
-### Шкафчик нового ученика
+### Что в ведре
 
-Ученик хочет убрать вещи и показывает на шкафчик. `locker` — «шкафчик». Чтобы уточнить, кому он принадлежит, спросите: `Whose locker is this?` — «Чей это шкафчик?» Один шкафчик: `is this`; `whose` спрашивает о владельце.
+Сосед с любопытством заглядывает в ведро и спрашивает, что там лежит на дне, ведь улова ещё нет. Вы отвечаете: это наживка, её цепляют на крючок, и тогда рыба клюёт. bait — «наживка». Про один предмет говорим is: The bait is in the bucket — «Наживка в ведре».
 
-**Спросите «Чей это шкафчик?»**
+**Сосед спрашивает, что в ведре. Скажите: «Наживка в ведре».**
 
-- ✅ **Whose locker is this?**
-- ❌ Who locker is this? — *О владельце спрашиваем `Whose`.*
-- ❌ Whose locker are these? — *Один шкафчик: `is this`.*
+- ✅ **The bait is in the bucket.**
+- ❌ The bait in the bucket. — *Без is предложение не получается: нужно The bait is.*
+- ❌ The bait are in the bucket. — *Наживка здесь одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Расскажите «Мы беседуем здесь»**
+**1 · Карточка слова — fish**
+<!-- interaction_id: en:lesson-06:session-41:word:fish; family: word_card -->
+> **fish** — ловить рыбу. We fish at the lake. — «Мы ловим рыбу на озере». О привычном занятии у воды.
+
+**2 · Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»**
 <!-- interaction_id: en:lesson-06:session-41:i01; family: phrase_builder -->
-Плитки: `here` `chat` `We` → **We chat here.**
+Плитки: `at` `the` `lake` `fish` `We` `fishes` → **We fish at the lake.**
+*(плитка `fishes` лишняя: здесь нужно `fish` — `We fish at the lake.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте соседа**
 <!-- interaction_id: en:lesson-06:session-41:i02; family: listen_choose -->
-🔊 *chat* → **chat** · study · cycle
-- study — *В записи первое слово — `chat`, а в этом варианте — `study`.*
-- cycle — *В записи первое слово — `chat`, а в этом варианте — `cycle`.*
+🔊 *He fishes at the lake.* → **He fishes at the lake.** · He walks at the lake. · She fishes at the lake.
+- He walks at the lake. — *В записи действие — `fishes`, ловит рыбу, а в этом варианте — `walks`, ходит пешком.*
+- She fishes at the lake. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**3 · Скажите «Он беседует с Анной»**
+**4 · Скажите о брате: «Он ловит рыбу на озере». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-41:i03; family: context_gap_grammar -->
-He ___ with Anna. → **chats** · chat · is chats
-- chat — *После `he` — `chats`.*
-- is chats — *Нужно `He chats`, без `is`.*
+He ___ at the lake. → **fishes** · fish · is fishes
+- fish — *После `he` нужно `fishes`, с `es`.*
+- is fishes — *Говорим `He fishes`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-41:i04; family: speed_match -->
-chat — беседовать · accurate — точный · cashpoint — банкомат · locker — шкафчик
+fish — ловить рыбу · rod — удочка · bait — наживка · jetty — причал, мостки
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — rod**
+<!-- interaction_id: en:lesson-06:session-41:word:rod; family: word_card -->
+> **rod** — удочка. The rod is long. — «Удочка длинная». О палке с леской, которой ловят рыбу.
+
+**7 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-41:i05; family: listen_build_dictation -->
-🔊 *Tom chats with Anna.* Плитки: `Anna` `with` `chats` `Tom` → **Tom chats with Anna.**
+🔊 *The rod is on the bench.* Плитки: `bench` `on` `the` `The` `rod` `is` `are` → **The rod is on the bench.**
+*(плитка `are` лишняя: здесь нужно `is` — `The rod is on the bench.`)*
 
-**6 · Скажите «Она занимается здесь»**
+**8 · Карточка слова — bait**
+<!-- interaction_id: en:lesson-06:session-41:word:bait; family: word_card -->
+> **bait** — наживка. The bait is new. — «Наживка свежая». О том, что кладут на крючок, чтобы рыба клюнула.
+
+**9 · Сосед показывает на ведро. Спросите: «Чья это наживка?»**
 <!-- interaction_id: en:lesson-06:session-41:i06; family: phrase_builder -->
-Плитки: `here` `studies` `She` → **She studies here.**
+Плитки: `bait` `is` `this` `Whose` `Who` → **Whose bait is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose bait is this?`)*
 
-**7 · У входа установили банкомат. Скажите «Этот банкомат новый»**
+**10 · Сосед спрашивает, как ловит рыбу брат. Скажите: «Он ловит рыбу удочкой»**
 <!-- interaction_id: en:lesson-06:session-41:i07; family: scripted_repeat_compare -->
-🎙 **This cashpoint is new.**
+🎙 **He fishes with a rod.**
 
-**8 · Скажите «Они беседуют здесь»**
+**11 · Скажите о себе: «Я ловлю рыбу на озере». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-41:i08; family: context_gap_grammar -->
-They ___ here. → **chat** · chats · are chat
-- chats — *После `they` — `chat`, без `s`.*
-- are chat — *Нужно `They chat`, без `are`.*
+I ___ at the lake. → **fish** · fishes · am fish
+- fishes — *После `I` нужно `fish`, без `es`.*
+- am fish — *Говорим `I fish`, без `am`.*
 
-**9 · Послушайте, кому принадлежит шкафчик**
+**12 · Карточка слова — jetty**
+<!-- interaction_id: en:lesson-06:session-41:word:jetty; family: word_card -->
+> **jetty** — причал. The jetty is old. — «Причал старый». О деревянных мостках, которые уходят в воду.
+
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-41:i09; family: listen_choose -->
-🔊 *This locker is mine.* → **This locker is mine.** · This locker is yours. · This locker is hers.
-- This locker is yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
-- This locker is hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
+🔊 *The jetty is near the lake.* → **The jetty is near the lake.** · The jetty is near the bridge. · The bench is near the lake.
+- The jetty is near the bridge. — *В записи последнее слово — `lake`, озеро, а в этом варианте — `bridge`, мост.*
+- The bench is near the lake. — *В записи первое слово — `jetty`, причал, а в этом варианте — `bench`, скамейка.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-41:i10; family: speed_match -->
-chat — беседовать · study — учиться · locker — шкафчик · accurate — точный
+bait — наживка · jetty — причал, мостки · rod — удочка · fish — ловить рыбу
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте брата и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-41:i11; family: listen_build_dictation -->
-🔊 *The cashpoint is here.* Плитки: `here` `is` `cashpoint` `The` `are` → **The cashpoint is here.**
-*(плитка `are` лишняя: здесь нужно `is` — `The cashpoint is here.`)*
+🔊 *They fish at the jetty.* Плитки: `fish` `at` `the` `jetty` `They` `fishes` → **They fish at the jetty.**
+*(плитка `fishes` лишняя: здесь нужно `fish` — `They fish at the jetty.`)*
 
-**12 · Уточните у ученика «Чей это шкафчик?»**
+**16 · Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»**
 <!-- interaction_id: en:lesson-06:session-41:i12; family: phrase_builder -->
-Плитки: `this` `is` `locker` `Whose` → **Whose locker is this?**
+Плитки: `rod` `a` `has` `My` `brother` `have` → **My brother has a rod.**
+*(плитка `have` лишняя: здесь нужно `has` — `My brother has a rod.`)*
 
-**13 · Скажите «Я занимаюсь дома»**
+**17 · Сосед спрашивает, где наживка. Скажите: «Наживка в ведре»**
 <!-- interaction_id: en:lesson-06:session-41:i13; family: scripted_repeat_compare -->
-🎙 **I study at home.**
+🎙 **The bait is in the bucket.**
 
-**14 · Скажите «Анна занимается здесь»**
+**18 · Скажите о причале: «Причал возле озера». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-41:i14; family: context_gap_grammar -->
-Anna ___ here. → **studies** · study · studys
-- study — *После имени Анна — `studies`.*
-- studys — *Пишем `studies`: вместо `y` — `ies`.*
+The jetty ___ near the lake. → **is** · are · am
+- are — *Причал один, поэтому нужно `is`, а не `are`.*
+- am — *`am` бывает только после `I`; про причал говорим `is`.*
 
-**15 · Послушайте, где беседуют Анна и Том**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-06:session-41:i15; family: listen_choose -->
-🔊 *They chat here.* → **They chat here.** · They chat there. · They chat nearby.
-- They chat there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- They chat nearby. — *В записи последнее слово — `here`, а в этом варианте — `nearby`.*
+🔊 *He has a rod.* → **He has a rod.** · He has a bucket. · She has a rod.
+- He has a bucket. — *В записи последнее слово — `rod`, удочка, а в этом варианте — `bucket`, ведро.*
+- She has a rod. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-41:i16; family: speed_match -->
-chat — беседовать · cashpoint — банкомат · accurate — точный · study — учиться
+jetty — причал, мостки · fish — ловить рыбу · bait — наживка · rod — удочка
 
-**17 · Ученик спрашивает, с кем Том обычно беседует. Ответьте «Он беседует с Анной»**
+**21 · Вы сидите на причале с соседом. Расскажите о дяде: «Он ловит рыбу на озере»**
 <!-- interaction_id: en:lesson-06:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He chats with Anna.**
-
+🎙 **He fishes at the lake.**

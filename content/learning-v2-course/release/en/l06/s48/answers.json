@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-48:word:greet",
+    "correctText": "greet",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-48:i01",
-    "correctText": "We share a community kitchen.",
+    "correctText": "We greet guests.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:word:host",
+    "correctText": "host",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i02",
-    "correctText": "She speaks English.",
+    "correctText": "The host greets the guests.",
     "correctResponseId": "en:lesson-06:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-48:i03",
-    "correctText": "chats",
+    "correctText": "greets",
     "correctResponseId": "en:lesson-06:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-48:i04",
-    "correctText": "en:lesson-06:session-48:i04:p1=chat\nen:lesson-06:session-48:i04:p2=speak\nen:lesson-06:session-48:i04:p3=mug\nen:lesson-06:session-48:i04:p4=glove",
+    "correctText": "en:lesson-06:session-48:i04:p1=greet\nen:lesson-06:session-48:i04:p2=host\nen:lesson-06:session-48:i04:p3=garland\nen:lesson-06:session-48:i04:p4=cake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i05",
-    "correctText": "This mug is mine.",
+    "correctText": "The host is at the gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-48:word:garland",
+    "correctText": "garland",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i06",
-    "correctText": "Whose hat is this?",
+    "correctText": "Whose garland is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i07",
-    "correctText": "This pencil is mine.",
+    "correctText": "The host greets the guests.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i08",
-    "correctText": "share",
+    "correctText": "greet",
     "correctResponseId": "en:lesson-06:session-48:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-48:word:cake",
+    "correctText": "cake",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-48:i09",
-    "correctText": "This glove is mine.",
+    "correctText": "The cake is on the table.",
     "correctResponseId": "en:lesson-06:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-48:i10",
-    "correctText": "en:lesson-06:session-48:i10:p1=community kitchen\nen:lesson-06:session-48:i10:p2=share\nen:lesson-06:session-48:i10:p3=hat\nen:lesson-06:session-48:i10:p4=pencil",
+    "correctText": "en:lesson-06:session-48:i10:p1=garland\nen:lesson-06:session-48:i10:p2=host\nen:lesson-06:session-48:i10:p3=cake\nen:lesson-06:session-48:i10:p4=greet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i11",
-    "correctText": "We chat here.",
+    "correctText": "They grill sausages in the yard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i12",
-    "correctText": "Whose gloves are these?",
+    "correctText": "The host has a cake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i13",
-    "correctText": "I speak English.",
+    "correctText": "The cake is on the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i14",
-    "correctText": "shares",
+    "correctText": "fishes",
     "correctResponseId": "en:lesson-06:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-48:i15",
-    "correctText": "This hat is mine.",
+    "correctText": "My sister arrives at five.",
     "correctResponseId": "en:lesson-06:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-48:i16",
-    "correctText": "en:lesson-06:session-48:i16:p1=mug\nen:lesson-06:session-48:i16:p2=pencil\nen:lesson-06:session-48:i16:p3=glove\nen:lesson-06:session-48:i16:p4=community kitchen",
+    "correctText": "en:lesson-06:session-48:i16:p1=host\nen:lesson-06:session-48:i16:p2=cake\nen:lesson-06:session-48:i16:p3=greet\nen:lesson-06:session-48:i16:p4=garland",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-48:i17",
-    "correctText": "She speaks English.",
+    "correctText": "He greets the guests.",
     "correctResponseId": null
   }
 ]

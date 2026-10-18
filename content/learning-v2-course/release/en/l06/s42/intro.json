@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-42",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что вы пользуетесь чем-то вместе, и описать такую привычку другого человека",
-    "uk": "сказати, що ви користуєтеся чимось разом, і описати таку звичку іншої людини"
+    "ru": "рассказать, кто когда приезжает и уезжает, и сказать, где что в вагоне",
+    "uk": "розповісти, хто коли приїжджає й виїжджає, і сказати, де що у вагоні"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мы живём в одной комнате",
-        "uk": "Ми живемо в одній кімнаті"
+        "ru": "Встреча на платформе",
+        "uk": "Зустріч на платформі"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, у каждого ли из вас отдельная комната. `share` — «пользоваться вместе», «делить с кем-то». `We share a room` — «Мы живём в одной комнате». Речь об общей комнате, а не о том, что её распилили пополам. После `we` используем `share`, без `s`.",
-        "uk": "Друг запитує, чи в кожного з вас окрема кімната. `share` — «користуватися разом», «ділити з кимось». `We share a room` — «Ми живемо в одній кімнаті». Ідеться про спільну кімнату, а не про те, що її розпиляли навпіл. Після `we` використовуємо `share`, без `s`."
+        "ru": "Подруга звонит вам в дороге и спрашивает, когда вы приедете: она хочет встретить вас на платформе. Поезд идёт долго, но к вечеру вы уже на месте. arrive — «приезжать». Про себя говорим I arrive at five — «Я приезжаю в пять». После I слово остаётся arrive, без s.",
+        "uk": "Подруга телефонує вам у дорозі й питає, коли ви приїдете: вона хоче зустріти вас на платформі. Потяг їде довго, але ввечері ви вже на місці. arrive — «приїжджати». Про себе кажемо I arrive at five — «Я приїжджаю о п’ятій». Після I слово лишається arrive, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-42:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу «Мы живём в одной комнате».",
-          "uk": "Дайте другові відповідь «Ми живемо в одній кімнаті»."
+          "ru": "Подруга по телефону спрашивает, когда вы приедете. Скажите: «Я приезжаю в пять».",
+          "uk": "Подруга телефоном питає, коли ви приїдете. Скажіть: «Я приїжджаю о п’ятій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-42:intro1:r1",
-              "text": "We share a room."
+              "text": "I arrive at five."
             },
             {
               "responseId": "en:lesson-06:session-42:intro1:r2",
-              "text": "We shares a room."
+              "text": "I arrives at five."
             },
             {
               "responseId": "en:lesson-06:session-42:intro1:r3",
-              "text": "We are share a room."
+              "text": "I am arrive at five."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-42:intro1:r1",
-              "text": "We share a room."
+              "text": "I arrive at five."
             },
             {
               "responseId": "en:lesson-06:session-42:intro1:r2",
-              "text": "We shares a room."
+              "text": "I arrives at five."
             },
             {
               "responseId": "en:lesson-06:session-42:intro1:r3",
-              "text": "We are share a room."
+              "text": "I am arrive at five."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу «Мы живём в одной комнате».",
-          "uk": "Дайте другові відповідь «Ми живемо в одній кімнаті»."
+          "ru": "Подруга по телефону спрашивает, когда вы приедете. Скажите: «Я приезжаю в пять».",
+          "uk": "Подруга телефоном питає, коли ви приїдете. Скажіть: «Я приїжджаю о п’ятій»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "С кем живёт Анна",
-        "uk": "З ким живе Анна"
+        "ru": "Сестра уезжает первой",
+        "uk": "Сестра їде першою"
       },
       "bodyByLocale": {
-        "ru": "Друг уточняет, есть ли у Анны сосед по комнате. `She shares a room with Tom` — «Она живёт в одной комнате с Томом». После `she` добавляем `s`: `share → shares`. `with Tom` означает «с Томом». Здесь описывается их жильё, а не то, где они находятся прямо сейчас.",
-        "uk": "Друг уточнює, чи має Анна сусіда по кімнаті. `She shares a room with Tom` — «Вона живе в одній кімнаті з Томом». Після `she` додаємо `s`: `share → shares`. `with Tom` означає «з Томом». Тут описується їхнє житло, а не те, де вони перебувають просто зараз."
+        "ru": "Ваша сестра едет с вами до платформы, а потом пересаживается на другой поезд. Её поезд уходит раньше вашего, и она уже поглядывает на часы. leave — «уезжать». Про сестру говорим She leaves at four — «Она уезжает в четыре». После she к leave добавляем s: leaves.",
+        "uk": "Ваша сестра їде з вами до платформи, а потім пересідає на інший потяг. Її потяг відходить раніше за ваш, і вона вже поглядає на годинник. leave — «виїжджати». Про сестру кажемо She leaves at four — «Вона виїжджає о четвертій». Після she до leave додаємо s: leaves."
       },
       "question": {
         "interactionId": "en:lesson-06:session-42:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Она живёт в одной комнате с Томом».",
-          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»."
+          "ru": "Подруга спрашивает, когда уезжает сестра. Скажите: «Она уезжает в четыре».",
+          "uk": "Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-42:intro2:r1",
-              "text": "She shares a room with Tom."
+              "text": "She leaves at four."
             },
             {
               "responseId": "en:lesson-06:session-42:intro2:r2",
-              "text": "She share a room with Tom."
+              "text": "She leave at four."
             },
             {
               "responseId": "en:lesson-06:session-42:intro2:r3",
-              "text": "She is shares a room with Tom."
+              "text": "She is leaves at four."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-42:intro2:r1",
-              "text": "She shares a room with Tom."
+              "text": "She leaves at four."
             },
             {
               "responseId": "en:lesson-06:session-42:intro2:r2",
-              "text": "She share a room with Tom."
+              "text": "She leave at four."
             },
             {
               "responseId": "en:lesson-06:session-42:intro2:r3",
-              "text": "She is shares a room with Tom."
+              "text": "She is leaves at four."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Она живёт в одной комнате с Томом».",
-          "uk": "Скажіть «Вона живе в одній кімнаті з Томом»."
+          "ru": "Подруга спрашивает, когда уезжает сестра. Скажите: «Она уезжает в четыре».",
+          "uk": "Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Общий самокат",
-        "uk": "Спільний самокат"
+        "ru": "Проводник в проходе",
+        "uk": "Провідник у проході"
       },
       "bodyByLocale": {
-        "ru": "У Анны и Тома один самокат на двоих. `scooter` — «самокат». `They share a scooter` — «Они пользуются одним самокатом». Они могут кататься по очереди: `share` не означает, что нужно стоять на нём вдвоём. После `they` — `share`, без `s`.",
-        "uk": "Анна й Том мають один самокат на двох. `scooter` — «самокат». `They share a scooter` — «Вони користуються одним самокатом». Вони можуть кататися по черзі: `share` не означає, що потрібно стояти на ньому вдвох. Після `they` — `share`, без `s`."
+        "ru": "В вагоне вы не можете найти свой билет, и подруга по телефону просит спросить помощи. Мимо идёт человек в форме, который проверяет билеты. conductor — «проводник». Про одного человека говорим is: The conductor is near the door — «Проводник возле двери».",
+        "uk": "У вагоні ви не можете знайти свій квиток, і подруга телефоном радить попросити допомоги. Повз іде людина у формі, яка перевіряє квитки. conductor — «провідник». Про одну людину кажемо is: The conductor is near the door — «Провідник біля дверей»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-42:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите другу «Они пользуются одним самокатом».",
-          "uk": "Розкажіть другові «Вони користуються одним самокатом»."
+          "ru": "Подруга спрашивает, где проводник. Скажите: «Проводник возле двери».",
+          "uk": "Подруга питає, де провідник. Скажіть: «Провідник біля дверей»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-42:intro3:r1",
-              "text": "They share a scooter."
+              "text": "The conductor is near the door."
             },
             {
               "responseId": "en:lesson-06:session-42:intro3:r2",
-              "text": "They shares a scooter."
+              "text": "The conductor near the door."
             },
             {
               "responseId": "en:lesson-06:session-42:intro3:r3",
-              "text": "They are share a scooter."
+              "text": "The conductor are near the door."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-42:intro3:r1",
-              "text": "They share a scooter."
+              "text": "The conductor is near the door."
             },
             {
               "responseId": "en:lesson-06:session-42:intro3:r2",
-              "text": "They shares a scooter."
+              "text": "The conductor near the door."
             },
             {
               "responseId": "en:lesson-06:session-42:intro3:r3",
-              "text": "They are share a scooter."
+              "text": "The conductor are near the door."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу «Они пользуются одним самокатом».",
-          "uk": "Розкажіть другові «Вони користуються одним самокатом»."
+          "ru": "Подруга спрашивает, где проводник. Скажите: «Проводник возле двери».",
+          "uk": "Подруга питає, де провідник. Скажіть: «Провідник біля дверей»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8887c0c184b9dfc5219cf2c1f3022e060fa73b156d4fa14a33935ea3e0f470fb"
+  "introFingerprint": "c2b50916eee3940a056967fd2612a7f5370d9d1944dfedbbcfbf3b8f95f072cd"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-45",
   "learningOutcomeByLocale": {
-    "ru": "назвать карандаш, уточнить владельца вещи и рассказать, где покупаете принадлежности",
-    "uk": "назвати олівець, уточнити власника речі й розповісти, де купуєте приладдя"
+    "ru": "рассказать, кто чинит вещи, и сказать, где лежат нитки и иголки",
+    "uk": "розповісти, хто лагодить речі, і сказати, де лежать нитки та голки"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вот мой карандаш",
-        "uk": "Ось мій олівець"
+        "ru": "Свитер с заплаткой",
+        "uk": "Светр із латкою"
       },
       "bodyByLocale": {
-        "ru": "Том ищет, чем писать, и показывает на карандаш у вас на столе. `pencil` — «карандаш». `This pencil is mine` — «Этот карандаш мой». Один карандаш: `is`. После `mine` слово `pencil` не повторяем. Карандаш без имени — ещё не общий карандаш, даже если он лежит посередине стола.",
-        "uk": "Том шукає, чим писати, й показує на олівець у вас на столі. `pencil` — «олівець». `This pencil is mine` — «Цей олівець мій». Один олівець: `is`. Після `mine` слово `pencil` не повторюємо. Олівець без імені — ще не спільний олівець, навіть якщо лежить посередині столу."
+        "ru": "Подруга замечает на вашем свитере аккуратную заплатку и удивляется, что вы не купили новый. Вы объясняете: вещи вы чините сами, пока они ещё целые. mend — «чинить». Про себя говорим I mend my sweater — «Я чиню свитер». После I слово остаётся mend, без s.",
+        "uk": "Подруга помічає на вашому светрі охайну латку й дивується, що ви не купили новий. Ви пояснюєте: речі ви лагодите самі, поки вони ще цілі. mend — «лагодити». Про себе кажемо I mend my sweater — «Я лагоджу светр». Після I слово лишається mend, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите Тому «Этот карандаш мой».",
-          "uk": "Скажіть Тому «Цей олівець мій»."
+          "ru": "Подруга спрашивает, как вы поступаете с порванными вещами. Скажите: «Я чиню свитер».",
+          "uk": "Подруга питає, як ви поводитеся з порваними речами. Скажіть: «Я лагоджу светр»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-45:intro1:r1",
-              "text": "This pencil is mine."
+              "text": "I mend my sweater."
             },
             {
               "responseId": "en:lesson-06:session-45:intro1:r2",
-              "text": "This pencil is my."
+              "text": "I mends my sweater."
             },
             {
               "responseId": "en:lesson-06:session-45:intro1:r3",
-              "text": "This pencil are mine."
+              "text": "I am mend my sweater."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-45:intro1:r1",
-              "text": "This pencil is mine."
+              "text": "I mend my sweater."
             },
             {
               "responseId": "en:lesson-06:session-45:intro1:r2",
-              "text": "This pencil is my."
+              "text": "I mends my sweater."
             },
             {
               "responseId": "en:lesson-06:session-45:intro1:r3",
-              "text": "This pencil are mine."
+              "text": "I am mend my sweater."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите Тому «Этот карандаш мой».",
-          "uk": "Скажіть Тому «Цей олівець мій»."
+          "ru": "Подруга спрашивает, как вы поступаете с порванными вещами. Скажите: «Я чиню свитер».",
+          "uk": "Подруга питає, як ви поводитеся з порваними речами. Скажіть: «Я лагоджу светр»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто оставил карандаш",
-        "uk": "Хто залишив олівець"
+        "ru": "Нитки в ящике",
+        "uk": "Нитки в шухляді"
       },
       "bodyByLocale": {
-        "ru": "После занятия на столе остался ещё один карандаш. Спросите группу: `Whose pencil is this?` — «Чей это карандаш?» `Whose` спрашивает о владельце. Если карандашей несколько: `Whose pencils are these?` — «Чьи это карандаши?» Но сейчас перед вами один, поэтому `is this`.",
-        "uk": "Після заняття на столі залишився ще один олівець. Запитайте групу: `Whose pencil is this?` — «Чий це олівець?» `Whose` запитує про власника. Якщо олівців кілька: `Whose pencils are these?` — «Чиї це олівці?» Але зараз перед вами один, тому `is this`."
+        "ru": "Ваша бабушка достаёт из ящика катушку: нужен именно тот цвет, что у носка. Она садится у окна и сразу берётся за дело. thread — «нитка». Про неё говорим My grandmother mends socks — «Бабушка чинит носки». После grandmother к mend добавляем s: mends.",
+        "uk": "Ваша бабуся дістає з шухляди котушку: потрібен саме той колір, що в шкарпетки. Вона сідає біля вікна й одразу береться до справи. thread — «нитка». Про неї кажемо My grandmother mends socks — «Бабуся лагодить шкарпетки». Після grandmother до mend додаємо s: mends."
       },
       "question": {
         "interactionId": "en:lesson-06:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите группу «Чей это карандаш?»",
-          "uk": "Запитайте групу «Чий це олівець?»"
+          "ru": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки».",
+          "uk": "Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-45:intro2:r1",
-              "text": "Whose pencil is this?"
+              "text": "My grandmother mends socks."
             },
             {
               "responseId": "en:lesson-06:session-45:intro2:r2",
-              "text": "Who pencil is this?"
+              "text": "My grandmother mend socks."
             },
             {
               "responseId": "en:lesson-06:session-45:intro2:r3",
-              "text": "Whose pencil are these?"
+              "text": "My grandmother is mends socks."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-45:intro2:r1",
-              "text": "Whose pencil is this?"
+              "text": "My grandmother mends socks."
             },
             {
               "responseId": "en:lesson-06:session-45:intro2:r2",
-              "text": "Who pencil is this?"
+              "text": "My grandmother mend socks."
             },
             {
               "responseId": "en:lesson-06:session-45:intro2:r3",
-              "text": "Whose pencil are these?"
+              "text": "My grandmother is mends socks."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите группу «Чей это карандаш?»",
-          "uk": "Запитайте групу «Чий це олівець?»"
+          "ru": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки».",
+          "uk": "Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где Анна покупает принадлежности",
-        "uk": "Де Анна купує приладдя"
+        "ru": "Где иголка",
+        "uk": "Де голка"
       },
       "bodyByLocale": {
-        "ru": "Друг хвалит карандаш Анны и спрашивает, где она обычно делает покупки. Вы показываете на знакомый магазин: `She shops here` — «Она делает покупки здесь». После `she` у `shop` появляется `s`. `Anna shops here` — тот же рассказ с именем.",
-        "uk": "Друг хвалить олівець Анни й запитує, де вона зазвичай робить покупки. Ви показуєте на знайомий магазин: `She shops here` — «Вона робить покупки тут». Після `she` у `shop` з’являється `s`. `Anna shops here` — та сама розповідь з ім’ям."
+        "ru": "Подруга решила сама пришить пуговицу к пальто, но не может найти иголку. Пуговица уже лежит на ладони. Вы подсказываете: бабушка хранит её в маленькой коробке, чтобы не потерять. needle — «иголка». Про одну вещь говорим is: The needle is in the box — «Иголка в коробке».",
+        "uk": "Подруга вирішила сама пришити ґудзик до пальта, але не може знайти голку. Ґудзик уже лежить на долоні. Ви підказуєте: бабуся тримає її в маленькій коробці, щоб не загубити. needle — «голка». Про одну річ кажемо is: The needle is in the box — «Голка в коробці»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте другу об Анне «Она делает покупки здесь».",
-          "uk": "Дайте другові відповідь про Анну «Вона робить покупки тут»."
+          "ru": "Подруга спрашивает, где иголка. Скажите: «Иголка в коробке».",
+          "uk": "Подруга питає, де голка. Скажіть: «Голка в коробці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-45:intro3:r1",
-              "text": "She shops here."
+              "text": "The needle is in the box."
             },
             {
               "responseId": "en:lesson-06:session-45:intro3:r2",
-              "text": "She shop here."
+              "text": "The needle in the box."
             },
             {
               "responseId": "en:lesson-06:session-45:intro3:r3",
-              "text": "She is shops here."
+              "text": "The needle are in the box."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-45:intro3:r1",
-              "text": "She shops here."
+              "text": "The needle is in the box."
             },
             {
               "responseId": "en:lesson-06:session-45:intro3:r2",
-              "text": "She shop here."
+              "text": "The needle in the box."
             },
             {
               "responseId": "en:lesson-06:session-45:intro3:r3",
-              "text": "She is shops here."
+              "text": "The needle are in the box."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу об Анне «Она делает покупки здесь».",
-          "uk": "Дайте другові відповідь про Анну «Вона робить покупки тут»."
+          "ru": "Подруга спрашивает, где иголка. Скажите: «Иголка в коробке».",
+          "uk": "Подруга питає, де голка. Скажіть: «Голка в коробці»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b7189427971f4aff5266ca93f27fb70cc5650af2fa9bf8c88a97f082f2380697"
+  "introFingerprint": "0231897ee109494fe5da6a982bef2441e53688c584478745393400dea1907a45"
 }

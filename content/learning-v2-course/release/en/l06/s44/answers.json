@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-44:word:feed",
+    "correctText": "feed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-44:i01",
-    "correctText": "This hat is mine.",
+    "correctText": "We feed the puppy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i02",
-    "correctText": "hat",
+    "correctText": "He feeds the dog.",
     "correctResponseId": "en:lesson-06:session-44:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-44:i03",
-    "correctText": "hat",
+    "correctText": "feeds",
     "correctResponseId": "en:lesson-06:session-44:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-44:i04",
-    "correctText": "en:lesson-06:session-44:i04:p1=hat\nen:lesson-06:session-44:i04:p2=legal\nen:lesson-06:session-44:i04:p3=freezer\nen:lesson-06:session-44:i04:p4=bicycle",
+    "correctText": "en:lesson-06:session-44:i04:p1=feed\nen:lesson-06:session-44:i04:p2=bone\nen:lesson-06:session-44:i04:p3=kennel\nen:lesson-06:session-44:i04:p4=fur",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:word:bone",
+    "correctText": "bone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i05",
-    "correctText": "My hat is here.",
+    "correctText": "The bone is in the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-44:word:kennel",
+    "correctText": "kennel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i06",
-    "correctText": "She lives here.",
+    "correctText": "Whose kennel is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i07",
-    "correctText": "This freezer is new.",
+    "correctText": "He feeds the dog.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i08",
-    "correctText": "live",
+    "correctText": "feed",
     "correctResponseId": "en:lesson-06:session-44:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-44:word:fur",
+    "correctText": "fur",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-44:i09",
-    "correctText": "This bicycle is mine.",
+    "correctText": "The puppy has soft fur.",
     "correctResponseId": "en:lesson-06:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-44:i10",
-    "correctText": "en:lesson-06:session-44:i10:p1=hat\nen:lesson-06:session-44:i10:p2=live\nen:lesson-06:session-44:i10:p3=bicycle\nen:lesson-06:session-44:i10:p4=legal",
+    "correctText": "en:lesson-06:session-44:i10:p1=kennel\nen:lesson-06:session-44:i10:p2=fur\nen:lesson-06:session-44:i10:p3=feed\nen:lesson-06:session-44:i10:p4=bone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i11",
-    "correctText": "The freezer is here.",
+    "correctText": "They feed the puppy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i12",
-    "correctText": "Whose bicycle is this?",
+    "correctText": "The dog has a bone.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i13",
-    "correctText": "We live here.",
+    "correctText": "The kennel is near the fence.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i14",
-    "correctText": "lives",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-44:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-44:i15",
-    "correctText": "This hat is mine.",
+    "correctText": "The dog has a bone.",
     "correctResponseId": "en:lesson-06:session-44:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-44:i16",
-    "correctText": "en:lesson-06:session-44:i16:p1=hat\nen:lesson-06:session-44:i16:p2=freezer\nen:lesson-06:session-44:i16:p3=legal\nen:lesson-06:session-44:i16:p4=live",
+    "correctText": "en:lesson-06:session-44:i16:p1=fur\nen:lesson-06:session-44:i16:p2=feed\nen:lesson-06:session-44:i16:p3=kennel\nen:lesson-06:session-44:i16:p4=bone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-44:i17",
-    "correctText": "Whose hat is this?",
+    "correctText": "He feeds the dog.",
     "correctResponseId": null
   }
 ]

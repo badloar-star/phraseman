@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 46 — Кухоль для перерви
+# Англійська · Урок 6 · Заняття 46 — Гриль на подвір’ї
 
-**Ситуація.** Анна й Том роблять перерву на спільній кухні й з’ясовують, кому належать кухлі.
+**Ситуація.** Ви із сусідами готуєте на грилі на подвір’ї. Слово дії після I, we і they лишається незмінним, а після he і she отримує s.
 
-**Що ви опануєте:** назвати кухоль, запитати про власника й розповісти про звичне місце відпочинку
-**Нові слова:** mug
+**Що ви опануєте:** розповісти, хто що смажить і запікає, і сказати, де що лежить біля гриля
+**Нові слова:** grill, roast, skewer, charcoal
+**Повертаються:** sausage, potato, yard, garden, table, bag, bucket, hot, neighbour
 
 ---
 
 ## Інтро 1
 
-### Ось мій кухоль
+### Субота на подвір’ї
 
-На спільній кухні Том тягнеться до вашого кухля. `mug` — «кухоль». `This mug is mine` — «Цей кухоль мій». Після `mine` не повторюємо назву речі. Кухлі можуть бути однаковими, але чай у своєму ви вже встигли підсолодити по-своєму.
+Сусід по сходах питає, чим ви зайняті в суботу ввечері. Ви відповідаєте: на подвір’ї у вас стоїть маленький гриль, і ви смажите на ньому сосиски. grill — «смажити на грилі». Про себе кажемо I grill sausages — «Я смажу сосиски на грилі». Після I слово лишається grill, без s.
 
-**Скажіть Тому «Цей кухоль мій».**
+**Сусід питає, чим ви зайняті в суботу. Скажіть: «Я смажу сосиски на грилі».**
 
-- ✅ **This mug is mine.**
-- ❌ This mug is my. — *У кінці без назви речі потрібне `mine`, не `my`.*
-- ❌ This mug are mine. — *Один кухоль: `is`.*
+- ✅ **I grill sausages.**
+- ❌ I grills sausages. — *Після I слово лишається grill, без s.*
+- ❌ I am grill sausages. — *Тут дія: I grill, без am.*
 
 ---
 
 ## Інтро 2
 
-### Хто залишив кухоль
+### Картопля у вугіллі
 
-Після перерви на столі залишився кухоль. `Whose mug is this?` — «Чий це кухоль?» `Whose` запитує про власника. Якщо кухлів кілька, запитайте `Whose mugs are these?` — «Чиї це кухлі?» Зараз ви тримаєте один, тому `is this`.
+Сусідка сидить біля гриля в саду й кладе картоплю просто в гаряче вугілля, нічим не загортаючи. Сусід питає, чим вона зайнята: запах стоїть на все подвір’я. roast — «запікати». Про неї кажемо She roasts potatoes — «Вона запікає картоплю». Після she до roast додаємо s: roasts.
 
-**Запитайте колег «Чий це кухоль?»**
+**Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю».**
 
-- ✅ **Whose mug is this?**
-- ❌ Who mug is this? — *Про власника запитуємо `Whose`.*
-- ❌ Whose mug are these? — *Один кухоль: `is this`.*
+- ✅ **She roasts potatoes.**
+- ❌ She roast potatoes. — *Після she потрібно roasts, з s.*
+- ❌ She is roasts potatoes. — *Тут дія: She roasts, без is.*
 
 ---
 
 ## Інтро 3
 
-### Де відпочиває Анна
+### Шампур на столі
 
-Новий колега запитує, куди Анна зазвичай іде на перерву. Ви показуєте на тихе місце: `She rests here` — «Вона відпочиває тут». Після `she` у `rest` з’являється `s`. `Anna rests here` повідомляє те саме з ім’ям. Це звичне місце, навіть якщо зараз Анна ще працює.
+Ви нарізали овочі, і сусід просить показати, на що їх нанизувати над вогнем, поки вугілля не охололо. Ви берете зі столу довгу металеву паличку з гострим кінцем. skewer — «шампур». Про одну річ кажемо is: The skewer is on the table — «Шампур на столі».
 
-**Дайте колезі відповідь про Анну «Вона відпочиває тут».**
+**Сусід питає, де шампур. Скажіть: «Шампур на столі».**
 
-- ✅ **She rests here.**
-- ❌ She rest here. — *Після `she` — `rests`.*
-- ❌ She is rests here. — *Потрібно `She rests`, без `is`.*
+- ✅ **The skewer is on the table.**
+- ❌ The skewer on the table. — *Без is речення не виходить: потрібно The skewer is.*
+- ❌ The skewer are on the table. — *Шампур один, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Цей кухоль мій»**
+**1 · Картка слова — grill**
+<!-- interaction_id: en:lesson-06:session-46:word:grill; family: word_card -->
+> **grill** — смажити на грилі. We grill sausages. — «Ми смажимо сосиски на грилі». Про те, як їжу готують над вогнем.
+
+**2 · Сусід питає про вас із братом. Скажіть: «Ми смажимо сосиски на грилі»**
 <!-- interaction_id: en:lesson-06:session-46:i01; family: phrase_builder -->
-Плитки: `mine` `is` `mug` `This` → **This mug is mine.**
+Плитки: `sausages` `grill` `We` `grills` → **We grill sausages.**
+*(плитка `grills` зайва: тут потрібно `grill` — `We grill sausages.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-46:i02; family: listen_choose -->
-🔊 *mug* → **mug** · pantry · ferry
-- pantry — *У записі перше слово — `mug`, а в цьому варіанті — `pantry`.*
-- ferry — *У записі перше слово — `mug`, а в цьому варіанті — `ferry`.*
+🔊 *He grills sausages in the yard.* → **He grills sausages in the yard.** · He grills sausages in the garden. · She grills sausages in the yard.
+- He grills sausages in the garden. — *У записі останнє слово — `yard`, подвір’я, а в цьому варіанті — `garden`, сад.*
+- She grills sausages in the yard. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Запитайте «Чий це кухоль?»**
+**4 · Скажіть про брата: «Він смажить сосиски на грилі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-46:i03; family: context_gap_grammar -->
-Whose ___ is this? → **mug** · mugs · mug are
-- mugs — *Тут один кухоль: `mug`, з `is this`.*
-- mug are — *Потрібно `Whose mug is this?`, без додаткового `are`.*
+He ___ sausages. → **grills** · grill · is grills
+- grill — *Після `he` потрібно `grills`, з `s`.*
+- is grills — *Кажемо `He grills`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-46:i04; family: speed_match -->
-mug — кухоль · appropriate — доречний · pantry — комора · ferry — пором
+grill — смажити на грилі · roast — запікати · skewer — шампур · charcoal — деревне вугілля
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — roast**
+<!-- interaction_id: en:lesson-06:session-46:word:roast; family: word_card -->
+> **roast** — запікати. They roast potatoes. — «Вони запікають картоплю». Про те, як їжу довго готують у жарі.
+
+**7 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-46:i05; family: listen_build_dictation -->
-🔊 *My mug is here.* Плитки: `here` `is` `mug` `My` → **My mug is here.**
+🔊 *She roasts potatoes in the yard.* Плитки: `potatoes` `in` `the` `yard` `She` `roasts` `roast` → **She roasts potatoes in the yard.**
+*(плитка `roast` зайва: тут потрібно `roasts` — `She roasts potatoes in the yard.`)*
 
-**6 · Скажіть «Вона відпочиває тут»**
+**8 · Картка слова — skewer**
+<!-- interaction_id: en:lesson-06:session-46:word:skewer; family: word_card -->
+> **skewer** — шампур. The skewer is long. — «Шампур довгий». Про металеву паличку, на яку нанизують їжу.
+
+**9 · Сусід показує на стіл. Спитайте: «Чий це шампур?»**
 <!-- interaction_id: en:lesson-06:session-46:i06; family: phrase_builder -->
-Плитки: `here` `rests` `She` → **She rests here.**
+Плитки: `skewer` `is` `this` `Whose` `Who` → **Whose skewer is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose skewer is this?`)*
 
-**7 · Колега шукає комору. Скажіть «Комора тут»**
+**10 · Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю»**
 <!-- interaction_id: en:lesson-06:session-46:i07; family: scripted_repeat_compare -->
-🎙 **The pantry is here.**
+🎙 **She roasts potatoes.**
 
-**8 · Скажіть «Вони відпочивають тут»**
+**11 · Скажіть про себе: «Я смажу сосиски на грилі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-46:i08; family: context_gap_grammar -->
-They ___ here. → **rest** · rests · are rest
-- rests — *Після `they` — `rest`, без `s`.*
-- are rest — *Потрібно `They rest`, без `are`.*
+I ___ sausages. → **grill** · grills · am grill
+- grills — *Після `I` потрібно `grill`, без `s`.*
+- am grill — *Кажемо `I grill`, без `am`.*
 
-**9 · Послухайте, який цей пором**
+**12 · Картка слова — charcoal**
+<!-- interaction_id: en:lesson-06:session-46:word:charcoal; family: word_card -->
+> **charcoal** — деревне вугілля. The charcoal is hot. — «Вугілля гаряче». Про чорні шматки, якими топлять гриль.
+
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-46:i09; family: listen_choose -->
-🔊 *This ferry is new.* → **This ferry is new.** · This ferry is old. · This ferry is small.
-- This ferry is old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
-- This ferry is small. — *У записі останнє слово — `new`, а в цьому варіанті — `small`.*
+🔊 *The charcoal is in the bag.* → **The charcoal is in the bag.** · The charcoal is in the bucket. · The skewer is in the bag.
+- The charcoal is in the bucket. — *У записі останнє слово — `bag`, мішок, а в цьому варіанті — `bucket`, відро.*
+- The skewer is in the bag. — *У записі перше слово — `charcoal`, вугілля, а в цьому варіанті — `skewer`, шампур.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-46:i10; family: speed_match -->
-mug — кухоль · rest — відпочивати · ferry — пором · appropriate — доречний
+skewer — шампур · charcoal — деревне вугілля · roast — запікати · grill — смажити на грилі
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-46:i11; family: listen_build_dictation -->
-🔊 *The pantry is small.* Плитки: `small` `is` `pantry` `The` `are` → **The pantry is small.**
-*(плитка `are` зайва: тут потрібно `is` — `The pantry is small.`)*
+🔊 *They roast potatoes in the garden.* Плитки: `roast` `potatoes` `in` `the` `garden` `They` `roasts` → **They roast potatoes in the garden.**
+*(плитка `roasts` зайва: тут потрібно `roast` — `They roast potatoes in the garden.`)*
 
-**12 · На столі залишився кухоль. Запитайте «Чий це кухоль?»**
+**16 · Ви показуєте на гриль. Скажіть: «У сусіда є шампур»**
 <!-- interaction_id: en:lesson-06:session-46:i12; family: phrase_builder -->
-Плитки: `this` `is` `mug` `Whose` → **Whose mug is this?**
+Плитки: `skewer` `a` `has` `My` `neighbour` `have` → **My neighbour has a skewer.**
+*(плитка `have` зайва: тут потрібно `has` — `My neighbour has a skewer.`)*
 
-**13 · Скажіть «Ми відпочиваємо тут»**
+**17 · Сусід питає, де шампур. Скажіть: «Шампур на столі»**
 <!-- interaction_id: en:lesson-06:session-46:i13; family: scripted_repeat_compare -->
-🎙 **We rest here.**
+🎙 **The skewer is on the table.**
 
-**14 · Скажіть «Том відпочиває тут»**
+**18 · Скажіть про вугілля: «Вугілля гаряче». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-46:i14; family: context_gap_grammar -->
-Tom ___ here. → **rests** · rest · is rests
-- rest — *Том — він: `Tom rests`.*
-- is rests — *Потрібно `Tom rests`, без `is`.*
+The charcoal ___ hot. → **is** · are · am
+- are — *Вугілля тут одне слово, тому потрібно `is`, а не `are`.*
+- am — *`am` буває лише після `I`; про вугілля кажемо `is`.*
 
-**15 · Послухайте, кому належить кухоль**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-46:i15; family: listen_choose -->
-🔊 *This mug is mine.* → **This mug is mine.** · This mug is yours. · This mug is hers.
-- This mug is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This mug is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *He has a skewer.* → **He has a skewer.** · He has a bucket. · She has a skewer.
+- He has a bucket. — *У записі останнє слово — `skewer`, шампур, а в цьому варіанті — `bucket`, відро.*
+- She has a skewer. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-46:i16; family: speed_match -->
-mug — кухоль · pantry — комора · appropriate — доречний · rest — відпочивати
+charcoal — деревне вугілля · grill — смажити на грилі · skewer — шампур · roast — запікати
 
-**17 · Колега збирає кухлі після перерви. Покажіть свій: «Цей кухоль мій»**
+**21 · Ви стоїте біля гриля на подвір’ї. Розкажіть про дядька: «Він смажить сосиски на грилі»**
 <!-- interaction_id: en:lesson-06:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **This mug is mine.**
-
+🎙 **He grills sausages.**

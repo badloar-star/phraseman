@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-47:word:snore",
+    "correctText": "snore",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-47:i01",
-    "correctText": "This glove is mine.",
+    "correctText": "We snore in the tent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i02",
-    "correctText": "glove",
+    "correctText": "He snores in the tent.",
     "correctResponseId": "en:lesson-06:session-47:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-47:i03",
-    "correctText": "gloves",
+    "correctText": "snores",
     "correctResponseId": "en:lesson-06:session-47:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-47:i04",
-    "correctText": "en:lesson-06:session-47:i04:p1=glove\nen:lesson-06:session-47:i04:p2=acceptable\nen:lesson-06:session-47:i04:p3=leftover\nen:lesson-06:session-47:i04:p4=subway",
+    "correctText": "en:lesson-06:session-47:i04:p1=snore\nen:lesson-06:session-47:i04:p2=trail\nen:lesson-06:session-47:i04:p3=summit\nen:lesson-06:session-47:i04:p4=campfire",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-47:word:trail",
+    "correctText": "trail",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i05",
-    "correctText": "My glove is here.",
+    "correctText": "My brother walks on the trail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-47:word:summit",
+    "correctText": "summit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i06",
-    "correctText": "He cycles to work.",
+    "correctText": "Where is the summit?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i07",
-    "correctText": "The subway is here.",
+    "correctText": "My brother walks on the trail.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i08",
-    "correctText": "cycle",
+    "correctText": "snore",
     "correctResponseId": "en:lesson-06:session-47:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-47:word:campfire",
+    "correctText": "campfire",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-47:i09",
-    "correctText": "These gloves are mine.",
+    "correctText": "The campfire is near the tent.",
     "correctResponseId": "en:lesson-06:session-47:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-47:i10",
-    "correctText": "en:lesson-06:session-47:i10:p1=glove\nen:lesson-06:session-47:i10:p2=cycle\nen:lesson-06:session-47:i10:p3=subway\nen:lesson-06:session-47:i10:p4=acceptable",
+    "correctText": "en:lesson-06:session-47:i10:p1=summit\nen:lesson-06:session-47:i10:p2=campfire\nen:lesson-06:session-47:i10:p3=trail\nen:lesson-06:session-47:i10:p4=snore",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i11",
-    "correctText": "These gloves are mine.",
+    "correctText": "They snore in the tent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i12",
-    "correctText": "Whose glove is this?",
+    "correctText": "My friend has a flashlight.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i13",
-    "correctText": "We cycle to work.",
+    "correctText": "The summit is behind the hill.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i14",
-    "correctText": "cycles",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-47:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-47:i15",
-    "correctText": "The subway is here.",
+    "correctText": "He has a flashlight.",
     "correctResponseId": "en:lesson-06:session-47:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-47:i16",
-    "correctText": "en:lesson-06:session-47:i16:p1=glove\nen:lesson-06:session-47:i16:p2=leftover\nen:lesson-06:session-47:i16:p3=acceptable\nen:lesson-06:session-47:i16:p4=cycle",
+    "correctText": "en:lesson-06:session-47:i16:p1=trail\nen:lesson-06:session-47:i16:p2=snore\nen:lesson-06:session-47:i16:p3=campfire\nen:lesson-06:session-47:i16:p4=summit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-47:i17",
-    "correctText": "Whose gloves are these?",
+    "correctText": "He snores in the tent.",
     "correctResponseId": null
   }
 ]

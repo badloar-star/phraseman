@@ -1,0 +1,2449 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-45:word:mend",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:mend:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:mend:audio",
+            "transcript": "mend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:mend:r1",
+              "targetText": "mend",
+              "meaningByLocale": {
+                "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+                "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mend",
+            "definitionByLocale": {
+              "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+              "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mend socks.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+            "uk": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»"
+          },
+          "orderedTokens": [
+            "We",
+            "mend",
+            "socks"
+          ],
+          "authoredDistractorTokens": [
+            "mends"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mend` — `We mend socks.`",
+                "uk": "тут потрібно `mend` — `We mend socks.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i02:r1",
+            "text": "My grandmother mends socks."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i02:r2",
+            "text": "My grandmother mends shirts."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i02:r3",
+            "text": "My sister mends socks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i02:audio",
+            "transcript": "My grandmother mends socks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i02:r1",
+              "targetText": "My grandmother mends socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r2",
+              "targetText": "My grandmother mends shirts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r3",
+              "targetText": "My sister mends socks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `socks`, носки, а в этом варианте — `shirts`, рубашки.",
+                "uk": "У записі останнє слово — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `grandmother`, бабушка, а в этом варианте — `sister`, сестра.",
+                "uk": "У записі друге слово — `grandmother`, бабуся, а в цьому варіанті — `sister`, сестра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i03:r1",
+            "text": "mends"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i03:r2",
+            "text": "mend"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i03:r3",
+            "text": "is mends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ socks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i03:r1",
+              "text": "mends"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r2",
+              "text": "mend"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r3",
+              "text": "is mends"
+            }
+          ],
+          "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `mends`, с `s`.",
+                "uk": "Після `she` потрібно `mends`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She mends`, без `is`.",
+                "uk": "Кажемо `She mends`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i04:p1",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p2",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p3",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p4",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mend",
+            "thread",
+            "needle",
+            "fabric"
+          ],
+          "rightColumn": [
+            "чинить",
+            "нитка",
+            "иголка",
+            "ткань"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:thread",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — thread",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:thread:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — thread",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:thread:audio",
+            "transcript": "thread"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:thread:r1",
+              "targetText": "thread",
+              "meaningByLocale": {
+                "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+                "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thread",
+            "definitionByLocale": {
+              "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+              "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i05:audio",
+            "transcript": "The thread is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The thread is in the drawer.",
+          "orderedTokens": [
+            "The",
+            "thread",
+            "is",
+            "in",
+            "the",
+            "drawer"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте подругу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The thread is in the drawer.`",
+                "uk": "тут потрібно `is` — `The thread is in the drawer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:needle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — needle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:needle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — needle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:needle:audio",
+            "transcript": "needle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:needle:r1",
+              "targetText": "needle",
+              "meaningByLocale": {
+                "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+                "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "needle",
+            "definitionByLocale": {
+              "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+              "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose needle is this?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+            "uk": "Подруга показує на коробку. Спитайте: «Чия це голка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "needle",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose needle is this?`",
+                "uk": "тут потрібно `Whose` — `Whose needle is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, чем занята бабушка. Скажите: «Бабушка чинит носки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i07:audio",
+            "transcript": "My grandmother mends socks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My grandmother mends socks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я чиню свитер». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i08:r1",
+            "text": "mend"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i08:r2",
+            "text": "mends"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i08:r3",
+            "text": "am mend"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я чиню свитер». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я чиню свитер». Выберите слово",
+            "uk": "Скажіть про себе: «Я лагоджу светр». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ my sweater.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i08:r1",
+              "text": "mend"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r2",
+              "text": "mends"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r3",
+              "text": "am mend"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `mend`, без `s`.",
+                "uk": "Після `I` потрібно `mend`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I mend`, без `am`.",
+                "uk": "Кажемо `I mend`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:fabric",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fabric",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:fabric:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fabric",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:fabric:audio",
+            "transcript": "fabric"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:fabric:r1",
+              "targetText": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+                "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fabric",
+            "definitionByLocale": {
+              "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+              "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i09:r1",
+            "text": "The fabric is in the drawer."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i09:r2",
+            "text": "The fabric is in the box."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i09:r3",
+            "text": "The thread is in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i09:audio",
+            "transcript": "The fabric is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i09:r1",
+              "targetText": "The fabric is in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r2",
+              "targetText": "The fabric is in the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r3",
+              "targetText": "The thread is in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawer`, ящик, а в этом варианте — `box`, коробка.",
+                "uk": "У записі останнє слово — `drawer`, шухляда, а в цьому варіанті — `box`, коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `fabric`, ткань, а в этом варианте — `thread`, нитка.",
+                "uk": "У записі друге слово — `fabric`, тканина, а в цьому варіанті — `thread`, нитка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i10:p1",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p2",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p3",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p4",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "needle",
+            "fabric",
+            "thread",
+            "mend"
+          ],
+          "rightColumn": [
+            "иголка",
+            "ткань",
+            "нитка",
+            "чинить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте бабушку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i11:audio",
+            "transcript": "They mend the coat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They mend the coat.",
+          "orderedTokens": [
+            "They",
+            "mend",
+            "the",
+            "coat"
+          ],
+          "authoredDistractorTokens": [
+            "mends"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mend` — `They mend the coat.`",
+                "uk": "тут потрібно `mend` — `They mend the coat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandmother has a needle.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+            "uk": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»"
+          },
+          "orderedTokens": [
+            "My",
+            "grandmother",
+            "has",
+            "a",
+            "needle"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My grandmother has a needle.`",
+                "uk": "тут потрібно `has` — `My grandmother has a needle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, где нитка. Скажите: «Нитка в ящике»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, где нитка. Скажите: «Нитка в ящике»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i13:audio",
+            "transcript": "The thread is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The thread is in the drawer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+            "uk": "Скажіть про тканину: «Тканина м’яка». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The fabric ___ soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Ткань одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Тканина одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про ткань говорим `is`.",
+                "uk": "`am` буває лише після `I`; про тканину кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте бабушку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i15:r1",
+            "text": "She has a needle."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i15:r2",
+            "text": "She has a button."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i15:r3",
+            "text": "He has a needle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте бабушку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i15:audio",
+            "transcript": "She has a needle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i15:r1",
+              "targetText": "She has a needle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r2",
+              "targetText": "She has a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r3",
+              "targetText": "He has a needle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `needle`, иголка, а в этом варианте — `button`, пуговица.",
+                "uk": "У записі останнє слово — `needle`, голка, а в цьому варіанті — `button`, ґудзик."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте бабушку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i16:p1",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p2",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p3",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p4",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fabric",
+            "mend",
+            "needle",
+            "thread"
+          ],
+          "rightColumn": [
+            "ткань",
+            "чинить",
+            "иголка",
+            "нитка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сидите у бабушки. Расскажите о брате: «Он чинит носки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Вы сидите у бабушки. Расскажите о брате: «Он чинит носки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i17:audio",
+            "transcript": "He mends socks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He mends socks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-45:word:mend",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mend",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:mend:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mend",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:mend:audio",
+            "transcript": "mend"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:mend:r1",
+              "targetText": "mend",
+              "meaningByLocale": {
+                "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+                "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mend",
+            "definitionByLocale": {
+              "ru": "чинить. We mend socks. — «Мы чиним носки». О том, как человек исправляет порванную вещь.",
+              "uk": "лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We mend socks.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+            "uk": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»"
+          },
+          "orderedTokens": [
+            "We",
+            "mend",
+            "socks"
+          ],
+          "authoredDistractorTokens": [
+            "mends"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mend` — `We mend socks.`",
+                "uk": "тут потрібно `mend` — `We mend socks.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i02:r1",
+            "text": "My grandmother mends socks."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i02:r2",
+            "text": "My grandmother mends shirts."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i02:r3",
+            "text": "My sister mends socks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i02:audio",
+            "transcript": "My grandmother mends socks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i02:r1",
+              "targetText": "My grandmother mends socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r2",
+              "targetText": "My grandmother mends shirts.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r3",
+              "targetText": "My sister mends socks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `socks`, носки, а в этом варианте — `shirts`, рубашки.",
+                "uk": "У записі останнє слово — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `grandmother`, бабушка, а в этом варианте — `sister`, сестра.",
+                "uk": "У записі друге слово — `grandmother`, бабуся, а в цьому варіанті — `sister`, сестра."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i03:r1",
+            "text": "mends"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i03:r2",
+            "text": "mend"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i03:r3",
+            "text": "is mends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+            "uk": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово"
+          },
+          "gappedTargetPhrase": "She ___ socks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i03:r1",
+              "text": "mends"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r2",
+              "text": "mend"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r3",
+              "text": "is mends"
+            }
+          ],
+          "testedDimension": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `mends`, с `s`.",
+                "uk": "Після `she` потрібно `mends`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `She mends`, без `is`.",
+                "uk": "Кажемо `She mends`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i04:p1",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p2",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p3",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i04:p4",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mend",
+            "thread",
+            "needle",
+            "fabric"
+          ],
+          "rightColumn": [
+            "лагодити",
+            "нитка",
+            "голка",
+            "тканина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:thread",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — thread",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:thread:audio"
+        ],
+        "accessibilityLabel": "Картка слова — thread",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:thread:audio",
+            "transcript": "thread"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:thread:r1",
+              "targetText": "thread",
+              "meaningByLocale": {
+                "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+                "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "thread",
+            "definitionByLocale": {
+              "ru": "нитка. The thread is red. — «Нитка красная». О тонкой нити, которой шьют.",
+              "uk": "нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i05:audio",
+            "transcript": "The thread is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The thread is in the drawer.",
+          "orderedTokens": [
+            "The",
+            "thread",
+            "is",
+            "in",
+            "the",
+            "drawer"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте подругу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The thread is in the drawer.`",
+                "uk": "тут потрібно `is` — `The thread is in the drawer.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:needle",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — needle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:needle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — needle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:needle:audio",
+            "transcript": "needle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:needle:r1",
+              "targetText": "needle",
+              "meaningByLocale": {
+                "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+                "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "needle",
+            "definitionByLocale": {
+              "ru": "иголка. The needle is sharp. — «Иголка острая». О тонком стальном предмете для шитья.",
+              "uk": "голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга показує на коробку. Спитайте: «Чия це голка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга показує на коробку. Спитайте: «Чия це голка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose needle is this?",
+          "localizedMeaning": {
+            "ru": "Подруга показывает на коробку. Спросите: «Чья это иголка?»",
+            "uk": "Подруга показує на коробку. Спитайте: «Чия це голка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "needle",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга показує на коробку. Спитайте: «Чия це голка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose needle is this?`",
+                "uk": "тут потрібно `Whose` — `Whose needle is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i07:audio",
+            "transcript": "My grandmother mends socks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My grandmother mends socks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я лагоджу светр». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i08:r1",
+            "text": "mend"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i08:r2",
+            "text": "mends"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i08:r3",
+            "text": "am mend"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я лагоджу светр». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я чиню свитер». Выберите слово",
+            "uk": "Скажіть про себе: «Я лагоджу светр». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ my sweater.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i08:r1",
+              "text": "mend"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r2",
+              "text": "mends"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r3",
+              "text": "am mend"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я лагоджу светр». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я лагоджу светр». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `mend`, без `s`.",
+                "uk": "Після `I` потрібно `mend`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я лагоджу светр». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I mend`, без `am`.",
+                "uk": "Кажемо `I mend`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:word:fabric",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fabric",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:word:fabric:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fabric",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:word:fabric:audio",
+            "transcript": "fabric"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:word:fabric:r1",
+              "targetText": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+                "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fabric",
+            "definitionByLocale": {
+              "ru": "ткань. The fabric is soft. — «Ткань мягкая». О материале, из которого шьют одежду.",
+              "uk": "тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i09:r1",
+            "text": "The fabric is in the drawer."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i09:r2",
+            "text": "The fabric is in the box."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i09:r3",
+            "text": "The thread is in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i09:audio",
+            "transcript": "The fabric is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i09:r1",
+              "targetText": "The fabric is in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r2",
+              "targetText": "The fabric is in the box.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r3",
+              "targetText": "The thread is in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `drawer`, ящик, а в этом варианте — `box`, коробка.",
+                "uk": "У записі останнє слово — `drawer`, шухляда, а в цьому варіанті — `box`, коробка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `fabric`, ткань, а в этом варианте — `thread`, нитка.",
+                "uk": "У записі друге слово — `fabric`, тканина, а в цьому варіанті — `thread`, нитка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i10:p1",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p2",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p3",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i10:p4",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "needle",
+            "fabric",
+            "thread",
+            "mend"
+          ],
+          "rightColumn": [
+            "голка",
+            "тканина",
+            "нитка",
+            "лагодити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте бабусю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i11:audio",
+            "transcript": "They mend the coat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They mend the coat.",
+          "orderedTokens": [
+            "They",
+            "mend",
+            "the",
+            "coat"
+          ],
+          "authoredDistractorTokens": [
+            "mends"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `mend` — `They mend the coat.`",
+                "uk": "тут потрібно `mend` — `They mend the coat.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My grandmother has a needle.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на стол. Скажите: «У бабушки есть иголка»",
+            "uk": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»"
+          },
+          "orderedTokens": [
+            "My",
+            "grandmother",
+            "has",
+            "a",
+            "needle"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте на стіл. Скажіть: «У бабусі є голка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My grandmother has a needle.`",
+                "uk": "тут потрібно `has` — `My grandmother has a needle.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, де нитка. Скажіть: «Нитка в шухляді»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, де нитка. Скажіть: «Нитка в шухляді»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i13:audio",
+            "transcript": "The thread is in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The thread is in the drawer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про тканину: «Тканина м’яка». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про тканину: «Тканина м’яка». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о ткани: «Ткань мягкая». Выберите слово",
+            "uk": "Скажіть про тканину: «Тканина м’яка». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The fabric ___ soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-45:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть про тканину: «Тканина м’яка». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про тканину: «Тканина м’яка». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Ткань одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Тканина одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про тканину: «Тканина м’яка». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про ткань говорим `is`.",
+                "uk": "`am` буває лише після `I`; про тканину кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте бабусю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-45:i15:r1",
+            "text": "She has a needle."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i15:r2",
+            "text": "She has a button."
+          },
+          {
+            "responseId": "en:lesson-06:session-45:i15:r3",
+            "text": "He has a needle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте бабусю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i15:audio",
+            "transcript": "She has a needle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-45:i15:r1",
+              "targetText": "She has a needle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r2",
+              "targetText": "She has a button.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r3",
+              "targetText": "He has a needle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `needle`, иголка, а в этом варианте — `button`, пуговица.",
+                "uk": "У записі останнє слово — `needle`, голка, а в цьому варіанті — `button`, ґудзик."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте бабусю",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+                "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-45:i16:p1",
+              "target": "fabric",
+              "meaningByLocale": {
+                "ru": "ткань",
+                "uk": "тканина"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p2",
+              "target": "mend",
+              "meaningByLocale": {
+                "ru": "чинить",
+                "uk": "лагодити"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p3",
+              "target": "needle",
+              "meaningByLocale": {
+                "ru": "иголка",
+                "uk": "голка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-45:i16:p4",
+              "target": "thread",
+              "meaningByLocale": {
+                "ru": "нитка",
+                "uk": "нитка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fabric",
+            "mend",
+            "needle",
+            "thread"
+          ],
+          "rightColumn": [
+            "тканина",
+            "лагодити",
+            "голка",
+            "нитка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви сидите в бабусі. Розкажіть про брата: «Він лагодить шкарпетки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Ви сидите в бабусі. Розкажіть про брата: «Він лагодить шкарпетки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-45:i17:audio",
+            "transcript": "He mends socks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He mends socks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-45:word:mend",
+      "correctText": "mend",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i01",
+      "correctText": "We mend socks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i02",
+      "correctText": "My grandmother mends socks.",
+      "correctResponseId": "en:lesson-06:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i03",
+      "correctText": "mends",
+      "correctResponseId": "en:lesson-06:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:word:thread",
+      "correctText": "thread",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i05",
+      "correctText": "The thread is in the drawer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:word:needle",
+      "correctText": "needle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i06",
+      "correctText": "Whose needle is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i07",
+      "correctText": "My grandmother mends socks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i08",
+      "correctText": "mend",
+      "correctResponseId": "en:lesson-06:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:word:fabric",
+      "correctText": "fabric",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i09",
+      "correctText": "The fabric is in the drawer.",
+      "correctResponseId": "en:lesson-06:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i11",
+      "correctText": "They mend the coat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i12",
+      "correctText": "My grandmother has a needle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i13",
+      "correctText": "The thread is in the drawer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i15",
+      "correctText": "She has a needle.",
+      "correctResponseId": "en:lesson-06:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-45:i17",
+      "correctText": "He mends socks.",
+      "correctResponseId": null
+    }
+  ]
+}

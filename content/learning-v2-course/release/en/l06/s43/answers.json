@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-43:word:grow",
+    "correctText": "grow",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-43:i01",
-    "correctText": "I speak English.",
+    "correctText": "We grow flowers on the balcony.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i02",
-    "correctText": "speak",
+    "correctText": "She grows flowers on the balcony.",
     "correctResponseId": "en:lesson-06:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-43:i03",
-    "correctText": "speaks",
+    "correctText": "grows",
     "correctResponseId": "en:lesson-06:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-43:i04",
-    "correctText": "en:lesson-06:session-43:i04:p1=speak\nen:lesson-06:session-43:i04:p2=uncertain\nen:lesson-06:session-43:i04:p3=recycling bin\nen:lesson-06:session-43:i04:p4=sleep",
+    "correctText": "en:lesson-06:session-43:i04:p1=grow\nen:lesson-06:session-43:i04:p2=seed\nen:lesson-06:session-43:i04:p3=soil\nen:lesson-06:session-43:i04:p4=sprout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-43:word:seed",
+    "correctText": "seed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i05",
-    "correctText": "Anna speaks English.",
+    "correctText": "The seed is in the pot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-43:word:soil",
+    "correctText": "soil",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i06",
-    "correctText": "The cat sleeps here.",
+    "correctText": "Whose soil is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i07",
-    "correctText": "I am uncertain.",
+    "correctText": "She grows flowers from seeds.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i08",
-    "correctText": "speak",
+    "correctText": "grow",
     "correctResponseId": "en:lesson-06:session-43:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-43:word:sprout",
+    "correctText": "sprout",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-43:i09",
-    "correctText": "This recycling bin is new.",
+    "correctText": "The sprout is in the pot.",
     "correctResponseId": "en:lesson-06:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-43:i10",
-    "correctText": "en:lesson-06:session-43:i10:p1=speak\nen:lesson-06:session-43:i10:p2=sleep\nen:lesson-06:session-43:i10:p3=recycling bin\nen:lesson-06:session-43:i10:p4=uncertain",
+    "correctText": "en:lesson-06:session-43:i10:p1=soil\nen:lesson-06:session-43:i10:p2=sprout\nen:lesson-06:session-43:i10:p3=seed\nen:lesson-06:session-43:i10:p4=grow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i11",
-    "correctText": "The recycling bin is here.",
+    "correctText": "They grow flowers in the pot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i12",
-    "correctText": "Whose laptop is this?",
+    "correctText": "I have a sprout.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i13",
-    "correctText": "They sleep here.",
+    "correctText": "The sprout is in the pot.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i14",
-    "correctText": "speaks",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-43:i15",
-    "correctText": "We speak English.",
+    "correctText": "I have a sprout.",
     "correctResponseId": "en:lesson-06:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-43:i16",
-    "correctText": "en:lesson-06:session-43:i16:p1=speak\nen:lesson-06:session-43:i16:p2=recycling bin\nen:lesson-06:session-43:i16:p3=uncertain\nen:lesson-06:session-43:i16:p4=sleep",
+    "correctText": "en:lesson-06:session-43:i16:p1=sprout\nen:lesson-06:session-43:i16:p2=grow\nen:lesson-06:session-43:i16:p3=soil\nen:lesson-06:session-43:i16:p4=seed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-43:i17",
-    "correctText": "She speaks English.",
+    "correctText": "He grows flowers on the balcony.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-46",
   "learningOutcomeByLocale": {
-    "ru": "назвать кружку, спросить о владельце и рассказать о привычном месте отдыха",
-    "uk": "назвати кухоль, запитати про власника й розповісти про звичне місце відпочинку"
+    "ru": "рассказать, кто что жарит и запекает, и сказать, где что лежит у гриля",
+    "uk": "розповісти, хто що смажить і запікає, і сказати, де що лежить біля гриля"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вот моя кружка",
-        "uk": "Ось мій кухоль"
+        "ru": "Суббота во дворе",
+        "uk": "Субота на подвір’ї"
       },
       "bodyByLocale": {
-        "ru": "На общей кухне Том тянется к вашей кружке. `mug` — «кружка». `This mug is mine` — «Эта кружка моя». После `mine` не повторяем название вещи. Кружки могут быть одинаковыми, но чай в вашей вы уже успели подсластить по-своему.",
-        "uk": "На спільній кухні Том тягнеться до вашого кухля. `mug` — «кухоль». `This mug is mine` — «Цей кухоль мій». Після `mine` не повторюємо назву речі. Кухлі можуть бути однаковими, але чай у своєму ви вже встигли підсолодити по-своєму."
+        "ru": "Сосед по лестнице спрашивает, чем вы заняты в субботу вечером. Вы отвечаете: во дворе у вас стоит маленький гриль, и вы жарите на нём сосиски. grill — «жарить на гриле». Про себя говорим I grill sausages — «Я жарю сосиски на гриле». После I слово остаётся grill, без s.",
+        "uk": "Сусід по сходах питає, чим ви зайняті в суботу ввечері. Ви відповідаєте: на подвір’ї у вас стоїть маленький гриль, і ви смажите на ньому сосиски. grill — «смажити на грилі». Про себе кажемо I grill sausages — «Я смажу сосиски на грилі». Після I слово лишається grill, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-46:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите Тому «Эта кружка моя».",
-          "uk": "Скажіть Тому «Цей кухоль мій»."
+          "ru": "Сосед спрашивает, чем вы заняты в субботу. Скажите: «Я жарю сосиски на гриле».",
+          "uk": "Сусід питає, чим ви зайняті в суботу. Скажіть: «Я смажу сосиски на грилі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-46:intro1:r1",
-              "text": "This mug is mine."
+              "text": "I grill sausages."
             },
             {
               "responseId": "en:lesson-06:session-46:intro1:r2",
-              "text": "This mug is my."
+              "text": "I grills sausages."
             },
             {
               "responseId": "en:lesson-06:session-46:intro1:r3",
-              "text": "This mug are mine."
+              "text": "I am grill sausages."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-46:intro1:r1",
-              "text": "This mug is mine."
+              "text": "I grill sausages."
             },
             {
               "responseId": "en:lesson-06:session-46:intro1:r2",
-              "text": "This mug is my."
+              "text": "I grills sausages."
             },
             {
               "responseId": "en:lesson-06:session-46:intro1:r3",
-              "text": "This mug are mine."
+              "text": "I am grill sausages."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите Тому «Эта кружка моя».",
-          "uk": "Скажіть Тому «Цей кухоль мій»."
+          "ru": "Сосед спрашивает, чем вы заняты в субботу. Скажите: «Я жарю сосиски на гриле».",
+          "uk": "Сусід питає, чим ви зайняті в суботу. Скажіть: «Я смажу сосиски на грилі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто оставил кружку",
-        "uk": "Хто залишив кухоль"
+        "ru": "Картошка в углях",
+        "uk": "Картопля у вугіллі"
       },
       "bodyByLocale": {
-        "ru": "После перерыва на столе осталась кружка. `Whose mug is this?` — «Чья это кружка?» `Whose` спрашивает о владельце. Если кружек несколько, спросите `Whose mugs are these?` — «Чьи это кружки?» Сейчас вы держите одну, поэтому `is this`.",
-        "uk": "Після перерви на столі залишився кухоль. `Whose mug is this?` — «Чий це кухоль?» `Whose` запитує про власника. Якщо кухлів кілька, запитайте `Whose mugs are these?` — «Чиї це кухлі?» Зараз ви тримаєте один, тому `is this`."
+        "ru": "Соседка сидит у гриля в саду и кладёт картошку прямо в горячие угли, ничем не заворачивая. Сосед спрашивает, чем она занята: запах стоит на весь двор. roast — «запекать». Про неё говорим She roasts potatoes — «Она запекает картошку». После she к roast добавляем s: roasts.",
+        "uk": "Сусідка сидить біля гриля в саду й кладе картоплю просто в гаряче вугілля, нічим не загортаючи. Сусід питає, чим вона зайнята: запах стоїть на все подвір’я. roast — «запікати». Про неї кажемо She roasts potatoes — «Вона запікає картоплю». Після she до roast додаємо s: roasts."
       },
       "question": {
         "interactionId": "en:lesson-06:session-46:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите коллег «Чья это кружка?»",
-          "uk": "Запитайте колег «Чий це кухоль?»"
+          "ru": "Сосед спрашивает, что делает соседка. Скажите: «Она запекает картошку».",
+          "uk": "Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-46:intro2:r1",
-              "text": "Whose mug is this?"
+              "text": "She roasts potatoes."
             },
             {
               "responseId": "en:lesson-06:session-46:intro2:r2",
-              "text": "Who mug is this?"
+              "text": "She roast potatoes."
             },
             {
               "responseId": "en:lesson-06:session-46:intro2:r3",
-              "text": "Whose mug are these?"
+              "text": "She is roasts potatoes."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-46:intro2:r1",
-              "text": "Whose mug is this?"
+              "text": "She roasts potatoes."
             },
             {
               "responseId": "en:lesson-06:session-46:intro2:r2",
-              "text": "Who mug is this?"
+              "text": "She roast potatoes."
             },
             {
               "responseId": "en:lesson-06:session-46:intro2:r3",
-              "text": "Whose mug are these?"
+              "text": "She is roasts potatoes."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег «Чья это кружка?»",
-          "uk": "Запитайте колег «Чий це кухоль?»"
+          "ru": "Сосед спрашивает, что делает соседка. Скажите: «Она запекает картошку».",
+          "uk": "Сусід питає, що робить сусідка. Скажіть: «Вона запікає картоплю»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где отдыхает Анна",
-        "uk": "Де відпочиває Анна"
+        "ru": "Шампур на столе",
+        "uk": "Шампур на столі"
       },
       "bodyByLocale": {
-        "ru": "Новый коллега спрашивает, куда Анна обычно уходит на перерыв. Вы показываете на тихое место: `She rests here` — «Она отдыхает здесь». После `she` у `rest` появляется `s`. `Anna rests here` сообщает то же самое с именем. Это привычное место, даже если сейчас Анна ещё работает.",
-        "uk": "Новий колега запитує, куди Анна зазвичай іде на перерву. Ви показуєте на тихе місце: `She rests here` — «Вона відпочиває тут». Після `she` у `rest` з’являється `s`. `Anna rests here` повідомляє те саме з ім’ям. Це звичне місце, навіть якщо зараз Анна ще працює."
+        "ru": "Вы нарезали овощи, и сосед просит показать, на что их нанизывать над огнём, пока угли не остыли. Вы берёте со стола длинную металлическую палочку с острым концом. skewer — «шампур». Про одну вещь говорим is: The skewer is on the table — «Шампур на столе».",
+        "uk": "Ви нарізали овочі, і сусід просить показати, на що їх нанизувати над вогнем, поки вугілля не охололо. Ви берете зі столу довгу металеву паличку з гострим кінцем. skewer — «шампур». Про одну річ кажемо is: The skewer is on the table — «Шампур на столі»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-46:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте коллеге об Анне «Она отдыхает здесь».",
-          "uk": "Дайте колезі відповідь про Анну «Вона відпочиває тут»."
+          "ru": "Сосед спрашивает, где шампур. Скажите: «Шампур на столе».",
+          "uk": "Сусід питає, де шампур. Скажіть: «Шампур на столі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-46:intro3:r1",
-              "text": "She rests here."
+              "text": "The skewer is on the table."
             },
             {
               "responseId": "en:lesson-06:session-46:intro3:r2",
-              "text": "She rest here."
+              "text": "The skewer on the table."
             },
             {
               "responseId": "en:lesson-06:session-46:intro3:r3",
-              "text": "She is rests here."
+              "text": "The skewer are on the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-46:intro3:r1",
-              "text": "She rests here."
+              "text": "The skewer is on the table."
             },
             {
               "responseId": "en:lesson-06:session-46:intro3:r2",
-              "text": "She rest here."
+              "text": "The skewer on the table."
             },
             {
               "responseId": "en:lesson-06:session-46:intro3:r3",
-              "text": "She is rests here."
+              "text": "The skewer are on the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте коллеге об Анне «Она отдыхает здесь».",
-          "uk": "Дайте колезі відповідь про Анну «Вона відпочиває тут»."
+          "ru": "Сосед спрашивает, где шампур. Скажите: «Шампур на столе».",
+          "uk": "Сусід питає, де шампур. Скажіть: «Шампур на столі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f6365463a45aa2a976559c2049b608e08ce172fa1a29323854c7a637496c9f6"
+  "introFingerprint": "f212369ab951f14a7bcf8d614649bb956bc5c9d551358884087ec18d55a7b3fc"
 }

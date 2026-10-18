@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-41",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о привычке беседовать и повторить формы chats и studies",
-    "uk": "розповісти про звичку розмовляти й повторити форми chats та studies"
+    "ru": "рассказать, кто ловит рыбу, и сказать, где что лежит у озера",
+    "uk": "розповісти, хто ловить рибу, і сказати, де що лежить біля озера"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Здесь мы болтаем",
-        "uk": "Тут ми балакаємо"
+        "ru": "Вёдра по воскресеньям",
+        "uk": "Відра по неділях"
       },
       "bodyByLocale": {
-        "ru": "Новый ученик спрашивает, зачем вы собираетесь у этой скамейки. `chat` — «беседовать», «болтать». `We chat here` — «Мы беседуем здесь». После `we` — `chat`, без `s` и без `are`. Это обычный разговор: обещали обсудить урок пять минут, а потом вспомнили ещё одну историю.",
-        "uk": "Новий учень запитує, навіщо ви збираєтеся біля цієї лавки. `chat` — «розмовляти», «балакати». `We chat here` — «Ми розмовляємо тут». Після `we` — `chat`, без `s` і без `are`. Це звичайна розмова: обіцяли обговорити урок п’ять хвилин, а потім згадали ще одну історію."
+        "ru": "Сосед по даче видит, как вы рано утром идёте к озеру с вёдрами. Вы объясняете: по воскресеньям вы там ловите рыбу и до обеда сидите на берегу. fish — «ловить рыбу». Про себя говорим I fish at the lake — «Я ловлю рыбу на озере». После I слово остаётся fish, без es.",
+        "uk": "Сусід по дачі бачить, як ви рано вранці йдете до озера з відрами. Ви пояснюєте: щонеділі ви там ловите рибу й до обіду сидите на березі. fish — «ловити рибу». Про себе кажемо I fish at the lake — «Я ловлю рибу на озері». Після I слово лишається fish, без es."
       },
       "question": {
         "interactionId": "en:lesson-06:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните ученику «Мы беседуем здесь».",
-          "uk": "Поясніть учневі «Ми розмовляємо тут»."
+          "ru": "Сосед спрашивает, что вы делаете на озере. Скажите: «Я ловлю рыбу на озере».",
+          "uk": "Сусід питає, що ви робите на озері. Скажіть: «Я ловлю рибу на озері»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-41:intro1:r1",
-              "text": "We chat here."
+              "text": "I fish at the lake."
             },
             {
               "responseId": "en:lesson-06:session-41:intro1:r2",
-              "text": "We chats here."
+              "text": "I fishes at the lake."
             },
             {
               "responseId": "en:lesson-06:session-41:intro1:r3",
-              "text": "We are chat here."
+              "text": "I am fish at the lake."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-41:intro1:r1",
-              "text": "We chat here."
+              "text": "I fish at the lake."
             },
             {
               "responseId": "en:lesson-06:session-41:intro1:r2",
-              "text": "We chats here."
+              "text": "I fishes at the lake."
             },
             {
               "responseId": "en:lesson-06:session-41:intro1:r3",
-              "text": "We are chat here."
+              "text": "I am fish at the lake."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните ученику «Мы беседуем здесь».",
-          "uk": "Поясніть учневі «Ми розмовляємо тут»."
+          "ru": "Сосед спрашивает, что вы делаете на озере. Скажите: «Я ловлю рыбу на озере».",
+          "uk": "Сусід питає, що ви робите на озері. Скажіть: «Я ловлю рибу на озері»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Том беседует с Анной",
-        "uk": "Том розмовляє з Анною"
+        "ru": "Брат с удочкой",
+        "uk": "Брат із вудкою"
       },
       "bodyByLocale": {
-        "ru": "Ученику интересно, с кем Том обычно разговаривает. `He chats with Anna` — «Он беседует с Анной». После `he` добавляем `s`: `chat → chats`. Слово `with` означает «с»: `with Anna` — «с Анной». Речь о привычке Тома, а не обязательно о разговоре прямо сейчас.",
-        "uk": "Учневі цікаво, з ким Том зазвичай розмовляє. `He chats with Anna` — «Він розмовляє з Анною». Після `he` додаємо `s`: `chat → chats`. Слово `with` означає «з»: `with Anna` — «з Анною». Ідеться про звичку Тома, а не обов’язково про розмову просто зараз."
+        "ru": "Ваш брат тоже ходит на озеро, но берёт с собой длинную удочку, чтобы забросить леску подальше от берега. rod — «удочка». Сосед спрашивает, как он ловит рыбу. Про брата говорим He fishes with a rod — «Он ловит рыбу удочкой». После he к fish добавляем es: fishes.",
+        "uk": "Ваш брат теж ходить на озеро, але бере з собою довгу вудку, щоб закинути волосінь подалі від берега. rod — «вудка». Сусід питає, як він ловить рибу. Про брата кажемо He fishes with a rod — «Він ловить рибу вудкою». Після he до fish додаємо es: fishes."
       },
       "question": {
         "interactionId": "en:lesson-06:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите о Томе «Он беседует с Анной».",
-          "uk": "Розкажіть про Тома «Він розмовляє з Анною»."
+          "ru": "Сосед спрашивает, как брат ловит рыбу. Скажите: «Он ловит рыбу удочкой».",
+          "uk": "Сусід питає, як брат ловить рибу. Скажіть: «Він ловить рибу вудкою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-41:intro2:r1",
-              "text": "He chats with Anna."
+              "text": "He fishes with a rod."
             },
             {
               "responseId": "en:lesson-06:session-41:intro2:r2",
-              "text": "He chat with Anna."
+              "text": "He fish with a rod."
             },
             {
               "responseId": "en:lesson-06:session-41:intro2:r3",
-              "text": "He is chats with Anna."
+              "text": "He is fishes with a rod."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-41:intro2:r1",
-              "text": "He chats with Anna."
+              "text": "He fishes with a rod."
             },
             {
               "responseId": "en:lesson-06:session-41:intro2:r2",
-              "text": "He chat with Anna."
+              "text": "He fish with a rod."
             },
             {
               "responseId": "en:lesson-06:session-41:intro2:r3",
-              "text": "He is chats with Anna."
+              "text": "He is fishes with a rod."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о Томе «Он беседует с Анной».",
-          "uk": "Розкажіть про Тома «Він розмовляє з Анною»."
+          "ru": "Сосед спрашивает, как брат ловит рыбу. Скажите: «Он ловит рыбу удочкой».",
+          "uk": "Сусід питає, як брат ловить рибу. Скажіть: «Він ловить рибу вудкою»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Шкафчик нового ученика",
-        "uk": "Шафка нового учня"
+        "ru": "Что в ведре",
+        "uk": "Що у відрі"
       },
       "bodyByLocale": {
-        "ru": "Ученик хочет убрать вещи и показывает на шкафчик. `locker` — «шкафчик». Чтобы уточнить, кому он принадлежит, спросите: `Whose locker is this?` — «Чей это шкафчик?» Один шкафчик: `is this`; `whose` спрашивает о владельце.",
-        "uk": "Учень хоче покласти речі й показує на шафку. `locker` — «шафка». Щоб уточнити, кому вона належить, запитайте: `Whose locker is this?` — «Чия це шафка?» Одна шафка: `is this`; `whose` запитує про власника."
+        "ru": "Сосед с любопытством заглядывает в ведро и спрашивает, что там лежит на дне, ведь улова ещё нет. Вы отвечаете: это наживка, её цепляют на крючок, и тогда рыба клюёт. bait — «наживка». Про один предмет говорим is: The bait is in the bucket — «Наживка в ведре».",
+        "uk": "Сусід із цікавістю заглядає у відро й питає, що там лежить на дні, адже улову ще немає. Ви відповідаєте: це наживка, її чіпляють на гачок, і тоді риба клює. bait — «наживка». Про один предмет кажемо is: The bait is in the bucket — «Наживка у відрі»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите «Чей это шкафчик?»",
-          "uk": "Запитайте «Чия це шафка?»"
+          "ru": "Сосед спрашивает, что в ведре. Скажите: «Наживка в ведре».",
+          "uk": "Сусід питає, що у відрі. Скажіть: «Наживка у відрі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-41:intro3:r1",
-              "text": "Whose locker is this?"
+              "text": "The bait is in the bucket."
             },
             {
               "responseId": "en:lesson-06:session-41:intro3:r2",
-              "text": "Who locker is this?"
+              "text": "The bait in the bucket."
             },
             {
               "responseId": "en:lesson-06:session-41:intro3:r3",
-              "text": "Whose locker are these?"
+              "text": "The bait are in the bucket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-41:intro3:r1",
-              "text": "Whose locker is this?"
+              "text": "The bait is in the bucket."
             },
             {
               "responseId": "en:lesson-06:session-41:intro3:r2",
-              "text": "Who locker is this?"
+              "text": "The bait in the bucket."
             },
             {
               "responseId": "en:lesson-06:session-41:intro3:r3",
-              "text": "Whose locker are these?"
+              "text": "The bait are in the bucket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Чей это шкафчик?»",
-          "uk": "Запитайте «Чия це шафка?»"
+          "ru": "Сосед спрашивает, что в ведре. Скажите: «Наживка в ведре».",
+          "uk": "Сусід питає, що у відрі. Скажіть: «Наживка у відрі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1afb8a395807b75a4a61d5edcd567982fd57270620a35508f6db31b95fb8afd2"
+  "introFingerprint": "7d7aa23e7e1eec2a957d6ed87d887d871574fb9f96c70c0f4c1ddf84ac05689a"
 }

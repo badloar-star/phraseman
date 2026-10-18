@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-47",
   "learningOutcomeByLocale": {
-    "ru": "назвать одну перчатку и пару, спросить о владельце и повторить рассказ о поездке на работу",
-    "uk": "назвати одну рукавичку й пару, запитати про власника та повторити розповідь про поїздку на роботу"
+    "ru": "рассказать, кто как себя ведёт в походе, и сказать, где что находится",
+    "uk": "розповісти, хто як поводиться в поході, і сказати, де що знаходиться"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одна перчатка нашлась",
-        "uk": "Одна рукавичка знайшлася"
+        "ru": "Шумная ночь",
+        "uk": "Галаслива ніч"
       },
       "bodyByLocale": {
-        "ru": "Анна показывает Тому перчатку на скамейке. `glove` — «перчатка». `This glove is mine` — «Эта перчатка моя». Одна перчатка: `is`. Уже хорошо, но одной руке пока повезло больше, чем другой.",
-        "uk": "Анна показує Тому рукавичку на лавці. `glove` — «рукавичка». `This glove is mine` — «Ця рукавичка моя». Одна рукавичка: `is`. Уже добре, але одній руці поки пощастило більше, ніж іншій."
+        "ru": "Утром друг зевает и смеётся: ночью в палатке было слышно каждый звук, и поспать ему почти не удалось. Он спрашивает, кто был виноват. Вы признаётесь, что это вы. snore — «храпеть». Про себя говорим I snore in the tent — «Я храплю в палатке». После I слово остаётся snore, без s.",
+        "uk": "Вранці друг позіхає й сміється: уночі в наметі було чутно кожен звук, і поспати йому майже не вдалося. Він питає, хто винен. Ви зізнаєтеся, що це ви. snore — «хропти». Про себе кажемо I snore in the tent — «Я хроплю в наметі». Після I слово лишається snore, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите Анне «Эта перчатка моя».",
-          "uk": "Скажіть Анні «Ця рукавичка моя»."
+          "ru": "Друг спрашивает, кто шумел ночью. Скажите: «Я храплю в палатке».",
+          "uk": "Друг питає, хто шумів уночі. Скажіть: «Я хроплю в наметі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-47:intro1:r1",
-              "text": "This glove is mine."
+              "text": "I snore in the tent."
             },
             {
               "responseId": "en:lesson-06:session-47:intro1:r2",
-              "text": "This glove is my."
+              "text": "I snores in the tent."
             },
             {
               "responseId": "en:lesson-06:session-47:intro1:r3",
-              "text": "This glove are mine."
+              "text": "I am snore in the tent."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-47:intro1:r1",
-              "text": "This glove is mine."
+              "text": "I snore in the tent."
             },
             {
               "responseId": "en:lesson-06:session-47:intro1:r2",
-              "text": "This glove is my."
+              "text": "I snores in the tent."
             },
             {
               "responseId": "en:lesson-06:session-47:intro1:r3",
-              "text": "This glove are mine."
+              "text": "I am snore in the tent."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите Анне «Эта перчатка моя».",
-          "uk": "Скажіть Анні «Ця рукавичка моя»."
+          "ru": "Друг спрашивает, кто шумел ночью. Скажите: «Я храплю в палатке».",
+          "uk": "Друг питає, хто шумів уночі. Скажіть: «Я хроплю в наметі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "А эти чьи",
-        "uk": "А ці чиї"
+        "ru": "Брат ушёл вперёд",
+        "uk": "Брат пішов уперед"
       },
       "bodyByLocale": {
-        "ru": "Рядом лежит другая пара. `gloves` — «перчатки»: к `glove` добавляем `s`. `Whose gloves are these?` — «Чьи это перчатки?» Для нескольких предметов — `are these`. Если показываете только на одну, вопрос будет `Whose glove is this?` — «Чья это перчатка?»",
-        "uk": "Поруч лежить інша пара. `gloves` — «рукавички»: до `glove` додаємо `s`. `Whose gloves are these?` — «Чиї це рукавички?» Для кількох предметів — `are these`. Якщо показуєте лише на одну, запитання буде `Whose glove is this?` — «Чия це рукавичка?»"
+        "ru": "Ваш брат встал раньше всех и ушёл вперёд: ему не терпится дойти до цели. Друг спрашивает, где он. Вы показываете на узкую дорожку между деревьями. trail — «тропа». Про брата говорим My brother walks on the trail — «Брат идёт по тропе». После brother к walk добавляем s: walks.",
+        "uk": "Ваш брат встав раніше за всіх і пішов уперед: йому не терпиться дійти до мети. Друг питає, де він. Ви показуєте на вузьку доріжку між деревами. trail — «стежка». Про брата кажемо My brother walks on the trail — «Брат іде стежкою». Після brother до walk додаємо s: walks."
       },
       "question": {
         "interactionId": "en:lesson-06:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите на пару и спросите «Чьи это перчатки?»",
-          "uk": "Покажіть на пару й запитайте «Чиї це рукавички?»"
+          "ru": "Друг спрашивает, где брат. Скажите: «Брат идёт по тропе».",
+          "uk": "Друг питає, де брат. Скажіть: «Брат іде стежкою»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-47:intro2:r1",
-              "text": "Whose gloves are these?"
+              "text": "My brother walks on the trail."
             },
             {
               "responseId": "en:lesson-06:session-47:intro2:r2",
-              "text": "Whose gloves is this?"
+              "text": "My brother walk on the trail."
             },
             {
               "responseId": "en:lesson-06:session-47:intro2:r3",
-              "text": "Who gloves are these?"
+              "text": "My brother is walks on the trail."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-47:intro2:r1",
-              "text": "Whose gloves are these?"
+              "text": "My brother walks on the trail."
             },
             {
               "responseId": "en:lesson-06:session-47:intro2:r2",
-              "text": "Whose gloves is this?"
+              "text": "My brother walk on the trail."
             },
             {
               "responseId": "en:lesson-06:session-47:intro2:r3",
-              "text": "Who gloves are these?"
+              "text": "My brother is walks on the trail."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите на пару и спросите «Чьи это перчатки?»",
-          "uk": "Покажіть на пару й запитайте «Чиї це рукавички?»"
+          "ru": "Друг спрашивает, где брат. Скажите: «Брат идёт по тропе».",
+          "uk": "Друг питає, де брат. Скажіть: «Брат іде стежкою»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Почему Том берёт перчатки",
-        "uk": "Чому Том бере рукавички"
+        "ru": "Вершина за холмом",
+        "uk": "Вершина за пагорбом"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, как Том обычно добирается на работу. `He cycles to work` — «Он ездит на работу на велосипеде». После `he` у `cycle` появляется `s`. `They cycle to work` — «Они ездят на работу на велосипеде»: после `they` остаётся `cycle`. Вы рассказываете о привычке, а не о движении в эту секунду.",
-        "uk": "Сусід запитує, як Том зазвичай дістається на роботу. `He cycles to work` — «Він їздить на роботу велосипедом». Після `he` у `cycle` з’являється `s`. `They cycle to work` — «Вони їздять на роботу велосипедом»: після `they` залишається `cycle`. Ви розповідаєте про звичку, а не про рух цієї секунди."
+        "ru": "Тропа привела вас на склон, и друг спрашивает, где же та самая вершина, ради которой вы вышли. Вы показываете рукой за холм: идти туда ещё около часа. summit — «вершина». Про одну вещь говорим is: The summit is behind the hill — «Вершина за холмом».",
+        "uk": "Стежка привела вас на схил, і друг питає, де ж та сама вершина, заради якої ви вирушили. Ви показуєте рукою за пагорб: іти туди ще близько години. summit — «вершина». Про одну річ кажемо is: The summit is behind the hill — «Вершина за пагорбом»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу о Томе «Он ездит на работу на велосипеде».",
-          "uk": "Дайте сусідові відповідь про Тома «Він їздить на роботу велосипедом»."
+          "ru": "Друг спрашивает, где вершина. Скажите: «Вершина за холмом».",
+          "uk": "Друг питає, де вершина. Скажіть: «Вершина за пагорбом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-47:intro3:r1",
-              "text": "He cycles to work."
+              "text": "The summit is behind the hill."
             },
             {
               "responseId": "en:lesson-06:session-47:intro3:r2",
-              "text": "He cycle to work."
+              "text": "The summit behind the hill."
             },
             {
               "responseId": "en:lesson-06:session-47:intro3:r3",
-              "text": "He is cycles to work."
+              "text": "The summit are behind the hill."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-47:intro3:r1",
-              "text": "He cycles to work."
+              "text": "The summit is behind the hill."
             },
             {
               "responseId": "en:lesson-06:session-47:intro3:r2",
-              "text": "He cycle to work."
+              "text": "The summit behind the hill."
             },
             {
               "responseId": "en:lesson-06:session-47:intro3:r3",
-              "text": "He is cycles to work."
+              "text": "The summit are behind the hill."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу о Томе «Он ездит на работу на велосипеде».",
-          "uk": "Дайте сусідові відповідь про Тома «Він їздить на роботу велосипедом»."
+          "ru": "Друг спрашивает, где вершина. Скажите: «Вершина за холмом».",
+          "uk": "Друг питає, де вершина. Скажіть: «Вершина за пагорбом»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "40d89ceb3bc80fa5626c41cc7a342e80ffdcf49c0041405f02efbde53c91aa32"
+  "introFingerprint": "7792cd075ba215e800f15451dfb3b5c6608e2761acb454098a3bf043316091f0"
 }

@@ -1,0 +1,2453 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-48:word:greet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — greet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:greet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — greet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:greet:audio",
+            "transcript": "greet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:greet:r1",
+              "targetText": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться. We greet the guests. — «Мы встречаем гостей». О том, как человек приветствует тех, кто пришёл.",
+                "uk": "зустрічати, вітатися. We greet the guests. — «Ми зустрічаємо гостей». Про те, як людина вітає тих, хто прийшов."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "greet",
+            "definitionByLocale": {
+              "ru": "встречать, здороваться. We greet the guests. — «Мы встречаем гостей». О том, как человек приветствует тех, кто пришёл.",
+              "uk": "зустрічати, вітатися. We greet the guests. — «Ми зустрічаємо гостей». Про те, як людина вітає тих, хто прийшов."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We greet guests.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»",
+            "uk": "Гість питає про вас із сусідкою. Скажіть: «Ми зустрічаємо гостей»"
+          },
+          "orderedTokens": [
+            "We",
+            "greet",
+            "guests"
+          ],
+          "authoredDistractorTokens": [
+            "greets"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `greet` — `We greet guests.`",
+                "uk": "тут потрібно `greet` — `We greet guests.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:host",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — host",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:host:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — host",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:host:audio",
+            "transcript": "host"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:host:r1",
+              "targetText": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника. The host is kind. — «Хозяин добрый». О том, кто устраивает праздник и принимает гостей.",
+                "uk": "господар свята. The host is kind. — «Господар добрий». Про того, хто влаштовує свято й приймає гостей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "host",
+            "definitionByLocale": {
+              "ru": "хозяин праздника. The host is kind. — «Хозяин добрый». О том, кто устраивает праздник и принимает гостей.",
+              "uk": "господар свята. The host is kind. — «Господар добрий». Про того, хто влаштовує свято й приймає гостей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостью",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i02:r1",
+            "text": "The host greets the guests."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r2",
+            "text": "The host feeds the guests."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r3",
+            "text": "The host greets the neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i02:audio",
+            "transcript": "The host greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i02:r1",
+              "targetText": "The host greets the guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r2",
+              "targetText": "The host feeds the guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r3",
+              "targetText": "The host greets the neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `greets`, встречает, а в этом варианте — `feeds`, кормит.",
+                "uk": "У записі дія — `greets`, зустрічає, а в цьому варіанті — `feeds`, годує."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `guests`, гости, а в этом варианте — `neighbours`, соседи.",
+                "uk": "У записі останнє слово — `guests`, гості, а в цьому варіанті — `neighbours`, сусіди."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i03:r1",
+            "text": "greets"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r2",
+            "text": "greet"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r3",
+            "text": "is greets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+            "uk": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The host ___ the guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i03:r1",
+              "text": "greets"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r2",
+              "text": "greet"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r3",
+              "text": "is greets"
+            }
+          ],
+          "testedDimension": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `the host` нужно `greets`, с `s`.",
+                "uk": "Після `the host` потрібно `greets`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `greets`, без `is`.",
+                "uk": "Кажемо `greets`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i04:p1",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p2",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p3",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p4",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "greet",
+            "host",
+            "garland",
+            "cake"
+          ],
+          "rightColumn": [
+            "встречать, здороваться",
+            "хозяин праздника",
+            "гирлянда",
+            "торт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостью и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i05:audio",
+            "transcript": "The host is at the gate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The host is at the gate.",
+          "orderedTokens": [
+            "The",
+            "host",
+            "is",
+            "at",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостью и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The host is at the gate.`",
+                "uk": "тут потрібно `is` — `The host is at the gate.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:garland",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — garland",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:garland:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — garland",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:garland:audio",
+            "transcript": "garland"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:garland:r1",
+              "targetText": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда. The garland is bright. — «Гирлянда яркая». О ряде огоньков или бумажных флажков для украшения.",
+                "uk": "гірлянда. The garland is bright. — «Гірлянда яскрава». Про ряд вогників чи паперових прапорців для прикраси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "garland",
+            "definitionByLocale": {
+              "ru": "гирлянда. The garland is bright. — «Гирлянда яркая». О ряде огоньков или бумажных флажков для украшения.",
+              "uk": "гірлянда. The garland is bright. — «Гірлянда яскрава». Про ряд вогників чи паперових прапорців для прикраси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость показывает на забор. Спросите: «Чья это гирлянда?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость показывает на забор. Спросите: «Чья это гирлянда?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose garland is this?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на забор. Спросите: «Чья это гирлянда?»",
+            "uk": "Гість показує на паркан. Спитайте: «Чия це гірлянда?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "garland",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гость показывает на забор. Спросите: «Чья это гирлянда?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose garland is this?`",
+                "uk": "тут потрібно `Whose` — `Whose garland is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, кто встречает гостей. Скажите: «Хозяин встречает гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i07:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, кто встречает гостей. Скажите: «Хозяин встречает гостей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i07:audio",
+            "transcript": "The host greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The host greets the guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i08:r1",
+            "text": "greet"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r2",
+            "text": "greets"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r3",
+            "text": "am greet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+            "uk": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i08:r1",
+              "text": "greet"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r2",
+              "text": "greets"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r3",
+              "text": "am greet"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `greet`, без `s`.",
+                "uk": "Після `I` потрібно `greet`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I greet`, без `am`.",
+                "uk": "Кажемо `I greet`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:cake",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:cake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:cake:audio",
+            "transcript": "cake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:cake:r1",
+              "targetText": "cake",
+              "meaningByLocale": {
+                "ru": "торт. The cake is sweet. — «Торт сладкий». О большом десерте для праздника.",
+                "uk": "торт. The cake is sweet. — «Торт солодкий». Про великий десерт для свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cake",
+            "definitionByLocale": {
+              "ru": "торт. The cake is sweet. — «Торт сладкий». О большом десерте для праздника.",
+              "uk": "торт. The cake is sweet. — «Торт солодкий». Про великий десерт для свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостью",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i09:r1",
+            "text": "The cake is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r2",
+            "text": "The cake is on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r3",
+            "text": "The garland is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i09:audio",
+            "transcript": "The cake is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i09:r1",
+              "targetText": "The cake is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r2",
+              "targetText": "The cake is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r3",
+              "targetText": "The garland is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `cake`, торт, а в этом варианте — `garland`, гирлянда.",
+                "uk": "У записі перше слово — `cake`, торт, а в цьому варіанті — `garland`, гірлянда."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i10:p1",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p2",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p3",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p4",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garland",
+            "host",
+            "cake",
+            "greet"
+          ],
+          "rightColumn": [
+            "гирлянда",
+            "хозяин праздника",
+            "торт",
+            "встречать, здороваться"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте гостью и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i11:audio",
+            "transcript": "They grill sausages in the yard."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They grill sausages in the yard.",
+          "orderedTokens": [
+            "They",
+            "grill",
+            "sausages",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "grills"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте гостью и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grill` — `They grill sausages in the yard.`",
+                "uk": "тут потрібно `grill` — `They grill sausages in the yard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете на стол. Скажите: «У хозяина есть торт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете на стол. Скажите: «У хозяина есть торт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The host has a cake.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на стол. Скажите: «У хозяина есть торт»",
+            "uk": "Ви показуєте на стіл. Скажіть: «У господаря є торт»"
+          },
+          "orderedTokens": [
+            "The",
+            "host",
+            "has",
+            "a",
+            "cake"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете на стол. Скажите: «У хозяина есть торт»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The host has a cake.`",
+                "uk": "тут потрібно `has` — `The host has a cake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость спрашивает, где торт. Скажите: «Торт на столе»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i13:audio"
+        ],
+        "accessibilityLabel": "Гость спрашивает, где торт. Скажите: «Торт на столе»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i13:audio",
+            "transcript": "The cake is on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cake is on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i14:r1",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r2",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r3",
+            "text": "is fishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i14:r1",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r2",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r3",
+              "text": "is fishes"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `my brother` нужно `fishes`, с `es`.",
+                "uk": "Після `my brother` потрібно `fishes`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `fishes`, без `is`.",
+                "uk": "Кажемо `fishes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте гостью",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i15:r1",
+            "text": "My sister arrives at five."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r2",
+            "text": "My sister leaves at five."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r3",
+            "text": "My brother arrives at five."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте гостью",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i15:audio",
+            "transcript": "My sister arrives at five."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i15:r1",
+              "targetText": "My sister arrives at five.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r2",
+              "targetText": "My sister leaves at five.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r3",
+              "targetText": "My brother arrives at five.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `arrives`, приезжает, а в этом варианте — `leaves`, уезжает.",
+                "uk": "У записі дія — `arrives`, приїжджає, а в цьому варіанті — `leaves`, виїжджає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте гостью",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `sister`, сестра, а в этом варианте — `brother`, брат.",
+                "uk": "У записі друге слово — `sister`, сестра, а в цьому варіанті — `brother`, брат."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i16:p1",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p2",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p3",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p4",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "host",
+            "cake",
+            "greet",
+            "garland"
+          ],
+          "rightColumn": [
+            "хозяин праздника",
+            "торт",
+            "встречать, здороваться",
+            "гирлянда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы стоите у калитки. Расскажите о дяде: «Он встречает гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Вы стоите у калитки. Расскажите о дяде: «Он встречает гостей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i17:audio",
+            "transcript": "He greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He greets the guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-48:word:greet",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — greet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:greet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — greet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:greet:audio",
+            "transcript": "greet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:greet:r1",
+              "targetText": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться. We greet the guests. — «Мы встречаем гостей». О том, как человек приветствует тех, кто пришёл.",
+                "uk": "зустрічати, вітатися. We greet the guests. — «Ми зустрічаємо гостей». Про те, як людина вітає тих, хто прийшов."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "greet",
+            "definitionByLocale": {
+              "ru": "встречать, здороваться. We greet the guests. — «Мы встречаем гостей». О том, как человек приветствует тех, кто пришёл.",
+              "uk": "зустрічати, вітатися. We greet the guests. — «Ми зустрічаємо гостей». Про те, як людина вітає тих, хто прийшов."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість питає про вас із сусідкою. Скажіть: «Ми зустрічаємо гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість питає про вас із сусідкою. Скажіть: «Ми зустрічаємо гостей»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We greet guests.",
+          "localizedMeaning": {
+            "ru": "Гость спрашивает о вас с соседкой. Скажите: «Мы встречаем гостей»",
+            "uk": "Гість питає про вас із сусідкою. Скажіть: «Ми зустрічаємо гостей»"
+          },
+          "orderedTokens": [
+            "We",
+            "greet",
+            "guests"
+          ],
+          "authoredDistractorTokens": [
+            "greets"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість питає про вас із сусідкою. Скажіть: «Ми зустрічаємо гостей»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `greet` — `We greet guests.`",
+                "uk": "тут потрібно `greet` — `We greet guests.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:host",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — host",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:host:audio"
+        ],
+        "accessibilityLabel": "Картка слова — host",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:host:audio",
+            "transcript": "host"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:host:r1",
+              "targetText": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника. The host is kind. — «Хозяин добрый». О том, кто устраивает праздник и принимает гостей.",
+                "uk": "господар свята. The host is kind. — «Господар добрий». Про того, хто влаштовує свято й приймає гостей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "host",
+            "definitionByLocale": {
+              "ru": "хозяин праздника. The host is kind. — «Хозяин добрый». О том, кто устраивает праздник и принимает гостей.",
+              "uk": "господар свята. The host is kind. — «Господар добрий». Про того, хто влаштовує свято й приймає гостей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i02:r1",
+            "text": "The host greets the guests."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r2",
+            "text": "The host feeds the guests."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i02:r3",
+            "text": "The host greets the neighbours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i02:audio",
+            "transcript": "The host greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i02:r1",
+              "targetText": "The host greets the guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r2",
+              "targetText": "The host feeds the guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r3",
+              "targetText": "The host greets the neighbours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `greets`, встречает, а в этом варианте — `feeds`, кормит.",
+                "uk": "У записі дія — `greets`, зустрічає, а в цьому варіанті — `feeds`, годує."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `guests`, гости, а в этом варианте — `neighbours`, соседи.",
+                "uk": "У записі останнє слово — `guests`, гості, а в цьому варіанті — `neighbours`, сусіди."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i03:r1",
+            "text": "greets"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r2",
+            "text": "greet"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i03:r3",
+            "text": "is greets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о хозяине: «Хозяин встречает гостей». Выберите слово",
+            "uk": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The host ___ the guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i03:r1",
+              "text": "greets"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r2",
+              "text": "greet"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r3",
+              "text": "is greets"
+            }
+          ],
+          "testedDimension": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `the host` нужно `greets`, с `s`.",
+                "uk": "Після `the host` потрібно `greets`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про господаря: «Господар зустрічає гостей». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `greets`, без `is`.",
+                "uk": "Кажемо `greets`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i04:p1",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p2",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p3",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i04:p4",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "greet",
+            "host",
+            "garland",
+            "cake"
+          ],
+          "rightColumn": [
+            "зустрічати, вітатися",
+            "господар свята",
+            "гірлянда",
+            "торт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i05:audio",
+            "transcript": "The host is at the gate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The host is at the gate.",
+          "orderedTokens": [
+            "The",
+            "host",
+            "is",
+            "at",
+            "the",
+            "gate"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The host is at the gate.`",
+                "uk": "тут потрібно `is` — `The host is at the gate.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:garland",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — garland",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:garland:audio"
+        ],
+        "accessibilityLabel": "Картка слова — garland",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:garland:audio",
+            "transcript": "garland"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:garland:r1",
+              "targetText": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда. The garland is bright. — «Гирлянда яркая». О ряде огоньков или бумажных флажков для украшения.",
+                "uk": "гірлянда. The garland is bright. — «Гірлянда яскрава». Про ряд вогників чи паперових прапорців для прикраси."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "garland",
+            "definitionByLocale": {
+              "ru": "гирлянда. The garland is bright. — «Гирлянда яркая». О ряде огоньков или бумажных флажков для украшения.",
+              "uk": "гірлянда. The garland is bright. — «Гірлянда яскрава». Про ряд вогників чи паперових прапорців для прикраси."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість показує на паркан. Спитайте: «Чия це гірлянда?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість показує на паркан. Спитайте: «Чия це гірлянда?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose garland is this?",
+          "localizedMeaning": {
+            "ru": "Гость показывает на забор. Спросите: «Чья это гирлянда?»",
+            "uk": "Гість показує на паркан. Спитайте: «Чия це гірлянда?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "garland",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Гість показує на паркан. Спитайте: «Чия це гірлянда?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose garland is this?`",
+                "uk": "тут потрібно `Whose` — `Whose garland is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, хто зустрічає гостей. Скажіть: «Господар зустрічає гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i07:audio"
+        ],
+        "accessibilityLabel": "Гість питає, хто зустрічає гостей. Скажіть: «Господар зустрічає гостей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i07:audio",
+            "transcript": "The host greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The host greets the guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i08:r1",
+            "text": "greet"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r2",
+            "text": "greets"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i08:r3",
+            "text": "am greet"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я встречаю гостей». Выберите слово",
+            "uk": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i08:r1",
+              "text": "greet"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r2",
+              "text": "greets"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r3",
+              "text": "am greet"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `greet`, без `s`.",
+                "uk": "Після `I` потрібно `greet`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я зустрічаю гостей». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I greet`, без `am`.",
+                "uk": "Кажемо `I greet`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:word:cake",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:word:cake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:word:cake:audio",
+            "transcript": "cake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:word:cake:r1",
+              "targetText": "cake",
+              "meaningByLocale": {
+                "ru": "торт. The cake is sweet. — «Торт сладкий». О большом десерте для праздника.",
+                "uk": "торт. The cake is sweet. — «Торт солодкий». Про великий десерт для свята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cake",
+            "definitionByLocale": {
+              "ru": "торт. The cake is sweet. — «Торт сладкий». О большом десерте для праздника.",
+              "uk": "торт. The cake is sweet. — «Торт солодкий». Про великий десерт для свята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i09:r1",
+            "text": "The cake is on the table."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r2",
+            "text": "The cake is on the bench."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i09:r3",
+            "text": "The garland is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i09:audio",
+            "transcript": "The cake is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i09:r1",
+              "targetText": "The cake is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r2",
+              "targetText": "The cake is on the bench.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r3",
+              "targetText": "The garland is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, стол, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі останнє слово — `table`, стіл, а в цьому варіанті — `bench`, лавка."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `cake`, торт, а в этом варианте — `garland`, гирлянда.",
+                "uk": "У записі перше слово — `cake`, торт, а в цьому варіанті — `garland`, гірлянда."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i10:p1",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p2",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p3",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i10:p4",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "garland",
+            "host",
+            "cake",
+            "greet"
+          ],
+          "rightColumn": [
+            "гірлянда",
+            "господар свята",
+            "торт",
+            "зустрічати, вітатися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте гостю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i11:audio",
+            "transcript": "They grill sausages in the yard."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They grill sausages in the yard.",
+          "orderedTokens": [
+            "They",
+            "grill",
+            "sausages",
+            "in",
+            "the",
+            "yard"
+          ],
+          "authoredDistractorTokens": [
+            "grills"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте гостю й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `grill` — `They grill sausages in the yard.`",
+                "uk": "тут потрібно `grill` — `They grill sausages in the yard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте на стіл. Скажіть: «У господаря є торт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте на стіл. Скажіть: «У господаря є торт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The host has a cake.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на стол. Скажите: «У хозяина есть торт»",
+            "uk": "Ви показуєте на стіл. Скажіть: «У господаря є торт»"
+          },
+          "orderedTokens": [
+            "The",
+            "host",
+            "has",
+            "a",
+            "cake"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте на стіл. Скажіть: «У господаря є торт»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The host has a cake.`",
+                "uk": "тут потрібно `has` — `The host has a cake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість питає, де торт. Скажіть: «Торт на столі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i13:audio"
+        ],
+        "accessibilityLabel": "Гість питає, де торт. Скажіть: «Торт на столі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i13:audio",
+            "transcript": "The cake is on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The cake is on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i14:r1",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r2",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i14:r3",
+            "text": "is fishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-48:i14:r1",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r2",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r3",
+              "text": "is fishes"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `my brother` нужно `fishes`, с `es`.",
+                "uk": "Після `my brother` потрібно `fishes`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `fishes`, без `is`.",
+                "uk": "Кажемо `fishes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте гостю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-48:i15:r1",
+            "text": "My sister arrives at five."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r2",
+            "text": "My sister leaves at five."
+          },
+          {
+            "responseId": "en:lesson-06:session-48:i15:r3",
+            "text": "My brother arrives at five."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте гостю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i15:audio",
+            "transcript": "My sister arrives at five."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-48:i15:r1",
+              "targetText": "My sister arrives at five.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r2",
+              "targetText": "My sister leaves at five.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r3",
+              "targetText": "My brother arrives at five.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-48:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `arrives`, приезжает, а в этом варианте — `leaves`, уезжает.",
+                "uk": "У записі дія — `arrives`, приїжджає, а в цьому варіанті — `leaves`, виїжджає."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-48:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте гостю",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `sister`, сестра, а в этом варианте — `brother`, брат.",
+                "uk": "У записі друге слово — `sister`, сестра, а в цьому варіанті — `brother`, брат."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-48:i16:p1",
+              "target": "host",
+              "meaningByLocale": {
+                "ru": "хозяин праздника",
+                "uk": "господар свята"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p2",
+              "target": "cake",
+              "meaningByLocale": {
+                "ru": "торт",
+                "uk": "торт"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p3",
+              "target": "greet",
+              "meaningByLocale": {
+                "ru": "встречать, здороваться",
+                "uk": "зустрічати, вітатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-48:i16:p4",
+              "target": "garland",
+              "meaningByLocale": {
+                "ru": "гирлянда",
+                "uk": "гірлянда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "host",
+            "cake",
+            "greet",
+            "garland"
+          ],
+          "rightColumn": [
+            "господар свята",
+            "торт",
+            "зустрічати, вітатися",
+            "гірлянда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-48:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви стоїте біля хвіртки. Розкажіть про дядька: «Він зустрічає гостей»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Ви стоїте біля хвіртки. Розкажіть про дядька: «Він зустрічає гостей»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-48:i17:audio",
+            "transcript": "He greets the guests."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He greets the guests.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-48:word:greet",
+      "correctText": "greet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i01",
+      "correctText": "We greet guests.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:word:host",
+      "correctText": "host",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i02",
+      "correctText": "The host greets the guests.",
+      "correctResponseId": "en:lesson-06:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i03",
+      "correctText": "greets",
+      "correctResponseId": "en:lesson-06:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i05",
+      "correctText": "The host is at the gate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:word:garland",
+      "correctText": "garland",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i06",
+      "correctText": "Whose garland is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i07",
+      "correctText": "The host greets the guests.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i08",
+      "correctText": "greet",
+      "correctResponseId": "en:lesson-06:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:word:cake",
+      "correctText": "cake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i09",
+      "correctText": "The cake is on the table.",
+      "correctResponseId": "en:lesson-06:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i11",
+      "correctText": "They grill sausages in the yard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i12",
+      "correctText": "The host has a cake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i13",
+      "correctText": "The cake is on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i14",
+      "correctText": "fishes",
+      "correctResponseId": "en:lesson-06:session-48:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i15",
+      "correctText": "My sister arrives at five.",
+      "correctResponseId": "en:lesson-06:session-48:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-48:i17",
+      "correctText": "He greets the guests.",
+      "correctResponseId": null
+    }
+  ]
+}

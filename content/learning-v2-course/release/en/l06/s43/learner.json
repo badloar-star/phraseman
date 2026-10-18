@@ -4,30 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-06:session-43:i01",
+      "interactionId": "en:lesson-06:session-43:word:grow",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:word:grow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:word:grow:audio",
+          "transcript": "grow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:word:grow:r1",
+            "targetText": "grow",
+            "meaningByLocale": {
+              "ru": "выращивать, расти. We grow flowers in the kitchen. — «Мы выращиваем цветы на кухне». О том, как человек растит растения.",
+              "uk": "вирощувати, рости. We grow flowers in the kitchen. — «Ми вирощуємо квіти на кухні». Про те, як людина росить рослини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grow",
+          "definitionByLocale": {
+            "ru": "выращивать, расти. We grow flowers in the kitchen. — «Мы выращиваем цветы на кухне». О том, как человек растит растения.",
+            "uk": "вирощувати, рости. We grow flowers in the kitchen. — «Ми вирощуємо квіти на кухні». Про те, як людина росить рослини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я говорю по-английски»",
+      "prompt": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я говорю по-английски»",
+      "accessibilityLabel": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I speak English.",
+        "targetPhrase": "We grow flowers on the balcony.",
         "localizedMeaning": {
-          "ru": "Скажите «Я говорю по-английски»",
-          "uk": "Скажіть «Я говорю англійською»"
+          "ru": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
+          "uk": "Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»"
         },
         "orderedTokens": [
-          "I",
-          "speak",
-          "English"
+          "We",
+          "grow",
+          "flowers",
+          "on",
+          "the",
+          "balcony"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "grows"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед спрашивает о вас с соседкой. Скажите: «Мы выращиваем цветы на балконе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `grow` — `We grow flowers on the balcony.`",
+              "uk": "тут потрібно `grow` — `We grow flowers on the balcony.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,51 +95,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i02:r1",
-          "text": "speak"
+          "text": "She grows flowers on the balcony."
         },
         {
           "responseId": "en:lesson-06:session-43:i02:r2",
-          "text": "sleep"
+          "text": "She grows flowers in the kitchen."
         },
         {
           "responseId": "en:lesson-06:session-43:i02:r3",
-          "text": "share"
+          "text": "He grows flowers on the balcony."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i02:audio",
-          "transcript": "speak"
+          "transcript": "She grows flowers on the balcony."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-43:i02:r1",
-            "targetText": "speak",
+            "targetText": "She grows flowers on the balcony.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i02:r2",
-            "targetText": "sleep",
+            "targetText": "She grows flowers in the kitchen.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i02:r3",
-            "targetText": "share",
+            "targetText": "He grows flowers on the balcony.",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +148,19 @@
           {
             "responseId": "en:lesson-06:session-43:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `speak`, а в этом варианте — `sleep`.",
-              "uk": "У записі перше слово — `speak`, а в цьому варіанті — `sleep`."
+              "ru": "В записи последнее слово — `balcony`, балкон, а в этом варианте — `kitchen`, кухня.",
+              "uk": "У записі останнє слово — `balcony`, балкон, а в цьому варіанті — `kitchen`, кухня."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `speak`, а в этом варианте — `share`.",
-              "uk": "У записі перше слово — `speak`, а в цьому варіанті — `share`."
+              "ru": "В записи первое слово — `She`, она, а в этом варианте — `He`, он.",
+              "uk": "У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він."
             }
           }
         ],
@@ -113,67 +171,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она говорит по-английски»",
+      "prompt": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i03:r1",
-          "text": "speaks"
+          "text": "grows"
         },
         {
           "responseId": "en:lesson-06:session-43:i03:r2",
-          "text": "speak"
+          "text": "grow"
         },
         {
           "responseId": "en:lesson-06:session-43:i03:r3",
-          "text": "is speaks"
+          "text": "is grows"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она говорит по-английски»",
+      "accessibilityLabel": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она говорит по-английски»",
-          "uk": "Скажіть «Вона говорить англійською»"
+          "ru": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
+          "uk": "Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ English.",
+        "gappedTargetPhrase": "She ___ flowers on the balcony.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-43:i03:r1",
-            "text": "speaks"
+            "text": "grows"
           },
           {
             "responseId": "en:lesson-06:session-43:i03:r2",
-            "text": "speak"
+            "text": "grow"
           },
           {
             "responseId": "en:lesson-06:session-43:i03:r3",
-            "text": "is speaks"
+            "text": "is grows"
           }
         ],
-        "testedDimension": "Скажите «Она говорит по-английски»",
+        "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она говорит по-английски»",
+            "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `she` — `speaks`.",
-              "uk": "Після `she` — `speaks`."
+              "ru": "После `she` нужно `grows`, с `s`.",
+              "uk": "Після `she` потрібно `grows`, з `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она говорит по-английски»",
+            "testedDimension": "Скажите о соседке: «Она выращивает цветы на балконе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `She speaks`, без `is`.",
-              "uk": "Потрібно `She speaks`, без `is`."
+              "ru": "Говорим `She grows`, без `is`.",
+              "uk": "Кажемо `She grows`, без `is`."
             }
           }
         ]
@@ -182,62 +240,62 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-43:i04:p1",
-            "target": "speak",
+            "target": "grow",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "выращивать, расти",
+              "uk": "вирощувати, рости"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i04:p2",
-            "target": "uncertain",
+            "target": "seed",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "семя",
+              "uk": "насінина"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i04:p3",
-            "target": "recycling bin",
+            "target": "soil",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "земля, почва",
+              "uk": "земля, ґрунт"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i04:p4",
-            "target": "sleep",
+            "target": "sprout",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "росток",
+              "uk": "паросток"
             }
           }
         ],
         "leftColumn": [
-          "speak",
-          "uncertain",
-          "recycling bin",
-          "sleep"
+          "grow",
+          "seed",
+          "soil",
+          "sprout"
         ],
         "rightColumn": [
-          "говорить",
-          "неуверенный",
-          "контейнер для переработки",
-          "спать"
+          "выращивать, расти",
+          "семя",
+          "земля, почва",
+          "росток"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,33 +312,91 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-43:word:seed",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:word:seed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:word:seed:audio",
+          "transcript": "seed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:word:seed:r1",
+            "targetText": "seed",
+            "meaningByLocale": {
+              "ru": "семя. The seed is small. — «Семя маленькое». О том, из чего вырастает растение.",
+              "uk": "насінина. The seed is small. — «Насінина маленька». Про те, з чого виростає рослина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seed",
+          "definitionByLocale": {
+            "ru": "семя. The seed is small. — «Семя маленькое». О том, из чего вырастает растение.",
+            "uk": "насінина. The seed is small. — «Насінина маленька». Про те, з чого виростає рослина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-43:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i05:audio",
-          "transcript": "Anna speaks English."
+          "transcript": "The seed is in the pot."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna speaks English.",
+        "hiddenTargetPhrase": "The seed is in the pot.",
         "orderedTokens": [
-          "Anna",
-          "speaks",
-          "English"
+          "The",
+          "seed",
+          "is",
+          "in",
+          "the",
+          "pot"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседа и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The seed is in the pot.`",
+              "uk": "тут потрібно `is` — `The seed is in the pot.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +405,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-06:session-43:word:soil",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:word:soil:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:word:soil:audio",
+          "transcript": "soil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:word:soil:r1",
+            "targetText": "soil",
+            "meaningByLocale": {
+              "ru": "земля, почва. The soil is wet. — «Земля влажная». О земле, в которой растут цветы.",
+              "uk": "земля, ґрунт. The soil is wet. — «Земля волога». Про землю, у якій ростуть квіти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soil",
+          "definitionByLocale": {
+            "ru": "земля, почва. The soil is wet. — «Земля влажная». О земле, в которой растут цветы.",
+            "uk": "земля, ґрунт. The soil is wet. — «Земля волога». Про землю, у якій ростуть квіти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-06:session-43:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Кот спит здесь»",
+      "prompt": "Сосед показывает на мешок. Спросите: «Чья это земля?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Кот спит здесь»",
+      "accessibilityLabel": "Сосед показывает на мешок. Спросите: «Чья это земля?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cat sleeps here.",
+        "targetPhrase": "Whose soil is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Кот спит здесь»",
-          "uk": "Скажіть «Кіт спить тут»"
+          "ru": "Сосед показывает на мешок. Спросите: «Чья это земля?»",
+          "uk": "Сусід показує на мішок. Спитайте: «Чия це земля?»"
         },
         "orderedTokens": [
-          "The",
-          "cat",
-          "sleeps",
-          "here"
+          "Whose",
+          "soil",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Сосед показывает на мешок. Спросите: «Чья это земля?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose soil is this?`",
+              "uk": "тут потрібно `Whose` — `Whose soil is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +494,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы не знаете точного времени встречи. Скажите «Я не уверен»",
+      "prompt": "Сосед спрашивает, откуда у соседки цветы. Скажите: «Она выращивает цветы из семян»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Вы не знаете точного времени встречи. Скажите «Я не уверен»",
+      "accessibilityLabel": "Сосед спрашивает, откуда у соседки цветы. Скажите: «Она выращивает цветы из семян»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i07:audio",
-          "transcript": "I am uncertain."
+          "transcript": "She grows flowers from seeds."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am uncertain.",
+        "targetPhrase": "She grows flowers from seeds.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,67 +527,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+      "prompt": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i08:r1",
-          "text": "speak"
+          "text": "grow"
         },
         {
           "responseId": "en:lesson-06:session-43:i08:r2",
-          "text": "speaks"
+          "text": "grows"
         },
         {
           "responseId": "en:lesson-06:session-43:i08:r3",
-          "text": "are speak"
+          "text": "am grow"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+      "accessibilityLabel": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
-          "uk": "Сусід запитує, чи знають Анна й Том англійську. Дайте відповідь «Вони говорять англійською»"
+          "ru": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
+          "uk": "Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ English.",
+        "gappedTargetPhrase": "I ___ flowers on the balcony.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-43:i08:r1",
-            "text": "speak"
+            "text": "grow"
           },
           {
             "responseId": "en:lesson-06:session-43:i08:r2",
-            "text": "speaks"
+            "text": "grows"
           },
           {
             "responseId": "en:lesson-06:session-43:i08:r3",
-            "text": "are speak"
+            "text": "am grow"
           }
         ],
-        "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+        "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+            "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `they` — `speak`, без `s`.",
-              "uk": "Після `they` — `speak`, без `s`."
+              "ru": "После `I` нужно `grow`, без `s`.",
+              "uk": "Після `I` потрібно `grow`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Сосед спрашивает, знают ли Анна и Том английский. Ответьте «Они говорят по-английски»",
+            "testedDimension": "Скажите о себе: «Я выращиваю цветы на балконе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `They speak`, без `are`.",
-              "uk": "Потрібно `They speak`, без `are`."
+              "ru": "Говорим `I grow`, без `am`.",
+              "uk": "Кажемо `I grow`, без `am`."
             }
           }
         ]
@@ -424,52 +595,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-06:session-43:i09",
-      "ordinal": 12,
+      "interactionId": "en:lesson-06:session-43:word:sprout",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какой этот контейнер",
+      "prompt": "Карточка слова — sprout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-06:session-43:word:sprout:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sprout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-06:session-43:word:sprout:audio",
+          "transcript": "sprout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-06:session-43:word:sprout:r1",
+            "targetText": "sprout",
+            "meaningByLocale": {
+              "ru": "росток. The sprout is new. — «Росток новый». О первом маленьком побеге из семени.",
+              "uk": "паросток. The sprout is new. — «Паросток новий». Про перший маленький пагінець із насінини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sprout",
+          "definitionByLocale": {
+            "ru": "росток. The sprout is new. — «Росток новый». О первом маленьком побеге из семени.",
+            "uk": "паросток. The sprout is new. — «Паросток новий». Про перший маленький пагінець із насінини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-43:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте соседку",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i09:r1",
-          "text": "This recycling bin is new."
+          "text": "The sprout is in the pot."
         },
         {
           "responseId": "en:lesson-06:session-43:i09:r2",
-          "text": "This recycling bin is old."
+          "text": "The sprout is in the box."
         },
         {
           "responseId": "en:lesson-06:session-43:i09:r3",
-          "text": "This recycling bin is small."
+          "text": "The seed is in the pot."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какой этот контейнер",
+      "accessibilityLabel": "Послушайте соседку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i09:audio",
-          "transcript": "This recycling bin is new."
+          "transcript": "The sprout is in the pot."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-43:i09:r1",
-            "targetText": "This recycling bin is new.",
+            "targetText": "The sprout is in the pot.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i09:r2",
-            "targetText": "This recycling bin is old.",
+            "targetText": "The sprout is in the box.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i09:r3",
-            "targetText": "This recycling bin is small.",
+            "targetText": "The seed is in the pot.",
             "meaningByLocale": null
           }
         ],
@@ -478,19 +692,19 @@
           {
             "responseId": "en:lesson-06:session-43:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какой этот контейнер",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `old`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `old`."
+              "ru": "В записи последнее слово — `pot`, горшок, а в этом варианте — `box`, коробка.",
+              "uk": "У записі останнє слово — `pot`, горщик, а в цьому варіанті — `box`, коробка."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какой этот контейнер",
+            "testedDimension": "Послушайте соседку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `new`, а в этом варианте — `small`.",
-              "uk": "У записі останнє слово — `new`, а в цьому варіанті — `small`."
+              "ru": "В записи первое слово — `sprout`, росток, а в этом варианте — `seed`, семя.",
+              "uk": "У записі перше слово — `sprout`, паросток, а в цьому варіанті — `seed`, насінина."
             }
           }
         ],
@@ -501,62 +715,62 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-43:i10:p1",
-            "target": "speak",
+            "target": "soil",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "земля, почва",
+              "uk": "земля, ґрунт"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i10:p2",
-            "target": "sleep",
+            "target": "sprout",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "росток",
+              "uk": "паросток"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i10:p3",
-            "target": "recycling bin",
+            "target": "seed",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "семя",
+              "uk": "насінина"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i10:p4",
-            "target": "uncertain",
+            "target": "grow",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "выращивать, расти",
+              "uk": "вирощувати, рости"
             }
           }
         ],
         "leftColumn": [
-          "speak",
-          "sleep",
-          "recycling bin",
-          "uncertain"
+          "soil",
+          "sprout",
+          "seed",
+          "grow"
         ],
         "rightColumn": [
-          "говорить",
-          "спать",
-          "контейнер для переработки",
-          "неуверенный"
+          "земля, почва",
+          "росток",
+          "семя",
+          "выращивать, расти"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,43 +788,44 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i11:audio",
-          "transcript": "The recycling bin is here."
+          "transcript": "They grow flowers in the pot."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The recycling bin is here.",
+        "hiddenTargetPhrase": "They grow flowers in the pot.",
         "orderedTokens": [
-          "The",
-          "recycling",
-          "bin",
-          "is",
-          "here"
+          "They",
+          "grow",
+          "flowers",
+          "in",
+          "the",
+          "pot"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "grows"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-06:session-43:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте соседку и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The recycling bin is here.`",
-              "uk": "тут потрібно `is` — `The recycling bin is here.`"
+              "ru": "здесь нужно `grow` — `They grow flowers in the pot.`",
+              "uk": "тут потрібно `grow` — `They grow flowers in the pot.`"
             }
           }
         ],
@@ -623,30 +838,42 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
+      "prompt": "Вы показываете на подоконник. Скажите: «У меня есть росток»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
+      "accessibilityLabel": "Вы показываете на подоконник. Скажите: «У меня есть росток»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Whose laptop is this?",
+        "targetPhrase": "I have a sprout.",
         "localizedMeaning": {
-          "ru": "После встречи остался ноутбук. Спросите «Чей это ноутбук?»",
-          "uk": "Після зустрічі залишився ноутбук. Запитайте «Чий це ноутбук?»"
+          "ru": "Вы показываете на подоконник. Скажите: «У меня есть росток»",
+          "uk": "Ви показуєте на підвіконня. Скажіть: «У мене є паросток»"
         },
         "orderedTokens": [
-          "Whose",
-          "laptop",
-          "is",
-          "this"
+          "I",
+          "have",
+          "a",
+          "sprout"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-06:session-43:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы показываете на подоконник. Скажите: «У меня есть росток»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `I have a sprout.`",
+              "uk": "тут потрібно `have` — `I have a sprout.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -656,25 +883,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Они спят здесь»",
+      "prompt": "Сосед спрашивает, что в горшке. Скажите: «Росток в горшке»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i13:audio"
       ],
-      "accessibilityLabel": "Скажите «Они спят здесь»",
+      "accessibilityLabel": "Сосед спрашивает, что в горшке. Скажите: «Росток в горшке»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i13:audio",
-          "transcript": "They sleep here."
+          "transcript": "The sprout is in the pot."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They sleep here.",
+        "targetPhrase": "The sprout is in the pot.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -689,67 +916,67 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Том говорит по-английски»",
+      "prompt": "Скажите о земле: «Земля влажная». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i14:r1",
-          "text": "speaks"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-06:session-43:i14:r2",
-          "text": "speak"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-06:session-43:i14:r3",
-          "text": "is speaks"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том говорит по-английски»",
+      "accessibilityLabel": "Скажите о земле: «Земля влажная». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том говорит по-английски»",
-          "uk": "Скажіть «Том говорить англійською»"
+          "ru": "Скажите о земле: «Земля влажная». Выберите слово",
+          "uk": "Скажіть про землю: «Земля волога». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ English.",
+        "gappedTargetPhrase": "The soil ___ wet.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-43:i14:r1",
-            "text": "speaks"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-06:session-43:i14:r2",
-            "text": "speak"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-06:session-43:i14:r3",
-            "text": "is speaks"
+            "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Том говорит по-английски»",
+        "testedDimension": "Скажите о земле: «Земля влажная». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Том говорит по-английски»",
+            "testedDimension": "Скажите о земле: «Земля влажная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Том — он: `Tom speaks`.",
-              "uk": "Том — він: `Tom speaks`."
+              "ru": "Земля — одно слово, поэтому нужно `is`, а не `are`.",
+              "uk": "Земля — одне слово, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Том говорит по-английски»",
+            "testedDimension": "Скажите о земле: «Земля влажная». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Нужно `Tom speaks`, без `is`.",
-              "uk": "Потрібно `Tom speaks`, без `is`."
+              "ru": "`am` бывает только после `I`; про землю говорим `is`.",
+              "uk": "`am` буває лише після `I`; про землю кажемо `is`."
             }
           }
         ]
@@ -758,51 +985,51 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-43:i15:r1",
-          "text": "We speak English."
+          "text": "I have a sprout."
         },
         {
           "responseId": "en:lesson-06:session-43:i15:r2",
-          "text": "They speak English."
+          "text": "I have a seed."
         },
         {
           "responseId": "en:lesson-06:session-43:i15:r3",
-          "text": "You speak English."
+          "text": "You have a sprout."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i15:audio",
-          "transcript": "We speak English."
+          "transcript": "I have a sprout."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-06:session-43:i15:r1",
-            "targetText": "We speak English.",
+            "targetText": "I have a sprout.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i15:r2",
-            "targetText": "They speak English.",
+            "targetText": "I have a seed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-06:session-43:i15:r3",
-            "targetText": "You speak English.",
+            "targetText": "You have a sprout.",
             "meaningByLocale": null
           }
         ],
@@ -811,19 +1038,19 @@
           {
             "responseId": "en:lesson-06:session-43:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `They`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `They`."
+              "ru": "В записи последнее слово — `sprout`, росток, а в этом варианте — `seed`, семя.",
+              "uk": "У записі останнє слово — `sprout`, паросток, а в цьому варіанті — `seed`, насінина."
             }
           },
           {
             "responseId": "en:lesson-06:session-43:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `We`, а в этом варианте — `You`.",
-              "uk": "У записі перше слово — `We`, а в цьому варіанті — `You`."
+              "ru": "В записи первое слово — `I`, я, а в этом варианте — `You`, ты.",
+              "uk": "У записі перше слово — `I`, я, а в цьому варіанті — `You`, ти."
             }
           }
         ],
@@ -834,62 +1061,62 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями; uncertain — о человеке",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями; uncertain — о человеке",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-06:session-43:i16:p1",
-            "target": "speak",
+            "target": "sprout",
             "meaningByLocale": {
-              "ru": "говорить",
-              "uk": "говорити"
+              "ru": "росток",
+              "uk": "паросток"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i16:p2",
-            "target": "recycling bin",
+            "target": "grow",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "выращивать, расти",
+              "uk": "вирощувати, рости"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i16:p3",
-            "target": "uncertain",
+            "target": "soil",
             "meaningByLocale": {
-              "ru": "неуверенный",
-              "uk": "невпевнений"
+              "ru": "земля, почва",
+              "uk": "земля, ґрунт"
             }
           },
           {
             "pairId": "en:lesson-06:session-43:i16:p4",
-            "target": "sleep",
+            "target": "seed",
             "meaningByLocale": {
-              "ru": "спать",
-              "uk": "спати"
+              "ru": "семя",
+              "uk": "насінина"
             }
           }
         ],
         "leftColumn": [
-          "speak",
-          "recycling bin",
-          "uncertain",
-          "sleep"
+          "sprout",
+          "grow",
+          "soil",
+          "seed"
         ],
         "rightColumn": [
-          "говорить",
-          "контейнер для переработки",
-          "неуверенный",
-          "спать"
+          "росток",
+          "выращивать, расти",
+          "земля, почва",
+          "семя"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -907,25 +1134,25 @@
     },
     {
       "interactionId": "en:lesson-06:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сосед спрашивает, на каком языке можно обратиться к Анне. Ответьте «Она говорит по-английски»",
+      "prompt": "Вы разговариваете с соседом. Расскажите о брате: «Он выращивает цветы на балконе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-06:session-43:i17:audio"
       ],
-      "accessibilityLabel": "Сосед спрашивает, на каком языке можно обратиться к Анне. Ответьте «Она говорит по-английски»",
+      "accessibilityLabel": "Вы разговариваете с соседом. Расскажите о брате: «Он выращивает цветы на балконе»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-06:session-43:i17:audio",
-          "transcript": "She speaks English."
+          "transcript": "He grows flowers on the balcony."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She speaks English.",
+        "targetPhrase": "He grows flowers on the balcony.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -947,11 +1174,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f8c175785678411e2424e09a3df8d7a5e3a66c23d63345967df8f14861e337ee"
+  "learnerFingerprint": "7b844fdbfc739cca7e1f5fd7cc058a6ed573e07bd7526745573bc9aa95ff1c71"
 }

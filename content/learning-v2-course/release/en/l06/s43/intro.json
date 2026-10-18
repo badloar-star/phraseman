@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-43",
   "learningOutcomeByLocale": {
-    "ru": "сказать, на каком языке вы говорите, и рассказать о другом человеке",
-    "uk": "сказати, якою мовою ви говорите, й розповісти про іншу людину"
+    "ru": "рассказать, кто выращивает цветы, и сказать, что с землёй и ростком",
+    "uk": "розповісти, хто вирощує квіти, і сказати, що з землею та паростком"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-06:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Я говорю по-английски",
-        "uk": "Я говорю англійською"
+        "ru": "Горшки на балконе",
+        "uk": "Горщики на балконі"
       },
       "bodyByLocale": {
-        "ru": "Новый сосед не знает, на каком языке к вам обратиться. `speak` — «говорить». `I speak English` — «Я говорю по-английски». Название языка идёт сразу после `speak`: здесь не нужно переводить русское «по-» отдельным словом. Можно говорить по-английски с ошибками — для этой фразы идеальный акцент не требуется.",
-        "uk": "Новий сусід не знає, якою мовою до вас звернутися. `speak` — «говорити». `I speak English` — «Я говорю англійською». Назва мови йде одразу після `speak`: між ними не потрібне додаткове слово. Можна говорити англійською з помилками — для цієї фрази ідеальна вимова не потрібна."
+        "ru": "Сосед снизу видит на вашем балконе ряд горшков и спрашивает, что вы там делаете. Вы объясняете: каждую весну вы возитесь с цветами. grow — «выращивать». Про себя говорим I grow flowers on the balcony — «Я выращиваю цветы на балконе». После I слово остаётся grow, без s.",
+        "uk": "Сусід знизу бачить на вашому балконі ряд горщиків і питає, що ви там робите. Ви пояснюєте: щовесни ви порпаєтеся з квітами. grow — «вирощувати». Про себе кажемо I grow flowers on the balcony — «Я вирощую квіти на балконі». Після I слово лишається grow, без s."
       },
       "question": {
         "interactionId": "en:lesson-06:session-43:intro1:q",
         "promptByLocale": {
-          "ru": "Помогите соседу выбрать язык: скажите «Я говорю по-английски».",
-          "uk": "Допоможіть сусідові обрати мову: скажіть «Я говорю англійською»."
+          "ru": "Сосед спрашивает, что вы делаете на балконе. Скажите: «Я выращиваю цветы на балконе».",
+          "uk": "Сусід питає, що ви робите на балконі. Скажіть: «Я вирощую квіти на балконі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-43:intro1:r1",
-              "text": "I speak English."
+              "text": "I grow flowers on the balcony."
             },
             {
               "responseId": "en:lesson-06:session-43:intro1:r2",
-              "text": "I speaks English."
+              "text": "I grows flowers on the balcony."
             },
             {
               "responseId": "en:lesson-06:session-43:intro1:r3",
-              "text": "I am speak English."
+              "text": "I am grow flowers on the balcony."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-43:intro1:r1",
-              "text": "I speak English."
+              "text": "I grow flowers on the balcony."
             },
             {
               "responseId": "en:lesson-06:session-43:intro1:r2",
-              "text": "I speaks English."
+              "text": "I grows flowers on the balcony."
             },
             {
               "responseId": "en:lesson-06:session-43:intro1:r3",
-              "text": "I am speak English."
+              "text": "I am grow flowers on the balcony."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Помогите соседу выбрать язык: скажите «Я говорю по-английски».",
-          "uk": "Допоможіть сусідові обрати мову: скажіть «Я говорю англійською»."
+          "ru": "Сосед спрашивает, что вы делаете на балконе. Скажите: «Я выращиваю цветы на балконе».",
+          "uk": "Сусід питає, що ви робите на балконі. Скажіть: «Я вирощую квіти на балконі»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-06:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Анна тоже говорит",
-        "uk": "Анна теж говорить"
+        "ru": "Цветы из семян",
+        "uk": "Квіти з насіння"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, можно ли обратиться к Анне по-английски. `She speaks English` — «Она говорит по-английски». После `she` добавляем `s`: `speak → speaks`. Можно назвать имя: `Anna speaks English`. Фраза сообщает о языке, которым она владеет; Анна может сейчас молчать.",
-        "uk": "Сусід запитує, чи можна звернутися до Анни англійською. `She speaks English` — «Вона говорить англійською». Після `she` додаємо `s`: `speak → speaks`. Можна назвати ім’я: `Anna speaks English`. Фраза повідомляє про мову, якою вона володіє; Анна може зараз мовчати."
+        "ru": "Соседка сверху начинает не с готовых кустиков, а с пакетика семян: сажает их в маленький горшок и ждёт. Сосед удивляется, откуда у неё столько цветов. seed — «семя». Про неё говорим She grows flowers from seeds — «Она выращивает цветы из семян». После she к grow добавляем s: grows.",
+        "uk": "Сусідка зверху починає не з готових кущиків, а з пакетика насіння: садить його в маленький горщик і чекає. Сусід дивується, звідки в неї стільки квітів. seed — «насінина». Про неї кажемо She grows flowers from seeds — «Вона вирощує квіти з насіння». Після she до grow додаємо s: grows."
       },
       "question": {
         "interactionId": "en:lesson-06:session-43:intro2:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу об Анне: «Она говорит по-английски».",
-          "uk": "Дайте сусідові відповідь про Анну: «Вона говорить англійською»."
+          "ru": "Сосед спрашивает, откуда у соседки цветы. Скажите: «Она выращивает цветы из семян».",
+          "uk": "Сусід питає, звідки в сусідки квіти. Скажіть: «Вона вирощує квіти з насіння»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-43:intro2:r1",
-              "text": "She speaks English."
+              "text": "She grows flowers from seeds."
             },
             {
               "responseId": "en:lesson-06:session-43:intro2:r2",
-              "text": "She speak English."
+              "text": "She grow flowers from seeds."
             },
             {
               "responseId": "en:lesson-06:session-43:intro2:r3",
-              "text": "She is speaks English."
+              "text": "She is grows flowers from seeds."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-43:intro2:r1",
-              "text": "She speaks English."
+              "text": "She grows flowers from seeds."
             },
             {
               "responseId": "en:lesson-06:session-43:intro2:r2",
-              "text": "She speak English."
+              "text": "She grow flowers from seeds."
             },
             {
               "responseId": "en:lesson-06:session-43:intro2:r3",
-              "text": "She is speaks English."
+              "text": "She is grows flowers from seeds."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу об Анне: «Она говорит по-английски».",
-          "uk": "Дайте сусідові відповідь про Анну: «Вона говорить англійською»."
+          "ru": "Сосед спрашивает, откуда у соседки цветы. Скажите: «Она выращивает цветы из семян».",
+          "uk": "Сусід питає, звідки в сусідки квіти. Скажіть: «Вона вирощує квіти з насіння»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-06:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не уверены во времени",
-        "uk": "Не впевнені щодо часу"
+        "ru": "Сухая земля",
+        "uk": "Суха земля"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, во сколько придёт Том, но вы ещё не знаете точно. `I am uncertain` — «Я не уверен». `uncertain` описывает неуверенность, поэтому здесь нужно `am`. Это не действие вроде `speak`: вы сообщаете, что точного ответа пока нет.",
-        "uk": "Сусід запитує, о котрій прийде Том, але ви ще не знаєте точно. `I am uncertain` — «Я не впевнений». `uncertain` описує невпевненість, тому тут потрібне `am`. Це не дія на зразок `speak`: ви повідомляєте, що точної відповіді поки немає."
+        "ru": "Цветок в вашем горшке поник, и сосед спрашивает, что с ним. Вы трогаете землю пальцем: она твёрдая и сухая, цветку нужна вода. Вчера вы забыли его полить, а день выдался жаркий. soil — «земля в горшке». Про одну вещь говорим is: The soil is dry — «Земля сухая».",
+        "uk": "Квітка у вашому горщику похилилася, і сусід питає, що з нею. Ви торкаєтеся землі пальцем: вона тверда й суха, квітці потрібна вода. Учора ви забули її полити, а день видався спекотним. soil — «земля в горщику». Про одну річ кажемо is: The soil is dry — «Земля суха»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-43:intro3:q",
         "promptByLocale": {
-          "ru": "Ответьте соседу «Я не уверен».",
-          "uk": "Дайте сусідові відповідь «Я не впевнений»."
+          "ru": "Сосед спрашивает, что с цветком. Скажите: «Земля сухая».",
+          "uk": "Сусід питає, що з квіткою. Скажіть: «Земля суха»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-06:session-43:intro3:r1",
-              "text": "I am uncertain."
+              "text": "The soil is dry."
             },
             {
               "responseId": "en:lesson-06:session-43:intro3:r2",
-              "text": "I uncertain."
+              "text": "The soil dry."
             },
             {
               "responseId": "en:lesson-06:session-43:intro3:r3",
-              "text": "I is uncertain."
+              "text": "The soil are dry."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-06:session-43:intro3:r1",
-              "text": "I am uncertain."
+              "text": "The soil is dry."
             },
             {
               "responseId": "en:lesson-06:session-43:intro3:r2",
-              "text": "I uncertain."
+              "text": "The soil dry."
             },
             {
               "responseId": "en:lesson-06:session-43:intro3:r3",
-              "text": "I is uncertain."
+              "text": "The soil are dry."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте соседу «Я не уверен».",
-          "uk": "Дайте сусідові відповідь «Я не впевнений»."
+          "ru": "Сосед спрашивает, что с цветком. Скажите: «Земля сухая».",
+          "uk": "Сусід питає, що з квіткою. Скажіть: «Земля суха»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "efacc5f17e3bcd34bf2457db9c42ec6ac60612bc9146253f11ad70e13b38eb2b"
+  "introFingerprint": "f8e33cc5099eb6367320c7ac728c2db46c2ae34acc372e63c389abb4d5fd7e45"
 }

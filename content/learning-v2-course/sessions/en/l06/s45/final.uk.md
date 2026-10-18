@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 45 — Олівець для занять
+# Англійська · Урок 6 · Заняття 45 — Бабусина скриня
 
-**Ситуація.** Анна й Том готуються до занять. На столі кілька олівців, і потрібно розібратися, де чий.
+**Ситуація.** Ви заходите до бабусі: у її домі все лагодять самі. Слово дії після I, we і they лишається незмінним, а після he і she отримує s.
 
-**Що ви опануєте:** назвати олівець, уточнити власника речі й розповісти, де купуєте приладдя
-**Нові слова:** pencil
+**Що ви опануєте:** розповісти, хто лагодить речі, і сказати, де лежать нитки та голки
+**Нові слова:** mend, thread, needle, fabric
+**Повертаються:** grandmother, sock, sweater, coat, button, drawer, box, soft
 
 ---
 
 ## Інтро 1
 
-### Ось мій олівець
+### Светр із латкою
 
-Том шукає, чим писати, й показує на олівець у вас на столі. `pencil` — «олівець». `This pencil is mine` — «Цей олівець мій». Один олівець: `is`. Після `mine` слово `pencil` не повторюємо. Олівець без імені — ще не спільний олівець, навіть якщо лежить посередині столу.
+Подруга помічає на вашому светрі охайну латку й дивується, що ви не купили новий. Ви пояснюєте: речі ви лагодите самі, поки вони ще цілі. mend — «лагодити». Про себе кажемо I mend my sweater — «Я лагоджу светр». Після I слово лишається mend, без s.
 
-**Скажіть Тому «Цей олівець мій».**
+**Подруга питає, як ви поводитеся з порваними речами. Скажіть: «Я лагоджу светр».**
 
-- ✅ **This pencil is mine.**
-- ❌ This pencil is my. — *Без назви речі після нього потрібне `mine`, не `my`.*
-- ❌ This pencil are mine. — *Один олівець: `is`.*
+- ✅ **I mend my sweater.**
+- ❌ I mends my sweater. — *Після I слово лишається mend, без s.*
+- ❌ I am mend my sweater. — *Тут дія: I mend, без am.*
 
 ---
 
 ## Інтро 2
 
-### Хто залишив олівець
+### Нитки в шухляді
 
-Після заняття на столі залишився ще один олівець. Запитайте групу: `Whose pencil is this?` — «Чий це олівець?» `Whose` запитує про власника. Якщо олівців кілька: `Whose pencils are these?` — «Чиї це олівці?» Але зараз перед вами один, тому `is this`.
+Ваша бабуся дістає з шухляди котушку: потрібен саме той колір, що в шкарпетки. Вона сідає біля вікна й одразу береться до справи. thread — «нитка». Про неї кажемо My grandmother mends socks — «Бабуся лагодить шкарпетки». Після grandmother до mend додаємо s: mends.
 
-**Запитайте групу «Чий це олівець?»**
+**Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки».**
 
-- ✅ **Whose pencil is this?**
-- ❌ Who pencil is this? — *Про власника запитуємо `Whose`.*
-- ❌ Whose pencil are these? — *Один олівець: `is this`.*
+- ✅ **My grandmother mends socks.**
+- ❌ My grandmother mend socks. — *Після grandmother потрібно mends, з s.*
+- ❌ My grandmother is mends socks. — *Тут дія: grandmother mends, без is.*
 
 ---
 
 ## Інтро 3
 
-### Де Анна купує приладдя
+### Де голка
 
-Друг хвалить олівець Анни й запитує, де вона зазвичай робить покупки. Ви показуєте на знайомий магазин: `She shops here` — «Вона робить покупки тут». Після `she` у `shop` з’являється `s`. `Anna shops here` — та сама розповідь з ім’ям.
+Подруга вирішила сама пришити ґудзик до пальта, але не може знайти голку. Ґудзик уже лежить на долоні. Ви підказуєте: бабуся тримає її в маленькій коробці, щоб не загубити. needle — «голка». Про одну річ кажемо is: The needle is in the box — «Голка в коробці».
 
-**Дайте другові відповідь про Анну «Вона робить покупки тут».**
+**Подруга питає, де голка. Скажіть: «Голка в коробці».**
 
-- ✅ **She shops here.**
-- ❌ She shop here. — *Після `she` — `shops`.*
-- ❌ She is shops here. — *Потрібно `She shops`, без `is`.*
+- ✅ **The needle is in the box.**
+- ❌ The needle in the box. — *Без is речення не виходить: потрібно The needle is.*
+- ❌ The needle are in the box. — *Голка одна, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Цей олівець мій»**
+**1 · Картка слова — mend**
+<!-- interaction_id: en:lesson-06:session-45:word:mend; family: word_card -->
+> **mend** — лагодити. We mend socks. — «Ми лагодимо шкарпетки». Про те, як людина виправляє порвану річ.
+
+**2 · Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»**
 <!-- interaction_id: en:lesson-06:session-45:i01; family: phrase_builder -->
-Плитки: `mine` `is` `pencil` `This` → **This pencil is mine.**
+Плитки: `socks` `mend` `We` `mends` → **We mend socks.**
+*(плитка `mends` зайва: тут потрібно `mend` — `We mend socks.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-45:i02; family: listen_choose -->
-🔊 *pencil* → **pencil** · motorbike · microwave
-- motorbike — *У записі перше слово — `pencil`, а в цьому варіанті — `motorbike`.*
-- microwave — *У записі перше слово — `pencil`, а в цьому варіанті — `microwave`.*
+🔊 *My grandmother mends socks.* → **My grandmother mends socks.** · My grandmother mends shirts. · My sister mends socks.
+- My grandmother mends shirts. — *У записі останнє слово — `socks`, шкарпетки, а в цьому варіанті — `shirts`, сорочки.*
+- My sister mends socks. — *У записі друге слово — `grandmother`, бабуся, а в цьому варіанті — `sister`, сестра.*
 
-**3 · Запитайте «Чий це олівець?»**
+**4 · Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-45:i03; family: context_gap_grammar -->
-Whose ___ is this? → **pencil** · pencils · pencil are
-- pencils — *Тут один олівець: `pencil`, з `is this`.*
-- pencil are — *Потрібно `Whose pencil is this?`, без додаткового `are`.*
+She ___ socks. → **mends** · mend · is mends
+- mend — *Після `she` потрібно `mends`, з `s`.*
+- is mends — *Кажемо `She mends`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-45:i04; family: speed_match -->
-pencil — олівець · illegal — незаконний · microwave — мікрохвильова піч · motorbike — мотоцикл
+mend — лагодити · thread — нитка · needle — голка · fabric — тканина
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — thread**
+<!-- interaction_id: en:lesson-06:session-45:word:thread; family: word_card -->
+> **thread** — нитка. The thread is red. — «Нитка червона». Про тонку нитку, якою шиють.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-45:i05; family: listen_build_dictation -->
-🔊 *My pencil is here.* Плитки: `here` `is` `pencil` `My` → **My pencil is here.**
+🔊 *The thread is in the drawer.* Плитки: `drawer` `in` `the` `The` `thread` `is` `are` → **The thread is in the drawer.**
+*(плитка `are` зайва: тут потрібно `is` — `The thread is in the drawer.`)*
 
-**6 · Скажіть «Вона робить покупки тут»**
+**8 · Картка слова — needle**
+<!-- interaction_id: en:lesson-06:session-45:word:needle; family: word_card -->
+> **needle** — голка. The needle is sharp. — «Голка гостра». Про тонкий сталевий предмет для шиття.
+
+**9 · Подруга показує на коробку. Спитайте: «Чия це голка?»**
 <!-- interaction_id: en:lesson-06:session-45:i06; family: phrase_builder -->
-Плитки: `here` `shops` `She` → **She shops here.**
+Плитки: `needle` `is` `this` `Whose` `Who` → **Whose needle is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose needle is this?`)*
 
-**7 · На кухні замінили піч. Скажіть «Ця мікрохвильова піч нова»**
+**10 · Подруга питає, чим зайнята бабуся. Скажіть: «Бабуся лагодить шкарпетки»**
 <!-- interaction_id: en:lesson-06:session-45:i07; family: scripted_repeat_compare -->
-🎙 **This microwave is new.**
+🎙 **My grandmother mends socks.**
 
-**8 · Скажіть «Вони роблять покупки тут»**
+**11 · Скажіть про себе: «Я лагоджу светр». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-45:i08; family: context_gap_grammar -->
-They ___ here. → **shop** · shops · are shop
-- shops — *Після `they` — `shop`, без `s`.*
-- are shop — *Потрібно `They shop`, без `are`.*
+I ___ my sweater. → **mend** · mends · am mend
+- mends — *Після `I` потрібно `mend`, без `s`.*
+- am mend — *Кажемо `I mend`, без `am`.*
 
-**9 · Послухайте, кому належить мотоцикл**
+**12 · Картка слова — fabric**
+<!-- interaction_id: en:lesson-06:session-45:word:fabric; family: word_card -->
+> **fabric** — тканина. The fabric is soft. — «Тканина м’яка». Про матеріал, з якого шиють одяг.
+
+**13 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-06:session-45:i09; family: listen_choose -->
-🔊 *This motorbike is mine.* → **This motorbike is mine.** · This motorbike is yours. · This motorbike is hers.
-- This motorbike is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This motorbike is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The fabric is in the drawer.* → **The fabric is in the drawer.** · The fabric is in the box. · The thread is in the drawer.
+- The fabric is in the box. — *У записі останнє слово — `drawer`, шухляда, а в цьому варіанті — `box`, коробка.*
+- The thread is in the drawer. — *У записі друге слово — `fabric`, тканина, а в цьому варіанті — `thread`, нитка.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-45:i10; family: speed_match -->
-pencil — олівець · shop — робити покупки · motorbike — мотоцикл · illegal — незаконний
+needle — голка · fabric — тканина · thread — нитка · mend — лагодити
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте бабусю й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-45:i11; family: listen_build_dictation -->
-🔊 *The microwave is here.* Плитки: `here` `is` `microwave` `The` `are` → **The microwave is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The microwave is here.`)*
+🔊 *They mend the coat.* Плитки: `mend` `the` `coat` `They` `mends` → **They mend the coat.**
+*(плитка `mends` зайва: тут потрібно `mend` — `They mend the coat.`)*
 
-**12 · Біля входу стоїть мотоцикл. Запитайте «Чий це мотоцикл?»**
+**16 · Ви показуєте на стіл. Скажіть: «У бабусі є голка»**
 <!-- interaction_id: en:lesson-06:session-45:i12; family: phrase_builder -->
-Плитки: `this` `is` `motorbike` `Whose` → **Whose motorbike is this?**
+Плитки: `needle` `a` `has` `My` `grandmother` `have` → **My grandmother has a needle.**
+*(плитка `have` зайва: тут потрібно `has` — `My grandmother has a needle.`)*
 
-**13 · Скажіть «Ми робимо покупки тут»**
+**17 · Подруга питає, де нитка. Скажіть: «Нитка в шухляді»**
 <!-- interaction_id: en:lesson-06:session-45:i13; family: scripted_repeat_compare -->
-🎙 **We shop here.**
+🎙 **The thread is in the drawer.**
 
-**14 · Скажіть «Том робить покупки тут»**
+**18 · Скажіть про тканину: «Тканина м’яка». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-45:i14; family: context_gap_grammar -->
-Tom ___ here. → **shops** · shop · is shops
-- shop — *Том — він: `Tom shops`.*
-- is shops — *Потрібно `Tom shops`, без `is`.*
+The fabric ___ soft. → **is** · are · am
+- are — *Тканина одна, тому потрібно `is`, а не `are`.*
+- am — *`am` буває лише після `I`; про тканину кажемо `is`.*
 
-**15 · Послухайте, кому належить олівець**
+**19 · Послухайте бабусю**
 <!-- interaction_id: en:lesson-06:session-45:i15; family: listen_choose -->
-🔊 *This pencil is mine.* → **This pencil is mine.** · This pencil is yours. · This pencil is hers.
-- This pencil is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This pencil is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *She has a needle.* → **She has a needle.** · She has a button. · He has a needle.
+- She has a button. — *У записі останнє слово — `needle`, голка, а в цьому варіанті — `button`, ґудзик.*
+- He has a needle. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-45:i16; family: speed_match -->
-pencil — олівець · microwave — мікрохвильова піч · illegal — незаконний · shop — робити покупки
+fabric — тканина · mend — лагодити · needle — голка · thread — нитка
 
-**17 · Після заняття залишився олівець. Запитайте групу «Чий це олівець?»**
+**21 · Ви сидите в бабусі. Розкажіть про брата: «Він лагодить шкарпетки»**
 <!-- interaction_id: en:lesson-06:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose pencil is this?**
-
+🎙 **He mends socks.**

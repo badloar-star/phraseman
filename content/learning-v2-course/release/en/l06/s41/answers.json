@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-06:session-41:word:fish",
+    "correctText": "fish",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-41:i01",
-    "correctText": "We chat here.",
+    "correctText": "We fish at the lake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i02",
-    "correctText": "chat",
+    "correctText": "He fishes at the lake.",
     "correctResponseId": "en:lesson-06:session-41:i02:r1"
   },
   {
     "interactionId": "en:lesson-06:session-41:i03",
-    "correctText": "chats",
+    "correctText": "fishes",
     "correctResponseId": "en:lesson-06:session-41:i03:r1"
   },
   {
     "interactionId": "en:lesson-06:session-41:i04",
-    "correctText": "en:lesson-06:session-41:i04:p1=chat\nen:lesson-06:session-41:i04:p2=accurate\nen:lesson-06:session-41:i04:p3=cashpoint\nen:lesson-06:session-41:i04:p4=locker",
+    "correctText": "en:lesson-06:session-41:i04:p1=fish\nen:lesson-06:session-41:i04:p2=rod\nen:lesson-06:session-41:i04:p3=bait\nen:lesson-06:session-41:i04:p4=jetty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:word:rod",
+    "correctText": "rod",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i05",
-    "correctText": "Tom chats with Anna.",
+    "correctText": "The rod is on the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-06:session-41:word:bait",
+    "correctText": "bait",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i06",
-    "correctText": "She studies here.",
+    "correctText": "Whose bait is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i07",
-    "correctText": "This cashpoint is new.",
+    "correctText": "He fishes with a rod.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i08",
-    "correctText": "chat",
+    "correctText": "fish",
     "correctResponseId": "en:lesson-06:session-41:i08:r1"
   },
   {
+    "interactionId": "en:lesson-06:session-41:word:jetty",
+    "correctText": "jetty",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-06:session-41:i09",
-    "correctText": "This locker is mine.",
+    "correctText": "The jetty is near the lake.",
     "correctResponseId": "en:lesson-06:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-06:session-41:i10",
-    "correctText": "en:lesson-06:session-41:i10:p1=chat\nen:lesson-06:session-41:i10:p2=study\nen:lesson-06:session-41:i10:p3=locker\nen:lesson-06:session-41:i10:p4=accurate",
+    "correctText": "en:lesson-06:session-41:i10:p1=bait\nen:lesson-06:session-41:i10:p2=jetty\nen:lesson-06:session-41:i10:p3=rod\nen:lesson-06:session-41:i10:p4=fish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i11",
-    "correctText": "The cashpoint is here.",
+    "correctText": "They fish at the jetty.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i12",
-    "correctText": "Whose locker is this?",
+    "correctText": "My brother has a rod.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i13",
-    "correctText": "I study at home.",
+    "correctText": "The bait is in the bucket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i14",
-    "correctText": "studies",
+    "correctText": "is",
     "correctResponseId": "en:lesson-06:session-41:i14:r1"
   },
   {
     "interactionId": "en:lesson-06:session-41:i15",
-    "correctText": "They chat here.",
+    "correctText": "He has a rod.",
     "correctResponseId": "en:lesson-06:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-06:session-41:i16",
-    "correctText": "en:lesson-06:session-41:i16:p1=chat\nen:lesson-06:session-41:i16:p2=cashpoint\nen:lesson-06:session-41:i16:p3=accurate\nen:lesson-06:session-41:i16:p4=study",
+    "correctText": "en:lesson-06:session-41:i16:p1=jetty\nen:lesson-06:session-41:i16:p2=fish\nen:lesson-06:session-41:i16:p3=bait\nen:lesson-06:session-41:i16:p4=rod",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-06:session-41:i17",
-    "correctText": "He chats with Anna.",
+    "correctText": "He fishes at the lake.",
     "correctResponseId": null
   }
 ]

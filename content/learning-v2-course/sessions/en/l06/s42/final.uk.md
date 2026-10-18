@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 42 — Одна кімната на двох
+# Англійська · Урок 6 · Заняття 42 — Потяг о п’ятій
 
-**Ситуація.** Анна й Том розповідають другові, що живуть в одній кімнаті й користуються спільними речами.
+**Ситуація.** Ви їдете в гості потягом, а подруга чекає на вас на платформі. Слово дії після I, we і they лишається незмінним, а після he і she отримує s.
 
-**Що ви опануєте:** сказати, що ви користуєтеся чимось разом, і описати таку звичку іншої людини
-**Нові слова:** share
+**Що ви опануєте:** розповісти, хто коли приїжджає й виїжджає, і сказати, де що у вагоні
+**Нові слова:** arrive, leave, conductor, compartment
+**Повертаються:** platform, ticket, suitcase, door, window, train, friend, sister
 
 ---
 
 ## Інтро 1
 
-### Ми живемо в одній кімнаті
+### Зустріч на платформі
 
-Друг запитує, чи в кожного з вас окрема кімната. `share` — «користуватися разом», «ділити з кимось». `We share a room` — «Ми живемо в одній кімнаті». Ідеться про спільну кімнату, а не про те, що її розпиляли навпіл. Після `we` використовуємо `share`, без `s`.
+Подруга телефонує вам у дорозі й питає, коли ви приїдете: вона хоче зустріти вас на платформі. Потяг їде довго, але ввечері ви вже на місці. arrive — «приїжджати». Про себе кажемо I arrive at five — «Я приїжджаю о п’ятій». Після I слово лишається arrive, без s.
 
-**Дайте другові відповідь «Ми живемо в одній кімнаті».**
+**Подруга телефоном питає, коли ви приїдете. Скажіть: «Я приїжджаю о п’ятій».**
 
-- ✅ **We share a room.**
-- ❌ We shares a room. — *Після `we` — `share`, без `s`.*
-- ❌ We are share a room. — *Потрібно `We share`, без `are`.*
+- ✅ **I arrive at five.**
+- ❌ I arrives at five. — *Після I слово лишається arrive, без s.*
+- ❌ I am arrive at five. — *Тут дія: I arrive, без am.*
 
 ---
 
 ## Інтро 2
 
-### З ким живе Анна
+### Сестра їде першою
 
-Друг уточнює, чи має Анна сусіда по кімнаті. `She shares a room with Tom` — «Вона живе в одній кімнаті з Томом». Після `she` додаємо `s`: `share → shares`. `with Tom` означає «з Томом». Тут описується їхнє житло, а не те, де вони перебувають просто зараз.
+Ваша сестра їде з вами до платформи, а потім пересідає на інший потяг. Її потяг відходить раніше за ваш, і вона вже поглядає на годинник. leave — «виїжджати». Про сестру кажемо She leaves at four — «Вона виїжджає о четвертій». Після she до leave додаємо s: leaves.
 
-**Скажіть «Вона живе в одній кімнаті з Томом».**
+**Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій».**
 
-- ✅ **She shares a room with Tom.**
-- ❌ She share a room with Tom. — *Після `she` — `shares`.*
-- ❌ She is shares a room with Tom. — *Потрібно `She shares`, без `is`.*
+- ✅ **She leaves at four.**
+- ❌ She leave at four. — *Після she потрібно leaves, з s.*
+- ❌ She is leaves at four. — *Тут дія: She leaves, без is.*
 
 ---
 
 ## Інтро 3
 
-### Спільний самокат
+### Провідник у проході
 
-Анна й Том мають один самокат на двох. `scooter` — «самокат». `They share a scooter` — «Вони користуються одним самокатом». Вони можуть кататися по черзі: `share` не означає, що потрібно стояти на ньому вдвох. Після `they` — `share`, без `s`.
+У вагоні ви не можете знайти свій квиток, і подруга телефоном радить попросити допомоги. Повз іде людина у формі, яка перевіряє квитки. conductor — «провідник». Про одну людину кажемо is: The conductor is near the door — «Провідник біля дверей».
 
-**Розкажіть другові «Вони користуються одним самокатом».**
+**Подруга питає, де провідник. Скажіть: «Провідник біля дверей».**
 
-- ✅ **They share a scooter.**
-- ❌ They shares a scooter. — *Після `they` — `share`, без `s`.*
-- ❌ They are share a scooter. — *Потрібно `They share`, без `are`.*
+- ✅ **The conductor is near the door.**
+- ❌ The conductor near the door. — *Без is речення не виходить: потрібно The conductor is.*
+- ❌ The conductor are near the door. — *Провідник один, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Ми живемо в одній кімнаті»**
+**1 · Картка слова — arrive**
+<!-- interaction_id: en:lesson-06:session-42:word:arrive; family: word_card -->
+> **arrive** — приїжджати, прибувати. We arrive at five. — «Ми приїжджаємо о п’ятій». Про те, коли ви або потяг опиняєтеся на місці.
+
+**2 · Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»**
 <!-- interaction_id: en:lesson-06:session-42:i01; family: phrase_builder -->
-Плитки: `room` `a` `share` `We` → **We share a room.**
+Плитки: `at` `five` `arrive` `We` `arrives` → **We arrive at five.**
+*(плитка `arrives` зайва: тут потрібно `arrive` — `We arrive at five.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-42:i02; family: listen_choose -->
-🔊 *share* → **share** · drink · chat
-- drink — *У записі перше слово — `share`, а в цьому варіанті — `drink`.*
-- chat — *У записі перше слово — `share`, а в цьому варіанті — `chat`.*
+🔊 *She arrives at five.* → **She arrives at five.** · She leaves at five. · He arrives at five.
+- She leaves at five. — *У записі дія — `arrives`, приїжджає, а в цьому варіанті — `leaves`, виїжджає.*
+- He arrives at five. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Вона живе в одній кімнаті з Томом»**
+**4 · Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-42:i03; family: context_gap_grammar -->
-She ___ a room with Tom. → **shares** · share · is shares
-- share — *Після `she` — `shares`.*
-- is shares — *Потрібно `She shares`, без `is`.*
+She ___ at five. → **arrives** · arrive · is arrives
+- arrive — *Після `she` потрібно `arrives`, з `s`.*
+- is arrives — *Кажемо `She arrives`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-42:i04; family: speed_match -->
-share — користуватися разом · inaccurate — неточний · bus shelter — павільйон на зупинці · scooter — самокат
+arrive — приїжджати, прибувати · leave — виїжджати, йти геть · conductor — провідник · compartment — купе
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — leave**
+<!-- interaction_id: en:lesson-06:session-42:word:leave; family: word_card -->
+> **leave** — виїжджати, йти геть. They leave at four. — «Вони виїжджають о четвертій». Про те, що людина або потяг вирушає.
+
+**7 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-42:i05; family: listen_build_dictation -->
-🔊 *They share a scooter.* Плитки: `scooter` `a` `share` `They` → **They share a scooter.**
+🔊 *She leaves at four.* Плитки: `at` `four` `She` `leaves` `leave` → **She leaves at four.**
+*(плитка `leave` зайва: тут потрібно `leaves` — `She leaves at four.`)*
 
-**6 · Скажіть «Він п’є воду»**
+**8 · Картка слова — conductor**
+<!-- interaction_id: en:lesson-06:session-42:word:conductor; family: word_card -->
+> **conductor** — провідник. The conductor is kind. — «Провідник добрий». Про людину, яка перевіряє квитки в потязі.
+
+**9 · Ви шукаєте квиток у вагоні. Спитайте в подруги: «Де провідник?»**
 <!-- interaction_id: en:lesson-06:session-42:i06; family: phrase_builder -->
-Плитки: `water` `drinks` `He` → **He drinks water.**
+Плитки: `conductor` `the` `is` `Where` `What` → **Where is the conductor?**
+*(плитка `What` зайва: тут потрібно `Where` — `Where is the conductor?`)*
 
-**7 · На зупинці встановили павільйон. Скажіть «Цей павільйон на зупинці новий»**
+**10 · Подруга питає, коли їде сестра. Скажіть: «Вона виїжджає о четвертій»**
 <!-- interaction_id: en:lesson-06:session-42:i07; family: scripted_repeat_compare -->
-🎙 **This bus shelter is new.**
+🎙 **She leaves at four.**
 
-**8 · Скажіть «Вони живуть в одній кімнаті»**
+**11 · Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-42:i08; family: context_gap_grammar -->
-They ___ a room. → **share** · shares · are share
-- shares — *Після `they` — `share`, без `s`.*
-- are share — *Потрібно `They share`, без `are`.*
+I ___ at five. → **arrive** · arrives · am arrive
+- arrives — *Після `I` потрібно `arrive`, без `s`.*
+- am arrive — *Кажемо `I arrive`, без `am`.*
 
-**9 · Послухайте, кому належить самокат**
+**12 · Картка слова — compartment**
+<!-- interaction_id: en:lesson-06:session-42:word:compartment; family: word_card -->
+> **compartment** — купе. The compartment is small. — «Купе маленьке». Про закриту частину вагона з місцями для пасажирів.
+
+**13 · Послухайте провідника**
 <!-- interaction_id: en:lesson-06:session-42:i09; family: listen_choose -->
-🔊 *This scooter is ours.* → **This scooter is ours.** · This scooter is yours. · This scooter is hers.
-- This scooter is yours. — *У записі останнє слово — `ours`, а в цьому варіанті — `yours`.*
-- This scooter is hers. — *У записі останнє слово — `ours`, а в цьому варіанті — `hers`.*
+🔊 *The compartment is near the door.* → **The compartment is near the door.** · The compartment is near the window. · The conductor is near the door.
+- The compartment is near the window. — *У записі останнє слово — `door`, двері, а в цьому варіанті — `window`, вікно.*
+- The conductor is near the door. — *У записі перше слово — `compartment`, купе, а в цьому варіанті — `conductor`, провідник.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-42:i10; family: speed_match -->
-share — користуватися разом · drink — пити · scooter — самокат · inaccurate — неточний
+conductor — провідник · compartment — купе · arrive — приїжджати, прибувати · leave — виїжджати, йти геть
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-42:i11; family: listen_build_dictation -->
-🔊 *The bus shelter is here.* Плитки: `here` `is` `shelter` `bus` `The` `are` → **The bus shelter is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The bus shelter is here.`)*
+🔊 *We leave at five.* Плитки: `leave` `at` `five` `We` `leaves` → **We leave at five.**
+*(плитка `leaves` зайва: тут потрібно `leave` — `We leave at five.`)*
 
-**12 · Біля дверей стоїть самокат. Запитайте «Чий це самокат?»**
+**16 · Ви показуєте, що лежить у подруги в руці. Скажіть: «У неї є квиток»**
 <!-- interaction_id: en:lesson-06:session-42:i12; family: phrase_builder -->
-Плитки: `this` `is` `scooter` `Whose` → **Whose scooter is this?**
+Плитки: `ticket` `a` `has` `She` `have` → **She has a ticket.**
+*(плитка `have` зайва: тут потрібно `has` — `She has a ticket.`)*
 
-**13 · Скажіть «Я п’ю воду»**
+**17 · Подруга питає, де купе. Скажіть: «Купе біля дверей»**
 <!-- interaction_id: en:lesson-06:session-42:i13; family: scripted_repeat_compare -->
-🎙 **I drink water.**
+🎙 **The compartment is near the door.**
 
-**14 · Скажіть «Анна живе в одній кімнаті з Томом»**
+**18 · Скажіть про провідника: «Провідник у купе». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-42:i14; family: context_gap_grammar -->
-Anna ___ a room with Tom. → **shares** · share · is shares
-- share — *Анна — вона: `Anna shares`.*
-- is shares — *Потрібно `Anna shares`, без `is`.*
+The conductor ___ in the compartment. → **is** · are · am
+- are — *Провідник один, тому потрібно `is`, а не `are`.*
+- am — *`am` буває лише після `I`; про провідника кажемо `is`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-06:session-42:i15; family: listen_choose -->
-🔊 *We share a scooter.* → **We share a scooter.** · They share a scooter. · You share a scooter.
-- They share a scooter. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
-- You share a scooter. — *У записі перше слово — `We`, а в цьому варіанті — `You`.*
+🔊 *She has a ticket.* → **She has a ticket.** · She has a suitcase. · He has a ticket.
+- She has a suitcase. — *У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `suitcase`, валіза.*
+- He has a ticket. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-42:i16; family: speed_match -->
-share — користуватися разом · bus shelter — павільйон на зупинці · inaccurate — неточний · drink — пити
+compartment — купе · leave — виїжджати, йти геть · conductor — провідник · arrive — приїжджати, прибувати
 
-**17 · Друг запитує, з ким Анна живе в одній кімнаті. Дайте відповідь «Вона живе в одній кімнаті з Томом»**
+**21 · Ви стоїте на платформі. Розкажіть про брата: «Він приїжджає о п’ятій»**
 <!-- interaction_id: en:lesson-06:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She shares a room with Tom.**
-
+🎙 **He arrives at five.**

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-46:intro1:r2": {
-          "ru": "В конце без названия вещи нужно `mine`, не `my`.",
-          "uk": "У кінці без назви речі потрібне `mine`, не `my`."
+          "ru": "После I слово остаётся grill, без s.",
+          "uk": "Після I слово лишається grill, без s."
         },
         "en:lesson-06:session-46:intro1:r3": {
-          "ru": "Одна кружка: `is`.",
-          "uk": "Один кухоль: `is`."
+          "ru": "Здесь действие: I grill, без am.",
+          "uk": "Тут дія: I grill, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-46:intro2:r2": {
-          "ru": "О владельце спрашиваем `Whose`.",
-          "uk": "Про власника запитуємо `Whose`."
+          "ru": "После she нужно roasts, с s.",
+          "uk": "Після she потрібно roasts, з s."
         },
         "en:lesson-06:session-46:intro2:r3": {
-          "ru": "Одна кружка: `is this`.",
-          "uk": "Один кухоль: `is this`."
+          "ru": "Здесь действие: She roasts, без is.",
+          "uk": "Тут дія: She roasts, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-46:intro3:r2": {
-          "ru": "После `she` — `rests`.",
-          "uk": "Після `she` — `rests`."
+          "ru": "Без is предложение не получается: нужно The skewer is.",
+          "uk": "Без is речення не виходить: потрібно The skewer is."
         },
         "en:lesson-06:session-46:intro3:r3": {
-          "ru": "Нужно `She rests`, без `is`.",
-          "uk": "Потрібно `She rests`, без `is`."
+          "ru": "Шампур один, поэтому нужно is, а не are.",
+          "uk": "Шампур один, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e130aae0bbf98d8b22d9742daeae584cf2d15e1d5e98605c54edc56755ee1aca"
+  "auxiliaryFingerprint": "58f6ff12c26ba511c91af952c6f0b5122d44b8ea7999ae092d8b1a5319581b30"
 }

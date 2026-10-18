@@ -1,134 +1,154 @@
-# Английский · Урок 6 · Занятие 47 — Перчатка перед поездкой
+# Английский · Урок 6 · Занятие 47 — Поход с ночёвкой
 
-**Ситуация.** Том собирается ехать на работу на велосипеде и ищет вторую перчатку у входа.
+**Ситуация.** Вы с другом и братом провели ночь в палатке, а утром идёте дальше. Слово действия после I, we и they остаётся прежним, а после he и she получает s.
 
-**Что вы освоите:** назвать одну перчатку и пару, спросить о владельце и повторить рассказ о поездке на работу
-**Новые слова:** glove
+**Что вы освоите:** рассказать, кто как себя ведёт в походе, и сказать, где что находится
+**Новые слова:** snore, trail, summit, campfire
+**Возвращаются:** tent, hammock, flashlight, compass, hill, lake, behind, friend, brother
 
 ---
 
 ## Интро 1
 
-### Одна перчатка нашлась
+### Шумная ночь
 
-Анна показывает Тому перчатку на скамейке. `glove` — «перчатка». `This glove is mine` — «Эта перчатка моя». Одна перчатка: `is`. Уже хорошо, но одной руке пока повезло больше, чем другой.
+Утром друг зевает и смеётся: ночью в палатке было слышно каждый звук, и поспать ему почти не удалось. Он спрашивает, кто был виноват. Вы признаётесь, что это вы. snore — «храпеть». Про себя говорим I snore in the tent — «Я храплю в палатке». После I слово остаётся snore, без s.
 
-**Скажите Анне «Эта перчатка моя».**
+**Друг спрашивает, кто шумел ночью. Скажите: «Я храплю в палатке».**
 
-- ✅ **This glove is mine.**
-- ❌ This glove is my. — *В конце без названия вещи нужно `mine`, не `my`.*
-- ❌ This glove are mine. — *Одна перчатка: `is`.*
+- ✅ **I snore in the tent.**
+- ❌ I snores in the tent. — *После I слово остаётся snore, без s.*
+- ❌ I am snore in the tent. — *Здесь действие: I snore, без am.*
 
 ---
 
 ## Интро 2
 
-### А эти чьи
+### Брат ушёл вперёд
 
-Рядом лежит другая пара. `gloves` — «перчатки»: к `glove` добавляем `s`. `Whose gloves are these?` — «Чьи это перчатки?» Для нескольких предметов — `are these`. Если показываете только на одну, вопрос будет `Whose glove is this?` — «Чья это перчатка?»
+Ваш брат встал раньше всех и ушёл вперёд: ему не терпится дойти до цели. Друг спрашивает, где он. Вы показываете на узкую дорожку между деревьями. trail — «тропа». Про брата говорим My brother walks on the trail — «Брат идёт по тропе». После brother к walk добавляем s: walks.
 
-**Покажите на пару и спросите «Чьи это перчатки?»**
+**Друг спрашивает, где брат. Скажите: «Брат идёт по тропе».**
 
-- ✅ **Whose gloves are these?**
-- ❌ Whose gloves is this? — *Несколько перчаток: `are these`.*
-- ❌ Who gloves are these? — *О владельце спрашиваем `Whose`.*
+- ✅ **My brother walks on the trail.**
+- ❌ My brother walk on the trail. — *После brother нужно walks, с s.*
+- ❌ My brother is walks on the trail. — *Здесь действие: brother walks, без is.*
 
 ---
 
 ## Интро 3
 
-### Почему Том берёт перчатки
+### Вершина за холмом
 
-Сосед спрашивает, как Том обычно добирается на работу. `He cycles to work` — «Он ездит на работу на велосипеде». После `he` у `cycle` появляется `s`. `They cycle to work` — «Они ездят на работу на велосипеде»: после `they` остаётся `cycle`. Вы рассказываете о привычке, а не о движении в эту секунду.
+Тропа привела вас на склон, и друг спрашивает, где же та самая вершина, ради которой вы вышли. Вы показываете рукой за холм: идти туда ещё около часа. summit — «вершина». Про одну вещь говорим is: The summit is behind the hill — «Вершина за холмом».
 
-**Ответьте соседу о Томе «Он ездит на работу на велосипеде».**
+**Друг спрашивает, где вершина. Скажите: «Вершина за холмом».**
 
-- ✅ **He cycles to work.**
-- ❌ He cycle to work. — *После `he` — `cycles`.*
-- ❌ He is cycles to work. — *Нужно `He cycles`, без `is`.*
+- ✅ **The summit is behind the hill.**
+- ❌ The summit behind the hill. — *Без is предложение не получается: нужно The summit is.*
+- ❌ The summit are behind the hill. — *Вершина одна, поэтому нужно is, а не are.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Эта перчатка моя»**
+**1 · Карточка слова — snore**
+<!-- interaction_id: en:lesson-06:session-47:word:snore; family: word_card -->
+> **snore** — храпеть. He snores in the tent. — «Он храпит в палатке». О шумном дыхании во сне.
+
+**2 · Друг спрашивает о вас с братом. Скажите: «Мы храпим в палатке»**
 <!-- interaction_id: en:lesson-06:session-47:i01; family: phrase_builder -->
-Плитки: `mine` `is` `glove` `This` → **This glove is mine.**
+Плитки: `in` `the` `tent` `snore` `We` `snores` → **We snore in the tent.**
+*(плитка `snores` лишняя: здесь нужно `snore` — `We snore in the tent.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте друга**
 <!-- interaction_id: en:lesson-06:session-47:i02; family: listen_choose -->
-🔊 *glove* → **glove** · subway · mug
-- subway — *В записи первое слово — `glove`, а в этом варианте — `subway`.*
-- mug — *В записи первое слово — `glove`, а в этом варианте — `mug`.*
+🔊 *He snores in the tent.* → **He snores in the tent.** · He snores in the hammock. · She snores in the tent.
+- He snores in the hammock. — *В записи последнее слово — `tent`, палатка, а в этом варианте — `hammock`, гамак.*
+- She snores in the tent. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**3 · Спросите «Чьи это перчатки?»**
+**4 · Скажите о брате: «Он храпит в палатке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-47:i03; family: context_gap_grammar -->
-Whose ___ are these? → **gloves** · glove · gloves is
-- glove — *Здесь несколько перчаток: `gloves`, с `are these`.*
-- gloves is — *Нужно `Whose gloves are these?`, без дополнительного `is`.*
+He ___ in the tent. → **snores** · snore · is snores
+- snore — *После `he` нужно `snores`, с `s`.*
+- is snores — *Говорим `He snores`, без `is`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-47:i04; family: speed_match -->
-glove — перчатка · acceptable — приемлемый · leftover — остаток еды · subway — метро
+snore — храпеть · trail — тропа · summit — вершина · campfire — костёр
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — trail**
+<!-- interaction_id: en:lesson-06:session-47:word:trail; family: word_card -->
+> **trail** — тропа. The trail is narrow. — «Тропа узкая». О дорожке, протоптанной людьми по земле.
+
+**7 · Послушайте друга и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-47:i05; family: listen_build_dictation -->
-🔊 *My glove is here.* Плитки: `here` `is` `glove` `My` → **My glove is here.**
+🔊 *My brother walks on the trail.* Плитки: `on` `the` `trail` `My` `brother` `walks` `walk` → **My brother walks on the trail.**
+*(плитка `walk` лишняя: здесь нужно `walks` — `My brother walks on the trail.`)*
 
-**6 · Скажите «Он ездит на работу на велосипеде»**
+**8 · Карточка слова — summit**
+<!-- interaction_id: en:lesson-06:session-47:word:summit; family: word_card -->
+> **summit** — вершина. The summit is high. — «Вершина высокая». О самой верхней точке горы.
+
+**9 · Друг показывает вдаль. Спросите: «Где вершина?»**
 <!-- interaction_id: en:lesson-06:session-47:i06; family: phrase_builder -->
-Плитки: `work` `to` `cycles` `He` → **He cycles to work.**
+Плитки: `summit` `the` `is` `Where` `What` → **Where is the summit?**
+*(плитка `What` лишняя: здесь нужно `Where` — `Where is the summit?`)*
 
-**7 · Друг ищет метро. Покажите вход: «Метро здесь»**
+**10 · Друг спрашивает, как идёт брат. Скажите: «Брат идёт по тропе»**
 <!-- interaction_id: en:lesson-06:session-47:i07; family: scripted_repeat_compare -->
-🎙 **The subway is here.**
+🎙 **My brother walks on the trail.**
 
-**8 · Скажите «Они ездят на работу на велосипеде»**
+**11 · Скажите о себе: «Я храплю в палатке». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-47:i08; family: context_gap_grammar -->
-They ___ to work. → **cycle** · cycles · are cycle
-- cycles — *После `they` — `cycle`, без `s`.*
-- are cycle — *Нужно `They cycle`, без `are`.*
+I ___ in the tent. → **snore** · snores · am snore
+- snores — *После `I` нужно `snore`, без `s`.*
+- am snore — *Говорим `I snore`, без `am`.*
 
-**9 · Послушайте, кому принадлежат перчатки**
+**12 · Карточка слова — campfire**
+<!-- interaction_id: en:lesson-06:session-47:word:campfire; family: word_card -->
+> **campfire** — костёр. The campfire is warm. — «Костёр тёплый». О костре, который разводят в походе.
+
+**13 · Послушайте друга**
 <!-- interaction_id: en:lesson-06:session-47:i09; family: listen_choose -->
-🔊 *These gloves are mine.* → **These gloves are mine.** · These gloves are yours. · These gloves are hers.
-- These gloves are yours. — *В записи последнее слово — `mine`, а в этом варианте — `yours`.*
-- These gloves are hers. — *В записи последнее слово — `mine`, а в этом варианте — `hers`.*
+🔊 *The campfire is near the tent.* → **The campfire is near the tent.** · The campfire is near the lake. · The hammock is near the tent.
+- The campfire is near the lake. — *В записи последнее слово — `tent`, палатка, а в этом варианте — `lake`, озеро.*
+- The hammock is near the tent. — *В записи первое слово — `campfire`, костёр, а в этом варианте — `hammock`, гамак.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-47:i10; family: speed_match -->
-glove — перчатка · cycle — ездить на велосипеде · subway — метро · acceptable — приемлемый
+summit — вершина · campfire — костёр · trail — тропа · snore — храпеть
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте друга и соберите фразу**
 <!-- interaction_id: en:lesson-06:session-47:i11; family: listen_build_dictation -->
-🔊 *These gloves are mine.* Плитки: `mine` `are` `gloves` `These` `is` → **These gloves are mine.**
-*(плитка `is` лишняя: здесь нужно `are` — `These gloves are mine.`)*
+🔊 *They snore in the tent.* Плитки: `snore` `in` `the` `tent` `They` `snores` → **They snore in the tent.**
+*(плитка `snores` лишняя: здесь нужно `snore` — `They snore in the tent.`)*
 
-**12 · Вы нашли одну перчатку. Спросите «Чья это перчатка?»**
+**16 · Вы показываете на рюкзак. Скажите: «У друга есть фонарик»**
 <!-- interaction_id: en:lesson-06:session-47:i12; family: phrase_builder -->
-Плитки: `this` `is` `glove` `Whose` → **Whose glove is this?**
+Плитки: `flashlight` `a` `has` `My` `friend` `have` → **My friend has a flashlight.**
+*(плитка `have` лишняя: здесь нужно `has` — `My friend has a flashlight.`)*
 
-**13 · Скажите «Мы ездим на работу на велосипеде»**
+**17 · Друг спрашивает, где вершина. Скажите: «Вершина за холмом»**
 <!-- interaction_id: en:lesson-06:session-47:i13; family: scripted_repeat_compare -->
-🎙 **We cycle to work.**
+🎙 **The summit is behind the hill.**
 
-**14 · Скажите «Анна ездит на работу на велосипеде»**
+**18 · Скажите о костре: «Костёр возле палатки». Выберите слово**
 <!-- interaction_id: en:lesson-06:session-47:i14; family: context_gap_grammar -->
-Anna ___ to work. → **cycles** · cycle · is cycles
-- cycle — *Анна — она: `Anna cycles`.*
-- is cycles — *Нужно `Anna cycles`, без `is`.*
+The campfire ___ near the tent. → **is** · are · am
+- are — *Костёр один, поэтому нужно `is`, а не `are`.*
+- am — *`am` бывает только после `I`; про костёр говорим `is`.*
 
-**15 · Послушайте, где метро**
+**19 · Послушайте друга**
 <!-- interaction_id: en:lesson-06:session-47:i15; family: listen_choose -->
-🔊 *The subway is here.* → **The subway is here.** · The subway is there. · The subway is nearby.
-- The subway is there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The subway is nearby. — *В записи последнее слово — `here`, а в этом варианте — `nearby`.*
+🔊 *He has a flashlight.* → **He has a flashlight.** · He has a compass. · She has a flashlight.
+- He has a compass. — *В записи последнее слово — `flashlight`, фонарик, а в этом варианте — `compass`, компас.*
+- She has a flashlight. — *В записи первое слово — `He`, он, а в этом варианте — `She`, она.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-06:session-47:i16; family: speed_match -->
-glove — перчатка · leftover — остаток еды · acceptable — приемлемый · cycle — ездить на велосипеде
+trail — тропа · snore — храпеть · campfire — костёр · summit — вершина
 
-**17 · У двери осталась пара перчаток. Спросите соседей «Чьи это перчатки?»**
+**21 · Вы сидите у костра с другом. Расскажите о дяде: «Он храпит в палатке»**
 <!-- interaction_id: en:lesson-06:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose gloves are these?**
-
+🎙 **He snores in the tent.**

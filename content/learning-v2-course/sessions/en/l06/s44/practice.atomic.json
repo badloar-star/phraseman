@@ -1,0 +1,2451 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-44:word:feed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — feed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:feed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — feed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:feed:audio",
+            "transcript": "feed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:feed:r1",
+              "targetText": "feed",
+              "meaningByLocale": {
+                "ru": "кормить. We feed the dog. — «Мы кормим собаку». О том, как человек даёт еду животному.",
+                "uk": "годувати. We feed the dog. — «Ми годуємо собаку». Про те, як людина дає їжу тварині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feed",
+            "definitionByLocale": {
+              "ru": "кормить. We feed the dog. — «Мы кормим собаку». О том, как человек даёт еду животному.",
+              "uk": "годувати. We feed the dog. — «Ми годуємо собаку». Про те, як людина дає їжу тварині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We feed the puppy.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
+            "uk": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»"
+          },
+          "orderedTokens": [
+            "We",
+            "feed",
+            "the",
+            "puppy"
+          ],
+          "authoredDistractorTokens": [
+            "feeds"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `feed` — `We feed the puppy.`",
+                "uk": "тут потрібно `feed` — `We feed the puppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i02:r1",
+            "text": "He feeds the dog."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r2",
+            "text": "He feeds the puppy."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r3",
+            "text": "She feeds the dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i02:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i02:r1",
+              "targetText": "He feeds the dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r2",
+              "targetText": "He feeds the puppy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r3",
+              "targetText": "She feeds the dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dog`, собака, а в этом варианте — `puppy`, щенок.",
+                "uk": "У записі останнє слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Он кормит собаку». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i03:r1",
+            "text": "feeds"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r2",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r3",
+            "text": "is feeds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Он кормит собаку». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он кормит собаку». Выберите слово",
+            "uk": "Скажіть про брата: «Він годує собаку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ the dog.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i03:r1",
+              "text": "feeds"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r2",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r3",
+              "text": "is feeds"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Он кормит собаку». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он кормит собаку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `feeds`, с `s`.",
+                "uk": "Після `he` потрібно `feeds`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он кормит собаку». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He feeds`, без `is`.",
+                "uk": "Кажемо `He feeds`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i04:p1",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p2",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p3",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p4",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            }
+          ],
+          "leftColumn": [
+            "feed",
+            "bone",
+            "kennel",
+            "fur"
+          ],
+          "rightColumn": [
+            "кормить",
+            "кость",
+            "будка",
+            "шерсть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:bone",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:bone:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:bone:audio",
+            "transcript": "bone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:bone:r1",
+              "targetText": "bone",
+              "meaningByLocale": {
+                "ru": "кость. The bone is big. — «Кость большая». О твёрдой части мяса, которую грызёт собака.",
+                "uk": "кістка. The bone is big. — «Кістка велика». Про тверду частину м’яса, яку гризе собака."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bone",
+            "definitionByLocale": {
+              "ru": "кость. The bone is big. — «Кость большая». О твёрдой части мяса, которую грызёт собака.",
+              "uk": "кістка. The bone is big. — «Кістка велика». Про тверду частину м’яса, яку гризе собака."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i05:audio",
+            "transcript": "The bone is in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bone is in the bowl.",
+          "orderedTokens": [
+            "The",
+            "bone",
+            "is",
+            "in",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bone is in the bowl.`",
+                "uk": "тут потрібно `is` — `The bone is in the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:kennel",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kennel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:kennel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kennel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:kennel:audio",
+            "transcript": "kennel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:kennel:r1",
+              "targetText": "kennel",
+              "meaningByLocale": {
+                "ru": "будка. The kennel is new. — «Будка новая». О маленьком домике для собаки.",
+                "uk": "буда. The kennel is new. — «Буда нова». Про маленький будиночок для собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kennel",
+            "definitionByLocale": {
+              "ru": "будка. The kennel is new. — «Будка новая». О маленьком домике для собаки.",
+              "uk": "буда. The kennel is new. — «Буда нова». Про маленький будиночок для собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соседка показывает на двор. Спросите: «Чья это будка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соседка показывает на двор. Спросите: «Чья это будка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose kennel is this?",
+          "localizedMeaning": {
+            "ru": "Соседка показывает на двор. Спросите: «Чья это будка?»",
+            "uk": "Сусідка показує на подвір’я. Спитайте: «Чия це буда?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "kennel",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соседка показывает на двор. Спросите: «Чья это будка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose kennel is this?`",
+                "uk": "тут потрібно `Whose` — `Whose kennel is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, что делает брат. Скажите: «Он кормит собаку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, что делает брат. Скажите: «Он кормит собаку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i07:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He feeds the dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i08:r1",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r2",
+            "text": "feeds"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r3",
+            "text": "am feed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+            "uk": "Скажіть про себе: «Я годую цуценя». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the puppy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i08:r1",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r2",
+              "text": "feeds"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r3",
+              "text": "am feed"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `feed`, без `s`.",
+                "uk": "Після `I` потрібно `feed`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I feed`, без `am`.",
+                "uk": "Кажемо `I feed`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:fur",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:fur:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fur",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:fur:audio",
+            "transcript": "fur"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:fur:r1",
+              "targetText": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть. The fur is soft. — «Шерсть мягкая». О том, чем покрыто тело собаки.",
+                "uk": "шерсть. The fur is soft. — «Шерсть м’яка». Про те, чим вкрите тіло собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fur",
+            "definitionByLocale": {
+              "ru": "шерсть. The fur is soft. — «Шерсть мягкая». О том, чем покрыто тело собаки.",
+              "uk": "шерсть. The fur is soft. — «Шерсть м’яка». Про те, чим вкрите тіло собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i09:r1",
+            "text": "The puppy has soft fur."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r2",
+            "text": "The puppy has a soft tail."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r3",
+            "text": "The dog has soft fur."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i09:audio",
+            "transcript": "The puppy has soft fur."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i09:r1",
+              "targetText": "The puppy has soft fur.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r2",
+              "targetText": "The puppy has a soft tail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r3",
+              "targetText": "The dog has soft fur.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fur`, шерсть, а в этом варианте — `tail`, хвост.",
+                "uk": "У записі останнє слово — `fur`, шерсть, а в цьому варіанті — `tail`, хвіст."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `puppy`, щенок, а в этом варианте — `dog`, собака.",
+                "uk": "У записі друге слово — `puppy`, цуценя, а в цьому варіанті — `dog`, собака."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i10:p1",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p2",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p3",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p4",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kennel",
+            "fur",
+            "feed",
+            "bone"
+          ],
+          "rightColumn": [
+            "будка",
+            "шерсть",
+            "кормить",
+            "кость"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i11:audio",
+            "transcript": "They feed the puppy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They feed the puppy.",
+          "orderedTokens": [
+            "They",
+            "feed",
+            "the",
+            "puppy"
+          ],
+          "authoredDistractorTokens": [
+            "feeds"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседку и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `feed` — `They feed the puppy.`",
+                "uk": "тут потрібно `feed` — `They feed the puppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете на миску. Скажите: «У собаки есть кость»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете на миску. Скажите: «У собаки есть кость»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog has a bone.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на миску. Скажите: «У собаки есть кость»",
+            "uk": "Ви показуєте на миску. Скажіть: «У собаки є кістка»"
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "has",
+            "a",
+            "bone"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете на миску. Скажите: «У собаки есть кость»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The dog has a bone.`",
+                "uk": "тут потрібно `has` — `The dog has a bone.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает, где будка. Скажите: «Будка возле забора»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает, где будка. Скажите: «Будка возле забора»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i13:audio",
+            "transcript": "The kennel is near the fence."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The kennel is near the fence.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+            "uk": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The fur ___ soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Шерсть — одно слово, поэтому нужно `is`, а не `are`.",
+                "uk": "Шерсть — одне слово, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про шерсть говорим `is`.",
+                "uk": "`am` буває лише після `I`; про шерсть кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i15:r1",
+            "text": "The dog has a bone."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r2",
+            "text": "The dog has a bowl."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r3",
+            "text": "The puppy has a bone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i15:audio",
+            "transcript": "The dog has a bone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i15:r1",
+              "targetText": "The dog has a bone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r2",
+              "targetText": "The dog has a bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r3",
+              "targetText": "The puppy has a bone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bone`, кость, а в этом варианте — `bowl`, миска.",
+                "uk": "У записі останнє слово — `bone`, кістка, а в цьому варіанті — `bowl`, миска."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `dog`, собака, а в этом варианте — `puppy`, щенок.",
+                "uk": "У записі друге слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i16:p1",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p2",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p3",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p4",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fur",
+            "feed",
+            "kennel",
+            "bone"
+          ],
+          "rightColumn": [
+            "шерсть",
+            "кормить",
+            "будка",
+            "кость"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы гуляете с соседкой. Расскажите о дяде: «Он кормит собаку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Вы гуляете с соседкой. Расскажите о дяде: «Он кормит собаку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i17:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He feeds the dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-44:word:feed",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — feed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:feed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — feed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:feed:audio",
+            "transcript": "feed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:feed:r1",
+              "targetText": "feed",
+              "meaningByLocale": {
+                "ru": "кормить. We feed the dog. — «Мы кормим собаку». О том, как человек даёт еду животному.",
+                "uk": "годувати. We feed the dog. — «Ми годуємо собаку». Про те, як людина дає їжу тварині."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "feed",
+            "definitionByLocale": {
+              "ru": "кормить. We feed the dog. — «Мы кормим собаку». О том, как человек даёт еду животному.",
+              "uk": "годувати. We feed the dog. — «Ми годуємо собаку». Про те, як людина дає їжу тварині."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We feed the puppy.",
+          "localizedMeaning": {
+            "ru": "Соседка спрашивает о вас с братом. Скажите: «Мы кормим щенка»",
+            "uk": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»"
+          },
+          "orderedTokens": [
+            "We",
+            "feed",
+            "the",
+            "puppy"
+          ],
+          "authoredDistractorTokens": [
+            "feeds"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `feed` — `We feed the puppy.`",
+                "uk": "тут потрібно `feed` — `We feed the puppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i02:r1",
+            "text": "He feeds the dog."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r2",
+            "text": "He feeds the puppy."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i02:r3",
+            "text": "She feeds the dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i02:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i02:r1",
+              "targetText": "He feeds the dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r2",
+              "targetText": "He feeds the puppy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r3",
+              "targetText": "She feeds the dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `dog`, собака, а в этом варианте — `puppy`, щенок.",
+                "uk": "У записі останнє слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i03:r1",
+            "text": "feeds"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r2",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i03:r3",
+            "text": "is feeds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он кормит собаку». Выберите слово",
+            "uk": "Скажіть про брата: «Він годує собаку». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ the dog.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i03:r1",
+              "text": "feeds"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r2",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r3",
+              "text": "is feeds"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `feeds`, с `s`.",
+                "uk": "Після `he` потрібно `feeds`, з `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він годує собаку». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He feeds`, без `is`.",
+                "uk": "Кажемо `He feeds`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i04:p1",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p2",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p3",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i04:p4",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            }
+          ],
+          "leftColumn": [
+            "feed",
+            "bone",
+            "kennel",
+            "fur"
+          ],
+          "rightColumn": [
+            "годувати",
+            "кістка",
+            "буда",
+            "шерсть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:bone",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bone",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:bone:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bone",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:bone:audio",
+            "transcript": "bone"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:bone:r1",
+              "targetText": "bone",
+              "meaningByLocale": {
+                "ru": "кость. The bone is big. — «Кость большая». О твёрдой части мяса, которую грызёт собака.",
+                "uk": "кістка. The bone is big. — «Кістка велика». Про тверду частину м’яса, яку гризе собака."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bone",
+            "definitionByLocale": {
+              "ru": "кость. The bone is big. — «Кость большая». О твёрдой части мяса, которую грызёт собака.",
+              "uk": "кістка. The bone is big. — «Кістка велика». Про тверду частину м’яса, яку гризе собака."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i05:audio",
+            "transcript": "The bone is in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bone is in the bowl.",
+          "orderedTokens": [
+            "The",
+            "bone",
+            "is",
+            "in",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The bone is in the bowl.`",
+                "uk": "тут потрібно `is` — `The bone is in the bowl.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:kennel",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kennel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:kennel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kennel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:kennel:audio",
+            "transcript": "kennel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:kennel:r1",
+              "targetText": "kennel",
+              "meaningByLocale": {
+                "ru": "будка. The kennel is new. — «Будка новая». О маленьком домике для собаки.",
+                "uk": "буда. The kennel is new. — «Буда нова». Про маленький будиночок для собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kennel",
+            "definitionByLocale": {
+              "ru": "будка. The kennel is new. — «Будка новая». О маленьком домике для собаки.",
+              "uk": "буда. The kennel is new. — «Буда нова». Про маленький будиночок для собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусідка показує на подвір’я. Спитайте: «Чия це буда?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусідка показує на подвір’я. Спитайте: «Чия це буда?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose kennel is this?",
+          "localizedMeaning": {
+            "ru": "Соседка показывает на двор. Спросите: «Чья это будка?»",
+            "uk": "Сусідка показує на подвір’я. Спитайте: «Чия це буда?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "kennel",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусідка показує на подвір’я. Спитайте: «Чия це буда?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose kennel is this?`",
+                "uk": "тут потрібно `Whose` — `Whose kennel is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, що робить брат. Скажіть: «Він годує собаку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, що робить брат. Скажіть: «Він годує собаку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i07:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He feeds the dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i08:r1",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r2",
+            "text": "feeds"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i08:r3",
+            "text": "am feed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я кормлю щенка». Выберите слово",
+            "uk": "Скажіть про себе: «Я годую цуценя». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ the puppy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i08:r1",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r2",
+              "text": "feeds"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r3",
+              "text": "am feed"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `feed`, без `s`.",
+                "uk": "Після `I` потрібно `feed`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я годую цуценя». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I feed`, без `am`.",
+                "uk": "Кажемо `I feed`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:word:fur",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:word:fur:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fur",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:word:fur:audio",
+            "transcript": "fur"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:word:fur:r1",
+              "targetText": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть. The fur is soft. — «Шерсть мягкая». О том, чем покрыто тело собаки.",
+                "uk": "шерсть. The fur is soft. — «Шерсть м’яка». Про те, чим вкрите тіло собаки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fur",
+            "definitionByLocale": {
+              "ru": "шерсть. The fur is soft. — «Шерсть мягкая». О том, чем покрыто тело собаки.",
+              "uk": "шерсть. The fur is soft. — «Шерсть м’яка». Про те, чим вкрите тіло собаки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i09:r1",
+            "text": "The puppy has soft fur."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r2",
+            "text": "The puppy has a soft tail."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i09:r3",
+            "text": "The dog has soft fur."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i09:audio",
+            "transcript": "The puppy has soft fur."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i09:r1",
+              "targetText": "The puppy has soft fur.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r2",
+              "targetText": "The puppy has a soft tail.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r3",
+              "targetText": "The dog has soft fur.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `fur`, шерсть, а в этом варианте — `tail`, хвост.",
+                "uk": "У записі останнє слово — `fur`, шерсть, а в цьому варіанті — `tail`, хвіст."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `puppy`, щенок, а в этом варианте — `dog`, собака.",
+                "uk": "У записі друге слово — `puppy`, цуценя, а в цьому варіанті — `dog`, собака."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i10:p1",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p2",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p3",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i10:p4",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "kennel",
+            "fur",
+            "feed",
+            "bone"
+          ],
+          "rightColumn": [
+            "буда",
+            "шерсть",
+            "годувати",
+            "кістка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i11:audio",
+            "transcript": "They feed the puppy."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They feed the puppy.",
+          "orderedTokens": [
+            "They",
+            "feed",
+            "the",
+            "puppy"
+          ],
+          "authoredDistractorTokens": [
+            "feeds"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `feed` — `They feed the puppy.`",
+                "uk": "тут потрібно `feed` — `They feed the puppy.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте на миску. Скажіть: «У собаки є кістка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте на миску. Скажіть: «У собаки є кістка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The dog has a bone.",
+          "localizedMeaning": {
+            "ru": "Вы показываете на миску. Скажите: «У собаки есть кость»",
+            "uk": "Ви показуєте на миску. Скажіть: «У собаки є кістка»"
+          },
+          "orderedTokens": [
+            "The",
+            "dog",
+            "has",
+            "a",
+            "bone"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте на миску. Скажіть: «У собаки є кістка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `The dog has a bone.`",
+                "uk": "тут потрібно `has` — `The dog has a bone.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає, де буда. Скажіть: «Буда біля паркану»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає, де буда. Скажіть: «Буда біля паркану»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i13:audio",
+            "transcript": "The kennel is near the fence."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The kennel is near the fence.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о шерсти: «Шерсть мягкая». Выберите слово",
+            "uk": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The fur ___ soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-44:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Шерсть — одно слово, поэтому нужно `is`, а не `are`.",
+                "uk": "Шерсть — одне слово, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про шерсть: «Шерсть м’яка». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про шерсть говорим `is`.",
+                "uk": "`am` буває лише після `I`; про шерсть кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-44:i15:r1",
+            "text": "The dog has a bone."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r2",
+            "text": "The dog has a bowl."
+          },
+          {
+            "responseId": "en:lesson-06:session-44:i15:r3",
+            "text": "The puppy has a bone."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i15:audio",
+            "transcript": "The dog has a bone."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-44:i15:r1",
+              "targetText": "The dog has a bone.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r2",
+              "targetText": "The dog has a bowl.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r3",
+              "targetText": "The puppy has a bone.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `bone`, кость, а в этом варианте — `bowl`, миска.",
+                "uk": "У записі останнє слово — `bone`, кістка, а в цьому варіанті — `bowl`, миска."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `dog`, собака, а в этом варианте — `puppy`, щенок.",
+                "uk": "У записі друге слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-44:i16:p1",
+              "target": "fur",
+              "meaningByLocale": {
+                "ru": "шерсть",
+                "uk": "шерсть"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p2",
+              "target": "feed",
+              "meaningByLocale": {
+                "ru": "кормить",
+                "uk": "годувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p3",
+              "target": "kennel",
+              "meaningByLocale": {
+                "ru": "будка",
+                "uk": "буда"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-44:i16:p4",
+              "target": "bone",
+              "meaningByLocale": {
+                "ru": "кость",
+                "uk": "кістка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fur",
+            "feed",
+            "kennel",
+            "bone"
+          ],
+          "rightColumn": [
+            "шерсть",
+            "годувати",
+            "буда",
+            "кістка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви гуляєте із сусідкою. Розкажіть про дядька: «Він годує собаку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Ви гуляєте із сусідкою. Розкажіть про дядька: «Він годує собаку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-44:i17:audio",
+            "transcript": "He feeds the dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He feeds the dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-44:word:feed",
+      "correctText": "feed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i01",
+      "correctText": "We feed the puppy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i02",
+      "correctText": "He feeds the dog.",
+      "correctResponseId": "en:lesson-06:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i03",
+      "correctText": "feeds",
+      "correctResponseId": "en:lesson-06:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:word:bone",
+      "correctText": "bone",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i05",
+      "correctText": "The bone is in the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:word:kennel",
+      "correctText": "kennel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i06",
+      "correctText": "Whose kennel is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i07",
+      "correctText": "He feeds the dog.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i08",
+      "correctText": "feed",
+      "correctResponseId": "en:lesson-06:session-44:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:word:fur",
+      "correctText": "fur",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i09",
+      "correctText": "The puppy has soft fur.",
+      "correctResponseId": "en:lesson-06:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i11",
+      "correctText": "They feed the puppy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i12",
+      "correctText": "The dog has a bone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i13",
+      "correctText": "The kennel is near the fence.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-44:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i15",
+      "correctText": "The dog has a bone.",
+      "correctResponseId": "en:lesson-06:session-44:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-44:i17",
+      "correctText": "He feeds the dog.",
+      "correctResponseId": null
+    }
+  ]
+}

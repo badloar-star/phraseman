@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-06:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-43:intro1:r2": {
-          "ru": "После `I` — `speak`, без `s`.",
-          "uk": "Після `I` — `speak`, без `s`."
+          "ru": "После I слово остаётся grow, без s.",
+          "uk": "Після I слово лишається grow, без s."
         },
         "en:lesson-06:session-43:intro1:r3": {
-          "ru": "Нужно `I speak`, без `am`.",
-          "uk": "Потрібно `I speak`, без `am`."
+          "ru": "Здесь действие: I grow, без am.",
+          "uk": "Тут дія: I grow, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-06:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-43:intro2:r2": {
-          "ru": "После `she` — `speaks`.",
-          "uk": "Після `she` — `speaks`."
+          "ru": "После she нужно grows, с s.",
+          "uk": "Після she потрібно grows, з s."
         },
         "en:lesson-06:session-43:intro2:r3": {
-          "ru": "Нужно `She speaks`, без `is`.",
-          "uk": "Потрібно `She speaks`, без `is`."
+          "ru": "Здесь действие: She grows, без is.",
+          "uk": "Тут дія: She grows, без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-06:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-43:intro3:r2": {
-          "ru": "Нужно `I am uncertain`, с `am`.",
-          "uk": "Потрібно `I am uncertain`, з `am`."
+          "ru": "Без is предложение не получается: нужно The soil is.",
+          "uk": "Без is речення не виходить: потрібно The soil is."
         },
         "en:lesson-06:session-43:intro3:r3": {
-          "ru": "С `I` — `am`, не `is`.",
-          "uk": "З `I` — `am`, не `is`."
+          "ru": "Земля — это одно слово, поэтому нужно is, а не are.",
+          "uk": "Земля — це одне слово, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c2dd302616b127aa8b843c9399447d1416486abfc41653123319c276fd466c10"
+  "auxiliaryFingerprint": "3fb83fca6c1b7ef4e5d806b68bfd8e2c532bc38eecda2b970e85273d0819df2a"
 }

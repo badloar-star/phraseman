@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 44 — Капелюх біля дверей
+# Англійська · Урок 6 · Заняття 44 — Собака на подвір’ї
 
-**Ситуація.** Після зустрічі в Анни в передпокої залишився капелюх. Том допомагає з’ясувати, хто його забув.
+**Ситуація.** Ви доглядаєте за собакою та цуценям сусідки. Слово дії після I, we і they лишається незмінним, а після he і she отримує s.
 
-**Що ви опануєте:** назвати головний убір, знайти власника речі й розповісти, де він живе
-**Нові слова:** hat
+**Що ви опануєте:** розповісти, хто годує тварин, і сказати, де що лежить на подвір’ї
+**Нові слова:** feed, bone, kennel, fur
+**Повертаються:** dog, puppy, bowl, tail, fence, garden, brother, soft
 
 ---
 
 ## Інтро 1
 
-### Чий це капелюх
+### Голодне цуценя
 
-На вішалці біля дверей залишився капелюх. `hat` — «головний убір», наприклад капелюх або шапка. Тут це капелюх: `Whose hat is this?` — «Чий це капелюх?» Слово `whose` запитує про власника. Приміряти знахідку можна, але від цього вона вашою не стає.
+Сусідка поїхала на вихідні й залишила вам цуценя. З самого світанку воно ходить за вами назирці й просить їсти, виляючи хвостом. Миска порожня, і наповнити її нікому, крім вас. feed — «годувати». Про себе кажемо I feed the puppy — «Я годую цуценя». Після I слово лишається feed, без s.
 
-**Запитайте гостей «Чий це капелюх?»**
+**Сусідка телефонує й питає, що ви робите. Скажіть: «Я годую цуценя».**
 
-- ✅ **Whose hat is this?**
-- ❌ Who hat is this? — *Про власника запитуємо `Whose`.*
-- ❌ Whose hat are these? — *Один капелюх: `is this`.*
+- ✅ **I feed the puppy.**
+- ❌ I feeds the puppy. — *Після I слово лишається feed, без s.*
+- ❌ I am feed the puppy. — *Тут дія: I feed, без am.*
 
 ---
 
 ## Інтро 2
 
-### Ось мій капелюх
+### Кістка для собаки
 
-Том показує на капелюх, і ви впізнаєте свій. `This hat is mine` — «Цей капелюх мій». Після `mine` не повторюємо `hat`: це слово вже означає «мій» без назви речі. `My hat` — «мій капелюх», а `This hat is mine` — готове повідомлення про власника.
+Ваш брат повернувся з магазину з паперовим пакетом: у ньому кістка для собаки. Він виходить на подвір’я, а собака вже чекає біля миски. bone — «кістка». Сусідка питає, чим зайнятий брат. Про нього кажемо He feeds the dog — «Він годує собаку». Після he до feed додаємо s: feeds.
 
-**Скажіть Тому «Цей капелюх мій».**
+**Сусідка питає, що робить брат. Скажіть: «Він годує собаку».**
 
-- ✅ **This hat is mine.**
-- ❌ This hat is my. — *У кінці без назви речі потрібне `mine`, не `my`.*
-- ❌ This hat are mine. — *Один капелюх: `is`, не `are`.*
+- ✅ **He feeds the dog.**
+- ❌ He feed the dog. — *Після he потрібно feeds, з s.*
+- ❌ He is feeds the dog. — *Тут дія: He feeds, без is.*
 
 ---
 
 ## Інтро 3
 
-### Де живе Анна
+### Буда біля паркану
 
-Гість запитує, чи тут живе Анна. `She lives here` — «Вона живе тут». Після `she` у `live` з’являється `s`: `lives`. Можна назвати ім’я: `Anna lives here`. Ви повідомляєте її місце проживання; бути в кімнаті просто зараз їй необов’язково.
+Пішов дощ, і собака втекла з подвір’я в сад. Сусідка хвилюється й просить показати, де вона зазвичай ховається від негоди. Ви ведете її стежкою між грядками. kennel — «буда». Про одну річ кажемо is: The kennel is near the fence — «Буда біля паркану».
 
-**Дайте гостеві відповідь про Анну «Вона живе тут».**
+**Сусідка питає, де буда. Скажіть: «Буда біля паркану».**
 
-- ✅ **She lives here.**
-- ❌ She live here. — *Після `she` — `lives`.*
-- ❌ She is lives here. — *Потрібно `She lives`, без `is`.*
+- ✅ **The kennel is near the fence.**
+- ❌ The kennel near the fence. — *Без is речення не виходить: потрібно The kennel is.*
+- ❌ The kennel are near the fence. — *Буда одна, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Цей капелюх мій»**
+**1 · Картка слова — feed**
+<!-- interaction_id: en:lesson-06:session-44:word:feed; family: word_card -->
+> **feed** — годувати. We feed the dog. — «Ми годуємо собаку». Про те, як людина дає їжу тварині.
+
+**2 · Сусідка питає про вас із братом. Скажіть: «Ми годуємо цуценя»**
 <!-- interaction_id: en:lesson-06:session-44:i01; family: phrase_builder -->
-Плитки: `mine` `is` `hat` `This` → **This hat is mine.**
+Плитки: `the` `puppy` `feed` `We` `feeds` → **We feed the puppy.**
+*(плитка `feeds` зайва: тут потрібно `feed` — `We feed the puppy.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-44:i02; family: listen_choose -->
-🔊 *hat* → **hat** · bicycle · freezer
-- bicycle — *У записі перше слово — `hat`, а в цьому варіанті — `bicycle`.*
-- freezer — *У записі перше слово — `hat`, а в цьому варіанті — `freezer`.*
+🔊 *He feeds the dog.* → **He feeds the dog.** · He feeds the puppy. · She feeds the dog.
+- He feeds the puppy. — *У записі останнє слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя.*
+- She feeds the dog. — *У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона.*
 
-**3 · Запитайте «Чий це капелюх?»**
+**4 · Скажіть про брата: «Він годує собаку». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-44:i03; family: context_gap_grammar -->
-Whose ___ is this? → **hat** · hats · hat are
-- hats — *Тут один капелюх: `hat`, з `is this`.*
-- hat are — *Потрібно `Whose hat is this?`, без додаткового `are`.*
+He ___ the dog. → **feeds** · feed · is feeds
+- feed — *Після `he` потрібно `feeds`, з `s`.*
+- is feeds — *Кажемо `He feeds`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-44:i04; family: speed_match -->
-hat — головний убір · legal — законний · freezer — морозильник · bicycle — велосипед
+feed — годувати · bone — кістка · kennel — буда · fur — шерсть
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — bone**
+<!-- interaction_id: en:lesson-06:session-44:word:bone; family: word_card -->
+> **bone** — кістка. The bone is big. — «Кістка велика». Про тверду частину м’яса, яку гризе собака.
+
+**7 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-44:i05; family: listen_build_dictation -->
-🔊 *My hat is here.* Плитки: `here` `is` `hat` `My` → **My hat is here.**
+🔊 *The bone is in the bowl.* Плитки: `bowl` `in` `the` `The` `bone` `is` `are` → **The bone is in the bowl.**
+*(плитка `are` зайва: тут потрібно `is` — `The bone is in the bowl.`)*
 
-**6 · Скажіть «Вона живе тут»**
+**8 · Картка слова — kennel**
+<!-- interaction_id: en:lesson-06:session-44:word:kennel; family: word_card -->
+> **kennel** — буда. The kennel is new. — «Буда нова». Про маленький будиночок для собаки.
+
+**9 · Сусідка показує на подвір’я. Спитайте: «Чия це буда?»**
 <!-- interaction_id: en:lesson-06:session-44:i06; family: phrase_builder -->
-Плитки: `here` `lives` `She` → **She lives here.**
+Плитки: `kennel` `is` `this` `Whose` `Who` → **Whose kennel is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose kennel is this?`)*
 
-**7 · На кухні замінили морозильник. Скажіть «Цей морозильник новий»**
+**10 · Сусідка питає, що робить брат. Скажіть: «Він годує собаку»**
 <!-- interaction_id: en:lesson-06:session-44:i07; family: scripted_repeat_compare -->
-🎙 **This freezer is new.**
+🎙 **He feeds the dog.**
 
-**8 · Скажіть «Вони живуть тут»**
+**11 · Скажіть про себе: «Я годую цуценя». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-44:i08; family: context_gap_grammar -->
-They ___ here. → **live** · lives · are live
-- lives — *Після `they` — `live`, без `s`.*
-- are live — *Для «живуть» потрібно `They live`, без `are`.*
+I ___ the puppy. → **feed** · feeds · am feed
+- feeds — *Після `I` потрібно `feed`, без `s`.*
+- am feed — *Кажемо `I feed`, без `am`.*
 
-**9 · Послухайте, кому належить велосипед**
+**12 · Картка слова — fur**
+<!-- interaction_id: en:lesson-06:session-44:word:fur; family: word_card -->
+> **fur** — шерсть. The fur is soft. — «Шерсть м’яка». Про те, чим вкрите тіло собаки.
+
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-44:i09; family: listen_choose -->
-🔊 *This bicycle is mine.* → **This bicycle is mine.** · This bicycle is yours. · This bicycle is hers.
-- This bicycle is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This bicycle is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The puppy has soft fur.* → **The puppy has soft fur.** · The puppy has a soft tail. · The dog has soft fur.
+- The puppy has a soft tail. — *У записі останнє слово — `fur`, шерсть, а в цьому варіанті — `tail`, хвіст.*
+- The dog has soft fur. — *У записі друге слово — `puppy`, цуценя, а в цьому варіанті — `dog`, собака.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-44:i10; family: speed_match -->
-hat — головний убір · live — жити · bicycle — велосипед · legal — законний
+kennel — буда · fur — шерсть · feed — годувати · bone — кістка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-44:i11; family: listen_build_dictation -->
-🔊 *The freezer is here.* Плитки: `here` `is` `freezer` `The` `are` → **The freezer is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The freezer is here.`)*
+🔊 *They feed the puppy.* Плитки: `feed` `the` `puppy` `They` `feeds` → **They feed the puppy.**
+*(плитка `feeds` зайва: тут потрібно `feed` — `They feed the puppy.`)*
 
-**12 · Біля дверей стоїть велосипед. Запитайте «Чий це велосипед?»**
+**16 · Ви показуєте на миску. Скажіть: «У собаки є кістка»**
 <!-- interaction_id: en:lesson-06:session-44:i12; family: phrase_builder -->
-Плитки: `this` `is` `bicycle` `Whose` → **Whose bicycle is this?**
+Плитки: `bone` `a` `has` `The` `dog` `have` → **The dog has a bone.**
+*(плитка `have` зайва: тут потрібно `has` — `The dog has a bone.`)*
 
-**13 · Скажіть «Ми живемо тут»**
+**17 · Сусідка питає, де буда. Скажіть: «Буда біля паркану»**
 <!-- interaction_id: en:lesson-06:session-44:i13; family: scripted_repeat_compare -->
-🎙 **We live here.**
+🎙 **The kennel is near the fence.**
 
-**14 · Скажіть «Анна живе тут»**
+**18 · Скажіть про шерсть: «Шерсть м’яка». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-44:i14; family: context_gap_grammar -->
-Anna ___ here. → **lives** · live · is lives
-- live — *Анна — вона: `Anna lives`.*
-- is lives — *Потрібно `Anna lives`, без `is`.*
+The fur ___ soft. → **is** · are · am
+- are — *Шерсть — одне слово, тому потрібно `is`, а не `are`.*
+- am — *`am` буває лише після `I`; про шерсть кажемо `is`.*
 
-**15 · Послухайте, кому належить капелюх**
+**19 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-44:i15; family: listen_choose -->
-🔊 *This hat is mine.* → **This hat is mine.** · This hat is yours. · This hat is hers.
-- This hat is yours. — *У записі останнє слово — `mine`, а в цьому варіанті — `yours`.*
-- This hat is hers. — *У записі останнє слово — `mine`, а в цьому варіанті — `hers`.*
+🔊 *The dog has a bone.* → **The dog has a bone.** · The dog has a bowl. · The puppy has a bone.
+- The dog has a bowl. — *У записі останнє слово — `bone`, кістка, а в цьому варіанті — `bowl`, миска.*
+- The puppy has a bone. — *У записі друге слово — `dog`, собака, а в цьому варіанті — `puppy`, цуценя.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-44:i16; family: speed_match -->
-hat — головний убір · freezer — морозильник · legal — законний · live — жити
+fur — шерсть · feed — годувати · kennel — буда · bone — кістка
 
-**17 · Після зустрічі залишився капелюх. Знайдіть власника: запитайте «Чий це капелюх?»**
+**21 · Ви гуляєте із сусідкою. Розкажіть про дядька: «Він годує собаку»**
 <!-- interaction_id: en:lesson-06:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose hat is this?**
-
+🎙 **He feeds the dog.**

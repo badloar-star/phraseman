@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-06:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-06:session-41:word:fish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:fish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:fish:audio",
+            "transcript": "fish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:fish:r1",
+              "targetText": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу. We fish at the lake. — «Мы ловим рыбу на озере». О привычном занятии у воды.",
+                "uk": "ловити рибу. We fish at the lake. — «Ми ловимо рибу на озері». Про звичне заняття біля води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fish",
+            "definitionByLocale": {
+              "ru": "ловить рыбу. We fish at the lake. — «Мы ловим рыбу на озере». О привычном занятии у воды.",
+              "uk": "ловити рибу. We fish at the lake. — «Ми ловимо рибу на озері». Про звичне заняття біля води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We fish at the lake.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»"
+          },
+          "orderedTokens": [
+            "We",
+            "fish",
+            "at",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "fishes"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `fish` — `We fish at the lake.`",
+                "uk": "тут потрібно `fish` — `We fish at the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i02:r1",
+            "text": "He fishes at the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r2",
+            "text": "He walks at the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r3",
+            "text": "She fishes at the lake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i02:audio",
+            "transcript": "He fishes at the lake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i02:r1",
+              "targetText": "He fishes at the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r2",
+              "targetText": "He walks at the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r3",
+              "targetText": "She fishes at the lake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `fishes`, ловит рыбу, а в этом варианте — `walks`, ходит пешком.",
+                "uk": "У записі дія — `fishes`, ловить рибу, а в цьому варіанті — `walks`, ходить пішки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i03:r1",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r2",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r3",
+            "text": "is fishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i03:r1",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r2",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r3",
+              "text": "is fishes"
+            }
+          ],
+          "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `fishes`, с `es`.",
+                "uk": "Після `he` потрібно `fishes`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He fishes`, без `is`.",
+                "uk": "Кажемо `He fishes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i04:p1",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p2",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p3",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p4",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fish",
+            "rod",
+            "bait",
+            "jetty"
+          ],
+          "rightColumn": [
+            "ловить рыбу",
+            "удочка",
+            "наживка",
+            "причал, мостки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:rod",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rod",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:rod:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rod",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:rod:audio",
+            "transcript": "rod"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:rod:r1",
+              "targetText": "rod",
+              "meaningByLocale": {
+                "ru": "удочка. The rod is long. — «Удочка длинная». О палке с леской, которой ловят рыбу.",
+                "uk": "вудка. The rod is long. — «Вудка довга». Про держак із волосінню, яким ловлять рибу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rod",
+            "definitionByLocale": {
+              "ru": "удочка. The rod is long. — «Удочка длинная». О палке с леской, которой ловят рыбу.",
+              "uk": "вудка. The rod is long. — «Вудка довга». Про держак із волосінню, яким ловлять рибу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i05:audio",
+            "transcript": "The rod is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The rod is on the bench.",
+          "orderedTokens": [
+            "The",
+            "rod",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте соседа и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The rod is on the bench.`",
+                "uk": "тут потрібно `is` — `The rod is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:bait",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:bait:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:bait:audio",
+            "transcript": "bait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:bait:r1",
+              "targetText": "bait",
+              "meaningByLocale": {
+                "ru": "наживка. The bait is new. — «Наживка свежая». О том, что кладут на крючок, чтобы рыба клюнула.",
+                "uk": "наживка. The bait is new. — «Наживка свіжа». Про те, що кладуть на гачок, щоб риба клюнула."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bait",
+            "definitionByLocale": {
+              "ru": "наживка. The bait is new. — «Наживка свежая». О том, что кладут на крючок, чтобы рыба клюнула.",
+              "uk": "наживка. The bait is new. — «Наживка свіжа». Про те, що кладуть на гачок, щоб риба клюнула."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед показывает на ведро. Спросите: «Чья это наживка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед показывает на ведро. Спросите: «Чья это наживка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose bait is this?",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на ведро. Спросите: «Чья это наживка?»",
+            "uk": "Сусід показує на відро. Спитайте: «Чия це наживка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "bait",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сосед показывает на ведро. Спросите: «Чья это наживка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose bait is this?`",
+                "uk": "тут потрібно `Whose` — `Whose bait is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, как ловит рыбу брат. Скажите: «Он ловит рыбу удочкой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, как ловит рыбу брат. Скажите: «Он ловит рыбу удочкой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i07:audio",
+            "transcript": "He fishes with a rod."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He fishes with a rod.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i08:r1",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r2",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r3",
+            "text": "am fish"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+            "uk": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i08:r1",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r2",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r3",
+              "text": "am fish"
+            }
+          ],
+          "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `fish`, без `es`.",
+                "uk": "Після `I` потрібно `fish`, без `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I fish`, без `am`.",
+                "uk": "Кажемо `I fish`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:jetty",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jetty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:jetty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jetty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:jetty:audio",
+            "transcript": "jetty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:jetty:r1",
+              "targetText": "jetty",
+              "meaningByLocale": {
+                "ru": "причал. The jetty is old. — «Причал старый». О деревянных мостках, которые уходят в воду.",
+                "uk": "причал. The jetty is old. — «Причал старий». Про дерев’яні містки, що йдуть у воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jetty",
+            "definitionByLocale": {
+              "ru": "причал. The jetty is old. — «Причал старый». О деревянных мостках, которые уходят в воду.",
+              "uk": "причал. The jetty is old. — «Причал старий». Про дерев’яні містки, що йдуть у воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i09:r1",
+            "text": "The jetty is near the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r2",
+            "text": "The jetty is near the bridge."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r3",
+            "text": "The bench is near the lake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i09:audio",
+            "transcript": "The jetty is near the lake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i09:r1",
+              "targetText": "The jetty is near the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r2",
+              "targetText": "The jetty is near the bridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r3",
+              "targetText": "The bench is near the lake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lake`, озеро, а в этом варианте — `bridge`, мост.",
+                "uk": "У записі останнє слово — `lake`, озеро, а в цьому варіанті — `bridge`, міст."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `jetty`, причал, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі перше слово — `jetty`, причал, а в цьому варіанті — `bench`, лавка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i10:p1",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p2",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p3",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p4",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bait",
+            "jetty",
+            "rod",
+            "fish"
+          ],
+          "rightColumn": [
+            "наживка",
+            "причал, мостки",
+            "удочка",
+            "ловить рыбу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i11:audio",
+            "transcript": "They fish at the jetty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They fish at the jetty.",
+          "orderedTokens": [
+            "They",
+            "fish",
+            "at",
+            "the",
+            "jetty"
+          ],
+          "authoredDistractorTokens": [
+            "fishes"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте брата и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `fish` — `They fish at the jetty.`",
+                "uk": "тут потрібно `fish` — `They fish at the jetty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My brother has a rod.",
+          "localizedMeaning": {
+            "ru": "Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»",
+            "uk": "Ви показуєте, що лежить поруч із братом. Скажіть: «У мого брата є вудка»"
+          },
+          "orderedTokens": [
+            "My",
+            "brother",
+            "has",
+            "a",
+            "rod"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My brother has a rod.`",
+                "uk": "тут потрібно `has` — `My brother has a rod.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, где наживка. Скажите: «Наживка в ведре»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, где наживка. Скажите: «Наживка в ведре»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i13:audio",
+            "transcript": "The bait is in the bucket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bait is in the bucket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите о причале: «Причал возле озера». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о причале: «Причал возле озера». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о причале: «Причал возле озера». Выберите слово",
+            "uk": "Скажіть про причал: «Причал біля озера». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The jetty ___ near the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите о причале: «Причал возле озера». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите о причале: «Причал возле озера». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Причал один, поэтому нужно `is`, а не `are`.",
+                "uk": "Причал один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите о причале: «Причал возле озера». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про причал говорим `is`.",
+                "uk": "`am` буває лише після `I`; про причал кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i15:r1",
+            "text": "He has a rod."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r2",
+            "text": "He has a bucket."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r3",
+            "text": "She has a rod."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i15:audio",
+            "transcript": "He has a rod."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i15:r1",
+              "targetText": "He has a rod.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r2",
+              "targetText": "He has a bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r3",
+              "targetText": "She has a rod.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rod`, удочка, а в этом варианте — `bucket`, ведро.",
+                "uk": "У записі останнє слово — `rod`, вудка, а в цьому варіанті — `bucket`, відро."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i16:p1",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p2",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p3",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p4",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jetty",
+            "fish",
+            "bait",
+            "rod"
+          ],
+          "rightColumn": [
+            "причал, мостки",
+            "ловить рыбу",
+            "наживка",
+            "удочка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сидите на причале с соседом. Расскажите о дяде: «Он ловит рыбу на озере»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Вы сидите на причале с соседом. Расскажите о дяде: «Он ловит рыбу на озере»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i17:audio",
+            "transcript": "He fishes at the lake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He fishes at the lake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-06:session-41:word:fish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:fish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:fish:audio",
+            "transcript": "fish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:fish:r1",
+              "targetText": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу. We fish at the lake. — «Мы ловим рыбу на озере». О привычном занятии у воды.",
+                "uk": "ловити рибу. We fish at the lake. — «Ми ловимо рибу на озері». Про звичне заняття біля води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fish",
+            "definitionByLocale": {
+              "ru": "ловить рыбу. We fish at the lake. — «Мы ловим рыбу на озере». О привычном занятии у воды.",
+              "uk": "ловити рибу. We fish at the lake. — «Ми ловимо рибу на озері». Про звичне заняття біля води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We fish at the lake.",
+          "localizedMeaning": {
+            "ru": "Сосед спрашивает о вас с братом. Скажите: «Мы ловим рыбу на озере»",
+            "uk": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»"
+          },
+          "orderedTokens": [
+            "We",
+            "fish",
+            "at",
+            "the",
+            "lake"
+          ],
+          "authoredDistractorTokens": [
+            "fishes"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід питає про вас із братом. Скажіть: «Ми ловимо рибу на озері»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `fish` — `We fish at the lake.`",
+                "uk": "тут потрібно `fish` — `We fish at the lake.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i02:r1",
+            "text": "He fishes at the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r2",
+            "text": "He walks at the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i02:r3",
+            "text": "She fishes at the lake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i02:audio",
+            "transcript": "He fishes at the lake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i02:r1",
+              "targetText": "He fishes at the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r2",
+              "targetText": "He walks at the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r3",
+              "targetText": "She fishes at the lake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `fishes`, ловит рыбу, а в этом варианте — `walks`, ходит пешком.",
+                "uk": "У записі дія — `fishes`, ловить рибу, а в цьому варіанті — `walks`, ходить пішки."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i03:r1",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r2",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i03:r3",
+            "text": "is fishes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о брате: «Он ловит рыбу на озере». Выберите слово",
+            "uk": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "He ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i03:r1",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r2",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r3",
+              "text": "is fishes"
+            }
+          ],
+          "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `he` нужно `fishes`, с `es`.",
+                "uk": "Після `he` потрібно `fishes`, з `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про брата: «Він ловить рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `He fishes`, без `is`.",
+                "uk": "Кажемо `He fishes`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i04:p1",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p2",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p3",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i04:p4",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fish",
+            "rod",
+            "bait",
+            "jetty"
+          ],
+          "rightColumn": [
+            "ловити рибу",
+            "вудка",
+            "наживка",
+            "причал, місток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:rod",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rod",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:rod:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rod",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:rod:audio",
+            "transcript": "rod"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:rod:r1",
+              "targetText": "rod",
+              "meaningByLocale": {
+                "ru": "удочка. The rod is long. — «Удочка длинная». О палке с леской, которой ловят рыбу.",
+                "uk": "вудка. The rod is long. — «Вудка довга». Про держак із волосінню, яким ловлять рибу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rod",
+            "definitionByLocale": {
+              "ru": "удочка. The rod is long. — «Удочка длинная». О палке с леской, которой ловят рыбу.",
+              "uk": "вудка. The rod is long. — «Вудка довга». Про держак із волосінню, яким ловлять рибу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i05:audio",
+            "transcript": "The rod is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The rod is on the bench.",
+          "orderedTokens": [
+            "The",
+            "rod",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The rod is on the bench.`",
+                "uk": "тут потрібно `is` — `The rod is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:bait",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bait",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:bait:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bait",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:bait:audio",
+            "transcript": "bait"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:bait:r1",
+              "targetText": "bait",
+              "meaningByLocale": {
+                "ru": "наживка. The bait is new. — «Наживка свежая». О том, что кладут на крючок, чтобы рыба клюнула.",
+                "uk": "наживка. The bait is new. — «Наживка свіжа». Про те, що кладуть на гачок, щоб риба клюнула."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bait",
+            "definitionByLocale": {
+              "ru": "наживка. The bait is new. — «Наживка свежая». О том, что кладут на крючок, чтобы рыба клюнула.",
+              "uk": "наживка. The bait is new. — «Наживка свіжа». Про те, що кладуть на гачок, щоб риба клюнула."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід показує на відро. Спитайте: «Чия це наживка?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід показує на відро. Спитайте: «Чия це наживка?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose bait is this?",
+          "localizedMeaning": {
+            "ru": "Сосед показывает на ведро. Спросите: «Чья это наживка?»",
+            "uk": "Сусід показує на відро. Спитайте: «Чия це наживка?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "bait",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Сусід показує на відро. Спитайте: «Чия це наживка?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose bait is this?`",
+                "uk": "тут потрібно `Whose` — `Whose bait is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, як ловить рибу брат. Скажіть: «Він ловить рибу вудкою»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, як ловить рибу брат. Скажіть: «Він ловить рибу вудкою»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i07:audio",
+            "transcript": "He fishes with a rod."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He fishes with a rod.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i08:r1",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r2",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i08:r3",
+            "text": "am fish"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о себе: «Я ловлю рыбу на озере». Выберите слово",
+            "uk": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ at the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i08:r1",
+              "text": "fish"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r2",
+              "text": "fishes"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r3",
+              "text": "am fish"
+            }
+          ],
+          "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `fish`, без `es`.",
+                "uk": "Після `I` потрібно `fish`, без `es`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про себе: «Я ловлю рибу на озері». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Говорим `I fish`, без `am`.",
+                "uk": "Кажемо `I fish`, без `am`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:word:jetty",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jetty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:word:jetty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jetty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:word:jetty:audio",
+            "transcript": "jetty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:word:jetty:r1",
+              "targetText": "jetty",
+              "meaningByLocale": {
+                "ru": "причал. The jetty is old. — «Причал старый». О деревянных мостках, которые уходят в воду.",
+                "uk": "причал. The jetty is old. — «Причал старий». Про дерев’яні містки, що йдуть у воду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jetty",
+            "definitionByLocale": {
+              "ru": "причал. The jetty is old. — «Причал старый». О деревянных мостках, которые уходят в воду.",
+              "uk": "причал. The jetty is old. — «Причал старий». Про дерев’яні містки, що йдуть у воду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i09:r1",
+            "text": "The jetty is near the lake."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r2",
+            "text": "The jetty is near the bridge."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i09:r3",
+            "text": "The bench is near the lake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i09:audio",
+            "transcript": "The jetty is near the lake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i09:r1",
+              "targetText": "The jetty is near the lake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r2",
+              "targetText": "The jetty is near the bridge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r3",
+              "targetText": "The bench is near the lake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lake`, озеро, а в этом варианте — `bridge`, мост.",
+                "uk": "У записі останнє слово — `lake`, озеро, а в цьому варіанті — `bridge`, міст."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `jetty`, причал, а в этом варианте — `bench`, скамейка.",
+                "uk": "У записі перше слово — `jetty`, причал, а в цьому варіанті — `bench`, лавка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i10:p1",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p2",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p3",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i10:p4",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bait",
+            "jetty",
+            "rod",
+            "fish"
+          ],
+          "rightColumn": [
+            "наживка",
+            "причал, місток",
+            "вудка",
+            "ловити рибу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i11:audio",
+            "transcript": "They fish at the jetty."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They fish at the jetty.",
+          "orderedTokens": [
+            "They",
+            "fish",
+            "at",
+            "the",
+            "jetty"
+          ],
+          "authoredDistractorTokens": [
+            "fishes"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте брата й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `fish` — `They fish at the jetty.`",
+                "uk": "тут потрібно `fish` — `They fish at the jetty.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви показуєте, що лежить поруч із братом. Скажіть: «У мого брата є вудка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте, що лежить поруч із братом. Скажіть: «У мого брата є вудка»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My brother has a rod.",
+          "localizedMeaning": {
+            "ru": "Вы показываете, что лежит рядом с братом. Скажите: «У моего брата есть удочка»",
+            "uk": "Ви показуєте, що лежить поруч із братом. Скажіть: «У мого брата є вудка»"
+          },
+          "orderedTokens": [
+            "My",
+            "brother",
+            "has",
+            "a",
+            "rod"
+          ],
+          "authoredDistractorTokens": [
+            "have"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви показуєте, що лежить поруч із братом. Скажіть: «У мого брата є вудка»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `has` — `My brother has a rod.`",
+                "uk": "тут потрібно `has` — `My brother has a rod.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, де наживка. Скажіть: «Наживка у відрі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, де наживка. Скажіть: «Наживка у відрі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i13:audio",
+            "transcript": "The bait is in the bucket."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bait is in the bucket.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть про причал: «Причал біля озера». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про причал: «Причал біля озера». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите о причале: «Причал возле озера». Выберите слово",
+            "uk": "Скажіть про причал: «Причал біля озера». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The jetty ___ near the lake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-06:session-41:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть про причал: «Причал біля озера». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть про причал: «Причал біля озера». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Причал один, поэтому нужно `is`, а не `are`.",
+                "uk": "Причал один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть про причал: «Причал біля озера». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`am` бывает только после `I`; про причал говорим `is`.",
+                "uk": "`am` буває лише після `I`; про причал кажемо `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-06:session-41:i15:r1",
+            "text": "He has a rod."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r2",
+            "text": "He has a bucket."
+          },
+          {
+            "responseId": "en:lesson-06:session-41:i15:r3",
+            "text": "She has a rod."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i15:audio",
+            "transcript": "He has a rod."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-06:session-41:i15:r1",
+              "targetText": "He has a rod.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r2",
+              "targetText": "He has a bucket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r3",
+              "targetText": "She has a rod.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-06:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `rod`, удочка, а в этом варианте — `bucket`, ведро.",
+                "uk": "У записі останнє слово — `rod`, вудка, а в цьому варіанті — `bucket`, відро."
+              }
+            },
+            {
+              "responseId": "en:lesson-06:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `He`, он, а в этом варианте — `She`, она.",
+                "uk": "У записі перше слово — `He`, він, а в цьому варіанті — `She`, вона."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-06:session-41:i16:p1",
+              "target": "jetty",
+              "meaningByLocale": {
+                "ru": "причал, мостки",
+                "uk": "причал, місток"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p2",
+              "target": "fish",
+              "meaningByLocale": {
+                "ru": "ловить рыбу",
+                "uk": "ловити рибу"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p3",
+              "target": "bait",
+              "meaningByLocale": {
+                "ru": "наживка",
+                "uk": "наживка"
+              }
+            },
+            {
+              "pairId": "en:lesson-06:session-41:i16:p4",
+              "target": "rod",
+              "meaningByLocale": {
+                "ru": "удочка",
+                "uk": "вудка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "jetty",
+            "fish",
+            "bait",
+            "rod"
+          ],
+          "rightColumn": [
+            "причал, місток",
+            "ловити рибу",
+            "наживка",
+            "вудка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-06:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви сидите на причалі із сусідом. Розкажіть про дядька: «Він ловить рибу на озері»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-06:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Ви сидите на причалі із сусідом. Розкажіть про дядька: «Він ловить рибу на озері»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-06:session-41:i17:audio",
+            "transcript": "He fishes at the lake."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He fishes at the lake.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-06:session-41:word:fish",
+      "correctText": "fish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i01",
+      "correctText": "We fish at the lake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i02",
+      "correctText": "He fishes at the lake.",
+      "correctResponseId": "en:lesson-06:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i03",
+      "correctText": "fishes",
+      "correctResponseId": "en:lesson-06:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:word:rod",
+      "correctText": "rod",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i05",
+      "correctText": "The rod is on the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:word:bait",
+      "correctText": "bait",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i06",
+      "correctText": "Whose bait is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i07",
+      "correctText": "He fishes with a rod.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i08",
+      "correctText": "fish",
+      "correctResponseId": "en:lesson-06:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:word:jetty",
+      "correctText": "jetty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i09",
+      "correctText": "The jetty is near the lake.",
+      "correctResponseId": "en:lesson-06:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i11",
+      "correctText": "They fish at the jetty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i12",
+      "correctText": "My brother has a rod.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i13",
+      "correctText": "The bait is in the bucket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-06:session-41:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i15",
+      "correctText": "He has a rod.",
+      "correctResponseId": "en:lesson-06:session-41:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-06:session-41:i17",
+      "correctText": "He fishes at the lake.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,134 +1,154 @@
-# Англійська · Урок 6 · Заняття 43 — Якою мовою говоримо
+# Англійська · Урок 6 · Заняття 43 — Квіти на балконі
 
-**Ситуація.** На зустрічі з новим сусідом Анна й Том уточнюють, хто говорить англійською.
+**Ситуація.** Ви із сусідкою вирощуєте квіти на балконах. Слово дії після I, we і they лишається незмінним, а після he і she отримує s.
 
-**Що ви опануєте:** сказати, якою мовою ви говорите, й розповісти про іншу людину
-**Нові слова:** speak
+**Що ви опануєте:** розповісти, хто вирощує квіти, і сказати, що з землею та паростком
+**Нові слова:** grow, seed, soil, sprout
+**Повертаються:** balcony, pot, flower, kitchen, box, wet, dry, brother
 
 ---
 
 ## Інтро 1
 
-### Я говорю англійською
+### Горщики на балконі
 
-Новий сусід не знає, якою мовою до вас звернутися. `speak` — «говорити». `I speak English` — «Я говорю англійською». Назва мови йде одразу після `speak`: між ними не потрібне додаткове слово. Можна говорити англійською з помилками — для цієї фрази ідеальна вимова не потрібна.
+Сусід знизу бачить на вашому балконі ряд горщиків і питає, що ви там робите. Ви пояснюєте: щовесни ви порпаєтеся з квітами. grow — «вирощувати». Про себе кажемо I grow flowers on the balcony — «Я вирощую квіти на балконі». Після I слово лишається grow, без s.
 
-**Допоможіть сусідові обрати мову: скажіть «Я говорю англійською».**
+**Сусід питає, що ви робите на балконі. Скажіть: «Я вирощую квіти на балконі».**
 
-- ✅ **I speak English.**
-- ❌ I speaks English. — *Після `I` — `speak`, без `s`.*
-- ❌ I am speak English. — *Потрібно `I speak`, без `am`.*
+- ✅ **I grow flowers on the balcony.**
+- ❌ I grows flowers on the balcony. — *Після I слово лишається grow, без s.*
+- ❌ I am grow flowers on the balcony. — *Тут дія: I grow, без am.*
 
 ---
 
 ## Інтро 2
 
-### Анна теж говорить
+### Квіти з насіння
 
-Сусід запитує, чи можна звернутися до Анни англійською. `She speaks English` — «Вона говорить англійською». Після `she` додаємо `s`: `speak → speaks`. Можна назвати ім’я: `Anna speaks English`. Фраза повідомляє про мову, якою вона володіє; Анна може зараз мовчати.
+Сусідка зверху починає не з готових кущиків, а з пакетика насіння: садить його в маленький горщик і чекає. Сусід дивується, звідки в неї стільки квітів. seed — «насінина». Про неї кажемо She grows flowers from seeds — «Вона вирощує квіти з насіння». Після she до grow додаємо s: grows.
 
-**Дайте сусідові відповідь про Анну: «Вона говорить англійською».**
+**Сусід питає, звідки в сусідки квіти. Скажіть: «Вона вирощує квіти з насіння».**
 
-- ✅ **She speaks English.**
-- ❌ She speak English. — *Після `she` — `speaks`.*
-- ❌ She is speaks English. — *Потрібно `She speaks`, без `is`.*
+- ✅ **She grows flowers from seeds.**
+- ❌ She grow flowers from seeds. — *Після she потрібно grows, з s.*
+- ❌ She is grows flowers from seeds. — *Тут дія: She grows, без is.*
 
 ---
 
 ## Інтро 3
 
-### Не впевнені щодо часу
+### Суха земля
 
-Сусід запитує, о котрій прийде Том, але ви ще не знаєте точно. `I am uncertain` — «Я не впевнений». `uncertain` описує невпевненість, тому тут потрібне `am`. Це не дія на зразок `speak`: ви повідомляєте, що точної відповіді поки немає.
+Квітка у вашому горщику похилилася, і сусід питає, що з нею. Ви торкаєтеся землі пальцем: вона тверда й суха, квітці потрібна вода. Учора ви забули її полити, а день видався спекотним. soil — «земля в горщику». Про одну річ кажемо is: The soil is dry — «Земля суха».
 
-**Дайте сусідові відповідь «Я не впевнений».**
+**Сусід питає, що з квіткою. Скажіть: «Земля суха».**
 
-- ✅ **I am uncertain.**
-- ❌ I uncertain. — *Потрібно `I am uncertain`, з `am`.*
-- ❌ I is uncertain. — *З `I` — `am`, не `is`.*
+- ✅ **The soil is dry.**
+- ❌ The soil dry. — *Без is речення не виходить: потрібно The soil is.*
+- ❌ The soil are dry. — *Земля — це одне слово, тому потрібно is, а не are.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я говорю англійською»**
+**1 · Картка слова — grow**
+<!-- interaction_id: en:lesson-06:session-43:word:grow; family: word_card -->
+> **grow** — вирощувати, рости. We grow flowers in the kitchen. — «Ми вирощуємо квіти на кухні». Про те, як людина росить рослини.
+
+**2 · Сусід питає про вас із сусідкою. Скажіть: «Ми вирощуємо квіти на балконі»**
 <!-- interaction_id: en:lesson-06:session-43:i01; family: phrase_builder -->
-Плитки: `English` `speak` `I` → **I speak English.**
+Плитки: `flowers` `on` `the` `balcony` `grow` `We` `grows` → **We grow flowers on the balcony.**
+*(плитка `grows` зайва: тут потрібно `grow` — `We grow flowers on the balcony.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-43:i02; family: listen_choose -->
-🔊 *speak* → **speak** · sleep · share
-- sleep — *У записі перше слово — `speak`, а в цьому варіанті — `sleep`.*
-- share — *У записі перше слово — `speak`, а в цьому варіанті — `share`.*
+🔊 *She grows flowers on the balcony.* → **She grows flowers on the balcony.** · She grows flowers in the kitchen. · He grows flowers on the balcony.
+- She grows flowers in the kitchen. — *У записі останнє слово — `balcony`, балкон, а в цьому варіанті — `kitchen`, кухня.*
+- He grows flowers on the balcony. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть «Вона говорить англійською»**
+**4 · Скажіть про сусідку: «Вона вирощує квіти на балконі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-43:i03; family: context_gap_grammar -->
-She ___ English. → **speaks** · speak · is speaks
-- speak — *Після `she` — `speaks`.*
-- is speaks — *Потрібно `She speaks`, без `is`.*
+She ___ flowers on the balcony. → **grows** · grow · is grows
+- grow — *Після `she` потрібно `grows`, з `s`.*
+- is grows — *Кажемо `She grows`, без `is`.*
 
-**4 · З’єднайте слова зі значеннями; uncertain — про людину**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-43:i04; family: speed_match -->
-speak — говорити · uncertain — невпевнений · recycling bin — контейнер для переробки · sleep — спати
+grow — вирощувати, рости · seed — насінина · soil — земля, ґрунт · sprout — паросток
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — seed**
+<!-- interaction_id: en:lesson-06:session-43:word:seed; family: word_card -->
+> **seed** — насінина. The seed is small. — «Насінина маленька». Про те, з чого виростає рослина.
+
+**7 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-43:i05; family: listen_build_dictation -->
-🔊 *Anna speaks English.* Плитки: `English` `speaks` `Anna` → **Anna speaks English.**
+🔊 *The seed is in the pot.* Плитки: `pot` `in` `the` `The` `seed` `is` `are` → **The seed is in the pot.**
+*(плитка `are` зайва: тут потрібно `is` — `The seed is in the pot.`)*
 
-**6 · Скажіть «Кіт спить тут»**
+**8 · Картка слова — soil**
+<!-- interaction_id: en:lesson-06:session-43:word:soil; family: word_card -->
+> **soil** — земля, ґрунт. The soil is wet. — «Земля волога». Про землю, у якій ростуть квіти.
+
+**9 · Сусід показує на мішок. Спитайте: «Чия це земля?»**
 <!-- interaction_id: en:lesson-06:session-43:i06; family: phrase_builder -->
-Плитки: `here` `sleeps` `cat` `The` → **The cat sleeps here.**
+Плитки: `soil` `is` `this` `Whose` `Who` → **Whose soil is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose soil is this?`)*
 
-**7 · Ви не знаєте точного часу зустрічі. Скажіть «Я не впевнений»**
+**10 · Сусід питає, звідки в сусідки квіти. Скажіть: «Вона вирощує квіти з насіння»**
 <!-- interaction_id: en:lesson-06:session-43:i07; family: scripted_repeat_compare -->
-🎙 **I am uncertain.**
+🎙 **She grows flowers from seeds.**
 
-**8 · Сусід запитує, чи знають Анна й Том англійську. Дайте відповідь «Вони говорять англійською»**
+**11 · Скажіть про себе: «Я вирощую квіти на балконі». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-43:i08; family: context_gap_grammar -->
-They ___ English. → **speak** · speaks · are speak
-- speaks — *Після `they` — `speak`, без `s`.*
-- are speak — *Потрібно `They speak`, без `are`.*
+I ___ flowers on the balcony. → **grow** · grows · am grow
+- grows — *Після `I` потрібно `grow`, без `s`.*
+- am grow — *Кажемо `I grow`, без `am`.*
 
-**9 · Послухайте, який цей контейнер**
+**12 · Картка слова — sprout**
+<!-- interaction_id: en:lesson-06:session-43:word:sprout; family: word_card -->
+> **sprout** — паросток. The sprout is new. — «Паросток новий». Про перший маленький пагінець із насінини.
+
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-06:session-43:i09; family: listen_choose -->
-🔊 *This recycling bin is new.* → **This recycling bin is new.** · This recycling bin is old. · This recycling bin is small.
-- This recycling bin is old. — *У записі останнє слово — `new`, а в цьому варіанті — `old`.*
-- This recycling bin is small. — *У записі останнє слово — `new`, а в цьому варіанті — `small`.*
+🔊 *The sprout is in the pot.* → **The sprout is in the pot.** · The sprout is in the box. · The seed is in the pot.
+- The sprout is in the box. — *У записі останнє слово — `pot`, горщик, а в цьому варіанті — `box`, коробка.*
+- The seed is in the pot. — *У записі перше слово — `sprout`, паросток, а в цьому варіанті — `seed`, насінина.*
 
-**10 · З’єднайте слова зі значеннями; uncertain — про людину**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-43:i10; family: speed_match -->
-speak — говорити · sleep — спати · recycling bin — контейнер для переробки · uncertain — невпевнений
+soil — земля, ґрунт · sprout — паросток · seed — насінина · grow — вирощувати, рости
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-06:session-43:i11; family: listen_build_dictation -->
-🔊 *The recycling bin is here.* Плитки: `here` `is` `bin` `recycling` `The` `are` → **The recycling bin is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The recycling bin is here.`)*
+🔊 *They grow flowers in the pot.* Плитки: `grow` `flowers` `in` `the` `pot` `They` `grows` → **They grow flowers in the pot.**
+*(плитка `grows` зайва: тут потрібно `grow` — `They grow flowers in the pot.`)*
 
-**12 · Після зустрічі залишився ноутбук. Запитайте «Чий це ноутбук?»**
+**16 · Ви показуєте на підвіконня. Скажіть: «У мене є паросток»**
 <!-- interaction_id: en:lesson-06:session-43:i12; family: phrase_builder -->
-Плитки: `this` `is` `laptop` `Whose` → **Whose laptop is this?**
+Плитки: `sprout` `a` `have` `I` `has` → **I have a sprout.**
+*(плитка `has` зайва: тут потрібно `have` — `I have a sprout.`)*
 
-**13 · Скажіть «Вони сплять тут»**
+**17 · Сусід питає, що в горщику. Скажіть: «Паросток у горщику»**
 <!-- interaction_id: en:lesson-06:session-43:i13; family: scripted_repeat_compare -->
-🎙 **They sleep here.**
+🎙 **The sprout is in the pot.**
 
-**14 · Скажіть «Том говорить англійською»**
+**18 · Скажіть про землю: «Земля волога». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-43:i14; family: context_gap_grammar -->
-Tom ___ English. → **speaks** · speak · is speaks
-- speak — *Том — він: `Tom speaks`.*
-- is speaks — *Потрібно `Tom speaks`, без `is`.*
+The soil ___ wet. → **is** · are · am
+- are — *Земля — одне слово, тому потрібно `is`, а не `are`.*
+- am — *`am` буває лише після `I`; про землю кажемо `is`.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-06:session-43:i15; family: listen_choose -->
-🔊 *We speak English.* → **We speak English.** · They speak English. · You speak English.
-- They speak English. — *У записі перше слово — `We`, а в цьому варіанті — `They`.*
-- You speak English. — *У записі перше слово — `We`, а в цьому варіанті — `You`.*
+🔊 *I have a sprout.* → **I have a sprout.** · I have a seed. · You have a sprout.
+- I have a seed. — *У записі останнє слово — `sprout`, паросток, а в цьому варіанті — `seed`, насінина.*
+- You have a sprout. — *У записі перше слово — `I`, я, а в цьому варіанті — `You`, ти.*
 
-**16 · З’єднайте слова зі значеннями; uncertain — про людину**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-06:session-43:i16; family: speed_match -->
-speak — говорити · recycling bin — контейнер для переробки · uncertain — невпевнений · sleep — спати
+sprout — паросток · grow — вирощувати, рости · soil — земля, ґрунт · seed — насінина
 
-**17 · Сусід запитує, якою мовою можна звернутися до Анни. Дайте відповідь «Вона говорить англійською»**
+**21 · Ви розмовляєте із сусідом. Розкажіть про брата: «Він вирощує квіти на балконі»**
 <!-- interaction_id: en:lesson-06:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She speaks English.**
-
+🎙 **He grows flowers on the balcony.**

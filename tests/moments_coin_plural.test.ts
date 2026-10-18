@@ -39,10 +39,10 @@ describe('склонение «<число> монет» в окнах моме�
   });
 
   it('винительный после «на / o / by»: «на 1 монету», «на 21 монету», pl «o 1 monetę», «o 22 monety»', () => {
-    expect(positionMomentText('ru', 'overtakeSub', { n: 1 })).toBe(glueNumbers('на 1 монету недели'));
-    expect(positionMomentText('ru', 'overtakeSub', { n: 21 })).toBe(glueNumbers('на 21 монету недели'));
-    expect(positionMomentText('ru', 'overtakeSub', { n: 5 })).toBe(glueNumbers('на 5 монет недели'));
-    expect(positionMomentText('uk', 'overtakeSub', { n: 2 })).toBe(glueNumbers('на 2 монети тижня'));
+    expect(positionMomentText('ru', 'overtakeSub', { n: 1 })).toBe(glueNumbers('на 1 монету за неделю'));
+    expect(positionMomentText('ru', 'overtakeSub', { n: 21 })).toBe(glueNumbers('на 21 монету за неделю'));
+    expect(positionMomentText('ru', 'overtakeSub', { n: 5 })).toBe(glueNumbers('на 5 монет за неделю'));
+    expect(positionMomentText('uk', 'overtakeSub', { n: 2 })).toBe(glueNumbers('на 2 монети за тиждень'));
     expect(positionMomentText('pl', 'overtakeSub', { n: 1 })).toBe(glueNumbers('o 1 monetę w tym tygodniu'));
     expect(positionMomentText('pl', 'overtakeSub', { n: 22 })).toBe(glueNumbers('o 22 monety w tym tygodniu'));
     expect(positionMomentText('en', 'overtakeSub', { n: 1 })).toBe(glueNumbers('by 1 coin this week'));

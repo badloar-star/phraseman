@@ -93,7 +93,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
           )}
         </Text>
         <View style={s.cta}>
-          <V2Button label={spireGameText(lang, 'energyIn', { t: energyClock })} icon="flash" iconPosition="leading" disabled onPress={() => undefined} testID={`${testID}-cta`} />
+          <V2Button label={spireGameText(lang, 'playIn', { t: energyClock })} icon="flash" iconPosition="leading" disabled onPress={() => undefined} testID={`${testID}-cta`} />
         </View>
         <V2Pressable onPress={() => fire(onPlus, 'plus')} accessibilityRole="button" style={s.plus} testID={`${testID}-plus`}>
           <Text style={[s.plusText, { color: p.text }]}>{positionMomentText(lang, 'plusLink')}</Text>

@@ -113,7 +113,7 @@ describe('m05B · тост «обгоняет тебя»', () => {
     const onDismiss = jest.fn();
     await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} onPlay={onPlay} onDismiss={onDismiss} />);
     expect(screen.getByTestId('overtake-toast-title').props.children).toBe('Ира обгоняет тебя');
-    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 30 монет недели'));
+    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 30 монет за неделю'));
     await fireEvent.press(screen.getByTestId('overtake-toast-play'));
     await fireEvent.press(screen.getByTestId('overtake-toast-play'));
     expect(onPlay).toHaveBeenCalledTimes(1);
@@ -144,7 +144,7 @@ describe('m05C · последний шанс', () => {
     expect(screen.getByText(/До топ-5 — /)).toBeTruthy();
     expect(screen.getByText('60 монет')).toBeTruthy();
     expect(screen.getByText(/Энергия вернётся через 9:40\./)).toBeTruthy();
-    expect(screen.getByText('Энергия через 9:40')).toBeTruthy();
+    expect(screen.getByText('Играть через 9:40')).toBeTruthy();
     expect(screen.getByTestId('last-chance-cta').props.accessibilityState.disabled).toBe(true);
     await fireEvent.press(screen.getByText('Играй без ожидания с Plus'));
     expect(onPlus).toHaveBeenCalledTimes(1);

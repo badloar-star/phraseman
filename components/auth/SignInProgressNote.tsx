@@ -10,7 +10,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { AppState, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -61,6 +61,12 @@ function SignInStatusLineBase({ active, announce = true, flush = false, onPhaseC
   const g = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const [phase, setPhase] = useState<'quiet' | 'calm' | 'long'>('quiet');
+  // зачем (сторож perf_freeze_contract: бесконечная анимация withRepeat(-1) обязана останавливаться вне переднего плана): пока приложение в фоне, точки стоят
+  const [appActive, setAppActive] = useState(AppState.currentState === 'active');
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => setAppActive(state === 'active'));
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     if (!active) {
@@ -82,9 +88,9 @@ function SignInStatusLineBase({ active, announce = true, flush = false, onPhaseC
       <Text maxFontSizeMultiplier={1.3} style={[s.statusText, { color: g.secondary }]}>{text}</Text>
       {phase === 'calm' ? (
         <View style={s.dots} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-          <Dot delayMs={0} color={g.secondary} still={reduceMotion} />
-          <Dot delayMs={200} color={g.secondary} still={reduceMotion} />
-          <Dot delayMs={400} color={g.secondary} still={reduceMotion} />
+          <Dot delayMs={0} color={g.secondary} still={reduceMotion || !appActive} />
+          <Dot delayMs={200} color={g.secondary} still={reduceMotion || !appActive} />
+          <Dot delayMs={400} color={g.secondary} still={reduceMotion || !appActive} />
         </View>
       ) : null}
     </View>

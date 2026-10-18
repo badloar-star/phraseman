@@ -59,9 +59,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { V2IconTile } from './v2/V2Glass';
-import { colorWithAlpha } from './v2/plateAlpha';
-import { HOME_PLATE_ALPHA, useHomePlateStyle } from './home/v2/homePlate';
-import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
+import { useHomePlateStyle } from './home/v2/homePlate';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
@@ -116,7 +114,6 @@ function DailyPhraseCard({
   const homeV2 = variant === 'homeV2';
   const homeAdditional = variant === 'homeAdditional' || homeV2;
   const v2 = useV2Palette();
-  const shadowGlass = useShadowGlass();
   const v2Glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
@@ -678,33 +675,7 @@ function DailyPhraseCard({
               <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{cardLiteral}</Text>
             ) : null}
           </View>
-          {/* зачем (владелец 04.10, по скриншоту: «в два раза ниже»): кнопки из отдельной
-              строки под текстом переехали столбиком к арту справа — высота ≈ 80 вместо ≈ 150,
-              ширина текста прежняя (фраза не начинает переноситься). */}
-          <View style={styles.v2Actions}>
-              <Pressable
-                testID="home-v2-phrase-play"
-                hitSlop={6}
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
-                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }, pressed && styles.pressed]} // guard-ok: D43
-              >
-                <Ionicons name="volume-medium-outline" size={18} color={v2.iconTint} />
-              </Pressable>
-              <Pressable
-                testID="home-v2-phrase-save"
-                hitSlop={6}
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { uk: 'Зберегти', ru: 'Сохранить', en: 'Save', es: 'Guardar', 'pt-BR': 'Salvar', vi: 'Lưu', id: 'Simpan', tr: 'Kaydet', pl: 'Zapisz' })}
-                // зачем: сохранить фразу можно только после ответа на вопрос дня —
-                // звезда открывает шторку, где закладка и сам вопрос.
-                onPress={openDetails}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: colorWithAlpha(v2.glassRaised, HOME_PLATE_ALPHA), boxShadow: nestedBoxShadow(shadowGlass) }, pressed && styles.pressed]} // guard-ok: D43
-              >
-                <Ionicons name="star-outline" size={18} color={v2.iconTint} />
-              </Pressable>
-          </View>
+          {/* зачем (владелец через координатора 18.10): на карточке «Фраза дня» нет ни звезды (сохранить), ни «Озвучить» — они есть, когда фразу открывают (шторка). Карточка целиком нажимается и открывает фразу. */}
         </Pressable>
         ) : (
         <Pressable
@@ -1114,20 +1085,11 @@ const styles = StyleSheet.create({
   v2Art: { position: 'absolute', right: 8, top: 4, width: 72, height: 72 },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
-  v2Copy: { flex: 1, minWidth: 0, paddingRight: 122 },
+  // зачем (18.10): кнопок справа от текста больше нет — запас под арт (72 + 8 справа) вместо 122; minHeight карточки 80 держит высоту ровной
+  v2Copy: { flex: 1, minWidth: 0, paddingRight: 80 },
   v2Kicker: { ...V2_TYPE.overline },
   v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 2 },
   v2Translation: { ...V2_TYPE.body, marginTop: 1 },
-  // Столбиком слева от арта: 2 × 34 + 6 = 74 — влезает в высоту карточки.
-  v2Actions: { position: 'absolute', right: 86, top: 0, bottom: 0, justifyContent: 'center', gap: 6 },
-  v2Round: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    // зачем (владелец 12.10, стиль «Тень» + сверка снимков 6b3890202): без обводок — кнопку отделяют тон фона и малая внешняя тень.
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   placeholder: {
     minHeight: 88,
     marginHorizontal: 16,

@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -9,6 +9,7 @@ import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
+import HomeV2SeeAllButton from './HomeV2SeeAllButton';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
   lesson: 'book-outline',
@@ -79,10 +80,8 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
         <View style={s.headerRow}>
           <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
           {seeAllShown ? (
-            <Pressable testID="home-v2-today-see-all" accessibilityRole="button" accessibilityLabel={seeAllShown.label} onPress={() => latestRef.current.seeAll?.onPress()} hitSlop={8} style={({ pressed }) => [s.seeAll, pressed ? s.seeAllPressed : null]}>
-              <Text style={[s.seeAllText, { color: p.link }]}>{seeAllShown.label}</Text>
-              <Ionicons name="chevron-forward" size={15} color={p.link} />
-            </Pressable>
+            // зачем (владелец через координатора 18.10): кнопка-иконка без текста вместо ссылки «Смотреть все»; строка заголовка прежней высоты (17), зона нажатия 44
+            <HomeV2SeeAllButton testID="home-v2-today-see-all" label={seeAllShown.label} onPress={() => latestRef.current.seeAll?.onPress()} rowHeight={17} />
           ) : null}
         </View>
       ) : null}
@@ -157,12 +156,9 @@ const s = StyleSheet.create({
     paddingTop: 16,
   },
   cardBare: { paddingTop: 0 },
-  // зачем (17.10): заголовок и «Смотреть все» в одну строку — та же ссылка, что у ленты видео (HomeV2VideoRail: 13/18, 600, link, шеврон 15)
+  // зачем (17.10; 18.10): заголовок и кнопка-иконка «Смотреть все» в одну строку — та же кнопка, что у ленты видео (HomeV2SeeAllButton)
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginLeft: 12, marginRight: 8, marginBottom: 12, minHeight: 17 },
   header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6 },
-  seeAll: { minHeight: 36, marginVertical: -10, flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'flex-end' },
-  seeAllPressed: { opacity: 0.6 },
-  seeAllText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   // зачем («Тень» 12.10): между строками-плашками ≥ 10, иначе тени слипаются
   list: { gap: 10 },
   row: {

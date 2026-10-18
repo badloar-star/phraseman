@@ -2695,7 +2695,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   videos={homeV2Videos}
                   status={homeV2VideoStatus}
                   ownerActive={homeRuntimeActive}
-                  onSeeAll={() => go('/(tabs)/video')}
                 />
               ) : null}
             </View>

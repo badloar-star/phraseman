@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -21,19 +21,15 @@ type Props = {
   videos: readonly LingmanYoutubeVideo[];
   status: 'loading' | 'ready' | 'error';
   ownerActive: boolean;
-  onSeeAll: () => void;
 };
 
 /** Через сколько мс без видео блок тихо скрывается (решение координатора 15.10). */
 export const VIDEO_RAIL_GIVE_UP_MS = 10_000;
 
 /** The Home snapshot is already loaded for the unread count; no second feed request. */
-/** зачем (координатор 17.10, скорость Главной): onSeeAll — новая стрелка на каждый рендер Главной; через ref memo-вид перерисовывается только от данных. */
+/** зачем (владелец через координатора 18.10): у блока «Видео» кнопки перехода ко всем видео нет совсем — все видео открываются через таббар; тонкая обёртка с ref для обработчика ссылки больше не нужна. */
 export default function HomeV2VideoRail(props: Props) {
-  const latestRef = useRef(props.onSeeAll);
-  latestRef.current = props.onSeeAll;
-  const seeAll = useCallback(() => latestRef.current(), []);
-  return <HomeV2VideoRailView videos={props.videos} status={props.status} ownerActive={props.ownerActive} onSeeAll={seeAll} />;
+  return <HomeV2VideoRailView videos={props.videos} status={props.status} ownerActive={props.ownerActive} />;
 }
 
 type RailCardsProps = Readonly<{
@@ -70,8 +66,8 @@ const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor,
   );
 });
 
-const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, ownerActive, onSeeAll }: Props) {
-  useRenderCause('home:video_rail', () => ({ videos, status, ownerActive, onSeeAll }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, ownerActive }: Props) {
+  useRenderCause('home:video_rail', () => ({ videos, status, ownerActive }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const { lang } = useLang();
   const p = useV2Palette();
   const glass = useShadowGlass();
@@ -110,7 +106,6 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, 
   }, [hasVideos, gaveUp, status]);
 
   const title = triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Vídeos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' });
-  const seeAll = triLang(lang, { ru: 'Смотреть все', uk: 'Дивитися всі', en: 'See all', es: 'Ver todos', 'pt-BR': 'Ver todos', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie' });
 
   if (!hasVideos && gaveUp) return null;
 
@@ -118,10 +113,6 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, 
     <View testID="home-v2-video-rail" style={s.section}>
       <View style={s.heading}>
         <Text style={[s.headingText, { color: p.text }]}>{title}</Text>
-        <Pressable accessibilityRole="button" accessibilityLabel={seeAll} onPress={onSeeAll} hitSlop={8} style={s.seeAll}>
-          <Text style={[s.seeAllText, { color: p.link }]}>{seeAll}</Text>
-          <Ionicons name="chevron-forward" size={15} color={p.link} />
-        </Pressable>
       </View>
       {videos.length ? (
         <VideoRailCards videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />
@@ -144,8 +135,6 @@ const s = StyleSheet.create({
   section: { marginTop: 0 },
   heading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 26, marginBottom: 2 },
   headingText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  seeAll: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'flex-end' },
-  seeAllText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   rail: { gap: 9, paddingRight: V2.screenPad, paddingBottom: 2 },
   card: { width: 246, height: 138, borderRadius: 0, overflow: 'hidden' },
   cardContent: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start', padding: 8 },

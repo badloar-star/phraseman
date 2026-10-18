@@ -56,7 +56,8 @@ test('V2 Home reuses its real video snapshot and places the rail between feature
   const rail = body.indexOf('<HomeV2VideoRail');
   const today = body.indexOf('<HomeV2TodayCard');
   assert.ok(tiles >= 0 && rail > tiles && today > rail);
-  assert.match(body.slice(rail, today), /onSeeAll=\{\(\) => go\('\/\(tabs\)\/video'\)\}/);
+  // зачем (владелец через координатора 18.10): у блока «Видео» кнопки «Смотреть все» нет совсем — все видео открываются через таббар
+  assert.doesNotMatch(body.slice(rail, today), /onSeeAll/);
 });
 
 test('video rail scrolls horizontally and plays only the selected real video', () => {

@@ -27,10 +27,12 @@ describe('Главная: обводки сняты', () => {
     expect(usage).toMatch(/nestedBoxShadow\(shadowGlass\)/);
   });
 
-  it('«Фраза дня»: у v2Card и v2Round нет рамки, у круглых кнопок нет borderColor', () => {
+  // зачем (владелец через координатора 18.10): на карточке «Фраза дня» круглых кнопок (звезда, «Озвучить») больше нет — проверяем, что рамки у карточки нет и кнопки не вернулись молча
+  it('«Фраза дня»: у v2Card нет рамки; круглых кнопок на карточке нет', () => {
     const src = read('components', 'DailyPhraseCard.tsx');
     expect(styleBlock(src, 'v2Card')).not.toMatch(/borderWidth|borderColor/);
-    expect(styleBlock(src, 'v2Round')).not.toMatch(/borderWidth|borderColor/);
-    for (const m of src.matchAll(/styles\.v2Round[^\n]*/g)) expect(m[0]).not.toMatch(/borderColor|stroke/);
+    expect(src).not.toContain('styles.v2Round');
+    expect(src).not.toContain('testID="home-v2-phrase-play"');
+    expect(src).not.toContain('testID="home-v2-phrase-save"');
   });
 });

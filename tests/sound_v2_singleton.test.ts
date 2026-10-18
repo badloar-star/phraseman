@@ -27,9 +27,9 @@ describe('sound_v2: публичный API при выключенном фла�
     log.mockClear();
   });
 
-  it('по умолчанию (кэш конфигурации не прочитан) флаг выключен', () => {
+  it('по умолчанию (кэш конфигурации не прочитан) флаг включён по решению владельца', () => {
     setSoundV2FlagForTests(null);
-    expect(isSoundV2Enabled()).toBe(false);
+    expect(isSoundV2Enabled()).toBe(true);
   });
 
   it('playEvent возвращает flag_off, не бросает и не грузит нативный слой', () => {

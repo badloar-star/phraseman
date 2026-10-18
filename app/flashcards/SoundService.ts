@@ -37,6 +37,7 @@ import {
 import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
 import { claimSpokenAudio } from '../../modules/audio/audio_runtime_arbiter';
 import { getSoundSettingsSnapshot } from '../../modules/audio/sound_settings';
+import { soundAudit } from '../../modules/audio/sound_audit';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowed, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -174,10 +175,12 @@ export function playSfx(name: FcSfxName): void {
   // зачем 2026-08-30 (§R7): общий тумблер «Звуки» приложения обязан глушить и
   // карточки — раньше они слушали только свой fc_sfx_on и звенели при
   // выключенных звуках. Локальный тумблер остаётся дополнительным фильтром.
-  if (!getSoundSettingsSnapshot().effectsEnabled) return;
-  if (!isFcSfxEnabled()) return;
+  // зачем (координатор 18.10, «ни одного звука»): СПЕРВА ЛОГИ — каждый ранний выход называет причину ([SOUND-AUDIT] fc)
+  if (!getSoundSettingsSnapshot().effectsEnabled) { soundAudit('fc', { sfx: name, played: false, reason: 'ui_sounds_off' }); return; }
+  if (!isFcSfxEnabled()) { soundAudit('fc', { sfx: name, played: false, reason: 'fc_sfx_off' }); return; }
   // зачем (координатор 14.10, п.4): sound_v2 включён и у звука карточек есть пара в V2 — играет V2; выключен — прежний путь
-  if (tryPlayV2ForFc(name)) return;
+  if (tryPlayV2ForFc(name)) { soundAudit('fc', { sfx: name, played: true, path: 'v2' }); return; }
+  soundAudit('fc', { sfx: name, path: 'legacy', poolSize: pool.get(name)?.players.length ?? 0 });
   try {
     const p = getPlayer(name);
     if (!p) return;
@@ -186,10 +189,12 @@ export function playSfx(name: FcSfxName): void {
     void Promise.resolve(p.seekTo(0))
       .catch(noteSwallowedHandler('SoundService:promise_3'))
       .then(() => {
-        if (generation !== poolGeneration || !isFcSfxEnabled() || !getSoundSettingsSnapshot().effectsEnabled) return;
+        if (generation !== poolGeneration || !isFcSfxEnabled() || !getSoundSettingsSnapshot().effectsEnabled) { soundAudit('fc', { sfx: name, played: false, reason: 'cancelled_after_seek' }); return; }
         try {
           p.play();
+          soundAudit('fc', { sfx: name, played: true, path: 'legacy', isLoaded: (p as { isLoaded?: boolean }).isLoaded ?? null, volume: p.volume });
         } catch (e) {
+          soundAudit('fc', { sfx: name, played: false, reason: `play_threw:${e instanceof Error ? e.message : String(e)}` });
       DebugLogger.error('SoundService:p', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       });

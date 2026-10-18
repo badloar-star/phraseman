@@ -17,6 +17,8 @@ jest.mock('react-native', () => {
   return Object.setPrototypeOf({ AppState }, jest.requireActual('react-native'));
 });
 const mockHaptic = jest.fn(() => Promise.resolve());
+const mockSound = jest.fn().mockReturnValue(true);
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: (...args: unknown[]) => mockSound(...args) }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: () => mockHaptic() }));
 
 import { SPIRE_COUNTDOWN_FROM, SPIRE_COUNTDOWN_STEP_MS, useSpireCountdown } from '../app/spire/use_spire_countdown';
@@ -34,7 +36,7 @@ const advance = async (ms: number) => { await act(async () => { jest.advanceTime
 
 describe('отсчёт 3 → 2 → 1 перед ступенью Пика', () => {
   let logSpy: jest.SpyInstance;
-  beforeEach(() => { jest.useFakeTimers(); mockHaptic.mockClear(); logSpy = jest.spyOn(console, 'log').mockImplementation(() => undefined); emitApp('active'); });
+  beforeEach(() => { jest.useFakeTimers(); mockHaptic.mockClear(); mockSound.mockClear(); logSpy = jest.spyOn(console, 'log').mockImplementation(() => undefined); emitApp('active'); });
   afterEach(() => { logSpy.mockRestore(); jest.useRealTimers(); });
 
   it('первый кадр уже с цифрой 3; 3 → 2 → 1 по ~0,9 с; раунд стартует ТОЛЬКО после «1», один раз', async () => {
@@ -58,12 +60,12 @@ describe('отсчёт 3 → 2 → 1 перед ступенью Пика', () =
     expect(onDone).toHaveBeenCalledTimes(1);
   });
 
-  it('вибрация и вызов-заглушка звука на каждой из трёх цифр (звук делают «Моменты»)', async () => {
+  it('вибрация и звук V2 на каждой из трёх цифр', async () => {
     await render(<Probe paused={false} onDone={jest.fn()} out={{ digit: null }} />);
     for (let i = 0; i < SPIRE_COUNTDOWN_FROM; i += 1) await advance(SPIRE_COUNTDOWN_STEP_MS); // по одной цифре, как на устройстве
     expect(mockHaptic).toHaveBeenCalledTimes(SPIRE_COUNTDOWN_FROM);
-    const written = logSpy.mock.calls.map((c) => String(c[0])).join('\n');
-    for (let d = SPIRE_COUNTDOWN_FROM; d >= 1; d -= 1) expect(written).toContain(`[SPIRE-COUNTDOWN] sound-stub digit=${d}`);
+    expect(mockSound).toHaveBeenCalledTimes(SPIRE_COUNTDOWN_FROM);
+    expect(mockSound).toHaveBeenCalledWith('tap', 'spire.countdown');
   });
 
   it('свернули приложение во время отсчёта — пауза, раунд в фоне не стартует; вернулись — заново с 3', async () => {

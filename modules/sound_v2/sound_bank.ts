@@ -30,7 +30,7 @@ import {
   type SoundV2EventId,
 } from './catalog';
 import { NoRepeatDeck, StreakBook, type RandomSource } from './deck';
-import { isSoundV2Enabled, primeSoundV2Flag } from './sound_v2_flag';
+import { isSoundV2Enabled, isSoundV2FlagHydrated, primeSoundV2Flag } from './sound_v2_flag';
 
 const LOG = '[SOUND-V2]';
 
@@ -639,7 +639,10 @@ function getBank(): SoundBank {
 /** Сыграть событие. Никогда не бросает: при любой причине «не играть» возвращает played=false и причину (и пишет её в лог). */
 export function playEvent(event: SoundV2EventId, options?: PlayEventOptions): SoundV2PlayResult {
   try {
-    return getBank().playEvent(event, options);
+    const result = getBank().playEvent(event, options);
+    // зачем (координатор 18.10, «ни одного звука»): СПЕРВА ЛОГИ — флаг V2 и итог каждого события ([SOUND-AUDIT] v2)
+    console.warn(`[SOUND-AUDIT] v2 ${JSON.stringify({ event: String(event), flag: isSoundV2Enabled(), hydrated: isSoundV2FlagHydrated(), played: result.played, reason: result.played ? undefined : result.reason })}`); // guard-ok: временная трассировка «нет звука»
+    return result;
   } catch (error) {
     console.warn(`${LOG} playEvent упал event=${String(event)} (${errText(error)})`);
     return { event: String(event), played: false, reason: 'player_unavailable' };

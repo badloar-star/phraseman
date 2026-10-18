@@ -1,4 +1,5 @@
 import { ExpoSfxBackend } from './expo_sfx_backend';
+import { soundAudit } from './sound_audit';
 import { tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
 import {
   SoundArbiter,
@@ -53,6 +54,17 @@ export class SoundDirector {
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     const decision = this.arbiter.request(eventId, options);
+    // зачем (координатор 18.10, владелец: «в приложении ни одного звука»): СПЕРВА ЛОГИ — каждое решение диспетчера с причиной и флагами,
+    // которые глушат звук (эффекты выкл / идёт речь / идёт запись), плюс общий тумблер «Звуки» и путь V2. Один grep по [SOUND-AUDIT].
+    soundAudit('director', {
+      event: eventId,
+      decision: decision.kind,
+      reason: decision.kind === 'drop' ? decision.reason : undefined,
+      arbiter: this.arbiter.auditState(),
+      uiSounds: getSoundSettingsSnapshot().effectsEnabled,
+      spokenLease: getAudioActivitySnapshot().spokenActive,
+      scope: options.scope ?? 'global',
+    });
     // зачем (баг 2026-09-22 «после второго спина звуки не работают»): отказ
     // арбитра НЕМОЙ по своей природе — звук просто не звучит, и отличить
     // rate-limit от cooldown, dedupe или занятого слота было нечем. Оставляем

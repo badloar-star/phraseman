@@ -11,13 +11,15 @@ import { useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { hapticTap } from '../../hooks/use-haptics';
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 
 const SPIRE = '[SPIRE]'; // зачем: сторож spire_game_source_contract — префикс [SPIRE] во всех файлах app/spire
 const LOG = `${SPIRE}[SPIRE-COUNTDOWN]`;
 
-/** Заглушка звука цифры отсчёта: звук Пика делают «Моменты» — они подключат вызов здесь; пока только след в журнале. */
-export function spireCountdownSoundStub(digit: number): void {
-  console.log(`${LOG} sound-stub digit=${digit} — звук подключают «Моменты»`); // guard-ok: заглушка звука, след вызова
+/** Общий банк соблюдает настройку звука, запись микрофона и отсутствие повторов. */
+export function playSpireCountdownSound(digit: number): void {
+  const handled = tryPlayV2Event('tap', 'spire.countdown');
+  console.log(`${LOG} sound digit=${digit} handled=${handled}`); // guard-ok: итог события отсчёта
 }
 
 /** С какой цифры начинается отсчёт и сколько держится каждая (просьба: ~0,8–1 с). */
@@ -63,11 +65,11 @@ export function useSpireCountdown(args: Readonly<{ paused: boolean; onDone: () =
 
   // вибрация и звук на каждой цифре (одна строка журнала на цифру)
   useEffect(() => {
-    if (digit === null) return;
+    if (digit === null || paused || !appActive) return;
     console.log(`${LOG} digit=${digit} run=${runsRef.current}`); // guard-ok: каждая цифра
     void hapticTap();
-    spireCountdownSoundStub(digit);
-  }, [digit]);
+    playSpireCountdownSound(digit);
+  }, [digit, paused, appActive]);
 
   return digit;
 }

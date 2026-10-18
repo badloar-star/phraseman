@@ -119,6 +119,11 @@ export class SoundArbiter {
     return this.decide(eventId, options, false);
   }
 
+  /** [SOUND-AUDIT] (координатор 18.10, «в приложении ни одного звука»): снимок флагов, по которым арбитр глушит звук — для журнала, ничего не меняет. */
+  auditState(): Readonly<{ effectsEnabled: boolean; voiceActive: boolean; recordingActive: boolean; voiceActiveUntil: number; active: string | null }> {
+    return { effectsEnabled: this.effectsEnabled, voiceActive: this.voiceActive, recordingActive: this.recordingActive, voiceActiveUntil: this.voiceActiveUntil, active: this.active ? String((this.active as { eventId?: unknown }).eventId ?? '?') : null };
+  }
+
   setEffectsEnabled(enabled: boolean): void {
     this.effectsEnabled = enabled;
     if (!enabled) this.clearTransientState();

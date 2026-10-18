@@ -23,6 +23,8 @@ export function subscribeManagedAudioMode(listener: () => void): () => void {
 }
 
 export function setManagedAudioMode(mode: AudioMode): Promise<void> {
+  // зачем (координатор 18.10, «ни одного звука»): СПЕРВА ЛОГИ — каждый переход аудиосессии: звучит ли в беззвучном режиме iOS и включена ли запись
+  console.warn(`[SOUND-AUDIT] audio_mode ${JSON.stringify({ playsInSilentMode: mode.playsInSilentMode ?? null, allowsRecording: mode.allowsRecording ?? null, interruptionMode: mode.interruptionMode ?? null })}`); // guard-ok: временная трассировка «нет звука»
   const nextRecordingActive = mode.allowsRecording === true;
   if (nextRecordingActive !== recordingActive) {
     recordingActive = nextRecordingActive;

@@ -97,6 +97,7 @@
     "release:keys": "node scripts/release_keys_gate.mjs",
     "release:keys:strict": "node scripts/release_keys_gate.mjs --strict-env",
     "release:precheck": "node scripts/release_precheck.mjs",
+    "android:aab-size-gate": "node scripts/android_aab_size_gate.mjs",
     "i18n:check": "node scripts/scan_untranslated_ui.mjs",
     "i18n:report": "node scripts/scan_untranslated_ui.mjs --report",
     "i18n:baseline": "node scripts/scan_untranslated_ui.mjs --update",
@@ -245,6 +246,7 @@
     "postinstall": "patch-package",
     "eas-build-pre-install": "node scripts/eas_ios_development_entitlements.mjs",
     "eas-build-post-install": "npm run release:keys && node scripts/eas_production_version_gate.mjs && node scripts/learning_v2_plan_b_gates.mjs && node scripts/store_route_reachability.mjs",
+    "eas-build-on-success": "node scripts/eas_build_on_success.mjs",
     "parity:gate": "node scripts/visual_parity_gate.mjs",
     "parity:build": "node scripts/visual_parity_build.mjs",
     "parity:shot": "node scripts/parity_shot.mjs"

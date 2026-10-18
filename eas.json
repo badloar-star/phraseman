@@ -19,6 +19,10 @@
       "environment": "production",
       "channel": "production",
       "autoIncrement": false,
+      "buildArtifactPaths": [
+        "android/app/build/outputs/mapping/release/mapping.txt",
+        "android/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/**/*"
+      ],
       "env": {
         "EXPO_PUBLIC_STORE_RELEASE": "1",
         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",

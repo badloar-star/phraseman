@@ -8,8 +8,10 @@ const SETTINGS_MARKER = '// phraseman: production Expo module exclusions';
 const RN_SETTINGS_MARKER = '// phraseman: production React Native autolinking exclusions';
 const RN_SETTINGS_ANCHOR = 'extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->';
 const BUILD_MARKER = '// phraseman: clean Metro release outputs before bundling';
+const NATIVE_SYMBOLS_MARKER = '// phraseman: keep native debug metadata outside the AAB';
 const STORE_RELEASE_ENV = 'EXPO_PUBLIC_STORE_RELEASE';
 const GRADLE_JVM_ARGS = '-Xmx4096m -XX:MaxMetaspaceSize=1536m';
+const INCLUDE_NATIVE_DEBUG_METADATA = 'android.bundle.includeNativeDebugMetadata';
 const PRODUCTION_EXPO_EXCLUDES = [
   'expo-dev-client',
   'expo-dev-launcher',
@@ -66,8 +68,37 @@ def phrasemanProductionRnConfigCommand = expoAutolinking.rnConfigCommand + ${JSO
 }
 
 function patchAppBuildGradle(source) {
-  if (source.includes(BUILD_MARKER)) return source;
-  return `${source.trimEnd()}
+  let patched = source;
+  if (!patched.includes(NATIVE_SYMBOLS_MARKER)) {
+    const buildTypesMatch = /\bbuildTypes\s*\{/.exec(patched);
+    if (!buildTypesMatch) {
+      throw new Error('withProductionAndroidBundleHygiene: missing buildTypes block');
+    }
+    const buildTypesOpen = patched.indexOf('{', buildTypesMatch.index);
+    let depth = 0;
+    let buildTypesClose = -1;
+    for (let index = buildTypesOpen; index < patched.length; index += 1) {
+      if (patched[index] === '{') depth += 1;
+      else if (patched[index] === '}') depth -= 1;
+      if (depth === 0) {
+        buildTypesClose = index;
+        break;
+      }
+    }
+    if (buildTypesClose < 0) {
+      throw new Error('withProductionAndroidBundleHygiene: unterminated buildTypes block');
+    }
+    const buildTypesBody = patched.slice(buildTypesOpen + 1, buildTypesClose);
+    const releaseMatch = /\brelease\s*\{\r?\n/.exec(buildTypesBody);
+    if (!releaseMatch) {
+      throw new Error('withProductionAndroidBundleHygiene: missing buildTypes.release block');
+    }
+    const insertAt = buildTypesOpen + 1 + releaseMatch.index + releaseMatch[0].length;
+    const nativeSymbolsBlock = `            ${NATIVE_SYMBOLS_MARKER}\n            ndk {\n                debugSymbolLevel 'none'\n            }\n`;
+    patched = `${patched.slice(0, insertAt)}${nativeSymbolsBlock}${patched.slice(insertAt)}`;
+  }
+  if (patched.includes(BUILD_MARKER)) return patched;
+  return `${patched.trimEnd()}
 
 ${BUILD_MARKER}
 afterEvaluate {
@@ -90,6 +121,14 @@ function patchGradleProperties(items) {
     existing.value = GRADLE_JVM_ARGS;
   } else {
     items.push({ type: 'property', key: 'org.gradle.jvmargs', value: GRADLE_JVM_ARGS });
+  }
+  const nativeMetadata = items.find(
+    (item) => item.type === 'property' && item.key === INCLUDE_NATIVE_DEBUG_METADATA,
+  );
+  if (nativeMetadata) {
+    nativeMetadata.value = 'false';
+  } else {
+    items.push({ type: 'property', key: INCLUDE_NATIVE_DEBUG_METADATA, value: 'false' });
   }
   return items;
 }

@@ -1,0 +1,3 @@
+# energy-modes-004 на en (e12ad7eb0) — НЕ СНЯТО (СВЕРКА, 18.10 06:40–06:45)
+Системный диалог Android «Phraseman isn't responding» (ANR) два раза подряд после холодного старта: на экране выбора языка (lang.png, after_wait*.png) и на Главной (restart.png). Тапы по «Wait» не принимались (focus остался на диалоге), закрыла кнопкой «Close app» и перезапустила — диалог вернулся. Гость при этом: MemAvailable ≈ 967 МБ, SwapFree ≈ 1,6 ГБ, load average 5,0 / 5,2 / 3,1 (высокая загрузка).
+Ссылка для окна: phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&lessonintro=skip&mode=b&energy=1&overlays=off&next=/lesson1?id=1%26from=lesson_menu (+ язык en через /settings_language), затем неверный ответ.

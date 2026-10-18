@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-41",
   "learningOutcomeByLocale": {
-    "ru": "использовать often и usually перед привычным действием",
-    "uk": "використовувати often і usually перед звичною дією"
+    "ru": "говорить о привычках, ставя usually или often перед действием",
+    "uk": "говорити про звички, ставлячи usually або often перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Тихая пауза",
-        "uk": "Тиха пауза"
+        "ru": "Ночёвка подруги",
+        "uk": "Ночівля подруги"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, практикуете ли вы медитацию. `meditate` — «медитировать». `I often meditate` — «Я часто медитирую». `Often` означает «часто» и стоит перед `meditate`. Даже телефону на это время можно дать выходной.",
-        "uk": "Друг запитує, чи практикуєте ви медитацію. `meditate` — «медитувати». `I often meditate` — «Я часто медитую». `Often` означає «часто» і стоїть перед `meditate`. Навіть телефону на цей час можна дати вихідний."
+        "ru": "Подруга осталась у вас ночевать и спрашивает, во сколько вы обычно просыпаетесь, чтобы утром вам не мешать. wake — «просыпаться». Вы обычно просыпаетесь около шести, поэтому отвечаете: I usually wake early — «Я обычно просыпаюсь рано». В этой фразе usually стоит перед wake. Проснуться — ещё не значит встать: можно и дальше обнимать подушку.",
+        "uk": "Подруга лишилася в вас ночувати й питає, о котрій ви зазвичай прокидаєтеся, щоб уранці вам не заважати. wake — «прокидатися». Ви зазвичай прокидаєтеся близько шостої, тому відповідаєте: I usually wake early — «Я зазвичай прокидаюся рано». У цій фразі usually стоїть перед wake. Прокинутися — ще не означає встати: можна й далі обіймати подушку."
       },
       "question": {
         "interactionId": "en:lesson-07:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу: «Я часто медитирую».",
-          "uk": "Відповідайте другові: «Я часто медитую»."
+          "ru": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+          "uk": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-41:intro1:r1",
-              "text": "I often meditate."
+              "text": "I usually wake early."
             },
             {
               "responseId": "en:lesson-07:session-41:intro1:r2",
-              "text": "I often meditates."
+              "text": "I usually wakes early."
             },
             {
               "responseId": "en:lesson-07:session-41:intro1:r3",
-              "text": "I often meditating."
+              "text": "I am usually wake early."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-41:intro1:r1",
-              "text": "I often meditate."
+              "text": "I usually wake early."
             },
             {
               "responseId": "en:lesson-07:session-41:intro1:r2",
-              "text": "I often meditates."
+              "text": "I usually wakes early."
             },
             {
               "responseId": "en:lesson-07:session-41:intro1:r3",
-              "text": "I often meditating."
+              "text": "I am usually wake early."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу: «Я часто медитирую».",
-          "uk": "Відповідайте другові: «Я часто медитую»."
+          "ru": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+          "uk": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Место для беседы",
-        "uk": "Місце для бесіди"
+        "ru": "Перед отпуском",
+        "uk": "Перед відпусткою"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете гостю место, где обычно беседуете со знакомыми. `I usually chat here` — «Я обычно беседую здесь». `Usually` стоит перед `chat`, а `here` указывает на это место.",
-        "uk": "Ви показуєте гостеві місце, де зазвичай бесідуєте зі знайомими. `I usually chat here` — «Я зазвичай бесідую тут». `Usually` стоїть перед `chat`, а `here` указує на це місце."
+        "ru": "Вы уезжаете в отпуск, а соседка будет поливать цветы. Она спрашивает, что вы делаете с чайником перед отъездом. unplug — «выключать из розетки». Обычно перед поездкой вы вынимаете вилку: I usually unplug the kettle — «Я обычно выключаю чайник из розетки».",
+        "uk": "Ви їдете у відпустку, а сусідка поливатиме квіти. Вона питає, що ви робите з чайником перед від’їздом. unplug — «вимикати з розетки». Зазвичай перед поїздкою ви виймаєте вилку: I usually unplug the kettle — «Я зазвичай вимикаю чайник з розетки»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите место и скажите: «Я обычно беседую здесь».",
-          "uk": "Покажіть місце й скажіть: «Я зазвичай бесідую тут»."
+          "ru": "Соседка спрашивает про чайник. Скажите ей: «Я обычно выключаю чайник из розетки».",
+          "uk": "Сусідка питає про чайник. Скажіть їй: «Я зазвичай вимикаю чайник з розетки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-41:intro2:r1",
-              "text": "I usually chat here."
+              "text": "I usually unplug the kettle."
             },
             {
               "responseId": "en:lesson-07:session-41:intro2:r2",
-              "text": "I usually chats here."
+              "text": "I usually unplugs the kettle."
             },
             {
               "responseId": "en:lesson-07:session-41:intro2:r3",
-              "text": "I usually chatting here."
+              "text": "I usually unplugging the kettle."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-41:intro2:r1",
-              "text": "I usually chat here."
+              "text": "I usually unplug the kettle."
             },
             {
               "responseId": "en:lesson-07:session-41:intro2:r2",
-              "text": "I usually chats here."
+              "text": "I usually unplugs the kettle."
             },
             {
               "responseId": "en:lesson-07:session-41:intro2:r3",
-              "text": "I usually chatting here."
+              "text": "I usually unplugging the kettle."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите место и скажите: «Я обычно беседую здесь».",
-          "uk": "Покажіть місце й скажіть: «Я зазвичай бесідую тут»."
+          "ru": "Соседка спрашивает про чайник. Скажите ей: «Я обычно выключаю чайник из розетки».",
+          "uk": "Сусідка питає про чайник. Скажіть їй: «Я зазвичай вимикаю чайник з розетки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звонки подруги",
-        "uk": "Дзвінки подруги"
+        "ru": "Суп из морозилки",
+        "uk": "Суп із морозилки"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о подруге, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` сохраняется окончание `s`.",
-        "uk": "Ви розповідаєте про подругу, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` зберігається закінчення `s`."
+        "ru": "Брат зашёл на кухню и увидел, что вы достали из морозилки замороженный суп. Он спрашивает, как вы готовите такой ужин. defrost — «размораживать». Обычно вы заранее перекладываете его из морозилки в холодильник: I usually defrost the soup — «Я обычно размораживаю суп».",
+        "uk": "Брат зайшов на кухню й побачив, що ви дістали з морозилки заморожений суп. Він питає, як ви готуєте таку вечерю. defrost — «розморожувати». Зазвичай ви заздалегідь перекладаєте його з морозилки в холодильник: I usually defrost the soup — «Я зазвичай розморожую суп»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о подруге: «Она часто звонит».",
-          "uk": "Скажіть про подругу: «Вона часто телефонує»."
+          "ru": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+          "uk": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-41:intro3:r1",
-              "text": "She often calls."
+              "text": "I usually defrost the soup."
             },
             {
               "responseId": "en:lesson-07:session-41:intro3:r2",
-              "text": "She often call."
+              "text": "I usually defrosts the soup."
             },
             {
               "responseId": "en:lesson-07:session-41:intro3:r3",
-              "text": "She often calling."
+              "text": "I usually defrosting the soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-41:intro3:r1",
-              "text": "She often calls."
+              "text": "I usually defrost the soup."
             },
             {
               "responseId": "en:lesson-07:session-41:intro3:r2",
-              "text": "She often call."
+              "text": "I usually defrosts the soup."
             },
             {
               "responseId": "en:lesson-07:session-41:intro3:r3",
-              "text": "She often calling."
+              "text": "I usually defrosting the soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о подруге: «Она часто звонит».",
-          "uk": "Скажіть про подругу: «Вона часто телефонує»."
+          "ru": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+          "uk": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eb853153d59ccea7bb9b174124b3fb5dc48a4eda34e4d85e17b4f44b64dde874"
+  "introFingerprint": "9beb0647fe02e7d3a0cd95a7108627558c952a5c54b6b7bd78d03d807055863e"
 }

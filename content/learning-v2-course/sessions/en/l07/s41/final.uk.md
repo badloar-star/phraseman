@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 41 — Часто медитую
+# Англійська · Урок 7 · Заняття 41 — Ранок і дім
 
-**Ситуація.** Ви розповідаєте про медитацію, бесіди зі знайомими й часті дзвінки подруги.
+**Ситуація.** Ви розповідаєте про звички вдома: коли прокидаєтеся, що вимикаєте з розетки перед від’їздом, як готуєте заморожений суп і хто відчиняє ворота.
 
-**Що ви опануєте:** використовувати often і usually перед звичною дією
-**Нові слова:** meditate
+**Що ви опануєте:** говорити про звички, ставлячи usually або often перед дією
+**Нові слова:** wake, unplug, defrost, unlock
+**Повертаються:** kettle, soup, gate, key, lock, bag, brother, early, late, work
 
 ---
 
 ## Інтро 1
 
-### Тиха пауза
+### Ночівля подруги
 
-Друг запитує, чи практикуєте ви медитацію. `meditate` — «медитувати». `I often meditate` — «Я часто медитую». `Often` означає «часто» і стоїть перед `meditate`. Навіть телефону на цей час можна дати вихідний.
+Подруга лишилася в вас ночувати й питає, о котрій ви зазвичай прокидаєтеся, щоб уранці вам не заважати. wake — «прокидатися». Ви зазвичай прокидаєтеся близько шостої, тому відповідаєте: I usually wake early — «Я зазвичай прокидаюся рано». У цій фразі usually стоїть перед wake. Прокинутися — ще не означає встати: можна й далі обіймати подушку.
 
-**Відповідайте другові: «Я часто медитую».**
+**Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано».**
 
-- ✅ **I often meditate.**
-- ❌ I often meditates. — *Після `I` потрібне `meditate`.*
-- ❌ I often meditating. — *Тут потрібна форма `meditate`.*
+- ✅ **I usually wake early.**
+- ❌ I usually wakes early. — *Після I потрібно wake, без s.*
+- ❌ I am usually wake early. — *Для цієї звички потрібно I usually wake, без am.*
 
 ---
 
 ## Інтро 2
 
-### Місце для бесіди
+### Перед відпусткою
 
-Ви показуєте гостеві місце, де зазвичай бесідуєте зі знайомими. `I usually chat here` — «Я зазвичай бесідую тут». `Usually` стоїть перед `chat`, а `here` указує на це місце.
+Ви їдете у відпустку, а сусідка поливатиме квіти. Вона питає, що ви робите з чайником перед від’їздом. unplug — «вимикати з розетки». Зазвичай перед поїздкою ви виймаєте вилку: I usually unplug the kettle — «Я зазвичай вимикаю чайник з розетки».
 
-**Покажіть місце й скажіть: «Я зазвичай бесідую тут».**
+**Сусідка питає про чайник. Скажіть їй: «Я зазвичай вимикаю чайник з розетки».**
 
-- ✅ **I usually chat here.**
-- ❌ I usually chats here. — *Після `I` потрібне `chat`.*
-- ❌ I usually chatting here. — *Тут потрібна форма `chat`.*
+- ✅ **I usually unplug the kettle.**
+- ❌ I usually unplugs the kettle. — *Після I потрібно unplug, без s.*
+- ❌ I usually unplugging the kettle. — *Тут потрібна форма unplug.*
 
 ---
 
 ## Інтро 3
 
-### Дзвінки подруги
+### Суп із морозилки
 
-Ви розповідаєте про подругу, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`. Після `she` зберігається закінчення `s`.
+Брат зайшов на кухню й побачив, що ви дістали з морозилки заморожений суп. Він питає, як ви готуєте таку вечерю. defrost — «розморожувати». Зазвичай ви заздалегідь перекладаєте його з морозилки в холодильник: I usually defrost the soup — «Я зазвичай розморожую суп».
 
-**Скажіть про подругу: «Вона часто телефонує».**
+**Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *Після `she` потрібне `calls`.*
-- ❌ She often calling. — *Тут потрібна форма `calls`.*
+- ✅ **I usually defrost the soup.**
+- ❌ I usually defrosts the soup. — *Після I потрібно defrost, без s.*
+- ❌ I usually defrosting the soup. — *Для цієї звички після I usually потрібно defrost.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто медитую»**
+**1 · Картка слова — wake**
+<!-- interaction_id: en:lesson-07:session-41:word:wake; family: word_card -->
+> **wake** — прокидатися. I usually wake early. — «Я зазвичай прокидаюся рано». Переставати спати; вставати з ліжка ще не обов’язково.
+
+**2 · Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано».**
 <!-- interaction_id: en:lesson-07:session-41:i01; family: phrase_builder -->
-Плитки: `meditate` `often` `I` → **I often meditate.**
+Плитки: `early` `wake` `usually` `I` → **I usually wake early.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-41:i02; family: listen_choose -->
-🔊 *meditate* → **meditate** · chat · recycle
-- chat — *У записі перше слово — `meditate`, а в цьому варіанті — `chat`.*
-- recycle — *У записі перше слово — `meditate`, а в цьому варіанті — `recycle`.*
+🔊 *I usually wake early.* → **I usually wake early.** · I usually wake late. · I usually work early.
+- I usually wake late. — *У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно.*
+- I usually work early. — *У записі третє слово — `wake`, прокидатися, а в цьому варіанті — `work`, працювати.*
 
-**3 · Скажіть «Я часто медитую»**
+**4 · Подруга питає про ваш ранок. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-41:i03; family: context_gap_grammar -->
-I often ___. → **meditate** · meditates · meditating
-- meditates — *Після `I` потрібне `meditate`.*
-- meditating — *Тут потрібна форма `meditate`.*
+I usually ___ early. → **wake** · wakes · waking
+- wakes — *Після `I` потрібно `wake`, без `s`.*
+- waking — *Тут потрібна форма `wake`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-41:i04; family: speed_match -->
-meditate — медитувати · chat — бесідувати · kitchen — кухня · locker — шафка
+wake — прокидатися · early — рано · late — пізно · work — працювати
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — unplug**
+<!-- interaction_id: en:lesson-07:session-41:word:unplug; family: word_card -->
+> **unplug** — вимикати з розетки. I usually unplug the kettle. — «Я зазвичай вимикаю чайник з розетки». Виймати вилку з розетки.
+
+**7 · Послухайте сусідку й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-41:i05; family: listen_build_dictation -->
-🔊 *I often meditate.* Плитки: `meditate` `often` `I` → **I often meditate.**
+🔊 *I usually unplug the kettle.* Плитки: `kettle` `the` `unplug` `usually` `I` → **I usually unplug the kettle.**
 
-**6 · Покажіть місце для бесід: «Я зазвичай бесідую тут»**
+**8 · Картка слова — defrost**
+<!-- interaction_id: en:lesson-07:session-41:word:defrost; family: word_card -->
+> **defrost** — розморожувати. I usually defrost the soup. — «Я зазвичай розморожую суп». Давати замороженій їжі відтанути.
+
+**9 · Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп».**
 <!-- interaction_id: en:lesson-07:session-41:i06; family: phrase_builder -->
-Плитки: `here` `chat` `usually` `I` → **I usually chat here.**
+Плитки: `soup` `the` `defrost` `usually` `I` → **I usually defrost the soup.**
 
-**7 · Скажіть про знайому «Вона часто телефонує»**
+**10 · Картка слова — unlock**
+<!-- interaction_id: en:lesson-07:session-41:word:unlock; family: word_card -->
+> **unlock** — відмикати. I usually unlock the gate. — «Я зазвичай відмикаю ворота». Знімати запір або блокування; тут — повертати ключ у замку воріт.
+
+**11 · Сусід питає, хто відмикає ворота вранці. Скажіть: «Я зазвичай відмикаю ворота». Використайте unlock.**
 <!-- interaction_id: en:lesson-07:session-41:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **I usually unlock the gate.**
 
-**8 · Скажіть «Вона часто телефонує»**
+**12 · Подруга питає про сестру. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-41:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *Після `she` потрібне `calls`.*
-- calling — *Тут потрібна форма `calls`.*
+She often ___ the gate. → **unlocks** · unlock · unlocking
+- unlock — *Після `she` потрібно `unlocks`.*
+- unlocking — *Тут потрібна форма `unlocks`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-07:session-41:i09; family: listen_choose -->
-🔊 *I often meditate.* → **I often meditate.** · I often walk. · I often call.
-- I often walk. — *У записі останнє слово — `meditate`, а в цьому варіанті — `walk`.*
-- I often call. — *У записі останнє слово — `meditate`, а в цьому варіанті — `call`.*
+🔊 *I usually unplug the kettle.* → **I usually unplug the kettle.** · I usually unplug the toaster. · I often unplug the kettle.
+- I usually unplug the toaster. — *У записі останнє слово — `kettle`, чайник, а в цьому варіанті — `toaster`, тостер.*
+- I often unplug the kettle. — *У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-41:i10; family: speed_match -->
-recycle — здавати на переробку · meditate — медитувати · kitchen — кухня · chat — бесідувати
+unplug — вимикати з розетки · kettle — чайник · unlock — відмикати · gate — ворота
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-41:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *I usually defrost the soup.* Плитки: `soup` `the` `defrost` `usually` `I` → **I usually defrost the soup.**
 
-**12 · Ви обговорюєте зберігання речей у спортзалі. Запитайте подругу «У тебе є шафка?»**
+**16 · Ви стоїте біля воріт. Спитайте брата: «У тебе є ключ?»**
 <!-- interaction_id: en:lesson-07:session-41:i12; family: phrase_builder -->
-Плитки: `locker` `a` `have` `you` `Do` → **Do you have a locker?**
+Плитки: `key` `a` `have` `you` `Do` → **Do you have a key?**
 
-**13 · Сусід запитує про придатні для переробки відходи. Скажіть «Я зазвичай здаю відходи на переробку»**
+**17 · Сусідка питає про чайник. Скажіть: «Я зазвичай вимикаю чайник з розетки».**
 <!-- interaction_id: en:lesson-07:session-41:i13; family: scripted_repeat_compare -->
-🎙 **I usually recycle.**
+🎙 **I usually unplug the kettle.**
 
-**14 · Скажіть «Я зазвичай бесідую тут»**
+**18 · Подруга питає про ваш ранок. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-41:i14; family: context_gap_grammar -->
-I ___ chat here. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `chat`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `chat` не ставимо.*
+I ___ wake early. → **usually** · does · am
+- does — *Для «зазвичай» потрібне `usually` перед `wake`.*
+- am — *Для «зазвичай» потрібне `usually`; `am` перед `wake` не ставимо.*
 
-**15 · Послухайте й виберіть запитання**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-07:session-41:i15; family: listen_choose -->
-🔊 *Do you have a kitchen?* → **Do you have a kitchen?** · Do you have a locker? · Do you have a phone?
-- Do you have a locker? — *У записі останнє слово — `kitchen`, а в цьому варіанті — `locker`.*
-- Do you have a phone? — *У записі останнє слово — `kitchen`, а в цьому варіанті — `phone`.*
+🔊 *Do you have a key?* → **Do you have a key?** · Do you have a lock? · Do you have a bag?
+- Do you have a lock? — *У записі останнє слово — `key`, ключ, а в цьому варіанті — `lock`, замок.*
+- Do you have a bag? — *У записі останнє слово — `key`, ключ, а в цьому варіанті — `bag`, сумка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-41:i16; family: speed_match -->
-meditate — медитувати · locker — шафка · recycle — здавати на переробку · kitchen — кухня
+defrost — розморожувати · unlock — відмикати · wake — прокидатися · unplug — вимикати з розетки
 
-**17 · Друг запитує про звичку Тома медитувати. Скажіть «Том часто медитує»**
+**21 · Подруга питає про вашого брата. Скажіть: «Мій брат часто прокидається рано». Використайте wake.**
 <!-- interaction_id: en:lesson-07:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often meditates.**
-
+🎙 **My brother often wakes early.**

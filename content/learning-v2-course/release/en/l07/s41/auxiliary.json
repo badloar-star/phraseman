@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-41:intro1:r2": {
-          "ru": "После `I` нужно `meditate`.",
-          "uk": "Після `I` потрібне `meditate`."
+          "ru": "После I нужно wake, без s.",
+          "uk": "Після I потрібно wake, без s."
         },
         "en:lesson-07:session-41:intro1:r3": {
-          "ru": "Здесь нужна форма `meditate`.",
-          "uk": "Тут потрібна форма `meditate`."
+          "ru": "Для этой привычки нужно I usually wake, без am.",
+          "uk": "Для цієї звички потрібно I usually wake, без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-41:intro2:r2": {
-          "ru": "После `I` нужно `chat`.",
-          "uk": "Після `I` потрібне `chat`."
+          "ru": "После I нужно unplug, без s.",
+          "uk": "Після I потрібно unplug, без s."
         },
         "en:lesson-07:session-41:intro2:r3": {
-          "ru": "Здесь нужна форма `chat`.",
-          "uk": "Тут потрібна форма `chat`."
+          "ru": "Здесь нужна форма unplug.",
+          "uk": "Тут потрібна форма unplug."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-41:intro3:r2": {
-          "ru": "После `she` нужно `calls`.",
-          "uk": "Після `she` потрібне `calls`."
+          "ru": "После I нужно defrost, без s.",
+          "uk": "Після I потрібно defrost, без s."
         },
         "en:lesson-07:session-41:intro3:r3": {
-          "ru": "Здесь нужна форма `calls`.",
-          "uk": "Тут потрібна форма `calls`."
+          "ru": "Для этой привычки после I usually нужно defrost.",
+          "uk": "Для цієї звички після I usually потрібно defrost."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "18ac2aa301134780bf99174ed65b6e37de985c203ab3905add8a5861c91e9ed1"
+  "auxiliaryFingerprint": "922f4d25f84b75d079469b0afc1714c79fae0b9c212c0412596e3c59a0bd006c"
 }

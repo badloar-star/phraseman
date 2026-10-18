@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 40 — Наши привычные дела
+# Английский · Урок 7 · Занятие 40 — Наличные и привычки
 
-**Ситуация.** Вы рассказываете о переработке отходов, помощи местной организации и сборах Тома перед поездками.
+**Ситуация.** Вы рассказываете о привычных делах: как откладываете монеты, где берёте наличные и как брат оставляет чаевые, и повторяете всё о частоте.
 
 **Что вы освоите:** самостоятельно использовать usually и often с привычными действиями
-**Новые слова:** —
+**Новые слова:** account, withdraw, tip, deposit
+**Возвращаются:** save, recycle, commute, volunteer, relax, coin, bank, cash, library, jar
 
 ---
 
 ## Интро 1
 
-### Отходы на переработку
+### Копилка на полке
 
-Сосед спрашивает, что вы обычно делаете с отходами, пригодными для переработки. `I usually recycle` — «Я обычно сдаю отходы на переработку». `Usually` стоит перед `recycle`. Предмет разговора уже понятен, поэтому после глагола можно ничего не добавлять.
+Племянница копит на подарок маме и спрашивает, как вы откладываете небольшие суммы. Вы бросаете мелочь в стеклянную банку на полке. Вы уже знаете save — «откладывать, копить». Скажите: I usually save coins in a jar — «Я обычно откладываю монеты в банку». В этой фразе usually стоит перед save. Звон громкий, сумма пока скромная.
 
-**Расскажите о своей обычной привычке.**
+**Племянница спрашивает, как вы копите. Ответьте: «Я обычно откладываю монеты в банку».**
 
-- ✅ **I usually recycle.**
-- ❌ I usually recycles. — *После `I` нужно `recycle`.*
-- ❌ I usually recycling. — *Здесь нужна форма `recycle`.*
+- ✅ **I usually save coins in a jar.**
+- ❌ I usually saves coins in a jar. — *После I нужно save, без s.*
+- ❌ I am usually save coins in a jar. — *Говоря об этой привычке, после I usually ставим save; am здесь не нужно.*
 
 ---
 
 ## Интро 2
 
-### Помощь без оплаты
+### Кафе без карт
 
-Друг спрашивает, часто ли вы помогаете местной организации как волонтёр. `I often volunteer` — «Я часто помогаю как волонтёр». `Often` стоит перед `volunteer`. Фраза описывает повторяющуюся помощь.
+Друг зовёт вас в кафе, где принимают только наличные, и спрашивает, где вы обычно берёте деньги. withdraw — «снимать деньги со счёта». Скажите: I often withdraw cash at the cashpoint — «Я часто снимаю наличные в банкомате». Слово often стоит перед withdraw.
 
-**Скажите: «Я часто помогаю как волонтёр».**
+**Друг спрашивает, где вы берёте наличные. Ответьте: «Я часто снимаю наличные в банкомате».**
 
-- ✅ **I often volunteer.**
-- ❌ I often volunteers. — *После `I` нужно `volunteer`.*
-- ❌ I often volunteering. — *Здесь нужна форма `volunteer`.*
+- ✅ **I often withdraw cash at the cashpoint.**
+- ❌ I often withdraws cash at the cashpoint. — *После I нужно withdraw, без s.*
+- ❌ I often withdrawing cash at the cashpoint. — *Здесь нужна форма withdraw.*
 
 ---
 
 ## Интро 3
 
-### Том собирается заранее
+### Чаевые в кафе
 
-Друг спрашивает, когда Том обычно собирает вещи перед поездкой. `Tom usually packs early` — «Том обычно собирает вещи заранее». `Usually` стоит перед `packs`. Том — один человек, поэтому у `pack` есть `s`. Чемодан успевает отдохнуть у двери раньше хозяина.
+После семейных обедов брат обычно добавляет немного денег официанту сверх суммы счёта. Друг замечает это и спрашивает о его привычке. tip — «давать чаевые». Скажите: He usually tips the waiter — «Он обычно оставляет официанту чаевые». После he к tip добавляем s, а слово usually остаётся перед tips.
 
-**Расскажите о привычке Тома собираться заранее.**
+**Друг спрашивает про брата в кафе. Ответьте: «Он обычно оставляет официанту чаевые».**
 
-- ✅ **Tom usually packs early.**
-- ❌ Tom usually pack early. — *После `Tom` нужно `packs`, с `s`.*
-- ❌ Tom usually packing early. — *Здесь нужна форма `packs`.*
+- ✅ **He usually tips the waiter.**
+- ❌ He usually tip the waiter. — *После he нужно tips, с s.*
+- ❌ He usually tipping the waiter. — *Здесь нужна форма tips.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно сдаю отходы на переработку»**
+**1 · Карточка слова — account**
+<!-- interaction_id: en:lesson-07:session-40:word:account; family: word_card -->
+> **account** — счёт в банке. My account is at this bank. — «Мой счёт в этом банке». Здесь речь о банковском счёте, а не о счёте за обед.
+
+**2 · Друг спрашивает, в каком банке у вас счёт. Скажите: «Мой счёт в этом банке»**
 <!-- interaction_id: en:lesson-07:session-40:i01; family: phrase_builder -->
-Плитки: `recycle` `usually` `I` → **I usually recycle.**
+Плитки: `bank` `are` `this` `at` `is` `account` `My` → **My account is at this bank.**
+*(плитка `are` лишняя: для одного счёта нужно `is`.)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — withdraw**
+<!-- interaction_id: en:lesson-07:session-40:word:withdraw; family: word_card -->
+> **withdraw** — снимать деньги со счёта. I often withdraw cash at the cashpoint. — «Я часто снимаю наличные в банкомате». Получать свои деньги из банка.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-40:i02; family: listen_choose -->
-🔊 *commute* → **commute** · relax · bake
-- relax — *В записи первое слово — `commute`, а в этом варианте — `relax`.*
-- bake — *В записи первое слово — `commute`, а в этом варианте — `bake`.*
+🔊 *withdraw* → **withdraw** · wait · wear
+- wait — *В записи первое слово — `withdraw`, а в этом варианте — `wait`.*
+- wear — *В записи первое слово — `withdraw`, а в этом варианте — `wear`.*
 
-**3 · Скажите «Я часто помогаю как волонтёр»**
+**5 · Карточка слова — tip**
+<!-- interaction_id: en:lesson-07:session-40:word:tip; family: word_card -->
+> **tip** — давать чаевые. He usually tips the waiter. — «Он обычно оставляет официанту чаевые». Давать дополнительные деньги человеку за обслуживание.
+
+**6 · Друг спрашивает про вашего брата в кафе. Скажите: «Он обычно оставляет официанту чаевые». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-40:i03; family: context_gap_grammar -->
-I often ___. → **volunteer** · volunteers · volunteering
-- volunteers — *После `I` нужно `volunteer`.*
-- volunteering — *Здесь нужна форма `volunteer`.*
+He usually ___ the waiter. → **tips** · tip · tipping
+- tip — *После `He` нужно `tips`.*
+- tipping — *Здесь нужна форма `tips`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-40:i04; family: speed_match -->
-recycle — сдавать на переработку · volunteer — быть волонтёром · commute — ездить на работу или учёбу · relax — расслабляться
+account — счёт в банке · withdraw — снимать деньги · tip — давать чаевые · coin — монета
 
-**5 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-40:i05; family: listen_build_dictation -->
-🔊 *I usually commute.* Плитки: `commute` `usually` `I` → **I usually commute.**
+🔊 *I often withdraw cash at the cashpoint.* Плитки: `cashpoint` `withdraws` `the` `at` `cash` `withdraw` `often` `I` → **I often withdraw cash at the cashpoint.**
+*(плитка `withdraws` лишняя: здесь нужно `withdraw` — `I often withdraw cash at the cashpoint.`)*
 
-**6 · Скажите «Том обычно собирает вещи заранее»**
+**9 · Карточка слова — deposit**
+<!-- interaction_id: en:lesson-07:session-40:word:deposit; family: word_card -->
+> **deposit** — класть на счёт. I usually deposit cash at the bank. — «Я обычно кладу наличные на счёт в банке». Отдавать наличные банку, чтобы они лежали на счёте.
+
+**10 · Друг спрашивает, что вы обычно делаете с полученными наличными. Скажите: «Я обычно кладу наличные на счёт в банке»**
 <!-- interaction_id: en:lesson-07:session-40:i06; family: phrase_builder -->
-Плитки: `early` `packs` `usually` `Tom` → **Tom usually packs early.**
+Плитки: `bank` `often` `the` `at` `cash` `deposit` `usually` `I` → **I usually deposit cash at the bank.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually deposit cash at the bank.`)*
 
-**7 · Скажите «Я часто расслабляюсь»**
+**11 · Подруга спрашивает про вашу сестру. Скажите: «Она часто кладёт наличные на счёт в банке»**
 <!-- interaction_id: en:lesson-07:session-40:i07; family: scripted_repeat_compare -->
-🎙 **I often relax.**
+🎙 **She often deposits cash at the bank.**
 
-**8 · Расскажите о домашних делах: «Том часто гладит одежду»**
+**12 · Друг спрашивает, где ваша сестра берёт наличные. Скажите: «Она обычно снимает наличные в банке». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-40:i08; family: context_gap_grammar -->
-Tom often ___. → **irons** · iron · ironing
-- iron — *После `Tom` нужно `irons`.*
-- ironing — *Здесь нужна форма `irons`.*
+She usually ___ cash at the bank. → **withdraws** · withdraw · withdrawing
+- withdraw — *После `She` нужно `withdraws`.*
+- withdrawing — *Здесь нужна форма `withdraws`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-40:i09; family: listen_choose -->
-🔊 *I usually bake.* → **I usually bake.** · I usually recycle. · I usually commute.
-- I usually recycle. — *В записи последнее слово — `bake`, а в этом варианте — `recycle`.*
-- I usually commute. — *В записи последнее слово — `bake`, а в этом варианте — `commute`.*
+🔊 *He usually tips the waiter.* → **He usually tips the waiter.** · He usually tips the cashier. · He usually tips the driver.
+- He usually tips the cashier. — *В записи последнее слово — `waiter`, а в этом варианте — `cashier`.*
+- He usually tips the driver. — *В записи последнее слово — `waiter`, а в этом варианте — `driver`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-40:i10; family: speed_match -->
-pack — собирать вещи · iron — гладить одежду · bake — печь · relax — расслабляться
+deposit — класть на счёт · tip — давать чаевые · withdraw — снимать деньги · save — откладывать деньги
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-40:i11; family: listen_build_dictation -->
-🔊 *I often volunteer.* Плитки: `volunteer` `often` `I` → **I often volunteer.**
+🔊 *She often deposits cash at the bank.* Плитки: `bank` `deposit` `the` `at` `cash` `deposits` `often` `She` → **She often deposits cash at the bank.**
+*(плитка `deposit` лишняя: здесь нужно `deposits` — `She often deposits cash at the bank.`)*
 
-**12 · Узнайте место работы знакомого**
+**16 · Сосед спрашивает про бутылки. Скажите: «Я обычно сдаю бутылки на переработку»**
 <!-- interaction_id: en:lesson-07:session-40:i12; family: phrase_builder -->
-Плитки: `work` `you` `do` `Where` → **Where do you work?**
+Плитки: `bottles` `often` `recycle` `usually` `I` → **I usually recycle bottles.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually recycle bottles.`)*
 
-**13 · На предложение сигареты ответьте «Я не курю»**
+**17 · Знакомый спрашивает, чем занят ваш брат в свободное время. Скажите: «Мой брат часто работает волонтёром в библиотеке»**
 <!-- interaction_id: en:lesson-07:session-40:i13; family: scripted_repeat_compare -->
-🎙 **I don’t smoke.**
+🎙 **My brother often volunteers at the library.**
 
-**14 · Скажите «Я обычно собираю вещи заранее»**
+**18 · Вы рассказываете о дороге на работу. Скажите: «Я обычно езжу на работу на автобусе». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-40:i14; family: context_gap_grammar -->
-I ___ pack early. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `pack`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `pack` не ставим.*
+I ___ commute by bus. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `commute`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `commute` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-40:i15; family: listen_choose -->
-🔊 *I often iron.* → **I often iron.** · I often relax. · I often volunteer.
-- I often relax. — *В записи последнее слово — `iron`, а в этом варианте — `relax`.*
-- I often volunteer. — *В записи последнее слово — `iron`, а в этом варианте — `volunteer`.*
+🔊 *She often relaxes on the sofa.* → **She often relaxes on the sofa.** · She often relaxes on the bed. · She often relaxes on the chair.
+- She often relaxes on the bed. — *В записи последнее слово — `sofa`, а в этом варианте — `bed`.*
+- She often relaxes on the chair. — *В записи последнее слово — `sofa`, а в этом варианте — `chair`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-40:i16; family: speed_match -->
-commute — ездить на работу или учёбу · pack — собирать вещи · bake — печь · recycle — сдавать на переработку
+deposit — класть на счёт · tip — давать чаевые · account — счёт в банке · bank — банк
 
-**17 · Сосед спрашивает, что Том обычно делает с отходами, пригодными для переработки. Скажите «Том обычно сдаёт отходы на переработку»**
+**21 · Сосед спрашивает, как ваша сестра добирается до работы. Скажите: «Она обычно ездит на работу на поезде»**
 <!-- interaction_id: en:lesson-07:session-40:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually recycles.**
-
+🎙 **She usually commutes by train.**

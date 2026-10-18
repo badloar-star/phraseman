@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-07:session-40",
   "learningOutcomeByLocale": {
     "ru": "самостоятельно использовать usually и often с привычными действиями",
-    "uk": "самостійно використовувати usually й often зі звичними діями"
+    "uk": "самостійно використовувати usually і often зі звичними діями"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Отходы на переработку",
-        "uk": "Відходи на переробку"
+        "ru": "Копилка на полке",
+        "uk": "Скарбничка на полиці"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, что вы обычно делаете с отходами, пригодными для переработки. `I usually recycle` — «Я обычно сдаю отходы на переработку». `Usually` стоит перед `recycle`. Предмет разговора уже понятен, поэтому после глагола можно ничего не добавлять.",
-        "uk": "Сусід запитує, що ви зазвичай робите з відходами, придатними для переробки. `I usually recycle` — «Я зазвичай здаю відходи на переробку». `Usually` стоїть перед `recycle`. Предмет розмови вже зрозумілий, тому після дієслова можна нічого не додавати."
+        "ru": "Племянница копит на подарок маме и спрашивает, как вы откладываете небольшие суммы. Вы бросаете мелочь в стеклянную банку на полке. Вы уже знаете save — «откладывать, копить». Скажите: I usually save coins in a jar — «Я обычно откладываю монеты в банку». В этой фразе usually стоит перед save. Звон громкий, сумма пока скромная.",
+        "uk": "Племінниця збирає на подарунок мамі й питає, як ви відкладаєте невеликі суми. Ви кидаєте дрібні гроші в скляну банку на полиці. Ви вже знаєте save — «відкладати, збирати». Скажіть: I usually save coins in a jar — «Я зазвичай відкладаю монети в банку». У цій фразі usually стоїть перед save. Дзвін гучний, сума поки скромна."
       },
       "question": {
         "interactionId": "en:lesson-07:session-40:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите о своей обычной привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Племянница спрашивает, как вы копите. Ответьте: «Я обычно откладываю монеты в банку».",
+          "uk": "Племінниця питає, як ви збираєте. Відповідьте: «Я зазвичай відкладаю монети в банку»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-40:intro1:r1",
-              "text": "I usually recycle."
+              "text": "I usually save coins in a jar."
             },
             {
               "responseId": "en:lesson-07:session-40:intro1:r2",
-              "text": "I usually recycles."
+              "text": "I usually saves coins in a jar."
             },
             {
               "responseId": "en:lesson-07:session-40:intro1:r3",
-              "text": "I usually recycling."
+              "text": "I am usually save coins in a jar."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-40:intro1:r1",
-              "text": "I usually recycle."
+              "text": "I usually save coins in a jar."
             },
             {
               "responseId": "en:lesson-07:session-40:intro1:r2",
-              "text": "I usually recycles."
+              "text": "I usually saves coins in a jar."
             },
             {
               "responseId": "en:lesson-07:session-40:intro1:r3",
-              "text": "I usually recycling."
+              "text": "I am usually save coins in a jar."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о своей обычной привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Племянница спрашивает, как вы копите. Ответьте: «Я обычно откладываю монеты в банку».",
+          "uk": "Племінниця питає, як ви збираєте. Відповідьте: «Я зазвичай відкладаю монети в банку»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Помощь без оплаты",
-        "uk": "Допомога без оплати"
+        "ru": "Кафе без карт",
+        "uk": "Кафе без карток"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы помогаете местной организации как волонтёр. `I often volunteer` — «Я часто помогаю как волонтёр». `Often` стоит перед `volunteer`. Фраза описывает повторяющуюся помощь.",
-        "uk": "Друг запитує, чи часто ви допомагаєте місцевій організації як волонтер. `I often volunteer` — «Я часто допомагаю як волонтер». `Often` стоїть перед `volunteer`. Фраза описує повторювану допомогу."
+        "ru": "Друг зовёт вас в кафе, где принимают только наличные, и спрашивает, где вы обычно берёте деньги. withdraw — «снимать деньги со счёта». Скажите: I often withdraw cash at the cashpoint — «Я часто снимаю наличные в банкомате». Слово often стоит перед withdraw.",
+        "uk": "Друг кличе вас у кафе, де приймають лише готівку, і питає, де ви зазвичай берете гроші. withdraw — «знімати гроші з рахунку». Скажіть: I often withdraw cash at the cashpoint — «Я часто знімаю готівку в банкоматі». Слово often стоїть перед withdraw."
       },
       "question": {
         "interactionId": "en:lesson-07:session-40:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите: «Я часто помогаю как волонтёр».",
-          "uk": "Скажіть: «Я часто допомагаю як волонтер»."
+          "ru": "Друг спрашивает, где вы берёте наличные. Ответьте: «Я часто снимаю наличные в банкомате».",
+          "uk": "Друг питає, де ви берете готівку. Відповідьте: «Я часто знімаю готівку в банкоматі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-40:intro2:r1",
-              "text": "I often volunteer."
+              "text": "I often withdraw cash at the cashpoint."
             },
             {
               "responseId": "en:lesson-07:session-40:intro2:r2",
-              "text": "I often volunteers."
+              "text": "I often withdraws cash at the cashpoint."
             },
             {
               "responseId": "en:lesson-07:session-40:intro2:r3",
-              "text": "I often volunteering."
+              "text": "I often withdrawing cash at the cashpoint."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-40:intro2:r1",
-              "text": "I often volunteer."
+              "text": "I often withdraw cash at the cashpoint."
             },
             {
               "responseId": "en:lesson-07:session-40:intro2:r2",
-              "text": "I often volunteers."
+              "text": "I often withdraws cash at the cashpoint."
             },
             {
               "responseId": "en:lesson-07:session-40:intro2:r3",
-              "text": "I often volunteering."
+              "text": "I often withdrawing cash at the cashpoint."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите: «Я часто помогаю как волонтёр».",
-          "uk": "Скажіть: «Я часто допомагаю як волонтер»."
+          "ru": "Друг спрашивает, где вы берёте наличные. Ответьте: «Я часто снимаю наличные в банкомате».",
+          "uk": "Друг питає, де ви берете готівку. Відповідьте: «Я часто знімаю готівку в банкоматі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Том собирается заранее",
-        "uk": "Том збирається заздалегідь"
+        "ru": "Чаевые в кафе",
+        "uk": "Чайові в кафе"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда Том обычно собирает вещи перед поездкой. `Tom usually packs early` — «Том обычно собирает вещи заранее». `Usually` стоит перед `packs`. Том — один человек, поэтому у `pack` есть `s`. Чемодан успевает отдохнуть у двери раньше хозяина.",
-        "uk": "Друг запитує, коли Том зазвичай збирає речі перед поїздкою. `Tom usually packs early` — «Том зазвичай збирає речі заздалегідь». `Usually` стоїть перед `packs`. Том — одна людина, тому в `pack` є `s`. Валіза встигає відпочити біля дверей раніше за господаря."
+        "ru": "После семейных обедов брат обычно добавляет немного денег официанту сверх суммы счёта. Друг замечает это и спрашивает о его привычке. tip — «давать чаевые». Скажите: He usually tips the waiter — «Он обычно оставляет официанту чаевые». После he к tip добавляем s, а слово usually остаётся перед tips.",
+        "uk": "Після сімейних обідів брат зазвичай додає трохи грошей офіціантові понад суму рахунку. Друг помічає це й питає про його звичку. tip — «давати чайові». Скажіть: He usually tips the waiter — «Він зазвичай залишає офіціантові чайові». Після he до tip додаємо s, а слово usually лишається перед tips."
       },
       "question": {
         "interactionId": "en:lesson-07:session-40:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите о привычке Тома собираться заранее.",
-          "uk": "Розкажіть про звичку Тома збиратися заздалегідь."
+          "ru": "Друг спрашивает про брата в кафе. Ответьте: «Он обычно оставляет официанту чаевые».",
+          "uk": "Друг питає про брата в кафе. Відповідьте: «Він зазвичай залишає офіціантові чайові»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-40:intro3:r1",
-              "text": "Tom usually packs early."
+              "text": "He usually tips the waiter."
             },
             {
               "responseId": "en:lesson-07:session-40:intro3:r2",
-              "text": "Tom usually pack early."
+              "text": "He usually tip the waiter."
             },
             {
               "responseId": "en:lesson-07:session-40:intro3:r3",
-              "text": "Tom usually packing early."
+              "text": "He usually tipping the waiter."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-40:intro3:r1",
-              "text": "Tom usually packs early."
+              "text": "He usually tips the waiter."
             },
             {
               "responseId": "en:lesson-07:session-40:intro3:r2",
-              "text": "Tom usually pack early."
+              "text": "He usually tip the waiter."
             },
             {
               "responseId": "en:lesson-07:session-40:intro3:r3",
-              "text": "Tom usually packing early."
+              "text": "He usually tipping the waiter."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о привычке Тома собираться заранее.",
-          "uk": "Розкажіть про звичку Тома збиратися заздалегідь."
+          "ru": "Друг спрашивает про брата в кафе. Ответьте: «Он обычно оставляет официанту чаевые».",
+          "uk": "Друг питає про брата в кафе. Відповідьте: «Він зазвичай залишає офіціантові чайові»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "84868b1510fa8ac8ee6bb947d70fd791824e7bab4e99433c17e1796a195a11ca"
+  "introFingerprint": "bc8cd063968b1378b2921936bca5edee7c98edc79b36bb33bbc88a95988b0453"
 }

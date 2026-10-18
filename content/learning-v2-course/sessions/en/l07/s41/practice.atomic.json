@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-41:word:wake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:wake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:wake:audio",
+            "transcript": "wake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:wake:r1",
+              "targetText": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться. I usually wake early. — «Я обычно просыпаюсь рано». Переставать спать; вставать с кровати ещё не обязательно.",
+                "uk": "прокидатися. I usually wake early. — «Я зазвичай прокидаюся рано». Переставати спати; вставати з ліжка ще не обов’язково."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wake",
+            "definitionByLocale": {
+              "ru": "просыпаться. I usually wake early. — «Я обычно просыпаюсь рано». Переставать спать; вставать с кровати ещё не обязательно.",
+              "uk": "прокидатися. I usually wake early. — «Я зазвичай прокидаюся рано». Переставати спати; вставати з ліжка ще не обов’язково."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually wake early.",
+          "localizedMeaning": {
+            "ru": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+            "uk": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "wake",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i02:r1",
+            "text": "I usually wake early."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r2",
+            "text": "I usually wake late."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r3",
+            "text": "I usually work early."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i02:audio",
+            "transcript": "I usually wake early."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i02:r1",
+              "targetText": "I usually wake early.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r2",
+              "targetText": "I usually wake late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r3",
+              "targetText": "I usually work early.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `early`, рано, а в этом варианте — `late`, поздно.",
+                "uk": "У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `wake`, просыпаться, а в этом варианте — `work`, работать.",
+                "uk": "У записі третє слово — `wake`, прокидатися, а в цьому варіанті — `work`, працювати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает о вашем утре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i03:r1",
+            "text": "wake"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r2",
+            "text": "wakes"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r3",
+            "text": "waking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вашем утре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем утре. Выберите слово",
+            "uk": "Подруга питає про ваш ранок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ early.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i03:r1",
+              "text": "wake"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r2",
+              "text": "wakes"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r3",
+              "text": "waking"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `wake`, без `s`.",
+                "uk": "Після `I` потрібно `wake`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `wake`.",
+                "uk": "Тут потрібна форма `wake`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i04:p1",
+              "target": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться",
+                "uk": "прокидатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p2",
+              "target": "early",
+              "meaningByLocale": {
+                "ru": "рано",
+                "uk": "рано"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p3",
+              "target": "late",
+              "meaningByLocale": {
+                "ru": "поздно",
+                "uk": "пізно"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wake",
+            "early",
+            "late",
+            "work"
+          ],
+          "rightColumn": [
+            "просыпаться",
+            "рано",
+            "поздно",
+            "работать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:unplug",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unplug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:unplug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unplug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:unplug:audio",
+            "transcript": "unplug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:unplug:r1",
+              "targetText": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки. I usually unplug the kettle. — «Я обычно выключаю чайник из розетки». Вынимать вилку из розетки.",
+                "uk": "вимикати з розетки. I usually unplug the kettle. — «Я зазвичай вимикаю чайник з розетки». Виймати вилку з розетки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unplug",
+            "definitionByLocale": {
+              "ru": "выключать из розетки. I usually unplug the kettle. — «Я обычно выключаю чайник из розетки». Вынимать вилку из розетки.",
+              "uk": "вимикати з розетки. I usually unplug the kettle. — «Я зазвичай вимикаю чайник з розетки». Виймати вилку з розетки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседку и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i05:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually unplug the kettle.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "unplug",
+            "the",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:defrost",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — defrost",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:defrost:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — defrost",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:defrost:audio",
+            "transcript": "defrost"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:defrost:r1",
+              "targetText": "defrost",
+              "meaningByLocale": {
+                "ru": "размораживать. I usually defrost the soup. — «Я обычно размораживаю суп». Давать замороженной еде оттаять.",
+                "uk": "розморожувати. I usually defrost the soup. — «Я зазвичай розморожую суп». Давати замороженій їжі відтанути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "defrost",
+            "definitionByLocale": {
+              "ru": "размораживать. I usually defrost the soup. — «Я обычно размораживаю суп». Давать замороженной еде оттаять.",
+              "uk": "розморожувати. I usually defrost the soup. — «Я зазвичай розморожую суп». Давати замороженій їжі відтанути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually defrost the soup.",
+          "localizedMeaning": {
+            "ru": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+            "uk": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "defrost",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:unlock",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unlock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:unlock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unlock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:unlock:audio",
+            "transcript": "unlock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:unlock:r1",
+              "targetText": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать. I usually unlock the gate. — «Я обычно отпираю ворота». Снимать запор или блокировку; здесь — поворачивать ключ в замке ворот.",
+                "uk": "відмикати. I usually unlock the gate. — «Я зазвичай відмикаю ворота». Знімати запір або блокування; тут — повертати ключ у замку воріт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unlock",
+            "definitionByLocale": {
+              "ru": "отпирать. I usually unlock the gate. — «Я обычно отпираю ворота». Снимать запор или блокировку; здесь — поворачивать ключ в замке ворот.",
+              "uk": "відмикати. I usually unlock the gate. — «Я зазвичай відмикаю ворота». Знімати запір або блокування; тут — повертати ключ у замку воріт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает, кто отпирает ворота по утрам. Скажите: «Я обычно отпираю ворота». Используйте unlock.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает, кто отпирает ворота по утрам. Скажите: «Я обычно отпираю ворота». Используйте unlock.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i07:audio",
+            "transcript": "I usually unlock the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually unlock the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает о сестре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i08:r1",
+            "text": "unlocks"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r2",
+            "text": "unlock"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r3",
+            "text": "unlocking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о сестре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о сестре. Выберите слово",
+            "uk": "Подруга питає про сестру. Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ the gate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i08:r1",
+              "text": "unlocks"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r2",
+              "text": "unlock"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r3",
+              "text": "unlocking"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает о сестре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `unlocks`.",
+                "uk": "Після `she` потрібно `unlocks`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `unlocks`.",
+                "uk": "Тут потрібна форма `unlocks`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i09:r1",
+            "text": "I usually unplug the kettle."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r2",
+            "text": "I usually unplug the toaster."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r3",
+            "text": "I often unplug the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i09:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i09:r1",
+              "targetText": "I usually unplug the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r2",
+              "targetText": "I usually unplug the toaster.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r3",
+              "targetText": "I often unplug the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kettle`, чайник, а в этом варианте — `toaster`, тостер.",
+                "uk": "У записі останнє слово — `kettle`, чайник, а в цьому варіанті — `toaster`, тостер."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+                "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i10:p1",
+              "target": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки",
+                "uk": "вимикати з розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p2",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p3",
+              "target": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать",
+                "uk": "відмикати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p4",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота",
+                "uk": "ворота"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unplug",
+            "kettle",
+            "unlock",
+            "gate"
+          ],
+          "rightColumn": [
+            "выключать из розетки",
+            "чайник",
+            "отпирать",
+            "ворота"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте брата и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i11:audio",
+            "transcript": "I usually defrost the soup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually defrost the soup.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "defrost",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у ворот. Спросите брата: «У тебя есть ключ?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у ворот. Спросите брата: «У тебя есть ключ?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a key?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у ворот. Спросите брата: «У тебя есть ключ?»",
+            "uk": "Ви стоїте біля воріт. Спитайте брата: «У тебе є ключ?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Соседка спрашивает про чайник. Скажите: «Я обычно выключаю чайник из розетки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Соседка спрашивает про чайник. Скажите: «Я обычно выключаю чайник из розетки».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i13:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually unplug the kettle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает о вашем утре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вашем утре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем утре. Выберите слово",
+            "uk": "Подруга питає про ваш ранок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ wake early.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `wake`.",
+                "uk": "Для «зазвичай» потрібне `usually` перед `wake`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем утре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `wake` не ставим.",
+                "uk": "Для «зазвичай» потрібне `usually`; `am` перед `wake` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i15:r1",
+            "text": "Do you have a key?"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r2",
+            "text": "Do you have a lock?"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r3",
+            "text": "Do you have a bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i15:audio",
+            "transcript": "Do you have a key?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i15:r1",
+              "targetText": "Do you have a key?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r2",
+              "targetText": "Do you have a lock?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r3",
+              "targetText": "Do you have a bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, ключ, а в этом варианте — `lock`, замок.",
+                "uk": "У записі останнє слово — `key`, ключ, а в цьому варіанті — `lock`, замок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, ключ, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі останнє слово — `key`, ключ, а в цьому варіанті — `bag`, сумка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i16:p1",
+              "target": "defrost",
+              "meaningByLocale": {
+                "ru": "размораживать",
+                "uk": "розморожувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p2",
+              "target": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать",
+                "uk": "відмикати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p3",
+              "target": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться",
+                "uk": "прокидатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p4",
+              "target": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки",
+                "uk": "вимикати з розетки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "defrost",
+            "unlock",
+            "wake",
+            "unplug"
+          ],
+          "rightColumn": [
+            "размораживать",
+            "отпирать",
+            "просыпаться",
+            "выключать из розетки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о вашем брате. Скажите: «Мой брат часто просыпается рано». Используйте wake.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о вашем брате. Скажите: «Мой брат часто просыпается рано». Используйте wake.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i17:audio",
+            "transcript": "My brother often wakes early."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often wakes early.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-41:word:wake",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:wake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:wake:audio",
+            "transcript": "wake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:wake:r1",
+              "targetText": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться. I usually wake early. — «Я обычно просыпаюсь рано». Переставать спать; вставать с кровати ещё не обязательно.",
+                "uk": "прокидатися. I usually wake early. — «Я зазвичай прокидаюся рано». Переставати спати; вставати з ліжка ще не обов’язково."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wake",
+            "definitionByLocale": {
+              "ru": "просыпаться. I usually wake early. — «Я обычно просыпаюсь рано». Переставать спать; вставать с кровати ещё не обязательно.",
+              "uk": "прокидатися. I usually wake early. — «Я зазвичай прокидаюся рано». Переставати спати; вставати з ліжка ще не обов’язково."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually wake early.",
+          "localizedMeaning": {
+            "ru": "Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».",
+            "uk": "Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "wake",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i02:r1",
+            "text": "I usually wake early."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r2",
+            "text": "I usually wake late."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i02:r3",
+            "text": "I usually work early."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i02:audio",
+            "transcript": "I usually wake early."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i02:r1",
+              "targetText": "I usually wake early.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r2",
+              "targetText": "I usually wake late.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r3",
+              "targetText": "I usually work early.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `early`, рано, а в этом варианте — `late`, поздно.",
+                "uk": "У записі останнє слово — `early`, рано, а в цьому варіанті — `late`, пізно."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `wake`, просыпаться, а в этом варианте — `work`, работать.",
+                "uk": "У записі третє слово — `wake`, прокидатися, а в цьому варіанті — `work`, працювати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про ваш ранок. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i03:r1",
+            "text": "wake"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r2",
+            "text": "wakes"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i03:r3",
+            "text": "waking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про ваш ранок. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем утре. Выберите слово",
+            "uk": "Подруга питає про ваш ранок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ early.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i03:r1",
+              "text": "wake"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r2",
+              "text": "wakes"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r3",
+              "text": "waking"
+            }
+          ],
+          "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `wake`, без `s`.",
+                "uk": "Після `I` потрібно `wake`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `wake`.",
+                "uk": "Тут потрібна форма `wake`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i04:p1",
+              "target": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться",
+                "uk": "прокидатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p2",
+              "target": "early",
+              "meaningByLocale": {
+                "ru": "рано",
+                "uk": "рано"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p3",
+              "target": "late",
+              "meaningByLocale": {
+                "ru": "поздно",
+                "uk": "пізно"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i04:p4",
+              "target": "work",
+              "meaningByLocale": {
+                "ru": "работать",
+                "uk": "працювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wake",
+            "early",
+            "late",
+            "work"
+          ],
+          "rightColumn": [
+            "прокидатися",
+            "рано",
+            "пізно",
+            "працювати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:unplug",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unplug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:unplug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unplug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:unplug:audio",
+            "transcript": "unplug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:unplug:r1",
+              "targetText": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки. I usually unplug the kettle. — «Я обычно выключаю чайник из розетки». Вынимать вилку из розетки.",
+                "uk": "вимикати з розетки. I usually unplug the kettle. — «Я зазвичай вимикаю чайник з розетки». Виймати вилку з розетки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unplug",
+            "definitionByLocale": {
+              "ru": "выключать из розетки. I usually unplug the kettle. — «Я обычно выключаю чайник из розетки». Вынимать вилку из розетки.",
+              "uk": "вимикати з розетки. I usually unplug the kettle. — «Я зазвичай вимикаю чайник з розетки». Виймати вилку з розетки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусідку й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i05:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually unplug the kettle.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "unplug",
+            "the",
+            "kettle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:defrost",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — defrost",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:defrost:audio"
+        ],
+        "accessibilityLabel": "Картка слова — defrost",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:defrost:audio",
+            "transcript": "defrost"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:defrost:r1",
+              "targetText": "defrost",
+              "meaningByLocale": {
+                "ru": "размораживать. I usually defrost the soup. — «Я обычно размораживаю суп». Давать замороженной еде оттаять.",
+                "uk": "розморожувати. I usually defrost the soup. — «Я зазвичай розморожую суп». Давати замороженій їжі відтанути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "defrost",
+            "definitionByLocale": {
+              "ru": "размораживать. I usually defrost the soup. — «Я обычно размораживаю суп». Давать замороженной еде оттаять.",
+              "uk": "розморожувати. I usually defrost the soup. — «Я зазвичай розморожую суп». Давати замороженій їжі відтанути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually defrost the soup.",
+          "localizedMeaning": {
+            "ru": "Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп».",
+            "uk": "Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "defrost",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:word:unlock",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unlock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:word:unlock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unlock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:word:unlock:audio",
+            "transcript": "unlock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:word:unlock:r1",
+              "targetText": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать. I usually unlock the gate. — «Я обычно отпираю ворота». Снимать запор или блокировку; здесь — поворачивать ключ в замке ворот.",
+                "uk": "відмикати. I usually unlock the gate. — «Я зазвичай відмикаю ворота». Знімати запір або блокування; тут — повертати ключ у замку воріт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unlock",
+            "definitionByLocale": {
+              "ru": "отпирать. I usually unlock the gate. — «Я обычно отпираю ворота». Снимать запор или блокировку; здесь — поворачивать ключ в замке ворот.",
+              "uk": "відмикати. I usually unlock the gate. — «Я зазвичай відмикаю ворота». Знімати запір або блокування; тут — повертати ключ у замку воріт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає, хто відмикає ворота вранці. Скажіть: «Я зазвичай відмикаю ворота». Використайте unlock.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Сусід питає, хто відмикає ворота вранці. Скажіть: «Я зазвичай відмикаю ворота». Використайте unlock.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i07:audio",
+            "transcript": "I usually unlock the gate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually unlock the gate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про сестру. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i08:r1",
+            "text": "unlocks"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r2",
+            "text": "unlock"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i08:r3",
+            "text": "unlocking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про сестру. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о сестре. Выберите слово",
+            "uk": "Подруга питає про сестру. Виберіть слово"
+          },
+          "gappedTargetPhrase": "She often ___ the gate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i08:r1",
+              "text": "unlocks"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r2",
+              "text": "unlock"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r3",
+              "text": "unlocking"
+            }
+          ],
+          "testedDimension": "Подруга питає про сестру. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про сестру. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `she` нужно `unlocks`.",
+                "uk": "Після `she` потрібно `unlocks`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про сестру. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `unlocks`.",
+                "uk": "Тут потрібна форма `unlocks`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусідку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i09:r1",
+            "text": "I usually unplug the kettle."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r2",
+            "text": "I usually unplug the toaster."
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i09:r3",
+            "text": "I often unplug the kettle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусідку",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i09:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i09:r1",
+              "targetText": "I usually unplug the kettle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r2",
+              "targetText": "I usually unplug the toaster.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r3",
+              "targetText": "I often unplug the kettle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `kettle`, чайник, а в этом варианте — `toaster`, тостер.",
+                "uk": "У записі останнє слово — `kettle`, чайник, а в цьому варіанті — `toaster`, тостер."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусідку",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+                "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i10:p1",
+              "target": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки",
+                "uk": "вимикати з розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p2",
+              "target": "kettle",
+              "meaningByLocale": {
+                "ru": "чайник",
+                "uk": "чайник"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p3",
+              "target": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать",
+                "uk": "відмикати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i10:p4",
+              "target": "gate",
+              "meaningByLocale": {
+                "ru": "ворота",
+                "uk": "ворота"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unplug",
+            "kettle",
+            "unlock",
+            "gate"
+          ],
+          "rightColumn": [
+            "вимикати з розетки",
+            "чайник",
+            "відмикати",
+            "ворота"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте брата й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i11:audio",
+            "transcript": "I usually defrost the soup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually defrost the soup.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "defrost",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля воріт. Спитайте брата: «У тебе є ключ?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля воріт. Спитайте брата: «У тебе є ключ?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a key?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у ворот. Спросите брата: «У тебя есть ключ?»",
+            "uk": "Ви стоїте біля воріт. Спитайте брата: «У тебе є ключ?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "key"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусідка питає про чайник. Скажіть: «Я зазвичай вимикаю чайник з розетки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Сусідка питає про чайник. Скажіть: «Я зазвичай вимикаю чайник з розетки».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i13:audio",
+            "transcript": "I usually unplug the kettle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I usually unplug the kettle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про ваш ранок. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про ваш ранок. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем утре. Выберите слово",
+            "uk": "Подруга питає про ваш ранок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ wake early.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-41:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `wake`.",
+                "uk": "Для «зазвичай» потрібне `usually` перед `wake`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про ваш ранок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `wake` не ставим.",
+                "uk": "Для «зазвичай» потрібне `usually`; `am` перед `wake` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-41:i15:r1",
+            "text": "Do you have a key?"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r2",
+            "text": "Do you have a lock?"
+          },
+          {
+            "responseId": "en:lesson-07:session-41:i15:r3",
+            "text": "Do you have a bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i15:audio",
+            "transcript": "Do you have a key?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-41:i15:r1",
+              "targetText": "Do you have a key?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r2",
+              "targetText": "Do you have a lock?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r3",
+              "targetText": "Do you have a bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, ключ, а в этом варианте — `lock`, замок.",
+                "uk": "У записі останнє слово — `key`, ключ, а в цьому варіанті — `lock`, замок."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `key`, ключ, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі останнє слово — `key`, ключ, а в цьому варіанті — `bag`, сумка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-41:i16:p1",
+              "target": "defrost",
+              "meaningByLocale": {
+                "ru": "размораживать",
+                "uk": "розморожувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p2",
+              "target": "unlock",
+              "meaningByLocale": {
+                "ru": "отпирать",
+                "uk": "відмикати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p3",
+              "target": "wake",
+              "meaningByLocale": {
+                "ru": "просыпаться",
+                "uk": "прокидатися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-41:i16:p4",
+              "target": "unplug",
+              "meaningByLocale": {
+                "ru": "выключать из розетки",
+                "uk": "вимикати з розетки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "defrost",
+            "unlock",
+            "wake",
+            "unplug"
+          ],
+          "rightColumn": [
+            "розморожувати",
+            "відмикати",
+            "прокидатися",
+            "вимикати з розетки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашого брата. Скажіть: «Мій брат часто прокидається рано». Використайте wake.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Мій брат часто прокидається рано». Використайте wake.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-41:i17:audio",
+            "transcript": "My brother often wakes early."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often wakes early.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-41:word:wake",
+      "correctText": "wake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i01",
+      "correctText": "I usually wake early.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i02",
+      "correctText": "I usually wake early.",
+      "correctResponseId": "en:lesson-07:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i03",
+      "correctText": "wake",
+      "correctResponseId": "en:lesson-07:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:word:unplug",
+      "correctText": "unplug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i05",
+      "correctText": "I usually unplug the kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:word:defrost",
+      "correctText": "defrost",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i06",
+      "correctText": "I usually defrost the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:word:unlock",
+      "correctText": "unlock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i07",
+      "correctText": "I usually unlock the gate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i08",
+      "correctText": "unlocks",
+      "correctResponseId": "en:lesson-07:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i09",
+      "correctText": "I usually unplug the kettle.",
+      "correctResponseId": "en:lesson-07:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i11",
+      "correctText": "I usually defrost the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i12",
+      "correctText": "Do you have a key?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i13",
+      "correctText": "I usually unplug the kettle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i14",
+      "correctText": "usually",
+      "correctResponseId": "en:lesson-07:session-41:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i15",
+      "correctText": "Do you have a key?",
+      "correctResponseId": "en:lesson-07:session-41:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-41:i17",
+      "correctText": "My brother often wakes early.",
+      "correctResponseId": null
+    }
+  ]
+}

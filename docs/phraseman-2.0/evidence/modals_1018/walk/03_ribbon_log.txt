@@ -1,0 +1,6 @@
+10-18 08:51:09.765 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'lock', '{"tag":"feature_tiles","locked":false,"why":"touch_start"}'
+10-18 08:51:09.860 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'lock', '{"tag":"feature_tiles","locked":false,"why":"drag_begin"}'
+10-18 08:51:09.861 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'drag_begin', '{"tag":"feature_tiles","locked":false,"x":0,"maxX":111,"atEnd":fa
+10-18 08:51:10.265 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'drag_end', '{"tag":"feature_tiles","locked":true,"x":111,"maxX":111,"atEnd":tru
+10-18 08:51:12.792 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'momentum_end', '{"tag":"feature_tiles","locked":true,"x":111,"maxX":111,"atEnd"
+10-18 08:51:12.807 I/ReactNativeJS( 5774): '[HOME-RIBBON]', 'unlock', '{"tag":"feature_tiles","locked":true,"why":"drag_end"}'

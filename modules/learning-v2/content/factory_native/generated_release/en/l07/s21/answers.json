@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-07:session-21:word:lie",
+    "correctText": "lie",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-21:i01",
-    "correctText": "I don’t lie.",
+    "correctText": "I don't lie.",
     "correctResponseId": null
   },
   {
@@ -11,57 +16,72 @@
   },
   {
     "interactionId": "en:lesson-07:session-21:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-21:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-21:i04",
-    "correctText": "en:lesson-07:session-21:i04:p1=lie\nen:lesson-07:session-21:i04:p2=write\nen:lesson-07:session-21:i04:p3=necklace\nen:lesson-07:session-21:i04:p4=pens",
+    "correctText": "en:lesson-07:session-21:i04:p1=lie\nen:lesson-07:session-21:i04:p2=cook\nen:lesson-07:session-21:i04:p3=scarf\nen:lesson-07:session-21:i04:p4=shout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i05",
-    "correctText": "I don’t lie.",
+    "correctText": "I don't lie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:word:save",
+    "correctText": "save",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i06",
-    "correctText": "Does Tom write books?",
+    "correctText": "Does he save money?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:word:banknote",
+    "correctText": "banknote",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i07",
-    "correctText": "There are no pens here.",
+    "correctText": "Do you have a banknote?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i08",
-    "correctText": "write",
+    "correctText": "save",
     "correctResponseId": "en:lesson-07:session-21:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-21:i09",
-    "correctText": "I don’t lie.",
+    "correctText": "I don't lie.",
     "correctResponseId": "en:lesson-07:session-21:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-21:i10",
-    "correctText": "en:lesson-07:session-21:i10:p1=screen\nen:lesson-07:session-21:i10:p2=lie\nen:lesson-07:session-21:i10:p3=write\nen:lesson-07:session-21:i10:p4=necklace",
+    "correctText": "en:lesson-07:session-21:i10:p1=cash\nen:lesson-07:session-21:i10:p2=banknote\nen:lesson-07:session-21:i10:p3=save\nen:lesson-07:session-21:i10:p4=lie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i11",
-    "correctText": "Does Tom write books?",
+    "correctText": "Does he save money?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-21:word:pay",
+    "correctText": "pay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i12",
-    "correctText": "Do you have a necklace?",
+    "correctText": "Do you pay here?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i13",
-    "correctText": "The screen doesn’t work.",
+    "correctText": "There are no banknotes here.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-21:i15",
-    "correctText": "The pens are here.",
+    "correctText": "Do you pay here?",
     "correctResponseId": "en:lesson-07:session-21:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-21:i16",
-    "correctText": "en:lesson-07:session-21:i16:p1=pens\nen:lesson-07:session-21:i16:p2=screen\nen:lesson-07:session-21:i16:p3=lie\nen:lesson-07:session-21:i16:p4=write",
+    "correctText": "en:lesson-07:session-21:i16:p1=save\nen:lesson-07:session-21:i16:p2=pay\nen:lesson-07:session-21:i16:p3=lie\nen:lesson-07:session-21:i16:p4=banknote",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-21:i17",
-    "correctText": "Tom doesn’t lie.",
+    "correctText": "He doesn't lie.",
     "correctResponseId": null
   }
 ]

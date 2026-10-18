@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-23:intro1:r2": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-23:intro1:r3": {
-          "ru": "Для отрицания действия нужно `don’t`.",
-          "uk": "Для заперечення дії потрібне `don’t`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-23:intro2:r2": {
-          "ru": "Для вопроса о Томе нужно `does`.",
-          "uk": "Для запитання про Тома потрібне `does`."
+          "ru": "С the referee в этом вопросе нужно Does.",
+          "uk": "З the referee в цьому питанні потрібно Does."
         },
         "en:lesson-07:session-23:intro2:r3": {
-          "ru": "После `does` нужно `teach`, без `es`.",
-          "uk": "Після `does` потрібне `teach`, без `es`."
+          "ru": "После Does слово work остаётся без s.",
+          "uk": "Після Does слово work лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-23:intro3:r2": {
-          "ru": "Для одного сайта нужно `doesn’t`.",
-          "uk": "Для одного сайту потрібне `doesn’t`."
+          "ru": "Прожектор один: нужно doesn't.",
+          "uk": "Прожектор один: потрібно doesn't."
         },
         "en:lesson-07:session-23:intro3:r3": {
-          "ru": "После `doesn’t` нужно `work`, без `s`.",
-          "uk": "Після `doesn’t` потрібне `work`, без `s`."
+          "ru": "После doesn't нужно work, без s.",
+          "uk": "Після doesn't потрібно work, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5bfa47291d2d062b4bc9f93e0ca1975b3bf42f4630cd4a87c9647c4441eb6696"
+  "auxiliaryFingerprint": "0dc5acac9eb067fd9f7147799b3e9ecfa08cedcc03dd3cbf3f8c9210a5d76f18"
 }

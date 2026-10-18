@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-24:intro1:r2": {
-          "ru": "Для отрицания действия нужно `don’t`.",
-          "uk": "Для заперечення дії потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-24:intro1:r3": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-24:intro2:r2": {
-          "ru": "Для Тома нужно `doesn’t`.",
-          "uk": "Для Тома потрібне `doesn’t`."
+          "ru": "После he нужно doesn't.",
+          "uk": "Після he потрібно doesn't."
         },
         "en:lesson-07:session-24:intro2:r3": {
-          "ru": "После `doesn’t` нужно `shout`, без `s`.",
-          "uk": "Після `doesn’t` потрібне `shout`, без `s`."
+          "ru": "После doesn't слово sulk остаётся без s.",
+          "uk": "Після doesn't слово sulk лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-24:intro3:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "Собака одна: нужно Does.",
+          "uk": "Собака одна: потрібно Does."
         },
         "en:lesson-07:session-24:intro3:r3": {
-          "ru": "В этом вопросе нужно `cheat`, без `s`.",
-          "uk": "У цьому запитанні потрібне `cheat`, без `s`."
+          "ru": "После Does слово bark остаётся без s.",
+          "uk": "Після Does слово bark лишається без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6091b53f9101673a0b7f9742a0501a0b82298c481dae6ee19bf1e36dde9fc8bb"
+  "auxiliaryFingerprint": "fbf9a90b6248710e530f350fea967652336689035b59ea92f757cf580c53045b"
 }

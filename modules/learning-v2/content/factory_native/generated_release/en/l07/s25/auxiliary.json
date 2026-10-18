@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-25:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-25:intro1:r3": {
-          "ru": "После `where` в этом вопросе нужно `do`.",
-          "uk": "Після `where` у цьому запитанні потрібне `do`."
+          "ru": "После Where нужно do.",
+          "uk": "Після Where потрібно do."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-25:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "Пикник один: нужно does.",
+          "uk": "Пікнік один: потрібно does."
         },
         "en:lesson-07:session-25:intro2:r3": {
-          "ru": "После `do you` нужно `work`, без `s`.",
-          "uk": "Після `do you` потрібне `work`, без `s`."
+          "ru": "После does нужно start, без s.",
+          "uk": "Після does потрібно start, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-25:intro3:r2": {
-          "ru": "С `she` нужно `does`.",
-          "uk": "З `she` потрібне `does`."
+          "ru": "Концерт один: нужно does.",
+          "uk": "Концерт один: потрібно does."
         },
         "en:lesson-07:session-25:intro3:r3": {
-          "ru": "После `does` нужно `start`, без `s`.",
-          "uk": "Після `does` потрібне `start`, без `s`."
+          "ru": "После does нужно finish, без es.",
+          "uk": "Після does потрібно finish, без es."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "22011b44e2604d0050be36fb8082f8d5c70e26353e939c3dd90021e2dc50b157"
+  "auxiliaryFingerprint": "fdd1ab5894ac406e80284418f1845fca477ad2d67d4b127c40f84589c2337ef7"
 }

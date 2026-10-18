@@ -6,11 +6,32 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { STORAGE_AUDIO_PACK, buildStorageAudioPlan, canonicalHash, localSourceProblem, storageObjectPathFor, selectStorageAudioPlan } from "../scripts/learning_v2_storage_audio_plan.mjs";
+import { STORAGE_AUDIO_PACK, buildStorageAudioPlan, canonicalHash, localSourceProblem, loadRuntimeAudioSelection, storageObjectPathFor, selectStorageAudioPlan } from "../scripts/learning_v2_storage_audio_plan.mjs";
 
 const sha = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
 const row = (transcript, voiceId, contentHash, byteSize, assetPath) =>
   `  Object.freeze({ transcript: ${JSON.stringify(transcript)}, voiceId: "${voiceId}" as const, contentHash: "${contentHash}", byteSize: ${byteSize}, assetPath: ${JSON.stringify(assetPath)} }),`;
+
+function runtimeSelectionFixture(t, overrides = {}) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "v2-selection-"));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(root, "app"), { recursive: true });
+  fs.writeFileSync(path.join(root, "app/learning_v2_bundle_availability_v1.generated.ts"), "export const LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = 2;\n");
+  fs.writeFileSync(path.join(root, "source.txt"), "current runtime source\n");
+  const contentHash = "a".repeat(64);
+  const selection = {
+    schemaVersion: "learning-v2-runtime-audio-selection.v1",
+    inputDigests: { "source.txt": sha(fs.readFileSync(path.join(root, "source.txt"))) },
+    ceiling: 2,
+    builtSessions: 2,
+    problems: [],
+    required: { [contentHash]: ["l01s01"] },
+    ...overrides,
+  };
+  const selectionPath = path.join(root, "selection.json");
+  fs.writeFileSync(selectionPath, JSON.stringify(selection));
+  return { root, selectionPath, contentHash };
+}
 
 test("путь объекта = формула клиента (fileInputForEntry)", () => {
   const entry = { transcript: "A key.", voiceId: "ash", contentHash: "a".repeat(64) };
@@ -45,4 +66,33 @@ test("выкладка только записей текущих занятий
   const used = { contentHash: "a".repeat(64) }, unused = { contentHash: "b".repeat(64) };
   assert.deepEqual(selectStorageAudioPlan([used, unused], new Set([used.contentHash])), [used]);
   assert.throws(() => selectStorageAudioPlan([unused], new Set([used.contentHash])), /no local entry/);
+});
+
+test("runtime selection: старый чистый отчёт и только явные Storage-пробелы допускаются к выкладке", (t) => {
+  const legacy = runtimeSelectionFixture(t);
+  assert.deepEqual([...loadRuntimeAudioSelection(legacy.root, legacy.selectionPath)], [legacy.contentHash]);
+
+  const message = `l01s02 → фраза ${legacy.contentHash.slice(0, 12)} → ash → нет ни в сборке, ни в Storage`;
+  const uploadable = runtimeSelectionFixture(t, {
+    problems: [message],
+    problemDetails: [{ kind: "remote-availability", message, contentHash: legacy.contentHash }],
+  });
+  assert.deepEqual([...loadRuntimeAudioSelection(uploadable.root, uploadable.selectionPath)], [legacy.contentHash]);
+});
+
+test("runtime selection: неразмеченные, блокирующие и неизвестные проблемы закрывают выкладку", (t) => {
+  const message = "l01s02 → материал не собирается";
+  for (const problemDetails of [
+    undefined,
+    [{ kind: "material", message }],
+    [{ kind: "unknown", message }],
+    [{ kind: "remote-availability", message: "другая проблема", contentHash: "a".repeat(64) }],
+    [{ kind: "remote-availability", message, contentHash: "b".repeat(64) }],
+  ]) {
+    const fixture = runtimeSelectionFixture(t, {
+      problems: [message],
+      ...(problemDetails === undefined ? {} : { problemDetails }),
+    });
+    assert.throws(() => loadRuntimeAudioSelection(fixture.root, fixture.selectionPath), /unresolved problems/);
+  }
 });

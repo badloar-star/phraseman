@@ -62,7 +62,7 @@ export function loadRuntimeAudioSelection(root, selectionPath) {
   if (!selectionPath) throw new Error("Audio publication requires --selection <runtime-reference-report.json>");
   const selection = JSON.parse(fs.readFileSync(selectionPath, "utf8"));
   if (selection.schemaVersion !== "learning-v2-runtime-audio-selection.v1" ||
-      !selection.inputDigests || !selection.required || !Array.isArray(selection.problems) || selection.problems.length)
+      !selection.inputDigests || !selection.required || !Array.isArray(selection.problems))
     throw new Error("Audio selection is incomplete or has unresolved problems");
   const availability = fs.readFileSync(path.join(root, "app/learning_v2_bundle_availability_v1.generated.ts"), "utf8");
   const ceiling = Number(/LEARNING_V2_BUNDLE_CONTIGUOUS_CEILING_V1 = (\d+);/.exec(availability)?.[1]);
@@ -80,6 +80,16 @@ export function loadRuntimeAudioSelection(root, selectionPath) {
   const required = new Set(Object.keys(selection.required));
   if (!required.size || [...required].some(hash => !/^[0-9a-f]{64}$/.test(hash)))
     throw new Error("Invalid audio selection hashes");
+  if (selection.problems.length) {
+    const details = selection.problemDetails;
+    const uploadable = Array.isArray(details) && details.length === selection.problems.length &&
+      details.every((detail, index) => detail && typeof detail === "object" &&
+        Object.keys(detail).sort().join(",") === "contentHash,kind,message" &&
+        detail.kind === "remote-availability" &&
+        typeof selection.problems[index] === "string" && detail.message === selection.problems[index] &&
+        typeof detail.contentHash === "string" && /^[0-9a-f]{64}$/.test(detail.contentHash) && required.has(detail.contentHash));
+    if (!uploadable) throw new Error("Audio selection is incomplete or has unresolved problems");
+  }
   return required;
 }
 

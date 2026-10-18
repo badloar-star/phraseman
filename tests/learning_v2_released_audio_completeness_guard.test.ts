@@ -91,12 +91,18 @@ function bundleProblem(contentHash: string): string | null {
   return null;
 }
 
+type AudioProblemKind = "bundle-required" | "material" | "recording" | "remote-availability";
+type AudioProblemDetail = Readonly<{ kind: AudioProblemKind; message: string; contentHash?: string }>;
+
 /** Первые занятия — только из сборки; дальше годится сборка ИЛИ проверенная запись в Storage. */
-function sourceProblem(contentHash: string, courseIndex: number): string | null {
+function sourceProblem(contentHash: string, courseIndex: number): Readonly<{ kind: "bundle-required" | "remote-availability"; message: string }> | null {
   const bundleIssue = bundleProblem(contentHash);
   if (!bundleIssue) return null;
-  if (courseIndex < BUNDLE_ONLY_COURSE_SESSIONS) return `${bundleIssue} (первые ${BUNDLE_ONLY_COURSE_SESSIONS} занятий — только из сборки)`;
-  return inStorage.has(contentHash) ? null : "нет ни в сборке, ни в Storage";
+  if (courseIndex < BUNDLE_ONLY_COURSE_SESSIONS) return {
+    kind: "bundle-required",
+    message: `${bundleIssue} (первые ${BUNDLE_ONLY_COURSE_SESSIONS} занятий — только из сборки)`,
+  };
+  return inStorage.has(contentHash) ? null : { kind: "remote-availability", message: "нет ни в сборке, ни в Storage" };
 }
 
 describe("Learning V2 released sessions: complete recorded audio (build + Storage)", () => {
@@ -106,6 +112,11 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
     const probeThrough = Number(process.env.LEARNING_V2_AUDIO_COMPLETE_THROUGH ?? "");
     const ceiling = Number.isInteger(probeThrough) && probeThrough > 0 ? probeThrough : LEARNING_V2_RELEASED_SESSION_COUNT_V1;
     const problems: string[] = [];
+    const problemDetails: AudioProblemDetail[] = [];
+    const addProblem = (kind: AudioProblemKind, message: string, contentHash?: string): void => {
+      problems.push(message);
+      problemDetails.push(contentHash ? { kind, message, contentHash } : { kind, message });
+    };
     let phraseFiles = 0;
     let builtSessions = 0;
     const requiredAudio = new Map<string, Set<string>>();
@@ -135,7 +146,7 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
         activeRootFingerprint: "0".repeat(64),
       } as never);
       if (!material) {
-        problems.push(`${where} → материал не собирается (фраза без записи вне таблицы пропусков) → см. [V2-BUNDLED] выше`);
+        addProblem("material", `${where} → материал не собирается (фраза без записи вне таблицы пропусков) → см. [V2-BUNDLED] выше`);
       } else {
         builtSessions += 1;
         const files = new Map<string, string>();
@@ -144,7 +155,7 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
         for (const [contentHash, voiceId] of files) {
           remember(contentHash, where);
           const problem = sourceProblem(contentHash, courseIndex);
-          if (problem) problems.push(`${where} → фраза ${contentHash.slice(0, 12)} → ${voiceId} → ${problem}`);
+          if (problem) addProblem(problem.kind, `${where} → фраза ${contentHash.slice(0, 12)} → ${voiceId} → ${problem.message}`, contentHash);
         }
       }
       // Слова: подготовка занятия sN берёт карточки ВСЕХ занятий ≤ N того же урока (client_v3) — каждое слово урока один раз.
@@ -160,13 +171,13 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
         // Голос слова — как при подготовке занятия: ash, иначе записанный голос слова (17.10).
         const file = learningV2FactoryWordAudioFileV1(text);
         if (!file) {
-          problems.push(`${where} → слово «${text}» → ни одного голоса → нет записи в таблице озвучки`);
+          addProblem("recording", `${where} → слово «${text}» → ни одного голоса → нет записи в таблице озвучки`);
           continue;
         }
         accumulatedWordHashes.add(file.contentHash);
         remember(file.contentHash, where);
         const problem = sourceProblem(file.contentHash, courseIndex);
-        if (problem) problems.push(`${where} → слово «${text}» → ${file.voiceId} → ${problem}`);
+        if (problem) addProblem(problem.kind, `${where} → слово «${text}» → ${file.voiceId} → ${problem.message}`, file.contentHash);
       }
       // Клиент подготавливает все уже введённые слова этого урока.
       for (const hash of accumulatedWordHashes) remember(hash, where);
@@ -195,7 +206,8 @@ describe("Learning V2 released sessions: complete recorded audio (build + Storag
       const inputDigests = Object.fromEntries(inputs.map(rel => [rel, createHash("sha256").update(fs.readFileSync(path.join(repo, rel))).digest("hex")]));
       fs.writeFileSync(process.env.LEARNING_V2_AUDIO_REFERENCE_REPORT, JSON.stringify({
         schemaVersion: "learning-v2-runtime-audio-selection.v1", inputDigests,
-        ceiling, builtSessions, problems, required: Object.fromEntries([...requiredAudio].map(([hash, sessions]) => [hash, [...sessions]])),
+        ceiling, builtSessions, problems, problemDetails,
+        required: Object.fromEntries([...requiredAudio].map(([hash, sessions]) => [hash, [...sessions]])),
       }, null, 2));
     }
     // Каждая дыра отдельной строкой с меткой — её вытаскивают ворота scripts/learning_v2_audio_coverage_gate.mjs.

@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-24:i01",
+      "interactionId": "en:lesson-07:session-24:word:swear",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:word:swear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:word:swear:audio",
+          "transcript": "swear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:word:swear:r1",
+            "targetText": "swear",
+            "meaningByLocale": {
+              "ru": "ругаться, браниться. We don't swear. — «Мы не ругаемся». Произносить бранные слова. Здесь речь не о споре.",
+              "uk": "лаятися. We don't swear. — «Ми не лаємося». Вживати лайливі слова. Тут ідеться не про суперечку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swear",
+          "definitionByLocale": {
+            "ru": "ругаться, браниться. We don't swear. — «Мы не ругаемся». Произносить бранные слова. Здесь речь не о споре.",
+            "uk": "лаятися. We don't swear. — «Ми не лаємося». Вживати лайливі слова. Тут ідеться не про суперечку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поясніть колезі «Я не курю»",
+      "prompt": "Друг чекає, що ви вилаєтеся в заторі. Скажіть: «Я не лаюся»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поясніть колезі «Я не курю»",
+      "accessibilityLabel": "Друг чекає, що ви вилаєтеся в заторі. Скажіть: «Я не лаюся»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t smoke.",
+        "targetPhrase": "I don't swear.",
         "localizedMeaning": {
-          "ru": "Объясните коллеге «Я не курю»",
-          "uk": "Поясніть колезі «Я не курю»"
+          "ru": "Друг ждёт, что вы выругаетесь в пробке. Скажите: «Я не ругаюсь»",
+          "uk": "Друг чекає, що ви вилаєтеся в заторі. Скажіть: «Я не лаюся»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
-          "smoke"
+          "don't",
+          "swear"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг чекає, що ви вилаєтеся в заторі. Скажіть: «Я не лаюся»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't swear.`",
+              "uk": "тут потрібно `don't` — `I don't swear.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -36,8 +91,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-24:word:sulk",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sulk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:word:sulk:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sulk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:word:sulk:audio",
+          "transcript": "sulk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:word:sulk:r1",
+            "targetText": "sulk",
+            "meaningByLocale": {
+              "ru": "дуться. They don't sulk. — «Они не дуются». О том, как человек молча показывает обиду.",
+              "uk": "дутися. They don't sulk. — «Вони не дуються». Про те, як людина мовчки показує образу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sulk",
+          "definitionByLocale": {
+            "ru": "дуться. They don't sulk. — «Они не дуются». О том, как человек молча показывает обиду.",
+            "uk": "дутися. They don't sulk. — «Вони не дуються». Про те, як людина мовчки показує образу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-24:i02",
-      "ordinal": 5,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,11 +143,11 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i02:r1",
-          "text": "complain"
+          "text": "sulk"
         },
         {
           "responseId": "en:lesson-07:session-24:i02:r2",
-          "text": "argue"
+          "text": "shout"
         },
         {
           "responseId": "en:lesson-07:session-24:i02:r3",
@@ -65,18 +163,18 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i02:audio",
-          "transcript": "complain"
+          "transcript": "sulk"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-24:i02:r1",
-            "targetText": "complain",
+            "targetText": "sulk",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-24:i02:r2",
-            "targetText": "argue",
+            "targetText": "shout",
             "meaningByLocale": null
           },
           {
@@ -92,8 +190,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `complain`, а в этом варианте — `argue`.",
-              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `argue`."
+              "ru": "В записи первое слово — `sulk`, а в этом варианте — `shout`.",
+              "uk": "У записі перше слово — `sulk`, а в цьому варіанті — `shout`."
             }
           },
           {
@@ -101,8 +199,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `complain`, а в этом варианте — `cheat`.",
-              "uk": "У записі перше слово — `complain`, а в цьому варіанті — `cheat`."
+              "ru": "В записи первое слово — `sulk`, а в этом варианте — `cheat`.",
+              "uk": "У записі перше слово — `sulk`, а в цьому варіанті — `cheat`."
             }
           }
         ],
@@ -113,19 +211,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i03",
-      "ordinal": 6,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не граю в азартні ігри»",
+      "prompt": "Заперечте другові: «Він не дується». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i03:r1",
-          "text": "don’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-24:i03:r2",
-          "text": "doesn’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-24:i03:r3",
@@ -134,46 +232,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не граю в азартні ігри»",
+      "accessibilityLabel": "Заперечте другові: «Він не дується». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не играю в азартные игры»",
-          "uk": "Скажіть «Я не граю в азартні ігри»"
+          "ru": "Возразите другу: «Он не дуется». Выберите слово",
+          "uk": "Заперечте другові: «Він не дується». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ gamble.",
+        "gappedTargetPhrase": "He ___ sulk.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-24:i03:r1",
-            "text": "don’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-24:i03:r2",
-            "text": "doesn’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-24:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+        "testedDimension": "Заперечте другові: «Він не дується». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-24:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+            "testedDimension": "Заперечте другові: «Він не дується». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "После `He` нужно `doesn't`.",
+              "uk": "Після `He` потрібно `doesn't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-24:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не граю в азартні ігри»",
+            "testedDimension": "Заперечте другові: «Він не дується». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "Для отрицания действия нужно `doesn't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `doesn't`, а не просто `not`."
             }
           }
         ]
@@ -182,7 +280,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i04",
-      "ordinal": 7,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +294,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-24:i04:p1",
-            "target": "smoke",
+            "target": "swear",
             "meaningByLocale": {
-              "ru": "курить",
-              "uk": "курити"
+              "ru": "ругаться",
+              "uk": "лаятися"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i04:p2",
-            "target": "gamble",
+            "target": "sulk",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "дуться",
+              "uk": "дутися"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i04:p3",
-            "target": "complain",
-            "meaningByLocale": {
-              "ru": "жаловаться",
-              "uk": "скаржитися"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-24:i04:p4",
             "target": "shout",
             "meaningByLocale": {
               "ru": "кричать",
               "uk": "кричати"
             }
+          },
+          {
+            "pairId": "en:lesson-07:session-24:i04:p4",
+            "target": "cheat",
+            "meaningByLocale": {
+              "ru": "жульничать",
+              "uk": "жульничати"
+            }
           }
         ],
         "leftColumn": [
-          "smoke",
-          "gamble",
-          "complain",
-          "shout"
+          "swear",
+          "sulk",
+          "shout",
+          "cheat"
         ],
         "rightColumn": [
-          "курити",
-          "грати в азартні ігри",
-          "скаржитися",
-          "кричати"
+          "лаятися",
+          "дутися",
+          "кричати",
+          "жульничати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +353,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,49 +368,117 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i05:audio",
-          "transcript": "I don’t lie."
+          "transcript": "He doesn't sulk."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t lie.",
+        "hiddenTargetPhrase": "He doesn't sulk.",
         "orderedTokens": [
-          "I",
-          "don’t",
-          "lie"
+          "He",
+          "doesn't",
+          "sulk"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "don't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `doesn't` — `He doesn't sulk.`",
+              "uk": "тут потрібно `doesn't` — `He doesn't sulk.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-24:word:bark",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:word:bark:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:word:bark:audio",
+          "transcript": "bark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:word:bark:r1",
+            "targetText": "bark",
+            "meaningByLocale": {
+              "ru": "лаять. The dog barks. — «Собака лает». Громкие короткие звуки, которые издаёт собака.",
+              "uk": "гавкати. The dog barks. — «Собака гавкає». Гучні короткі звуки, які видає собака."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bark",
+          "definitionByLocale": {
+            "ru": "лаять. The dog barks. — «Собака лает». Громкие короткие звуки, которые издаёт собака.",
+            "uk": "гавкати. The dog barks. — «Собака гавкає». Гучні короткі звуки, які видає собака."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-24:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Опишіть звичну поведінку Тома: «Том не сперечається»",
+      "prompt": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Опишіть звичну поведінку Тома: «Том не сперечається»",
+      "accessibilityLabel": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom doesn’t argue.",
+        "targetPhrase": "Does the dog bark?",
         "localizedMeaning": {
-          "ru": "Опишите привычное поведение Тома: «Том не спорит»",
-          "uk": "Опишіть звичну поведінку Тома: «Том не сперечається»"
+          "ru": "Вы собираетесь в гости. Спросите хозяйку: «Собака лает?»",
+          "uk": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»"
         },
         "orderedTokens": [
-          "Tom",
-          "doesn’t",
-          "argue"
+          "Does",
+          "the",
+          "dog",
+          "bark"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви збираєтеся в гості. Спитайте господиню: «Собака гавкає?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does the dog bark?`",
+              "uk": "тут потрібно `Does` — `Does the dog bark?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -321,26 +487,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-24:word:mumble",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mumble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-24:word:mumble:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mumble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-24:word:mumble:audio",
+          "transcript": "mumble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-24:word:mumble:r1",
+            "targetText": "mumble",
+            "meaningByLocale": {
+              "ru": "бормотать. I don't mumble. — «Я не бормочу». О том, как человек говорит тихо и невнятно себе под нос.",
+              "uk": "бурмотіти. I don't mumble. — «Я не бурмочу». Про те, як людина говорить тихо й нечітко собі під ніс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mumble",
+          "definitionByLocale": {
+            "ru": "бормотать. I don't mumble. — «Я не бормочу». О том, как человек говорит тихо и невнятно себе под нос.",
+            "uk": "бурмотіти. I don't mumble. — «Я не бурмочу». Про те, як людина говорить тихо й нечітко собі під ніс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-24:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Ти шахруєш?»",
+      "prompt": "Ви обговорюєте свою звичну манеру говорити. Скажіть: «Я не бурмочу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-24:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте «Ти шахруєш?»",
+      "accessibilityLabel": "Ви обговорюєте свою звичну манеру говорити. Скажіть: «Я не бурмочу»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i07:audio",
-          "transcript": "Do you cheat?"
+          "transcript": "I don't mumble."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you cheat?",
+        "targetPhrase": "I don't mumble.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +564,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Том курить?»",
+      "prompt": "Спитайте господиню про собаку. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i08:r1",
-          "text": "smoke"
+          "text": "Does"
         },
         {
           "responseId": "en:lesson-07:session-24:i08:r2",
-          "text": "smokes"
+          "text": "Do"
         },
         {
           "responseId": "en:lesson-07:session-24:i08:r3",
-          "text": "is smoke"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Том курить?»",
+      "accessibilityLabel": "Спитайте господиню про собаку. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Том курит?»",
-          "uk": "Запитайте «Том курить?»"
+          "ru": "Спросите хозяйку о собаке. Выберите слово",
+          "uk": "Спитайте господиню про собаку. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does Tom ___?",
+        "gappedTargetPhrase": "___ the dog bark?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-24:i08:r1",
-            "text": "smoke"
+            "text": "Does"
           },
           {
             "responseId": "en:lesson-07:session-24:i08:r2",
-            "text": "smokes"
+            "text": "Do"
           },
           {
             "responseId": "en:lesson-07:session-24:i08:r3",
-            "text": "is smoke"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Запитайте «Том курить?»",
+        "testedDimension": "Спитайте господиню про собаку. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Том курить?»",
+            "testedDimension": "Спитайте господиню про собаку. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `smoke`.",
-              "uk": "Після `does` потрібне `smoke`."
+              "ru": "Собака одна: нужно `Does`.",
+              "uk": "Собака одна: потрібно `Does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Том курить?»",
+            "testedDimension": "Спитайте господиню про собаку. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "В этом вопросе нужно `smoke`, без `is`.",
-              "uk": "У цьому запитанні потрібне `smoke`, без `is`."
+              "ru": "С действием `bark` нужно `Does`, а не `Is`.",
+              "uk": "З дією `bark` потрібно `Does`, а не `Is`."
             }
           }
         ]
@@ -424,7 +633,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,15 +641,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i09:r1",
-          "text": "I don’t complain."
+          "text": "I don't swear."
         },
         {
           "responseId": "en:lesson-07:session-24:i09:r2",
-          "text": "I don’t shout."
+          "text": "I don't shout."
         },
         {
           "responseId": "en:lesson-07:session-24:i09:r3",
-          "text": "I don’t lie."
+          "text": "I don't gossip."
         }
       ],
       "mediaIds": [],
@@ -452,23 +661,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i09:audio",
-          "transcript": "I don’t complain."
+          "transcript": "I don't swear."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-24:i09:r1",
-            "targetText": "I don’t complain.",
+            "targetText": "I don't swear.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-24:i09:r2",
-            "targetText": "I don’t shout.",
+            "targetText": "I don't shout.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-24:i09:r3",
-            "targetText": "I don’t lie.",
+            "targetText": "I don't gossip.",
             "meaningByLocale": null
           }
         ],
@@ -479,8 +688,8 @@
             "correct": false,
             "testedDimension": "Послухайте, чого не робить співрозмовник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complain`, а в этом варианте — `shout`.",
-              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `shout`."
+              "ru": "В записи последнее слово — `swear`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `swear`, а в цьому варіанті — `shout`."
             }
           },
           {
@@ -488,8 +697,8 @@
             "correct": false,
             "testedDimension": "Послухайте, чого не робить співрозмовник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complain`, а в этом варианте — `lie`.",
-              "uk": "У записі останнє слово — `complain`, а в цьому варіанті — `lie`."
+              "ru": "В записи последнее слово — `swear`, а в этом варианте — `gossip`.",
+              "uk": "У записі останнє слово — `swear`, а в цьому варіанті — `gossip`."
             }
           }
         ],
@@ -500,8 +709,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -514,48 +723,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-24:i10:p1",
-            "target": "lie",
+            "target": "mumble",
             "meaningByLocale": {
-              "ru": "лгать",
-              "uk": "брехати"
+              "ru": "бормотать",
+              "uk": "бурмотіти"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i10:p2",
-            "target": "argue",
+            "target": "bark",
             "meaningByLocale": {
-              "ru": "спорить",
-              "uk": "сперечатися"
+              "ru": "лаять",
+              "uk": "гавкати"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i10:p3",
-            "target": "cheat",
+            "target": "sulk",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "дуться",
+              "uk": "дутися"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i10:p4",
-            "target": "gamble",
+            "target": "swear",
             "meaningByLocale": {
-              "ru": "играть в азартные игры",
-              "uk": "грати в азартні ігри"
+              "ru": "ругаться",
+              "uk": "лаятися"
             }
           }
         ],
         "leftColumn": [
-          "lie",
-          "argue",
-          "cheat",
-          "gamble"
+          "mumble",
+          "bark",
+          "sulk",
+          "swear"
         ],
         "rightColumn": [
-          "брехати",
-          "сперечатися",
-          "шахрувати",
-          "грати в азартні ігри"
+          "бурмотіти",
+          "гавкати",
+          "дутися",
+          "лаятися"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,32 +782,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-24:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i11:audio",
-          "transcript": "Tom doesn’t shout."
+          "transcript": "Does the dog bark?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom doesn’t shout.",
+        "hiddenTargetPhrase": "Does the dog bark?",
         "orderedTokens": [
-          "Tom",
-          "doesn’t",
-          "shout"
+          "Does",
+          "the",
+          "dog",
+          "bark"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does the dog bark?`",
+              "uk": "тут потрібно `Does` — `Does the dog bark?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -608,29 +830,41 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте друга про звички: «Ти граєш в азартні ігри?»",
+      "prompt": "Ви обговорюєте, як зазвичай поводитеся в разі незгоди. Спитайте друга: «Ти сперечаєшся?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте друга про звички: «Ти граєш в азартні ігри?»",
+      "accessibilityLabel": "Ви обговорюєте, як зазвичай поводитеся в разі незгоди. Спитайте друга: «Ти сперечаєшся?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you gamble?",
+        "targetPhrase": "Do you argue?",
         "localizedMeaning": {
-          "ru": "Спросите друга о привычках: «Ты играешь в азартные игры?»",
-          "uk": "Запитайте друга про звички: «Ти граєш в азартні ігри?»"
+          "ru": "Вы обсуждаете, как обычно ведёте себя при разногласиях. Спросите друга: «Ты споришь?»",
+          "uk": "Ви обговорюєте, як зазвичай поводитеся в разі незгоди. Спитайте друга: «Ти сперечаєшся?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "gamble"
+          "argue"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-24:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви обговорюєте, як зазвичай поводитеся в разі незгоди. Спитайте друга: «Ти сперечаєшся?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you argue?`",
+              "uk": "тут потрібно `Do` — `Do you argue?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -640,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили конверт. Повідомте «Тут немає квитків»",
+      "prompt": "Перед грою спитайте друга: «Ти жульничаєш?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-24:i13:audio"
       ],
-      "accessibilityLabel": "Ви перевірили конверт. Повідомте «Тут немає квитків»",
+      "accessibilityLabel": "Перед грою спитайте друга: «Ти жульничаєш?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i13:audio",
-          "transcript": "There are no tickets here."
+          "transcript": "Do you cheat?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no tickets here.",
+        "targetPhrase": "Do you cheat?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -673,19 +907,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Том не шахрує»",
+      "prompt": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i14:r1",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-24:i14:r2",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-24:i14:r3",
@@ -694,46 +928,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Том не шахрує»",
+      "accessibilityLabel": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Том не жульничает»",
-          "uk": "Скажіть «Том не шахрує»"
+          "ru": "Скажите про подругу: «Она не хвастается». Выберите слово",
+          "uk": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово"
         },
-        "gappedTargetPhrase": "Tom ___ cheat.",
+        "gappedTargetPhrase": "She ___ brag.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-24:i14:r1",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-24:i14:r2",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-24:i14:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажіть «Том не шахрує»",
+        "testedDimension": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-24:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Том не шахрує»",
+            "testedDimension": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для Тома нужно `doesn’t`.",
-              "uk": "Для Тома потрібне `doesn’t`."
+              "ru": "После `She` нужно `doesn't`.",
+              "uk": "Після `She` потрібно `doesn't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-24:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Том не шахрує»",
+            "testedDimension": "Скажіть про подругу: «Вона не хвалиться». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия здесь нужно `doesn’t`.",
-              "uk": "Для заперечення дії тут потрібне `doesn’t`."
+              "ru": "Для отрицания действия нужно `doesn't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `doesn't`, а не просто `not`."
             }
           }
         ]
@@ -742,7 +976,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -750,15 +984,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-24:i15:r1",
-          "text": "I don’t argue."
+          "text": "I don't mumble."
         },
         {
           "responseId": "en:lesson-07:session-24:i15:r2",
-          "text": "I don’t cheat."
+          "text": "I don't gossip."
         },
         {
           "responseId": "en:lesson-07:session-24:i15:r3",
-          "text": "I don’t smoke."
+          "text": "I don't complain."
         }
       ],
       "mediaIds": [],
@@ -770,23 +1004,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i15:audio",
-          "transcript": "I don’t argue."
+          "transcript": "I don't mumble."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-24:i15:r1",
-            "targetText": "I don’t argue.",
+            "targetText": "I don't mumble.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-24:i15:r2",
-            "targetText": "I don’t cheat.",
+            "targetText": "I don't gossip.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-24:i15:r3",
-            "targetText": "I don’t smoke.",
+            "targetText": "I don't complain.",
             "meaningByLocale": null
           }
         ],
@@ -797,8 +1031,8 @@
             "correct": false,
             "testedDimension": "Послухайте, чого не робить співрозмовник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `argue`, а в этом варианте — `cheat`.",
-              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `cheat`."
+              "ru": "В записи последнее слово — `mumble`, а в этом варианте — `gossip`.",
+              "uk": "У записі останнє слово — `mumble`, а в цьому варіанті — `gossip`."
             }
           },
           {
@@ -806,8 +1040,8 @@
             "correct": false,
             "testedDimension": "Послухайте, чого не робить співрозмовник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `argue`, а в этом варианте — `smoke`.",
-              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `smoke`."
+              "ru": "В записи последнее слово — `mumble`, а в этом варианте — `complain`.",
+              "uk": "У записі останнє слово — `mumble`, а в цьому варіанті — `complain`."
             }
           }
         ],
@@ -818,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -832,48 +1066,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-24:i16:p1",
-            "target": "complain",
+            "target": "sulk",
             "meaningByLocale": {
-              "ru": "жаловаться",
-              "uk": "скаржитися"
+              "ru": "дуться",
+              "uk": "дутися"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i16:p2",
-            "target": "shout",
+            "target": "swear",
             "meaningByLocale": {
-              "ru": "кричать",
-              "uk": "кричати"
+              "ru": "ругаться",
+              "uk": "лаятися"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i16:p3",
-            "target": "lie",
+            "target": "mumble",
             "meaningByLocale": {
-              "ru": "лгать",
-              "uk": "брехати"
+              "ru": "бормотать",
+              "uk": "бурмотіти"
             }
           },
           {
             "pairId": "en:lesson-07:session-24:i16:p4",
-            "target": "cheat",
+            "target": "bark",
             "meaningByLocale": {
-              "ru": "жульничать",
-              "uk": "шахрувати"
+              "ru": "лаять",
+              "uk": "гавкати"
             }
           }
         ],
         "leftColumn": [
-          "complain",
-          "shout",
-          "lie",
-          "cheat"
+          "sulk",
+          "swear",
+          "mumble",
+          "bark"
         ],
         "rightColumn": [
-          "скаржитися",
-          "кричати",
-          "брехати",
-          "шахрувати"
+          "дутися",
+          "лаятися",
+          "бурмотіти",
+          "гавкати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -891,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-24:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує запросити Тома зіграти на гроші. Уточніть «Том грає в азартні ігри?»",
+      "prompt": "Друг хоче запросити брата на гру, але не любить суперечок. Уточніть про брата: «Він сперечається?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-24:i17:audio"
       ],
-      "accessibilityLabel": "Друг пропонує запросити Тома зіграти на гроші. Уточніть «Том грає в азартні ігри?»",
+      "accessibilityLabel": "Друг хоче запросити брата на гру, але не любить суперечок. Уточніть про брата: «Він сперечається?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-24:i17:audio",
-          "transcript": "Does Tom gamble?"
+          "transcript": "Does he argue?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Does Tom gamble?",
+        "targetPhrase": "Does he argue?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -931,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "962e4a1d9189fbf30ab58d6750ccc1a6ed9b27d6d1576561ff67e79378648dfd"
+  "learnerFingerprint": "ec500a9510fc16d41311a7988ca672098ca909e731e2f81c07965b4d0c95c099"
 }

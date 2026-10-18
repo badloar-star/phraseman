@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-07:session-23:word:cheat",
+    "correctText": "cheat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-23:i01",
-    "correctText": "I don’t cheat.",
+    "correctText": "I don't cheat.",
     "correctResponseId": null
   },
   {
@@ -11,77 +16,92 @@
   },
   {
     "interactionId": "en:lesson-07:session-23:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-23:i04",
-    "correctText": "en:lesson-07:session-23:i04:p1=cheat\nen:lesson-07:session-23:i04:p2=teach\nen:lesson-07:session-23:i04:p3=camera\nen:lesson-07:session-23:i04:p4=tickets",
+    "correctText": "en:lesson-07:session-23:i04:p1=cheat\nen:lesson-07:session-23:i04:p2=work\nen:lesson-07:session-23:i04:p3=camera\nen:lesson-07:session-23:i04:p4=lie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i05",
-    "correctText": "I don’t cheat.",
+    "correctText": "I don't cheat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:word:referee",
+    "correctText": "referee",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i06",
-    "correctText": "Does Tom teach here?",
+    "correctText": "Does the referee work here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:word:floodlight",
+    "correctText": "floodlight",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i07",
-    "correctText": "The website doesn’t work.",
+    "correctText": "The floodlight doesn't work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i08",
-    "correctText": "teach",
+    "correctText": "work",
     "correctResponseId": "en:lesson-07:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-23:i09",
-    "correctText": "I don’t cheat.",
+    "correctText": "I don't cheat.",
     "correctResponseId": "en:lesson-07:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-23:i10",
-    "correctText": "en:lesson-07:session-23:i10:p1=website\nen:lesson-07:session-23:i10:p2=cheat\nen:lesson-07:session-23:i10:p3=teach\nen:lesson-07:session-23:i10:p4=camera",
+    "correctText": "en:lesson-07:session-23:i10:p1=work\nen:lesson-07:session-23:i10:p2=floodlight\nen:lesson-07:session-23:i10:p3=cheat\nen:lesson-07:session-23:i10:p4=referee",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i11",
-    "correctText": "The website doesn’t work.",
+    "correctText": "The floodlight doesn't work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-23:word:prize",
+    "correctText": "prize",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i12",
-    "correctText": "Do you have a camera?",
+    "correctText": "Do you have a prize?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i13",
-    "correctText": "There are no tickets here.",
+    "correctText": "The prize is here.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i14",
-    "correctText": "doesn’t",
+    "correctText": "doesn't",
     "correctResponseId": "en:lesson-07:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-23:i15",
-    "correctText": "The tickets are here.",
+    "correctText": "Does the referee work here?",
     "correctResponseId": "en:lesson-07:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-23:i16",
-    "correctText": "en:lesson-07:session-23:i16:p1=tickets\nen:lesson-07:session-23:i16:p2=website\nen:lesson-07:session-23:i16:p3=cheat\nen:lesson-07:session-23:i16:p4=teach",
+    "correctText": "en:lesson-07:session-23:i16:p1=floodlight\nen:lesson-07:session-23:i16:p2=prize\nen:lesson-07:session-23:i16:p3=referee\nen:lesson-07:session-23:i16:p4=cheat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-23:i17",
-    "correctText": "Tom doesn’t cheat.",
+    "correctText": "He doesn't cheat.",
     "correctResponseId": null
   }
 ]

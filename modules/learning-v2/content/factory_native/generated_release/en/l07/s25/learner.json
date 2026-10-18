@@ -4,22 +4,65 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-25:i01",
+      "interactionId": "en:lesson-07:session-25:word:meet",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — meet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:word:meet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — meet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:word:meet:audio",
+          "transcript": "meet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-25:word:meet:r1",
+            "targetText": "meet",
+            "meaningByLocale": {
+              "ru": "встречаться. Where do you meet? — «Где вы встречаетесь?» Видеться с кем-то в назначенном месте.",
+              "uk": "зустрічатися. Where do you meet? — «Де ви зустрічаєтеся?» Бачитися з кимось у призначеному місці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meet",
+          "definitionByLocale": {
+            "ru": "встречаться. Where do you meet? — «Где вы встречаетесь?» Видеться с кем-то в назначенном месте.",
+            "uk": "зустрічатися. Where do you meet? — «Де ви зустрічаєтеся?» Бачитися з кимось у призначеному місці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-25:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите о регулярных встречах «Где вы встречаетесь?»",
+      "prompt": "Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о регулярных встречах «Где вы встречаетесь?»",
+      "accessibilityLabel": "Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where do you meet?",
         "localizedMeaning": {
-          "ru": "Спросите о регулярных встречах «Где вы встречаетесь?»",
-          "uk": "Запитайте про регулярні зустрічі «Де ви зустрічаєтеся?»"
+          "ru": "Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»",
+          "uk": "Друг розповідає про свою компанію. Спитайте його: «Де ви зустрічаєтеся?»"
         },
         "orderedTokens": [
           "Where",
@@ -38,51 +81,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте друга",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i02:r1",
-          "text": "meet"
+          "text": "Where do you meet?"
         },
         {
           "responseId": "en:lesson-07:session-25:i02:r2",
-          "text": "walk"
+          "text": "Where do you work?"
         },
         {
           "responseId": "en:lesson-07:session-25:i02:r3",
-          "text": "smoke"
+          "text": "When do you meet?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте друга",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i02:audio",
-          "transcript": "meet"
+          "transcript": "Where do you meet?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-25:i02:r1",
-            "targetText": "meet",
+            "targetText": "Where do you meet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i02:r2",
-            "targetText": "walk",
+            "targetText": "Where do you work?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i02:r3",
-            "targetText": "smoke",
+            "targetText": "When do you meet?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +134,19 @@
           {
             "responseId": "en:lesson-07:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `meet`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `meet`, а в цьому варіанті — `walk`."
+              "ru": "В записи последнее слово — `meet`, встречаться, а в этом варианте — `work`, работать.",
+              "uk": "У записі останнє слово — `meet`, зустрічатися, а в цьому варіанті — `work`, працювати."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте друга",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `meet`, а в этом варианте — `smoke`.",
-              "uk": "У записі перше слово — `meet`, а в цьому варіанті — `smoke`."
+              "ru": "В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.",
+              "uk": "У записі перше слово — `Where`, де, а в цьому варіанті — `When`, коли."
             }
           }
         ],
@@ -114,11 +157,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите «Где вы встречаетесь?»",
+      "prompt": "Спросите друга о его компании. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i03:r1",
@@ -135,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Где вы встречаетесь?»",
+      "accessibilityLabel": "Спросите друга о его компании. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Где вы встречаетесь?»",
-          "uk": "Запитайте «Де ви зустрічаєтеся?»"
+          "ru": "Спросите друга о его компании. Выберите слово",
+          "uk": "Спитайте друга про його компанію. Виберіть слово"
         },
         "gappedTargetPhrase": "Where ___ you meet?",
         "gapOptions": [
@@ -157,24 +200,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Спросите «Где вы встречаетесь?»",
+        "testedDimension": "Спросите друга о его компании. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-25:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите «Где вы встречаетесь?»",
+            "testedDimension": "Спросите друга о его компании. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "uk": "З `you` потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите «Где вы встречаетесь?»",
+            "testedDimension": "Спросите друга о его компании. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о привычном действии `meet` строим с `do`.",
-              "uk": "Запитання про звичну дію `meet` будуємо з `do`."
+              "ru": "С действием `meet` нужно `do`, а не `are`.",
+              "uk": "З дією `meet` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -183,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -205,40 +248,40 @@
           },
           {
             "pairId": "en:lesson-07:session-25:i04:p2",
-            "target": "walk",
+            "target": "park",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "парк",
+              "uk": "парк"
             }
           },
           {
             "pairId": "en:lesson-07:session-25:i04:p3",
-            "target": "smoke",
+            "target": "ticket",
             "meaningByLocale": {
-              "ru": "курить",
-              "uk": "курити"
+              "ru": "билет",
+              "uk": "квиток"
             }
           },
           {
             "pairId": "en:lesson-07:session-25:i04:p4",
-            "target": "dogs",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "собаки",
-              "uk": "собаки"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
           "meet",
-          "walk",
-          "smoke",
-          "dogs"
+          "park",
+          "ticket",
+          "work"
         ],
         "rightColumn": [
           "встречаться",
-          "ходить пешком",
-          "курить",
-          "собаки"
+          "парк",
+          "билет",
+          "работать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +298,228 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-25:word:picnic",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — picnic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:word:picnic:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — picnic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:word:picnic:audio",
+          "transcript": "picnic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-25:word:picnic:r1",
+            "targetText": "picnic",
+            "meaningByLocale": {
+              "ru": "пикник. The picnic is in the park. — «Пикник в парке». Еда на свежем воздухе, на траве или у стола во дворе.",
+              "uk": "пікнік. The picnic is in the park. — «Пікнік у парку». Їжа просто неба, на траві або біля столу у дворі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picnic",
+          "definitionByLocale": {
+            "ru": "пикник. The picnic is in the park. — «Пикник в парке». Еда на свежем воздухе, на траве или у стола во дворе.",
+            "uk": "пікнік. The picnic is in the park. — «Пікнік у парку». Їжа просто неба, на траві або біля столу у дворі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-25:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседку и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседку и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i05:audio",
-          "transcript": "Where do you meet?"
+          "transcript": "When does the picnic start?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where do you meet?",
+        "hiddenTargetPhrase": "When does the picnic start?",
         "orderedTokens": [
-          "Where",
-          "do",
-          "you",
-          "meet"
+          "When",
+          "does",
+          "the",
+          "picnic",
+          "start"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-25:word:concert",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — concert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:word:concert:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — concert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:word:concert:audio",
+          "transcript": "concert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-25:word:concert:r1",
+            "targetText": "concert",
+            "meaningByLocale": {
+              "ru": "концерт. The concert is loud. — «Концерт громкий». Выступление музыкантов перед слушателями.",
+              "uk": "концерт. The concert is loud. — «Концерт гучний». Виступ музикантів перед слухачами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "concert",
+          "definitionByLocale": {
+            "ru": "концерт. The concert is loud. — «Концерт громкий». Выступление музыкантов перед слушателями.",
+            "uk": "концерт. The concert is loud. — «Концерт гучний». Виступ музикантів перед слухачами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-25:practice:concert",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Музыка на концерте очень громкая. Скажите: «Концерт громкий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:practice:concert:audio"
+      ],
+      "accessibilityLabel": "Музыка на концерте очень громкая. Скажите: «Концерт громкий»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:practice:concert:audio",
+          "transcript": "The concert is loud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The concert is loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-25:word:finish",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — finish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:word:finish:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — finish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:word:finish:audio",
+          "transcript": "finish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-25:word:finish:r1",
+            "targetText": "finish",
+            "meaningByLocale": {
+              "ru": "заканчиваться. When does the concert finish? — «Когда заканчивается концерт?» Раньше было finished — «законченный»; здесь finish говорит о том, когда событие подходит к концу.",
+              "uk": "закінчуватися. When does the concert finish? — «Коли закінчується концерт?» Раніше було finished — «закінчений»; тут finish говорить про те, коли подія добігає кінця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "finish",
+          "definitionByLocale": {
+            "ru": "заканчиваться. When does the concert finish? — «Когда заканчивается концерт?» Раньше было finished — «законченный»; здесь finish говорит о том, когда событие подходит к концу.",
+            "uk": "закінчуватися. When does the concert finish? — «Коли закінчується концерт?» Раніше було finished — «закінчений»; тут finish говорить про те, коли подія добігає кінця."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-25:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите соседа «Где ты работаешь?»",
+      "prompt": "Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите соседа «Где ты работаешь?»",
+      "accessibilityLabel": "Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you work?",
+        "targetPhrase": "When does the concert finish?",
         "localizedMeaning": {
-          "ru": "Спросите соседа «Где ты работаешь?»",
-          "uk": "Запитайте сусіда «Де ти працюєш?»"
+          "ru": "Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»",
+          "uk": "Брат показує квитки. Спитайте його: «Коли закінчується концерт?»"
         },
         "orderedTokens": [
-          "Where",
-          "do",
-          "you",
-          "work"
+          "When",
+          "does",
+          "the",
+          "concert",
+          "finish"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +531,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-25:word:festival",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — festival",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-25:word:festival:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — festival",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-25:word:festival:audio",
+          "transcript": "festival"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-25:word:festival:r1",
+            "targetText": "festival",
+            "meaningByLocale": {
+              "ru": "фестиваль. The festival is big. — «Фестиваль большой». Праздник или серия мероприятий, например музыкальных или киносеансов.",
+              "uk": "фестиваль. The festival is big. — «Фестиваль великий». Свято або низка заходів, наприклад музичних чи кінопоказів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "festival",
+          "definitionByLocale": {
+            "ru": "фестиваль. The festival is big. — «Фестиваль большой». Праздник или серия мероприятий, например музыкальных или киносеансов.",
+            "uk": "фестиваль. The festival is big. — «Фестиваль великий». Свято або низка заходів, наприклад музичних чи кінопоказів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-25:i07",
-      "ordinal": 10,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "prompt": "Вы с подругой идёте на праздник в парк. Спросите подругу: «Когда начинается фестиваль?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i07:audio"
       ],
-      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "accessibilityLabel": "Вы с подругой идёте на праздник в парк. Спросите подругу: «Когда начинается фестиваль?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i07:audio",
-          "transcript": "When does she start?"
+          "transcript": "When does the festival start?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does she start?",
+        "targetPhrase": "When does the festival start?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,67 +608,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i08",
-      "ordinal": 11,
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о начале её работы «Когда она начинает?»",
+      "prompt": "Спросите соседку о пикнике. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i08:r1",
-          "text": "start"
+          "text": "does"
         },
         {
           "responseId": "en:lesson-07:session-25:i08:r2",
-          "text": "starts"
+          "text": "do"
         },
         {
           "responseId": "en:lesson-07:session-25:i08:r3",
-          "text": "is start"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о начале её работы «Когда она начинает?»",
+      "accessibilityLabel": "Спросите соседку о пикнике. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о начале её работы «Когда она начинает?»",
-          "uk": "Запитайте про початок її роботи «Коли вона починає?»"
+          "ru": "Спросите соседку о пикнике. Выберите слово",
+          "uk": "Спитайте сусідку про пікнік. Виберіть слово"
         },
-        "gappedTargetPhrase": "When does she ___?",
+        "gappedTargetPhrase": "When ___ the picnic start?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-25:i08:r1",
-            "text": "start"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-07:session-25:i08:r2",
-            "text": "starts"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-07:session-25:i08:r3",
-            "text": "is start"
+            "text": "is"
           }
         ],
-        "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+        "testedDimension": "Спросите соседку о пикнике. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-25:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+            "testedDimension": "Спросите соседку о пикнике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `start`.",
-              "uk": "Після `does` потрібне `start`."
+              "ru": "Пикник один: нужно `does`.",
+              "uk": "Пікнік один: потрібно `does`."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы «Когда она начинает?»",
+            "testedDimension": "Спросите соседку о пикнике. Выберите слово",
             "feedbackByLocale": {
-              "ru": "В этом вопросе нужно `start`, без `is`.",
-              "uk": "У цьому запитанні потрібне `start`, без `is`."
+              "ru": "С действием `start` нужно `does`, а не `is`.",
+              "uk": "З дією `start` потрібне `does`, а не `is`."
             }
           }
         ]
@@ -427,51 +677,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите вопрос",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i09:r1",
-          "text": "Where do you meet?"
+          "text": "When does the concert finish?"
         },
         {
           "responseId": "en:lesson-07:session-25:i09:r2",
-          "text": "When do you meet?"
+          "text": "When does the concert start?"
         },
         {
           "responseId": "en:lesson-07:session-25:i09:r3",
-          "text": "Where do you work?"
+          "text": "When does the picnic finish?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i09:audio",
-          "transcript": "Where do you meet?"
+          "transcript": "When does the concert finish?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-25:i09:r1",
-            "targetText": "Where do you meet?",
+            "targetText": "When does the concert finish?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i09:r2",
-            "targetText": "When do you meet?",
+            "targetText": "When does the concert start?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i09:r3",
-            "targetText": "Where do you work?",
+            "targetText": "When does the picnic finish?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +730,19 @@
           {
             "responseId": "en:lesson-07:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `finish`, заканчиваться, а в этом варианте — `start`, начинаться.",
+              "uk": "У записі останнє слово — `finish`, закінчуватися, а в цьому варіанті — `start`, починатися."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `meet`, а в этом варианте — `work`.",
-              "uk": "У записі останнє слово — `meet`, а в цьому варіанті — `work`."
+              "ru": "В записи четвёртое слово — `concert`, концерт, а в этом варианте — `picnic`, пикник.",
+              "uk": "У записі четверте слово — `concert`, концерт, а в цьому варіанті — `picnic`, пікнік."
             }
           }
         ],
@@ -503,8 +753,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +767,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-25:i10:p1",
-            "target": "lunchbox",
+            "target": "picnic",
             "meaningByLocale": {
-              "ru": "ланчбокс",
-              "uk": "ланчбокс"
+              "ru": "пикник",
+              "uk": "пікнік"
             }
           },
           {
             "pairId": "en:lesson-07:session-25:i10:p2",
-            "target": "meet",
+            "target": "park",
             "meaningByLocale": {
-              "ru": "встречаться",
-              "uk": "зустрічатися"
+              "ru": "парк",
+              "uk": "парк"
             }
           },
           {
             "pairId": "en:lesson-07:session-25:i10:p3",
-            "target": "dogs",
+            "target": "ticket",
             "meaningByLocale": {
-              "ru": "собаки",
-              "uk": "собаки"
+              "ru": "билет",
+              "uk": "квиток"
             }
           },
           {
             "pairId": "en:lesson-07:session-25:i10:p4",
-            "target": "walk",
+            "target": "festival",
             "meaningByLocale": {
-              "ru": "ходить пешком",
-              "uk": "ходити пішки"
+              "ru": "фестиваль",
+              "uk": "фестиваль"
             }
           }
         ],
         "leftColumn": [
-          "lunchbox",
-          "meet",
-          "dogs",
-          "walk"
+          "picnic",
+          "park",
+          "ticket",
+          "festival"
         ],
         "rightColumn": [
-          "ланчбокс",
-          "встречаться",
-          "собаки",
-          "ходить пешком"
+          "пикник",
+          "парк",
+          "билет",
+          "фестиваль"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +826,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i11:audio",
-          "transcript": "When does she start?"
+          "transcript": "When does the festival open?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "When does she start?",
+        "hiddenTargetPhrase": "When does the festival open?",
         "orderedTokens": [
           "When",
           "does",
-          "she",
-          "start"
+          "the",
+          "festival",
+          "open"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,28 +863,27 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i12",
-      "ordinal": 15,
+      "ordinal": 21,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите коллегу «У тебя есть ланчбокс?»",
+      "prompt": "Друг предлагает увидеться. Спросите друга: «Где мы встречаемся?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите коллегу «У тебя есть ланчбокс?»",
+      "accessibilityLabel": "Друг предлагает увидеться. Спросите друга: «Где мы встречаемся?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a lunchbox?",
+        "targetPhrase": "Where do we meet?",
         "localizedMeaning": {
-          "ru": "Спросите коллегу «У тебя есть ланчбокс?»",
-          "uk": "Запитайте колегу «У тебе є ланчбокс?»"
+          "ru": "Друг предлагает увидеться. Спросите друга: «Где мы встречаемся?»",
+          "uk": "Друг пропонує побачитися. Спитайте друга: «Де ми зустрічаємося?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "a",
-          "lunchbox"
+          "Where",
+          "do",
+          "we",
+          "meet"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -646,25 +896,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i13",
-      "ordinal": 16,
+      "ordinal": 22,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега предлагает сигарету. Ответьте «Я не курю»",
+      "prompt": "Спросите друга о его компании: «Когда вы встречаетесь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i13:audio"
       ],
-      "accessibilityLabel": "Коллега предлагает сигарету. Ответьте «Я не курю»",
+      "accessibilityLabel": "Спросите друга о его компании: «Когда вы встречаетесь?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i13:audio",
-          "transcript": "I don’t smoke."
+          "transcript": "When do you meet?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t smoke.",
+        "targetPhrase": "When do you meet?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,67 +929,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 23,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Узнайте место работы: «Где ты работаешь?»",
+      "prompt": "Спросите подругу о концерте. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i14:r1",
-          "text": "Where"
+          "text": "start"
         },
         {
           "responseId": "en:lesson-07:session-25:i14:r2",
-          "text": "Does"
+          "text": "starts"
         },
         {
           "responseId": "en:lesson-07:session-25:i14:r3",
-          "text": "Are"
+          "text": "is start"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте место работы: «Где ты работаешь?»",
+      "accessibilityLabel": "Спросите подругу о концерте. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте место работы: «Где ты работаешь?»",
-          "uk": "Дізнайтеся місце роботи: «Де ти працюєш?»"
+          "ru": "Спросите подругу о концерте. Выберите слово",
+          "uk": "Спитайте подругу про концерт. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ do you work?",
+        "gappedTargetPhrase": "When does the concert ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-25:i14:r1",
-            "text": "Where"
+            "text": "start"
           },
           {
             "responseId": "en:lesson-07:session-25:i14:r2",
-            "text": "Does"
+            "text": "starts"
           },
           {
             "responseId": "en:lesson-07:session-25:i14:r3",
-            "text": "Are"
+            "text": "is start"
           }
         ],
-        "testedDimension": "Узнайте место работы: «Где ты работаешь?»",
+        "testedDimension": "Спросите подругу о концерте. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-25:i14:r2",
             "correct": false,
-            "testedDimension": "Узнайте место работы: «Где ты работаешь?»",
+            "testedDimension": "Спросите подругу о концерте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Чтобы узнать место, перед `do` нужно `where`.",
-              "uk": "Щоб дізнатися місце, перед `do` потрібне `where`."
+              "ru": "После `does` нужно `start`, без `s`.",
+              "uk": "Після `does` потрібно `start`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i14:r3",
             "correct": false,
-            "testedDimension": "Узнайте место работы: «Где ты работаешь?»",
+            "testedDimension": "Спросите подругу о концерте. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Чтобы узнать место, нужен вопрос `Where do you work?`.",
-              "uk": "Щоб дізнатися місце, потрібне запитання `Where do you work?`."
+              "ru": "Здесь нужно `start`, без `is`.",
+              "uk": "Тут потрібно `start`, без `is`."
             }
           }
         ]
@@ -748,51 +998,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i15",
-      "ordinal": 18,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите вопрос",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-25:i15:r1",
-          "text": "Where do you walk?"
+          "text": "When does the festival start?"
         },
         {
           "responseId": "en:lesson-07:session-25:i15:r2",
-          "text": "When do you walk?"
+          "text": "When does the festival open?"
         },
         {
           "responseId": "en:lesson-07:session-25:i15:r3",
-          "text": "Where do you meet?"
+          "text": "When does the picnic start?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i15:audio",
-          "transcript": "Where do you walk?"
+          "transcript": "When does the festival start?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-25:i15:r1",
-            "targetText": "Where do you walk?",
+            "targetText": "When does the festival start?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i15:r2",
-            "targetText": "When do you walk?",
+            "targetText": "When does the festival open?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-25:i15:r3",
-            "targetText": "Where do you meet?",
+            "targetText": "When does the picnic start?",
             "meaningByLocale": null
           }
         ],
@@ -801,19 +1051,19 @@
           {
             "responseId": "en:lesson-07:session-25:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `start`, начинаться, а в этом варианте — `open`, открываться.",
+              "uk": "У записі останнє слово — `start`, починатися, а в цьому варіанті — `open`, відкриватися."
             }
           },
           {
             "responseId": "en:lesson-07:session-25:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `walk`, а в этом варианте — `meet`.",
-              "uk": "У записі останнє слово — `walk`, а в цьому варіанті — `meet`."
+              "ru": "В записи четвёртое слово — `festival`, фестиваль, а в этом варианте — `picnic`, пикник.",
+              "uk": "У записі четверте слово — `festival`, фестиваль, а в цьому варіанті — `picnic`, пікнік."
             }
           }
         ],
@@ -824,7 +1074,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i16",
-      "ordinal": 19,
+      "ordinal": 25,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,6 +1088,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-25:i16:p1",
+            "target": "festival",
+            "meaningByLocale": {
+              "ru": "фестиваль",
+              "uk": "фестиваль"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-25:i16:p2",
+            "target": "concert",
+            "meaningByLocale": {
+              "ru": "концерт",
+              "uk": "концерт"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-25:i16:p3",
             "target": "meet",
             "meaningByLocale": {
               "ru": "встречаться",
@@ -845,41 +1111,25 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-25:i16:p2",
-            "target": "lunchbox",
-            "meaningByLocale": {
-              "ru": "ланчбокс",
-              "uk": "ланчбокс"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-25:i16:p3",
-            "target": "smoke",
-            "meaningByLocale": {
-              "ru": "курить",
-              "uk": "курити"
-            }
-          },
-          {
             "pairId": "en:lesson-07:session-25:i16:p4",
-            "target": "dogs",
+            "target": "picnic",
             "meaningByLocale": {
-              "ru": "собаки",
-              "uk": "собаки"
+              "ru": "пикник",
+              "uk": "пікнік"
             }
           }
         ],
         "leftColumn": [
+          "festival",
+          "concert",
           "meet",
-          "lunchbox",
-          "smoke",
-          "dogs"
+          "picnic"
         ],
         "rightColumn": [
+          "фестиваль",
+          "концерт",
           "встречаться",
-          "ланчбокс",
-          "курить",
-          "собаки"
+          "пикник"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1147,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-25:i17",
-      "ordinal": 20,
+      "ordinal": 26,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знакомый упоминает работу Тома. Спросите «Где Том работает?»",
+      "prompt": "Вы идёте на концерт с братом. Спросите брата: «Когда заканчивается концерт?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-25:i17:audio"
       ],
-      "accessibilityLabel": "Знакомый упоминает работу Тома. Спросите «Где Том работает?»",
+      "accessibilityLabel": "Вы идёте на концерт с братом. Спросите брата: «Когда заканчивается концерт?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-25:i17:audio",
-          "transcript": "Where does Tom work?"
+          "transcript": "When does the concert finish?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where does Tom work?",
+        "targetPhrase": "When does the concert finish?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1187,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 23,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "03021754fb1660d86e79e1c548b437c9c349b68ee2d312eb7d5eccfc47887e76"
+  "learnerFingerprint": "8c57d245c6aeb8863dd2fc5adec27f2df4afd496130fe65457f5130d3db56b52"
 }

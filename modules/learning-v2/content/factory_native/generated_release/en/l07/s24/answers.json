@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-24:word:swear",
+    "correctText": "swear",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-24:i01",
-    "correctText": "I don’t smoke.",
+    "correctText": "I don't swear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-24:word:sulk",
+    "correctText": "sulk",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i02",
-    "correctText": "complain",
+    "correctText": "sulk",
     "correctResponseId": "en:lesson-07:session-24:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i03",
-    "correctText": "don’t",
+    "correctText": "doesn't",
     "correctResponseId": "en:lesson-07:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i04",
-    "correctText": "en:lesson-07:session-24:i04:p1=smoke\nen:lesson-07:session-24:i04:p2=gamble\nen:lesson-07:session-24:i04:p3=complain\nen:lesson-07:session-24:i04:p4=shout",
+    "correctText": "en:lesson-07:session-24:i04:p1=swear\nen:lesson-07:session-24:i04:p2=sulk\nen:lesson-07:session-24:i04:p3=shout\nen:lesson-07:session-24:i04:p4=cheat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i05",
-    "correctText": "I don’t lie.",
+    "correctText": "He doesn't sulk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-24:word:bark",
+    "correctText": "bark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i06",
-    "correctText": "Tom doesn’t argue.",
+    "correctText": "Does the dog bark?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-24:word:mumble",
+    "correctText": "mumble",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i07",
-    "correctText": "Do you cheat?",
+    "correctText": "I don't mumble.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i08",
-    "correctText": "smoke",
+    "correctText": "Does",
     "correctResponseId": "en:lesson-07:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i09",
-    "correctText": "I don’t complain.",
+    "correctText": "I don't swear.",
     "correctResponseId": "en:lesson-07:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i10",
-    "correctText": "en:lesson-07:session-24:i10:p1=lie\nen:lesson-07:session-24:i10:p2=argue\nen:lesson-07:session-24:i10:p3=cheat\nen:lesson-07:session-24:i10:p4=gamble",
+    "correctText": "en:lesson-07:session-24:i10:p1=mumble\nen:lesson-07:session-24:i10:p2=bark\nen:lesson-07:session-24:i10:p3=sulk\nen:lesson-07:session-24:i10:p4=swear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i11",
-    "correctText": "Tom doesn’t shout.",
+    "correctText": "Does the dog bark?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i12",
-    "correctText": "Do you gamble?",
+    "correctText": "Do you argue?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i13",
-    "correctText": "There are no tickets here.",
+    "correctText": "Do you cheat?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i14",
-    "correctText": "doesn’t",
+    "correctText": "doesn't",
     "correctResponseId": "en:lesson-07:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i15",
-    "correctText": "I don’t argue.",
+    "correctText": "I don't mumble.",
     "correctResponseId": "en:lesson-07:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-24:i16",
-    "correctText": "en:lesson-07:session-24:i16:p1=complain\nen:lesson-07:session-24:i16:p2=shout\nen:lesson-07:session-24:i16:p3=lie\nen:lesson-07:session-24:i16:p4=cheat",
+    "correctText": "en:lesson-07:session-24:i16:p1=sulk\nen:lesson-07:session-24:i16:p2=swear\nen:lesson-07:session-24:i16:p3=mumble\nen:lesson-07:session-24:i16:p4=bark",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-24:i17",
-    "correctText": "Does Tom gamble?",
+    "correctText": "Does he argue?",
     "correctResponseId": null
   }
 ]

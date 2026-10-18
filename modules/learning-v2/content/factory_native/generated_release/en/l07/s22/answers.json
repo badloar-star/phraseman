@@ -1,7 +1,12 @@
 [
   {
+    "interactionId": "en:lesson-07:session-22:word:argue",
+    "correctText": "argue",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-22:i01",
-    "correctText": "I don’t argue.",
+    "correctText": "I don't argue.",
     "correctResponseId": null
   },
   {
@@ -11,27 +16,37 @@
   },
   {
     "interactionId": "en:lesson-07:session-22:i03",
-    "correctText": "don’t",
+    "correctText": "don't",
     "correctResponseId": "en:lesson-07:session-22:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-22:i04",
-    "correctText": "en:lesson-07:session-22:i04:p1=argue\nen:lesson-07:session-22:i04:p2=read\nen:lesson-07:session-22:i04:p3=boots\nen:lesson-07:session-22:i04:p4=cups",
+    "correctText": "en:lesson-07:session-22:i04:p1=argue\nen:lesson-07:session-22:i04:p2=read\nen:lesson-07:session-22:i04:p3=cook\nen:lesson-07:session-22:i04:p4=sister",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i05",
-    "correctText": "I don’t argue.",
+    "correctText": "I don't argue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-22:word:hum",
+    "correctText": "hum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i06",
-    "correctText": "Do you read books?",
+    "correctText": "Do you hum?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-22:word:earphones",
+    "correctText": "earphones",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i07",
-    "correctText": "There are no cups here.",
+    "correctText": "There are no earphones here.",
     "correctResponseId": null
   },
   {
@@ -41,27 +56,32 @@
   },
   {
     "interactionId": "en:lesson-07:session-22:i09",
-    "correctText": "I don’t argue.",
+    "correctText": "I don't argue.",
     "correctResponseId": "en:lesson-07:session-22:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-22:i10",
-    "correctText": "en:lesson-07:session-22:i10:p1=server\nen:lesson-07:session-22:i10:p2=argue\nen:lesson-07:session-22:i10:p3=read\nen:lesson-07:session-22:i10:p4=boots",
+    "correctText": "en:lesson-07:session-22:i10:p1=cook\nen:lesson-07:session-22:i10:p2=earphones\nen:lesson-07:session-22:i10:p3=argue\nen:lesson-07:session-22:i10:p4=hum",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i11",
-    "correctText": "Do you read books?",
+    "correctText": "Do you hum?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-22:word:tease",
+    "correctText": "tease",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i12",
-    "correctText": "Do you have boots?",
+    "correctText": "Do you tease your sister?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i13",
-    "correctText": "The server doesn’t work.",
+    "correctText": "I don't tease.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-22:i15",
-    "correctText": "The cups are here.",
+    "correctText": "Do you hum?",
     "correctResponseId": "en:lesson-07:session-22:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-22:i16",
-    "correctText": "en:lesson-07:session-22:i16:p1=cups\nen:lesson-07:session-22:i16:p2=server\nen:lesson-07:session-22:i16:p3=argue\nen:lesson-07:session-22:i16:p4=read",
+    "correctText": "en:lesson-07:session-22:i16:p1=hum\nen:lesson-07:session-22:i16:p2=argue\nen:lesson-07:session-22:i16:p3=tease\nen:lesson-07:session-22:i16:p4=earphones",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-22:i17",
-    "correctText": "Tom doesn’t argue.",
+    "correctText": "He doesn't argue.",
     "correctResponseId": null
   }
 ]

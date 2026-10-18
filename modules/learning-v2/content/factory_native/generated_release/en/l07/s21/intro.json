@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-21",
   "learningOutcomeByLocale": {
-    "ru": "отрицать привычное действие, задавать вопрос с does и сообщать об отсутствии предметов",
-    "uk": "заперечувати звичну дію, ставити запитання з does і повідомляти про відсутність предметів"
+    "ru": "сказать, что вы не лжёте, спросить, делает ли он что-то, и сообщить, что чего-то нет",
+    "uk": "сказати, що ви не брешете, спитати, чи робить він щось, і повідомити, що чогось немає"
   },
   "pages": [
     {
@@ -11,28 +11,28 @@
       "pageId": "en:lesson-07:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Разговор о честности",
-        "uk": "Розмова про чесність"
+        "ru": "Рассказ о рыбалке",
+        "uk": "Розповідь про рибалку"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, бывает ли, что вы намеренно говорите неправду. `lie` — «лгать». `I don’t lie` — «Я не лгу». Здесь это утверждение о вашем обычном поведении: после `I` ставим `don’t`, затем `lie`. Даже история про огромную пойманную рыбу должна выдержать проверку линейкой.",
-        "uk": "Друг запитує, чи буває, що ви навмисно кажете неправду. `lie` — «брехати». `I don’t lie` — «Я не брешу». Тут це твердження про вашу звичну поведінку: після `I` ставимо `don’t`, потім `lie`. Навіть історія про величезну спійману рибу має витримати перевірку лінійкою."
+        "ru": "Вы вернулись с рыбалки и показываете друзьям улов. Один из них прищурился и спросил, не прибавили ли вы лишнего к размеру рыбы. lie — «лгать, говорить неправду». Ответьте: I don't lie — «Я не лгу». После I ставим don't, а lie без изменений. Рыба на фотографии хотя бы не растёт с каждым пересказом.",
+        "uk": "Ви повернулися з рибалки й показуєте друзям улов. Один із них примружився й спитав, чи не додали ви зайвого до розміру риби. lie — «брехати, говорити неправду». Дайте відповідь: I don't lie — «Я не брешу». Після I ставимо don't, а lie без змін. Риба на фотографії принаймні не росте з кожною новою розповіддю."
       },
       "question": {
         "interactionId": "en:lesson-07:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу: «Я не лгу».",
-          "uk": "Скажіть другові: «Я не брешу»."
+          "ru": "Друг сомневается в вашем рассказе о рыбе. Ответьте: «Я не лгу».",
+          "uk": "Друг сумнівається у вашій розповіді про рибу. Дайте відповідь: «Я не брешу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-21:intro1:r1",
-              "text": "I don’t lie."
+              "text": "I don't lie."
             },
             {
               "responseId": "en:lesson-07:session-21:intro1:r2",
-              "text": "I doesn’t lie."
+              "text": "I doesn't lie."
             },
             {
               "responseId": "en:lesson-07:session-21:intro1:r3",
@@ -42,11 +42,11 @@
           "uk": [
             {
               "responseId": "en:lesson-07:session-21:intro1:r1",
-              "text": "I don’t lie."
+              "text": "I don't lie."
             },
             {
               "responseId": "en:lesson-07:session-21:intro1:r2",
-              "text": "I doesn’t lie."
+              "text": "I doesn't lie."
             },
             {
               "responseId": "en:lesson-07:session-21:intro1:r3",
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу: «Я не лгу».",
-          "uk": "Скажіть другові: «Я не брешу»."
+          "ru": "Друг сомневается в вашем рассказе о рыбе. Ответьте: «Я не лгу».",
+          "uk": "Друг сумнівається у вашій розповіді про рибу. Дайте відповідь: «Я не брешу»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Том — автор?",
-        "uk": "Том — автор?"
+        "ru": "Деньги на велосипед",
+        "uk": "Гроші на велосипед"
       },
       "bodyByLocale": {
-        "ru": "Вы увидели имя Тома на обложке и спрашиваете знакомого, пишет ли Том книги. `Does Tom write books?` — «Том пишет книги?» Для вопроса о Томе ставим `does` в начало. После имени — `write`, без `s`.",
-        "uk": "Ви побачили ім’я Тома на обкладинці й запитуєте знайомого, чи пише Том книжки. `Does Tom write books?` — «Том пише книжки?» Для запитання про Тома ставимо `does` на початок. Після імені — `write`, без `s`."
+        "ru": "Брат хочет новый велосипед, но пока ездит на старом. Вы спрашиваете его жену, откладывает ли он деньги на покупку. save — «копить, сберегать»; save money — «копить деньги». Does he save money? — «Он копит деньги?» С he вопрос начинается с Does, а save после него остаётся без s.",
+        "uk": "Брат хоче новий велосипед, але поки їздить на старому. Ви питаєте його дружину, чи відкладає він гроші на покупку. save — «накопичувати, заощаджувати»; save money — «відкладати гроші». Does he save money? — «Він відкладає гроші?» З he питання починається з Does, а save після нього лишається без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите знакомого: «Том пишет книги?»",
-          "uk": "Запитайте знайомого: «Том пише книжки?»"
+          "ru": "Узнайте у жены брата: «Он копит деньги?»",
+          "uk": "Дізнайтеся в дружини брата: «Він відкладає гроші?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-21:intro2:r1",
-              "text": "Does Tom write books?"
+              "text": "Does he save money?"
             },
             {
               "responseId": "en:lesson-07:session-21:intro2:r2",
-              "text": "Do Tom write books?"
+              "text": "Do he save money?"
             },
             {
               "responseId": "en:lesson-07:session-21:intro2:r3",
-              "text": "Does Tom writes books?"
+              "text": "Does he saves money?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-21:intro2:r1",
-              "text": "Does Tom write books?"
+              "text": "Does he save money?"
             },
             {
               "responseId": "en:lesson-07:session-21:intro2:r2",
-              "text": "Do Tom write books?"
+              "text": "Do he save money?"
             },
             {
               "responseId": "en:lesson-07:session-21:intro2:r3",
-              "text": "Does Tom writes books?"
+              "text": "Does he saves money?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите знакомого: «Том пишет книги?»",
-          "uk": "Запитайте знайомого: «Том пише книжки?»"
+          "ru": "Узнайте у жены брата: «Он копит деньги?»",
+          "uk": "Дізнайтеся в дружини брата: «Він відкладає гроші?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нечем записать",
-        "uk": "Немає чим записати"
+        "ru": "В копилке только монеты",
+        "uk": "У скарбничці лише монети"
       },
       "bodyByLocale": {
-        "ru": "Коллега хочет записать номер. Вы проверили стол: ручек здесь нет. `There are no pens here` — «Здесь нет ручек». `Pens` — множественное число, поэтому `are no`.",
-        "uk": "Колега хоче записати номер. Ви перевірили стіл: ручок тут немає. `There are no pens here` — «Тут немає ручок». `Pens` — множина, тому `are no`."
+        "ru": "Вам нужны деньги на проезд, и вы решили заглянуть в копилку. Монеты на дне есть, а купюр в ней нет. banknote — «банкнота, денежная купюра». There are no banknotes here — «Здесь нет банкнот». Одна купюра — banknote, а здесь говорится о banknotes. Поэтому нужны are и no: купюр нет.",
+        "uk": "Вам потрібні гроші на проїзд, і ви вирішили зазирнути в скарбничку. Монети на дні є, а купюр у ній немає. banknote — «банкнота, грошова купюра». There are no banknotes here — «Тут немає банкнот». Одна купюра — banknote, а тут ідеться про banknotes. Тому потрібні are та no: купюр немає."
       },
       "question": {
         "interactionId": "en:lesson-07:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите коллеге: «Здесь нет ручек».",
-          "uk": "Повідомте колезі: «Тут немає ручок»."
+          "ru": "В копилке только монеты. Скажите брату: «Здесь нет банкнот».",
+          "uk": "У скарбничці лише монети. Скажіть братові: «Тут немає банкнот»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-21:intro3:r1",
-              "text": "There are no pens here."
+              "text": "There are no banknotes here."
             },
             {
               "responseId": "en:lesson-07:session-21:intro3:r2",
-              "text": "There is no pens here."
+              "text": "There is no banknotes here."
             },
             {
               "responseId": "en:lesson-07:session-21:intro3:r3",
-              "text": "There are pens here."
+              "text": "There are banknotes here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-21:intro3:r1",
-              "text": "There are no pens here."
+              "text": "There are no banknotes here."
             },
             {
               "responseId": "en:lesson-07:session-21:intro3:r2",
-              "text": "There is no pens here."
+              "text": "There is no banknotes here."
             },
             {
               "responseId": "en:lesson-07:session-21:intro3:r3",
-              "text": "There are pens here."
+              "text": "There are banknotes here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите коллеге: «Здесь нет ручек».",
-          "uk": "Повідомте колезі: «Тут немає ручок»."
+          "ru": "В копилке только монеты. Скажите брату: «Здесь нет банкнот».",
+          "uk": "У скарбничці лише монети. Скажіть братові: «Тут немає банкнот»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0fb177d1cb79230304d97c8826b1693c1373cc4f3baad6a70efb9f7ce48a56f2"
+  "introFingerprint": "9c07791bd701a449694ddebbae8a085237e9f7b908f499292e058a83fcefd9e0"
 }

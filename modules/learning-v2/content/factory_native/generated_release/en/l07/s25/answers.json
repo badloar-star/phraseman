@@ -1,12 +1,17 @@
 [
   {
+    "interactionId": "en:lesson-07:session-25:word:meet",
+    "correctText": "meet",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-25:i01",
     "correctText": "Where do you meet?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i02",
-    "correctText": "meet",
+    "correctText": "Where do you meet?",
     "correctResponseId": "en:lesson-07:session-25:i02:r1"
   },
   {
@@ -16,72 +21,97 @@
   },
   {
     "interactionId": "en:lesson-07:session-25:i04",
-    "correctText": "en:lesson-07:session-25:i04:p1=meet\nen:lesson-07:session-25:i04:p2=walk\nen:lesson-07:session-25:i04:p3=smoke\nen:lesson-07:session-25:i04:p4=dogs",
+    "correctText": "en:lesson-07:session-25:i04:p1=meet\nen:lesson-07:session-25:i04:p2=park\nen:lesson-07:session-25:i04:p3=ticket\nen:lesson-07:session-25:i04:p4=work",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-25:word:picnic",
+    "correctText": "picnic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i05",
-    "correctText": "Where do you meet?",
+    "correctText": "When does the picnic start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-25:word:concert",
+    "correctText": "concert",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-25:practice:concert",
+    "correctText": "The concert is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-25:word:finish",
+    "correctText": "finish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i06",
-    "correctText": "Where do you work?",
+    "correctText": "When does the concert finish?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-25:word:festival",
+    "correctText": "festival",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i07",
-    "correctText": "When does she start?",
+    "correctText": "When does the festival start?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i08",
-    "correctText": "start",
+    "correctText": "does",
     "correctResponseId": "en:lesson-07:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-25:i09",
-    "correctText": "Where do you meet?",
+    "correctText": "When does the concert finish?",
     "correctResponseId": "en:lesson-07:session-25:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-25:i10",
-    "correctText": "en:lesson-07:session-25:i10:p1=lunchbox\nen:lesson-07:session-25:i10:p2=meet\nen:lesson-07:session-25:i10:p3=dogs\nen:lesson-07:session-25:i10:p4=walk",
+    "correctText": "en:lesson-07:session-25:i10:p1=picnic\nen:lesson-07:session-25:i10:p2=park\nen:lesson-07:session-25:i10:p3=ticket\nen:lesson-07:session-25:i10:p4=festival",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i11",
-    "correctText": "When does she start?",
+    "correctText": "When does the festival open?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i12",
-    "correctText": "Do you have a lunchbox?",
+    "correctText": "Where do we meet?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i13",
-    "correctText": "I don’t smoke.",
+    "correctText": "When do you meet?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i14",
-    "correctText": "Where",
+    "correctText": "start",
     "correctResponseId": "en:lesson-07:session-25:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-25:i15",
-    "correctText": "Where do you walk?",
+    "correctText": "When does the festival start?",
     "correctResponseId": "en:lesson-07:session-25:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-25:i16",
-    "correctText": "en:lesson-07:session-25:i16:p1=meet\nen:lesson-07:session-25:i16:p2=lunchbox\nen:lesson-07:session-25:i16:p3=smoke\nen:lesson-07:session-25:i16:p4=dogs",
+    "correctText": "en:lesson-07:session-25:i16:p1=festival\nen:lesson-07:session-25:i16:p2=concert\nen:lesson-07:session-25:i16:p3=meet\nen:lesson-07:session-25:i16:p4=picnic",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-25:i17",
-    "correctText": "Where does Tom work?",
+    "correctText": "When does the concert finish?",
     "correctResponseId": null
   }
 ]

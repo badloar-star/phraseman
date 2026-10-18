@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-22:intro1:r2": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-22:intro1:r3": {
-          "ru": "Для отрицания действия нужно `don’t`.",
-          "uk": "Для заперечення дії потрібне `don’t`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-22:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно Do.",
+          "uk": "З you потрібно Do."
         },
         "en:lesson-07:session-22:intro2:r3": {
-          "ru": "После `you` здесь нужно `read`, без `s`.",
-          "uk": "Після `you` тут потрібне `read`, без `s`."
+          "ru": "После Do слово hum остаётся без s.",
+          "uk": "Після Do слово hum лишається без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-22:intro3:r2": {
-          "ru": "С `cups` нужно `are`.",
-          "uk": "З `cups` потрібне `are`."
+          "ru": "Earphones — «наушники»: здесь нужно are.",
+          "uk": "Earphones — «навушники»: тут потрібно are."
         },
         "en:lesson-07:session-22:intro3:r3": {
-          "ru": "Без `no` фраза сообщает, что чашки есть.",
-          "uk": "Без `no` фраза повідомляє, що чашки є."
+          "ru": "Без no фраза говорит, что наушники есть.",
+          "uk": "Без no фраза каже, що навушники є."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9e72b0ac30b7f04e62034f5a9269f7fa916ed822ae6d4b5781847e391e634ff8"
+  "auxiliaryFingerprint": "7cff64a6b0604ebad8828beaea8f9b24e808f6176db9b67c40cf78f1ea4616ea"
 }

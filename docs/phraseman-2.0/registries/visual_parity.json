@@ -329,7 +329,8 @@
         "app/flashcards/CollectionHeader.tsx",
         "app/flashcards/FlashcardListItem.tsx",
         "app/flashcards_collection.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -526,7 +527,10 @@
       "state": "Мои наборы",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -568,7 +572,10 @@
       "code": [
         "app/flashcards_my_packs.tsx",
         "components/ThemedConfirmModal.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -592,7 +599,8 @@
         "basis": "mockup_from_app"
       },
       "shot_at": "2026-10-13T02:13:04.203Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:13); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-013",
@@ -649,7 +657,10 @@
       "state": "Каталог · «Новые»",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -699,7 +710,10 @@
       "state": "Поиск · действия долгим нажатием",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -746,7 +760,10 @@
       "state": "Пока нет публикаций",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -793,7 +810,10 @@
       "state": "Поиск без совпадений",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -847,7 +867,8 @@
       "screen": "Набор",
       "state": "До добавления · лайк раньше времени",
       "code": [
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -895,7 +916,8 @@
       "screen": "Набор",
       "state": "Добавлен · отклик",
       "code": [
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -990,7 +1012,9 @@
       "state": "Новая карточка",
       "code": [
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1047,7 +1071,9 @@
       "state": "Правка · дубликат",
       "code": [
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1090,7 +1116,8 @@
       "state": "Новый набор",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1139,7 +1166,8 @@
       "state": "Новая карточка в наборе",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1189,7 +1217,8 @@
       "state": "Выбор наборов",
       "code": [
         "app/flashcards/DeckPickerSheet.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -1241,7 +1270,8 @@
       "state": "Мало карточек для блица",
       "code": [
         "app/flashcards_training_setup.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1286,7 +1316,8 @@
       "state": "Кнопка языка открыта",
       "code": [
         "app/flashcards/PackLanguagePicker.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1311,7 +1342,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (p83, Макеты, поэлементно; кадр Сверки со стенда p83_cards027, склейка PARITY_FIT=width): «Настройка тренировки — меню языка»: «‹», чип «EN ⌄» и пилюля 30/30 в верхнем ряду, плитка-молния и «Блиц», «Что повторяем», шесть плиток наборов (Все сохранённые выбран, Путешествия, B2 глаголы, Работа, Фразовые глаголы, Мой опубликованный), «Время» 30/60/90 с, «Начать», меню языков: English 6 ✓, Français 2, Español 3 — совпало. Образец нарисован заново по кадру (cards-v2 №82). Принято: меню в приложении на ≈10 px ниже, затемнение кадра, размеры. Кадры п.83 1 (один язык — чип без стрелки), 2 (два языка — со стрелкой), 4 (список ES), 5 (старт на ES) приняты по журналам и кадрам, отдельных образцов не требуют.",
       "shot_at": null,
-      "shot_at_source": null
+      "shot_at_source": null,
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (12.10 23:02); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-028",
@@ -1326,7 +1358,9 @@
       "state": "Список",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1383,7 +1417,9 @@
       "state": "Загрузка",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -1419,7 +1455,9 @@
       "state": "Ошибка",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1450,7 +1488,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (p83, Макеты, поэлементно; кадр Сверки со стенда p83_cards027, склейка PARITY_FIT=width): «Из видео — ошибка»: «‹» и «⋮», заголовок, облако с чертой, «Сейчас недоступно», «Проверь интернет», «Попробовать снова» — совпало (образец перерисован: cards-v2 №83; прежняя привязка на каталог «Сообщество» была ошибочной).",
       "shot_at": "2026-10-12T17:22:26.351Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 18:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-031",
@@ -1465,7 +1504,8 @@
       "state": "Загрузка",
       "code": [
         "app/flashcards/SavedCollectionStates.tsx",
-        "app/flashcards_collection.tsx"
+        "app/flashcards_collection.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1489,7 +1529,8 @@
         "basis": "mockup_from_app"
       },
       "shot_at": "2026-10-13T02:13:32.583Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 03:13); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-032",
@@ -1504,7 +1545,8 @@
       "state": "Меню «⋯»",
       "code": [
         "app/flashcards/CollectionHeader.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1766,7 +1808,8 @@
       "screen": "Сохранённые — все окна и состояния",
       "state": "Поиск — ничего не найдено",
       "code": [
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1791,7 +1834,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:07): «Сохранённые — поиск: ничего не найдено» сверено с новым кадром cards-v2 №73 (блок A, на подтверждение): «‹ · поиск · + · ⋮», «Сохранённые 64», поле со словом и ✕, плитка с лупой, «Ничего не найдено · Попробуй другое слово.». Данные: введённое слово. [образец нарисован с приложения, ждёт подтверждения владельца]",
       "shot_at": "2026-10-12T02:05:18.001Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (12.10 03:05); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-039",
@@ -1805,7 +1849,8 @@
       "screen": "Сохранённые — все окна и состояния",
       "state": "Ошибка загрузки",
       "code": [
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1855,7 +1900,10 @@
         "app/flashcards/CollectionHeader.tsx",
         "app/flashcards_collection.tsx",
         "app/flashcards/PackHeaderV2.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -1903,7 +1951,10 @@
         "app/flashcards/CollectionHeader.tsx",
         "app/flashcards_collection.tsx",
         "app/flashcards/PackHeaderV2.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1929,7 +1980,8 @@
       },
       "sverka_verdict": "ПЕРЕОЦЕНКА 13.10 (пересклейка голого кадра с обновлённым образцом cards-v2 №17, PARITY_FIT=width, поэлементно): Меню набора «Путешествия»: шторка с названием и четырьмя пунктами «Отправить в сообщество», «Править набор», «Новая карточка», «Удалить набор» (красная), значки, затемнённый экран набора за шторкой — состав, порядок и стили совпали (образец дополнен «Править набор» по коду packMine || showEditButton и решению владельца 17.09). Приняты: другой порядок/положение ползунка плиток (данные), масштаб ≈ 10 px.",
       "shot_at": "2026-10-13T02:26:32.024Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:26); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-042",
@@ -1946,7 +1998,10 @@
         "app/flashcards/CollectionHeader.tsx",
         "app/flashcards_collection.tsx",
         "app/flashcards/PackHeaderV2.tsx",
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -1972,7 +2027,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (пересклейка голых кадров с новым образцом, PARITY_FIT=width, поэлементно): «Изменить набор» опубликованного: «×», «Изменить набор», «⋮», «Мой опубликованный», «Кто видит» (Только я / Все — «Все» выбрано, сегмент приглушён), уровни A1…C1 с B1, «Карточки 10», строки со значком корзины, «Сохранить» — состав, порядок и тексты совпали. Приняты: в приложении в списке на строку больше (Customs) — данные.",
       "shot_at": "2026-10-12T18:48:20.115Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 19:48); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-043",
@@ -2026,7 +2082,10 @@
       "state": "Открытие набора · сеть упала",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2069,7 +2128,10 @@
       "state": "Набор удалён",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2093,7 +2155,8 @@
         "basis": "mockup_from_app"
       },
       "shot_at": "2026-10-13T02:16:41.059Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:16); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-046",
@@ -2108,7 +2171,10 @@
       "state": "Поиск — ничего не найдено",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2149,7 +2215,10 @@
       "state": "Загрузка",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2197,7 +2266,10 @@
       "state": "Каталог пуст",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2245,7 +2317,10 @@
       "state": "Свой опубликованный — карандаш · «Топ»",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2288,7 +2363,8 @@
       "screen": "Отклик, лайк и жалобы",
       "state": "Лайк после добавления",
       "code": [
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2708,7 +2784,9 @@
       "state": "Проверка Plus — скелет",
       "code": [
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2751,7 +2829,9 @@
       "state": "Новая · заметка раскрыта",
       "code": [
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2793,7 +2873,9 @@
       "screen": "Редактор карточки — все состояния",
       "state": "Не удалось сохранить",
       "code": [
-        "app/flashcards_card_editor.tsx"
+        "app/flashcards_card_editor.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2842,7 +2924,9 @@
       "screen": "Редактор карточки — все состояния",
       "state": "Карточка не найдена",
       "code": [
-        "app/flashcards_card_editor.tsx"
+        "app/flashcards_card_editor.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2867,7 +2951,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Карточка не найдена: «✕», «Редактировать карточку», плитка с лупой, «Карточка не найдена», белая «Назад» — совпали.",
       "shot_at": "2026-10-13T02:17:58.083Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 03:17); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-064",
@@ -2882,7 +2967,9 @@
       "state": "Сохранено",
       "code": [
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2924,7 +3011,8 @@
       "state": "Правка своего набора",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -2966,7 +3054,8 @@
       "state": "Только для меня",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3010,7 +3099,8 @@
       "state": "Меню: черновик / ошибка",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3035,7 +3125,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Новый набор · пусто: «✕», «Новый набор», «⋮», «Название набора», «Кто видит» («Только я» выбрано), «Уровень», «Карточки 0», «+ Карточка», «+ Первая карточка» — совпали после поправки масштаба.",
       "shot_at": "2026-10-13T02:19:16.478Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 03:19); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-068",
@@ -3050,7 +3141,8 @@
       "state": "Очистить черновик?",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3075,7 +3167,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересклейка, PARITY_FIT=width): «Очистить черновик?» совпало: заголовок, текст, «Отмена» серая и «Очистить» приглушённо-красная в ряд (образец №75 приведён к ThemedConfirmModal). Приняты: фон под окном.",
       "shot_at": "2026-10-12T03:46:29.858Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (12.10 04:46); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-069",
@@ -3090,7 +3183,8 @@
       "state": "Минимум 10 карточек",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3132,7 +3226,8 @@
       "state": "Проверь поля",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3180,7 +3275,8 @@
       "state": "Лимит 50 карточек",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3221,7 +3317,8 @@
       "state": "Офлайн — сохранено на устройстве",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -3265,7 +3362,8 @@
       "state": "Набор сохранён",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3307,7 +3405,8 @@
       "state": "Недоступен для правки",
       "code": [
         "app/community_pack_create.tsx",
-        "app/community_packs/PackCreateGlassParts.tsx"
+        "app/community_packs/PackCreateGlassParts.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3349,7 +3448,8 @@
       "state": "Загрузка наборов",
       "code": [
         "app/flashcards_training_setup.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3400,7 +3500,8 @@
       "state": "Нет наборов",
       "code": [
         "app/flashcards_training_setup.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3431,7 +3532,8 @@
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T15:18:24.000Z): Пересъёмка на B (гость, es): «Блиц», «Нет карточек», «Сохрани пару слов», «Открыть каталог», пилюля языка ES. Счётчика «N/30» в шапке нет — у гостя без карточек это ожидаемо.",
       "shot_at": "2026-10-15T15:18:24.000Z",
       "shot_at_source": "shoot_log",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 16:18); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-077",
@@ -3446,7 +3548,8 @@
       "state": "Ошибка сети",
       "code": [
         "app/flashcards_training_setup.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3472,7 +3575,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересклейка, PARITY_FIT=width): «Подготовка тренировки — сеть недоступна» совпала: «‹», пилюля 30/30, «Правда / ложь», облако с чертой, «Сейчас недоступно · Проверь интернет», «Попробовать снова».",
       "shot_at": "2026-10-12T03:46:29.858Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (12.10 04:46); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-078",
@@ -3487,7 +3591,8 @@
       "state": "Режим недоступен",
       "code": [
         "app/flashcards_training_setup.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3540,7 +3645,8 @@
       "state": "Шторка выбора наборов (Устно)",
       "code": [
         "app/flashcards/DeckPickerSheet.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": true,
@@ -3585,7 +3691,9 @@
       "state": "Пока пусто",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3606,7 +3714,8 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 13.10 (chain21, склейка PARITY_FIT=width, поэлементно): «Из видео — пока пусто» совпало: «‹» и «⋮» в плашке, заголовок «Из видео», плитка с ▶, «Пока пусто», подпись в две строки по центру. Принято: перенос подписи («…здесь, как только выйдут») и общий сдвиг ≈12 px вниз — ширина телефона Android.",
       "shot_at": "2026-10-12T22:32:20.159Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 23:32); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-081",
@@ -3621,7 +3730,9 @@
       "state": "Ничего не нашли",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -3644,7 +3755,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Из видео · поиск, ничего не нашли: «‹», «⋮», «Из видео N», поле «zzzqq», плитка с лупой, «Ничего не нашли», «Попробуй другое слово.», белая «Показать все» — совпали. Принят счётчик «5» против «12» (данные).",
       "shot_at": "2026-10-13T02:19:55.177Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:19); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-082",
@@ -3659,7 +3771,9 @@
       "state": "Открытие ролика · не открылся",
       "code": [
         "app/flashcards_video_packs.tsx",
-        "app/flashcards/VideoPackRow.tsx"
+        "app/flashcards/VideoPackRow.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -30316,7 +30430,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30380,7 +30497,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -30446,7 +30566,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30518,7 +30641,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30560,7 +30686,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Сохранённые — 2 колонки: «‹», «🔍», «+», «⋮», «Сохранённые 64», ползунок, сетка 2×, плавающая «Тренировать» — совпали.",
       "shot_at": "2026-10-13T00:52:48.906Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsGallery.tsx 13.10 05:31, CardsKit.tsx 17.10 19:33 — позже кадра (13.10 01:52); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-009",
@@ -30575,7 +30702,10 @@
       "state": "Список",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30646,7 +30776,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30707,7 +30842,10 @@
       "state": "Пусто",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30742,7 +30880,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Мои наборы · пусто: «‹», «⋮», «Мои наборы», плитка значка, «Наборов нет», «Собери свой первый», белая «+ Создать набор» — совпали. Принят значок плитки: стопка слоёв в приложении против «баночки» образца — решение владельца 81(16); масштаб.",
       "shot_at": "2026-10-13T05:26:30.147Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 06:26); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-012",
@@ -30760,7 +30899,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30823,7 +30967,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30879,7 +31028,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30936,7 +31090,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -30993,7 +31150,9 @@
       "code": [
         "app/flashcards/ExpandedCardV2.tsx",
         "app/flashcards/PhraseCard.tsx",
-        "app/flashcards/FlashcardDetailsBody.tsx"
+        "app/flashcards/FlashcardDetailsBody.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31048,7 +31207,9 @@
       "code": [
         "app/flashcards/ExpandedCardV2.tsx",
         "app/flashcards/PhraseCard.tsx",
-        "app/flashcards/FlashcardDetailsBody.tsx"
+        "app/flashcards/FlashcardDetailsBody.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31114,7 +31275,9 @@
       "code": [
         "app/flashcards/ExpandedCardV2.tsx",
         "app/flashcards/PhraseCard.tsx",
-        "app/flashcards/FlashcardDetailsBody.tsx"
+        "app/flashcards/FlashcardDetailsBody.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31172,7 +31335,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31227,7 +31392,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31292,7 +31459,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31344,7 +31513,10 @@
       "state": "Каталог",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31405,7 +31577,10 @@
       "state": "Ничего не найдено",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31467,7 +31642,10 @@
       "state": "Список наборов",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31644,7 +31822,8 @@
         "app/flashcards/FlashcardsCategoryHub.tsx",
         "components/packs/PackRow.tsx",
         "components/packs/PackScreenKit.tsx",
-        "components/packs/packDeckModel.ts"
+        "components/packs/packDeckModel.ts",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": true,
@@ -31710,7 +31889,9 @@
       "state": "Сейчас недоступно",
       "code": [
         "app/flashcards_packs.tsx",
-        "components/ui/new/OfflineDataNotice.tsx"
+        "components/ui/new/OfflineDataNotice.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31768,7 +31949,9 @@
         "app/flashcards_video_packs.tsx",
         "app/flashcards/VideoPackRow.tsx",
         "app/flashcards/VideoSetView.tsx",
-        "app/flashcards/PackVideoHero.tsx"
+        "app/flashcards/PackVideoHero.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31803,7 +31986,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Набор из видео: «‹», «⋮», карточка видео с кнопкой «▶» и «4:12», «Заказ в кафе», «A2», «18 фраз», «♡», белая «Добавить себе +», «Фразы 18», карточки фраз с меткой времени и динамиком — совпали. Приняты: заглушка вместо кадра видео (картинка грузится из сети), счётчик «9» против «12», фразы и тайминги — данные; полоски прогресса просмотра на кадре нет (видео не смотрели) — состояние; масштаб.",
       "shot_at": "2026-10-13T06:05:09.086Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 07:05); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-031",
@@ -31820,7 +32004,9 @@
         "app/flashcards_video_packs.tsx",
         "app/flashcards/VideoPackRow.tsx",
         "app/flashcards/VideoSetView.tsx",
-        "app/flashcards/PackVideoHero.tsx"
+        "app/flashcards/PackVideoHero.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31930,7 +32116,8 @@
       "screen": "Блиц",
       "state": "Блиц",
       "code": [
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -31991,7 +32178,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -32054,7 +32242,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -32117,7 +32306,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -32215,7 +32405,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -32255,7 +32446,8 @@
       "shot_at": "2026-10-15T15:18:24.000Z",
       "shot_at_source": "shoot_log",
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T15:18:24.000Z): Дубль cards-076 (та же ссылка и тот же телефон эталона cards-v2 №29) — тот же кадр B: пустая настройка Блица совпадает.",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 16:18); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-039",
@@ -32981,7 +33173,8 @@
       "state": "Итог с ошибками",
       "code": [
         "app/flashcards/CardsSessionResultV2.tsx",
-        "app/flashcards/SessionResultScreen.tsx"
+        "app/flashcards/SessionResultScreen.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33022,7 +33215,8 @@
       "shot_at": "2026-10-15T07:22:52.958Z",
       "shot_at_source": "shoot_log",
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:22:52.958Z): Итог с ошибками совпадает.",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 08:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-054",
@@ -33037,7 +33231,8 @@
       "state": "Итог Блица",
       "code": [
         "app/flashcards/CardsSessionResultV2.tsx",
-        "app/flashcards/SessionResultScreen.tsx"
+        "app/flashcards/SessionResultScreen.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33082,7 +33277,8 @@
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "shot_at": "2026-10-15T07:23:09.704Z",
       "shot_at_source": "shoot_log",
-      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:09.704Z): Итог Блица с ошибками совпадает: 18 из 20, плашки, +180, «Ошибки 2» с карточками, кнопки."
+      "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:09.704Z): Итог Блица с ошибками совпадает: 18 из 20, плашки, +180, «Ошибки 2» с карточками, кнопки.",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 08:23); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-055",
@@ -33097,7 +33293,8 @@
       "state": "Без ошибок",
       "code": [
         "app/flashcards/CardsSessionResultV2.tsx",
-        "app/flashcards/SessionResultScreen.tsx"
+        "app/flashcards/SessionResultScreen.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33138,7 +33335,8 @@
       "shot_at": "2026-10-15T07:23:26.029Z",
       "shot_at_source": "shoot_log",
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:26.029Z): Итог без ошибок совпадает.",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 08:23); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-section-056",
@@ -33154,7 +33352,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33250,7 +33449,8 @@
         "app/flashcards/FlashcardsCategoryHub.tsx",
         "components/packs/PackRow.tsx",
         "components/packs/PackScreenKit.tsx",
-        "components/packs/packDeckModel.ts"
+        "components/packs/packDeckModel.ts",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33346,7 +33546,9 @@
       "code": [
         "app/flashcards_my_packs.tsx",
         "app/flashcards/MyPacksV2.tsx",
-        "components/cards-grid/CardsKit.tsx"
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -33409,7 +33611,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35596,7 +35803,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35625,7 +35835,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Сохранённые — 1 колонка: заголовок, ползунок справа, карточки на всю ширину с динамиком, «EN», словом, переводом и «⋯», плавающая «Тренировать» — совпали. Принято: ползунок немного правее (данные).",
       "shot_at": "2026-10-13T00:52:48.906Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsGallery.tsx 13.10 05:31, CardsKit.tsx 17.10 19:33 — позже кадра (13.10 01:52); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-006",
@@ -35645,7 +35856,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35697,7 +35911,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35720,7 +35937,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:35, утверждённый cards-v2 №7 «Сохранённые — 3 колонки»): совпало — шапка, заголовок «Сохранённые 64», ползунок на третьем делении, плитки в три колонки только со словом EN (Layover … Figure out) в том же порядке, плашка «Тренировать» поверх списка.",
       "shot_at": "2026-10-13T06:22:37.086Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 07:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-008",
@@ -35740,7 +35958,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35793,7 +36014,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35846,7 +36070,10 @@
         "app/flashcards/CollectionListView.tsx",
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
-        "app/flashcards/SavedCollectionStates.tsx"
+        "app/flashcards/SavedCollectionStates.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35898,7 +36125,9 @@
         "app/flashcards/CollectionGalleryView.tsx",
         "app/flashcards/FlashcardListItem.tsx",
         "app/flashcards/SavedCollectionStates.tsx",
-        "components/cards-grid/CardsKit.tsx"
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/ZoomBar.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35947,7 +36176,10 @@
       "state": "Мои наборы",
       "code": [
         "app/flashcards_my_packs.tsx",
-        "app/flashcards/MyPacksV2.tsx"
+        "app/flashcards/MyPacksV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -35976,7 +36208,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:13, пересъёмка свежим кодом, cards-v2 №12 «Мои наборы»): заголовок «Мои наборы 4», «‹», «⋮», «+», четыре карточки наборов с кнопкой «▶», строкой «N · уровень» и тремя словами-чипами — по составу и вёрстке совпали. Различия — данные: порядок наборов другой, у B2 глаголы в образце подпись автора «Ирина». [образец нарисован с приложения, ждёт подтверждения владельца]",
       "shot_at": "2026-10-12T05:54:45.198Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 06:54); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-013",
@@ -35993,7 +36226,9 @@
       "code": [
         "app/flashcards_my_packs.tsx",
         "app/flashcards/MyPacksV2.tsx",
-        "components/cards-grid/CardsKit.tsx"
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36045,7 +36280,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36098,7 +36338,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36123,7 +36368,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (пересклейка голых кадров с новым образцом, PARITY_FIT=width, поэлементно): Чужой набор — до добавления: «‹» и «⋮», «B2 глаголы», автор «Ирина», чип B2, «49 карточек · ♡ 3 · 💬 3», «Добавить себе +» и сердце, ползунок, сетка в 2 колонки — совпали с образцом после правки. Приняты: положение ползунка и порядок слов (данные демо).",
       "shot_at": "2026-10-12T18:16:14.521Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsGallery.tsx 13.10 05:31, CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 19:16); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-016",
@@ -36142,7 +36388,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36188,7 +36439,12 @@
         "app/flashcards/PackHeaderV2.tsx",
         "app/flashcards/CollectionHeaderV2.tsx",
         "app/flashcards/CommunityPackPreview.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/cards-grid/CardsGallery.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/ZoomBar.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36218,7 +36474,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:07, пересъёмка свежим кодом, cards-v2 №17 «Действия с набором»): шторка «Отправить в сообщество / Править набор / Новая карточка / Удалить набор» (красный) с ручкой и заголовком набора совпала по составу, порядку, значкам и тексту; затемнение доходит до самого верха экрана (светлой полосы у статус-бара нет); шапка набора за затемнением на месте (сдвиг вправо исправлен, 660f23ed6). Различия приняты как данные: набор «Работа» против «Путешествия», положение ползунка, шторка чуть ниже образца.",
       "shot_at": "2026-10-12T03:46:29.858Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsGallery.tsx 13.10 05:31, CardsKit.tsx 17.10 19:33, ZoomBar.tsx 12.10 06:44, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (12.10 04:46); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-018",
@@ -36236,7 +36493,9 @@
         "app/flashcards_video_packs.tsx",
         "app/flashcards/VideoPackRow.tsx",
         "app/flashcards/VideoSetView.tsx",
-        "app/flashcards/PackVideoHero.tsx"
+        "app/flashcards/PackVideoHero.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36288,7 +36547,9 @@
         "app/flashcards_video_packs.tsx",
         "app/flashcards/VideoPackRow.tsx",
         "app/flashcards/VideoSetView.tsx",
-        "app/flashcards/PackVideoHero.tsx"
+        "app/flashcards/PackVideoHero.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36311,7 +36572,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Набор из видео: «‹», «⋮», видео «▶» «4:12», «Заказ в кафе», «A2», «18 фраз», «♡», «Добавить себе +», «Фразы 18», карточки фраз — совпали. Приняты: заглушка вместо кадра видео, «9» против «12», фразы — данные; масштаб.",
       "shot_at": "2026-10-13T06:22:37.086Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 07:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-020",
@@ -36328,7 +36590,9 @@
       "code": [
         "app/flashcards/ExpandedCardV2.tsx",
         "app/flashcards/PhraseCard.tsx",
-        "app/flashcards/FlashcardDetailsBody.tsx"
+        "app/flashcards/FlashcardDetailsBody.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36358,7 +36622,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Лицевая сторона: шторка с карточкой «EN · слово · динамик · повернуть», «Озвучить», «В набор», красная «Удалить» — совпали, фон списка затемнён. Приняты: слово «Gate» без транскрипции против «Layover /ˈleɪoʊvər/» (данные: транскрипция выдаётся только словарю), масштаб.",
       "shot_at": "2026-10-13T06:22:37.086Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 07:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-021",
@@ -36375,7 +36640,9 @@
       "code": [
         "app/flashcards/ExpandedCardV2.tsx",
         "app/flashcards/PhraseCard.tsx",
-        "app/flashcards/FlashcardDetailsBody.tsx"
+        "app/flashcards/FlashcardDetailsBody.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36427,7 +36694,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36477,7 +36746,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36529,7 +36800,9 @@
         "app/community_packs/PackCreateGlassParts.tsx",
         "app/community_packs/PackEditorV2.tsx",
         "app/flashcards_card_editor.tsx",
-        "app/flashcards/CardsGlassKit.tsx"
+        "app/flashcards/CardsGlassKit.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36577,7 +36850,10 @@
       "state": "Каталог",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36627,7 +36903,10 @@
       "state": "Ничего не найдено",
       "code": [
         "app/flashcards_packs.tsx",
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackRow.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36657,7 +36936,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Сообщество · ничего не найдено: «←», чип «EN ⌄» с флагом, «Сообщество», «+», поле «xyzq», плитка с лупой, «Ничего не нашли», «Попробуй другое слово», белая «Сбросить поиск», линия под шапкой — совпали после поправки масштаба.",
       "shot_at": "2026-10-13T02:27:23.138Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackRow.tsx 17.10 22:05, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:27); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-027",
@@ -36719,7 +36999,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36762,7 +37043,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -36814,7 +37096,8 @@
       "code": [
         "app/flashcards_training_setup.tsx",
         "app/flashcards/TrainingSetupV2.tsx",
-        "app/flashcards/DeckPickerSheet.tsx"
+        "app/flashcards/DeckPickerSheet.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37284,7 +37567,8 @@
       "state": "Итог с ошибками",
       "code": [
         "app/flashcards/CardsSessionResultV2.tsx",
-        "app/flashcards/SessionResultScreen.tsx"
+        "app/flashcards/SessionResultScreen.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37313,7 +37597,8 @@
       "shot_at": "2026-10-15T07:23:42.259Z",
       "shot_at_source": "shoot_log",
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:23:42.259Z): Итог с ошибками совпадает.",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 08:23); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-042",
@@ -37329,7 +37614,8 @@
       "state": "Без ошибок",
       "code": [
         "app/flashcards/CardsSessionResultV2.tsx",
-        "app/flashcards/SessionResultScreen.tsx"
+        "app/flashcards/SessionResultScreen.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37358,7 +37644,8 @@
       "shot_at": "2026-10-15T07:47:47.884Z",
       "shot_at_source": "shoot_log",
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T07:47:47.884Z): Итог Блица без ошибок совпадает: 20 из 20, «Без единой ошибки», три плашки, +200, «Готово» / «Ещё раз».",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (15.10 08:47); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-043",
@@ -37407,7 +37694,9 @@
       "state": "Каталог без сети",
       "code": [
         "app/flashcards_packs.tsx",
-        "components/ui/new/OfflineDataNotice.tsx"
+        "components/ui/new/OfflineDataNotice.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37431,7 +37720,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (пересклеенный кадр Сверки 7d7f53140 с обновлённым образцом, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Каталог без сети: «←», чип «EN ⌄», «Сообщество», «+», поле «Наборы и авторы», ряд фильтров «Популярные · Новые · A2 · B1 · B2», значок «облако с чертой», «Нет сети», белая «Повторить» — совпали после правки образца. Принят масштаб ≈ 10–20 px.",
       "shot_at": "2026-10-13T02:28:42.595Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33, PackScreenKit.tsx 18.10 01:31 — позже кадра (13.10 03:28); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-v2-045",
@@ -37490,7 +37780,9 @@
       "screen": "Карточки · Новая карточка",
       "state": "Лимит — свои карточки 50/50",
       "code": [
-        "app/flashcards_card_editor.tsx"
+        "app/flashcards_card_editor.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37537,7 +37829,8 @@
       "screen": "Карточки · Новый набор",
       "state": "Лимит — свои наборы 3/3",
       "code": [
-        "app/community_pack_create.tsx"
+        "app/community_pack_create.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37577,7 +37870,8 @@
       "screen": "Карточки · Сохранённые",
       "state": "Сохранённые — меню «⋯» («Показать стопкой»)",
       "code": [
-        "app/flashcards/CollectionHeaderV2.tsx"
+        "app/flashcards/CollectionHeaderV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37704,7 +37998,8 @@
       "screen": "Карточки · Итог тренировки",
       "state": "Итог — «Хороший результат» (12 из 20), плашка баланса монет",
       "code": [
-        "app/flashcards/CardsSessionResultV2.tsx"
+        "app/flashcards/CardsSessionResultV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -37746,7 +38041,8 @@
       "screen": "Карточки · Итог тренировки",
       "state": "Итог — «Есть куда расти» (6 из 20), плашка баланса монет",
       "code": [
-        "app/flashcards/CardsSessionResultV2.tsx"
+        "app/flashcards/CardsSessionResultV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -40977,7 +41273,9 @@
       "screen": "Карточки",
       "state": "Шторка «В какой набор?» — список",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41024,7 +41322,9 @@
       "screen": "Карточки",
       "state": "Шторка «В какой набор?» — своих наборов пока нет",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41046,7 +41346,8 @@
       },
       "shot_at": "2026-10-13T05:22:00.584Z",
       "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «В какой набор?» — своих наборов пока нет: ручка, «В какой набор?», «Своих наборов пока нет», «+ Создать набор» поверх затемнённого списка «Сохранённые 64» — совпали. Принят тон шторки (30–39, 30–39, 36–45 в приложении против 19–45, 19–45, 21–47 в образце): разница ≤ 8 ступеней — токен темы; масштаб."
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «В какой набор?» — своих наборов пока нет: ручка, «В какой набор?», «Своих наборов пока нет», «+ Создать набор» поверх затемнённого списка «Сохранённые 64» — совпали. Принят тон шторки (30–39, 30–39, 36–45 в приложении против 19–45, 19–45, 21–47 в образце): разница ≤ 8 ступеней — токен темы; масштаб.",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (13.10 06:22); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-gap-020",
@@ -41061,7 +41362,9 @@
       "screen": "Карточки",
       "state": "Шторка «В какой набор?» — добавлено",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41091,7 +41394,8 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:16, cards-gaps-states №20 «Шторка «В какой набор?» — добавлено»): состояние воспроизведено — шторка закрылась, внизу тост «ГОТОВО · Добавлено в набор» с контурной галочкой в кольце на тёмной плитке, поверх списка сохранённых карточек; тост совпал с образцом по составу, тексту, положению и значку (прежний дефект «плашка поверх строки списка наборов» ушёл вместе с дублем: сценарий был в данных). Различия приняты: список в приложении прокручен (слова Remind, Refuse, Rely on… против Layover, Gate… — данные), в шапке приложения справа поиск «🔍», «+» и «⋮» (в образце «⋯» и «+», без поиска; образец отстал по составу шапки, на тост не влияет).",
       "shot_at": "2026-10-12T05:10:14.095Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён CardsKit.tsx 17.10 19:33 — позже кадра (12.10 06:10); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-gap-021",
@@ -41106,7 +41410,9 @@
       "screen": "Карточки",
       "state": "Тост — эта карточка уже в наборе",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41140,7 +41446,9 @@
       "screen": "Карточки",
       "state": "Тост — не удалось добавить карточку",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41570,7 +41878,8 @@
       "screen": "Карточки",
       "state": "Чужой набор — лайк до добавления",
       "code": [
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41599,7 +41908,8 @@
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:43:38.181Z): Тост «Сначала добавь набор себе — потом можно поставить лайк.» совпадает.",
       "shot_at": "2026-10-15T08:43:38.181Z",
       "shot_at_source": "shoot_log",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён PackScreenKit.tsx 18.10 01:31 — позже кадра (15.10 09:43); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-gap-033",
@@ -41614,7 +41924,8 @@
       "screen": "Карточки",
       "state": "Чужой набор — лайк не прошёл",
       "code": [
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -41643,7 +41954,8 @@
       "sverka_verdict": "ВЕРДИКТ 15.10 (Макеты, кадр 2026-10-15T08:44:22.457Z): Тост «Не удалось поставить лайк. Попробуй ещё раз» поверх чужого набора совпадает.",
       "shot_at": "2026-10-15T08:44:22.457Z",
       "shot_at_source": "shoot_log",
-      "prev_status": "pending"
+      "prev_status": "pending",
+      "verdict_note": "ПЕРЕПРОВЕРИТЬ: общий компонент изменён PackScreenKit.tsx 18.10 01:31 — позже кадра (15.10 09:44); статус не менялся (координатор 18.10 06:05)."
     },
     {
       "id": "cards-gap-034",
@@ -43619,7 +43931,9 @@
       "screen": "Карточки",
       "state": "В какой набор? — нет наборов, куда можно добавить",
       "code": [
-        "app/flashcards/ExpandedCardV2.tsx"
+        "app/flashcards/ExpandedCardV2.tsx",
+        "components/cards-grid/CardsKit.tsx",
+        "components/cards-grid/FlipCard.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -44101,7 +44415,8 @@
       "state": "Набор из видео — добавлен: «В моих наборах» + «Тренировать»",
       "code": [
         "app/flashcards/VideoSetView.tsx",
-        "app/community_packs/CommunityPackSocialBar.tsx"
+        "app/community_packs/CommunityPackSocialBar.tsx",
+        "components/packs/PackScreenKit.tsx"
       ],
       "matrix_status": null,
       "has_animation": false,
@@ -44724,7 +45039,8 @@
       "state": "Наборы на 2 языках — чип ES ⌄ и меню языков",
       "code": [
         "app/flashcards/PackLanguagePicker.tsx",
-        "app/flashcards/TrainingSetupV2.tsx"
+        "app/flashcards/TrainingSetupV2.tsx",
+        "components/cards-grid/CardsKit.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -44758,7 +45074,8 @@
       "screen": "Сообщество — каталог",
       "state": "Есть недоделанный черновик набора",
       "code": [
-        "app/flashcards/FlashcardsCategoryHub.tsx"
+        "app/flashcards/FlashcardsCategoryHub.tsx",
+        "components/packs/PackRow.tsx"
       ],
       "matrix_status": "🟠",
       "has_animation": false,
@@ -46501,14 +46818,8 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "Фон: в эталоне графит ≈#15161C с мягким ореолом, в приложении (мята) тёмно-зелёный ≈#00260F на весь экран.",
-        "Огонь: в эталоне фиолетовый ≈#9380FF, в приложении светло-зелёный ≈#A0D07B.",
-        "Клетки календаря: в эталоне мятные ≈#7EF0C8, в приложении темнее ≈#5ED99E.",
-        "Пустые клетки: в эталоне графитовые ≈#1D1E20, в приложении тёмно-зелёные ≈#133323.",
-        "Кнопка «Дальше»: в эталоне мятная заливка ≈#7EF0C8, в приложении бледно-мятная, почти белая ≈#D8EADB."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
       "reviewed_at": "2026-10-17T21:06:32.990Z",
       "blocked_reason": null,
@@ -46522,7 +46833,7 @@
       "added_reason": "координатор 15.10: рубежи серии подключаются к экрану (Темы) — строки сверки заранее",
       "note": "Темы 15.10: хост, gate, диск-метка и подключение к итогам урока/разговора/карточек/«Моих ошибок» — в HEAD 9de147980; разбор streak=N в dev_state — a5185a8ac (ссылка работает). streak=N ставится до перехода и стирает метки «показан» — для каждого N открыть ссылку заново",
       "verdict_by": "Макеты 18.10",
-      "verdict_note": "Кадр Сверки 18.10 05:13 (2a9cc2137): тема «Мята» (sage), тёмная, es. Раскладка по эталону: огонь с «30», монета, надзаголовок, заголовок, подпись, календарь 7×5 (30 залито, 5 пустых, клетки квадратные), кнопка; ореол есть. Не совпали цвета — все пять крупных поверхностей (см. отличия). Вес заголовка 800 на эмуляторе рисуется 700 (0b61ac198) — не отличие. Тексты на es — данные. РЕШЕНИЕ координатора 18.10 05:36: плашка «Пропустить» из эталона видна во всех сценах, пока нет «Дальше» (033aee170; раньше — только «Год» и «Легенда»), чтобы закрыть можно было сразу, в том числе на iOS. Осознанное отличие, не diff."
+      "verdict_note": "ЖДЁТ КАДРА в палитре «Аврора тёмная» (grad_aurora) — ею нарисован эталон d30-A (Темы по коду, координатор 18.10 06:05). Кадр 2a9cc2137 снят в «Мяте» — сравнение цветов нечестное, вердикт по нему отменён. Справка по мятному кадру: раскладка совпала полностью (огонь с «30», монета, надзаголовок, заголовок, подпись, календарь 7×5, кнопка, ореол). По словам Тем, в Авроре возможно одно отличие — пустые клетки (#2B3839 против ≈#1D1E20 в эталоне); проверить на кадре. РЕШЕНИЕ координатора 18.10 05:36: плашка «Пропустить» из эталона видна во всех сценах, пока нет «Дальше» (033aee170; раньше — только «Год» и «Легенда»), чтобы закрыть можно было сразу, в том числе на iOS. Осознанное отличие, не diff."
     },
     {
       "id": "streak-milestone-d0050",

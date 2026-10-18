@@ -3325,4 +3325,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is spinning / is not spinning / Is it spinning?","uk":"is spinning / is not spinning / Is it spinning?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 27,
+    sourceFingerprint: "3409bdfac81cbc24558c03b10b38152909f9923ae1f8b0bd53e2e38111694810",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is sliding / is not sliding; вопрос о движении сейчас","uk":"is sliding / is not sliding; запитання про рух зараз"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

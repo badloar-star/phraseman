@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-27:intro1:r2": {
+          "ru": "A sled — один предмет: is.",
+          "uk": "A sled — один предмет: is."
+        },
+        "en:lesson-09:session-27:intro1:r3": {
+          "ru": "После is для движения сейчас нужна форма sliding.",
+          "uk": "Після is для руху зараз потрібна форма sliding."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-27:intro2:r2": {
+          "ru": "Один полоз: is.",
+          "uk": "Один полоз: is."
+        },
+        "en:lesson-09:session-27:intro2:r3": {
+          "ru": "В вопросе о действии сейчас сохраняется sliding.",
+          "uk": "У запитанні про дію зараз зберігається sliding."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-27:intro3:r2": {
+          "ru": "После don’t нужен throw без -s.",
+          "uk": "Після don’t потрібне throw без -s."
+        },
+        "en:lesson-09:session-27:intro3:r3": {
+          "ru": "Для запрета перед глаголом нужно don’t.",
+          "uk": "Для заборони перед дієсловом потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2f48cc7f274c7d19b49cdfca2613205daebafe5b7bd72fa2f4b6e00d35ae7cac"
+}

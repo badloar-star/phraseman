@@ -44,3 +44,21 @@ export const COMBO_MOMENT_TIMELINE = {
   /** Монета: сколько видна после своего удара (не закрывает вопрос надолго). */
   coinStay: 1800,
 } as const;
+
+/**
+ * Очередь показа поверх урока: пока момент m08 на экране, другие всплывающие (тост медали) ждут его конца.
+ * зачем (Сверка m08_1018, координатор 18.10: на ударе 5 монета, «5 подряд» и тост «Новая медаль» — три слоя сразу; эталон v3 не меняем,
+ * чиним порядок): слой момента отмечает, до какого времени он занят, тост спрашивает остаток. Только память процесса.
+ */
+let comboMomentBusyUntilMs = 0;
+export const MOMENT_QUEUE_LOG = '[MOMENT-QUEUE]';
+export function markComboMomentBusy(nowMs: number, durationMs: number): void {
+  comboMomentBusyUntilMs = Math.max(comboMomentBusyUntilMs, nowMs + durationMs);
+}
+export function comboMomentBusyLeftMs(nowMs: number): number {
+  return Math.max(0, comboMomentBusyUntilMs - nowMs);
+}
+/** Только для тестов. */
+export function __resetComboMomentBusy(): void {
+  comboMomentBusyUntilMs = 0;
+}

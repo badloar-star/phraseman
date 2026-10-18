@@ -14,7 +14,7 @@ import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import MomentCoin, { type MomentCoinEmote, type MomentCoinMood } from '../moments/MomentCoin';
 import { useStreakColors } from '../streak/moments/use_streak_colors';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, type ComboBeat } from './combo_moment_gate';
+import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, markComboMomentBusy, type ComboBeat } from './combo_moment_gate';
 import { MOMENT_ART } from '../../constants/momentArtPalette';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
@@ -81,6 +81,8 @@ function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
     }
     console.log(`${COMBO_MOMENT_LOG} слой: удар «${beat}» (${prev} → ${comboCount}), монета=${COIN_FOR[beat].mood} ранг=${String(coinRank)}`); // guard-ok: журнал удара
     setCoin((c) => ({ ...COIN_FOR[beat], key: (c?.key ?? 0) + 1 }));
+    markComboMomentBusy(Date.now(), T.coinStay);
+    console.log(`${MOMENT_QUEUE_LOG} m08 занят ${T.coinStay} мс (удар «${beat}») — тосты урока ждут`); // guard-ok: строка на отметку занятости
     if (beat === 'break') playBreakSound();
     if (!reduced && beat === 'storm') {
       zap.value = withSequence(withTiming(ZAP_LEN, { duration: 0 }), withTiming(0, { duration: T.zapDraw }));

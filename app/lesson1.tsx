@@ -128,6 +128,7 @@ import AiMistakeCard from '../components/AiMistakeCard';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
+import { MOMENT_QUEUE_LOG, comboMomentBusyLeftMs } from '../components/feedback/combo_moment_gate';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { isDevOverlaysOff } from './dev_overlays_off';
 import { isDevLessonIntroSkip } from './dev_cards_state';
@@ -3967,7 +3968,7 @@ function LessonScreen() {
     setMedalToast(null);
   }, [medalToastAnim]);
 
-  const showMedalToast = useCallback((tier: MedalTier, promoted: boolean) => {
+  const showMedalToastNow = useCallback((tier: MedalTier, promoted: boolean) => {
     medalToastSequenceRef.current?.stop();
     medalToastAnim.stopAnimation();
     setMedalToast({ tier, promoted });
@@ -3982,6 +3983,27 @@ function LessonScreen() {
       if (finished) setMedalToast(null);
     });
   }, [medalToastAnim]);
+  // зачем (Сверка m08_1018, координатор 18.10): тост медали не всплывает поверх момента «Молния» (монета + «N подряд») —
+  // ждёт конца момента в очереди; эталон v3 не меняется, меняется только порядок показа. Журнал [MOMENT-QUEUE].
+  const medalDeferTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showMedalToast = useCallback((tier: MedalTier, promoted: boolean) => {
+    const waitMs = comboMomentBusyLeftMs(Date.now());
+    if (medalDeferTimerRef.current) clearTimeout(medalDeferTimerRef.current);
+    if (waitMs <= 0) {
+      console.log(`${MOMENT_QUEUE_LOG} медаль: показ сразу ${JSON.stringify({ tier, promoted })}`); // guard-ok: строка на решение очереди
+      showMedalToastNow(tier, promoted);
+      return;
+    }
+    console.log(`${MOMENT_QUEUE_LOG} медаль: ждёт конца m08 ${JSON.stringify({ tier, promoted, waitMs })}`); // guard-ok: строка на решение очереди
+    medalDeferTimerRef.current = setTimeout(() => {
+      medalDeferTimerRef.current = null;
+      console.log(`${MOMENT_QUEUE_LOG} медаль: показ после m08 ${JSON.stringify({ tier, promoted })}`); // guard-ok: строка на показ из очереди
+      showMedalToastNow(tier, promoted);
+    }, waitMs + 120);
+  }, [showMedalToastNow]);
+  useEffect(() => () => {
+    if (medalDeferTimerRef.current) clearTimeout(medalDeferTimerRef.current);
+  }, []);
 
   useEffect(() => () => {
     medalToastSequenceRef.current?.stop();

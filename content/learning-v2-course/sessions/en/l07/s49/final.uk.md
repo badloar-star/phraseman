@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 49 — Ночую в наметі
+# Англійська · Урок 7 · Заняття 49 — На кухні й у їдальні
 
-**Ситуація.** Ви розповідаєте про ночівлі в наметі, медитацію й дорогу до лікарні.
+**Ситуація.** Ви розповідаєте про кухонні звички: як додаєте лимон у чай, де розтоплюєте масло, як робите пюре, і питаєте дорогу до їдальні.
 
-**Що ви опануєте:** розповідати про звички й запитувати про місце
-**Нові слова:** camp
+**Що ви опануєте:** розповідати, що ви зазвичай або часто робите, і питати «Де …?»
+**Нові слова:** squeeze, melt, cafeteria, mash
+**Повертаються:** lemon, tea, butter, pan, potato, library, pharmacy
 
 ---
 
 ## Інтро 1
 
-### Намет замість готелю
+### Чай із лимоном
 
-Друг запитує, чи часто ви ночуєте в наметі. `Camp` — «жити або ночувати в наметі». `I often camp` — «Я часто ночую в наметі». `Often` стоїть перед `camp`. У такому «номері» блискавка зазвичай замінює дверний замок.
+Друг зайшов на чай і дивується, що ви тримаєте половинку лимона над чашкою й вичавлюєте з неї сік. squeeze — «вичавлювати». Скажіть: I usually squeeze lemon juice into my tea — «Я зазвичай вичавлюю лимонний сік у свій чай». Слово usually стоїть перед squeeze. Into показує, куди потрапляє сік: у чай.
 
-**Розкажіть про свою звичку.**
+**Друг дивується лимону в чашці. Поясніть: «Я зазвичай вичавлюю лимонний сік у свій чай».**
 
-- ✅ **I often camp.**
-- ❌ I often camps. — *Після `I` потрібне `camp`, без `s`.*
-- ❌ I often camping. — *Тут потрібна форма `camp`.*
+- ✅ **I usually squeeze lemon juice into my tea.**
+- ❌ I usually squeezes lemon juice into my tea. — *Після I потрібно squeeze, без s.*
+- ❌ I usually squeezing lemon juice into my tea. — *Після I usually потрібна форма squeeze, без -ing.*
 
 ---
 
 ## Інтро 2
 
-### Медитую вдома
+### Сніданок біля плити
 
-Подруга запитує, де ви зазвичай медитуєте. `I usually meditate at home` — «Я зазвичай медитую вдома». `Usually` стоїть перед `meditate`; `at home` — «вдома».
+Зранку сусід заглянув до вас на кухню й бачить: на гарячу сковороду ви кладете шматочок масла, і воно одразу розтікається. melt — «розтоплювати». Скажіть: I often melt butter in a pan — «Я часто розтоплюю масло на сковороді». Слово often стоїть перед melt.
 
-**Розкажіть, де ви зазвичай медитуєте.**
+**Сусід питає, як ви зазвичай починаєте готувати сніданок. Відповідьте: «Я часто розтоплюю масло на сковороді».**
 
-- ✅ **I usually meditate at home.**
-- ❌ I usually meditates at home. — *Після `I` потрібне `meditate`.*
-- ❌ I usually meditating at home. — *Тут потрібна форма `meditate`.*
+- ✅ **I often melt butter in a pan.**
+- ❌ I often melts butter in a pan. — *Після I потрібно melt, без s.*
+- ❌ I often melting butter in a pan. — *Тут потрібна форма melt.*
 
 ---
 
 ## Інтро 3
 
-### Шукаю лікарню
+### Обід на курсах
 
-Ви йдете відвідати знайомого й просите перехожого показати лікарню. `Where is the hospital?` — «Де лікарня?» Після `where` тут іде `is`, потім `the hospital`.
+Ви прийшли на курси у велику будівлю, і вам захотілося їсти. Охоронець біля входу готовий підказати дорогу, але коридорів багато, і ви не знаєте, куди йти. cafeteria — «їдальня». Спитайте: Where is the cafeteria? — «Де їдальня?» Після Where йде is, а потім the cafeteria.
 
-**Запитайте перехожого, де лікарня.**
+**Охоронець біля входу чекає на ваше запитання. Спитайте: «Де їдальня?»**
 
-- ✅ **Where is the hospital?**
-- ❌ Where are the hospital? — *Лікарня одна: потрібне `is`.*
-- ❌ Where the hospital is? — *У цьому запитанні `is` стоїть перед `the hospital`.*
+- ✅ **Where is the cafeteria?**
+- ❌ Where are the cafeteria? — *Їдальня одна: потрібно is.*
+- ❌ Where the cafeteria is? — *У цьому запитанні is стоїть перед the cafeteria.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто ночую в наметі»**
+**1 · Картка слова — squeeze**
+<!-- interaction_id: en:lesson-07:session-49:word:squeeze; family: word_card -->
+> **squeeze** — вичавлювати, стискати. I usually squeeze lemon juice into my tea. — «Я зазвичай вичавлюю лимонний сік у свій чай». Тиснути так, щоб вийшов сік.
+
+**2 · Друг зайшов на чай. Скажіть: «Я зазвичай вичавлюю лимонний сік у свій чай»**
 <!-- interaction_id: en:lesson-07:session-49:i01; family: phrase_builder -->
-Плитки: `camp` `often` `I` → **I often camp.**
+Плитки: `tea` `often` `my` `into` `juice` `lemon` `squeeze` `usually` `I` → **I usually squeeze lemon juice into my tea.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually squeeze lemon juice into my tea.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — melt**
+<!-- interaction_id: en:lesson-07:session-49:word:melt; family: word_card -->
+> **melt** — розтоплювати, танути. I often melt butter in a pan. — «Я часто розтоплюю масло на сковороді». Від тепла тверде стає рідким.
+
+**4 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-49:i02; family: listen_choose -->
-🔊 *camp* → **camp** · sew · bake
-- sew — *У записі перше слово — `camp`, а в цьому варіанті — `sew`.*
-- bake — *У записі перше слово — `camp`, а в цьому варіанті — `bake`.*
+🔊 *melt* → **melt** · meet · mix
+- meet — *У записі перше слово — `melt`, а в цьому варіанті — `meet`.*
+- mix — *У записі перше слово — `melt`, а в цьому варіанті — `mix`.*
 
-**3 · Скажіть «Я часто ночую в наметі»**
+**5 · Сусід питає про ваш ранок. Скажіть: «Я часто розтоплюю масло на сковороді». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-49:i03; family: context_gap_grammar -->
-I often ___. → **camp** · camps · camping
-- camps — *Після `I` потрібне `camp`.*
-- camping — *Тут потрібна форма `camp`.*
+I often ___ butter in a pan. → **melt** · melts · melting
+- melts — *Після `I` потрібно `melt`, без закінчення.*
+- melting — *Тут потрібна форма `melt`.*
 
-**4 · З’єднайте слова зі значеннями**
+**6 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-49:i04; family: speed_match -->
-camp — ночувати в наметі · meditate — медитувати · hospital — лікарня · garage — гараж
+squeeze — вичавлювати · melt — розтоплювати · butter — масло · lemon — лимон
 
-**5 · Послухайте й складіть фразу**
+**7 · Картка слова — mash**
+<!-- interaction_id: en:lesson-07:session-49:word:mash; family: word_card -->
+> **mash** — розминати в пюре. I often mash potatoes. — «Я часто роблю пюре з картоплі». Розминати м’яку їжу, наприклад варену картоплю, у пюре.
+
+**8 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-49:i05; family: listen_build_dictation -->
-🔊 *I often camp.* Плитки: `camp` `often` `I` → **I often camp.**
+🔊 *I often mash potatoes.* Плитки: `potatoes` `mashes` `mash` `often` `I` → **I often mash potatoes.**
+*(плитка `mashes` зайва: тут потрібно `mash` — `I often mash potatoes.`)*
 
-**6 · Скажіть «Я зазвичай медитую вдома»**
+**9 · Картка слова — cafeteria**
+<!-- interaction_id: en:lesson-07:session-49:word:cafeteria; family: word_card -->
+> **cafeteria** — їдальня. Where is the cafeteria? — «Де їдальня?» Їдальня, зазвичай із самообслуговуванням: наприклад, у навчальному закладі чи на роботі.
+
+**10 · Ви прийшли на курси. Спитайте охоронця: «Де їдальня?»**
 <!-- interaction_id: en:lesson-07:session-49:i06; family: phrase_builder -->
-Плитки: `home` `at` `meditate` `usually` `I` → **I usually meditate at home.**
+Плитки: `cafeteria` `are` `the` `is` `Where` → **Where is the cafeteria?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the cafeteria?`)*
 
-**7 · Запитайте перехожого «Де лікарня?»**
+**11 · Ви уточнюєте, чи є їдальня в цій будівлі. Скажіть: «Тут є їдальня?»**
 <!-- interaction_id: en:lesson-07:session-49:i07; family: scripted_repeat_compare -->
-🎙 **Where is the hospital?**
+🎙 **Is there a cafeteria here?**
 
-**8 · Скажіть «Я зазвичай медитую вдома»**
+**12 · Охоронець показує на коридор. Спитайте його про їдальню. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-49:i08; family: context_gap_grammar -->
-I usually ___ at home. → **meditate** · meditates · meditating
-- meditates — *Після `I` потрібне `meditate`.*
-- meditating — *Тут потрібна форма `meditate`.*
+Where ___ the cafeteria? → **is** · are · do
+- are — *Їдальня одна: потрібно is.*
+- do — *Тут потрібно is: Where is the cafeteria?*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-49:i09; family: listen_choose -->
-🔊 *I often camp.* → **I often camp.** · I often sew. · I often bake.
-- I often sew. — *У записі останнє слово — `camp`, а в цьому варіанті — `sew`.*
-- I often bake. — *У записі останнє слово — `camp`, а в цьому варіанті — `bake`.*
+🔊 *I often melt butter in a pan.* → **I often melt butter in a pan.** · I often melt butter in a cup. · I often melt butter in a pot.
+- I often melt butter in a cup. — *У записі останнє слово — `pan`, а в цьому варіанті — `cup`.*
+- I often melt butter in a pot. — *У записі останнє слово — `pan`, а в цьому варіанті — `pot`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-49:i10; family: speed_match -->
-meditate — медитувати · camp — ночувати в наметі · newspaper — газета · hospital — лікарня
+mash — розминати в пюре · squeeze — вичавлювати · melt — розтоплювати · lemon — лимон
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-49:i11; family: listen_build_dictation -->
-🔊 *Where is the hospital?* Плитки: `hospital` `the` `is` `Where` → **Where is the hospital?**
+🔊 *She often mashes potatoes.* Плитки: `potatoes` `mash` `mashes` `often` `She` → **She often mashes potatoes.**
+*(плитка `mash` зайва: тут потрібно `mashes` — `She often mashes potatoes.`)*
 
-**12 · Ви приїхали до друга машиною. Запитайте «Де гараж?»**
+**16 · Ви любите картоплю. Скажіть: «Я часто роблю пюре з картоплі»**
 <!-- interaction_id: en:lesson-07:session-49:i12; family: phrase_builder -->
-Плитки: `garage` `the` `is` `Where` → **Where is the garage?**
+Плитки: `potatoes` `usually` `mash` `often` `I` → **I often mash potatoes.**
+*(плитка `usually` зайва: тут потрібно `often` — `I often mash potatoes.`)*
 
-**13 · Ви шукаєте свою газету. Запитайте друга «Де моя газета?»**
+**17 · Подруга питає про вашу сестру. Скажіть: «Вона часто розтоплює масло на сковороді»**
 <!-- interaction_id: en:lesson-07:session-49:i13; family: scripted_repeat_compare -->
-🎙 **Where is my newspaper?**
+🎙 **She often melts butter in a pan.**
 
-**14 · Скажіть «Я часто ночую в наметі»**
+**18 · Друг питає про ваш чай. Скажіть: «Я зазвичай вичавлюю лимонний сік у чай». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-49:i14; family: context_gap_grammar -->
-I ___ camp. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `camp`.*
-- am — *Для «часто» потрібне `often`; `am` перед `camp` не ставимо.*
+I ___ squeeze lemon juice into my tea. → **usually** · does · am
+- does — *Для «зазвичай» потрібно `usually` перед `squeeze`.*
+- am — *Для «зазвичай» потрібно `usually`; `am` перед `squeeze` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-49:i15; family: listen_choose -->
-🔊 *Where is the hospital?* → **Where is the hospital?** · Where is the garage? · Where is the airport?
-- Where is the garage? — *У записі останнє слово — `hospital`, а в цьому варіанті — `garage`.*
-- Where is the airport? — *У записі останнє слово — `hospital`, а в цьому варіанті — `airport`.*
+🔊 *Where is the cafeteria?* → **Where is the cafeteria?** · Where is the library? · Where is the pharmacy?
+- Where is the library? — *У записі останнє слово — `cafeteria`, а в цьому варіанті — `library`.*
+- Where is the pharmacy? — *У записі останнє слово — `cafeteria`, а в цьому варіанті — `pharmacy`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-49:i16; family: speed_match -->
-camp — ночувати в наметі · garage — гараж · meditate — медитувати · newspaper — газета
+cafeteria — їдальня · butter — масло · squeeze — вичавлювати · melt — розтоплювати
 
-**17 · Друг запитує, чи любить Том ночівлі в наметі. Скажіть «Том часто ночує в наметі»**
+**21 · Сусід питає про вашого брата. Скажіть: «Мій брат зазвичай вичавлює лимонний сік у свій чай»**
 <!-- interaction_id: en:lesson-07:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often camps.**
-
+🎙 **My brother usually squeezes lemon juice into his tea.**

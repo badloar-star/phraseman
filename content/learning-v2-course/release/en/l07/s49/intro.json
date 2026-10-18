@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-49",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и спрашивать о месте",
-    "uk": "розповідати про звички й запитувати про місце"
+    "ru": "рассказывать, что вы обычно или часто делаете, и спрашивать «Где …?»",
+    "uk": "розповідати, що ви зазвичай або часто робите, і питати «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Палатка вместо отеля",
-        "uk": "Намет замість готелю"
+        "ru": "Чай с лимоном",
+        "uk": "Чай із лимоном"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, часто ли вы ночуете в палатке. `Camp` — «жить или ночевать в палатке». `I often camp` — «Я часто ночую в палатке». `Often` стоит перед `camp`. В таком «номере» молния обычно заменяет дверной замок.",
-        "uk": "Друг запитує, чи часто ви ночуєте в наметі. `Camp` — «жити або ночувати в наметі». `I often camp` — «Я часто ночую в наметі». `Often` стоїть перед `camp`. У такому «номері» блискавка зазвичай замінює дверний замок."
+        "ru": "Друг зашёл на чай и удивляется, что вы держите половинку лимона над кружкой и выжимаете из неё сок. squeeze — «выжимать». Скажите: I usually squeeze lemon juice into my tea — «Я обычно выжимаю лимонный сок в свой чай». Слово usually стоит перед squeeze. Into показывает, куда попадает сок: в чай.",
+        "uk": "Друг зайшов на чай і дивується, що ви тримаєте половинку лимона над чашкою й вичавлюєте з неї сік. squeeze — «вичавлювати». Скажіть: I usually squeeze lemon juice into my tea — «Я зазвичай вичавлюю лимонний сік у свій чай». Слово usually стоїть перед squeeze. Into показує, куди потрапляє сік: у чай."
       },
       "question": {
         "interactionId": "en:lesson-07:session-49:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Друг удивляется лимону в кружке. Объясните: «Я обычно выжимаю лимонный сок в свой чай».",
+          "uk": "Друг дивується лимону в чашці. Поясніть: «Я зазвичай вичавлюю лимонний сік у свій чай»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-49:intro1:r1",
-              "text": "I often camp."
+              "text": "I usually squeeze lemon juice into my tea."
             },
             {
               "responseId": "en:lesson-07:session-49:intro1:r2",
-              "text": "I often camps."
+              "text": "I usually squeezes lemon juice into my tea."
             },
             {
               "responseId": "en:lesson-07:session-49:intro1:r3",
-              "text": "I often camping."
+              "text": "I usually squeezing lemon juice into my tea."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-49:intro1:r1",
-              "text": "I often camp."
+              "text": "I usually squeeze lemon juice into my tea."
             },
             {
               "responseId": "en:lesson-07:session-49:intro1:r2",
-              "text": "I often camps."
+              "text": "I usually squeezes lemon juice into my tea."
             },
             {
               "responseId": "en:lesson-07:session-49:intro1:r3",
-              "text": "I often camping."
+              "text": "I usually squeezing lemon juice into my tea."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о своей привычке.",
-          "uk": "Розкажіть про свою звичку."
+          "ru": "Друг удивляется лимону в кружке. Объясните: «Я обычно выжимаю лимонный сок в свой чай».",
+          "uk": "Друг дивується лимону в чашці. Поясніть: «Я зазвичай вичавлюю лимонний сік у свій чай»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Медитирую дома",
-        "uk": "Медитую вдома"
+        "ru": "Завтрак у плиты",
+        "uk": "Сніданок біля плити"
       },
       "bodyByLocale": {
-        "ru": "Подруга спрашивает, где вы обычно медитируете. `I usually meditate at home` — «Я обычно медитирую дома». `Usually` стоит перед `meditate`; `at home` — «дома».",
-        "uk": "Подруга запитує, де ви зазвичай медитуєте. `I usually meditate at home` — «Я зазвичай медитую вдома». `Usually` стоїть перед `meditate`; `at home` — «вдома»."
+        "ru": "Утром сосед заглянул к вам на кухню и видит: на горячую сковороду вы кладёте кусочек масла, и оно сразу растекается. melt — «растапливать». Скажите: I often melt butter in a pan — «Я часто растапливаю масло на сковороде». Слово often стоит перед melt.",
+        "uk": "Зранку сусід заглянув до вас на кухню й бачить: на гарячу сковороду ви кладете шматочок масла, і воно одразу розтікається. melt — «розтоплювати». Скажіть: I often melt butter in a pan — «Я часто розтоплюю масло на сковороді». Слово often стоїть перед melt."
       },
       "question": {
         "interactionId": "en:lesson-07:session-49:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите, где вы обычно медитируете.",
-          "uk": "Розкажіть, де ви зазвичай медитуєте."
+          "ru": "Сосед спрашивает, как вы обычно начинаете готовить завтрак. Ответьте: «Я часто растапливаю масло на сковороде».",
+          "uk": "Сусід питає, як ви зазвичай починаєте готувати сніданок. Відповідьте: «Я часто розтоплюю масло на сковороді»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-49:intro2:r1",
-              "text": "I usually meditate at home."
+              "text": "I often melt butter in a pan."
             },
             {
               "responseId": "en:lesson-07:session-49:intro2:r2",
-              "text": "I usually meditates at home."
+              "text": "I often melts butter in a pan."
             },
             {
               "responseId": "en:lesson-07:session-49:intro2:r3",
-              "text": "I usually meditating at home."
+              "text": "I often melting butter in a pan."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-49:intro2:r1",
-              "text": "I usually meditate at home."
+              "text": "I often melt butter in a pan."
             },
             {
               "responseId": "en:lesson-07:session-49:intro2:r2",
-              "text": "I usually meditates at home."
+              "text": "I often melts butter in a pan."
             },
             {
               "responseId": "en:lesson-07:session-49:intro2:r3",
-              "text": "I usually meditating at home."
+              "text": "I often melting butter in a pan."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите, где вы обычно медитируете.",
-          "uk": "Розкажіть, де ви зазвичай медитуєте."
+          "ru": "Сосед спрашивает, как вы обычно начинаете готовить завтрак. Ответьте: «Я часто растапливаю масло на сковороде».",
+          "uk": "Сусід питає, як ви зазвичай починаєте готувати сніданок. Відповідьте: «Я часто розтоплюю масло на сковороді»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищу больницу",
-        "uk": "Шукаю лікарню"
+        "ru": "Обед на курсах",
+        "uk": "Обід на курсах"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте навестить знакомого и просите прохожего показать больницу. `Where is the hospital?` — «Где больница?» После `where` здесь идёт `is`, затем `the hospital`.",
-        "uk": "Ви йдете відвідати знайомого й просите перехожого показати лікарню. `Where is the hospital?` — «Де лікарня?» Після `where` тут іде `is`, потім `the hospital`."
+        "ru": "Вы пришли на курсы в большое здание, и вам захотелось есть. Охранник у входа готов подсказать дорогу, но коридоров много, и вы не знаете, куда идти. cafeteria — «столовая». Спросите: Where is the cafeteria? — «Где столовая?» После Where идёт is, а потом the cafeteria.",
+        "uk": "Ви прийшли на курси у велику будівлю, і вам захотілося їсти. Охоронець біля входу готовий підказати дорогу, але коридорів багато, і ви не знаєте, куди йти. cafeteria — «їдальня». Спитайте: Where is the cafeteria? — «Де їдальня?» Після Where йде is, а потім the cafeteria."
       },
       "question": {
         "interactionId": "en:lesson-07:session-49:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите прохожего, где больница.",
-          "uk": "Запитайте перехожого, де лікарня."
+          "ru": "Охранник у входа ждёт вашего вопроса. Спросите: «Где столовая?»",
+          "uk": "Охоронець біля входу чекає на ваше запитання. Спитайте: «Де їдальня?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-49:intro3:r1",
-              "text": "Where is the hospital?"
+              "text": "Where is the cafeteria?"
             },
             {
               "responseId": "en:lesson-07:session-49:intro3:r2",
-              "text": "Where are the hospital?"
+              "text": "Where are the cafeteria?"
             },
             {
               "responseId": "en:lesson-07:session-49:intro3:r3",
-              "text": "Where the hospital is?"
+              "text": "Where the cafeteria is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-49:intro3:r1",
-              "text": "Where is the hospital?"
+              "text": "Where is the cafeteria?"
             },
             {
               "responseId": "en:lesson-07:session-49:intro3:r2",
-              "text": "Where are the hospital?"
+              "text": "Where are the cafeteria?"
             },
             {
               "responseId": "en:lesson-07:session-49:intro3:r3",
-              "text": "Where the hospital is?"
+              "text": "Where the cafeteria is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите прохожего, где больница.",
-          "uk": "Запитайте перехожого, де лікарня."
+          "ru": "Охранник у входа ждёт вашего вопроса. Спросите: «Где столовая?»",
+          "uk": "Охоронець біля входу чекає на ваше запитання. Спитайте: «Де їдальня?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7fcce218e4de37fd74056e2025b6aa89ccc7dcaf2b34f7969b0424d46368e7d"
+  "introFingerprint": "fcda464a059cd6e46029ccd422c275de0fc10c451e52beafd978fdc5cc1c98e6"
 }

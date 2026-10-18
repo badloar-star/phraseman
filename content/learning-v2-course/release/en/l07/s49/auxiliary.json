@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-49:intro1:r2": {
-          "ru": "После `I` нужно `camp`, без `s`.",
-          "uk": "Після `I` потрібне `camp`, без `s`."
+          "ru": "После I нужно squeeze, без s.",
+          "uk": "Після I потрібно squeeze, без s."
         },
         "en:lesson-07:session-49:intro1:r3": {
-          "ru": "Здесь нужна форма `camp`.",
-          "uk": "Тут потрібна форма `camp`."
+          "ru": "После I usually нужна форма squeeze, без -ing.",
+          "uk": "Після I usually потрібна форма squeeze, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-49:intro2:r2": {
-          "ru": "После `I` нужно `meditate`.",
-          "uk": "Після `I` потрібне `meditate`."
+          "ru": "После I нужно melt, без s.",
+          "uk": "Після I потрібно melt, без s."
         },
         "en:lesson-07:session-49:intro2:r3": {
-          "ru": "Здесь нужна форма `meditate`.",
-          "uk": "Тут потрібна форма `meditate`."
+          "ru": "Здесь нужна форма melt.",
+          "uk": "Тут потрібна форма melt."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-49:intro3:r2": {
-          "ru": "Больница одна: нужно `is`.",
-          "uk": "Лікарня одна: потрібне `is`."
+          "ru": "Столовая одна: нужно is.",
+          "uk": "Їдальня одна: потрібно is."
         },
         "en:lesson-07:session-49:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the hospital`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the hospital`."
+          "ru": "В этом вопросе is стоит перед the cafeteria.",
+          "uk": "У цьому запитанні is стоїть перед the cafeteria."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5eeae9b273db6d58cc48a3f70d392b717989675db9d5008d2ff7bac4cb07e76a"
+  "auxiliaryFingerprint": "4b2371c01782315904e450db46c193610aee303932381755de521b5482cfb6ca"
 }

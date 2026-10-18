@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-08:session-04:word:record",
+    "correctText": "record",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-04:i01",
-    "correctText": "I can balance.",
+    "correctText": "I can record a message.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i02",
-    "correctText": "balance",
+    "correctText": "I can record a message.",
     "correctResponseId": "en:lesson-08:session-04:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i03",
-    "correctText": "balance",
+    "correctText": "record",
     "correctResponseId": "en:lesson-08:session-04:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i04",
-    "correctText": "en:lesson-08:session-04:i04:p1=balance\nen:lesson-08:session-04:i04:p2=post office\nen:lesson-08:session-04:i04:p3=receipt\nen:lesson-08:session-04:i04:p4=glasses",
+    "correctText": "en:lesson-08:session-04:i04:p1=record\nen:lesson-08:session-04:i04:p2=message\nen:lesson-08:session-04:i04:p3=shoe\nen:lesson-08:session-04:i04:p4=jeans",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-04:word:polish",
+    "correctText": "polish",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i05",
-    "correctText": "I can balance.",
+    "correctText": "She can polish shoes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i06",
-    "correctText": "She can ski.",
+    "correctText": "She can polish shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-04:word:wristwatch",
+    "correctText": "wristwatch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i07",
-    "correctText": "Whose glasses are these?",
+    "correctText": "Whose wristwatch is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i08",
-    "correctText": "ski",
+    "correctText": "can",
     "correctResponseId": "en:lesson-08:session-04:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i09",
-    "correctText": "I can balance.",
+    "correctText": "Whose wristwatch is this?",
     "correctResponseId": "en:lesson-08:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i10",
-    "correctText": "en:lesson-08:session-04:i10:p1=ski\nen:lesson-08:session-04:i10:p2=balance\nen:lesson-08:session-04:i10:p3=post office\nen:lesson-08:session-04:i10:p4=receipt",
+    "correctText": "en:lesson-08:session-04:i10:p1=record\nen:lesson-08:session-04:i10:p2=polish\nen:lesson-08:session-04:i10:p3=wristwatch\nen:lesson-08:session-04:i10:p4=jeans",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i11",
-    "correctText": "Whose glasses are these?",
+    "correctText": "Whose wristwatch is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-04:word:hike",
+    "correctText": "hike",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i12",
-    "correctText": "Whose receipt is this?",
+    "correctText": "Can you hike?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i13",
-    "correctText": "I usually ski.",
+    "correctText": "Yes, I can.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i14",
-    "correctText": "can",
+    "correctText": "hike",
     "correctResponseId": "en:lesson-08:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i15",
-    "correctText": "Where is the bank?",
+    "correctText": "Can you hike?",
     "correctResponseId": "en:lesson-08:session-04:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-04:i16",
-    "correctText": "en:lesson-08:session-04:i16:p1=balance\nen:lesson-08:session-04:i16:p2=glasses\nen:lesson-08:session-04:i16:p3=receipt\nen:lesson-08:session-04:i16:p4=ski",
+    "correctText": "en:lesson-08:session-04:i16:p1=record\nen:lesson-08:session-04:i16:p2=hike\nen:lesson-08:session-04:i16:p3=message\nen:lesson-08:session-04:i16:p4=shoe",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-04:i17",
-    "correctText": "Tom can balance.",
+    "correctText": "She can polish shoes and hike.",
     "correctResponseId": null
   }
 ]

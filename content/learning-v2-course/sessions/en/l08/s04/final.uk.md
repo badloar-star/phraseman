@@ -1,133 +1,149 @@
-# Англійська · Урок 8 · Заняття 4 — Тримаю рівновагу
+# Англійська · Урок 8 · Заняття 4 — Записую й начищаю
 
-**Ситуація.** Ви розповідаєте про вміння тримати рівновагу й кататися на лижах, потім шукаєте власника окулярів.
+**Ситуація.** Ви записуєте подрузі голосове повідомлення, ваша сестра вміє начищати туфлі, на лаві лежить чийсь годинник, а подруга кличе вас у похід.
 
-**Що ви опануєте:** закріпити can для вмінь і повторити запитання «чий?»
-**Нові слова:** balance
+**Що ви опануєте:** говорити про вміння з can, питати Can you…? і відповідати Yes, I can
+**Нові слова:** record, polish, wristwatch, hike
+**Повертаються:** message, shoe, planner, rucksack, swim, sew
 
 ---
 
 ## Інтро 1
 
-### Стою на одній нозі
+### Голос для подруги
 
-Друг пропонує постояти на одній нозі без опори. `Balance` — «тримати рівновагу». `I can balance` — «Я вмію тримати рівновагу». Після `can` потрібне `balance`, без `to` й закінчення `s`. Триматися за стілець зручно, але це вже трохи інша вправа.
+Подруга поїхала в інше місто й сумує. Вона просить надіслати голосове повідомлення, щоб почути ваш голос. record — «записувати». Ви вмикаєте запис на телефоні й відповідаєте: I can record a message — «Я можу записати повідомлення». Після can слово record йде без to.
 
-**Скажіть другові, що вмієте тримати рівновагу.**
+**Подруга просить голосове повідомлення. Скажіть їй: «Я можу записати повідомлення».**
 
-- ✅ **I can balance.**
-- ❌ I can to balance. — *Після `can` потрібне `balance`, без `to`.*
-- ❌ I can balances. — *Після `can` потрібне `balance`, без `s`.*
+- ✅ **I can record a message.**
+- ❌ I can to record a message. — *Після can слово record йде без to.*
+- ❌ I can records a message. — *Після can потрібно record, без s.*
 
 ---
 
 ## Інтро 2
 
-### Вона вміє кататися
+### Туфлі перед співбесідою
 
-Ви обговорюєте зимову поїздку. Друг запитує, чи вміє ваша знайома кататися на лижах. `She can ski` — «Вона вміє кататися на лижах». `Can` не змінюється після `she`; після нього потрібне `ski`, без закінчення `s`.
+Завтра у вас співбесіда, а туфлі вкриті пилом. Колега питає, хто може привести їх до ладу, і ви згадуєте про сестру. polish — «начищати до блиску». Вона завжди чистить взуття кремом і щіткою: She can polish shoes — «Вона вміє начищати туфлі».
 
-**Розкажіть про вміння знайомої.**
+**Колега питає про сестру. Скажіть: «Вона вміє начищати туфлі».**
 
-- ✅ **She can ski.**
-- ❌ She cans ski. — *Після `she` потрібне `can`, без `s`.*
-- ❌ She can skis. — *Після `can` потрібне `ski`, без `s`.*
+- ✅ **She can polish shoes.**
+- ❌ She cans polish shoes. — *Після she залишається can, без s.*
+- ❌ She can polishes shoes. — *Після can потрібно polish, без es.*
 
 ---
 
 ## Інтро 3
 
-### Чиї окуляри
+### Годинник на лаві
 
-На столі залишилися окуляри, і ви шукаєте їхнього власника. `Whose glasses are these?` — «Чиї це окуляри?» Спочатку `whose glasses` — «чиї окуляри», потім `are these`. З `glasses` використовуємо `are`, навіть коли це одна пара окулярів.
+Ви із сусідкою присіли на лаву в парку й помітили поруч наручний годинник. Власник, мабуть, пішов зовсім недавно. wristwatch — «наручний годинник». Ви питаєте в сусідки: Whose wristwatch is this — «Чий це годинник?». Англійське слово wristwatch — однина, тому тут is this.
 
-**Запитайте колег, чиї це окуляри.**
+**Ви знайшли годинник на лаві. Спитайте сусідку: «Чий це годинник?»**
 
-- ✅ **Whose glasses are these?**
-- ❌ Whose glasses is this? — *З `glasses` потрібне `are these`.*
-- ❌ Who glasses are these? — *Для «чиї» потрібне `whose`, а не `who`.*
+- ✅ **Whose wristwatch is this?**
+- ❌ Whose wristwatch are these? — *Wristwatch — однина: потрібно is this.*
+- ❌ Who wristwatch is this? — *Для «чий» потрібно whose.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я вмію тримати рівновагу»**
+**1 · Картка слова — record**
+<!-- interaction_id: en:lesson-08:session-04:word:record; family: word_card -->
+> **record** — записувати. I can record a message. — «Я можу записати повідомлення». Зберігати голос або відео.
+
+**2 · Подруга просить голосове повідомлення. Скажіть їй: «Я можу записати повідомлення».**
 <!-- interaction_id: en:lesson-08:session-04:i01; family: phrase_builder -->
-Плитки: `balance` `can` `I` → **I can balance.**
+Плитки: `message` `a` `record` `can` `I` → **I can record a message.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-08:session-04:i02; family: listen_choose -->
-🔊 *balance* → **balance** · ski · type
-- ski — *У записі перше слово — `balance`, а в цьому варіанті — `ski`.*
-- type — *У записі перше слово — `balance`, а в цьому варіанті — `type`.*
+🔊 *I can record a message.* → **I can record a message.** · She can record a message. · We can record a message.
+- She can record a message. — *У записі перше слово — `I`, я, а в цьому варіанті — `She`, вона.*
+- We can record a message. — *У записі перше слово — `I`, я, а в цьому варіанті — `We`, ми.*
 
-**3 · Скажіть «Я вмію тримати рівновагу»**
+**4 · Подруга просить повідомлення. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-04:i03; family: context_gap_grammar -->
-I can ___. → **balance** · to balance · balances
-- to balance — *Після `can` потрібне `balance`, без `to`.*
-- balances — *Після `can` потрібне `balance`, без `s`.*
+I can ___ a message. → **record** · records · to record
+- records — *Після `can` потрібно `record`, без `s`.*
+- to record — *Після `can` потрібно `record`, без `to`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-04:i04; family: speed_match -->
-balance — тримати рівновагу · post office — пошта · receipt — чек · glasses — окуляри
+record — записувати · message — повідомлення · shoe — туфля · jeans — джинси
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — polish**
+<!-- interaction_id: en:lesson-08:session-04:word:polish; family: word_card -->
+> **polish** — начищати до блиску. She can polish shoes. — «Вона вміє начищати туфлі». Терти до блиску.
+
+**7 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-04:i05; family: listen_build_dictation -->
-🔊 *I can balance.* Плитки: `balance` `can` `I` → **I can balance.**
+🔊 *She can polish shoes.* Плитки: `shoes` `polish` `can` `She` → **She can polish shoes.**
 
-**6 · Скажіть про знайому «Вона вміє кататися на лижах»**
+**8 · Колега питає про сестру. Скажіть: «Вона вміє начищати туфлі».**
 <!-- interaction_id: en:lesson-08:session-04:i06; family: phrase_builder -->
-Плитки: `ski` `can` `She` → **She can ski.**
+Плитки: `shoes` `polish` `can` `She` → **She can polish shoes.**
 
-**7 · Запитайте колег «Чиї це окуляри?»**
+**9 · Картка слова — wristwatch**
+<!-- interaction_id: en:lesson-08:session-04:word:wristwatch; family: word_card -->
+> **wristwatch** — наручний годинник. Whose wristwatch is this? — «Чий це годинник?». Годинник на ремінці на руці.
+
+**10 · Ви знайшли годинник на лаві. Спитайте сусідку: «Чий це годинник?»**
 <!-- interaction_id: en:lesson-08:session-04:i07; family: scripted_repeat_compare -->
-🎙 **Whose glasses are these?**
+🎙 **Whose wristwatch is this?**
 
-**8 · Скажіть «Вона вміє кататися на лижах»**
+**11 · Колега питає про сестру. Виберіть слово**
 <!-- interaction_id: en:lesson-08:session-04:i08; family: context_gap_grammar -->
-She can ___. → **ski** · skis · to ski
-- skis — *Після `can` потрібне `ski`, без `s`.*
-- to ski — *Після `can` потрібне `ski`, без `to`.*
-
-**9 · Послухайте й виберіть фразу**
-<!-- interaction_id: en:lesson-08:session-04:i09; family: listen_choose -->
-🔊 *I can balance.* → **I can balance.** · I can ski. · I can type.
-- I can ski. — *У записі останнє слово — `balance`, а в цьому варіанті — `ski`.*
-- I can type. — *У записі останнє слово — `balance`, а в цьому варіанті — `type`.*
-
-**10 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-04:i10; family: speed_match -->
-ski — кататися на лижах · balance — тримати рівновагу · post office — пошта · receipt — чек
-
-**11 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-08:session-04:i11; family: listen_build_dictation -->
-🔊 *Whose glasses are these?* Плитки: `these` `are` `glasses` `Whose` → **Whose glasses are these?**
-
-**12 · На спільному столі лежить чек. Запитайте колег «Чий це чек?»**
-<!-- interaction_id: en:lesson-08:session-04:i12; family: phrase_builder -->
-Плитки: `this` `is` `receipt` `Whose` → **Whose receipt is this?**
-
-**13 · Друг запитує про зимовий відпочинок. Скажіть «Я зазвичай катаюся на лижах»**
-<!-- interaction_id: en:lesson-08:session-04:i13; family: scripted_repeat_compare -->
-🎙 **I usually ski.**
-
-**14 · Скажіть «Вона вміє тримати рівновагу»**
-<!-- interaction_id: en:lesson-08:session-04:i14; family: context_gap_grammar -->
-She ___ balance. → **can** · cans · is can
+She ___ polish shoes. → **can** · cans · is can
 - cans — *`Can` не змінюється після `she`: закінчення `s` не потрібне.*
 - is can — *Достатньо `she can`; `is` не потрібне.*
 
-**15 · Послухайте й виберіть фразу**
+**12 · Послухайте сусідку**
+<!-- interaction_id: en:lesson-08:session-04:i09; family: listen_choose -->
+🔊 *Whose wristwatch is this?* → **Whose wristwatch is this?** · Whose planner is this? · Whose rucksack is this?
+- Whose planner is this? — *У записі друге слово — `wristwatch`, наручний годинник, а в цьому варіанті — `planner`, щоденник.*
+- Whose rucksack is this? — *У записі друге слово — `wristwatch`, наручний годинник, а в цьому варіанті — `rucksack`, наплічник.*
+
+**13 · З’єднайте слова зі значеннями**
+<!-- interaction_id: en:lesson-08:session-04:i10; family: speed_match -->
+record — записувати · polish — начищати · wristwatch — наручний годинник · jeans — джинси
+
+**14 · Послухайте сусідку й складіть фразу**
+<!-- interaction_id: en:lesson-08:session-04:i11; family: listen_build_dictation -->
+🔊 *Whose wristwatch is this?* Плитки: `this` `is` `wristwatch` `Whose` → **Whose wristwatch is this?**
+
+**15 · Картка слова — hike**
+<!-- interaction_id: en:lesson-08:session-04:word:hike; family: word_card -->
+> **hike** — ходити в похід. Can you hike? — «Ти можеш ходити в походи?». Здійснювати тривалі піші прогулянки, зазвичай за містом. На питання Can you hike? можна коротко відповісти Yes, I can — «Так, можу».
+
+**16 · Ви плануєте довгий гірський маршрут і хочете дізнатися, чи зможе подруга йти пішки. Спитайте її: «Ти можеш ходити в походи?»**
+<!-- interaction_id: en:lesson-08:session-04:i12; family: phrase_builder -->
+Плитки: `hike` `you` `Can` → **Can you hike?**
+
+**17 · Подруга питає Can you hike? — чи можете ви ходити в походи. Дайте відповідь: «Так, можу».**
+<!-- interaction_id: en:lesson-08:session-04:i13; family: scripted_repeat_compare -->
+🎙 **Yes, I can.**
+
+**18 · Ви плануєте довгий гірський маршрут і хочете дізнатися, чи зможе подруга йти пішки. Виберіть слово**
+<!-- interaction_id: en:lesson-08:session-04:i14; family: context_gap_grammar -->
+Can you ___? → **hike** · hikes · to hike
+- hikes — *Після `can` потрібно `hike`, без `s`.*
+- to hike — *Після `can` потрібно `hike`, без `to`.*
+
+**19 · Послухайте подругу**
 <!-- interaction_id: en:lesson-08:session-04:i15; family: listen_choose -->
-🔊 *Where is the bank?* → **Where is the bank?** · Where is the library? · Where is the pharmacy?
-- Where is the library? — *У записі останнє слово — `bank`, а в цьому варіанті — `library`.*
-- Where is the pharmacy? — *У записі останнє слово — `bank`, а в цьому варіанті — `pharmacy`.*
+🔊 *Can you hike?* → **Can you hike?** · Can you swim? · Can you sew?
+- Can you swim? — *У записі останнє слово — `hike`, ходити в похід, а в цьому варіанті — `swim`, плавати.*
+- Can you sew? — *У записі останнє слово — `hike`, ходити в похід, а в цьому варіанті — `sew`, шити.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-04:i16; family: speed_match -->
-balance — тримати рівновагу · glasses — окуляри · receipt — чек · ski — кататися на лижах
+record — записувати · hike — ходити в похід · message — повідомлення · shoe — туфля
 
-**17 · Том стоїть на одній нозі, не тримаючись за стілець. Скажіть другові «Том уміє тримати рівновагу»**
+**21 · Подруга питає про вашу сестру. Скажіть: «Вона може начищати туфлі й ходити в походи».**
 <!-- interaction_id: en:lesson-08:session-04:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can balance.**
-
+🎙 **She can polish shoes and hike.**

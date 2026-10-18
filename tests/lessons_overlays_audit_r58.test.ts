@@ -95,7 +95,9 @@ describe('🟡 Ревизора 3bed5434c: тупик при подавлени�
   });
   it('тост выбирается по причине замка (прогресс / уровень / порог / Plus), 9 языков в каждом', () => {
     const src = read('app/lesson_menu.tsx');
-    expect(src).toContain("const toastKind: 'premium' | 'level' | 'threshold' | 'progress'");
+    // зачем (разбор красных 18.10, typecheck 0 к сборке): замок 'premium' до тоста не доходит (ранний выход в пейвол выше), поэтому в типе тоста его больше нет; строка 'premium' в таблице тостов остаётся
+    expect(src).toContain("const toastKind: 'level' | 'threshold' | 'progress'");
+    expect(src).toContain("if (lockReason === 'premium') return;");
     const table = src.slice(src.indexOf('const LESSON_LOCK_TOAST = {'), src.indexOf('} as const;', src.indexOf('const LESSON_LOCK_TOAST = {')));
     for (const key of ['progress', 'threshold', 'level', 'premium']) expect(table).toContain(`${key}: {`);
     for (const lang of ['ru: ', 'uk: ', 'en: ', 'es: ', "'pt-BR': ", 'vi: ', 'id: ', 'tr: ', 'pl: ']) expect(table.split(lang).length - 1).toBeGreaterThanOrEqual(4);

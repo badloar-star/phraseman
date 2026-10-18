@@ -59,6 +59,7 @@ import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOff
 import { useHomeFocusCostBegin, useHomeFocusCostEnd, withHomeChildCost } from '../home_focus_cost_probe';
 import { noteBackArrived } from '../back_tap_probe';
 import { memHomeSummary, useMemHomeRegisterSources } from '../mem_home_probe';
+import { decideHomeVideoRailByInterfaceLang, logHomeVideoLang } from '../home_video_language_gate';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -952,6 +953,29 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homeV2VideoNoChannel, setHomeV2VideoNoChannel] = useState(() => (
         homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget)?.source === 'no_channel_for_target'
     ));
+    // зачем ([HOME-VIDEO-LANG] 18.10, находка Макетов: испанский интерфейс видит русские ролики): лента выбирается по языку ИЗУЧЕНИЯ, фильтра по языку интерфейса нет. Условие «лента только для интерфейсов, на языке
+    // которых есть ролики» подготовлено, но ВЫКЛЮЧЕНО (HOME_VIDEO_RAIL_LANG_FILTER_ENABLED = false, решение за владельцем): пока флаг выключен, hidden всегда false и поведение не меняется.
+    const homeVideoLang = useMemo(() => decideHomeVideoRailByInterfaceLang({ lang, videos: homeV2Videos }), [lang, homeV2Videos]);
+    useEffect(() => {
+        const buttonEnabled = isVideoButtonEnabled();
+        const shownReason = !buttonEnabled ? 'video_button_disabled'
+            : !homeVideosVisible ? 'surface_not_ready'
+            : homeV2VideoNoChannel ? 'no_channel_for_target'
+            : homeVideoLang.hidden ? homeVideoLang.reason
+            : 'shown';
+        const catalogRail = homeVideoRailUsesCatalog(studyTarget);
+        logHomeVideoLang({
+            lang,
+            studyTarget: String(studyTarget),
+            shown: shownReason === 'shown',
+            shownReason,
+            catalogRail,
+            noChannel: homeV2VideoNoChannel,
+            videoStatus: homeV2VideoStatus,
+            channelNote: catalogRail ? `catalog:${peekHomeVideoRailForTarget(studyTarget)?.channelId ?? 'none'}` : 'lingman_rss_ru_channel',
+            decision: homeVideoLang,
+        });
+    }, [homeV2VideoNoChannel, homeV2VideoStatus, homeVideoLang, homeVideosVisible, lang, studyTarget]);
     // зачем (Сверка 06:01: на холодном старте карточка урока — заглушки, превью видео — серые блоки): что было на первом
     // кадре и откуда. Один раз за запуск (флаг модуля), без setState.
     useLayoutEffect(() => {
@@ -2660,7 +2684,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             ) : null}
             <View style={{ gap: 4 }}>
               {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} reason={`${homeV2TilesReason};lang=${studyTarget}`} spireLang={String(studyTarget)} uiLang={lang} /> : null}
-              {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel ? (
+              {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel && !homeVideoLang.hidden ? (
                 <HomeV2VideoRail
                   videos={homeV2Videos}
                   status={homeV2VideoStatus}

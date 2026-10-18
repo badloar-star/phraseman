@@ -246,6 +246,7 @@ const REVIEWED_GLOBAL_LITERAL_KEYS = new Set([
   'ban_status_cached_v1',
   'chain_shield',
   'cloud_created_at_synced_v1',
+  'cloud_last_sync_snapshot_owner_v1',
   'cloud_last_sync_snapshot_v1',
   'cloud_migration_v1',
   'comeback_active',

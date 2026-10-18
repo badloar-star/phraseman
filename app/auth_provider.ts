@@ -4320,7 +4320,7 @@ async function signOutAndWipeForAccountSwitchReserved(
     signoutStage('shard_sync_done');
     // зачем (засечки Сверки 12.10: 1-я синхронизация 12 с → synced=false на рабочей сети): код отказа раньше терялся.
     const synced = await withSyncDeadline(
-      forceSyncToCloud({ onRefusal: (code) => signoutStage('force_sync_refused', { code }), logPrefix: '[SIGNOUT-SYNC]' }),
+      forceSyncToCloud({ onRefusal: (code) => signoutStage('force_sync_refused', { code }), logPrefix: '[SIGNOUT-SYNC]', skipUnchangedDocWrite: true }),
       'force_sync',
       false,
     );

@@ -135,6 +135,7 @@ import {
 import {
   canonicalJsonV1,
   hashCanonicalBody,
+  sha256Utf8,
   utf8ByteLengthV1,
 } from '../modules/learning-v2/policies/decision_registry';
 // зачем: экран «Сегодня» удалён (2026-08-03) вместе с lib/today, но ключ его
@@ -946,6 +947,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     'shards_delta_queue_v1',
     // Bookkeeping синка (новый stable_id = новая история синка)
     LAST_SYNC_SNAPSHOT_KEY,
+    LAST_SYNC_SNAPSHOT_OWNER_KEY,
     CREATED_AT_SYNC_KEY,
     STABLE_AUTH_LINK_CACHE_KEY,
     // зачем (пункт (а)): метка «этот телефон уже восстанавливался в этот аккаунт» принадлежит аккаунту —
@@ -998,6 +1000,21 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
 }
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
+/**
+ * зачем (координатор 18.10, пропуск лишней записи документа при выходе): снимок выше общий и не знает своего владельца.
+ * Рядом — sha256(uid) того, для кого он записан; пишется одним multiSet со снимком. Владелец неизвестен — пометка
+ * снимается ДО записи снимка: снимок без владельца никогда не даёт пропуска записи.
+ */
+const LAST_SYNC_SNAPSHOT_OWNER_KEY = 'cloud_last_sync_snapshot_owner_v1';
+
+async function writeLastSyncSnapshot(raw: string, ownerUid: string | null): Promise<void> {
+  if (ownerUid) {
+    await AsyncStorage.multiSet([[LAST_SYNC_SNAPSHOT_KEY, raw], [LAST_SYNC_SNAPSHOT_OWNER_KEY, sha256Utf8(ownerUid)]]);
+    return;
+  }
+  await AsyncStorage.removeItem(LAST_SYNC_SNAPSHOT_OWNER_KEY);
+  await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, raw);
+}
 
 // Device-owned ключи: принадлежат ТЕКУЩЕМУ устройству, пишутся заново при каждом
 // запуске (_layout.tsx) и исключены из restore (см. app_version/device_platform выше).
@@ -3731,7 +3748,7 @@ async function doSyncToCloud(): Promise<void> {
       else snapshotData[key] = previousSnapshot[key];
     }
     if (!isSyncGenerationCurrent()) return;
-    await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(swallowError('cloud_sync:doSyncToCloud'));
+    await writeLastSyncSnapshot(JSON.stringify(snapshotData), uid).catch(swallowError('cloud_sync:doSyncToCloud'));
     if (!isSyncGenerationCurrent()) return;
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(swallowError('cloud_sync:doSyncToCloud'));
@@ -4470,7 +4487,7 @@ async function applyRestoreFromUserDocTraced(
     if (appliedStickyState) {
       if (cloudHasVipEntitlementState) invalidatePremiumCache();
       applyMark('at:snapshot_write');
-      await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
+      await writeLastSyncSnapshot(JSON.stringify(buildRestoreSnapshot(cloudData)), null).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
       assertCurrent();
       applyMark('at:complete_true');
       return completeRestore(true);
@@ -4652,7 +4669,7 @@ async function applyRestoreFromUserDocTraced(
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   assertCurrent();
-  await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(buildRestoreSnapshot(cloudData))).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
+  await writeLastSyncSnapshot(JSON.stringify(buildRestoreSnapshot(cloudData)), null).catch(swallowError('cloud_sync:applyRestoreFromUserDoc'));
   assertCurrent();
   return completeRestore(true);
 }
@@ -5066,6 +5083,8 @@ export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}
 }
 
 export const __cloudSyncTestHooks = {
+  decideUnchangedForceDocSkip,
+  writeLastSyncSnapshot,
   maybeReseedWipedProgressAfterRestore,
   adoptAuthoritativeStableIdentity,
   classifyCloudAccessFailure,
@@ -5166,7 +5185,81 @@ export type ForceSyncOptions = Readonly<{
   onRefusal?: (code: ForceSyncRefusalCode) => void;
   /** Префикс засечек по шагам (выход передаёт '[SIGNOUT-SYNC]'); по умолчанию '[FORCE-SYNC]'. */
   logPrefix?: string;
+  /**
+   * Только выход (координатор 18.10): не писать документ, если всё отправляемое байт в байт совпадает со снимком
+   * последней синхронизации ТОГО ЖЕ владельца. Любое сомнение — запись как раньше. Решение — [SIGNOUT-SPEED].
+   */
+  skipUnchangedDocWrite?: boolean;
 }>;
+
+type UnchangedDocSkipDecision = Readonly<{
+  skip: boolean;
+  log: Readonly<Record<string, string | number | boolean | null>>;
+}>;
+
+/**
+ * зачем (координатор 18.10 02:25, «выход < 3 с»; замер 01:35 — все 751 поле совпали, запись документа 554 мс):
+ * пропуск записи только при доказанном совпадении. Условия: снимок есть и помечен sha256(uid) этого владельца, каждый
+ * отправляемый ключ есть в снимке, хеш отправляемого === хеш того же набора из снимка, корневой аватар/рамка совпадают,
+ * createdAt уже записан, списки карточек в документ не уходят и поля не обнуляются. Иначе — запись (ветка и причина в
+ * логе; хеши — 8 знаков, uid не печатаем).
+ */
+async function decideUnchangedForceDocSkip(
+  uid: string,
+  sendData: Readonly<Record<string, string | null>>,
+  rootData: Readonly<Record<string, string | null>>,
+  upload: Readonly<{ clearDocField: ReadonlySet<string>; sentToDoc: ReadonlySet<string> }>,
+  shouldSendCreatedAt: boolean,
+): Promise<UnchangedDocSkipDecision> {
+  const sendKeys = Object.keys(sendData);
+  const write = (reason: string, extra: Readonly<Record<string, string | number | boolean | null>> = {}): UnchangedDocSkipDecision => ({
+    skip: false,
+    log: { branch: 'write', reason, sendKeys: sendKeys.length, ...extra },
+  });
+  try {
+    if (shouldSendCreatedAt) return write('created_at_not_synced');
+    if (upload.clearDocField.size > 0 || upload.sentToDoc.size > 0) {
+      return write('flashcard_doc_fields_change', { clearDocField: upload.clearDocField.size, sentToDoc: upload.sentToDoc.size });
+    }
+    const [[, snapRaw], [, ownerHash]] = await AsyncStorage.multiGet([LAST_SYNC_SNAPSHOT_KEY, LAST_SYNC_SNAPSHOT_OWNER_KEY]);
+    if (!snapRaw) return write('no_snapshot');
+    if (!ownerHash) return write('snapshot_owner_unknown');
+    const uidHash = sha256Utf8(uid);
+    if (ownerHash !== uidHash) {
+      return write('snapshot_owner_mismatch', { ownerHash8: ownerHash.slice(0, 8), uidHash8: uidHash.slice(0, 8) });
+    }
+    const snapshot = JSON.parse(snapRaw) as unknown;
+    if (!snapshot || typeof snapshot !== 'object' || Array.isArray(snapshot)) return write('snapshot_unreadable');
+    const snap = snapshot as Record<string, unknown>;
+    const picked: Record<string, string | null> = {};
+    let missing = 0;
+    for (const key of sendKeys) {
+      if (!Object.prototype.hasOwnProperty.call(snap, key)) {
+        missing += 1;
+        continue;
+      }
+      const value = snap[key];
+      if (value !== null && typeof value !== 'string') return write('snapshot_value_not_string');
+      picked[key] = value;
+    }
+    if (missing > 0) return write('snapshot_missing_keys', { missing });
+    for (const rootKey of ['user_avatar', 'user_avatar_frame'] as const) {
+      const live = rootData[rootKey] ?? null;
+      if (live && snap[rootKey] !== live) return write('root_field_changed', { field: rootKey });
+    }
+    const localHash = hashCanonicalBody(sendData);
+    const snapHash = hashCanonicalBody(picked);
+    if (localHash !== snapHash) {
+      return write('content_changed', { localHash8: localHash.slice(0, 8), snapHash8: snapHash.slice(0, 8) });
+    }
+    return {
+      skip: true,
+      log: { branch: 'skip', reason: 'unchanged_same_owner', sendKeys: sendKeys.length, localHash8: localHash.slice(0, 8), snapHash8: snapHash.slice(0, 8) },
+    };
+  } catch (error) {
+    return write('decision_failed', { code: identityErrorCode(error) });
+  }
+}
 
 const FORCE_SYNC_DEFERRED_RESTORE_WAIT_MS = 5_000;
 
@@ -5355,6 +5448,23 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       pendingSync = false;
       return refuse('stale_generation');
     }
+    // зачем (координатор 18.10 02:25): при выходе документ, совпадающий со снимком того же владельца байт в байт, не
+    // переписываем — облако уже держит ровно это. updatedAt/last_active_at в этом случае не обновляются.
+    if (options.skipUnchangedDocWrite === true) {
+      const skipDecision = await decideUnchangedForceDocSkip(uid, forceData, data, flashcardUpload, shouldSendCreatedAt);
+      console.log('[SIGNOUT-SPEED]', JSON.stringify({ step: 'doc_write_decision', ...skipDecision.log })); // guard-ok: ветка и причина, без uid
+      if (skipDecision.skip) {
+        if (!isForceGenerationCurrent()) {
+          pendingSync = false;
+          return refuse('stale_generation');
+        }
+        lastSuccessfulSyncAt = Date.now();
+        pendingSync = false;
+        syncStep('doc_write_skipped', { reason: 'unchanged_same_owner' });
+        syncStep('done', { ok: true, totalMs: Date.now() - syncStartedAt });
+        return true;
+      }
+    }
     // зачем (владелец 2026-09-02): та же авария, что в doSyncToCloud, и здесь она
     // ДОРОЖЕ — это перенос прогресса при смене устройства. `set` с вложенной
     // картой заменял progress ЦЕЛИКОМ, поэтому вырезанные выше запрещённые ключи
@@ -5385,9 +5495,9 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
     pendingSync = false;
-    await AsyncStorage.setItem(
-      LAST_SYNC_SNAPSHOT_KEY,
+    await writeLastSyncSnapshot(
       JSON.stringify(buildForceSyncSnapshot(forceData, flashcardUpload)),
+      uid,
     ).catch(swallowError('cloud_sync:forceSyncToCloud'));
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(swallowError('cloud_sync:forceSyncToCloud'));

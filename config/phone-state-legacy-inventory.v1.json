@@ -501,6 +501,15 @@
       "sensitivity": "low"
     },
     {
+      "key": "cloud_last_sync_snapshot_owner_v1",
+      "domain": "cloud",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
       "key": "cloud_last_sync_snapshot_v1",
       "domain": "cloud",
       "scope": "device_only",

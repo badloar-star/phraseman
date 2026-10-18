@@ -3,6 +3,14 @@ import { HttpsError } from 'firebase-functions/v2/https';
 const REGION = 'us-central1';
 
 /**
+ * Регионы функций пути входа (authEnsureStableLink, authStampAnonOwnership, authMergeStableAccounts).
+ * зачем (владелец 18.10 «Да, перенести», разбор fc30ae94a): база в eur3, а us-central1 давал ≈ 120 мс на КАЖДОЕ обращение к
+ * базе — ~30 обращений подряд = 3,6–5,9 с на вход. europe-west1 рядом с eur3; us-central1 остаётся для старых сборок,
+ * которые зовут его по имени. Снимать US — только когда журнал запросов US покажет ноль (решение координатора).
+ */
+export const AUTH_CALLABLE_REGIONS: string[] = ['us-central1', 'europe-west1'];
+
+/**
  * ⛔️⛔️⛔️ APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА. РЕШЕНИЕ ВЛАДЕЛЬЦА 2026-08-17. ⛔️⛔️⛔️
  *
  * Дословно: «апп чек навсегда убрать из расчёта и поставить маркер для будущих

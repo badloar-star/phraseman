@@ -4,7 +4,7 @@ import { createHash, randomUUID } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
-import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { AUTH_CALLABLE_REGIONS, HOT_CALLABLE_OPTIONS } from './callable_options';
 import {
   accountStateFromSnapshots,
   assertAccountUsable,
@@ -1677,7 +1677,8 @@ export async function repointReferralOnMerge(
   return result;
 }
 
-export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+// зачем (владелец 18.10 «Да, перенести»): и в europe-west1, рядом с базой eur3; us-central1 — для старых сборок.
+export const authMergeStableAccounts = onCall({ ...HOT_CALLABLE_OPTIONS, region: AUTH_CALLABLE_REGIONS }, async (request) => {
   // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink
   // (auth_identity.ts). Только boot контейнера, без Firestore и без данных.
   if (request.data?.warmup === true) return { ok: true, warm: true };

@@ -3,7 +3,7 @@ import { restoreBanFromIdentityHash } from './banned_identity_hash';
 import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { AUTH_CALLABLE_REGIONS, HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
 import {
   ACCOUNT_ID_FIELD,
@@ -2415,6 +2415,8 @@ export const authEnsureStableLink = onCall({
   // раз в десятки минут на этом фоне не читается. Тёплым остаётся только
   // maxVoiceMint: старт звонка MAX — премиум-момент, где секунда слышна.
   minInstances: 0,
+  // зачем (владелец 18.10 «Да, перенести»): та же функция и в europe-west1, рядом с базой eur3; us-central1 — для старых сборок.
+  region: AUTH_CALLABLE_REGIONS,
 }, async (request) => {
   // зачем: прогрев с экрана входа (warmAuthSignInCallables, 2026-08-22). Ветка
   // стоит ДО auth-чека: смысл вызова — только поднять контейнер, пока юзер
@@ -2808,7 +2810,8 @@ export function requireAnonymousOwnershipStampProvider(signInProvider: unknown):
   }
 }
 
-export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+// зачем (владелец 18.10 «Да, перенести»): и в europe-west1, рядом с базой eur3; us-central1 — для старых сборок.
+export const authStampAnonOwnership = onCall({ ...HOT_CALLABLE_OPTIONS, region: AUTH_CALLABLE_REGIONS }, async (request) => {
   // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink.
   // Как и там, это намеренно unauthenticated/read-only: ветка только поднимает
   // контейнер и выходит до Firestore и любых ownership-проверок/записей.

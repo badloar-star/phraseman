@@ -29,6 +29,10 @@ ME="${PM_SESSION_ID:-${CLAUDE_SESSION_ID:-${CLAUDE_CODE_SESSION_ID:-ppid-$PPID}}
 ME="$(printf %s "$ME" | tr -c "A-Za-z0-9_-" "_")"
 
 now(){ date +%s; }
+# зачем (координатор 18.10 01:52): Моменты получили «GO слот 2/1», пока слот держала репетиция Ядра — причину не видно.
+# Сначала журнал: кто взял/отдал/у кого сняли по TTL и сколько слотов было — потом правка по факту.
+EVLOG="$DIR/slot_events.log"
+ev(){ printf '%s %s %s\n' "$(date +%H:%M:%S)" "${ME:0:8}" "$*" >> "$EVLOG" 2>/dev/null || true; }
 
 # Убираем слоты мёртвых/зависших сессий.
 reap(){
@@ -37,6 +41,7 @@ reap(){
     [ -d "$d" ] || continue
     local born; born=$(cat "$d/born" 2>/dev/null || echo 0)
     if [ $(( $(now) - born )) -gt $TTL ]; then
+      ev "reap $(basename "$d" .d) age=$(( $(now) - born ))s why=$(cat "$d/why" 2>/dev/null)"
       rm -rf "$d" && n=$((n+1))
     fi
   done
@@ -60,11 +65,13 @@ try_acquire(){
     # зачем (координатор 18.10 00:01): две сессии могли одновременно пройти проверку held() и обе создать слоты —
     # повторная проверка после mkdir; лишний захват откатываем и ждём дальше.
     if [ "$(held)" -gt "$SLOTS" ]; then
+      ev "rollback held=$(held)/$SLOTS"
       rm -rf "$DIR/slot.$ME.d"
       return 1
     fi
     now > "$DIR/slot.$ME.d/born"
     printf '%s' "$why" > "$DIR/slot.$ME.d/why"
+    ev "GO held=$(held)/$SLOTS holders=$(ls -d "$DIR"/slot.*.d 2>/dev/null | xargs -n1 basename 2>/dev/null | cut -c6-13 | tr '\n' ',') why=$why"
     echo "GO  слот $(held)/$SLOTS · $why"
     return 0
   fi
@@ -107,6 +114,7 @@ renew(){
 release(){
   if [ -d "$DIR/slot.$ME.d" ]; then
     rm -rf "$DIR/slot.$ME.d"
+    ev "release"
     echo "OK  слот отдан · занято $(held)/$SLOTS"
   else
     echo "OK  слота не было"

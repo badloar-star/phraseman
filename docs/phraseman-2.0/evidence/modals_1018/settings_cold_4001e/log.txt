@@ -1,0 +1,13 @@
+10-18 09:50:38.108 I/'[TABS-PREMOUNT] foreground', '{"idx":0,"phase":"skip","reason":"already_mounted"}'
+10-18 09:50:38.239 I/[TAB-FIRST-FRAME] activate {"idx":0,"at":1792313438238,"mounted":true,"visited":true,"physicalPageIdx":0,"mountedCount":1}
+10-18 09:50:44.208 I/'[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-18 09:50:45.167 I/'[TABS-PREMOUNT] foreground', '{"idx":4,"phase":"begin","holdMs":3000,"mounted":1}'
+10-18 09:50:45.293 I/[TABS-DEFERRED] placeholder start screen=loadSettingsScreen shouldLoad=false
+10-18 09:50:45.499 I/[TAB-FIRST-FRAME] activate {"idx":4,"at":1792313445497,"mounted":false,"visited":true,"physicalPageIdx":4,"mountedCount":1}
+10-18 09:50:45.898 I/'[TABS-PREMOUNT] deferred', '{"idx":1,"reason":"foreground_tab_mounting","stage":"quiet_wait","foregroundMounts":[4],"busyLeftMs":2269}'
+10-18 09:50:46.203 I/'[TABS-PREMOUNT] foreground', '{"idx":4,"phase":"commit","busyLeftMs":1963}'
+10-18 09:50:46.677 I/[TABS-DEFERRED] placeholder end screen=loadSettingsScreen heldMs=1375
+10-18 09:50:46.890 I/[TAB-FIRST-FRAME] settings:first_render {"idx":4,"sinceActivateMs":1393,"sinceModuleMs":11764}
+10-18 09:50:47.424 I/[TAB-FIRST-FRAME] settings:header_layout {"idx":4,"sinceActivateMs":1926}
+10-18 09:50:47.807 I/[TAB-FIRST-FRAME] settings:first_focus {"idx":4,"sinceActivateMs":2298,"sinceRenderMs":909,"sinceCommitMs":344}
+10-18 09:50:50.721 I/'[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":5996,"quietReason":"quiet","quietWaitMs":4484,"cleanTicks":4,"lastLagMs":38,"maxLagMs":971,"sinceTouchMs":4068,"idleWaitMs":116,"pre

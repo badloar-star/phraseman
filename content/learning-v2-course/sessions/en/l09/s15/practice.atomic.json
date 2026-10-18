@@ -1,0 +1,2411 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-15:word:dream",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:dream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:dream:audio",
+            "transcript": "dream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:dream:r1",
+              "targetText": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон; также «сон» как существительное. I often dream. — «Я часто вижу сны». Сейчас: I am dreaming.",
+                "uk": "бачити сон; також «сон» як іменник. I often dream. — «Я часто бачу сни». Зараз: I am dreaming."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dream",
+            "definitionByLocale": {
+              "ru": "видеть сон; также «сон» как существительное. I often dream. — «Я часто вижу сны». Сейчас: I am dreaming.",
+              "uk": "бачити сон; також «сон» як іменник. I often dream. — «Я часто бачу сни». Зараз: I am dreaming."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите, что часто видите сны",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите, что часто видите сны",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often dream.",
+          "localizedMeaning": {
+            "ru": "Расскажите, что часто видите сны",
+            "uk": "Розкажіть, що часто бачите сни"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "dream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i02:r1",
+            "text": "dream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i02:r2",
+            "text": "cream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i02:r3",
+            "text": "stream"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i02:audio",
+            "transcript": "dream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i02:r1",
+              "targetText": "dream",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r2",
+              "targetText": "cream",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r3",
+              "targetText": "stream",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит dream",
+                "uk": "У записі звучить dream"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит dream",
+                "uk": "У записі звучить dream"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для I",
+            "uk": "Виберіть форму для I"
+          },
+          "gappedTargetPhrase": "I ___ dreaming.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i04:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p2",
+              "target": "sleep",
+              "meaningByLocale": {
+                "ru": "спать",
+                "uk": "спати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p3",
+              "target": "cat",
+              "meaningByLocale": {
+                "ru": "кот",
+                "uk": "кіт"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p4",
+              "target": "cloud",
+              "meaningByLocale": {
+                "ru": "облако",
+                "uk": "хмара"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "sleep",
+            "cat",
+            "cloud"
+          ],
+          "rightColumn": [
+            "видеть сон",
+            "спать",
+            "кот",
+            "облако"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i05:audio",
+            "transcript": "I am dreaming."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am dreaming.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "dreaming"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:dragon",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dragon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:dragon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dragon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:dragon:audio",
+            "transcript": "dragon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:dragon:r1",
+              "targetText": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон. She is drawing a dragon. — «Она рисует дракона».",
+                "uk": "дракон. She is drawing a dragon. — «Вона малює дракона»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dragon",
+            "definitionByLocale": {
+              "ru": "дракон. She is drawing a dragon. — «Она рисует дракона».",
+              "uk": "дракон. She is drawing a dragon. — «Вона малює дракона»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Художница сейчас рисует дракона. Скажите об этом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Художница сейчас рисует дракона. Скажите об этом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is drawing a dragon.",
+          "localizedMeaning": {
+            "ru": "Художница сейчас рисует дракона. Скажите об этом",
+            "uk": "Ілюстраторка зараз малює дракона. Скажіть про це"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:castle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — castle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:castle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — castle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:castle:audio",
+            "transcript": "castle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:castle:r1",
+              "targetText": "castle",
+              "meaningByLocale": {
+                "ru": "замок, укреплённое здание. This is a castle. — «Это замок». Здесь не дверной замок.",
+                "uk": "замок, укріплена будівля. This is a castle. — «Це замок». Тут не дверний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "castle",
+            "definitionByLocale": {
+              "ru": "замок, укреплённое здание. This is a castle. — «Это замок». Здесь не дверной замок.",
+              "uk": "замок, укріплена будівля. This is a castle. — «Це замок». Тут не дверний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажите старинное здание с башнями: «Это замок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Покажите старинное здание с башнями: «Это замок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i07:audio",
+            "transcript": "This is a castle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a castle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после am not",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i08:r1",
+            "text": "dreaming"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i08:r2",
+            "text": "dream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i08:r3",
+            "text": "dreams"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после am not",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после am not",
+            "uk": "Виберіть форму після am not"
+          },
+          "gappedTargetPhrase": "I am not ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i08:r1",
+              "text": "dreaming"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r2",
+              "text": "dream"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r3",
+              "text": "dreams"
+            }
+          ],
+          "testedDimension": "Выберите форму после am not",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после am not",
+              "feedbackByLocale": {
+                "ru": "После am not здесь нужно dreaming.",
+                "uk": "Після am not тут потрібне dreaming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после am not",
+              "feedbackByLocale": {
+                "ru": "Здесь am not dreaming, а не am not dreams.",
+                "uk": "Тут am not dreaming, а не am not dreams."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i09:r1",
+            "text": "I am not dreaming."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i09:r2",
+            "text": "I am dreaming."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i09:r3",
+            "text": "We are not dreaming."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i09:audio",
+            "transcript": "I am not dreaming."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i09:r1",
+              "targetText": "I am not dreaming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r2",
+              "targetText": "I am dreaming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r3",
+              "targetText": "We are not dreaming.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not dreaming.",
+                "uk": "У записі звучить I am not dreaming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not dreaming.",
+                "uk": "У записі звучить I am not dreaming."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i10:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p2",
+              "target": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон",
+                "uk": "дракон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p3",
+              "target": "castle",
+              "meaningByLocale": {
+                "ru": "замок-здание",
+                "uk": "замок-будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "dragon",
+            "castle",
+            "draw"
+          ],
+          "rightColumn": [
+            "видеть сон",
+            "дракон",
+            "замок-здание",
+            "рисовать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i11:audio",
+            "transcript": "She is drawing a dragon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is drawing a dragon.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:nightmare",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nightmare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:nightmare:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nightmare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:nightmare:audio",
+            "transcript": "nightmare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:nightmare:r1",
+              "targetText": "nightmare",
+              "meaningByLocale": {
+                "ru": "кошмар, пугающий сон. This is a nightmare. — «Это кошмар». В этом занятии речь о сне, не о переносном описании трудного дня.",
+                "uk": "кошмар, страшний сон. This is a nightmare. — «Це кошмар». У цьому занятті йдеться про сон, не про переносний опис важкого дня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightmare",
+            "definitionByLocale": {
+              "ru": "кошмар, пугающий сон. This is a nightmare. — «Это кошмар». В этом занятии речь о сне, не о переносном описании трудного дня.",
+              "uk": "кошмар, страшний сон. This is a nightmare. — «Це кошмар». У цьому занятті йдеться про сон, не про переносний опис важкого дня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i12:r1",
+            "text": "nightmare"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i12:r2",
+            "text": "night"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i12:r3",
+            "text": "nightfall"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i12:audio",
+            "transcript": "nightmare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i12:r1",
+              "targetText": "nightmare",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r2",
+              "targetText": "night",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r3",
+              "targetText": "nightfall",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит nightmare",
+                "uk": "У записі звучить nightmare"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит nightmare",
+                "uk": "У записі звучить nightmare"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В истории герой понимает, что видит пугающий сон. Скажите от его лица: «Это кошмар»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "В истории герой понимает, что видит пугающий сон. Скажите от его лица: «Это кошмар»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i13:audio",
+            "transcript": "This is a nightmare."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a nightmare.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для she",
+            "uk": "Виберіть форму для she"
+          },
+          "gappedTargetPhrase": "She ___ drawing a dragon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите форму для she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i15:r1",
+            "text": "This is a castle."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i15:r2",
+            "text": "This is a dragon."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i15:r3",
+            "text": "This is a nightmare."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i15:audio",
+            "transcript": "This is a castle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i15:r1",
+              "targetText": "This is a castle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r2",
+              "targetText": "This is a dragon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r3",
+              "targetText": "This is a nightmare.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a castle.",
+                "uk": "У записі звучить This is a castle."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a castle.",
+                "uk": "У записі звучить This is a castle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i16:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p2",
+              "target": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон",
+                "uk": "дракон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p3",
+              "target": "castle",
+              "meaningByLocale": {
+                "ru": "замок-здание",
+                "uk": "замок-будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p4",
+              "target": "nightmare",
+              "meaningByLocale": {
+                "ru": "пугающий сон",
+                "uk": "страшний сон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "dragon",
+            "castle",
+            "nightmare"
+          ],
+          "rightColumn": [
+            "видеть сон",
+            "дракон",
+            "замок-здание",
+            "пугающий сон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы действительно попали на концерт любимой группы и удивлены. Скажите: «Это мне не снится»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Вы действительно попали на концерт любимой группы и удивлены. Скажите: «Это мне не снится»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i17:audio",
+            "transcript": "I am not dreaming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am not dreaming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-15:word:dream",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:dream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:dream:audio",
+            "transcript": "dream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:dream:r1",
+              "targetText": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон; также «сон» как существительное. I often dream. — «Я часто вижу сны». Сейчас: I am dreaming.",
+                "uk": "бачити сон; також «сон» як іменник. I often dream. — «Я часто бачу сни». Зараз: I am dreaming."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dream",
+            "definitionByLocale": {
+              "ru": "видеть сон; также «сон» как существительное. I often dream. — «Я часто вижу сны». Сейчас: I am dreaming.",
+              "uk": "бачити сон; також «сон» як іменник. I often dream. — «Я часто бачу сни». Зараз: I am dreaming."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть, що часто бачите сни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть, що часто бачите сни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often dream.",
+          "localizedMeaning": {
+            "ru": "Расскажите, что часто видите сны",
+            "uk": "Розкажіть, що часто бачите сни"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "dream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i02:r1",
+            "text": "dream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i02:r2",
+            "text": "cream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i02:r3",
+            "text": "stream"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i02:audio",
+            "transcript": "dream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i02:r1",
+              "targetText": "dream",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r2",
+              "targetText": "cream",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r3",
+              "targetText": "stream",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит dream",
+                "uk": "У записі звучить dream"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит dream",
+                "uk": "У записі звучить dream"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для I",
+            "uk": "Виберіть форму для I"
+          },
+          "gappedTargetPhrase": "I ___ dreaming.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для I",
+              "feedbackByLocale": {
+                "ru": "С I нужно am.",
+                "uk": "Із I потрібне am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i04:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p2",
+              "target": "sleep",
+              "meaningByLocale": {
+                "ru": "спать",
+                "uk": "спати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p3",
+              "target": "cat",
+              "meaningByLocale": {
+                "ru": "кот",
+                "uk": "кіт"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i04:p4",
+              "target": "cloud",
+              "meaningByLocale": {
+                "ru": "облако",
+                "uk": "хмара"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "sleep",
+            "cat",
+            "cloud"
+          ],
+          "rightColumn": [
+            "бачити сон",
+            "спати",
+            "кіт",
+            "хмара"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i05:audio",
+            "transcript": "I am dreaming."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am dreaming.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "dreaming"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:dragon",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dragon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:dragon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dragon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:dragon:audio",
+            "transcript": "dragon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:dragon:r1",
+              "targetText": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон. She is drawing a dragon. — «Она рисует дракона».",
+                "uk": "дракон. She is drawing a dragon. — «Вона малює дракона»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dragon",
+            "definitionByLocale": {
+              "ru": "дракон. She is drawing a dragon. — «Она рисует дракона».",
+              "uk": "дракон. She is drawing a dragon. — «Вона малює дракона»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ілюстраторка зараз малює дракона. Скажіть про це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ілюстраторка зараз малює дракона. Скажіть про це",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is drawing a dragon.",
+          "localizedMeaning": {
+            "ru": "Художница сейчас рисует дракона. Скажите об этом",
+            "uk": "Ілюстраторка зараз малює дракона. Скажіть про це"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:castle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — castle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:castle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — castle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:castle:audio",
+            "transcript": "castle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:castle:r1",
+              "targetText": "castle",
+              "meaningByLocale": {
+                "ru": "замок, укреплённое здание. This is a castle. — «Это замок». Здесь не дверной замок.",
+                "uk": "замок, укріплена будівля. This is a castle. — «Це замок». Тут не дверний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "castle",
+            "definitionByLocale": {
+              "ru": "замок, укреплённое здание. This is a castle. — «Это замок». Здесь не дверной замок.",
+              "uk": "замок, укріплена будівля. This is a castle. — «Це замок». Тут не дверний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажіть старовинну будівлю з вежами: «Це замок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Покажіть старовинну будівлю з вежами: «Це замок»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i07:audio",
+            "transcript": "This is a castle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a castle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після am not",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i08:r1",
+            "text": "dreaming"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i08:r2",
+            "text": "dream"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i08:r3",
+            "text": "dreams"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після am not",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после am not",
+            "uk": "Виберіть форму після am not"
+          },
+          "gappedTargetPhrase": "I am not ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i08:r1",
+              "text": "dreaming"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r2",
+              "text": "dream"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r3",
+              "text": "dreams"
+            }
+          ],
+          "testedDimension": "Виберіть форму після am not",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після am not",
+              "feedbackByLocale": {
+                "ru": "После am not здесь нужно dreaming.",
+                "uk": "Після am not тут потрібне dreaming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після am not",
+              "feedbackByLocale": {
+                "ru": "Здесь am not dreaming, а не am not dreams.",
+                "uk": "Тут am not dreaming, а не am not dreams."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i09:r1",
+            "text": "I am not dreaming."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i09:r2",
+            "text": "I am dreaming."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i09:r3",
+            "text": "We are not dreaming."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i09:audio",
+            "transcript": "I am not dreaming."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i09:r1",
+              "targetText": "I am not dreaming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r2",
+              "targetText": "I am dreaming.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r3",
+              "targetText": "We are not dreaming.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not dreaming.",
+                "uk": "У записі звучить I am not dreaming."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not dreaming.",
+                "uk": "У записі звучить I am not dreaming."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i10:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p2",
+              "target": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон",
+                "uk": "дракон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p3",
+              "target": "castle",
+              "meaningByLocale": {
+                "ru": "замок-здание",
+                "uk": "замок-будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i10:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "dragon",
+            "castle",
+            "draw"
+          ],
+          "rightColumn": [
+            "бачити сон",
+            "дракон",
+            "замок-будівля",
+            "малювати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i11:audio",
+            "transcript": "She is drawing a dragon."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is drawing a dragon.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "drawing",
+            "a",
+            "dragon"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:word:nightmare",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nightmare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:word:nightmare:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nightmare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:word:nightmare:audio",
+            "transcript": "nightmare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:word:nightmare:r1",
+              "targetText": "nightmare",
+              "meaningByLocale": {
+                "ru": "кошмар, пугающий сон. This is a nightmare. — «Это кошмар». В этом занятии речь о сне, не о переносном описании трудного дня.",
+                "uk": "кошмар, страшний сон. This is a nightmare. — «Це кошмар». У цьому занятті йдеться про сон, не про переносний опис важкого дня."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightmare",
+            "definitionByLocale": {
+              "ru": "кошмар, пугающий сон. This is a nightmare. — «Это кошмар». В этом занятии речь о сне, не о переносном описании трудного дня.",
+              "uk": "кошмар, страшний сон. This is a nightmare. — «Це кошмар». У цьому занятті йдеться про сон, не про переносний опис важкого дня."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i12:r1",
+            "text": "nightmare"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i12:r2",
+            "text": "night"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i12:r3",
+            "text": "nightfall"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i12:audio",
+            "transcript": "nightmare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i12:r1",
+              "targetText": "nightmare",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r2",
+              "targetText": "night",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r3",
+              "targetText": "nightfall",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит nightmare",
+                "uk": "У записі звучить nightmare"
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит nightmare",
+                "uk": "У записі звучить nightmare"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В історії герой розуміє, що бачить страшний сон. Скажіть від його імені: «Це кошмар»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "В історії герой розуміє, що бачить страшний сон. Скажіть від його імені: «Це кошмар»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i13:audio",
+            "transcript": "This is a nightmare."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is a nightmare.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для she",
+            "uk": "Виберіть форму для she"
+          },
+          "gappedTargetPhrase": "She ___ drawing a dragon.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-15:i14:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть форму для she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для she",
+              "feedbackByLocale": {
+                "ru": "С she нужно is.",
+                "uk": "Із she потрібне is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-15:i15:r1",
+            "text": "This is a castle."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i15:r2",
+            "text": "This is a dragon."
+          },
+          {
+            "responseId": "en:lesson-09:session-15:i15:r3",
+            "text": "This is a nightmare."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i15:audio",
+            "transcript": "This is a castle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-15:i15:r1",
+              "targetText": "This is a castle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r2",
+              "targetText": "This is a dragon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r3",
+              "targetText": "This is a nightmare.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a castle.",
+                "uk": "У записі звучить This is a castle."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a castle.",
+                "uk": "У записі звучить This is a castle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-15:i16:p1",
+              "target": "dream",
+              "meaningByLocale": {
+                "ru": "видеть сон",
+                "uk": "бачити сон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p2",
+              "target": "dragon",
+              "meaningByLocale": {
+                "ru": "дракон",
+                "uk": "дракон"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p3",
+              "target": "castle",
+              "meaningByLocale": {
+                "ru": "замок-здание",
+                "uk": "замок-будівля"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-15:i16:p4",
+              "target": "nightmare",
+              "meaningByLocale": {
+                "ru": "пугающий сон",
+                "uk": "страшний сон"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dream",
+            "dragon",
+            "castle",
+            "nightmare"
+          ],
+          "rightColumn": [
+            "бачити сон",
+            "дракон",
+            "замок-будівля",
+            "страшний сон"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-15:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви справді потрапили на концерт улюбленого гурту й здивовані. Скажіть: «Це мені не сниться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Ви справді потрапили на концерт улюбленого гурту й здивовані. Скажіть: «Це мені не сниться»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-15:i17:audio",
+            "transcript": "I am not dreaming."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am not dreaming.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-15:word:dream",
+      "correctText": "dream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i01",
+      "correctText": "I often dream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i02",
+      "correctText": "dream",
+      "correctResponseId": "en:lesson-09:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-09:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i05",
+      "correctText": "I am dreaming.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:word:dragon",
+      "correctText": "dragon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i06",
+      "correctText": "She is drawing a dragon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:word:castle",
+      "correctText": "castle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i07",
+      "correctText": "This is a castle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i08",
+      "correctText": "dreaming",
+      "correctResponseId": "en:lesson-09:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i09",
+      "correctText": "I am not dreaming.",
+      "correctResponseId": "en:lesson-09:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i11",
+      "correctText": "She is drawing a dragon.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:word:nightmare",
+      "correctText": "nightmare",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i12",
+      "correctText": "nightmare",
+      "correctResponseId": "en:lesson-09:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i13",
+      "correctText": "This is a nightmare.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i14",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-15:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i15",
+      "correctText": "This is a castle.",
+      "correctResponseId": "en:lesson-09:session-15:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-15:i17",
+      "correctText": "I am not dreaming.",
+      "correctResponseId": null
+    }
+  ]
+}

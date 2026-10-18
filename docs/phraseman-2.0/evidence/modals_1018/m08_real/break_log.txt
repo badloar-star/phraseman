@@ -1,0 +1,8 @@
+[MOMENT-m08] серия 5 → 0: удар «break» reducedMotion=false
+[COMBO-MOMENT] кольцо: показ «серия сброшена» (была 5) на 1600 мс
+[MOMENT-m08] слой: удар «break» (5 → 0), монета=shiver ранг=0
+[MOMENT-m08] звук обрыва пропущен: sound_v2 выключен
+[COMBO-MOMENT] слой: монета → шапка shiver+sweat #1
+[COMBO-MOMENT] кольцо: «серия сброшена» снята по таймеру
+[COMBO-MOMENT] слой: монета скрыта по таймеру 1800 мс (удар «break»)
+[COMBO-MOMENT] слой: монета → шапка скрыта

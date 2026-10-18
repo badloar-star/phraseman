@@ -1,0 +1,8 @@
+[MOMENT-m08] серия 4 → 5: удар «lightning» reducedMotion=false
+[MOMENT-m08] слой: удар «lightning» (4 → 5), монета=peek ранг=0
+[MOMENT-QUEUE] m08 занят 1800 мс (удар «lightning») — тосты урока ждут
+[MOMENT-QUEUE] медаль: ждёт конца m08 {"tier":"bronze","promoted":true,"waitMs":1792}
+[COMBO-MOMENT] слой: монета → шапка peek #1
+[COMBO-MOMENT] слой: монета скрыта по таймеру 1800 мс (удар «lightning»)
+[COMBO-MOMENT] слой: монета → шапка скрыта
+[MOMENT-QUEUE] медаль: показ после m08 {"tier":"bronze","promoted":true}

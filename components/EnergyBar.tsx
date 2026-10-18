@@ -101,7 +101,8 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
       ? (glass ? lowChargeInk(lg.bad, lg.buttonFill, lg.text) : COLORS.low)
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
-      : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : COLORS.normal);
+      // зачем (Сверка 18.10, walk/03_light_lessons.png): без капсулы фирменный #9187FF на светлом фоне давал до 2,06:1 — в светлых темах графический цвет темы (≥ 3)
+      : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : (lg.isLight ? lg.accentGraphic : COLORS.normal));
   // зачем (владелец 01.10: «иконка энергии чуть больше и без фона нигде»): только значок и число.
   const iconSize = 17;
   // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
@@ -212,7 +213,8 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
               <AnimatedEnergyNumber
                 value={current}
                 active={focused && ownerActive}
-                color={glass ? lg.text : COLORS.value}
+                // зачем (Сверка 18.10, карта курса V2 светлая): без капсулы белое число лежало прямо на светлом фоне (≈1:1) — цвет текста темы; в тёмных он белый, как было
+                color={glass ? lg.text : (lg.isLight ? lg.text : COLORS.value)}
                 style={styles.valueCompact}
               />
             </Animated.View>

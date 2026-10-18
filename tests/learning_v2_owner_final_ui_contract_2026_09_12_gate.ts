@@ -46,16 +46,21 @@ assert.match(lessons, /Урок ещё в работе/u);
 assert.match(lessons, /!learningV2Available[\s\S]{0,120}EXEMPT_COLOR_21\s*:\s*EXEMPT_COLOR_22/u);
 assert.match(lessons, /const EXEMPT_COLOR_21 = '#B5BABD';/);
 assert.match(lessons, /const EXEMPT_COLOR_22 = '#555960';/);
-assert.match(pulse, /props\.renderLessonCard/);
-assert.match(pulse, /isPulseLessonMapAvailable/);
-assert.match(pulse, /devReady/);
+// зачем (координатор 18.10): карта LearningV2PulseCourse 30.09 заменена на LearningV2ChaptersCourse (`pulse` выше — уже новый файл).
+// Живой смысл перепривязан к новой карте; проверки снятого решениями владельца удалены с причиной.
+// Удалено `props.renderLessonCard` в карте: новая карта рисует строки глав и занятий сама (эталон 1.6), свойство осталось
+// только в типе. Что «Уроки» по-прежнему передают свою карточку урока — проверяет `renderLessonCard=\{` выше.
+// Удалено `isPulseLessonMapAvailable`: новая карта не режет уроки по геометрии Pulse — доступность занятия решают материал и состояние (ниже).
+// Удалено `devReady`: отдельного «готово для разработчика» в карте нет; открытие всего — общий devUnlockAll вкладки «Уроки».
 assert.match(pulse, /isSessionMaterialAvailable/);
-assert.match(pulse, /const available = hasMaterial && \(ready \|\| devReady\)/);
-assert.match(pulse, /!hasMaterial \? 'construct-outline'/);
-assert.match(pulse, /row\.state === 'completed'[\s\S]{0,120}c\.complete/);
+// Смысл «занятие открывается, только если у него есть материал и оно достижимо» — в новой форме.
+assert.match(pulse, /const available = hasMaterial && \(row\.state === "current" \|\| row\.state === "completed"\)/);
+assert.match(pulse, /!hasMaterial \? "construct-outline"/);
+// Смысл «пройденное занятие помечено иначе» — значок «галочка» (иконки как в Диалогах, без текстур).
+assert.match(pulse, /row\.state === "completed" \? "checkmark"/);
 assert.match(pulse, /construct-outline/);
-assert.match(pulse, /learning-v2-open-legacy-lessons/);
-assert.match(pulse, /<PressableHybrid[\s\S]*?learning-v2-open-legacy-lessons/);
+// «Старые уроки — отдельной кнопочкой» (владелец 17.10): кнопка «Классический курс» в строке «Урок N».
+assert.match(pulse, /<PressableHybrid testID="learning-v2-open-classic-course"[\s\S]{0,200}onPress=\{props\.onLegacyLessons\}/);
 assert.doesNotMatch(
   pulse,
   /learning-v2-open-dialogs/,
@@ -66,13 +71,15 @@ assert.match(
   /onPress=\{openDialogs\}/,
   "removing Dialogs from the level rail must preserve the existing Dialogs feature",
 );
-assert.match(pulse, /learning-v2-pulse-map-entry/);
-assert.match(pulse, /styles\.mapHeaderTitle/);
+// Удалено `learning-v2-pulse-map-entry` и `styles.mapHeaderTitle`: анимация входа и заголовок шапки старой карты Pulse.
+// В новой карте заголовок — строка «Урок N» и название урока (эталон 1.6), без отдельной шапки карты.
 assert.match(modal, /testID="learning-v2-session-modal-close"/);
 assert.match(modal, /accessibilityLabel=\{closeLabel\}/);
 assert.match(modal, /testID="learning-v2-session-modal-kicker"/);
 assert.match(modal, /testID="learning-v2-session-skip-intro"/);
-assert.doesNotMatch(modal, /orbPlate|borderBottomWidth:\s*5/);
+// Запрет «объёмной» плашки с толстым нижним краем (текстуры сняты владельцем) остаётся. Имя orbPlate в новой шторке — плоская
+// площадка под значком занятия (тон и затемнение, без обводки), поэтому запрещаем сам приём, а не имя.
+assert.doesNotMatch(modal, /borderBottomWidth:\s*5/);
 assert.match(modal, /learning-v2-session-modal-duration/);
 assert.match(modal, /learning-v2-session-modal-words/);
 assert.match(modal, /learning-v2-session-modal-attempts/);

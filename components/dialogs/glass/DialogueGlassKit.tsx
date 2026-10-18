@@ -11,6 +11,7 @@ import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 import SkeletonBlock from '../../SkeletonShimmer';
 import { glassTone } from './glassTone';
 import { dialogueCtaPaint } from './dialogue_cta_paint';
+import { useLineScale } from '../../../hooks/useLineScale';
 import { NavIcon } from '../../v2/BackGlyph';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
@@ -166,11 +167,14 @@ export function DialogueGlassSysError({
   glass: DialogueGlass; message: string; retryLabel?: string; onRetry?: () => void;
   retryDisabled?: boolean; testID?: string;
 }>) {
+  // зачем (аудит Диалогов 18.10, шрифт 1,3): межстрочный 22 был жёстким — при крупном системном шрифте строки плашки
+  // ошибки слипались и подрезались. Растёт вместе с кеглем в том же пределе, что maxFontSizeMultiplier (1,4).
+  const lh = useLineScale();
   return (
     <View testID={testID} style={[dialogueGlassCardStyle(glass, 16), styles.sysErr]}>
       <View style={styles.sysErrRow} accessible accessibilityRole="alert" accessibilityLabel={message}>
         <Ionicons name="alert-circle-outline" size={18} color={glass.secondary} style={styles.sysErrIcon} />
-        <Text maxFontSizeMultiplier={1.4} style={[styles.sysErrText, { color: glass.secondary }]}>{message}</Text>
+        <Text maxFontSizeMultiplier={1.4} style={[styles.sysErrText, { color: glass.secondary, lineHeight: lh(22, 1.4) }]}>{message}</Text>
       </View>
       {retryLabel && onRetry ? (
         <DialogueGlassCta
@@ -230,6 +234,8 @@ export function DialogueGlassGate({
   action?: Readonly<{ label: string; onPress: () => void; disabled?: boolean }>;
   secondaryAction?: Readonly<{ label: string; onPress: () => void }>;
 }>) {
+  // зачем (аудит Диалогов 18.10, шрифт 1,3): заголовок и текст экрана-гейта («Диалоги недоступны», «Не найден») — межстрочный растёт с кеглем.
+  const lh = useLineScale();
   return (
     <View testID={testID} style={[styles.fill, { backgroundColor: glass.bg }]}>
       <SafeAreaView edges={['top', 'bottom']} style={styles.fill}>
@@ -245,9 +251,9 @@ export function DialogueGlassGate({
           <View style={[styles.gateBig, { backgroundColor: glass.opaqueControl }]}>
             <Ionicons name={icon ?? 'chatbubbles-outline'} size={38} color={glass.text} />
           </View>
-          <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.gateTitle, { color: glass.text }]}>{title}</Text>
+          <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.gateTitle, { color: glass.text, lineHeight: lh(32, 1.3) }]}>{title}</Text>
           {message ? (
-            <Text maxFontSizeMultiplier={1.4} style={[styles.gateText, { color: glass.secondary }]}>{message}</Text>
+            <Text maxFontSizeMultiplier={1.4} style={[styles.gateText, { color: glass.secondary, lineHeight: lh(22, 1.4) }]}>{message}</Text>
           ) : null}
           {action ? (
             <DialogueGlassCta glass={glass} label={action.label} onPress={action.onPress} disabled={action.disabled} style={styles.gateCta} />

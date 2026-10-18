@@ -10,7 +10,7 @@ jest.mock('../app/smooth_layout', () => ({ animateNextLayoutTransition: () => un
 // The component's native dependencies are deliberately mocked above; loading
 // after those mocks keeps this node-level catalogue contract deterministic.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const { groupDialogueV2CatalogueItemsByWorld }: typeof import('../components/dialogs/DialogueV2CatalogueSection') = require(
+const { groupDialogueV2CatalogueItemsByWorld, titleBrokeMidWord, glueRankNumber }: typeof import('../components/dialogs/DialogueV2CatalogueSection') = require(
   '../components/dialogs/DialogueV2CatalogueSection',
 );
 
@@ -95,7 +95,7 @@ describe('DialogueV2CatalogueSection', () => {
     expect(source).toContain("import { Image as RNImage, Text, View } from 'react-native';");
     expect(source).not.toContain("from 'expo-image'");
     expect(source).toContain("const NO_BREAK_SPACE = '\\u00a0';");
-    const textStart = source.indexOf('{labels.lockedAtRank(item.rankRequired)}\n');
+    const textStart = source.indexOf('{glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}\n');
     const textEnd = source.indexOf('</Text>', textStart);
     expect(textStart).toBeGreaterThan(-1);
     const inline = source.slice(textStart, textEnd);
@@ -104,5 +104,26 @@ describe('DialogueV2CatalogueSection', () => {
     expect(inline).toContain("onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}");
     // монета больше не отдельный элемент ряда рядом с текстом
     expect(source).not.toContain("<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>");
+  });
+
+  // 18.10 (Макеты 4a2237e12, dialogs-006 при 1,3): «Повседневно/е» рвалось посреди слова — тогда счётчик уходит под название (без ужатия);
+  // «ранге 1 🪙» не разрывается между словом и числом.
+  test('mid-word title break is detected and the rank number is glued to its word', () => {
+    expect(titleBrokeMidWord([{ text: 'Повседневно' }, { text: 'е' }])).toBe(true);
+    expect(titleBrokeMidWord([{ text: 'Каждый ' }, { text: 'день' }])).toBe(false);
+    expect(titleBrokeMidWord([{ text: 'Повседневное' }])).toBe(false);
+    expect(titleBrokeMidWord([{ text: 'Day-' }, { text: 'to-day' }])).toBe(false);
+    expect(glueRankNumber('Откроется на ранге 1', 1)).toBe('Откроется на ранге 1');
+    expect(glueRankNumber('Se desbloquea en el rango 12', 12)).toBe('Se desbloquea en el rango 12');
+    expect(glueRankNumber('Wird ab Rang 3 freigeschaltet', 3)).toBe('Wird ab Rang 3 freigeschaltet');
+    expect(glueRankNumber('3. rütbede açılır', 3)).toBe('3. rütbede açılır');
+    const source = fs.readFileSync(
+      path.join(__dirname, '..', 'components', 'dialogs', 'DialogueV2CatalogueSection.tsx'),
+      'utf8',
+    ).replace(/\r\n/g, '\n');
+    expect(source).toContain('{countStacked ? countNode : null}');
+    expect(source).toContain('{countStacked ? null : countNode}');
+    expect(source).toContain("fontVariant: ['tabular-nums'], flexShrink: 0");
+    expect(source).not.toContain('adjustsFontSizeToFit');
   });
 });

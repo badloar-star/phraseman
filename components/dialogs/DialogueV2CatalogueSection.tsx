@@ -22,6 +22,25 @@ import { useHubHeaderCollapseActions } from './hub_header_collapse';
 const ROW_TONE_ALPHA = 0.045;
 /** Неразрывный пробел между «…ранге N» и монетой: при переносе монета уходит на новую строку вместе с последним словом. */
 const NO_BREAK_SPACE = '\u00a0';
+
+/**
+ * \u0437\u0430\u0447\u0435\u043c (\u041c\u0430\u043a\u0435\u0442\u044b 4a2237e12, dialogs-006 \u043f\u0440\u0438 \u0448\u0440\u0438\u0444\u0442\u0435 1,3): \u00ab\u041f\u043e\u0432\u0441\u0435\u0434\u043d\u0435\u0432\u043d\u043e/\u0435\u00bb \u0440\u0432\u0430\u043b\u043e\u0441\u044c \u043f\u043e\u0441\u0440\u0435\u0434\u0438 \u0441\u043b\u043e\u0432\u0430 \u2014 \u043e\u0434\u043d\u043e \u0434\u043b\u0438\u043d\u043d\u043e\u0435 \u0441\u043b\u043e\u0432\u043e \u043d\u0435 \u043f\u043e\u043c\u0435\u0449\u0430\u043b\u043e\u0441\u044c \u0432 \u043a\u043e\u043b\u043e\u043d\u043a\u0443
+ * \u0440\u044f\u0434\u043e\u043c \u0441\u043e \u0441\u0447\u0451\u0442\u0447\u0438\u043a\u043e\u043c. \u0423\u0436\u0438\u043c\u0430\u0442\u044c \u0448\u0440\u0438\u0444\u0442 \u043d\u0435\u043b\u044c\u0437\u044f (D145, \u0437\u0430\u043f\u0440\u0435\u0442 \u0432\u043b\u0430\u0434\u0435\u043b\u044c\u0446\u0430): \u043b\u043e\u0432\u0438\u043c \u0440\u0430\u0437\u0440\u044b\u0432 \u043f\u043e\u0441\u0440\u0435\u0434\u0438 \u0441\u043b\u043e\u0432\u0430 \u043f\u043e \u0440\u0430\u0441\u043a\u043b\u0430\u0434\u043a\u0435 \u0441\u0442\u0440\u043e\u043a \u0438 \u0442\u043e\u0433\u0434\u0430 \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u0438\u043c
+ * \u00ab0 /19\u00bb \u043f\u043e\u0434 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u2014 \u043a\u043e\u043b\u043e\u043d\u043a\u0430 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0448\u0438\u0440\u0435, \u043f\u0435\u0440\u0435\u043d\u043e\u0441 \u043e\u0441\u0442\u0430\u0451\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e \u0441\u043b\u043e\u0432\u0430\u043c.
+ */
+export function titleBrokeMidWord(lines: ReadonlyArray<Readonly<{ text: string }>>): boolean {
+  for (let index = 0; index < lines.length - 1; index += 1) {
+    const current = lines[index]!.text;
+    const next = lines[index + 1]!.text;
+    if (current.length > 0 && next.length > 0 && !/\s$/.test(current) && !/^\s/.test(next) && !/[-\u2010-\u2014]$/.test(current)) return true;
+  }
+  return false;
+}
+
+/** \u00ab\u041e\u0442\u043a\u0440\u043e\u0435\u0442\u0441\u044f \u043d\u0430 \u0440\u0430\u043d\u0433\u0435 1\u00bb \u2014 \u043f\u0440\u043e\u0431\u0435\u043b \u043f\u0435\u0440\u0435\u0434 \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u0440\u0430\u043d\u0433\u0430 \u043d\u0435\u0440\u0430\u0437\u0440\u044b\u0432\u043d\u044b\u0439: \u0447\u0438\u0441\u043b\u043e \u043d\u0435 \u043e\u0442\u0440\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043e\u0442 \u0441\u043b\u043e\u0432\u0430 (\u0438 \u043c\u043e\u043d\u0435\u0442\u0430 \u0437\u0430 \u043d\u0438\u043c). */
+export function glueRankNumber(label: string, rank: number): string {
+  return label.replace(new RegExp(`\\s(${rank})(?=\\D*$)`), `${NO_BREAK_SPACE}$1`);
+}
 const TILE_TONE_ALPHA = 0.09;
 
 export type DialogueV2CatalogueRowStatus = 'available' | 'done' | 'locked';
@@ -96,6 +115,8 @@ export function DialogueV2CatalogueSection({
   // compact until the learner chooses one world; access still comes entirely
   // from the projection supplied by the caller.
   const [activeWorldId, setActiveWorldId] = useState<string | null>(null);
+  // Миры, у которых название рвалось посреди слова: счётчик у них стоит под названием (обратно не возвращаем — без мигания раскладки).
+  const [stackedCountWorldIds, setStackedCountWorldIds] = useState<ReadonlySet<string>>(() => new Set());
   // зачем (dialogs-003, координатор 13.10): шапка хаба схлопывается, пока открыта категория (образец №4). Сообщаем «открыта/закрыта» через стабильный контекст действий — состояние шапки живёт не здесь,
   // поэтому этот список от него не перерисовывается. Вне хаба (вкладка «Уроки») действий нет.
   const collapseActions = useHubHeaderCollapseActions();
@@ -117,6 +138,15 @@ export function DialogueV2CatalogueSection({
         const totalCount = worldItems.length;
         const progress = totalCount > 0 ? doneCount / totalCount : 0;
         const subtitle = labels.worldSubtitle?.(world.id) ?? null;
+        // зачем (dialogs-006, 1,3): счётчик не сжимается (flexShrink 0); если название рвалось посреди слова — он под названием.
+        const countStacked = !expanded && stackedCountWorldIds.has(world.id);
+        const countNode = (
+          // `.frac`: «пройдено» 28/700, «/всего» 16 вторичным с отступом 3.
+          <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', fontVariant: ['tabular-nums'], flexShrink: 0, marginTop: countStacked ? 4 : 0 }} maxFontSizeMultiplier={1.3}>
+            {doneCount}
+            <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '400' }}>{' '}/{totalCount}</Text>
+          </Text>
+        );
 
         return (
           <View
@@ -144,7 +174,15 @@ export function DialogueV2CatalogueSection({
                 <Ionicons name={worldIcon(world.id)} size={26} color={glass.text} />
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: glass.text, fontSize: expanded ? 20 : 19, lineHeight: expanded ? 25 : 24, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
+                <Text
+                  style={{ color: glass.text, fontSize: expanded ? 20 : 19, lineHeight: expanded ? 25 : 24, fontWeight: '700' }}
+                  maxFontSizeMultiplier={1.3}
+                  onTextLayout={(event) => {
+                    if (countStacked || !titleBrokeMidWord(event.nativeEvent.lines)) return;
+                    console.log(`[DIALOGUE-V2] catalogue:title_mid_word world=${world.id} lines=${JSON.stringify(event.nativeEvent.lines.map((line) => line.text))} → счётчик под названием`); // guard-ok: одна строка на мир, раз
+                    setStackedCountWorldIds((current) => new Set(current).add(world.id));
+                  }}
+                >
                   {world.title}
                 </Text>
                 {subtitle && !expanded ? (
@@ -153,12 +191,9 @@ export function DialogueV2CatalogueSection({
                     {subtitle}
                   </Text>
                 ) : null}
+                {countStacked ? countNode : null}
               </View>
-              {/* `.frac`: «пройдено» 28/700, «/всего» 16 вторичным с отступом 3. */}
-              <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>
-                {doneCount}
-                <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '400' }}>{' '}/{totalCount}</Text>
-              </Text>
+              {countStacked ? null : countNode}
               <Ionicons name={expanded ? 'chevron-up' : 'chevron-forward'} size={20} color={glass.secondary} />
             </PressableScale>
             {/* `.trk.dot`: дорожка 7, на ней белая точка 8 там, где «пройдено» (не заливка). */}
@@ -221,7 +256,7 @@ export function DialogueV2CatalogueSection({
                           // Это возможно только картинкой ВНУТРИ Text: inline в Text умеет только RN Image; выигрыш expo-image для 16 dp копеечный (R129).
                           // Неразрывный пробел держит монету вместе с последним словом.
                           <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }} maxFontSizeMultiplier={1.3}>
-                            {labels.lockedAtRank(item.rankRequired)}
+                            {glueRankNumber(labels.lockedAtRank(item.rankRequired), item.rankRequired)}
                             {NO_BREAK_SPACE}
                             <RNImage
                               testID={`dialogue-v2-catalogue-row-coin-${item.id}`}

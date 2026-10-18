@@ -70,6 +70,7 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import {
   communitySortLabel,
+  excludeVideoPacks,
   type CommunityPacksSort,
 } from './community_packs/communityCatalogFilter';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
@@ -122,7 +123,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
      * ключа реальной цели у записи. Посев промахивался ВСЕГДА, и тёплый кадр не
      * работал ни разу. Читаем тем же ключом, которым пишет loadHubMarket.
      */
-    () => peekPublishedCommunityMarketPacks(studyTarget) ?? [],
+    // зачем (владелец 18.10): в Сообществе только наборы людей — видео-наборы отсекаются уже в посеве из тёплого кэша.
+    () => excludeVideoPacks(peekPublishedCommunityMarketPacks(studyTarget) ?? []),
   );
   // зачем (Сверка packs-simple-001): флаг «каталог реально пришёл» — до него вместо пустого состояния рисуется скелетон. Тёплый снимок = уже загружен.
   const [communityLoaded, setCommunityLoaded] = useState<boolean>(() => (peekPublishedCommunityMarketPacks(studyTarget)?.length ?? 0) > 0);
@@ -353,10 +355,14 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         if (a.isCommunityUgc && b.isCommunityUgc) return sortCommunityMarketPacksBySocial(a, b);
         return 0;
       });
-      const nextCommFp = computeMarketFp(dedup);
+      // зачем (владелец 18.10: «в Сообществе только то, что публикуют люди»): видео-наборы живут в той же коллекции
+      // и приходили и каталогом, и как «свои» (дочитанные по id). Отсекаем на выходе — их место в «Из видео».
+      const visible = excludeVideoPacks(dedup);
+      console.log('[COMMUNITY-SOURCE]', JSON.stringify({ catalog: published.length, pendingMine: pendingAuthor.length, ownedExtras: extras.filter(Boolean).length, local: localMarket.length, videoDropped: dedup.length - visible.length, shown: visible.length })); // guard-ok: откуда лента и сколько видео отсечено
+      const nextCommFp = computeMarketFp(visible);
       if (nextCommFp !== commFpRef.current) {
         commFpRef.current = nextCommFp;
-        setCommunityPacks(dedup);
+        setCommunityPacks(visible);
       }
     } else {
       const localOnly = mergeLocalAuthorPacks([], localAuthored, studyTarget);

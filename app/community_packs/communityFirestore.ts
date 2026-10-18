@@ -504,7 +504,8 @@ async function fetchCommunityCatalogFromNetwork(
     }
     _communityCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
     writeCatalogToDisk('community', _communityCatalogCache);
-    console.log('[PACKS-CATALOG] load NETWORK', JSON.stringify({ key: cacheKey, docs: docs.length, packs: out.length }));
+    // зачем (владелец 18.10, [COMMUNITY-SOURCE]): видео-наборы лежат в той же коллекции и занимают места в limit — сколько их пришло.
+    console.log('[PACKS-CATALOG] load NETWORK', JSON.stringify({ key: cacheKey, docs: docs.length, packs: out.length, videoPacks: out.filter((pack) => !!pack.videoId).length }));
     return out;
   } catch (e) {
     // зачем: вкладка «Сообщество» тихо показывала пустой список без единой

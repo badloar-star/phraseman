@@ -39,6 +39,17 @@ export function filterVideoPacks(packs: readonly FlashcardMarketPack[]): Flashca
   return packs.filter((pack) => !!pack.videoId);
 }
 
+/**
+ * Лента Сообщества — только то, что публикуют люди: без наборов из роликов (есть `videoId`).
+ *
+ * зачем (владелец 18.10: «Наборы из видео НЕ должны отображаться в Сообществе. Там только то, что публикуют люди»):
+ * видео-наборы лежат в той же коллекции community_packs, и лента показывала их вперемешку. Общий каталог НЕ режем —
+ * из него тренировка, поиск и ссылки берут наборы, которыми человек владеет; режем только то, что видит лента и её счётчик.
+ */
+export function excludeVideoPacks(packs: readonly FlashcardMarketPack[]): FlashcardMarketPack[] {
+  return packs.filter((pack) => !pack.videoId);
+}
+
 export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
   if (sort === 'new') {
     return triLang(lang, {

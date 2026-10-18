@@ -248,7 +248,8 @@ export default function FlashcardsHubScreen() {
   );
   const communityPackCount = useMemo(() => {
     if (catalogLoadState !== 'ready') return null;
-    return catalog.filter((pack) => pack.isCommunityUgc && !isLocalAuthorPackId(pack.id)).length;
+    // зачем (владелец 18.10): «Сообщество» — только наборы людей; видео-наборы считаются в своей плитке «Из видео».
+    return catalog.filter((pack) => pack.isCommunityUgc && !isLocalAuthorPackId(pack.id) && !pack.videoId).length;
   }, [catalog, catalogLoadState]);
   const [catalogLoadRevision, setCatalogLoadRevision] = useState(0);
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);

@@ -15,6 +15,8 @@ describe('пейвол закрывается один, экран под ним
     ['/(tabs)/lessons', '/dialogue_v2_freeform'],
     ['/flashcards_collection', '/dialogue_v2_memory'],
     ['/ai_dialog_home', '/dialogue_v2_completion'],
+    ['/ai_dialog_home', '/ai_dialog_session?scenarioId=social_01'],
+    ['/(tabs)/settings', '/privacy_settings'],
     ['/(tabs)/home', '/flashcards_training_setup'],
     ['/(tabs)/home', '/lesson1?id=3'],
   ])('%s → %s → пейвол ✕ = dismiss(1), без dismissTo/replace', (opener, screen) => {
@@ -41,6 +43,19 @@ describe('пейвол закрывается один, экран под ним
     expect(r.dismissTo).not.toHaveBeenCalled();
     expect(r.replace).not.toHaveBeenCalled();
   });
+
+  it.each(['/(tabs)/settings', '/flashcards_collection', '/(tabs)/friends'])(
+    'пейвол поверх %s закрывается без ухода на home', (opener) => {
+      const nav = load();
+      nav.rememberNavigationPath(opener);
+      nav.rememberNavigationPath('/premium_modal?context=x');
+      const r = router();
+      nav.dismissPaywallModal(r as never);
+      expect(r.dismiss).toHaveBeenCalledWith(1);
+      expect(r.dismissTo).not.toHaveBeenCalled();
+      expect(r.replace).not.toHaveBeenCalled();
+    },
+  );
 
   it('пейвол поверх вкладки и холодный вход без истории идут прежней логикой', () => {
     const nav = load();

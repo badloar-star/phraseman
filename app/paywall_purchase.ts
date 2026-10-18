@@ -43,7 +43,7 @@ import {
   getNotificationPermissionStatus,
 } from './notifications';
 import { canPromiseTrialReminder } from './trial_end_reminder_schedule';
-import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
+import { dismissPaywallModal } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { DEV_IAP_BYPASS, IS_STORE_RELEASE } from './config';
 import { isStoreBillingUnavailableError, shouldUseDevPricePreview, type StoreUnavailableReason } from './paywall_billing_unavailable';
@@ -120,7 +120,7 @@ const LOAD_FIRST_ATTEMPT_MS = 8_000;
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 
 /** Откуда закрыли пейвол — для журнала [PAYWALL-CLOSE]. */
-export type PaywallCloseVia = 'x' | 'swipe' | 'scrim' | 'other';
+export type PaywallCloseVia = 'x' | 'swipe' | 'scrim' | 'back' | 'other';
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
 /**
@@ -1818,14 +1818,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       })();
       return;
     }
-    // Дневной лимит диалогов — тупиковый контекст: возвращаться в тот же
-    // ai_dialog_session нельзя, потому что он мгновенно снова откроет paywall.
-    // После осознанного закрытия ведём пользователя в корень приложения.
-    if (context === 'dialog_limit') {
-      markNextNavigationAsReplace();
-      router.replace('/(tabs)/home' as any);
-      return;
-    }
+    // Стена лимита в диалоге открывает Plus только по явному тапу. При закрытии
+    // возвращаемся к ней и сохраняем переписку вместе с прежним разделом.
     paywallCloseMark('doClose:analytics_done');
     dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
   }, [router, context, source, variant, selected, lang, impression]);

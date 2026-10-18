@@ -166,16 +166,12 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     ? { ...baseOptions, gestureEnabled: false }
     : baseOptions), [baseOptions, checkoutInFlight, prompt]);
 
-  // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): экран пейвола жив? кто обработал «назад»? кто держит слот окон?
+  // зачем: аппаратный Back должен пройти через тот же замок и dismiss(1), что ✕ и свайп.
+  // Иначе нативный pop обходит журнал закрытия и оставляет отдельную историю навигации несинхронной.
   const freezeOverlayKey = useOverlayActiveKey();
   useEffect(() => {
     console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet mount context=${ctx} source=${source}`); // guard-ok: временная трассировка
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet android_back context=${ctx} checkout=${checkoutInFlight} prompt=${!!prompt}`); // guard-ok: временная трассировка
-      return false;
-    });
     return () => {
-      sub.remove();
       console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet UNMOUNT context=${ctx}`); // guard-ok: временная трассировка
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только момент монтирования/размонтирования
@@ -185,15 +181,17 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   }, [freezeOverlayKey]);
 
   // Android «назад»: во время оплаты — игнор; на экране напоминания — как «Не сейчас».
-  const { skipTrialReminder } = p;
+  const { skipTrialReminder, handleClose } = p;
   useEffect(() => {
-    if (Platform.OS !== 'android' || (!checkoutInFlight && !prompt)) return undefined;
+    if (Platform.OS !== 'android') return undefined;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet android_back context=${ctx} checkout=${checkoutInFlight} prompt=${!!prompt}`); // guard-ok: одна строка на Back
       if (prompt) skipTrialReminder();
+      else if (!checkoutInFlight) handleClose('close', 'back');
       return true;
     });
     return () => sub.remove();
-  }, [checkoutInFlight, prompt, skipTrialReminder]);
+  }, [checkoutInFlight, prompt, skipTrialReminder, handleClose, ctx]);
 
   // зачем: въезд листа из макета (pw-in) здесь НЕ повторяем — Performance Bible и
   // paywall_navigation_smooth_contract требуют готовый контент в первом кадре модала.

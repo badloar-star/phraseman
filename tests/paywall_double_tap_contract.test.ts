@@ -42,6 +42,17 @@ test('doClose ignores a repeated tap within the close lock window', () => {
   expect(event).toBeGreaterThan(take);
 });
 
+test('closing a dialog-limit paywall keeps its underlying dialog', () => {
+  const body = bodyOf('doClose');
+  expect(body).toContain('dismissPaywallModal(router,');
+  expect(body).not.toMatch(/context === 'dialog_limit'[\s\S]*?router\.replace\('\/\(tabs\)\/home'/);
+});
+
+test('Android Back closes through the same guarded paywall path', () => {
+  const screen = fs.readFileSync(path.join(__dirname, '..', 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
+  expect(screen).toMatch(/hardwareBackPress'[\s\S]*?handleClose\('close', 'back'\)/);
+});
+
 // зачем (D187, 14.10): оффер на выходе удалён — смысл «закрытие не глотает ошибок молча» держим на нынешнем закрытии.
 test('close path is direct and logged, never silently swallowed (D187)', () => {
   expect(src).not.toContain('} catch { /* при сбое чтения');

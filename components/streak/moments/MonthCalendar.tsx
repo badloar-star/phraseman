@@ -13,6 +13,7 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useStreakColors } from './use_streak_colors';
+import { streakEmptyCellColor } from './streak_empty_cell';
 import { STREAK_PROBE, traceCalendarPaint, type CalendarPaintRefs } from './streak_calendar_probe';
 
 const CAL_CELLS = 35;
@@ -70,6 +71,8 @@ const CalCell = memo(function CalCell({ i, size, color, clock, cellRef, onLayout
 export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }: Readonly<{ lit?: number; probeRefs?: () => Pick<CalendarPaintRefs, 'column' | 'parent'> }>) {
   const p = useSpirePalette();
   const colors = useStreakColors();
+  // зачем: пустая клетка — нейтральный белый/чёрный 8 % поверх фона (эталон d30), а не opaqueControl: в светлых темах он совпадал с фоном 1,00:1, см. streak_empty_cell.ts
+  const emptyCell = streakEmptyCellColor(p.bg);
   const reduceMotion = useReducedMotion();
   const probe = STREAK_PROBE && !!probeRefs;
   const [size, setSize] = useState(0);
@@ -114,7 +117,7 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }
     if (tracedRef.current || laidOutRef.current < CAL_CELLS || !probeRefs) return;
     tracedRef.current = true;
     traceCalendarPaint(() => ({ root: rootRef.current, first: firstRef.current, thirtieth: thirtiethRef.current, ...probeRefs() }), {
-      laidOut: () => laidOutRef.current, total: CAL_CELLS, lit, cellOn: colors.accentGraphic, cellOff: p.control, reduceMotion, cellDelayMs: CELL_DELAY_MS, cellDurMs: CELL_DUR_MS,
+      laidOut: () => laidOutRef.current, total: CAL_CELLS, lit, cellOn: colors.accentGraphic, cellOff: emptyCell, reduceMotion, cellDelayMs: CELL_DELAY_MS, cellDurMs: CELL_DUR_MS,
     });
   };
 
@@ -125,7 +128,7 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30, probeRefs }
           key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
           i={i}
           size={size}
-          color={i < lit ? colors.accentGraphic : p.control}
+          color={i < lit ? colors.accentGraphic : emptyCell}
           clock={clock}
           cellRef={i === 0 ? firstRef : i === 29 ? thirtiethRef : undefined}
           onLayout={probe ? onCellLayout : undefined}

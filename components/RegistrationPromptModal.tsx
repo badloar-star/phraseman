@@ -39,6 +39,7 @@ import {
   isAppleSignInAvailable,
   isGoogleSignInAvailableSync,
   peekAppleSignInAvailability,
+  peekAppleUnavailableReason,
   peekLinkedAuthFromCurrentUser,
   AUTH_PROMPT_SHOWN_KEY,
   APPLE_ANDROID_MISSING_SERVICE_ID,
@@ -420,6 +421,10 @@ function RegistrationPromptModal({
     const applePeek = peekAppleSignInAvailability();
     if (applePeek !== null) {
       setAppleAvail(applePeek);
+      // зачем (координатор 18.10 05:45): тупиковой кнопки Apple нет — почему скрыта, видно одной строкой за показ окна.
+      if (applePeek === false) {
+        console.log(`[AUTH-MODAL] apple_hidden reason=${peekAppleUnavailableReason() ?? 'unknown'} platform=${Platform.OS}`); // guard-ok: одна строка за показ окна
+      }
     } else {
       void isAppleSignInAvailable().then((available) => {
         if (active) setAppleAvail(available);
@@ -1307,24 +1312,22 @@ function RegistrationPromptModal({
           }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
             // Конфиг сборки, а не транзиент — повтор не поможет.
+            // зачем (координатор 18.10 05:45): подробности для разработчика (переменная сборки, Apple Developer) — только в журнал;
+            // человеку — простая фраза и путь через Google. Обычно сюда не попасть: без Services ID кнопки Apple на Android нет.
+            console.warn('[AUTH-MODAL] apple_android_missing_service_id — нужен EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS/.env и return URL в Apple Developer (phraseman://apple-auth)'); // guard-ok: ранний выход пишет причину
             setRetryProvider(null);
             showInlineError(
-              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', en: 'Apple on Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
+              triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'It did not work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
               triLang(lang, {
-                ru:
-                  'Для входа через Apple на Android в сборке должен быть задан Services ID (переменная EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS / .env). В Apple Developer добавь тот же return URL, что у приложения (часто phraseman://apple-auth).',
-                uk:
-                  'Для входу через Apple на Android у збірці має бути заданий Services ID (змінна EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID у EAS / .env). У Apple Developer додай той самий return URL, що й у застосунку (часто phraseman://apple-auth).',
-                en:
-                  'Signing in with Apple on Android requires a Services ID in the build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID in EAS / .env). In Apple Developer, add the same return URL the app uses (often phraseman://apple-auth).',
-                es:
-                  'Para entrar con Apple en Android hace falta el Services ID en la build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID en EAS / .env). En Apple Developer añade el mismo return URL que usa la app (a menudo phraseman://apple-auth).',
-                'pt-BR':
-                  'Para entrar com Apple no Android, a build precisa do Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID no EAS / .env). No Apple Developer, adicione o mesmo return URL do app (geralmente phraseman://apple-auth).',
-                vi: 'Để đăng nhập bằng Apple trên Android, bản build cần Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID trong EAS / .env). Trong Apple Developer, hãy thêm cùng return URL mà ứng dụng dùng (thường là phraseman://apple-auth).',
-                id: 'Untuk masuk dengan Apple di Android, build harus memiliki Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID di EAS / .env). Di Apple Developer, tambahkan return URL yang sama dengan aplikasi (seringnya phraseman://apple-auth).',
-                tr: 'Android’da Apple ile giriş için build içinde Services ID gerekir (EAS / .env içinde EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID). Apple Developer’da uygulamanın kullandığı aynı return URL’yi ekle (çoğunlukla phraseman://apple-auth).',
-                pl: 'Aby logować się przez Apple na Androidzie, build musi mieć Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID w EAS / .env). W Apple Developer dodaj ten sam return URL co w aplikacji (często phraseman://apple-auth).',
+                ru: 'Вход через Apple на этом телефоне сейчас недоступен. Войди через Google.',
+                uk: 'Вхід через Apple на цьому телефоні зараз недоступний. Увійди через Google.',
+                en: 'Sign in with Apple isn’t available on this phone right now. Use Google instead.',
+                es: 'Ahora no puedes entrar con Apple en este teléfono. Entra con Google.',
+                'pt-BR': 'Entrar com a Apple não está disponível neste celular agora. Entre com o Google.',
+                vi: 'Hiện không thể đăng nhập bằng Apple trên điện thoại này. Hãy đăng nhập bằng Google.',
+                id: 'Masuk dengan Apple sedang tidak tersedia di ponsel ini. Masuk dengan Google saja.',
+                tr: 'Bu telefonda şu an Apple ile giriş yapılamıyor. Google ile giriş yap.',
+                pl: 'Logowanie przez Apple jest teraz niedostępne na tym telefonie. Zaloguj się przez Google.',
               }),
             );
             return;

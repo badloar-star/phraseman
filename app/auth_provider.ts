@@ -571,6 +571,18 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
  * экраны входа держат место под кнопкой Apple, пока здесь null, и не двигают
  * раскладку, когда приходит асинхронный ответ.
  */
+/**
+ * Почему Apple недоступен (для журнала окна входа). null — доступен или iOS ещё не ответил.
+ * зачем (координатор 18.10 05:45): без Services ID кнопка Apple на Android скрыта — причина должна быть видна в [AUTH-MODAL].
+ */
+export function peekAppleUnavailableReason(): 'dev_auth_none' | 'cloud_off' | 'missing_service_id' | 'ios_unavailable' | 'platform' | null {
+  if (isDevAuthNone()) return 'dev_auth_none';
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return 'cloud_off';
+  if (Platform.OS === 'ios') return iosAppleSignInAvailabilityCache === false ? 'ios_unavailable' : null;
+  if (Platform.OS === 'android') return getAppleAndroidServiceId() ? null : 'missing_service_id';
+  return 'platform';
+}
+
 export function peekAppleSignInAvailability(): boolean | null {
   if (isDevAuthNone()) return false; // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `auth=none`
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;

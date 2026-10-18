@@ -61,6 +61,7 @@ jest.mock('../app/auth_provider', () => ({
   isAppleSignInAvailable: () => mockAppleAvailability(),
   isGoogleSignInAvailableSync: () => mockGoogleAvailability(),
   peekAppleSignInAvailability: () => mockApplePeek(),
+  peekAppleUnavailableReason: () => null,
   peekLinkedAuthFromCurrentUser: () => mockPeekLinkedAuth(),
   AUTH_PROMPT_SHOWN_KEY: 'auth_prompt_shown_v1',
   APPLE_ANDROID_MISSING_SERVICE_ID: 'apple_android_missing_service_id',

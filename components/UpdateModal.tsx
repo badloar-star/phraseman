@@ -99,9 +99,9 @@ function UpdateModalBackground({ glass }: { glass: GlassTokens }) {
           и кладёт размытую копию под него — ореол у текста. На Android живой блюр выключен; тон, вуаль и кромка ниже остаются, iOS как было. */}
       {Platform.OS !== 'android' ? (
         <BlurView
-        intensity={Platform.OS === 'android' ? 12 : 20}
+        intensity={20}
         blurReductionFactor={3}
-        experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+        experimentalBlurMethod={'none'}
         tint="systemUltraThinMaterialDark"
         style={StyleSheet.absoluteFill}
       />

@@ -121,7 +121,8 @@ async function loadMyAvatarLocally(): Promise<CommunityAuthorProfile> {
       AsyncStorage.getItem(USER_AVATAR_AURA_KEY),
     ]);
     return { name: '', avatar: avatar ?? '', frame: frame ?? '', aura: aura ?? '' };
-  } catch {
+  } catch (e) {
+    console.warn(`[PACK-COMMENTS] свой аватар не прочитан → пустой: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
     return { name: '', avatar: '', frame: '', aura: '' };
   }
 }

@@ -66,7 +66,8 @@ async function ensureSocialAuth(): Promise<boolean> {
     if (auth().currentUser) return true;
     await auth().signInAnonymously();
     return !!auth().currentUser;
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialFirestore:ensureSocialAuth', `[PACK-SOCIAL] вход для соцсчётчиков не поднялся → false: ${e instanceof Error ? e.message : String(e)}`);
     return false;
   }
 }
@@ -216,7 +217,8 @@ export async function fetchCommunityPackSocialCounts(packId: string): Promise<Pa
   try {
     const snap = await packRef(packId).get();
     return readPackSocialCounts(snap?.data() as Record<string, unknown> | undefined);
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialFirestore:counts', `[PACK-SOCIAL] счётчики набора не прочитаны → нули: ${e instanceof Error ? e.message : String(e)}`);
     return { likesCount: 0, addedCount: 0 };
   }
 }
@@ -254,7 +256,8 @@ export async function fetchCommunityPackSocialState(
       counts,
       membership: { liked: !!likeSnap?.exists, added: !!addSnap?.exists },
     };
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialFirestore:state', `[PACK-SOCIAL] состояние набора не прочитано → пусто: ${e instanceof Error ? e.message : String(e)}`);
     return empty;
   }
 }
@@ -266,7 +269,8 @@ export async function fetchCommunityPackLikedByUser(packId: string, userId: stri
   try {
     const snap = await membershipRef('like', packId, userId).get();
     return !!snap?.exists;
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialFirestore:likedByUser', `[PACK-SOCIAL] свой лайк не прочитан → false: ${e instanceof Error ? e.message : String(e)}`);
     return false;
   }
 }
@@ -288,7 +292,8 @@ export async function fetchAuthorActivityLikes(authorStableId: string): Promise<
       total += readPackSocialCounts(doc.data() as Record<string, unknown>).likesCount;
     }
     return total;
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialFirestore:authorLikes', `[PACK-SOCIAL] лайки автора не прочитаны → 0: ${e instanceof Error ? e.message : String(e)}`);
     return 0;
   }
 }

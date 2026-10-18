@@ -17,7 +17,8 @@ function parseIds(raw: string | null): string[] {
   try {
     const p = JSON.parse(raw) as unknown;
     return Array.isArray(p) ? p.filter((x): x is string => typeof x === 'string') : [];
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialStorage:parseIds', `[PACK-SOCIAL] список id не разобран → пусто: ${e instanceof Error ? e.message : String(e)}`);
     return [];
   }
 }
@@ -25,7 +26,8 @@ function parseIds(raw: string | null): string[] {
 async function readIds(key: string): Promise<string[]> {
   try {
     return parseIds(await AsyncStorage.getItem(key));
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('packSocialStorage:readIds', `[PACK-SOCIAL] ${key} не прочитан → пусто: ${e instanceof Error ? e.message : String(e)}`);
     return [];
   }
 }

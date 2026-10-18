@@ -122,4 +122,22 @@ describe('friends tab gift interaction contract', () => {
     expect(pendingEffect).toMatch(/}, \[[^\]]*modalWedgeActive[^\]]*\]\);/);
   });
 
+  // 18.10 (координатор, аудит Optimistic UI Сообщества, (в)): повторный тап «Позвать», пока первый в полёте, раньше получал от
+  // nudgeFriend reason 'network' — экран показывал ложное «Нет сети» и снимал отметку. Повтор теперь глушится до любых действий.
+  it('drops a second nudge tap while the first is in flight, before touching the optimistic mark', () => {
+    const source = read('app/(tabs)/friends.tsx');
+    const handler = extract(source, 'const handleNudgeFriend = useCallback(', '}, []);');
+    const guard = handler.indexOf('if (nudgeInFlightRef.current.has(friendUid))');
+    const skipLog = handler.indexOf('[NUDGE] tap → skipped in_flight');
+    const optimistic = handler.indexOf('setOptimisticNudgedUids((current) => new Set(current).add(friendUid));');
+    const call = handler.indexOf('result = await nudgeFriend(friendUid);');
+    expect(guard).toBeGreaterThanOrEqual(0);
+    expect(skipLog).toBeGreaterThan(guard);
+    expect(optimistic).toBeGreaterThan(skipLog);
+    expect(call).toBeGreaterThan(optimistic);
+    // замок снимается при любом исходе вызова, иначе «Позвать» заклинит до перезахода
+    expect(handler).toMatch(/try \{\n\s+result = await nudgeFriend\(friendUid\);\n\s+\} finally \{\n\s+nudgeInFlightRef\.current\.delete\(friendUid\);/);
+    expect(handler).toContain('[NUDGE] tap → failed friend=${friendUid} reason=${result.reason}');
+  });
+
 });

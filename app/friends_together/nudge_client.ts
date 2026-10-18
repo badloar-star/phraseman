@@ -47,7 +47,8 @@ async function readNudgedToday(dayKey: string): Promise<NudgedTodayMap> {
       if (typeof uid === 'string' && Number.isFinite(ts)) out[uid] = Number(ts);
     }
     return out;
-  } catch {
+  } catch (e) {
+    console.warn(`[NUDGE] отметки «позвал сегодня» не прочитаны → пусто: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
     return {};
   }
 }

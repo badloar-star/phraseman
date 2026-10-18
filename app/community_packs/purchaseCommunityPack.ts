@@ -11,7 +11,8 @@ export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> 
     if (auth().currentUser) return true;
     await auth().signInAnonymously();
     return !!auth().currentUser;
-  } catch {
+  } catch (e) {
+    console.warn(`[PACK-PURCHASE] вход для вызова не поднялся → false: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
     return false;
   }
 }

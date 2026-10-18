@@ -957,11 +957,25 @@ export default function FriendsTabScreen() {
     network: { ru: 'Нет сети — попробуй ещё раз', uk: 'Немає мережі — спробуй ще раз', es: 'Sin conexión — inténtalo de nuevo', en: 'No connection — try again', ptBr: 'Sem conexão — tente novamente', vi: 'Không có mạng — thử lại nhé', id: 'Tidak ada jaringan — coba lagi', tr: 'Bağlantı yok — tekrar dene', pl: 'Brak sieci — spróbuj ponownie' },
   };
 
+  // зачем (координатор 18.10, аудит Optimistic UI Сообщества, (в)): nudgeFriend на повторный тап, пока первый в полёте, отвечает
+  // reason 'network' — экран показывал ложное «Нет сети» и снимал оптимистичную отметку, хотя первый зов ещё шёл. Повтор глушим здесь.
+  const nudgeInFlightRef = useRef<Set<string>>(new Set());
   const handleNudgeFriend = useCallback(async (friendUid: string, friendName: string) => {
+    if (nudgeInFlightRef.current.has(friendUid)) {
+      console.log(`[NUDGE] tap → skipped in_flight friend=${friendUid}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    nudgeInFlightRef.current.add(friendUid);
     setOptimisticNudgedUids((current) => new Set(current).add(friendUid));
-    const result = await nudgeFriend(friendUid);
+    let result: Awaited<ReturnType<typeof nudgeFriend>>;
+    try {
+      result = await nudgeFriend(friendUid);
+    } finally {
+      nudgeInFlightRef.current.delete(friendUid);
+    }
     setNudgedTick((n) => n + 1);
     if (!result.ok) {
+      console.warn(`[NUDGE] tap → failed friend=${friendUid} reason=${result.reason} markedToday=${isNudgedToday(friendUid)}`); // guard-ok: сбой зова, один раз на тап
       if (!isNudgedToday(friendUid)) {
         setOptimisticNudgedUids((current) => {
           const next = new Set(current);

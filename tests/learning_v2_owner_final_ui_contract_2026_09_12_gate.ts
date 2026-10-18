@@ -35,7 +35,11 @@ assert.match(energyBar, /const ENERGY_PILL_WIDTH = 60/);
 assert.doesNotMatch(energyBar, /showWhenPremium/);
 assert.match(energyBar, /if \(hasPremiumAccess\) return null/);
 assert.match(lessons, /Сразу к практике/u);
-assert.match(lessons, /skipIntro:\s*skipIntro \? "1"/);
+// зачем (1fc9ad395, 15.10): маршрут занятия собирает общий помощник learningV2SessionHrefV1 — «Сразу к практике»
+// передаёт skipIntro в него, а он кодирует параметр как "1". Проверяем суть, а не прежнюю форму записи в lessons.tsx.
+const sessionLaunch = readFileSync("app/learning_v2_session_launch_v1.ts", "utf8");
+assert.match(lessons, /learningV2SessionHrefV1\(\{[\s\S]{0,600}?\bskipIntro,/);
+assert.match(sessionLaunch, /skipIntro:\s*input\.skipIntro \? '1' : undefined/);
 assert.match(lessons, /onUnavailableLessonPress=\{/);
 assert.match(lessons, /Урок ещё в работе/u);
 assert.match(lessons, /!learningV2Available[\s\S]{0,120}"#B5BABD"\s*:\s*"#555960"/u);

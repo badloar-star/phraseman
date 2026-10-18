@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-08:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-15:intro2:r2": {
-          "ru": "После `can` нужно `sing`, без `s`.",
-          "uk": "Після `can` потрібне `sing`, без `s`."
+          "ru": "После `can` нужно `estimate`, без `s`.",
+          "uk": "Після `can` потрібне `estimate`, без `s`."
         },
         "en:lesson-08:session-15:intro2:r3": {
           "ru": "Подруга умеет: нужно `can`.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-15:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`.",
-          "uk": "Для «чий» потрібне `whose`."
+          "ru": "Для «чьи» нужно `whose`.",
+          "uk": "Для «чия» потрібне `whose`."
         },
         "en:lesson-08:session-15:intro3:r3": {
-          "ru": "Сайт один: нужно `is this`.",
-          "uk": "Сайт один: потрібне `is this`."
+          "ru": "Предмет один: нужно `is this`.",
+          "uk": "Рахівниця одна: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0b91bcd141fa2a32d3f970f37eec9bec8476c75126b9a1239fa7ad9f9a088314"
+  "auxiliaryFingerprint": "9b47d3f4f6b3d87221eb6b06d38051c9c9438e5fdf005c9deecef0a1ae585191"
 }

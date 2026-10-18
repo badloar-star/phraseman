@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-14:i01",
+      "interactionId": "en:lesson-08:session-14:word:spell",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spell",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-14:word:spell:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spell",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-14:word:spell:audio",
+          "transcript": "spell"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-14:word:spell:r1",
+            "targetText": "spell",
+            "meaningByLocale": {
+              "ru": "правильно писать слова. I can’t spell. — «Я не умею правильно писать слова». Также — называть буквы слова по порядку.",
+              "uk": "правильно писати слова. I can’t spell. — «Я не вмію правильно писати слова». Також — називати літери слова по порядку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spell",
+          "definitionByLocale": {
+            "ru": "правильно писать слова. I can’t spell. — «Я не умею правильно писать слова». Также — называть буквы слова по порядку.",
+            "uk": "правильно писати слова. I can’t spell. — «Я не вмію правильно писати слова». Також — називати літери слова по порядку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-14:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -53,7 +96,7 @@
         },
         {
           "responseId": "en:lesson-08:session-14:i02:r3",
-          "text": "whisper"
+          "text": "book"
         }
       ],
       "mediaIds": [],
@@ -81,7 +124,7 @@
           },
           {
             "responseId": "en:lesson-08:session-14:i02:r3",
-            "targetText": "whisper",
+            "targetText": "book",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `spell`, а в этом варианте — `laugh`.",
-              "uk": "У записі перше слово — `spell`, а в цьому варіанті — `laugh`."
+              "ru": "В записи spell — «правильно писать слова», а не laugh — «смеяться».",
+              "uk": "У записі spell — «правильно писати слова», а не laugh — «сміятися»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `spell`, а в этом варианте — `whisper`.",
-              "uk": "У записі перше слово — `spell`, а в цьому варіанті — `whisper`."
+              "ru": "В записи spell, а не book — «книга».",
+              "uk": "У записі spell, а не book — «книжка»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не вмію правильно писати слова»",
+      "prompt": "Виберіть форму: «Я не вмію правильно писати слова»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-14:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію правильно писати слова»",
+      "accessibilityLabel": "Виберіть форму: «Я не вмію правильно писати слова»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею правильно писать слова»",
-          "uk": "Скажіть «Я не вмію правильно писати слова»"
+          "ru": "Выберите форму: «Я не умею правильно писать слова»",
+          "uk": "Виберіть форму: «Я не вмію правильно писати слова»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "spells"
           }
         ],
-        "testedDimension": "Скажіть «Я не вмію правильно писати слова»",
+        "testedDimension": "Виберіть форму: «Я не вмію правильно писати слова»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-14:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію правильно писати слова»",
+            "testedDimension": "Виберіть форму: «Я не вмію правильно писати слова»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `spell`, без `to`.",
               "uk": "Після `can’t` потрібне `spell`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-14:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію правильно писати слова»",
+            "testedDimension": "Виберіть форму: «Я не вмію правильно писати слова»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `spell`, без `s`.",
               "uk": "Після `can’t` потрібне `spell`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,10 +247,10 @@
           },
           {
             "pairId": "en:lesson-08:session-14:i04:p2",
-            "target": "laundrette",
+            "target": "book",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "книга",
+              "uk": "книжка"
             }
           },
           {
@@ -220,24 +263,24 @@
           },
           {
             "pairId": "en:lesson-08:session-14:i04:p4",
-            "target": "server",
+            "target": "pen",
             "meaningByLocale": {
-              "ru": "сервер",
-              "uk": "сервер"
+              "ru": "ручка",
+              "uk": "ручка"
             }
           }
         ],
         "leftColumn": [
           "spell",
-          "laundrette",
+          "book",
           "laugh",
-          "server"
+          "pen"
         ],
         "rightColumn": [
           "правильно писати слова",
-          "пральня самообслуговування",
+          "книжка",
           "сміятися",
-          "сервер"
+          "ручка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-14:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-14:word:proofread",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — proofread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-14:word:proofread:audio"
+      ],
+      "accessibilityLabel": "Картка слова — proofread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-14:word:proofread:audio",
+          "transcript": "proofread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-14:word:proofread:r1",
+            "targetText": "proofread",
+            "meaningByLocale": {
+              "ru": "вычитывать текст. He can proofread. — «Он умеет вычитывать тексты». Искать опечатки и ошибки в знаках препинания.",
+              "uk": "вичитувати текст. He can proofread. — «Він уміє вичитувати тексти». Шукати друкарські помилки й помилки в розділових знаках."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "proofread",
+          "definitionByLocale": {
+            "ru": "вычитывать текст. He can proofread. — «Он умеет вычитывать тексты». Искать опечатки и ошибки в знаках препинания.",
+            "uk": "вичитувати текст. He can proofread. — «Він уміє вичитувати тексти». Шукати друкарські помилки й помилки в розділових знаках."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Він уміє шепотіти»",
+      "prompt": "Скажіть «Він уміє вичитувати текст»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він уміє шепотіти»",
+      "accessibilityLabel": "Скажіть «Він уміє вичитувати текст»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He can whisper.",
+        "targetPhrase": "He can proofread.",
         "localizedMeaning": {
-          "ru": "Скажите «Он умеет шептать»",
-          "uk": "Скажіть «Він уміє шепотіти»"
+          "ru": "Скажите «Он умеет вычитывать текст»",
+          "uk": "Скажіть «Він уміє вичитувати текст»"
         },
         "orderedTokens": [
           "He",
           "can",
-          "whisper"
+          "proofread"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-14:word:booklet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — booklet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-14:word:booklet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — booklet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-14:word:booklet:audio",
+          "transcript": "booklet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-14:word:booklet:r1",
+            "targetText": "booklet",
+            "meaningByLocale": {
+              "ru": "брошюра. Whose booklet is this? — «Чья это брошюра?» Небольшое издание из нескольких страниц.",
+              "uk": "брошура. Whose booklet is this? — «Чия це брошура?» Невелике видання з кількох сторінок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "booklet",
+          "definitionByLocale": {
+            "ru": "брошюра. Whose booklet is this? — «Чья это брошюра?» Небольшое издание из нескольких страниц.",
+            "uk": "брошура. Whose booklet is this? — «Чия це брошура?» Невелике видання з кількох сторінок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-14:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Чий це сервер?»",
+      "prompt": "Запитайте «Чия це брошура?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-14:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте «Чий це сервер?»",
+      "accessibilityLabel": "Запитайте «Чия це брошура?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-14:i07:audio",
-          "transcript": "Whose server is this?"
+          "transcript": "Whose booklet is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose server is this?",
+        "targetPhrase": "Whose booklet is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Він уміє шепотіти»",
+      "prompt": "Виберіть форму: «Він уміє вичитувати текст»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-14:i08:r1",
-          "text": "whisper"
+          "text": "proofread"
         },
         {
           "responseId": "en:lesson-08:session-14:i08:r2",
-          "text": "whispers"
+          "text": "proofreads"
         },
         {
           "responseId": "en:lesson-08:session-14:i08:r3",
-          "text": "to whisper"
+          "text": "to proofread"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він уміє шепотіти»",
+      "accessibilityLabel": "Виберіть форму: «Він уміє вичитувати текст»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он умеет шептать»",
-          "uk": "Скажіть «Він уміє шепотіти»"
+          "ru": "Выберите форму: «Он умеет вычитывать текст»",
+          "uk": "Виберіть форму: «Він уміє вичитувати текст»"
         },
         "gappedTargetPhrase": "He can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-14:i08:r1",
-            "text": "whisper"
+            "text": "proofread"
           },
           {
             "responseId": "en:lesson-08:session-14:i08:r2",
-            "text": "whispers"
+            "text": "proofreads"
           },
           {
             "responseId": "en:lesson-08:session-14:i08:r3",
-            "text": "to whisper"
+            "text": "to proofread"
           }
         ],
-        "testedDimension": "Скажіть «Він уміє шепотіти»",
+        "testedDimension": "Виберіть форму: «Він уміє вичитувати текст»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-14:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Він уміє шепотіти»",
+            "testedDimension": "Виберіть форму: «Він уміє вичитувати текст»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whisper`, без `s`.",
-              "uk": "Після `can` потрібне `whisper`, без `s`."
+              "ru": "После `can` нужно `proofread`, без `s`.",
+              "uk": "Після `can` потрібне `proofread`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-14:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Він уміє шепотіти»",
+            "testedDimension": "Виберіть форму: «Він уміє вичитувати текст»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whisper`, без `to`.",
-              "uk": "Після `can` потрібне `whisper`, без `to`."
+              "ru": "После `can` нужно `proofread`, без `to`.",
+              "uk": "Після `can` потрібне `proofread`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -440,7 +569,7 @@
         },
         {
           "responseId": "en:lesson-08:session-14:i09:r3",
-          "text": "I can’t whisper."
+          "text": "I can’t proofread."
         }
       ],
       "mediaIds": [],
@@ -468,7 +597,7 @@
           },
           {
             "responseId": "en:lesson-08:session-14:i09:r3",
-            "targetText": "I can’t whisper.",
+            "targetText": "I can’t proofread.",
             "meaningByLocale": null
           }
         ],
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `spell`, а в этом варианте — `whisper`.",
-              "uk": "У записі останнє слово — `spell`, а в цьому варіанті — `whisper`."
+              "ru": "В записи последнее слово — `spell`, а в этом варианте — `proofread`.",
+              "uk": "У записі останнє слово — `spell`, а в цьому варіанті — `proofread`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,10 +643,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-14:i10:p1",
-            "target": "whisper",
+            "target": "proofread",
             "meaningByLocale": {
-              "ru": "шептать",
-              "uk": "шепотіти"
+              "ru": "вычитывать текст",
+              "uk": "вичитувати текст"
             }
           },
           {
@@ -530,10 +659,10 @@
           },
           {
             "pairId": "en:lesson-08:session-14:i10:p3",
-            "target": "server",
+            "target": "booklet",
             "meaningByLocale": {
-              "ru": "сервер",
-              "uk": "сервер"
+              "ru": "брошюра",
+              "uk": "брошура"
             }
           },
           {
@@ -546,15 +675,15 @@
           }
         ],
         "leftColumn": [
-          "whisper",
+          "proofread",
           "spell",
-          "server",
+          "booklet",
           "laugh"
         ],
         "rightColumn": [
-          "шепотіти",
+          "вичитувати текст",
           "правильно писати слова",
-          "сервер",
+          "брошура",
           "сміятися"
         ],
         "pairingKey": "pair_id",
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-14:i11:audio",
-          "transcript": "Whose server is this?"
+          "transcript": "Whose booklet is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose server is this?",
+        "hiddenTargetPhrase": "Whose booklet is this?",
         "orderedTokens": [
           "Whose",
-          "server",
+          "booklet",
           "is",
           "this"
         ],
@@ -608,27 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-14:word:draft",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — draft",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-14:word:draft:audio"
+      ],
+      "accessibilityLabel": "Картка слова — draft",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-14:word:draft:audio",
+          "transcript": "draft"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-14:word:draft:r1",
+            "targetText": "draft",
+            "meaningByLocale": {
+              "ru": "черновик. Where is the draft? — «Где черновик?» Предварительная версия текста перед исправлениями.",
+              "uk": "чернетка. Where is the draft? — «Де чернетка?» Попередня версія тексту перед виправленнями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "draft",
+          "definitionByLocale": {
+            "ru": "черновик. Where is the draft? — «Где черновик?» Предварительная версия текста перед исправлениями.",
+            "uk": "чернетка. Where is the draft? — «Де чернетка?» Попередня версія тексту перед виправленнями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-14:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, чи вмієте ви шепотіти. Скажіть «Я вмію шепотіти»",
+      "prompt": "Редактор шукає попередній варіант статті. Запитайте «Де чернетка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, чи вмієте ви шепотіти. Скажіть «Я вмію шепотіти»",
+      "accessibilityLabel": "Редактор шукає попередній варіант статті. Запитайте «Де чернетка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can whisper.",
+        "targetPhrase": "Where is the draft?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, умеете ли вы шептать. Скажите «Я умею шептать»",
-          "uk": "Друг запитує, чи вмієте ви шепотіти. Скажіть «Я вмію шепотіти»"
+          "ru": "Редактор ищет предварительный вариант статьи. Спросите «Где черновик?»",
+          "uk": "Редактор шукає попередній варіант статті. Запитайте «Де чернетка?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "whisper"
+          "Where",
+          "is",
+          "the",
+          "draft"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чи часто ви смієтеся. Скажіть «Я часто сміюся»",
+      "prompt": "Колега запитує, чи часто ви вичитуєте тексти. Скажіть «Я часто вичитую тексти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-14:i13:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чи часто ви смієтеся. Скажіть «Я часто сміюся»",
+      "accessibilityLabel": "Колега запитує, чи часто ви вичитуєте тексти. Скажіть «Я часто вичитую тексти»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-14:i13:audio",
-          "transcript": "I often laugh."
+          "transcript": "I often proofread."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often laugh.",
+        "targetPhrase": "I often proofread.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +847,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Він не вміє правильно писати слова»",
+      "prompt": "Виберіть форму: «Він не вміє правильно писати слова»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-14:i14:r1",
@@ -695,12 +868,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він не вміє правильно писати слова»",
+      "accessibilityLabel": "Виберіть форму: «Він не вміє правильно писати слова»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он не умеет правильно писать слова»",
-          "uk": "Скажіть «Він не вміє правильно писати слова»"
+          "ru": "Выберите форму: «Он не умеет правильно писать слова»",
+          "uk": "Виберіть форму: «Він не вміє правильно писати слова»"
         },
         "gappedTargetPhrase": "He ___ spell.",
         "gapOptions": [
@@ -717,12 +890,12 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажіть «Він не вміє правильно писати слова»",
+        "testedDimension": "Виберіть форму: «Він не вміє правильно писати слова»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-14:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Він не вміє правильно писати слова»",
+            "testedDimension": "Виберіть форму: «Він не вміє правильно писати слова»",
             "feedbackByLocale": {
               "ru": "Он не умеет: нужно `can’t`.",
               "uk": "Він не вміє: потрібне `can’t`."
@@ -731,7 +904,7 @@
           {
             "responseId": "en:lesson-08:session-14:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Він не вміє правильно писати слова»",
+            "testedDimension": "Виберіть форму: «Він не вміє правильно писати слова»",
             "feedbackByLocale": {
               "ru": "Достаточно `he can’t`; `is` не нужно.",
               "uk": "Достатньо `he can’t`; `is` не потрібне."
@@ -743,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -751,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-14:i15:r1",
-          "text": "Where is the laundrette?"
+          "text": "Where is the draft?"
         },
         {
           "responseId": "en:lesson-08:session-14:i15:r2",
-          "text": "Where is the bus?"
+          "text": "Where is the booklet?"
         },
         {
           "responseId": "en:lesson-08:session-14:i15:r3",
-          "text": "Where is the tram?"
+          "text": "Where is the coat?"
         }
       ],
       "mediaIds": [],
@@ -771,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-14:i15:audio",
-          "transcript": "Where is the laundrette?"
+          "transcript": "Where is the draft?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-14:i15:r1",
-            "targetText": "Where is the laundrette?",
+            "targetText": "Where is the draft?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-14:i15:r2",
-            "targetText": "Where is the bus?",
+            "targetText": "Where is the booklet?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-14:i15:r3",
-            "targetText": "Where is the tram?",
+            "targetText": "Where is the coat?",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laundrette`, а в этом варианте — `bus`.",
-              "uk": "У записі останнє слово — `laundrette`, а в цьому варіанті — `bus`."
+              "ru": "В записи draft — «черновик», а не booklet — «брошюра».",
+              "uk": "У записі draft — «чернетка», а не booklet — «брошура»."
             }
           },
           {
@@ -807,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laundrette`, а в этом варианте — `tram`.",
-              "uk": "У записі останнє слово — `laundrette`, а в цьому варіанті — `tram`."
+              "ru": "В записи draft, а не coat — «пальто».",
+              "uk": "У записі draft, а не coat — «пальто»."
             }
           }
         ],
@@ -819,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-14:i16:p2",
-            "target": "laundrette",
+            "target": "proofread",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "вычитывать текст",
+              "uk": "вичитувати текст"
             }
           },
           {
             "pairId": "en:lesson-08:session-14:i16:p3",
-            "target": "whisper",
+            "target": "booklet",
             "meaningByLocale": {
-              "ru": "шептать",
-              "uk": "шепотіти"
+              "ru": "брошюра",
+              "uk": "брошура"
             }
           },
           {
             "pairId": "en:lesson-08:session-14:i16:p4",
-            "target": "server",
+            "target": "draft",
             "meaningByLocale": {
-              "ru": "сервер",
-              "uk": "сервер"
+              "ru": "черновик",
+              "uk": "чернетка"
             }
           }
         ],
         "leftColumn": [
           "spell",
-          "laundrette",
-          "whisper",
-          "server"
+          "proofread",
+          "booklet",
+          "draft"
         ],
         "rightColumn": [
           "правильно писати слова",
-          "пральня самообслуговування",
-          "шепотіти",
-          "сервер"
+          "вичитувати текст",
+          "брошура",
+          "чернетка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-14:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -932,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "acc287a1cc6a696c991b467b7331d341d22c6dfe494533888a963e1feda7be18"
+  "learnerFingerprint": "b12cc715e51b42d49ea91a858edb790c2e0cdb1cca7c11d10c819aa688af4006"
 }

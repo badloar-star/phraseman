@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-14:word:spell",
+    "correctText": "spell",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-14:i01",
     "correctText": "I can’t spell.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-14:i04",
-    "correctText": "en:lesson-08:session-14:i04:p1=spell\nen:lesson-08:session-14:i04:p2=laundrette\nen:lesson-08:session-14:i04:p3=laugh\nen:lesson-08:session-14:i04:p4=server",
+    "correctText": "en:lesson-08:session-14:i04:p1=spell\nen:lesson-08:session-14:i04:p2=book\nen:lesson-08:session-14:i04:p3=laugh\nen:lesson-08:session-14:i04:p4=pen",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-14:word:proofread",
+    "correctText": "proofread",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-14:i06",
-    "correctText": "He can whisper.",
+    "correctText": "He can proofread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-14:word:booklet",
+    "correctText": "booklet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-14:i07",
-    "correctText": "Whose server is this?",
+    "correctText": "Whose booklet is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-14:i08",
-    "correctText": "whisper",
+    "correctText": "proofread",
     "correctResponseId": "en:lesson-08:session-14:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-14:i10",
-    "correctText": "en:lesson-08:session-14:i10:p1=whisper\nen:lesson-08:session-14:i10:p2=spell\nen:lesson-08:session-14:i10:p3=server\nen:lesson-08:session-14:i10:p4=laugh",
+    "correctText": "en:lesson-08:session-14:i10:p1=proofread\nen:lesson-08:session-14:i10:p2=spell\nen:lesson-08:session-14:i10:p3=booklet\nen:lesson-08:session-14:i10:p4=laugh",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-14:i11",
-    "correctText": "Whose server is this?",
+    "correctText": "Whose booklet is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-14:word:draft",
+    "correctText": "draft",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-14:i12",
-    "correctText": "I can whisper.",
+    "correctText": "Where is the draft?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-14:i13",
-    "correctText": "I often laugh.",
+    "correctText": "I often proofread.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-14:i15",
-    "correctText": "Where is the laundrette?",
+    "correctText": "Where is the draft?",
     "correctResponseId": "en:lesson-08:session-14:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-14:i16",
-    "correctText": "en:lesson-08:session-14:i16:p1=spell\nen:lesson-08:session-14:i16:p2=laundrette\nen:lesson-08:session-14:i16:p3=whisper\nen:lesson-08:session-14:i16:p4=server",
+    "correctText": "en:lesson-08:session-14:i16:p1=spell\nen:lesson-08:session-14:i16:p2=proofread\nen:lesson-08:session-14:i16:p3=booklet\nen:lesson-08:session-14:i16:p4=draft",
     "correctResponseId": null
   },
   {

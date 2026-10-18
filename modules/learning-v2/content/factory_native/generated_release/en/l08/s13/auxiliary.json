@@ -23,8 +23,8 @@
           "uk": "Подруга поки не вміє: потрібне `can’t`."
         },
         "en:lesson-08:session-13:intro2:r3": {
-          "ru": "После `can’t` нужно `swim`, без `s`.",
-          "uk": "Після `can’t` потрібне `swim`, без `s`."
+          "ru": "После `can’t` нужно `sail`, без `s`.",
+          "uk": "Після `can’t` потрібне `sail`, без `s`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-13:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`.",
-          "uk": "Для «чий» потрібне `whose`."
+          "ru": "Для «чьё» нужно `whose`.",
+          "uk": "Для «чиє» потрібне `whose`."
         },
         "en:lesson-08:session-13:intro3:r3": {
-          "ru": "Экран один: нужно `is this`.",
-          "uk": "Екран один: потрібне `is this`."
+          "ru": "Весло одно: нужно `is this`.",
+          "uk": "Весло одне: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ce091ff35d3b5481dda6756fc8f241ef03b7e8e3568556d01b239a09f77daf9b"
+  "auxiliaryFingerprint": "a9f82a2d30e78935e6376ae6be0175a624eb5ac5fb71e734fe8f7de7fa236a38"
 }

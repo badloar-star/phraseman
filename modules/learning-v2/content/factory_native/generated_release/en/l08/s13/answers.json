@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-13:word:steer",
+    "correctText": "steer",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-13:i01",
     "correctText": "I can’t steer.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-13:i04",
-    "correctText": "en:lesson-08:session-13:i04:p1=steer\nen:lesson-08:session-13:i04:p2=taxi\nen:lesson-08:session-13:i04:p3=swim\nen:lesson-08:session-13:i04:p4=screen",
+    "correctText": "en:lesson-08:session-13:i04:p1=steer\nen:lesson-08:session-13:i04:p2=swim\nen:lesson-08:session-13:i04:p3=ball\nen:lesson-08:session-13:i04:p4=coat",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-13:word:sail",
+    "correctText": "sail",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-13:i06",
-    "correctText": "She can’t swim.",
+    "correctText": "She can’t sail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-13:word:oar",
+    "correctText": "oar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-13:i07",
-    "correctText": "Whose screen is this?",
+    "correctText": "Whose oar is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-13:i08",
-    "correctText": "swim",
+    "correctText": "sail",
     "correctResponseId": "en:lesson-08:session-13:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-13:i10",
-    "correctText": "en:lesson-08:session-13:i10:p1=translate\nen:lesson-08:session-13:i10:p2=steer\nen:lesson-08:session-13:i10:p3=screen\nen:lesson-08:session-13:i10:p4=swim",
+    "correctText": "en:lesson-08:session-13:i10:p1=sail\nen:lesson-08:session-13:i10:p2=steer\nen:lesson-08:session-13:i10:p3=oar\nen:lesson-08:session-13:i10:p4=swim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-13:i11",
-    "correctText": "Whose screen is this?",
+    "correctText": "Whose oar is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-13:word:buoy",
+    "correctText": "buoy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-13:i12",
-    "correctText": "I can translate.",
+    "correctText": "Where is the buoy?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-13:i13",
-    "correctText": "I often swim.",
+    "correctText": "I often sail.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-13:i15",
-    "correctText": "Where is the taxi?",
+    "correctText": "Where is the buoy?",
     "correctResponseId": "en:lesson-08:session-13:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-13:i16",
-    "correctText": "en:lesson-08:session-13:i16:p1=steer\nen:lesson-08:session-13:i16:p2=taxi\nen:lesson-08:session-13:i16:p3=translate\nen:lesson-08:session-13:i16:p4=screen",
+    "correctText": "en:lesson-08:session-13:i16:p1=steer\nen:lesson-08:session-13:i16:p2=sail\nen:lesson-08:session-13:i16:p3=oar\nen:lesson-08:session-13:i16:p4=buoy",
     "correctResponseId": null
   },
   {

@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-08:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-14:intro2:r2": {
-          "ru": "После `can` нужно `whisper`, без `s`.",
-          "uk": "Після `can` потрібне `whisper`, без `s`."
+          "ru": "После `can` нужно `proofread`, без `s`.",
+          "uk": "Після `can` потрібне `proofread`, без `s`."
         },
         "en:lesson-08:session-14:intro2:r3": {
           "ru": "Вы говорите, что он умеет: нужно `can`.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-14:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`.",
-          "uk": "Для «чий» потрібне `whose`."
+          "ru": "Для «чья» нужно `whose`.",
+          "uk": "Для «чия» потрібне `whose`."
         },
         "en:lesson-08:session-14:intro3:r3": {
-          "ru": "Сервер один: нужно `is this`.",
-          "uk": "Сервер один: потрібне `is this`."
+          "ru": "Брошюра одна: нужно `is this`.",
+          "uk": "Брошура одна: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "018e550575eb329bfcbd776c10f972b00b53c829090fe0a671c999e17e5fd95b"
+  "auxiliaryFingerprint": "52388afecfdb83b9328ccd9781ddd51dd27b91e7de1fc903e9d2de45c7ed4725"
 }

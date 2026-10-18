@@ -740,7 +740,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const renderGridSkeleton = (coverHeight: number, withBookmark = true) => Array.from({ length: 3 }).map((_, row) => (
     <View key={row} style={styles.gridSkeletonRow}>
       {[0, 1].map((col) => (
-        <View key={col} style={styles.gridSkeletonCell}>
+        <View key={col} style={withBookmark ? styles.gridSkeletonCell : [styles.gridSkeletonCell, styles.gridSkeletonCellStack]}>
           <SkeletonBlock width="100%" height={coverHeight} borderRadius={14} />
           <View style={styles.gridSkeletonTitle}>
             <SkeletonBlock width="90%" height={13} borderRadius={7} />
@@ -940,6 +940,7 @@ const styles = StyleSheet.create({
   gridSkeleton: { marginTop: 16 },
   gridSkeletonRow: { flexDirection: 'row', gap: 12, marginBottom: 20 },
   gridSkeletonCell: { flex: 1, gap: 6 },
+  gridSkeletonCellStack: { paddingTop: 10 }, // плейлист: отступ 10 под «стопку» полосок над обложкой (как stack.marginTop у карточки)
   gridSkeletonTitle: { minHeight: 34, gap: 4 }, // название на две строки: 13 + 4 + 13 = 30 → 34 как у карточки
   gridSkeletonMeta: { minHeight: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   gridSkeletonMetaPlain: { minHeight: 16 },

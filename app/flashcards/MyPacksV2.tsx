@@ -14,7 +14,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { QuietEmptyState } from '../../components/cards-grid/QuietEmptyState';
 import { PackDeck, PackDeckPlayButton } from '../../components/packs/PackRow';
-import { packDeckLevel, packDeckWords } from '../../components/packs/packDeckModel';
+import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { PackBackBare, PackRoundButton, PackScreenTitle, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
 import { communityAuthorLabel, officialPackAuthorName } from '../community_packs/packAuthorNames';
 import { formatPackTitleForDisplay } from './marketplace';
@@ -87,8 +87,8 @@ function MyPacksV2Inner(props: Props) {
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  // зачем: заглушка — высота стопки без чипов слов: 12 (стопка) + 16 + название 26 + подпись 21 + 16 (без прыжка, когда наборы пришли).
-  const skeletonH = 91;
+  // зачем: заглушка — высота стопки с рядом чипов слов: 12 (стопка) + 16 + название 26 + подпись 21 + 16 + 14 + чипы 38 (без прыжка, когда наборы пришли).
+  const skeletonH = packDeckSkeletonHeight(); // 143 с рядом чипов слов; было 91 без них — скачок ~52 dp на строку (координатор 18.10)
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [actionsFor, setActionsFor] = useState<FlashcardMarketPack | null>(null);

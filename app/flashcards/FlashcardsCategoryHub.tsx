@@ -86,7 +86,7 @@ import { useCommunityAuthor } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
 import { PackDeck, PackDeckLikes, packCardsWord, type PackRowEmphasis } from '../../components/packs/PackRow';
-import { packDeckLevel, packDeckWords } from '../../components/packs/packDeckModel';
+import { packDeckLevel, packDeckSkeletonHeight, packDeckWords } from '../../components/packs/packDeckModel';
 import { useLang } from '../../components/LangContext';
 import { KitTouchable } from '../../components/KitTouchable';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
@@ -383,8 +383,8 @@ export default function FlashcardsCategoryHub({
   const menuStyles = useScaledTextStyles(baseMenuStyles);
   // зачем: подписи строки («карточек», «Добавить себе») — на языке интерфейса (9 языков), а не на суженном языке каталога.
   const { lang: uiLang } = useLang();
-  // зачем: заглушка той же высоты, что стопка без чипов слов (12 стопка + 16 + название 26 + подпись 21 + 16) — без прыжка
-  const skeletonRowH = 91;
+  // зачем: заглушка той же высоты, что стопка с рядом чипов слов (12 + 16 + название 26 + подпись 21 + 16 + 14 + чипы 38) — без прыжка
+  const skeletonRowH = packDeckSkeletonHeight(); // 143 с рядом чипов слов; было 91 без них — скачок ~52 dp на строку (координатор 18.10)
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.

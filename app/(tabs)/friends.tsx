@@ -784,17 +784,12 @@ function AddFriendModal({
 
             {/* Скелетон-shimmer на время поиска (opacity loop, UI-анимация). */}
             {isSearching && !foundUser && (
-              <View testID="friends-search-skeleton" style={{ gap: 10 }}>
-                {[0, 1].map((row) => (
-                  <PulseOn key={row} active>
-                    <View style={{
-                      height: row === 0 ? 64 : 18,
-                      borderRadius: 14,
-                      backgroundColor: glass.opaqueControl,
-                      width: row === 0 ? '100%' : '60%',
-                    }} />
-                  </PulseOn>
-                ))}
+              // зачем (координатор 18.10, «первый кадр = геометрия готового экрана»): заглушка той же высоты, что карточка найденного
+              // (FriendsFoundCard: поля 14 + монета 48 + шаг 14 + кнопка 48 + поля 14 = 138, сверху 2) — было 92, скачок ~46 dp.
+              <View testID="friends-search-skeleton" style={{ marginTop: 2 }}>
+                <PulseOn active>
+                  <View style={{ height: 138, borderRadius: 14, backgroundColor: glass.opaqueControl, width: '100%' }} />
+                </PulseOn>
               </View>
             )}
 

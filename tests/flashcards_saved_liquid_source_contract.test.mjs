@@ -24,7 +24,7 @@ test('Saved loading has four glass skeleton rows and error/search/empty are dist
   assert.ok(source.includes('Array.from({ length: 4 }'));
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'));
   // зачем (Тень 12.10): скелетон — плашки PlateFill с тенью, без блюра-блика и кромки
-  assert.ok(source.includes('<PlateFill g={g} radius={16} />') && source.includes('plateBoxShadow(g)'));
+  assert.ok(source.includes('<PlateFill g={g} radius={20} />') && source.includes('plateBoxShadow(g)'));
   assert.ok(!/borderColor|borderWidth|glassEdge/.test(source), 'skeleton rows have no outline');
   for (const text of ['Пока пусто', 'Ничего не найдено']) {
     assert.ok(source.includes(text), `missing state copy: ${text}`);

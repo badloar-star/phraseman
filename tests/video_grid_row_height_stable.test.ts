@@ -42,5 +42,8 @@ describe('«Все видео»: высота строк не прыгает п�
     expect(screen).toContain('<SkeletonBlock width={28} height={28} borderRadius={14} />');
     expect(card).toContain('minHeight: 34');
     expect(card).toContain('minHeight: 28');
+    // плейлист: отступ 10 под «стопку» — как у карточки плейлиста
+    expect(screen).toContain('gridSkeletonCellStack: { paddingTop: 10 }');
+    expect(read('components/youtube/YoutubePlaylistGridCard.tsx')).toContain('stack: { marginTop: 10 }');
   });
 });

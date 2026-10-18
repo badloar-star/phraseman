@@ -34,7 +34,7 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
   });
   return <View testID="fc-saved-loading" accessibilityLabel={label} style={styles.loading}>
     {Array.from({ length: 4 }, (_, index) => <View key={index} style={[styles.skeleton, { boxShadow: plateBoxShadow(g) }]}>
-      <PlateFill g={g} radius={16} />
+      <PlateFill g={g} radius={20} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: index % 2 === 0 ? '39%' : '52%' }]} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '24%' }]} />
       <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '67%' }]} />
@@ -120,8 +120,9 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
 }
 
 const baseStyles = StyleSheet.create({
-  loading: { flex: 1, paddingHorizontal: 20, paddingTop: 16, gap: 10 },
+  // зачем (координатор 18.10, «первый кадр = геометрия готового экрана»): поля 16, верх 12, шаг 12 и карточка 112 радиусом 20 — как у настоящего списка (CollectionListView: LIST_PAD_TOP 12, LIST_ROW_GAP 12, cardHeight 112). Было 20/16/10/118/16: четвёртая карточка прыгала на 12 dp.
+  loading: { flex: 1, paddingHorizontal: 16, paddingTop: 12, gap: 12 },
   // зачем (Тень 12.10): плашка-скелетон без кромки; overflow убран, иначе клип тени; gap между плашками loading — 10
-  skeleton: { height: 118, borderRadius: 16, padding: 18, justifyContent: 'center', gap: 9 },
+  skeleton: { height: 112, borderRadius: 20, padding: 18, justifyContent: 'center', gap: 9 },
   skeletonLine: { height: 11, borderRadius: 6 },
 });

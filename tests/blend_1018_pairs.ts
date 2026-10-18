@@ -165,6 +165,14 @@ export const PAIRS: readonly Pair[] = [
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'значок к плашке', min: GRAPHIC, after: (t) => ratio(solid(String(t.isLight) === 'true' ? t.secondary! : t.accentBright!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: бейдж лимита (шапка сессии)', what: 'срок сброса (secondary) к плашке', min: TEXT, after: (t) => ratio(solid(t.secondary!), solid(t.plateFillFrom!)) },
   { element: 'Диалоги: капсула энергии', what: 'низкий заряд (красный из токена темы, сдвинут по яркости) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
+  // ── комбо урока: молния m08 (2f796870d, accentGraphic) и кольцо нагрева на 3/5/10 (ComboHeatSlot: «Искра» accentGraphic, «Молния» warn, «Гроза» bad); страница = bg
+  { element: 'Комбо урока: молния m08', what: 'штрих (accentGraphic) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.accentGraphic!), solid(t.bg!)) },
+  { element: 'Комбо урока: кольцо нагрева', what: '3 «Искра» (accentGraphic) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.accentGraphic!), solid(t.bg!)) },
+  { element: 'Комбо урока: кольцо нагрева', what: '5 «Молния» (warn) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.warn!), solid(t.bg!)) },
+  { element: 'Комбо урока: кольцо нагрева', what: '10 «Гроза» (bad) к странице', min: GRAPHIC, after: (t) => ratio(solid(t.bad!), solid(t.bg!)) },
+  { element: 'Комбо урока: цифра нагрева', what: '3 «Искра» (accentTextSafe) к странице', min: TEXT, after: (t) => ratio(solid(t.accentTextSafe!), solid(t.bg!)) },
+  { element: 'Комбо урока: цифра нагрева', what: '5 «Молния» (warn) к странице', min: TEXT, after: (t) => ratio(solid(t.warn!), solid(t.bg!)) },
+  { element: 'Комбо урока: цифра нагрева', what: '10 «Гроза» (bad) к странице', min: TEXT, after: (t) => ratio(solid(t.bad!), solid(t.bg!)) },
   // ── моменты серии (StreakMilestoneScreen): ореол шире и тусклее (095137518), золото d1000 = warn, звёзды d365 (f83d12491)
   { element: 'Момент серии', what: 'надпись-оверлайн (accentTextSafe) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.accentTextSafe!, t) },
   { element: 'Момент серии', what: 'заголовок (text) к фону и ореолу', min: TEXT, after: (t) => haloWorst(t.text!, t) },

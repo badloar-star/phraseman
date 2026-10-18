@@ -7,7 +7,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { pickSystemDefaultTheme } from '../app/theme_first_run_default';
 
 const mockScheme: 'light' | 'dark' = 'light';
-const mockStorageDelayMs = 900;
+const mockStorageDelayMs = 1800;
 
 jest.mock('react-native', () => ({
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
@@ -34,7 +34,7 @@ jest.mock('../app/oskolok', () => ({ setOskolokThemeMode: jest.fn() }));
 type Frame = Readonly<{ themeId: string; appearance: string; ready: boolean; at: number }>;
 const wrapper = ({ children }: { children: React.ReactNode }) => <ThemeProvider>{children}</ThemeProvider>;
 
-describe('первый запуск: медленное хранилище (потолок 400 мс)', () => {
+describe('первый запуск: медленное хранилище (потолок 800 мс)', () => {
   it('заставка снимается по потолку, не раньше; причина в журнале; поздние данные ставят системную пару', async () => {
     const frames: Frame[] = [];
     const t0 = Date.now();
@@ -46,16 +46,21 @@ describe('первый запуск: медленное хранилище (по
       return t;
     }, { wrapper });
     expect(result.current.liquidGlassChoiceReady).toBe(false);
-    await waitFor(() => expect(result.current.liquidGlassChoiceReady).toBe(true), { timeout: 1500 });
+    await waitFor(() => expect(result.current.liquidGlassChoiceReady).toBe(true), { timeout: 2500 });
     const firstReady = frames.find((f) => f.ready)!;
-    // по потолку: заметно раньше ответа хранилища (900 мс) и не раньше самого потолка (с допуском таймеров)
-    expect(firstReady.at).toBeGreaterThanOrEqual(350);
-    expect(firstReady.at).toBeLessThan(900);
+    // по потолку: заметно раньше ответа хранилища (1800 мс) и не раньше самого потолка 800 мс (с допуском таймеров)
+    // зачем (координатор 18.10): потолок поднят 400 → 800 мс; хранилище в тесте отвечает вдвое позже потолка, чтобы он сработал, а допуск вниз 750 ловит откат к 400
+    expect(firstReady.at).toBeGreaterThanOrEqual(750);
+    expect(firstReady.at).toBeLessThan(1800);
     // известное следствие потолка: этот кадр идёт с темой по умолчанию (тёмной), хотя система светлая — его и ловит [THEME-BOOT] ceiling
     expect(firstReady.appearance).toBe('dark');
-    expect(warn.mock.calls.some((c) => String(c[0]).startsWith('[THEME-BOOT] ceiling'))).toBe(true);
+    const ceilingLine = warn.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith('[THEME-BOOT] ceiling'));
+    expect(ceilingLine).toBeDefined();
+    // строка печатает значение потолка и сколько реально прошло
+    expect(ceilingLine).toContain('"ceilingMs":800');
+    expect(ceilingLine).toMatch(/"elapsedMs":\d+/);
     // поздние данные хранилища приводят пару к системной светлой
-    await waitFor(() => expect(result.current.liquidGlassAppearance).toBe('light'), { timeout: 2000 });
+    await waitFor(() => expect(result.current.liquidGlassAppearance).toBe('light'), { timeout: 3000 });
     expect(result.current.liquidGlassThemeId).toBe(pickSystemDefaultTheme(mockScheme).themeId);
     warn.mockRestore();
     log.mockRestore();

@@ -312,8 +312,10 @@ let themeHydratedInProcess = false;
 // зачем (владелец 13.10, тема новичка «как на телефоне»): пара «Сумерки/Океан» следует за системным режимом, пока человек сам ничего не выбрал.
 // Модульный флаг — чтобы ремаунт провайдера в том же процессе не мигал графитом и не ждал хранилище. Логи [DEFAULT-THEME].
 let followSystemInProcess = false;
-// Чтение трёх ключей занимает единицы мс; 400 мс — страховка от зависшего хранилища.
-const THEME_HYDRATION_CEILING_MS = 400;
+// Чтение трёх ключей занимает единицы мс; потолок — страховка от зависшего хранилища.
+// зачем (координатор 18.10, кадры Сверки [THEME-BOOT]): на холодном старте эмулятора (dev-бандл) чтение шло 250–310 мс при прежнем потолке 400 — запас был ×1,3, а сработавший потолок
+// снимает заставку с ТЕМОЙ ПО УМОЛЧАНИЮ (тёмной) и даёт вспышку на светлой системе. 800 мс — запас ×2,5; когда хранилище быстрое, цены нет, на зависшем заставка держится лишь на 0,4 с дольше.
+const THEME_HYDRATION_CEILING_MS = 800;
 // зачем ([THEME-BOOT] 18.10): лог первых кадров загрузки темы — не больше 12 строк за запуск, чтобы не шуметь в боевой сборке.
 const THEME_BOOT_LOG_FRAMES = 12;
 const THEME_BOOT_T0 = Date.now();
@@ -499,11 +501,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     let cancelled = false;
     // зачем (темы 2.0): сплеш ждёт этот флаг, иначе у выбравших светлое мог мелькнуть
     // тёмный кадр. Потолок — чтобы сбой хранилища никогда не держал сплеш.
+    const ceilingStartedAt = Date.now();
     const ceiling = setTimeout(() => {
       if (cancelled || themeHydratedInProcess) return;
       DebugLogger.error('ThemeContext:hydration_ceiling', new Error(`theme read exceeded ${THEME_HYDRATION_CEILING_MS}ms`), 'warning');
       // зачем ([THEME-BOOT]): потолок сработал раньше хранилища — заставка снимется с ТЕМОЙ ПО УМОЛЧАНИЮ, это и есть возможная вспышка; в журнал причина и время
-      console.warn(`[THEME-BOOT] ceiling ${JSON.stringify({ ceilingMs: THEME_HYDRATION_CEILING_MS, msSinceBoot: Date.now() - THEME_BOOT_T0, reason: 'storage_read_slower_than_ceiling' })}`); // guard-ok: потолок чтения темы
+      console.warn(`[THEME-BOOT] ceiling ${JSON.stringify({ ceilingMs: THEME_HYDRATION_CEILING_MS, elapsedMs: Date.now() - ceilingStartedAt, msSinceBoot: Date.now() - THEME_BOOT_T0, reason: 'storage_read_slower_than_ceiling' })}`); // guard-ok: потолок чтения темы
       themeHydratedInProcess = true;
       setLiquidGlassChoiceReady(true);
     }, THEME_HYDRATION_CEILING_MS);

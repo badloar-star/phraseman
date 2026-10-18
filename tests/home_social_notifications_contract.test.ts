@@ -80,9 +80,14 @@ describe('home social notification center', () => {
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
     const notifications = read(path.join('app', 'user_notifications.ts'));
 
-    expect(home).toMatch(/<NotificationCenterButton\s+isHomeTabActive=\{homeRuntimeActive\}\s+homeFocusTick=\{focusTick\}\s*\/>/);
-    expect(button).toContain('isHomeTabActive: boolean;');
-    expect(button).toContain('homeFocusTick: number;');
+    // перепин 18.10 ([HOME-CHILD-COST], координатор): активность вкладки и счётчик фокусов колокольчик получает через HomeBellStateContext (провайдер вокруг шапки), а не пропсами в bellSlot — иначе шапка перерисовывалась на каждом возврате. Смысл тот же: Главная отдаёт колокольчику homeRuntimeActive и focusTick.
+    expect(home).toContain('bellSlot={<NotificationCenterButton />}');
+    expect(home).toContain('value={homeBellState}');
+    expect(home).toContain('const homeBellState = useMemo(() => ({ active: homeRuntimeActive, focusTick }), [focusTick, homeRuntimeActive]);');
+    expect(button).toContain('const isHomeTabActive = bellState?.active ?? isHomeTabActiveProp ?? false;');
+    expect(button).toContain('const homeFocusTick = bellState?.focusTick ?? homeFocusTickProp ?? 0;');
+    expect(button).toContain('isHomeTabActive?: boolean;');
+    expect(button).toContain('homeFocusTick?: number;');
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(button).toContain('if (!isScreenFocused || !isHomeTabActive) return;');
     expect(notifications).toContain('refreshInFlightByOwner');

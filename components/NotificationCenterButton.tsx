@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Reanimated, { cancelAnimation, Easing, FadeInDown, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming, ZoomIn } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -46,6 +46,7 @@ import { KitSheetModal } from './v2/KitSheetModal';
 import auth from '@react-native-firebase/auth';
 import { noAndroidOutline } from '../constants/androidGlow';
 import BackGlyph from './v2/BackGlyph';
+import { HomeBellStateContext } from './home/v2/home_bell_state';
 
 const EXEMPT_COLOR_1 = 'rgba(99,217,143,0.35)'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
 const EXEMPT_COLOR_2 = '#2E9E63'; // theme-exempt: центр уведомлений: цвет типа события и зелёная награда — семантика/бренд (токены good/accent — у «Тем»)
@@ -66,8 +67,9 @@ const EXEMPT_COLOR_6 = '#07110A'; // theme-exempt: центр уведомлен
 const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
 
 type NotificationCenterButtonProps = {
-  isHomeTabActive: boolean;
-  homeFocusTick: number;
+  /** Без провайдера HomeBellStateContext берётся отсюда; на Главной приходит из контекста (шапка не перерисовывается на возврате). */
+  isHomeTabActive?: boolean;
+  homeFocusTick?: number;
   requestedReportReply?: UserNotification | null;
   onRequestedReportReplyHandled?: () => void;
 };
@@ -181,11 +183,15 @@ function timeLabel(ms: number): string {
 }
 
 function NotificationCenterButton({
-  isHomeTabActive,
-  homeFocusTick,
+  isHomeTabActive: isHomeTabActiveProp,
+  homeFocusTick: homeFocusTickProp,
   requestedReportReply = null,
   onRequestedReportReplyHandled,
 }: NotificationCenterButtonProps) {
+  // зачем (координатор 18.10, [HOME-CHILD-COST]): активность вкладки и счётчик фокусов читаем из контекста Главной — элемент колокольчика в шапке остаётся неизменным, шапка не перерисовывается на каждом возврате
+  const bellState = useContext(HomeBellStateContext);
+  const isHomeTabActive = bellState?.active ?? isHomeTabActiveProp ?? false;
+  const homeFocusTick = bellState?.focusTick ?? homeFocusTickProp ?? 0;
   const v2 = useV2Palette();
   const shadowGlass = useShadowGlass();
   const { theme: t, f } = useTheme();

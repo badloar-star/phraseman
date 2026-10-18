@@ -65,7 +65,9 @@ test('video rail scrolls horizontally and plays only the selected real video', (
   const playerModal = fs.readFileSync(path.join(root, 'components/home/v2/HomeV2VideoPlayerModal.tsx'), 'utf8');
   assert.match(rail, /<ScrollView[^>]*horizontal/);
   assert.match(rail, /videos\.slice\(0, 8\)\.map\(/);
-  assert.match(rail, /setActiveVideoId\(video\.id\)/);
+  // перепин 18.10 ([HOME-CHILD-COST], координатор): карточки вынесены в memo-компонент VideoRailCards — нажатие вызывает onSelect(video.id), а рейка передаёт onSelect={setActiveVideoId}; выбор ролика прежний
+  assert.match(rail, /onPress=\{\(\) => onSelect\(video\.id\)\}/);
+  assert.match(rail, /onSelect=\{setActiveVideoId\}/);
   assert.doesNotMatch(rail, /^import YoutubeInlinePlayer/m);
   assert.match(rail, /require\('\.\/HomeV2VideoPlayerModal'\)/);
   assert.match(playerModal, /<Modal[^>]*visible/);

@@ -76,7 +76,9 @@ describe('retained tabs runtime work contract', () => {
 
     expect(home).toContain('ownerActive={homeRuntimeActive}');
     expect(home).toContain('<NotificationCenterButton');
-    expect(home).toContain('isHomeTabActive={homeRuntimeActive}');
+    // перепин 18.10 ([HOME-CHILD-COST], координатор): активность вкладки и счётчик фокусов колокольчик получает через HomeBellStateContext (провайдер вокруг шапки), а не пропсами в bellSlot — иначе шапка перерисовывалась на каждом возврате. Смысл тот же: Главная отдаёт колокольчику homeRuntimeActive и focusTick.
+    expect(home).toContain('value={homeBellState}');
+    expect(home).toContain('const homeBellState = useMemo(() => ({ active: homeRuntimeActive, focusTick }), [focusTick, homeRuntimeActive]);');
     expect(center).toContain('ownerActive={isHomeTabActive}');
     expect(inbox).toContain('ownerActive?: boolean;');
     expect(inbox).toContain('const runtimeActive = ownerActive ?? isScreenFocused;');

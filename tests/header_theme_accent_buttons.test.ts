@@ -48,8 +48,9 @@ describe('header accent buttons (vector icons)', () => {
 
     expect(home).not.toContain('<AppMessagesInbox />');
     expect(home).toContain('<NotificationCenterButton');
-    expect(home).toContain('isHomeTabActive={homeRuntimeActive}');
-    expect(home).toContain('homeFocusTick={focusTick}');
+    // перепин 18.10 ([HOME-CHILD-COST], координатор): активность вкладки и счётчик фокусов колокольчик получает через HomeBellStateContext (провайдер вокруг шапки), а не пропсами в bellSlot — иначе шапка перерисовывалась на каждом возврате. Смысл тот же: Главная отдаёт колокольчику homeRuntimeActive и focusTick.
+    expect(home).toContain('value={homeBellState}');
+    expect(home).toContain('const homeBellState = useMemo(() => ({ active: homeRuntimeActive, focusTick }), [focusTick, homeRuntimeActive]);');
     expect(notificationSource()).toContain('mode="notification-center"');
     expect(home).not.toContain('CommunityChatHubButton');
   });

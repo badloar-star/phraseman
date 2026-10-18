@@ -22,8 +22,9 @@ describe('home header composition (Главная V2)', () => {
     // колокольчик остаётся (PM-038 отменён) и получает обработчики ответа на жалобу.
     expect(header).not.toContain('CommunityChatHubButton');
     expect(header).toContain('<NotificationCenterButton');
-    expect(header).toContain('isHomeTabActive={homeRuntimeActive}');
-    expect(header).toContain('homeFocusTick={focusTick}');
+    // перепин 18.10 ([HOME-CHILD-COST], координатор): активность вкладки и счётчик фокусов колокольчик получает через HomeBellStateContext (провайдер вокруг шапки), а не пропсами в bellSlot — иначе шапка перерисовывалась на каждом возврате. Смысл тот же: Главная отдаёт колокольчику homeRuntimeActive и focusTick.
+    expect(source.slice(Math.max(0, headerStart - 120), headerStart)).toContain('HomeBellStateContext.Provider value={homeBellState}');
+    expect(source).toContain('const homeBellState = useMemo(() => ({ active: homeRuntimeActive, focusTick }), [focusTick, homeRuntimeActive]);');
   });
 
   it('no longer carries the pearl balance in the header itself', () => {

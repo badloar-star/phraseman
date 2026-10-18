@@ -60,6 +60,7 @@ import { useHomeFocusCostBegin, useHomeFocusCostEnd, withHomeChildCost } from '.
 import { noteBackArrived } from '../back_tap_probe';
 import { memHomeSummary, useMemHomeRegisterSources } from '../mem_home_probe';
 import { decideHomeVideoRailByInterfaceLang, logHomeVideoLang } from '../home_video_language_gate';
+import { HomeBellStateContext } from '../../components/home/v2/home_bell_state';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -955,6 +956,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     ));
     // зачем ([HOME-VIDEO-LANG] 18.10, находка Макетов: испанский интерфейс видит русские ролики): лента выбирается по языку ИЗУЧЕНИЯ, фильтра по языку интерфейса нет. Условие «лента только для интерфейсов, на языке
     // которых есть ролики» подготовлено, но ВЫКЛЮЧЕНО (HOME_VIDEO_RAIL_LANG_FILTER_ENABLED = false, решение за владельцем): пока флаг выключен, hidden всегда false и поведение не меняется.
+    // зачем (координатор 18.10, [HOME-CHILD-COST]): значение для колокольчика (контекст вокруг шапки) — новое только когда реально сменились активность вкладки или счётчик фокусов
+    const homeBellState = useMemo(() => ({ active: homeRuntimeActive, focusTick }), [focusTick, homeRuntimeActive]);
     const homeVideoLang = useMemo(() => decideHomeVideoRailByInterfaceLang({ lang, videos: homeV2Videos }), [lang, homeV2Videos]);
     useEffect(() => {
         const buttonEnabled = isVideoButtonEnabled();
@@ -2569,14 +2572,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             refreshDailyPhraseVisibility();
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
             <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
+              <HomeBellStateContext.Provider value={homeBellState}>
               <HomeV2Header
                 refreshing={cloudProfileRefreshing}
-                bellSlot={(
-                  <NotificationCenterButton
-                    isHomeTabActive={homeRuntimeActive}
-                    homeFocusTick={focusTick}
-                  />
-                )}
+                // зачем (координатор 18.10, [HOME-CHILD-COST]): активность и счётчик фокусов уходят колокольчику через контекст (HomeBellStateContext, провайдер ниже) — элемент не меняется, шапка не перерисовывается на возврате
+                bellSlot={<NotificationCenterButton />}
                 // зачем (D192, владелец 14.10): кнопка аватара переехала в StoryAvatarSlot без изменений вида; при stories_v1 выкл или без событий это ровно прежняя кнопка профиля, с событиями — кольцо сторис и просмотр
                 avatarSlot={(
                   <StoryAvatarSlot
@@ -2613,6 +2613,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   },
                 ]}
               />
+              </HomeBellStateContext.Provider>
             </View>
             {/* зачем (слово владельца 17.10): диалог / набор карточек / «Начать урок 1» рисует блок ниже; прежняя карточка урока и V2 со своей заготовкой — без изменений */}
             {continuePlace === null && !continueStart ? (

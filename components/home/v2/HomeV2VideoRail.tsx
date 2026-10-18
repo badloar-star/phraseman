@@ -36,6 +36,40 @@ export default function HomeV2VideoRail(props: Props) {
   return <HomeV2VideoRailView videos={props.videos} status={props.status} ownerActive={props.ownerActive} onSeeAll={seeAll} />;
 }
 
+type RailCardsProps = Readonly<{
+  videos: readonly LingmanYoutubeVideo[];
+  title: string;
+  plateColor: string;
+  glass: ReturnType<typeof useShadowGlass>;
+  onSelect: (videoId: string) => void;
+}>;
+
+// зачем (координатор 18.10, [HOME-CHILD-COST]: рейка 8–16 мс на возврате «назад», actual ≈ base — перерисовывались все 8 карточек): на возврате меняется только `ownerActive` (нужен окну проигрывателя и сбросу выбранного), карточкам он не нужен.
+// Карточки вынесены в memo-компонент с примитивами и устойчивым `onSelect` (setState): смена ownerActive рейку перерисует, а восемь карточек с превью — нет. Вид и поведение прежние.
+const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor, glass, onSelect }: RailCardsProps) {
+  return (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} nestedScrollEnabled contentContainerStyle={s.rail} decelerationRate="fast">
+      {videos.slice(0, 8).map((video) => (
+        <Pressable
+          key={video.id}
+          testID={`home-v2-video-${video.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={`${title}: ${video.title}`}
+          onPress={() => onSelect(video.id)}
+          style={[s.card, { backgroundColor: plateColor }]}
+        >
+          {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
+              ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
+          <VideoThumb surface="home_video_rail" id={video.id} videoId={video.id} thumbUrl={video.thumbnailUrl || null} title={video.title} g={glass} showTitle showPlay={false} fallbackBackground="transparent" />
+          <View style={s.cardContent}>
+            <Ionicons name="play-circle" size={26} color="#FFFFFF" /* theme-exempt: белая иконка play лежит на превью ролика (фото), не на фоне темы */ />
+          </View>
+        </Pressable>
+      ))}
+    </ScrollView>
+  );
+});
+
 const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, ownerActive, onSeeAll }: Props) {
   useRenderCause('home:video_rail', () => ({ videos, status, ownerActive, onSeeAll }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const { lang } = useLang();
@@ -90,25 +124,7 @@ const HomeV2VideoRailView = memo(function HomeV2VideoRailView({ videos, status, 
         </Pressable>
       </View>
       {videos.length ? (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} nestedScrollEnabled contentContainerStyle={s.rail} decelerationRate="fast">
-          {videos.slice(0, 8).map((video) => (
-            <Pressable
-              key={video.id}
-              testID={`home-v2-video-${video.id}`}
-              accessibilityRole="button"
-              accessibilityLabel={`${title}: ${video.title}`}
-              onPress={() => setActiveVideoId(video.id)}
-              style={[s.card, { backgroundColor: colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA) }]}
-            >
-              {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
-                  ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
-              <VideoThumb surface="home_video_rail" id={video.id} videoId={video.id} thumbUrl={video.thumbnailUrl || null} title={video.title} g={glass} showTitle showPlay={false} fallbackBackground="transparent" />
-              <View style={s.cardContent}>
-                <Ionicons name="play-circle" size={26} color="#FFFFFF" /* theme-exempt: белая иконка play лежит на превью ролика (фото), не на фоне темы */ />
-              </View>
-            </Pressable>
-          ))}
-        </ScrollView>
+        <VideoRailCards videos={videos} title={title} plateColor={colorWithAlpha(p.glassRaised, HOME_PLATE_ALPHA)} glass={glass} onSelect={setActiveVideoId} />
       ) : (
         // зачем (владелец 01.10): рейка не прячется и не пишет «недоступны/нет видео» —
         // при любом статусе без данных те же скелетоны резервной геометрии 246x138.

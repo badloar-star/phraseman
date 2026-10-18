@@ -1,8 +1,8 @@
 import React, { memo, useRef } from 'react';
-import { Animated, Image as RNImage, View } from 'react-native';
+import { Animated, Image as RNImage, PixelRatio, View } from 'react-native';
 import { Image } from 'expo-image';
 import { getAvatarByIndex } from '../constants/avatars';
-import { coinRankRowForDisplay, isValidCoinRank } from '../app/coin_rank_table_v1';
+import { coinRankRowForDisplay, coinRankSourceForSize, isValidCoinRank } from '../app/coin_rank_table_v1';
 
 const EXEMPT_COLOR_1 = '#273449'; // theme-exempt: заглушка аватара и подложка — тёмная плашка под изображением
 
@@ -92,22 +92,24 @@ function AvatarView({ avatar, size = 44, style, coinRank, onCoinLoad, loadTrace 
   const avatarImage = avatarDef?.image;
 
   if (coinRow) {
+    // зачем (координатор 18.10): монета 768² в 18–40 dp декодировалась секундами — берём копию под размер (96²/192²), крупные — исходник.
+    const coinPick = coinRankSourceForSize(coinRow.rank, size, PixelRatio.get());
     // зачем (Макеты df9ecf2c3, «сперва логи»): на «Пике» монеты пустые до ~9 с после данных — журнал покажет время до onLoad и откуда ассет (Metro или сборка).
     const traceStartedAt = mountedAtRef.current;
     return (
       <View style={[{ width: size, height: size }, style]}>
         <Image
           testID="avatar-coin-rank"
-          source={coinRow.source}
+          source={coinPick.source}
           style={{ width: size, height: size }}
           contentFit="contain"
           accessibilityLabel={coinRow.levelTitle}
           onLoad={onCoinLoad || loadTrace ? () => {
-            if (loadTrace) console.log(loadTrace, JSON.stringify({ stage: 'coin:load', rank: coinRank, size: Math.round(size), ms: Date.now() - traceStartedAt, scheme: assetScheme(coinRow.source) })); // guard-ok: замер загрузки монеты, без идентификаторов
+            if (loadTrace) console.log(loadTrace, JSON.stringify({ stage: 'coin:load', rank: coinRank, size: Math.round(size), ms: Date.now() - traceStartedAt, variant: coinPick.variant, scheme: assetScheme(coinPick.source) })); // guard-ok: замер загрузки монеты, без идентификаторов
             onCoinLoad?.();
           } : undefined}
           onError={loadTrace ? (event) => {
-            console.warn(loadTrace, JSON.stringify({ stage: 'coin:error', rank: coinRank, ms: Date.now() - traceStartedAt, scheme: assetScheme(coinRow.source), error: String(event?.error ?? '').slice(0, 80) })); // guard-ok: ошибка загрузки — причина в журнале, заглушка остаётся
+            console.warn(loadTrace, JSON.stringify({ stage: 'coin:error', rank: coinRank, ms: Date.now() - traceStartedAt, variant: coinPick.variant, scheme: assetScheme(coinPick.source), error: String(event?.error ?? '').slice(0, 80) })); // guard-ok: ошибка загрузки — причина в журнале, заглушка остаётся
           } : undefined}
         />
       </View>

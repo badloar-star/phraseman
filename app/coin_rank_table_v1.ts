@@ -130,6 +130,65 @@ const SOURCES: readonly ImageSourcePropType[] = [
   require('../assets/images/coins/coin_rank_19.webp'),
 ];
 
+// зачем (координатор 18.10, Ревизор: на «Пике» монеты пустые до ~9 с): исходник 768² показывается в 18–40 dp — телефон каждый раз
+// декодирует ~2,3 МБ пикселей ради кружка 120 px. Уменьшенные копии 96² и 192² (assets/images/coins/s96, s192; исходники не тронуты,
+// как иконки v2art b4af17fc1) декодируются в 30–60 раз быстрее. Выбор — по реальному размеру в пикселях (coinRankSourceForSize).
+const SOURCES_96: readonly ImageSourcePropType[] = [
+  require('../assets/images/coins/s96/coin_rank_00.webp'),
+  require('../assets/images/coins/s96/coin_rank_01.webp'),
+  require('../assets/images/coins/s96/coin_rank_02.webp'),
+  require('../assets/images/coins/s96/coin_rank_03.webp'),
+  require('../assets/images/coins/s96/coin_rank_04.webp'),
+  require('../assets/images/coins/s96/coin_rank_05.webp'),
+  require('../assets/images/coins/s96/coin_rank_06.webp'),
+  require('../assets/images/coins/s96/coin_rank_07.webp'),
+  require('../assets/images/coins/s96/coin_rank_08.webp'),
+  require('../assets/images/coins/s96/coin_rank_09.webp'),
+  require('../assets/images/coins/s96/coin_rank_10.webp'),
+  require('../assets/images/coins/s96/coin_rank_11.webp'),
+  require('../assets/images/coins/s96/coin_rank_12.webp'),
+  require('../assets/images/coins/s96/coin_rank_13.webp'),
+  require('../assets/images/coins/s96/coin_rank_14.webp'),
+  require('../assets/images/coins/s96/coin_rank_15.webp'),
+  require('../assets/images/coins/s96/coin_rank_16.webp'),
+  require('../assets/images/coins/s96/coin_rank_17.webp'),
+  require('../assets/images/coins/s96/coin_rank_18.webp'),
+  require('../assets/images/coins/s96/coin_rank_19.webp'),
+];
+const SOURCES_192: readonly ImageSourcePropType[] = [
+  require('../assets/images/coins/s192/coin_rank_00.webp'),
+  require('../assets/images/coins/s192/coin_rank_01.webp'),
+  require('../assets/images/coins/s192/coin_rank_02.webp'),
+  require('../assets/images/coins/s192/coin_rank_03.webp'),
+  require('../assets/images/coins/s192/coin_rank_04.webp'),
+  require('../assets/images/coins/s192/coin_rank_05.webp'),
+  require('../assets/images/coins/s192/coin_rank_06.webp'),
+  require('../assets/images/coins/s192/coin_rank_07.webp'),
+  require('../assets/images/coins/s192/coin_rank_08.webp'),
+  require('../assets/images/coins/s192/coin_rank_09.webp'),
+  require('../assets/images/coins/s192/coin_rank_10.webp'),
+  require('../assets/images/coins/s192/coin_rank_11.webp'),
+  require('../assets/images/coins/s192/coin_rank_12.webp'),
+  require('../assets/images/coins/s192/coin_rank_13.webp'),
+  require('../assets/images/coins/s192/coin_rank_14.webp'),
+  require('../assets/images/coins/s192/coin_rank_15.webp'),
+  require('../assets/images/coins/s192/coin_rank_16.webp'),
+  require('../assets/images/coins/s192/coin_rank_17.webp'),
+  require('../assets/images/coins/s192/coin_rank_18.webp'),
+  require('../assets/images/coins/s192/coin_rank_19.webp'),
+];
+
+export type CoinRankSourceVariant = 's96' | 's192' | 'full';
+
+/** Картинка монеты под размер показа: 96² до 96 px, 192² до 192 px, крупнее (момент, церемония, витрина) — исходник 768². */
+export function coinRankSourceForSize(rank: number, sizeDp: number, pixelRatio: number): Readonly<{ source: ImageSourcePropType; variant: CoinRankSourceVariant }> {
+  const row = coinRankRowForDisplay(rank);
+  const px = Math.ceil(Math.max(0, sizeDp) * Math.max(1, pixelRatio || 1));
+  if (px <= 96) return { source: SOURCES_96[row.rank], variant: 's96' };
+  if (px <= 192) return { source: SOURCES_192[row.rank], variant: 's192' };
+  return { source: row.source, variant: 'full' };
+}
+
 function buildTable(): readonly CoinRankRow[] {
   const rows: CoinRankRow[] = [];
   let total = 0;

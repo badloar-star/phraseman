@@ -2774,16 +2774,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 4,
-    sourceFingerprint: "670234655537685510fed4a14e9d29e26037ffbed210837a999ee455829a3fc8",
-    newWordCount: 0,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить can для умений и повторить вопрос «чей?»","uk":"закріпити can для вмінь і повторити запитання «чий?»"}),
+    sourceFingerprint: "910b6048bc5f69b10cc6bbf0a9707a6c0390f96fc3dbf09acfdbf3390d9f7a68",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об умениях с can, спрашивать Can you…? и отвечать Yes, I can","uk":"говорити про вміння з can, питати Can you…? і відповідати Yes, I can"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 5,
-    sourceFingerprint: "0525e4615b774e19367052c190066385a1756290374d4d928a943f51df2d96f6",
-    newWordCount: 0,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить can для умений и повторить вопрос «чей?»","uk":"закріпити can для вмінь і повторити запитання «чий?»"}),
+    sourceFingerprint: "b7589160926a272a92b0c07117939c4a6219ef7fd506ea80e040f70dfe3a8099",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об умениях с can","uk":"говорити про вміння з can"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({

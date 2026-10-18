@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-05",
   "learningOutcomeByLocale": {
-    "ru": "закрепить can для умений и повторить вопрос «чей?»",
-    "uk": "закріпити can для вмінь і повторити запитання «чий?»"
+    "ru": "говорить об умениях с can",
+    "uk": "говорити про вміння з can"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Помогу с переводом",
-        "uk": "Допоможу з перекладом"
+        "ru": "Гитара для вечера",
+        "uk": "Гітара для вечора"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает текст на другом языке и спрашивает, умеете ли вы переводить. `Translate` — «переводить с одного языка на другой». `I can translate` — «Я умею переводить». После `can` нужно `translate`, без `to` и окончания `s`. Это перевод слов, а не денег: номер карты не понадобится.",
-        "uk": "Друг показує текст іншою мовою й запитує, чи вмієте ви перекладати. `Translate` — «перекладати з однієї мови іншою». `I can translate` — «Я вмію перекладати». Після `can` потрібне `translate`, без `to` й закінчення `s`. Це переклад слів, а не переказ грошей: номер картки не знадобиться."
+        "ru": "Друг принёс на домашний вечер гитару, но струны звучат фальшиво, и играть невозможно. Он спрашивает, сможете ли вы помочь. tune — «настраивать». Вы настраиваете гитару на слух, поэтому отвечаете: I can tune the guitar — «Я умею настраивать гитару».",
+        "uk": "Друг приніс на домашній вечір гітару, але струни звучать фальшиво, і грати неможливо. Він питає, чи зможете ви допомогти. tune — «налаштовувати». Ви налаштовуєте гітару на слух, тому відповідаєте: I can tune the guitar — «Я вмію налаштовувати гітару»."
       },
       "question": {
         "interactionId": "en:lesson-08:session-05:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу о своём умении.",
-          "uk": "Скажіть другові про своє вміння."
+          "ru": "Друг просит настроить гитару. Скажите ему: «Я умею настраивать гитару».",
+          "uk": "Друг просить налаштувати гітару. Скажіть йому: «Я вмію налаштовувати гітару»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-05:intro1:r1",
-              "text": "I can translate."
+              "text": "I can tune the guitar."
             },
             {
               "responseId": "en:lesson-08:session-05:intro1:r2",
-              "text": "I can to translate."
+              "text": "I can to tune the guitar."
             },
             {
               "responseId": "en:lesson-08:session-05:intro1:r3",
-              "text": "I can translates."
+              "text": "I can tunes the guitar."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-05:intro1:r1",
-              "text": "I can translate."
+              "text": "I can tune the guitar."
             },
             {
               "responseId": "en:lesson-08:session-05:intro1:r2",
-              "text": "I can to translate."
+              "text": "I can to tune the guitar."
             },
             {
               "responseId": "en:lesson-08:session-05:intro1:r3",
-              "text": "I can translates."
+              "text": "I can tunes the guitar."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу о своём умении.",
-          "uk": "Скажіть другові про своє вміння."
+          "ru": "Друг просит настроить гитару. Скажите ему: «Я умею настраивать гитару».",
+          "uk": "Друг просить налаштувати гітару. Скажіть йому: «Я вмію налаштовувати гітару»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Она умеет кататься по волнам",
-        "uk": "Вона вміє кататися по хвилях"
+        "ru": "Коса к празднику",
+        "uk": "Коса до свята"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете отдых на море. Друг спрашивает, умеет ли ваша знакомая заниматься сёрфингом. `She can surf` — «Она умеет заниматься сёрфингом». `Can` не меняется после `she`; после него нужно `surf`, без окончания `s`.",
-        "uk": "Ви обговорюєте відпочинок на морі. Друг запитує, чи вміє ваша знайома займатися серфінгом. `She can surf` — «Вона вміє займатися серфінгом». `Can` не змінюється після `she`; після нього потрібне `surf`, без закінчення `s`."
+        "ru": "В школе завтра утренний праздник, и у племянницы должна быть красивая коса. Подруга спрашивает, кто поможет, и вы вспоминаете о сестре. braid — «заплетать косу». Сестра делает это быстро и аккуратно: She can braid well — «Она умеет хорошо заплетать косы».",
+        "uk": "У школі завтра ранкове свято, і в племінниці має бути гарна коса. Подруга питає, хто допоможе, і ви згадуєте про сестру. braid — «заплітати косу». Сестра робить це швидко й дуже акуратно: She can braid well — «Вона вміє добре заплітати коси»."
       },
       "question": {
         "interactionId": "en:lesson-08:session-05:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Подруга спрашивает о сестре. Скажите ей: «Она умеет хорошо заплетать косы».",
+          "uk": "Подруга питає про сестру. Скажіть їй: «Вона вміє добре заплітати коси»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-05:intro2:r1",
-              "text": "She can surf."
+              "text": "She can braid well."
             },
             {
               "responseId": "en:lesson-08:session-05:intro2:r2",
-              "text": "She cans surf."
+              "text": "She can braids well."
             },
             {
               "responseId": "en:lesson-08:session-05:intro2:r3",
-              "text": "She can surfs."
+              "text": "She cans braid well."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-05:intro2:r1",
-              "text": "She can surf."
+              "text": "She can braid well."
             },
             {
               "responseId": "en:lesson-08:session-05:intro2:r2",
-              "text": "She cans surf."
+              "text": "She can braids well."
             },
             {
               "responseId": "en:lesson-08:session-05:intro2:r3",
-              "text": "She can surfs."
+              "text": "She cans braid well."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Подруга спрашивает о сестре. Скажите ей: «Она умеет хорошо заплетать косы».",
+          "uk": "Подруга питає про сестру. Скажіть їй: «Вона вміє добре заплітати коси»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чей брелок",
-        "uk": "Чий брелок"
+        "ru": "Джемпер на стуле",
+        "uk": "Джемпер на стільці"
       },
       "bodyByLocale": {
-        "ru": "После встречи на столе остался брелок. Вы хотите вернуть его владельцу. `Whose keychain is this?` — «Чей это брелок?» Сначала `whose keychain` — «чей брелок», затем `is this`.",
-        "uk": "Після зустрічі на столі залишився брелок. Ви хочете повернути його власникові. `Whose keychain is this?` — «Чий це брелок?» Спочатку `whose keychain` — «чий брелок», потім `is this`."
+        "ru": "Вы с коллегой спокойно допили кофе в кафе и собираетесь уходить. За соседним столом компания уже ушла, а на стуле остался джемпер. В британском английском jumper — «джемпер». Вы спрашиваете у коллеги: Whose jumper is this — «Чей это джемпер?». Jumper — существительное в единственном числе, поэтому здесь is this.",
+        "uk": "Ви з колегою спокійно допили каву в кафе й збираєтеся йти. За сусіднім столом компанія вже пішла, а на стільці лишився джемпер. У британській англійській jumper — «джемпер». Ви питаєте в колеги: Whose jumper is this — «Чий це джемпер?». Jumper — іменник в однині, тому тут is this."
       },
       "question": {
         "interactionId": "en:lesson-08:session-05:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите участников встречи, чей это брелок.",
-          "uk": "Запитайте учасників зустрічі, чий це брелок."
+          "ru": "Вы заметили джемпер на стуле. Спросите коллегу: «Чей это джемпер?»",
+          "uk": "Ви помітили джемпер на стільці. Спитайте колегу: «Чий це джемпер?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-05:intro3:r1",
-              "text": "Whose keychain is this?"
+              "text": "Whose jumper is this?"
             },
             {
               "responseId": "en:lesson-08:session-05:intro3:r2",
-              "text": "Who keychain is this?"
+              "text": "Whose jumper are these?"
             },
             {
               "responseId": "en:lesson-08:session-05:intro3:r3",
-              "text": "Whose keychain are this?"
+              "text": "Whose is jumper this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-05:intro3:r1",
-              "text": "Whose keychain is this?"
+              "text": "Whose jumper is this?"
             },
             {
               "responseId": "en:lesson-08:session-05:intro3:r2",
-              "text": "Who keychain is this?"
+              "text": "Whose jumper are these?"
             },
             {
               "responseId": "en:lesson-08:session-05:intro3:r3",
-              "text": "Whose keychain are this?"
+              "text": "Whose is jumper this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите участников встречи, чей это брелок.",
-          "uk": "Запитайте учасників зустрічі, чий це брелок."
+          "ru": "Вы заметили джемпер на стуле. Спросите коллегу: «Чей это джемпер?»",
+          "uk": "Ви помітили джемпер на стільці. Спитайте колегу: «Чий це джемпер?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c25f0c1f7ad07014c18762340c3ecd0210df0486653d96adbdd38c5a969033e2"
+  "introFingerprint": "d4106f873c47029807f169a9e15a1f3e11a47df1ee33c28c84f66a48a1d324f5"
 }

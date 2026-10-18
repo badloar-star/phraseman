@@ -11,6 +11,7 @@ import { featureIntroById } from './feature_intro_registry';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, markCardsOptimisticTap } from './flashcards/cards_optimistic_trace';
 import {
   Animated,
   AppState,
@@ -1071,6 +1072,8 @@ type FlashcardsSwipeScreenProps = Readonly<{
 }>;
 
 export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwipeScreenProps = {}) {
+  // зачем (координатор 18.10, Optimistic UI): первый кадр экрана тренировки — от тапа «Тренироваться» / «Начать».
+  useEffect(() => { logCardsOptimisticFrame('train_tap', 'session_first_frame', { trainingMode }); }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const isTrueFalseSession = trainingMode === 'truefalse';
   // зачем (координатор 13.10, cards-v2-033 / cards-gap-003: «Правда / ложь» зависает на «Готовим тренировку…», причина неизвестна; правило «сперва логи»): единый префикс [TF-PREP] — вся цепочка быстрого старта одним поиском. Только для «Правда / ложь».
   const tfPrep = useCallback((step: string, data: Record<string, unknown> = {}) => {
@@ -3855,7 +3858,14 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     const resultNo = triLang(lang, { ru: 'Неверно', uk: 'Неправильно', en: 'Incorrect', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Nieprawidłowo' });
     const nextLabel = triLang(lang, { ru: 'Дальше', uk: 'Далі', en: 'Next', es: 'Siguiente', 'pt-BR': 'Próximo', vi: 'Tiếp', id: 'Lanjut', tr: 'İleri', pl: 'Dalej' });
     const answersLocked = Boolean(feedback) || attempts.state.phase !== 'active';
-    const decide = (saysMatch: boolean) => { if (!answersLocked) answerCurrent(saysMatch); };
+    // зачем (координатор 18.10, Optimistic UI): ответ «Правда / Ложь» → кадр с вердиктом (сеть не участвует, память пишется фоном).
+    const decide = (saysMatch: boolean) => {
+      markCardsOptimisticTap('answer_tap', 'truefalse', { saysMatch, locked: answersLocked });
+      if (!answersLocked) {
+        answerCurrent(saysMatch);
+        logCardsOptimisticFrame('answer_tap', 'verdict_frame');
+      }
+    };
     const continueWithFly = () => {
       if (tfContinuingRef.current) return;
       const card = tfCardRef.current;

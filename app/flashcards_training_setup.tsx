@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from './flashcards/cards_optimistic_trace';
 import { ActivityIndicator, AppState, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import ContentWrap from '../components/ContentWrap';
@@ -607,6 +608,9 @@ export default function FlashcardsTrainingSetupScreen() {
     console.log(`[FLASHCARDS-SESSION] setup:push ${JSON.stringify({ pathname: route.pathname, params: route.params, mode })}`); // guard-ok: журнал цепочки старта
     startInFlightRef.current = true;
     setStarting(true);
+    // зачем (координатор 18.10, Optimistic UI): «Начать» на экране выбора → кадр кнопки → переход → первый кадр сессии.
+    markCardsOptimisticTap('train_tap', 'setup', { mode, decks: selectedDeckIds.length });
+    logCardsOptimisticFrame('train_tap', 'button_frame');
     if (viewLang === studyTarget) {
       void setLastPreset(presetModeFor(mode), {
         deckIds: selectedDeckIds,
@@ -633,6 +637,7 @@ export default function FlashcardsTrainingSetupScreen() {
       });
     }
     try {
+      logCardsOptimisticStep('train_tap', 'navigate', { pathname: route.pathname });
       router.push({ pathname: route.pathname, params: route.params } as never);
     } catch (pushError) {
       console.warn('[FC-TRAIN-ENTRY] setup:push-failed', pushError instanceof Error ? pushError.message : String(pushError));

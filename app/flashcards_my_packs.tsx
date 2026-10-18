@@ -22,6 +22,7 @@
 import { DebugLogger } from './debug-logger';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from './flashcards/cards_optimistic_trace';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ActivityIndicator,
@@ -800,6 +801,8 @@ export default function FlashcardsMyPacksScreen() {
     // зачем (FINAL_PHASE п.7, Optimistic UI): набор исчезает из списка и окно закрывается сразу,
     // сервер догоняет фоном; при ошибке набор возвращается на прежнее место.
     let removedFrom: { group: 'added' | 'created'; index: number } | null = null;
+    // зачем (координатор 18.10, Optimistic UI): замер «подтвердил удаление → кадр без набора → диск/сервер → откат».
+    markCardsOptimisticTap('pack_remove', pack.id, { own: deletePackOwn });
     pendingDeletePackIdsRef.current.add(pack.id);
     setDeletePackBusy(pack.id, true);
     setGroups((prev) => {
@@ -812,12 +815,14 @@ export default function FlashcardsMyPacksScreen() {
       };
     });
     setDeletePackTarget(null);
+    logCardsOptimisticFrame('pack_remove', 'ui_frame');
     DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: убран из списка сразу, local=${isLocalAuthorPackId(pack.id)} own=${String(deletePackOwn)}`);
     try {
       if (!deletePackOwn) {
         // зачем (Ревизор R47): чужой набор — «Убрать из моих»: локально и мгновенно, без серверного «удалить как автор» (он отвечал not_author, набор возвращался с ошибкой); в облако уходит надгробие через снимок библиотеки
         const result = await removeCommunityOwnedPackId(pack.id, studyTarget);
         console.log(`[MY-PACKS] remove pack=${pack.id} result=${result}`); // guard-ok: итог «Убрать из моих»
+        logCardsOptimisticStep('pack_remove', 'stored', { result, own: false });
         if (result !== 'removed') throw new Error(`remove_${result}`);
         emitAppEvent('action_toast', actionToastTri('success', {
           ru: 'Набор убран из моих.', uk: 'Набір прибрано з моїх.', en: 'Removed from your packs.', es: 'Quitado de tus packs.',
@@ -828,6 +833,7 @@ export default function FlashcardsMyPacksScreen() {
       // зачем (координатор 12.10): ввод-вывод удаления общий с шторкой «Удалить набор» на экране набора — app/community_packs/deleteOwnPack.ts
       await deleteOwnPackEverywhere(pack, studyTarget);
       DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: сервер подтвердил`);
+      logCardsOptimisticStep('pack_remove', 'stored', { result: 'server_deleted', own: true });
       emitAppEvent('action_toast', actionToastTri('success', {
         ru: 'Набор удалён.', uk: 'Набір видалено.', en: 'Pack deleted.', es: 'Pack eliminado.',
         'pt-BR': 'Pacote excluído.', vi: 'Đã xóa bộ thẻ.', id: 'Paket dihapus.', tr: 'Paket silindi.', pl: 'Zestaw usunięty.',
@@ -845,6 +851,7 @@ export default function FlashcardsMyPacksScreen() {
       }
       // зачем (бета-тест 15.10, Б19): без сети — человеческое «нет интернета, набор на месте», а не общее «не удалось»
       const code = String((error as { code?: unknown } | null)?.code ?? '');
+      logCardsOptimisticFrame('pack_remove', 'rollback_frame', { restored: at !== null, code: code || null });
       const offline = /unavailable|deadline-exceeded|network/i.test(code) || /network|internet|offline|timed? ?out/i.test(String(error));
       DebugLogger.warn('[MY-PACKS]', `удаление набора ${pack.id}: тост=${offline ? 'offline' : 'generic'} code=${code || '-'}`);
       emitAppEvent('action_toast', actionToastTri('error', offline ? {

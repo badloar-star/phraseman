@@ -4,6 +4,7 @@ import { trainNavMark } from '../train_nav_trace';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from './cards_optimistic_trace';
 import {
   AccessibilityInfo,
   findNodeHandle,
@@ -615,6 +616,7 @@ export default function FlashcardsHubScreen() {
     if (!trainingEntryReady) return;
     pendingModeRef.current = mode;
     setModeSheetVisible(false);
+    logCardsOptimisticStep('train_tap', 'mode_chosen', { mode });
   }, [earlyTap, openTrainingPaywall, trainingEntryReady, trainingLocked]);
 
   const finishModeSheetDismissal = useCallback(() => {
@@ -640,10 +642,12 @@ export default function FlashcardsHubScreen() {
         void setLastPreset(presetMode, { deckIds: [deck.deckId], size: FC_DEFAULT_SESSION_SIZE }).catch((error: unknown) => {
           console.warn('[FC-TRAIN-ENTRY] прямой старт: пресет не сохранился', error instanceof Error ? error.message : String(error));
         });
+        logCardsOptimisticStep('train_tap', 'navigate', { pathname: route.pathname, after: 'sheet_dismissed' });
         router.push({ pathname: route.pathname, params: route.params } as never);
         return;
       }
     }
+    logCardsOptimisticStep('train_tap', 'navigate', { pathname: '/flashcards_training_setup', after: 'sheet_dismissed' });
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
@@ -660,6 +664,8 @@ export default function FlashcardsHubScreen() {
           return;
         }
         void hapticTap();
+        // зачем (координатор 18.10, Optimistic UI): замер «Тренироваться → окно режимов → выбор → переход → первый кадр сессии».
+        markCardsOptimisticTap('train_tap', 'hub', { trainingLocked, trainingEntryReady, quotaStatus: quotaPreview.status });
         console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
           quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
           bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady, accessResolved,
@@ -681,10 +687,12 @@ export default function FlashcardsHubScreen() {
           earlyTapStartedAtRef.current = Date.now();
           setEarlyTap(isDevCardsHeld('quota_failed') ? 'failed' : 'waiting');
           setModeSheetVisible(true);
+          logCardsOptimisticFrame('train_tap', 'sheet_frame', { early: true });
           return;
         }
         pendingModeRef.current = null;
         setModeSheetVisible(true);
+        logCardsOptimisticFrame('train_tap', 'sheet_frame', { early: false });
   };
 
   // зачем (макет «Список»: плавающая «Тренировать» на списке «Сохранённых»): список зовёт хаб с ?train=1 — открываем то же окно выбора режима

@@ -13,6 +13,7 @@ import { useSharedValue } from 'react-native-reanimated';
 import { useFeatureAccess } from '../components/PremiumContext';
 import { inferExpoSpeechLanguage, useAudio, type SpeakOpts } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticStep, markCardsOptimisticTap } from './flashcards/cards_optimistic_trace';
 import {
   BackHandler,
   InteractionManager,
@@ -1369,6 +1370,9 @@ export default function FlashcardsScreen() {
   }, [router]);
   // зачем (владелец 04.10): «Тренировать» внутри набора — сразу этот набор: хаб откроет окно режимов и после выбора запустит сессию с ним
   const onTrainThisPack = useCallback(() => {
+    // зачем (координатор 18.10, Optimistic UI): «Тренировать» в наборе → хаб с окном режимов (дальше — шаги train_tap хаба).
+    markCardsOptimisticTap('train_tap', packDeeplink ? `pack:${packDeeplink}` : 'gallery', { from: 'pack_header', cards: listCards.length });
+    logCardsOptimisticStep('train_tap', 'navigate', { pathname: '/flashcards', withDeck: !!packDeeplink });
     if (!packDeeplink) { setPendingTrainIntent({ deckId: null, count: 0 }); router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never); return; }
     setPendingTrainIntent({ deckId: `pack:${packDeeplink}`, count: listCards.length });
     router.navigate({ pathname: '/flashcards', params: { train: '1', deck: `pack:${packDeeplink}`, cnt: String(listCards.length) } } as never);

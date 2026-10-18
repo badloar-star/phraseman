@@ -27,6 +27,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from './cards_optimistic_trace';
 import {
   AccessibilityInfo,
   ActivityIndicator,
@@ -676,6 +677,8 @@ export default function FlashcardsCategoryHub({
       return;
     }
     addingPackIdsRef.current.add(pack.id);
+    // зачем (координатор 18.10, Optimistic UI): замер «быстрое добавление из каталога → кадр “✓” → запись → откат».
+    markCardsOptimisticTap('pack_add', pack.id, { source: 'catalog_quick_add' });
     void hapticTap();
     setLocallyAddedPackIds((prev) => {
       if (prev.has(pack.id)) return prev;
@@ -689,6 +692,7 @@ export default function FlashcardsCategoryHub({
       addBumpedIdsRef.current.add(pack.id);
       bumpCounts(pack.id, { added: 1 }, 'quick-add');
     }
+    logCardsOptimisticFrame('pack_add', 'ui_frame');
     // зачем (ревью 11.10, п.10): цель обучения читаем из ref в момент нажатия — строка мемоизирована, замыкание могло устареть.
     const target = studyTargetRef.current;
     const startedAt = Date.now();
@@ -701,6 +705,7 @@ export default function FlashcardsCategoryHub({
       }
       addingPackIdsRef.current.delete(pack.id);
       console.log(`[PACK-ROW] add:result pack=${pack.id} result=${result} target=${target ?? 'default'} ms=${Date.now() - startedAt}`); // guard-ok
+      logCardsOptimisticStep('pack_add', 'stored', { result });
       if (result === 'added' || result === 'already_added') return;
       // Откат: набора у человека нет — «✓» и «+1» не имеют права остаться.
       console.warn(`[PACK-ROW] add:rollback pack=${pack.id} reason=${result}`); // guard-ok: причина отказа в журнал
@@ -714,6 +719,7 @@ export default function FlashcardsCategoryHub({
         addBumpedIdsRef.current.delete(pack.id);
         bumpCounts(pack.id, { added: -1 }, 'quick-add-rollback');
       }
+      logCardsOptimisticFrame('pack_add', 'rollback_frame', { result });
       // зачем (баг владельца 11.10, 8e8fe95a8): добавление — локальная запись, сеть не нужна; текст про интернет здесь ложный.
       emitAppEvent('action_toast', packAddFailureToast(result));
     })();

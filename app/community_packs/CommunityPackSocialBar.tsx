@@ -21,6 +21,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { packAddFailureToast } from './packQuickAdd';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from '../flashcards/cards_optimistic_trace';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
 import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
@@ -353,11 +354,14 @@ export default function CommunityPackSocialBar({
       return;
     }
     addInFlightRef.current = true;
+    // зачем (координатор 18.10, Optimistic UI): замер «тап “Добавить” → кадр “В моих” → запись → откат».
+    markCardsOptimisticTap('pack_add', pack.id, { source: 'social_bar' });
     opSeqRef.current += 1;
     /** Снимок ДО оптимистичного шага — только по нему можно честно откатиться. */
     const before = snapshot;
     const seq = opSeqRef.current;
     setSnapshot((prev) => addToLibraryOptimistic(prev));
+    logCardsOptimisticFrame('pack_add', 'ui_frame');
     void (async () => {
       // зачем (координатор 12.10, аудит Optimistic UI R1): исключение записи («Не получилось сохранить набор на телефоне») раньше уходило в необработанный reject — кнопка навсегда оставалась «В моих», хотя набора нет. Теперь это тот же откат с понятным сообщением, что у отказа.
       let res: string;
@@ -367,6 +371,7 @@ export default function CommunityPackSocialBar({
         res = `throw:${error instanceof Error ? error.name : typeof error}`;
         console.warn(`[OPT-UI] pack_add threw pack=${pack.id} kind=${res}`); // guard-ok: catch пишет причину
       }
+      logCardsOptimisticStep('pack_add', 'stored', { result: res });
       if (res === 'added' || res === 'already_added') {
         onAdded?.(pack.id);
         return;
@@ -385,6 +390,7 @@ export default function CommunityPackSocialBar({
       const newer = opSeqRef.current !== seq;
       console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res} newerAction=${String(newer)}`); // guard-ok
       setSnapshot(newer ? (prev) => ({ ...prev, added: before.added, addedCount: before.addedCount }) : before);
+      logCardsOptimisticFrame('pack_add', 'rollback_frame', { result: res, newer });
       // зачем (баг владельца 11.10): добавление — локальная запись без сети, единственный отказ — `unavailable`
       // («этот набор добавить нельзя»). Прежний текст «Проверь связь» отправлял человека чинить интернет зря.
       emitAppEvent('action_toast', packAddFailureToast(res));

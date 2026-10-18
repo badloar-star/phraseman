@@ -53,7 +53,9 @@ const PROTECTED_RUNTIME = {
   // написание, 2 строки); выдача наборов, квота, energy-гейты и «Начать» без изменений (число узлов прежнее, 27).
   // зачем (15.10, аудит кнопок Карточек #18 + 🟡 «Хаб/наборы»; сверено по diff 5b6aa8f76 и текущему): +1 useFocusEffect — список наборов обновляется
   // при возврате на экран (первый фокус пропущен); витрина предложений фильтруется по языку обучения. Выдача наборов, квота, энергия и «Начать» без изменений.
-  hash: '20bc4ab7b445a90f9a3ea9e88777ce0115c133258e0974ef8ac729e4e21cbbf1', // перепин 17.10 (R115): единственное изменение маршрута после пина 15.10 — 719e4c771: перед router.push пишется локальная метка «последнее место» (recordHomeContinuePlace) и viewDeckList в зависимостях старта; логика старта/квоты прежняя
+  // перепин 18.10 (координатор, Optimistic UI Карточек, «сперва логи»): в startTraining только dev-журнал [CARDS-OPTIMISTIC] — markCardsOptimisticTap/logCardsOptimisticFrame
+  // после setStarting(true) и logCardsOptimisticStep перед router.push; старт, квота, пресет и маршрут без изменений (число узлов прежнее, 28). Прежний хэш 20bc4ab7…
+  hash: '55ee3b83bc863c27af4e443376ea76441d0e66e25de0cdfeca935c6cbfa304cf', // перепин 17.10 (R115): единственное изменение маршрута после пина 15.10 — 719e4c771: перед router.push пишется локальная метка «последнее место» (recordHomeContinuePlace) и viewDeckList в зависимостях старта; логика старта/квоты прежняя
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);

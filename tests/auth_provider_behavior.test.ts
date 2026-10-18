@@ -657,6 +657,59 @@ test('clean post-switch anonymous identity can enter an existing Apple account',
   expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
 });
 
+// зачем (блокер выпуска 18.10, журнал iPhone владельца): Apple id_token с nonce одноразовый — после неудачной привязки
+// вход идёт обновлённым credential из ошибки, а не исходным (тот давал auth/unknown).
+test('guest + existing Apple account: sign-in uses the updated credential from the link conflict error', async () => {
+  const updatedCredential = { providerId: 'apple.com', token: 'updated-credential-hash', secret: null };
+  let signInCredential: any = null;
+  authState.linkImpl = async () => {
+    const err: any = new Error('email already in use');
+    err.code = 'auth/email-already-in-use';
+    err.userInfo = { authCredential: updatedCredential, resolver: null };
+    throw err;
+  };
+  authState.signInImpl = async (credential: any) => {
+    signInCredential = credential;
+    authState.isAnonymous = false;
+    return { user: authFactory().currentUser };
+  };
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('apple');
+
+  expect(result.result).not.toBe('error');
+  expect(authState.calls).toContain('signin');
+  expect(signInCredential).toBe(updatedCredential);
+});
+
+// зачем (блокер выпуска 18.10): Firebase отклонил вход в ветке передачи — запись account_provider_handoff_v1 не должна запирать
+// следующий вход любого провайдера (раньше: provider_handoff_active до перезапуска).
+test('guest + existing account: Firebase rejection clears the handoff record so the next sign-in is not locked', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('email already in use');
+    err.code = 'auth/email-already-in-use';
+    throw err;
+  };
+  authState.signInImpl = async () => {
+    const err: any = new Error('An internal error has occurred');
+    err.code = 'auth/unknown';
+    throw err;
+  };
+
+  const { signInWithProvider } = loadAuthProvider();
+  const first = await signInWithProvider('apple');
+  expect(first.result).toBe('error');
+  await expect(lastLoadedAuthProviderStorage.getItem('account_provider_handoff_v1')).resolves.toBeNull();
+
+  authState.signInImpl = async () => {
+    authState.isAnonymous = false;
+    return { user: authFactory().currentUser };
+  };
+  const second = await signInWithProvider('google');
+  expect(second).not.toEqual(expect.objectContaining({ error: 'firebase_provider_handoff_active' }));
+  expect(second.result).not.toBe('error');
+});
+
 test('iOS Apple sign-in sends SHA256(raw nonce) to Apple and the exact raw nonce to Firebase', async () => {
   let firebaseCredential: any = null;
   authState.linkImpl = async (credential) => {

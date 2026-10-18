@@ -542,7 +542,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         stableIdentityWrites: 8,
         authLinkLookups: 1,
         ownerMergeDecisions: 7,
-        generationTransitions: 15,
+        // +1 (блокер выпуска 18.10): Firebase отклонил вход в ветке передачи — запись снята, поколение гостя возвращено.
+        generationTransitions: 16,
         generationFences: 9,
         transitionLocks: 4,
         anonymousSessionDecisions: 6,
@@ -642,11 +643,12 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +1 (Ядро 15.10): stableId для предвыборки метки до окна выбора Google; позднее чтение — сверка.
         // +1 (R15, ревью Opus 15.10): перепроверка чистоты гостя под замком перехода, если первая сказала «чист» (гонка записей).
         // +1 (Вход 17.10, 💸): перенос подтверждения привязки этого входа в новое поколение после свапа (rememberSwapConfirmedStableAuthLink).
-        occurrences: 124,
+        // +1 (блокер выпуска 18.10): возврат поколения гостя после снятия записи передачи (Firebase отклонил вход).
+        occurrences: 125,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
-          'call:beginAccountGeneration': 10,
+          'call:beginAccountGeneration': 11,
           'call:captureAccountGeneration': 2,
           'call:clearStableId': 5,
           'call:collection': 1,

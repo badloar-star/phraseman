@@ -2833,6 +2833,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     );
 
     let userCredential: any = null;
+    // зачем (блокер 18.10, журнал iPhone 08:41/08:47): у Apple id_token с nonce одноразовый — неудачная привязка гостя его тратит,
+    // и повторный вход тем же credential падал auth/unknown. Firebase отдаёт в ошибке привязки обновлённый credential — входим им.
+    let conflictUpdatedCredential: any = null;
     identityTrace('[AUTH-LINK-GOOGLE]', 'link decision', {
       provider,
       canTryLink,
@@ -2864,6 +2867,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           expectedConflict: EXPECTED_LINK_CONFLICT.has(linkCode),
         });
         if (EXPECTED_LINK_CONFLICT.has(linkCode)) {
+          const updatedFromError = linkErr?.userInfo?.authCredential ?? null;
+          conflictUpdatedCredential = updatedFromError && typeof updatedFromError === 'object' ? updatedFromError : null;
+          console.log(`[AUTH-HANDOFF] updated_credential provider=${provider} present=${conflictUpdatedCredential !== null} code=${linkCode}`); // guard-ok: только наличие, без токена
           let localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
           postCompletionHandoff = await hasAccountSwitchPostCompletionHandoff({
             freshAuthUid: String(anonUser?.uid ?? '').trim(),
@@ -2944,8 +2950,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           await stampAnonOwnershipBeforeSignIn(preProviderStableId);
           console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:stamp_anon_ownership', ms: Date.now() - stampStartedAtMs }));
           const signInStartedAtMs = Date.now();
-          userCredential = await auth.signInWithCredential(credential);
-          console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:signInWithCredential', ms: Date.now() - signInStartedAtMs }));
+          // зачем (блокер 18.10): после неудачной привязки — обновлённый credential из ошибки (Apple: исходный nonce уже израсходован)
+          userCredential = await auth.signInWithCredential(conflictUpdatedCredential ?? credential);
+          console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:signInWithCredential', ms: Date.now() - signInStartedAtMs, updatedCredential: conflictUpdatedCredential !== null }));
           const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff signed_in', {
             provider,
@@ -2994,7 +3001,28 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     if (!firebaseProviderUid) throw new Error('firebase_no_uid');
   } catch (e: any) {
     if (providerHandoffMarker) {
-      announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
+      // зачем (блокер 18.10, журнал iPhone 08:41–08:48): запись передачи после провала оставалась — каждый следующий вход ЛЮБОГО
+      // провайдера падал на provider_handoff_active до перезапуска. Если Firebase ОТКЛОНИЛ вход (фаза credential_ready — запись стоит прямо
+      // перед signInWithCredential) и сессия не сменилась (текущий uid — тот же гость), передачи не было: снимаем запись и возвращаем
+      // поколение гостя, как в ранней ветке account_switch_required. Фаза prepared (обрыв раньше, напр. по замку перехода) — прежнее
+      // поведение: запись остаётся для безопасного повтора (сторож auth_provider_behavior «transition-lock … deadline»).
+      const currentUidNow = String(auth.currentUser?.uid ?? '').trim();
+      const sessionUnchanged = providerHandoffMarker.phase === 'credential_ready'
+        && (!currentUidNow || currentUidNow === providerHandoffMarker.ownerAuthUid);
+      if (sessionUnchanged) {
+        try {
+          await clearProviderCredentialHandoff(providerHandoffMarker);
+          providerHandoffMarker = null;
+          beginAccountGeneration(preProviderStableId);
+          console.warn(`[AUTH-HANDOFF] cleared reason=firebase_failed provider=${provider} code=${identityErrorCode(e)}`); // guard-ok: причина снятия записи
+        } catch (clearError) {
+          console.warn(`[AUTH-HANDOFF] clear_failed provider=${provider} code=${identityErrorCode(clearError)}`); // guard-ok: catch пишет причину
+          announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
+        }
+      } else {
+        console.warn(`[AUTH-HANDOFF] kept reason=session_changed phase=${providerHandoffMarker.phase} provider=${provider}`); // guard-ok: запись нужна восстановлению
+        announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
+      }
     }
     // зачем (TG-0AE4918142EE): текст ошибки Firebase может нести почту — в журнал и
     // аналитику только код; errStr с текстом нужен вызывающему для логики и текста человеку.

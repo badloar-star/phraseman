@@ -1,0 +1,65 @@
+Applications Memory Usage (in Kilobytes):
+Uptime: 10194917 Realtime: 10194917
+
+** MEMINFO in pid 15582 [app.phraseman] **
+                   Pss  Private  Private  SwapPss      Rss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty    Total     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------   ------
+  Native Heap   862008   861924       16       89   862872   997652   902199    88798
+  Dalvik Heap    24620    21424     3056       42    27240    46143    23072    23071
+ Dalvik Other    20715     9004       52        2    32664                           
+        Stack     5820     5820        0        0     5828                           
+       Ashmem      278        0        0        0     1304                           
+    Other dev       60       12       36        0      392                           
+     .so mmap    55602     1836    47416       30    87400                           
+    .jar mmap     7622        0     2292        0    46680                           
+    .apk mmap    24927      524    16512        0    50232                           
+    .ttf mmap     2657        0     2404        0     3108                           
+    .dex mmap    47700       24    47148        0    50192                           
+    .oat mmap      447        0      296        0     2272                           
+    .art mmap    11749     8348     2596      136    25296                           
+   Other mmap     7707        4     1284        0    15092                           
+      Unknown   126592   126552       12        1   126972                           
+        TOTAL  1198804  1035472   123120      300  1337544  1043795   925271   111869
+ 
+ App Summary
+                       Pss(KB)                        Rss(KB)
+                        ------                         ------
+           Java Heap:    32368                          52536
+         Native Heap:   861924                         862872
+                Code:   118760                         263500
+               Stack:     5820                           5828
+            Graphics:        0                              0
+       Private Other:   139720
+              System:    40212
+             Unknown:                                  152808
+ 
+           TOTAL PSS:  1198804            TOTAL RSS:  1337544       TOTAL SWAP PSS:      300
+ 
+ Objects
+               Views:     1121         ViewRootImpl:        1
+         AppContexts:        7           Activities:        1
+              Assets:       23        AssetManagers:        0
+       Local Binders:       69        Proxy Binders:       82
+       Parcel memory:       33         Parcel count:      134
+    Death Recipients:        3             WebViews:        0
+ 
+ SQL
+         MEMORY_USED:     1846
+  PAGECACHE_OVERFLOW:      982          MALLOC_SIZE:      720
+ 
+ DATABASES
+      pgsz     dbsz   Lookaside(b) cache hits cache misses cache size  Dbname
+PER CONNECTION STATS
+         4      868            116  2091   597    25  /data/user/0/app.phraseman/databases/RKStorage
+         4      104            123     9    97    11  /data/user/0/app.phraseman/no_backup/androidx.work.workdb
+         4        8                    0     0     0    (attached) temp
+         4      104             32     4    48     3  /data/user/0/app.phraseman/no_backup/androidx.work.workdb (2)
+         4       56             68   135    82     6  /data/user/0/app.phraseman/databases/com.google.android.datatransport.events
+         4      356            105  2189   591    25  /data/user/0/app.phraseman/databases/firestore.%5BDEFAULT%5D.phraseman-ea0b3.%28default%29
+POOL STATS
+     cache hits  cache misses    cache size  Dbname
+           2091           598          2689  /data/user/0/app.phraseman/databases/RKStorage
+             15           167           182  /data/user/0/app.phraseman/no_backup/androidx.work.workdb
+            135            83           218  /data/user/0/app.phraseman/databases/com.google.android.datatransport.events
+           2189           592          2781  /data/user/0/app.phraseman/databases/firestore.%5BDEFAULT%5D.phraseman-ea0b3.%28default%29

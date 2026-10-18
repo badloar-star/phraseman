@@ -1,0 +1,13 @@
+=== memviews 02:10:28 ===
+02:10:33 старт (Главная) | NH=742МБ PSS=1013МБ |  Views: 920 ViewRootImpl: 1 | avail=1008МБ
+02:10:50 круг 1 | NH=783МБ PSS=1084МБ |  Views: 1121 ViewRootImpl: 1 | avail=954МБ
+02:11:07 круг 2 | NH=794МБ PSS=1112МБ |  Views: 1121 ViewRootImpl: 1 | avail=944МБ
+02:11:24 круг 3 | NH=797МБ PSS=1124МБ |  Views: 1121 ViewRootImpl: 1 | avail=933МБ
+02:11:41 круг 4 | NH=822МБ PSS=1148МБ |  Views: 1121 ViewRootImpl: 1 | avail=899МБ
+02:11:58 круг 5 | NH=813МБ PSS=1144МБ |  Views: 1121 ViewRootImpl: 1 | avail=910МБ
+02:12:14 круг 6 | NH=839МБ PSS=1170МБ |  Views: 1121 ViewRootImpl: 1 | avail=859МБ
+02:12:31 круг 7 | NH=833МБ PSS=1169МБ |  Views: 1121 ViewRootImpl: 1 | avail=866МБ
+02:12:48 круг 8 | NH=852МБ PSS=1186МБ |  Views: 1121 ViewRootImpl: 1 | avail=851МБ
+02:13:04 круг 9 | NH=836МБ PSS=1173МБ |  Views: 1121 ViewRootImpl: 1 | avail=865МБ
+02:13:21 круг 10 | NH=855МБ PSS=1193МБ |  Views: 1121 ViewRootImpl: 1 | avail=858МБ
+MEMVIEWS-DONE

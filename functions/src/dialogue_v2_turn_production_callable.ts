@@ -71,6 +71,7 @@ import {
   isDialogueV2WarmRequest,
   logDialogueV2Warm,
 } from './dialogue_v2_warm';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -719,6 +720,8 @@ export function createDialogueV2SessionTextTurnHandler(
     if (!input) {
       throw new HttpsError('invalid-argument', 'dialogue_v2_turn_request_invalid');
     }
+    // зачем (координатор 18.10, защита от накрутки счёта): потолок на uid уже есть (premium_dialog 60/ч), ферма анонимных uid с одного адреса упирается в окно на IP.
+    await enforceCallerRateWindow({ scope: 'dlg_turn', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 600 });
 
     let stableAccountId: string;
     try {

@@ -39,6 +39,7 @@ import {
 import { DIALOGUE_V2_SESSION_HMAC_KEY } from './dialogue_v2_session_production_runtime';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 import { recordDialogueV2Billing } from './dialogue_v2_usage_billing';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 /** PM-231 (A3): uid текущего хода для биллинга общего на модуль транспорта. */
 const freeformBillingContext = new AsyncLocalStorage<Readonly<{ authUid: string }>>();
@@ -364,6 +365,8 @@ export function createDialogueV2FreeformSessionTurnHandler(
         'dialogue_v2_freeform_session_turn_request_invalid',
       );
     }
+    // зачем (координатор 18.10, защита от накрутки счёта): у хода свободного разговора (платит OpenAI) не было потолка вовсе — окно на uid и на IP.
+    await enforceCallerRateWindow({ scope: 'ff_turn', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 120, maxPerIp: 600 });
 
     let rawResult: unknown;
     try {

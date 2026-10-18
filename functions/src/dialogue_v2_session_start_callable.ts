@@ -26,6 +26,7 @@ import {
   type DialogueV2WarmResponse,
 } from './dialogue_v2_warm';
 import { aiGloballyDisabled } from './remote_gates';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const REGION = 'us-central1';
 const SCENARIO_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:_[a-z0-9]+)*$/;
@@ -138,6 +139,8 @@ export function createDialogueV2SessionStartHandler(
       });
       throw new HttpsError('invalid-argument', 'dialogue_v2_session_request_invalid');
     }
+    // зачем (координатор 18.10, защита от накрутки счёта): потолок на uid уже есть (60/ч), добавляем окно на IP против фермы анонимных uid.
+    await enforceCallerRateWindow({ scope: 'dlg_start', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 0, maxPerIp: 300 });
 
     let stableAccountId: string;
     try {

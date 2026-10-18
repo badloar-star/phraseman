@@ -18,6 +18,7 @@ import {
   type DialogueV2FreeformSessionActor,
 } from './dialogue_v2_freeform_session_ledger';
 import { DIALOGUE_V2_SESSION_HMAC_KEY } from './dialogue_v2_session_production_runtime';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 const runAuthorizedSessionTransaction =
   runDialogueV2FreeformProductionAuthorizationTransaction;
@@ -148,6 +149,8 @@ export function createDialogueV2FreeformSessionStartHandler(
         'dialogue_v2_freeform_session_start_request_invalid',
       );
     }
+    // зачем (координатор 18.10, защита от накрутки счёта): старт свободного разговора без потолка — окно на uid и на IP.
+    await enforceCallerRateWindow({ scope: 'ff_start', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 60, maxPerIp: 300 });
 
     let created: unknown;
     try {

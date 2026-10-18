@@ -46,6 +46,7 @@ import {
 } from './dialogue_v2_usage_billing';
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
+import { enforceCallerRateWindow } from './caller_rate_window';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
@@ -160,6 +161,8 @@ export function createDialogueV2SessionCompleteHandler(
     if (typeof authUid !== 'string') throw new HttpsError('unauthenticated', 'auth_required');
     const selection = exactSelection(request.data);
     if (!selection) throw new HttpsError('invalid-argument', 'dialogue_v2_completion_request_invalid');
+    // зачем (координатор 18.10, защита от накрутки счёта): разбор итога (OpenAI) без потолка — окно на uid и на IP.
+    await enforceCallerRateWindow({ scope: 'dlg_complete', authUid, rawRequest: (request as { rawRequest?: unknown }).rawRequest, maxPerUid: 60, maxPerIp: 300 });
     // зачем (баг 02.10, «Дизайн»: итог диалога у Free — dialogue_v2_completion_unavailable,
     // в прод-логе пусто): этап, на котором сломалось завершение, обязан попасть в лог.
     let stage = 'claim';

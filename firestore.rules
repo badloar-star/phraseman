@@ -1088,6 +1088,11 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Ядро 18.10 ([ABUSE-LIMIT], functions/src/caller_rate_window.ts): окна вызовов на uid/IP (хеши) — только сервер.
+    match /callable_rate_windows/{document=**} {
+      allow read, write: if false;
+    }
+
     // Ядро 14.10 ([AUTH-RECOVERY-HINT]): счётчики лимита подсказки восстановления — только сервер.
     match /auth_recovery_hint_rate_limits/{document=**} {
       allow read, write: if false;
@@ -3416,6 +3421,7 @@ service cloud.firestore {
         // (правила складываются через ИЛИ) — браузерная админка могла читать и править метки и счётчики. Админка читает
         // onboarding_level_daily своим явным правилом выше; писать в них может только сервер.
         && collection != 'auth_recovery_hint_rate_limits'
+        && collection != 'callable_rate_windows'
         && collection != 'onboarding_level_daily'
         && collection != 'onboarding_level_counted'
         // Raw Dialogue V2 session context is callable/Admin-SDK only. This

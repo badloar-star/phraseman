@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "sigh → sighing; Is he sighing?; I am sighing with relief",
+    "uk": "sigh → sighing; Is he sighing?; I am sighing with relief"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка нашлась",
+        "uk": "Сумка знайшлася"
+      },
+      "bodyByLocale": {
+        "ru": "В бюро находок вам возвращают забытую сумку со всеми вещами. Вы облегчённо вздыхаете. Sigh — «вздыхать», relief — «облегчение». I am sighing with relief — «Я вздыхаю с облегчением». With relief объясняет причину этого вздоха. Вздох не обязательно означает грусть: сегодня сумка вернулась, а тревога ушла без неё.",
+        "uk": "У бюро знахідок вам повертають забуту сумку з усіма речами. Ви полегшено зітхаєте. Sigh — «зітхати», relief — «полегшення». I am sighing with relief — «Я зітхаю з полегшенням». With relief пояснює причину цього зітхання. Зітхання не обов’язково означає смуток: сьогодні сумка повернулася, а тривога пішла без неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r1",
+              "text": "I am sighing with relief."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r2",
+              "text": "I sighing with relief."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r3",
+              "text": "I am sigh with relief."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r1",
+              "text": "I am sighing with relief."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r2",
+              "text": "I sighing with relief."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro1:r3",
+              "text": "I am sigh with relief."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поезд задерживается",
+        "uk": "Потяг затримується"
+      },
+      "bodyByLocale": {
+        "ru": "На табло появилась задержка поезда, и ваш брат рядом тяжело вздыхает. Delay — «задержка»: поезд опаздывает, это не сообщение об отмене. Вы спрашиваете сестру о брате: Is he sighing? — «Он вздыхает?» Вопрос начинается с is, затем he и sighing.",
+        "uk": "На табло з’явилася затримка потяга, і ваш брат поруч важко зітхає. Delay — «затримка»: потяг запізнюється, це не повідомлення про скасування. Ви запитуєте сестру про брата: Is he sighing? — «Він зітхає?» Запитання починається з is, потім he і sighing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r1",
+              "text": "Is he sighing?"
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r2",
+              "text": "Are he sighing?"
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r3",
+              "text": "Is he sigh?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r1",
+              "text": "Is he sighing?"
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r2",
+              "text": "Are he sighing?"
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro2:r3",
+              "text": "Is he sigh?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отмена занятия в кружке",
+        "uk": "Скасування заняття в гуртку"
+      },
+      "bodyByLocale": {
+        "ru": "Пришло сообщение: сегодняшнее занятие в кружке отменено. Cancellation — «отмена», а не просто задержка. Друг слышит ваш шумный выдох и думает, что вы расстроены; на самом деле вы дуете на горячий чай. I am not sighing — «Я не вздыхаю». Not после am отрицает именно это действие, а не ваши чувства.",
+        "uk": "Надійшло повідомлення: сьогоднішнє заняття в гуртку скасовано. Cancellation — «скасування», а не просто затримка. Друг чує ваш шумний видих і думає, що ви засмучені; насправді ви дмухаєте на гарячий чай. I am not sighing — «Я не зітхаю». Not після am заперечує саме цю дію, а не ваші почуття."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r1",
+              "text": "I am not sighing."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r2",
+              "text": "I not sighing."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r3",
+              "text": "I am not sigh."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r1",
+              "text": "I am not sighing."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r2",
+              "text": "I not sighing."
+            },
+            {
+              "responseId": "en:lesson-09:session-21:intro3:r3",
+              "text": "I am not sigh."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "86d6f76f5d4a7c1f5a2eb0cb8b0a23e42c9b5745e997a2f7053518417a704954"
+}

@@ -14,6 +14,8 @@ export type SpireFlushWalletDeps = Readonly<{
   peekBalance: () => number;
 }>;
 
+// зачем (координатор 18.10, сторож spire_game_source_contract: префикс [SPIRE] во всех файлах app/spire): журнал ответа — с общим префиксом Пика, метка [MOMENT-REWARD] для поиска награды остаётся
+const SPIRE = '[SPIRE]';
 const isCount = (v: unknown): v is number => typeof v === 'number' && Number.isSafeInteger(v) && v >= 0;
 
 async function defaultDeps(): Promise<SpireFlushWalletDeps> {
@@ -32,7 +34,7 @@ async function defaultDeps(): Promise<SpireFlushWalletDeps> {
 }
 
 function log(result: SpireFlushWalletResult, extra: Readonly<Record<string, unknown>>): SpireFlushWalletResult {
-  console.log(`[MOMENT-REWARD] spire:flush ${JSON.stringify({ merged: result.merged, reason: result.reason, ...extra, balanceBefore: result.balanceBefore, balanceAfter: result.balanceAfter })}`); // guard-ok: строка на ответ (раз в пачку, не на ступень)
+  console.log(`${SPIRE}[MOMENT-REWARD] spire:flush ${JSON.stringify({ merged: result.merged, reason: result.reason, ...extra, balanceBefore: result.balanceBefore, balanceAfter: result.balanceAfter })}`); // guard-ok: строка на ответ (раз в пачку, не на ступень)
   return result;
 }
 

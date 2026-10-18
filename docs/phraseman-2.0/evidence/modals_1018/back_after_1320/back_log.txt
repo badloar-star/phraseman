@@ -1,0 +1,37 @@
+[BACK-BTN] tap {"seq":9,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":9,"screen":"today_tasks","decision":"today_tasks → home","ms":0}
+[BACK-BTN] interactions-free {"seq":9,"screen":"today_tasks","ms":17}
+[BACK-BTN] step {"seq":9,"step":"home_render","ms":70,"n":67}
+[BACK-BTN] step {"seq":9,"step":"today_unmount","ms":169}
+[BACK-BTN] step {"seq":9,"step":"home_effects_done","ms":189,"n":67}
+[BACK-BTN] step {"seq":9,"step":"home_render","ms":205,"n":68}
+[BACK-BTN] arrived {"seq":9,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":281}
+[BACK-BTN] tap {"seq":10,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":10,"screen":"today_tasks","decision":"today_tasks → home","ms":13}
+[BACK-BTN] interactions-free {"seq":10,"screen":"today_tasks","ms":46}
+[BACK-BTN] step {"seq":10,"step":"home_render","ms":79,"n":72}
+'[HOME-CHILD-COST]', '{"id":"bell","phase":"nested-update","window":22,"actualMs":16.4,"baseMs":16.4,"propsChanged":[]}'
+'[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":22,"actualMs":16.5,"baseMs":22.3,"propsChanged":[{"name":"bellSlot","from":"el<HomeChildCost(bell)>","to":"el<HomeChildCost(bell)>"},{"name":"avatarSlot","from":"el<HomeChildCost(avatar_slot
+[BACK-BTN] step {"seq":10,"step":"today_unmount","ms":181}
+[BACK-BTN] step {"seq":10,"step":"home_effects_done","ms":210,"n":72}
+[BACK-BTN] step {"seq":10,"step":"home_render","ms":223,"n":73}
+[BACK-BTN] arrived {"seq":10,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":301}
+'[HOME-CHILD-COST]', '{"id":"bell","phase":"update","window":22,"actualMs":12.4,"baseMs":12.4,"propsChanged":[]}'
+'[HOME-CHILD-COST]', '{"id":"header","phase":"update","window":22,"actualMs":12.5,"baseMs":18.3,"propsChanged":[{"name":"bellSlot","from":"el<HomeChildCost(bell)>","to":"el<HomeChildCost(bell)>"},{"name":"avatarSlot","from":"el<HomeChildCost(avatar_slot)>","to
+[BACK-BTN] tap {"seq":11,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":11,"screen":"today_tasks","decision":"today_tasks → home","ms":0}
+[BACK-BTN] interactions-free {"seq":11,"screen":"today_tasks","ms":18}
+[BACK-BTN] step {"seq":11,"step":"home_render","ms":86,"n":77}
+[BACK-BTN] step {"seq":11,"step":"today_unmount","ms":198}
+[BACK-BTN] step {"seq":11,"step":"home_effects_done","ms":216,"n":77}
+[BACK-BTN] step {"seq":11,"step":"home_render","ms":239,"n":78}
+[BACK-BTN] arrived {"seq":11,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":299}
+'[HOME-CHILD-COST]', '{"id":"video_rail","phase":"nested-update","window":25,"actualMs":11.5,"baseMs":23.1,"propsChanged":[{"name":"ownerActive","from":"true","to":"false"},{"name":"onSeeAll","from":"fn","to":"fn"}]}'
+[BACK-BTN] tap {"seq":12,"screen":"today_tasks","handler":"BackButton"}
+[BACK-BTN] decision {"seq":12,"screen":"today_tasks","decision":"today_tasks → home","ms":2}
+[BACK-BTN] interactions-free {"seq":12,"screen":"today_tasks","ms":21}
+[BACK-BTN] step {"seq":12,"step":"home_render","ms":67,"n":82}
+[BACK-BTN] step {"seq":12,"step":"today_unmount","ms":177}
+[BACK-BTN] step {"seq":12,"step":"home_effects_done","ms":193,"n":82}
+[BACK-BTN] step {"seq":12,"step":"home_render","ms":206,"n":83}
+[BACK-BTN] arrived {"seq":12,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":274}

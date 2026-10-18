@@ -10,8 +10,8 @@
           "uk": "Тут потрібне `can’t` — «не вмію»."
         },
         "en:lesson-08:session-10:intro1:r3": {
-          "ru": "После `can’t` нужно `dive`, без `to`.",
-          "uk": "Після `can’t` потрібне `dive`, без `to`."
+          "ru": "После `can’t` нужно `carve`, без `to`.",
+          "uk": "Після `can’t` потрібне `carve`, без `to`."
         }
       }
     },
@@ -23,8 +23,8 @@
           "uk": "Тут потрібне `can’t` — «не вміє»."
         },
         "en:lesson-08:session-10:intro2:r3": {
-          "ru": "После `can’t` нужно `juggle`, без `s`.",
-          "uk": "Після `can’t` потрібне `juggle`, без `s`."
+          "ru": "После `can’t` нужно `sculpt`, без `s`.",
+          "uk": "Після `can’t` потрібне `sculpt`, без `s`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-10:intro3:r2": {
-          "ru": "Для «чьё» нужно `whose`, а не `who`.",
-          "uk": "Для «чий» потрібне `whose`, а не `who`."
+          "ru": "Для «чья» нужно `whose`, а не `who`.",
+          "uk": "Для «чия» потрібне `whose`, а не `who`."
         },
         "en:lesson-08:session-10:intro3:r3": {
-          "ru": "Устройство одно: нужно `is this`.",
-          "uk": "Пристрій один: потрібне `is this`."
+          "ru": "Стамеска одна: нужно `is this`.",
+          "uk": "Стамеска одна: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4209bda04c8d7f413f19229eb0b96741bdfc5461f7674d65cfb2faf05634a2c7"
+  "auxiliaryFingerprint": "001492aa25005d8ebde7f5919e911b709405d882fe0396e0d25dabaa90db30c0"
 }

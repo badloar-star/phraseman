@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-08:session-10:word:carve",
+    "correctText": "carve",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-10:i01",
-    "correctText": "I can’t dive.",
+    "correctText": "I can’t carve.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i02",
-    "correctText": "dive",
+    "correctText": "carve",
     "correctResponseId": "en:lesson-08:session-10:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-10:i03",
-    "correctText": "dive",
+    "correctText": "carve",
     "correctResponseId": "en:lesson-08:session-10:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-10:i04",
-    "correctText": "en:lesson-08:session-10:i04:p1=dive\nen:lesson-08:session-10:i04:p2=hotel\nen:lesson-08:session-10:i04:p3=practice\nen:lesson-08:session-10:i04:p4=machine",
+    "correctText": "en:lesson-08:session-10:i04:p1=carve\nen:lesson-08:session-10:i04:p2=swim\nen:lesson-08:session-10:i04:p3=ball\nen:lesson-08:session-10:i04:p4=coat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i05",
-    "correctText": "I can’t dive.",
+    "correctText": "I can’t carve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:word:sculpt",
+    "correctText": "sculpt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i06",
-    "correctText": "She can’t juggle.",
+    "correctText": "She can’t sculpt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:word:chisel",
+    "correctText": "chisel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i07",
-    "correctText": "Whose machine is this?",
+    "correctText": "Whose chisel is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i08",
-    "correctText": "juggle",
+    "correctText": "sculpt",
     "correctResponseId": "en:lesson-08:session-10:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-10:i09",
-    "correctText": "I can’t dive.",
+    "correctText": "I can’t carve.",
     "correctResponseId": "en:lesson-08:session-10:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-10:i10",
-    "correctText": "en:lesson-08:session-10:i10:p1=juggle\nen:lesson-08:session-10:i10:p2=dive\nen:lesson-08:session-10:i10:p3=hotel\nen:lesson-08:session-10:i10:p4=practice",
+    "correctText": "en:lesson-08:session-10:i10:p1=sculpt\nen:lesson-08:session-10:i10:p2=carve\nen:lesson-08:session-10:i10:p3=chisel\nen:lesson-08:session-10:i10:p4=swim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i11",
-    "correctText": "Whose machine is this?",
+    "correctText": "Whose chisel is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-10:word:clay",
+    "correctText": "clay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i12",
-    "correctText": "I can swim.",
+    "correctText": "Whose clay is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i13",
-    "correctText": "I often practice.",
+    "correctText": "This is my clay.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-08:session-10:i15",
-    "correctText": "Where is the hotel?",
+    "correctText": "This is my clay.",
     "correctResponseId": "en:lesson-08:session-10:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-10:i16",
-    "correctText": "en:lesson-08:session-10:i16:p1=dive\nen:lesson-08:session-10:i16:p2=machine\nen:lesson-08:session-10:i16:p3=practice\nen:lesson-08:session-10:i16:p4=juggle",
+    "correctText": "en:lesson-08:session-10:i16:p1=carve\nen:lesson-08:session-10:i16:p2=sculpt\nen:lesson-08:session-10:i16:p3=chisel\nen:lesson-08:session-10:i16:p4=clay",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-10:i17",
-    "correctText": "Tom can’t dive.",
+    "correctText": "Tom can’t carve.",
     "correctResponseId": null
   }
 ]

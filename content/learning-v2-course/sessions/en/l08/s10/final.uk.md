@@ -1,133 +1,150 @@
-# Англійська · Урок 8 · Заняття 10 — Поки не вмію пірнати
+# Англійська · Урок 8 · Заняття 10 — Початківець у майстерні
 
-**Ситуація.** Ви розповідаєте про пірнання й жонглювання, потім з’ясовуєте, чий пристрій стоїть на столі.
+**Ситуація.** Ви обираєте просту роботу на святі гарбузів, обговорюєте участь знайомої у скульптурній майстерні й шукаєте власника стамески.
 
 **Що ви опануєте:** закріпити can’t для відсутності вміння й повторити запитання «чий?»
-**Нові слова:** dive
+**Нові слова:** carve, sculpt, chisel, clay
+**Повертаються:** swim, skate, ball, coat
 
 ---
 
 ## Інтро 1
 
-### У басейні
+### Ліхтар із гарбуза
 
-Друг запитує, чи вмієте ви пірнати. Ви поки не навчилися. `Dive` — «пірнати». `I can’t dive` — «Я не вмію пірнати». Після `can’t` потрібне `dive`, без `to` й закінчення `s`. Намочити волосся легко; красиво пірнути — окреме вміння.
+На святі потрібно вирізати візерунок на гарбузі. Друг пропонує вам це зробити, але ви ніколи не пробували. `Carve` — «вирізати фігури чи візерунки з твердого матеріалу». `I can’t carve` — «Я не вмію вирізати фігури». Після `can’t` потрібне `carve`, без `to` й закінчення `s`. Ви повідомляєте, що поки не володієте цим умінням.
 
-**Скажіть другові, що не вмієте пірнати.**
+**Скажіть другові, що не вмієте вирізати фігури.**
 
-- ✅ **I can’t dive.**
-- ❌ I can dive. — *Тут потрібне `can’t` — «не вмію».*
-- ❌ I can’t to dive. — *Після `can’t` потрібне `dive`, без `to`.*
+- ✅ **I can’t carve.**
+- ❌ I can carve. — *Тут потрібне `can’t` — «не вмію».*
+- ❌ I can’t to carve. — *Після `can’t` потрібне `carve`, без `to`.*
 
 ---
 
 ## Інтро 2
 
-### М’ячі падають
+### Запис до скульптурної майстерні
 
-Знайома пробує жонглювати, але поки не вміє. Ви розповідаєте про це другові. `She can’t juggle` — «Вона не вміє жонглювати». `Can’t` не змінюється після `she`; після нього потрібне `juggle`, без закінчення `s`.
+Під час запису до скульптурної майстерні потрібно вказати досвід. Знайома ніколи не створювала об’ємні фігури з глини чи каменю. Sculpt — «створювати скульптури». Ви повідомляєте адміністратору, що їй потрібна початкова група. `She can’t sculpt` — «Вона не вміє створювати скульптури». `Can’t` не змінюється після `she`; після нього потрібне `sculpt`, без закінчення `s`.
 
 **Розкажіть про вміння знайомої.**
 
-- ✅ **She can’t juggle.**
-- ❌ She can juggle. — *Тут потрібне `can’t` — «не вміє».*
-- ❌ She can’t juggles. — *Після `can’t` потрібне `juggle`, без `s`.*
+- ✅ **She can’t sculpt.**
+- ❌ She can sculpt. — *Тут потрібне `can’t` — «не вміє».*
+- ❌ She can’t sculpts. — *Після `can’t` потрібне `sculpt`, без `s`.*
 
 ---
 
 ## Інтро 3
 
-### Чий пристрій
+### Стамеска біля верстака
 
-На робочому столі стоїть невеликий пристрій. Ви хочете дізнатися, кому він належить. `Whose machine is this?` — «Чий це пристрій?» Тут `machine` — пристрій. Спочатку `whose machine`, потім `is this`.
+Перед заняттям із роботи з деревом ви знайшли біля верстака стамеску. Chisel — «стамеска»: ручний інструмент із металевим лезом для обробки дерева. Ви хочете повернути її власникові. `Whose chisel is this?` — «Чия це стамеска?» Спочатку `whose chisel`, потім `is this`.
 
-**Запитайте колег, чий це пристрій.**
+**Запитайте колег, чия це стамеска.**
 
-- ✅ **Whose machine is this?**
-- ❌ Who machine is this? — *Для «чий» потрібне `whose`, а не `who`.*
-- ❌ Whose machine are this? — *Пристрій один: потрібне `is this`.*
+- ✅ **Whose chisel is this?**
+- ❌ Who chisel is this? — *Для «чия» потрібне `whose`, а не `who`.*
+- ❌ Whose chisel are this? — *Стамеска одна: потрібне `is this`.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не вмію пірнати»**
+**1 · Картка слова — carve**
+<!-- interaction_id: en:lesson-08:session-10:word:carve; family: word_card -->
+> **carve** — вирізати фігури. I can’t carve. — «Я не вмію вирізати фігури». Надавати форму, зрізаючи частини матеріалу.
+
+**2 · Скажіть «Я не вмію вирізати фігури»**
 <!-- interaction_id: en:lesson-08:session-10:i01; family: phrase_builder -->
-Плитки: `dive` `can’t` `I` → **I can’t dive.**
+Плитки: `carve` `can’t` `I` → **I can’t carve.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-10:i02; family: listen_choose -->
-🔊 *dive* → **dive** · swim · juggle
-- swim — *У записі перше слово — `dive`, а в цьому варіанті — `swim`.*
-- juggle — *У записі перше слово — `dive`, а в цьому варіанті — `juggle`.*
+🔊 *carve* → **carve** · swim · skate
+- swim — *У записі carve — «вирізати фігури», а не swim — «плавати».*
+- skate — *У записі carve, а не skate — «кататися на ковзанах».*
 
-**3 · Скажіть «Я не вмію пірнати»**
+**4 · Виберіть слово: «Я не вмію вирізати фігури»**
 <!-- interaction_id: en:lesson-08:session-10:i03; family: context_gap_grammar -->
-I can’t ___. → **dive** · to dive · dives
-- to dive — *Після `can’t` потрібне `dive`, без `to`.*
-- dives — *Після `can’t` потрібне `dive`, без `s`.*
+I can’t ___. → **carve** · to carve · carves
+- to carve — *Після `can’t` потрібне `carve`, без `to`.*
+- carves — *Після `can’t` потрібне `carve`, без `s`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-10:i04; family: speed_match -->
-dive — пірнати · hotel — готель · practice — практикуватися · machine — пристрій
+carve — вирізати фігури · swim — плавати · ball — м’яч · coat — пальто
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-10:i05; family: listen_build_dictation -->
-🔊 *I can’t dive.* Плитки: `dive` `can’t` `I` → **I can’t dive.**
+🔊 *I can’t carve.* Плитки: `carve` `can’t` `I` → **I can’t carve.**
 
-**6 · Скажіть про знайому «Вона не вміє жонглювати»**
+**7 · Картка слова — sculpt**
+<!-- interaction_id: en:lesson-08:session-10:word:sculpt; family: word_card -->
+> **sculpt** — створювати скульптури. She can’t sculpt. — «Вона не вміє створювати скульптури». Робити об’ємні фігури, наприклад із глини.
+
+**8 · Скажіть про знайому «Вона не вміє створювати скульптури»**
 <!-- interaction_id: en:lesson-08:session-10:i06; family: phrase_builder -->
-Плитки: `juggle` `can’t` `She` → **She can’t juggle.**
+Плитки: `sculpt` `can’t` `She` → **She can’t sculpt.**
 
-**7 · Запитайте колег «Чий це пристрій?»**
+**9 · Картка слова — chisel**
+<!-- interaction_id: en:lesson-08:session-10:word:chisel; family: word_card -->
+> **chisel** — стамеска. Whose chisel is this? — «Чия це стамеска?» Інструмент із лезом для обробки дерева.
+
+**10 · Запитайте колег «Чия це стамеска?»**
 <!-- interaction_id: en:lesson-08:session-10:i07; family: scripted_repeat_compare -->
-🎙 **Whose machine is this?**
+🎙 **Whose chisel is this?**
 
-**8 · Скажіть «Вона не вміє жонглювати»**
+**11 · Виберіть слово: «Вона не вміє створювати скульптури»**
 <!-- interaction_id: en:lesson-08:session-10:i08; family: context_gap_grammar -->
-She can’t ___. → **juggle** · juggles · to juggle
-- juggles — *Після `can’t` потрібне `juggle`, без `s`.*
-- to juggle — *Після `can’t` потрібне `juggle`, без `to`.*
+She can’t ___. → **sculpt** · sculpts · to sculpt
+- sculpts — *Після `can’t` потрібне `sculpt`, без `s`.*
+- to sculpt — *Після `can’t` потрібне `sculpt`, без `to`.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-10:i09; family: listen_choose -->
-🔊 *I can’t dive.* → **I can’t dive.** · I can’t swim. · I can’t skate.
-- I can’t swim. — *У записі останнє слово — `dive`, а в цьому варіанті — `swim`.*
-- I can’t skate. — *У записі останнє слово — `dive`, а в цьому варіанті — `skate`.*
+🔊 *I can’t carve.* → **I can’t carve.** · I can’t swim. · I can’t skate.
+- I can’t swim. — *У записі останнє слово — `carve`, а в цьому варіанті — `swim`.*
+- I can’t skate. — *У записі останнє слово — `carve`, а в цьому варіанті — `skate`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-10:i10; family: speed_match -->
-juggle — жонглювати · dive — пірнати · hotel — готель · practice — практикуватися
+sculpt — створювати скульптури · carve — вирізати фігури · chisel — стамеска · swim — плавати
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-10:i11; family: listen_build_dictation -->
-🔊 *Whose machine is this?* Плитки: `this` `is` `machine` `Whose` → **Whose machine is this?**
+🔊 *Whose chisel is this?* Плитки: `this` `is` `chisel` `Whose` → **Whose chisel is this?**
 
-**12 · Друг запитує, чи вмієте ви плавати. Скажіть «Я вмію плавати»**
+**15 · Картка слова — clay**
+<!-- interaction_id: en:lesson-08:session-10:word:clay; family: word_card -->
+> **clay** — глина. Whose clay is this? — «Чия це глина?» Матеріал для ліплення. Як yarn, слово clay тут незлічуване: потрібне is, без a перед clay.
+
+**16 · На столі лежить глина для ліплення. Запитайте: «Чия це глина?»**
 <!-- interaction_id: en:lesson-08:session-10:i12; family: phrase_builder -->
-Плитки: `swim` `can` `I` → **I can swim.**
+Плитки: `this` `is` `clay` `Whose` → **Whose clay is this?**
 
-**13 · Друг запитує, як ви вчитеся жонглювати. Скажіть «Я часто практикуюся»**
+**17 · Учасник запитує про глину біля вашого місця. Скажіть: «Це моя глина».**
 <!-- interaction_id: en:lesson-08:session-10:i13; family: scripted_repeat_compare -->
-🎙 **I often practice.**
+🎙 **This is my clay.**
 
-**14 · Скажіть «Вона не вміє пірнати»**
+**18 · Виберіть форму: «Вона не вміє вирізати фігури»**
 <!-- interaction_id: en:lesson-08:session-10:i14; family: context_gap_grammar -->
-She ___ dive. → **can’t** · can · is can’t
+She ___ carve. → **can’t** · can · is can’t
 - can — *`Can` означає «вміє», тут потрібне `can’t` — «не вміє».*
 - is can’t — *Достатньо `she can’t`; `is` не потрібне.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-08:session-10:i15; family: listen_choose -->
-🔊 *Where is the hotel?* → **Where is the hotel?** · Where is the clinic? · Where is the bank?
-- Where is the clinic? — *У записі останнє слово — `hotel`, а в цьому варіанті — `clinic`.*
-- Where is the bank? — *У записі останнє слово — `hotel`, а в цьому варіанті — `bank`.*
+🔊 *This is my clay.* → **This is my clay.** · This is your clay. · This is my chisel.
+- This is your clay. — *У записі my — «моя», а не your.*
+- This is my chisel. — *У записі clay — «глина», а не chisel.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-10:i16; family: speed_match -->
-dive — пірнати · machine — пристрій · practice — практикуватися · juggle — жонглювати
+carve — вирізати фігури · sculpt — створювати скульптури · chisel — стамеска · clay — глина
 
-**17 · Друг запитує про вміння Тома пірнати. Том поки не навчився. Скажіть «Том не вміє пірнати»**
+**21 · Друг запитує про вміння Тома вирізати фігури. Том поки не навчився. Скажіть «Том не вміє вирізати фігури»**
 <!-- interaction_id: en:lesson-08:session-10:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can’t dive.**
+🎙 **Tom can’t carve.**
 

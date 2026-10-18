@@ -6,13 +6,13 @@ import path from 'node:path';
 const bar = fs.readFileSync(path.join(__dirname, '..', 'components/EnergyBar.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
 describe('EnergyBar: капсула в стеклянной шапке', () => {
-  it('в glass-режиме содержимое получает заливку opaqueControl, полный радиус и внутреннюю тень; вне glass — null', () => {
-    expect(bar).toContain("glass && !noCapsule ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,");
+  it('в glass-режиме содержимое получает заливку buttonFill (токен кнопки, ≥ 1,5 к странице; opaqueControl сливался с фоном), полный радиус и внутреннюю тень; вне glass — null', () => {
+    expect(bar).toContain("glass && !noCapsule ? { backgroundColor: lg.buttonFill, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,");
     expect(bar).toContain("import { nestedBoxShadow } from './v2/ShadowSurface';");
   });
 
   it('без обводки и без hex-цветов в капсуле; прежний размер 60×28 и общий стиль капсулы не менялись', () => {
-    const start = bar.indexOf('glass && !noCapsule ? { backgroundColor: lg.opaqueControl');
+    const start = bar.indexOf('glass && !noCapsule ? { backgroundColor: lg.buttonFill');
     const line = bar.slice(start, bar.indexOf('\n', start));
     expect(line).not.toMatch(/border(Width|Color)/);
     expect(line).not.toMatch(/#[0-9A-Fa-f]{3,8}/);

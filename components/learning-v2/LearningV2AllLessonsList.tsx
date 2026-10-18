@@ -87,13 +87,14 @@ const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onP
       contentStyle={styles.rowContent}
     >
       <View style={styles.rowCopy}>
-        <Text style={[styles.rowMeta, { color: row.isCurrent ? g.text : g.mutedText }]}>{meta}</Text>
+        {/* зачем ([BLEND-AUDIT] 18.10): у закрытой/готовящейся строки opacity 0,62 на всю строку — приглушённый mutedText под ним падал до 2,65:1; метка и значки берут g.text (под 0,62 ≥ 5,08:1), строка остаётся отличимой от открытой (название 2,51:1 к открытому) */}
+        <Text style={[styles.rowMeta, { color: row.isCurrent || dim ? g.text : g.mutedText }]}>{meta}</Text>
         <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
       </View>
-      {locked ? <Ionicons name="lock-closed" size={22} color={g.mutedText} />
-        : row.isInProgress ? <Ionicons name="construct-outline" size={22} color={g.mutedText} />
+      {locked ? <Ionicons name="lock-closed" size={22} color={g.text} />
+        : row.isInProgress ? <Ionicons name="construct-outline" size={22} color={g.text} />
         : <ProgressRing pct={pct} done={pct >= 1} g={g} />}
-      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+      <Ionicons name="chevron-forward" size={20} color={dim ? g.text : g.secondary} />
     </PressableHybrid>
   );
 });
@@ -136,10 +137,10 @@ export default function LearningV2AllLessonsList(props: Props) {
             accessibilityState={{ selected, disabled: empty }}
             disabled={empty}
             onPress={() => setLevel(code)}
-            style={[styles.chip, { backgroundColor: selected ? g.cta : g.buttonFill }, empty ? styles.dim : null]}
+            style={[styles.chip, { backgroundColor: selected ? g.ctaFill : g.buttonFill }, empty ? styles.dim : null]}
             contentStyle={styles.chipContent}
           >
-            <Text style={[styles.chipText, { color: selected ? g.ctaInk : g.text }]}>{code}</Text>
+            <Text style={[styles.chipText, { color: selected ? g.ctaFillInk : g.text }]}>{code}</Text>
           </PressableHybrid>
         );
       })}

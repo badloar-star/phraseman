@@ -3,6 +3,7 @@
 // Порог: заливка кнопки к фону ≥ 3:1 (графика) или явный тон ≥ 1,5:1 (контейнеры-плашки отделены тенью — считаем только подпись), текст ≥ 4,5:1.
 // Общий модуль для теста (tests/blend_1018_audit.test.ts) и отчёта (scripts/blend_1018_report.cjs). «Было» — токены до исправлений 17.10 (before), «стало» — текущие (after). BLEND_WRITE=1 пишет таблицу «тема × элемент × контраст» в docs/phraseman-2.0/evidence/blend_1018.md.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { lowChargeInk } from '../constants/energy_low_ink';
 import { feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 
 type Tok = Record<string, string>;
@@ -124,6 +125,27 @@ export const PAIRS: readonly Pair[] = [
   // ── плитки хаба Карточек (плашка с градиентом plateFillFrom→plateFillTo и тенью): число и название
   { element: 'Хаб Карточек: плитка', what: 'число/название к началу градиента', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
   { element: 'Хаб Карточек: плитка', what: 'число/название к концу градиента', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillTo!)) },
+  // ── «Все уроки» по эталону 1.6 (LearningV2AllLessonsList.tsx, f95474baf): чипы A1–B2, «Классический курс», кольцо, ключ/замок, закрытые строки (opacity 0,62 на всю строку)
+  { element: 'Все уроки: чип', what: 'выбранный (ctaFill) к невыбранному (buttonFill) — тон', min: TONE, before: (t) => ratio(solid(t.cta!), solid(t.buttonFill!)), after: (t) => ratio(solid(t.ctaFill!), solid(t.buttonFill!)) },
+  { element: 'Все уроки: чип', what: 'выбранный к странице', min: GRAPHIC, before: (t) => ratio(solid(t.cta!), solid(t.bg!)), after: (t) => ratio(solid(t.ctaFill!), solid(t.bg!)) },
+  { element: 'Все уроки: чип', what: 'подпись выбранного', min: TEXT, before: (t) => ratio(solid(t.ctaInk!), solid(t.cta!)), after: (t) => ratio(solid(t.ctaFillInk!), solid(t.ctaFill!)) },
+  { element: 'Все уроки: чип', what: 'невыбранный к странице — тон', min: TONE, after: (t) => ratio(solid(t.buttonFill!), solid(t.bg!)) },
+  { element: 'Все уроки: чип', what: 'подпись невыбранного и «Классического курса» к buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
+  { element: 'Все уроки: кольцо', what: 'дуга (text) к плашке строки', min: GRAPHIC, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
+  { element: 'Все уроки: кольцо', what: 'дорожка (text 16 %) к плашке строки — тон', min: TONE, floor: 1.2, after: (t) => ratio(over(t.text!, solid(t.plateFillFrom!), 0.16), solid(t.plateFillFrom!)) },
+  { element: 'Все уроки: строка', what: 'название (text) к плашке', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.plateFillFrom!)) },
+  { element: 'Все уроки: строка', what: 'метка и шеврон (mutedText) к плашке', min: TEXT, after: (t) => ratio(solid(t.mutedText!), solid(t.plateFillFrom!)) },
+  { element: 'Все уроки: закрытая строка', what: 'название к плашке (обе под opacity 0,62 над страницей)', min: TEXT, after: (t) => ratio(over(t.text!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)) },
+  { element: 'Все уроки: закрытая строка', what: 'метка (g.text) к плашке под opacity', min: TEXT, before: (t) => ratio(over(t.mutedText!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)), after: (t) => ratio(over(t.text!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)) },
+  { element: 'Все уроки: закрытая строка', what: 'замок/ключ (g.text) к плашке под opacity', min: GRAPHIC, before: (t) => ratio(over(t.mutedText!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)), after: (t) => ratio(over(t.text!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)) },
+  { element: 'Все уроки: закрытая строка', what: 'шеврон (g.text) к плашке под opacity', min: GRAPHIC, before: (t) => ratio(over(t.secondary!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)), after: (t) => ratio(over(t.text!, solid(t.bg!), 0.62), over(t.plateFillFrom!, solid(t.bg!), 0.62)) },
+  { element: 'Все уроки: закрытая строка', what: 'отличима от открытой: название закрытой к названию открытой', min: 1.2, after: (t) => ratio(solid(t.text!), over(t.text!, solid(t.bg!), 0.62)) },
+  // ── Диалоги (2c0675a0f, ce1222c47): пилюля «N/30» и капсула энергии — заливка opaqueControl на странице
+  { element: 'Диалоги: пилюля N/30', what: 'заливка к странице — тон', min: TONE, before: (t) => ratio(solid(t.opaqueControl!), solid(t.bg!)), after: (t) => ratio(solid(t.buttonFill!), solid(t.bg!)) },
+  { element: 'Диалоги: пилюля N/30', what: 'число и значок (text) к заливке buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
+  { element: 'Диалоги: капсула энергии', what: 'заливка к странице — тон', min: TONE, after: (t) => ratio(solid(t.buttonFill!), solid(t.bg!)) },
+  { element: 'Диалоги: капсула энергии', what: 'число и молния (text) к заливке buttonFill', min: TEXT, after: (t) => ratio(solid(t.text!), solid(t.buttonFill!)) },
+  { element: 'Диалоги: капсула энергии', what: 'низкий заряд (bad, подогнан lowChargeInk) к заливке buttonFill', min: GRAPHIC, before: (t) => ratio(solid(t.bad!), solid(t.buttonFill!)), after: (t) => ratio(solid(lowChargeInk(t.bad!, t.buttonFill!, t.text!)), solid(t.buttonFill!)) },
 ];
 
 const INTENSITIES = [0, 0.25, 0.5, 0.75, 1];

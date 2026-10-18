@@ -10,6 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { triLang } from '../constants/i18n';
+import { lowChargeInk } from '../constants/energy_low_ink';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { AnimatedEnergyNumber } from './energy/AnimatedEnergyNumber';
 import { createEnergyPopoverRequestGate, EnergyInfoPopover } from './energy/EnergyInfoPopover';
@@ -96,7 +97,8 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
   const accent = bonusEnergyCapacity > 0
     ? COLORS.overcharge
     : lowCharge
-      ? (glass ? lg.bad : COLORS.low)
+      // зачем ([BLEND-AUDIT] 18.10): красная молния низкого заряда на капсуле buttonFill давала 2,05:1 — оттенок подгоняется до 3:1 (иначе основной текст), число рядом несёт смысл «мало»
+      ? (glass ? lowChargeInk(lg.bad, lg.buttonFill, lg.text) : COLORS.low)
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
       : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : COLORS.normal);
@@ -190,7 +192,8 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCap
             styles.capsule,
             // зачем (сверка dialogs-001/007, Макеты 4fbcfc81d; образец kit.js `energy()` = `.pill`, эталон «Тень» etalon.html): в стеклянной шапке энергия сидит в капсуле — заливка токена темы + внутренняя тень «Тень», БЕЗ обводки.
             // Размер прежний (60×28, зафиксирован владельцем 24.09: тест energy_ui_owner_direction_probe); вне glass (старые шапки) пилюля по-прежнему без фона.
-            glass && !noCapsule ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
+            // зачем ([BLEND-AUDIT] 18.10): заливка buttonFill, а не opaqueControl — в светлых темах opaqueControl равен фону страницы (1,00:1), buttonFill ≥ 1,5 к странице
+            glass && !noCapsule ? { backgroundColor: lg.buttonFill, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
           ]}
         >
           <EnergyIcon

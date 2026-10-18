@@ -70,7 +70,7 @@ export function DialogueGlassQuotaPill({ glass, text, accessibilityLabel, testID
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
-      style={[styles.pill, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]} // зачем (стиль «Тень»): пилюля без кромки — малая тень
+      style={[styles.pill, { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }]} // зачем (стиль «Тень»): пилюля без кромки — малая тень; заливка buttonFill, а не opaqueControl: в светлых темах opaqueControl == фон страницы (1,00:1), [BLEND-AUDIT] 18.10
     >
       <Ionicons name="chatbubble-ellipses-outline" size={16} color={glass.text} />
       <Text maxFontSizeMultiplier={1.2} style={[styles.pillText, { color: glass.text }]}>{text}</Text>

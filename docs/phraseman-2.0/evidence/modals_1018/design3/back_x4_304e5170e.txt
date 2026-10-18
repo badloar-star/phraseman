@@ -1,0 +1,57 @@
+10-18 01:58:20.330 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"bell","phase":"nested-update","window":5,"actualMs":9.5,"baseMs":1.3}'
+10-18 01:58:20.331 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":5,"actualMs":12.4,"baseMs":5}'
+10-18 01:58:20.353 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":17,"window":5,"renderToEffectsMs":116,"ownEffectsMs":2}'
+10-18 01:58:23.871 I/ReactNativeJS(13608): [BACK-BTN] tap {"seq":1,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:58:23.872 I/ReactNativeJS(13608): [BACK-BTN] decision {"seq":1,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+10-18 01:58:23.898 I/ReactNativeJS(13608): [BACK-BTN] interactions-free {"seq":1,"screen":"today_tasks","ms":26}
+10-18 01:58:23.935 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":1,"step":"home_render","ms":63,"n":18}
+10-18 01:58:24.030 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":6,"actualMs":15.1,"baseMs":15.7}'
+10-18 01:58:24.045 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":1,"step":"today_unmount","ms":172}
+10-18 01:58:24.065 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":1,"step":"home_effects_done","ms":191,"n":18}
+10-18 01:58:24.068 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":18,"window":6,"renderToEffectsMs":117,"ownEffectsMs":11}'
+10-18 01:58:24.095 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":1,"step":"home_render","ms":224,"n":19}
+10-18 01:58:24.186 I/ReactNativeJS(13608): [BACK-BTN] arrived {"seq":1,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":313}
+10-18 01:58:24.198 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":19,"window":6,"renderToEffectsMs":79,"ownEffectsMs":21}'
+10-18 01:58:24.283 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":20,"window":6,"renderToEffectsMs":51,"ownEffectsMs":0}'
+10-18 01:58:27.148 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":7,"actualMs":13.5,"baseMs":14.2}'
+10-18 01:58:27.178 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":22,"window":7,"renderToEffectsMs":142,"ownEffectsMs":2}'
+10-18 01:58:30.225 I/ReactNativeJS(13608): [BACK-BTN] tap {"seq":2,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:58:30.228 I/ReactNativeJS(13608): [BACK-BTN] decision {"seq":2,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+10-18 01:58:30.279 I/ReactNativeJS(13608): [BACK-BTN] interactions-free {"seq":2,"screen":"today_tasks","ms":54}
+10-18 01:58:30.327 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":2,"step":"home_render","ms":103,"n":23}
+10-18 01:58:30.439 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":2,"step":"today_unmount","ms":214}
+10-18 01:58:30.458 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":2,"step":"home_effects_done","ms":232,"n":23}
+10-18 01:58:30.459 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":23,"window":8,"renderToEffectsMs":118,"ownEffectsMs":11}'
+10-18 01:58:30.485 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":2,"step":"home_render","ms":260,"n":24}
+10-18 01:58:30.565 I/ReactNativeJS(13608): [BACK-BTN] arrived {"seq":2,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":338}
+10-18 01:58:30.574 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":24,"window":8,"renderToEffectsMs":74,"ownEffectsMs":15}'
+10-18 01:58:30.695 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"bell","phase":"update","window":8,"actualMs":17.6,"baseMs":17.5}'
+10-18 01:58:30.697 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"update","window":8,"actualMs":18.2,"baseMs":21.9}'
+10-18 01:58:30.709 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":25,"window":8,"renderToEffectsMs":78,"ownEffectsMs":0}'
+10-18 01:58:33.492 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"nested-update","window":9,"actualMs":8.9,"baseMs":9.1}'
+10-18 01:58:33.521 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":27,"window":9,"renderToEffectsMs":151,"ownEffectsMs":2}'
+10-18 01:58:36.516 I/ReactNativeJS(13608): [BACK-BTN] tap {"seq":3,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:58:36.517 I/ReactNativeJS(13608): [BACK-BTN] decision {"seq":3,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+10-18 01:58:36.567 I/ReactNativeJS(13608): [BACK-BTN] interactions-free {"seq":3,"screen":"today_tasks","ms":51}
+10-18 01:58:36.633 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":3,"step":"home_render","ms":116,"n":28}
+10-18 01:58:36.733 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":3,"step":"today_unmount","ms":216}
+10-18 01:58:36.750 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":3,"step":"home_effects_done","ms":233,"n":28}
+10-18 01:58:36.751 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":28,"window":10,"renderToEffectsMs":107,"ownEffectsMs":10}'
+10-18 01:58:36.774 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":3,"step":"home_render","ms":258,"n":29}
+10-18 01:58:36.855 I/ReactNativeJS(13608): [BACK-BTN] arrived {"seq":3,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":338}
+10-18 01:58:36.861 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":29,"window":10,"renderToEffectsMs":74,"ownEffectsMs":11}'
+10-18 01:58:36.962 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":30,"window":10,"renderToEffectsMs":65,"ownEffectsMs":0}'
+10-18 01:58:39.865 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":32,"window":11,"renderToEffectsMs":168,"ownEffectsMs":7}'
+10-18 01:58:42.805 I/ReactNativeJS(13608): [BACK-BTN] tap {"seq":4,"screen":"today_tasks","handler":"BackButton"}
+10-18 01:58:42.805 I/ReactNativeJS(13608): [BACK-BTN] decision {"seq":4,"screen":"today_tasks","decision":"today_tasks → home","ms":1}
+10-18 01:58:43.047 I/ReactNativeJS(13608): [BACK-BTN] interactions-free {"seq":4,"screen":"today_tasks","ms":242}
+10-18 01:58:43.087 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":4,"step":"home_render","ms":283,"n":33}
+10-18 01:58:43.190 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":4,"step":"today_unmount","ms":385}
+10-18 01:58:43.207 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":4,"step":"home_effects_done","ms":402,"n":33}
+10-18 01:58:43.209 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":33,"window":12,"renderToEffectsMs":109,"ownEffectsMs":10}'
+10-18 01:58:43.228 I/ReactNativeJS(13608): [BACK-BTN] step {"seq":4,"step":"home_render","ms":424,"n":34}
+10-18 01:58:43.300 I/ReactNativeJS(13608): [BACK-BTN] arrived {"seq":4,"tapScreen":"today_tasks","handler":"BackButton","arrivedAt":"home","via":"focus_tick","ms":495}
+10-18 01:58:43.306 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":34,"window":12,"renderToEffectsMs":66,"ownEffectsMs":11}'
+10-18 01:58:43.406 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"bell","phase":"update","window":12,"actualMs":18.1,"baseMs":17.9}'
+10-18 01:58:43.409 I/ReactNativeJS(13608): '[HOME-CHILD-COST]', '{"id":"header","phase":"update","window":12,"actualMs":18.3,"baseMs":21.1}'
+10-18 01:58:43.427 I/ReactNativeJS(13608): '[HOME-FOCUS-COST]', '{"tag":"home","n":35,"window":12,"renderToEffectsMs":86,"ownEffectsMs":0}'

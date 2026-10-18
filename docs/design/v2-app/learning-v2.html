@@ -288,6 +288,10 @@ svg.i.off { color: #3A3A3E; }
 .col > .replay { margin: 4px 0 0; }
 .col > .lbl .lnote { display: block; font-weight: 400; color: var(--sec); margin-top: 2px; font-size: 13px; }
 .tbl td.ph-id a { font-variant-numeric: tabular-nums; }
+/* зачем (владелец 18.10 через координатора): «Все уроки» в едином стиле с картой и Диалогами — слева плитка урока 46/12, тон текста 9 %, значок Ionicons 22 (тот же, что у заголовка урока на карте). */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.lio { flex: none; width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.09); color: #fff; display: flex; align-items: center; justify-content: center; }
+.lio i { font-family: IoniconsApp; font-style: normal; font-size: 22px; line-height: 1; }
 </style>
 </head>
 <body>
@@ -387,7 +391,10 @@ const mapB = () => phone(`
 
 // Вариант В — список уроков со строками занятий
 const ringSvg = (pct, done) => `<span class="ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" stroke="#2C2C2E" stroke-width="4" fill="none"/><circle cx="22" cy="22" r="18" stroke="#E9E9EB" stroke-width="4" fill="none" stroke-dasharray="${(pct * 113.1).toFixed(1)} 113.1" stroke-linecap="round" transform="rotate(-90 22 22)"/></svg>${done ? icon('check', 's18') : `<b style="font-size:12px;font-weight:700;font-variant-numeric:tabular-nums">${Math.round(pct * 56)}</b>`}</span>`;
-const lrow = (n, title, o = {}) => `<div class="card t" style="${o.dim ? 'opacity:.62' : ''}"><div class="row" style="min-height:70px"><div class="tx"><div class="st" style="font-size:13px;letter-spacing:.4px;color:${o.cur ? '#fff' : 'var(--muted)'}">A1 · ${String(n).padStart(2, '0')}${o.cur ? ' · Текущий' : ''}</div><div class="tt" style="margin-top:2px">${title}</div>${o.plus ? '<div class="st">Входит в Plus</div>' : ''}</div>${o.wip ? `<span class="tile" style="background:transparent;color:var(--muted)">${li('wrench', 's22')}</span>` : o.lock ? `<span class="tile" style="background:transparent;color:var(--muted)">${icon('lockF', 's22')}</span>` : ringSvg(o.pct || 0, o.pct === 1)}${o.open ? `<span class="ch">${icon('up', 's20')}</span>` : ch}</div></div>`;
+// зачем (владелец 18.10): значки уроков 1–8 — Ionicons briefcase, help-circle, cube, map, id-card, sunny, repeat, school (-outline), как у заголовка урока на карте
+const LION = [0xf1b2, 0xf37e, 0xf299, 0xf443, 0xf38c, 0xf5ae, 0xf530, 0xf55d];
+const lio = (n) => `<span class="lio"><i aria-hidden="true">&#x${LION[n - 1].toString(16)};</i></span>`;
+const lrow = (n, title, o = {}) => `<div class="card t" style="${o.dim ? 'opacity:.62' : ''}"><div class="row" style="min-height:70px">${o.ion ? lio(n) : ''}<div class="tx"><div class="st" style="font-size:13px;letter-spacing:.4px;color:${o.cur ? '#fff' : 'var(--muted)'}">A1 · ${String(n).padStart(2, '0')}${o.cur ? ' · Текущий' : ''}</div><div class="tt" style="margin-top:2px">${title}</div>${o.plus ? '<div class="st">Входит в Plus</div>' : ''}</div>${o.wip ? `<span class="tile" style="background:transparent;color:var(--muted)">${li('wrench', 's22')}</span>` : o.lock ? `<span class="tile" style="background:transparent;color:var(--muted)">${icon('lockF', 's22')}</span>` : ringSvg(o.pct || 0, o.pct === 1)}${o.open ? `<span class="ch">${icon('up', 's20')}</span>` : ch}</div></div>`;
 const srow = (n, st, o = {}) => `<div class="t" style="display:flex;align-items:center;gap:16px;padding:10px 4px;${o.last ? '' : 'border-bottom:1px solid var(--line)'}"><span class="snode ${st}">${st === 'done' ? icon('check', 's20') : st === 'cur' ? icon('play', 's20') : o.chk ? li('trophy', 's20') : icon('lockF', 's18')}</span><div class="grow" style="min-width:0"><div style="font-size:16px;font-weight:${st === 'cur' ? 700 : 600};color:${st === 'done' || st === 'cur' ? '#fff' : '#A6A6A8'}">${n}. ${o.title || S[n]}</div>${o.sub ? `<div style="font-size:14px;color:var(--sec);margin-top:2px">${o.sub}</div>` : ''}</div>${st === 'done' ? `<span style="display:flex;gap:1px">${[1, 2, 3].map((i) => li('starF', 's16' + (i <= (o.stars || 0) ? '' : ' off'))).join('')}</span>` : st === 'plus' ? '<span style="font-size:13px;color:var(--muted);font-weight:600">Plus</span>' : ''}${ch}</div>`;
 const mapC = () => phone(`
   <div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span class="rb t">${li('book', 's20')}</span></div>
@@ -429,14 +436,14 @@ const lessonsList = () => phone(`
   <div class="hdr" style="margin-top:6px"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti xl">Все уроки</div></div></div>
   <div class="flex" style="gap:8px;margin-top:20px;flex-wrap:nowrap"><span class="pill s" style="background:#E9E9EB;color:#0B0C0E">A1</span><span class="pill s ol">A2</span><span class="pill s ol">B1</span><span class="pill s ol">B2</span><span class="pill s ol" style="margin-left:auto">${li('albums', 's16')}Обучение</span></div>
   <div class="stack" style="margin-top:18px">
-    ${lrow(1, LESSONS[0], { cur: true, pct: 12 / 56 })}
-    ${lrow(2, LESSONS[1], { pct: 0 })}
-    ${lrow(3, LESSONS[2], { wip: true, dim: true })}
-    ${lrow(4, LESSONS[3], { lock: true, dim: true })}
-    ${lrow(5, LESSONS[4], { lock: true, dim: true })}
-    ${lrow(6, LESSONS[5], { lock: true, dim: true })}
-    ${lrow(7, LESSONS[6], { lock: true, dim: true })}
-    ${lrow(8, LESSONS[7], { lock: true, dim: true })}
+    ${lrow(1, LESSONS[0], { ion: true, cur: true, pct: 12 / 56 })}
+    ${lrow(2, LESSONS[1], { ion: true, pct: 0 })}
+    ${lrow(3, LESSONS[2], { ion: true, wip: true, dim: true })}
+    ${lrow(4, LESSONS[3], { ion: true, lock: true, dim: true })}
+    ${lrow(5, LESSONS[4], { ion: true, lock: true, dim: true })}
+    ${lrow(6, LESSONS[5], { ion: true, lock: true, dim: true })}
+    ${lrow(7, LESSONS[6], { ion: true, lock: true, dim: true })}
+    ${lrow(8, LESSONS[7], { ion: true, lock: true, dim: true })}
   </div>`, { time: '9:41' });
 
 const hintToast = (text) => `<div class="hint">${text}</div>`;

@@ -204,3 +204,14 @@ Security: не затрагивает.
 Tech debt: выбор значков Ionicons — мой, по смыслу глав; уроки 5–8 по арке (глав ещё нет).
 Verification: снимки playwright «Сумерки»/«Океан».
 Rollback: git revert коммита.
+
+
+## «Все уроки» в эталоне learning-v2.html: плитка урока Ionicons (координатор: единый стиль с картой)
+Governance-ID: TG-36E88520DBE1
+Outcome: в lessonsList() (эталон 1.6) у каждой строки урока слева плитка 46/12/22 тоном текста 9 % со значком урока (те же Ionicons, что у заголовка урока на карте, fd6d10db8) — как в коде Моментов LearningV2AllLessonsList (lessonTile 46/12, Ionicons 22).
+Scope: только learning-v2.html, функция lrow (опция ion) и lessonsList; вариант В карты (mapC) не тронут.
+Architecture: шрифт assets/Ionicons.ttf, коды глифов из glyphmap.
+Security: не затрагивает.
+Tech debt: нет.
+Verification: снимок блока map-states.
+Rollback: git revert коммита.

@@ -3311,4 +3311,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is inspecting; Are you reading…?; Please don’t touch…","uk":"is inspecting; Are you reading…?; Please don’t touch…"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 25,
+    sourceFingerprint: "ebc69fa1e6ee41a5d5414ee8ccd38220cf5469c553b12d8bb3424e76de901cfc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"is glowing now — светится прямо сейчас","uk":"is glowing now — світиться просто зараз"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

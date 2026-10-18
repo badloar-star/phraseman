@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-46:word:lifejacket",
+    "correctText": "lifejacket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-46:i01",
-    "correctText": "This laptop is useless.",
+    "correctText": "This is my brother's lifejacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-46:word:deck",
+    "correctText": "deck",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i02",
-    "correctText": "ferry",
+    "correctText": "The lifejacket is on the deck.",
     "correctResponseId": "en:lesson-05:session-46:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-46:word:seagull",
+    "correctText": "seagull",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-46:i03",
-    "correctText": "ferry",
+    "correctText": "uncle's",
     "correctResponseId": "en:lesson-05:session-46:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-46:i04",
-    "correctText": "en:lesson-05:session-46:i04:p1=ferry\nen:lesson-05:session-46:i04:p2=laptop\nen:lesson-05:session-46:i04:p3=airport\nen:lesson-05:session-46:i04:p4=pantry",
+    "correctText": "en:lesson-05:session-46:i04:p1=lifejacket\nen:lesson-05:session-46:i04:p2=deck\nen:lesson-05:session-46:i04:p3=seagull\nen:lesson-05:session-46:i04:p4=anchor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-46:word:anchor",
+    "correctText": "anchor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i05",
-    "correctText": "Where is the ferry?",
+    "correctText": "The anchor is heavy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i06",
-    "correctText": "The bag is in the pantry.",
+    "correctText": "Whose bag is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i07",
-    "correctText": "The ferry is here.",
+    "correctText": "My sister's bag is on the deck.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-05:session-46:i09",
-    "correctText": "This is Anna's laptop.",
+    "correctText": "Whose lifejacket is this?",
     "correctResponseId": "en:lesson-05:session-46:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-46:i10",
-    "correctText": "en:lesson-05:session-46:i10:p1=ferry\nen:lesson-05:session-46:i10:p2=useless\nen:lesson-05:session-46:i10:p3=pantry\nen:lesson-05:session-46:i10:p4=laptop",
+    "correctText": "en:lesson-05:session-46:i10:p1=seagull\nen:lesson-05:session-46:i10:p2=anchor\nen:lesson-05:session-46:i10:p3=bag\nen:lesson-05:session-46:i10:p4=jacket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i11",
-    "correctText": "Tom is at the airport.",
+    "correctText": "My friend's lifejacket is on the deck.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i12",
-    "correctText": "The laptop is hers.",
+    "correctText": "The seagull is on my brother's jacket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i13",
-    "correctText": "I have your laptop.",
+    "correctText": "The lifejacket is hers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i14",
-    "correctText": "Where",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-46:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-46:i15",
-    "correctText": "Your laptop is here.",
+    "correctText": "The anchor is on the deck.",
     "correctResponseId": "en:lesson-05:session-46:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-46:i16",
-    "correctText": "en:lesson-05:session-46:i16:p1=ferry\nen:lesson-05:session-46:i16:p2=useless\nen:lesson-05:session-46:i16:p3=airport\nen:lesson-05:session-46:i16:p4=laptop",
+    "correctText": "en:lesson-05:session-46:i16:p1=lifejacket\nen:lesson-05:session-46:i16:p2=deck\nen:lesson-05:session-46:i16:p3=seagull\nen:lesson-05:session-46:i16:p4=anchor",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-46:i17",
-    "correctText": "Whose laptop is this?",
+    "correctText": "The lifejacket is mine.",
     "correctResponseId": null
   }
 ]

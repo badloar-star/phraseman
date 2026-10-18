@@ -1,0 +1,2461 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-45:word:headset",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headset",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:headset:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headset",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:headset:audio",
+            "transcript": "headset"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:headset:r1",
+              "targetText": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+                "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headset",
+            "definitionByLocale": {
+              "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+              "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The headset is on my friend's desk.",
+          "localizedMeaning": {
+            "ru": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+            "uk": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»"
+          },
+          "orderedTokens": [
+            "The",
+            "headset",
+            "is",
+            "on",
+            "my",
+            "friend's",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `The headset is on my friend's desk.`",
+                "uk": "тут потрібно `friend's` — `The headset is on my friend's desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:highlighter",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — highlighter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:highlighter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — highlighter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:highlighter:audio",
+            "transcript": "highlighter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:highlighter:r1",
+              "targetText": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+                "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "highlighter",
+            "definitionByLocale": {
+              "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+              "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i02:r1",
+            "text": "My highlighter is on the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i02:r2",
+            "text": "My highlighter is under the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i02:r3",
+            "text": "My headset is on the desk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i02:audio",
+            "transcript": "My highlighter is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i02:r1",
+              "targetText": "My highlighter is on the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r2",
+              "targetText": "My highlighter is under the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r3",
+              "targetText": "My headset is on the desk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на столе, а в этом варианте `under` — под столом.",
+                "uk": "У записі `on` — на столі, а в цьому варіанті `under` — під столом."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `highlighter`, маркер, а в этом варианте — `headset`, гарнитура.",
+                "uk": "У записі річ — `highlighter`, маркер, а в цьому варіанті — `headset`, гарнітура."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:sharpener",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sharpener",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:sharpener:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sharpener",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:sharpener:audio",
+            "transcript": "sharpener"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:sharpener:r1",
+              "targetText": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+                "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sharpener",
+            "definitionByLocale": {
+              "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+              "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Точилка лежит на вашем столе. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Точилка лежит на вашем столе. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Точилка лежит на вашем столе. Выберите слово",
+            "uk": "Стругачка лежить на вашому столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sharpener ___ on my desk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Точилка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Стругачка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно сказать, где точилка: `is`.",
+                "uk": "`has` означає «має», а тут треба сказати, де стругачка: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i04:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p3",
+              "target": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка",
+                "uk": "стругачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p4",
+              "target": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах",
+                "uk": "папка на кільцях"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "sharpener",
+            "binder"
+          ],
+          "rightColumn": [
+            "гарнитура",
+            "маркер-выделитель",
+            "точилка",
+            "папка на кольцах"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:binder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — binder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:binder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — binder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:binder:audio",
+            "transcript": "binder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:binder:r1",
+              "targetText": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+                "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "binder",
+            "definitionByLocale": {
+              "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+              "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i05:audio",
+            "transcript": "The binder is my manager's."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The binder is my manager's.",
+          "orderedTokens": [
+            "The",
+            "binder",
+            "is",
+            "my",
+            "manager's"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The binder is my manager's.`",
+                "uk": "тут потрібно `is` — `The binder is my manager's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose highlighter is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+            "uk": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "highlighter",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose highlighter is this?`",
+                "uk": "тут потрібно `Whose` — `Whose highlighter is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер спрашивает, чья это гарнитура. Она ваша. Скажите: «Гарнитура моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Менеджер спрашивает, чья это гарнитура. Она ваша. Скажите: «Гарнитура моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i07:audio",
+            "transcript": "The headset is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The headset is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i08:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i08:r3",
+            "text": "hers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+            "uk": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The binder is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i08:r1",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r2",
+              "text": "he"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r3",
+              "text": "hers"
+            }
+          ],
+          "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`he` значит «он», а нужно «его»: `his`.",
+                "uk": "`he` означає «він», а потрібно «його»: `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`hers` значит «её», а менеджер — мужчина: нужно `his`.",
+                "uk": "`hers` означає «її», а менеджер — чоловік: потрібно `his`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i09:r1",
+            "text": "Whose binder is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i09:r2",
+            "text": "Whose binders are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i09:r3",
+            "text": "Whose sharpener is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i09:audio",
+            "transcript": "Whose binder is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i09:r1",
+              "targetText": "Whose binder is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r2",
+              "targetText": "Whose binders are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r3",
+              "targetText": "Whose sharpener is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи `binder is this` — одна папка, а в этом варианте `binders are these` — несколько папок.",
+                "uk": "У записі `binder is this` — одна папка, а в цьому варіанті `binders are these` — кілька папок."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `binder`, а в этом варианте — `sharpener`.",
+                "uk": "У записі річ — `binder`, а в цьому варіанті — `sharpener`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i10:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p4",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "desk",
+            "drawer"
+          ],
+          "rightColumn": [
+            "гарнитура",
+            "маркер-выделитель",
+            "письменный стол",
+            "выдвижной ящик"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте менеджера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте менеджера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i11:audio",
+            "transcript": "My colleague's binder is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My colleague's binder is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "colleague's",
+            "binder",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My colleague's binder is on the shelf.`",
+                "uk": "тут потрібно `is` — `My colleague's binder is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my colleague's headset.",
+          "localizedMeaning": {
+            "ru": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+            "uk": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "colleague's",
+            "headset"
+          ],
+          "authoredDistractorTokens": [
+            "colleague"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `colleague's` — `This is my colleague's headset.`",
+                "uk": "тут потрібно `colleague's` — `This is my colleague's headset.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер спрашивает, чей это маркер-выделитель. Он вашего коллеги. Скажите: «Он моего коллеги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Менеджер спрашивает, чей это маркер-выделитель. Он вашего коллеги. Скажите: «Он моего коллеги»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i13:audio",
+            "transcript": "It is my colleague's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my colleague's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+            "uk": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My colleagues ___ headsets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Коллег несколько, как they, поэтому нужно `have`, а не `has`.",
+                "uk": "Колег кілька, як they, тому потрібно `have`, а не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «является»: получится «коллеги — гарнитуры». Для «у них есть» нужно `have`.",
+                "uk": "`is` означає «є»: вийде «колеги — гарнітури». Для «у них є» потрібно `have`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте менеджера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i15:r1",
+            "text": "The sharpeners are in the drawer."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i15:r2",
+            "text": "The sharpeners are on the drawer."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i15:r3",
+            "text": "The highlighters are in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте менеджера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i15:audio",
+            "transcript": "The sharpeners are in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i15:r1",
+              "targetText": "The sharpeners are in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r2",
+              "targetText": "The sharpeners are on the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r3",
+              "targetText": "The highlighters are in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи `in` — внутри ящика, а в этом варианте `on` — на ящике.",
+                "uk": "У записі `in` — всередині шухляди, а в цьому варіанті `on` — на шухляді."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `sharpeners`, точилки, а в этом варианте — `highlighters`, маркеры.",
+                "uk": "У записі річ — `sharpeners`, стругачки, а в цьому варіанті — `highlighters`, маркери."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i16:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p3",
+              "target": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка",
+                "uk": "стругачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p4",
+              "target": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах",
+                "uk": "папка на кільцях"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "sharpener",
+            "binder"
+          ],
+          "rightColumn": [
+            "гарнитура",
+            "маркер-выделитель",
+            "точилка",
+            "папка на кольцах"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега показывает маркер-выделитель и спрашивает, чей он. Он ваш. Ответьте: «Маркер мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Коллега показывает маркер-выделитель и спрашивает, чей он. Он ваш. Ответьте: «Маркер мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i17:audio",
+            "transcript": "The highlighter is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The highlighter is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-45:word:headset",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headset",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:headset:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headset",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:headset:audio",
+            "transcript": "headset"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:headset:r1",
+              "targetText": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+                "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headset",
+            "definitionByLocale": {
+              "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+              "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The headset is on my friend's desk.",
+          "localizedMeaning": {
+            "ru": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+            "uk": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»"
+          },
+          "orderedTokens": [
+            "The",
+            "headset",
+            "is",
+            "on",
+            "my",
+            "friend's",
+            "desk"
+          ],
+          "authoredDistractorTokens": [
+            "friend"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `friend's` — `The headset is on my friend's desk.`",
+                "uk": "тут потрібно `friend's` — `The headset is on my friend's desk.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:highlighter",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — highlighter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:highlighter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — highlighter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:highlighter:audio",
+            "transcript": "highlighter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:highlighter:r1",
+              "targetText": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+                "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "highlighter",
+            "definitionByLocale": {
+              "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+              "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i02:r1",
+            "text": "My highlighter is on the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i02:r2",
+            "text": "My highlighter is under the desk."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i02:r3",
+            "text": "My headset is on the desk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i02:audio",
+            "transcript": "My highlighter is on the desk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i02:r1",
+              "targetText": "My highlighter is on the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r2",
+              "targetText": "My highlighter is under the desk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r3",
+              "targetText": "My headset is on the desk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи `on` — на столе, а в этом варианте `under` — под столом.",
+                "uk": "У записі `on` — на столі, а в цьому варіанті `under` — під столом."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `highlighter`, маркер, а в этом варианте — `headset`, гарнитура.",
+                "uk": "У записі річ — `highlighter`, маркер, а в цьому варіанті — `headset`, гарнітура."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:sharpener",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sharpener",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:sharpener:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sharpener",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:sharpener:audio",
+            "transcript": "sharpener"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:sharpener:r1",
+              "targetText": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+                "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sharpener",
+            "definitionByLocale": {
+              "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+              "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Стругачка лежить на вашому столі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стругачка лежить на вашому столі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Точилка лежит на вашем столе. Выберите слово",
+            "uk": "Стругачка лежить на вашому столі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sharpener ___ on my desk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Стругачка лежить на вашому столі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Стругачка лежить на вашому столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Точилка одна, поэтому нужно `is`, а не `are`.",
+                "uk": "Стругачка одна, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Стругачка лежить на вашому столі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно сказать, где точилка: `is`.",
+                "uk": "`has` означає «має», а тут треба сказати, де стругачка: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i04:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p3",
+              "target": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка",
+                "uk": "стругачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i04:p4",
+              "target": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах",
+                "uk": "папка на кільцях"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "sharpener",
+            "binder"
+          ],
+          "rightColumn": [
+            "гарнітура",
+            "маркер-виділювач",
+            "стругачка",
+            "папка на кільцях"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:word:binder",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — binder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:word:binder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — binder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:word:binder:audio",
+            "transcript": "binder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:word:binder:r1",
+              "targetText": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+                "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "binder",
+            "definitionByLocale": {
+              "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+              "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i05:audio",
+            "transcript": "The binder is my manager's."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The binder is my manager's.",
+          "orderedTokens": [
+            "The",
+            "binder",
+            "is",
+            "my",
+            "manager's"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте колегу й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The binder is my manager's.`",
+                "uk": "тут потрібно `is` — `The binder is my manager's.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose highlighter is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+            "uk": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "highlighter",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose highlighter is this?`",
+                "uk": "тут потрібно `Whose` — `Whose highlighter is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер питає, чия це гарнітура. Вона ваша. Скажіть: «Гарнітура моя»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Менеджер питає, чия це гарнітура. Вона ваша. Скажіть: «Гарнітура моя»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i07:audio",
+            "transcript": "The headset is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The headset is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i08:r1",
+            "text": "his"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i08:r2",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i08:r3",
+            "text": "hers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+            "uk": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The binder is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i08:r1",
+              "text": "his"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r2",
+              "text": "he"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r3",
+              "text": "hers"
+            }
+          ],
+          "testedDimension": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`he` значит «он», а нужно «его»: `his`.",
+                "uk": "`he` означає «він», а потрібно «його»: `his`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`hers` значит «её», а менеджер — мужчина: нужно `his`.",
+                "uk": "`hers` означає «її», а менеджер — чоловік: потрібно `his`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i09:r1",
+            "text": "Whose binder is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i09:r2",
+            "text": "Whose binders are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i09:r3",
+            "text": "Whose sharpener is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i09:audio",
+            "transcript": "Whose binder is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i09:r1",
+              "targetText": "Whose binder is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r2",
+              "targetText": "Whose binders are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r3",
+              "targetText": "Whose sharpener is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи `binder is this` — одна папка, а в этом варианте `binders are these` — несколько папок.",
+                "uk": "У записі `binder is this` — одна папка, а в цьому варіанті `binders are these` — кілька папок."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `binder`, а в этом варианте — `sharpener`.",
+                "uk": "У записі річ — `binder`, а в цьому варіанті — `sharpener`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i10:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p3",
+              "target": "desk",
+              "meaningByLocale": {
+                "ru": "письменный стол",
+                "uk": "письмовий стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i10:p4",
+              "target": "drawer",
+              "meaningByLocale": {
+                "ru": "выдвижной ящик",
+                "uk": "висувна шухляда"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "desk",
+            "drawer"
+          ],
+          "rightColumn": [
+            "гарнітура",
+            "маркер-виділювач",
+            "письмовий стіл",
+            "висувна шухляда"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте менеджера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте менеджера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i11:audio",
+            "transcript": "My colleague's binder is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My colleague's binder is on the shelf.",
+          "orderedTokens": [
+            "My",
+            "colleague's",
+            "binder",
+            "is",
+            "on",
+            "the",
+            "shelf"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My colleague's binder is on the shelf.`",
+                "uk": "тут потрібно `is` — `My colleague's binder is on the shelf.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my colleague's headset.",
+          "localizedMeaning": {
+            "ru": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+            "uk": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "colleague's",
+            "headset"
+          ],
+          "authoredDistractorTokens": [
+            "colleague"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `colleague's` — `This is my colleague's headset.`",
+                "uk": "тут потрібно `colleague's` — `This is my colleague's headset.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Менеджер питає, чий це маркер-виділювач. Він вашого колеги. Скажіть: «Він мого колеги»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Менеджер питає, чий це маркер-виділювач. Він вашого колеги. Скажіть: «Він мого колеги»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i13:audio",
+            "transcript": "It is my colleague's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my colleague's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+            "uk": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My colleagues ___ headsets.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-45:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Коллег несколько, как they, поэтому нужно `have`, а не `has`.",
+                "uk": "Колег кілька, як they, тому потрібно `have`, а не `has`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «является»: получится «коллеги — гарнитуры». Для «у них есть» нужно `have`.",
+                "uk": "`is` означає «є»: вийде «колеги — гарнітури». Для «у них є» потрібно `have`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте менеджера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-45:i15:r1",
+            "text": "The sharpeners are in the drawer."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i15:r2",
+            "text": "The sharpeners are on the drawer."
+          },
+          {
+            "responseId": "en:lesson-05:session-45:i15:r3",
+            "text": "The highlighters are in the drawer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте менеджера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i15:audio",
+            "transcript": "The sharpeners are in the drawer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-45:i15:r1",
+              "targetText": "The sharpeners are in the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r2",
+              "targetText": "The sharpeners are on the drawer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r3",
+              "targetText": "The highlighters are in the drawer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи `in` — внутри ящика, а в этом варианте `on` — на ящике.",
+                "uk": "У записі `in` — всередині шухляди, а в цьому варіанті `on` — на шухляді."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте менеджера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `sharpeners`, точилки, а в этом варианте — `highlighters`, маркеры.",
+                "uk": "У записі річ — `sharpeners`, стругачки, а в цьому варіанті — `highlighters`, маркери."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-45:i16:p1",
+              "target": "headset",
+              "meaningByLocale": {
+                "ru": "гарнитура",
+                "uk": "гарнітура"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p2",
+              "target": "highlighter",
+              "meaningByLocale": {
+                "ru": "маркер-выделитель",
+                "uk": "маркер-виділювач"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p3",
+              "target": "sharpener",
+              "meaningByLocale": {
+                "ru": "точилка",
+                "uk": "стругачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-45:i16:p4",
+              "target": "binder",
+              "meaningByLocale": {
+                "ru": "папка на кольцах",
+                "uk": "папка на кільцях"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headset",
+            "highlighter",
+            "sharpener",
+            "binder"
+          ],
+          "rightColumn": [
+            "гарнітура",
+            "маркер-виділювач",
+            "стругачка",
+            "папка на кільцях"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега показує маркер-виділювач і питає, чий він. Він ваш. Відповідьте: «Маркер мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Колега показує маркер-виділювач і питає, чий він. Він ваш. Відповідьте: «Маркер мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-45:i17:audio",
+            "transcript": "The highlighter is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The highlighter is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-45:word:headset",
+      "correctText": "headset",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i01",
+      "correctText": "The headset is on my friend's desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:word:highlighter",
+      "correctText": "highlighter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i02",
+      "correctText": "My highlighter is on the desk.",
+      "correctResponseId": "en:lesson-05:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:word:sharpener",
+      "correctText": "sharpener",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:word:binder",
+      "correctText": "binder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i05",
+      "correctText": "The binder is my manager's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i06",
+      "correctText": "Whose highlighter is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i07",
+      "correctText": "The headset is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i08",
+      "correctText": "his",
+      "correctResponseId": "en:lesson-05:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i09",
+      "correctText": "Whose binder is this?",
+      "correctResponseId": "en:lesson-05:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i11",
+      "correctText": "My colleague's binder is on the shelf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i12",
+      "correctText": "This is my colleague's headset.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i13",
+      "correctText": "It is my colleague's.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i14",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-05:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i15",
+      "correctText": "The sharpeners are in the drawer.",
+      "correctResponseId": "en:lesson-05:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i17",
+      "correctText": "The highlighter is mine.",
+      "correctResponseId": null
+    }
+  ]
+}

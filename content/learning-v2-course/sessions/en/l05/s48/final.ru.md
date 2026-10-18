@@ -1,136 +1,154 @@
 # Английский · Урок 5 · Занятие 48 — Готовы к выходу
 
-**Ситуация.** Анна и Том встречаются на общей кухне гостевого дома. Перед выходом они уточняют, где вещи и кому принадлежит транспорт во дворе.
+**Ситуация.** Перед отъездом гости помогают хозяйке гостевого дома навести порядок во дворе. Инструменты стоят у сарая и у калитки. Новой грамматики нет: вы сами выбираете «чей», «где», 's, has или is и are.
 
-**Что вы освоите:** различать вопросы о месте и владельце в знакомых ситуациях
-**Новые слова:** —
+**Что вы освоите:** самому выбрать, как спросить «чей» и «где», как назвать хозяина и когда нужны is, are, has или have
+**Новые слова:** wheelbarrow, rake, hose, trowel
+**Возвращаются:** shed, gate, bag, sister, aunt, neighbour, cousin
 
 ---
 
 ## Интро 1
 
-### Вещи в гостевом доме
+### Тачка на дорожке
 
-Повторим: `community kitchen` — «общая кухня», `locker` — «шкафчик». `Anna is in the community kitchen` — «Анна на общей кухне». `Whose locker is this?` — «Чей это шкафчик?» `This locker is mine` — «Этот шкафчик мой». Кухня общая, а шкафчик может быть личным: не всё вокруг автоматически «наше».
+Перед отъездом вы помогаете хозяйке гостевого дома навести порядок во дворе. Посреди дорожки стоит садовая тачка, и вы спрашиваете соседа по комнате, чья она. wheelbarrow — «садовая тачка»: в ней возят землю и листья. Whose wheelbarrow is this?
 
-**Спросите о владельце шкафчика.**
+**Посреди дорожки стоит садовая тачка. Спросите соседа по комнате: «Чья это тачка?»**
 
-- ✅ **Whose locker is this?**
-- ❌ Where is the locker? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose locker are these? — *Один шкафчик: `is this`.*
+- ✅ **Whose wheelbarrow is this?**
+- ❌ Whose wheelbarrow are these? — *Тачка одна, поэтому нужно is this.*
+- ❌ Where is the wheelbarrow? — *Это вопрос «где?», а нужен вопрос «чья?»: Whose.*
 
 ---
 
 ## Интро 2
 
-### Чей транспорт?
+### Грабли в сарае
 
-`scooter` здесь — «самокат», `bicycle` — «велосипед», `motorbike` — «мотоцикл». `Whose bicycle is this?` — «Чей это велосипед?» `This is Tom’s scooter` — «Это самокат Тома». `The motorbike is hers` — «Мотоцикл её». Для одной вещи используется `is`, независимо от количества колёс.
+Хозяйка гостевого дома просит грабли, чтобы собрать листья. Вы помните, что вечером убрали их в сарай. rake — «грабли»: ими собирают листья. По-русски «грабли» — несколько, а по-английски rake — одна вещь, поэтому is: The rake is in the shed.
 
-**Скажите «Мотоцикл её».**
+**Хозяйка просит грабли. Они в сарае. Скажите ей: «Грабли в сарае».**
 
-- ✅ **The motorbike is hers.**
-- ❌ The motorbike is her. — *Без следующего названия вещи нужна самостоятельная форма `hers`.*
-- ❌ The motorbike are hers. — *Один мотоцикл: `is`.*
+- ✅ **The rake is in the shed.**
+- ❌ The rake are in the shed. — *rake — одна вещь, поэтому нужно is, хотя по-русски «грабли» во множественном числе.*
+- ❌ The rake is on the shed. — *on значит «на», а грабли внутри сарая: нужно in.*
 
 ---
 
 ## Интро 3
 
-### Где транспорт?
+### Шланг у калитки
 
-`ferry` — «паром», `subway` — «метро» в американском английском. `Where is the ferry?` — «Где паром?» `The subway is near the hotel` — «Метро рядом с отелем». `Where` спрашивает о месте, `Whose` — о владельце.
+У калитки лежит длинный садовый шланг, и хозяйка спрашивает, чей он. Вы знаете, что его принёс сосед, который живёт рядом. hose — «шланг»: из него льётся вода для полива. Хозяина называем с 's: The hose is my neighbour's — «Шланг моего соседа».
 
-**Спросите, где паром.**
+**Хозяйка спрашивает, чей шланг у калитки. Он вашего соседа. Скажите ей: «Шланг моего соседа».**
 
-- ✅ **Where is the ferry?**
-- ❌ Whose ferry is this? — *Это вопрос о владельце; здесь нужно `Where`.*
-- ❌ Where are the ferry? — *Один паром: `is`.*
+- ✅ **The hose is my neighbour's.**
+- ❌ The hose is my neighbour. — *Так получилось бы, что шланг — это сам сосед. Хозяина называем через 's.*
+- ❌ The hoses are my neighbour's. — *Шланг один, поэтому нужно The hose is.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Анна на общей кухне»**
+**1 · Карточка слова — wheelbarrow**
+<!-- interaction_id: en:lesson-05:session-48:word:wheelbarrow; family: word_card -->
+> **wheelbarrow** — садовая тачка. My neighbour's wheelbarrow is old. — «Садовая тачка моего соседа старая». О тележке с одним колесом, в которой возят землю и листья.
+
+**2 · Хозяйка спрашивает, где тачка. Она за сараем. Скажите: «Тачка за сараем»**
 <!-- interaction_id: en:lesson-05:session-48:i01; family: phrase_builder -->
-Плитки: `kitchen` `community` `the` `in` `is` `Anna` `are` → **Anna is in the community kitchen.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna is in the community kitchen.`)*
+Плитки: `wheelbarrow` `behind` `the` `shed` `is` `The` `are` → **The wheelbarrow is behind the shed.**
+*(плитка `are` лишняя: здесь нужно `is` — `The wheelbarrow is behind the shed.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — rake**
+<!-- interaction_id: en:lesson-05:session-48:word:rake; family: word_card -->
+> **rake** — грабли. My uncle's rake is new. — «Грабли моего дяди новые». О садовом инструменте, которым собирают листья. По-английски это одна вещь.
+
+**4 · Послушайте хозяйку**
 <!-- interaction_id: en:lesson-05:session-48:i02; family: listen_choose -->
-🔊 *motorbike* → **motorbike** · bicycle · scooter
-- bicycle — *В записи первое слово — `motorbike`, а в этом варианте — `bicycle`.*
-- scooter — *В записи первое слово — `motorbike`, а в этом варианте — `scooter`.*
+🔊 *Whose rake is this?* → **Whose rake is this?** · Whose rakes are these? · Whose wheelbarrow is this?
+- Whose rakes are these? — *В записи `rake is this` — одни грабли, а в этом варианте `rakes are these` — несколько.*
+- Whose wheelbarrow is this? — *В записи вещь — `rake`, грабли, а в этом варианте — `wheelbarrow`, тачка.*
 
-**3 · Спросите о владельце шкафчика**
+**5 · Карточка слова — hose**
+<!-- interaction_id: en:lesson-05:session-48:word:hose; family: word_card -->
+> **hose** — шланг. The hose is long. — «Шланг длинный». О гибкой трубке, из которой льётся вода.
+
+**6 · Шланг лежит у калитки. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-48:i03; family: context_gap_grammar -->
-___ locker is this? → **Whose** · Where · Who
-- Where — *`Where` — где; чей — `Whose`.*
-- Who — *`Who` — кто; чей — `Whose`.*
+The hose ___ next to the gate. → **is** · are · has
+- are — *Шланг один, поэтому нужно `is`, а не `are`.*
+- has — *`has` значит «имеет», а здесь нужно сказать, где шланг: `is`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-48:i04; family: speed_match -->
-community kitchen — общая кухня · locker — шкафчик · scooter — самокат · bicycle — велосипед
+wheelbarrow — садовая тачка · rake — грабли · hose — шланг · trowel — садовый совок
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — trowel**
+<!-- interaction_id: en:lesson-05:session-48:word:trowel; family: word_card -->
+> **trowel** — садовый совок. My aunt's trowel is small. — «Садовый совок моей тёти маленький». О маленькой лопатке для грядок и цветов.
+
+**9 · Послушайте хозяйку и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-48:i05; family: listen_build_dictation -->
-🔊 *Whose bicycle is this?* Плитки: `this` `is` `bicycle` `Whose` → **Whose bicycle is this?**
+🔊 *The trowel is in my sister's bag.* Плитки: `trowel` `sister's` `is` `in` `my` `bag` `The` `are` → **The trowel is in my sister's bag.**
+*(плитка `are` лишняя: здесь нужно `is` — `The trowel is in my sister's bag.`)*
 
-**6 · Скажите «Метро рядом с отелем»**
+**10 · Вы нашли в траве совок и спрашиваете хозяйку, чей он. Задайте вопрос: «Чей это совок?»**
 <!-- interaction_id: en:lesson-05:session-48:i06; family: phrase_builder -->
-Плитки: `hotel` `the` `near` `is` `subway` `The` `are` → **The subway is near the hotel.**
-*(плитка `are` лишняя: здесь нужно `is` — `The subway is near the hotel.`)*
+Плитки: `trowel` `this` `is` `Whose` `Who` → **Whose trowel is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose trowel is this?`)*
 
-**7 · Укажите на свой шкафчик: «Этот шкафчик мой»**
+**11 · Хозяйка спрашивает, где грабли. Они за сараем. Скажите: «Грабли за сараем»**
 <!-- interaction_id: en:lesson-05:session-48:i07; family: scripted_repeat_compare -->
-🎙 **This locker is mine.**
+🎙 **The rake is behind the shed.**
 
-**8 · Спросите, где паром**
+**12 · Тачка принадлежит вашим соседям. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-48:i08; family: context_gap_grammar -->
-___ is the ferry? → **Where** · Whose · Who
-- Whose — *`Whose` — чей; где — `Where`.*
-- Who — *`Who` — кто; где — `Where`.*
+The wheelbarrow is ___. → **theirs** · their · ours
+- their — *`their` значит «их» и требует вещи после себя. Без вещи нужно `theirs`.*
+- ours — *`ours` значит «наш», а тачка принадлежит соседям: нужно `theirs`.*
 
-**9 · Послушайте, какой транспорт называет Анна**
+**13 · Послушайте соседа**
 <!-- interaction_id: en:lesson-05:session-48:i09; family: listen_choose -->
-🔊 *This is Tom's scooter.* → **This is Tom's scooter.** · This is Tom's bicycle. · This is Tom's motorbike.
-- This is Tom's bicycle. — *В записи последнее слово — `scooter`, а в этом варианте — `bicycle`.*
-- This is Tom's motorbike. — *В записи последнее слово — `scooter`, а в этом варианте — `motorbike`.*
+🔊 *The hose is my neighbour's.* → **The hose is my neighbour's.** · The hose is my cousin's. · The rake is my neighbour's.
+- The hose is my cousin's. — *В записи хозяин — `neighbour's`, сосед, а в этом варианте — `cousin's`, двоюродный брат.*
+- The rake is my neighbour's. — *В записи вещь — `hose`, шланг, а в этом варианте — `rake`, грабли.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-48:i10; family: speed_match -->
-motorbike — мотоцикл · ferry — паром · subway — метро (американский английский) · locker — шкафчик
+rake — грабли · hose — шланг · shed — сарай · gate — калитка
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте соседа и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-48:i11; family: listen_build_dictation -->
-🔊 *Where is the community kitchen?* Плитки: `kitchen` `community` `the` `is` `Where` → **Where is the community kitchen?**
+🔊 *My neighbour's wheelbarrow is next to the shed.* Плитки: `wheelbarrow` `neighbour's` `is` `next` `to` `the` `shed` `My` `are` → **My neighbour's wheelbarrow is next to the shed.**
+*(плитка `are` лишняя: здесь нужно `is` — `My neighbour's wheelbarrow is next to the shed.`)*
 
-**12 · Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»**
+**16 · Хозяйка спрашивает, чей шланг. Он вашей тёти. Скажите полной фразой: «Это шланг моей тёти»**
 <!-- interaction_id: en:lesson-05:session-48:i12; family: phrase_builder -->
-Плитки: `hers` `is` `motorbike` `The` `are` → **The motorbike is hers.**
-*(плитка `are` лишняя: здесь нужно `is` — `The motorbike is hers.`)*
+Плитки: `hose` `aunt's` `my` `is` `This` `aunt` → **This is my aunt's hose.**
+*(плитка `aunt` лишняя: здесь нужно `aunt's` — `This is my aunt's hose.`)*
 
-**13 · Вы увидели паром. Скажите «Паром здесь»**
+**17 · Хозяйка спрашивает, чей это совок. Он ваш. Скажите: «Это мой совок»**
 <!-- interaction_id: en:lesson-05:session-48:i13; family: scripted_repeat_compare -->
-🎙 **The ferry is here.**
+🎙 **This is my trowel.**
 
-**14 · Велосипед принадлежит вам. Скажите «Велосипед мой»**
+**18 · У ваших соседей есть тачка. Скажите об этом хозяйке. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-48:i14; family: context_gap_grammar -->
-The bicycle is ___. → **mine** · my · I
-- my — *Перед названием вещи — `my`; здесь самостоятельное `mine`.*
-- I — *`I` — я; самостоятельное «мой» — `mine`.*
+My neighbours ___ a wheelbarrow. → **have** · has · is
+- has — *Соседей несколько, как they, поэтому нужно `have`, а не `has`.*
+- is — *`is` значит «являются»: получится «соседи — тачка». Для «у них есть» нужно `have`.*
 
-**15 · Послушайте, чей самокат здесь**
+**19 · Послушайте хозяйку**
 <!-- interaction_id: en:lesson-05:session-48:i15; family: listen_choose -->
-🔊 *Your scooter is here.* → **Your scooter is here.** · My scooter is here. · His scooter is here.
-- My scooter is here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- His scooter is here. — *В записи первое слово — `Your`, а в этом варианте — `His`.*
+🔊 *Where is the trowel?* → **Where is the trowel?** · Where are the trowels? · Where is the rake?
+- Where are the trowels? — *В записи `trowel is` — один совок, а в этом варианте `trowels are` — несколько совков.*
+- Where is the rake? — *В записи вещь — `trowel`, совок, а в этом варианте — `rake`, грабли.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-48:i16; family: speed_match -->
-community kitchen — общая кухня · subway — метро (американский английский) · bicycle — велосипед · ferry — паром
+wheelbarrow — садовая тачка · rake — грабли · hose — шланг · trowel — садовый совок
 
-**17 · Во дворе стоит велосипед. Спросите друзей «Чей это велосипед?»**
+**21 · Хозяйка спрашивает, чья это тачка. Она ваша. Ответьте: «Тачка моя»**
 <!-- interaction_id: en:lesson-05:session-48:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bicycle is this?**
-
+🎙 **The wheelbarrow is mine.**

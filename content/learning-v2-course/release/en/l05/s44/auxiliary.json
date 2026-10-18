@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-44:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Это вопрос о хозяине, а нужен вопрос о месте: Where.",
+          "uk": "Це питання про господаря, а потрібне питання про місце: Where."
         },
         "en:lesson-05:session-44:intro1:r3": {
-          "ru": "Один велосипед: `is this`.",
-          "uk": "Один велосипед: `is this`."
+          "ru": "Насос один, поэтому нужно is.",
+          "uk": "Насос один, тому потрібно is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-44:intro2:r2": {
-          "ru": "С `you` нужна форма `are`.",
-          "uk": "З `you` потрібна форма `are`."
+          "ru": "handlebars всегда во множественном числе, поэтому нужно are these.",
+          "uk": "handlebars завжди у множині, тому потрібно are these."
         },
         "en:lesson-05:session-44:intro2:r3": {
-          "ru": "`patient` — терпеливый; любопытный — `curious`.",
-          "uk": "`patient` — терплячий; допитливий — `curious`."
+          "ru": "Who значит «кто». Когда спрашиваем «чей», нужно Whose.",
+          "uk": "Who означає «хто». Коли питаємо «чий», потрібно Whose."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-44:intro3:r2": {
-          "ru": "`hotels` — множественное число: `are`.",
-          "uk": "`hotels` — множина: `are`."
+          "ru": "Велосипед один, как it, поэтому нужно has, а не have.",
+          "uk": "Велосипед один, як it, тому потрібно has, а не have."
         },
         "en:lesson-05:session-44:intro3:r3": {
-          "ru": "Это вопрос о владельце, а нужен вопрос о месте: `Where`.",
-          "uk": "Це запитання про власника, а потрібне запитання про місце: `Where`."
+          "ru": "is значит «является»: получится «велосипед — педаль». Для «у него есть» нужно has.",
+          "uk": "is означає «є»: вийде «велосипед — педаль». Для «у нього є» потрібно has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7cd81541abc1aa57007f750121a4e27f03031aa187ab12b0a995895b04d8c29b"
+  "auxiliaryFingerprint": "ad1d1cb65e73039216f4a5724344b301c0c9a0921b1a42544b306ec6bfae1e77"
 }

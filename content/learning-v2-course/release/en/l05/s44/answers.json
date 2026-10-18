@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-44:word:pump",
+    "correctText": "pump",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-44:i01",
-    "correctText": "You are curious.",
+    "correctText": "The pump is in my sister's bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:word:handlebars",
+    "correctText": "handlebars",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i02",
-    "correctText": "bicycle",
+    "correctText": "Whose handlebars are these?",
     "correctResponseId": "en:lesson-05:session-44:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-44:word:pedal",
+    "correctText": "pedal",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-44:i03",
-    "correctText": "bicycle",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-44:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-44:i04",
-    "correctText": "en:lesson-05:session-44:i04:p1=bicycle\nen:lesson-05:session-44:i04:p2=sunglasses\nen:lesson-05:session-44:i04:p3=hotels\nen:lesson-05:session-44:i04:p4=freezer",
+    "correctText": "en:lesson-05:session-44:i04:p1=pump\nen:lesson-05:session-44:i04:p2=handlebars\nen:lesson-05:session-44:i04:p3=pedal\nen:lesson-05:session-44:i04:p4=saddle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-44:word:saddle",
+    "correctText": "saddle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i05",
-    "correctText": "Whose bicycle is this?",
+    "correctText": "The saddle is my sister's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i06",
-    "correctText": "Where are the hotels?",
+    "correctText": "Whose pedal is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i07",
-    "correctText": "The bicycle is mine.",
+    "correctText": "The pump is on the bench.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-05:session-44:i09",
-    "correctText": "This is Anna's bicycle.",
+    "correctText": "The saddle is hers.",
     "correctResponseId": "en:lesson-05:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-44:i10",
-    "correctText": "en:lesson-05:session-44:i10:p1=bicycle\nen:lesson-05:session-44:i10:p2=curious\nen:lesson-05:session-44:i10:p3=freezer\nen:lesson-05:session-44:i10:p4=sunglasses",
+    "correctText": "en:lesson-05:session-44:i10:p1=saddle\nen:lesson-05:session-44:i10:p2=pedal\nen:lesson-05:session-44:i10:p3=bicycle\nen:lesson-05:session-44:i10:p4=helmet",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i11",
-    "correctText": "The freezer is in the kitchen.",
+    "correctText": "My brother's bicycle has a pump.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i12",
-    "correctText": "The sunglasses are hers.",
+    "correctText": "This is my sister's saddle.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i13",
-    "correctText": "I have your sunglasses.",
+    "correctText": "The handlebars are my brother's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i14",
-    "correctText": "Whose",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-44:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-44:i15",
-    "correctText": "Your bicycle is here.",
+    "correctText": "The pump is under the bench.",
     "correctResponseId": "en:lesson-05:session-44:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-44:i16",
-    "correctText": "en:lesson-05:session-44:i16:p1=bicycle\nen:lesson-05:session-44:i16:p2=curious\nen:lesson-05:session-44:i16:p3=hotels\nen:lesson-05:session-44:i16:p4=sunglasses",
+    "correctText": "en:lesson-05:session-44:i16:p1=pump\nen:lesson-05:session-44:i16:p2=handlebars\nen:lesson-05:session-44:i16:p3=pedal\nen:lesson-05:session-44:i16:p4=saddle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-44:i17",
-    "correctText": "Whose sunglasses are these?",
+    "correctText": "The pump is mine.",
     "correctResponseId": null
   }
 ]

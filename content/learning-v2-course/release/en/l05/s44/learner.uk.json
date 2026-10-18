@@ -4,39 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-44:i01",
+      "interactionId": "en:lesson-05:session-44:word:pump",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:word:pump:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:word:pump:audio",
+          "transcript": "pump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:word:pump:r1",
+            "targetText": "pump",
+            "meaningByLocale": {
+              "ru": "насос. My neighbour's pump is new. — «Насос моего соседа новый». О приборе, которым накачивают воздух в колесо.",
+              "uk": "насос. My neighbour's pump is new. — «Насос мого сусіда новий». Про прилад, яким накачують повітря в колесо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pump",
+          "definitionByLocale": {
+            "ru": "насос. My neighbour's pump is new. — «Насос моего соседа новый». О приборе, которым накачивают воздух в колесо.",
+            "uk": "насос. My neighbour's pump is new. — «Насос мого сусіда новий». Про прилад, яким накачують повітря в колесо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть другові «Ти допитливий» без скорочення",
+      "prompt": "Ви шукаєте насос. Він у сумці вашої сестри. Скажіть: «Насос у сумці моєї сестри»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть другові «Ти допитливий» без скорочення",
+      "accessibilityLabel": "Ви шукаєте насос. Він у сумці вашої сестри. Скажіть: «Насос у сумці моєї сестри»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are curious.",
+        "targetPhrase": "The pump is in my sister's bag.",
         "localizedMeaning": {
-          "ru": "Скажите другу «Ты любопытный» без сокращения",
-          "uk": "Скажіть другові «Ти допитливий» без скорочення"
+          "ru": "Вы ищете насос. Он в сумке вашей сестры. Скажите: «Насос в сумке моей сестры»",
+          "uk": "Ви шукаєте насос. Він у сумці вашої сестри. Скажіть: «Насос у сумці моєї сестри»"
         },
         "orderedTokens": [
-          "You",
-          "are",
-          "curious"
+          "The",
+          "pump",
+          "is",
+          "in",
+          "my",
+          "sister's",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "sister"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть другові «Ти допитливий» без скорочення",
+            "testedDimension": "Ви шукаєте насос. Він у сумці вашої сестри. Скажіть: «Насос у сумці моєї сестри»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `You are curious.`",
-              "uk": "тут потрібно `are` — `You are curious.`"
+              "ru": "здесь нужно `sister's` — `The pump is in my sister's bag.`",
+              "uk": "тут потрібно `sister's` — `The pump is in my sister's bag.`"
             }
           }
         ],
@@ -48,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-44:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-44:word:handlebars",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — handlebars",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:word:handlebars:audio"
+      ],
+      "accessibilityLabel": "Картка слова — handlebars",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:word:handlebars:audio",
+          "transcript": "handlebars"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:word:handlebars:r1",
+            "targetText": "handlebars",
+            "meaningByLocale": {
+              "ru": "руль. My uncle's handlebars are black. — «Руль моего дяди чёрный». О части велосипеда, за которую держатся руками. Слово всегда во множественном числе.",
+              "uk": "кермо. My uncle's handlebars are black. — «Кермо мого дядька чорне». Про частину велосипеда, за яку тримаються руками. Слово завжди у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "handlebars",
+          "definitionByLocale": {
+            "ru": "руль. My uncle's handlebars are black. — «Руль моего дяди чёрный». О части велосипеда, за которую держатся руками. Слово всегда во множественном числе.",
+            "uk": "кермо. My uncle's handlebars are black. — «Кермо мого дядька чорне». Про частину велосипеда, за яку тримаються руками. Слово завжди у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-44:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i02:r1",
-          "text": "bicycle"
+          "text": "Whose handlebars are these?"
         },
         {
           "responseId": "en:lesson-05:session-44:i02:r2",
-          "text": "scooter"
+          "text": "Whose handlebars is this?"
         },
         {
           "responseId": "en:lesson-05:session-44:i02:r3",
-          "text": "freezer"
+          "text": "Whose pump is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i02:audio",
-          "transcript": "bicycle"
+          "transcript": "Whose handlebars are these?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-44:i02:r1",
-            "targetText": "bicycle",
+            "targetText": "Whose handlebars are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i02:r2",
-            "targetText": "scooter",
+            "targetText": "Whose handlebars is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i02:r3",
-            "targetText": "freezer",
+            "targetText": "Whose pump is this?",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-44:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `bicycle`, а в этом варианте — `scooter`.",
-              "uk": "У записі перше слово — `bicycle`, а в цьому варіанті — `scooter`."
+              "ru": "В записи `are these` — руль, слово во множественном числе, а в этом варианте `is this` — как про одну вещь.",
+              "uk": "У записі `are these` — кермо, слово у множині, а в цьому варіанті `is this` — як про одну річ."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `bicycle`, а в этом варианте — `freezer`.",
-              "uk": "У записі перше слово — `bicycle`, а в цьому варіанті — `freezer`."
+              "ru": "В записи вещь — `handlebars`, а в этом варианте — `pump`.",
+              "uk": "У записі річ — `handlebars`, а в цьому варіанті — `pump`."
             }
           }
         ],
@@ -124,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-44:word:pedal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pedal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:word:pedal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pedal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:word:pedal:audio",
+          "transcript": "pedal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:word:pedal:r1",
+            "targetText": "pedal",
+            "meaningByLocale": {
+              "ru": "педаль. My brother's pedal is broken. — «Педаль моего брата сломана». О части велосипеда, на которую нажимают ногой.",
+              "uk": "педаль. My brother's pedal is broken. — «Педаль мого брата зламана». Про частину велосипеда, на яку натискають ногою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pedal",
+          "definitionByLocale": {
+            "ru": "педаль. My brother's pedal is broken. — «Педаль моего брата сломана». О части велосипеда, на которую нажимают ногой.",
+            "uk": "педаль. My brother's pedal is broken. — «Педаль мого брата зламана». Про частину велосипеда, на яку натискають ногою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-44:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть велосипед",
+      "prompt": "Педаль вашого велосипеда зламана. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i03:r1",
-          "text": "bicycle"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-44:i03:r2",
-          "text": "scooter"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-44:i03:r3",
-          "text": "freezer"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть велосипед",
+      "accessibilityLabel": "Педаль вашого велосипеда зламана. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите велосипед",
-          "uk": "Назвіть велосипед"
+          "ru": "Педаль вашего велосипеда сломана. Выберите слово",
+          "uk": "Педаль вашого велосипеда зламана. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The pedal ___ broken.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-44:i03:r1",
-            "text": "bicycle"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-44:i03:r2",
-            "text": "scooter"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-44:i03:r3",
-            "text": "freezer"
+            "text": "has"
           }
         ],
-        "testedDimension": "Назвіть велосипед",
+        "testedDimension": "Педаль вашого велосипеда зламана. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть велосипед",
+            "testedDimension": "Педаль вашого велосипеда зламана. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`scooter` здесь — самокат; велосипед — `bicycle`.",
-              "uk": "`scooter` тут — самокат; велосипед — `bicycle`."
+              "ru": "Педаль одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Педаль одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть велосипед",
+            "testedDimension": "Педаль вашого велосипеда зламана. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`freezer` — морозильник; велосипед — `bicycle`.",
-              "uk": "`freezer` — морозильник; велосипед — `bicycle`."
+              "ru": "`has` значит «имеет», а здесь нужно «является»: `is`.",
+              "uk": "`has` означає «має», а тут потрібно «є»: `is`."
             }
           }
         ]
@@ -194,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-44:i04:p1",
-            "target": "bicycle",
+            "target": "pump",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "насос",
+              "uk": "насос"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i04:p2",
-            "target": "sunglasses",
+            "target": "handlebars",
             "meaningByLocale": {
-              "ru": "солнцезащитные очки",
-              "uk": "сонцезахисні окуляри"
+              "ru": "руль",
+              "uk": "кермо"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i04:p3",
-            "target": "hotels",
+            "target": "pedal",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "педаль",
+              "uk": "педаль"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i04:p4",
-            "target": "freezer",
+            "target": "saddle",
             "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильник"
+              "ru": "седло",
+              "uk": "сідло"
             }
           }
         ],
         "leftColumn": [
-          "bicycle",
-          "sunglasses",
-          "hotels",
-          "freezer"
+          "pump",
+          "handlebars",
+          "pedal",
+          "saddle"
         ],
         "rightColumn": [
-          "велосипед",
-          "сонцезахисні окуляри",
-          "готелі",
-          "морозильник"
+          "насос",
+          "кермо",
+          "педаль",
+          "сідло"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,34 +399,90 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-44:word:saddle",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — saddle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-44:word:saddle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — saddle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-44:word:saddle:audio",
+          "transcript": "saddle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-44:word:saddle:r1",
+            "targetText": "saddle",
+            "meaningByLocale": {
+              "ru": "седло. My sister's saddle is soft. — «Седло моей сестры мягкое». О сиденье на велосипеде.",
+              "uk": "сідло. My sister's saddle is soft. — «Сідло моєї сестри м’яке». Про сидіння на велосипеді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "saddle",
+          "definitionByLocale": {
+            "ru": "седло. My sister's saddle is soft. — «Седло моей сестры мягкое». О сиденье на велосипеде.",
+            "uk": "сідло. My sister's saddle is soft. — «Сідло моєї сестри м’яке». Про сидіння на велосипеді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-44:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте сусіда й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте сусіда й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i05:audio",
-          "transcript": "Whose bicycle is this?"
+          "transcript": "The saddle is my sister's."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose bicycle is this?",
+        "hiddenTargetPhrase": "The saddle is my sister's.",
         "orderedTokens": [
-          "Whose",
-          "bicycle",
+          "The",
+          "saddle",
           "is",
-          "this"
+          "my",
+          "sister's"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сусіда й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The saddle is my sister's.`",
+              "uk": "тут потрібно `is` — `The saddle is my sister's.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -303,30 +492,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Де готелі?»",
+      "prompt": "Ви знайшли на землі педаль і питаєте подругу, чия вона. Поставте питання: «Чия це педаль?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Де готелі?»",
+      "accessibilityLabel": "Ви знайшли на землі педаль і питаєте подругу, чия вона. Поставте питання: «Чия це педаль?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the hotels?",
+        "targetPhrase": "Whose pedal is this?",
         "localizedMeaning": {
-          "ru": "Спросите «Где отели?»",
-          "uk": "Запитайте «Де готелі?»"
+          "ru": "Вы нашли на земле педаль и спрашиваете подругу, чья она. Задайте вопрос: «Чья это педаль?»",
+          "uk": "Ви знайшли на землі педаль і питаєте подругу, чия вона. Поставте питання: «Чия це педаль?»"
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "hotels"
+          "Whose",
+          "pedal",
+          "is",
+          "this"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Who"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-44:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви знайшли на землі педаль і питаєте подругу, чия вона. Поставте питання: «Чия це педаль?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Whose` — `Whose pedal is this?`",
+              "uk": "тут потрібно `Whose` — `Whose pedal is this?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -336,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Велосипед належить вам. Скажіть «Велосипед мій»",
+      "prompt": "Сусід питає, де насос. Він на лавці. Скажіть: «Насос на лавці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i07:audio"
       ],
-      "accessibilityLabel": "Велосипед належить вам. Скажіть «Велосипед мій»",
+      "accessibilityLabel": "Сусід питає, де насос. Він на лавці. Скажіть: «Насос на лавці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i07:audio",
-          "transcript": "The bicycle is mine."
+          "transcript": "The pump is on the bench."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bicycle is mine.",
+        "targetPhrase": "The pump is on the bench.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -369,11 +570,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника сонцезахисних окулярів",
+      "prompt": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i08:r1",
@@ -390,14 +591,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника сонцезахисних окулярів",
+      "accessibilityLabel": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце солнцезащитных очков",
-          "uk": "Запитайте про власника сонцезахисних окулярів"
+          "ru": "Вы показываете соседке руль и спрашиваете, чей он. Выберите слово",
+          "uk": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose sunglasses ___ these?",
+        "gappedTargetPhrase": "Whose handlebars ___ these?",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-44:i08:r1",
@@ -412,24 +613,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+        "testedDimension": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+            "testedDimension": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`sunglasses` — множественное число: `are these`.",
-              "uk": "`sunglasses` — множина: `are these`."
+              "ru": "`handlebars` — слово во множественном числе, поэтому нужно `are these`.",
+              "uk": "`handlebars` — слово у множині, тому потрібно `are these`."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника сонцезахисних окулярів",
+            "testedDimension": "Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are these`.",
-              "uk": "`am` використовується з `I`; тут `are these`."
+              "ru": "`am` используется только с `I`; здесь нужно `are`.",
+              "uk": "`am` використовується лише з `I`; тут потрібно `are`."
             }
           }
         ]
@@ -438,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, яку річ називає друг",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i09:r1",
-          "text": "This is Anna's bicycle."
+          "text": "The saddle is hers."
         },
         {
           "responseId": "en:lesson-05:session-44:i09:r2",
-          "text": "This is Anna's scooter."
+          "text": "The saddle is her."
         },
         {
           "responseId": "en:lesson-05:session-44:i09:r3",
-          "text": "This is Anna's laptop."
+          "text": "The pedal is hers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, яку річ називає друг",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i09:audio",
-          "transcript": "This is Anna's bicycle."
+          "transcript": "The saddle is hers."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-44:i09:r1",
-            "targetText": "This is Anna's bicycle.",
+            "targetText": "The saddle is hers.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i09:r2",
-            "targetText": "This is Anna's scooter.",
+            "targetText": "The saddle is her.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i09:r3",
-            "targetText": "This is Anna's laptop.",
+            "targetText": "The pedal is hers.",
             "meaningByLocale": null
           }
         ],
@@ -491,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-44:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає друг",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `scooter`.",
-              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `scooter`."
+              "ru": "В записи `hers` — «её», вещь после него не нужна, а `her` без вещи не говорят.",
+              "uk": "У записі `hers` — «її», річ після нього не потрібна, а `her` без речі не кажуть."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає друг",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bicycle`, а в этом варианте — `laptop`.",
-              "uk": "У записі останнє слово — `bicycle`, а в цьому варіанті — `laptop`."
+              "ru": "В записи вещь — `saddle`, седло, а в этом варианте — `pedal`, педаль.",
+              "uk": "У записі річ — `saddle`, сідло, а в цьому варіанті — `pedal`, педаль."
             }
           }
         ],
@@ -514,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -528,6 +729,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-44:i10:p1",
+            "target": "saddle",
+            "meaningByLocale": {
+              "ru": "седло",
+              "uk": "сідло"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i10:p2",
+            "target": "pedal",
+            "meaningByLocale": {
+              "ru": "педаль",
+              "uk": "педаль"
+            }
+          },
+          {
+            "pairId": "en:lesson-05:session-44:i10:p3",
             "target": "bicycle",
             "meaningByLocale": {
               "ru": "велосипед",
@@ -535,41 +752,25 @@
             }
           },
           {
-            "pairId": "en:lesson-05:session-44:i10:p2",
-            "target": "curious",
-            "meaningByLocale": {
-              "ru": "любопытный",
-              "uk": "допитливий"
-            }
-          },
-          {
-            "pairId": "en:lesson-05:session-44:i10:p3",
-            "target": "freezer",
-            "meaningByLocale": {
-              "ru": "морозильник",
-              "uk": "морозильник"
-            }
-          },
-          {
             "pairId": "en:lesson-05:session-44:i10:p4",
-            "target": "sunglasses",
+            "target": "helmet",
             "meaningByLocale": {
-              "ru": "солнцезащитные очки",
-              "uk": "сонцезахисні окуляри"
+              "ru": "шлем",
+              "uk": "шолом"
             }
           }
         ],
         "leftColumn": [
+          "saddle",
+          "pedal",
           "bicycle",
-          "curious",
-          "freezer",
-          "sunglasses"
+          "helmet"
         ],
         "rightColumn": [
+          "сідло",
+          "педаль",
           "велосипед",
-          "допитливий",
-          "морозильник",
-          "сонцезахисні окуляри"
+          "шолом"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -587,44 +788,44 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i11:audio",
-          "transcript": "The freezer is in the kitchen."
+          "transcript": "My brother's bicycle has a pump."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The freezer is in the kitchen.",
+        "hiddenTargetPhrase": "My brother's bicycle has a pump.",
         "orderedTokens": [
-          "The",
-          "freezer",
-          "is",
-          "in",
-          "the",
-          "kitchen"
+          "My",
+          "brother's",
+          "bicycle",
+          "has",
+          "a",
+          "pump"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте подругу й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The freezer is in the kitchen.`",
-              "uk": "тут потрібно `is` — `The freezer is in the kitchen.`"
+              "ru": "здесь нужно `has` — `My brother's bicycle has a pump.`",
+              "uk": "тут потрібно `has` — `My brother's bicycle has a pump.`"
             }
           }
         ],
@@ -637,39 +838,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»",
+      "prompt": "Ви показуєте сусідові сідло. Воно вашої сестри. Скажіть повною фразою: «Це сідло моєї сестри»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»",
+      "accessibilityLabel": "Ви показуєте сусідові сідло. Воно вашої сестри. Скажіть повною фразою: «Це сідло моєї сестри»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The sunglasses are hers.",
+        "targetPhrase": "This is my sister's saddle.",
         "localizedMeaning": {
-          "ru": "Очки принадлежат Анне. Скажите «Солнцезащитные очки её»",
-          "uk": "Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»"
+          "ru": "Вы показываете соседу седло. Оно вашей сестры. Скажите полной фразой: «Это седло моей сестры»",
+          "uk": "Ви показуєте сусідові сідло. Воно вашої сестри. Скажіть повною фразою: «Це сідло моєї сестри»"
         },
         "orderedTokens": [
-          "The",
-          "sunglasses",
-          "are",
-          "hers"
+          "This",
+          "is",
+          "my",
+          "sister's",
+          "saddle"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "sister"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»",
+            "testedDimension": "Ви показуєте сусідові сідло. Воно вашої сестри. Скажіть повною фразою: «Це сідло моєї сестри»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The sunglasses are hers.`",
-              "uk": "тут потрібно `are` — `The sunglasses are hers.`"
+              "ru": "здесь нужно `sister's` — `This is my sister's saddle.`",
+              "uk": "тут потрібно `sister's` — `This is my sister's saddle.`"
             }
           }
         ],
@@ -682,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть другові «Твої сонцезахисні окуляри в мене»",
+      "prompt": "Подруга питає, чиє кермо. Воно вашого брата. Скажіть: «Кермо мого брата»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть другові «Твої сонцезахисні окуляри в мене»",
+      "accessibilityLabel": "Подруга питає, чиє кермо. Воно вашого брата. Скажіть: «Кермо мого брата»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i13:audio",
-          "transcript": "I have your sunglasses."
+          "transcript": "The handlebars are my brother's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your sunglasses.",
+        "targetPhrase": "The handlebars are my brother's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -715,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника велосипеда",
+      "prompt": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i14:r1",
-          "text": "Whose"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-44:i14:r2",
-          "text": "Who"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-44:i14:r3",
-          "text": "Where"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника велосипеда",
+      "accessibilityLabel": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце велосипеда",
-          "uk": "Запитайте про власника велосипеда"
+          "ru": "У вашей подруги есть насос. Скажите об этом соседу. Выберите слово",
+          "uk": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ bicycle is this?",
+        "gappedTargetPhrase": "My friend ___ a pump.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-44:i14:r1",
-            "text": "Whose"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-44:i14:r2",
-            "text": "Who"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-44:i14:r3",
-            "text": "Where"
+            "text": "is"
           }
         ],
-        "testedDimension": "Запитайте про власника велосипеда",
+        "testedDimension": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-44:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника велосипеда",
+            "testedDimension": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "Подруга одна, как she, поэтому нужно `has`, а не `have`.",
+              "uk": "Подруга одна, як she, тому потрібно `has`, а не `have`."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника велосипеда",
+            "testedDimension": "У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "`is` значит «является»: получится «подруга — насос». Для «у неё есть» нужно `has`.",
+              "uk": "`is` означає «є»: вийде «подруга — насос». Для «у неї є» потрібно `has`."
             }
           }
         ]
@@ -784,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чий велосипед тут",
+      "prompt": "Послухайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-44:i15:r1",
-          "text": "Your bicycle is here."
+          "text": "The pump is under the bench."
         },
         {
           "responseId": "en:lesson-05:session-44:i15:r2",
-          "text": "My bicycle is here."
+          "text": "The pump is on the bench."
         },
         {
           "responseId": "en:lesson-05:session-44:i15:r3",
-          "text": "His bicycle is here."
+          "text": "The pedal is under the bench."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чий велосипед тут",
+      "accessibilityLabel": "Послухайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i15:audio",
-          "transcript": "Your bicycle is here."
+          "transcript": "The pump is under the bench."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-44:i15:r1",
-            "targetText": "Your bicycle is here.",
+            "targetText": "The pump is under the bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i15:r2",
-            "targetText": "My bicycle is here.",
+            "targetText": "The pump is on the bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-44:i15:r3",
-            "targetText": "His bicycle is here.",
+            "targetText": "The pedal is under the bench.",
             "meaningByLocale": null
           }
         ],
@@ -837,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-44:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чий велосипед тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `under` — под скамейкой, а в этом варианте `on` — на скамейке.",
+              "uk": "У записі `under` — під лавкою, а в цьому варіанті `on` — на лавці."
             }
           },
           {
             "responseId": "en:lesson-05:session-44:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чий велосипед тут",
+            "testedDimension": "Послухайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `pump`, насос, а в этом варианте — `pedal`, педаль.",
+              "uk": "У записі річ — `pump`, насос, а в цьому варіанті — `pedal`, педаль."
             }
           }
         ],
@@ -860,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -874,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-44:i16:p1",
-            "target": "bicycle",
+            "target": "pump",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "насос",
+              "uk": "насос"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i16:p2",
-            "target": "curious",
+            "target": "handlebars",
             "meaningByLocale": {
-              "ru": "любопытный",
-              "uk": "допитливий"
+              "ru": "руль",
+              "uk": "кермо"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i16:p3",
-            "target": "hotels",
+            "target": "pedal",
             "meaningByLocale": {
-              "ru": "отели",
-              "uk": "готелі"
+              "ru": "педаль",
+              "uk": "педаль"
             }
           },
           {
             "pairId": "en:lesson-05:session-44:i16:p4",
-            "target": "sunglasses",
+            "target": "saddle",
             "meaningByLocale": {
-              "ru": "солнцезащитные очки",
-              "uk": "сонцезахисні окуляри"
+              "ru": "седло",
+              "uk": "сідло"
             }
           }
         ],
         "leftColumn": [
-          "bicycle",
-          "curious",
-          "hotels",
-          "sunglasses"
+          "pump",
+          "handlebars",
+          "pedal",
+          "saddle"
         ],
         "rightColumn": [
-          "велосипед",
-          "допитливий",
-          "готелі",
-          "сонцезахисні окуляри"
+          "насос",
+          "кермо",
+          "педаль",
+          "сідло"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -933,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-44:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви знайшли сонцезахисні окуляри на столі. Запитайте «Чиї це сонцезахисні окуляри?»",
+      "prompt": "Сусід питає, чий це насос. Він ваш. Відповідьте: «Насос мій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-44:i17:audio"
       ],
-      "accessibilityLabel": "Ви знайшли сонцезахисні окуляри на столі. Запитайте «Чиї це сонцезахисні окуляри?»",
+      "accessibilityLabel": "Сусід питає, чий це насос. Він ваш. Відповідьте: «Насос мій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-44:i17:audio",
-          "transcript": "Whose sunglasses are these?"
+          "transcript": "The pump is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose sunglasses are these?",
+        "targetPhrase": "The pump is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -973,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3807ebeb5eec93b4f434b09228b7f4da58f67a0aa0b8726184a51c24e76df2e7"
+  "learnerFingerprint": "afebd8753e431477201acd23ab18eee09aa174a498a37a3b467a12eac1db1807"
 }

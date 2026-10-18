@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-47",
   "learningOutcomeByLocale": {
-    "ru": "спросить о транспорте и ресторанах и уточнить владельца вещи",
-    "uk": "запитати про транспорт і ресторани та уточнити власника речі"
+    "ru": "сказать, чей инструмент, спросить «чей» и «где», и сказать, что у человека есть инструмент",
+    "uk": "сказати, чий інструмент, спитати «чий» і «де», і сказати, що в людини є інструмент"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Подземный транспорт",
-        "uk": "Підземний транспорт"
+        "ru": "Укулеле на скамейке",
+        "uk": "Укулеле на лавці"
       },
       "bodyByLocale": {
-        "ru": "`subway` в американском английском — «метро». `Where is the subway?` — «Где метро?» Так можно спросить, где ближайший доступ к метро. `The subway is near the hotel` — «Метро рядом с отелем». В британском английском это слово также может означать подземный пешеходный переход; здесь речь о транспорте.",
-        "uk": "`subway` в американській англійській — «метро». `Where is the subway?` — «Де метро?» Так можна запитати, де найближчий доступ до метро. `The subway is near the hotel` — «Метро поруч із готелем». У британській англійській це слово також може означати підземний пішохідний перехід; тут ідеться про транспорт."
+        "ru": "Вы пришли на площадь послушать уличных музыкантов в субботу. Подруга показывает на маленькую гитару на скамейке и спрашивает, чья она. ukulele — «укулеле»: гитара с четырьмя струнами. Оно вашего брата. Хозяина называем с 's: The ukulele is my brother's.",
+        "uk": "Ви прийшли на площу послухати вуличних музикантів у суботу. Подруга показує на маленьку гітару на лавці й питає, чия вона. ukulele — «укулеле»: гітара з чотирма струнами. Воно вашого брата. Господаря називаємо з 's: The ukulele is my brother's."
       },
       "question": {
         "interactionId": "en:lesson-05:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите «Где метро?»",
-          "uk": "Запитайте «Де метро?»"
+          "ru": "Подруга спрашивает, чьё укулеле на скамейке. Оно вашего брата. Скажите ей: «Укулеле моего брата».",
+          "uk": "Подруга питає, чиє укулеле на лавці. Воно вашого брата. Скажіть їй: «Укулеле мого брата»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-47:intro1:r1",
-              "text": "Where is the subway?"
+              "text": "The ukulele is my brother's."
             },
             {
               "responseId": "en:lesson-05:session-47:intro1:r2",
-              "text": "Whose subway is this?"
+              "text": "The ukulele is my brother."
             },
             {
               "responseId": "en:lesson-05:session-47:intro1:r3",
-              "text": "Where are the subway?"
+              "text": "The ukulele are my brother's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-47:intro1:r1",
-              "text": "Where is the subway?"
+              "text": "The ukulele is my brother's."
             },
             {
               "responseId": "en:lesson-05:session-47:intro1:r2",
-              "text": "Whose subway is this?"
+              "text": "The ukulele is my brother."
             },
             {
               "responseId": "en:lesson-05:session-47:intro1:r3",
-              "text": "Where are the subway?"
+              "text": "The ukulele are my brother's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Где метро?»",
-          "uk": "Запитайте «Де метро?»"
+          "ru": "Подруга спрашивает, чьё укулеле на скамейке. Оно вашего брата. Скажите ей: «Укулеле моего брата».",
+          "uk": "Подруга питає, чиє укулеле на лавці. Воно вашого брата. Скажіть їй: «Укулеле мого брата»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Скрипка у двери",
-        "uk": "Скрипка біля дверей"
+        "ru": "Саксофон у стены",
+        "uk": "Саксофон біля стіни"
       },
       "bodyByLocale": {
-        "ru": "`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `This is Anna’s violin` — «Это скрипка Анны». `The violin is hers` — «Скрипка её». `I have your violin` — «Твоя скрипка у меня». Скрипка уже готова к выходу, хотя билет за неё никто не покупал.",
-        "uk": "`violin` — «скрипка». `Whose violin is this?` — «Чия це скрипка?» `This is Anna’s violin` — «Це скрипка Анни». `The violin is hers` — «Скрипка її». `I have your violin` — «Твоя скрипка в мене». Скрипка вже готова до виходу, хоча квитка для неї ніхто не купував."
+        "ru": "Вечером в кафе у площади у стены стоит саксофон, а музыкантов не видно. Вы спрашиваете подругу, чей он. saxophone — «саксофон»: блестящий духовой инструмент. О хозяине спрашиваем со словом Whose: Whose saxophone is this? — «Чей это саксофон?»",
+        "uk": "Ввечері в кафе біля площі біля стіни стоїть саксофон, а музикантів не видно. Ви питаєте подругу, чий він. saxophone — «саксофон»: блискучий духовий інструмент. Про господаря питаємо зі словом Whose: Whose saxophone is this? — «Чий це саксофон?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Скрипка её».",
-          "uk": "Скажіть «Скрипка її»."
+          "ru": "У стены кафе стоит саксофон. Спросите подругу: «Чей это саксофон?»",
+          "uk": "Біля стіни кафе стоїть саксофон. Спитайте подругу: «Чий це саксофон?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-47:intro2:r1",
-              "text": "The violin is hers."
+              "text": "Whose saxophone is this?"
             },
             {
               "responseId": "en:lesson-05:session-47:intro2:r2",
-              "text": "The violin is her."
+              "text": "Whose saxophone are these?"
             },
             {
               "responseId": "en:lesson-05:session-47:intro2:r3",
-              "text": "The violin are hers."
+              "text": "Where is this saxophone?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-47:intro2:r1",
-              "text": "The violin is hers."
+              "text": "Whose saxophone is this?"
             },
             {
               "responseId": "en:lesson-05:session-47:intro2:r2",
-              "text": "The violin is her."
+              "text": "Whose saxophone are these?"
             },
             {
               "responseId": "en:lesson-05:session-47:intro2:r3",
-              "text": "The violin are hers."
+              "text": "Where is this saxophone?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Скрипка её».",
-          "uk": "Скажіть «Скрипка її»."
+          "ru": "У стены кафе стоит саксофон. Спросите подругу: «Чей это саксофон?»",
+          "uk": "Біля стіни кафе стоїть саксофон. Спитайте подругу: «Чий це саксофон?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обед и опасное место",
-        "uk": "Обід і небезпечне місце"
+        "ru": "Банджо дяди",
+        "uk": "Банджо дядька"
       },
       "bodyByLocale": {
-        "ru": "`restaurants` — «рестораны»: `Where are the restaurants?` — «Где рестораны?» `leftover` — «остаток еды»; о еде после обеда обычно говорят `leftovers`: `The leftovers are in the fridge` — «Остатки еды в холодильнике». `dangerous` — «опасный»: `This place is dangerous` — «Это место опасное».",
-        "uk": "`restaurants` — «ресторани»: `Where are the restaurants?` — «Де ресторани?» `leftover` — «залишок їжі»; про їжу після обіду зазвичай кажуть `leftovers`: `The leftovers are in the fridge` — «Залишки їжі в холодильнику». `dangerous` — «небезпечний»: `This place is dangerous` — «Це місце небезпечне»."
+        "ru": "Ваш дядя недавно начал учиться играть на банджо и теперь каждый день берёт его с собой на площадь. Подруга спрашивает, на чём именно он играет. banjo — «банджо»: струнный инструмент с круглым корпусом. Когда у человека есть вещь, говорим has: My uncle has a banjo.",
+        "uk": "Ваш дядько нещодавно почав учитися грати на банджо і тепер щодня бере його з собою на площу. Подруга питає, на чому саме він грає. banjo — «банджо»: струнний інструмент із круглим корпусом. Коли в людини є річ, кажемо has: My uncle has a banjo."
       },
       "question": {
         "interactionId": "en:lesson-05:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Остатки еды в холодильнике».",
-          "uk": "Скажіть «Залишки їжі в холодильнику»."
+          "ru": "Подруга спрашивает, на чём играет ваш дядя. У него есть банджо. Скажите ей: «У моего дяди есть банджо».",
+          "uk": "Подруга питає, на чому грає ваш дядько. У нього є банджо. Скажіть їй: «У мого дядька є банджо»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-47:intro3:r1",
-              "text": "The leftovers are in the fridge."
+              "text": "My uncle has a banjo."
             },
             {
               "responseId": "en:lesson-05:session-47:intro3:r2",
-              "text": "The leftovers is in the fridge."
+              "text": "My uncle have a banjo."
             },
             {
               "responseId": "en:lesson-05:session-47:intro3:r3",
-              "text": "The leftovers are under the fridge."
+              "text": "My uncle is a banjo."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-47:intro3:r1",
-              "text": "The leftovers are in the fridge."
+              "text": "My uncle has a banjo."
             },
             {
               "responseId": "en:lesson-05:session-47:intro3:r2",
-              "text": "The leftovers is in the fridge."
+              "text": "My uncle have a banjo."
             },
             {
               "responseId": "en:lesson-05:session-47:intro3:r3",
-              "text": "The leftovers are under the fridge."
+              "text": "My uncle is a banjo."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Остатки еды в холодильнике».",
-          "uk": "Скажіть «Залишки їжі в холодильнику»."
+          "ru": "Подруга спрашивает, на чём играет ваш дядя. У него есть банджо. Скажите ей: «У моего дяди есть банджо».",
+          "uk": "Подруга питає, на чому грає ваш дядько. У нього є банджо. Скажіть їй: «У мого дядька є банджо»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bf92486e6a7008a5d0f9e3408297ad153e6c955dc8347b5bc35c623fa132d67"
+  "introFingerprint": "bb8f37fcc78c0a3454db801c1bd472ed4844a80729d89e7a55b6b66f827cc460"
 }

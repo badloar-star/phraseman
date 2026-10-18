@@ -4,30 +4,73 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-48:i01",
+      "interactionId": "en:lesson-05:session-48:word:wheelbarrow",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wheelbarrow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:word:wheelbarrow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wheelbarrow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:word:wheelbarrow:audio",
+          "transcript": "wheelbarrow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:word:wheelbarrow:r1",
+            "targetText": "wheelbarrow",
+            "meaningByLocale": {
+              "ru": "садовая тачка. My neighbour's wheelbarrow is old. — «Садовая тачка моего соседа старая». О тележке с одним колесом, в которой возят землю и листья.",
+              "uk": "садовий візок. My neighbour's wheelbarrow is old. — «Садовий візок мого сусіда старий». Про візок з одним колесом, у якому возять землю й листя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wheelbarrow",
+          "definitionByLocale": {
+            "ru": "садовая тачка. My neighbour's wheelbarrow is old. — «Садовая тачка моего соседа старая». О тележке с одним колесом, в которой возят землю и листья.",
+            "uk": "садовий візок. My neighbour's wheelbarrow is old. — «Садовий візок мого сусіда старий». Про візок з одним колесом, у якому возять землю й листя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Анна на спільній кухні»",
+      "prompt": "Господиня питає, де візок. Він за сараєм. Скажіть: «Візок за сараєм»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Анна на спільній кухні»",
+      "accessibilityLabel": "Господиня питає, де візок. Він за сараєм. Скажіть: «Візок за сараєм»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Anna is in the community kitchen.",
+        "targetPhrase": "The wheelbarrow is behind the shed.",
         "localizedMeaning": {
-          "ru": "Скажите «Анна на общей кухне»",
-          "uk": "Скажіть «Анна на спільній кухні»"
+          "ru": "Хозяйка спрашивает, где тачка. Она за сараем. Скажите: «Тачка за сараем»",
+          "uk": "Господиня питає, де візок. Він за сараєм. Скажіть: «Візок за сараєм»"
         },
         "orderedTokens": [
-          "Anna",
+          "The",
+          "wheelbarrow",
           "is",
-          "in",
+          "behind",
           "the",
-          "community",
-          "kitchen"
+          "shed"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -36,10 +79,10 @@
           {
             "responseId": "en:lesson-05:session-48:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Анна на спільній кухні»",
+            "testedDimension": "Господиня питає, де візок. Він за сараєм. Скажіть: «Візок за сараєм»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna is in the community kitchen.`",
-              "uk": "тут потрібно `is` — `Anna is in the community kitchen.`"
+              "ru": "здесь нужно `is` — `The wheelbarrow is behind the shed.`",
+              "uk": "тут потрібно `is` — `The wheelbarrow is behind the shed.`"
             }
           }
         ],
@@ -51,52 +94,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-48:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-48:word:rake",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — rake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:word:rake:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:word:rake:audio",
+          "transcript": "rake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:word:rake:r1",
+            "targetText": "rake",
+            "meaningByLocale": {
+              "ru": "грабли. My uncle's rake is new. — «Грабли моего дяди новые». О садовом инструменте, которым собирают листья. По-английски это одна вещь.",
+              "uk": "граблі. My uncle's rake is new. — «Граблі мого дядька нові». Про садовий інструмент, яким збирають листя. Англійською це одна річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rake",
+          "definitionByLocale": {
+            "ru": "грабли. My uncle's rake is new. — «Грабли моего дяди новые». О садовом инструменте, которым собирают листья. По-английски это одна вещь.",
+            "uk": "граблі. My uncle's rake is new. — «Граблі мого дядька нові». Про садовий інструмент, яким збирають листя. Англійською це одна річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-48:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте господиню",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i02:r1",
-          "text": "motorbike"
+          "text": "Whose rake is this?"
         },
         {
           "responseId": "en:lesson-05:session-48:i02:r2",
-          "text": "bicycle"
+          "text": "Whose rakes are these?"
         },
         {
           "responseId": "en:lesson-05:session-48:i02:r3",
-          "text": "scooter"
+          "text": "Whose wheelbarrow is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте господиню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i02:audio",
-          "transcript": "motorbike"
+          "transcript": "Whose rake is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-48:i02:r1",
-            "targetText": "motorbike",
+            "targetText": "Whose rake is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i02:r2",
-            "targetText": "bicycle",
+            "targetText": "Whose rakes are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i02:r3",
-            "targetText": "scooter",
+            "targetText": "Whose wheelbarrow is this?",
             "meaningByLocale": null
           }
         ],
@@ -105,19 +191,19 @@
           {
             "responseId": "en:lesson-05:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `bicycle`.",
-              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи `rake is this` — одни грабли, а в этом варианте `rakes are these` — несколько.",
+              "uk": "У записі `rake is this` — одні граблі, а в цьому варіанті `rakes are these` — кілька."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `scooter`.",
-              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `scooter`."
+              "ru": "В записи вещь — `rake`, грабли, а в этом варианте — `wheelbarrow`, тачка.",
+              "uk": "У записі річ — `rake`, граблі, а в цьому варіанті — `wheelbarrow`, візок."
             }
           }
         ],
@@ -127,68 +213,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-48:word:hose",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:word:hose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:word:hose:audio",
+          "transcript": "hose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:word:hose:r1",
+            "targetText": "hose",
+            "meaningByLocale": {
+              "ru": "шланг. The hose is long. — «Шланг длинный». О гибкой трубке, из которой льётся вода.",
+              "uk": "шланг. The hose is long. — «Шланг довгий». Про гнучку трубку, з якої ллється вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hose",
+          "definitionByLocale": {
+            "ru": "шланг. The hose is long. — «Шланг длинный». О гибкой трубке, из которой льётся вода.",
+            "uk": "шланг. The hose is long. — «Шланг довгий». Про гнучку трубку, з якої ллється вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-48:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте про власника шафки",
+      "prompt": "Шланг лежить біля хвіртки. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i03:r1",
-          "text": "Whose"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-48:i03:r2",
-          "text": "Where"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-48:i03:r3",
-          "text": "Who"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте про власника шафки",
+      "accessibilityLabel": "Шланг лежить біля хвіртки. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце шкафчика",
-          "uk": "Запитайте про власника шафки"
+          "ru": "Шланг лежит у калитки. Выберите слово",
+          "uk": "Шланг лежить біля хвіртки. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ locker is this?",
+        "gappedTargetPhrase": "The hose ___ next to the gate.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-48:i03:r1",
-            "text": "Whose"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-48:i03:r2",
-            "text": "Where"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-48:i03:r3",
-            "text": "Who"
+            "text": "has"
           }
         ],
-        "testedDimension": "Запитайте про власника шафки",
+        "testedDimension": "Шланг лежить біля хвіртки. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-48:i03:r2",
             "correct": false,
-            "testedDimension": "Запитайте про власника шафки",
+            "testedDimension": "Шланг лежить біля хвіртки. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чия — `Whose`."
+              "ru": "Шланг один, поэтому нужно `is`, а не `are`.",
+              "uk": "Шланг один, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i03:r3",
             "correct": false,
-            "testedDimension": "Запитайте про власника шафки",
+            "testedDimension": "Шланг лежить біля хвіртки. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чия — `Whose`."
+              "ru": "`has` значит «имеет», а здесь нужно сказать, где шланг: `is`.",
+              "uk": "`has` означає «має», а тут треба сказати, де шланг: `is`."
             }
           }
         ]
@@ -197,7 +326,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -211,48 +340,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-48:i04:p1",
-            "target": "community kitchen",
+            "target": "wheelbarrow",
             "meaningByLocale": {
-              "ru": "общая кухня",
-              "uk": "спільна кухня"
+              "ru": "садовая тачка",
+              "uk": "садовий візок"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i04:p2",
-            "target": "locker",
+            "target": "rake",
             "meaningByLocale": {
-              "ru": "шкафчик",
-              "uk": "шафка"
+              "ru": "грабли",
+              "uk": "граблі"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i04:p3",
-            "target": "scooter",
+            "target": "hose",
             "meaningByLocale": {
-              "ru": "самокат",
-              "uk": "самокат"
+              "ru": "шланг",
+              "uk": "шланг"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i04:p4",
-            "target": "bicycle",
+            "target": "trowel",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "садовый совок",
+              "uk": "садовий совок"
             }
           }
         ],
         "leftColumn": [
-          "community kitchen",
-          "locker",
-          "scooter",
-          "bicycle"
+          "wheelbarrow",
+          "rake",
+          "hose",
+          "trowel"
         ],
         "rightColumn": [
-          "спільна кухня",
-          "шафка",
-          "самокат",
-          "велосипед"
+          "садовий візок",
+          "граблі",
+          "шланг",
+          "садовий совок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -269,34 +398,92 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-48:word:trowel",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trowel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-48:word:trowel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trowel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-48:word:trowel:audio",
+          "transcript": "trowel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-48:word:trowel:r1",
+            "targetText": "trowel",
+            "meaningByLocale": {
+              "ru": "садовый совок. My aunt's trowel is small. — «Садовый совок моей тёти маленький». О маленькой лопатке для грядок и цветов.",
+              "uk": "садовий совок. My aunt's trowel is small. — «Садовий совок моєї тітки маленький». Про маленьку лопатку для грядок і квітів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trowel",
+          "definitionByLocale": {
+            "ru": "садовый совок. My aunt's trowel is small. — «Садовый совок моей тёти маленький». О маленькой лопатке для грядок и цветов.",
+            "uk": "садовий совок. My aunt's trowel is small. — «Садовий совок моєї тітки маленький». Про маленьку лопатку для грядок і квітів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-48:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте господиню й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте господиню й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i05:audio",
-          "transcript": "Whose bicycle is this?"
+          "transcript": "The trowel is in my sister's bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose bicycle is this?",
+        "hiddenTargetPhrase": "The trowel is in my sister's bag.",
         "orderedTokens": [
-          "Whose",
-          "bicycle",
+          "The",
+          "trowel",
           "is",
-          "this"
+          "in",
+          "my",
+          "sister's",
+          "bag"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте господиню й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The trowel is in my sister's bag.`",
+              "uk": "тут потрібно `is` — `The trowel is in my sister's bag.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -306,41 +493,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Метро поруч із готелем»",
+      "prompt": "Ви знайшли в траві совок і питаєте господиню, чий він. Поставте питання: «Чий це совок?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Метро поруч із готелем»",
+      "accessibilityLabel": "Ви знайшли в траві совок і питаєте господиню, чий він. Поставте питання: «Чий це совок?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The subway is near the hotel.",
+        "targetPhrase": "Whose trowel is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Метро рядом с отелем»",
-          "uk": "Скажіть «Метро поруч із готелем»"
+          "ru": "Вы нашли в траве совок и спрашиваете хозяйку, чей он. Задайте вопрос: «Чей это совок?»",
+          "uk": "Ви знайшли в траві совок і питаєте господиню, чий він. Поставте питання: «Чий це совок?»"
         },
         "orderedTokens": [
-          "The",
-          "subway",
+          "Whose",
+          "trowel",
           "is",
-          "near",
-          "the",
-          "hotel"
+          "this"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-48:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Метро поруч із готелем»",
+            "testedDimension": "Ви знайшли в траві совок і питаєте господиню, чий він. Поставте питання: «Чий це совок?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The subway is near the hotel.`",
-              "uk": "тут потрібно `is` — `The subway is near the hotel.`"
+              "ru": "здесь нужно `Whose` — `Whose trowel is this?`",
+              "uk": "тут потрібно `Whose` — `Whose trowel is this?`"
             }
           }
         ],
@@ -353,25 +538,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Укажіть на свою шафку: «Ця шафка моя»",
+      "prompt": "Господиня питає, де граблі. Вони за сараєм. Скажіть: «Граблі за сараєм»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Укажіть на свою шафку: «Ця шафка моя»",
+      "accessibilityLabel": "Господиня питає, де граблі. Вони за сараєм. Скажіть: «Граблі за сараєм»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i07:audio",
-          "transcript": "This locker is mine."
+          "transcript": "The rake is behind the shed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This locker is mine.",
+        "targetPhrase": "The rake is behind the shed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -386,67 +571,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, де пором",
+      "prompt": "Візок належить вашим сусідам. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i08:r1",
-          "text": "Where"
+          "text": "theirs"
         },
         {
           "responseId": "en:lesson-05:session-48:i08:r2",
-          "text": "Whose"
+          "text": "their"
         },
         {
           "responseId": "en:lesson-05:session-48:i08:r3",
-          "text": "Who"
+          "text": "ours"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, де пором",
+      "accessibilityLabel": "Візок належить вашим сусідам. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где паром",
-          "uk": "Запитайте, де пором"
+          "ru": "Тачка принадлежит вашим соседям. Выберите слово",
+          "uk": "Візок належить вашим сусідам. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ is the ferry?",
+        "gappedTargetPhrase": "The wheelbarrow is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-48:i08:r1",
-            "text": "Where"
+            "text": "theirs"
           },
           {
             "responseId": "en:lesson-05:session-48:i08:r2",
-            "text": "Whose"
+            "text": "their"
           },
           {
             "responseId": "en:lesson-05:session-48:i08:r3",
-            "text": "Who"
+            "text": "ours"
           }
         ],
-        "testedDimension": "Запитайте, де пором",
+        "testedDimension": "Візок належить вашим сусідам. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте, де пором",
+            "testedDimension": "Візок належить вашим сусідам. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Whose` — чей; где — `Where`.",
-              "uk": "`Whose` — чий; де — `Where`."
+              "ru": "`their` значит «их» и требует вещи после себя. Без вещи нужно `theirs`.",
+              "uk": "`their` означає «їхній» і потребує речі після себе. Без речі потрібно `theirs`."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте, де пором",
+            "testedDimension": "Візок належить вашим сусідам. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; где — `Where`.",
-              "uk": "`Who` — хто; де — `Where`."
+              "ru": "`ours` значит «наш», а тачка принадлежит соседям: нужно `theirs`.",
+              "uk": "`ours` означає «наш», а візок належить сусідам: потрібно `theirs`."
             }
           }
         ]
@@ -455,51 +640,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, який транспорт називає Анна",
+      "prompt": "Послухайте сусіда",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i09:r1",
-          "text": "This is Tom's scooter."
+          "text": "The hose is my neighbour's."
         },
         {
           "responseId": "en:lesson-05:session-48:i09:r2",
-          "text": "This is Tom's bicycle."
+          "text": "The hose is my cousin's."
         },
         {
           "responseId": "en:lesson-05:session-48:i09:r3",
-          "text": "This is Tom's motorbike."
+          "text": "The rake is my neighbour's."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, який транспорт називає Анна",
+      "accessibilityLabel": "Послухайте сусіда",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i09:audio",
-          "transcript": "This is Tom's scooter."
+          "transcript": "The hose is my neighbour's."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-48:i09:r1",
-            "targetText": "This is Tom's scooter.",
+            "targetText": "The hose is my neighbour's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i09:r2",
-            "targetText": "This is Tom's bicycle.",
+            "targetText": "The hose is my cousin's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i09:r3",
-            "targetText": "This is Tom's motorbike.",
+            "targetText": "The rake is my neighbour's.",
             "meaningByLocale": null
           }
         ],
@@ -508,19 +693,19 @@
           {
             "responseId": "en:lesson-05:session-48:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `bicycle`.",
-              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи хозяин — `neighbour's`, сосед, а в этом варианте — `cousin's`, двоюродный брат.",
+              "uk": "У записі господар — `neighbour's`, сусід, а в цьому варіанті — `cousin's`, двоюрідний брат."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, який транспорт називає Анна",
+            "testedDimension": "Послухайте сусіда",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `scooter`, а в этом варианте — `motorbike`.",
-              "uk": "У записі останнє слово — `scooter`, а в цьому варіанті — `motorbike`."
+              "ru": "В записи вещь — `hose`, шланг, а в этом варианте — `rake`, грабли.",
+              "uk": "У записі річ — `hose`, шланг, а в цьому варіанті — `rake`, граблі."
             }
           }
         ],
@@ -531,8 +716,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -545,48 +730,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-48:i10:p1",
-            "target": "motorbike",
+            "target": "rake",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "грабли",
+              "uk": "граблі"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i10:p2",
-            "target": "ferry",
+            "target": "hose",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "шланг",
+              "uk": "шланг"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i10:p3",
-            "target": "subway",
+            "target": "shed",
             "meaningByLocale": {
-              "ru": "метро (американский английский)",
-              "uk": "метро (американська англійська)"
+              "ru": "сарай",
+              "uk": "сарай"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i10:p4",
-            "target": "locker",
+            "target": "gate",
             "meaningByLocale": {
-              "ru": "шкафчик",
-              "uk": "шафка"
+              "ru": "калитка",
+              "uk": "хвіртка"
             }
           }
         ],
         "leftColumn": [
-          "motorbike",
-          "ferry",
-          "subway",
-          "locker"
+          "rake",
+          "hose",
+          "shed",
+          "gate"
         ],
         "rightColumn": [
-          "мотоцикл",
-          "пором",
-          "метро (американська англійська)",
-          "шафка"
+          "граблі",
+          "шланг",
+          "сарай",
+          "хвіртка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -604,34 +789,49 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте сусіда й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте сусіда й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i11:audio",
-          "transcript": "Where is the community kitchen?"
+          "transcript": "My neighbour's wheelbarrow is next to the shed."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the community kitchen?",
+        "hiddenTargetPhrase": "My neighbour's wheelbarrow is next to the shed.",
         "orderedTokens": [
-          "Where",
+          "My",
+          "neighbour's",
+          "wheelbarrow",
           "is",
+          "next",
+          "to",
           "the",
-          "community",
-          "kitchen"
+          "shed"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-48:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сусіда й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My neighbour's wheelbarrow is next to the shed.`",
+              "uk": "тут потрібно `is` — `My neighbour's wheelbarrow is next to the shed.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -641,39 +841,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»",
+      "prompt": "Господиня питає, чий шланг. Він вашої тітки. Скажіть повною фразою: «Це шланг моєї тітки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»",
+      "accessibilityLabel": "Господиня питає, чий шланг. Він вашої тітки. Скажіть повною фразою: «Це шланг моєї тітки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The motorbike is hers.",
+        "targetPhrase": "This is my aunt's hose.",
         "localizedMeaning": {
-          "ru": "Мотоцикл принадлежит Анне. Скажите «Мотоцикл её»",
-          "uk": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»"
+          "ru": "Хозяйка спрашивает, чей шланг. Он вашей тёти. Скажите полной фразой: «Это шланг моей тёти»",
+          "uk": "Господиня питає, чий шланг. Він вашої тітки. Скажіть повною фразою: «Це шланг моєї тітки»"
         },
         "orderedTokens": [
-          "The",
-          "motorbike",
+          "This",
           "is",
-          "hers"
+          "my",
+          "aunt's",
+          "hose"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aunt"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-48:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Мотоцикл належить Анні. Скажіть «Мотоцикл її»",
+            "testedDimension": "Господиня питає, чий шланг. Він вашої тітки. Скажіть повною фразою: «Це шланг моєї тітки»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The motorbike is hers.`",
-              "uk": "тут потрібно `is` — `The motorbike is hers.`"
+              "ru": "здесь нужно `aunt's` — `This is my aunt's hose.`",
+              "uk": "тут потрібно `aunt's` — `This is my aunt's hose.`"
             }
           }
         ],
@@ -686,25 +887,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви побачили пором. Скажіть «Пором тут»",
+      "prompt": "Господиня питає, чий це совок. Він ваш. Скажіть: «Це мій совок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i13:audio"
       ],
-      "accessibilityLabel": "Ви побачили пором. Скажіть «Пором тут»",
+      "accessibilityLabel": "Господиня питає, чий це совок. Він ваш. Скажіть: «Це мій совок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i13:audio",
-          "transcript": "The ferry is here."
+          "transcript": "This is my trowel."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The ferry is here.",
+        "targetPhrase": "This is my trowel.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -719,67 +920,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Велосипед належить вам. Скажіть «Велосипед мій»",
+      "prompt": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i14:r1",
-          "text": "mine"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-48:i14:r2",
-          "text": "my"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-48:i14:r3",
-          "text": "I"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Велосипед належить вам. Скажіть «Велосипед мій»",
+      "accessibilityLabel": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Велосипед принадлежит вам. Скажите «Велосипед мой»",
-          "uk": "Велосипед належить вам. Скажіть «Велосипед мій»"
+          "ru": "У ваших соседей есть тачка. Скажите об этом хозяйке. Выберите слово",
+          "uk": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово"
         },
-        "gappedTargetPhrase": "The bicycle is ___.",
+        "gappedTargetPhrase": "My neighbours ___ a wheelbarrow.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-48:i14:r1",
-            "text": "mine"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-48:i14:r2",
-            "text": "my"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-48:i14:r3",
-            "text": "I"
+            "text": "is"
           }
         ],
-        "testedDimension": "Велосипед належить вам. Скажіть «Велосипед мій»",
+        "testedDimension": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-48:i14:r2",
             "correct": false,
-            "testedDimension": "Велосипед належить вам. Скажіть «Велосипед мій»",
+            "testedDimension": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Перед названием вещи — `my`; здесь самостоятельное `mine`.",
-              "uk": "Перед назвою речі — `my`; тут самостійне `mine`."
+              "ru": "Соседей несколько, как they, поэтому нужно `have`, а не `has`.",
+              "uk": "Сусідів кілька, як they, тому потрібно `have`, а не `has`."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i14:r3",
             "correct": false,
-            "testedDimension": "Велосипед належить вам. Скажіть «Велосипед мій»",
+            "testedDimension": "У ваших сусідів є візок. Скажіть про це господині. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`I` — я; самостоятельное «мой» — `mine`.",
-              "uk": "`I` — я; самостійне «мій» — `mine`."
+              "ru": "`is` значит «являются»: получится «соседи — тачка». Для «у них есть» нужно `have`.",
+              "uk": "`is` означає «є»: вийде «сусіди — візок». Для «у них є» потрібно `have`."
             }
           }
         ]
@@ -788,51 +989,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чий самокат тут",
+      "prompt": "Послухайте господиню",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-48:i15:r1",
-          "text": "Your scooter is here."
+          "text": "Where is the trowel?"
         },
         {
           "responseId": "en:lesson-05:session-48:i15:r2",
-          "text": "My scooter is here."
+          "text": "Where are the trowels?"
         },
         {
           "responseId": "en:lesson-05:session-48:i15:r3",
-          "text": "His scooter is here."
+          "text": "Where is the rake?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чий самокат тут",
+      "accessibilityLabel": "Послухайте господиню",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i15:audio",
-          "transcript": "Your scooter is here."
+          "transcript": "Where is the trowel?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-48:i15:r1",
-            "targetText": "Your scooter is here.",
+            "targetText": "Where is the trowel?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i15:r2",
-            "targetText": "My scooter is here.",
+            "targetText": "Where are the trowels?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-48:i15:r3",
-            "targetText": "His scooter is here.",
+            "targetText": "Where is the rake?",
             "meaningByLocale": null
           }
         ],
@@ -841,19 +1042,19 @@
           {
             "responseId": "en:lesson-05:session-48:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чий самокат тут",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `trowel is` — один совок, а в этом варианте `trowels are` — несколько совков.",
+              "uk": "У записі `trowel is` — один совок, а в цьому варіанті `trowels are` — кілька совків."
             }
           },
           {
             "responseId": "en:lesson-05:session-48:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чий самокат тут",
+            "testedDimension": "Послухайте господиню",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `trowel`, совок, а в этом варианте — `rake`, грабли.",
+              "uk": "У записі річ — `trowel`, совок, а в цьому варіанті — `rake`, граблі."
             }
           }
         ],
@@ -864,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -878,48 +1079,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-48:i16:p1",
-            "target": "community kitchen",
+            "target": "wheelbarrow",
             "meaningByLocale": {
-              "ru": "общая кухня",
-              "uk": "спільна кухня"
+              "ru": "садовая тачка",
+              "uk": "садовий візок"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i16:p2",
-            "target": "subway",
+            "target": "rake",
             "meaningByLocale": {
-              "ru": "метро (американский английский)",
-              "uk": "метро (американська англійська)"
+              "ru": "грабли",
+              "uk": "граблі"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i16:p3",
-            "target": "bicycle",
+            "target": "hose",
             "meaningByLocale": {
-              "ru": "велосипед",
-              "uk": "велосипед"
+              "ru": "шланг",
+              "uk": "шланг"
             }
           },
           {
             "pairId": "en:lesson-05:session-48:i16:p4",
-            "target": "ferry",
+            "target": "trowel",
             "meaningByLocale": {
-              "ru": "паром",
-              "uk": "пором"
+              "ru": "садовый совок",
+              "uk": "садовий совок"
             }
           }
         ],
         "leftColumn": [
-          "community kitchen",
-          "subway",
-          "bicycle",
-          "ferry"
+          "wheelbarrow",
+          "rake",
+          "hose",
+          "trowel"
         ],
         "rightColumn": [
-          "спільна кухня",
-          "метро (американська англійська)",
-          "велосипед",
-          "пором"
+          "садовий візок",
+          "граблі",
+          "шланг",
+          "садовий совок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -937,25 +1138,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-48:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На подвір’ї стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "prompt": "Господиня питає, чий це візок. Він ваш. Відповідьте: «Візок мій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-48:i17:audio"
       ],
-      "accessibilityLabel": "На подвір’ї стоїть велосипед. Запитайте друзів «Чий це велосипед?»",
+      "accessibilityLabel": "Господиня питає, чий це візок. Він ваш. Відповідьте: «Візок мій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-48:i17:audio",
-          "transcript": "Whose bicycle is this?"
+          "transcript": "The wheelbarrow is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bicycle is this?",
+        "targetPhrase": "The wheelbarrow is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -977,11 +1178,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aecb25213b3fe74a6e94245fe233a4fac79c0187943d3d4d0513dc846b99fe62"
+  "learnerFingerprint": "9e88768ba0937c6e02384a5d938dcd4a7158bd08e4db2e4ba1cbe4739f8dfe54"
 }

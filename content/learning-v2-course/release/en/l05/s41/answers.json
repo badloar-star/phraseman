@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-41:word:keycard",
+    "correctText": "keycard",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-41:i01",
-    "correctText": "You are honest.",
+    "correctText": "My brother's keycard is on the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-41:word:stopwatch",
+    "correctText": "stopwatch",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i02",
-    "correctText": "locker",
+    "correctText": "The stopwatch is in my locker.",
     "correctResponseId": "en:lesson-05:session-41:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-41:word:tracksuit",
+    "correctText": "tracksuit",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-41:i03",
-    "correctText": "locker",
+    "correctText": "sister's",
     "correctResponseId": "en:lesson-05:session-41:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-41:i04",
-    "correctText": "en:lesson-05:session-41:i04:p1=locker\nen:lesson-05:session-41:i04:p2=watch\nen:lesson-05:session-41:i04:p3=kitchen\nen:lesson-05:session-41:i04:p4=cashpoint",
+    "correctText": "en:lesson-05:session-41:i04:p1=keycard\nen:lesson-05:session-41:i04:p2=stopwatch\nen:lesson-05:session-41:i04:p3=tracksuit\nen:lesson-05:session-41:i04:p4=sweatband",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-41:word:sweatband",
+    "correctText": "sweatband",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i05",
-    "correctText": "Whose locker is this?",
+    "correctText": "The sweatband is in my brother's locker.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i06",
-    "correctText": "The watch is in the locker.",
+    "correctText": "Whose sweatband is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i07",
-    "correctText": "This locker is mine.",
+    "correctText": "This is my keycard.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-05:session-41:i09",
-    "correctText": "This is Anna's locker.",
+    "correctText": "Whose tracksuit is this?",
     "correctResponseId": "en:lesson-05:session-41:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-41:i10",
-    "correctText": "en:lesson-05:session-41:i10:p1=locker\nen:lesson-05:session-41:i10:p2=honest\nen:lesson-05:session-41:i10:p3=cashpoint\nen:lesson-05:session-41:i10:p4=watch",
+    "correctText": "en:lesson-05:session-41:i10:p1=stopwatch\nen:lesson-05:session-41:i10:p2=keycard\nen:lesson-05:session-41:i10:p3=bag\nen:lesson-05:session-41:i10:p4=jacket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i11",
-    "correctText": "Tom is next to the cashpoint.",
+    "correctText": "My friend's stopwatch is on the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i12",
-    "correctText": "Anna is in the kitchen.",
+    "correctText": "This is my sister's keycard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i13",
-    "correctText": "I have your watch.",
+    "correctText": "The stopwatch is mine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i14",
-    "correctText": "Whose",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-41:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-41:i15",
-    "correctText": "My locker is here.",
+    "correctText": "The tracksuit is mine.",
     "correctResponseId": "en:lesson-05:session-41:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-41:i16",
-    "correctText": "en:lesson-05:session-41:i16:p1=locker\nen:lesson-05:session-41:i16:p2=honest\nen:lesson-05:session-41:i16:p3=kitchen\nen:lesson-05:session-41:i16:p4=watch",
+    "correctText": "en:lesson-05:session-41:i16:p1=keycard\nen:lesson-05:session-41:i16:p2=stopwatch\nen:lesson-05:session-41:i16:p3=tracksuit\nen:lesson-05:session-41:i16:p4=sweatband",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-41:i17",
-    "correctText": "Whose watch is this?",
+    "correctText": "It is my sister's.",
     "correctResponseId": null
   }
 ]

@@ -1,136 +1,154 @@
-# Английский · Урок 5 · Занятие 47 — В город на метро
+# Английский · Урок 5 · Занятие 47 — Музыканты на площади
 
-**Ситуация.** Анна и Том собираются в город. Том ищет метро, а Анна проверяет, кому принадлежит скрипка у двери.
+**Ситуация.** В городе на площади играют уличные музыканты. Инструменты лежат на скамейках и стоят у стен, и нужно понять, чей инструмент, где что стоит и у кого что есть.
 
-**Что вы освоите:** спросить о транспорте и ресторанах и уточнить владельца вещи
-**Новые слова:** subway
+**Что вы освоите:** сказать, чей инструмент, спросить «чей» и «где», и сказать, что у человека есть инструмент
+**Новые слова:** ukulele, saxophone, banjo, cello
+**Возвращаются:** brother, sister, uncle, aunt, friend, bench, hall, restaurant, guitar, piano
 
 ---
 
 ## Интро 1
 
-### Подземный транспорт
+### Укулеле на скамейке
 
-`subway` в американском английском — «метро». `Where is the subway?` — «Где метро?» Так можно спросить, где ближайший доступ к метро. `The subway is near the hotel` — «Метро рядом с отелем». В британском английском это слово также может означать подземный пешеходный переход; здесь речь о транспорте.
+Вы пришли на площадь послушать уличных музыкантов в субботу. Подруга показывает на маленькую гитару на скамейке и спрашивает, чья она. ukulele — «укулеле»: гитара с четырьмя струнами. Оно вашего брата. Хозяина называем с 's: The ukulele is my brother's.
 
-**Спросите «Где метро?»**
+**Подруга спрашивает, чьё укулеле на скамейке. Оно вашего брата. Скажите ей: «Укулеле моего брата».**
 
-- ✅ **Where is the subway?**
-- ❌ Whose subway is this? — *Это вопрос о владельце; о месте спрашиваем с `Where`.*
-- ❌ Where are the subway? — *Здесь `the subway` требует `is`.*
+- ✅ **The ukulele is my brother's.**
+- ❌ The ukulele is my brother. — *Так получилось бы, что укулеле — это сам брат. Хозяина называем через 's.*
+- ❌ The ukulele are my brother's. — *Укулеле одно, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 2
 
-### Скрипка у двери
+### Саксофон у стены
 
-`violin` — «скрипка». `Whose violin is this?` — «Чья это скрипка?» `This is Anna’s violin` — «Это скрипка Анны». `The violin is hers` — «Скрипка её». `I have your violin` — «Твоя скрипка у меня». Скрипка уже готова к выходу, хотя билет за неё никто не покупал.
+Вечером в кафе у площади у стены стоит саксофон, а музыкантов не видно. Вы спрашиваете подругу, чей он. saxophone — «саксофон»: блестящий духовой инструмент. О хозяине спрашиваем со словом Whose: Whose saxophone is this? — «Чей это саксофон?»
 
-**Скажите «Скрипка её».**
+**У стены кафе стоит саксофон. Спросите подругу: «Чей это саксофон?»**
 
-- ✅ **The violin is hers.**
-- ❌ The violin is her. — *Без следующего названия вещи нужна самостоятельная форма `hers`.*
-- ❌ The violin are hers. — *Одна скрипка: `is`.*
+- ✅ **Whose saxophone is this?**
+- ❌ Whose saxophone are these? — *Саксофон один, поэтому нужно is this.*
+- ❌ Where is this saxophone? — *Это вопрос «где?», а нужен вопрос «чей?»: Whose.*
 
 ---
 
 ## Интро 3
 
-### Обед и опасное место
+### Банджо дяди
 
-`restaurants` — «рестораны»: `Where are the restaurants?` — «Где рестораны?» `leftover` — «остаток еды»; о еде после обеда обычно говорят `leftovers`: `The leftovers are in the fridge` — «Остатки еды в холодильнике». `dangerous` — «опасный»: `This place is dangerous` — «Это место опасное».
+Ваш дядя недавно начал учиться играть на банджо и теперь каждый день берёт его с собой на площадь. Подруга спрашивает, на чём именно он играет. banjo — «банджо»: струнный инструмент с круглым корпусом. Когда у человека есть вещь, говорим has: My uncle has a banjo.
 
-**Скажите «Остатки еды в холодильнике».**
+**Подруга спрашивает, на чём играет ваш дядя. У него есть банджо. Скажите ей: «У моего дяди есть банджо».**
 
-- ✅ **The leftovers are in the fridge.**
-- ❌ The leftovers is in the fridge. — *С `leftovers` нужна форма `are`.*
-- ❌ The leftovers are under the fridge. — *Внутри холодильника — `in`; `under` — под ним.*
+- ✅ **My uncle has a banjo.**
+- ❌ My uncle have a banjo. — *Дядя один, как he, поэтому нужно has, а не have.*
+- ❌ My uncle is a banjo. — *is значит «является»: получится «дядя — банджо». Для «у него есть» нужно has.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Это место опасное»**
+**1 · Карточка слова — ukulele**
+<!-- interaction_id: en:lesson-05:session-47:word:ukulele; family: word_card -->
+> **ukulele** — укулеле. My brother's ukulele is small. — «Укулеле моего брата маленькое». О маленькой гитаре с четырьмя струнами.
+
+**2 · Прохожий спрашивает, где укулеле вашей сестры. Оно на скамейке. Скажите: «Укулеле моей сестры на скамейке»**
 <!-- interaction_id: en:lesson-05:session-47:i01; family: phrase_builder -->
-Плитки: `dangerous` `is` `place` `This` `are` → **This place is dangerous.**
-*(плитка `are` лишняя: здесь нужно `is` — `This place is dangerous.`)*
+Плитки: `ukulele` `sister's` `is` `on` `the` `bench` `My` `sister` → **My sister's ukulele is on the bench.**
+*(плитка `sister` лишняя: здесь нужно `sister's` — `My sister's ukulele is on the bench.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — saxophone**
+<!-- interaction_id: en:lesson-05:session-47:word:saxophone; family: word_card -->
+> **saxophone** — саксофон. My friend's saxophone is old. — «Саксофон моей подруги старый». О блестящем духовом инструменте.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-47:i02; family: listen_choose -->
-🔊 *subway* → **subway** · ferry · violin
-- ferry — *В записи первое слово — `subway`, а в этом варианте — `ferry`.*
-- violin — *В записи первое слово — `subway`, а в этом варианте — `violin`.*
+🔊 *The saxophone is behind the bench.* → **The saxophone is behind the bench.** · The saxophone is under the bench. · The ukulele is behind the bench.
+- The saxophone is under the bench. — *В записи `behind` — за скамейкой, а в этом варианте `under` — под скамейкой.*
+- The ukulele is behind the bench. — *В записи вещь — `saxophone`, саксофон, а в этом варианте — `ukulele`, укулеле.*
 
-**3 · Назовите метро в американском английском**
+**5 · Карточка слова — banjo**
+<!-- interaction_id: en:lesson-05:session-47:word:banjo; family: word_card -->
+> **banjo** — банджо. My uncle's banjo is new. — «Банджо моего дяди новое». О струнном инструменте с круглым корпусом.
+
+**6 · Банджо принадлежит вашей тёте. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-47:i03; family: context_gap_grammar -->
-___ → **subway** · ferry · motorbike
-- ferry — *`ferry` — паром; метро — `subway`.*
-- motorbike — *`motorbike` — мотоцикл; метро — `subway`.*
+The banjo is my ___. → **aunt's** · aunt · aunts
+- aunt — *Так получилось бы, что банджо — это сама тётя. Хозяйку называем через `'s`: `aunt's`.*
+- aunts — *`aunts` — это «тёти», несколько человек; чтобы назвать хозяйку, нужно `aunt's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-47:i04; family: speed_match -->
-subway — метро (американский английский) · violin — скрипка · restaurants — рестораны · leftover — остаток еды
+ukulele — укулеле · saxophone — саксофон · banjo — банджо · cello — виолончель
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — cello**
+<!-- interaction_id: en:lesson-05:session-47:word:cello; family: word_card -->
+> **cello** — виолончель. My aunt's cello is big. — «Виолончель моей тёти большая». О большом смычковом инструменте, на котором играют сидя.
+
+**9 · Послушайте дядю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-47:i05; family: listen_build_dictation -->
-🔊 *Where is the subway?* Плитки: `subway` `the` `is` `Where` → **Where is the subway?**
+🔊 *My uncle's cello is in the hall.* Плитки: `cello` `uncle's` `is` `in` `the` `hall` `My` `are` → **My uncle's cello is in the hall.**
+*(плитка `are` лишняя: здесь нужно `is` — `My uncle's cello is in the hall.`)*
 
-**6 · Скажите «Остатки еды в холодильнике»**
+**10 · Вы нашли на скамейке банджо и спрашиваете подругу, чьё оно. Задайте вопрос: «Чьё это банджо?»**
 <!-- interaction_id: en:lesson-05:session-47:i06; family: phrase_builder -->
-Плитки: `fridge` `the` `in` `are` `leftovers` `The` `is` → **The leftovers are in the fridge.**
-*(плитка `is` лишняя: здесь нужно `are` — `The leftovers are in the fridge.`)*
+Плитки: `banjo` `this` `is` `Whose` `Who` → **Whose banjo is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose banjo is this?`)*
 
-**7 · Скажите «Метро рядом с отелем»**
+**11 · Подруга спрашивает, где виолончель. Она за скамейкой. Скажите: «Виолончель за скамейкой»**
 <!-- interaction_id: en:lesson-05:session-47:i07; family: scripted_repeat_compare -->
-🎙 **The subway is near the hotel.**
+🎙 **The cello is behind the bench.**
 
-**8 · Спросите, где рестораны**
+**12 · Вы спрашиваете музыканта, где рестораны. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-47:i08; family: context_gap_grammar -->
 Where ___ the restaurants? → **are** · is · am
-- is — *Несколько ресторанов: `restaurants`, нужна форма `are`.*
-- am — *`am` используется с `I`; здесь `are`.*
+- is — *Ресторанов несколько, поэтому нужно `are`, а не `is`.*
+- am — *`am` используется только с `I`; здесь нужно `are`.*
 
-**9 · Послушайте, какую вещь называет Том**
+**13 · Послушайте музыканта**
 <!-- interaction_id: en:lesson-05:session-47:i09; family: listen_choose -->
-🔊 *This is Anna's violin.* → **This is Anna's violin.** · This is Anna's laptop. · This is Anna's bicycle.
-- This is Anna's laptop. — *В записи последнее слово — `violin`, а в этом варианте — `laptop`.*
-- This is Anna's bicycle. — *В записи последнее слово — `violin`, а в этом варианте — `bicycle`.*
+🔊 *Where is the cello?* → **Where is the cello?** · Where are the cellos? · Where is the banjo?
+- Where are the cellos? — *В записи `cello is` — одна виолончель, а в этом варианте `cellos are` — несколько виолончелей.*
+- Where is the banjo? — *В записи вещь — `cello`, а в этом варианте — `banjo`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-47:i10; family: speed_match -->
-subway — метро (американский английский) · dangerous — опасный · leftover — остаток еды · violin — скрипка
+ukulele — укулеле · saxophone — саксофон · guitar — гитара · piano — пианино
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте подругу и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-47:i11; family: listen_build_dictation -->
-🔊 *Whose violin is this?* Плитки: `this` `is` `violin` `Whose` → **Whose violin is this?**
+🔊 *The banjo and the cello are in the hall.* Плитки: `banjo` `cello` `are` `in` `the` `the` `hall` `and` `The` `is` → **The banjo and the cello are in the hall.**
+*(плитка `is` лишняя: здесь нужно `are` — `The banjo and the cello are in the hall.`)*
 
-**12 · Скрипка принадлежит Анне. Скажите «Скрипка её»**
+**16 · Прохожий спрашивает, чей саксофон. Он вашей подруги. Скажите полной фразой: «Это саксофон моей подруги»**
 <!-- interaction_id: en:lesson-05:session-47:i12; family: phrase_builder -->
-Плитки: `hers` `is` `violin` `The` `are` → **The violin is hers.**
-*(плитка `are` лишняя: здесь нужно `is` — `The violin is hers.`)*
+Плитки: `saxophone` `friend's` `my` `is` `This` `friend` → **This is my friend's saxophone.**
+*(плитка `friend` лишняя: здесь нужно `friend's` — `This is my friend's saxophone.`)*
 
-**13 · Скажите Анне «Твоя скрипка у меня»**
+**17 · Подруга спрашивает, чьё это укулеле. Оно её. Скажите: «Укулеле её»**
 <!-- interaction_id: en:lesson-05:session-47:i13; family: scripted_repeat_compare -->
-🎙 **I have your violin.**
+🎙 **The ukulele is hers.**
 
-**14 · Спросите, где метро**
+**18 · У вашей тёти есть виолончель. Скажите об этом подруге. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-47:i14; family: context_gap_grammar -->
-___ is the subway? → **Where** · Whose · Who
-- Whose — *`Whose` — чей; где — `Where`.*
-- Who — *`Who` — кто; где — `Where`.*
+My aunt ___ a cello. → **has** · have · is
+- have — *Тётя одна, как she, поэтому нужно `has`, а не `have`.*
+- is — *`is` значит «является»: получится «тётя — виолончель». Для «у неё есть» нужно `has`.*
 
-**15 · Послушайте, чья скрипка здесь**
+**19 · Послушайте музыканта**
 <!-- interaction_id: en:lesson-05:session-47:i15; family: listen_choose -->
-🔊 *Your violin is here.* → **Your violin is here.** · My violin is here. · His violin is here.
-- My violin is here. — *В записи первое слово — `Your`, а в этом варианте — `My`.*
-- His violin is here. — *В записи первое слово — `Your`, а в этом варианте — `His`.*
+🔊 *The saxophone is theirs.* → **The saxophone is theirs.** · The saxophone is ours. · The ukulele is theirs.
+- The saxophone is ours. — *В записи `theirs` — «их», а в этом варианте `ours` — «наш».*
+- The ukulele is theirs. — *В записи вещь — `saxophone`, а в этом варианте — `ukulele`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-47:i16; family: speed_match -->
-subway — метро (американский английский) · dangerous — опасный · restaurants — рестораны · violin — скрипка
+ukulele — укулеле · saxophone — саксофон · banjo — банджо · cello — виолончель
 
-**17 · Перед выходом вы нашли скрипку у двери. Спросите «Чья это скрипка?»**
+**21 · Прохожий спрашивает, чей это саксофон. Он ваш. Ответьте: «Саксофон мой»**
 <!-- interaction_id: en:lesson-05:session-47:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose violin is this?**
-
+🎙 **The saxophone is mine.**

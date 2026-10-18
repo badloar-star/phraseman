@@ -1,0 +1,2465 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-05:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-05:session-41:word:keycard",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — keycard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:keycard:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — keycard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:keycard:audio",
+            "transcript": "keycard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:keycard:r1",
+              "targetText": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ. The keycard is mine. — «Карта-ключ моя». О пластиковой карте, которая открывает дверь вместо ключа.",
+                "uk": "картка-ключ. The keycard is mine. — «Картка-ключ моя». Про пластикову картку, яка відчиняє двері замість ключа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keycard",
+            "definitionByLocale": {
+              "ru": "карта-ключ. The keycard is mine. — «Карта-ключ моя». О пластиковой карте, которая открывает дверь вместо ключа.",
+              "uk": "картка-ключ. The keycard is mine. — «Картка-ключ моя». Про пластикову картку, яка відчиняє двері замість ключа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга ищет карту-ключ. Она вашего брата и лежит на скамейке. Скажите: «Карта-ключ моего брата на скамейке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга ищет карту-ключ. Она вашего брата и лежит на скамейке. Скажите: «Карта-ключ моего брата на скамейке»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My brother's keycard is on the bench.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет карту-ключ. Она вашего брата и лежит на скамейке. Скажите: «Карта-ключ моего брата на скамейке»",
+            "uk": "Подруга шукає картку-ключ. Вона вашого брата й лежить на лавці. Скажіть: «Картка-ключ мого брата на лавці»"
+          },
+          "orderedTokens": [
+            "My",
+            "brother's",
+            "keycard",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга ищет карту-ключ. Она вашего брата и лежит на скамейке. Скажите: «Карта-ключ моего брата на скамейке»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `My brother's keycard is on the bench.`",
+                "uk": "тут потрібно `brother's` — `My brother's keycard is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:stopwatch",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stopwatch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:stopwatch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stopwatch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:stopwatch:audio",
+            "transcript": "stopwatch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:stopwatch:r1",
+              "targetText": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер. Whose stopwatch is this? — «Чей это секундомер?» О часах, которыми меряют время бега.",
+                "uk": "секундомір. Whose stopwatch is this? — «Чий це секундомір?» Про годинник, яким міряють час бігу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stopwatch",
+            "definitionByLocale": {
+              "ru": "секундомер. Whose stopwatch is this? — «Чей это секундомер?» О часах, которыми меряют время бега.",
+              "uk": "секундомір. Whose stopwatch is this? — «Чий це секундомір?» Про годинник, яким міряють час бігу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i02:r1",
+            "text": "The stopwatch is in my locker."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i02:r2",
+            "text": "The stopwatch is in my bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i02:r3",
+            "text": "The keycard is in my locker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i02:audio",
+            "transcript": "The stopwatch is in my locker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i02:r1",
+              "targetText": "The stopwatch is in my locker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r2",
+              "targetText": "The stopwatch is in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r3",
+              "targetText": "The keycard is in my locker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи место — `locker`, шкафчик, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі місце — `locker`, шафка, а в цьому варіанті — `bag`, сумка."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `stopwatch`, секундомер, а в этом варианте — `keycard`, карта-ключ.",
+                "uk": "У записі річ — `stopwatch`, секундомір, а в цьому варіанті — `keycard`, картка-ключ."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:tracksuit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tracksuit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:tracksuit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tracksuit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:tracksuit:audio",
+            "transcript": "tracksuit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:tracksuit:r1",
+              "targetText": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм. My brother's tracksuit is blue. — «Спортивный костюм моего брата синий». О брюках и куртке для спорта, которые носят вместе.",
+                "uk": "спортивний костюм. My brother's tracksuit is blue. — «Спортивний костюм мого брата синій». Про штани й куртку для спорту, які носять разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tracksuit",
+            "definitionByLocale": {
+              "ru": "спортивный костюм. My brother's tracksuit is blue. — «Спортивный костюм моего брата синий». О брюках и куртке для спорта, которые носят вместе.",
+              "uk": "спортивний костюм. My brother's tracksuit is blue. — «Спортивний костюм мого брата синій». Про штани й куртку для спорту, які носять разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+            "uk": "Спортивний костюм належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The tracksuit is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что костюм — это сама сестра. Хозяйку называем через `'s`: `sister's`.",
+                "uk": "Так вийшло б, що костюм — це сама сестра. Господиню називаємо через `'s`: `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i04:p1",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p2",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p3",
+              "target": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм",
+                "uk": "спортивний костюм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p4",
+              "target": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник",
+                "uk": "напульсник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "keycard",
+            "stopwatch",
+            "tracksuit",
+            "sweatband"
+          ],
+          "rightColumn": [
+            "карта-ключ",
+            "секундомер",
+            "спортивный костюм",
+            "напульсник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:sweatband",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sweatband",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:sweatband:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sweatband",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:sweatband:audio",
+            "transcript": "sweatband"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:sweatband:r1",
+              "targetText": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник. My sister's sweatband is white. — «Напульсник моей сестры белый». О мягкой повязке на запястье: она впитывает пот на тренировке.",
+                "uk": "напульсник. My sister's sweatband is white. — «Напульсник моєї сестри білий». Про м’яку пов’язку на зап’ясті: вона вбирає піт на тренуванні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweatband",
+            "definitionByLocale": {
+              "ru": "напульсник. My sister's sweatband is white. — «Напульсник моей сестры белый». О мягкой повязке на запястье: она впитывает пот на тренировке.",
+              "uk": "напульсник. My sister's sweatband is white. — «Напульсник моєї сестри білий». Про м’яку пов’язку на зап’ясті: вона вбирає піт на тренуванні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i05:audio",
+            "transcript": "The sweatband is in my brother's locker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sweatband is in my brother's locker.",
+          "orderedTokens": [
+            "The",
+            "sweatband",
+            "is",
+            "in",
+            "my",
+            "brother's",
+            "locker"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sweatband is in my brother's locker.`",
+                "uk": "тут потрібно `is` — `The sweatband is in my brother's locker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли напульсник и спрашиваете подругу, чей он. Задайте вопрос: «Чей это напульсник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли напульсник и спрашиваете подругу, чей он. Задайте вопрос: «Чей это напульсник?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose sweatband is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли напульсник и спрашиваете подругу, чей он. Задайте вопрос: «Чей это напульсник?»",
+            "uk": "Ви знайшли напульсник і питаєте подругу, чий він. Поставте питання: «Чий це напульсник?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "sweatband",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли напульсник и спрашиваете подругу, чей он. Задайте вопрос: «Чей это напульсник?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose sweatband is this?`",
+                "uk": "тут потрібно `Whose` — `Whose sweatband is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор спрашивает, чья это карта-ключ. Она ваша. Скажите: «Это моя карта-ключ»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Администратор спрашивает, чья это карта-ключ. Она ваша. Скажите: «Это моя карта-ключ»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i07:audio",
+            "transcript": "This is my keycard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my keycard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+            "uk": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sweatband ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Напульсник один, поэтому нужно `is`, а не `are`.",
+                "uk": "Напульсник один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно «является»: `is`.",
+                "uk": "`has` означає «має», а тут потрібно «є»: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i09:r1",
+            "text": "Whose tracksuit is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i09:r2",
+            "text": "Whose tracksuits are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i09:r3",
+            "text": "Whose sweatband is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i09:audio",
+            "transcript": "Whose tracksuit is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i09:r1",
+              "targetText": "Whose tracksuit is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r2",
+              "targetText": "Whose tracksuits are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r3",
+              "targetText": "Whose sweatband is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `tracksuit is this` — один костюм, а в этом варианте `tracksuits are these` — несколько костюмов.",
+                "uk": "У записі `tracksuit is this` — один костюм, а в цьому варіанті `tracksuits are these` — кілька костюмів."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tracksuit`, а в этом варианте — `sweatband`.",
+                "uk": "У записі річ — `tracksuit`, а в цьому варіанті — `sweatband`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i10:p1",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p2",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p3",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stopwatch",
+            "keycard",
+            "bag",
+            "jacket"
+          ],
+          "rightColumn": [
+            "секундомер",
+            "карта-ключ",
+            "сумка",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте тренера и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте тренера и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i11:audio",
+            "transcript": "My friend's stopwatch is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My friend's stopwatch is on the bench.",
+          "orderedTokens": [
+            "My",
+            "friend's",
+            "stopwatch",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте тренера и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My friend's stopwatch is on the bench.`",
+                "uk": "тут потрібно `is` — `My friend's stopwatch is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы нашли карту-ключ. Она вашей сестры. Скажите администратору полной фразой: «Это карта-ключ моей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы нашли карту-ключ. Она вашей сестры. Скажите администратору полной фразой: «Это карта-ключ моей сестры»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my sister's keycard.",
+          "localizedMeaning": {
+            "ru": "Вы нашли карту-ключ. Она вашей сестры. Скажите администратору полной фразой: «Это карта-ключ моей сестры»",
+            "uk": "Ви знайшли картку-ключ. Вона вашої сестри. Скажіть адміністраторові повною фразою: «Це картка-ключ моєї сестри»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "sister's",
+            "keycard"
+          ],
+          "authoredDistractorTokens": [
+            "sister"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы нашли карту-ключ. Она вашей сестры. Скажите администратору полной фразой: «Это карта-ключ моей сестры»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sister's` — `This is my sister's keycard.`",
+                "uk": "тут потрібно `sister's` — `This is my sister's keycard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер спрашивает, чей это секундомер. Он ваш. Ответьте: «Секундомер мой»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Тренер спрашивает, чей это секундомер. Он ваш. Ответьте: «Секундомер мой»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i13:audio",
+            "transcript": "The stopwatch is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The stopwatch is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+            "uk": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ a sweatband.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Брат один, как he, поэтому нужно `has`, а не `have`.",
+                "uk": "Брат один, як he, тому потрібно `has`, а не `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «является»: получится «брат — напульсник». Для «у него есть» нужно `has`.",
+                "uk": "`is` означає «є»: вийде «брат — напульсник». Для «у нього є» потрібно `has`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i15:r1",
+            "text": "The tracksuit is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i15:r2",
+            "text": "The tracksuit is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i15:r3",
+            "text": "The keycard is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i15:audio",
+            "transcript": "The tracksuit is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i15:r1",
+              "targetText": "The tracksuit is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r2",
+              "targetText": "The tracksuit is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r3",
+              "targetText": "The keycard is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `mine` — «мой», а в этом варианте `yours` — «твой».",
+                "uk": "У записі `mine` — «мій», а в цьому варіанті `yours` — «твій»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tracksuit`, а в этом варианте — `keycard`.",
+                "uk": "У записі річ — `tracksuit`, а в цьому варіанті — `keycard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i16:p1",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p2",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p3",
+              "target": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм",
+                "uk": "спортивний костюм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p4",
+              "target": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник",
+                "uk": "напульсник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "keycard",
+            "stopwatch",
+            "tracksuit",
+            "sweatband"
+          ],
+          "rightColumn": [
+            "карта-ключ",
+            "секундомер",
+            "спортивный костюм",
+            "напульсник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Администратор показывает карту-ключ и спрашивает, чья она. Карта вашей сестры. Ответьте: «Она моей сестры»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Администратор показывает карту-ключ и спрашивает, чья она. Карта вашей сестры. Ответьте: «Она моей сестры»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i17:audio",
+            "transcript": "It is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-05:session-41:word:keycard",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — keycard",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:keycard:audio"
+        ],
+        "accessibilityLabel": "Картка слова — keycard",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:keycard:audio",
+            "transcript": "keycard"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:keycard:r1",
+              "targetText": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ. The keycard is mine. — «Карта-ключ моя». О пластиковой карте, которая открывает дверь вместо ключа.",
+                "uk": "картка-ключ. The keycard is mine. — «Картка-ключ моя». Про пластикову картку, яка відчиняє двері замість ключа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "keycard",
+            "definitionByLocale": {
+              "ru": "карта-ключ. The keycard is mine. — «Карта-ключ моя». О пластиковой карте, которая открывает дверь вместо ключа.",
+              "uk": "картка-ключ. The keycard is mine. — «Картка-ключ моя». Про пластикову картку, яка відчиняє двері замість ключа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга шукає картку-ключ. Вона вашого брата й лежить на лавці. Скажіть: «Картка-ключ мого брата на лавці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга шукає картку-ключ. Вона вашого брата й лежить на лавці. Скажіть: «Картка-ключ мого брата на лавці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "My brother's keycard is on the bench.",
+          "localizedMeaning": {
+            "ru": "Подруга ищет карту-ключ. Она вашего брата и лежит на скамейке. Скажите: «Карта-ключ моего брата на скамейке»",
+            "uk": "Подруга шукає картку-ключ. Вона вашого брата й лежить на лавці. Скажіть: «Картка-ключ мого брата на лавці»"
+          },
+          "orderedTokens": [
+            "My",
+            "brother's",
+            "keycard",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "brother"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Подруга шукає картку-ключ. Вона вашого брата й лежить на лавці. Скажіть: «Картка-ключ мого брата на лавці»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `brother's` — `My brother's keycard is on the bench.`",
+                "uk": "тут потрібно `brother's` — `My brother's keycard is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:stopwatch",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stopwatch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:stopwatch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stopwatch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:stopwatch:audio",
+            "transcript": "stopwatch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:stopwatch:r1",
+              "targetText": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер. Whose stopwatch is this? — «Чей это секундомер?» О часах, которыми меряют время бега.",
+                "uk": "секундомір. Whose stopwatch is this? — «Чий це секундомір?» Про годинник, яким міряють час бігу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stopwatch",
+            "definitionByLocale": {
+              "ru": "секундомер. Whose stopwatch is this? — «Чей это секундомер?» О часах, которыми меряют время бега.",
+              "uk": "секундомір. Whose stopwatch is this? — «Чий це секундомір?» Про годинник, яким міряють час бігу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i02",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте тренера",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i02:r1",
+            "text": "The stopwatch is in my locker."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i02:r2",
+            "text": "The stopwatch is in my bag."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i02:r3",
+            "text": "The keycard is in my locker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i02:audio",
+            "transcript": "The stopwatch is in my locker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i02:r1",
+              "targetText": "The stopwatch is in my locker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r2",
+              "targetText": "The stopwatch is in my bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r3",
+              "targetText": "The keycard is in my locker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи место — `locker`, шкафчик, а в этом варианте — `bag`, сумка.",
+                "uk": "У записі місце — `locker`, шафка, а в цьому варіанті — `bag`, сумка."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте тренера",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `stopwatch`, секундомер, а в этом варианте — `keycard`, карта-ключ.",
+                "uk": "У записі річ — `stopwatch`, секундомір, а в цьому варіанті — `keycard`, картка-ключ."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:tracksuit",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tracksuit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:tracksuit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tracksuit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:tracksuit:audio",
+            "transcript": "tracksuit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:tracksuit:r1",
+              "targetText": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм. My brother's tracksuit is blue. — «Спортивный костюм моего брата синий». О брюках и куртке для спорта, которые носят вместе.",
+                "uk": "спортивний костюм. My brother's tracksuit is blue. — «Спортивний костюм мого брата синій». Про штани й куртку для спорту, які носять разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tracksuit",
+            "definitionByLocale": {
+              "ru": "спортивный костюм. My brother's tracksuit is blue. — «Спортивный костюм моего брата синий». О брюках и куртке для спорта, которые носят вместе.",
+              "uk": "спортивний костюм. My brother's tracksuit is blue. — «Спортивний костюм мого брата синій». Про штани й куртку для спорту, які носять разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i03",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Спортивний костюм належить вашій сестрі. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i03:r1",
+            "text": "sister's"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i03:r2",
+            "text": "sister"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i03:r3",
+            "text": "sisters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спортивний костюм належить вашій сестрі. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Спортивный костюм принадлежит вашей сестре. Выберите слово",
+            "uk": "Спортивний костюм належить вашій сестрі. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The tracksuit is my ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i03:r1",
+              "text": "sister's"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r2",
+              "text": "sister"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r3",
+              "text": "sisters"
+            }
+          ],
+          "testedDimension": "Спортивний костюм належить вашій сестрі. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Спортивний костюм належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Так получилось бы, что костюм — это сама сестра. Хозяйку называем через `'s`: `sister's`.",
+                "uk": "Так вийшло б, що костюм — це сама сестра. Господиню називаємо через `'s`: `sister's`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Спортивний костюм належить вашій сестрі. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`sisters` — это «сёстры», несколько человек; чтобы назвать хозяйку, нужно `sister's`.",
+                "uk": "`sisters` — це «сестри», кілька людей; щоб назвати господиню, потрібно `sister's`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i04",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i04:p1",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p2",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p3",
+              "target": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм",
+                "uk": "спортивний костюм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i04:p4",
+              "target": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник",
+                "uk": "напульсник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "keycard",
+            "stopwatch",
+            "tracksuit",
+            "sweatband"
+          ],
+          "rightColumn": [
+            "картка-ключ",
+            "секундомір",
+            "спортивний костюм",
+            "напульсник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:word:sweatband",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sweatband",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:word:sweatband:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sweatband",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:word:sweatband:audio",
+            "transcript": "sweatband"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:word:sweatband:r1",
+              "targetText": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник. My sister's sweatband is white. — «Напульсник моей сестры белый». О мягкой повязке на запястье: она впитывает пот на тренировке.",
+                "uk": "напульсник. My sister's sweatband is white. — «Напульсник моєї сестри білий». Про м’яку пов’язку на зап’ясті: вона вбирає піт на тренуванні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sweatband",
+            "definitionByLocale": {
+              "ru": "напульсник. My sister's sweatband is white. — «Напульсник моей сестры белый». О мягкой повязке на запястье: она впитывает пот на тренировке.",
+              "uk": "напульсник. My sister's sweatband is white. — «Напульсник моєї сестри білий». Про м’яку пов’язку на зап’ясті: вона вбирає піт на тренуванні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i05",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i05:audio",
+            "transcript": "The sweatband is in my brother's locker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The sweatband is in my brother's locker.",
+          "orderedTokens": [
+            "The",
+            "sweatband",
+            "is",
+            "in",
+            "my",
+            "brother's",
+            "locker"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `The sweatband is in my brother's locker.`",
+                "uk": "тут потрібно `is` — `The sweatband is in my brother's locker.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i06",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли напульсник і питаєте подругу, чий він. Поставте питання: «Чий це напульсник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли напульсник і питаєте подругу, чий він. Поставте питання: «Чий це напульсник?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Whose sweatband is this?",
+          "localizedMeaning": {
+            "ru": "Вы нашли напульсник и спрашиваете подругу, чей он. Задайте вопрос: «Чей это напульсник?»",
+            "uk": "Ви знайшли напульсник і питаєте подругу, чий він. Поставте питання: «Чий це напульсник?»"
+          },
+          "orderedTokens": [
+            "Whose",
+            "sweatband",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [
+            "Who"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли напульсник і питаєте подругу, чий він. Поставте питання: «Чий це напульсник?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Whose` — `Whose sweatband is this?`",
+                "uk": "тут потрібно `Whose` — `Whose sweatband is this?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор питає, чия це картка-ключ. Вона ваша. Скажіть: «Це моя картка-ключ»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i07:audio"
+        ],
+        "accessibilityLabel": "Адміністратор питає, чия це картка-ключ. Вона ваша. Скажіть: «Це моя картка-ключ»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i07:audio",
+            "transcript": "This is my keycard."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my keycard.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i08:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы показываете тренеру напульсник. Он ваш. Выберите слово",
+            "uk": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово"
+          },
+          "gappedTargetPhrase": "The sweatband ___ mine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Напульсник один, поэтому нужно `is`, а не `are`.",
+                "uk": "Напульсник один, тому потрібно `is`, а не `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви показуєте тренерові напульсник. Він ваш. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`has` значит «имеет», а здесь нужно «является»: `is`.",
+                "uk": "`has` означає «має», а тут потрібно «є»: `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i09:r1",
+            "text": "Whose tracksuit is this?"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i09:r2",
+            "text": "Whose tracksuits are these?"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i09:r3",
+            "text": "Whose sweatband is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i09:audio",
+            "transcript": "Whose tracksuit is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i09:r1",
+              "targetText": "Whose tracksuit is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r2",
+              "targetText": "Whose tracksuits are these?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r3",
+              "targetText": "Whose sweatband is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи `tracksuit is this` — один костюм, а в этом варианте `tracksuits are these` — несколько костюмов.",
+                "uk": "У записі `tracksuit is this` — один костюм, а в цьому варіанті `tracksuits are these` — кілька костюмів."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tracksuit`, а в этом варианте — `sweatband`.",
+                "uk": "У записі річ — `tracksuit`, а в цьому варіанті — `sweatband`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i10:p1",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p2",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p3",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i10:p4",
+              "target": "jacket",
+              "meaningByLocale": {
+                "ru": "куртка",
+                "uk": "куртка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stopwatch",
+            "keycard",
+            "bag",
+            "jacket"
+          ],
+          "rightColumn": [
+            "секундомір",
+            "картка-ключ",
+            "сумка",
+            "куртка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте тренера й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте тренера й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i11:audio",
+            "transcript": "My friend's stopwatch is on the bench."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My friend's stopwatch is on the bench.",
+          "orderedTokens": [
+            "My",
+            "friend's",
+            "stopwatch",
+            "is",
+            "on",
+            "the",
+            "bench"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте тренера й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `My friend's stopwatch is on the bench.`",
+                "uk": "тут потрібно `is` — `My friend's stopwatch is on the bench.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви знайшли картку-ключ. Вона вашої сестри. Скажіть адміністраторові повною фразою: «Це картка-ключ моєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви знайшли картку-ключ. Вона вашої сестри. Скажіть адміністраторові повною фразою: «Це картка-ключ моєї сестри»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is my sister's keycard.",
+          "localizedMeaning": {
+            "ru": "Вы нашли карту-ключ. Она вашей сестры. Скажите администратору полной фразой: «Это карта-ключ моей сестры»",
+            "uk": "Ви знайшли картку-ключ. Вона вашої сестри. Скажіть адміністраторові повною фразою: «Це картка-ключ моєї сестри»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "my",
+            "sister's",
+            "keycard"
+          ],
+          "authoredDistractorTokens": [
+            "sister"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви знайшли картку-ключ. Вона вашої сестри. Скажіть адміністраторові повною фразою: «Це картка-ключ моєї сестри»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `sister's` — `This is my sister's keycard.`",
+                "uk": "тут потрібно `sister's` — `This is my sister's keycard.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тренер питає, чий це секундомір. Він ваш. Відповідьте: «Секундомір мій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i13:audio"
+        ],
+        "accessibilityLabel": "Тренер питає, чий це секундомір. Він ваш. Відповідьте: «Секундомір мій»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i13:audio",
+            "transcript": "The stopwatch is mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The stopwatch is mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i14:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваш брат взял на тренировку напульсник. Скажите подруге, что он у него есть. Выберите слово",
+            "uk": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother ___ a sweatband.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-05:session-41:i14:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i14:r2",
+              "correct": false,
+              "testedDimension": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Брат один, как he, поэтому нужно `has`, а не `have`.",
+                "uk": "Брат один, як he, тому потрібно `has`, а не `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i14:r3",
+              "correct": false,
+              "testedDimension": "Ваш брат узяв на тренування напульсник. Скажіть подрузі, що він у нього є. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "`is` значит «является»: получится «брат — напульсник». Для «у него есть» нужно `has`.",
+                "uk": "`is` означає «є»: вийде «брат — напульсник». Для «у нього є» потрібно `has`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте брата",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-05:session-41:i15:r1",
+            "text": "The tracksuit is mine."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i15:r2",
+            "text": "The tracksuit is yours."
+          },
+          {
+            "responseId": "en:lesson-05:session-41:i15:r3",
+            "text": "The keycard is mine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте брата",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i15:audio",
+            "transcript": "The tracksuit is mine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-05:session-41:i15:r1",
+              "targetText": "The tracksuit is mine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r2",
+              "targetText": "The tracksuit is yours.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r3",
+              "targetText": "The keycard is mine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-05:session-41:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи `mine` — «мой», а в этом варианте `yours` — «твой».",
+                "uk": "У записі `mine` — «мій», а в цьому варіанті `yours` — «твій»."
+              }
+            },
+            {
+              "responseId": "en:lesson-05:session-41:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте брата",
+              "feedbackByLocale": {
+                "ru": "В записи вещь — `tracksuit`, а в этом варианте — `keycard`.",
+                "uk": "У записі річ — `tracksuit`, а в цьому варіанті — `keycard`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-05:session-41:i16:p1",
+              "target": "keycard",
+              "meaningByLocale": {
+                "ru": "карта-ключ",
+                "uk": "картка-ключ"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p2",
+              "target": "stopwatch",
+              "meaningByLocale": {
+                "ru": "секундомер",
+                "uk": "секундомір"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p3",
+              "target": "tracksuit",
+              "meaningByLocale": {
+                "ru": "спортивный костюм",
+                "uk": "спортивний костюм"
+              }
+            },
+            {
+              "pairId": "en:lesson-05:session-41:i16:p4",
+              "target": "sweatband",
+              "meaningByLocale": {
+                "ru": "напульсник",
+                "uk": "напульсник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "keycard",
+            "stopwatch",
+            "tracksuit",
+            "sweatband"
+          ],
+          "rightColumn": [
+            "картка-ключ",
+            "секундомір",
+            "спортивний костюм",
+            "напульсник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-05:session-41:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Адміністратор показує картку-ключ і питає, чия вона. Картка вашої сестри. Відповідьте: «Вона моєї сестри»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-05:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Адміністратор показує картку-ключ і питає, чия вона. Картка вашої сестри. Відповідьте: «Вона моєї сестри»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-05:session-41:i17:audio",
+            "transcript": "It is my sister's."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is my sister's.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-05:session-41:word:keycard",
+      "correctText": "keycard",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i01",
+      "correctText": "My brother's keycard is on the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:word:stopwatch",
+      "correctText": "stopwatch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i02",
+      "correctText": "The stopwatch is in my locker.",
+      "correctResponseId": "en:lesson-05:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:word:tracksuit",
+      "correctText": "tracksuit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i03",
+      "correctText": "sister's",
+      "correctResponseId": "en:lesson-05:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:word:sweatband",
+      "correctText": "sweatband",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i05",
+      "correctText": "The sweatband is in my brother's locker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i06",
+      "correctText": "Whose sweatband is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i07",
+      "correctText": "This is my keycard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-05:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i09",
+      "correctText": "Whose tracksuit is this?",
+      "correctResponseId": "en:lesson-05:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i11",
+      "correctText": "My friend's stopwatch is on the bench.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i12",
+      "correctText": "This is my sister's keycard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i13",
+      "correctText": "The stopwatch is mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i14",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-05:session-41:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i15",
+      "correctText": "The tracksuit is mine.",
+      "correctResponseId": "en:lesson-05:session-41:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-41:i17",
+      "correctText": "It is my sister's.",
+      "correctResponseId": null
+    }
+  ]
+}

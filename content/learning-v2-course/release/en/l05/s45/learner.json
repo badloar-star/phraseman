@@ -4,40 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-45:i01",
+      "interactionId": "en:lesson-05:session-45:word:headset",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-45:word:headset:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headset",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-45:word:headset:audio",
+          "transcript": "headset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-45:word:headset:r1",
+            "targetText": "headset",
+            "meaningByLocale": {
+              "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+              "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headset",
+          "definitionByLocale": {
+            "ru": "гарнитура. My manager's headset is black. — «Гарнитура моего менеджера чёрная». О наушниках с микрофоном для разговора по телефону.",
+            "uk": "гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Микроволновая печь полезна»",
+      "prompt": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Микроволновая печь полезна»",
+      "accessibilityLabel": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The microwave is useful.",
+        "targetPhrase": "The headset is on my friend's desk.",
         "localizedMeaning": {
-          "ru": "Скажите «Микроволновая печь полезна»",
-          "uk": "Скажіть «Мікрохвильова піч корисна»"
+          "ru": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
+          "uk": "Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»"
         },
         "orderedTokens": [
           "The",
-          "microwave",
+          "headset",
           "is",
-          "useful"
+          "on",
+          "my",
+          "friend's",
+          "desk"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "friend"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Микроволновая печь полезна»",
+            "testedDimension": "Менеджер ищет гарнитуру. Она лежит на столе вашей подруги. Скажите: «Гарнитура на столе моей подруги»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The microwave is useful.`",
-              "uk": "тут потрібно `is` — `The microwave is useful.`"
+              "ru": "здесь нужно `friend's` — `The headset is on my friend's desk.`",
+              "uk": "тут потрібно `friend's` — `The headset is on my friend's desk.`"
             }
           }
         ],
@@ -49,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-45:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-45:word:highlighter",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — highlighter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-45:word:highlighter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — highlighter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-45:word:highlighter:audio",
+          "transcript": "highlighter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-45:word:highlighter:r1",
+            "targetText": "highlighter",
+            "meaningByLocale": {
+              "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+              "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "highlighter",
+          "definitionByLocale": {
+            "ru": "маркер-выделитель. My colleague's highlighter is yellow. — «Маркер-выделитель моей коллеги жёлтый». О яркой ручке, которой отмечают важный текст.",
+            "uk": "маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-45:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i02:r1",
-          "text": "motorbike"
+          "text": "My highlighter is on the desk."
         },
         {
           "responseId": "en:lesson-05:session-45:i02:r2",
-          "text": "bicycle"
+          "text": "My highlighter is under the desk."
         },
         {
           "responseId": "en:lesson-05:session-45:i02:r3",
-          "text": "microwave"
+          "text": "My headset is on the desk."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i02:audio",
-          "transcript": "motorbike"
+          "transcript": "My highlighter is on the desk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-45:i02:r1",
-            "targetText": "motorbike",
+            "targetText": "My highlighter is on the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i02:r2",
-            "targetText": "bicycle",
+            "targetText": "My highlighter is under the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i02:r3",
-            "targetText": "microwave",
+            "targetText": "My headset is on the desk.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-45:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `bicycle`.",
-              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи `on` — на столе, а в этом варианте `under` — под столом.",
+              "uk": "У записі `on` — на столі, а в цьому варіанті `under` — під столом."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `motorbike`, а в этом варианте — `microwave`.",
-              "uk": "У записі перше слово — `motorbike`, а в цьому варіанті — `microwave`."
+              "ru": "В записи вещь — `highlighter`, маркер, а в этом варианте — `headset`, гарнитура.",
+              "uk": "У записі річ — `highlighter`, маркер, а в цьому варіанті — `headset`, гарнітура."
             }
           }
         ],
@@ -125,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-45:word:sharpener",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sharpener",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-45:word:sharpener:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sharpener",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-45:word:sharpener:audio",
+          "transcript": "sharpener"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-45:word:sharpener:r1",
+            "targetText": "sharpener",
+            "meaningByLocale": {
+              "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+              "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sharpener",
+          "definitionByLocale": {
+            "ru": "точилка. The sharpeners are in the box. — «Точилки в коробке». О маленьком приборе, которым точат карандаши.",
+            "uk": "стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-45:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите мотоцикл",
+      "prompt": "Точилка лежит на вашем столе. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i03:r1",
-          "text": "motorbike"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-45:i03:r2",
-          "text": "bicycle"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-45:i03:r3",
-          "text": "office"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите мотоцикл",
+      "accessibilityLabel": "Точилка лежит на вашем столе. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите мотоцикл",
-          "uk": "Назвіть мотоцикл"
+          "ru": "Точилка лежит на вашем столе. Выберите слово",
+          "uk": "Стругачка лежить на вашому столі. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The sharpener ___ on my desk.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-45:i03:r1",
-            "text": "motorbike"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-45:i03:r2",
-            "text": "bicycle"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-45:i03:r3",
-            "text": "office"
+            "text": "has"
           }
         ],
-        "testedDimension": "Назовите мотоцикл",
+        "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите мотоцикл",
+            "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`bicycle` — велосипед; мотоцикл — `motorbike`.",
-              "uk": "`bicycle` — велосипед; мотоцикл — `motorbike`."
+              "ru": "Точилка одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Стругачка одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите мотоцикл",
+            "testedDimension": "Точилка лежит на вашем столе. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`office` — офис; мотоцикл — `motorbike`.",
-              "uk": "`office` — офіс; мотоцикл — `motorbike`."
+              "ru": "`has` значит «имеет», а здесь нужно сказать, где точилка: `is`.",
+              "uk": "`has` означає «має», а тут треба сказати, де стругачка: `is`."
             }
           }
         ]
@@ -195,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-45:i04:p1",
-            "target": "motorbike",
+            "target": "headset",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "гарнитура",
+              "uk": "гарнітура"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i04:p2",
-            "target": "earrings",
+            "target": "highlighter",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "маркер-выделитель",
+              "uk": "маркер-виділювач"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i04:p3",
-            "target": "office",
+            "target": "sharpener",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "точилка",
+              "uk": "стругачка"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i04:p4",
-            "target": "microwave",
+            "target": "binder",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "папка на кольцах",
+              "uk": "папка на кільцях"
             }
           }
         ],
         "leftColumn": [
-          "motorbike",
-          "earrings",
-          "office",
-          "microwave"
+          "headset",
+          "highlighter",
+          "sharpener",
+          "binder"
         ],
         "rightColumn": [
-          "мотоцикл",
-          "серьги",
-          "офис",
-          "микроволновая печь"
+          "гарнитура",
+          "маркер-выделитель",
+          "точилка",
+          "папка на кольцах"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +399,90 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-45:word:binder",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — binder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-45:word:binder:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — binder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-45:word:binder:audio",
+          "transcript": "binder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-45:word:binder:r1",
+            "targetText": "binder",
+            "meaningByLocale": {
+              "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+              "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "binder",
+          "definitionByLocale": {
+            "ru": "папка на кольцах. My manager's binder is blue. — «Папка на кольцах моего менеджера синяя». О папке, в которой листы держатся на кольцах.",
+            "uk": "папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-45:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i05:audio",
-          "transcript": "Whose motorbike is this?"
+          "transcript": "The binder is my manager's."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose motorbike is this?",
+        "hiddenTargetPhrase": "The binder is my manager's.",
         "orderedTokens": [
-          "Whose",
-          "motorbike",
+          "The",
+          "binder",
           "is",
-          "this"
+          "my",
+          "manager's"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-45:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте коллегу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The binder is my manager's.`",
+              "uk": "тут потрібно `is` — `The binder is my manager's.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,41 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Серьги в офисе»",
+      "prompt": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Серьги в офисе»",
+      "accessibilityLabel": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The earrings are in the office.",
+        "targetPhrase": "Whose highlighter is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Серьги в офисе»",
-          "uk": "Скажіть «Сережки в офісі»"
+          "ru": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
+          "uk": "Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»"
         },
         "orderedTokens": [
-          "The",
-          "earrings",
-          "are",
-          "in",
-          "the",
-          "office"
+          "Whose",
+          "highlighter",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Серьги в офисе»",
+            "testedDimension": "Вы нашли в коридоре маркер-выделитель и спрашиваете коллегу, чей он. Задайте вопрос: «Чей это маркер?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The earrings are in the office.`",
-              "uk": "тут потрібно `are` — `The earrings are in the office.`"
+              "ru": "здесь нужно `Whose` — `Whose highlighter is this?`",
+              "uk": "тут потрібно `Whose` — `Whose highlighter is this?`"
             }
           }
         ],
@@ -351,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Мотоцикл принадлежит вам. Скажите «Мотоцикл мой»",
+      "prompt": "Менеджер спрашивает, чья это гарнитура. Она ваша. Скажите: «Гарнитура моя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i07:audio"
       ],
-      "accessibilityLabel": "Мотоцикл принадлежит вам. Скажите «Мотоцикл мой»",
+      "accessibilityLabel": "Менеджер спрашивает, чья это гарнитура. Она ваша. Скажите: «Гарнитура моя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i07:audio",
-          "transcript": "The motorbike is mine."
+          "transcript": "The headset is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The motorbike is mine.",
+        "targetPhrase": "The headset is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце серёг",
+      "prompt": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i08:r1",
-          "text": "are"
+          "text": "his"
         },
         {
           "responseId": "en:lesson-05:session-45:i08:r2",
-          "text": "is"
+          "text": "he"
         },
         {
           "responseId": "en:lesson-05:session-45:i08:r3",
-          "text": "am"
+          "text": "hers"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце серёг",
+      "accessibilityLabel": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце серёг",
-          "uk": "Запитайте про власника сережок"
+          "ru": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
+          "uk": "Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово"
         },
-        "gappedTargetPhrase": "Whose earrings ___ these?",
+        "gappedTargetPhrase": "The binder is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-45:i08:r1",
-            "text": "are"
+            "text": "his"
           },
           {
             "responseId": "en:lesson-05:session-45:i08:r2",
-            "text": "is"
+            "text": "he"
           },
           {
             "responseId": "en:lesson-05:session-45:i08:r3",
-            "text": "am"
+            "text": "hers"
           }
         ],
-        "testedDimension": "Спросите о владельце серёг",
+        "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце серёг",
+            "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`earrings` — множественное число: `are these`.",
-              "uk": "`earrings` — множина: `are these`."
+              "ru": "`he` значит «он», а нужно «его»: `his`.",
+              "uk": "`he` означає «він», а потрібно «його»: `his`."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце серёг",
+            "testedDimension": "Вы показываете папку на кольцах. Она принадлежит вашему менеджеру-мужчине. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are these`.",
-              "uk": "`am` використовується з `I`; тут `are these`."
+              "ru": "`hers` значит «её», а менеджер — мужчина: нужно `his`.",
+              "uk": "`hers` означає «її», а менеджер — чоловік: потрібно `his`."
             }
           }
         ]
@@ -453,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какой транспорт называет Анна",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i09:r1",
-          "text": "This is Tom's motorbike."
+          "text": "Whose binder is this?"
         },
         {
           "responseId": "en:lesson-05:session-45:i09:r2",
-          "text": "This is Tom's bicycle."
+          "text": "Whose binders are these?"
         },
         {
           "responseId": "en:lesson-05:session-45:i09:r3",
-          "text": "This is Tom's scooter."
+          "text": "Whose sharpener is this?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какой транспорт называет Анна",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i09:audio",
-          "transcript": "This is Tom's motorbike."
+          "transcript": "Whose binder is this?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-45:i09:r1",
-            "targetText": "This is Tom's motorbike.",
+            "targetText": "Whose binder is this?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i09:r2",
-            "targetText": "This is Tom's bicycle.",
+            "targetText": "Whose binders are these?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i09:r3",
-            "targetText": "This is Tom's scooter.",
+            "targetText": "Whose sharpener is this?",
             "meaningByLocale": null
           }
         ],
@@ -506,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `motorbike`, а в этом варианте — `bicycle`.",
-              "uk": "У записі останнє слово — `motorbike`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи `binder is this` — одна папка, а в этом варианте `binders are these` — несколько папок.",
+              "uk": "У записі `binder is this` — одна папка, а в цьому варіанті `binders are these` — кілька папок."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какой транспорт называет Анна",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `motorbike`, а в этом варианте — `scooter`.",
-              "uk": "У записі останнє слово — `motorbike`, а в цьому варіанті — `scooter`."
+              "ru": "В записи вещь — `binder`, а в этом варианте — `sharpener`.",
+              "uk": "У записі річ — `binder`, а в цьому варіанті — `sharpener`."
             }
           }
         ],
@@ -529,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -543,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-45:i10:p1",
-            "target": "motorbike",
+            "target": "headset",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "гарнитура",
+              "uk": "гарнітура"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i10:p2",
-            "target": "useful",
+            "target": "highlighter",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "маркер-выделитель",
+              "uk": "маркер-виділювач"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i10:p3",
-            "target": "microwave",
+            "target": "desk",
             "meaningByLocale": {
-              "ru": "микроволновая печь",
-              "uk": "мікрохвильова піч"
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i10:p4",
-            "target": "earrings",
+            "target": "drawer",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "выдвижной ящик",
+              "uk": "висувна шухляда"
             }
           }
         ],
         "leftColumn": [
-          "motorbike",
-          "useful",
-          "microwave",
-          "earrings"
+          "headset",
+          "highlighter",
+          "desk",
+          "drawer"
         ],
         "rightColumn": [
-          "мотоцикл",
-          "полезный",
-          "микроволновая печь",
-          "серьги"
+          "гарнитура",
+          "маркер-выделитель",
+          "письменный стол",
+          "выдвижной ящик"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,32 +788,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте менеджера и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте менеджера и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i11:audio",
-          "transcript": "The motorbike is near the office."
+          "transcript": "My colleague's binder is on the shelf."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The motorbike is near the office.",
+        "hiddenTargetPhrase": "My colleague's binder is on the shelf.",
         "orderedTokens": [
-          "The",
-          "motorbike",
+          "My",
+          "colleague's",
+          "binder",
           "is",
-          "near",
+          "on",
           "the",
-          "office"
+          "shelf"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -636,10 +823,10 @@
           {
             "responseId": "en:lesson-05:session-45:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте менеджера и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The motorbike is near the office.`",
-              "uk": "тут потрібно `is` — `The motorbike is near the office.`"
+              "ru": "здесь нужно `is` — `My colleague's binder is on the shelf.`",
+              "uk": "тут потрібно `is` — `My colleague's binder is on the shelf.`"
             }
           }
         ],
@@ -652,39 +839,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Серьги принадлежат Анне. Скажите «Серьги её»",
+      "prompt": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Серьги принадлежат Анне. Скажите «Серьги её»",
+      "accessibilityLabel": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The earrings are hers.",
+        "targetPhrase": "This is my colleague's headset.",
         "localizedMeaning": {
-          "ru": "Серьги принадлежат Анне. Скажите «Серьги её»",
-          "uk": "Сережки належать Анні. Скажіть «Сережки її»"
+          "ru": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
+          "uk": "Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»"
         },
         "orderedTokens": [
-          "The",
-          "earrings",
-          "are",
-          "hers"
+          "This",
+          "is",
+          "my",
+          "colleague's",
+          "headset"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "colleague"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Серьги принадлежат Анне. Скажите «Серьги её»",
+            "testedDimension": "Вы нашли гарнитуру. Она вашей коллеги. Скажите менеджеру полной фразой: «Это гарнитура моей коллеги»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The earrings are hers.`",
-              "uk": "тут потрібно `are` — `The earrings are hers.`"
+              "ru": "здесь нужно `colleague's` — `This is my colleague's headset.`",
+              "uk": "тут потрібно `colleague's` — `This is my colleague's headset.`"
             }
           }
         ],
@@ -697,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите Анне «Твои серьги у меня»",
+      "prompt": "Менеджер спрашивает, чей это маркер-выделитель. Он вашего коллеги. Скажите: «Он моего коллеги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Скажите Анне «Твои серьги у меня»",
+      "accessibilityLabel": "Менеджер спрашивает, чей это маркер-выделитель. Он вашего коллеги. Скажите: «Он моего коллеги»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i13:audio",
-          "transcript": "I have your earrings."
+          "transcript": "It is my colleague's."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your earrings.",
+        "targetPhrase": "It is my colleague's.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -730,67 +918,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце мотоцикла",
+      "prompt": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i14:r1",
-          "text": "Whose"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-45:i14:r2",
-          "text": "Who"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-45:i14:r3",
-          "text": "Where"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце мотоцикла",
+      "accessibilityLabel": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце мотоцикла",
-          "uk": "Запитайте про власника мотоцикла"
+          "ru": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
+          "uk": "У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ motorbike is this?",
+        "gappedTargetPhrase": "My colleagues ___ headsets.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-45:i14:r1",
-            "text": "Whose"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-45:i14:r2",
-            "text": "Who"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-45:i14:r3",
-            "text": "Where"
+            "text": "is"
           }
         ],
-        "testedDimension": "Спросите о владельце мотоцикла",
+        "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце мотоцикла",
+            "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "Коллег несколько, как they, поэтому нужно `have`, а не `has`.",
+              "uk": "Колег кілька, як they, тому потрібно `have`, а не `has`."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце мотоцикла",
+            "testedDimension": "У ваших коллег есть гарнитуры. Скажите об этом менеджеру. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "`is` значит «является»: получится «коллеги — гарнитуры». Для «у них есть» нужно `have`.",
+              "uk": "`is` означає «є»: вийде «колеги — гарнітури». Для «у них є» потрібно `have`."
             }
           }
         ]
@@ -799,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей мотоцикл здесь",
+      "prompt": "Послушайте менеджера",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-45:i15:r1",
-          "text": "Your motorbike is here."
+          "text": "The sharpeners are in the drawer."
         },
         {
           "responseId": "en:lesson-05:session-45:i15:r2",
-          "text": "My motorbike is here."
+          "text": "The sharpeners are on the drawer."
         },
         {
           "responseId": "en:lesson-05:session-45:i15:r3",
-          "text": "His motorbike is here."
+          "text": "The highlighters are in the drawer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей мотоцикл здесь",
+      "accessibilityLabel": "Послушайте менеджера",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i15:audio",
-          "transcript": "Your motorbike is here."
+          "transcript": "The sharpeners are in the drawer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-45:i15:r1",
-            "targetText": "Your motorbike is here.",
+            "targetText": "The sharpeners are in the drawer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i15:r2",
-            "targetText": "My motorbike is here.",
+            "targetText": "The sharpeners are on the drawer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-45:i15:r3",
-            "targetText": "His motorbike is here.",
+            "targetText": "The highlighters are in the drawer.",
             "meaningByLocale": null
           }
         ],
@@ -852,19 +1040,19 @@
           {
             "responseId": "en:lesson-05:session-45:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей мотоцикл здесь",
+            "testedDimension": "Послушайте менеджера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `in` — внутри ящика, а в этом варианте `on` — на ящике.",
+              "uk": "У записі `in` — всередині шухляди, а в цьому варіанті `on` — на шухляді."
             }
           },
           {
             "responseId": "en:lesson-05:session-45:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей мотоцикл здесь",
+            "testedDimension": "Послушайте менеджера",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `sharpeners`, точилки, а в этом варианте — `highlighters`, маркеры.",
+              "uk": "У записі річ — `sharpeners`, стругачки, а в цьому варіанті — `highlighters`, маркери."
             }
           }
         ],
@@ -875,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -889,48 +1077,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-45:i16:p1",
-            "target": "motorbike",
+            "target": "headset",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "гарнитура",
+              "uk": "гарнітура"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i16:p2",
-            "target": "useful",
+            "target": "highlighter",
             "meaningByLocale": {
-              "ru": "полезный",
-              "uk": "корисний"
+              "ru": "маркер-выделитель",
+              "uk": "маркер-виділювач"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i16:p3",
-            "target": "office",
+            "target": "sharpener",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "точилка",
+              "uk": "стругачка"
             }
           },
           {
             "pairId": "en:lesson-05:session-45:i16:p4",
-            "target": "earrings",
+            "target": "binder",
             "meaningByLocale": {
-              "ru": "серьги",
-              "uk": "сережки"
+              "ru": "папка на кольцах",
+              "uk": "папка на кільцях"
             }
           }
         ],
         "leftColumn": [
-          "motorbike",
-          "useful",
-          "office",
-          "earrings"
+          "headset",
+          "highlighter",
+          "sharpener",
+          "binder"
         ],
         "rightColumn": [
-          "мотоцикл",
-          "полезный",
-          "офис",
-          "серьги"
+          "гарнитура",
+          "маркер-выделитель",
+          "точилка",
+          "папка на кольцах"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -948,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы нашли серьги на столе. Спросите «Чьи это серьги?»",
+      "prompt": "Коллега показывает маркер-выделитель и спрашивает, чей он. Он ваш. Ответьте: «Маркер мой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-45:i17:audio"
       ],
-      "accessibilityLabel": "Вы нашли серьги на столе. Спросите «Чьи это серьги?»",
+      "accessibilityLabel": "Коллега показывает маркер-выделитель и спрашивает, чей он. Он ваш. Ответьте: «Маркер мой»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-45:i17:audio",
-          "transcript": "Whose earrings are these?"
+          "transcript": "The highlighter is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose earrings are these?",
+        "targetPhrase": "The highlighter is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -988,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0ef4ec6228bcdc7c0beccbd706365f75fa31e335e5dee7a55e140e0b4e4a9f33"
+  "learnerFingerprint": "38095baeab9b6fc789340089522353da5ec7e658b442299c48688d935f7d3e7f"
 }

@@ -1,136 +1,154 @@
-# Англійська · Урок 5 · Заняття 43 — Браслет перед від’їздом
+# Англійська · Урок 5 · Заняття 43 — Знахідки перед від’їздом
 
-**Ситуація.** Анна й Том виходять із гостьового будинку до трамвая. Анна знайшла браслет, а Том спокійно чекає біля дверей.
+**Ситуація.** Перед від’їздом із гостьового дому знаходяться забуті речі: на дивані, на стільці, на стійці. Треба повернути кожну річ господареві й сказати, де що лежить.
 
-**Що ви опануєте:** повернути знайдену річ і пояснити, де перебувають люди та предмети
-**Нові слова:** —
+**Що ви опануєте:** повернути знайдену річ господареві, спитати «чия» і сказати, де вона лежить
+**Нові слова:** locket, hairclip, sunhat, bandana
+**Повертаються:** aunt, friend, brother, sister, bag, chair, shelf, desk
 
 ---
 
 ## Інтро 1
 
-### Знайшли браслет
+### Медальйон на дивані
 
-Повторимо: `bracelet` — «браслет». `Whose bracelet is this?` — «Чий це браслет?» `This is Anna’s bracelet` — «Це браслет Анни». `The bracelet is hers` — «Браслет її»: після `hers` назва речі вже не потрібна.
+Перед від’їздом подруга шукає медальйон і дуже засмучена. Ви знайшли його вранці на дивані в холі й сховали до кишені. locket — «медальйон»: маленька підвіска з місцем для фото. Скажіть подрузі, що він у вас: I have your locket — «Твій медальйон у мене».
 
-**Запитайте про власника браслета.**
+**Подруга шукає медальйон. Він у вас. Скажіть їй: «Твій медальйон у мене».**
 
-- ✅ **Whose bracelet is this?**
-- ❌ Where is the bracelet? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose bracelet are these? — *Один браслет: `is this`.*
+- ✅ **I have your locket.**
+- ❌ I has your locket. — *З I потрібно have, а не has.*
+- ❌ I have my locket. — *my означає «мій», а медальйон подруги: потрібно your.*
 
 ---
 
 ## Інтро 2
 
-### Чекаємо без поспіху
+### Заколка за стійкою
 
-`patient` тут — «терплячий»: `You are patient` — «Ти терплячий / терпляча». `tram` — «трамвай». `The tram is here` — «Трамвай тут». Терплячий друг уміє чекати, але трамвай такої обіцянки не давав.
+Перед від’їздом подруга шукає в холі заколку для волосся. Ви бачили її в адміністратора: вона лежить позаду стійки. hairclip — «заколка»: нею закріплюють волосся. Де саме, кажемо словом behind: The hairclip is behind the desk — «Заколка за стійкою».
 
-**Похваліть терпіння друга: «Ти терплячий», без скорочення.**
+**Подруга шукає заколку. Вона лежить за стійкою. Скажіть їй: «Заколка за стійкою».**
 
-- ✅ **You are patient.**
-- ❌ You is patient. — *З `you` потрібна форма `are`.*
-- ❌ You are polite. — *`polite` — ввічливий; терплячий — `patient`.*
+- ✅ **The hairclip is behind the desk.**
+- ❌ The hairclip is under the desk. — *under означає «під», а заколка за стійкою: потрібно behind.*
+- ❌ The hairclips are behind the desk. — *Заколка одна, тому потрібно The hairclip is.*
 
 ---
 
 ## Інтро 3
 
-### Кімнати й контейнер
+### Капелюх на стільці
 
-`bedrooms` — «спальні», `recycling bin` — «контейнер для переробки», куди кладуть матеріали для подальшої переробки. `The bedrooms are small` — «Спальні маленькі». `Tom is next to the recycling bin` — «Том поруч із контейнером для переробки». `I have your bracelet` — «Твій браслет у мене».
+Брат поспішає до трамвая й показує на капелюх від сонця на стільці: чий він? Він вашої подруги, і ви це знаєте. sunhat — «капелюх від сонця»: легкий, світлий, із широкими крисами. Господиню називаємо з 's: The sunhat is my friend's — «Капелюх моєї подруги».
 
-**Скажіть «Спальні маленькі».**
+**Брат питає, чий капелюх від сонця на стільці. Він вашої подруги. Скажіть йому: «Капелюх моєї подруги».**
 
-- ✅ **The bedrooms are small.**
-- ❌ The bedrooms is small. — *`bedrooms` — множина: `are`.*
-- ❌ The bedroom is small. — *Тут одна спальня, а потрібно кілька: `bedrooms are`.*
+- ✅ **The sunhat is my friend's.**
+- ❌ The sunhat is my friend. — *Так вийшло б, що капелюх — це сама подруга. Господиню називаємо через 's: my friend's.*
+- ❌ The sunhat is my brother's. — *brother — це брат, а капелюх подруги: потрібно friend's.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть другові «Ти терплячий» без скорочення**
+**1 · Картка слова — locket**
+<!-- interaction_id: en:lesson-05:session-43:word:locket; family: word_card -->
+> **locket** — медальйон. My aunt's locket is small. — «Медальйон моєї тітки маленький». Про підвіску, у яку можна покласти фото.
+
+**2 · Адміністратор показує медальйон. Він вашої тітки. Скажіть: «Це медальйон моєї тітки»**
 <!-- interaction_id: en:lesson-05:session-43:i01; family: phrase_builder -->
-Плитки: `patient` `are` `You` `is` → **You are patient.**
-*(плитка `is` зайва: тут потрібно `are` — `You are patient.`)*
+Плитки: `locket` `aunt's` `my` `is` `This` `aunt` → **This is my aunt's locket.**
+*(плитка `aunt` зайва: тут потрібно `aunt's` — `This is my aunt's locket.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — hairclip**
+<!-- interaction_id: en:lesson-05:session-43:word:hairclip; family: word_card -->
+> **hairclip** — заколка. My friend's hairclip is red. — «Заколка моєї подруги червона». Про маленьку застібку для волосся.
+
+**4 · Послухайте адміністратора**
 <!-- interaction_id: en:lesson-05:session-43:i02; family: listen_choose -->
-🔊 *tram* → **tram** · scooter · locker
-- scooter — *У записі перше слово — `tram`, а в цьому варіанті — `scooter`.*
-- locker — *У записі перше слово — `tram`, а в цьому варіанті — `locker`.*
+🔊 *The hairclip is on the desk.* → **The hairclip is on the desk.** · The hairclip is under the desk. · The locket is on the desk.
+- The hairclip is under the desk. — *У записі `on` — на стійці, а в цьому варіанті `under` — під стійкою.*
+- The locket is on the desk. — *У записі річ — `hairclip`, заколка, а в цьому варіанті — `locket`, медальйон.*
 
-**3 · Скажіть «Спальні маленькі»**
+**5 · Картка слова — sunhat**
+<!-- interaction_id: en:lesson-05:session-43:word:sunhat; family: word_card -->
+> **sunhat** — капелюх від сонця. My sister's sunhat is white. — «Капелюх від сонця моєї сестри білий». Про легкий капелюх із крисами, який захищає від спеки.
+
+**6 · Капелюх від сонця належить вашій подрузі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-43:i03; family: context_gap_grammar -->
-The bedrooms ___ small. → **are** · is · am
-- is — *Кілька спалень: `bedrooms are`.*
-- am — *`am` використовується з `I`; тут `are`.*
+The sunhat is my ___. → **friend's** · friend · friends
+- friend — *Так вийшло б, що капелюх — це сама подруга. Господиню називаємо через `'s`: `friend's`.*
+- friends — *`friends` — це «друзі», кілька людей; щоб назвати господиню, потрібно `friend's`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-43:i04; family: speed_match -->
-tram — трамвай · bracelet — браслет · bedrooms — спальні · recycling bin — контейнер для переробки
+locket — медальйон · hairclip — заколка · sunhat — капелюх від сонця · bandana — бандана
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — bandana**
+<!-- interaction_id: en:lesson-05:session-43:word:bandana; family: word_card -->
+> **bandana** — бандана. My brother's bandana is blue. — «Бандана мого брата синя». Про кольорову хустку, яку пов’язують на голову або на шию.
+
+**9 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-43:i05; family: listen_build_dictation -->
-🔊 *Whose bracelet is this?* Плитки: `this` `is` `bracelet` `Whose` → **Whose bracelet is this?**
+🔊 *The bandana is in my friend's bag.* Плитки: `bandana` `friend's` `is` `in` `my` `bag` `The` `are` → **The bandana is in my friend's bag.**
+*(плитка `are` зайва: тут потрібно `is` — `The bandana is in my friend's bag.`)*
 
-**6 · Скажіть «Том поруч із контейнером для переробки»**
+**10 · Ви знайшли заколку й питаєте адміністратора, чия вона. Поставте питання: «Чия це заколка?»**
 <!-- interaction_id: en:lesson-05:session-43:i06; family: phrase_builder -->
-Плитки: `bin` `recycling` `the` `to` `next` `is` `Tom` `are` → **Tom is next to the recycling bin.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is next to the recycling bin.`)*
+Плитки: `hairclip` `this` `is` `Whose` `Who` → **Whose hairclip is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose hairclip is this?`)*
 
-**7 · Браслет належить Анні. Скажіть «Браслет її»**
+**11 · Подруга шукає капелюх від сонця. Він у вас. Скажіть: «Твій капелюх у мене»**
 <!-- interaction_id: en:lesson-05:session-43:i07; family: scripted_repeat_compare -->
-🎙 **The bracelet is hers.**
+🎙 **I have your sunhat.**
 
-**8 · Браслет належить вам. Скажіть «Браслет мій»**
+**12 · Ви віддаєте подрузі її бандану. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-43:i08; family: context_gap_grammar -->
-The bracelet is ___. → **mine** · my · I
-- my — *Перед назвою речі — `my`; тут самостійне `mine`.*
-- I — *`I` — я; самостійне «мій» — `mine`.*
+I ___ your bandana. → **have** · has · is
+- has — *З `I` потрібно `have`, а не `has`.*
+- is — *`is` означає «є», а тут потрібно «у мене є»: `have`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-43:i09; family: listen_choose -->
-🔊 *This is Anna's bracelet.* → **This is Anna's bracelet.** · This is Anna's ring. · This is Anna's watch.
-- This is Anna's ring. — *У записі останнє слово — `bracelet`, а в цьому варіанті — `ring`.*
-- This is Anna's watch. — *У записі останнє слово — `bracelet`, а в цьому варіанті — `watch`.*
+🔊 *Is this sunhat yours?* → **Is this sunhat yours?** · Is this sunhat mine? · Is this bandana yours?
+- Is this sunhat mine? — *У записі `yours` — «твоя», а в цьому варіанті `mine` — «моя».*
+- Is this bandana yours? — *У записі річ — `sunhat`, а в цьому варіанті — `bandana`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-43:i10; family: speed_match -->
-patient — терплячий · recycling bin — контейнер для переробки · bracelet — браслет · tram — трамвай
+hairclip — заколка · bandana — бандана · shelf — полиця · chair — стілець
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте адміністратора й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-43:i11; family: listen_build_dictation -->
-🔊 *The tram is here.* Плитки: `here` `is` `tram` `The` `are` → **The tram is here.**
-*(плитка `are` зайва: тут потрібно `is` — `The tram is here.`)*
+🔊 *My sister's sunhat is on the chair.* Плитки: `sunhat` `sister's` `is` `on` `the` `chair` `My` `are` → **My sister's sunhat is on the chair.**
+*(плитка `are` зайва: тут потрібно `is` — `My sister's sunhat is on the chair.`)*
 
-**12 · У гостьовому будинку запитайте «Де спальні?»**
+**16 · Адміністратор питає, чия заколка. Вона вашої подруги. Скажіть повною фразою: «Це заколка моєї подруги»**
 <!-- interaction_id: en:lesson-05:session-43:i12; family: phrase_builder -->
-Плитки: `bedrooms` `the` `are` `Where` → **Where are the bedrooms?**
+Плитки: `hairclip` `friend's` `my` `is` `This` `friend` → **This is my friend's hairclip.**
+*(плитка `friend` зайва: тут потрібно `friend's` — `This is my friend's hairclip.`)*
 
-**13 · Скажіть Анні «Твій браслет у мене»**
+**17 · Подруга питає, чий це медальйон. Він її. Скажіть: «Медальйон її»**
 <!-- interaction_id: en:lesson-05:session-43:i13; family: scripted_repeat_compare -->
-🎙 **I have your bracelet.**
+🎙 **The locket is hers.**
 
-**14 · Запитайте про власника браслета**
+**18 · Брат шукає бандану. Вона лежить за стійкою. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-43:i14; family: context_gap_grammar -->
-___ bracelet is this? → **Whose** · Who · Where
-- Who — *`Who` — хто; чий — `Whose`.*
-- Where — *`Where` — де; чий — `Whose`.*
+The bandana is ___ the desk. → **behind** · under · on
+- under — *`under` означає «під», а бандана за стійкою: потрібно `behind`.*
+- on — *`on` означає «на», а бандана за стійкою: потрібно `behind`.*
 
-**15 · Послухайте, чий браслет тут**
+**19 · Послухайте адміністратора**
 <!-- interaction_id: en:lesson-05:session-43:i15; family: listen_choose -->
-🔊 *Your bracelet is here.* → **Your bracelet is here.** · My bracelet is here. · His bracelet is here.
-- My bracelet is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His bracelet is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *The sunhat is my friend's.* → **The sunhat is my friend's.** · The locket is my friend's. · The sunhat is my brother's.
+- The locket is my friend's. — *У записі річ — `sunhat`, капелюх, а в цьому варіанті — `locket`, медальйон.*
+- The sunhat is my brother's. — *У записі господиня — `friend's`, подруга, а в цьому варіанті — `brother's`, брат.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-43:i16; family: speed_match -->
-patient — терплячий · bedrooms — спальні · tram — трамвай · bracelet — браслет
+locket — медальйон · hairclip — заколка · sunhat — капелюх від сонця · bandana — бандана
 
-**17 · Перед виходом ви знайшли браслет. Запитайте друзів «Чий це браслет?»**
+**21 · Адміністратор питає, чия заколка. Вона ваша. Відповідьте: «Заколка моя»**
 <!-- interaction_id: en:lesson-05:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose bracelet is this?**
-
+🎙 **The hairclip is mine.**

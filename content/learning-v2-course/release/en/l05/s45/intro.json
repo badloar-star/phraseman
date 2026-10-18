@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-45",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце транспорта и украшений и описать знакомый предмет",
-    "uk": "запитати про власника транспорту й прикрас та описати знайомий предмет"
+    "ru": "сказать, чья вещь ('s, mine, his), спросить «это твоё?» и выбрать is или are",
+    "uk": "сказати, чия річ ('s, mine, his), спитати «це твоє?» і вибрати is чи are"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Транспорт с мотором",
-        "uk": "Транспорт із мотором"
+        "ru": "Гарнитура на столе",
+        "uk": "Гарнітура на столі"
       },
       "bodyByLocale": {
-        "ru": "`motorbike` — «мотоцикл». `Whose motorbike is this?` — «Чей это мотоцикл?» `The motorbike is mine` — «Мотоцикл мой». `This is Tom’s motorbike` — «Это мотоцикл Тома». Два колеса не делают слово множественным: один мотоцикл — `is this`.",
-        "uk": "`motorbike` — «мотоцикл». `Whose motorbike is this?` — «Чий це мотоцикл?» `The motorbike is mine` — «Мотоцикл мій». `This is Tom’s motorbike` — «Це мотоцикл Тома». Два колеса не роблять слово множиною: один мотоцикл — `is this`."
+        "ru": "Утром в офисе менеджер ищет гарнитуру для важного звонка. На столе у окна лежит одна, и менеджер спрашивает, чья она. Это гарнитура вашей коллеги. headset — «гарнитура»: наушники с микрофоном. Хозяйку называем с 's: The headset is my colleague's.",
+        "uk": "Зранку в офісі менеджер шукає гарнітуру для важливого дзвінка. На столі біля вікна лежить одна, і менеджер питає, чия вона. Це гарнітура вашої колеги. headset — «гарнітура»: навушники з мікрофоном. Господиню називаємо з 's: The headset is my colleague's."
       },
       "question": {
         "interactionId": "en:lesson-05:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите о владельце мотоцикла.",
-          "uk": "Запитайте про власника мотоцикла."
+          "ru": "Менеджер спрашивает, чья гарнитура на столе. Она вашей коллеги. Скажите ему: «Гарнитура моей коллеги».",
+          "uk": "Менеджер питає, чия гарнітура на столі. Вона вашої колеги. Скажіть йому: «Гарнітура моєї колеги»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-45:intro1:r1",
-              "text": "Whose motorbike is this?"
+              "text": "The headset is my colleague's."
             },
             {
               "responseId": "en:lesson-05:session-45:intro1:r2",
-              "text": "Where is the motorbike?"
+              "text": "The headset is my colleague."
             },
             {
               "responseId": "en:lesson-05:session-45:intro1:r3",
-              "text": "Whose motorbike are these?"
+              "text": "The headsets are my colleague's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-45:intro1:r1",
-              "text": "Whose motorbike is this?"
+              "text": "The headset is my colleague's."
             },
             {
               "responseId": "en:lesson-05:session-45:intro1:r2",
-              "text": "Where is the motorbike?"
+              "text": "The headset is my colleague."
             },
             {
               "responseId": "en:lesson-05:session-45:intro1:r3",
-              "text": "Whose motorbike are these?"
+              "text": "The headsets are my colleague's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о владельце мотоцикла.",
-          "uk": "Запитайте про власника мотоцикла."
+          "ru": "Менеджер спрашивает, чья гарнитура на столе. Она вашей коллеги. Скажите ему: «Гарнитура моей коллеги».",
+          "uk": "Менеджер питає, чия гарнітура на столі. Вона вашої колеги. Скажіть йому: «Гарнітура моєї колеги»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Серьги на столе",
-        "uk": "Сережки на столі"
+        "ru": "Маркер в коридоре",
+        "uk": "Маркер у коридорі"
       },
       "bodyByLocale": {
-        "ru": "`earrings` — «серьги», `office` — «офис». `Whose earrings are these?` — «Чьи это серьги?» `The earrings are hers` — «Серьги её». `The earrings are in the office` — «Серьги в офисе». Количество вещей определяет `are`, даже если владелица одна.",
-        "uk": "`earrings` — «сережки», `office` — «офіс». `Whose earrings are these?` — «Чиї це сережки?» `The earrings are hers` — «Сережки її». `The earrings are in the office` — «Сережки в офісі». Кількість речей визначає `are`, навіть якщо власниця одна."
+        "ru": "Вы нашли утром в коридоре жёлтый маркер. Рядом за столом сидит коллега, и вы спрашиваете, не его ли это. highlighter — «маркер-выделитель»: им отмечают важные строки. Вопрос «это твоё?» начинаем с Is: Is this highlighter yours? — «Это твой маркер?»",
+        "uk": "Ви знайшли вранці в коридорі жовтий маркер. Поруч за столом сидить колега, і ви питаєте, чи не його це. highlighter — «маркер-виділювач»: ним позначають важливі рядки. Питання «це твоє?» починаємо з Is: Is this highlighter yours? — «Це твій маркер?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Серьги её».",
-          "uk": "Скажіть «Сережки її»."
+          "ru": "Вы нашли маркер-выделитель и спрашиваете коллегу, не его ли он. Спросите: «Это твой маркер?»",
+          "uk": "Ви знайшли маркер-виділювач і питаєте колегу, чи не його він. Спитайте: «Це твій маркер?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-45:intro2:r1",
-              "text": "The earrings are hers."
+              "text": "Is this highlighter yours?"
             },
             {
               "responseId": "en:lesson-05:session-45:intro2:r2",
-              "text": "The earrings is hers."
+              "text": "Are this highlighter yours?"
             },
             {
               "responseId": "en:lesson-05:session-45:intro2:r3",
-              "text": "The earrings are her."
+              "text": "Is this highlighter your?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-45:intro2:r1",
-              "text": "The earrings are hers."
+              "text": "Is this highlighter yours?"
             },
             {
               "responseId": "en:lesson-05:session-45:intro2:r2",
-              "text": "The earrings is hers."
+              "text": "Are this highlighter yours?"
             },
             {
               "responseId": "en:lesson-05:session-45:intro2:r3",
-              "text": "The earrings are her."
+              "text": "Is this highlighter your?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Серьги её».",
-          "uk": "Скажіть «Сережки її»."
+          "ru": "Вы нашли маркер-выделитель и спрашиваете коллегу, не его ли он. Спросите: «Это твой маркер?»",
+          "uk": "Ви знайшли маркер-виділювач і питаєте колегу, чи не його він. Спитайте: «Це твій маркер?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Полезная вещь",
-        "uk": "Корисна річ"
+        "ru": "Точилки в ящике",
+        "uk": "Стругачки в шухляді"
       },
       "bodyByLocale": {
-        "ru": "`microwave` — «микроволновая печь», `useful` — «полезный». `The microwave is useful` — «Микроволновая печь полезна». Она помогает с обедом, но за вас на письма не ответит. `I have your earrings` — «Твои серьги у меня».",
-        "uk": "`microwave` — «мікрохвильова піч», `useful` — «корисний». `The microwave is useful` — «Мікрохвильова піч корисна». Вона допомагає з обідом, але за вас на листи не відповість. `I have your earrings` — «Твої сережки в мене»."
+        "ru": "В ящике вашего стола лежат две точилки для карандашей. Менеджер просит точилку, но не видит их среди бумаг. sharpener — «точилка»: ею точат карандаши. Точилок несколько, поэтому sharpeners и are: The sharpeners are in the drawer — «Точилки в ящике».",
+        "uk": "У шухляді вашого столу лежать дві стругачки для олівців. Менеджер просить стругачку, але не бачить їх серед паперів. sharpener — «стругачка»: нею стругають олівці. Стругачок кілька, тому sharpeners і are: The sharpeners are in the drawer — «Стругачки в шухляді»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Микроволновая печь полезна».",
-          "uk": "Скажіть «Мікрохвильова піч корисна»."
+          "ru": "Менеджер просит точилку. Они в ящике. Скажите ему: «Точилки в ящике».",
+          "uk": "Менеджер просить стругачку. Вони в шухляді. Скажіть йому: «Стругачки в шухляді»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-45:intro3:r1",
-              "text": "The microwave is useful."
+              "text": "The sharpeners are in the drawer."
             },
             {
               "responseId": "en:lesson-05:session-45:intro3:r2",
-              "text": "The microwave are useful."
+              "text": "The sharpeners is in the drawer."
             },
             {
               "responseId": "en:lesson-05:session-45:intro3:r3",
-              "text": "The microwave is curious."
+              "text": "The sharpeners are on the drawer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-45:intro3:r1",
-              "text": "The microwave is useful."
+              "text": "The sharpeners are in the drawer."
             },
             {
               "responseId": "en:lesson-05:session-45:intro3:r2",
-              "text": "The microwave are useful."
+              "text": "The sharpeners is in the drawer."
             },
             {
               "responseId": "en:lesson-05:session-45:intro3:r3",
-              "text": "The microwave is curious."
+              "text": "The sharpeners are on the drawer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Микроволновая печь полезна».",
-          "uk": "Скажіть «Мікрохвильова піч корисна»."
+          "ru": "Менеджер просит точилку. Они в ящике. Скажите ему: «Точилки в ящике».",
+          "uk": "Менеджер просить стругачку. Вони в шухляді. Скажіть йому: «Стругачки в шухляді»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "22e053bc60054901912e9b31beba8fd93ee01eb484e398195bff10999dff25c5"
+  "introFingerprint": "e23dc5a85785c09a630843715c362d4af0ebc718bf211a1f4d017d0922fed25b"
 }

@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-43:word:locket",
+    "correctText": "locket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-43:i01",
-    "correctText": "You are patient.",
+    "correctText": "This is my aunt's locket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-43:word:hairclip",
+    "correctText": "hairclip",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i02",
-    "correctText": "tram",
+    "correctText": "The hairclip is on the desk.",
     "correctResponseId": "en:lesson-05:session-43:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-43:word:sunhat",
+    "correctText": "sunhat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-43:i03",
-    "correctText": "are",
+    "correctText": "friend's",
     "correctResponseId": "en:lesson-05:session-43:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-43:i04",
-    "correctText": "en:lesson-05:session-43:i04:p1=tram\nen:lesson-05:session-43:i04:p2=bracelet\nen:lesson-05:session-43:i04:p3=bedrooms\nen:lesson-05:session-43:i04:p4=recycling bin",
+    "correctText": "en:lesson-05:session-43:i04:p1=locket\nen:lesson-05:session-43:i04:p2=hairclip\nen:lesson-05:session-43:i04:p3=sunhat\nen:lesson-05:session-43:i04:p4=bandana",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-43:word:bandana",
+    "correctText": "bandana",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i05",
-    "correctText": "Whose bracelet is this?",
+    "correctText": "The bandana is in my friend's bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i06",
-    "correctText": "Tom is next to the recycling bin.",
+    "correctText": "Whose hairclip is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i07",
-    "correctText": "The bracelet is hers.",
+    "correctText": "I have your sunhat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i08",
-    "correctText": "mine",
+    "correctText": "have",
     "correctResponseId": "en:lesson-05:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-43:i09",
-    "correctText": "This is Anna's bracelet.",
+    "correctText": "Is this sunhat yours?",
     "correctResponseId": "en:lesson-05:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-43:i10",
-    "correctText": "en:lesson-05:session-43:i10:p1=patient\nen:lesson-05:session-43:i10:p2=recycling bin\nen:lesson-05:session-43:i10:p3=bracelet\nen:lesson-05:session-43:i10:p4=tram",
+    "correctText": "en:lesson-05:session-43:i10:p1=hairclip\nen:lesson-05:session-43:i10:p2=bandana\nen:lesson-05:session-43:i10:p3=shelf\nen:lesson-05:session-43:i10:p4=chair",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i11",
-    "correctText": "The tram is here.",
+    "correctText": "My sister's sunhat is on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i12",
-    "correctText": "Where are the bedrooms?",
+    "correctText": "This is my friend's hairclip.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i13",
-    "correctText": "I have your bracelet.",
+    "correctText": "The locket is hers.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i14",
-    "correctText": "Whose",
+    "correctText": "behind",
     "correctResponseId": "en:lesson-05:session-43:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-43:i15",
-    "correctText": "Your bracelet is here.",
+    "correctText": "The sunhat is my friend's.",
     "correctResponseId": "en:lesson-05:session-43:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-43:i16",
-    "correctText": "en:lesson-05:session-43:i16:p1=patient\nen:lesson-05:session-43:i16:p2=bedrooms\nen:lesson-05:session-43:i16:p3=tram\nen:lesson-05:session-43:i16:p4=bracelet",
+    "correctText": "en:lesson-05:session-43:i16:p1=locket\nen:lesson-05:session-43:i16:p2=hairclip\nen:lesson-05:session-43:i16:p3=sunhat\nen:lesson-05:session-43:i16:p4=bandana",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-43:i17",
-    "correctText": "Whose bracelet is this?",
+    "correctText": "The hairclip is mine.",
     "correctResponseId": null
   }
 ]

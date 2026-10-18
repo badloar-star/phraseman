@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-41",
   "learningOutcomeByLocale": {
-    "ru": "спросить о владельце шкафчика и объяснить, где лежит вещь",
-    "uk": "запитати про власника шафки й пояснити, де лежить річ"
+    "ru": "спросить, чья вещь, ответить «она моя» и сказать, в чьём шкафчике она лежит",
+    "uk": "спитати, чия річ, відповісти «вона моя» і сказати, у чиїй шафці вона лежить"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для вещей",
-        "uk": "Місце для речей"
+        "ru": "Карта-ключ на полу",
+        "uk": "Картка-ключ на підлозі"
       },
       "bodyByLocale": {
-        "ru": "`locker` — «шкафчик», отдельное отделение для хранения личных вещей, обычно с замком. `Whose locker is this?` — «Чей это шкафчик?» `This locker is mine` — «Этот шкафчик мой». Шкафчик охраняет вещи молча; ключу лучше не брать выходной.",
-        "uk": "`locker` — «шафка», окреме відділення для зберігання особистих речей, зазвичай із замком. `Whose locker is this?` — «Чия це шафка?» `This locker is mine` — «Ця шафка моя». Шафка охороняє речі мовчки; ключеві краще не брати вихідний."
+        "ru": "Вы переодеваетесь в раздевалке спортзала. Администратор поднимает с пола карту и спрашивает у всех, чья она. Это ваша карта от номера. keycard — «карта-ключ»: она открывает дверь вместо ключа. Скажите: The keycard is mine — «Карта-ключ моя».",
+        "uk": "Ви переодягаєтеся в роздягальні спортзалу. Адміністратор піднімає з підлоги картку й питає в усіх, чия вона. Це ваша картка від номера. keycard — «картка-ключ»: вона відчиняє двері замість ключа. Скажіть: The keycard is mine — «Картка-ключ моя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Спросите, кому принадлежит шкафчик.",
-          "uk": "Запитайте, кому належить шафка."
+          "ru": "Администратор спрашивает, чья карта-ключ. Она ваша. Скажите ему: «Карта-ключ моя».",
+          "uk": "Адміністратор питає, чия картка-ключ. Вона ваша. Скажіть йому: «Картка-ключ моя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-41:intro1:r1",
-              "text": "Whose locker is this?"
+              "text": "The keycard is mine."
             },
             {
               "responseId": "en:lesson-05:session-41:intro1:r2",
-              "text": "Where is the locker?"
+              "text": "The keycard is my."
             },
             {
               "responseId": "en:lesson-05:session-41:intro1:r3",
-              "text": "Whose locker are these?"
+              "text": "The keycard are mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-41:intro1:r1",
-              "text": "Whose locker is this?"
+              "text": "The keycard is mine."
             },
             {
               "responseId": "en:lesson-05:session-41:intro1:r2",
-              "text": "Where is the locker?"
+              "text": "The keycard is my."
             },
             {
               "responseId": "en:lesson-05:session-41:intro1:r3",
-              "text": "Whose locker are these?"
+              "text": "The keycard are mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, кому принадлежит шкафчик.",
-          "uk": "Запитайте, кому належить шафка."
+          "ru": "Администратор спрашивает, чья карта-ключ. Она ваша. Скажите ему: «Карта-ключ моя».",
+          "uk": "Адміністратор питає, чия картка-ключ. Вона ваша. Скажіть йому: «Картка-ключ моя»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нашлись часы",
-        "uk": "Знайшовся годинник"
+        "ru": "Секундомер на скамейке",
+        "uk": "Секундомір на лавці"
       },
       "bodyByLocale": {
-        "ru": "`watch` — «наручные часы». Одни наручные часы в английском — единственное число: `The watch is in the locker` — «Наручные часы в шкафчике». `Whose watch is this?` — «Чьи это наручные часы?» `honest` — «честный»: `You are honest` — «Ты честный / честная». Это о человеке, который не обманывает.",
-        "uk": "`watch` — «наручний годинник». Один годинник — однина: `The watch is in the locker` — «Наручний годинник у шафці». `Whose watch is this?` — «Чий це наручний годинник?» `honest` — «чесний»: `You are honest` — «Ти чесний / чесна». Це про людину, яка не обманює."
+        "ru": "Вы зашли в спортзал гостевого дома. На скамейке лежит секундомер, а рядом никого нет. Вы спрашиваете тренера, чей он. stopwatch — «секундомер»: им меряют время бега. Спрашиваем о хозяине со словом Whose: Whose stopwatch is this? — «Чей это секундомер?»",
+        "uk": "Ви зайшли до спортзалу гостьового дому. На лавці лежить секундомір, а поруч нікого немає. Ви питаєте тренера, чий він. stopwatch — «секундомір»: ним міряють час бігу. Питаємо про господаря зі словом Whose: Whose stopwatch is this? — «Чий це секундомір?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Ты честный» без сокращения.",
-          "uk": "Скажіть «Ти чесний» без скорочення."
+          "ru": "На скамейке лежит секундомер. Спросите тренера: «Чей это секундомер?»",
+          "uk": "На лавці лежить секундомір. Спитайте тренера: «Чий це секундомір?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-41:intro2:r1",
-              "text": "You are honest."
+              "text": "Whose stopwatch is this?"
             },
             {
               "responseId": "en:lesson-05:session-41:intro2:r2",
-              "text": "You is honest."
+              "text": "Who stopwatch is this?"
             },
             {
               "responseId": "en:lesson-05:session-41:intro2:r3",
-              "text": "You are brave."
+              "text": "Whose stopwatch are these?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-41:intro2:r1",
-              "text": "You are honest."
+              "text": "Whose stopwatch is this?"
             },
             {
               "responseId": "en:lesson-05:session-41:intro2:r2",
-              "text": "You is honest."
+              "text": "Who stopwatch is this?"
             },
             {
               "responseId": "en:lesson-05:session-41:intro2:r3",
-              "text": "You are brave."
+              "text": "Whose stopwatch are these?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Ты честный» без сокращения.",
-          "uk": "Скажіть «Ти чесний» без скорочення."
+          "ru": "На скамейке лежит секундомер. Спросите тренера: «Чей это секундомер?»",
+          "uk": "На лавці лежить секундомір. Спитайте тренера: «Чий це секундомір?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где искать друзей",
-        "uk": "Де шукати друзів"
+        "ru": "Костюм брата",
+        "uk": "Костюм брата"
       },
       "bodyByLocale": {
-        "ru": "`kitchen` — «кухня», `cashpoint` — «банкомат». `Anna is in the kitchen` — «Анна на кухне». `Tom is next to the cashpoint` — «Том рядом с банкоматом». `I have your watch` — «Твои наручные часы у меня». `This is Anna’s locker` — «Это шкафчик Анны».",
-        "uk": "`kitchen` — «кухня», `cashpoint` — «банкомат». `Anna is in the kitchen` — «Анна на кухні». `Tom is next to the cashpoint` — «Том поруч із банкоматом». `I have your watch` — «Твій наручний годинник у мене». `This is Anna’s locker` — «Це шафка Анни»."
+        "ru": "Вы собираетесь на пробежку, а подруга спрашивает, где спортивный костюм вашего брата. tracksuit — «спортивный костюм»: брюки и куртка вместе. Он в шкафчике брата. Хозяина называем с 's: The tracksuit is in my brother's locker — «Костюм в шкафчике моего брата».",
+        "uk": "Ви збираєтеся на пробіжку, а подруга питає, де спортивний костюм вашого брата. tracksuit — «спортивний костюм»: штани й куртка разом. Він у шафці брата. Господаря називаємо з 's: The tracksuit is in my brother's locker — «Костюм у шафці мого брата»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите Анне «Твои наручные часы у меня».",
-          "uk": "Скажіть Анні «Твій наручний годинник у мене»."
+          "ru": "Подруга спрашивает, где спортивный костюм вашего брата. Он в шкафчике брата. Скажите ей: «Спортивный костюм в шкафчике моего брата».",
+          "uk": "Подруга питає, де спортивний костюм вашого брата. Він у шафці брата. Скажіть їй: «Спортивний костюм у шафці мого брата»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-41:intro3:r1",
-              "text": "I have your watch."
+              "text": "The tracksuit is in my brother's locker."
             },
             {
               "responseId": "en:lesson-05:session-41:intro3:r2",
-              "text": "I has your watch."
+              "text": "The tracksuit is in my brother locker."
             },
             {
               "responseId": "en:lesson-05:session-41:intro3:r3",
-              "text": "I have my watch."
+              "text": "The tracksuits are in my brother's locker."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-41:intro3:r1",
-              "text": "I have your watch."
+              "text": "The tracksuit is in my brother's locker."
             },
             {
               "responseId": "en:lesson-05:session-41:intro3:r2",
-              "text": "I has your watch."
+              "text": "The tracksuit is in my brother locker."
             },
             {
               "responseId": "en:lesson-05:session-41:intro3:r3",
-              "text": "I have my watch."
+              "text": "The tracksuits are in my brother's locker."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите Анне «Твои наручные часы у меня».",
-          "uk": "Скажіть Анні «Твій наручний годинник у мене»."
+          "ru": "Подруга спрашивает, где спортивный костюм вашего брата. Он в шкафчике брата. Скажите ей: «Спортивный костюм в шкафчике моего брата».",
+          "uk": "Подруга питає, де спортивний костюм вашого брата. Він у шафці брата. Скажіть їй: «Спортивний костюм у шафці мого брата»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3856273e76bb5b4018137cea7be5bdc41c379abaeb6bebe7c22950780bc91123"
+  "introFingerprint": "40fcdc8d2234ebca2ad2d8cb7c098c20fea2fbfc4efa1c9f79052050587ffc40"
 }

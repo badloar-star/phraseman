@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-48:word:wheelbarrow",
+    "correctText": "wheelbarrow",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-48:i01",
-    "correctText": "Anna is in the community kitchen.",
+    "correctText": "The wheelbarrow is behind the shed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-48:word:rake",
+    "correctText": "rake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i02",
-    "correctText": "motorbike",
+    "correctText": "Whose rake is this?",
     "correctResponseId": "en:lesson-05:session-48:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-48:word:hose",
+    "correctText": "hose",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-48:i03",
-    "correctText": "Whose",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-48:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-48:i04",
-    "correctText": "en:lesson-05:session-48:i04:p1=community kitchen\nen:lesson-05:session-48:i04:p2=locker\nen:lesson-05:session-48:i04:p3=scooter\nen:lesson-05:session-48:i04:p4=bicycle",
+    "correctText": "en:lesson-05:session-48:i04:p1=wheelbarrow\nen:lesson-05:session-48:i04:p2=rake\nen:lesson-05:session-48:i04:p3=hose\nen:lesson-05:session-48:i04:p4=trowel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-48:word:trowel",
+    "correctText": "trowel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i05",
-    "correctText": "Whose bicycle is this?",
+    "correctText": "The trowel is in my sister's bag.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i06",
-    "correctText": "The subway is near the hotel.",
+    "correctText": "Whose trowel is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i07",
-    "correctText": "This locker is mine.",
+    "correctText": "The rake is behind the shed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i08",
-    "correctText": "Where",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-48:i09",
-    "correctText": "This is Tom's scooter.",
+    "correctText": "The hose is my neighbour's.",
     "correctResponseId": "en:lesson-05:session-48:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-48:i10",
-    "correctText": "en:lesson-05:session-48:i10:p1=motorbike\nen:lesson-05:session-48:i10:p2=ferry\nen:lesson-05:session-48:i10:p3=subway\nen:lesson-05:session-48:i10:p4=locker",
+    "correctText": "en:lesson-05:session-48:i10:p1=rake\nen:lesson-05:session-48:i10:p2=hose\nen:lesson-05:session-48:i10:p3=shed\nen:lesson-05:session-48:i10:p4=gate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i11",
-    "correctText": "Where is the community kitchen?",
+    "correctText": "My neighbour's wheelbarrow is next to the shed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i12",
-    "correctText": "The motorbike is hers.",
+    "correctText": "This is my aunt's hose.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i13",
-    "correctText": "The ferry is here.",
+    "correctText": "This is my trowel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i14",
-    "correctText": "mine",
+    "correctText": "have",
     "correctResponseId": "en:lesson-05:session-48:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-48:i15",
-    "correctText": "Your scooter is here.",
+    "correctText": "Where is the trowel?",
     "correctResponseId": "en:lesson-05:session-48:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-48:i16",
-    "correctText": "en:lesson-05:session-48:i16:p1=community kitchen\nen:lesson-05:session-48:i16:p2=subway\nen:lesson-05:session-48:i16:p3=bicycle\nen:lesson-05:session-48:i16:p4=ferry",
+    "correctText": "en:lesson-05:session-48:i16:p1=wheelbarrow\nen:lesson-05:session-48:i16:p2=rake\nen:lesson-05:session-48:i16:p3=hose\nen:lesson-05:session-48:i16:p4=trowel",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-48:i17",
-    "correctText": "Whose bicycle is this?",
+    "correctText": "The wheelbarrow is mine.",
     "correctResponseId": null
   }
 ]

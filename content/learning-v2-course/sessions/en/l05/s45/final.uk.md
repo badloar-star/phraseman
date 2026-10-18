@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 45 — Мотоцикл біля офісу
+# Англійська · Урок 5 · Заняття 45 — Чия це гарнітура?
 
-**Ситуація.** Анна зустрічає Тома біля офісу. Поруч стоїть мотоцикл, а на столі в офісі Анна помічає сережки.
+**Ситуація.** Зранку в офісі люди шукають свої речі на столах і в шухлядах. Треба зрозуміти, чия річ, і сказати, де вона лежить.
 
-**Що ви опануєте:** запитати про власника транспорту й прикрас та описати знайомий предмет
-**Нові слова:** motorbike
+**Що ви опануєте:** сказати, чия річ ('s, mine, his), спитати «це твоє?» і вибрати is чи are
+**Нові слова:** headset, highlighter, sharpener, binder
+**Повертаються:** colleague, manager, friend, desk, drawer, shelf, bag
 
 ---
 
 ## Інтро 1
 
-### Транспорт із мотором
+### Гарнітура на столі
 
-`motorbike` — «мотоцикл». `Whose motorbike is this?` — «Чий це мотоцикл?» `The motorbike is mine` — «Мотоцикл мій». `This is Tom’s motorbike` — «Це мотоцикл Тома». Два колеса не роблять слово множиною: один мотоцикл — `is this`.
+Зранку в офісі менеджер шукає гарнітуру для важливого дзвінка. На столі біля вікна лежить одна, і менеджер питає, чия вона. Це гарнітура вашої колеги. headset — «гарнітура»: навушники з мікрофоном. Господиню називаємо з 's: The headset is my colleague's.
 
-**Запитайте про власника мотоцикла.**
+**Менеджер питає, чия гарнітура на столі. Вона вашої колеги. Скажіть йому: «Гарнітура моєї колеги».**
 
-- ✅ **Whose motorbike is this?**
-- ❌ Where is the motorbike? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose motorbike are these? — *Один мотоцикл: `is this`.*
+- ✅ **The headset is my colleague's.**
+- ❌ The headset is my colleague. — *Так вийшло б, що гарнітура — це сама колега. Господиню називаємо через 's.*
+- ❌ The headsets are my colleague's. — *Гарнітура одна, тому потрібно The headset is.*
 
 ---
 
 ## Інтро 2
 
-### Сережки на столі
+### Маркер у коридорі
 
-`earrings` — «сережки», `office` — «офіс». `Whose earrings are these?` — «Чиї це сережки?» `The earrings are hers` — «Сережки її». `The earrings are in the office` — «Сережки в офісі». Кількість речей визначає `are`, навіть якщо власниця одна.
+Ви знайшли вранці в коридорі жовтий маркер. Поруч за столом сидить колега, і ви питаєте, чи не його це. highlighter — «маркер-виділювач»: ним позначають важливі рядки. Питання «це твоє?» починаємо з Is: Is this highlighter yours? — «Це твій маркер?»
 
-**Скажіть «Сережки її».**
+**Ви знайшли маркер-виділювач і питаєте колегу, чи не його він. Спитайте: «Це твій маркер?»**
 
-- ✅ **The earrings are hers.**
-- ❌ The earrings is hers. — *`earrings` — множина: `are`.*
-- ❌ The earrings are her. — *Без наступної назви речі потрібна самостійна форма `hers`.*
+- ✅ **Is this highlighter yours?**
+- ❌ Are this highlighter yours? — *Маркер один, тому питання починаємо з Is.*
+- ❌ Is this highlighter your? — *Наприкінці питання, без речі після слова, потрібно yours, а не your.*
 
 ---
 
 ## Інтро 3
 
-### Корисна річ
+### Стругачки в шухляді
 
-`microwave` — «мікрохвильова піч», `useful` — «корисний». `The microwave is useful` — «Мікрохвильова піч корисна». Вона допомагає з обідом, але за вас на листи не відповість. `I have your earrings` — «Твої сережки в мене».
+У шухляді вашого столу лежать дві стругачки для олівців. Менеджер просить стругачку, але не бачить їх серед паперів. sharpener — «стругачка»: нею стругають олівці. Стругачок кілька, тому sharpeners і are: The sharpeners are in the drawer — «Стругачки в шухляді».
 
-**Скажіть «Мікрохвильова піч корисна».**
+**Менеджер просить стругачку. Вони в шухляді. Скажіть йому: «Стругачки в шухляді».**
 
-- ✅ **The microwave is useful.**
-- ❌ The microwave are useful. — *Одна піч: `is`.*
-- ❌ The microwave is curious. — *`curious` — допитливий; корисний — `useful`.*
+- ✅ **The sharpeners are in the drawer.**
+- ❌ The sharpeners is in the drawer. — *Стругачок кілька, тому потрібно are.*
+- ❌ The sharpeners are on the drawer. — *on означає «на», а стругачки всередині шухляди: потрібно in.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Мікрохвильова піч корисна»**
+**1 · Картка слова — headset**
+<!-- interaction_id: en:lesson-05:session-45:word:headset; family: word_card -->
+> **headset** — гарнітура. My manager's headset is black. — «Гарнітура мого менеджера чорна». Про навушники з мікрофоном для розмови по телефону.
+
+**2 · Менеджер шукає гарнітуру. Вона лежить на столі вашої подруги. Скажіть: «Гарнітура на столі моєї подруги»**
 <!-- interaction_id: en:lesson-05:session-45:i01; family: phrase_builder -->
-Плитки: `useful` `is` `microwave` `The` `are` → **The microwave is useful.**
-*(плитка `are` зайва: тут потрібно `is` — `The microwave is useful.`)*
+Плитки: `headset` `friend's` `is` `on` `my` `desk` `The` `friend` → **The headset is on my friend's desk.**
+*(плитка `friend` зайва: тут потрібно `friend's` — `The headset is on my friend's desk.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — highlighter**
+<!-- interaction_id: en:lesson-05:session-45:word:highlighter; family: word_card -->
+> **highlighter** — маркер-виділювач. My colleague's highlighter is yellow. — «Маркер-виділювач моєї колеги жовтий». Про яскраву ручку, якою позначають важливий текст.
+
+**4 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-45:i02; family: listen_choose -->
-🔊 *motorbike* → **motorbike** · bicycle · microwave
-- bicycle — *У записі перше слово — `motorbike`, а в цьому варіанті — `bicycle`.*
-- microwave — *У записі перше слово — `motorbike`, а в цьому варіанті — `microwave`.*
+🔊 *My highlighter is on the desk.* → **My highlighter is on the desk.** · My highlighter is under the desk. · My headset is on the desk.
+- My highlighter is under the desk. — *У записі `on` — на столі, а в цьому варіанті `under` — під столом.*
+- My headset is on the desk. — *У записі річ — `highlighter`, маркер, а в цьому варіанті — `headset`, гарнітура.*
 
-**3 · Назвіть мотоцикл**
+**5 · Картка слова — sharpener**
+<!-- interaction_id: en:lesson-05:session-45:word:sharpener; family: word_card -->
+> **sharpener** — стругачка. The sharpeners are in the box. — «Стругачки в коробці». Про маленький прилад, яким стругають олівці.
+
+**6 · Стругачка лежить на вашому столі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-45:i03; family: context_gap_grammar -->
-___ → **motorbike** · bicycle · office
-- bicycle — *`bicycle` — велосипед; мотоцикл — `motorbike`.*
-- office — *`office` — офіс; мотоцикл — `motorbike`.*
+The sharpener ___ on my desk. → **is** · are · has
+- are — *Стругачка одна, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а тут треба сказати, де стругачка: `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-45:i04; family: speed_match -->
-motorbike — мотоцикл · earrings — сережки · office — офіс · microwave — мікрохвильова піч
+headset — гарнітура · highlighter — маркер-виділювач · sharpener — стругачка · binder — папка на кільцях
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — binder**
+<!-- interaction_id: en:lesson-05:session-45:word:binder; family: word_card -->
+> **binder** — папка на кільцях. My manager's binder is blue. — «Папка на кільцях мого менеджера синя». Про папку, у якій аркуші тримаються на кільцях.
+
+**9 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-45:i05; family: listen_build_dictation -->
-🔊 *Whose motorbike is this?* Плитки: `this` `is` `motorbike` `Whose` → **Whose motorbike is this?**
+🔊 *The binder is my manager's.* Плитки: `binder` `manager's` `is` `my` `The` `are` → **The binder is my manager's.**
+*(плитка `are` зайва: тут потрібно `is` — `The binder is my manager's.`)*
 
-**6 · Скажіть «Сережки в офісі»**
+**10 · Ви знайшли в коридорі маркер-виділювач і питаєте колегу, чий він. Поставте питання: «Чий це маркер?»**
 <!-- interaction_id: en:lesson-05:session-45:i06; family: phrase_builder -->
-Плитки: `office` `the` `in` `are` `earrings` `The` `is` → **The earrings are in the office.**
-*(плитка `is` зайва: тут потрібно `are` — `The earrings are in the office.`)*
+Плитки: `highlighter` `this` `is` `Whose` `Who` → **Whose highlighter is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose highlighter is this?`)*
 
-**7 · Мотоцикл належить вам. Скажіть «Мотоцикл мій»**
+**11 · Менеджер питає, чия це гарнітура. Вона ваша. Скажіть: «Гарнітура моя»**
 <!-- interaction_id: en:lesson-05:session-45:i07; family: scripted_repeat_compare -->
-🎙 **The motorbike is mine.**
+🎙 **The headset is mine.**
 
-**8 · Запитайте про власника сережок**
+**12 · Ви показуєте папку на кільцях. Вона належить вашому менеджеру-чоловікові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-45:i08; family: context_gap_grammar -->
-Whose earrings ___ these? → **are** · is · am
-- is — *`earrings` — множина: `are these`.*
-- am — *`am` використовується з `I`; тут `are these`.*
+The binder is ___. → **his** · he · hers
+- he — *`he` означає «він», а потрібно «його»: `his`.*
+- hers — *`hers` означає «її», а менеджер — чоловік: потрібно `his`.*
 
-**9 · Послухайте, який транспорт називає Анна**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-05:session-45:i09; family: listen_choose -->
-🔊 *This is Tom's motorbike.* → **This is Tom's motorbike.** · This is Tom's bicycle. · This is Tom's scooter.
-- This is Tom's bicycle. — *У записі останнє слово — `motorbike`, а в цьому варіанті — `bicycle`.*
-- This is Tom's scooter. — *У записі останнє слово — `motorbike`, а в цьому варіанті — `scooter`.*
+🔊 *Whose binder is this?* → **Whose binder is this?** · Whose binders are these? · Whose sharpener is this?
+- Whose binders are these? — *У записі `binder is this` — одна папка, а в цьому варіанті `binders are these` — кілька папок.*
+- Whose sharpener is this? — *У записі річ — `binder`, а в цьому варіанті — `sharpener`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-45:i10; family: speed_match -->
-motorbike — мотоцикл · useful — корисний · microwave — мікрохвильова піч · earrings — сережки
+headset — гарнітура · highlighter — маркер-виділювач · desk — письмовий стіл · drawer — висувна шухляда
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте менеджера й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-45:i11; family: listen_build_dictation -->
-🔊 *The motorbike is near the office.* Плитки: `office` `the` `near` `is` `motorbike` `The` `are` → **The motorbike is near the office.**
-*(плитка `are` зайва: тут потрібно `is` — `The motorbike is near the office.`)*
+🔊 *My colleague's binder is on the shelf.* Плитки: `binder` `colleague's` `is` `on` `the` `shelf` `My` `are` → **My colleague's binder is on the shelf.**
+*(плитка `are` зайва: тут потрібно `is` — `My colleague's binder is on the shelf.`)*
 
-**12 · Сережки належать Анні. Скажіть «Сережки її»**
+**16 · Ви знайшли гарнітуру. Вона вашої колеги. Скажіть менеджерові повною фразою: «Це гарнітура моєї колеги»**
 <!-- interaction_id: en:lesson-05:session-45:i12; family: phrase_builder -->
-Плитки: `hers` `are` `earrings` `The` `is` → **The earrings are hers.**
-*(плитка `is` зайва: тут потрібно `are` — `The earrings are hers.`)*
+Плитки: `headset` `colleague's` `my` `is` `This` `colleague` → **This is my colleague's headset.**
+*(плитка `colleague` зайва: тут потрібно `colleague's` — `This is my colleague's headset.`)*
 
-**13 · Скажіть Анні «Твої сережки в мене»**
+**17 · Менеджер питає, чий це маркер-виділювач. Він вашого колеги. Скажіть: «Він мого колеги»**
 <!-- interaction_id: en:lesson-05:session-45:i13; family: scripted_repeat_compare -->
-🎙 **I have your earrings.**
+🎙 **It is my colleague's.**
 
-**14 · Запитайте про власника мотоцикла**
+**18 · У ваших колег є гарнітури. Скажіть про це менеджерові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-45:i14; family: context_gap_grammar -->
-___ motorbike is this? → **Whose** · Who · Where
-- Who — *`Who` — хто; чий — `Whose`.*
-- Where — *`Where` — де; чий — `Whose`.*
+My colleagues ___ headsets. → **have** · has · is
+- has — *Колег кілька, як they, тому потрібно `have`, а не `has`.*
+- is — *`is` означає «є»: вийде «колеги — гарнітури». Для «у них є» потрібно `have`.*
 
-**15 · Послухайте, чий мотоцикл тут**
+**19 · Послухайте менеджера**
 <!-- interaction_id: en:lesson-05:session-45:i15; family: listen_choose -->
-🔊 *Your motorbike is here.* → **Your motorbike is here.** · My motorbike is here. · His motorbike is here.
-- My motorbike is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His motorbike is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *The sharpeners are in the drawer.* → **The sharpeners are in the drawer.** · The sharpeners are on the drawer. · The highlighters are in the drawer.
+- The sharpeners are on the drawer. — *У записі `in` — всередині шухляди, а в цьому варіанті `on` — на шухляді.*
+- The highlighters are in the drawer. — *У записі річ — `sharpeners`, стругачки, а в цьому варіанті — `highlighters`, маркери.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-45:i16; family: speed_match -->
-motorbike — мотоцикл · useful — корисний · office — офіс · earrings — сережки
+headset — гарнітура · highlighter — маркер-виділювач · sharpener — стругачка · binder — папка на кільцях
 
-**17 · Ви знайшли сережки на столі. Запитайте «Чиї це сережки?»**
+**21 · Колега показує маркер-виділювач і питає, чий він. Він ваш. Відповідьте: «Маркер мій»**
 <!-- interaction_id: en:lesson-05:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose earrings are these?**
-
+🎙 **The highlighter is mine.**

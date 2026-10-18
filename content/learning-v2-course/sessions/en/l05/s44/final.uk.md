@@ -1,136 +1,154 @@
 # Англійська · Урок 5 · Заняття 44 — Велосипед для прогулянки
 
-**Ситуація.** Анна й Том збираються оглянути місто. На подвір’ї стоїть велосипед, а на столі лежать сонцезахисні окуляри.
+**Ситуація.** Друзі збираються на велопрогулянку містом. У дворі стоять велосипеди, і треба зрозуміти, де насос, чий кермо і що зламано.
 
-**Що ви опануєте:** уточнити власника велосипеда й окулярів і запитати про місце
-**Нові слова:** bicycle
+**Що ви опануєте:** спитати, де річ і чия вона, сказати, що у велосипеда зламана деталь, і вибрати is чи are
+**Нові слова:** pump, handlebars, pedal, saddle
+**Повертаються:** bicycle, helmet, sister, brother, uncle, friend, neighbour, bag, bench, shed
 
 ---
 
 ## Інтро 1
 
-### Два колеса й педалі
+### Де насос?
 
-`bicycle` — «велосипед». `Whose bicycle is this?` — «Чий це велосипед?» `The bicycle is mine` — «Велосипед мій». `This is Anna’s bicycle` — «Це велосипед Анни». У велосипеда два колеса, але власник може бути один — запитати все одно варто.
+Ви з подругою збираєтеся на велопрогулянку містом, але колесо її велосипеда спущене. Потрібен насос, і ви питаєте сусіда, де він. pump — «насос»: ним накачують повітря в колесо. Про місце питаємо зі словом Where: Where is the pump? — «Де насос?»
 
-**Запитайте про власника велосипеда.**
+**Колесо велосипеда подруги спущене. Спитайте сусіда: «Де насос?»**
 
-- ✅ **Whose bicycle is this?**
-- ❌ Where is the bicycle? — *Це запитання про місце; про власника запитуємо з `Whose`.*
-- ❌ Whose bicycle are these? — *Один велосипед: `is this`.*
+- ✅ **Where is the pump?**
+- ❌ Whose pump is this? — *Це питання про господаря, а потрібне питання про місце: Where.*
+- ❌ Where are the pump? — *Насос один, тому потрібно is.*
 
 ---
 
 ## Інтро 2
 
-### Окуляри й цікавість
+### Чиє кермо?
 
-`sunglasses` — «сонцезахисні окуляри». `Whose sunglasses are these?` — «Чиї це сонцезахисні окуляри?» Окуляри потребують `are these`. `The sunglasses are hers` — «Сонцезахисні окуляри її». `curious` тут — «допитливий», охочий дізнатися більше: `You are curious` — «Ти допитливий / допитлива».
+Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у множині, тому потрібно are these: Whose handlebars are these?
 
-**Скажіть «Ти допитливий» без скорочення.**
+**На траві лежить кермо. Спитайте подругу: «Чиє це кермо?»**
 
-- ✅ **You are curious.**
-- ❌ You is curious. — *З `you` потрібна форма `are`.*
-- ❌ You are patient. — *`patient` — терплячий; допитливий — `curious`.*
+- ✅ **Whose handlebars are these?**
+- ❌ Whose handlebars is this? — *handlebars завжди у множині, тому потрібно are these.*
+- ❌ Who handlebars are these? — *Who означає «хто». Коли питаємо «чий», потрібно Whose.*
 
 ---
 
 ## Інтро 3
 
-### У місті й на кухні
+### Зламана педаль
 
-`hotels` — «готелі», `freezer` — «морозильник». `Where are the hotels?` — «Де готелі?» `The freezer is in the kitchen` — «Морозильник на кухні». `I have your sunglasses` — «Твої сонцезахисні окуляри в мене».
+Подруга питає, чому ви не їдете з усіма. Річ у вашому велосипеді: у нього зламана одна педаль. pedal — «педаль», на неї натискають ногою. Коли в речі є частина, кажемо has: My bicycle has a broken pedal — «У мого велосипеда зламана педаль».
 
-**Запитайте «Де готелі?»**
+**Подруга питає, чому ви не їдете. У вашого велосипеда зламана педаль. Скажіть їй: «У мого велосипеда зламана педаль».**
 
-- ✅ **Where are the hotels?**
-- ❌ Where is the hotels? — *`hotels` — множина: `are`.*
-- ❌ Whose hotels are these? — *Це запитання про власника, а потрібне запитання про місце: `Where`.*
+- ✅ **My bicycle has a broken pedal.**
+- ❌ My bicycle have a broken pedal. — *Велосипед один, як it, тому потрібно has, а не have.*
+- ❌ My bicycle is a broken pedal. — *is означає «є»: вийде «велосипед — педаль». Для «у нього є» потрібно has.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть другові «Ти допитливий» без скорочення**
+**1 · Картка слова — pump**
+<!-- interaction_id: en:lesson-05:session-44:word:pump; family: word_card -->
+> **pump** — насос. My neighbour's pump is new. — «Насос мого сусіда новий». Про прилад, яким накачують повітря в колесо.
+
+**2 · Ви шукаєте насос. Він у сумці вашої сестри. Скажіть: «Насос у сумці моєї сестри»**
 <!-- interaction_id: en:lesson-05:session-44:i01; family: phrase_builder -->
-Плитки: `curious` `are` `You` `is` → **You are curious.**
-*(плитка `is` зайва: тут потрібно `are` — `You are curious.`)*
+Плитки: `pump` `sister's` `is` `in` `my` `bag` `The` `sister` → **The pump is in my sister's bag.**
+*(плитка `sister` зайва: тут потрібно `sister's` — `The pump is in my sister's bag.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — handlebars**
+<!-- interaction_id: en:lesson-05:session-44:word:handlebars; family: word_card -->
+> **handlebars** — кермо. My uncle's handlebars are black. — «Кермо мого дядька чорне». Про частину велосипеда, за яку тримаються руками. Слово завжди у множині.
+
+**4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-44:i02; family: listen_choose -->
-🔊 *bicycle* → **bicycle** · scooter · freezer
-- scooter — *У записі перше слово — `bicycle`, а в цьому варіанті — `scooter`.*
-- freezer — *У записі перше слово — `bicycle`, а в цьому варіанті — `freezer`.*
+🔊 *Whose handlebars are these?* → **Whose handlebars are these?** · Whose handlebars is this? · Whose pump is this?
+- Whose handlebars is this? — *У записі `are these` — кермо, слово у множині, а в цьому варіанті `is this` — як про одну річ.*
+- Whose pump is this? — *У записі річ — `handlebars`, а в цьому варіанті — `pump`.*
 
-**3 · Назвіть велосипед**
+**5 · Картка слова — pedal**
+<!-- interaction_id: en:lesson-05:session-44:word:pedal; family: word_card -->
+> **pedal** — педаль. My brother's pedal is broken. — «Педаль мого брата зламана». Про частину велосипеда, на яку натискають ногою.
+
+**6 · Педаль вашого велосипеда зламана. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-44:i03; family: context_gap_grammar -->
-___ → **bicycle** · scooter · freezer
-- scooter — *`scooter` тут — самокат; велосипед — `bicycle`.*
-- freezer — *`freezer` — морозильник; велосипед — `bicycle`.*
+The pedal ___ broken. → **is** · are · has
+- are — *Педаль одна, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а тут потрібно «є»: `is`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-44:i04; family: speed_match -->
-bicycle — велосипед · sunglasses — сонцезахисні окуляри · hotels — готелі · freezer — морозильник
+pump — насос · handlebars — кермо · pedal — педаль · saddle — сідло
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — saddle**
+<!-- interaction_id: en:lesson-05:session-44:word:saddle; family: word_card -->
+> **saddle** — сідло. My sister's saddle is soft. — «Сідло моєї сестри м’яке». Про сидіння на велосипеді.
+
+**9 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-44:i05; family: listen_build_dictation -->
-🔊 *Whose bicycle is this?* Плитки: `this` `is` `bicycle` `Whose` → **Whose bicycle is this?**
+🔊 *The saddle is my sister's.* Плитки: `saddle` `sister's` `is` `my` `The` `are` → **The saddle is my sister's.**
+*(плитка `are` зайва: тут потрібно `is` — `The saddle is my sister's.`)*
 
-**6 · Запитайте «Де готелі?»**
+**10 · Ви знайшли на землі педаль і питаєте подругу, чия вона. Поставте питання: «Чия це педаль?»**
 <!-- interaction_id: en:lesson-05:session-44:i06; family: phrase_builder -->
-Плитки: `hotels` `the` `are` `Where` → **Where are the hotels?**
+Плитки: `pedal` `this` `is` `Whose` `Who` → **Whose pedal is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose pedal is this?`)*
 
-**7 · Велосипед належить вам. Скажіть «Велосипед мій»**
+**11 · Сусід питає, де насос. Він на лавці. Скажіть: «Насос на лавці»**
 <!-- interaction_id: en:lesson-05:session-44:i07; family: scripted_repeat_compare -->
-🎙 **The bicycle is mine.**
+🎙 **The pump is on the bench.**
 
-**8 · Запитайте про власника сонцезахисних окулярів**
+**12 · Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-44:i08; family: context_gap_grammar -->
-Whose sunglasses ___ these? → **are** · is · am
-- is — *`sunglasses` — множина: `are these`.*
-- am — *`am` використовується з `I`; тут `are these`.*
+Whose handlebars ___ these? → **are** · is · am
+- is — *`handlebars` — слово у множині, тому потрібно `are these`.*
+- am — *`am` використовується лише з `I`; тут потрібно `are`.*
 
-**9 · Послухайте, яку річ називає друг**
+**13 · Послухайте сусідку**
 <!-- interaction_id: en:lesson-05:session-44:i09; family: listen_choose -->
-🔊 *This is Anna's bicycle.* → **This is Anna's bicycle.** · This is Anna's scooter. · This is Anna's laptop.
-- This is Anna's scooter. — *У записі останнє слово — `bicycle`, а в цьому варіанті — `scooter`.*
-- This is Anna's laptop. — *У записі останнє слово — `bicycle`, а в цьому варіанті — `laptop`.*
+🔊 *The saddle is hers.* → **The saddle is hers.** · The saddle is her. · The pedal is hers.
+- The saddle is her. — *У записі `hers` — «її», річ після нього не потрібна, а `her` без речі не кажуть.*
+- The pedal is hers. — *У записі річ — `saddle`, сідло, а в цьому варіанті — `pedal`, педаль.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-44:i10; family: speed_match -->
-bicycle — велосипед · curious — допитливий · freezer — морозильник · sunglasses — сонцезахисні окуляри
+saddle — сідло · pedal — педаль · bicycle — велосипед · helmet — шолом
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-44:i11; family: listen_build_dictation -->
-🔊 *The freezer is in the kitchen.* Плитки: `kitchen` `the` `in` `is` `freezer` `The` `are` → **The freezer is in the kitchen.**
-*(плитка `are` зайва: тут потрібно `is` — `The freezer is in the kitchen.`)*
+🔊 *My brother's bicycle has a pump.* Плитки: `bicycle` `brother's` `has` `a` `pump` `My` `have` → **My brother's bicycle has a pump.**
+*(плитка `have` зайва: тут потрібно `has` — `My brother's bicycle has a pump.`)*
 
-**12 · Окуляри належать Анні. Скажіть «Сонцезахисні окуляри її»**
+**16 · Ви показуєте сусідові сідло. Воно вашої сестри. Скажіть повною фразою: «Це сідло моєї сестри»**
 <!-- interaction_id: en:lesson-05:session-44:i12; family: phrase_builder -->
-Плитки: `hers` `are` `sunglasses` `The` `is` → **The sunglasses are hers.**
-*(плитка `is` зайва: тут потрібно `are` — `The sunglasses are hers.`)*
+Плитки: `saddle` `sister's` `my` `is` `This` `sister` → **This is my sister's saddle.**
+*(плитка `sister` зайва: тут потрібно `sister's` — `This is my sister's saddle.`)*
 
-**13 · Скажіть другові «Твої сонцезахисні окуляри в мене»**
+**17 · Подруга питає, чиє кермо. Воно вашого брата. Скажіть: «Кермо мого брата»**
 <!-- interaction_id: en:lesson-05:session-44:i13; family: scripted_repeat_compare -->
-🎙 **I have your sunglasses.**
+🎙 **The handlebars are my brother's.**
 
-**14 · Запитайте про власника велосипеда**
+**18 · У вашої подруги є насос. Скажіть про це сусідові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-44:i14; family: context_gap_grammar -->
-___ bicycle is this? → **Whose** · Who · Where
-- Who — *`Who` — хто; чий — `Whose`.*
-- Where — *`Where` — де; чий — `Whose`.*
+My friend ___ a pump. → **has** · have · is
+- have — *Подруга одна, як she, тому потрібно `has`, а не `have`.*
+- is — *`is` означає «є»: вийде «подруга — насос». Для «у неї є» потрібно `has`.*
 
-**15 · Послухайте, чий велосипед тут**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-44:i15; family: listen_choose -->
-🔊 *Your bicycle is here.* → **Your bicycle is here.** · My bicycle is here. · His bicycle is here.
-- My bicycle is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His bicycle is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *The pump is under the bench.* → **The pump is under the bench.** · The pump is on the bench. · The pedal is under the bench.
+- The pump is on the bench. — *У записі `under` — під лавкою, а в цьому варіанті `on` — на лавці.*
+- The pedal is under the bench. — *У записі річ — `pump`, насос, а в цьому варіанті — `pedal`, педаль.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-44:i16; family: speed_match -->
-bicycle — велосипед · curious — допитливий · hotels — готелі · sunglasses — сонцезахисні окуляри
+pump — насос · handlebars — кермо · pedal — педаль · saddle — сідло
 
-**17 · Ви знайшли сонцезахисні окуляри на столі. Запитайте «Чиї це сонцезахисні окуляри?»**
+**21 · Сусід питає, чий це насос. Він ваш. Відповідьте: «Насос мій»**
 <!-- interaction_id: en:lesson-05:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose sunglasses are these?**
-
+🎙 **The pump is mine.**

@@ -4,39 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-43:i01",
+      "interactionId": "en:lesson-05:session-43:word:locket",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — locket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:word:locket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — locket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:word:locket:audio",
+          "transcript": "locket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:word:locket:r1",
+            "targetText": "locket",
+            "meaningByLocale": {
+              "ru": "медальон. My aunt's locket is small. — «Медальон моей тёти маленький». О подвеске, в которую можно положить фото.",
+              "uk": "медальйон. My aunt's locket is small. — «Медальйон моєї тітки маленький». Про підвіску, у яку можна покласти фото."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locket",
+          "definitionByLocale": {
+            "ru": "медальон. My aunt's locket is small. — «Медальон моей тёти маленький». О подвеске, в которую можно положить фото.",
+            "uk": "медальйон. My aunt's locket is small. — «Медальйон моєї тітки маленький». Про підвіску, у яку можна покласти фото."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите другу «Ты терпеливый» без сокращения",
+      "prompt": "Администратор показывает медальон. Он вашей тёти. Скажите: «Это медальон моей тёти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите другу «Ты терпеливый» без сокращения",
+      "accessibilityLabel": "Администратор показывает медальон. Он вашей тёти. Скажите: «Это медальон моей тёти»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You are patient.",
+        "targetPhrase": "This is my aunt's locket.",
         "localizedMeaning": {
-          "ru": "Скажите другу «Ты терпеливый» без сокращения",
-          "uk": "Скажіть другові «Ти терплячий» без скорочення"
+          "ru": "Администратор показывает медальон. Он вашей тёти. Скажите: «Это медальон моей тёти»",
+          "uk": "Адміністратор показує медальйон. Він вашої тітки. Скажіть: «Це медальйон моєї тітки»"
         },
         "orderedTokens": [
-          "You",
-          "are",
-          "patient"
+          "This",
+          "is",
+          "my",
+          "aunt's",
+          "locket"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "aunt"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-43:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите другу «Ты терпеливый» без сокращения",
+            "testedDimension": "Администратор показывает медальон. Он вашей тёти. Скажите: «Это медальон моей тёти»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `You are patient.`",
-              "uk": "тут потрібно `are` — `You are patient.`"
+              "ru": "здесь нужно `aunt's` — `This is my aunt's locket.`",
+              "uk": "тут потрібно `aunt's` — `This is my aunt's locket.`"
             }
           }
         ],
@@ -48,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-43:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-43:word:hairclip",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — hairclip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:word:hairclip:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hairclip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:word:hairclip:audio",
+          "transcript": "hairclip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:word:hairclip:r1",
+            "targetText": "hairclip",
+            "meaningByLocale": {
+              "ru": "заколка. My friend's hairclip is red. — «Заколка моей подруги красная». О маленькой застёжке для волос.",
+              "uk": "заколка. My friend's hairclip is red. — «Заколка моєї подруги червона». Про маленьку застібку для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hairclip",
+          "definitionByLocale": {
+            "ru": "заколка. My friend's hairclip is red. — «Заколка моей подруги красная». О маленькой застёжке для волос.",
+            "uk": "заколка. My friend's hairclip is red. — «Заколка моєї подруги червона». Про маленьку застібку для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-43:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте администратора",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i02:r1",
-          "text": "tram"
+          "text": "The hairclip is on the desk."
         },
         {
           "responseId": "en:lesson-05:session-43:i02:r2",
-          "text": "scooter"
+          "text": "The hairclip is under the desk."
         },
         {
           "responseId": "en:lesson-05:session-43:i02:r3",
-          "text": "locker"
+          "text": "The locket is on the desk."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте администратора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i02:audio",
-          "transcript": "tram"
+          "transcript": "The hairclip is on the desk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-43:i02:r1",
-            "targetText": "tram",
+            "targetText": "The hairclip is on the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i02:r2",
-            "targetText": "scooter",
+            "targetText": "The hairclip is under the desk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i02:r3",
-            "targetText": "locker",
+            "targetText": "The locket is on the desk.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-43:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `tram`, а в этом варианте — `scooter`.",
-              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `scooter`."
+              "ru": "В записи `on` — на стойке, а в этом варианте `under` — под стойкой.",
+              "uk": "У записі `on` — на стійці, а в цьому варіанті `under` — під стійкою."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `tram`, а в этом варианте — `locker`.",
-              "uk": "У записі перше слово — `tram`, а в цьому варіанті — `locker`."
+              "ru": "В записи вещь — `hairclip`, заколка, а в этом варианте — `locket`, медальон.",
+              "uk": "У записі річ — `hairclip`, заколка, а в цьому варіанті — `locket`, медальйон."
             }
           }
         ],
@@ -124,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-43:word:sunhat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sunhat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:word:sunhat:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunhat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:word:sunhat:audio",
+          "transcript": "sunhat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:word:sunhat:r1",
+            "targetText": "sunhat",
+            "meaningByLocale": {
+              "ru": "шляпа от солнца. My sister's sunhat is white. — «Шляпа от солнца моей сестры белая». О лёгкой шляпе с полями, которая защищает от жары.",
+              "uk": "капелюх від сонця. My sister's sunhat is white. — «Капелюх від сонця моєї сестри білий». Про легкий капелюх із крисами, який захищає від спеки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunhat",
+          "definitionByLocale": {
+            "ru": "шляпа от солнца. My sister's sunhat is white. — «Шляпа от солнца моей сестры белая». О лёгкой шляпе с полями, которая защищает от жары.",
+            "uk": "капелюх від сонця. My sister's sunhat is white. — «Капелюх від сонця моєї сестри білий». Про легкий капелюх із крисами, який захищає від спеки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-43:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Спальни маленькие»",
+      "prompt": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i03:r1",
-          "text": "are"
+          "text": "friend's"
         },
         {
           "responseId": "en:lesson-05:session-43:i03:r2",
-          "text": "is"
+          "text": "friend"
         },
         {
           "responseId": "en:lesson-05:session-43:i03:r3",
-          "text": "am"
+          "text": "friends"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Спальни маленькие»",
+      "accessibilityLabel": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Спальни маленькие»",
-          "uk": "Скажіть «Спальні маленькі»"
+          "ru": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
+          "uk": "Капелюх від сонця належить вашій подрузі. Виберіть слово"
         },
-        "gappedTargetPhrase": "The bedrooms ___ small.",
+        "gappedTargetPhrase": "The sunhat is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-43:i03:r1",
-            "text": "are"
+            "text": "friend's"
           },
           {
             "responseId": "en:lesson-05:session-43:i03:r2",
-            "text": "is"
+            "text": "friend"
           },
           {
             "responseId": "en:lesson-05:session-43:i03:r3",
-            "text": "am"
+            "text": "friends"
           }
         ],
-        "testedDimension": "Скажите «Спальни маленькие»",
+        "testedDimension": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-43:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Спальни маленькие»",
+            "testedDimension": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Несколько спален: `bedrooms are`.",
-              "uk": "Кілька спалень: `bedrooms are`."
+              "ru": "Так получилось бы, что шляпа — это сама подруга. Хозяйку называем через `'s`: `friend's`.",
+              "uk": "Так вийшло б, що капелюх — це сама подруга. Господиню називаємо через `'s`: `friend's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Спальни маленькие»",
+            "testedDimension": "Шляпа от солнца принадлежит вашей подруге. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are`.",
-              "uk": "`am` використовується з `I`; тут `are`."
+              "ru": "`friends` — это «друзья», несколько человек; чтобы назвать хозяйку, нужно `friend's`.",
+              "uk": "`friends` — це «друзі», кілька людей; щоб назвати господиню, потрібно `friend's`."
             }
           }
         ]
@@ -194,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-43:i04:p1",
-            "target": "tram",
+            "target": "locket",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "медальон",
+              "uk": "медальйон"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i04:p2",
-            "target": "bracelet",
+            "target": "hairclip",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "заколка",
+              "uk": "заколка"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i04:p3",
-            "target": "bedrooms",
+            "target": "sunhat",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "шляпа от солнца",
+              "uk": "капелюх від сонця"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i04:p4",
-            "target": "recycling bin",
+            "target": "bandana",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "бандана",
+              "uk": "бандана"
             }
           }
         ],
         "leftColumn": [
-          "tram",
-          "bracelet",
-          "bedrooms",
-          "recycling bin"
+          "locket",
+          "hairclip",
+          "sunhat",
+          "bandana"
         ],
         "rightColumn": [
-          "трамвай",
-          "браслет",
-          "спальни",
-          "контейнер для переработки"
+          "медальон",
+          "заколка",
+          "шляпа от солнца",
+          "бандана"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,34 +397,92 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-43:word:bandana",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bandana",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-43:word:bandana:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bandana",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-43:word:bandana:audio",
+          "transcript": "bandana"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-43:word:bandana:r1",
+            "targetText": "bandana",
+            "meaningByLocale": {
+              "ru": "бандана. My brother's bandana is blue. — «Бандана моего брата синяя». О цветном платке, который повязывают на голову или на шею.",
+              "uk": "бандана. My brother's bandana is blue. — «Бандана мого брата синя». Про кольорову хустку, яку пов’язують на голову або на шию."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bandana",
+          "definitionByLocale": {
+            "ru": "бандана. My brother's bandana is blue. — «Бандана моего брата синяя». О цветном платке, который повязывают на голову или на шею.",
+            "uk": "бандана. My brother's bandana is blue. — «Бандана мого брата синя». Про кольорову хустку, яку пов’язують на голову або на шию."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-43:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте брата и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте брата и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i05:audio",
-          "transcript": "Whose bracelet is this?"
+          "transcript": "The bandana is in my friend's bag."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose bracelet is this?",
+        "hiddenTargetPhrase": "The bandana is in my friend's bag.",
         "orderedTokens": [
-          "Whose",
-          "bracelet",
+          "The",
+          "bandana",
           "is",
-          "this"
+          "in",
+          "my",
+          "friend's",
+          "bag"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте брата и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bandana is in my friend's bag.`",
+              "uk": "тут потрібно `is` — `The bandana is in my friend's bag.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -303,42 +492,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Том рядом с контейнером для переработки»",
+      "prompt": "Вы нашли заколку и спрашиваете администратора, чья она. Задайте вопрос: «Чья это заколка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Том рядом с контейнером для переработки»",
+      "accessibilityLabel": "Вы нашли заколку и спрашиваете администратора, чья она. Задайте вопрос: «Чья это заколка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom is next to the recycling bin.",
+        "targetPhrase": "Whose hairclip is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Том рядом с контейнером для переработки»",
-          "uk": "Скажіть «Том поруч із контейнером для переробки»"
+          "ru": "Вы нашли заколку и спрашиваете администратора, чья она. Задайте вопрос: «Чья это заколка?»",
+          "uk": "Ви знайшли заколку й питаєте адміністратора, чия вона. Поставте питання: «Чия це заколка?»"
         },
         "orderedTokens": [
-          "Tom",
+          "Whose",
+          "hairclip",
           "is",
-          "next",
-          "to",
-          "the",
-          "recycling",
-          "bin"
+          "this"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-43:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Том рядом с контейнером для переработки»",
+            "testedDimension": "Вы нашли заколку и спрашиваете администратора, чья она. Задайте вопрос: «Чья это заколка?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom is next to the recycling bin.`",
-              "uk": "тут потрібно `is` — `Tom is next to the recycling bin.`"
+              "ru": "здесь нужно `Whose` — `Whose hairclip is this?`",
+              "uk": "тут потрібно `Whose` — `Whose hairclip is this?`"
             }
           }
         ],
@@ -351,25 +537,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Браслет принадлежит Анне. Скажите «Браслет её»",
+      "prompt": "Подруга ищет шляпу от солнца. Она у вас. Скажите: «Твоя шляпа у меня»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i07:audio"
       ],
-      "accessibilityLabel": "Браслет принадлежит Анне. Скажите «Браслет её»",
+      "accessibilityLabel": "Подруга ищет шляпу от солнца. Она у вас. Скажите: «Твоя шляпа у меня»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i07:audio",
-          "transcript": "The bracelet is hers."
+          "transcript": "I have your sunhat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bracelet is hers.",
+        "targetPhrase": "I have your sunhat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,67 +570,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Браслет принадлежит вам. Скажите «Браслет мой»",
+      "prompt": "Вы отдаёте подруге её бандану. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i08:r1",
-          "text": "mine"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-43:i08:r2",
-          "text": "my"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-43:i08:r3",
-          "text": "I"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Браслет принадлежит вам. Скажите «Браслет мой»",
+      "accessibilityLabel": "Вы отдаёте подруге её бандану. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Браслет принадлежит вам. Скажите «Браслет мой»",
-          "uk": "Браслет належить вам. Скажіть «Браслет мій»"
+          "ru": "Вы отдаёте подруге её бандану. Выберите слово",
+          "uk": "Ви віддаєте подрузі її бандану. Виберіть слово"
         },
-        "gappedTargetPhrase": "The bracelet is ___.",
+        "gappedTargetPhrase": "I ___ your bandana.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-43:i08:r1",
-            "text": "mine"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-43:i08:r2",
-            "text": "my"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-43:i08:r3",
-            "text": "I"
+            "text": "is"
           }
         ],
-        "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+        "testedDimension": "Вы отдаёте подруге её бандану. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+            "testedDimension": "Вы отдаёте подруге её бандану. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Перед названием вещи — `my`; здесь самостоятельное `mine`.",
-              "uk": "Перед назвою речі — `my`; тут самостійне `mine`."
+              "ru": "С `I` нужно `have`, а не `has`.",
+              "uk": "З `I` потрібно `have`, а не `has`."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "Браслет принадлежит вам. Скажите «Браслет мой»",
+            "testedDimension": "Вы отдаёте подруге её бандану. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`I` — я; самостоятельное «мой» — `mine`.",
-              "uk": "`I` — я; самостійне «мій» — `mine`."
+              "ru": "`is` значит «является», а здесь нужно «у меня есть»: `have`.",
+              "uk": "`is` означає «є», а тут потрібно «у мене є»: `have`."
             }
           }
         ]
@@ -453,51 +639,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, какую вещь называет друг",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i09:r1",
-          "text": "This is Anna's bracelet."
+          "text": "Is this sunhat yours?"
         },
         {
           "responseId": "en:lesson-05:session-43:i09:r2",
-          "text": "This is Anna's ring."
+          "text": "Is this sunhat mine?"
         },
         {
           "responseId": "en:lesson-05:session-43:i09:r3",
-          "text": "This is Anna's watch."
+          "text": "Is this bandana yours?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, какую вещь называет друг",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i09:audio",
-          "transcript": "This is Anna's bracelet."
+          "transcript": "Is this sunhat yours?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-43:i09:r1",
-            "targetText": "This is Anna's bracelet.",
+            "targetText": "Is this sunhat yours?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i09:r2",
-            "targetText": "This is Anna's ring.",
+            "targetText": "Is this sunhat mine?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i09:r3",
-            "targetText": "This is Anna's watch.",
+            "targetText": "Is this bandana yours?",
             "meaningByLocale": null
           }
         ],
@@ -506,19 +692,19 @@
           {
             "responseId": "en:lesson-05:session-43:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `ring`.",
-              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `ring`."
+              "ru": "В записи `yours` — «твоя», а в этом варианте `mine` — «моя».",
+              "uk": "У записі `yours` — «твоя», а в цьому варіанті `mine` — «моя»."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, какую вещь называет друг",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `bracelet`, а в этом варианте — `watch`.",
-              "uk": "У записі останнє слово — `bracelet`, а в цьому варіанті — `watch`."
+              "ru": "В записи вещь — `sunhat`, а в этом варианте — `bandana`.",
+              "uk": "У записі річ — `sunhat`, а в цьому варіанті — `bandana`."
             }
           }
         ],
@@ -529,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -543,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-43:i10:p1",
-            "target": "patient",
+            "target": "hairclip",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "заколка",
+              "uk": "заколка"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i10:p2",
-            "target": "recycling bin",
+            "target": "bandana",
             "meaningByLocale": {
-              "ru": "контейнер для переработки",
-              "uk": "контейнер для переробки"
+              "ru": "бандана",
+              "uk": "бандана"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i10:p3",
-            "target": "bracelet",
+            "target": "shelf",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "полка",
+              "uk": "полиця"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i10:p4",
-            "target": "tram",
+            "target": "chair",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "стул",
+              "uk": "стілець"
             }
           }
         ],
         "leftColumn": [
-          "patient",
-          "recycling bin",
-          "bracelet",
-          "tram"
+          "hairclip",
+          "bandana",
+          "shelf",
+          "chair"
         ],
         "rightColumn": [
-          "терпеливый",
-          "контейнер для переработки",
-          "браслет",
-          "трамвай"
+          "заколка",
+          "бандана",
+          "полка",
+          "стул"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,30 +788,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте администратора и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте администратора и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i11:audio",
-          "transcript": "The tram is here."
+          "transcript": "My sister's sunhat is on the chair."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The tram is here.",
+        "hiddenTargetPhrase": "My sister's sunhat is on the chair.",
         "orderedTokens": [
-          "The",
-          "tram",
+          "My",
+          "sister's",
+          "sunhat",
           "is",
-          "here"
+          "on",
+          "the",
+          "chair"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -634,10 +823,10 @@
           {
             "responseId": "en:lesson-05:session-43:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте администратора и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The tram is here.`",
-              "uk": "тут потрібно `is` — `The tram is here.`"
+              "ru": "здесь нужно `is` — `My sister's sunhat is on the chair.`",
+              "uk": "тут потрібно `is` — `My sister's sunhat is on the chair.`"
             }
           }
         ],
@@ -650,30 +839,43 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "В гостевом доме спросите «Где спальни?»",
+      "prompt": "Администратор спрашивает, чья заколка. Она вашей подруги. Скажите полной фразой: «Это заколка моей подруги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В гостевом доме спросите «Где спальни?»",
+      "accessibilityLabel": "Администратор спрашивает, чья заколка. Она вашей подруги. Скажите полной фразой: «Это заколка моей подруги»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the bedrooms?",
+        "targetPhrase": "This is my friend's hairclip.",
         "localizedMeaning": {
-          "ru": "В гостевом доме спросите «Где спальни?»",
-          "uk": "У гостьовому будинку запитайте «Де спальні?»"
+          "ru": "Администратор спрашивает, чья заколка. Она вашей подруги. Скажите полной фразой: «Это заколка моей подруги»",
+          "uk": "Адміністратор питає, чия заколка. Вона вашої подруги. Скажіть повною фразою: «Це заколка моєї подруги»"
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "bedrooms"
+          "This",
+          "is",
+          "my",
+          "friend's",
+          "hairclip"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "friend"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-43:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Администратор спрашивает, чья заколка. Она вашей подруги. Скажите полной фразой: «Это заколка моей подруги»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `friend's` — `This is my friend's hairclip.`",
+              "uk": "тут потрібно `friend's` — `This is my friend's hairclip.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -683,25 +885,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите Анне «Твой браслет у меня»",
+      "prompt": "Подруга спрашивает, чей это медальон. Он её. Скажите: «Медальон её»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i13:audio"
       ],
-      "accessibilityLabel": "Скажите Анне «Твой браслет у меня»",
+      "accessibilityLabel": "Подруга спрашивает, чей это медальон. Он её. Скажите: «Медальон её»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i13:audio",
-          "transcript": "I have your bracelet."
+          "transcript": "The locket is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your bracelet.",
+        "targetPhrase": "The locket is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -716,67 +918,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о владельце браслета",
+      "prompt": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i14:r1",
-          "text": "Whose"
+          "text": "behind"
         },
         {
           "responseId": "en:lesson-05:session-43:i14:r2",
-          "text": "Who"
+          "text": "under"
         },
         {
           "responseId": "en:lesson-05:session-43:i14:r3",
-          "text": "Where"
+          "text": "on"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о владельце браслета",
+      "accessibilityLabel": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о владельце браслета",
-          "uk": "Запитайте про власника браслета"
+          "ru": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
+          "uk": "Брат шукає бандану. Вона лежить за стійкою. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ bracelet is this?",
+        "gappedTargetPhrase": "The bandana is ___ the desk.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-43:i14:r1",
-            "text": "Whose"
+            "text": "behind"
           },
           {
             "responseId": "en:lesson-05:session-43:i14:r2",
-            "text": "Who"
+            "text": "under"
           },
           {
             "responseId": "en:lesson-05:session-43:i14:r3",
-            "text": "Where"
+            "text": "on"
           }
         ],
-        "testedDimension": "Спросите о владельце браслета",
+        "testedDimension": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-43:i14:r2",
             "correct": false,
-            "testedDimension": "Спросите о владельце браслета",
+            "testedDimension": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; чей — `Whose`.",
-              "uk": "`Who` — хто; чий — `Whose`."
+              "ru": "`under` значит «под», а бандана за стойкой: нужно `behind`.",
+              "uk": "`under` означає «під», а бандана за стійкою: потрібно `behind`."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i14:r3",
             "correct": false,
-            "testedDimension": "Спросите о владельце браслета",
+            "testedDimension": "Брат ищет бандану. Она лежит за стойкой. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`Where` — где; чей — `Whose`.",
-              "uk": "`Where` — де; чий — `Whose`."
+              "ru": "`on` значит «на», а бандана за стойкой: нужно `behind`.",
+              "uk": "`on` означає «на», а бандана за стійкою: потрібно `behind`."
             }
           }
         ]
@@ -785,51 +987,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей браслет здесь",
+      "prompt": "Послушайте администратора",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-43:i15:r1",
-          "text": "Your bracelet is here."
+          "text": "The sunhat is my friend's."
         },
         {
           "responseId": "en:lesson-05:session-43:i15:r2",
-          "text": "My bracelet is here."
+          "text": "The locket is my friend's."
         },
         {
           "responseId": "en:lesson-05:session-43:i15:r3",
-          "text": "His bracelet is here."
+          "text": "The sunhat is my brother's."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей браслет здесь",
+      "accessibilityLabel": "Послушайте администратора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i15:audio",
-          "transcript": "Your bracelet is here."
+          "transcript": "The sunhat is my friend's."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-43:i15:r1",
-            "targetText": "Your bracelet is here.",
+            "targetText": "The sunhat is my friend's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i15:r2",
-            "targetText": "My bracelet is here.",
+            "targetText": "The locket is my friend's.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-43:i15:r3",
-            "targetText": "His bracelet is here.",
+            "targetText": "The sunhat is my brother's.",
             "meaningByLocale": null
           }
         ],
@@ -838,19 +1040,19 @@
           {
             "responseId": "en:lesson-05:session-43:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей браслет здесь",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи вещь — `sunhat`, шляпа, а в этом варианте — `locket`, медальон.",
+              "uk": "У записі річ — `sunhat`, капелюх, а в цьому варіанті — `locket`, медальйон."
             }
           },
           {
             "responseId": "en:lesson-05:session-43:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей браслет здесь",
+            "testedDimension": "Послушайте администратора",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи хозяйка — `friend's`, подруга, а в этом варианте — `brother's`, брат.",
+              "uk": "У записі господиня — `friend's`, подруга, а в цьому варіанті — `brother's`, брат."
             }
           }
         ],
@@ -861,7 +1063,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -875,48 +1077,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-43:i16:p1",
-            "target": "patient",
+            "target": "locket",
             "meaningByLocale": {
-              "ru": "терпеливый",
-              "uk": "терплячий"
+              "ru": "медальон",
+              "uk": "медальйон"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i16:p2",
-            "target": "bedrooms",
+            "target": "hairclip",
             "meaningByLocale": {
-              "ru": "спальни",
-              "uk": "спальні"
+              "ru": "заколка",
+              "uk": "заколка"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i16:p3",
-            "target": "tram",
+            "target": "sunhat",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "шляпа от солнца",
+              "uk": "капелюх від сонця"
             }
           },
           {
             "pairId": "en:lesson-05:session-43:i16:p4",
-            "target": "bracelet",
+            "target": "bandana",
             "meaningByLocale": {
-              "ru": "браслет",
-              "uk": "браслет"
+              "ru": "бандана",
+              "uk": "бандана"
             }
           }
         ],
         "leftColumn": [
-          "patient",
-          "bedrooms",
-          "tram",
-          "bracelet"
+          "locket",
+          "hairclip",
+          "sunhat",
+          "bandana"
         ],
         "rightColumn": [
-          "терпеливый",
-          "спальни",
-          "трамвай",
-          "браслет"
+          "медальон",
+          "заколка",
+          "шляпа от солнца",
+          "бандана"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -934,25 +1136,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-43:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед выходом вы нашли браслет. Спросите друзей «Чей это браслет?»",
+      "prompt": "Администратор спрашивает, чья заколка. Она ваша. Ответьте: «Заколка моя»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-43:i17:audio"
       ],
-      "accessibilityLabel": "Перед выходом вы нашли браслет. Спросите друзей «Чей это браслет?»",
+      "accessibilityLabel": "Администратор спрашивает, чья заколка. Она ваша. Ответьте: «Заколка моя»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-43:i17:audio",
-          "transcript": "Whose bracelet is this?"
+          "transcript": "The hairclip is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose bracelet is this?",
+        "targetPhrase": "The hairclip is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -974,11 +1176,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "773301c206e4ce0cae59a28db81cac71f6ac6de62f989c0c3fc4e442087b7b9a"
+  "learnerFingerprint": "c7f1a812231dc174b3ec7239f659d351d866c0ec1abfa154a73246f80e5fa9d7"
 }

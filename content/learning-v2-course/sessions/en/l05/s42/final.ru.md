@@ -1,137 +1,154 @@
-# Английский · Урок 5 · Занятие 42 — Чей самокат у двери?
+# Английский · Урок 5 · Занятие 42 — Чья это палатка?
 
-**Ситуация.** Том и Анна собираются на прогулку. У двери стоит самокат, а в ванной найдено кольцо.
+**Ситуация.** Друзья разбили лагерь на берегу озера. Вещей много, и нужно понять, чья палатка, чей фонарик, чей гамак и у кого что есть.
 
-**Что вы освоите:** спросить о владельце самоката и вернуть найденную вещь
-**Новые слова:** scooter
+**Что вы освоите:** спросить «чей» и ответить с hers, mine или 's; сказать, что у человека есть вещь
+**Новые слова:** tent, flashlight, hammock, penknife
+**Возвращаются:** uncle, aunt, cousin, neighbour, friend, brother, sister, backpack, bag, bench, tree
 
 ---
 
 ## Интро 1
 
-### На двух колёсах
+### Палатка на берегу
 
-`scooter` здесь — «самокат»: на нём стоят и отталкиваются ногой. `Whose scooter is this?` — «Чей это самокат?» `The scooter is mine` — «Самокат мой». `This is Tom’s scooter` — «Это самокат Тома». Самокат уже у двери, хотя на прогулку его ещё никто не позвал.
+На берегу озера вы с друзьями ставите лагерь. Рядом с вашим местом стоит маленькая зелёная палатка, и сосед по лагерю спрашивает, чья она. Она вашей подруги. tent — «палатка», в ней спят в походе. Вещь можно не называть: The tent is hers — «Палатка её».
 
-**Спросите о владельце самоката.**
+**Сосед по лагерю спрашивает, чья палатка. Она вашей подруги. Скажите ему: «Палатка её».**
 
-- ✅ **Whose scooter is this?**
-- ❌ Where is the scooter? — *Это вопрос о месте; о владельце спрашиваем с `Whose`.*
-- ❌ Whose scooter are these? — *Один самокат: `is this`.*
+- ✅ **The tent is hers.**
+- ❌ The tent is her. — *Если вещь не называем, нужно hers, а не her.*
+- ❌ The tent are hers. — *Палатка одна, поэтому нужно is, а не are.*
 
 ---
 
 ## Интро 2
 
-### Кольцо нашлось
+### Фонарик в рюкзаке
 
-`ring` — «кольцо», `bathroom` — «ванная комната». `The ring is in the bathroom` — «Кольцо в ванной». `Whose ring is this?` — «Чьё это кольцо?» `I have your ring` — «Твоё кольцо у меня».
+Вечером в лагере стемнело, и подруга просит фонарик. У вашего брата в рюкзаке есть один. flashlight — «фонарик»: карманный фонарь с батарейкой. Когда у человека что-то есть, говорим has: My brother has a flashlight — «У моего брата есть фонарик».
 
-**Спросите, кому принадлежит кольцо.**
+**Подруга просит фонарик. Он есть у вашего брата. Скажите ей: «У моего брата есть фонарик».**
 
-- ✅ **Whose ring is this?**
-- ❌ Whose ring are these? — *Одно кольцо: `is this`.*
-- ❌ Where is the ring? — *Это «Где кольцо?», а нужен вопрос о владельце.*
+- ✅ **My brother has a flashlight.**
+- ❌ My brother have a flashlight. — *Брат один, как he, поэтому нужно has, а не have.*
+- ❌ My brother is a flashlight. — *is значит «является»: получится «брат — фонарик». Для «у него есть» нужно has.*
 
 ---
 
 ## Интро 3
 
-### Вежливый друг
+### Гамак между деревьями
 
-`polite` — «вежливый»: `You are polite` — «Ты вежливый / вежливая». `bus shelter` — «павильон на остановке», укрытие для ожидающих автобус. `Anna is next to the bus shelter` — «Анна рядом с павильоном на остановке».
+Между двумя деревьями висит гамак. Сосед по лагерю хочет в нём отдохнуть, но не знает, чей он. Вы тоже не знаете и спрашиваете подругу. hammock — «гамак», подвесная сетка для отдыха. Спросить «чей» можно так: Whose hammock is this? — «Чей это гамак?»
 
-**Скажите другу «Ты вежливый» без сокращения.**
+**Между деревьями висит гамак. Спросите подругу: «Чей это гамак?»**
 
-- ✅ **You are polite.**
-- ❌ You is polite. — *С `you` нужна форма `are`.*
-- ❌ You are honest. — *`honest` — честный; вежливый — `polite`.*
+- ✅ **Whose hammock is this?**
+- ❌ Where is this hammock? — *Это вопрос «где?», а нужен вопрос «чей?»: Whose.*
+- ❌ Whose hammock are these? — *Гамак один, поэтому нужно is this.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите другу «Ты вежливый» без сокращения**
+**1 · Карточка слова — tent**
+<!-- interaction_id: en:lesson-05:session-42:word:tent; family: word_card -->
+> **tent** — палатка. My uncle's tent is green. — «Палатка моего дяди зелёная». О лёгком домике из ткани, в котором спят в походе.
+
+**2 · Сосед по лагерю спрашивает, где палатка вашего дяди. Она под деревом. Скажите: «Палатка моего дяди под деревом»**
 <!-- interaction_id: en:lesson-05:session-42:i01; family: phrase_builder -->
-Плитки: `polite` `are` `You` `is` → **You are polite.**
-*(плитка `is` лишняя: здесь нужно `are` — `You are polite.`)*
+Плитки: `tent` `uncle's` `is` `under` `the` `tree` `My` `uncle` → **My uncle's tent is under the tree.**
+*(плитка `uncle` лишняя: здесь нужно `uncle's` — `My uncle's tent is under the tree.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — flashlight**
+<!-- interaction_id: en:lesson-05:session-42:word:flashlight; family: word_card -->
+> **flashlight** — фонарик. My friend's flashlight is small. — «Фонарик моей подруги маленький». О карманном фонаре с батарейкой.
+
+**4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-42:i02; family: listen_choose -->
-🔊 *scooter* → **scooter** · locker · violin
-- locker — *В записи первое слово — `scooter`, а в этом варианте — `locker`.*
-- violin — *В записи первое слово — `scooter`, а в этом варианте — `violin`.*
+🔊 *The flashlight is in my backpack.* → **The flashlight is in my backpack.** · The flashlight is in my bag. · The tent is in my backpack.
+- The flashlight is in my bag. — *В записи место — `backpack`, рюкзак, а в этом варианте — `bag`, сумка.*
+- The tent is in my backpack. — *В записи вещь — `flashlight`, фонарик, а в этом варианте — `tent`, палатка.*
 
-**3 · Назовите самокат**
+**5 · Карточка слова — hammock**
+<!-- interaction_id: en:lesson-05:session-42:word:hammock; family: word_card -->
+> **hammock** — гамак. The hammock is between the trees. — «Гамак между деревьями». О подвесной сетке, в которой лежат и отдыхают.
+
+**6 · Гамак принадлежит вашему соседу по лагерю. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-42:i03; family: context_gap_grammar -->
-___ → **scooter** · ring · locker
-- ring — *`ring` — кольцо; самокат — `scooter`.*
-- locker — *`locker` — шкафчик; самокат — `scooter`.*
+The hammock is my ___. → **neighbour's** · neighbour · neighbours
+- neighbour — *Так получилось бы, что гамак — это сам сосед. Хозяина называем через `'s`: `neighbour's`.*
+- neighbours — *`neighbours` — это «соседи», несколько человек; чтобы назвать хозяина, нужно `neighbour's`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-42:i04; family: speed_match -->
-scooter — самокат · ring — кольцо · bathroom — ванная комната · bus shelter — павильон на остановке
+tent — палатка · flashlight — фонарик · hammock — гамак · penknife — складной нож
 
-**5 · Послушайте и соберите вопрос**
+**8 · Карточка слова — penknife**
+<!-- interaction_id: en:lesson-05:session-42:word:penknife; family: word_card -->
+> **penknife** — складной нож. My cousin's penknife is sharp. — «Складной нож моего двоюродного брата острый». О маленьком ноже, лезвие которого складывается в рукоятку.
+
+**9 · Послушайте дядю и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-42:i05; family: listen_build_dictation -->
-🔊 *Whose scooter is this?* Плитки: `this` `is` `scooter` `Whose` → **Whose scooter is this?**
+🔊 *The penknife is in my uncle's tent.* Плитки: `penknife` `uncle's` `is` `in` `my` `tent` `The` `are` → **The penknife is in my uncle's tent.**
+*(плитка `are` лишняя: здесь нужно `is` — `The penknife is in my uncle's tent.`)*
 
-**6 · Скажите «Кольцо в ванной»**
+**10 · Вы нашли в траве фонарик и спрашиваете соседа по лагерю, чей он. Задайте вопрос: «Чей это фонарик?»**
 <!-- interaction_id: en:lesson-05:session-42:i06; family: phrase_builder -->
-Плитки: `bathroom` `the` `in` `is` `ring` `The` `are` → **The ring is in the bathroom.**
-*(плитка `are` лишняя: здесь нужно `is` — `The ring is in the bathroom.`)*
+Плитки: `flashlight` `this` `is` `Whose` `Who` → **Whose flashlight is this?**
+*(плитка `Who` лишняя: здесь нужно `Whose` — `Whose flashlight is this?`)*
 
-**7 · Самокат принадлежит вам. Скажите «Самокат мой»**
+**11 · Сосед спрашивает, чья это палатка. Она ваша. Скажите: «Это моя палатка»**
 <!-- interaction_id: en:lesson-05:session-42:i07; family: scripted_repeat_compare -->
-🎙 **The scooter is mine.**
+🎙 **This is my tent.**
 
-**8 · Спросите о владельце кольца**
+**12 · Вы показываете подруге складной нож и спрашиваете, чей он. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-42:i08; family: context_gap_grammar -->
-Whose ring ___ this? → **is** · are · am
-- are — *Одно кольцо: `is this`.*
-- am — *`am` используется с `I`; здесь `is this`.*
+Whose penknife ___ this? → **is** · are · am
+- are — *Нож один, поэтому нужно `is this`, а не `are this`.*
+- am — *`am` используется только с `I`; здесь нужно `is`.*
 
-**9 · Послушайте, какую вещь называет друг**
+**13 · Послушайте соседа по лагерю**
 <!-- interaction_id: en:lesson-05:session-42:i09; family: listen_choose -->
-🔊 *This is Tom's scooter.* → **This is Tom's scooter.** · This is Tom's ring. · This is Tom's laptop.
-- This is Tom's ring. — *В записи последнее слово — `scooter`, а в этом варианте — `ring`.*
-- This is Tom's laptop. — *В записи последнее слово — `scooter`, а в этом варианте — `laptop`.*
+🔊 *Whose hammock is this?* → **Whose hammock is this?** · Whose hammocks are these? · Whose tent is this?
+- Whose hammocks are these? — *В записи `hammock is this` — один гамак, а в этом варианте `hammocks are these` — несколько гамаков.*
+- Whose tent is this? — *В записи вещь — `hammock`, а в этом варианте — `tent`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-42:i10; family: speed_match -->
-scooter — самокат · polite — вежливый · bus shelter — павильон на остановке · ring — кольцо
+tent — палатка · penknife — складной нож · bag — сумка · tree — дерево
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте двоюродного брата и соберите фразу**
 <!-- interaction_id: en:lesson-05:session-42:i11; family: listen_build_dictation -->
-🔊 *Anna is next to the bus shelter.* Плитки: `shelter` `bus` `the` `to` `next` `is` `Anna` `are` → **Anna is next to the bus shelter.**
-*(плитка `are` лишняя: здесь нужно `is` — `Anna is next to the bus shelter.`)*
+🔊 *My cousin's flashlight is on the bench.* Плитки: `flashlight` `cousin's` `is` `on` `the` `bench` `My` `are` → **My cousin's flashlight is on the bench.**
+*(плитка `are` лишняя: здесь нужно `is` — `My cousin's flashlight is on the bench.`)*
 
-**12 · Скажите другу «Твой самокат возле двери»**
+**16 · Вы показываете соседу гамак. Он вашей тёти. Скажите полной фразой: «Это гамак моей тёти»**
 <!-- interaction_id: en:lesson-05:session-42:i12; family: phrase_builder -->
-Плитки: `door` `the` `near` `is` `scooter` `Your` `are` → **Your scooter is near the door.**
-*(плитка `are` лишняя: здесь нужно `is` — `Your scooter is near the door.`)*
+Плитки: `hammock` `aunt's` `my` `is` `This` `aunt` → **This is my aunt's hammock.**
+*(плитка `aunt` лишняя: здесь нужно `aunt's` — `This is my aunt's hammock.`)*
 
-**13 · Скажите Анне «Твоё кольцо у меня»**
+**17 · Подруга спрашивает, чей это складной нож. Он вашего брата. Скажите: «Он моего брата»**
 <!-- interaction_id: en:lesson-05:session-42:i13; family: scripted_repeat_compare -->
-🎙 **I have your ring.**
+🎙 **It is my brother's.**
 
-**14 · Спросите о владельце самоката**
+**18 · У вашего дяди и вашей тёти есть палатка. Скажите об этом подруге. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-42:i14; family: context_gap_grammar -->
-___ scooter is this? → **Whose** · Who · Where
-- Who — *`Who` — кто; чей — `Whose`.*
-- Where — *`Where` — где; чей — `Whose`.*
+My uncle and aunt ___ a tent. → **have** · has · is
+- has — *Дядя и тётя — двое людей, как they, поэтому нужно `have`, а не `has`.*
+- is — *`is` значит «является»: получится «дядя и тётя — палатка». Для «у них есть» нужно `have`.*
 
-**15 · Послушайте, чей самокат здесь**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-05:session-42:i15; family: listen_choose -->
-🔊 *My scooter is here.* → **My scooter is here.** · Your scooter is here. · His scooter is here.
-- Your scooter is here. — *В записи первое слово — `My`, а в этом варианте — `Your`.*
-- His scooter is here. — *В записи первое слово — `My`, а в этом варианте — `His`.*
+🔊 *The penknife is yours.* → **The penknife is yours.** · The penknife is mine. · The flashlight is yours.
+- The penknife is mine. — *В записи `yours` — «твой», а в этом варианте `mine` — «мой».*
+- The flashlight is yours. — *В записи вещь — `penknife`, а в этом варианте — `flashlight`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-05:session-42:i16; family: speed_match -->
-scooter — самокат · polite — вежливый · bathroom — ванная комната · ring — кольцо
+tent — палатка · flashlight — фонарик · hammock — гамак · penknife — складной нож
 
-**17 · Вы нашли кольцо и хотите вернуть его владельцу. Спросите «Чьё это кольцо?»**
+**21 · Подруга показывает гамак и спрашивает, чей он. Он ваш. Ответьте: «Он мой»**
 <!-- interaction_id: en:lesson-05:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose ring is this?**
-
+🎙 **It is mine.**

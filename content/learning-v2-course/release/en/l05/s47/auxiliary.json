@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-47:intro1:r2": {
-          "ru": "Это вопрос о владельце; о месте спрашиваем с `Where`.",
-          "uk": "Це запитання про власника; про місце запитуємо з `Where`."
+          "ru": "Так получилось бы, что укулеле — это сам брат. Хозяина называем через 's.",
+          "uk": "Так вийшло б, що укулеле — це сам брат. Господаря називаємо через 's."
         },
         "en:lesson-05:session-47:intro1:r3": {
-          "ru": "Здесь `the subway` требует `is`.",
-          "uk": "Тут `the subway` потребує `is`."
+          "ru": "Укулеле одно, поэтому нужно is, а не are.",
+          "uk": "Укулеле одне, тому потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-47:intro2:r2": {
-          "ru": "Без следующего названия вещи нужна самостоятельная форма `hers`.",
-          "uk": "Без наступної назви речі потрібна самостійна форма `hers`."
+          "ru": "Саксофон один, поэтому нужно is this.",
+          "uk": "Саксофон один, тому потрібно is this."
         },
         "en:lesson-05:session-47:intro2:r3": {
-          "ru": "Одна скрипка: `is`.",
-          "uk": "Одна скрипка: `is`."
+          "ru": "Это вопрос «где?», а нужен вопрос «чей?»: Whose.",
+          "uk": "Це питання «де?», а потрібне питання «чий?»: Whose."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-47:intro3:r2": {
-          "ru": "С `leftovers` нужна форма `are`.",
-          "uk": "З `leftovers` потрібна форма `are`."
+          "ru": "Дядя один, как he, поэтому нужно has, а не have.",
+          "uk": "Дядько один, як he, тому потрібно has, а не have."
         },
         "en:lesson-05:session-47:intro3:r3": {
-          "ru": "Внутри холодильника — `in`; `under` — под ним.",
-          "uk": "Усередині холодильника — `in`; `under` — під ним."
+          "ru": "is значит «является»: получится «дядя — банджо». Для «у него есть» нужно has.",
+          "uk": "is означає «є»: вийде «дядько — банджо». Для «у нього є» потрібно has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e1100d46a266f34a8388f13b4108d05820c6fec337921d1f98c7e07e1a92720e"
+  "auxiliaryFingerprint": "6ab5d2a2bc2c3b536796392f3cbcbe2dfe4b4dd6a2b58157814c73506c86a8b2"
 }

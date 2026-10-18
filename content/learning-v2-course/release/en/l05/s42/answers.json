@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-05:session-42:word:tent",
+    "correctText": "tent",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-42:i01",
-    "correctText": "You are polite.",
+    "correctText": "My uncle's tent is under the tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:word:flashlight",
+    "correctText": "flashlight",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i02",
-    "correctText": "scooter",
+    "correctText": "The flashlight is in my backpack.",
     "correctResponseId": "en:lesson-05:session-42:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-42:word:hammock",
+    "correctText": "hammock",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-42:i03",
-    "correctText": "scooter",
+    "correctText": "neighbour's",
     "correctResponseId": "en:lesson-05:session-42:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-42:i04",
-    "correctText": "en:lesson-05:session-42:i04:p1=scooter\nen:lesson-05:session-42:i04:p2=ring\nen:lesson-05:session-42:i04:p3=bathroom\nen:lesson-05:session-42:i04:p4=bus shelter",
+    "correctText": "en:lesson-05:session-42:i04:p1=tent\nen:lesson-05:session-42:i04:p2=flashlight\nen:lesson-05:session-42:i04:p3=hammock\nen:lesson-05:session-42:i04:p4=penknife",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-42:word:penknife",
+    "correctText": "penknife",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i05",
-    "correctText": "Whose scooter is this?",
+    "correctText": "The penknife is in my uncle's tent.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i06",
-    "correctText": "The ring is in the bathroom.",
+    "correctText": "Whose flashlight is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i07",
-    "correctText": "The scooter is mine.",
+    "correctText": "This is my tent.",
     "correctResponseId": null
   },
   {
@@ -41,47 +61,47 @@
   },
   {
     "interactionId": "en:lesson-05:session-42:i09",
-    "correctText": "This is Tom's scooter.",
+    "correctText": "Whose hammock is this?",
     "correctResponseId": "en:lesson-05:session-42:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-42:i10",
-    "correctText": "en:lesson-05:session-42:i10:p1=scooter\nen:lesson-05:session-42:i10:p2=polite\nen:lesson-05:session-42:i10:p3=bus shelter\nen:lesson-05:session-42:i10:p4=ring",
+    "correctText": "en:lesson-05:session-42:i10:p1=tent\nen:lesson-05:session-42:i10:p2=penknife\nen:lesson-05:session-42:i10:p3=bag\nen:lesson-05:session-42:i10:p4=tree",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i11",
-    "correctText": "Anna is next to the bus shelter.",
+    "correctText": "My cousin's flashlight is on the bench.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i12",
-    "correctText": "Your scooter is near the door.",
+    "correctText": "This is my aunt's hammock.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i13",
-    "correctText": "I have your ring.",
+    "correctText": "It is my brother's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i14",
-    "correctText": "Whose",
+    "correctText": "have",
     "correctResponseId": "en:lesson-05:session-42:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-42:i15",
-    "correctText": "My scooter is here.",
+    "correctText": "The penknife is yours.",
     "correctResponseId": "en:lesson-05:session-42:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-42:i16",
-    "correctText": "en:lesson-05:session-42:i16:p1=scooter\nen:lesson-05:session-42:i16:p2=polite\nen:lesson-05:session-42:i16:p3=bathroom\nen:lesson-05:session-42:i16:p4=ring",
+    "correctText": "en:lesson-05:session-42:i16:p1=tent\nen:lesson-05:session-42:i16:p2=flashlight\nen:lesson-05:session-42:i16:p3=hammock\nen:lesson-05:session-42:i16:p4=penknife",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-42:i17",
-    "correctText": "Whose ring is this?",
+    "correctText": "It is mine.",
     "correctResponseId": null
   }
 ]

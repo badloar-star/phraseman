@@ -4,40 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-47:i01",
+      "interactionId": "en:lesson-05:session-47:word:ukulele",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ukulele",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-47:word:ukulele:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ukulele",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-47:word:ukulele:audio",
+          "transcript": "ukulele"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-47:word:ukulele:r1",
+            "targetText": "ukulele",
+            "meaningByLocale": {
+              "ru": "укулеле. My brother's ukulele is small. — «Укулеле моего брата маленькое». О маленькой гитаре с четырьмя струнами.",
+              "uk": "укулеле. My brother's ukulele is small. — «Укулеле мого брата маленьке». Про маленьку гітару з чотирма струнами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ukulele",
+          "definitionByLocale": {
+            "ru": "укулеле. My brother's ukulele is small. — «Укулеле моего брата маленькое». О маленькой гитаре с четырьмя струнами.",
+            "uk": "укулеле. My brother's ukulele is small. — «Укулеле мого брата маленьке». Про маленьку гітару з чотирма струнами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-47:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Це місце небезпечне»",
+      "prompt": "Перехожий питає, де укулеле вашої сестри. Воно на лавці. Скажіть: «Укулеле моєї сестри на лавці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Це місце небезпечне»",
+      "accessibilityLabel": "Перехожий питає, де укулеле вашої сестри. Воно на лавці. Скажіть: «Укулеле моєї сестри на лавці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This place is dangerous.",
+        "targetPhrase": "My sister's ukulele is on the bench.",
         "localizedMeaning": {
-          "ru": "Скажите «Это место опасное»",
-          "uk": "Скажіть «Це місце небезпечне»"
+          "ru": "Прохожий спрашивает, где укулеле вашей сестры. Оно на скамейке. Скажите: «Укулеле моей сестры на скамейке»",
+          "uk": "Перехожий питає, де укулеле вашої сестри. Воно на лавці. Скажіть: «Укулеле моєї сестри на лавці»"
         },
         "orderedTokens": [
-          "This",
-          "place",
+          "My",
+          "sister's",
+          "ukulele",
           "is",
-          "dangerous"
+          "on",
+          "the",
+          "bench"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "sister"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Це місце небезпечне»",
+            "testedDimension": "Перехожий питає, де укулеле вашої сестри. Воно на лавці. Скажіть: «Укулеле моєї сестри на лавці»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This place is dangerous.`",
-              "uk": "тут потрібно `is` — `This place is dangerous.`"
+              "ru": "здесь нужно `sister's` — `My sister's ukulele is on the bench.`",
+              "uk": "тут потрібно `sister's` — `My sister's ukulele is on the bench.`"
             }
           }
         ],
@@ -49,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-47:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-47:word:saxophone",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — saxophone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-47:word:saxophone:audio"
+      ],
+      "accessibilityLabel": "Картка слова — saxophone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-47:word:saxophone:audio",
+          "transcript": "saxophone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-47:word:saxophone:r1",
+            "targetText": "saxophone",
+            "meaningByLocale": {
+              "ru": "саксофон. My friend's saxophone is old. — «Саксофон моей подруги старый». О блестящем духовом инструменте.",
+              "uk": "саксофон. My friend's saxophone is old. — «Саксофон моєї подруги старий». Про блискучий духовий інструмент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "saxophone",
+          "definitionByLocale": {
+            "ru": "саксофон. My friend's saxophone is old. — «Саксофон моей подруги старый». О блестящем духовом инструменте.",
+            "uk": "саксофон. My friend's saxophone is old. — «Саксофон моєї подруги старий». Про блискучий духовий інструмент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-47:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i02:r1",
-          "text": "subway"
+          "text": "The saxophone is behind the bench."
         },
         {
           "responseId": "en:lesson-05:session-47:i02:r2",
-          "text": "ferry"
+          "text": "The saxophone is under the bench."
         },
         {
           "responseId": "en:lesson-05:session-47:i02:r3",
-          "text": "violin"
+          "text": "The ukulele is behind the bench."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i02:audio",
-          "transcript": "subway"
+          "transcript": "The saxophone is behind the bench."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-47:i02:r1",
-            "targetText": "subway",
+            "targetText": "The saxophone is behind the bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i02:r2",
-            "targetText": "ferry",
+            "targetText": "The saxophone is under the bench.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i02:r3",
-            "targetText": "violin",
+            "targetText": "The ukulele is behind the bench.",
             "meaningByLocale": null
           }
         ],
@@ -103,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `subway`, а в этом варианте — `ferry`.",
-              "uk": "У записі перше слово — `subway`, а в цьому варіанті — `ferry`."
+              "ru": "В записи `behind` — за скамейкой, а в этом варианте `under` — под скамейкой.",
+              "uk": "У записі `behind` — за лавкою, а в цьому варіанті `under` — під лавкою."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `subway`, а в этом варианте — `violin`.",
-              "uk": "У записі перше слово — `subway`, а в цьому варіанті — `violin`."
+              "ru": "В записи вещь — `saxophone`, саксофон, а в этом варианте — `ukulele`, укулеле.",
+              "uk": "У записі річ — `saxophone`, саксофон, а в цьому варіанті — `ukulele`, укулеле."
             }
           }
         ],
@@ -125,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-47:word:banjo",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — banjo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-47:word:banjo:audio"
+      ],
+      "accessibilityLabel": "Картка слова — banjo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-47:word:banjo:audio",
+          "transcript": "banjo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-47:word:banjo:r1",
+            "targetText": "banjo",
+            "meaningByLocale": {
+              "ru": "банджо. My uncle's banjo is new. — «Банджо моего дяди новое». О струнном инструменте с круглым корпусом.",
+              "uk": "банджо. My uncle's banjo is new. — «Банджо мого дядька нове». Про струнний інструмент із круглим корпусом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "banjo",
+          "definitionByLocale": {
+            "ru": "банджо. My uncle's banjo is new. — «Банджо моего дяди новое». О струнном инструменте с круглым корпусом.",
+            "uk": "банджо. My uncle's banjo is new. — «Банджо мого дядька нове». Про струнний інструмент із круглим корпусом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-47:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть метро в американській англійській",
+      "prompt": "Банджо належить вашій тітці. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i03:r1",
-          "text": "subway"
+          "text": "aunt's"
         },
         {
           "responseId": "en:lesson-05:session-47:i03:r2",
-          "text": "ferry"
+          "text": "aunt"
         },
         {
           "responseId": "en:lesson-05:session-47:i03:r3",
-          "text": "motorbike"
+          "text": "aunts"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть метро в американській англійській",
+      "accessibilityLabel": "Банджо належить вашій тітці. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите метро в американском английском",
-          "uk": "Назвіть метро в американській англійській"
+          "ru": "Банджо принадлежит вашей тёте. Выберите слово",
+          "uk": "Банджо належить вашій тітці. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "The banjo is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-47:i03:r1",
-            "text": "subway"
+            "text": "aunt's"
           },
           {
             "responseId": "en:lesson-05:session-47:i03:r2",
-            "text": "ferry"
+            "text": "aunt"
           },
           {
             "responseId": "en:lesson-05:session-47:i03:r3",
-            "text": "motorbike"
+            "text": "aunts"
           }
         ],
-        "testedDimension": "Назвіть метро в американській англійській",
+        "testedDimension": "Банджо належить вашій тітці. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть метро в американській англійській",
+            "testedDimension": "Банджо належить вашій тітці. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`ferry` — паром; метро — `subway`.",
-              "uk": "`ferry` — пором; метро — `subway`."
+              "ru": "Так получилось бы, что банджо — это сама тётя. Хозяйку называем через `'s`: `aunt's`.",
+              "uk": "Так вийшло б, що банджо — це сама тітка. Господиню називаємо через `'s`: `aunt's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть метро в американській англійській",
+            "testedDimension": "Банджо належить вашій тітці. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`motorbike` — мотоцикл; метро — `subway`.",
-              "uk": "`motorbike` — мотоцикл; метро — `subway`."
+              "ru": "`aunts` — это «тёти», несколько человек; чтобы назвать хозяйку, нужно `aunt's`.",
+              "uk": "`aunts` — це «тітки», кілька людей; щоб назвати господиню, потрібно `aunt's`."
             }
           }
         ]
@@ -195,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -209,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-47:i04:p1",
-            "target": "subway",
+            "target": "ukulele",
             "meaningByLocale": {
-              "ru": "метро (американский английский)",
-              "uk": "метро (американська англійська)"
+              "ru": "укулеле",
+              "uk": "укулеле"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i04:p2",
-            "target": "violin",
+            "target": "saxophone",
             "meaningByLocale": {
-              "ru": "скрипка",
-              "uk": "скрипка"
+              "ru": "саксофон",
+              "uk": "саксофон"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i04:p3",
-            "target": "restaurants",
+            "target": "banjo",
             "meaningByLocale": {
-              "ru": "рестораны",
-              "uk": "ресторани"
+              "ru": "банджо",
+              "uk": "банджо"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i04:p4",
-            "target": "leftover",
+            "target": "cello",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "виолончель",
+              "uk": "віолончель"
             }
           }
         ],
         "leftColumn": [
-          "subway",
-          "violin",
-          "restaurants",
-          "leftover"
+          "ukulele",
+          "saxophone",
+          "banjo",
+          "cello"
         ],
         "rightColumn": [
-          "метро (американська англійська)",
-          "скрипка",
-          "ресторани",
-          "залишок їжі"
+          "укулеле",
+          "саксофон",
+          "банджо",
+          "віолончель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,34 +399,92 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-47:word:cello",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cello",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-47:word:cello:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cello",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-47:word:cello:audio",
+          "transcript": "cello"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-47:word:cello:r1",
+            "targetText": "cello",
+            "meaningByLocale": {
+              "ru": "виолончель. My aunt's cello is big. — «Виолончель моей тёти большая». О большом смычковом инструменте, на котором играют сидя.",
+              "uk": "віолончель. My aunt's cello is big. — «Віолончель моєї тітки велика». Про великий смичковий інструмент, на якому грають сидячи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cello",
+          "definitionByLocale": {
+            "ru": "виолончель. My aunt's cello is big. — «Виолончель моей тёти большая». О большом смычковом инструменте, на котором играют сидя.",
+            "uk": "віолончель. My aunt's cello is big. — «Віолончель моєї тітки велика». Про великий смичковий інструмент, на якому грають сидячи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-47:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте дядька й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте дядька й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i05:audio",
-          "transcript": "Where is the subway?"
+          "transcript": "My uncle's cello is in the hall."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the subway?",
+        "hiddenTargetPhrase": "My uncle's cello is in the hall.",
         "orderedTokens": [
-          "Where",
+          "My",
+          "uncle's",
+          "cello",
           "is",
+          "in",
           "the",
-          "subway"
+          "hall"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте дядька й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `My uncle's cello is in the hall.`",
+              "uk": "тут потрібно `is` — `My uncle's cello is in the hall.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -304,41 +494,39 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Залишки їжі в холодильнику»",
+      "prompt": "Ви знайшли на лавці банджо й питаєте подругу, чиє воно. Поставте питання: «Чиє це банджо?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Залишки їжі в холодильнику»",
+      "accessibilityLabel": "Ви знайшли на лавці банджо й питаєте подругу, чиє воно. Поставте питання: «Чиє це банджо?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The leftovers are in the fridge.",
+        "targetPhrase": "Whose banjo is this?",
         "localizedMeaning": {
-          "ru": "Скажите «Остатки еды в холодильнике»",
-          "uk": "Скажіть «Залишки їжі в холодильнику»"
+          "ru": "Вы нашли на скамейке банджо и спрашиваете подругу, чьё оно. Задайте вопрос: «Чьё это банджо?»",
+          "uk": "Ви знайшли на лавці банджо й питаєте подругу, чиє воно. Поставте питання: «Чиє це банджо?»"
         },
         "orderedTokens": [
-          "The",
-          "leftovers",
-          "are",
-          "in",
-          "the",
-          "fridge"
+          "Whose",
+          "banjo",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Who"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажіть «Залишки їжі в холодильнику»",
+            "testedDimension": "Ви знайшли на лавці банджо й питаєте подругу, чиє воно. Поставте питання: «Чиє це банджо?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The leftovers are in the fridge.`",
-              "uk": "тут потрібно `are` — `The leftovers are in the fridge.`"
+              "ru": "здесь нужно `Whose` — `Whose banjo is this?`",
+              "uk": "тут потрібно `Whose` — `Whose banjo is this?`"
             }
           }
         ],
@@ -351,25 +539,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Метро поруч із готелем»",
+      "prompt": "Подруга питає, де віолончель. Вона за лавкою. Скажіть: «Віолончель за лавкою»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Скажіть «Метро поруч із готелем»",
+      "accessibilityLabel": "Подруга питає, де віолончель. Вона за лавкою. Скажіть: «Віолончель за лавкою»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i07:audio",
-          "transcript": "The subway is near the hotel."
+          "transcript": "The cello is behind the bench."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The subway is near the hotel.",
+        "targetPhrase": "The cello is behind the bench.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -384,11 +572,11 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, де ресторани",
+      "prompt": "Ви питаєте музиканта, де ресторани. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i08:r1",
@@ -405,12 +593,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, де ресторани",
+      "accessibilityLabel": "Ви питаєте музиканта, де ресторани. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где рестораны",
-          "uk": "Запитайте, де ресторани"
+          "ru": "Вы спрашиваете музыканта, где рестораны. Выберите слово",
+          "uk": "Ви питаєте музиканта, де ресторани. Виберіть слово"
         },
         "gappedTargetPhrase": "Where ___ the restaurants?",
         "gapOptions": [
@@ -427,24 +615,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Запитайте, де ресторани",
+        "testedDimension": "Ви питаєте музиканта, де ресторани. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте, де ресторани",
+            "testedDimension": "Ви питаєте музиканта, де ресторани. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Несколько ресторанов: `restaurants`, нужна форма `are`.",
-              "uk": "Кілька ресторанів: `restaurants`, потрібна форма `are`."
+              "ru": "Ресторанов несколько, поэтому нужно `are`, а не `is`.",
+              "uk": "Ресторанів кілька, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте, де ресторани",
+            "testedDimension": "Ви питаєте музиканта, де ресторани. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `are`.",
-              "uk": "`am` використовується з `I`; тут `are`."
+              "ru": "`am` используется только с `I`; здесь нужно `are`.",
+              "uk": "`am` використовується лише з `I`; тут потрібно `are`."
             }
           }
         ]
@@ -453,51 +641,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, яку річ називає Том",
+      "prompt": "Послухайте музиканта",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i09:r1",
-          "text": "This is Anna's violin."
+          "text": "Where is the cello?"
         },
         {
           "responseId": "en:lesson-05:session-47:i09:r2",
-          "text": "This is Anna's laptop."
+          "text": "Where are the cellos?"
         },
         {
           "responseId": "en:lesson-05:session-47:i09:r3",
-          "text": "This is Anna's bicycle."
+          "text": "Where is the banjo?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, яку річ називає Том",
+      "accessibilityLabel": "Послухайте музиканта",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i09:audio",
-          "transcript": "This is Anna's violin."
+          "transcript": "Where is the cello?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-47:i09:r1",
-            "targetText": "This is Anna's violin.",
+            "targetText": "Where is the cello?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i09:r2",
-            "targetText": "This is Anna's laptop.",
+            "targetText": "Where are the cellos?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i09:r3",
-            "targetText": "This is Anna's bicycle.",
+            "targetText": "Where is the banjo?",
             "meaningByLocale": null
           }
         ],
@@ -506,19 +694,19 @@
           {
             "responseId": "en:lesson-05:session-47:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає Том",
+            "testedDimension": "Послухайте музиканта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `violin`, а в этом варианте — `laptop`.",
-              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `laptop`."
+              "ru": "В записи `cello is` — одна виолончель, а в этом варианте `cellos are` — несколько виолончелей.",
+              "uk": "У записі `cello is` — одна віолончель, а в цьому варіанті `cellos are` — кілька віолончелей."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, яку річ називає Том",
+            "testedDimension": "Послухайте музиканта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `violin`, а в этом варианте — `bicycle`.",
-              "uk": "У записі останнє слово — `violin`, а в цьому варіанті — `bicycle`."
+              "ru": "В записи вещь — `cello`, а в этом варианте — `banjo`.",
+              "uk": "У записі річ — `cello`, а в цьому варіанті — `banjo`."
             }
           }
         ],
@@ -529,8 +717,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -543,48 +731,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-47:i10:p1",
-            "target": "subway",
+            "target": "ukulele",
             "meaningByLocale": {
-              "ru": "метро (американский английский)",
-              "uk": "метро (американська англійська)"
+              "ru": "укулеле",
+              "uk": "укулеле"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i10:p2",
-            "target": "dangerous",
+            "target": "saxophone",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "саксофон",
+              "uk": "саксофон"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i10:p3",
-            "target": "leftover",
+            "target": "guitar",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "гитара",
+              "uk": "гітара"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i10:p4",
-            "target": "violin",
+            "target": "piano",
             "meaningByLocale": {
-              "ru": "скрипка",
-              "uk": "скрипка"
+              "ru": "пианино",
+              "uk": "піаніно"
             }
           }
         ],
         "leftColumn": [
-          "subway",
-          "dangerous",
-          "leftover",
-          "violin"
+          "ukulele",
+          "saxophone",
+          "guitar",
+          "piano"
         ],
         "rightColumn": [
-          "метро (американська англійська)",
-          "небезпечний",
-          "залишок їжі",
-          "скрипка"
+          "укулеле",
+          "саксофон",
+          "гітара",
+          "піаніно"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -602,33 +790,50 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте подругу й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте подругу й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i11:audio",
-          "transcript": "Whose violin is this?"
+          "transcript": "The banjo and the cello are in the hall."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose violin is this?",
+        "hiddenTargetPhrase": "The banjo and the cello are in the hall.",
         "orderedTokens": [
-          "Whose",
-          "violin",
-          "is",
-          "this"
+          "The",
+          "banjo",
+          "and",
+          "the",
+          "cello",
+          "are",
+          "in",
+          "the",
+          "hall"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-47:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте подругу й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The banjo and the cello are in the hall.`",
+              "uk": "тут потрібно `are` — `The banjo and the cello are in the hall.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -638,39 +843,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скрипка належить Анні. Скажіть «Скрипка її»",
+      "prompt": "Перехожий питає, чий саксофон. Він вашої подруги. Скажіть повною фразою: «Це саксофон моєї подруги»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скрипка належить Анні. Скажіть «Скрипка її»",
+      "accessibilityLabel": "Перехожий питає, чий саксофон. Він вашої подруги. Скажіть повною фразою: «Це саксофон моєї подруги»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The violin is hers.",
+        "targetPhrase": "This is my friend's saxophone.",
         "localizedMeaning": {
-          "ru": "Скрипка принадлежит Анне. Скажите «Скрипка её»",
-          "uk": "Скрипка належить Анні. Скажіть «Скрипка її»"
+          "ru": "Прохожий спрашивает, чей саксофон. Он вашей подруги. Скажите полной фразой: «Это саксофон моей подруги»",
+          "uk": "Перехожий питає, чий саксофон. Він вашої подруги. Скажіть повною фразою: «Це саксофон моєї подруги»"
         },
         "orderedTokens": [
-          "The",
-          "violin",
+          "This",
           "is",
-          "hers"
+          "my",
+          "friend's",
+          "saxophone"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "friend"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Скрипка належить Анні. Скажіть «Скрипка її»",
+            "testedDimension": "Перехожий питає, чий саксофон. Він вашої подруги. Скажіть повною фразою: «Це саксофон моєї подруги»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The violin is hers.`",
-              "uk": "тут потрібно `is` — `The violin is hers.`"
+              "ru": "здесь нужно `friend's` — `This is my friend's saxophone.`",
+              "uk": "тут потрібно `friend's` — `This is my friend's saxophone.`"
             }
           }
         ],
@@ -683,25 +889,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть Анні «Твоя скрипка в мене»",
+      "prompt": "Подруга питає, чиє це укулеле. Воно її. Скажіть: «Укулеле її»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть Анні «Твоя скрипка в мене»",
+      "accessibilityLabel": "Подруга питає, чиє це укулеле. Воно її. Скажіть: «Укулеле її»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i13:audio",
-          "transcript": "I have your violin."
+          "transcript": "The ukulele is hers."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your violin.",
+        "targetPhrase": "The ukulele is hers.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -716,67 +922,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте, де метро",
+      "prompt": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i14:r1",
-          "text": "Where"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-47:i14:r2",
-          "text": "Whose"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-47:i14:r3",
-          "text": "Who"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте, де метро",
+      "accessibilityLabel": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите, где метро",
-          "uk": "Запитайте, де метро"
+          "ru": "У вашей тёти есть виолончель. Скажите об этом подруге. Выберите слово",
+          "uk": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ is the subway?",
+        "gappedTargetPhrase": "My aunt ___ a cello.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-47:i14:r1",
-            "text": "Where"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-47:i14:r2",
-            "text": "Whose"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-47:i14:r3",
-            "text": "Who"
+            "text": "is"
           }
         ],
-        "testedDimension": "Запитайте, де метро",
+        "testedDimension": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Запитайте, де метро",
+            "testedDimension": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Whose` — чей; где — `Where`.",
-              "uk": "`Whose` — чий; де — `Where`."
+              "ru": "Тётя одна, как she, поэтому нужно `has`, а не `have`.",
+              "uk": "Тітка одна, як she, тому потрібно `has`, а не `have`."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Запитайте, де метро",
+            "testedDimension": "У вашої тітки є віолончель. Скажіть про це подрузі. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`Who` — кто; где — `Where`.",
-              "uk": "`Who` — хто; де — `Where`."
+              "ru": "`is` значит «является»: получится «тётя — виолончель». Для «у неё есть» нужно `has`.",
+              "uk": "`is` означає «є»: вийде «тітка — віолончель». Для «у неї є» потрібно `has`."
             }
           }
         ]
@@ -785,51 +991,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чия скрипка тут",
+      "prompt": "Послухайте музиканта",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-47:i15:r1",
-          "text": "Your violin is here."
+          "text": "The saxophone is theirs."
         },
         {
           "responseId": "en:lesson-05:session-47:i15:r2",
-          "text": "My violin is here."
+          "text": "The saxophone is ours."
         },
         {
           "responseId": "en:lesson-05:session-47:i15:r3",
-          "text": "His violin is here."
+          "text": "The ukulele is theirs."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чия скрипка тут",
+      "accessibilityLabel": "Послухайте музиканта",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i15:audio",
-          "transcript": "Your violin is here."
+          "transcript": "The saxophone is theirs."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-47:i15:r1",
-            "targetText": "Your violin is here.",
+            "targetText": "The saxophone is theirs.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i15:r2",
-            "targetText": "My violin is here.",
+            "targetText": "The saxophone is ours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-47:i15:r3",
-            "targetText": "His violin is here.",
+            "targetText": "The ukulele is theirs.",
             "meaningByLocale": null
           }
         ],
@@ -838,19 +1044,19 @@
           {
             "responseId": "en:lesson-05:session-47:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чия скрипка тут",
+            "testedDimension": "Послухайте музиканта",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи `theirs` — «их», а в этом варианте `ours` — «наш».",
+              "uk": "У записі `theirs` — «їхній», а в цьому варіанті `ours` — «наш»."
             }
           },
           {
             "responseId": "en:lesson-05:session-47:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чия скрипка тут",
+            "testedDimension": "Послухайте музиканта",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи вещь — `saxophone`, а в этом варианте — `ukulele`.",
+              "uk": "У записі річ — `saxophone`, а в цьому варіанті — `ukulele`."
             }
           }
         ],
@@ -861,7 +1067,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -875,48 +1081,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-47:i16:p1",
-            "target": "subway",
+            "target": "ukulele",
             "meaningByLocale": {
-              "ru": "метро (американский английский)",
-              "uk": "метро (американська англійська)"
+              "ru": "укулеле",
+              "uk": "укулеле"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i16:p2",
-            "target": "dangerous",
+            "target": "saxophone",
             "meaningByLocale": {
-              "ru": "опасный",
-              "uk": "небезпечний"
+              "ru": "саксофон",
+              "uk": "саксофон"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i16:p3",
-            "target": "restaurants",
+            "target": "banjo",
             "meaningByLocale": {
-              "ru": "рестораны",
-              "uk": "ресторани"
+              "ru": "банджо",
+              "uk": "банджо"
             }
           },
           {
             "pairId": "en:lesson-05:session-47:i16:p4",
-            "target": "violin",
+            "target": "cello",
             "meaningByLocale": {
-              "ru": "скрипка",
-              "uk": "скрипка"
+              "ru": "виолончель",
+              "uk": "віолончель"
             }
           }
         ],
         "leftColumn": [
-          "subway",
-          "dangerous",
-          "restaurants",
-          "violin"
+          "ukulele",
+          "saxophone",
+          "banjo",
+          "cello"
         ],
         "rightColumn": [
-          "метро (американська англійська)",
-          "небезпечний",
-          "ресторани",
-          "скрипка"
+          "укулеле",
+          "саксофон",
+          "банджо",
+          "віолончель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -934,25 +1140,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-47:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Перед виходом ви знайшли скрипку біля дверей. Запитайте «Чия це скрипка?»",
+      "prompt": "Перехожий питає, чий це саксофон. Він ваш. Відповідьте: «Саксофон мій»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Перед виходом ви знайшли скрипку біля дверей. Запитайте «Чия це скрипка?»",
+      "accessibilityLabel": "Перехожий питає, чий це саксофон. Він ваш. Відповідьте: «Саксофон мій»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-47:i17:audio",
-          "transcript": "Whose violin is this?"
+          "transcript": "The saxophone is mine."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose violin is this?",
+        "targetPhrase": "The saxophone is mine.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -974,11 +1180,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7e7b36de96060b60c49aa1606f471afb71d94ca9513450da8fdfaf85610b1a85"
+  "learnerFingerprint": "83ad8bcfd841edd1be3b2f3d9475afff8415617abc7333b7fb85a522fe7c367c"
 }

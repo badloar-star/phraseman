@@ -1,137 +1,154 @@
-# Англійська · Урок 5 · Заняття 46 — Ноутбук перед поїздкою
+# Англійська · Урок 5 · Заняття 46 — Поїздка на поромі
 
-**Ситуація.** Анна й Том збираються в поїздку на поромі. У гостьовому будинку вони перевіряють сумки й знаходять ноутбук.
+**Ситуація.** Ви пливете на поромі з родиною та друзями. На палубі багато речей, і треба зрозуміти, чий жилет, де що лежить і на чиїй сумці сидить чайка.
 
-**Що ви опануєте:** запитати про місце відправлення й повернути ноутбук власникові
-**Нові слова:** ferry
+**Що ви опануєте:** спитати, чия річ, сказати, де вона лежить, і вибрати is чи are, якщо речей дві
+**Нові слова:** lifejacket, deck, seagull, anchor
+**Повертаються:** jacket, bag, brother, sister, friend, uncle, neighbour
 
 ---
 
 ## Інтро 1
 
-### Через воду
+### Жилет на лаві
 
-`ferry` — «пором», судно, яке перевозить людей, а іноді й машини через воду. `Where is the ferry?` — «Де пором?» `The ferry is here` — «Пором тут». Пором перевезе сумку, але збирати її все-таки доведеться вам.
+Пором скоро відпливає. Ви знайшли на лаві яскравий рятувальний жилет. Поруч сидить сусід, і ви питаєте, чий він. lifejacket — «рятувальний жилет»: він тримає людину на воді. Про господаря питаємо так: Whose lifejacket is this? — «Чий це жилет?»
 
-**Запитайте «Де пором?»**
+**На лаві лежить рятувальний жилет. Спитайте сусіда: «Чий це жилет?»**
 
-- ✅ **Where is the ferry?**
-- ❌ Whose ferry is this? — *Це запитання про власника; про місце запитуємо з `Where`.*
-- ❌ Where are the ferry? — *Один пором: `is`.*
+- ✅ **Whose lifejacket is this?**
+- ❌ Whose lifejacket are these? — *Жилет один, тому потрібно is this.*
+- ❌ Who lifejacket is this? — *Who означає «хто». Коли питаємо «чий», потрібно Whose.*
 
 ---
 
 ## Інтро 2
 
-### Чий ноутбук?
+### Куртка на палубі
 
-`laptop` — «ноутбук». `Whose laptop is this?` — «Чий це ноутбук?» `This is Anna’s laptop` — «Це ноутбук Анни». `The laptop is hers` — «Ноутбук її». `I have your laptop` — «Твій ноутбук у мене».
+На палубі порома віє холодний вітер, і подруга змерзла. Вона питає, де саме ваша куртка. Ви залишили її нагорі. deck — «палуба»: верхня відкрита частина порома. Місце називаємо зі словом on: My jacket is on the deck — «Моя куртка на палубі».
 
-**Скажіть «Ноутбук її».**
+**Подруга змерзла й питає, де ваша куртка. Вона на палубі. Скажіть їй: «Моя куртка на палубі».**
 
-- ✅ **The laptop is hers.**
-- ❌ The laptop is her. — *Без наступної назви речі потрібна самостійна форма `hers`.*
-- ❌ The laptop are hers. — *Один ноутбук: `is`.*
+- ✅ **My jacket is on the deck.**
+- ❌ My jacket is in the deck. — *in означає «всередині», а палуба відкрита зверху: на ній потрібно on.*
+- ❌ My jacket are on the deck. — *Куртка одна, тому потрібно is, а не are.*
 
 ---
 
 ## Інтро 3
 
-### Місце й користь
+### Чайка на сумці
 
-`airport` — «аеропорт», `pantry` — «комора для продуктів». `Tom is at the airport` — «Том в аеропорту». `The bag is in the pantry` — «Сумка в коморі». `useless` — «некорисний»: `This laptop is useless` — «Цей ноутбук не приносить користі», наприклад якщо для вашого завдання він зовсім не підходить.
+Пором стоїть біля старого причалу, і ваша сестра фотографує воду. Поки вона знімає, на її сумку сіла чайка. seagull — «чайка». Брат показує на неї. Господиню сумки називаємо з 's: The seagull is on my sister's bag — «Чайка на сумці моєї сестри».
 
-**Скажіть «Цей ноутбук не приносить користі».**
+**Брат показує на чайку. Вона сидить на сумці вашої сестри. Скажіть йому: «Чайка на сумці моєї сестри».**
 
-- ✅ **This laptop is useless.**
-- ❌ This laptop are useless. — *Один ноутбук: `is`.*
-- ❌ This laptop is useful. — *`useful` — корисний; некорисний — `useless`.*
+- ✅ **The seagull is on my sister's bag.**
+- ❌ The seagull is on my sister bag. — *Після слова sister потрібно 's: my sister's bag.*
+- ❌ The seagulls are on my sister's bag. — *Чайка одна, тому потрібно The seagull is.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Ноутбук зовсім не підходить для вашого завдання. Скажіть «Цей ноутбук не приносить користі»**
+**1 · Картка слова — lifejacket**
+<!-- interaction_id: en:lesson-05:session-46:word:lifejacket; family: word_card -->
+> **lifejacket** — рятувальний жилет. My brother's lifejacket is orange. — «Рятувальний жилет мого брата помаранчевий». Про жилет, який тримає людину на воді.
+
+**2 · Сусід по лаві питає, чий жилет. Він вашого брата. Скажіть повною фразою: «Це рятувальний жилет мого брата»**
 <!-- interaction_id: en:lesson-05:session-46:i01; family: phrase_builder -->
-Плитки: `useless` `is` `laptop` `This` `are` → **This laptop is useless.**
-*(плитка `are` зайва: тут потрібно `is` — `This laptop is useless.`)*
+Плитки: `lifejacket` `brother's` `my` `is` `This` `brother` → **This is my brother's lifejacket.**
+*(плитка `brother` зайва: тут потрібно `brother's` — `This is my brother's lifejacket.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Картка слова — deck**
+<!-- interaction_id: en:lesson-05:session-46:word:deck; family: word_card -->
+> **deck** — палуба. My friend's bag is on the deck. — «Сумка моєї подруги на палубі». Про верхню відкриту частину порома.
+
+**4 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-05:session-46:i02; family: listen_choose -->
-🔊 *ferry* → **ferry** · airport · pantry
-- airport — *У записі перше слово — `ferry`, а в цьому варіанті — `airport`.*
-- pantry — *У записі перше слово — `ferry`, а в цьому варіанті — `pantry`.*
+🔊 *The lifejacket is on the deck.* → **The lifejacket is on the deck.** · The lifejacket is in the deck. · The jacket is on the deck.
+- The lifejacket is in the deck. — *У записі `on` — на палубі, а в цьому варіанті `in` — всередині палуби.*
+- The jacket is on the deck. — *У записі річ — `lifejacket`, рятувальний жилет, а в цьому варіанті — `jacket`, куртка.*
 
-**3 · Назвіть пором**
+**5 · Картка слова — seagull**
+<!-- interaction_id: en:lesson-05:session-46:word:seagull; family: word_card -->
+> **seagull** — чайка. The seagull is big. — «Чайка велика». Про великого білого морського птаха.
+
+**6 · Чайка сіла на сумку вашого дядька. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-46:i03; family: context_gap_grammar -->
-___ → **ferry** · airport · laptop
-- airport — *`airport` — аеропорт; пором — `ferry`.*
-- laptop — *`laptop` — ноутбук; пором — `ferry`.*
+The seagull is on my ___ bag. → **uncle's** · uncle · uncles
+- uncle — *Так вийшло б, що сумка — це сам дядько. Господаря називаємо через `'s`: `uncle's`.*
+- uncles — *`uncles` — це «дядьки», кілька людей; щоб назвати господаря, потрібно `uncle's`.*
 
-**4 · З’єднайте слова зі значеннями**
+**7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-46:i04; family: speed_match -->
-ferry — пором · laptop — ноутбук · airport — аеропорт · pantry — комора для продуктів
+lifejacket — рятувальний жилет · deck — палуба · seagull — чайка · anchor — якір
 
-**5 · Послухайте й складіть запитання**
+**8 · Картка слова — anchor**
+<!-- interaction_id: en:lesson-05:session-46:word:anchor; family: word_card -->
+> **anchor** — якір. The anchor is black. — «Якір чорний». Про важкий залізний гак, який тримає пором біля берега.
+
+**9 · Послухайте брата й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-46:i05; family: listen_build_dictation -->
-🔊 *Where is the ferry?* Плитки: `ferry` `the` `is` `Where` → **Where is the ferry?**
+🔊 *The anchor is heavy.* Плитки: `anchor` `heavy` `is` `The` `are` → **The anchor is heavy.**
+*(плитка `are` зайва: тут потрібно `is` — `The anchor is heavy.`)*
 
-**6 · Скажіть «Сумка в коморі для продуктів»**
+**10 · Ви побачили на палубі сумку й питаєте сусіда, чия вона. Поставте питання: «Чия це сумка?»**
 <!-- interaction_id: en:lesson-05:session-46:i06; family: phrase_builder -->
-Плитки: `pantry` `the` `in` `is` `bag` `The` `are` → **The bag is in the pantry.**
-*(плитка `are` зайва: тут потрібно `is` — `The bag is in the pantry.`)*
+Плитки: `bag` `this` `is` `Whose` `Who` → **Whose bag is this?**
+*(плитка `Who` зайва: тут потрібно `Whose` — `Whose bag is this?`)*
 
-**7 · Ви побачили пором. Скажіть «Пором тут»**
+**11 · Сусід питає, де сумка вашої сестри. Вона на палубі. Скажіть: «Сумка моєї сестри на палубі»**
 <!-- interaction_id: en:lesson-05:session-46:i07; family: scripted_repeat_compare -->
-🎙 **The ferry is here.**
+🎙 **My sister's bag is on the deck.**
 
-**8 · Запитайте про власника ноутбука**
+**12 · Ви показуєте сусідові чайку. Вона сидить на палубі. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-46:i08; family: context_gap_grammar -->
-Whose laptop ___ this? → **is** · are · am
-- are — *Один ноутбук: `is this`.*
-- am — *`am` використовується з `I`; тут `is this`.*
+The seagull ___ on the deck. → **is** · are · has
+- are — *Чайка одна, тому потрібно `is`, а не `are`.*
+- has — *`has` означає «має», а тут треба сказати, де чайка: `is`.*
 
-**9 · Послухайте, яку річ називає Том**
+**13 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-46:i09; family: listen_choose -->
-🔊 *This is Anna's laptop.* → **This is Anna's laptop.** · This is Anna's bicycle. · This is Anna's ring.
-- This is Anna's bicycle. — *У записі останнє слово — `laptop`, а в цьому варіанті — `bicycle`.*
-- This is Anna's ring. — *У записі останнє слово — `laptop`, а в цьому варіанті — `ring`.*
+🔊 *Whose lifejacket is this?* → **Whose lifejacket is this?** · Whose lifejackets are these? · Whose anchor is this?
+- Whose lifejackets are these? — *У записі `lifejacket is this` — один жилет, а в цьому варіанті `lifejackets are these` — кілька жилетів.*
+- Whose anchor is this? — *У записі річ — `lifejacket`, а в цьому варіанті — `anchor`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-46:i10; family: speed_match -->
-ferry — пором · useless — некорисний · pantry — комора для продуктів · laptop — ноутбук
+seagull — чайка · anchor — якір · bag — сумка · jacket — куртка
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-05:session-46:i11; family: listen_build_dictation -->
-🔊 *Tom is at the airport.* Плитки: `airport` `the` `at` `is` `Tom` `are` → **Tom is at the airport.**
-*(плитка `are` зайва: тут потрібно `is` — `Tom is at the airport.`)*
+🔊 *My friend's lifejacket is on the deck.* Плитки: `lifejacket` `friend's` `is` `on` `the` `deck` `My` `are` → **My friend's lifejacket is on the deck.**
+*(плитка `are` зайва: тут потрібно `is` — `My friend's lifejacket is on the deck.`)*
 
-**12 · Ноутбук належить Анні. Скажіть «Ноутбук її»**
+**16 · Подруга показує на чайку. Вона сидить на куртці вашого брата. Скажіть: «Чайка на куртці мого брата»**
 <!-- interaction_id: en:lesson-05:session-46:i12; family: phrase_builder -->
-Плитки: `hers` `is` `laptop` `The` `are` → **The laptop is hers.**
-*(плитка `are` зайва: тут потрібно `is` — `The laptop is hers.`)*
+Плитки: `seagull` `brother's` `is` `on` `my` `jacket` `The` `brother` → **The seagull is on my brother's jacket.**
+*(плитка `brother` зайва: тут потрібно `brother's` — `The seagull is on my brother's jacket.`)*
 
-**13 · Скажіть Анні «Твій ноутбук у мене»**
+**17 · Подруга питає, чий це жилет. Він її. Скажіть: «Жилет її»**
 <!-- interaction_id: en:lesson-05:session-46:i13; family: scripted_repeat_compare -->
-🎙 **I have your laptop.**
+🎙 **The lifejacket is hers.**
 
-**14 · Запитайте, де пором**
+**18 · На палубі лежать якір і жилет. Скажіть про це сусідові. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-46:i14; family: context_gap_grammar -->
-___ is the ferry? → **Where** · Whose · Who
-- Whose — *`Whose` — чий; де — `Where`.*
-- Who — *`Who` — хто; де — `Where`.*
+The anchor and the lifejacket ___ on the deck. → **are** · is · has
+- is — *Речей дві, тому потрібно `are`, а не `is`.*
+- has — *`has` означає «має», а тут треба сказати, де речі: `are`.*
 
-**15 · Послухайте, чий ноутбук тут**
+**19 · Послухайте брата**
 <!-- interaction_id: en:lesson-05:session-46:i15; family: listen_choose -->
-🔊 *Your laptop is here.* → **Your laptop is here.** · My laptop is here. · His laptop is here.
-- My laptop is here. — *У записі перше слово — `Your`, а в цьому варіанті — `My`.*
-- His laptop is here. — *У записі перше слово — `Your`, а в цьому варіанті — `His`.*
+🔊 *The anchor is on the deck.* → **The anchor is on the deck.** · The anchor is under the deck. · The seagull is on the deck.
+- The anchor is under the deck. — *У записі `on` — на палубі, а в цьому варіанті `under` — під палубою.*
+- The seagull is on the deck. — *У записі річ — `anchor`, якір, а в цьому варіанті — `seagull`, чайка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-05:session-46:i16; family: speed_match -->
-ferry — пором · useless — некорисний · airport — аеропорт · laptop — ноутбук
+lifejacket — рятувальний жилет · deck — палуба · seagull — чайка · anchor — якір
 
-**17 · Перед поїздкою ви знайшли ноутбук. Запитайте друзів «Чий це ноутбук?»**
+**21 · Сусід питає, чий це жилет. Він ваш. Відповідьте: «Жилет мій»**
 <!-- interaction_id: en:lesson-05:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Whose laptop is this?**
-
+🎙 **The lifejacket is mine.**

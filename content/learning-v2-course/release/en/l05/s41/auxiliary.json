@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-41:intro1:r2": {
-          "ru": "Это вопрос о месте; о владельце спрашиваем с `Whose`.",
-          "uk": "Це запитання про місце; про власника запитуємо з `Whose`."
+          "ru": "Без вещи после my нельзя. Когда вещь не называем, нужно mine.",
+          "uk": "Без речі після my не можна. Коли річ не називаємо, потрібно mine."
         },
         "en:lesson-05:session-41:intro1:r3": {
-          "ru": "Один шкафчик: `is this`.",
-          "uk": "Одна шафка: `is this`."
+          "ru": "Карта-ключ одна, поэтому нужно is, а не are.",
+          "uk": "Картка-ключ одна, тому потрібно is, а не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-41:intro2:r2": {
-          "ru": "С `you` нужна форма `are`.",
-          "uk": "З `you` потрібна форма `are`."
+          "ru": "Who значит «кто». Когда спрашиваем «чей», нужно Whose.",
+          "uk": "Who означає «хто». Коли питаємо «чий», потрібно Whose."
         },
         "en:lesson-05:session-41:intro2:r3": {
-          "ru": "`brave` — смелый; честный — `honest`.",
-          "uk": "`brave` — сміливий; чесний — `honest`."
+          "ru": "Секундомер один, поэтому нужно is this.",
+          "uk": "Секундомір один, тому потрібно is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-41:intro3:r2": {
-          "ru": "С `I` используется `have`.",
-          "uk": "З `I` використовується `have`."
+          "ru": "После слова brother нужно 's: my brother's locker.",
+          "uk": "Після слова brother потрібно 's: my brother's locker."
         },
         "en:lesson-05:session-41:intro3:r3": {
-          "ru": "`my` — мои; здесь нужны твои: `your`.",
-          "uk": "`my` — мій; тут потрібне твій: `your`."
+          "ru": "Костюм один, поэтому нужно The tracksuit is.",
+          "uk": "Костюм один, тому потрібно The tracksuit is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0cd5077cace835c777b1c43587db86142bda4a58e5a1a4d72014cb0b1af9edd0"
+  "auxiliaryFingerprint": "77a260f998cbfb2033570f702b26afb6817073c5293527d9ed2678d56aad5b14"
 }

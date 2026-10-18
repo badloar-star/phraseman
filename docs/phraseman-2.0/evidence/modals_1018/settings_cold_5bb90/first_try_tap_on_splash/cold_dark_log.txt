@@ -1,0 +1,40 @@
+10-18 09:27:37.546 W/'[BOOTSPLASH] +2547ms [THEME-BOOT] splash-hold: первый кадр :: {"bg":"#101214"}', { [Stack] name: 'Stack' }
+10-18 09:27:37.689 I/[TAB-FIRST-FRAME] activate {"idx":0,"at":1792312057688,"mounted":true,"visited":true,"physicalPageIdx":0,"mountedCount":1}
+10-18 09:27:37.723 W/'[BOOTSPLASH] +2724ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"system","systemScheme":"dark","choiceReady":false,"theme":"graphite"}', { [Stack] name: 'Stack' }
+10-18 09:27:37.725 W/'[BOOTSPLASH] +2727ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":true,"canHideNativeSplash":false}', { [Stack] name: 'Stack' }
+10-18 09:27:37.820 W/'[BOOTSPLASH] +2821ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":false,"canHide":false,"sinceFirstContentSetM
+10-18 09:27:37.998 W/'[BOOTSPLASH] +3000ms bootstrap START -> ensureFreshPostDeletionIdentity', { [Stack] name: 'Stack' }
+10-18 09:27:38.052 I/[THEME-BOOT] frame {"frame":1,"msSinceBoot":5211,"systemScheme":"dark","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":false,"hydratedInProcess":false,"
+10-18 09:27:38.399 I/[THEME-BOOT] hydrate {"msSinceBoot":5563,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"}
+10-18 09:27:38.413 W/[BOOTSPLASH] +3411ms homeScreenReady FALLBACK fired (чанк Главной не доехал за потолок)
+10-18 09:27:39.529 W/'[BOOTSPLASH] +4525ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'Stack' }
+10-18 09:27:39.554 W/'[BOOTSPLASH] +4554ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"sinceFirstContentSetMs"
+10-18 09:27:39.556 I/[THEME-BOOT] frame {"frame":2,"msSinceBoot":6720,"systemScheme":"dark","followSystem":true,"savedTheme":"marine","savedAppearance":"dark","chosenTheme":"marine","chosenAppearance":"dark","choiceReady":true,"hydratedInProcess":true,"covered
+10-18 09:27:39.670 W/[BOOTSPLASH] +4673ms bootstrap DEADLINE — setReady(true) по потолку, работа идёт фоном
+10-18 09:27:39.702 W/[BOOTSPLASH] +4702ms ensureFreshPostDeletionIdentity DONE :: {"status":"pending_auth","phase":"prepared"}
+10-18 09:27:39.706 W/[BOOTSPLASH] +4707ms runAuthRecoveryBootGate START
+10-18 09:27:39.737 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":1,"sinceEntryMs":8074,"source":"emitFirstHomeFrameReady <- RN$rafFn"}'
+10-18 09:27:39.738 W/[BOOTSPLASH] +4742ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:27:39.784 W/[BOOTSPLASH] +4787ms HOME-PAINT early hide: held :: {"holding":["fontsReady","ready"],"fontsReady":false,"ready":false,"liquidGlassChoiceReady":true,"effectiveShowOnboarding":false,"isBanned":false}
+10-18 09:27:39.802 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":2,"sinceEntryMs":8139,"source":"RN$rafFn"}'
+10-18 09:27:39.805 W/[BOOTSPLASH] +4806ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:27:39.838 W/[BOOTSPLASH] +4841ms runAuthRecoveryBootGate DONE :: {"result":"proceed"}
+10-18 09:27:39.839 W/[BOOTSPLASH] +4843ms getStableId START
+10-18 09:27:39.845 W/[BOOTSPLASH] +4847ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":72}
+10-18 09:27:39.846 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":3,"sinceEntryMs":8185,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:27:39.847 W/[BOOTSPLASH] +4851ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:27:40.050 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":4,"sinceEntryMs":8387,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:27:40.051 W/[BOOTSPLASH] +5054ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:27:40.052 W/[BOOTSPLASH] +5055ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":172}
+10-18 09:27:40.081 W/[BOOTSPLASH] +5084ms getStableId DONE
+10-18 09:27:40.127 W/[BOOTSPLASH] +5129ms startupLocalHydration RACE START (budget 350ms)
+10-18 09:27:40.510 W/'[BOOTSPLASH] +5498ms [THEME-BOOT] splash-hold :: {"visible":false,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'Stack' }
+10-18 09:27:40.512 W/'[BOOTSPLASH] +5514ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":false,"canHideNativeSplash":true}', { [Stack] name: 'Stack' }
+10-18 09:27:40.552 W/'[BOOTSPLASH] +5552ms splash gate :: {"fontsReady":true,"ready":true,"firstContentReady":true,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":true,"sinceFirstContentSetMs":703
+10-18 09:27:40.555 W/'[BOOTSPLASH] +5556ms SplashScreen.hideAsync() — сплеш скрыт', { [Stack] name: 'Stack' }
+10-18 09:27:41.093 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":5,"sinceEntryMs":9426,"source":"react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects"}', { [Stack] name: 'Stack' }
+10-18 09:27:41.098 W/'[BOOTSPLASH] +6098ms app_first_content_ready event received :: {"timerAlreadyPending":false}', { [Stack] name: 'Stack' }
+10-18 09:27:41.400 I/'[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-18 09:27:41.439 W/[BOOTSPLASH] +6443ms startupLocalHydration RACE DONE
+10-18 09:27:41.468 W/[BOOTSPLASH] +6470ms setReady(true) — bootstrap COMPLETE
+10-18 09:27:43.680 W/[BOOTSPLASH] +8682ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":2547}

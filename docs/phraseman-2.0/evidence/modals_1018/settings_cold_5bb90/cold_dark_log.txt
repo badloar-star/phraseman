@@ -1,0 +1,55 @@
+10-18 09:28:18.286 W/'[BOOTSPLASH] +2064ms [THEME-BOOT] splash-hold: первый кадр :: {"bg":"#101214"}', { [Stack] name: 'Stack' }
+10-18 09:28:18.407 I/[TAB-FIRST-FRAME] activate {"idx":0,"at":1792312098404,"mounted":true,"visited":true,"physicalPageIdx":0,"mountedCount":1}
+10-18 09:28:18.423 W/'[BOOTSPLASH] +2201ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#101214","light":false,"source":"system","systemScheme":"dark","choiceReady":false,"theme":"graphite"}', { [Stack] name: 'Stack' }
+10-18 09:28:18.426 W/'[BOOTSPLASH] +2204ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":true,"canHideNativeSplash":false}', { [Stack] name: 'Stack' }
+10-18 09:28:18.529 W/'[BOOTSPLASH] +2307ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":false,"canHide":false,"sinceFirstContentSetM
+10-18 09:28:18.622 W/'[BOOTSPLASH] +2401ms bootstrap START -> ensureFreshPostDeletionIdentity', { [Stack] name: 'Stack' }
+10-18 09:28:18.649 I/[THEME-BOOT] frame {"frame":1,"msSinceBoot":4272,"systemScheme":"dark","followSystem":false,"savedTheme":"graphite","savedAppearance":"dark","chosenTheme":"graphite","chosenAppearance":"dark","choiceReady":false,"hydratedInProcess":false,"
+10-18 09:28:18.878 I/[THEME-BOOT] hydrate {"msSinceBoot":4501,"storedTheme":null,"storedAppearance":null,"storedIntensity":null,"onboardingDone":"1","followMarker":"1","bootScheme":"dark","decision":"new_user/follow_system_marker"}
+10-18 09:28:19.623 W/'[BOOTSPLASH] +3401ms [THEME-BOOT] splash-hold :: {"visible":true,"canHideNativeSplash":false,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'Stack' }
+10-18 09:28:19.638 W/'[BOOTSPLASH] +3414ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"sinceFirstContentSetMs
+10-18 09:28:19.639 I/[THEME-BOOT] frame {"frame":2,"msSinceBoot":5261,"systemScheme":"dark","followSystem":true,"savedTheme":"marine","savedAppearance":"dark","chosenTheme":"marine","chosenAppearance":"dark","choiceReady":true,"hydratedInProcess":true,"covered
+10-18 09:28:19.725 W/[BOOTSPLASH] +3506ms homeScreenReady FALLBACK fired (чанк Главной не доехал за потолок)
+10-18 09:28:19.743 W/[BOOTSPLASH] +3523ms ensureFreshPostDeletionIdentity DONE :: {"status":"pending_auth","phase":"prepared"}
+10-18 09:28:19.744 W/[BOOTSPLASH] +3524ms runAuthRecoveryBootGate START
+10-18 09:28:19.792 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":1,"sinceEntryMs":6837,"source":"emitFirstHomeFrameReady <- RN$rafFn"}'
+10-18 09:28:19.794 W/[BOOTSPLASH] +3575ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:28:19.812 W/[BOOTSPLASH] +3591ms HOME-PAINT early hide: held :: {"holding":["fontsReady","ready"],"fontsReady":false,"ready":false,"liquidGlassChoiceReady":true,"effectiveShowOnboarding":false,"isBanned":false}
+10-18 09:28:19.820 W/[BOOTSPLASH] +3600ms bootstrap DEADLINE — setReady(true) по потолку, работа идёт фоном
+10-18 09:28:19.860 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":2,"sinceEntryMs":6905,"source":"RN$rafFn"}'
+10-18 09:28:19.860 W/[BOOTSPLASH] +3641ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:28:19.881 W/[BOOTSPLASH] +3661ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":54}
+10-18 09:28:19.885 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":3,"sinceEntryMs":6928,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:28:19.887 W/[BOOTSPLASH] +3666ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:28:19.891 W/[BOOTSPLASH] +3671ms runAuthRecoveryBootGate DONE :: {"result":"proceed"}
+10-18 09:28:19.893 W/[BOOTSPLASH] +3672ms getStableId START
+10-18 09:28:20.092 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":4,"sinceEntryMs":7137,"source":"emitFirstHomeFrameReady <- apply"}'
+10-18 09:28:20.093 W/[BOOTSPLASH] +3873ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:28:20.093 W/[BOOTSPLASH] +3874ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":174}
+10-18 09:28:20.231 W/'[BOOTSPLASH] +4011ms [THEME-BOOT] splash-hold :: {"visible":false,"canHideNativeSplash":true,"bg":"#000F16","light":false,"source":"theme","systemScheme":"dark","choiceReady":true,"theme":"marine"}', { [Stack] name: 'Stack' }
+10-18 09:28:20.234 W/'[BOOTSPLASH] +4013ms [THEME-BOOT] splash-hold: нативную заставку не снимаем :: {"visible":false,"canHideNativeSplash":true}', { [Stack] name: 'Stack' }
+10-18 09:28:20.260 W/'[BOOTSPLASH] +4039ms splash gate :: {"fontsReady":true,"ready":true,"firstContentReady":true,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":true,"sinceFirstContentSetMs":377
+10-18 09:28:20.264 W/'[BOOTSPLASH] +4042ms SplashScreen.hideAsync() — сплеш скрыт', { [Stack] name: 'Stack' }
+10-18 09:28:20.595 W/[BOOTSPLASH] +4376ms getStableId DONE
+10-18 09:28:20.633 W/[BOOTSPLASH] +4414ms startupLocalHydration RACE START (budget 350ms)
+10-18 09:28:21.164 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":5,"sinceEntryMs":8183,"source":"react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects"}', { [Stack] name: 'Stack' }
+10-18 09:28:21.171 W/'[BOOTSPLASH] +4946ms app_first_content_ready event received :: {"timerAlreadyPending":false}', { [Stack] name: 'Stack' }
+10-18 09:28:23.571 I/'[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-18 09:28:23.574 W/[BOOTSPLASH] +7355ms startupLocalHydration RACE DONE
+10-18 09:28:23.590 W/[BOOTSPLASH] +7371ms setReady(true) — bootstrap COMPLETE
+10-18 09:28:23.591 W/[BOOTSPLASH] +7372ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":2388}
+10-18 09:28:24.133 I/[TABS-DEFERRED] placeholder start screen=loadSettingsScreen shouldLoad=false
+10-18 09:28:24.223 I/[TAB-FIRST-FRAME] activate {"idx":4,"at":1792312104221,"mounted":false,"visited":true,"physicalPageIdx":4,"mountedCount":1}
+10-18 09:28:24.464 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":6,"sinceEntryMs":11510,"source":"emitFirstContentReady <- RN$rafFn"}'
+10-18 09:28:24.465 W/[BOOTSPLASH] +8245ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:28:24.695 W/[BOOTSPLASH] +8474ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":196}
+10-18 09:28:24.699 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":7,"sinceEntryMs":11742,"source":"emitFirstContentReady <- apply"}'
+10-18 09:28:24.710 W/[BOOTSPLASH] +8480ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-18 09:28:24.717 W/'[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":8,"sinceEntryMs":11757,"source":"emitFirstContentReady <- apply"}'
+10-18 09:28:24.725 W/[BOOTSPLASH] +8503ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-18 09:28:24.818 I/[TABS-DEFERRED] placeholder end screen=loadSettingsScreen heldMs=679
+10-18 09:28:24.953 I/[TAB-FIRST-FRAME] settings:first_render {"idx":4,"sinceActivateMs":722,"sinceModuleMs":8999}
+10-18 09:28:25.905 W/[BOOTSPLASH] +9685ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":1161}
+10-18 09:28:26.256 I/[TAB-FIRST-FRAME] settings:header_layout {"idx":4,"sinceActivateMs":2035}
+10-18 09:28:26.727 I/[TAB-FIRST-FRAME] settings:first_focus {"idx":4,"sinceActivateMs":2505,"sinceRenderMs":1814,"sinceCommitMs":327}
+10-18 09:28:28.814 I/'[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":4919,"quietReason":"quiet","quietWaitMs":3709,"cleanTicks":4,"lastLagMs":23,"maxLagMs":1169,"sinceTouchMs":3573,"idleWaitMs":1,"prewarmMs":1,"commitMs":1023}'

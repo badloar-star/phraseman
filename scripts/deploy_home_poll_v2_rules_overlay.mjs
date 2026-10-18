@@ -19,7 +19,7 @@ function run(command, args) {
     cwd: repoRoot,
     encoding: 'utf8',
     stdio: 'inherit',
-    shell: process.platform === 'win32',
+    shell: command === 'firebase' && process.platform === 'win32',
   });
   if (result.status !== 0) throw new Error(`${command} failed with status ${result.status}`);
 }

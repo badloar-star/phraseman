@@ -136,11 +136,12 @@ describe('exact Home Poll v2 Rules overlay exception stays hash-bound and fail-c
     if (fs.existsSync(deployPath)) {
       const deploy = fs.readFileSync(deployPath, 'utf8');
       expect(deploy).toContain('guard_global_broadcast_privacy_rules_rollout.mjs');
-      expect(deploy.indexOf('guard_global_broadcast_privacy_rules_rollout.mjs')).toBeLessThan(deploy.indexOf('firebase'));
+      expect(deploy.indexOf('guard_global_broadcast_privacy_rules_rollout.mjs')).toBeLessThan(deploy.indexOf("run('firebase', ["));
       expect(deploy).toContain('--confirm=DEPLOY_EXACT_HOME_POLL_V2_RULES');
       expect(deploy).toContain('createRequire(import.meta.url)');
       expect(deploy).toContain('Pre-deploy prepared Rules hash mismatch');
       expect(deploy).toContain('PREDEPLOY_ARTIFACT_VERIFIED');
+      expect(deploy).toContain("shell: command === 'firebase' && process.platform === 'win32'");
     }
     const readiness = JSON.parse(fs.readFileSync(path.join(root, 'config/global-broadcast-privacy-rollout.json'), 'utf8'));
     expect(readiness.rulesReleaseApproved).toBe(false);

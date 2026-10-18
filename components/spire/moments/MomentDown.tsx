@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { V2_TYPE } from '../../../constants/v2Style';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
 import { spireTierName } from '../../../modules/spire/tier_names';
@@ -50,6 +50,9 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
   const insets = useStableSafeAreaInsets();
   const { height } = useWindowDimensions();
   const [awake, setAwake] = useState(initialAwake);
+  // зачем (координатор 18.10, проверка выпуска, шрифт 1,3): блок кнопок прижат к низу абсолютно — на 640–667 dp текст наезжал на кнопки.
+  // Столбец монеты и текста теперь в прокрутке с нижним полем = высота блока кнопок: на обычном экране вид тот же, на тесном — прокрутка, не наложение.
+  const [dockH, setDockH] = useState(0);
   const ring = useSharedValue(0);
   const fog = useSharedValue(reduceMotion ? 1 : 0);
   const wake = useSharedValue(initialAwake ? 1 : 0);
@@ -95,7 +98,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
     <MomentFullScreen testID={testID}>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: p.bg }, fogStyle]} />
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, veilStyle]} />{/* theme-exempt: светлая вуаль +12 % «проснулась» (эталон brightness 1.12) */}
-      <View style={[s.center, { paddingTop: Math.max(insets.top + 40, Math.round(height * TOP_FRACTION)) }]} pointerEvents="box-none">
+      <ScrollView style={s.fill} contentContainerStyle={[s.center, { paddingTop: Math.max(insets.top + 40, Math.round(height * TOP_FRACTION)), paddingBottom: dockH + 12 }]} bounces={false} showsVerticalScrollIndicator={false}>
         <View style={s.coinBox}>
           <MomentCoin
             rank={coinRank}
@@ -110,8 +113,8 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
         </View>
         <Text accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{title}</Text>
         <Text style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{body}</Text>
-      </View>
-      <View style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
+      </ScrollView>
+      <View style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]} onLayout={(e) => setDockH(Math.round(e.nativeEvent.layout.height))}>
         <V2Button label={momentText(lang, 'downWake')} icon="arrow-forward" onPress={() => { doWake('button'); onPlay(); }} testID={`${testID}-play`} />
         {onRemind ? (
           <>
@@ -126,6 +129,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
 
 const s = StyleSheet.create({
   // блок монеты и текста: колонка по центру, зазор 14, поля 30 (эталон: top 300, padding 0 30)
+  fill: { flex: 1 },
   center: { alignItems: 'center', gap: 14, paddingHorizontal: 30 },
   coinBox: { width: COIN_SIZE, height: COIN_SIZE, alignItems: 'center', justifyContent: 'center' },
   // `.tapme`: кольцо 44 в центре монеты, пульсирует «тапни»

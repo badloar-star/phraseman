@@ -35,8 +35,9 @@ describe('монета «хватает на ранг» · dev-баланс дл
 describe('m08 · шапка урока не прыгает при появлении кольца серии (Сверка 15.10)', () => {
   it('слот держит место под кольцо до порога, плашка «N подряд» в своей полосе, заголовок урока в одну строку', () => {
     const slot = read('components/feedback/ComboHeatSlot.tsx');
-    expect(slot).toContain('return <View style={{ width: size, height: size }} testID="lesson1-combo-heat-reserve" />;');
-    expect(slot).toContain("tipLane: { position: 'absolute', right: 0, width: TIP_LANE, alignItems: 'flex-end' },");
+    // зачем (64ea649e4, вариант «а»): в резервной рамке и в полосе плашки теперь живёт монета m08 — место и полоса те же
+    expect(slot).toContain('<View style={{ width: size, height: size }} testID="lesson1-combo-heat-reserve">');
+    expect(slot).toContain("tipLane: { position: 'absolute', right: 0, width: TIP_LANE, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4 },");
     expect(slot).not.toMatch(/tip: \{ position: 'absolute'/);
     expect(read('app/lesson1.tsx')).toMatch(/<PracticeHeaderTitle\s+glass=\{glass\}\s+oneLine/);
     expect(read('components/practice/PracticeChrome.tsx')).toContain('<Text numberOfLines={oneLine ? 1 : undefined}');

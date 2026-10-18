@@ -14,6 +14,7 @@ import type { Lang } from '../../constants/i18n';
 import { comboLevelFor } from '../../app/feedback/combo_engine';
 import { hapticHeavyImpact, hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import ComboRing from './ComboRing';
 import MomentCoin from '../moments/MomentCoin';
 import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, deriveComboBeat, getComboCoin, subscribeComboCoin, type ComboBeat } from './combo_moment_gate';
@@ -33,7 +34,8 @@ function haptic(beat: ComboBeat): void {
 export type ComboHeatSlotProps = Readonly<{ comboCount: number; lang: Lang; size?: number }>;
 
 function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const reduced = useReducedMotion();
   const prevRef = useRef(comboCount);
   const [broken, setBroken] = useState<number | null>(null);
@@ -43,6 +45,7 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
   // зачем (Ревизор 15.10, баг «серия сброшена» залипает): таймер снятия надписи живёт в ref, а не в cleanup эффекта — иначе следующий
   // быстрый ответ (0 → 1) отменял таймер и выходил рано, надпись оставалась в шапке. Сбрасывает его только новый удар или размонтирование.
   const brokenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const heatLoggedRef = useRef('');
   useEffect(() => () => {
     if (brokenTimerRef.current === null) return;
     clearTimeout(brokenTimerRef.current);
@@ -111,11 +114,20 @@ function ComboHeatSlot({ comboCount, lang, size = 34 }: ComboHeatSlotProps) {
   }
   const level = comboLevelFor(comboCount);
   // зачем (эталон `.heat.h1/h2/h3`): акцент → тёплый → горячий; токены темы, работает во всех темах
-  const heat = level >= 3 ? t.wrong : level >= 2 ? t.gold : (t.accentGraphic ?? t.accent);
+  // зачем (Макеты 8c04f47db: кольцо серое, цифра фиолетовая): t.gold старой темы в 2.0 = акцент, t.accentText давал фиолетовую цифру. Эталон 2.0
+  // (engagement-moments-app.css:168–170): «Искра» — --acc, «Молния» — --warn, «Гроза» — --bad. Токены темы: графика — accentGraphic/warn/bad,
+  // цифра — текстовые варианты (accentTextSafe; warn и bad уже доведены до ≥ 4,5 к поверхностям темы).
+  const heatToken = level >= 3 ? 'bad' : level >= 2 ? 'warn' : 'accentGraphic';
+  const heat = level >= 3 ? g.bad : level >= 2 ? g.warn : g.accentGraphic;
+  const heatInk = level >= 3 ? g.bad : level >= 2 ? g.warn : g.accentTextSafe;
+  if (heatLoggedRef.current !== `${comboCount}:${broken ?? ''}`) {
+    heatLoggedRef.current = `${comboCount}:${broken ?? ''}`;
+    console.log(`[COMBO-HEAT] ${JSON.stringify({ streak: comboCount, level, threshold: level >= 3 ? 10 : level >= 2 ? 5 : 3, broken: broken != null, ring: broken != null ? t.textMuted : heat, ringToken: broken != null ? 'textMuted' : heatToken, number: broken != null ? 'default' : heatInk, numberToken: broken != null ? 'default' : level >= 2 ? heatToken : 'accentTextSafe', fill: broken != null ? 'empty' : 'full', theme: liquidGlassThemeId })}`); // guard-ok: строка на смену серии
+  }
   const label = broken != null ? comboMomentText(lang, 'broken') : comboMomentText(lang, 'inRow', comboCount);
   return (
     <Reanimated.View style={[s.wrap, shakeStyle]} testID="lesson1-combo-heat" accessibilityLiveRegion="polite" accessibilityLabel={label}>
-      <ComboRing value={broken != null ? 0 : comboCount} level={broken != null ? 0 : level} size={size} heatColor={broken != null ? t.textMuted : heat} />
+      <ComboRing value={broken != null ? 0 : comboCount} level={broken != null ? 0 : level} size={size} heatColor={broken != null ? t.textMuted : heat} heatNumberColor={broken != null ? undefined : heatInk} heatFull={broken == null} />
       {/* зачем (Сверка 15.10): плашка жила в рамке кольца 34 px и «3 подряд» сжималось до «…». Своя полоса шириной TIP_LANE, прижата к правому
           краю кольца — плашка по своему тексту и не уходит за край экрана (кольцо стоит у правого края шапки). */}
       <View pointerEvents="none" style={[s.tipLane, { top: size + 4 }]}>

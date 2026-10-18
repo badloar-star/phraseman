@@ -47,6 +47,7 @@ jest.mock('../components/streak/moments/use_streak_colors', () => ({ useStreakCo
 jest.mock('../modules/sound_v2/sound_v2_flag', () => ({ isSoundV2Enabled: () => false }));
 
 import ComboHeatSlot from '../components/feedback/ComboHeatSlot';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import ComboMomentLayer from '../components/feedback/ComboMomentLayer';
 import { deriveComboBeat } from '../components/feedback/combo_moment_gate';
 import { COMBO_MOMENT_LANGS, COMBO_MOMENT_STRING_KEYS, comboMomentText } from '../components/feedback/combo_moment_strings';
@@ -78,13 +79,15 @@ describe('m08 · кольцо в шапке', () => {
     expect(screen.queryByTestId('lesson1-combo-heat')).toBeNull();
     await r.rerender(<ComboHeatSlot comboCount={3} lang="ru" />);
     expect(screen.getByText('3 подряд')).toBeTruthy();
-    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: '#7EF0C8' }));
+    // зачем (Макеты 8c04f47db: нагрев не виден): пороги эталона из токенов темы (мок темы без id → graphite); кольцо залито целиком
+    const g = liquidGlassTokens(undefined as never);
+    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: g.accentGraphic, heatNumberColor: g.accentTextSafe, heatFull: true }));
     await r.rerender(<ComboHeatSlot comboCount={4} lang="ru" />);
     await r.rerender(<ComboHeatSlot comboCount={5} lang="ru" />);
-    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: '#FFC800' }));
+    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: g.warn, heatNumberColor: g.warn, heatFull: true }));
     expect(mockHaptic.medium).toHaveBeenCalledTimes(1);
     for (let n = 6; n <= 10; n += 1) await r.rerender(<ComboHeatSlot comboCount={n} lang="ru" />);
-    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: '#F05454' }));
+    expect(mockRing).toHaveBeenLastCalledWith(expect.objectContaining({ heatColor: g.bad, heatNumberColor: g.bad, heatFull: true }));
     expect(mockHaptic.heavy).toHaveBeenCalledTimes(1);
   });
 

@@ -35,6 +35,10 @@ export interface ComboRingProps {
   size?: number;
   /** m08 «Молния» (moments_v3): цвет нагрева кольца по порогам 3/5/10 эталона; нет — прежние цвета. */
   heatColor?: string;
+  /** m08: цвет цифры по тому же порогу (текстовый вариант токена); нет — прежний. */
+  heatNumberColor?: string;
+  /** m08: кольцо залито целиком, как полоса нагрева эталона (`.heat > i`); иначе — доля пути к следующему порогу. */
+  heatFull?: boolean;
 }
 
 /** Доля заполнения кольца в пределах текущего уровня (0..1). */
@@ -53,7 +57,7 @@ function fractionForBand(value: number, level: ComboLevel): number {
   return Math.max(0, Math.min(1, (value - from) / span));
 }
 
-export function ComboRing({ value, level, size = 56, heatColor }: ComboRingProps) {
+export function ComboRing({ value, level, size = 56, heatColor, heatNumberColor, heatFull = false }: ComboRingProps) {
   // зачем (координатор 14.10): «Молния» V2 — серия звука растёт с уровнем кольца (Искра → Молния → Гроза, шаги 0…2); играет, когда уровень поднялся; флаг sound_v2 выключен — тишина
   const prevLevelRef = useRef<ComboLevel>(level);
   useEffect(() => {
@@ -67,7 +71,9 @@ export function ComboRing({ value, level, size = 56, heatColor }: ComboRingProps
   const circumference = 2 * Math.PI * r;
   const progress = useSharedValue(0);
 
-  const targetFraction = fractionForBand(value, level);
+  // зачем (Макеты 8c04f47db, координатор 18.10: «нагрев на 3 и 5 не виден — кольцо серое»): доля пути считается от начала ступени, и ровно на 3 и 5
+  // она 0 — виден только серый трек. В m08 кольцо залито целиком, как полоса нагрева эталона; без m08 — прежнее поведение.
+  const targetFraction = heatFull ? 1 : fractionForBand(value, level);
 
   useEffect(() => {
     progress.value = withTiming(targetFraction, { duration: 320 });
@@ -80,7 +86,7 @@ export function ComboRing({ value, level, size = 56, heatColor }: ComboRingProps
 
   const ringColor = heatColor ?? (level >= 1 ? t.gold : (t.accentGraphic ?? t.accent)); // зачем (светлый акцент): кольцо — графика; m08 — цвет нагрева снаружи
   const showGlow = level >= 2;
-  const numberColor = level >= 1 ? t.accentText : t.textPrimary;
+  const numberColor = heatNumberColor ?? (level >= 1 ? t.accentText : t.textPrimary);
 
   const glowStyle = useMemo(
     () =>

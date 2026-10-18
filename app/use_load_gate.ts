@@ -37,6 +37,9 @@ export type LoadGateHandle = Readonly<{
 }>;
 
 const PERSIST_IDLE_RESET_MS = 5 * 60_000;
+// зачем (Ревизор 18.10 08:30, 🔴 бесконечный автоповтор в 49630f40e): потребитель, у которого status на время повтора мигает 'ready' (флаг ошибки сбрасывается на старте перезагрузки), раньше обнулял счётчик
+// мгновенно — и повторы шли по кругу раз в ~1 с (платные чтения каталога). Теперь 'ready' сбрасывает счётчик только если держится LOAD_GATE_READY_RESET_MS; мигание короче паузы счётчик не трогает.
+export const LOAD_GATE_READY_RESET_MS = 2500;
 type PersistedGate = { attempts: number; exhausted: boolean; at: number };
 const persistedGates = new Map<string, PersistedGate>();
 
@@ -72,11 +75,14 @@ export function useLoadGate(input: LoadGateInput): LoadGateHandle {
 
   useEffect(() => {
     if (status === 'ready') {
-      if (attemptsRef.current > 0) console.warn(tag, 'ready → счётчик сброшен', { attempts: attemptsRef.current });
-      remember(0, false);
-      setExhaustedState(false);
-      if (persistAcrossMounts) persistedGates.delete(id);
-      return undefined;
+      if (attemptsRef.current === 0 && !exhausted) return undefined; // сбрасывать нечего
+      const resetTimer = setTimeout(() => {
+        console.warn(tag, 'ready держится → счётчик сброшен', { attempts: attemptsRef.current, readyMs: LOAD_GATE_READY_RESET_MS });
+        remember(0, false);
+        setExhaustedState(false);
+        if (persistAcrossMounts) persistedGates.delete(id);
+      }, LOAD_GATE_READY_RESET_MS);
+      return () => clearTimeout(resetTimer);
     }
     if (!enabled || exhausted) return undefined;
     const nextAttempt = attemptsRef.current + 1;

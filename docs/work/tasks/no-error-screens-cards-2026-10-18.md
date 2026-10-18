@@ -4,6 +4,7 @@ Governance-ID: TG-42AAAEDB190E
 Governance-ID: TG-AAF83812D30A
 Governance-ID: TG-80CE2D4E43CE
 Governance-ID: TG-2BC9CDAA8BEE
+Governance-ID: TG-B763D4CCAB5B
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» (поручение координатора 18.10 08:00, срок 09:30; заморозка владельца 10:00)
 Related epic/enabler: правило владельца 01.10 и 18.10 («полноэкранных экранов-ошибок НИГДЕ быть не должно»), опись Ревизора `fullscreen-error-states-2026-10-18.md`, D158

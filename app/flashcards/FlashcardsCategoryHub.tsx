@@ -505,7 +505,19 @@ export default function FlashcardsCategoryHub({
 
   // зачем (правило владельца 01.10 и 18.10, координатор 08:00): пустой каталог без сети больше не «Нет сети + Повторить» — обычное пустое состояние, а каталог тихо перечитывается сам (паузы 1/3/8 с, затем при возврате в приложение).
   const catalogOfflineEmpty = communityOffline && catalogCommunityPacks.length === 0;
-  useLoadGate({ id: 'cards-community-catalog', status: catalogOfflineEmpty ? 'error' : 'ready', retry: onRetryCatalog ?? (() => undefined), enabled: catalogOfflineEmpty && !!onRetryCatalog, persistAcrossMounts: true });
+  // зачем (Ревизор 18.10 08:30, 🔴 автоповтор раз в ~1 с): повтор каталога сбрасывает communityLoaded и офлайн-флаг → status мигал 'ready' и счётчик обнулялся. Теперь ворота «взведены» с первого офлайн-пустого каталога до настоящего ответа
+  // (загрузка идёт = 'loading', а не 'ready'), снимаются только когда каталог загружен и сеть есть; не больше 3 попыток 1/3/8 с, затем повтор при возврате в приложение.
+  const [catalogGateArmed, setCatalogGateArmed] = useState(false);
+  useEffect(() => {
+    if (catalogOfflineEmpty) setCatalogGateArmed(true);
+    else if (communityLoaded && !communityOffline) setCatalogGateArmed(false);
+  }, [catalogOfflineEmpty, communityLoaded, communityOffline]);
+  const catalogGateStatus = !catalogGateArmed ? 'ready' : !communityLoaded ? 'loading' : catalogOfflineEmpty ? 'error' : 'ready';
+  const retryCatalogQuietly = useCallback(() => {
+    logNoErrorScreen('flashcards_category_hub', 'silent_retry', 'skeleton_retrying', { status: catalogGateStatus });
+    onRetryCatalog?.();
+  }, [catalogGateStatus, onRetryCatalog]);
+  useLoadGate({ id: 'cards-community-catalog', status: catalogGateStatus, retry: retryCatalogQuietly, enabled: catalogGateArmed && !!onRetryCatalog, persistAcrossMounts: true });
   useEffect(() => {
     if (catalogOfflineEmpty) logNoErrorScreen('flashcards_category_hub', 'community_offline_empty', 'quiet_empty');
   }, [catalogOfflineEmpty]);

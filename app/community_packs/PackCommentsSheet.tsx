@@ -210,7 +210,15 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const [reloadTick, setReloadTick] = useState(0);
   // зачем (правило владельца 01.10 и 18.10, координатор 08:00): сбой чтения комментариев без кэша — не экран ошибки, а тихий повтор (паузы 1/3/8 с, затем при возврате в приложение) и обычное пустое состояние; причина — [NO-ERROR-SCREEN] pack_comments.
   const commentsLoadFailedEmpty = loadFailed && comments.length === 0;
-  useLoadGate({ id: 'pack-comments', status: commentsLoadFailedEmpty ? 'error' : 'ready', retry: () => setReloadTick((tick) => tick + 1), enabled: visible && commentsLoadFailedEmpty });
+  // зачем (Ревизор 18.10 08:30, 🔴 автоповтор раз в ~1 с): на время повтора loadFailed сбрасывался и status становился 'ready' → счётчик обнулялся. Теперь идущая загрузка — 'loading' (счётчик не трогаем),
+  // 'ready' только когда нет ни загрузки, ни сбоя; не больше 3 попыток 1/3/8 с, затем повтор при возврате в приложение.
+  const commentsGateStatus = loading ? 'loading' : commentsLoadFailedEmpty ? 'error' : 'ready';
+  useLoadGate({
+    id: 'pack-comments',
+    status: commentsGateStatus,
+    retry: () => { logNoErrorScreen('pack_comments', 'silent_retry', 'skeleton_retrying'); setReloadTick((tick) => tick + 1); },
+    enabled: visible && commentsLoadFailedEmpty,
+  });
   useEffect(() => {
     if (visible && commentsLoadFailedEmpty) logNoErrorScreen('pack_comments', 'load_failed_empty', 'quiet_empty');
   }, [visible, commentsLoadFailedEmpty]);

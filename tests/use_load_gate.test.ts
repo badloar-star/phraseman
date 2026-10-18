@@ -6,6 +6,7 @@ import { act, cleanup, renderHook } from '@testing-library/react-native';
 import { AppState } from 'react-native';
 import { useLoadGate, type LoadGateStatus } from '../app/use_load_gate';
 import { LOAD_GATE_TOTAL_MS } from '../app/load_gate_config';
+import { LOAD_GATE_READY_RESET_MS } from '../app/use_load_gate';
 
 type Props = { status: LoadGateStatus; enabled?: boolean };
 
@@ -57,6 +58,7 @@ test('success resets the counter and clears exhausted', async () => {
   await act(async () => { jest.advanceTimersByTime(1000); });
   expect(retry).toHaveBeenCalledTimes(1);
   await act(async () => { await hook.rerender({ status: 'ready' }); });
+  await act(async () => { jest.advanceTimersByTime(LOAD_GATE_READY_RESET_MS); }); // зачем (Ревизор 18.10): сброс — только если 'ready' держится
   await act(async () => { await hook.rerender({ status: 'error' }); });
   // Счётчик сброшен — снова первая пауза 1 с, а не 3 с.
   await act(async () => { jest.advanceTimersByTime(1000); });
@@ -175,4 +177,20 @@ test('contract-following consumer (paywall-like): retry moments and count are un
   expect(hook.result.current.exhausted).toBe(true);
   await act(async () => { jest.advanceTimersByTime(120_000); });
   expect(retry).toHaveBeenCalledTimes(3); // после исчерпания — тишина, цикла нет
+});
+
+// зачем (Ревизор 18.10 08:30, 🔴 бесконечный автоповтор раз в ~1 с в 49630f40e): потребитель, у которого status на время повтора мигает 'ready' (error → ready → error), не должен обнулять счётчик —
+// без сети всего 3 попытки (1/3/8 с), затем тишина.
+test('status flapping error → ready → error right after each retry does not reset the counter: no sign of an endless loop', async () => {
+  const { retry, hook } = await setup({ status: 'error' });
+  for (const pause of [1000, 3000, 8000]) {
+    await act(async () => { jest.advanceTimersByTime(pause); });
+    await act(async () => { await hook.rerender({ status: 'ready' }); }); // сброс флага ошибки на старте перезагрузки
+    await act(async () => { jest.advanceTimersByTime(300); });            // короче LOAD_GATE_READY_RESET_MS
+    await act(async () => { await hook.rerender({ status: 'error' }); }); // снова сбой
+  }
+  expect(retry).toHaveBeenCalledTimes(3);
+  expect(hook.result.current.exhausted).toBe(true);
+  await act(async () => { jest.advanceTimersByTime(120_000); });
+  expect(retry).toHaveBeenCalledTimes(3);
 });

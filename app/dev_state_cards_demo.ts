@@ -75,7 +75,7 @@ export function demoSavedFlashcards(lessons = false, long = false): Flashcard[] 
     ...(lessons ? demoCardSource(i) : { source: 'word' as const }),
     // Новее — выше: порядок кадра «Сохранённые» (Layover первым).
     addedAt: NOW_BASE + (64 - i) * 60_000,
-    packLanguage: 'en',
+    packLanguage: TARGET,
     studyTarget: TARGET,
   }));
   if (!long) return base;
@@ -86,7 +86,7 @@ export function demoSavedFlashcards(lessons = false, long = false): Flashcard[] 
     uk: ru,
     source: 'word' as const,
     addedAt: NOW_BASE + (200 - i) * 60_000,
-    packLanguage: 'en',
+    packLanguage: TARGET,
     studyTarget: TARGET,
   }));
   // зачем: лимит Free 50 — показываются 50 самых старых, поэтому всего ровно 50 (4 длинные + 46 слов), иначе новые длинные фразы окажутся «скрытыми по лимиту»

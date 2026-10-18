@@ -181,7 +181,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     return 'lock_released';
   }
   if (!status.restorable) {
-    console.log(`[ACCOUNT-RESTORE] not_restorable pending=${status?.pending === true ? 'yes' : 'no'} restorable=${status?.restorable === true ? 'yes' : 'no'}`);
+    console.log(`[ACCOUNT-RESTORE] not_restorable pending=${status.pending === true ? 'yes' : 'no'} restorable=no`);
     return 'not_restorable';
   }
   const days = Math.max(1, Number(status.daysLeft ?? 1));

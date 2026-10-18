@@ -80,6 +80,8 @@ type Props = Readonly<{
   style?: StyleProp<ViewStyle>;
   /** Действия доступности строки (например «Добавить себе»): вложенная кнопка внутри доступной строки не видна VoiceOver. */
   a11yActions?: readonly Readonly<{ name: string; label: string; run: () => void }>[];
+  /** Имя экрана для журнала [SKELETON-GEOM]: высота готовой строки сравнивается с высотой скелетона. */
+  geomScreen?: string;
 }>;
 
 /** «500 карточек» — подпись плитки-счётчика (`.ct span`). */
@@ -126,7 +128,7 @@ const CountTile = memo(function CountTile({ g, lang, count, height }: Readonly<{
 
 function PackRowBase({
   variant, g, lang, title, testID, titleTestID, accessibilityLabel, leading, badge, highlight, meta, subtitle, trailing,
-  emphasis = 'normal', onPress, onLongPress, disabled, style, a11yActions,
+  emphasis = 'normal', onPress, onLongPress, disabled, style, a11yActions, geomScreen,
 }: Props) {
   const lh = useLineScale();
   const m = PACK_ROW_METRICS[variant];

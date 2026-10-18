@@ -87,6 +87,7 @@ export default function DialogWhySheet({
 }: DialogWhySheetProps) {
   const { theme: t, f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  const cta = dialogueCtaPaint(glass, [glass.opaqueSheet]);
 
   const closeLabel = triLang(lang, {
     ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',

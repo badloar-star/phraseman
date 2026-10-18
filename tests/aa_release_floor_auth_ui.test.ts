@@ -197,16 +197,19 @@ describe('смена аккаунта в онбординге — с кнопк�
     const auth = read('app/auth_provider.ts');
     // Пропуск — только память процесса: ни AsyncStorage, ни SecureStore, ни журнал с токеном.
     const stashStart = auth.indexOf('const ACCOUNT_SWITCH_RESUME_CREDENTIAL_TTL_MS');
+    const stashStateEnd = auth.indexOf('let accountSwitchApplePrelink', stashStart);
+    const stashFunctionsStart = auth.indexOf('function storeAccountSwitchResumeCredential', stashStateEnd);
     const stashEnd = auth.indexOf('function takeAccountSwitchResumeCredential', stashStart);
-    const stash = auth.slice(stashStart, auth.indexOf('\n}\n', stashEnd) + 2);
+    const stash = auth.slice(stashStart, stashStateEnd)
+      + auth.slice(stashFunctionsStart, auth.indexOf('\n}\n', stashEnd) + 2);
     expect(stashStart).toBeGreaterThan(0);
     expect(stash).toContain('10 * 60_000');
     expect(stash).not.toMatch(/AsyncStorage|SecureStore|setItem|idToken|appleNonce|email/);
-    // Apple пропуск не переносит: одноразовый nonce.
-    expect(stash).toContain("if (provider !== 'google')");
-    // Ревью L-1: сохранение только по флагу; обычный выход и удаление стирают пропуск,
-    // а выход внутри самой смены — нет.
-    expect(auth).toContain('} else if (options.captureAccountSwitchResume) {');
+    // Повторно использованный Apple-пропуск не переносится; прямой ещё не потреблённый пропуск допустим.
+    expect(stash).toContain("if (provider !== 'google' && !options.unconsumed)");
+    // Правило 2 владельца 18.10: конфликтный пропуск сохраняется для шторки смены;
+    // обычный выход и удаление стирают его, а выход внутри самой смены — нет.
+    expect(auth).toContain('storeAccountSwitchResumeCredential(provider, cred, { unconsumed: appleTokenUnconsumed });');
     expect(auth).toContain("discardAccountSwitchResumeCredential('provider_sign_out');");
     expect(auth).toContain("discardAccountSwitchResumeCredential('account_delete');");
     // зачем (15.10, 414bb1713 Ядра): выход внутри смены по-прежнему сохраняет пропуск, но перед ним теперь снимается push-токен A

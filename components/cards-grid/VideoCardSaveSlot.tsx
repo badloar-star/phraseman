@@ -15,7 +15,7 @@ export const VideoCardSaveSlot = memo(function VideoCardSaveSlot({ save, card, i
   ink: string;
   savedInk?: string;
   backgroundColor: string;
-  boxShadow?: string;
+  boxShadow?: ViewStyle['boxShadow'];
   testID?: string;
   size?: number;
   style?: ViewStyle;

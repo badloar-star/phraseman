@@ -210,8 +210,12 @@ import {
 // которые нужны ТОЛЬКО при запуске занятия, а разбирались при каждом открытии
 // раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в лёгкий срез
 // на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
-import { learningV2HasPublishedAudioV1 } from "../learning_v2_published_audio_sessions_v1.generated";
+import { LEARNING_V2_PUBLISHED_AUDIO_SESSIONS_V1 } from "../learning_v2_published_audio_sessions_v1.generated";
 import BackGlyph from '../../components/v2/BackGlyph';
+
+function learningV2HasPublishedAudioV1(lessonOrdinal: number, sessionOrdinal: number): boolean {
+  return LEARNING_V2_PUBLISHED_AUDIO_SESSIONS_V1[lessonOrdinal]?.includes(sessionOrdinal) === true;
+}
 
 // Ленивые загрузчики тяжёлых модулей Learning V2.
 // Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,

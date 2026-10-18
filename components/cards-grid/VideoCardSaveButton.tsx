@@ -18,7 +18,7 @@ export const VideoCardSaveButton = memo(function VideoCardSaveButton({ saved, on
   /** Цвет заполненной закладки (акцент места); по умолчанию как у пустой. */
   savedInk?: string;
   backgroundColor: string;
-  boxShadow?: string;
+  boxShadow?: ViewStyle['boxShadow'];
   testID?: string;
   size?: number;
   style?: ViewStyle;

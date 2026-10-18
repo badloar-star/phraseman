@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 44 — Полірую стіл
+# Англійська · Урок 7 · Заняття 44 — У дорозі
 
-**Ситуація.** Ви розповідаєте про догляд за столом, місце для розслаблення й дзвінки знайомої.
+**Ситуація.** Ви розповідаєте про звички в дорозі: пристібаєте пасок, переходите дорогу, платите за проїзд і помічаєте, як брат не встигає на автобус.
 
-**Що ви опануєте:** використовувати usually й often перед дією
-**Нові слова:** polish
+**Що ви опануєте:** говорити про звички, ставлячи usually або often перед дією
+**Нові слова:** fasten, cross, miss, fare
+**Повертаються:** seat, belt, road, bus, ticket, coin, card, bridge, wash, brother, niece
 
 ---
 
 ## Інтро 1
 
-### Догляд за столом
+### Подруга в машині
 
-Друг запитує, як ви зазвичай доглядаєте за дерев’яним столом. `polish` — «полірувати, натирати до блиску». `I usually polish the table` — «Я зазвичай полірую стіл». `Usually` стоїть перед `polish`; `the table` — відомий вам обом стіл. Стіл сяє, хоча на сцену його ніхто не запрошував.
+Подруга сідає до вас у машину й питає, чи пристібаєтеся ви, коли їдете самі. fasten — «пристібати». Для вас це така сама звичка, як зачинити двері: I usually fasten my seat belt — «Я зазвичай пристібаю пасок безпеки». Слово usually стоїть перед fasten.
 
-**Розкажіть про догляд за столом.**
+**Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки».**
 
-- ✅ **I usually polish the table.**
-- ❌ I usually polishes the table. — *Після `I` потрібне `polish`, без `es`.*
-- ❌ I usually polishing the table. — *Тут потрібна форма `polish`.*
+- ✅ **I usually fasten my seat belt.**
+- ❌ I usually fastens my seat belt. — *Після I потрібно fasten, без s.*
+- ❌ I usually fastening my seat belt. — *Для звички після I usually потрібно fasten.*
 
 ---
 
 ## Інтро 2
 
-### Спокійне місце
+### Перехід біля світлофора
 
-Ви показуєте гостеві крісло, де зазвичай розслабляєтеся. `I usually relax here` — «Я зазвичай розслабляюся тут». `Usually` стоїть перед `relax`, а `here` указує на це місце.
+Ви йдете з племінницею до зупинки. Попереду дорога зі світлофором, і вона питає, де ви зазвичай переходите. cross — «переходити». Ви показуєте перехід біля світлофора, яким зазвичай користуєтеся: I usually cross the road here — «Я зазвичай переходжу дорогу тут». Слово usually стоїть перед cross.
 
-**Покажіть крісло й розкажіть про свою звичку.**
+**Племінниця стоїть біля дороги. Скажіть їй: «Я зазвичай переходжу дорогу тут».**
 
-- ✅ **I usually relax here.**
-- ❌ I usually relaxes here. — *Після `I` потрібне `relax`.*
-- ❌ I usually relaxing here. — *Тут потрібна форма `relax`.*
+- ✅ **I usually cross the road here.**
+- ❌ I usually crosses the road here. — *Після I потрібно cross, без s.*
+- ❌ I usually crossing the road here. — *Для звички після I usually потрібно cross.*
 
 ---
 
 ## Інтро 3
 
-### Дзвінки знайомої
+### Хто платить за двох
 
-Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`; після `she` зберігається закінчення `s`.
+Ви часто їздите з братом на таксі. Подруга питає, хто з вас зазвичай оплачує поїздку. fare — «плата за проїзд». Частіше платите ви: I usually pay the fare — «Я зазвичай плачу за проїзд». Слово usually стоїть перед pay.
 
-**Скажіть про знайому: «Вона часто телефонує».**
+**Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *Після `she` потрібне `calls`.*
-- ❌ She often calling. — *Тут потрібна форма `calls`.*
+- ✅ **I usually pay the fare.**
+- ❌ I usually pays the fare. — *Після I потрібно pay, без s.*
+- ❌ I usually paying the fare. — *Для звички після I usually потрібно pay.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я зазвичай полірую стіл»**
+**1 · Картка слова — fasten**
+<!-- interaction_id: en:lesson-07:session-44:word:fasten; family: word_card -->
+> **fasten** — пристібати. I usually fasten my seat belt. — «Я зазвичай пристібаю пасок безпеки». Закріплювати або застібати; тут — з’єднувати частини застібки паска.
+
+**2 · Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки».**
 <!-- interaction_id: en:lesson-07:session-44:i01; family: phrase_builder -->
-Плитки: `table` `the` `polish` `usually` `I` → **I usually polish the table.**
+Плитки: `belt` `seat` `my` `fasten` `usually` `I` → **I usually fasten my seat belt.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте подругу**
 <!-- interaction_id: en:lesson-07:session-44:i02; family: listen_choose -->
-🔊 *polish* → **polish** · relax · hat
-- relax — *У записі перше слово — `polish`, а в цьому варіанті — `relax`.*
-- hat — *У записі перше слово — `polish`, а в цьому варіанті — `hat`.*
+🔊 *I usually fasten my seat belt.* → **I usually fasten my seat belt.** · I often fasten my seat belt. · I usually wash my seat belt.
+- I often fasten my seat belt. — *У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто.*
+- I usually wash my seat belt. — *У записі третє слово — `fasten`, пристібати, а в цьому варіанті — `wash`, мити.*
 
-**3 · Скажіть «Я зазвичай полірую стіл»**
+**4 · Подруга питає про пасок. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-44:i03; family: context_gap_grammar -->
-I usually ___ the table. → **polish** · polishes · polishing
-- polishes — *Після `I` потрібне `polish`.*
-- polishing — *Тут потрібна форма `polish`.*
+I usually ___ my seat belt. → **fasten** · fastens · fastening
+- fastens — *Після `I` потрібно `fasten`, без `s`.*
+- fastening — *Тут потрібна форма `fasten`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-44:i04; family: speed_match -->
-polish — полірувати · relax — розслаблятися · hotels — готелі · bicycle — велосипед
+fasten — пристібати · belt — пасок · seat — сидіння · bus — автобус
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — cross**
+<!-- interaction_id: en:lesson-07:session-44:word:cross; family: word_card -->
+> **cross** — переходити. I usually cross the road here. — «Я зазвичай переходжу дорогу тут». Перетинати, переходити з одного боку на інший; тут ідеться про дорогу.
+
+**7 · Послухайте племінницю й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-44:i05; family: listen_build_dictation -->
-🔊 *I usually polish the table.* Плитки: `table` `the` `polish` `usually` `I` → **I usually polish the table.**
+🔊 *I usually cross the road here.* Плитки: `here` `road` `the` `cross` `usually` `I` → **I usually cross the road here.**
 
-**6 · Покажіть крісло: «Я зазвичай розслабляюся тут»**
+**8 · Картка слова — fare**
+<!-- interaction_id: en:lesson-07:session-44:word:fare; family: word_card -->
+> **fare** — плата за проїзд. I usually pay the fare. — «Я зазвичай плачу за проїзд». Гроші, які платять за поїздку.
+
+**9 · Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд».**
 <!-- interaction_id: en:lesson-07:session-44:i06; family: phrase_builder -->
-Плитки: `here` `relax` `usually` `I` → **I usually relax here.**
+Плитки: `fare` `the` `pay` `usually` `I` → **I usually pay the fare.**
 
-**7 · Скажіть про знайому «Вона часто телефонує»**
+**10 · Картка слова — miss**
+<!-- interaction_id: en:lesson-07:session-44:word:miss; family: word_card -->
+> **miss** — не встигати на, пропускати. I often miss the bus. — «Я часто не встигаю на автобус». Не встигнути на потрібний автобус. Автобус поїхав, а ви ще на зупинці — от і вся зустріч.
+
+**11 · Подруга питає, чи не запізнюєтеся ви на транспорт. Скажіть: «Я часто не встигаю на автобус».**
 <!-- interaction_id: en:lesson-07:session-44:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **I often miss the bus.**
 
-**8 · Скажіть «Вона часто телефонує»**
+**12 · Подруга питає про вашого брата. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-44:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *Після `she` потрібне `calls`.*
-- calling — *Тут потрібна форма `calls`.*
+My brother often ___ the bus. → **misses** · miss · missing
+- miss — *Після `my brother` потрібно `misses`: до miss додаємо es.*
+- missing — *Тут потрібна форма `misses`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте племінницю**
 <!-- interaction_id: en:lesson-07:session-44:i09; family: listen_choose -->
-🔊 *I usually polish the table.* → **I usually polish the table.** · I usually polish the desk. · I usually polish the chair.
-- I usually polish the desk. — *У записі останнє слово — `table`, а в цьому варіанті — `desk`.*
-- I usually polish the chair. — *У записі останнє слово — `table`, а в цьому варіанті — `chair`.*
+🔊 *I usually cross the road here.* → **I usually cross the road here.** · I usually cross the road there. · I usually cross the bridge here.
+- I usually cross the road there. — *У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там.*
+- I usually cross the bridge here. — *У записі п’яте слово — `road`, дорога, а в цьому варіанті — `bridge`, міст.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-44:i10; family: speed_match -->
-relax — розслаблятися · polish — полірувати · hotels — готелі · hat — головний убір
+cross — переходити · fare — плата за проїзд · bus — автобус · ticket — квиток
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте подругу й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-44:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *I often cross the road with my niece.* Плитки: `niece` `my` `with` `road` `the` `cross` `often` `I` → **I often cross the road with my niece.**
 
-**12 · Ви обговорюєте прогулянку. Запитайте подругу «У тебе є велосипед?»**
+**16 · Подруга їде з вами в трамваї. Спитайте її: «У тебе є квиток?»**
 <!-- interaction_id: en:lesson-07:session-44:i12; family: phrase_builder -->
-Плитки: `bicycle` `a` `have` `you` `Do` → **Do you have a bicycle?**
+Плитки: `ticket` `a` `have` `you` `Do` → **Do you have a ticket?**
 
-**13 · Перед виходом на сонце запитайте друга «У тебе є головний убір?»**
+**17 · Подруга питає про вашого брата. Скажіть: «Мій брат часто не встигає на автобус».**
 <!-- interaction_id: en:lesson-07:session-44:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a hat?**
+🎙 **My brother often misses the bus.**
 
-**14 · Скажіть «Я зазвичай розслабляюся тут»**
+**18 · Подруга питає, хто платить за поїздку. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-44:i14; family: context_gap_grammar -->
-I ___ relax here. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `relax`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `relax` не ставимо.*
+I ___ pay the fare. → **usually** · does · am
+- does — *Для «зазвичай» потрібне `usually` перед `pay`.*
+- am — *Для «зазвичай» потрібне `usually`; `am` перед `pay` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте кондуктора**
 <!-- interaction_id: en:lesson-07:session-44:i15; family: listen_choose -->
-🔊 *The hotels are here.* → **The hotels are here.** · The hotels are there. · The hotels are outside.
-- The hotels are there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The hotels are outside. — *У записі останнє слово — `here`, а в цьому варіанті — `outside`.*
+🔊 *Do you have a ticket?* → **Do you have a ticket?** · Do you have a coin? · Do you have a card?
+- Do you have a coin? — *У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `coin`, монета.*
+- Do you have a card? — *У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `card`, картка.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-44:i16; family: speed_match -->
-polish — полірувати · bicycle — велосипед · relax — розслаблятися · hotels — готелі
+miss — не встигати на, пропускати · fare — плата за проїзд · fasten — пристібати · cross — переходити
 
-**17 · Друг запитує про домашні справи Тома. Скажіть «Том зазвичай полірує стіл»**
+**21 · Подруга питає про брата. Скажіть: «Мій брат зазвичай платить за проїзд».**
 <!-- interaction_id: en:lesson-07:session-44:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually polishes the table.**
-
+🎙 **My brother usually pays the fare.**

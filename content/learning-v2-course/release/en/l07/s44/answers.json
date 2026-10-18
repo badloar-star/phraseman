@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-44:word:fasten",
+    "correctText": "fasten",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-44:i01",
-    "correctText": "I usually polish the table.",
+    "correctText": "I usually fasten my seat belt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i02",
-    "correctText": "polish",
+    "correctText": "I usually fasten my seat belt.",
     "correctResponseId": "en:lesson-07:session-44:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-44:i03",
-    "correctText": "polish",
+    "correctText": "fasten",
     "correctResponseId": "en:lesson-07:session-44:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-44:i04",
-    "correctText": "en:lesson-07:session-44:i04:p1=polish\nen:lesson-07:session-44:i04:p2=relax\nen:lesson-07:session-44:i04:p3=hotels\nen:lesson-07:session-44:i04:p4=bicycle",
+    "correctText": "en:lesson-07:session-44:i04:p1=fasten\nen:lesson-07:session-44:i04:p2=belt\nen:lesson-07:session-44:i04:p3=seat\nen:lesson-07:session-44:i04:p4=bus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:word:cross",
+    "correctText": "cross",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i05",
-    "correctText": "I usually polish the table.",
+    "correctText": "I usually cross the road here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:word:fare",
+    "correctText": "fare",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i06",
-    "correctText": "I usually relax here.",
+    "correctText": "I usually pay the fare.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-44:word:miss",
+    "correctText": "miss",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i07",
-    "correctText": "She often calls.",
+    "correctText": "I often miss the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i08",
-    "correctText": "calls",
+    "correctText": "misses",
     "correctResponseId": "en:lesson-07:session-44:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-44:i09",
-    "correctText": "I usually polish the table.",
+    "correctText": "I usually cross the road here.",
     "correctResponseId": "en:lesson-07:session-44:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-44:i10",
-    "correctText": "en:lesson-07:session-44:i10:p1=relax\nen:lesson-07:session-44:i10:p2=polish\nen:lesson-07:session-44:i10:p3=hotels\nen:lesson-07:session-44:i10:p4=hat",
+    "correctText": "en:lesson-07:session-44:i10:p1=cross\nen:lesson-07:session-44:i10:p2=fare\nen:lesson-07:session-44:i10:p3=bus\nen:lesson-07:session-44:i10:p4=ticket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i11",
-    "correctText": "She often calls.",
+    "correctText": "I often cross the road with my niece.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i12",
-    "correctText": "Do you have a bicycle?",
+    "correctText": "Do you have a ticket?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i13",
-    "correctText": "Do you have a hat?",
+    "correctText": "My brother often misses the bus.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-44:i15",
-    "correctText": "The hotels are here.",
+    "correctText": "Do you have a ticket?",
     "correctResponseId": "en:lesson-07:session-44:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-44:i16",
-    "correctText": "en:lesson-07:session-44:i16:p1=polish\nen:lesson-07:session-44:i16:p2=bicycle\nen:lesson-07:session-44:i16:p3=relax\nen:lesson-07:session-44:i16:p4=hotels",
+    "correctText": "en:lesson-07:session-44:i16:p1=miss\nen:lesson-07:session-44:i16:p2=fare\nen:lesson-07:session-44:i16:p3=fasten\nen:lesson-07:session-44:i16:p4=cross",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-44:i17",
-    "correctText": "Tom usually polishes the table.",
+    "correctText": "My brother usually pays the fare.",
     "correctResponseId": null
   }
 ]

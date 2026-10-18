@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-44",
   "learningOutcomeByLocale": {
-    "ru": "использовать usually и often перед действием",
-    "uk": "використовувати usually й often перед дією"
+    "ru": "говорить о привычках, ставя usually или often перед действием",
+    "uk": "говорити про звички, ставлячи usually або often перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Уход за столом",
-        "uk": "Догляд за столом"
+        "ru": "Подруга в машине",
+        "uk": "Подруга в машині"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как вы обычно ухаживаете за деревянным столом. `polish` — «полировать, натирать до блеска». `I usually polish the table` — «Я обычно полирую стол». `Usually` стоит перед `polish`; `the table` — известный вам обоим стол. Стол сияет, хотя на сцену его никто не приглашал.",
-        "uk": "Друг запитує, як ви зазвичай доглядаєте за дерев’яним столом. `polish` — «полірувати, натирати до блиску». `I usually polish the table` — «Я зазвичай полірую стіл». `Usually` стоїть перед `polish`; `the table` — відомий вам обом стіл. Стіл сяє, хоча на сцену його ніхто не запрошував."
+        "ru": "Подруга садится к вам в машину и спрашивает, пристёгиваетесь ли вы, когда едете одни. fasten — «пристёгивать». Для вас это такая же привычка, как закрыть дверь: I usually fasten my seat belt — «Я обычно пристёгиваю ремень безопасности». Слово usually стоит перед fasten.",
+        "uk": "Подруга сідає до вас у машину й питає, чи пристібаєтеся ви, коли їдете самі. fasten — «пристібати». Для вас це така сама звичка, як зачинити двері: I usually fasten my seat belt — «Я зазвичай пристібаю пасок безпеки». Слово usually стоїть перед fasten."
       },
       "question": {
         "interactionId": "en:lesson-07:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите об уходе за столом.",
-          "uk": "Розкажіть про догляд за столом."
+          "ru": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+          "uk": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-44:intro1:r1",
-              "text": "I usually polish the table."
+              "text": "I usually fasten my seat belt."
             },
             {
               "responseId": "en:lesson-07:session-44:intro1:r2",
-              "text": "I usually polishes the table."
+              "text": "I usually fastens my seat belt."
             },
             {
               "responseId": "en:lesson-07:session-44:intro1:r3",
-              "text": "I usually polishing the table."
+              "text": "I usually fastening my seat belt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-44:intro1:r1",
-              "text": "I usually polish the table."
+              "text": "I usually fasten my seat belt."
             },
             {
               "responseId": "en:lesson-07:session-44:intro1:r2",
-              "text": "I usually polishes the table."
+              "text": "I usually fastens my seat belt."
             },
             {
               "responseId": "en:lesson-07:session-44:intro1:r3",
-              "text": "I usually polishing the table."
+              "text": "I usually fastening my seat belt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите об уходе за столом.",
-          "uk": "Розкажіть про догляд за столом."
+          "ru": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+          "uk": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спокойное место",
-        "uk": "Спокійне місце"
+        "ru": "Переход у светофора",
+        "uk": "Перехід біля світлофора"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете гостю кресло, где обычно расслабляетесь. `I usually relax here` — «Я обычно расслабляюсь здесь». `Usually` стоит перед `relax`, а `here` указывает на это место.",
-        "uk": "Ви показуєте гостеві крісло, де зазвичай розслабляєтеся. `I usually relax here` — «Я зазвичай розслабляюся тут». `Usually` стоїть перед `relax`, а `here` указує на це місце."
+        "ru": "Вы идёте с племянницей к остановке. Впереди дорога со светофором, и она спрашивает, где вы обычно переходите. cross — «переходить». Вы показываете переход у светофора, которым обычно пользуетесь: I usually cross the road here — «Я обычно перехожу дорогу здесь». Слово usually стоит перед cross.",
+        "uk": "Ви йдете з племінницею до зупинки. Попереду дорога зі світлофором, і вона питає, де ви зазвичай переходите. cross — «переходити». Ви показуєте перехід біля світлофора, яким зазвичай користуєтеся: I usually cross the road here — «Я зазвичай переходжу дорогу тут». Слово usually стоїть перед cross."
       },
       "question": {
         "interactionId": "en:lesson-07:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Покажите кресло и расскажите о своей привычке.",
-          "uk": "Покажіть крісло й розкажіть про свою звичку."
+          "ru": "Племянница стоит у дороги. Скажите ей: «Я обычно перехожу дорогу здесь».",
+          "uk": "Племінниця стоїть біля дороги. Скажіть їй: «Я зазвичай переходжу дорогу тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-44:intro2:r1",
-              "text": "I usually relax here."
+              "text": "I usually cross the road here."
             },
             {
               "responseId": "en:lesson-07:session-44:intro2:r2",
-              "text": "I usually relaxes here."
+              "text": "I usually crosses the road here."
             },
             {
               "responseId": "en:lesson-07:session-44:intro2:r3",
-              "text": "I usually relaxing here."
+              "text": "I usually crossing the road here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-44:intro2:r1",
-              "text": "I usually relax here."
+              "text": "I usually cross the road here."
             },
             {
               "responseId": "en:lesson-07:session-44:intro2:r2",
-              "text": "I usually relaxes here."
+              "text": "I usually crosses the road here."
             },
             {
               "responseId": "en:lesson-07:session-44:intro2:r3",
-              "text": "I usually relaxing here."
+              "text": "I usually crossing the road here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите кресло и расскажите о своей привычке.",
-          "uk": "Покажіть крісло й розкажіть про свою звичку."
+          "ru": "Племянница стоит у дороги. Скажите ей: «Я обычно перехожу дорогу здесь».",
+          "uk": "Племінниця стоїть біля дороги. Скажіть їй: «Я зазвичай переходжу дорогу тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звонки знакомой",
-        "uk": "Дзвінки знайомої"
+        "ru": "Кто платит за двоих",
+        "uk": "Хто платить за двох"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`; после `she` сохраняется окончание `s`.",
-        "uk": "Ви розповідаєте про знайому, яка часто телефонує вам. `She often calls` — «Вона часто телефонує». `Often` стоїть перед `calls`; після `she` зберігається закінчення `s`."
+        "ru": "Вы часто ездите с братом на такси. Подруга спрашивает, кто из вас обычно оплачивает поездку. fare — «плата за проезд». Чаще платите вы: I usually pay the fare — «Я обычно плачу за проезд». Слово usually стоит перед pay.",
+        "uk": "Ви часто їздите з братом на таксі. Подруга питає, хто з вас зазвичай оплачує поїздку. fare — «плата за проїзд». Частіше платите ви: I usually pay the fare — «Я зазвичай плачу за проїзд». Слово usually стоїть перед pay."
       },
       "question": {
         "interactionId": "en:lesson-07:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+          "uk": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-44:intro3:r1",
-              "text": "She often calls."
+              "text": "I usually pay the fare."
             },
             {
               "responseId": "en:lesson-07:session-44:intro3:r2",
-              "text": "She often call."
+              "text": "I usually pays the fare."
             },
             {
               "responseId": "en:lesson-07:session-44:intro3:r3",
-              "text": "She often calling."
+              "text": "I usually paying the fare."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-44:intro3:r1",
-              "text": "She often calls."
+              "text": "I usually pay the fare."
             },
             {
               "responseId": "en:lesson-07:session-44:intro3:r2",
-              "text": "She often call."
+              "text": "I usually pays the fare."
             },
             {
               "responseId": "en:lesson-07:session-44:intro3:r3",
-              "text": "She often calling."
+              "text": "I usually paying the fare."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите о знакомой: «Она часто звонит».",
-          "uk": "Скажіть про знайому: «Вона часто телефонує»."
+          "ru": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+          "uk": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3e8ac3d56a32fc7f7d391b75cc5bade3011025860019630f1109e58cc5cb6f8a"
+  "introFingerprint": "fd5fa9b8c4ac2eb47640798a1b33b5ecfb1a346298ff340b1a5534f044ce5407"
 }

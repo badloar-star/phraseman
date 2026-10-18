@@ -1,0 +1,2345 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-44:word:fasten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fasten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:fasten:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fasten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:fasten:audio",
+            "transcript": "fasten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:fasten:r1",
+              "targetText": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать. I usually fasten my seat belt. — «Я обычно пристёгиваю ремень безопасности». Закреплять или застёгивать; здесь — соединять части застёжки ремня.",
+                "uk": "пристібати. I usually fasten my seat belt. — «Я зазвичай пристібаю пасок безпеки». Закріплювати або застібати; тут — з’єднувати частини застібки паска."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fasten",
+            "definitionByLocale": {
+              "ru": "пристёгивать. I usually fasten my seat belt. — «Я обычно пристёгиваю ремень безопасности». Закреплять или застёгивать; здесь — соединять части застёжки ремня.",
+              "uk": "пристібати. I usually fasten my seat belt. — «Я зазвичай пристібаю пасок безпеки». Закріплювати або застібати; тут — з’єднувати частини застібки паска."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually fasten my seat belt.",
+          "localizedMeaning": {
+            "ru": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+            "uk": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "fasten",
+            "my",
+            "seat",
+            "belt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i02:r1",
+            "text": "I usually fasten my seat belt."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r2",
+            "text": "I often fasten my seat belt."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r3",
+            "text": "I usually wash my seat belt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i02:audio",
+            "transcript": "I usually fasten my seat belt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i02:r1",
+              "targetText": "I usually fasten my seat belt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r2",
+              "targetText": "I often fasten my seat belt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r3",
+              "targetText": "I usually wash my seat belt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+                "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `fasten`, пристёгивать, а в этом варианте — `wash`, мыть.",
+                "uk": "У записі третє слово — `fasten`, пристібати, а в цьому варіанті — `wash`, мити."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает о ремне. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i03:r1",
+            "text": "fasten"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r2",
+            "text": "fastens"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r3",
+            "text": "fastening"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о ремне. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о ремне. Выберите слово",
+            "uk": "Подруга питає про пасок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ my seat belt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i03:r1",
+              "text": "fasten"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r2",
+              "text": "fastens"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r3",
+              "text": "fastening"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает о ремне. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о ремне. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `fasten`, без `s`.",
+                "uk": "Після `I` потрібно `fasten`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о ремне. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `fasten`.",
+                "uk": "Тут потрібна форма `fasten`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i04:p1",
+              "target": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать",
+                "uk": "пристібати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p2",
+              "target": "belt",
+              "meaningByLocale": {
+                "ru": "ремень",
+                "uk": "пасок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p3",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "сиденье",
+                "uk": "сидіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p4",
+              "target": "bus",
+              "meaningByLocale": {
+                "ru": "автобус",
+                "uk": "автобус"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fasten",
+            "belt",
+            "seat",
+            "bus"
+          ],
+          "rightColumn": [
+            "пристёгивать",
+            "ремень",
+            "сиденье",
+            "автобус"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:cross",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cross",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:cross:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cross",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:cross:audio",
+            "transcript": "cross"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:cross:r1",
+              "targetText": "cross",
+              "meaningByLocale": {
+                "ru": "переходить. I usually cross the road here. — «Я обычно перехожу дорогу здесь». Пересекать, переходить с одной стороны на другую; здесь речь о дороге.",
+                "uk": "переходити. I usually cross the road here. — «Я зазвичай переходжу дорогу тут». Перетинати, переходити з одного боку на інший; тут ідеться про дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cross",
+            "definitionByLocale": {
+              "ru": "переходить. I usually cross the road here. — «Я обычно перехожу дорогу здесь». Пересекать, переходить с одной стороны на другую; здесь речь о дороге.",
+              "uk": "переходити. I usually cross the road here. — «Я зазвичай переходжу дорогу тут». Перетинати, переходити з одного боку на інший; тут ідеться про дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте племянницу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте племянницу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i05:audio",
+            "transcript": "I usually cross the road here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually cross the road here.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "cross",
+            "the",
+            "road",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:fare",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:fare:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:fare:audio",
+            "transcript": "fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:fare:r1",
+              "targetText": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд. I usually pay the fare. — «Я обычно плачу за проезд». Деньги, которые платят за поездку.",
+                "uk": "плата за проїзд. I usually pay the fare. — «Я зазвичай плачу за проїзд». Гроші, які платять за поїздку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fare",
+            "definitionByLocale": {
+              "ru": "плата за проезд. I usually pay the fare. — «Я обычно плачу за проезд». Деньги, которые платят за поездку.",
+              "uk": "плата за проїзд. I usually pay the fare. — «Я зазвичай плачу за проїзд». Гроші, які платять за поїздку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually pay the fare.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+            "uk": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "pay",
+            "the",
+            "fare"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:miss",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — miss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:miss:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — miss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:miss:audio",
+            "transcript": "miss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:miss:r1",
+              "targetText": "miss",
+              "meaningByLocale": {
+                "ru": "не успевать на, упускать. I often miss the bus. — «Я часто не успеваю на автобус». Не успеть на нужный автобус. Автобус уехал, а вы ещё на остановке — вот и вся встреча.",
+                "uk": "не встигати на, пропускати. I often miss the bus. — «Я часто не встигаю на автобус». Не встигнути на потрібний автобус. Автобус поїхав, а ви ще на зупинці — от і вся зустріч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "miss",
+            "definitionByLocale": {
+              "ru": "не успевать на, упускать. I often miss the bus. — «Я часто не успеваю на автобус». Не успеть на нужный автобус. Автобус уехал, а вы ещё на остановке — вот и вся встреча.",
+              "uk": "не встигати на, пропускати. I often miss the bus. — «Я часто не встигаю на автобус». Не встигнути на потрібний автобус. Автобус поїхав, а ви ще на зупинці — от і вся зустріч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает, не опаздываете ли вы на транспорт. Скажите: «Я часто не успеваю на автобус».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает, не опаздываете ли вы на транспорт. Скажите: «Я часто не успеваю на автобус».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i07:audio",
+            "transcript": "I often miss the bus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often miss the bus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает о вашем брате. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i08:r1",
+            "text": "misses"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r2",
+            "text": "miss"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r3",
+            "text": "missing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает о вашем брате. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем брате. Выберите слово",
+            "uk": "Подруга питає про вашого брата. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother often ___ the bus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i08:r1",
+              "text": "misses"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r2",
+              "text": "miss"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r3",
+              "text": "missing"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает о вашем брате. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем брате. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `my brother` нужно `misses`: к miss добавляем es.",
+                "uk": "Після `my brother` потрібно `misses`: до miss додаємо es."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает о вашем брате. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `misses`.",
+                "uk": "Тут потрібна форма `misses`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте племянницу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i09:r1",
+            "text": "I usually cross the road here."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r2",
+            "text": "I usually cross the road there."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r3",
+            "text": "I usually cross the bridge here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте племянницу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i09:audio",
+            "transcript": "I usually cross the road here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i09:r1",
+              "targetText": "I usually cross the road here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r2",
+              "targetText": "I usually cross the road there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r3",
+              "targetText": "I usually cross the bridge here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте племянницу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте племянницу",
+              "feedbackByLocale": {
+                "ru": "В записи пятое слово — `road`, дорога, а в этом варианте — `bridge`, мост.",
+                "uk": "У записі п’яте слово — `road`, дорога, а в цьому варіанті — `bridge`, міст."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i10:p1",
+              "target": "cross",
+              "meaningByLocale": {
+                "ru": "переходить",
+                "uk": "переходити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p2",
+              "target": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд",
+                "uk": "плата за проїзд"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p3",
+              "target": "bus",
+              "meaningByLocale": {
+                "ru": "автобус",
+                "uk": "автобус"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cross",
+            "fare",
+            "bus",
+            "ticket"
+          ],
+          "rightColumn": [
+            "переходить",
+            "плата за проезд",
+            "автобус",
+            "билет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте подругу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте подругу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i11:audio",
+            "transcript": "I often cross the road with my niece."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often cross the road with my niece.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "cross",
+            "the",
+            "road",
+            "with",
+            "my",
+            "niece"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга едет с вами в трамвае. Спросите её: «У тебя есть билет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга едет с вами в трамвае. Спросите её: «У тебя есть билет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a ticket?",
+          "localizedMeaning": {
+            "ru": "Подруга едет с вами в трамвае. Спросите её: «У тебя есть билет?»",
+            "uk": "Подруга їде з вами в трамваї. Спитайте її: «У тебе є квиток?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о вашем брате. Скажите: «Мой брат часто не успевает на автобус».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о вашем брате. Скажите: «Мой брат часто не успевает на автобус».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i13:audio",
+            "transcript": "My brother often misses the bus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often misses the bus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+            "uk": "Подруга питає, хто платить за поїздку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ pay the fare.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `pay`.",
+                "uk": "Для «зазвичай» потрібне `usually` перед `pay`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `pay` не ставим.",
+                "uk": "Для «зазвичай» потрібне `usually`; `am` перед `pay` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте кондуктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i15:r1",
+            "text": "Do you have a ticket?"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r2",
+            "text": "Do you have a coin?"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r3",
+            "text": "Do you have a card?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте кондуктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i15:audio",
+            "transcript": "Do you have a ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i15:r1",
+              "targetText": "Do you have a ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r2",
+              "targetText": "Do you have a coin?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r3",
+              "targetText": "Do you have a card?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте кондуктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ticket`, билет, а в этом варианте — `coin`, монета.",
+                "uk": "У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `coin`, монета."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте кондуктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ticket`, билет, а в этом варианте — `card`, карта.",
+                "uk": "У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `card`, картка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i16:p1",
+              "target": "miss",
+              "meaningByLocale": {
+                "ru": "не успевать на, упускать",
+                "uk": "не встигати на, пропускати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p2",
+              "target": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд",
+                "uk": "плата за проїзд"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p3",
+              "target": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать",
+                "uk": "пристібати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p4",
+              "target": "cross",
+              "meaningByLocale": {
+                "ru": "переходить",
+                "uk": "переходити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "miss",
+            "fare",
+            "fasten",
+            "cross"
+          ],
+          "rightColumn": [
+            "не успевать на, упускать",
+            "плата за проезд",
+            "пристёгивать",
+            "переходить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга спрашивает о брате. Скажите: «Мой брат обычно платит за проезд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга спрашивает о брате. Скажите: «Мой брат обычно платит за проезд».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i17:audio",
+            "transcript": "My brother usually pays the fare."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother usually pays the fare.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-44:word:fasten",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fasten",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:fasten:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fasten",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:fasten:audio",
+            "transcript": "fasten"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:fasten:r1",
+              "targetText": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать. I usually fasten my seat belt. — «Я обычно пристёгиваю ремень безопасности». Закреплять или застёгивать; здесь — соединять части застёжки ремня.",
+                "uk": "пристібати. I usually fasten my seat belt. — «Я зазвичай пристібаю пасок безпеки». Закріплювати або застібати; тут — з’єднувати частини застібки паска."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fasten",
+            "definitionByLocale": {
+              "ru": "пристёгивать. I usually fasten my seat belt. — «Я обычно пристёгиваю ремень безопасности». Закреплять или застёгивать; здесь — соединять части застёжки ремня.",
+              "uk": "пристібати. I usually fasten my seat belt. — «Я зазвичай пристібаю пасок безпеки». Закріплювати або застібати; тут — з’єднувати частини застібки паска."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually fasten my seat belt.",
+          "localizedMeaning": {
+            "ru": "Подруга садится в машину. Скажите ей: «Я обычно пристёгиваю ремень безопасности».",
+            "uk": "Подруга сідає в машину. Скажіть їй: «Я зазвичай пристібаю пасок безпеки»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "fasten",
+            "my",
+            "seat",
+            "belt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте подругу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i02:r1",
+            "text": "I usually fasten my seat belt."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r2",
+            "text": "I often fasten my seat belt."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i02:r3",
+            "text": "I usually wash my seat belt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i02:audio",
+            "transcript": "I usually fasten my seat belt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i02:r1",
+              "targetText": "I usually fasten my seat belt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r2",
+              "targetText": "I often fasten my seat belt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r3",
+              "targetText": "I usually wash my seat belt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `usually`, обычно, а в этом варианте — `often`, часто.",
+                "uk": "У записі друге слово — `usually`, зазвичай, а в цьому варіанті — `often`, часто."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте подругу",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `fasten`, пристёгивать, а в этом варианте — `wash`, мыть.",
+                "uk": "У записі третє слово — `fasten`, пристібати, а в цьому варіанті — `wash`, мити."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про пасок. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i03:r1",
+            "text": "fasten"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r2",
+            "text": "fastens"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i03:r3",
+            "text": "fastening"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про пасок. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о ремне. Выберите слово",
+            "uk": "Подруга питає про пасок. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ my seat belt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i03:r1",
+              "text": "fasten"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r2",
+              "text": "fastens"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r3",
+              "text": "fastening"
+            }
+          ],
+          "testedDimension": "Подруга питає про пасок. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про пасок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `fasten`, без `s`.",
+                "uk": "Після `I` потрібно `fasten`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про пасок. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `fasten`.",
+                "uk": "Тут потрібна форма `fasten`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i04:p1",
+              "target": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать",
+                "uk": "пристібати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p2",
+              "target": "belt",
+              "meaningByLocale": {
+                "ru": "ремень",
+                "uk": "пасок"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p3",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "сиденье",
+                "uk": "сидіння"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i04:p4",
+              "target": "bus",
+              "meaningByLocale": {
+                "ru": "автобус",
+                "uk": "автобус"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fasten",
+            "belt",
+            "seat",
+            "bus"
+          ],
+          "rightColumn": [
+            "пристібати",
+            "пасок",
+            "сидіння",
+            "автобус"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:cross",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cross",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:cross:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cross",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:cross:audio",
+            "transcript": "cross"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:cross:r1",
+              "targetText": "cross",
+              "meaningByLocale": {
+                "ru": "переходить. I usually cross the road here. — «Я обычно перехожу дорогу здесь». Пересекать, переходить с одной стороны на другую; здесь речь о дороге.",
+                "uk": "переходити. I usually cross the road here. — «Я зазвичай переходжу дорогу тут». Перетинати, переходити з одного боку на інший; тут ідеться про дорогу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cross",
+            "definitionByLocale": {
+              "ru": "переходить. I usually cross the road here. — «Я обычно перехожу дорогу здесь». Пересекать, переходить с одной стороны на другую; здесь речь о дороге.",
+              "uk": "переходити. I usually cross the road here. — «Я зазвичай переходжу дорогу тут». Перетинати, переходити з одного боку на інший; тут ідеться про дорогу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте племінницю й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте племінницю й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i05:audio",
+            "transcript": "I usually cross the road here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I usually cross the road here.",
+          "orderedTokens": [
+            "I",
+            "usually",
+            "cross",
+            "the",
+            "road",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:fare",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:fare:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:fare:audio",
+            "transcript": "fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:fare:r1",
+              "targetText": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд. I usually pay the fare. — «Я обычно плачу за проезд». Деньги, которые платят за поездку.",
+                "uk": "плата за проїзд. I usually pay the fare. — «Я зазвичай плачу за проїзд». Гроші, які платять за поїздку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fare",
+            "definitionByLocale": {
+              "ru": "плата за проезд. I usually pay the fare. — «Я обычно плачу за проезд». Деньги, которые платят за поездку.",
+              "uk": "плата за проїзд. I usually pay the fare. — «Я зазвичай плачу за проїзд». Гроші, які платять за поїздку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually pay the fare.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, кто платит за поездку. Скажите ей: «Я обычно плачу за проезд».",
+            "uk": "Подруга питає, хто платить за поїздку. Скажіть їй: «Я зазвичай плачу за проїзд»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "pay",
+            "the",
+            "fare"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:word:miss",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — miss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:word:miss:audio"
+        ],
+        "accessibilityLabel": "Картка слова — miss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:word:miss:audio",
+            "transcript": "miss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:word:miss:r1",
+              "targetText": "miss",
+              "meaningByLocale": {
+                "ru": "не успевать на, упускать. I often miss the bus. — «Я часто не успеваю на автобус». Не успеть на нужный автобус. Автобус уехал, а вы ещё на остановке — вот и вся встреча.",
+                "uk": "не встигати на, пропускати. I often miss the bus. — «Я часто не встигаю на автобус». Не встигнути на потрібний автобус. Автобус поїхав, а ви ще на зупинці — от і вся зустріч."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "miss",
+            "definitionByLocale": {
+              "ru": "не успевать на, упускать. I often miss the bus. — «Я часто не успеваю на автобус». Не успеть на нужный автобус. Автобус уехал, а вы ещё на остановке — вот и вся встреча.",
+              "uk": "не встигати на, пропускати. I often miss the bus. — «Я часто не встигаю на автобус». Не встигнути на потрібний автобус. Автобус поїхав, а ви ще на зупинці — от і вся зустріч."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає, чи не запізнюєтеся ви на транспорт. Скажіть: «Я часто не встигаю на автобус».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i07:audio"
+        ],
+        "accessibilityLabel": "Подруга питає, чи не запізнюєтеся ви на транспорт. Скажіть: «Я часто не встигаю на автобус».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i07:audio",
+            "transcript": "I often miss the bus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often miss the bus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає про вашого брата. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i08:r1",
+            "text": "misses"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r2",
+            "text": "miss"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i08:r3",
+            "text": "missing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає про вашого брата. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает о вашем брате. Выберите слово",
+            "uk": "Подруга питає про вашого брата. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My brother often ___ the bus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i08:r1",
+              "text": "misses"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r2",
+              "text": "miss"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r3",
+              "text": "missing"
+            }
+          ],
+          "testedDimension": "Подруга питає про вашого брата. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає про вашого брата. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `my brother` нужно `misses`: к miss добавляем es.",
+                "uk": "Після `my brother` потрібно `misses`: до miss додаємо es."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає про вашого брата. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `misses`.",
+                "uk": "Тут потрібна форма `misses`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте племінницю",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i09:r1",
+            "text": "I usually cross the road here."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r2",
+            "text": "I usually cross the road there."
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i09:r3",
+            "text": "I usually cross the bridge here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте племінницю",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i09:audio",
+            "transcript": "I usually cross the road here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i09:r1",
+              "targetText": "I usually cross the road here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r2",
+              "targetText": "I usually cross the road there.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r3",
+              "targetText": "I usually cross the bridge here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте племінницю",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `here`, здесь, а в этом варианте — `there`, там.",
+                "uk": "У записі останнє слово — `here`, тут, а в цьому варіанті — `there`, там."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте племінницю",
+              "feedbackByLocale": {
+                "ru": "В записи пятое слово — `road`, дорога, а в этом варианте — `bridge`, мост.",
+                "uk": "У записі п’яте слово — `road`, дорога, а в цьому варіанті — `bridge`, міст."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i10:p1",
+              "target": "cross",
+              "meaningByLocale": {
+                "ru": "переходить",
+                "uk": "переходити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p2",
+              "target": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд",
+                "uk": "плата за проїзд"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p3",
+              "target": "bus",
+              "meaningByLocale": {
+                "ru": "автобус",
+                "uk": "автобус"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i10:p4",
+              "target": "ticket",
+              "meaningByLocale": {
+                "ru": "билет",
+                "uk": "квиток"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cross",
+            "fare",
+            "bus",
+            "ticket"
+          ],
+          "rightColumn": [
+            "переходити",
+            "плата за проїзд",
+            "автобус",
+            "квиток"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте подругу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте подругу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i11:audio",
+            "transcript": "I often cross the road with my niece."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often cross the road with my niece.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "cross",
+            "the",
+            "road",
+            "with",
+            "my",
+            "niece"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга їде з вами в трамваї. Спитайте її: «У тебе є квиток?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга їде з вами в трамваї. Спитайте її: «У тебе є квиток?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a ticket?",
+          "localizedMeaning": {
+            "ru": "Подруга едет с вами в трамвае. Спросите её: «У тебя есть билет?»",
+            "uk": "Подруга їде з вами в трамваї. Спитайте її: «У тебе є квиток?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про вашого брата. Скажіть: «Мій брат часто не встигає на автобус».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про вашого брата. Скажіть: «Мій брат часто не встигає на автобус».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i13:audio",
+            "transcript": "My brother often misses the bus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often misses the bus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, хто платить за поїздку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i14:r1",
+            "text": "usually"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, хто платить за поїздку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, кто платит за поездку. Выберите слово",
+            "uk": "Подруга питає, хто платить за поїздку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ pay the fare.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-44:i14:r1",
+              "text": "usually"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Подруга питає, хто платить за поїздку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, хто платить за поїздку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually` перед `pay`.",
+                "uk": "Для «зазвичай» потрібне `usually` перед `pay`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, хто платить за поїздку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «обычно» нужно `usually`; `am` перед `pay` не ставим.",
+                "uk": "Для «зазвичай» потрібне `usually`; `am` перед `pay` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте кондуктора",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-44:i15:r1",
+            "text": "Do you have a ticket?"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r2",
+            "text": "Do you have a coin?"
+          },
+          {
+            "responseId": "en:lesson-07:session-44:i15:r3",
+            "text": "Do you have a card?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте кондуктора",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i15:audio",
+            "transcript": "Do you have a ticket?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-44:i15:r1",
+              "targetText": "Do you have a ticket?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r2",
+              "targetText": "Do you have a coin?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r3",
+              "targetText": "Do you have a card?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-44:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте кондуктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ticket`, билет, а в этом варианте — `coin`, монета.",
+                "uk": "У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `coin`, монета."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-44:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте кондуктора",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `ticket`, билет, а в этом варианте — `card`, карта.",
+                "uk": "У записі останнє слово — `ticket`, квиток, а в цьому варіанті — `card`, картка."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-44:i16:p1",
+              "target": "miss",
+              "meaningByLocale": {
+                "ru": "не успевать на, упускать",
+                "uk": "не встигати на, пропускати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p2",
+              "target": "fare",
+              "meaningByLocale": {
+                "ru": "плата за проезд",
+                "uk": "плата за проїзд"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p3",
+              "target": "fasten",
+              "meaningByLocale": {
+                "ru": "пристёгивать",
+                "uk": "пристібати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-44:i16:p4",
+              "target": "cross",
+              "meaningByLocale": {
+                "ru": "переходить",
+                "uk": "переходити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "miss",
+            "fare",
+            "fasten",
+            "cross"
+          ],
+          "rightColumn": [
+            "не встигати на, пропускати",
+            "плата за проїзд",
+            "пристібати",
+            "переходити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-44:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга питає про брата. Скажіть: «Мій брат зазвичай платить за проїзд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга питає про брата. Скажіть: «Мій брат зазвичай платить за проїзд».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-44:i17:audio",
+            "transcript": "My brother usually pays the fare."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother usually pays the fare.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-44:word:fasten",
+      "correctText": "fasten",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i01",
+      "correctText": "I usually fasten my seat belt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i02",
+      "correctText": "I usually fasten my seat belt.",
+      "correctResponseId": "en:lesson-07:session-44:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i03",
+      "correctText": "fasten",
+      "correctResponseId": "en:lesson-07:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:word:cross",
+      "correctText": "cross",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i05",
+      "correctText": "I usually cross the road here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:word:fare",
+      "correctText": "fare",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i06",
+      "correctText": "I usually pay the fare.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:word:miss",
+      "correctText": "miss",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i07",
+      "correctText": "I often miss the bus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i08",
+      "correctText": "misses",
+      "correctResponseId": "en:lesson-07:session-44:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i09",
+      "correctText": "I usually cross the road here.",
+      "correctResponseId": "en:lesson-07:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i11",
+      "correctText": "I often cross the road with my niece.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i12",
+      "correctText": "Do you have a ticket?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i13",
+      "correctText": "My brother often misses the bus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i14",
+      "correctText": "usually",
+      "correctResponseId": "en:lesson-07:session-44:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i15",
+      "correctText": "Do you have a ticket?",
+      "correctResponseId": "en:lesson-07:session-44:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-44:i17",
+      "correctText": "My brother usually pays the fare.",
+      "correctResponseId": null
+    }
+  ]
+}

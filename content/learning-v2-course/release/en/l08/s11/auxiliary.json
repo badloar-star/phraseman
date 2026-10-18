@@ -23,8 +23,8 @@
           "uk": "Тут потрібне `can’t` — «не вміє»."
         },
         "en:lesson-08:session-11:intro2:r3": {
-          "ru": "После `can’t` нужно `type`, без `s`.",
-          "uk": "Після `can’t` потрібне `type`, без `s`."
+          "ru": "После `can’t` нужно `debug`, без `s`.",
+          "uk": "Після `can’t` потрібне `debug`, без `s`."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-11:intro3:r2": {
-          "ru": "Для «чей» нужно `whose`, а не `who`.",
-          "uk": "Для «чий» потрібне `whose`, а не `who`."
+          "ru": "Для «чья» нужно `whose`, а не `who`.",
+          "uk": "Для «чия» потрібне `whose`, а не `who`."
         },
         "en:lesson-08:session-11:intro3:r3": {
-          "ru": "Принтер один: нужно `is this`.",
-          "uk": "Принтер один: потрібне `is this`."
+          "ru": "Камера одна: нужно `is this`.",
+          "uk": "Камера одна: потрібне `is this`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e0060f3fd64249431e32c4ac7c9681319f5889bf321ecf1a57e2e3ea4ef207dd"
+  "auxiliaryFingerprint": "57d1736cbfb3541ab3ae06a82eae55e197746b55f5751198ed3df3bed7cc54a9"
 }

@@ -1,17 +1,18 @@
 # Английский · Урок 8 · Занятие 11 — Пока не умею писать код
 
-**Ситуация.** Вы обсуждаете умение писать код и печатать, затем ищете владельца принтера.
+**Ситуация.** Вы выбираете роль в команде, обсуждаете исправление ошибки в игре и возвращаете веб-камеру после онлайн-встречи.
 
 **Что вы освоите:** закрепить can’t для отсутствия умения и повторить вопрос «чей?»
-**Новые слова:** code
+**Новые слова:** code, debug, webcam, modem
+**Возвращаются:** type, learn, ball, coat
 
 ---
 
 ## Интро 1
 
-### Разговор о программировании
+### Роль в команде
 
-Друг спрашивает, умеете ли вы писать программы. Вы пока не умеете. `Code` — «писать код, программировать». `I can’t code` — «Я не умею писать код». После `can’t` нужно `code`, без `to` и окончания `s`. Знать код от домофона — полезно, но это другое умение.
+Друзья собирают команду для создания маленькой игры. Вам предлагают писать программу, но вы пока не умеете. `Code` — «писать код, программировать». `I can’t code` — «Я не умею писать код». После `can’t` нужно `code`, без `to` и окончания `s`. Так вы объясняете, почему вам нужна другая роль в команде.
 
 **Ответьте другу о своём умении.**
 
@@ -23,111 +24,127 @@
 
 ## Интро 2
 
-### Не привыкла к клавиатуре
+### Ошибка в игре
 
-Коллега спрашивает, умеет ли ваша знакомая печатать на клавиатуре. Она пока не научилась. `She can’t type` — «Она не умеет печатать на клавиатуре». `Can’t` не меняется после `she`; после него нужно `type`, без окончания `s`.
+В игре, которую сделал клуб, не работает кнопка запуска. Коллега предлагает обратиться к знакомой, но она ещё не умеет находить и исправлять ошибки в программах. Debug — «отлаживать программы». `She can’t debug` — «Она не умеет отлаживать программы». `Can’t` не меняется после `she`; после него нужно `debug`, без окончания `s`.
 
 **Расскажите об умении знакомой.**
 
-- ✅ **She can’t type.**
-- ❌ She can type. — *Здесь нужно `can’t` — «не умеет».*
-- ❌ She can’t types. — *После `can’t` нужно `type`, без `s`.*
+- ✅ **She can’t debug.**
+- ❌ She can debug. — *Здесь нужно `can’t` — «не умеет».*
+- ❌ She can’t debugs. — *После `can’t` нужно `debug`, без `s`.*
 
 ---
 
 ## Интро 3
 
-### Чей принтер
+### Камера после онлайн-встречи
 
-После переезда офиса остался принтер. Вы хотите найти его владельца. `Whose printer is this?` — «Чей это принтер?» Сначала `whose printer`, затем `is this`.
+После общей онлайн-встречи вы отсоединяете от компьютера чужую веб-камеру. Webcam — «веб-камера», камера для передачи видео через компьютер. Вы хотите вернуть её владельцу. `Whose webcam is this?` — «Чья это веб-камера?» Сначала `whose webcam`, затем `is this`.
 
-**Спросите коллег, чей это принтер.**
+**Спросите коллег, чья это веб-камера.**
 
-- ✅ **Whose printer is this?**
-- ❌ Who printer is this? — *Для «чей» нужно `whose`, а не `who`.*
-- ❌ Whose printer are this? — *Принтер один: нужно `is this`.*
+- ✅ **Whose webcam is this?**
+- ❌ Who webcam is this? — *Для «чья» нужно `whose`, а не `who`.*
+- ❌ Whose webcam are this? — *Камера одна: нужно `is this`.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я не умею писать код»**
+**1 · Карточка слова — code**
+<!-- interaction_id: en:lesson-08:session-11:word:code; family: word_card -->
+> **code** — писать код. I can’t code. — «Я не умею писать код». Создавать компьютерные программы.
+
+**2 · Скажите «Я не умею писать код»**
 <!-- interaction_id: en:lesson-08:session-11:i01; family: phrase_builder -->
 Плитки: `code` `can’t` `I` → **I can’t code.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-11:i02; family: listen_choose -->
 🔊 *code* → **code** · type · learn
-- type — *В записи первое слово — `code`, а в этом варианте — `type`.*
-- learn — *В записи первое слово — `code`, а в этом варианте — `learn`.*
+- type — *В записи code — «писать код», а не type — «печатать».*
+- learn — *В записи code, а не learn — «учиться».*
 
-**3 · Скажите «Я не умею писать код»**
+**4 · Выберите слово: «Я не умею писать код»**
 <!-- interaction_id: en:lesson-08:session-11:i03; family: context_gap_grammar -->
 I can’t ___. → **code** · to code · codes
 - to code — *После `can’t` нужно `code`, без `to`.*
 - codes — *После `can’t` нужно `code`, без `s`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-11:i04; family: speed_match -->
-code — писать код · tram — трамвай · learn — учиться · printer — принтер
+code — писать код · type — печатать на клавиатуре · ball — мяч · coat — пальто
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-11:i05; family: listen_build_dictation -->
 🔊 *I can’t code.* Плитки: `code` `can’t` `I` → **I can’t code.**
 
-**6 · Скажите о знакомой «Она не умеет печатать на клавиатуре»**
+**7 · Карточка слова — debug**
+<!-- interaction_id: en:lesson-08:session-11:word:debug; family: word_card -->
+> **debug** — отлаживать программы. She can’t debug. — «Она не умеет отлаживать программы». Находить и исправлять ошибки в коде.
+
+**8 · Скажите о знакомой «Она не умеет отлаживать программы»**
 <!-- interaction_id: en:lesson-08:session-11:i06; family: phrase_builder -->
-Плитки: `type` `can’t` `She` → **She can’t type.**
+Плитки: `debug` `can’t` `She` → **She can’t debug.**
 
-**7 · Спросите коллег «Чей это принтер?»**
+**9 · Карточка слова — webcam**
+<!-- interaction_id: en:lesson-08:session-11:word:webcam; family: word_card -->
+> **webcam** — веб-камера. Whose webcam is this? — «Чья это веб-камера?» Камера для передачи видео через компьютер.
+
+**10 · Спросите коллег «Чья это веб-камера?»**
 <!-- interaction_id: en:lesson-08:session-11:i07; family: scripted_repeat_compare -->
-🎙 **Whose printer is this?**
+🎙 **Whose webcam is this?**
 
-**8 · Скажите «Она не умеет печатать на клавиатуре»**
+**11 · Выберите слово: «Она не умеет отлаживать программы»**
 <!-- interaction_id: en:lesson-08:session-11:i08; family: context_gap_grammar -->
-She can’t ___. → **type** · types · to type
-- types — *После `can’t` нужно `type`, без `s`.*
-- to type — *После `can’t` нужно `type`, без `to`.*
+She can’t ___. → **debug** · debugs · to debug
+- debugs — *После `can’t` нужно `debug`, без `s`.*
+- to debug — *После `can’t` нужно `debug`, без `to`.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-11:i09; family: listen_choose -->
-🔊 *I can’t code.* → **I can’t code.** · I can’t type. · I can’t dive.
-- I can’t type. — *В записи последнее слово — `code`, а в этом варианте — `type`.*
+🔊 *I can’t code.* → **I can’t code.** · I can’t debug. · I can’t dive.
+- I can’t debug. — *В записи последнее слово — `code`, а в этом варианте — `debug`.*
 - I can’t dive. — *В записи последнее слово — `code`, а в этом варианте — `dive`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-11:i10; family: speed_match -->
-type — печатать на клавиатуре · code — писать код · tram — трамвай · learn — учиться
+debug — отлаживать программы · code — писать код · webcam — веб-камера · learn — учиться
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-11:i11; family: listen_build_dictation -->
-🔊 *Whose printer is this?* Плитки: `this` `is` `printer` `Whose` → **Whose printer is this?**
+🔊 *Whose webcam is this?* Плитки: `this` `is` `webcam` `Whose` → **Whose webcam is this?**
 
-**12 · Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»**
+**15 · Карточка слова — modem**
+<!-- interaction_id: en:lesson-08:session-11:word:modem; family: word_card -->
+> **modem** — модем. Whose modem is this? — «Чей это модем?» Устройство связи для подключения к интернету.
+
+**16 · После настройки интернета на столе остался модем. Спросите: «Чей это модем?»**
 <!-- interaction_id: en:lesson-08:session-11:i12; family: phrase_builder -->
-Плитки: `type` `can` `I` → **I can type.**
+Плитки: `this` `is` `modem` `Whose` → **Whose modem is this?**
 
-**13 · Друг спрашивает, где вы обычно учитесь. Используйте learn: «Я обычно учусь дома»**
+**17 · Сосед спрашивает о модеме рядом с вашей сумкой. Скажите: «Это мой модем».**
 <!-- interaction_id: en:lesson-08:session-11:i13; family: scripted_repeat_compare -->
-🎙 **I usually learn at home.**
+🎙 **This is my modem.**
 
-**14 · Скажите «Она не умеет писать код»**
+**18 · Выберите форму: «Она не умеет писать код»**
 <!-- interaction_id: en:lesson-08:session-11:i14; family: context_gap_grammar -->
 She ___ code. → **can’t** · can · is can’t
 - can — *`Can` значит «умеет», здесь нужно `can’t` — «не умеет».*
 - is can’t — *Достаточно `she can’t`; `is` не нужно.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-11:i15; family: listen_choose -->
-🔊 *Where is the tram?* → **Where is the tram?** · Where is the bus? · Where is the train?
-- Where is the bus? — *В записи последнее слово — `tram`, а в этом варианте — `bus`.*
-- Where is the train? — *В записи последнее слово — `tram`, а в этом варианте — `train`.*
+🔊 *This is my modem.* → **This is my modem.** · This is your modem. · This is my webcam.
+- This is your modem. — *В записи my — «мой», а не your.*
+- This is my webcam. — *В записи modem — «модем», а не webcam.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-11:i16; family: speed_match -->
-code — писать код · printer — принтер · learn — учиться · type — печатать на клавиатуре
+code — писать код · debug — отлаживать программы · webcam — веб-камера · modem — модем
 
-**17 · Коллега спрашивает, умеет ли Том программировать. Том пока не научился. Скажите «Том не умеет писать код»**
+**21 · Коллега спрашивает, умеет ли Том программировать. Том пока не научился. Скажите «Том не умеет писать код»**
 <!-- interaction_id: en:lesson-08:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Tom can’t code.**
 

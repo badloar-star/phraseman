@@ -1,133 +1,149 @@
-# Англійська · Урок 8 · Заняття 12 — Шарф поки куплю
+# Англійська · Урок 8 · Заняття 12 — Нові способи готувати
 
-**Ситуація.** Ви вибираєте заняття в гуртку рукоділля, обговорюєте малювання й шукаєте власника будильника.
+**Ситуація.** Ви готуєте сніданок із яйцями, обговорюєте повільне варіння супу й повертаєте сито після випікання.
 
-**Що ви опануєте:** сказати, чого ви поки не вмієте, і повторити знайомі запитання
-**Нові слова:** knit
+**Що ви опануєте:** розрізняти can і can’t та запитувати про кухонні речі
+**Нові слова:** poach, simmer, sieve, tongs
+**Повертаються:** egg, soup, ball, coat
 
 ---
 
 ## Інтро 1
 
-### Перше заняття в гуртку
+### Яйце без шкаралупи
 
-У гуртку пропонують зв’язати шарф. Ви прийшли вчитися й поки не вмієте в’язати. `Knit` — «в’язати». `I can’t knit` — «Я не вмію в’язати». Після `can’t` потрібне `knit`, без `to`. Купити шарф ви вже вмієте — тепер хочеться навчитися в’язати.
+Друг пропонує приготувати на сніданок яйця пашот: їх варять без шкаралупи в гарячій воді. Ви ще не вмієте цього робити. Poach — «готувати в рідині без кипіння»; poach eggs — «готувати яйця пашот». I can’t poach eggs — «Я не вмію готувати яйця пашот». Після can’t потрібне дієслово poach, без to.
 
-**Скажіть керівникові гуртка, що поки не вмієте в’язати.**
+**Скажіть, що не вмієте готувати яйця пашот.**
 
-- ✅ **I can’t knit.**
-- ❌ I can knit. — *`Can` означає «вмію», а вам потрібно «не вмію»: `can’t`.*
-- ❌ I can’t to knit. — *Після `can’t` потрібне `knit`, без `to`.*
+- ✅ **I can’t poach eggs.**
+- ❌ I can poach eggs. — *Ви не вмієте: потрібне can’t.*
+- ❌ I can’t to poach eggs. — *Після can’t не потрібне to.*
 
 ---
 
 ## Інтро 2
 
-### Подруга вибирає малювання
+### Суп на слабкому вогні
 
-У тому самому гуртку подруга вибирає малювання: вона вже вміє малювати фарбами. `She can paint` — «Вона вміє малювати фарбами». Після `can` потрібне `paint`, без закінчення `s`. Якби вона не вміла, вийшло б `She can’t paint`.
+На спільній кухні потрібно доручити комусь суп, який має ледь кипіти. Подруга вже вміє підтримувати потрібне нагрівання. Simmer — «варити за слабкого кипіння». She can simmer soup — «Вона вміє варити суп на слабкому вогні». Після can потрібне simmer, без закінчення s. Тут подруга вміє, тому потрібне can, а не can’t.
 
-**Скажіть, що подруга вміє малювати фарбами.**
+**Скажіть, що подруга вміє варити суп на слабкому вогні.**
 
-- ✅ **She can paint.**
-- ❌ She can paints. — *Після `can` потрібне `paint`, без `s`.*
-- ❌ She can’t paint. — *Подруга вміє: потрібне `can`, а не `can’t`.*
+- ✅ **She can simmer soup.**
+- ❌ She can simmers soup. — *Після can потрібне simmer, без s.*
+- ❌ She can’t simmer soup. — *Подруга вміє: потрібне can.*
 
 ---
 
 ## Інтро 3
 
-### Забутий будильник
+### Сито після випікання
 
-Після заняття на столі залишився будильник. Ви хочете знайти власника. Тут `alarm` — будильник. `Whose alarm is this?` — «Чий це будильник?» Почніть із `whose alarm`, потім додайте `is this`.
+Після спільного приготування печива ви миєте інвентар. На сушарці лежить чуже сито для борошна. Sieve — «сито», дрібна сітка для просіювання. Whose sieve is this? — «Чиє це сито?» Спочатку whose sieve, потім is this: сито одне.
 
-**Запитайте, чий це будильник.**
+**Запитайте учасників, чиє це сито.**
 
-- ✅ **Whose alarm is this?**
-- ❌ Who alarm is this? — *Для «чий» потрібне `whose`.*
-- ❌ Whose alarm are this? — *Будильник один: потрібне `is this`.*
+- ✅ **Whose sieve is this?**
+- ❌ Who sieve is this? — *Для «чиє» потрібне whose.*
+- ❌ Whose sieve are this? — *Сито одне: потрібне is this.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не вмію в’язати»**
+**1 · Картка слова — poach**
+<!-- interaction_id: en:lesson-08:session-12:word:poach; family: word_card -->
+> **poach** — готувати в рідині без кипіння. I can’t poach eggs. — «Я не вмію готувати яйця пашот». У цьому занятті готуємо яйця без шкаралупи.
+
+**2 · Скажіть «Я не вмію готувати яйця пашот»**
 <!-- interaction_id: en:lesson-08:session-12:i01; family: phrase_builder -->
-Плитки: `knit` `can’t` `I` → **I can’t knit.**
+Плитки: `eggs` `poach` `can’t` `I` → **I can’t poach eggs.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-08:session-12:i02; family: listen_choose -->
-🔊 *knit* → **knit** · paint · balance
-- paint — *У записі перше слово — `knit`, а в цьому варіанті — `paint`.*
-- balance — *У записі перше слово — `knit`, а в цьому варіанті — `balance`.*
+🔊 *poach* → **poach** · swim · knit
+- swim — *У записі poach, а не swim — «плавати».*
+- knit — *У записі poach, а не knit — «в’язати спицями».*
 
-**3 · Скажіть «Я не вмію в’язати»**
+**4 · Виберіть слово: «Я не вмію готувати яйця пашот»**
 <!-- interaction_id: en:lesson-08:session-12:i03; family: context_gap_grammar -->
-I can’t ___. → **knit** · to knit · knits
-- to knit — *Після `can’t` потрібне `knit`, без `to`.*
-- knits — *Після `can’t` потрібне `knit`, без `s`.*
+I can’t ___ eggs. → **poach** · to poach · poaches
+- to poach — *Після can’t не потрібне to.*
+- poaches — *Після can’t потрібне poach, без es.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-12:i04; family: speed_match -->
-knit — в’язати · platform — платформа · paint — малювати фарбами · alarm — будильник
+poach — готувати в рідині без кипіння · egg — яйце · ball — м’яч · coat — пальто
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-12:i05; family: listen_build_dictation -->
-🔊 *I can’t knit.* Плитки: `knit` `can’t` `I` → **I can’t knit.**
+🔊 *I can’t poach eggs.* Плитки: `eggs` `poach` `can’t` `I` → **I can’t poach eggs.**
 
-**6 · Скажіть «Вона вміє малювати фарбами»**
+**7 · Картка слова — simmer**
+<!-- interaction_id: en:lesson-08:session-12:word:simmer; family: word_card -->
+> **simmer** — варити за слабкого кипіння. She can simmer soup. — «Вона вміє варити суп на слабкому вогні». Рідина злегка кипить.
+
+**8 · Скажіть «Вона вміє варити суп на слабкому вогні»**
 <!-- interaction_id: en:lesson-08:session-12:i06; family: phrase_builder -->
-Плитки: `paint` `can` `She` → **She can paint.**
+Плитки: `soup` `simmer` `can` `She` → **She can simmer soup.**
 
-**7 · Запитайте «Чий це будильник?»**
+**9 · Картка слова — sieve**
+<!-- interaction_id: en:lesson-08:session-12:word:sieve; family: word_card -->
+> **sieve** — сито. Whose sieve is this? — «Чиє це сито?» Дрібна сітка для просіювання борошна.
+
+**10 · Запитайте «Чиє це сито?»**
 <!-- interaction_id: en:lesson-08:session-12:i07; family: scripted_repeat_compare -->
-🎙 **Whose alarm is this?**
+🎙 **Whose sieve is this?**
 
-**8 · Скажіть «Вона вміє малювати фарбами»**
+**11 · Виберіть слово: «Вона вміє варити суп на слабкому вогні»**
 <!-- interaction_id: en:lesson-08:session-12:i08; family: context_gap_grammar -->
-She can ___. → **paint** · paints · to paint
-- paints — *Після `can` потрібне `paint`, без `s`.*
-- to paint — *Після `can` потрібне `paint`, без `to`.*
+She can ___ soup. → **simmer** · simmers · to simmer
+- simmers — *Після can не потрібне s.*
+- to simmer — *Після can не потрібне to.*
 
-**9 · Послухайте й виберіть фразу**
+**12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-08:session-12:i09; family: listen_choose -->
-🔊 *I can’t knit.* → **I can’t knit.** · I can’t paint. · I can’t balance.
-- I can’t paint. — *У записі останнє слово — `knit`, а в цьому варіанті — `paint`.*
-- I can’t balance. — *У записі останнє слово — `knit`, а в цьому варіанті — `balance`.*
+🔊 *I can’t poach eggs.* → **I can’t poach eggs.** · I can’t simmer soup. · I can’t knit.
+- I can’t simmer soup. — *У записі poach eggs, а не simmer soup.*
+- I can’t knit. — *У записі poach eggs, а не knit.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-12:i10; family: speed_match -->
-balance — утримувати рівновагу · knit — в’язати · alarm — будильник · paint — малювати фарбами
+simmer — варити за слабкого кипіння · poach — готувати в рідині без кипіння · sieve — сито · soup — суп
 
-**11 · Послухайте й складіть фразу**
+**14 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-12:i11; family: listen_build_dictation -->
-🔊 *Whose alarm is this?* Плитки: `this` `is` `alarm` `Whose` → **Whose alarm is this?**
+🔊 *Whose sieve is this?* Плитки: `this` `is` `sieve` `Whose` → **Whose sieve is this?**
 
-**12 · Під час вправи ви стоїте на одній нозі. Скажіть «Я вмію утримувати рівновагу»**
+**15 · Картка слова — tongs**
+<!-- interaction_id: en:lesson-08:session-12:word:tongs; family: word_card -->
+> **tongs** — кухонні щипці. Where are the tongs? — «Де кухонні щипці?» Tongs вживається у множині: потрібне are, навіть якщо щипці одні.
+
+**16 · Хочете перекласти гарячу їжу. Запитайте «Де кухонні щипці?»**
 <!-- interaction_id: en:lesson-08:session-12:i12; family: phrase_builder -->
-Плитки: `balance` `can` `I` → **I can balance.**
+Плитки: `tongs` `the` `are` `Where` → **Where are the tongs?**
 
-**13 · Друг запитує, де ви малюєте. Скажіть «Я часто малюю фарбами вдома»**
+**17 · Покажіть другові щипці поряд із собою: «Щипці тут».**
 <!-- interaction_id: en:lesson-08:session-12:i13; family: scripted_repeat_compare -->
-🎙 **I often paint at home.**
+🎙 **The tongs are here.**
 
-**14 · Скажіть «Він не вміє в’язати»**
+**18 · Виберіть форму: «Він не вміє готувати яйця пашот»**
 <!-- interaction_id: en:lesson-08:session-12:i14; family: context_gap_grammar -->
-He ___ knit. → **can’t** · can · is can’t
-- can — *Він не вміє: потрібне `can’t`.*
-- is can’t — *Достатньо `he can’t`; `is` не потрібне.*
+He ___ poach eggs. → **can’t** · can · is can’t
+- can — *Він не вміє: потрібне can’t.*
+- is can’t — *Перед can’t не потрібне is.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-08:session-12:i15; family: listen_choose -->
-🔊 *Where is the platform?* → **Where is the platform?** · Where is the hotel? · Where is the printer?
-- Where is the hotel? — *У записі останнє слово — `platform`, а в цьому варіанті — `hotel`.*
-- Where is the printer? — *У записі останнє слово — `platform`, а в цьому варіанті — `printer`.*
+🔊 *Where are the tongs?* → **Where are the tongs?** · Where is the sieve? · Where is the soup?
+- Where is the sieve? — *У записі tongs — «щипці», а не sieve.*
+- Where is the soup? — *У записі tongs — «щипці», а не soup.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-12:i16; family: speed_match -->
-knit — в’язати · platform — платформа · balance — утримувати рівновагу · alarm — будильник
+poach — готувати в рідині без кипіння · simmer — варити за слабкого кипіння · sieve — сито · tongs — кухонні щипці
 
-**17 · Друг пропонує Томові зв’язати шарф. Том ще не навчився. Скажіть «Том не вміє в’язати»**
+**21 · Томові пропонують приготувати яйця пашот, але він ще не вчився. Скажіть «Том не вміє готувати яйця пашот».**
 <!-- interaction_id: en:lesson-08:session-12:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can’t knit.**
-
+🎙 **Tom can’t poach eggs.**

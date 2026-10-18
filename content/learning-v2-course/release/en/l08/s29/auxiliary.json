@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-29:intro2:r2": {
-          "ru": "Для указания нужно `Turn`, без `s`.",
-          "uk": "Для вказівки потрібне `Turn`, без `s`."
+          "ru": "Для указания нужно Measure, без s.",
+          "uk": "Для вказівки потрібне Measure, без s."
         },
         "en:lesson-08:session-29:intro2:r3": {
-          "ru": "Начните с `Turn`, без `to`.",
-          "uk": "Почніть із `Turn`, без `to`."
+          "ru": "Начните с Measure, без to.",
+          "uk": "Почніть із Measure, без to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-29:intro3:r2": {
-          "ru": "После `can` нужно `fetch`, без `es`.",
-          "uk": "Після `can` потрібне `fetch`, без `es`."
+          "ru": "Для указания нужно Measure, без s.",
+          "uk": "Для вказівки потрібне Measure, без s."
         },
         "en:lesson-08:session-29:intro3:r3": {
-          "ru": "После `can` нужно `fetch`, без `to`.",
-          "uk": "Після `can` потрібне `fetch`, без `to`."
+          "ru": "Начните с Measure, без to.",
+          "uk": "Почніть із Measure, без to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f801061c9ed8b3161d561dd75fa6f9b40b6fa01e00d17262eae9e95dee61a95d"
+  "auxiliaryFingerprint": "6780a0ee74efe4dfd659490daf9367a7f43f38ce9a503b01ba443330b2a07110"
 }

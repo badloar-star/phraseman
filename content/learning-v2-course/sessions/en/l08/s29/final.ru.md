@@ -1,9 +1,9 @@
 # Английский · Урок 8 · Занятие 29 — Поместится ли стол
 
-**Ситуация.** Вы проверяете размер стола, подсказываете дорогу к остановке и просите принести телефон.
+**Ситуация.** Проверить размер стола, ширину окна для жалюзи и высоту дверного проёма перед переносом шкафа.
 
 **Что вы освоите:** закрепить короткие указания со словом measure
-**Новые слова:** measure
+**Новые слова:** measure, width, height, depth
 
 ---
 
@@ -23,111 +23,127 @@
 
 ## Интро 2
 
-### Дорога к остановке
+### Жалюзи для окна
 
-Вы идёте с другом к автобусной остановке. На ближайшем повороте нужно налево. `Turn left` — «Поверни налево». Сначала `Turn`, затем `left`.
+Вы выбираете жалюзи, которые должны закрывать окно от одного края до другого. Друг держит рулетку возле окна. Width — «ширина», размер поперёк. `Measure the width` — «Измерь ширину». Из разговора ясно, что речь о ширине окна; указываем именно этот размер.
 
-**Подскажите другу «Поверни налево».**
+**Скажите другу измерить ширину окна.**
 
-- ✅ **Turn left.**
-- ❌ Turns left. — *Для указания нужно `Turn`, без `s`.*
-- ❌ To turn left. — *Начните с `Turn`, без `to`.*
+- ✅ **Measure the width.**
+- ❌ Measures the width. — *Для указания нужно Measure, без s.*
+- ❌ To measure the width. — *Начните с Measure, без to.*
 
 ---
 
 ## Интро 3
 
-### Телефон в другой комнате
+### Шкаф перед дверным проёмом
 
-Вы уже у двери, а телефон остался в другой комнате. Друг знает, где он лежит. `Can you fetch it?` — «Можешь сходить за ним и принести?» `Fetch` означает сходить за вещью и принести её; `it` здесь — телефон.
+Вы хотите пронести высокий шкаф через дверь, не наклоняя его. Друг стоит у дверного проёма с рулеткой. Height — «высота», размер снизу вверх. `Measure the height` — «Измерь высоту». Сейчас вы просите измерить высоту проёма, чтобы сравнить её с высотой шкафа.
 
-**Попросите друга сходить за телефоном и принести его.**
+**Скажите другу измерить высоту дверного проёма.**
 
-- ✅ **Can you fetch it?**
-- ❌ Can you fetches it? — *После `can` нужно `fetch`, без `es`.*
-- ❌ Can you to fetch it? — *После `can` нужно `fetch`, без `to`.*
+- ✅ **Measure the height.**
+- ❌ Measures the height. — *Для указания нужно Measure, без s.*
+- ❌ To measure the height. — *Начните с Measure, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Дайте указание «Измерь его»**
+**1 · Карточка слова — measure**
+<!-- interaction_id: en:lesson-08:session-29:word:measure; family: word_card -->
+> **measure** — измерить. Measure it. — «Измерь его». Здесь it — стол; измеряем его размеры рулеткой.
+
+**2 · Дайте указание «Измерь его»**
 <!-- interaction_id: en:lesson-08:session-29:i01; family: phrase_builder -->
 Плитки: `it` `Measure` → **Measure it.**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-29:i02; family: listen_choose -->
 🔊 *measure* → **measure** · fetch · call
 - fetch — *В записи первое слово — `measure`, а в этом варианте — `fetch`.*
 - call — *В записи первое слово — `measure`, а в этом варианте — `call`.*
 
-**3 · Дайте короткое указание измерить стол**
+**4 · Выберите форму для указания измерить стол**
 <!-- interaction_id: en:lesson-08:session-29:i03; family: context_gap_grammar -->
 ___ it. → **Measure** · Measures · To measure
-- Measures — *Для указания нужно `Measure`, без `s`.*
-- To measure — *Начните с `Measure`, без `to`.*
+- Measures — *Для указания нужно Measure, без s.*
+- To measure — *Начните с Measure, без to.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-29:i04; family: speed_match -->
-measure — измерить · bus stop — автобусная остановка · play — играть · call — звонить
+measure — измерить · table — стол · ruler — линейка · room — комната
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-29:i05; family: listen_build_dictation -->
 🔊 *Measure it.* Плитки: `it` `Measure` → **Measure it.**
 
-**6 · Дайте короткое указание «Открой окно»**
+**7 · Карточка слова — width**
+<!-- interaction_id: en:lesson-08:session-29:word:width; family: word_card -->
+> **width** — ширина. Measure the width. — «Измерь ширину». Размер поперёк, например слева направо у окна.
+
+**8 · Дайте указание «Измерь ширину»**
 <!-- interaction_id: en:lesson-08:session-29:i06; family: phrase_builder -->
-Плитки: `window` `the` `Open` → **Open the window.**
+Плитки: `width` `the` `Measure` → **Measure the width.**
 
-**7 · На прогулке подскажите другу «Поверни налево»**
+**9 · Карточка слова — height**
+<!-- interaction_id: en:lesson-08:session-29:word:height; family: word_card -->
+> **height** — высота. Measure the height. — «Измерь высоту». Размер снизу вверх, например от пола до верха дверного проёма.
+
+**10 · Друг стоит у дверного проёма с рулеткой. Скажите «Измерь высоту»**
 <!-- interaction_id: en:lesson-08:session-29:i07; family: scripted_repeat_compare -->
-🎙 **Turn left.**
+🎙 **Measure the height.**
 
-**8 · Дайте короткое указание открыть окно**
+**11 · Выберите форму для указания измерить ширину**
 <!-- interaction_id: en:lesson-08:session-29:i08; family: context_gap_grammar -->
-___ the window. → **Open** · Opens · To open
-- Opens — *Для указания нужно `Open`, без `s`.*
-- To open — *Начните с `Open`, без `to`.*
+___ the width. → **Measure** · Measures · To measure
+- Measures — *Для указания нужно Measure, без s.*
+- To measure — *Начните с Measure, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-29:i09; family: listen_choose -->
 🔊 *Measure it.* → **Measure it.** · Measure this. · Measure that.
 - Measure this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Measure that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-29:i10; family: speed_match -->
-fetch — сходить и принести · measure — измерить · bus stop — автобусная остановка · play — играть
+measure — измерить · width — ширина · height — высота · ruler — линейка
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-29:i11; family: listen_build_dictation -->
-🔊 *Turn left.* Плитки: `left` `Turn` → **Turn left.**
+🔊 *Measure the height.* Плитки: `height` `the` `Measure` → **Measure the height.**
 
-**12 · Попросите «Можешь сходить за ним и принести?»**
+**15 · Карточка слова — depth**
+<!-- interaction_id: en:lesson-08:session-29:word:depth; family: word_card -->
+> **depth** — глубина. Measure the depth. — «Измерь глубину». У ящика здесь — расстояние от передней стенки до задней.
+
+**16 · Нужно узнать расстояние от передней стенки ящика до задней. Скажите «Измерь глубину»**
 <!-- interaction_id: en:lesson-08:session-29:i12; family: phrase_builder -->
-Плитки: `it` `fetch` `you` `Can` → **Can you fetch it?**
+Плитки: `depth` `the` `Measure` → **Measure the depth.**
 
-**13 · Друг спрашивает, как вы поддерживаете связь с близкими. Скажите «Я часто звоню»**
+**17 · У друга нет рулетки, а у вас есть. Скажите «Я могу измерить стол»**
 <!-- interaction_id: en:lesson-08:session-29:i13; family: scripted_repeat_compare -->
-🎙 **I often call.**
+🎙 **I can measure the table.**
 
-**14 · Дайте указание повернуть налево**
+**18 · Выберите форму для просьбы измерить глубину**
 <!-- interaction_id: en:lesson-08:session-29:i14; family: context_gap_grammar -->
-___ left. → **Turn** · Turns · To turn
-- Turns — *Для указания нужно `Turn`, без `s`.*
-- To turn — *Начните с `Turn`, без `to`.*
+Can you ___ the depth? → **measure** · measures · to measure
+- measures — *После can нужно measure, без s.*
+- to measure — *После can нужно measure, без to.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-29:i15; family: listen_choose -->
-🔊 *Open the window.* → **Open the window.** · Open the door. · Open the box.
-- Open the door. — *В записи последнее слово — `window`, а в этом варианте — `door`.*
-- Open the box. — *В записи последнее слово — `window`, а в этом варианте — `box`.*
+🔊 *Measure the depth.* → **Measure the depth.** · Measure the width. · Measure the height.
+- Measure the width. — *В записи depth — «глубина», а не width — «ширина».*
+- Measure the height. — *В записи depth, а не height — «высота».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-29:i16; family: speed_match -->
-measure — измерить · call — звонить · fetch — сходить и принести · bus stop — автобусная остановка
+measure — измерить · width — ширина · height — высота · depth — глубина
 
-**17 · Друг хочет повесить картину над диваном и проверяет размеры. Покажите на диван и дайте короткое указание «Измерь его»**
+**21 · Друг хочет повесить картину над диваном и проверяет размеры. Покажите на диван и дайте короткое указание «Измерь его»**
 <!-- interaction_id: en:lesson-08:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Measure it.**
 

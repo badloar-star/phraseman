@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дорога к остановке",
-        "uk": "Дорога до зупинки"
+        "ru": "Жалюзи для окна",
+        "uk": "Жалюзі для вікна"
       },
       "bodyByLocale": {
-        "ru": "Вы идёте с другом к автобусной остановке. На ближайшем повороте нужно налево. `Turn left` — «Поверни налево». Сначала `Turn`, затем `left`.",
-        "uk": "Ви йдете з другом до автобусної зупинки. На найближчому повороті потрібно ліворуч. `Turn left` — «Поверни ліворуч». Спочатку `Turn`, потім `left`."
+        "ru": "Вы выбираете жалюзи, которые должны закрывать окно от одного края до другого. Друг держит рулетку возле окна. Width — «ширина», размер поперёк. `Measure the width` — «Измерь ширину». Из разговора ясно, что речь о ширине окна; указываем именно этот размер.",
+        "uk": "Ви вибираєте жалюзі, які мають закривати вікно від одного краю до іншого. Друг тримає рулетку біля вікна. Width — «ширина», розмір упоперек. `Measure the width` — «Виміряй ширину». Із розмови зрозуміло, що йдеться про ширину вікна; указуємо саме цей розмір."
       },
       "question": {
         "interactionId": "en:lesson-08:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу измерить ширину окна.",
+          "uk": "Скажіть другові виміряти ширину вікна."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-29:intro2:r1",
-              "text": "Turn left."
+              "text": "Measure the width."
             },
             {
               "responseId": "en:lesson-08:session-29:intro2:r2",
-              "text": "Turns left."
+              "text": "Measures the width."
             },
             {
               "responseId": "en:lesson-08:session-29:intro2:r3",
-              "text": "To turn left."
+              "text": "To measure the width."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-29:intro2:r1",
-              "text": "Turn left."
+              "text": "Measure the width."
             },
             {
               "responseId": "en:lesson-08:session-29:intro2:r2",
-              "text": "Turns left."
+              "text": "Measures the width."
             },
             {
               "responseId": "en:lesson-08:session-29:intro2:r3",
-              "text": "To turn left."
+              "text": "To measure the width."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подскажите другу «Поверни налево».",
-          "uk": "Підкажіть другові «Поверни ліворуч»."
+          "ru": "Скажите другу измерить ширину окна.",
+          "uk": "Скажіть другові виміряти ширину вікна."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Телефон в другой комнате",
-        "uk": "Телефон в іншій кімнаті"
+        "ru": "Шкаф перед дверным проёмом",
+        "uk": "Шафа перед дверним прорізом"
       },
       "bodyByLocale": {
-        "ru": "Вы уже у двери, а телефон остался в другой комнате. Друг знает, где он лежит. `Can you fetch it?` — «Можешь сходить за ним и принести?» `Fetch` означает сходить за вещью и принести её; `it` здесь — телефон.",
-        "uk": "Ви вже біля дверей, а телефон залишився в іншій кімнаті. Друг знає, де він лежить. `Can you fetch it?` — «Можеш сходити по нього й принести?» `Fetch` означає сходити по річ і принести її; `it` тут — телефон."
+        "ru": "Вы хотите пронести высокий шкаф через дверь, не наклоняя его. Друг стоит у дверного проёма с рулеткой. Height — «высота», размер снизу вверх. `Measure the height` — «Измерь высоту». Сейчас вы просите измерить высоту проёма, чтобы сравнить её с высотой шкафа.",
+        "uk": "Ви хочете пронести високу шафу через двері, не нахиляючи її. Друг стоїть біля дверного прорізу з рулеткою. Height — «висота», розмір знизу вгору. `Measure the height` — «Виміряй висоту». Зараз ви просите виміряти висоту прорізу, щоб порівняти її з висотою шафи."
       },
       "question": {
         "interactionId": "en:lesson-08:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Попросите друга сходить за телефоном и принести его.",
-          "uk": "Попросіть друга сходити по телефон і принести його."
+          "ru": "Скажите другу измерить высоту дверного проёма.",
+          "uk": "Скажіть другові виміряти висоту дверного прорізу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-29:intro3:r1",
-              "text": "Can you fetch it?"
+              "text": "Measure the height."
             },
             {
               "responseId": "en:lesson-08:session-29:intro3:r2",
-              "text": "Can you fetches it?"
+              "text": "Measures the height."
             },
             {
               "responseId": "en:lesson-08:session-29:intro3:r3",
-              "text": "Can you to fetch it?"
+              "text": "To measure the height."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-29:intro3:r1",
-              "text": "Can you fetch it?"
+              "text": "Measure the height."
             },
             {
               "responseId": "en:lesson-08:session-29:intro3:r2",
-              "text": "Can you fetches it?"
+              "text": "Measures the height."
             },
             {
               "responseId": "en:lesson-08:session-29:intro3:r3",
-              "text": "Can you to fetch it?"
+              "text": "To measure the height."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга сходить за телефоном и принести его.",
-          "uk": "Попросіть друга сходити по телефон і принести його."
+          "ru": "Скажите другу измерить высоту дверного проёма.",
+          "uk": "Скажіть другові виміряти висоту дверного прорізу."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3a663df1c831a9897ad10d1eda0d2434bd8b16813b9b3a8a42b215d544ff6ca7"
+  "introFingerprint": "09cf397800cb5a291e1f3678fbe16569d6e94f762ed9f2d1f588656f62ee86b9"
 }

@@ -1,0 +1,12 @@
+[MOMENT-GLOW] {"scene":"streak-milestone-screen","top":"30%","color":"#56578C9E","own":0.6196078431372549,"isLight":false,"opacity":0.302,"size":320,"fadePx":147}
+[D30-CAL] row:layout {"sinceMountMs":59,"w":306,"h":0,"cell":38,"reduceMotion":false}
+[D30-CAL] row:layout {"sinceMountMs":598,"w":346,"h":214,"cell":44,"reduceMotion":false}
+[D30-CAL] cell:layout {"sinceMountMs":601,"i":0,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":38}}
+[D30-CAL] cell:layout {"sinceMountMs":615,"i":29,"w":38,"h":38,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":38}}
+[D30-CAL] row:layout {"sinceMountMs":713,"w":344,"h":244,"cell":44,"reduceMotion":false}
+[D30-CAL] cell:layout {"sinceMountMs":713,"i":0,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":0,"durMs":300,"style":{"size":44}}
+[D30-CAL] cell:layout {"sinceMountMs":716,"i":29,"w":44,"h":44,"heightZero":false,"plannedEnterStartMs":754,"durMs":300,"style":{"size":44}}
+[D30-CAL] enter:end {"sinceMountMs":987,"i":0,"plannedEndMs":350,"box":{"x":34,"y":433,"w":43,"h":43},"scaleZero":false}
+[D30-CAL] enter:end {"sinceMountMs":1091,"i":0,"plannedEndMs":350,"box":{"x":34,"y":433,"w":44,"h":44},"scaleZero":false}
+[D30-CAL] enter:end {"sinceMountMs":1755,"i":29,"plannedEndMs":1104,"box":{"x":84,"y":633,"w":43,"h":43},"scaleZero":false}
+[D30-CAL] enter:end {"sinceMountMs":1853,"i":29,"plannedEndMs":1104,"box":{"x":84,"y":633,"w":44,"h":44},"scaleZero":false}

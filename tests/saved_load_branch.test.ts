@@ -80,11 +80,23 @@ describe('экран и данные подключены к выбору вет
     expect(hook).toContain("console.log('[CARDS-LOAD] offline probe'");
     expect(hook).toContain("console.warn('[CARDS-LOAD] offline probe failed'");
     const states = read('app/flashcards/SavedCollectionStates.tsx');
-    expect(states).toContain("const drawn = loadError && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';");
+    expect(states).toContain("const drawn = loadError && !tapPending && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';");
     expect(states).toContain("if (drawn === 'unavailable') return <SavedCollectionUnavailable");
     const screen = read('app/flashcards_collection.tsx');
     expect(screen).toContain('const savedDeviceOffline = useSavedLoadOffline(loadError);');
     expect(screen).toContain('deviceOffline={savedDeviceOffline}');
+  });
+
+  // зачем (Сайт, проверка 9be415d23): двойной тап «Попробовать снова» не запускает второй loadAll; без сети тап виден (скелетон на время повтора).
+  it('«Попробовать снова»: повтор не запускается, пока идёт предыдущий; тап даёт отклик и без сети', () => {
+    const states = read('app/flashcards/SavedCollectionStates.tsx');
+    expect(states).toContain('if (retryingRef.current) {');
+    expect(states).toContain("console.log('[CARDS-LOAD] retry → skipped in_flight');");
+    expect(states).toContain('retryingRef.current = true;');
+    expect(states).toContain('retryingRef.current = false;');
+    expect(states).toContain('setTapPending(true);');
+    expect(states).toContain('setTapPending(false);');
+    expect(states).toContain('onRetry={onTapRetry}');
   });
 
   // зачем (координатор 18.10): PaywallPlus — потребитель ворот, правка epoch не должна менять число запросов цен. Контракт соблюдён (priceGateStatus даёт 'loading' на время загрузки), а загрузка цен сама присоединяется к идущей — параллельных запросов RevenueCat не будет.

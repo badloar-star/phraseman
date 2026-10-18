@@ -53,12 +53,21 @@ export function SavedCollectionState(props: Props) {
   const [retrying, setRetrying] = useState(false);
   const aliveRef = useRef(true);
   useEffect(() => () => { aliveRef.current = false; }, []);
+  // зачем (Сайт, проверка 9be415d23): защита от двойного тапа — пока загрузка идёт, второй повтор не запускаем (иначе сколько тапов, столько параллельных loadAll), а тап даёт видимый отклик и без сети.
+  const retryingRef = useRef(false);
+  const [tapPending, setTapPending] = useState(false);
   const retry = useCallback(() => {
+    if (retryingRef.current) {
+      console.log('[CARDS-LOAD] retry → skipped in_flight'); // guard-ok: второй повтор при идущей загрузке
+      return;
+    }
+    retryingRef.current = true;
     console.warn('[FC-SAVED] тихий повтор загрузки карточек');
     setRetrying(true);
     const settle = (outcome: string) => {
       console.log('[CARDS-LOAD] retry:settled', JSON.stringify({ outcome, stillMounted: aliveRef.current })); // guard-ok: итог одного повтора
-      if (aliveRef.current) setRetrying(false);
+      retryingRef.current = false;
+      if (aliveRef.current) { setRetrying(false); setTapPending(false); }
     };
     try { Promise.resolve(onRetry()).then(() => settle('ok'), (e) => { console.warn('[FC-SAVED] повтор отклонён', e); settle('rejected'); }); }
     catch (e) { console.warn('[FC-SAVED] повтор упал', e); settle('threw'); }
@@ -66,15 +75,22 @@ export function SavedCollectionState(props: Props) {
   const gateStatus = retrying ? 'loading' : loadError ? 'error' : 'ready';
   const gate = useLoadGate({ id: 'fc-saved', status: gateStatus, retry, persistAcrossMounts: true });
   // зачем (координатор 18.10 05:47): без сети (NetInfo) экран ошибки — сразу после первой неудачи; автоповтор useLoadGate при этом продолжается и при успехе тихо подставит список
-  const drawn = loadError && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';
-  const drawnKey = `${drawn}|${gateStatus}|${gate.exhausted}|${String(props.deviceOffline)}`;
+  // зачем (Сайт): на время ручного повтора по тапу — скелетон, даже без сети (иначе кнопка «не реагирует»); после неудачи tapPending снимается и экран возвращается в «Сейчас недоступно». Фоновые автоповторы экран ошибки не трогают.
+  const onTapRetry = useCallback(() => {
+    console.log('[CARDS-LOAD] tap retry', JSON.stringify({ inFlight: retryingRef.current })); // guard-ok: тап «Попробовать снова»
+    setTapPending(true);
+    if (retryingRef.current) return; // идущая загрузка уже вернёт результат, tapPending снимет её settle
+    gate.retryNow('tap');
+  }, [gate.retryNow]);
+  const drawn = loadError && !tapPending && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';
+  const drawnKey = `${drawn}|${gateStatus}|${gate.exhausted}|${String(props.deviceOffline)}|${String(tapPending)}`;
   const drawnLoggedRef = useRef('');
   useEffect(() => {
     if (drawnLoggedRef.current === drawnKey) return;
     drawnLoggedRef.current = drawnKey;
     console.log('[CARDS-LOAD] state:render', JSON.stringify({ drawn, loadError, retrying, gateStatus, gateExhausted: gate.exhausted, deviceOffline: !!props.deviceOffline })); // guard-ok: что рисует состояние и по каким флагам
   }, [drawn, drawnKey, gate.exhausted, gateStatus, loadError, props.deviceOffline, retrying]);
-  if (drawn === 'unavailable') return <SavedCollectionUnavailable lang={lang} onRetry={() => gate.retryNow('tap')} />;
+  if (drawn === 'unavailable') return <SavedCollectionUnavailable lang={lang} onRetry={onTapRetry} />;
   if (drawn === 'skeleton') return <SavedCollectionLoading lang={lang} />;
   return <SavedCollectionEmpty {...props} />;
 }

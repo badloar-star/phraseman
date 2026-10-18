@@ -940,9 +940,11 @@ function bundledSessionMaterial(
     const audioChild = deviceSpeechPreview ? null : buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
     // A released session without a complete four-voice audio child is not a
     // valid release. Never silently replace published speech with OS TTS.
-    if (!audioChild && !deviceSpeechPreview) {
-      console.warn(`[V2-BUNDLED] null step=audio_child lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} interactions=${factory.learnerChild.interactions.length} audioInteractions=${factory.learnerChild.interactions.filter((interaction) => interaction.audioTargetIds.length > 0).length}`);
-      return null;
+    if (!deviceSpeechPreview) {
+      if (!audioChild) {
+        console.warn(`[V2-BUNDLED] null step=audio_child lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} interactions=${factory.learnerChild.interactions.length} audioInteractions=${factory.learnerChild.interactions.filter((interaction) => interaction.audioTargetIds.length > 0).length}`);
+        return null;
+      }
     }
     const audioFingerprint = audioChild?.audioFingerprint ?? hashCanonicalBody({
       delivery: "device_speech_preview", source: factory.sourceFingerprint,

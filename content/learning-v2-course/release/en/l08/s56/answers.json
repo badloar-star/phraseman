@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-08:session-56:word:contribute",
+    "correctText": "contribute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i01",
+    "correctText": "I can contribute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i02",
+    "correctText": "contribute",
+    "correctResponseId": "en:lesson-08:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i03",
+    "correctText": "contribute",
+    "correctResponseId": "en:lesson-08:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i04",
+    "correctText": "en:lesson-08:session-56:i04:p1=contribute\nen:lesson-08:session-56:i04:p2=improve\nen:lesson-08:session-56:i04:p3=solve\nen:lesson-08:session-56:i04:p4=volunteer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i05",
+    "correctText": "I can contribute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:word:donation",
+    "correctText": "donation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i06",
+    "correctText": "We can make a donation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:word:fundraiser",
+    "correctText": "fundraiser",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i07",
+    "correctText": "She can organise a fundraiser.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i08",
+    "correctText": "organise",
+    "correctResponseId": "en:lesson-08:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i09",
+    "correctText": "We can make a donation.",
+    "correctResponseId": "en:lesson-08:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i10",
+    "correctText": "en:lesson-08:session-56:i10:p1=contribute\nen:lesson-08:session-56:i10:p2=donation\nen:lesson-08:session-56:i10:p3=fundraiser\nen:lesson-08:session-56:i10:p4=volunteer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i11",
+    "correctText": "She can organise a fundraiser.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:word:handout",
+    "correctText": "handout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i12",
+    "correctText": "I can print the handout.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i13",
+    "correctText": "Give me the handout, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i14",
+    "correctText": "print",
+    "correctResponseId": "en:lesson-08:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i15",
+    "correctText": "Whose handout is this?",
+    "correctResponseId": "en:lesson-08:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i16",
+    "correctText": "en:lesson-08:session-56:i16:p1=contribute\nen:lesson-08:session-56:i16:p2=donation\nen:lesson-08:session-56:i16:p3=fundraiser\nen:lesson-08:session-56:i16:p4=handout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-56:i17",
+    "correctText": "I can contribute.",
+    "correctResponseId": null
+  }
+]

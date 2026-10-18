@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-56",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-56:word:contribute",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — contribute",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:contribute:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — contribute",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:contribute:audio",
+            "transcript": "contribute"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:contribute:r1",
+              "targetText": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад. I can contribute. — «Я могу внести свой вклад». Вкладом могут быть идеи, материалы или помощь.",
+                "uk": "робити внесок. I can contribute. — «Я можу зробити свій внесок». Внеском можуть бути ідеї, матеріали або допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contribute",
+            "definitionByLocale": {
+              "ru": "вносить вклад. I can contribute. — «Я могу внести свой вклад». Вкладом могут быть идеи, материалы или помощь.",
+              "uk": "робити внесок. I can contribute. — «Я можу зробити свій внесок». Внеском можуть бути ідеї, матеріали або допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите внести свой вклад в общую книгу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите внести свой вклад в общую книгу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can contribute.",
+          "localizedMeaning": {
+            "ru": "Предложите внести свой вклад в общую книгу",
+            "uk": "Запропонуйте зробити свій внесок у спільну книгу"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "contribute"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i02:r1",
+            "text": "contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i02:r2",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i02:r3",
+            "text": "solve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i02:audio",
+            "transcript": "contribute"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i02:r1",
+              "targetText": "contribute",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r2",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r3",
+              "targetText": "solve",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит contribute",
+                "uk": "У записі звучить contribute"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит contribute",
+                "uk": "У записі звучить contribute"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i03:r1",
+            "text": "contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i03:r2",
+            "text": "to contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i03:r3",
+            "text": "contributes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i03:r1",
+              "text": "contribute"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r2",
+              "text": "to contribute"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r3",
+              "text": "contributes"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i04:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p2",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p3",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p4",
+              "target": "volunteer",
+              "meaningByLocale": {
+                "ru": "работать волонтёром",
+                "uk": "працювати волонтером"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "improve",
+            "solve",
+            "volunteer"
+          ],
+          "rightColumn": [
+            "вносить вклад",
+            "улучшать",
+            "решать",
+            "работать волонтёром"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i05:audio",
+            "transcript": "I can contribute."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can contribute.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "contribute"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:donation",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — donation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:donation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — donation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:donation:audio",
+            "transcript": "donation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:donation:r1",
+              "targetText": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование. We can make a donation. — «Мы можем сделать пожертвование». Это может быть не только денежная помощь, но и вещи.",
+                "uk": "пожертва. We can make a donation. — «Ми можемо зробити пожертву». Це може бути не лише грошова допомога, а й речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "donation",
+            "definitionByLocale": {
+              "ru": "пожертвование. We can make a donation. — «Мы можем сделать пожертвование». Это может быть не только денежная помощь, но и вещи.",
+              "uk": "пожертва. We can make a donation. — «Ми можемо зробити пожертву». Це може бути не лише грошова допомога, а й речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите «Мы можем сделать пожертвование»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Мы можем сделать пожертвование»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can make a donation.",
+          "localizedMeaning": {
+            "ru": "Скажите «Мы можем сделать пожертвование»",
+            "uk": "Скажіть «Ми можемо зробити пожертву»"
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "make",
+            "a",
+            "donation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:fundraiser",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fundraiser",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:fundraiser:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fundraiser",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:fundraiser:audio",
+            "transcript": "fundraiser"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:fundraiser:r1",
+              "targetText": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств. She can organise a fundraiser. — «Она может организовать мероприятие по сбору средств».",
+                "uk": "захід зі збору коштів. She can organise a fundraiser. — «Вона може організувати захід зі збору коштів»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fundraiser",
+            "definitionByLocale": {
+              "ru": "мероприятие по сбору средств. She can organise a fundraiser. — «Она может организовать мероприятие по сбору средств».",
+              "uk": "захід зі збору коштів. She can organise a fundraiser. — «Вона може організувати захід зі збору коштів»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что она может организовать мероприятие по сбору средств",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите, что она может организовать мероприятие по сбору средств",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i07:audio",
+            "transcript": "She can organise a fundraiser."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can organise a fundraiser.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i08:r1",
+            "text": "organise"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i08:r2",
+            "text": "to organise"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i08:r3",
+            "text": "organises"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "She can ___ a fundraiser.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i08:r1",
+              "text": "organise"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r2",
+              "text": "to organise"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r3",
+              "text": "organises"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i09:r1",
+            "text": "We can make a donation."
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i09:r2",
+            "text": "I can make a donation."
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i09:r3",
+            "text": "They can make a donation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i09:audio",
+            "transcript": "We can make a donation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i09:r1",
+              "targetText": "We can make a donation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r2",
+              "targetText": "I can make a donation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r3",
+              "targetText": "They can make a donation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can make a donation.",
+                "uk": "У записі звучить We can make a donation."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can make a donation.",
+                "uk": "У записі звучить We can make a donation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i10:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p2",
+              "target": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование",
+                "uk": "пожертва"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p3",
+              "target": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств",
+                "uk": "захід зі збору коштів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p4",
+              "target": "volunteer",
+              "meaningByLocale": {
+                "ru": "работать волонтёром",
+                "uk": "працювати волонтером"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "donation",
+            "fundraiser",
+            "volunteer"
+          ],
+          "rightColumn": [
+            "вносить вклад",
+            "пожертвование",
+            "мероприятие по сбору средств",
+            "работать волонтёром"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i11:audio",
+            "transcript": "She can organise a fundraiser."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can organise a fundraiser.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "organise",
+            "a",
+            "fundraiser"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:handout",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:handout:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:handout:audio",
+            "transcript": "handout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:handout:r1",
+              "targetText": "handout",
+              "meaningByLocale": {
+                "ru": "раздаточный листок с информацией. I can print the handout. — «Я могу распечатать раздаточный листок». Например, листок с маршрутом прогулки.",
+                "uk": "роздатковий аркуш з інформацією. I can print the handout. — «Я можу роздрукувати роздатковий аркуш». Наприклад, аркуш із маршрутом прогулянки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handout",
+            "definitionByLocale": {
+              "ru": "раздаточный листок с информацией. I can print the handout. — «Я могу распечатать раздаточный листок». Например, листок с маршрутом прогулки.",
+              "uk": "роздатковий аркуш з інформацією. I can print the handout. — «Я можу роздрукувати роздатковий аркуш». Наприклад, аркуш із маршрутом прогулянки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для прогулки по району готов маршрут на одном листе. Предложите его распечатать",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для прогулки по району готов маршрут на одном листе. Предложите его распечатать",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can print the handout.",
+          "localizedMeaning": {
+            "ru": "Для прогулки по району готов маршрут на одном листе. Предложите его распечатать",
+            "uk": "Для прогулянки районом підготовлено маршрут на одному аркуші. Запропонуйте його роздрукувати"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "print",
+            "the",
+            "handout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите «Дай мне раздаточный листок, пожалуйста»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Попросите «Дай мне раздаточный листок, пожалуйста»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i13:audio",
+            "transcript": "Give me the handout, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me the handout, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму действия",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i14:r1",
+            "text": "print"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i14:r2",
+            "text": "to print"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i14:r3",
+            "text": "prints"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму действия",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ the handout.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i14:r1",
+              "text": "print"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r2",
+              "text": "to print"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r3",
+              "text": "prints"
+            }
+          ],
+          "testedDimension": "Выберите форму действия",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму действия",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i15:r1",
+            "text": "Whose handout is this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i15:r2",
+            "text": "Whose handout is that?"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i15:r3",
+            "text": "Whose prototype is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i15:audio",
+            "transcript": "Whose handout is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i15:r1",
+              "targetText": "Whose handout is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r2",
+              "targetText": "Whose handout is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r3",
+              "targetText": "Whose prototype is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Whose handout is this?",
+                "uk": "У записі звучить Whose handout is this?"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Whose handout is this?",
+                "uk": "У записі звучить Whose handout is this?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i16:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p2",
+              "target": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование",
+                "uk": "пожертва"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p3",
+              "target": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств",
+                "uk": "захід зі збору коштів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p4",
+              "target": "handout",
+              "meaningByLocale": {
+                "ru": "раздаточный листок",
+                "uk": "роздатковий аркуш"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "donation",
+            "fundraiser",
+            "handout"
+          ],
+          "rightColumn": [
+            "вносить вклад",
+            "пожертвование",
+            "мероприятие по сбору средств",
+            "раздаточный листок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзья создают общую коллекцию фотографий района. У вас есть снимки для неё. Предложите внести свой вклад.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Друзья создают общую коллекцию фотографий района. У вас есть снимки для неё. Предложите внести свой вклад.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i17:audio",
+            "transcript": "I can contribute."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can contribute.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-56:word:contribute",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — contribute",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:contribute:audio"
+        ],
+        "accessibilityLabel": "Картка слова — contribute",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:contribute:audio",
+            "transcript": "contribute"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:contribute:r1",
+              "targetText": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад. I can contribute. — «Я могу внести свой вклад». Вкладом могут быть идеи, материалы или помощь.",
+                "uk": "робити внесок. I can contribute. — «Я можу зробити свій внесок». Внеском можуть бути ідеї, матеріали або допомога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contribute",
+            "definitionByLocale": {
+              "ru": "вносить вклад. I can contribute. — «Я могу внести свой вклад». Вкладом могут быть идеи, материалы или помощь.",
+              "uk": "робити внесок. I can contribute. — «Я можу зробити свій внесок». Внеском можуть бути ідеї, матеріали або допомога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте зробити свій внесок у спільну книгу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте зробити свій внесок у спільну книгу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can contribute.",
+          "localizedMeaning": {
+            "ru": "Предложите внести свой вклад в общую книгу",
+            "uk": "Запропонуйте зробити свій внесок у спільну книгу"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "contribute"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i02:r1",
+            "text": "contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i02:r2",
+            "text": "improve"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i02:r3",
+            "text": "solve"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i02:audio",
+            "transcript": "contribute"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i02:r1",
+              "targetText": "contribute",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r2",
+              "targetText": "improve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r3",
+              "targetText": "solve",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит contribute",
+                "uk": "У записі звучить contribute"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит contribute",
+                "uk": "У записі звучить contribute"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i03:r1",
+            "text": "contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i03:r2",
+            "text": "to contribute"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i03:r3",
+            "text": "contributes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i03:r1",
+              "text": "contribute"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r2",
+              "text": "to contribute"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r3",
+              "text": "contributes"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i04:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p2",
+              "target": "improve",
+              "meaningByLocale": {
+                "ru": "улучшать",
+                "uk": "поліпшувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p3",
+              "target": "solve",
+              "meaningByLocale": {
+                "ru": "решать",
+                "uk": "розв’язувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i04:p4",
+              "target": "volunteer",
+              "meaningByLocale": {
+                "ru": "работать волонтёром",
+                "uk": "працювати волонтером"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "improve",
+            "solve",
+            "volunteer"
+          ],
+          "rightColumn": [
+            "робити внесок",
+            "поліпшувати",
+            "розв’язувати",
+            "працювати волонтером"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i05:audio",
+            "transcript": "I can contribute."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can contribute.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "contribute"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:donation",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — donation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:donation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — donation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:donation:audio",
+            "transcript": "donation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:donation:r1",
+              "targetText": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование. We can make a donation. — «Мы можем сделать пожертвование». Это может быть не только денежная помощь, но и вещи.",
+                "uk": "пожертва. We can make a donation. — «Ми можемо зробити пожертву». Це може бути не лише грошова допомога, а й речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "donation",
+            "definitionByLocale": {
+              "ru": "пожертвование. We can make a donation. — «Мы можем сделать пожертвование». Это может быть не только денежная помощь, но и вещи.",
+              "uk": "пожертва. We can make a donation. — «Ми можемо зробити пожертву». Це може бути не лише грошова допомога, а й речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть «Ми можемо зробити пожертву»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Ми можемо зробити пожертву»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We can make a donation.",
+          "localizedMeaning": {
+            "ru": "Скажите «Мы можем сделать пожертвование»",
+            "uk": "Скажіть «Ми можемо зробити пожертву»"
+          },
+          "orderedTokens": [
+            "We",
+            "can",
+            "make",
+            "a",
+            "donation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:fundraiser",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fundraiser",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:fundraiser:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fundraiser",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:fundraiser:audio",
+            "transcript": "fundraiser"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:fundraiser:r1",
+              "targetText": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств. She can organise a fundraiser. — «Она может организовать мероприятие по сбору средств».",
+                "uk": "захід зі збору коштів. She can organise a fundraiser. — «Вона може організувати захід зі збору коштів»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fundraiser",
+            "definitionByLocale": {
+              "ru": "мероприятие по сбору средств. She can organise a fundraiser. — «Она может организовать мероприятие по сбору средств».",
+              "uk": "захід зі збору коштів. She can organise a fundraiser. — «Вона може організувати захід зі збору коштів»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що вона може організувати захід зі збору коштів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що вона може організувати захід зі збору коштів",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i07:audio",
+            "transcript": "She can organise a fundraiser."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can organise a fundraiser.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i08:r1",
+            "text": "organise"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i08:r2",
+            "text": "to organise"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i08:r3",
+            "text": "organises"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "She can ___ a fundraiser.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i08:r1",
+              "text": "organise"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r2",
+              "text": "to organise"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r3",
+              "text": "organises"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i09:r1",
+            "text": "We can make a donation."
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i09:r2",
+            "text": "I can make a donation."
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i09:r3",
+            "text": "They can make a donation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i09:audio",
+            "transcript": "We can make a donation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i09:r1",
+              "targetText": "We can make a donation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r2",
+              "targetText": "I can make a donation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r3",
+              "targetText": "They can make a donation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can make a donation.",
+                "uk": "У записі звучить We can make a donation."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can make a donation.",
+                "uk": "У записі звучить We can make a donation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i10:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p2",
+              "target": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование",
+                "uk": "пожертва"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p3",
+              "target": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств",
+                "uk": "захід зі збору коштів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i10:p4",
+              "target": "volunteer",
+              "meaningByLocale": {
+                "ru": "работать волонтёром",
+                "uk": "працювати волонтером"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "donation",
+            "fundraiser",
+            "volunteer"
+          ],
+          "rightColumn": [
+            "робити внесок",
+            "пожертва",
+            "захід зі збору коштів",
+            "працювати волонтером"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i11:audio",
+            "transcript": "She can organise a fundraiser."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can organise a fundraiser.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "organise",
+            "a",
+            "fundraiser"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:word:handout",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:word:handout:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:word:handout:audio",
+            "transcript": "handout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:word:handout:r1",
+              "targetText": "handout",
+              "meaningByLocale": {
+                "ru": "раздаточный листок с информацией. I can print the handout. — «Я могу распечатать раздаточный листок». Например, листок с маршрутом прогулки.",
+                "uk": "роздатковий аркуш з інформацією. I can print the handout. — «Я можу роздрукувати роздатковий аркуш». Наприклад, аркуш із маршрутом прогулянки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handout",
+            "definitionByLocale": {
+              "ru": "раздаточный листок с информацией. I can print the handout. — «Я могу распечатать раздаточный листок». Например, листок с маршрутом прогулки.",
+              "uk": "роздатковий аркуш з інформацією. I can print the handout. — «Я можу роздрукувати роздатковий аркуш». Наприклад, аркуш із маршрутом прогулянки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Для прогулянки районом підготовлено маршрут на одному аркуші. Запропонуйте його роздрукувати",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Для прогулянки районом підготовлено маршрут на одному аркуші. Запропонуйте його роздрукувати",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can print the handout.",
+          "localizedMeaning": {
+            "ru": "Для прогулки по району готов маршрут на одном листе. Предложите его распечатать",
+            "uk": "Для прогулянки районом підготовлено маршрут на одному аркуші. Запропонуйте його роздрукувати"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "print",
+            "the",
+            "handout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть «Дай мені роздатковий аркуш, будь ласка»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Попросіть «Дай мені роздатковий аркуш, будь ласка»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i13:audio",
+            "transcript": "Give me the handout, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Give me the handout, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дії",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i14:r1",
+            "text": "print"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i14:r2",
+            "text": "to print"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i14:r3",
+            "text": "prints"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дії",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму действия",
+            "uk": "Виберіть форму дії"
+          },
+          "gappedTargetPhrase": "I can ___ the handout.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-56:i14:r1",
+              "text": "print"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r2",
+              "text": "to print"
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r3",
+              "text": "prints"
+            }
+          ],
+          "testedDimension": "Виберіть форму дії",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дії",
+              "feedbackByLocale": {
+                "ru": "После can не нужно окончание s.",
+                "uk": "Після can не потрібне закінчення s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-56:i15:r1",
+            "text": "Whose handout is this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i15:r2",
+            "text": "Whose handout is that?"
+          },
+          {
+            "responseId": "en:lesson-08:session-56:i15:r3",
+            "text": "Whose prototype is this?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i15:audio",
+            "transcript": "Whose handout is this?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-56:i15:r1",
+              "targetText": "Whose handout is this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r2",
+              "targetText": "Whose handout is that?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r3",
+              "targetText": "Whose prototype is this?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Whose handout is this?",
+                "uk": "У записі звучить Whose handout is this?"
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Whose handout is this?",
+                "uk": "У записі звучить Whose handout is this?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-56:i16:p1",
+              "target": "contribute",
+              "meaningByLocale": {
+                "ru": "вносить вклад",
+                "uk": "робити внесок"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p2",
+              "target": "donation",
+              "meaningByLocale": {
+                "ru": "пожертвование",
+                "uk": "пожертва"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p3",
+              "target": "fundraiser",
+              "meaningByLocale": {
+                "ru": "мероприятие по сбору средств",
+                "uk": "захід зі збору коштів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-56:i16:p4",
+              "target": "handout",
+              "meaningByLocale": {
+                "ru": "раздаточный листок",
+                "uk": "роздатковий аркуш"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contribute",
+            "donation",
+            "fundraiser",
+            "handout"
+          ],
+          "rightColumn": [
+            "робити внесок",
+            "пожертва",
+            "захід зі збору коштів",
+            "роздатковий аркуш"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друзі створюють спільну колекцію фотографій району. Ви маєте світлини для неї. Запропонуйте зробити свій внесок.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Друзі створюють спільну колекцію фотографій району. Ви маєте світлини для неї. Запропонуйте зробити свій внесок.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-56:i17:audio",
+            "transcript": "I can contribute."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can contribute.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-56:word:contribute",
+      "correctText": "contribute",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i01",
+      "correctText": "I can contribute.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i02",
+      "correctText": "contribute",
+      "correctResponseId": "en:lesson-08:session-56:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i03",
+      "correctText": "contribute",
+      "correctResponseId": "en:lesson-08:session-56:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i05",
+      "correctText": "I can contribute.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:word:donation",
+      "correctText": "donation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i06",
+      "correctText": "We can make a donation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:word:fundraiser",
+      "correctText": "fundraiser",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i07",
+      "correctText": "She can organise a fundraiser.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i08",
+      "correctText": "organise",
+      "correctResponseId": "en:lesson-08:session-56:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i09",
+      "correctText": "We can make a donation.",
+      "correctResponseId": "en:lesson-08:session-56:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i11",
+      "correctText": "She can organise a fundraiser.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:word:handout",
+      "correctText": "handout",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i12",
+      "correctText": "I can print the handout.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i13",
+      "correctText": "Give me the handout, please.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i14",
+      "correctText": "print",
+      "correctResponseId": "en:lesson-08:session-56:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i15",
+      "correctText": "Whose handout is this?",
+      "correctResponseId": "en:lesson-08:session-56:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-56:i17",
+      "correctText": "I can contribute.",
+      "correctResponseId": null
+    }
+  ]
+}

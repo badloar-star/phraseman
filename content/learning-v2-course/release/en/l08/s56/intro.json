@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-08:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "повторить can, вопрос whose и вежливую инструкцию",
+    "uk": "повторити can, запитання whose і ввічливу інструкцію"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-08:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сборник семейных рецептов",
+        "uk": "Збірка сімейних рецептів"
+      },
+      "bodyByLocale": {
+        "ru": "Жильцы дома собирают любимые семейные рецепты в общую книгу. У вас есть рецепт, которым вы хотите поделиться. Contribute — «вносить вклад, участвовать своим трудом или материалом». I can contribute — «Я могу внести свой вклад». В этой ситуации вклад — рецепт, а не деньги. После can нужно contribute, без to и s.",
+        "uk": "Мешканці будинку збирають улюблені сімейні рецепти в спільну книгу. Ви маєте рецепт, яким хочете поділитися. Contribute — «робити внесок, долучатися своєю працею або матеріалом». I can contribute — «Я можу зробити свій внесок». У цій ситуації внесок — рецепт, а не гроші. Після can потрібне contribute, без to й s."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r1",
+              "text": "I can contribute."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r2",
+              "text": "I can to contribute."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r3",
+              "text": "I can contributes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r1",
+              "text": "I can contribute."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r2",
+              "text": "I can to contribute."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro1:r3",
+              "text": "I can contributes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-08:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одеяла для приюта",
+        "uk": "Ковдри для притулку"
+      },
+      "bodyByLocale": {
+        "ru": "Приюту для животных нужны одеяла. Вы с другом можете бесплатно отдать несколько чистых одеял. Donation — «пожертвование»: деньги или вещи, которые отдают на помощь. We can make a donation — «Мы можем сделать пожертвование». Make a donation — устойчивое сочетание.",
+        "uk": "Притулку для тварин потрібні ковдри. Ви з другом можете безкоштовно віддати кілька чистих ковдр. Donation — «пожертва»: гроші або речі, які віддають на допомогу. We can make a donation — «Ми можемо зробити пожертву». Make a donation — сталий вислів."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r1",
+              "text": "We can make a donation."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r2",
+              "text": "We can to make a donation."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r3",
+              "text": "We can makes a donation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r1",
+              "text": "We can make a donation."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r2",
+              "text": "We can to make a donation."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro2:r3",
+              "text": "We can makes a donation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-08:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Велопарковка у библиотеки",
+        "uk": "Велопарковка біля бібліотеки"
+      },
+      "bodyByLocale": {
+        "ru": "Возле библиотеки не хватает места для велосипедов. Подруга умеет организовывать мероприятия и может провести вечер для сбора денег на велопарковку. Fundraiser — «мероприятие по сбору средств». She can organise a fundraiser — «Она может организовать мероприятие по сбору средств». После can используем organise, даже с she.",
+        "uk": "Біля бібліотеки бракує місця для велосипедів. Подруга вміє організовувати заходи й може провести вечір для збору грошей на велопарковку. Fundraiser — «захід зі збору коштів». She can organise a fundraiser — «Вона може організувати захід зі збору коштів». Після can використовуємо organise, навіть із she."
+      },
+      "question": {
+        "interactionId": "en:lesson-08:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r1",
+              "text": "She can organise a fundraiser."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r2",
+              "text": "She can to organise a fundraiser."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r3",
+              "text": "She can organises a fundraiser."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r1",
+              "text": "She can organise a fundraiser."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r2",
+              "text": "She can to organise a fundraiser."
+            },
+            {
+              "responseId": "en:lesson-08:session-56:intro3:r3",
+              "text": "She can organises a fundraiser."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "35073480679e3b32ad95d81140460cc6a33dfd16097667027834019df2608fb2"
+}

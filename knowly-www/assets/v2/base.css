@@ -45,7 +45,8 @@
   --card: #FFFFFF; --card-solid: #FFFFFF;
   --edge: transparent;
   --cta: color-mix(in srgb, var(--acc) calc(var(--k) * 100%), #1C1C1F);
-  --cta-ink: #FFFFFF;
+  /* зачем (координатор 18.10, запасной путь без theme.js): theme.js сам подбирает подпись кнопки (lightInk: белая → on-акцент → чёрная ≥ 4,5:1) и ставит её inline. Если он не отработал, белая подпись на дефолтном акценте «Авроры» (k .6) даёт 3,27:1; тёмная on-подпись темы — 4,94:1. С theme.js ничего не меняется: inline-значение перекрывает это правило. */
+  --cta-ink: var(--on);
   --tile: color-mix(in srgb, var(--acc) calc(var(--k) * 40%), #F0F0F3);
   --control: #ECECEF;
   --fill: #1C1C1F;

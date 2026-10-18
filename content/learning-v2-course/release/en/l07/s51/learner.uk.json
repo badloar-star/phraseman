@@ -4,32 +4,90 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-51:i01",
+      "interactionId": "en:lesson-07:session-51:word:tighten",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tighten",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:word:tighten:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tighten",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:word:tighten:audio",
+          "transcript": "tighten"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:word:tighten:r1",
+            "targetText": "tighten",
+            "meaningByLocale": {
+              "ru": "затягивать, подкручивать. I often tighten the screws on the chair. — «Я часто подтягиваю винты на стуле». Затягивать крепление или делать что-то более тугим; здесь — подтягивать винты.",
+              "uk": "затягувати, підкручувати. I often tighten the screws on the chair. — «Я часто підтягую гвинти на стільці». Затягувати кріплення або робити щось тугішим; тут — підтягувати гвинти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tighten",
+          "definitionByLocale": {
+            "ru": "затягивать, подкручивать. I often tighten the screws on the chair. — «Я часто подтягиваю винты на стуле». Затягивать крепление или делать что-то более тугим; здесь — подтягивать винты.",
+            "uk": "затягувати, підкручувати. I often tighten the screws on the chair. — «Я часто підтягую гвинти на стільці». Затягувати кріплення або робити щось тугішим; тут — підтягувати гвинти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-51:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "prompt": "Гість помітив викрутку біля стільця. Скажіть: «Я часто підтягую гвинти на стільці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "accessibilityLabel": "Гість помітив викрутку біля стільця. Скажіть: «Я часто підтягую гвинти на стільці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often dance at home.",
+        "targetPhrase": "I often tighten the screws on the chair.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто танцую дома»",
-          "uk": "Скажіть «Я часто танцюю вдома»"
+          "ru": "Гость заметил отвёртку у стула. Скажите: «Я часто подтягиваю винты на стуле»",
+          "uk": "Гість помітив викрутку біля стільця. Скажіть: «Я часто підтягую гвинти на стільці»"
         },
         "orderedTokens": [
           "I",
           "often",
-          "dance",
-          "at",
-          "home"
+          "tighten",
+          "the",
+          "screws",
+          "on",
+          "the",
+          "chair"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Гість помітив викрутку біля стільця. Скажіть: «Я часто підтягую гвинти на стільці»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often tighten the screws on the chair.`",
+              "uk": "тут потрібно `often` — `I often tighten the screws on the chair.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -39,7 +97,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -47,15 +105,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i02:r1",
-          "text": "dance"
+          "text": "tighten"
         },
         {
           "responseId": "en:lesson-07:session-51:i02:r2",
-          "text": "sew"
+          "text": "tie"
         },
         {
           "responseId": "en:lesson-07:session-51:i02:r3",
-          "text": "sell"
+          "text": "tip"
         }
       ],
       "mediaIds": [],
@@ -67,23 +125,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i02:audio",
-          "transcript": "dance"
+          "transcript": "tighten"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-51:i02:r1",
-            "targetText": "dance",
+            "targetText": "tighten",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i02:r2",
-            "targetText": "sew",
+            "targetText": "tie",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i02:r3",
-            "targetText": "sell",
+            "targetText": "tip",
             "meaningByLocale": null
           }
         ],
@@ -94,8 +152,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dance`, а в этом варианте — `sew`.",
-              "uk": "У записі перше слово — `dance`, а в цьому варіанті — `sew`."
+              "ru": "В записи первое слово — `tighten`, а в этом варианте — `tie`.",
+              "uk": "У записі перше слово — `tighten`, а в цьому варіанті — `tie`."
             }
           },
           {
@@ -103,8 +161,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dance`, а в этом варианте — `sell`.",
-              "uk": "У записі перше слово — `dance`, а в цьому варіанті — `sell`."
+              "ru": "В записи первое слово — `tighten`, а в этом варианте — `tip`.",
+              "uk": "У записі перше слово — `tighten`, а в цьому варіанті — `tip`."
             }
           }
         ],
@@ -115,67 +173,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "prompt": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i03:r1",
-          "text": "dance"
+          "text": "tighten"
         },
         {
           "responseId": "en:lesson-07:session-51:i03:r2",
-          "text": "dances"
+          "text": "tightens"
         },
         {
           "responseId": "en:lesson-07:session-51:i03:r3",
-          "text": "dancing"
+          "text": "tightening"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "accessibilityLabel": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто танцую дома»",
-          "uk": "Скажіть «Я часто танцюю вдома»"
+          "ru": "Гость спрашивает про стул. Скажите: «Я часто подтягиваю винты на стуле». Выберите слово",
+          "uk": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ at home.",
+        "gappedTargetPhrase": "I often ___ the screws on the chair.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-51:i03:r1",
-            "text": "dance"
+            "text": "tighten"
           },
           {
             "responseId": "en:lesson-07:session-51:i03:r2",
-            "text": "dances"
+            "text": "tightens"
           },
           {
             "responseId": "en:lesson-07:session-51:i03:r3",
-            "text": "dancing"
+            "text": "tightening"
           }
         ],
-        "testedDimension": "Скажіть «Я часто танцюю вдома»",
+        "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-51:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `dance`.",
-              "uk": "Після `I` потрібне `dance`."
+              "ru": "После `I` нужно `tighten`, без окончания.",
+              "uk": "Після `I` потрібно `tighten`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-51:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `dance`.",
-              "uk": "Тут потрібна форма `dance`."
+              "ru": "Здесь нужна форма `tighten`.",
+              "uk": "Тут потрібна форма `tighten`."
             }
           }
         ]
@@ -184,7 +242,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -198,48 +256,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-51:i04:p1",
-            "target": "dance",
+            "target": "tighten",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "затягивать, подтягивать",
+              "uk": "затягувати, підтягувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i04:p2",
-            "target": "sell",
+            "target": "screw",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "винт, шуруп",
+              "uk": "гвинт, шуруп"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i04:p3",
-            "target": "libraries",
+            "target": "chair",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "стул",
+              "uk": "стілець"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i04:p4",
-            "target": "stadium",
+            "target": "pencil",
             "meaningByLocale": {
-              "ru": "стадион",
-              "uk": "стадіон"
+              "ru": "карандаш",
+              "uk": "олівець"
             }
           }
         ],
         "leftColumn": [
-          "dance",
-          "sell",
-          "libraries",
-          "stadium"
+          "tighten",
+          "screw",
+          "chair",
+          "pencil"
         ],
         "rightColumn": [
-          "танцювати",
-          "продавати",
-          "бібліотеки",
-          "стадіон"
+          "затягувати, підтягувати",
+          "гвинт, шуруп",
+          "стілець",
+          "олівець"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -256,35 +314,89 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-51:word:sharpen",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sharpen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:word:sharpen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sharpen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:word:sharpen:audio",
+          "transcript": "sharpen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:word:sharpen:r1",
+            "targetText": "sharpen",
+            "meaningByLocale": {
+              "ru": "точить, заострять. Do you sharpen scissors? — «Вы точите ножницы?» Делать острым: например, затачивать лезвие или карандаш.",
+              "uk": "гострити, заточувати. Do you sharpen scissors? — «Ви гострите ножиці?» Робити гострим: наприклад, загострювати лезо чи олівець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sharpen",
+          "definitionByLocale": {
+            "ru": "точить, заострять. Do you sharpen scissors? — «Вы точите ножницы?» Делать острым: например, затачивать лезвие или карандаш.",
+            "uk": "гострити, заточувати. Do you sharpen scissors? — «Ви гострите ножиці?» Робити гострим: наприклад, загострювати лезо чи олівець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-51:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте й складіть запитання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-51:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте й складіть запитання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i05:audio",
-          "transcript": "I often dance at home."
+          "transcript": "Do you sharpen scissors?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often dance at home.",
+        "hiddenTargetPhrase": "Do you sharpen scissors?",
         "orderedTokens": [
-          "I",
-          "often",
-          "dance",
-          "at",
-          "home"
+          "Do",
+          "you",
+          "sharpen",
+          "scissors"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you sharpen scissors?`",
+              "uk": "тут потрібно `Do` — `Do you sharpen scissors?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -293,31 +405,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-51:word:cloakroom",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cloakroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:word:cloakroom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cloakroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:word:cloakroom:audio",
+          "transcript": "cloakroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:word:cloakroom:r1",
+            "targetText": "cloakroom",
+            "meaningByLocale": {
+              "ru": "гардероб. Where is the cloakroom? — «Где гардероб?» Место, где оставляют верхнюю одежду в театре или музее.",
+              "uk": "гардероб. Where is the cloakroom? — «Де гардероб?» Місце, де залишають верхній одяг у театрі або музеї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cloakroom",
+          "definitionByLocale": {
+            "ru": "гардероб. Where is the cloakroom? — «Где гардероб?» Место, где оставляют верхнюю одежду в театре или музее.",
+            "uk": "гардероб. Where is the cloakroom? — «Де гардероб?» Місце, де залишають верхній одяг у театрі або музеї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-51:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте продавця «Ви продаєте книжки?»",
+      "prompt": "Ви прийшли в театр у важкому пальті. Спитайте контролера: «Де гардероб?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте продавця «Ви продаєте книжки?»",
+      "accessibilityLabel": "Ви прийшли в театр у важкому пальті. Спитайте контролера: «Де гардероб?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you sell books?",
+        "targetPhrase": "Where is the cloakroom?",
         "localizedMeaning": {
-          "ru": "Спросите продавца «Вы продаёте книги?»",
-          "uk": "Запитайте продавця «Ви продаєте книжки?»"
+          "ru": "Вы пришли в театр в тяжёлом пальто. Спросите контролёра: «Где гардероб?»",
+          "uk": "Ви прийшли в театр у важкому пальті. Спитайте контролера: «Де гардероб?»"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "sell",
-          "books"
+          "Where",
+          "is",
+          "the",
+          "cloakroom"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви прийшли в театр у важкому пальті. Спитайте контролера: «Де гардероб?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the cloakroom?`",
+              "uk": "тут потрібно `is` — `Where is the cloakroom?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -327,25 +494,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте перехожого «Де стадіон?»",
+      "prompt": "У фойє двоє дверей. Укажіть на одні й уточніть у контролера: «Це гардероб?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-51:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте перехожого «Де стадіон?»",
+      "accessibilityLabel": "У фойє двоє дверей. Укажіть на одні й уточніть у контролера: «Це гардероб?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i07:audio",
-          "transcript": "Where is the stadium?"
+          "transcript": "Is this the cloakroom?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the stadium?",
+        "targetPhrase": "Is this the cloakroom?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -359,68 +526,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-51:word:loosen",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loosen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-51:word:loosen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loosen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-51:word:loosen:audio",
+          "transcript": "loosen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-51:word:loosen:r1",
+            "targetText": "loosen",
+            "meaningByLocale": {
+              "ru": "ослаблять, делать свободнее. I usually loosen my tie at work. — «Я обычно ослабляю галстук на работе». Делать менее тугим.",
+              "uk": "послаблювати, робити вільнішим. I usually loosen my tie at work. — «Я зазвичай послаблюю краватку на роботі». Робити менш тугим."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loosen",
+          "definitionByLocale": {
+            "ru": "ослаблять, делать свободнее. I usually loosen my tie at work. — «Я обычно ослабляю галстук на работе». Делать менее тугим.",
+            "uk": "послаблювати, робити вільнішим. I usually loosen my tie at work. — «Я зазвичай послаблюю краватку на роботі». Робити менш тугим."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-51:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Ви продаєте книжки?»",
+      "prompt": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i08:r1",
-          "text": "sell"
+          "text": "loosen"
         },
         {
           "responseId": "en:lesson-07:session-51:i08:r2",
-          "text": "sells"
+          "text": "loosens"
         },
         {
           "responseId": "en:lesson-07:session-51:i08:r3",
-          "text": "selling"
+          "text": "loosening"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Ви продаєте книжки?»",
+      "accessibilityLabel": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Вы продаёте книги?»",
-          "uk": "Запитайте «Ви продаєте книжки?»"
+          "ru": "Сосед спрашивает про ваш галстук. Скажите: «Я обычно ослабляю галстук на работе». Выберите слово",
+          "uk": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово"
         },
-        "gappedTargetPhrase": "Do you ___ books?",
+        "gappedTargetPhrase": "I usually ___ my tie at work.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-51:i08:r1",
-            "text": "sell"
+            "text": "loosen"
           },
           {
             "responseId": "en:lesson-07:session-51:i08:r2",
-            "text": "sells"
+            "text": "loosens"
           },
           {
             "responseId": "en:lesson-07:session-51:i08:r3",
-            "text": "selling"
+            "text": "loosening"
           }
         ],
-        "testedDimension": "Запитайте «Ви продаєте книжки?»",
+        "testedDimension": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-51:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Ви продаєте книжки?»",
+            "testedDimension": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `do you` нужно `sell`.",
-              "uk": "Після `do you` потрібне `sell`."
+              "ru": "После `I` нужно `loosen`, без окончания.",
+              "uk": "Після `I` потрібно `loosen`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-51:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Ви продаєте книжки?»",
+            "testedDimension": "Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `sell`.",
-              "uk": "Тут потрібна форма `sell`."
+              "ru": "Здесь нужна форма `loosen`.",
+              "uk": "Тут потрібна форма `loosen`."
             }
           }
         ]
@@ -429,7 +639,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -437,15 +647,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i09:r1",
-          "text": "I often dance."
+          "text": "Do you sharpen scissors?"
         },
         {
           "responseId": "en:lesson-07:session-51:i09:r2",
-          "text": "I often sew."
+          "text": "Do you sharpen pencils?"
         },
         {
           "responseId": "en:lesson-07:session-51:i09:r3",
-          "text": "I often hike."
+          "text": "Do you sharpen razors?"
         }
       ],
       "mediaIds": [],
@@ -457,23 +667,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i09:audio",
-          "transcript": "I often dance."
+          "transcript": "Do you sharpen scissors?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-51:i09:r1",
-            "targetText": "I often dance.",
+            "targetText": "Do you sharpen scissors?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i09:r2",
-            "targetText": "I often sew.",
+            "targetText": "Do you sharpen pencils?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i09:r3",
-            "targetText": "I often hike.",
+            "targetText": "Do you sharpen razors?",
             "meaningByLocale": null
           }
         ],
@@ -484,8 +694,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dance`, а в этом варианте — `sew`.",
-              "uk": "У записі останнє слово — `dance`, а в цьому варіанті — `sew`."
+              "ru": "В записи последнее слово — `scissors`, а в этом варианте — `pencils`.",
+              "uk": "У записі останнє слово — `scissors`, а в цьому варіанті — `pencils`."
             }
           },
           {
@@ -493,8 +703,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dance`, а в этом варианте — `hike`.",
-              "uk": "У записі останнє слово — `dance`, а в цьому варіанті — `hike`."
+              "ru": "В записи последнее слово — `scissors`, а в этом варианте — `razors`.",
+              "uk": "У записі останнє слово — `scissors`, а в цьому варіанті — `razors`."
             }
           }
         ],
@@ -505,8 +715,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -519,48 +729,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-51:i10:p1",
-            "target": "sew",
+            "target": "loosen",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "ослаблять",
+              "uk": "послаблювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i10:p2",
-            "target": "dance",
+            "target": "tighten",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "затягивать, подтягивать",
+              "uk": "затягувати, підтягувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i10:p3",
-            "target": "sell",
+            "target": "sharpen",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "точить",
+              "uk": "гострити"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i10:p4",
-            "target": "libraries",
+            "target": "screw",
             "meaningByLocale": {
-              "ru": "библиотеки",
-              "uk": "бібліотеки"
+              "ru": "винт, шуруп",
+              "uk": "гвинт, шуруп"
             }
           }
         ],
         "leftColumn": [
-          "sew",
-          "dance",
-          "sell",
-          "libraries"
+          "loosen",
+          "tighten",
+          "sharpen",
+          "screw"
         ],
         "rightColumn": [
-          "шити",
-          "танцювати",
-          "продавати",
-          "бібліотеки"
+          "послаблювати",
+          "затягувати, підтягувати",
+          "гострити",
+          "гвинт, шуруп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -578,8 +788,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -593,18 +803,34 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i11:audio",
-          "transcript": "Do you sell books?"
+          "transcript": "She often tightens the screws on the chair."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you sell books?",
+        "hiddenTargetPhrase": "She often tightens the screws on the chair.",
         "orderedTokens": [
-          "Do",
-          "you",
-          "sell",
-          "books"
+          "She",
+          "often",
+          "tightens",
+          "the",
+          "screws",
+          "on",
+          "the",
+          "chair"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "tighten"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `tightens` — `She often tightens the screws on the chair.`",
+              "uk": "тут потрібно `tightens` — `She often tightens the screws on the chair.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -614,30 +840,45 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»",
+      "prompt": "Сусід питає про краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»",
+      "accessibilityLabel": "Сусід питає про краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where are the libraries?",
+        "targetPhrase": "I usually loosen my tie at work.",
         "localizedMeaning": {
-          "ru": "Вы смотрите на карту города. Спросите друга «Где библиотеки?»",
-          "uk": "Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»"
+          "ru": "Сосед спрашивает про галстук. Скажите: «Я обычно ослабляю галстук на работе»",
+          "uk": "Сусід питає про краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі»"
         },
         "orderedTokens": [
-          "Where",
-          "are",
-          "the",
-          "libraries"
+          "I",
+          "usually",
+          "loosen",
+          "my",
+          "tie",
+          "at",
+          "work"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-51:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусід питає про краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually loosen my tie at work.`",
+              "uk": "тут потрібно `usually` — `I usually loosen my tie at work.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -647,25 +888,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг розповідає про шиття. Запитайте «Ти шиєш удома?»",
+      "prompt": "Знайомий питає про вашого брата. Скажіть: «Мій брат часто гострить олівці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-51:i13:audio"
       ],
-      "accessibilityLabel": "Друг розповідає про шиття. Запитайте «Ти шиєш удома?»",
+      "accessibilityLabel": "Знайомий питає про вашого брата. Скажіть: «Мій брат часто гострить олівці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i13:audio",
-          "transcript": "Do you sew at home?"
+          "transcript": "My brother often sharpens pencils."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you sew at home?",
+        "targetPhrase": "My brother often sharpens pencils.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -680,11 +921,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я часто танцюю вдома»",
+      "prompt": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i14:r1",
@@ -701,14 +942,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я часто танцюю вдома»",
+      "accessibilityLabel": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто танцую дома»",
-          "uk": "Скажіть «Я часто танцюю вдома»"
+          "ru": "Гость спрашивает про стул. Скажите: «Я часто подтягиваю винты на стуле». Выберите слово",
+          "uk": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ dance at home.",
+        "gappedTargetPhrase": "I ___ tighten the screws on the chair.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-51:i14:r1",
@@ -723,24 +964,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажіть «Я часто танцюю вдома»",
+        "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-51:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `dance`.",
-              "uk": "Для «часто» потрібне `often` перед `dance`."
+              "ru": "Для «часто» нужно `often` перед `tighten`.",
+              "uk": "Для «часто» потрібно `often` перед `tighten`."
             }
           },
           {
             "responseId": "en:lesson-07:session-51:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я часто танцюю вдома»",
+            "testedDimension": "Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `dance` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `dance` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `tighten` не ставим.",
+              "uk": "Для «часто» потрібно `often`; `am` перед `tighten` не ставимо."
             }
           }
         ]
@@ -749,7 +990,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -757,15 +998,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-51:i15:r1",
-          "text": "Where is the stadium?"
+          "text": "Where is the cloakroom?"
         },
         {
           "responseId": "en:lesson-07:session-51:i15:r2",
-          "text": "Where is the cinema?"
+          "text": "Where is the library?"
         },
         {
           "responseId": "en:lesson-07:session-51:i15:r3",
-          "text": "Where is the hospital?"
+          "text": "Where is the theatre?"
         }
       ],
       "mediaIds": [],
@@ -777,23 +1018,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i15:audio",
-          "transcript": "Where is the stadium?"
+          "transcript": "Where is the cloakroom?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-51:i15:r1",
-            "targetText": "Where is the stadium?",
+            "targetText": "Where is the cloakroom?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i15:r2",
-            "targetText": "Where is the cinema?",
+            "targetText": "Where is the library?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-51:i15:r3",
-            "targetText": "Where is the hospital?",
+            "targetText": "Where is the theatre?",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +1045,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `stadium`, а в этом варианте — `cinema`.",
-              "uk": "У записі останнє слово — `stadium`, а в цьому варіанті — `cinema`."
+              "ru": "В записи последнее слово — `cloakroom`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `cloakroom`, а в цьому варіанті — `library`."
             }
           },
           {
@@ -813,8 +1054,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `stadium`, а в этом варианте — `hospital`.",
-              "uk": "У записі останнє слово — `stadium`, а в цьому варіанті — `hospital`."
+              "ru": "В записи последнее слово — `cloakroom`, а в этом варианте — `theatre`.",
+              "uk": "У записі останнє слово — `cloakroom`, а в цьому варіанті — `theatre`."
             }
           }
         ],
@@ -825,7 +1066,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -839,48 +1080,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-51:i16:p1",
-            "target": "dance",
+            "target": "cloakroom",
             "meaningByLocale": {
-              "ru": "танцевать",
-              "uk": "танцювати"
+              "ru": "гардероб",
+              "uk": "гардероб"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i16:p2",
-            "target": "stadium",
+            "target": "sharpen",
             "meaningByLocale": {
-              "ru": "стадион",
-              "uk": "стадіон"
+              "ru": "точить",
+              "uk": "гострити"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i16:p3",
-            "target": "sew",
+            "target": "loosen",
             "meaningByLocale": {
-              "ru": "шить",
-              "uk": "шити"
+              "ru": "ослаблять",
+              "uk": "послаблювати"
             }
           },
           {
             "pairId": "en:lesson-07:session-51:i16:p4",
-            "target": "sell",
+            "target": "tie",
             "meaningByLocale": {
-              "ru": "продавать",
-              "uk": "продавати"
+              "ru": "галстук",
+              "uk": "краватка"
             }
           }
         ],
         "leftColumn": [
-          "dance",
-          "stadium",
-          "sew",
-          "sell"
+          "cloakroom",
+          "sharpen",
+          "loosen",
+          "tie"
         ],
         "rightColumn": [
-          "танцювати",
-          "стадіон",
-          "шити",
-          "продавати"
+          "гардероб",
+          "гострити",
+          "послаблювати",
+          "краватка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -898,25 +1139,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-51:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, що Том робить удома під музику. Скажіть «Том часто танцює вдома»",
+      "prompt": "Сестра носить краватку як частину робочої форми. Колега питає про її звичку. Скажіть: «Вона зазвичай послаблює краватку на роботі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-51:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, що Том робить удома під музику. Скажіть «Том часто танцює вдома»",
+      "accessibilityLabel": "Сестра носить краватку як частину робочої форми. Колега питає про її звичку. Скажіть: «Вона зазвичай послаблює краватку на роботі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-51:i17:audio",
-          "transcript": "Tom often dances at home."
+          "transcript": "She usually loosens her tie at work."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often dances at home.",
+        "targetPhrase": "She usually loosens her tie at work.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -938,11 +1179,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "70d9732ed1cbc631ec0686a3ff6b2e05ede01a238ade0c045c985a2eac8c75ab"
+  "learnerFingerprint": "5bf9508dd2d764ba6a78bc6a1170825e679884c0d85037bd3676e17680615108"
 }

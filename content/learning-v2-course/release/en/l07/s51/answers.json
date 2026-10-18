@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-07:session-51:word:tighten",
+    "correctText": "tighten",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-51:i01",
-    "correctText": "I often dance at home.",
+    "correctText": "I often tighten the screws on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i02",
-    "correctText": "dance",
+    "correctText": "tighten",
     "correctResponseId": "en:lesson-07:session-51:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-51:i03",
-    "correctText": "dance",
+    "correctText": "tighten",
     "correctResponseId": "en:lesson-07:session-51:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-51:i04",
-    "correctText": "en:lesson-07:session-51:i04:p1=dance\nen:lesson-07:session-51:i04:p2=sell\nen:lesson-07:session-51:i04:p3=libraries\nen:lesson-07:session-51:i04:p4=stadium",
+    "correctText": "en:lesson-07:session-51:i04:p1=tighten\nen:lesson-07:session-51:i04:p2=screw\nen:lesson-07:session-51:i04:p3=chair\nen:lesson-07:session-51:i04:p4=pencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:word:sharpen",
+    "correctText": "sharpen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i05",
-    "correctText": "I often dance at home.",
+    "correctText": "Do you sharpen scissors?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:word:cloakroom",
+    "correctText": "cloakroom",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i06",
-    "correctText": "Do you sell books?",
+    "correctText": "Where is the cloakroom?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i07",
-    "correctText": "Where is the stadium?",
+    "correctText": "Is this the cloakroom?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-51:word:loosen",
+    "correctText": "loosen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i08",
-    "correctText": "sell",
+    "correctText": "loosen",
     "correctResponseId": "en:lesson-07:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-51:i09",
-    "correctText": "I often dance.",
+    "correctText": "Do you sharpen scissors?",
     "correctResponseId": "en:lesson-07:session-51:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-51:i10",
-    "correctText": "en:lesson-07:session-51:i10:p1=sew\nen:lesson-07:session-51:i10:p2=dance\nen:lesson-07:session-51:i10:p3=sell\nen:lesson-07:session-51:i10:p4=libraries",
+    "correctText": "en:lesson-07:session-51:i10:p1=loosen\nen:lesson-07:session-51:i10:p2=tighten\nen:lesson-07:session-51:i10:p3=sharpen\nen:lesson-07:session-51:i10:p4=screw",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i11",
-    "correctText": "Do you sell books?",
+    "correctText": "She often tightens the screws on the chair.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i12",
-    "correctText": "Where are the libraries?",
+    "correctText": "I usually loosen my tie at work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i13",
-    "correctText": "Do you sew at home?",
+    "correctText": "My brother often sharpens pencils.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-51:i15",
-    "correctText": "Where is the stadium?",
+    "correctText": "Where is the cloakroom?",
     "correctResponseId": "en:lesson-07:session-51:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-51:i16",
-    "correctText": "en:lesson-07:session-51:i16:p1=dance\nen:lesson-07:session-51:i16:p2=stadium\nen:lesson-07:session-51:i16:p3=sew\nen:lesson-07:session-51:i16:p4=sell",
+    "correctText": "en:lesson-07:session-51:i16:p1=cloakroom\nen:lesson-07:session-51:i16:p2=sharpen\nen:lesson-07:session-51:i16:p3=loosen\nen:lesson-07:session-51:i16:p4=tie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-51:i17",
-    "correctText": "Tom often dances at home.",
+    "correctText": "She usually loosens her tie at work.",
     "correctResponseId": null
   }
 ]

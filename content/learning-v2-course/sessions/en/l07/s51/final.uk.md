@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 51 — Танцюю вдома
+# Англійська · Урок 7 · Заняття 51 — Дрібний ремонт і гардероб
 
-**Ситуація.** Ви розповідаєте про танці вдома, продаж книжок і пошук стадіону.
+**Ситуація.** Ви розповідаєте про побутові дрібниці: як підтягуєте гвинти на стільці, де гострите ножиці та як знайти гардероб у театрі.
 
-**Що ви опануєте:** розповідати про звички й ставити запитання
-**Нові слова:** dance
+**Що ви опануєте:** розповідати про звички, питати «Ви …?» і «Де …?»
+**Нові слова:** tighten, sharpen, cloakroom, loosen
+**Повертаються:** chair, screw, scissors, pencil, tie, work, theatre, library
 
 ---
 
 ## Інтро 1
 
-### Музика вдома
+### Хиткий стілець
 
-Друг запитує, що ви робите вдома під музику. `Dance` — «танцювати». `I often dance at home` — «Я часто танцюю вдома». `Often` стоїть перед `dance`. Удома ніхто не просить показати квиток на танцмайданчик.
+Гість присів на стілець біля обіднього столу, і той захитався: гвинти на ніжках розхиталися. Ви берете викрутку й підкручуєте їх. tighten — «затягувати, підкручувати». Скажіть: I often tighten the screws on the chair — «Я часто підтягую гвинти на стільці». Слово often стоїть перед tighten.
 
-**Розкажіть другові про свою звичку.**
+**Гість помітив викрутку біля стільця. Поясніть: «Я часто підтягую гвинти на стільці».**
 
-- ✅ **I often dance at home.**
-- ❌ I often dances at home. — *Після `I` потрібне `dance`.*
-- ❌ I often dancing at home. — *Тут потрібна форма `dance`.*
+- ✅ **I often tighten the screws on the chair.**
+- ❌ I often tightens the screws on the chair. — *Після I потрібно tighten, без s.*
+- ❌ I often tightening the screws on the chair. — *Тут потрібна форма tighten.*
 
 ---
 
 ## Інтро 2
 
-### Книжки в магазині
+### Тупі ножиці
 
-Ви заходите до невеликого магазину й хочете дізнатися, чи продають тут книжки. `Do you sell books?` — «Ви продаєте книжки?» Після `do you` потрібне `sell`, без закінчення `s`.
+Вдома всі ножиці затупилися й не ріжуть папір. Біля ринку ви побачили майстерню, а за стійкою стоїть майстер. sharpen — «гострити, заточувати». Спитайте майстра: Do you sharpen scissors? — «Ви гострите ножиці?» Запитання починається з Do, потім you і sharpen без s.
 
-**Запитайте продавця про книжки.**
+**Майстер стоїть за стійкою. Спитайте його: «Ви гострите ножиці?»**
 
-- ✅ **Do you sell books?**
-- ❌ Does you sell books? — *З `you` потрібне `do`.*
-- ❌ Do you sells books? — *Після `do you` потрібне `sell`.*
+- ✅ **Do you sharpen scissors?**
+- ❌ Does you sharpen scissors? — *З you потрібно Do.*
+- ❌ Do you sharpens scissors? — *Після Do you потрібно sharpen, без s.*
 
 ---
 
 ## Інтро 3
 
-### Шукаю стадіон
+### Вечір у театрі
 
-Ви йдете на матч і запитуєте перехожого про дорогу. `Where is the stadium?` — «Де стадіон?» Після `where` тут іде `is`, потім `the stadium`.
+Ви прийшли в театр у важкому зимовому пальті, а у фойє дуже тепло. Контролер біля входу охоче підкаже, куди здати верхній одяг. cloakroom — «гардероб», де залишають пальта, а не набір вашого одягу. Спитайте: Where is the cloakroom? — «Де гардероб?» Після Where йде is, а потім the cloakroom.
 
-**Запитайте, де стадіон.**
+**Контролер біля входу чекає на ваше запитання. Спитайте: «Де гардероб?»**
 
-- ✅ **Where is the stadium?**
-- ❌ Where are the stadium? — *Стадіон один: потрібне `is`.*
-- ❌ Where the stadium is? — *У цьому запитанні `is` стоїть перед `the stadium`.*
+- ✅ **Where is the cloakroom?**
+- ❌ Where are the cloakroom? — *Гардероб один: потрібно is.*
+- ❌ Where the cloakroom is? — *У цьому запитанні is стоїть перед the cloakroom.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто танцюю вдома»**
+**1 · Картка слова — tighten**
+<!-- interaction_id: en:lesson-07:session-51:word:tighten; family: word_card -->
+> **tighten** — затягувати, підкручувати. I often tighten the screws on the chair. — «Я часто підтягую гвинти на стільці». Затягувати кріплення або робити щось тугішим; тут — підтягувати гвинти.
+
+**2 · Гість помітив викрутку біля стільця. Скажіть: «Я часто підтягую гвинти на стільці»**
 <!-- interaction_id: en:lesson-07:session-51:i01; family: phrase_builder -->
-Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+Плитки: `chair` `usually` `the` `on` `screws` `the` `tighten` `often` `I` → **I often tighten the screws on the chair.**
+*(плитка `usually` зайва: тут потрібно `often` — `I often tighten the screws on the chair.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-51:i02; family: listen_choose -->
-🔊 *dance* → **dance** · sew · sell
-- sew — *У записі перше слово — `dance`, а в цьому варіанті — `sew`.*
-- sell — *У записі перше слово — `dance`, а в цьому варіанті — `sell`.*
+🔊 *tighten* → **tighten** · tie · tip
+- tie — *У записі перше слово — `tighten`, а в цьому варіанті — `tie`.*
+- tip — *У записі перше слово — `tighten`, а в цьому варіанті — `tip`.*
 
-**3 · Скажіть «Я часто танцюю вдома»**
+**4 · Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-51:i03; family: context_gap_grammar -->
-I often ___ at home. → **dance** · dances · dancing
-- dances — *Після `I` потрібне `dance`.*
-- dancing — *Тут потрібна форма `dance`.*
+I often ___ the screws on the chair. → **tighten** · tightens · tightening
+- tightens — *Після `I` потрібно `tighten`, без закінчення.*
+- tightening — *Тут потрібна форма `tighten`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-51:i04; family: speed_match -->
-dance — танцювати · sell — продавати · libraries — бібліотеки · stadium — стадіон
+tighten — затягувати, підтягувати · screw — гвинт, шуруп · chair — стілець · pencil — олівець
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — sharpen**
+<!-- interaction_id: en:lesson-07:session-51:word:sharpen; family: word_card -->
+> **sharpen** — гострити, заточувати. Do you sharpen scissors? — «Ви гострите ножиці?» Робити гострим: наприклад, загострювати лезо чи олівець.
+
+**7 · Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-51:i05; family: listen_build_dictation -->
-🔊 *I often dance at home.* Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+🔊 *Do you sharpen scissors?* Плитки: `scissors` `Does` `sharpen` `you` `Do` → **Do you sharpen scissors?**
+*(плитка `Does` зайва: тут потрібно `Do` — `Do you sharpen scissors?`)*
 
-**6 · Запитайте продавця «Ви продаєте книжки?»**
+**8 · Картка слова — cloakroom**
+<!-- interaction_id: en:lesson-07:session-51:word:cloakroom; family: word_card -->
+> **cloakroom** — гардероб. Where is the cloakroom? — «Де гардероб?» Місце, де залишають верхній одяг у театрі або музеї.
+
+**9 · Ви прийшли в театр у важкому пальті. Спитайте контролера: «Де гардероб?»**
 <!-- interaction_id: en:lesson-07:session-51:i06; family: phrase_builder -->
-Плитки: `books` `sell` `you` `Do` → **Do you sell books?**
+Плитки: `cloakroom` `are` `the` `is` `Where` → **Where is the cloakroom?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the cloakroom?`)*
 
-**7 · Запитайте перехожого «Де стадіон?»**
+**10 · У фойє двоє дверей. Укажіть на одні й уточніть у контролера: «Це гардероб?»**
 <!-- interaction_id: en:lesson-07:session-51:i07; family: scripted_repeat_compare -->
-🎙 **Where is the stadium?**
+🎙 **Is this the cloakroom?**
 
-**8 · Запитайте «Ви продаєте книжки?»**
+**11 · Картка слова — loosen**
+<!-- interaction_id: en:lesson-07:session-51:word:loosen; family: word_card -->
+> **loosen** — послаблювати, робити вільнішим. I usually loosen my tie at work. — «Я зазвичай послаблюю краватку на роботі». Робити менш тугим.
+
+**12 · Сусід питає про вашу краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-51:i08; family: context_gap_grammar -->
-Do you ___ books? → **sell** · sells · selling
-- sells — *Після `do you` потрібне `sell`.*
-- selling — *Тут потрібна форма `sell`.*
+I usually ___ my tie at work. → **loosen** · loosens · loosening
+- loosens — *Після `I` потрібно `loosen`, без закінчення.*
+- loosening — *Тут потрібна форма `loosen`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-51:i09; family: listen_choose -->
-🔊 *I often dance.* → **I often dance.** · I often sew. · I often hike.
-- I often sew. — *У записі останнє слово — `dance`, а в цьому варіанті — `sew`.*
-- I often hike. — *У записі останнє слово — `dance`, а в цьому варіанті — `hike`.*
+🔊 *Do you sharpen scissors?* → **Do you sharpen scissors?** · Do you sharpen pencils? · Do you sharpen razors?
+- Do you sharpen pencils? — *У записі останнє слово — `scissors`, а в цьому варіанті — `pencils`.*
+- Do you sharpen razors? — *У записі останнє слово — `scissors`, а в цьому варіанті — `razors`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-51:i10; family: speed_match -->
-sew — шити · dance — танцювати · sell — продавати · libraries — бібліотеки
+loosen — послаблювати · tighten — затягувати, підтягувати · sharpen — гострити · screw — гвинт, шуруп
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-51:i11; family: listen_build_dictation -->
-🔊 *Do you sell books?* Плитки: `books` `sell` `you` `Do` → **Do you sell books?**
+🔊 *She often tightens the screws on the chair.* Плитки: `chair` `tighten` `the` `on` `screws` `the` `tightens` `often` `She` → **She often tightens the screws on the chair.**
+*(плитка `tighten` зайва: тут потрібно `tightens` — `She often tightens the screws on the chair.`)*
 
-**12 · Ви дивитеся на карту міста. Запитайте друга «Де бібліотеки?»**
+**16 · Сусід питає про краватку. Скажіть: «Я зазвичай послаблюю краватку на роботі»**
 <!-- interaction_id: en:lesson-07:session-51:i12; family: phrase_builder -->
-Плитки: `libraries` `the` `are` `Where` → **Where are the libraries?**
+Плитки: `work` `often` `at` `tie` `my` `loosen` `usually` `I` → **I usually loosen my tie at work.**
+*(плитка `often` зайва: тут потрібно `usually` — `I usually loosen my tie at work.`)*
 
-**13 · Друг розповідає про шиття. Запитайте «Ти шиєш удома?»**
+**17 · Знайомий питає про вашого брата. Скажіть: «Мій брат часто гострить олівці»**
 <!-- interaction_id: en:lesson-07:session-51:i13; family: scripted_repeat_compare -->
-🎙 **Do you sew at home?**
+🎙 **My brother often sharpens pencils.**
 
-**14 · Скажіть «Я часто танцюю вдома»**
+**18 · Гість питає про стілець. Скажіть: «Я часто підтягую гвинти на стільці». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-51:i14; family: context_gap_grammar -->
-I ___ dance at home. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `dance`.*
-- am — *Для «часто» потрібне `often`; `am` перед `dance` не ставимо.*
+I ___ tighten the screws on the chair. → **often** · does · am
+- does — *Для «часто» потрібно `often` перед `tighten`.*
+- am — *Для «часто» потрібно `often`; `am` перед `tighten` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-51:i15; family: listen_choose -->
-🔊 *Where is the stadium?* → **Where is the stadium?** · Where is the cinema? · Where is the hospital?
-- Where is the cinema? — *У записі останнє слово — `stadium`, а в цьому варіанті — `cinema`.*
-- Where is the hospital? — *У записі останнє слово — `stadium`, а в цьому варіанті — `hospital`.*
+🔊 *Where is the cloakroom?* → **Where is the cloakroom?** · Where is the library? · Where is the theatre?
+- Where is the library? — *У записі останнє слово — `cloakroom`, а в цьому варіанті — `library`.*
+- Where is the theatre? — *У записі останнє слово — `cloakroom`, а в цьому варіанті — `theatre`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-51:i16; family: speed_match -->
-dance — танцювати · stadium — стадіон · sew — шити · sell — продавати
+cloakroom — гардероб · sharpen — гострити · loosen — послаблювати · tie — краватка
 
-**17 · Друг запитує, що Том робить удома під музику. Скажіть «Том часто танцює вдома»**
+**21 · Сестра носить краватку як частину робочої форми. Колега питає про її звичку. Скажіть: «Вона зазвичай послаблює краватку на роботі»**
 <!-- interaction_id: en:lesson-07:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often dances at home.**
-
+🎙 **She usually loosens her tie at work.**

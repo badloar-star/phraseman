@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-51:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-51:intro1:r2": {
-          "ru": "После `I` нужно `dance`.",
-          "uk": "Після `I` потрібне `dance`."
+          "ru": "После I нужно tighten, без s.",
+          "uk": "Після I потрібно tighten, без s."
         },
         "en:lesson-07:session-51:intro1:r3": {
-          "ru": "Здесь нужна форма `dance`.",
-          "uk": "Тут потрібна форма `dance`."
+          "ru": "Здесь нужна форма tighten.",
+          "uk": "Тут потрібна форма tighten."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-51:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-51:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно Do.",
+          "uk": "З you потрібно Do."
         },
         "en:lesson-07:session-51:intro2:r3": {
-          "ru": "После `do you` нужно `sell`.",
-          "uk": "Після `do you` потрібне `sell`."
+          "ru": "После Do you нужно sharpen, без s.",
+          "uk": "Після Do you потрібно sharpen, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-51:intro3:r2": {
-          "ru": "Стадион один: нужно `is`.",
-          "uk": "Стадіон один: потрібне `is`."
+          "ru": "Гардероб один: нужно is.",
+          "uk": "Гардероб один: потрібно is."
         },
         "en:lesson-07:session-51:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the stadium`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the stadium`."
+          "ru": "В этом вопросе is стоит перед the cloakroom.",
+          "uk": "У цьому запитанні is стоїть перед the cloakroom."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "cd20b493baa93393773bd0026dcc0533fa4caeeb7ef9a54c7631d07f671ce873"
+  "auxiliaryFingerprint": "01756e773afbff0bb9eee762a31d607535189784fd86c185c6dc4ad9cd833171"
 }

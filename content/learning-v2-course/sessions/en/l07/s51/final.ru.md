@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 51 — Танцую дома
+# Английский · Урок 7 · Занятие 51 — Мелкий ремонт и гардероб
 
-**Ситуация.** Вы рассказываете о танцах дома, продаже книг и поиске стадиона.
+**Ситуация.** Вы рассказываете о бытовых мелочах: как подтягиваете винты на стуле, где точите ножницы и как найти гардероб в театре.
 
-**Что вы освоите:** рассказывать о привычках и задавать вопросы
-**Новые слова:** dance
+**Что вы освоите:** рассказывать о привычках, спрашивать «Вы …?» и «Где …?»
+**Новые слова:** tighten, sharpen, cloakroom, loosen
+**Возвращаются:** chair, screw, scissors, pencil, tie, work, theatre, library
 
 ---
 
 ## Интро 1
 
-### Музыка дома
+### Шаткий стул
 
-Друг спрашивает, что вы делаете дома под музыку. `Dance` — «танцевать». `I often dance at home` — «Я часто танцую дома». `Often` стоит перед `dance`. Дома никто не просит показать билет на танцпол.
+Гость присел на стул у обеденного стола, и тот закачался: винты на ножках разболтались. Вы берёте отвёртку и подкручиваете их. tighten — «затягивать, подкручивать». Скажите: I often tighten the screws on the chair — «Я часто подтягиваю винты на стуле». Слово often стоит перед tighten.
 
-**Расскажите другу о своей привычке.**
+**Гость заметил отвёртку у стула. Объясните: «Я часто подтягиваю винты на стуле».**
 
-- ✅ **I often dance at home.**
-- ❌ I often dances at home. — *После `I` нужно `dance`.*
-- ❌ I often dancing at home. — *Здесь нужна форма `dance`.*
+- ✅ **I often tighten the screws on the chair.**
+- ❌ I often tightens the screws on the chair. — *После I нужно tighten, без s.*
+- ❌ I often tightening the screws on the chair. — *Здесь нужна форма tighten.*
 
 ---
 
 ## Интро 2
 
-### Книги в магазине
+### Тупые ножницы
 
-Вы заходите в небольшой магазин и хотите узнать, продают ли здесь книги. `Do you sell books?` — «Вы продаёте книги?» После `do you` нужно `sell`, без окончания `s`.
+Дома все ножницы затупились и не режут бумагу. У рынка вы увидели мастерскую, а за стойкой стоит мастер. sharpen — «точить, заострять». Спросите мастера: Do you sharpen scissors? — «Вы точите ножницы?» Вопрос начинается с Do, потом you и sharpen без s.
 
-**Спросите продавца о книгах.**
+**Мастер стоит за стойкой. Спросите его: «Вы точите ножницы?»**
 
-- ✅ **Do you sell books?**
-- ❌ Does you sell books? — *С `you` нужно `do`.*
-- ❌ Do you sells books? — *После `do you` нужно `sell`.*
+- ✅ **Do you sharpen scissors?**
+- ❌ Does you sharpen scissors? — *С you нужно Do.*
+- ❌ Do you sharpens scissors? — *После Do you нужно sharpen, без s.*
 
 ---
 
 ## Интро 3
 
-### Ищу стадион
+### Вечер в театре
 
-Вы идёте на матч и спрашиваете прохожего о дороге. `Where is the stadium?` — «Где стадион?» После `where` здесь идёт `is`, затем `the stadium`.
+Вы пришли в театр в тяжёлом зимнем пальто, а в фойе очень тепло. Контролёр у входа охотно подскажет, куда сдать верхнюю одежду. cloakroom — «гардероб», где оставляют пальто, а не набор вашей одежды. Спросите: Where is the cloakroom? — «Где гардероб?» После Where идёт is, а потом the cloakroom.
 
-**Спросите, где стадион.**
+**Контролёр у входа ждёт вашего вопроса. Спросите: «Где гардероб?»**
 
-- ✅ **Where is the stadium?**
-- ❌ Where are the stadium? — *Стадион один: нужно `is`.*
-- ❌ Where the stadium is? — *В этом вопросе `is` стоит перед `the stadium`.*
+- ✅ **Where is the cloakroom?**
+- ❌ Where are the cloakroom? — *Гардероб один: нужно is.*
+- ❌ Where the cloakroom is? — *В этом вопросе is стоит перед the cloakroom.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто танцую дома»**
+**1 · Карточка слова — tighten**
+<!-- interaction_id: en:lesson-07:session-51:word:tighten; family: word_card -->
+> **tighten** — затягивать, подкручивать. I often tighten the screws on the chair. — «Я часто подтягиваю винты на стуле». Затягивать крепление или делать что-то более тугим; здесь — подтягивать винты.
+
+**2 · Гость заметил отвёртку у стула. Скажите: «Я часто подтягиваю винты на стуле»**
 <!-- interaction_id: en:lesson-07:session-51:i01; family: phrase_builder -->
-Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+Плитки: `chair` `usually` `the` `on` `screws` `the` `tighten` `often` `I` → **I often tighten the screws on the chair.**
+*(плитка `usually` лишняя: здесь нужно `often` — `I often tighten the screws on the chair.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-51:i02; family: listen_choose -->
-🔊 *dance* → **dance** · sew · sell
-- sew — *В записи первое слово — `dance`, а в этом варианте — `sew`.*
-- sell — *В записи первое слово — `dance`, а в этом варианте — `sell`.*
+🔊 *tighten* → **tighten** · tie · tip
+- tie — *В записи первое слово — `tighten`, а в этом варианте — `tie`.*
+- tip — *В записи первое слово — `tighten`, а в этом варианте — `tip`.*
 
-**3 · Скажите «Я часто танцую дома»**
+**4 · Гость спрашивает про стул. Скажите: «Я часто подтягиваю винты на стуле». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-51:i03; family: context_gap_grammar -->
-I often ___ at home. → **dance** · dances · dancing
-- dances — *После `I` нужно `dance`.*
-- dancing — *Здесь нужна форма `dance`.*
+I often ___ the screws on the chair. → **tighten** · tightens · tightening
+- tightens — *После `I` нужно `tighten`, без окончания.*
+- tightening — *Здесь нужна форма `tighten`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-51:i04; family: speed_match -->
-dance — танцевать · sell — продавать · libraries — библиотеки · stadium — стадион
+tighten — затягивать, подтягивать · screw — винт, шуруп · chair — стул · pencil — карандаш
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — sharpen**
+<!-- interaction_id: en:lesson-07:session-51:word:sharpen; family: word_card -->
+> **sharpen** — точить, заострять. Do you sharpen scissors? — «Вы точите ножницы?» Делать острым: например, затачивать лезвие или карандаш.
+
+**7 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-51:i05; family: listen_build_dictation -->
-🔊 *I often dance at home.* Плитки: `home` `at` `dance` `often` `I` → **I often dance at home.**
+🔊 *Do you sharpen scissors?* Плитки: `scissors` `Does` `sharpen` `you` `Do` → **Do you sharpen scissors?**
+*(плитка `Does` лишняя: здесь нужно `Do` — `Do you sharpen scissors?`)*
 
-**6 · Спросите продавца «Вы продаёте книги?»**
+**8 · Карточка слова — cloakroom**
+<!-- interaction_id: en:lesson-07:session-51:word:cloakroom; family: word_card -->
+> **cloakroom** — гардероб. Where is the cloakroom? — «Где гардероб?» Место, где оставляют верхнюю одежду в театре или музее.
+
+**9 · Вы пришли в театр в тяжёлом пальто. Спросите контролёра: «Где гардероб?»**
 <!-- interaction_id: en:lesson-07:session-51:i06; family: phrase_builder -->
-Плитки: `books` `sell` `you` `Do` → **Do you sell books?**
+Плитки: `cloakroom` `are` `the` `is` `Where` → **Where is the cloakroom?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the cloakroom?`)*
 
-**7 · Спросите прохожего «Где стадион?»**
+**10 · В фойе две двери. Укажите на одну и уточните у контролёра: «Это гардероб?»**
 <!-- interaction_id: en:lesson-07:session-51:i07; family: scripted_repeat_compare -->
-🎙 **Where is the stadium?**
+🎙 **Is this the cloakroom?**
 
-**8 · Спросите «Вы продаёте книги?»**
+**11 · Карточка слова — loosen**
+<!-- interaction_id: en:lesson-07:session-51:word:loosen; family: word_card -->
+> **loosen** — ослаблять, делать свободнее. I usually loosen my tie at work. — «Я обычно ослабляю галстук на работе». Делать менее тугим.
+
+**12 · Сосед спрашивает про ваш галстук. Скажите: «Я обычно ослабляю галстук на работе». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-51:i08; family: context_gap_grammar -->
-Do you ___ books? → **sell** · sells · selling
-- sells — *После `do you` нужно `sell`.*
-- selling — *Здесь нужна форма `sell`.*
+I usually ___ my tie at work. → **loosen** · loosens · loosening
+- loosens — *После `I` нужно `loosen`, без окончания.*
+- loosening — *Здесь нужна форма `loosen`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-51:i09; family: listen_choose -->
-🔊 *I often dance.* → **I often dance.** · I often sew. · I often hike.
-- I often sew. — *В записи последнее слово — `dance`, а в этом варианте — `sew`.*
-- I often hike. — *В записи последнее слово — `dance`, а в этом варианте — `hike`.*
+🔊 *Do you sharpen scissors?* → **Do you sharpen scissors?** · Do you sharpen pencils? · Do you sharpen razors?
+- Do you sharpen pencils? — *В записи последнее слово — `scissors`, а в этом варианте — `pencils`.*
+- Do you sharpen razors? — *В записи последнее слово — `scissors`, а в этом варианте — `razors`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-51:i10; family: speed_match -->
-sew — шить · dance — танцевать · sell — продавать · libraries — библиотеки
+loosen — ослаблять · tighten — затягивать, подтягивать · sharpen — точить · screw — винт, шуруп
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-51:i11; family: listen_build_dictation -->
-🔊 *Do you sell books?* Плитки: `books` `sell` `you` `Do` → **Do you sell books?**
+🔊 *She often tightens the screws on the chair.* Плитки: `chair` `tighten` `the` `on` `screws` `the` `tightens` `often` `She` → **She often tightens the screws on the chair.**
+*(плитка `tighten` лишняя: здесь нужно `tightens` — `She often tightens the screws on the chair.`)*
 
-**12 · Вы смотрите на карту города. Спросите друга «Где библиотеки?»**
+**16 · Сосед спрашивает про галстук. Скажите: «Я обычно ослабляю галстук на работе»**
 <!-- interaction_id: en:lesson-07:session-51:i12; family: phrase_builder -->
-Плитки: `libraries` `the` `are` `Where` → **Where are the libraries?**
+Плитки: `work` `often` `at` `tie` `my` `loosen` `usually` `I` → **I usually loosen my tie at work.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually loosen my tie at work.`)*
 
-**13 · Друг рассказывает о шитье. Спросите «Ты шьёшь дома?»**
+**17 · Знакомый спрашивает про вашего брата. Скажите: «Мой брат часто точит карандаши»**
 <!-- interaction_id: en:lesson-07:session-51:i13; family: scripted_repeat_compare -->
-🎙 **Do you sew at home?**
+🎙 **My brother often sharpens pencils.**
 
-**14 · Скажите «Я часто танцую дома»**
+**18 · Гость спрашивает про стул. Скажите: «Я часто подтягиваю винты на стуле». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-51:i14; family: context_gap_grammar -->
-I ___ dance at home. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `dance`.*
-- am — *Для «часто» нужно `often`; `am` перед `dance` не ставим.*
+I ___ tighten the screws on the chair. → **often** · does · am
+- does — *Для «часто» нужно `often` перед `tighten`.*
+- am — *Для «часто» нужно `often`; `am` перед `tighten` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-51:i15; family: listen_choose -->
-🔊 *Where is the stadium?* → **Where is the stadium?** · Where is the cinema? · Where is the hospital?
-- Where is the cinema? — *В записи последнее слово — `stadium`, а в этом варианте — `cinema`.*
-- Where is the hospital? — *В записи последнее слово — `stadium`, а в этом варианте — `hospital`.*
+🔊 *Where is the cloakroom?* → **Where is the cloakroom?** · Where is the library? · Where is the theatre?
+- Where is the library? — *В записи последнее слово — `cloakroom`, а в этом варианте — `library`.*
+- Where is the theatre? — *В записи последнее слово — `cloakroom`, а в этом варианте — `theatre`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-51:i16; family: speed_match -->
-dance — танцевать · stadium — стадион · sew — шить · sell — продавать
+cloakroom — гардероб · sharpen — точить · loosen — ослаблять · tie — галстук
 
-**17 · Друг спрашивает, что Том делает дома под музыку. Скажите «Том часто танцует дома»**
+**21 · Сестра носит галстук как часть рабочей формы. Коллега спрашивает о её привычке. Скажите: «Она обычно ослабляет галстук на работе»**
 <!-- interaction_id: en:lesson-07:session-51:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often dances at home.**
-
+🎙 **She usually loosens her tie at work.**

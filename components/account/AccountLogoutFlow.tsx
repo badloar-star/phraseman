@@ -210,8 +210,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     justifyContent: 'center' as const,
   };
   // зачем (стиль «Тень»): `.cta.gh` — плашка тоном с малой тенью вместо контура; главная — цвет темы и цветная тень (клип overflow убран: ThemeAccentFill сам со скруглением)
-  const ghostButton = { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) };
-  const accentButton = { backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass) };
+  // зачем ([BLEND-AUTH] 18.10): «Отмена» opaqueControl сливалась со шторкой (1,00), главная на сыром accent — в светлых градиентных темах;
+  // buttonFill держит тон ≥ 1,5, ctaFill/ctaFillInk — ≥ 3 / 4,5
+  const ghostButton = { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) };
+  const accentButton = { backgroundColor: glass.ctaFill, boxShadow: actionBoxShadow(glass) };
   const stageStyle = { width: 68, height: 68, borderRadius: 23, alignSelf: 'center' as const, alignItems: 'center' as const, justifyContent: 'center' as const, marginBottom: 15, backgroundColor: glass.opaqueControl };
   const titleStyle = { color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '800' as const, textAlign: 'center' as const };
   const bodyStyle = { color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: 'center' as const };
@@ -289,7 +291,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                     style={[buttonStyle, accentButton]}
                   >
                     <ThemeAccentFill glass={glass} radius={22} />
-                    <Text style={[ctaText, { color: glass.accentInk }]}>
+                    <Text style={[ctaText, { color: glass.ctaFillInk }]}>
                       {L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów')}
                     </Text>
                   </TouchableOpacity>
@@ -341,7 +343,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                   style={[stackButton, accentButton]}
                 >
                   <ThemeAccentFill glass={glass} radius={24} />
-                  <Text style={[ctaText, { color: glass.accentInk }]}>
+                  <Text style={[ctaText, { color: glass.ctaFillInk }]}>
                     {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
                   </Text>
                 </TouchableOpacity>

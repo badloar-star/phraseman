@@ -9,8 +9,9 @@ test('RegistrationPromptModal берёт материал из активных 
   assert.ok(src.includes("from '../constants/liquidGlassThemePalette'"), 'импорт токенов');
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'), 'токены активной темы');
   assert.ok(src.includes('glass.opaqueSheet'), 'непрозрачная основа листа');
-  assert.ok(src.includes('glass.accent'), 'CTA — нейтральный токен темы');
-  assert.ok(src.includes('glass.accentInk'), 'текст CTA — токен чернил CTA');
+  // зачем ([BLEND-AUTH] 18.10): CTA — гарантированная пара темы ctaFill/ctaFillInk (сырой accent в светлых градиентных темах сливался со шторкой)
+  assert.ok(src.includes('glass.ctaFill'), 'CTA — токен темы с гарантированным контрастом');
+  assert.ok(src.includes('glass.ctaFillInk'), 'подпись CTA — пара ctaFillInk');
 });
 
 test('нет зелёных фирменных CTA: t.correct / t.correctText не используются', () => {

@@ -319,7 +319,7 @@ export default function AccountDetailsScreen() {
                 // зачем (profile.html `.chipbtn`): пилюля 32 (поля 12, r16, без кромки) в области нажатия 44 — 6 сверху и снизу.
                 // зачем (Сверка profile-002): пилюля по тексту по центру, а не во всю ширину.
                 style={{ marginTop: 4, paddingVertical: 6, alignSelf: 'center' }}
-                contentStyle={{ height: 32, paddingHorizontal: 12, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
+                contentStyle={{ height: 32, paddingHorizontal: 12, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill /* зачем ([BLEND-AUTH] 18.10): opaqueControl на плашке сливался — buttonFill ≥ 1,5 */ }}
               >
                 <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '600' }}>{nameLabel}</Text>
               </PressableHybrid>
@@ -368,7 +368,7 @@ export default function AccountDetailsScreen() {
                       withSound={false}
                       variant="chip"
                       style={{ minHeight: 44, alignSelf: 'center' }}
-                      contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) /* зачем (стиль «Тень»): чип «Скопировать» — малая тень */ }}
+                      contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) /* зачем (стиль «Тень»): чип «Скопировать» — малая тень */ }}
                     >
                       <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '700' }}>{copyLabel}</Text>
                     </PressableHybrid>
@@ -426,7 +426,7 @@ export default function AccountDetailsScreen() {
                 icon="trash-outline"
                 title={L('Удалить аккаунт', 'Видалити акаунт', 'Delete account', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
                 sub={L('Требует отдельного подтверждения', 'Потребує окремого підтвердження', 'Needs separate confirmation', 'Requiere confirmación aparte', 'Exige confirmação separada', 'Cần xác nhận riêng', 'Perlu konfirmasi terpisah', 'Ayrı onay gerektirir', 'Wymaga osobnego potwierdzenia')}
-                titleColor={t.wrong}
+                titleColor={glass.bad /* зачем ([BLEND-AUTH] 18.10): постоянный #F05454 на светлой плашке ~3:1 — bad темы ≥ 4,5 */}
                 haptic={false}
                 onPress={() => { if (isBlockedByLogout('delete')) return; doHaptic(); setDeleteVisible(true); }}
               />

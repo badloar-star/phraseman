@@ -66,7 +66,7 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(source).toContain('clearInterval');
     expect(source).toContain('accessibilityLiveRegion="polite"');
     expect(source).toContain('minHeight: 44');
-    expect(source).toContain('color: glass.accentInk');
+    expect(source).toContain('color: glass.ctaFillInk'); // [BLEND-AUTH] 18.10: подпись главной кнопки — пара ctaFill/ctaFillInk
     expect(source).toContain("recoveryStage === 'adopting'");
     expect(source).toContain('const recoveryDismissAllowed = isRecoveryDismissible(recoveryStage)');
     expect(source).toContain('disabled={!recoveryDismissAllowed}');

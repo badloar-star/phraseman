@@ -20,6 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { isLightThemeMode } from '../constants/theme'; // зачем: стиль кнопки Apple по теме шторки (координатор 13.10)
 import { useLang } from './LangContext';
+import { googleButtonVariantForSurface } from './auth_google_button_style';
 import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { StreakChainIcon } from './StreakChainIcon';
@@ -1531,6 +1532,8 @@ function RegistrationPromptModal({
   }));
 
   return (
+    // зачем ([BLEND-AUTH] 18.10): главные кнопки — ctaFill/ctaFillInk (сырой accent в светлых градиентных темах сливался со шторкой),
+    // текст ошибок — bad темы (постоянный #F05454 давал ~3:1 на светлой шторке)
     <Modal
       visible={visible}
       transparent
@@ -1633,7 +1636,8 @@ function RegistrationPromptModal({
                 loading={loadingProvider === 'google'}
                 disabled={authOperationBusy}
                 label={labelGoogle}
-                variant="light"
+                // зачем ([BLEND-AUTH] 18.10): белая кнопка без обводки на светлой шторке сливалась — вариант по яркости шторки
+                variant={googleButtonVariantForSurface(glass.opaqueSheet)}
                 shape="sheet"
               />
             )}
@@ -1668,7 +1672,7 @@ function RegistrationPromptModal({
           )}
 
           {!googleAvail && appleAvail === false && (
-            <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
+            <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
               {triLang(lang, {
                 // зачем (координатор 18.10, «никаких системных текстов»): «провайдер» → понятный «способ входа», как в en
                 ru: 'На этом телефоне нет доступного способа входа.',
@@ -1685,7 +1689,7 @@ function RegistrationPromptModal({
           )}
 
           {!!inlineError && (
-            <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
+            <Text style={[styles.errorNote, { color: glass.bad, fontSize: f.caption }]}>
               {inlineError}
             </Text>
           )}
@@ -1695,9 +1699,9 @@ function RegistrationPromptModal({
               onPress={() => { void handleSignIn(retryProvider); }}
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, { ru: 'Повторить вход', uk: 'Повторити вхід', en: 'Retry sign-in', es: 'Reintentar acceso', 'pt-BR': 'Tentar entrar novamente', vi: 'Thử đăng nhập lại', id: 'Coba masuk lagi', tr: 'Girişi tekrar dene', pl: 'Spróbuj zalogować ponownie' })}
-              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.accent }]}
+              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.ctaFill }]}
             >
-              <Text style={[styles.laterText, { color: glass.accentInk, fontSize: f.body }]}>
+              <Text style={[styles.laterText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </Pressable>
@@ -1713,9 +1717,9 @@ function RegistrationPromptModal({
               }}
               accessibilityRole="button"
               accessibilityLabel={switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
-              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.accent }]}
+              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.ctaFill }]}
             >
-              <Text style={[styles.laterText, { color: glass.accentInk, fontSize: f.body }]}>
+              <Text style={[styles.laterText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                 {switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
               </Text>
             </Pressable>
@@ -1777,7 +1781,7 @@ function RegistrationPromptModal({
                   </Text>
                   <Text
                     accessibilityLiveRegion="polite"
-                    style={[styles.recoveryExpiry, { color: cleanRecoveryExpired ? t.wrong : t.textMuted, fontSize: f.caption }]}
+                    style={[styles.recoveryExpiry, { color: cleanRecoveryExpired ? glass.bad : t.textMuted, fontSize: f.caption }]}
                   >
                     {cleanRecoveryExpired
                       ? recoveryCopy.errorExpired
@@ -1845,10 +1849,10 @@ function RegistrationPromptModal({
                     accessibilityState={{ disabled: cleanRecoveryBusy || cleanRecoveryExpired || cleanRecoveryCode.length !== 6, busy: cleanRecoveryBusy }}
                     style={[
                       styles.recoveryPrimaryButton,
-                      { backgroundColor: glass.accent, opacity: cleanRecoveryBusy || cleanRecoveryExpired || cleanRecoveryCode.length !== 6 ? 0.55 : 1 },
+                      { backgroundColor: glass.ctaFill, opacity: cleanRecoveryBusy || cleanRecoveryExpired || cleanRecoveryCode.length !== 6 ? 0.55 : 1 },
                     ]}
                   >
-                    <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                    <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                       {cleanRecoveryBusy ? cleanRecoveryCopy.working : cleanRecoveryCopy.confirm}
                     </Text>
                   </Pressable>
@@ -1926,10 +1930,10 @@ function RegistrationPromptModal({
                     accessibilityState={{ disabled: cleanRecoveryBusy || !isRecoveryEmailValid(cleanRecoveryEmail), busy: cleanRecoveryBusy }}
                     style={[
                       styles.recoveryPrimaryButton,
-                      { backgroundColor: glass.accent, opacity: cleanRecoveryBusy || !isRecoveryEmailValid(cleanRecoveryEmail) ? 0.55 : 1 },
+                      { backgroundColor: glass.ctaFill, opacity: cleanRecoveryBusy || !isRecoveryEmailValid(cleanRecoveryEmail) ? 0.55 : 1 },
                     ]}
                   >
-                    <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                    <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                       {cleanRecoveryBusy ? cleanRecoveryCopy.working : cleanRecoveryCopy.sendCode}
                     </Text>
                   </Pressable>
@@ -1950,9 +1954,9 @@ function RegistrationPromptModal({
                     accessibilityRole="button"
                     accessibilityLabel={cleanRecoveryCopy.resume}
                     accessibilityState={{ disabled: cleanRecoveryBusy || cleanRecoveryStage !== 'confirmed', busy: cleanRecoveryBusy }}
-                    style={[styles.recoveryPrimaryButton, { backgroundColor: glass.accent, opacity: cleanRecoveryBusy ? 0.55 : 1 }]}
+                    style={[styles.recoveryPrimaryButton, { backgroundColor: glass.ctaFill, opacity: cleanRecoveryBusy ? 0.55 : 1 }]}
                   >
-                    <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                    <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                       {cleanRecoveryBusy ? cleanRecoveryCopy.working : cleanRecoveryCopy.resume}
                     </Text>
                   </Pressable>
@@ -1973,9 +1977,9 @@ function RegistrationPromptModal({
                         accessibilityRole="button"
                         accessibilityLabel={recoveryCopy.useGoogle}
                         accessibilityState={{ disabled: cleanRecoveryBusy, busy: cleanRecoveryBusy }}
-                        style={[styles.recoveryPrimaryButton, { backgroundColor: glass.accent, opacity: cleanRecoveryBusy ? 0.55 : 1 }]}
+                        style={[styles.recoveryPrimaryButton, { backgroundColor: glass.ctaFill, opacity: cleanRecoveryBusy ? 0.55 : 1 }]}
                       >
-                        <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                        <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                           {recoveryCopy.useGoogle}
                         </Text>
                       </Pressable>
@@ -1998,7 +2002,7 @@ function RegistrationPromptModal({
                 </View>
               ) : null}
               {!!cleanRecoveryError && (
-                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: t.wrong, fontSize: f.caption }]}>
+                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: glass.bad, fontSize: f.caption }]}>
                   {cleanRecoveryError}
                 </Text>
               )}
@@ -2029,7 +2033,7 @@ function RegistrationPromptModal({
                   </Text>
                   <Text
                     accessibilityLiveRegion="polite"
-                    style={[styles.recoveryExpiry, { color: recoveryExpired ? t.wrong : t.textMuted, fontSize: f.caption }]}
+                    style={[styles.recoveryExpiry, { color: recoveryExpired ? glass.bad : t.textMuted, fontSize: f.caption }]}
                   >
                     {recoveryExpired
                       ? recoveryCopy.errorExpired
@@ -2066,10 +2070,10 @@ function RegistrationPromptModal({
                     accessibilityState={{ disabled: recoveryBusy || recoveryExpired || recoveryCode.length !== 6, busy: recoveryBusy }}
                     style={[
                       styles.recoveryPrimaryButton,
-                      { backgroundColor: glass.accent, opacity: recoveryBusy || recoveryExpired || recoveryCode.length !== 6 ? 0.55 : 1 },
+                      { backgroundColor: glass.ctaFill, opacity: recoveryBusy || recoveryExpired || recoveryCode.length !== 6 ? 0.55 : 1 },
                     ]}
                   >
-                    <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                    <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                       {recoveryBusy ? recoveryCopy.working : recoveryCopy.confirm}
                     </Text>
                   </Pressable>
@@ -2111,9 +2115,9 @@ function RegistrationPromptModal({
                           accessibilityRole="button"
                           accessibilityLabel={recoveryCopy.useGoogle}
                           accessibilityState={{ disabled: recoveryBusy, busy: recoveryBusy }}
-                          style={[styles.recoveryPrimaryButton, { backgroundColor: glass.accent, opacity: recoveryBusy ? 0.55 : 1 }]}
+                          style={[styles.recoveryPrimaryButton, { backgroundColor: glass.ctaFill, opacity: recoveryBusy ? 0.55 : 1 }]}
                         >
-                          <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                          <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                             {recoveryCopy.useGoogle}
                           </Text>
                         </Pressable>
@@ -2140,9 +2144,9 @@ function RegistrationPromptModal({
                       accessibilityRole="button"
                       accessibilityLabel={recoveryCopy.sendCode}
                       accessibilityState={{ disabled: recoveryBusy, busy: recoveryBusy }}
-                      style={[styles.recoveryPrimaryButton, { backgroundColor: glass.accent, opacity: recoveryBusy ? 0.55 : 1 }]}
+                      style={[styles.recoveryPrimaryButton, { backgroundColor: glass.ctaFill, opacity: recoveryBusy ? 0.55 : 1 }]}
                     >
-                      <Text style={[styles.recoveryPrimaryText, { color: glass.accentInk, fontSize: f.body }]}>
+                      <Text style={[styles.recoveryPrimaryText, { color: glass.ctaFillInk, fontSize: f.body }]}>
                         {recoveryBusy ? recoveryCopy.working : recoveryCopy.sendCode}
                       </Text>
                     </Pressable>
@@ -2150,7 +2154,7 @@ function RegistrationPromptModal({
                 </View>
               )}
               {!!recoveryError && (
-                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: t.wrong, fontSize: f.caption }]}>
+                <Text accessibilityRole="alert" style={[styles.recoveryError, { color: glass.bad, fontSize: f.caption }]}>
                   {recoveryError}
                 </Text>
               )}
@@ -2170,7 +2174,7 @@ function RegistrationPromptModal({
                 },
               ]}
             >
-              <Text style={[styles.laterText, { color: t.wrong, fontSize: f.caption }]}>
+              <Text style={[styles.laterText, { color: glass.bad, fontSize: f.caption }]}>
                 DEBUG: Сбросить identity и войти заново
                 {/* i18n-ok: отладочная кнопка, только ENABLE_AUTH_IDENTITY_DEBUG */}
               </Text>

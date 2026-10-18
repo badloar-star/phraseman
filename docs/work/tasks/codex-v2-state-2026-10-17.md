@@ -5,6 +5,9 @@ Governance-ID: TG-ED5BF72ACD1C
 Governance-ID: TG-0375BB9C1CFC
 Governance-ID: TG-85442AFECAE8
 Governance-ID: TG-47BAB20F7E5C
+Governance-ID: TG-D2B5114D7840
+Governance-ID: TG-C380CBC28386
+Governance-ID: TG-992C4F9C99DF
 Status: Done (разбор, только чтение)
 Owner: Claude (сессия «разбор Learning V2»), по поручению координатора и владельца 17.10
 
@@ -149,3 +152,120 @@ No architecture change: только документы фабрики курс�
 Удалить два документа; ничего больше не менялось.
 
 Уточнение владельца 17.10 (в чате): исправление продолжает Claude сам с L01 s28, показывая макет Codex и обновляя его после каждого занятия; задание-продолжение остаётся как инструкция на случай, если писать будет Codex.
+
+17.10 ~20:30 координатор: продолжать без ожидания — L01 s31–s56, затем уроки 2→8; коммиты пачками по 3–5 через safe_commit; заморозка контента 18.10 08:00.
+
+Governance-ID: TG-FAC4258A4C7F
+Governance-ID: TG-2955BCF2B841
+
+Governance-ID: TG-0F28327C1E4A
+
+Governance-ID: TG-583C32FE6B91
+
+Governance-ID: TG-C713CAE38859
+
+Governance-ID: TG-5CB048943346
+
+Governance-ID: TG-0D73A149DD77
+
+Governance-ID: TG-A53487E00C63
+
+Governance-ID: TG-27903A451143
+Governance-ID: TG-A8AA831F614C
+
+Governance-ID: TG-4BBF5889B843
+
+Governance-ID: TG-37DCEC81A813
+
+Governance-ID: TG-AACC20D15140
+
+Governance-ID: TG-845CB53F990E
+
+Governance-ID: TG-87F1806E5D6E
+
+Governance-ID: TG-63AA20C7FCB4
+
+Governance-ID: TG-9E93D5E9B5DC
+
+Governance-ID: TG-03DBD01C711E
+
+Governance-ID: TG-C9112F0A2BB5
+
+Governance-ID: TG-38B0BD1BA5CA
+
+Governance-ID: TG-E27674D65F51
+
+Governance-ID: TG-422200F348C0
+
+Governance-ID: TG-3FE897C7CA35
+
+Governance-ID: TG-9EBD160743E2
+
+Governance-ID: TG-46E74C02B8A4
+
+Governance-ID: TG-B3157F94E6A1
+
+Governance-ID: TG-E0092ED0CADF
+
+Governance-ID: TG-D20CEA3B9196
+
+Governance-ID: TG-52A530415FE8
+
+Governance-ID: TG-72B3180F1638
+
+Governance-ID: TG-6F8CC9D548E5
+
+Governance-ID: TG-A48BA795AC8A
+
+Governance-ID: TG-841BCF728474
+
+Governance-ID: TG-2A0C09A2C548
+
+Governance-ID: TG-51D824016E95
+
+Governance-ID: TG-D7CD5DA94A85
+
+Governance-ID: TG-6C4A68F9A920
+
+Governance-ID: TG-C7D1B7FAEE97
+
+Governance-ID: TG-CAEBCA17EA78
+
+Governance-ID: TG-3BFED77DE357
+
+Governance-ID: TG-4EE60438A5BC
+
+Governance-ID: TG-1535A3887E74
+
+Governance-ID: TG-12B084FE19D2
+
+Governance-ID: TG-B1FE6D739584
+
+Governance-ID: TG-FDE8F3F8959B
+
+Governance-ID: TG-FC1A833EDD4C
+
+Governance-ID: TG-E787F3197ECE
+
+Governance-ID: TG-D6B73EC79D0C
+
+Governance-ID: TG-5BDFAC55DBEA
+
+Governance-ID: TG-323DFE2875C0
+
+Governance-ID: TG-7A594DD0B181
+
+Governance-ID: TG-B6430242E065
+
+Governance-ID: TG-B6430242E065
+Governance-ID: TG-FDDE928F5081
+
+Governance-ID: TG-A3E72788285B
+
+Governance-ID: TG-858717843F51
+Governance-ID: TG-12D875DED9E6
+(18.10: правка 4 переводов карточек по слову координатора 03:04; QA и фабричный коммит L06 s17–s32)
+Governance-ID: TG-D109CFD18671
+
+## Журнал переноса — пометка 18.10 03:19 (координатор)
+- 701f790c5 = переводы L05 (карточки curtain/crayon/thermometer/nervous: l01/s08, l03/s21, l05/s04, l05/s06), заголовок ошибочный (повторяет 6fb644457 «L06 S17–S32»). Причина: общий commit_msg.txt в commit_batch.sh, исправлено (свой файл на запуск).

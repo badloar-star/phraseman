@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-29",
   "learningOutcomeByLocale": {
-    "ru": "спрашивать о месте и времени привычных действий",
-    "uk": "запитувати про місце й час звичних дій"
+    "ru": "узнавать место сбора и выступлений, время репетиций и начала занятий",
+    "uk": "дізнаватися місце збору й виступів, час репетицій і початку занять"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для игры",
-        "uk": "Місце для гри"
+        "ru": "Школьная экскурсия",
+        "uk": "Шкільна екскурсія"
       },
       "bodyByLocale": {
-        "ru": "Друг регулярно играет с компанией в настольные игры. `play` — «играть». `Where do you play?` — «Где ты играешь?» Вы уже знаете, о каких играх речь, и уточняете место. После `where` идут `do you play`. Игровому полю тоже нужен стол, а не только героические планы.",
-        "uk": "Друг регулярно грає з компанією в настільні ігри. `play` — «грати». `Where do you play?` — «Де ти граєш?» Ви вже знаєте, про які ігри йдеться, і уточнюєте місце. Після `where` ідуть `do you play`. Ігровому полю теж потрібен стіл, а не лише героїчні плани."
+        "ru": "Племянник записался на школьные прогулки по городу. Перед каждой прогулкой дети встречаются в одном месте, но вы впервые пришли его проводить. gather — «собираться». Спросите учительницу об обычном месте сбора: Where do the children gather? — «Где собираются дети?» С the children в таком вопросе нужно do, затем gather, без s. Один ребёнок у каждого школьного входа — это пока не «собрались».",
+        "uk": "Племінник записався на шкільні прогулянки містом. Перед кожною прогулянкою діти зустрічаються в одному місці, але ви вперше прийшли його провести. gather — «збиратися». Спитайте вчительку про звичне місце збору: Where do the children gather? — «Де збираються діти?» З the children у такому запитанні потрібне do, далі gather, без s. Одна дитина біля кожного шкільного входу — це поки не «зібралися»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Узнайте обычное место игр друга.",
-          "uk": "Дізнайтеся звичне місце ігор друга."
+          "ru": "Учительница ждёт у входа. Спросите её: «Где собираются дети?»",
+          "uk": "Вчителька чекає біля входу. Спитайте її: «Де збираються діти?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-29:intro1:r1",
-              "text": "Where do you play?"
+              "text": "Where do the children gather?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro1:r2",
-              "text": "Where does you play?"
+              "text": "Where does the children gather?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro1:r3",
-              "text": "Where you play?"
+              "text": "Where do the children gathers?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-29:intro1:r1",
-              "text": "Where do you play?"
+              "text": "Where do the children gather?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro1:r2",
-              "text": "Where does you play?"
+              "text": "Where does the children gather?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro1:r3",
-              "text": "Where you play?"
+              "text": "Where do the children gathers?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте обычное место игр друга.",
-          "uk": "Дізнайтеся звичне місце ігор друга."
+          "ru": "Учительница ждёт у входа. Спросите её: «Где собираются дети?»",
+          "uk": "Вчителька чекає біля входу. Спитайте її: «Де збираються діти?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Время звонка",
-        "uk": "Час дзвінка"
+        "ru": "Любительский театр",
+        "uk": "Аматорський театр"
       },
       "bodyByLocale": {
-        "ru": "Друг регулярно звонит родителям. `When do you call?` — «Когда ты звонишь?» В этом разговоре понятно, кому он звонит. `When` спрашивает о времени, затем идут `do you call`.",
-        "uk": "Друг регулярно телефонує батькам. `When do you call?` — «Коли ти телефонуєш?» У цій розмові зрозуміло, кому він телефонує. `When` запитує про час, потім ідуть `do you call`."
+        "ru": "Подруга вступила в любительский театр и просит иногда забирать её после репетиции. rehearse — «репетировать». Узнайте её обычное расписание: When do you rehearse? — «Когда ты репетируешь?» When спрашивает о времени. С you здесь нужно do, затем rehearse, без s.",
+        "uk": "Подруга приєдналася до аматорського театру й просить іноді забирати її після репетиції. rehearse — «репетирувати». Дізнайтеся її звичний розклад: When do you rehearse? — «Коли ти репетируєш?» When запитує про час. З you тут потрібне do, далі rehearse, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте, когда друг обычно звонит родителям.",
-          "uk": "Дізнайтеся, коли друг зазвичай телефонує батькам."
+          "ru": "Вы узнаёте обычное расписание репетиций подруги. Спросите её: «Когда ты репетируешь?»",
+          "uk": "Ви дізнаєтеся звичний розклад репетицій подруги. Спитайте її: «Коли ти репетируєш?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-29:intro2:r1",
-              "text": "When do you call?"
+              "text": "When do you rehearse?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro2:r2",
-              "text": "When does you call?"
+              "text": "When does you rehearse?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro2:r3",
-              "text": "When do you calls?"
+              "text": "When do you rehearses?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-29:intro2:r1",
-              "text": "When do you call?"
+              "text": "When do you rehearse?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro2:r2",
-              "text": "When does you call?"
+              "text": "When does you rehearse?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro2:r3",
-              "text": "When do you calls?"
+              "text": "When do you rehearses?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, когда друг обычно звонит родителям.",
-          "uk": "Дізнайтеся, коли друг зазвичай телефонує батькам."
+          "ru": "Вы узнаёте обычное расписание репетиций подруги. Спросите её: «Когда ты репетируешь?»",
+          "uk": "Ви дізнаєтеся звичний розклад репетицій подруги. Спитайте її: «Коли ти репетируєш?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начало работы",
-        "uk": "Початок роботи"
+        "ru": "Площадки для выступлений",
+        "uk": "Майданчики для виступів"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» Здесь речь о начале работы. После `when` идут `does she start`: с `she` нужно `does`, а у `start` нет окончания `s`.",
-        "uk": "Ви обговорюєте робочий розклад колеги. `When does she start?` — «Коли вона починає?» Тут ідеться про початок роботи. Після `when` ідуть `does she start`: з `she` потрібне `does`, а у `start` немає закінчення `s`."
+        "ru": "Брат поёт в городском хоре и рассказывает о регулярных выступлениях. Вы хотите узнать, на каких площадках можно их послушать. perform — «выступать». Спросите: Where does the choir perform? — «Где хор выступает?» Здесь говорим о хоре как об одном коллективе и используем does. После does нужно perform, без s.",
+        "uk": "Брат співає в міському хорі й розповідає про регулярні виступи. Ви хочете дізнатися, на яких майданчиках можна їх послухати. perform — «виступати». Спитайте: Where does the choir perform? — «Де хор виступає?» Тут говоримо про хор як про один колектив і вживаємо does. Після does потрібне perform, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о начале её работы.",
-          "uk": "Запитайте про початок її роботи."
+          "ru": "Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»",
+          "uk": "Брат розповідає про регулярні виступи хору. Спитайте його: «Де хор виступає?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-29:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where does the choir perform?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where is the choir perform?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where does the choir performs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-29:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where does the choir perform?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where is the choir perform?"
             },
             {
               "responseId": "en:lesson-07:session-29:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where does the choir performs?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о начале её работы.",
-          "uk": "Запитайте про початок її роботи."
+          "ru": "Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»",
+          "uk": "Брат розповідає про регулярні виступи хору. Спитайте його: «Де хор виступає?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "81d6aa7335495b22073aa4414c9fa42fa274b8fd510a865c197faa64edf9b97f"
+  "introFingerprint": "34c3f04c5a4b0f15c5e6f7c22eaebce120fac4a265678f0da33844272cf2a393"
 }

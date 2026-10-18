@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 29 — Где ты играешь?
+# Английский · Урок 7 · Занятие 29 — Хор и театр
 
-**Ситуация.** Вы узнаёте место регулярных игр друга, время его звонков и начало рабочего дня коллеги.
+**Ситуация.** Вы расспрашиваете о занятиях: у учительницы — где собираются дети и когда начинается урок, у подруги — когда она репетирует, а у брата — где выступает его хор.
 
-**Что вы освоите:** спрашивать о месте и времени привычных действий
-**Новые слова:** play
+**Что вы освоите:** узнавать место сбора и выступлений, время репетиций и начала занятий
+**Новые слова:** gather, rehearse, perform, begin
+**Возвращаются:** choir, theatre, stage, lesson, class, sing, start, wait
 
 ---
 
 ## Интро 1
 
-### Место для игры
+### Школьная экскурсия
 
-Друг регулярно играет с компанией в настольные игры. `play` — «играть». `Where do you play?` — «Где ты играешь?» Вы уже знаете, о каких играх речь, и уточняете место. После `where` идут `do you play`. Игровому полю тоже нужен стол, а не только героические планы.
+Племянник записался на школьные прогулки по городу. Перед каждой прогулкой дети встречаются в одном месте, но вы впервые пришли его проводить. gather — «собираться». Спросите учительницу об обычном месте сбора: Where do the children gather? — «Где собираются дети?» С the children в таком вопросе нужно do, затем gather, без s. Один ребёнок у каждого школьного входа — это пока не «собрались».
 
-**Узнайте обычное место игр друга.**
+**Учительница ждёт у входа. Спросите её: «Где собираются дети?»**
 
-- ✅ **Where do you play?**
-- ❌ Where does you play? — *С `you` нужно `do`.*
-- ❌ Where you play? — *После `where` здесь нужно `do`.*
+- ✅ **Where do the children gather?**
+- ❌ Where does the children gather? — *Детей много: нужно do.*
+- ❌ Where do the children gathers? — *После do нужно gather, без s.*
 
 ---
 
 ## Интро 2
 
-### Время звонка
+### Любительский театр
 
-Друг регулярно звонит родителям. `When do you call?` — «Когда ты звонишь?» В этом разговоре понятно, кому он звонит. `When` спрашивает о времени, затем идут `do you call`.
+Подруга вступила в любительский театр и просит иногда забирать её после репетиции. rehearse — «репетировать». Узнайте её обычное расписание: When do you rehearse? — «Когда ты репетируешь?» When спрашивает о времени. С you здесь нужно do, затем rehearse, без s.
 
-**Узнайте, когда друг обычно звонит родителям.**
+**Вы узнаёте обычное расписание репетиций подруги. Спросите её: «Когда ты репетируешь?»**
 
-- ✅ **When do you call?**
-- ❌ When does you call? — *С `you` нужно `do`.*
-- ❌ When do you calls? — *После `do you` нужно `call`, без `s`.*
+- ✅ **When do you rehearse?**
+- ❌ When does you rehearse? — *С you нужно do.*
+- ❌ When do you rehearses? — *После do you нужно rehearse, без s.*
 
 ---
 
 ## Интро 3
 
-### Начало работы
+### Площадки для выступлений
 
-Вы обсуждаете рабочее расписание коллеги. `When does she start?` — «Когда она начинает?» Здесь речь о начале работы. После `when` идут `does she start`: с `she` нужно `does`, а у `start` нет окончания `s`.
+Брат поёт в городском хоре и рассказывает о регулярных выступлениях. Вы хотите узнать, на каких площадках можно их послушать. perform — «выступать». Спросите: Where does the choir perform? — «Где хор выступает?» Здесь говорим о хоре как об одном коллективе и используем does. После does нужно perform, без s.
 
-**Спросите о начале её работы.**
+**Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»**
 
-- ✅ **When does she start?**
-- ❌ When do she start? — *С `she` нужно `does`.*
-- ❌ When does she starts? — *После `does` нужно `start`.*
+- ✅ **Where does the choir perform?**
+- ❌ Where is the choir perform? — *С perform здесь нужно does, а не is.*
+- ❌ Where does the choir performs? — *После does нужно perform, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Узнайте обычное место игры: «Где ты играешь?»**
+**1 · Карточка слова — gather**
+<!-- interaction_id: en:lesson-07:session-29:word:gather; family: word_card -->
+> **gather** — собираться. Where do the children gather? — «Где собираются дети?» Приходить в одно место вместе с другими.
+
+**2 · Учительница ждёт у входа. Спросите её: «Где собираются дети?»**
 <!-- interaction_id: en:lesson-07:session-29:i01; family: phrase_builder -->
-Плитки: `play` `you` `do` `Where` → **Where do you play?**
+Плитки: `gather` `children` `the` `do` `Where` → **Where do the children gather?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте учительницу**
 <!-- interaction_id: en:lesson-07:session-29:i02; family: listen_choose -->
-🔊 *play* → **play** · call · skateboard
-- call — *В записи первое слово — `play`, а в этом варианте — `call`.*
-- skateboard — *В записи первое слово — `play`, а в этом варианте — `skateboard`.*
+🔊 *Where do the children gather?* → **Where do the children gather?** · Where do the children wait? · When do the children gather?
+- Where do the children wait? — *В записи последнее слово — `gather`, собираться, а в этом варианте — `wait`, ждать.*
+- When do the children gather? — *В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.*
 
-**3 · Спросите о привычном месте игры**
+**4 · Спросите учительницу о детях. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-29:i03; family: context_gap_grammar -->
-Where ___ you play? → **do** · does · are
-- does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `play` строим с `do`.*
+Where ___ the children gather? → **do** · does · are
+- does — *Детей много: нужно `do`.*
+- are — *С действием `gather` нужно `do`, а не `are`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-29:i04; family: speed_match -->
-play — играть · call — звонить · skateboard — скейтборд · tables — столы
+gather — собираться · wait — ждать · sing — петь · work — работать
 
-**5 · Послушайте и соберите вопрос**
+**6 · Карточка слова — rehearse**
+<!-- interaction_id: en:lesson-07:session-29:word:rehearse; family: word_card -->
+> **rehearse** — репетировать. When do you rehearse? — «Когда ты репетируешь?» Повторять выступление перед настоящим показом.
+
+**7 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-29:i05; family: listen_build_dictation -->
-🔊 *Where do you play?* Плитки: `play` `you` `do` `Where` → **Where do you play?**
+🔊 *When do you rehearse?* Плитки: `rehearse` `you` `do` `When` → **When do you rehearse?**
 
-**6 · Узнайте обычное время звонка: «Когда ты звонишь?»**
+**8 · Карточка слова — perform**
+<!-- interaction_id: en:lesson-07:session-29:word:perform; family: word_card -->
+> **perform** — выступать. Where does the choir perform? — «Где хор выступает?» Выступать перед публикой: например, петь или играть на сцене.
+
+**9 · Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»**
 <!-- interaction_id: en:lesson-07:session-29:i06; family: phrase_builder -->
-Плитки: `call` `you` `do` `When` → **When do you call?**
+Плитки: `perform` `choir` `the` `does` `Where` → **Where does the choir perform?**
 
-**7 · Спросите о начале рабочего дня коллеги «Когда она начинает?»**
+**10 · Карточка слова — begin**
+<!-- interaction_id: en:lesson-07:session-29:word:begin; family: word_card -->
+> **begin** — начинаться. When does the lesson begin? — «Когда урок начинается?» Так говорят о начале урока, концерта или встречи.
+
+**11 · Учительница объясняет расписание. Спросите её: «Когда занятие начинается?» Используйте begin**
 <!-- interaction_id: en:lesson-07:session-29:i07; family: scripted_repeat_compare -->
-🎙 **When does she start?**
+🎙 **When does the class begin?**
 
-**8 · Спросите о начале её работы**
+**12 · Спросите брата о хоре. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-29:i08; family: context_gap_grammar -->
-When ___ she start? → **does** · do · is
-- do — *С `she` нужно `does`.*
-- is — *Вопрос о действии `start` с `she` строим с `does`.*
+Where ___ the choir perform? → **does** · is · has
+- has — *Здесь спрашиваем о месте выступлений: перед the choir нужно does, а не has.*
+- is — *С действием `perform` нужно `does`, а не `is`.*
 
-**9 · Послушайте и выберите вопрос**
+**13 · Послушайте брата**
 <!-- interaction_id: en:lesson-07:session-29:i09; family: listen_choose -->
-🔊 *Where do you play?* → **Where do you play?** · When do you play? · Where do you work?
-- When do you play? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you work? — *В записи последнее слово — `play`, а в этом варианте — `work`.*
+🔊 *Where does the choir perform?* → **Where does the choir perform?** · Where does the choir rehearse? · Where does the choir sing?
+- Where does the choir rehearse? — *В записи последнее слово — `perform`, выступать, а в этом варианте — `rehearse`, репетировать.*
+- Where does the choir sing? — *В записи последнее слово — `perform`, выступать, а в этом варианте — `sing`, петь.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-29:i10; family: speed_match -->
-lie — лгать · play — играть · tables — столы · call — звонить
+perform — выступать · choir — хор · theatre — театр · stage — сцена
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте учительницу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-29:i11; family: listen_build_dictation -->
-🔊 *When do you call?* Плитки: `call` `you` `do` `When` → **When do you call?**
+🔊 *When does the lesson begin?* Плитки: `begin` `lesson` `the` `does` `When` → **When does the lesson begin?**
 
-**12 · Перед прогулкой спросите друга «У тебя есть скейтборд?»**
+**16 · Подруга играет в театре. Спросите подругу: «Где вы репетируете?»**
 <!-- interaction_id: en:lesson-07:session-29:i12; family: phrase_builder -->
-Плитки: `skateboard` `a` `have` `you` `Do` → **Do you have a skateboard?**
+Плитки: `rehearse` `you` `do` `Where` → **Where do you rehearse?**
 
-**13 · Обсуждая честность, скажите «Я не лгу»**
+**17 · Брат поёт в хоре. Спросите брата: «Когда хор репетирует?»**
 <!-- interaction_id: en:lesson-07:session-29:i13; family: scripted_repeat_compare -->
-🎙 **I don’t lie.**
+🎙 **When does the choir rehearse?**
 
-**14 · Узнайте, где Том обычно играет**
+**18 · Спросите учительницу об уроке. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-29:i14; family: context_gap_grammar -->
-Where does Tom ___? → **play** · plays · is play
-- plays — *После `does` нужно `play`.*
-- is play — *Здесь нужно `play`, без `is`.*
+When does the lesson ___? → **begin** · begins · is begin
+- begins — *После `does` нужно `begin`, без `s`.*
+- is begin — *Здесь нужно `begin`, без `is`.*
 
-**15 · Послушайте, где столы**
+**19 · Послушайте учительницу**
 <!-- interaction_id: en:lesson-07:session-29:i15; family: listen_choose -->
-🔊 *The tables are here.* → **The tables are here.** · The tables are there. · The tables are outside.
-- The tables are there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The tables are outside. — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *When does the lesson begin?* → **When does the lesson begin?** · When does the lesson start? · When does the class begin?
+- When does the lesson start? — *В записи последнее слово — `begin`, начинаться, а в этом варианте — `start`, начинаться.*
+- When does the class begin? — *В записи четвёртое слово — `lesson`, урок, а в этом варианте — `class`, занятие.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-29:i16; family: speed_match -->
-play — играть · skateboard — скейтборд · lie — лгать · tables — столы
+begin — начинаться · gather — собираться · rehearse — репетировать · perform — выступать
 
-**17 · Вы обсуждаете обычное расписание игр Тома. Спросите «Когда Том играет?»**
+**21 · Вы снова у входа в школу. Спросите учительницу: «Где собираются дети?»**
 <!-- interaction_id: en:lesson-07:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **When does Tom play?**
-
+🎙 **Where do the children gather?**

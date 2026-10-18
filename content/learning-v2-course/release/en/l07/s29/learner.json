@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-29:i01",
+      "interactionId": "en:lesson-07:session-29:word:gather",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:word:gather:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:word:gather:audio",
+          "transcript": "gather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:word:gather:r1",
+            "targetText": "gather",
+            "meaningByLocale": {
+              "ru": "собираться. Where do the children gather? — «Где собираются дети?» Приходить в одно место вместе с другими.",
+              "uk": "збиратися. Where do the children gather? — «Де збираються діти?» Приходити в одне місце разом з іншими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gather",
+          "definitionByLocale": {
+            "ru": "собираться. Where do the children gather? — «Где собираются дети?» Приходить в одно место вместе с другими.",
+            "uk": "збиратися. Where do the children gather? — «Де збираються діти?» Приходити в одне місце разом з іншими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Узнайте обычное место игры: «Где ты играешь?»",
+      "prompt": "Учительница ждёт у входа. Спросите её: «Где собираются дети?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте обычное место игры: «Где ты играешь?»",
+      "accessibilityLabel": "Учительница ждёт у входа. Спросите её: «Где собираются дети?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where do you play?",
+        "targetPhrase": "Where do the children gather?",
         "localizedMeaning": {
-          "ru": "Узнайте обычное место игры: «Где ты играешь?»",
-          "uk": "Дізнайтеся звичне місце гри: «Де ти граєш?»"
+          "ru": "Учительница ждёт у входа. Спросите её: «Где собираются дети?»",
+          "uk": "Вчителька чекає біля входу. Спитайте її: «Де збираються діти?»"
         },
         "orderedTokens": [
           "Where",
           "do",
-          "you",
-          "play"
+          "the",
+          "children",
+          "gather"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте учительницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i02:r1",
-          "text": "play"
+          "text": "Where do the children gather?"
         },
         {
           "responseId": "en:lesson-07:session-29:i02:r2",
-          "text": "call"
+          "text": "Where do the children wait?"
         },
         {
           "responseId": "en:lesson-07:session-29:i02:r3",
-          "text": "skateboard"
+          "text": "When do the children gather?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте учительницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i02:audio",
-          "transcript": "play"
+          "transcript": "Where do the children gather?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-29:i02:r1",
-            "targetText": "play",
+            "targetText": "Where do the children gather?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i02:r2",
-            "targetText": "call",
+            "targetText": "Where do the children wait?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i02:r3",
-            "targetText": "skateboard",
+            "targetText": "When do the children gather?",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-29:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `play`, а в этом варианте — `call`.",
-              "uk": "У записі перше слово — `play`, а в цьому варіанті — `call`."
+              "ru": "В записи последнее слово — `gather`, собираться, а в этом варианте — `wait`, ждать.",
+              "uk": "У записі останнє слово — `gather`, збиратися, а в цьому варіанті — `wait`, чекати."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `play`, а в этом варианте — `skateboard`.",
-              "uk": "У записі перше слово — `play`, а в цьому варіанті — `skateboard`."
+              "ru": "В записи первое слово — `Where`, где, а в этом варианте — `When`, когда.",
+              "uk": "У записі перше слово — `Where`, де, а в цьому варіанті — `When`, коли."
             }
           }
         ],
@@ -114,11 +158,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о привычном месте игры",
+      "prompt": "Спросите учительницу о детях. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i03:r1",
@@ -135,14 +179,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о привычном месте игры",
+      "accessibilityLabel": "Спросите учительницу о детях. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о привычном месте игры",
-          "uk": "Запитайте про звичне місце гри"
+          "ru": "Спросите учительницу о детях. Выберите слово",
+          "uk": "Спитайте вчительку про дітей. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where ___ you play?",
+        "gappedTargetPhrase": "Where ___ the children gather?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-29:i03:r1",
@@ -157,24 +201,24 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Спросите о привычном месте игры",
+        "testedDimension": "Спросите учительницу о детях. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-29:i03:r2",
             "correct": false,
-            "testedDimension": "Спросите о привычном месте игры",
+            "testedDimension": "Спросите учительницу о детях. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "ru": "Детей много: нужно `do`.",
+              "uk": "Дітей багато: потрібно `do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i03:r3",
             "correct": false,
-            "testedDimension": "Спросите о привычном месте игры",
+            "testedDimension": "Спросите учительницу о детях. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о привычном действии `play` строим с `do`.",
-              "uk": "Запитання про звичну дію `play` будуємо з `do`."
+              "ru": "С действием `gather` нужно `do`, а не `are`.",
+              "uk": "З дією `gather` потрібне `do`, а не `are`."
             }
           }
         ]
@@ -183,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-29:i04:p1",
-            "target": "play",
+            "target": "gather",
             "meaningByLocale": {
-              "ru": "играть",
-              "uk": "грати"
+              "ru": "собираться",
+              "uk": "збиратися"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i04:p2",
-            "target": "call",
+            "target": "wait",
             "meaningByLocale": {
-              "ru": "звонить",
-              "uk": "телефонувати"
+              "ru": "ждать",
+              "uk": "чекати"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i04:p3",
-            "target": "skateboard",
+            "target": "sing",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "петь",
+              "uk": "співати"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i04:p4",
-            "target": "tables",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
-          "play",
-          "call",
-          "skateboard",
-          "tables"
+          "gather",
+          "wait",
+          "sing",
+          "work"
         ],
         "rightColumn": [
-          "играть",
-          "звонить",
-          "скейтборд",
-          "столы"
+          "собираться",
+          "ждать",
+          "петь",
+          "работать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +299,151 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-29:word:rehearse",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rehearse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:word:rehearse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rehearse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:word:rehearse:audio",
+          "transcript": "rehearse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:word:rehearse:r1",
+            "targetText": "rehearse",
+            "meaningByLocale": {
+              "ru": "репетировать. When do you rehearse? — «Когда ты репетируешь?» Повторять выступление перед настоящим показом.",
+              "uk": "репетирувати. When do you rehearse? — «Коли ти репетируєш?» Повторювати виступ перед справжнім показом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rehearse",
+          "definitionByLocale": {
+            "ru": "репетировать. When do you rehearse? — «Когда ты репетируешь?» Повторять выступление перед настоящим показом.",
+            "uk": "репетирувати. When do you rehearse? — «Коли ти репетируєш?» Повторювати виступ перед справжнім показом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-29:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i05:audio",
-          "transcript": "Where do you play?"
+          "transcript": "When do you rehearse?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where do you play?",
+        "hiddenTargetPhrase": "When do you rehearse?",
         "orderedTokens": [
-          "Where",
+          "When",
           "do",
           "you",
-          "play"
+          "rehearse"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-29:word:perform",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — perform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:word:perform:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — perform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:word:perform:audio",
+          "transcript": "perform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:word:perform:r1",
+            "targetText": "perform",
+            "meaningByLocale": {
+              "ru": "выступать. Where does the choir perform? — «Где хор выступает?» Выступать перед публикой: например, петь или играть на сцене.",
+              "uk": "виступати. Where does the choir perform? — «Де хор виступає?» Виступати перед публікою: наприклад, співати чи грати на сцені."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perform",
+          "definitionByLocale": {
+            "ru": "выступать. Where does the choir perform? — «Где хор выступает?» Выступать перед публикой: например, петь или играть на сцене.",
+            "uk": "виступати. Where does the choir perform? — «Де хор виступає?» Виступати перед публікою: наприклад, співати чи грати на сцені."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-29:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Узнайте обычное время звонка: «Когда ты звонишь?»",
+      "prompt": "Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте обычное время звонка: «Когда ты звонишь?»",
+      "accessibilityLabel": "Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "When do you call?",
+        "targetPhrase": "Where does the choir perform?",
         "localizedMeaning": {
-          "ru": "Узнайте обычное время звонка: «Когда ты звонишь?»",
-          "uk": "Дізнайтеся звичний час дзвінка: «Коли ти телефонуєш?»"
+          "ru": "Брат рассказывает о регулярных выступлениях хора. Спросите его: «Где хор выступает?»",
+          "uk": "Брат розповідає про регулярні виступи хору. Спитайте його: «Де хор виступає?»"
         },
         "orderedTokens": [
-          "When",
-          "do",
-          "you",
-          "call"
+          "Where",
+          "does",
+          "the",
+          "choir",
+          "perform"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +455,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-29:word:begin",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — begin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-29:word:begin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — begin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-29:word:begin:audio",
+          "transcript": "begin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-29:word:begin:r1",
+            "targetText": "begin",
+            "meaningByLocale": {
+              "ru": "начинаться. When does the lesson begin? — «Когда урок начинается?» Так говорят о начале урока, концерта или встречи.",
+              "uk": "починатися. When does the lesson begin? — «Коли урок починається?» Так кажуть про початок уроку, концерту чи зустрічі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "begin",
+          "definitionByLocale": {
+            "ru": "начинаться. When does the lesson begin? — «Когда урок начинается?» Так говорят о начале урока, концерта или встречи.",
+            "uk": "починатися. When does the lesson begin? — «Коли урок починається?» Так кажуть про початок уроку, концерту чи зустрічі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-29:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "prompt": "Учительница объясняет расписание. Спросите её: «Когда занятие начинается?» Используйте begin",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Спросите о начале рабочего дня коллеги «Когда она начинает?»",
+      "accessibilityLabel": "Учительница объясняет расписание. Спросите её: «Когда занятие начинается?» Используйте begin",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i07:audio",
-          "transcript": "When does she start?"
+          "transcript": "When does the class begin?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does she start?",
+        "targetPhrase": "When does the class begin?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,11 +532,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о начале её работы",
+      "prompt": "Спросите брата о хоре. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i08:r1",
@@ -370,23 +544,23 @@
         },
         {
           "responseId": "en:lesson-07:session-29:i08:r2",
-          "text": "do"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-07:session-29:i08:r3",
-          "text": "is"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о начале её работы",
+      "accessibilityLabel": "Спросите брата о хоре. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о начале её работы",
-          "uk": "Запитайте про початок її роботи"
+          "ru": "Спросите брата о хоре. Выберите слово",
+          "uk": "Спитайте брата про хор. Виберіть слово"
         },
-        "gappedTargetPhrase": "When ___ she start?",
+        "gappedTargetPhrase": "Where ___ the choir perform?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-29:i08:r1",
@@ -394,31 +568,31 @@
           },
           {
             "responseId": "en:lesson-07:session-29:i08:r2",
-            "text": "do"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-07:session-29:i08:r3",
-            "text": "is"
+            "text": "has"
           }
         ],
-        "testedDimension": "Спросите о начале её работы",
+        "testedDimension": "Спросите брата о хоре. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы",
+            "testedDimension": "Спросите брата о хоре. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `she` нужно `does`.",
-              "uk": "З `she` потрібне `does`."
+              "ru": "С действием `perform` нужно `does`, а не `is`.",
+              "uk": "З дією `perform` потрібне `does`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о начале её работы",
+            "testedDimension": "Спросите брата о хоре. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о действии `start` с `she` строим с `does`.",
-              "uk": "Запитання про дію `start` з `she` будуємо з `does`."
+              "ru": "Здесь спрашиваем о месте выступлений: перед the choir нужно does, а не has.",
+              "uk": "Тут питаємо про місце виступів: перед the choir потрібне does, а не has."
             }
           }
         ]
@@ -427,51 +601,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите вопрос",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i09:r1",
-          "text": "Where do you play?"
+          "text": "Where does the choir perform?"
         },
         {
           "responseId": "en:lesson-07:session-29:i09:r2",
-          "text": "When do you play?"
+          "text": "Where does the choir rehearse?"
         },
         {
           "responseId": "en:lesson-07:session-29:i09:r3",
-          "text": "Where do you work?"
+          "text": "Where does the choir sing?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите вопрос",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i09:audio",
-          "transcript": "Where do you play?"
+          "transcript": "Where does the choir perform?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-29:i09:r1",
-            "targetText": "Where do you play?",
+            "targetText": "Where does the choir perform?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i09:r2",
-            "targetText": "When do you play?",
+            "targetText": "Where does the choir rehearse?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i09:r3",
-            "targetText": "Where do you work?",
+            "targetText": "Where does the choir sing?",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +654,19 @@
           {
             "responseId": "en:lesson-07:session-29:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Where`, а в этом варианте — `When`.",
-              "uk": "У записі перше слово — `Where`, а в цьому варіанті — `When`."
+              "ru": "В записи последнее слово — `perform`, выступать, а в этом варианте — `rehearse`, репетировать.",
+              "uk": "У записі останнє слово — `perform`, виступати, а в цьому варіанті — `rehearse`, репетирувати."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите вопрос",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `play`, а в этом варианте — `work`.",
-              "uk": "У записі останнє слово — `play`, а в цьому варіанті — `work`."
+              "ru": "В записи последнее слово — `perform`, выступать, а в этом варианте — `sing`, петь.",
+              "uk": "У записі останнє слово — `perform`, виступати, а в цьому варіанті — `sing`, співати."
             }
           }
         ],
@@ -503,8 +677,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +691,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-29:i10:p1",
-            "target": "lie",
+            "target": "perform",
             "meaningByLocale": {
-              "ru": "лгать",
-              "uk": "брехати"
+              "ru": "выступать",
+              "uk": "виступати"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i10:p2",
-            "target": "play",
+            "target": "choir",
             "meaningByLocale": {
-              "ru": "играть",
-              "uk": "грати"
+              "ru": "хор",
+              "uk": "хор"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i10:p3",
-            "target": "tables",
+            "target": "theatre",
             "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
+              "ru": "театр",
+              "uk": "театр"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i10:p4",
-            "target": "call",
+            "target": "stage",
             "meaningByLocale": {
-              "ru": "звонить",
-              "uk": "телефонувати"
+              "ru": "сцена",
+              "uk": "сцена"
             }
           }
         ],
         "leftColumn": [
-          "lie",
-          "play",
-          "tables",
-          "call"
+          "perform",
+          "choir",
+          "theatre",
+          "stage"
         ],
         "rightColumn": [
-          "лгать",
-          "играть",
-          "столы",
-          "звонить"
+          "выступать",
+          "хор",
+          "театр",
+          "сцена"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +750,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте учительницу и соберите вопрос",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте учительницу и соберите вопрос",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i11:audio",
-          "transcript": "When do you call?"
+          "transcript": "When does the lesson begin?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "When do you call?",
+        "hiddenTargetPhrase": "When does the lesson begin?",
         "orderedTokens": [
           "When",
-          "do",
-          "you",
-          "call"
+          "does",
+          "the",
+          "lesson",
+          "begin"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,28 +787,27 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед прогулкой спросите друга «У тебя есть скейтборд?»",
+      "prompt": "Подруга играет в театре. Спросите подругу: «Где вы репетируете?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед прогулкой спросите друга «У тебя есть скейтборд?»",
+      "accessibilityLabel": "Подруга играет в театре. Спросите подругу: «Где вы репетируете?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a skateboard?",
+        "targetPhrase": "Where do you rehearse?",
         "localizedMeaning": {
-          "ru": "Перед прогулкой спросите друга «У тебя есть скейтборд?»",
-          "uk": "Перед прогулянкою запитайте друга «У тебе є скейтборд?»"
+          "ru": "Подруга играет в театре. Спросите подругу: «Где вы репетируете?»",
+          "uk": "Подруга грає в театрі. Спитайте подругу: «Де ви репетируєте?»"
         },
         "orderedTokens": [
-          "Do",
+          "Where",
+          "do",
           "you",
-          "have",
-          "a",
-          "skateboard"
+          "rehearse"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -646,25 +820,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Обсуждая честность, скажите «Я не лгу»",
+      "prompt": "Брат поёт в хоре. Спросите брата: «Когда хор репетирует?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i13:audio"
       ],
-      "accessibilityLabel": "Обсуждая честность, скажите «Я не лгу»",
+      "accessibilityLabel": "Брат поёт в хоре. Спросите брата: «Когда хор репетирует?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i13:audio",
-          "transcript": "I don’t lie."
+          "transcript": "When does the choir rehearse?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I don’t lie.",
+        "targetPhrase": "When does the choir rehearse?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,67 +853,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Узнайте, где Том обычно играет",
+      "prompt": "Спросите учительницу об уроке. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i14:r1",
-          "text": "play"
+          "text": "begin"
         },
         {
           "responseId": "en:lesson-07:session-29:i14:r2",
-          "text": "plays"
+          "text": "begins"
         },
         {
           "responseId": "en:lesson-07:session-29:i14:r3",
-          "text": "is play"
+          "text": "is begin"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Узнайте, где Том обычно играет",
+      "accessibilityLabel": "Спросите учительницу об уроке. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Узнайте, где Том обычно играет",
-          "uk": "Дізнайтеся, де Том зазвичай грає"
+          "ru": "Спросите учительницу об уроке. Выберите слово",
+          "uk": "Спитайте вчительку про урок. Виберіть слово"
         },
-        "gappedTargetPhrase": "Where does Tom ___?",
+        "gappedTargetPhrase": "When does the lesson ___?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-29:i14:r1",
-            "text": "play"
+            "text": "begin"
           },
           {
             "responseId": "en:lesson-07:session-29:i14:r2",
-            "text": "plays"
+            "text": "begins"
           },
           {
             "responseId": "en:lesson-07:session-29:i14:r3",
-            "text": "is play"
+            "text": "is begin"
           }
         ],
-        "testedDimension": "Узнайте, где Том обычно играет",
+        "testedDimension": "Спросите учительницу об уроке. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-29:i14:r2",
             "correct": false,
-            "testedDimension": "Узнайте, где Том обычно играет",
+            "testedDimension": "Спросите учительницу об уроке. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `play`.",
-              "uk": "Після `does` потрібне `play`."
+              "ru": "После `does` нужно `begin`, без `s`.",
+              "uk": "Після `does` потрібно `begin`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i14:r3",
             "correct": false,
-            "testedDimension": "Узнайте, где Том обычно играет",
+            "testedDimension": "Спросите учительницу об уроке. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужно `play`, без `is`.",
-              "uk": "Тут потрібне `play`, без `is`."
+              "ru": "Здесь нужно `begin`, без `is`.",
+              "uk": "Тут потрібно `begin`, без `is`."
             }
           }
         ]
@@ -748,51 +922,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где столы",
+      "prompt": "Послушайте учительницу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-29:i15:r1",
-          "text": "The tables are here."
+          "text": "When does the lesson begin?"
         },
         {
           "responseId": "en:lesson-07:session-29:i15:r2",
-          "text": "The tables are there."
+          "text": "When does the lesson start?"
         },
         {
           "responseId": "en:lesson-07:session-29:i15:r3",
-          "text": "The tables are outside."
+          "text": "When does the class begin?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где столы",
+      "accessibilityLabel": "Послушайте учительницу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i15:audio",
-          "transcript": "The tables are here."
+          "transcript": "When does the lesson begin?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-29:i15:r1",
-            "targetText": "The tables are here.",
+            "targetText": "When does the lesson begin?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i15:r2",
-            "targetText": "The tables are there.",
+            "targetText": "When does the lesson start?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-29:i15:r3",
-            "targetText": "The tables are outside.",
+            "targetText": "When does the class begin?",
             "meaningByLocale": null
           }
         ],
@@ -801,19 +975,19 @@
           {
             "responseId": "en:lesson-07:session-29:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где столы",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `begin`, начинаться, а в этом варианте — `start`, начинаться.",
+              "uk": "У записі останнє слово — `begin`, починатися, а в цьому варіанті — `start`, починатися."
             }
           },
           {
             "responseId": "en:lesson-07:session-29:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где столы",
+            "testedDimension": "Послушайте учительницу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `outside`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `outside`."
+              "ru": "В записи четвёртое слово — `lesson`, урок, а в этом варианте — `class`, занятие.",
+              "uk": "У записі четверте слово — `lesson`, урок, а в цьому варіанті — `class`, заняття."
             }
           }
         ],
@@ -824,7 +998,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,48 +1012,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-29:i16:p1",
-            "target": "play",
+            "target": "begin",
             "meaningByLocale": {
-              "ru": "играть",
-              "uk": "грати"
+              "ru": "начинаться",
+              "uk": "починатися"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i16:p2",
-            "target": "skateboard",
+            "target": "gather",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "собираться",
+              "uk": "збиратися"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i16:p3",
-            "target": "lie",
+            "target": "rehearse",
             "meaningByLocale": {
-              "ru": "лгать",
-              "uk": "брехати"
+              "ru": "репетировать",
+              "uk": "репетирувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-29:i16:p4",
-            "target": "tables",
+            "target": "perform",
             "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
+              "ru": "выступать",
+              "uk": "виступати"
             }
           }
         ],
         "leftColumn": [
-          "play",
-          "skateboard",
-          "lie",
-          "tables"
+          "begin",
+          "gather",
+          "rehearse",
+          "perform"
         ],
         "rightColumn": [
-          "играть",
-          "скейтборд",
-          "лгать",
-          "столы"
+          "начинаться",
+          "собираться",
+          "репетировать",
+          "выступать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1071,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-29:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы обсуждаете обычное расписание игр Тома. Спросите «Когда Том играет?»",
+      "prompt": "Вы снова у входа в школу. Спросите учительницу: «Где собираются дети?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-29:i17:audio"
       ],
-      "accessibilityLabel": "Вы обсуждаете обычное расписание игр Тома. Спросите «Когда Том играет?»",
+      "accessibilityLabel": "Вы снова у входа в школу. Спросите учительницу: «Где собираются дети?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-29:i17:audio",
-          "transcript": "When does Tom play?"
+          "transcript": "Where do the children gather?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "When does Tom play?",
+        "targetPhrase": "Where do the children gather?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1111,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ad609586eebc282f5926189a88c5eab0f6c17ce6a4f43ee1efd4b52fef2b54c5"
+  "learnerFingerprint": "5e98e6cd39d51b799cf386a087b93d9c0a79bd26363518c8da524a2920bdde55"
 }

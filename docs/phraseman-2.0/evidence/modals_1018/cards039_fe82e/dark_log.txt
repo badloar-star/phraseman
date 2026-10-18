@@ -1,0 +1,3 @@
+10-18 07:26:31.844 W/ReactNativeJS( 4528): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 2, status: 'error', waitedMs: 3000 }
+10-18 07:26:31.930 I/ReactNativeJS( 4528): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false
+10-18 07:26:32.050 I/ReactNativeJS( 4528): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,

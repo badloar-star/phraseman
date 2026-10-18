@@ -1,0 +1,37 @@
+# Task packet: энергия без капсулы в светлой теме; пустые Настройки при первом открытии
+
+Governance-ID: TG-70698E2C1762
+Status: In progress
+Owner: сессия «4 · ТЕМЫ 2.0»
+Related epic/enabler: координатор, находки Сверки walk/FINDINGS.md (2) и (10)
+
+## Outcome
+
+(2) Карта курса V2, светлая: число энергии и молния в шапке читаются (текст ≥ 4,5, молния ≥ 3) — сейчас белое число 1,0:1 и молния #9187FF до 2,06:1.
+(10) Настройки, тёмная: при первом открытии вкладки нет пустого экрана ≥ 6 с — сначала логи первого кадра, потом починка (каркас сразу).
+
+## Scope
+
+In scope: `components/EnergyBar.tsx` (общий компонент, режим без капсулы — glass=false), затем `app/(tabs)/settings.tsx` — логи первого кадра.
+
+Out of scope: файлы Learning V2 у Codex; режим glass энергии (уже на buttonFill, проверен BLEND-AUDIT).
+
+## Architecture
+
+No architecture change: цвета из токенов темы (useLv2Glass): число — text, молния в светлой — accentGraphic; тёмная тема без изменений.
+
+## Security and privacy
+
+Не затрагивает.
+
+## Technical debt
+
+- Pay now: белое число энергии без капсулы на светлом фоне.
+
+## Verification
+
+Расчёт по 23 темам × оформление × насыщенность; тесты EnergyBar; кадр Сверки карты курса в светлой.
+
+## Rollback
+
+`git revert`.

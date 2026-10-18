@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { getDevPlanOverride } from '../dev_vip_override';
+import { noteTabFirstFrame } from '../../components/tab_activation_trace';
 import {
   View, Text, TouchableOpacity,
   Modal, DeviceEventEmitter,
@@ -187,6 +188,7 @@ export default function SettingsMain() {
   if (perfRef.current.firstRenderAt === 0) {
     perfRef.current.firstRenderAt = Date.now();
     console.warn(`[SETTINGS-PERF] first_render sinceModuleMs=${perfRef.current.firstRenderAt - SETTINGS_MODULE_EVAL_AT}`); // guard-ok: временный замер №16
+    noteTabFirstFrame(4, 'settings:first_render', { sinceModuleMs: perfRef.current.firstRenderAt - SETTINGS_MODULE_EVAL_AT }); // зачем: Сверка 18.10, пустые Настройки ≥ 6 с
   }
   React.useEffect(() => {
     perfRef.current.committedAt = Date.now();
@@ -198,6 +200,7 @@ export default function SettingsMain() {
     const now = Date.now();
     // premounted=да, если фокус пришёл заметно позже коммита: вкладку подготовили фоном, человек открыл её потом
     const sinceCommit = perfRef.current.committedAt > 0 ? now - perfRef.current.committedAt : -1;
+    noteTabFirstFrame(4, 'settings:first_focus', { sinceRenderMs: now - perfRef.current.firstRenderAt, sinceCommitMs: sinceCommit });
     console.warn(`[SETTINGS-PERF] first_focus sinceRenderMs=${now - perfRef.current.firstRenderAt} sinceCommitMs=${sinceCommit} premounted=${sinceCommit > 500 ? 'да' : 'нет'}`); // guard-ok: временный замер №16
   }, []));
   // зачем (№16, сперва логи): доля первого кадра по поддеревьям — тело экрана и окно входа; только монтирование, только dev.
@@ -1076,7 +1079,7 @@ export default function SettingsMain() {
         {/* зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): шапка «Настройки» 40/46
             без подзаголовка, справа монета ранга; Dev Hub переехал в подвал строкой рядом с версией. */}
         <View
-          onLayout={(event) => { if (!perfRef.current.layoutLogged) { perfRef.current.layoutLogged = true; console.warn(`[SETTINGS-PERF] header_layout sinceRenderMs=${Date.now() - perfRef.current.firstRenderAt}`); } /* guard-ok: временный замер №16 */ if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
+          onLayout={(event) => { if (!perfRef.current.layoutLogged) { perfRef.current.layoutLogged = true; console.warn(`[SETTINGS-PERF] header_layout sinceRenderMs=${Date.now() - perfRef.current.firstRenderAt}`); noteTabFirstFrame(4, 'settings:header_layout'); } /* guard-ok: временный замер №16 */ if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
           style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
           <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
             {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): заголовок 40 пт рядом с монетой 44 — на телефоне

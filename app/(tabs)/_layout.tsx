@@ -85,6 +85,7 @@ import { useStudyTarget } from '../../components/StudyTargetContext';
 import { trackCurrentSection } from '../section_language';
 import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
+import { noteTabActivated } from '../../components/tab_activation_trace';
 import { whenOnboardingSettled } from '../onboarding_defer_gate';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -1331,6 +1332,12 @@ function ReleasedTabLayout() {
     ];
     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
   }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  // зачем (Сверка 18.10, пустые Настройки ≥ 6 с; «сперва логи»): в каком состоянии была выбранная вкладка — смонтирована ли, посещалась ли,
+  // попадает ли под заморозку; экран Настроек пишет свой первый кадр относительно этой отметки ([TAB-FIRST-FRAME]). Временная трасса.
+  useEffect(() => {
+    noteTabActivated(activeIdx, { mounted: mountedTabsRef.current.has(activeIdx), visited: visitedTabsRef.current.has(activeIdx), physicalPageIdx, mountedCount: mountedTabsRef.current.size });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- только на смену выбранной вкладки
+  }, [activeIdx]);
 
   // зачем D129: при смене раскладки state страницы догоняет в layout-эффекте; до него
   // старый индекс может выйти за новую длину ленты — зажимаем, а не падаем.

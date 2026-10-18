@@ -1,0 +1,15 @@
+10-18 06:18:07.959 W/ReactNativeJS( 4992): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 3, status: 'error', waitedMs: 8000 }
+10-18 06:18:08.006 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:18:08.042 I/ReactNativeJS( 4992): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:18:08.088 W/ReactNativeJS( 4992): '[LOAD-GATE:fc-saved]', 'повторы исчерпаны → «Сейчас недоступно»', { attempts: 3 }, { [Stack] name: 'Stack' }
+10-18 06:18:08.090 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'
+10-18 06:18:08.151 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"unavailable","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":true,"deviceOffline":false}'
+10-18 06:18:08.343 I/ReactNativeJS( 4992): '[CARDS-LOAD] tap retry', '{"inFlight":false}'
+10-18 06:18:08.349 W/ReactNativeJS( 4992): '[LOAD-GATE:fc-saved]', 'повтор после «Сейчас недоступно»', { source: 'tap' }, { [Stack] name: 'Stack' }
+10-18 06:18:08.409 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:18:08.441 I/ReactNativeJS( 4992): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:18:08.479 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'
+10-18 06:18:09.491 W/ReactNativeJS( 4992): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 1, status: 'error', waitedMs: 1000 }
+10-18 06:18:09.525 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":true,"gateStatus":"loading","gateExhausted":false,"deviceOffline":false}'
+10-18 06:18:09.552 I/ReactNativeJS( 4992): '[CARDS-LOAD] retry:settled', '{"outcome":"ok","stillMounted":true}'
+10-18 06:18:09.577 I/ReactNativeJS( 4992): '[CARDS-LOAD] state:render', '{"drawn":"skeleton","loadError":true,"retrying":false,"gateStatus":"error","gateExhausted":false,"deviceOffline":false}'

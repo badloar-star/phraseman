@@ -121,15 +121,16 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
   const showTranslation = face.translation && !!card.back;
   const speakSize = Math.round(SPEAK_SIZE[step]! * face.k);
   const speakVisible = step <= 1 && !!onSpeak;
-  const est = gridStep.lines(index);
-  // зачем (владелец 18.10): настоящее число строк против оценки — если шрифт устройства шире таблицы, плитка получает поправку и вырастает, а не режет текст
-  const onWordLines = (lines: number) => { if (lines > est.wordLines) onFix?.(card.id, step, (lines - est.wordLines) * face.wordLine); };
-  const onTrLines = (lines: number) => { if (lines > est.trLines) onFix?.(card.id, step, (lines - est.trLines) * face.trLine); };
+  // зачем (владелец 18.10: «карточка всегда горизонтальная; не влезает — уменьши кегль»): кегль этой карточки — после уменьшения под потолок высоты (cardsGalleryFit.fitWithin)
+  const fit = gridStep.fit(index);
+  // настоящее число строк против оценки — если шрифт устройства шире таблицы, плитка получает поправку и вырастает, а не режет текст
+  const onWordLines = (lines: number) => { if (lines > fit.wordLines) onFix?.(card.id, step, (lines - fit.wordLines) * fit.wordLine); };
+  const onTrLines = (lines: number) => { if (lines > fit.trLines) onFix?.(card.id, step, (lines - fit.trLines) * fit.trLine); };
   const wordEl = (
     <Text
       maxFontSizeMultiplier={FIT_MAX_FONT_SCALE}
       onTextLayout={(e) => onWordLines(e.nativeEvent.lines.length)}
-      style={[styles.word, { color: colors.ink, fontSize: face.wordSize, lineHeight: face.wordLine, marginTop: face.wordTop }]}>
+      style={[styles.word, { color: colors.ink, fontSize: fit.wordSize, lineHeight: fit.wordLine, marginTop: face.wordTop }]}>
       {renderFront(card.front, highlight)}
     </Text>
   );
@@ -137,7 +138,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
     <Text
       maxFontSizeMultiplier={FIT_MAX_FONT_SCALE}
       onTextLayout={(e) => onTrLines(e.nativeEvent.lines.length)}
-      style={{ color: colors.inkSoft, fontSize: face.trSize, lineHeight: face.trLine, marginTop: face.trTop }}>{card.back}</Text>
+      style={{ color: colors.inkSoft, fontSize: fit.trSize, lineHeight: fit.trLine, marginTop: face.trTop }}>{card.back}</Text>
   ) : null;
   const labelEl = face.label ? <Text style={[styles.lg, { color: colors.inkSoft, fontSize: face.lgSize, lineHeight: face.lgLine }]}>EN</Text> : null;
   const speakEl = speakVisible ? (
@@ -168,7 +169,8 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
         style={({ pressed }) => [styles.press, { borderRadius: radius, boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
         <View style={[styles.face, { borderRadius: radius }]}>
           <GalleryTileFace g={g} w={geom.w} h={geom.h} />
-          <Animated.View style={[StyleSheet.absoluteFill, contentStyle]}>
+          {/* зачем (владелец 18.10): содержимое держит размер ЦЕЛЕВОЙ плитки, а не бегущий — во время перетекания между шагами текст не пересчитывает перенос по сужающейся ширине (иначе onTextLayout принимал промежуточные строки за нехватку места и плитки раздувались), лишнее срезает сама плитка */}
+          <Animated.View style={[styles.content, { width: geom.w, height: geom.h }, contentStyle]}>
             {step === 0 ? (
               <View style={[styles.row0, { paddingLeft: face.padL, paddingRight: face.padR, gap: 22 * face.k }]}>
                 {speakEl}
@@ -182,7 +184,7 @@ const Tile = memo(function Tile({ card, index, step, morph, geoms, gridStep, g, 
             ) : step === 1 ? (
               <View style={[styles.col1, pad]}>{labelEl}{wordEl}{trEl}{speakEl}</View>
             ) : (
-              <View style={[styles.mini, pad]}>{wordEl}</View>
+              <View style={[styles.mini, pad]}>{wordEl}{trEl}</View>
             )}
             {dotsEl}
           </Animated.View>
@@ -258,6 +260,7 @@ const styles = StyleSheet.create({
   press: { flex: 1 },
   pressed: { transform: [{ scale: 0.97 }] },
   face: { flex: 1, overflow: 'hidden' },
+  content: { position: 'absolute', left: 0, top: 0 },
   row0: { flex: 1, flexDirection: 'row', alignItems: 'center' },
   col1: { flex: 1, justifyContent: 'center' },
   mini: { flex: 1, justifyContent: 'center' },

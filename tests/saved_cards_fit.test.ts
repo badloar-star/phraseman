@@ -25,6 +25,21 @@ const PHRASES: ReadonlyArray<readonly [string, string]> = [
 ];
 const WIDTHS = [320, 360, 390, 430, 480].map((w) => w - 40);
 
+it('все размеры сохраняют горизонтальную карточку и полный перевод', () => {
+  const cards = PHRASES.map(([front, back], i) => ({ id: String(i), front, back }));
+  for (const width of WIDTHS) {
+    for (const fontScale of [1, 1.2]) {
+      for (const grid of buildGalleryGrids(cards, width, fontScale).grids) {
+        expect(grid.face.translation).toBe(true);
+        for (let i = 0; i < cards.length; i += 1) {
+          expect(grid.geom(i).h).toBeLessThan(grid.geom(i).w);
+          expect(grid.fit(i).trLines).toBeGreaterThan(0);
+        }
+      }
+    }
+  }
+});
+
 // «правдоподобный настоящий» замер: полужирный гротеск — узкие буквы 0.28 em, строчные 0.54, прописные 0.64, m/w 0.84, пробел 0.28; оценка модуля обязана быть НЕ меньше него (запас, а не обрезка)
 function realWidth(word: string, size: number): number {
   let em = 0;
@@ -106,6 +121,39 @@ describe('текст помещается целиком на любом шаг�
   });
 });
 
+describe('карточка всегда горизонтальная: ширина больше высоты на любом шаге (владелец 18.10)', () => {
+  const normal = PHRASES.filter(([front]) => !front.startsWith('Supercali')).map(([front, back], i) => ({ id: `h${i}`, front, back }));
+
+  it('все плитки шире, чем выше, на пяти ширинах экрана и всех шагах; длинная фраза уменьшает кегль, а не вытягивает плитку вверх', () => {
+    for (const grid of WIDTHS.filter((w) => w >= 320)) { // у самых узких экранов (ширина сетки < 320) 5 колонок физически не дают места под длинную фразу
+      const grids = buildGalleryGrids(normal, grid);
+      for (const g of grids.grids) {
+        for (let i = 0; i < normal.length; i += 1) {
+          const t = g.geom(i);
+          expect([g.step, grid, normal[i]!.front, t.w / t.h >= 1.05]).toEqual([g.step, grid, normal[i]!.front, true]);
+        }
+      }
+    }
+  });
+
+  it('кегль длинной фразы меньше, чем у короткого слова, на тех же шагах; короткое слово остаётся крупным', () => {
+    const grids = buildGalleryGrids(normal, 350);
+    for (const g of [grids.grids[1]!, grids.grids[2]!]) {
+      const longFit = g.fit(1); // «Could you tell me how to get…»
+      const shortFit = g.fit(3); // «Gate»
+      expect(longFit.wordSize).toBeLessThan(shortFit.wordSize);
+      expect(shortFit.scale).toBe(1);
+      expect(longFit.wordSize).toBeGreaterThanOrEqual(7);
+    }
+  });
+
+  it('1 колонка ≈ 390×105: короткая карточка на ширине 390 — 105 × масштаб', () => {
+    const g = buildGalleryGrids([{ id: 'a', front: 'Gate', back: 'Выход' }], 390).grids[0]!;
+    expect(g.geom(0).h).toBeGreaterThanOrEqual(105);
+    expect(g.geom(0).h).toBeLessThanOrEqual(135);
+  });
+});
+
 describe('сетка с рядами разной высоты', () => {
   const cards = PHRASES.flatMap(([front, back], i) => [0, 1, 2].map((j) => ({ id: `c${i}-${j}`, front, back })));
 
@@ -179,7 +227,7 @@ describe('исходник и шаг по умолчанию', () => {
     const code = gallery.split('\n').filter((l) => !l.trim().startsWith('//') && !l.trim().startsWith('*')).join('\n');
     expect(code).not.toMatch(/numberOfLines|ellipsizeMode|adjustsFontSizeToFit/);
     expect(code).toContain('onTextLayout');
-    expect(code).toContain('fontSize: face.wordSize');
+    expect(code).toContain('fontSize: fit.wordSize');
     expect(code).toContain('maxFontSizeMultiplier={FIT_MAX_FONT_SCALE}');
     expect(code).not.toMatch(/borderWidth|borderColor/);
   });

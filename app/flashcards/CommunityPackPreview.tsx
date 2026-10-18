@@ -21,6 +21,9 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { CardsGallery } from '../../components/cards-grid/CardsGallery';
 import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
 import { ZoomBar } from '../../components/cards-grid/ZoomBar';
+import { useGalleryGrids } from '../../components/cards-grid/useGalleryGrids';
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { loadWordStrengthMap, strengthDotCount, strengthFor, type WordStrengthMap } from './word_strength';
 import { packDeckLevel } from '../../components/packs/packDeckModel';
 import { packCardsWord } from '../../components/packs/PackRow';
 import { PackBackBare, PackSquareButton, PackTopBarRow } from '../../components/packs/PackScreenKit';
@@ -152,8 +155,19 @@ export default function CommunityPackPreview({
   const gridTopRef = useRef(260);
   const [scrollY, setScrollY] = useState(0);
   const [gridTop, setGridTop] = useState(260);
+  // зачем (владелец 18.10 через координатора: «Сохранённые» — «так же, как в разделе наборов сообщества», тот же компонент без копии): набор сообщества и «Сохранённые» рисуются ОДНОЙ галереей,
+  // поэтому здесь те же ряды под текст (сетки), те же точки силы слова. Сила слова — по локальному журналу ошибок человека (одно чтение с устройства, без сети).
+  const { studyTarget } = useStudyTarget();
+  const [strengthMap, setStrengthMap] = useState<WordStrengthMap | null>(null);
+  useEffect(() => {
+    let alive = true;
+    void loadWordStrengthMap(studyTarget).then((m) => { if (alive) setStrengthMap(m); });
+    return () => { alive = false; };
+  }, [studyTarget]);
+  const gridsRef = useRef<ReturnType<typeof useGalleryGrids>['grids'] | null>(null);
   const { step, setStep, gesture, morph, morphFrom } = useCardsGridStep({
     count: cards.length,
+    getGrids: () => gridsRef.current,
     width,
     viewportH: screenH,
     sideInset: SIDE,
@@ -183,7 +197,10 @@ export default function CommunityPackPreview({
     front: card.en,
     ipa: card.transcription ?? null,
     back: resolveFlashcardBackText(card, cardContentLang),
-  })), [cardContentLang, cards]);
+    dots: (() => { const s = strengthFor(card.en, strengthMap); return s ? strengthDotCount(s) : 0; })(),
+  })), [cardContentLang, cards, strengthMap]);
+  const { grids, reportFix } = useGalleryGrids(items, width);
+  gridsRef.current = grids;
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
   // зачем: до добавления набор можно послушать — нажатие на плитку озвучивает слово, как раньше на строке слова.
   const speakCard = useCallback((id: string) => {
@@ -264,6 +281,8 @@ export default function CommunityPackPreview({
                 morphFrom={morphFrom}
                 scrollY={Math.max(0, scrollY - gridTop)}
                 viewportH={screenH}
+                grids={grids}
+                onFix={reportFix}
                 onOpen={speakCard}
                 onSpeak={speakCard}
                 speakLabel={speakLabel}

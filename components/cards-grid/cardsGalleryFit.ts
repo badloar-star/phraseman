@@ -29,9 +29,26 @@ type FaceDef = Readonly<{
 const FACES: readonly FaceDef[] = [
   { lg: 12, lgLine: 14, word: 26, wordLine: 32, wordTop: 6, tr: 15, trLine: 20, trTop: 2, padL: 12, padR: 46, padV: 14, lead: 60, foot: 0, label: true, translation: true },
   { lg: 11, lgLine: 14, word: 20, wordLine: 25, wordTop: 4, tr: 13.5, trLine: 18, trTop: 2, padL: 16, padR: 44, padV: 12, lead: 0, foot: 10, label: true, translation: true },
-  { lg: 0, lgLine: 0, word: 15, wordLine: 19, wordTop: 0, tr: 0, trLine: 0, trTop: 0, padL: 12, padR: 12, padV: 8, lead: 0, foot: 0, label: false, translation: false },
-  { lg: 0, lgLine: 0, word: 10.5, wordLine: 13, wordTop: 0, tr: 0, trLine: 0, trTop: 0, padL: 7, padR: 7, padV: 4, lead: 0, foot: 0, label: false, translation: false },
+  { lg: 0, lgLine: 0, word: 15, wordLine: 19, wordTop: 0, tr: 10, trLine: 13, trTop: 2, padL: 8, padR: 8, padV: 6, lead: 0, foot: 0, label: false, translation: true },
+  { lg: 0, lgLine: 0, word: 10.5, wordLine: 13, wordTop: 0, tr: 7, trLine: 9, trTop: 1, padL: 5, padR: 5, padV: 3, lead: 0, foot: 0, label: false, translation: true },
 ];
+
+/**
+ * Наименьшая высота плитки шага на ширине макета, px. зачем (владелец 18.10 через координатора: «карточка всегда горизонтальная, ширина больше высоты»; 1 колонка ≈ 390×105
+ * по CARDS_LOCKED): 105 / 96 / 62 / 37 — все плитки шире, чем выше.
+ */
+const MIN_H = [105, 96, 62, 37] as const;
+/**
+ * Потолок высоты плитки как доля её ширины: 0.62 / 0.7 / 0.72 / 0.72 (ширина больше высоты в 1,6 / 1,4 / 1,4 / 1,4 раза) — плитка не становится квадратной и вертикальной. Фраза не влезла — сперва растём до потолка,
+ * потом уменьшаем кегль (не меньше пола ниже), и только если даже на полу не влезает — плитка растёт выше потолка (текст целиком важнее пропорции).
+ */
+export const FIT_CAP_RATIO = [0.62, 0.7, 0.72, 0.72] as const;
+/**
+ * Пол кегля фразы и перевода, px. зачем (владелец 18.10: «не влезает — уменьши кегль», карточка остаётся горизонтальной): на мелких шагах длинная фраза в плитке шириной 50–110 px читается
+ * только очень мелкой — это выбор человека, поставившего мелкий шаг; пол нужен лишь затем, чтобы кегль не уходил в ноль.
+ */
+const WORD_FLOOR = [6, 2, 1, 0.5] as const;
+const TR_FLOOR = [6, 2, 1, 0.5] as const;
 
 /** Ширина плитки шага в макете — точка отсчёта масштаба. */
 export function fitRefTileWidth(step: number): number {
@@ -56,7 +73,6 @@ const r2 = (v: number): number => Math.round(v * 100) / 100;
 
 /** Размеры лица плитки шага при её ширине. fontScale — системный масштаб шрифта, уже ограниченный потолком. */
 export function stepFace(step: number, tileW: number, fontScale = 1): StepFace {
-  const def = GALLERY_STEPS[step]!;
   const f = FACES[step]!;
   const k = fitScaleFor(step, tileW);
   const fs = Math.max(1, Math.min(FIT_MAX_FONT_SCALE, fontScale));
@@ -68,7 +84,7 @@ export function stepFace(step: number, tileW: number, fontScale = 1): StepFace {
     wordSize: r2(f.word * k), wordLine: Math.ceil(f.wordLine * k * fs), wordTop: r2(f.wordTop * k),
     trSize: r2(f.tr * k), trLine: Math.ceil(f.trLine * k * fs), trTop: r2(f.trTop * k),
     padL: r2(padL), padR: r2(padR), padV: r2(f.padV * k), foot: r2(f.foot * k),
-    minH: Math.round(def.h * k),
+    minH: Math.round(MIN_H[step]! * k),
     textW: Math.max(24, tileW - padL - padR - f.lead * k),
     label: f.label, translation: f.translation,
   };
@@ -122,16 +138,54 @@ export function estimateLines(text: string, size: number, maxW: number): number 
 
 export type TileFit = Readonly<{ h: number; wordLines: number; trLines: number }>;
 
+/** Как лёг текст одной карточки на шаге: кегль и межстрочный (после уменьшения), число строк, высота плитки под текст. */
+export type CardFit = Readonly<{ h: number; scale: number; wordSize: number; wordLine: number; trSize: number; trLine: number; wordLines: number; trLines: number }>;
+
 /**
- * Высота плитки под текст карточки на шаге и сколько строк займут фраза и перевод. extraPx — поправка по настоящему замеру (onTextLayout), если оценка
- * оказалась меньше действительности.
+ * Текст карточки при масштабе кегля `scale` (1 — как в макете): высота плитки под него и число строк. extraPx — поправка по настоящему замеру (onTextLayout), если оценка
+ * оказалась меньше действительности. Кегль не ниже пола шага.
+ */
+export function fitAtScale(face: StepFace, front: string, back: string | null | undefined, scale: number, extraPx = 0): CardFit {
+  const wordSize = r2(Math.max(WORD_FLOOR[face.step]!, face.wordSize * scale));
+  const wordLine = Math.ceil(face.wordLine * (wordSize / face.wordSize));
+  const showTr = face.translation && !!back;
+  const trSize = showTr ? r2(Math.max(TR_FLOOR[face.step]!, face.trSize * scale)) : face.trSize;
+  const trLine = showTr ? Math.ceil(face.trLine * (trSize / face.trSize)) : face.trLine;
+  const wordLines = Math.max(1, estimateLines(front, wordSize * face.fontScale, face.textW));
+  const trLines = showTr ? estimateLines(back as string, trSize * face.fontScale, face.textW) : 0;
+  let content = wordLines * wordLine + face.wordTop;
+  if (face.label) content += face.lgLine;
+  if (trLines > 0) content += face.trTop + trLines * trLine;
+  const need = content + face.padV * 2 + face.foot + extraPx;
+  return { h: Math.ceil(Math.max(face.minH, need)), scale, wordSize, wordLine, trSize, trLine, wordLines, trLines };
+}
+
+/**
+ * Высота плитки под текст при масштабе 1 и число строк — прежний вход (тесты, оценка роста ряда). Для раскладки с потолком по пропорции — fitWithin.
  */
 export function tileFit(face: StepFace, front: string, back: string | null | undefined, extraPx = 0): TileFit {
-  const wordLines = Math.max(1, estimateLines(front, face.wordSize * face.fontScale, face.textW));
-  const trLines = face.translation && back ? estimateLines(back, face.trSize * face.fontScale, face.textW) : 0;
-  let content = wordLines * face.wordLine + face.wordTop;
-  if (face.label) content += face.lgLine;
-  if (trLines > 0) content += face.trTop + trLines * face.trLine;
-  const need = content + face.padV * 2 + face.foot + extraPx;
-  return { h: Math.ceil(Math.max(face.minH, need)), wordLines, trLines };
+  const f = fitAtScale(face, front, back, 1, extraPx);
+  return { h: f.h, wordLines: f.wordLines, trLines: f.trLines };
+}
+
+/**
+ * Самый крупный кегль (масштаб ≤ 1), при котором текст помещается в высоту `maxH`. Не помещается даже на полу кегля — возвращаем текст на полу: плитка вырастет выше `maxH`.
+ */
+export function fitWithin(face: StepFace, front: string, back: string | null | undefined, maxH: number, extraPx = 0): CardFit {
+  const full = fitAtScale(face, front, back, 1, extraPx);
+  if (full.h <= maxH) return full;
+  // оба кегля (фразы и перевода) уменьшаются, пока каждый не упрётся в свой пол: нижняя граница масштаба — меньший из двух
+  const wordFloorScale = WORD_FLOOR[face.step]! / face.wordSize;
+  const floorScale = face.translation && back ? Math.min(wordFloorScale, TR_FLOOR[face.step]! / face.trSize) : wordFloorScale;
+  const low = fitAtScale(face, front, back, Math.min(1, floorScale), extraPx);
+  if (low.h > maxH) return low;
+  let lo = Math.min(1, floorScale);
+  let hi = 1;
+  let best = low;
+  for (let i = 0; i < 7; i += 1) {
+    const mid = (lo + hi) / 2;
+    const f = fitAtScale(face, front, back, mid, extraPx);
+    if (f.h <= maxH) { best = f; lo = mid; } else hi = mid;
+  }
+  return best;
 }

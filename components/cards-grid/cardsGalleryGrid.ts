@@ -7,7 +7,7 @@
  * списка считаются по верхам рядов (бинарный поиск). Модуль чистый — тестируется без React Native.
  */
 import { GALLERY_STEPS, clampStep } from './cardsGalleryLayout';
-import { stepFace, tileFit, type StepFace } from './cardsGalleryFit';
+import { FIT_CAP_RATIO, fitAtScale, fitWithin, stepFace, type CardFit, type StepFace } from './cardsGalleryFit';
 
 export type TileGeom = Readonly<{ x: number; y: number; w: number; h: number }>;
 
@@ -19,8 +19,8 @@ export type GalleryGrid = Readonly<{
   /** Высота всей сетки без нижнего зазора. */
   height: number;
   geom: (index: number) => TileGeom;
-  /** Сколько строк фразы и перевода оценено у карточки — для сверки с настоящим замером. */
-  lines: (index: number) => Readonly<{ wordLines: number; trLines: number }>;
+  /** Как лёг текст карточки (кегль после уменьшения, строки) — плитка рисует им и сверяет число строк с настоящим замером. */
+  fit: (index: number) => CardFit;
 }>;
 
 export type GalleryGrids = Readonly<{
@@ -43,14 +43,28 @@ export function buildGalleryGrid(step: number, cards: readonly GridCard[], width
   const def = GALLERY_STEPS[s]!;
   const tileW = (width - def.gap * (def.cols - 1)) / def.cols;
   const face = stepFace(s, tileW, fontScale);
-  const fits = cards.map((c) => tileFit(face, c.front, c.back, fixes?.get(fixKey(c.id, s)) ?? 0));
+  // зачем (владелец 18.10: «карточка всегда горизонтальная»): ряд растёт под самую длинную фразу, но не выше потолка по пропорции (FIT_CAP_RATIO × ширина); дальше уменьшаем кегль
+  // самой длинной карточки (у короткой слова остаются крупными), и лишь если не влезает даже на полу кегля — ряд вырастает выше потолка (текст целиком важнее пропорции).
+  const cap = Math.max(face.minH, Math.round(tileW * FIT_CAP_RATIO[s]!));
+  const need1 = cards.map((c) => fitAtScale(face, c.front, c.back, 1, fixes?.get(fixKey(c.id, s)) ?? 0));
+  const fits: CardFit[] = [];
   const rows = Math.ceil(cards.length / def.cols);
   const rowHeights: number[] = [];
   const rowTops: number[] = [];
   let y = 0;
   for (let r = 0; r < rows; r += 1) {
-    let h = face.minH;
-    for (let c = r * def.cols; c < Math.min(cards.length, (r + 1) * def.cols); c += 1) h = Math.max(h, fits[c]!.h);
+    const from = r * def.cols;
+    const to = Math.min(cards.length, from + def.cols);
+    let want = face.minH;
+    for (let c = from; c < to; c += 1) want = Math.max(want, need1[c]!.h);
+    const rowH = Math.min(want, cap);
+    let h = rowH;
+    for (let c = from; c < to; c += 1) {
+      const card = cards[c]!;
+      const f = need1[c]!.h <= rowH ? need1[c]! : fitWithin(face, card.front, card.back, rowH, fixes?.get(fixKey(card.id, s)) ?? 0);
+      fits[c] = f;
+      h = Math.max(h, f.h);
+    }
     rowTops.push(y);
     rowHeights.push(h);
     y += h + def.gap;
@@ -61,7 +75,7 @@ export function buildGalleryGrid(step: number, cards: readonly GridCard[], width
     const col = i % def.cols;
     return { x: col * (tileW + def.gap), y: rowTops[r] ?? 0, w: tileW, h: rowHeights[r] ?? face.minH };
   };
-  return { step: s, cols: def.cols, gap: def.gap, tileW, face, rowTops, rowHeights, height, geom, lines: (i) => ({ wordLines: fits[i]?.wordLines ?? 1, trLines: fits[i]?.trLines ?? 0 }) };
+  return { step: s, cols: def.cols, gap: def.gap, tileW, face, rowTops, rowHeights, height, geom, fit: (i) => fits[i] ?? need1[0] ?? fitAtScale(face, '', null, 1) };
 }
 
 export function buildGalleryGrids(cards: readonly GridCard[], width: number, fontScale = 1, fixes?: GridFixes): GalleryGrids {

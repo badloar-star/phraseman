@@ -4,6 +4,7 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens, makeLiquidGlassTheme } from '../constants/liquidGlassThemePalette';
 import { DARK } from '../constants/theme';
 import { googleButtonVariantForSurface } from '../components/auth_google_button_style';
+import { deleteButtonPaint } from '../components/account/delete_button_paint';
 
 type Rgb = [number, number, number];
 const parse = (c: string): { rgb: Rgb; a: number } => {
@@ -49,12 +50,13 @@ const PAIRS: Pair[] = [
   // выход (AccountLogoutFlow) и удаление (DeleteAccountConfirmModal), шторка opaqueSheet
   { el: 'Выход/удаление: «Отмена»', what: 'тон buttonFill к шторке', min: TONE, v: (c) => R(over(c.g.buttonFill!, sheet(c)), sheet(c)) },
   { el: 'Выход: главная кнопка', what: 'заливка ctaFill к шторке / подпись', min: GRAPHIC, v: (c) => Math.min(R(over(c.g.ctaFill!, sheet(c)), sheet(c)), onFill(c.g.ctaFillInk!, c.g.ctaFill!, sheet(c)) / 1.5) },
+  // удаление: координатор 18.10, вариант (а) — сплошная красная кнопка, подпись по контрасту; «Отмена» — buttonFill
+  { el: 'Удаление: «Удалить» (слово введено)', what: 'заливка bad к шторке', min: GRAPHIC, v: (c) => R(solid(deleteButtonPaint(c.g as never, true).fill), sheet(c)) },
+  { el: 'Удаление: «Удалить» (слово введено)', what: 'подпись и спиннер на заливке', min: TEXT, v: (c) => { const p = deleteButtonPaint(c.g as never, true); return R(solid(p.ink), solid(p.fill)); } },
+  { el: 'Удаление: «Удалить» (до ввода слова)', what: 'подпись неактивной кнопки на заливке (≥ 3)', min: GRAPHIC, v: (c) => { const p = deleteButtonPaint(c.g as never, false); return onFill(p.ink, p.fill, sheet(c)); } },
+  { el: 'Удаление: «Отмена»', what: 'тон buttonFill к шторке', min: TONE, v: (c) => R(over(c.g.buttonFill!, sheet(c)), sheet(c)) },
 ];
-// справочно, без проверки: приглушённая деструктивная кнопка «Удалить» (wrongBg 12 % + wrong) — вид задан дизайном, менять только с его решения
-const INFO: Pair[] = [
-  { el: 'ℹ Удаление: кнопка «Удалить»', what: 'подпись bad на заливке bad 12 % (сейчас wrong/wrongBg)', min: TEXT, v: (c) => onFill(c.g.bad!, `rgba(${parse(c.g.bad!).rgb.join(',')},0.12)`, sheet(c)) },
-  { el: 'ℹ Удаление: кнопка «Удалить»', what: 'тон заливки bad 12 % к шторке', min: TONE, v: (c) => R(over(`rgba(${parse(c.g.bad!).rgb.join(',')},0.12)`, sheet(c)), sheet(c)) },
-];
+const INFO: Pair[] = [];
 
 describe('[BLEND-AUTH] экраны входа и аккаунта — все 138 сочетаний', () => {
   const rows: string[] = [];

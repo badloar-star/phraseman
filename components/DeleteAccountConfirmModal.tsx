@@ -36,6 +36,7 @@ import { soundDirector } from '../modules/audio/sound_director';
 import HybridAlertShell from './modal_fx/HybridAlertShell';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow } from './v2/ShadowSurface';
+import { deleteButtonPaint } from './account/delete_button_paint';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 import { isDevAccountLinkedDemo, isDevDeleteConfirmBypass } from '../app/dev_account_state';
@@ -161,6 +162,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   // зачем (координатор 12.10, auth-gap-011): робот не вводит кириллицу — без ввода слова кнопка доступна ТОЛЬКО при dev-флаге удаления
   // (delete=fail|throw, настоящее удаление недостижимо). В стор-сборке геттер — заглушка false: ввод обязателен всегда.
   const deleteConfirmMatches = isDevDeleteConfirmBypass() || normalizeConfirm(deleteConfirmInput) === normalizeConfirm(deleteConfirmWord);
+  const deletePaint = deleteButtonPaint(glass, deleteConfirmMatches);
 
   // зачем (живой прогон 10.10, 21:35): шаг «закрыть хранилище телефона» в удалении грузит модуль
   // phone_state_bootstrap; холодная загрузка заняла 1923 мс против 163 мс тёплой — и весь полёт
@@ -502,7 +504,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
                 borderRadius: 24,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: glass.selected,
+                backgroundColor: glass.buttonFill, // зачем ([BLEND-AUTH] 18.10): вуаль selected почти не отделялась от шторки — buttonFill держит тон ≥ 1,5
                 overflow: 'hidden',
                 opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
               })}
@@ -519,10 +521,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
                 pl: 'Anuluj',
               })}</Text>
             </Pressable>
-            {/* зачем: приглушённый деструктивный тон ThemedConfirmModal (t.wrongBg + t.wrong);
-                вес удара несёт дрожь на реальном подтверждении (runDangerShake), а не кричащая
-                заливка. До совпадения слова кнопка недоступна. Одна onPress — повторный вход
-                закрыт deleteInFlightRef. */}
+            {/* зачем (координатор 18.10, вариант (а)): необратимое действие — сплошная красная кнопка, как в iOS (deleteButtonPaint: bad темы,
+                подпись по контрасту ≥ 4,5); прежний приглушённый тон давал подпись до 3,82:1. Дрожь на подтверждении (runDangerShake) осталась.
+                До совпадения слова — пара неактивной кнопки темы. Одна onPress — повторный вход закрыт deleteInFlightRef. */}
             <Pressable
               testID="delete-account-confirm"
               hitSlop={8}
@@ -547,15 +548,15 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
                 borderRadius: 24,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: deleteConfirmMatches ? t.wrongBg : glass.buttonFill,
+                backgroundColor: deletePaint.fill,
                 overflow: 'hidden',
-                opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.45,
+                opacity: deleting ? 0.78 : deleteConfirmMatches && pressed ? 0.82 : 1,
               })}
               onPress={handleConfirmDelete}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                {deleting ? <ActivityIndicator size="small" color={t.wrong} /> : null}
-                <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                {deleting ? <ActivityIndicator size="small" color={deletePaint.ink} /> : null}
+                <Text style={{ color: deletePaint.ink, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                   {L({ ru: 'Удалить', uk: 'Видалити', en: "Delete", es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
                 </Text>
               </View>

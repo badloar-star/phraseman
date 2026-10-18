@@ -7,9 +7,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { dialogueScenarioIcon } from './dialogue_scenario_icons';
 import React, { useRef, useState } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { Image } from 'expo-image';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
+import { logMemCoin } from '../coins/mem_coin_probe';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { PressableScale } from '../feedback/PressableScale';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
@@ -220,10 +222,14 @@ export function DialogueV2CatalogueSection({
                             <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18 }} maxFontSizeMultiplier={1.3}>
                               {labels.lockedAtRank(item.rankRequired)}
                             </Text>
+                            {/* зачем (R129): монета 768² в 16 dp на каждой закрытой строке — expo-image декодирует под размер вида; recyclingKey по рангу */}
                             <Image
                               source={coinRankRowForDisplay(item.rankRequired).source}
                               style={{ width: 16, height: 16 }}
+                              contentFit="cover"
+                              recyclingKey={`coin-${item.rankRequired}`}
                               accessible={false}
+                              onLoad={() => logMemCoin('dialogue-catalogue-locked', 16)}
                             />
                           </View>
                         ) : null}

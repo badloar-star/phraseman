@@ -1,10 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import { RowDivider } from '../v2/RowDivider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
+import { logMemCoin } from '../coins/mem_coin_probe';
 import EnergyBar from '../EnergyBar';
 import V2Backdrop from '../v2/V2Backdrop';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
@@ -137,7 +139,8 @@ export function DialogueV2BriefingScreen({
         {!unlocked && currentRank != null ? (
           <View style={styles.rankNow} accessible accessibilityLabel={labels.currentRank(currentRank)}>
             <Text maxFontSizeMultiplier={1.3} style={[styles.rankNowText, { color: glass.secondary }]}>{labels.currentRank(currentRank)}</Text>
-            <Image source={coinRankRowForDisplay(currentRank).source} style={styles.rankCoin} accessible={false} />
+            {/* зачем (R129): expo-image декодирует монету 768² под размер вида (18 dp), а не целиком */}
+            <Image source={coinRankRowForDisplay(currentRank).source} style={styles.rankCoin} contentFit="cover" accessible={false} onLoad={() => logMemCoin('dialogue-briefing-rank', 18)} />
           </View>
         ) : null}
       </SafeAreaView>

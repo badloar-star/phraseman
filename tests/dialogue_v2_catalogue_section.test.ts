@@ -3,6 +3,8 @@ import path from 'path';
 import type { DialogueV2CatalogueLearnerItem } from '../components/dialogs/DialogueV2CatalogueSection';
 
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
+// зачем (R129): монета закрытой строки — expo-image (декод под размер вида)
+jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../components/feedback/PressableScale', () => ({ PressableScale: 'PressableScale' }));
 jest.mock('../components/dialogs/glass/DialogueGlassKit', () => ({ useDialogueGlass: () => ({}), dialogueGlassCardStyle: () => ({}) }));
 jest.mock('../app/smooth_layout', () => ({ animateNextLayoutTransition: () => undefined }));

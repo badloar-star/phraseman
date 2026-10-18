@@ -1,9 +1,10 @@
 # Английский · Урок 8 · Занятие 21 — Сходи за зонтом
 
-**Ситуация.** Вы просите принести зонт, одолжить ручку и рассказываете о трудности с управлением лодкой.
+**Ситуация.** Вы просите принести забытый зонт, достать пончо перед поездкой и найти тент для стола на пикнике.
 
 **Что вы освоите:** закрепить просьбы Can you…? со словом fetch
-**Новые слова:** fetch
+**Новые слова:** fetch, poncho, tarp, repellent
+**Возвращаются:** umbrella, write, steer, pass
 
 ---
 
@@ -11,7 +12,7 @@
 
 ### Зонт остался наверху
 
-Вы уже у двери, а зонт остался в комнате наверху. Друг ещё не спустился. `Fetch` — «сходить за чем-то и принести». `Can you fetch it?` — «Можешь сходить за ним и принести?» Здесь `it` — ваш зонт. После `Can you` нужно `fetch it`, без `to`. Зонт готов к дождю — только пока в комнате.
+Вы уже у двери, а зонт остался в комнате наверху. Друг ещё не спустился. `Fetch` — «сходить за чем-то и принести». `Can you fetch it?` — «Можешь сходить за ним и принести?» Здесь `it` — ваш зонт. После `Can you` нужно `fetch it`, без `to`. Другу нужно зайти в комнату и вернуться к вам с зонтом.
 
 **Попросите друга сходить за зонтом и принести его.**
 
@@ -23,111 +24,127 @@
 
 ## Интро 2
 
-### Записать адрес
+### Дождь перед поездкой на велосипеде
 
-Друг диктует адрес, а вашей ручки нет. У него есть запасная. `Can you lend me a pen?` — «Можешь одолжить мне ручку?» `Lend` значит дать на время; ручку вы вернёте.
+Вы собираетесь ехать на велосипеде, и начинается дождь. В гараже лежит ваше непромокаемое пончо, а друг как раз идёт туда. Poncho — «пончо», свободная накидка с отверстием для головы. `Can you fetch the poncho?` — «Можешь сходить за пончо и принести его?» Вместо it называем нужную вещь: the poncho.
 
-**Попросите друга одолжить вам ручку.**
+**Попросите друга принести пончо из гаража.**
 
-- ✅ **Can you lend me a pen?**
-- ❌ Can you lends me a pen? — *После `can` нужно `lend`, без `s`.*
-- ❌ Can you to lend me a pen? — *После `can` нужно `lend`, без `to`.*
+- ✅ **Can you fetch the poncho?**
+- ❌ Can you fetches the poncho? — *После can нужно fetch, без es.*
+- ❌ Can you to fetch the poncho? — *После can нужно fetch, без to.*
 
 ---
 
 ## Интро 3
 
-### На прогулке в лодке
+### Защитить стол на пикнике
 
-Друг предлагает вам взять руль лодки, но вы ещё не умеете им управлять. `I can’t steer` — «Я не умею управлять рулём». После `can’t` нужно `steer`, без `to`.
+На пикнике пошёл дождь. Вы хотите накрыть стол тентом, который остался в машине. Tarp — «тент, защитное полотнище», сокращение от tarpaulin. `Can you fetch the tarp?` — «Можешь сходить за тентом и принести его?» Вы обращаетесь к другу, который знает, где он лежит.
 
-**Скажите другу, что пока не умеете управлять рулём.**
+**Попросите друга принести тент из машины.**
 
-- ✅ **I can’t steer.**
-- ❌ I can steer. — *Вы пока не умеете: нужно `can’t`.*
-- ❌ I can’t to steer. — *После `can’t` нужно `steer`, без `to`.*
+- ✅ **Can you fetch the tarp?**
+- ❌ You can fetch the tarp. — *Для просьбы начните с Can you.*
+- ❌ Can you to fetch the tarp? — *После can нужно fetch, без to.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Попросите «Можешь сходить за ним и принести?»**
+**1 · Карточка слова — fetch**
+<!-- interaction_id: en:lesson-08:session-21:word:fetch; family: word_card -->
+> **fetch** — сходить и принести. Can you fetch it? — «Можешь сходить за ним и принести?» Здесь it — зонт. Нужно пойти за предметом и вернуться с ним.
+
+**2 · Попросите «Можешь сходить за ним и принести?»**
 <!-- interaction_id: en:lesson-08:session-21:i01; family: phrase_builder -->
 Плитки: `it` `fetch` `you` `Can` → **Can you fetch it?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-21:i02; family: listen_choose -->
 🔊 *fetch* → **fetch** · write · steer
 - write — *В записи первое слово — `fetch`, а в этом варианте — `write`.*
 - steer — *В записи первое слово — `fetch`, а в этом варианте — `steer`.*
 
-**3 · Коробка в соседней комнате. Попросите сходить за ней и принести**
+**4 · Коробка в соседней комнате. Выберите форму для просьбы принести коробку**
 <!-- interaction_id: en:lesson-08:session-21:i03; family: context_gap_grammar -->
 Can you ___ it? → **fetch** · to fetch · fetches
 - to fetch — *После `can` нужно `fetch`, без `to`.*
 - fetches — *После `can` нужно `fetch`, без `es`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-21:i04; family: speed_match -->
 fetch — сходить и принести · juice — сок · write — писать · steer — управлять рулём
 
-**5 · Послушайте и соберите фразу**
+**6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-21:i05; family: listen_build_dictation -->
 🔊 *Can you fetch it?* Плитки: `it` `fetch` `you` `Can` → **Can you fetch it?**
 
-**6 · Попросите «Можешь мне помочь?»**
+**7 · Карточка слова — poncho**
+<!-- interaction_id: en:lesson-08:session-21:word:poncho; family: word_card -->
+> **poncho** — пончо. Can you fetch the poncho? — «Можешь сходить за пончо и принести его?» Свободная накидка с отверстием для головы.
+
+**8 · Попросите «Можешь сходить за пончо и принести его?»**
 <!-- interaction_id: en:lesson-08:session-21:i06; family: phrase_builder -->
-Плитки: `me` `help` `you` `Can` → **Can you help me?**
+Плитки: `poncho` `the` `fetch` `you` `Can` → **Can you fetch the poncho?**
 
-**7 · Друг предлагает взять руль лодки. Скажите «Я не умею управлять рулём»**
+**9 · Карточка слова — tarp**
+<!-- interaction_id: en:lesson-08:session-21:word:tarp; family: word_card -->
+> **tarp** — тент, защитное полотнище. Can you fetch the tarp? — «Можешь сходить за тентом и принести его?» Здесь — непромокаемое полотнище, которым накрывают вещи.
+
+**10 · Тент остался в машине. Попросите друга «Можешь сходить за тентом и принести его?»**
 <!-- interaction_id: en:lesson-08:session-21:i07; family: scripted_repeat_compare -->
-🎙 **I can’t steer.**
+🎙 **Can you fetch the tarp?**
 
-**8 · Попросите помочь вам**
+**11 · Выберите форму для просьбы принести пончо**
 <!-- interaction_id: en:lesson-08:session-21:i08; family: context_gap_grammar -->
-Can you ___ me? → **help** · helps · to help
-- helps — *После `can` нужно `help`, без `s`.*
-- to help — *После `can` нужно `help`, без `to`.*
+Can you ___ the poncho? → **fetch** · fetches · to fetch
+- fetches — *После can нужно fetch, без es.*
+- to fetch — *После can нужно fetch, без to.*
 
-**9 · Послушайте и выберите фразу**
+**12 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-21:i09; family: listen_choose -->
 🔊 *Can you fetch it?* → **Can you fetch it?** · Can you fetch this? · Can you fetch that?
 - Can you fetch this? — *В записи последнее слово — `it`, а в этом варианте — `this`.*
 - Can you fetch that? — *В записи последнее слово — `it`, а в этом варианте — `that`.*
 
-**10 · Соедините слова со значениями**
+**13 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-21:i10; family: speed_match -->
-lie — лгать · fetch — сходить и принести · juice — сок · write — писать
+fetch — сходить и принести · poncho — пончо · tarp — тент · umbrella — зонт
 
-**11 · Послушайте и соберите фразу**
+**14 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-21:i11; family: listen_build_dictation -->
-🔊 *Can you help me?* Плитки: `me` `help` `you` `Can` → **Can you help me?**
+🔊 *Can you fetch the tarp?* Плитки: `tarp` `the` `fetch` `you` `Can` → **Can you fetch the tarp?**
 
-**12 · Попросите «Можешь открыть дверь?»**
+**15 · Карточка слова — repellent**
+<!-- interaction_id: en:lesson-08:session-21:word:repellent; family: word_card -->
+> **repellent** — средство от насекомых. Can you pass me the repellent? — «Можешь передать мне средство от насекомых?» Здесь — средство, отпугивающее комаров.
+
+**16 · Средство от насекомых лежит возле друга. Попросите «Можешь передать мне средство от насекомых?»**
 <!-- interaction_id: en:lesson-08:session-21:i12; family: phrase_builder -->
-Плитки: `door` `the` `open` `you` `Can` → **Can you open the door?**
+Плитки: `repellent` `the` `me` `pass` `you` `Can` → **Can you pass me the repellent?**
 
-**13 · Друг спрашивает, часто ли вы пишете. Скажите «Я часто пишу»**
+**17 · Друг спрашивает, часто ли вы пишете. Скажите «Я часто пишу»**
 <!-- interaction_id: en:lesson-08:session-21:i13; family: scripted_repeat_compare -->
 🎙 **I often write.**
 
-**14 · Начните просьбу «Можешь сходить за ним и принести?»**
+**18 · Начните просьбу «Можешь сходить за ним и принести?»**
 <!-- interaction_id: en:lesson-08:session-21:i14; family: context_gap_grammar -->
 ___ you fetch it? → **Can** · Are · Is
 - Are — *В этой просьбе нужно `Can you fetch`, без `are`.*
 - Is — *Начните с `Can you fetch`.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-08:session-21:i15; family: listen_choose -->
-🔊 *Can you open the door?* → **Can you open the door?** · Can you open the window? · Can you open the box?
-- Can you open the window? — *В записи последнее слово — `door`, а в этом варианте — `window`.*
-- Can you open the box? — *В записи последнее слово — `door`, а в этом варианте — `box`.*
+🔊 *Can you pass me the repellent?* → **Can you pass me the repellent?** · Can you pass me the poncho? · Can you pass me the tarp?
+- Can you pass me the poncho? — *В записи repellent — «средство от насекомых», а не poncho — «пончо».*
+- Can you pass me the tarp? — *В записи repellent, а не tarp — «тент».*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-21:i16; family: speed_match -->
-fetch — сходить и принести · lie — лгать · steer — управлять рулём · juice — сок
+fetch — сходить и принести · poncho — пончо · tarp — тент · repellent — средство от насекомых
 
-**17 · Телефон остался в соседней комнате. Друг знает, где он лежит. Попросите «Можешь сходить за ним и принести?»**
+**21 · Телефон остался в соседней комнате. Друг знает, где он лежит. Попросите «Можешь сходить за ним и принести?»**
 <!-- interaction_id: en:lesson-08:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
 🎙 **Can you fetch it?**
 

@@ -1,37 +1,57 @@
 [
   {
+    "interactionId": "en:lesson-07:session-31:word:visit",
+    "correctText": "visit",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-31:i01",
-    "correctText": "Do you visit parks?",
+    "correctText": "When do you visit our grandmother?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i02",
-    "correctText": "visit",
+    "correctText": "When do you visit our grandmother?",
     "correctResponseId": "en:lesson-07:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-31:i03",
-    "correctText": "visit",
+    "correctText": "do",
     "correctResponseId": "en:lesson-07:session-31:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-31:i04",
-    "correctText": "en:lesson-07:session-31:i04:p1=visit\nen:lesson-07:session-31:i04:p2=shower\nen:lesson-07:session-31:i04:p3=guitar\nen:lesson-07:session-31:i04:p4=parks",
+    "correctText": "en:lesson-07:session-31:i04:p1=visit\nen:lesson-07:session-31:i04:p2=grandmother\nen:lesson-07:session-31:i04:p3=grandfather\nen:lesson-07:session-31:i04:p4=call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:word:harvest",
+    "correctText": "harvest",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i05",
-    "correctText": "Do you visit parks?",
+    "correctText": "When does she harvest apples?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:word:babysit",
+    "correctText": "babysit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i06",
-    "correctText": "When do you shower?",
+    "correctText": "When do you babysit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-31:word:shave",
+    "correctText": "shave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i07",
-    "correctText": "Where do you work?",
+    "correctText": "When do you shave?",
     "correctResponseId": null
   },
   {
@@ -41,27 +61,27 @@
   },
   {
     "interactionId": "en:lesson-07:session-31:i09",
-    "correctText": "Do you visit parks?",
+    "correctText": "When does she harvest apples?",
     "correctResponseId": "en:lesson-07:session-31:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-31:i10",
-    "correctText": "en:lesson-07:session-31:i10:p1=cheat\nen:lesson-07:session-31:i10:p2=visit\nen:lesson-07:session-31:i10:p3=parks\nen:lesson-07:session-31:i10:p4=shower",
+    "correctText": "en:lesson-07:session-31:i10:p1=visit\nen:lesson-07:session-31:i10:p2=grandmother\nen:lesson-07:session-31:i10:p3=apple\nen:lesson-07:session-31:i10:p4=pear",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i11",
-    "correctText": "When do you shower?",
+    "correctText": "Where does she babysit?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i12",
-    "correctText": "Do you have a guitar?",
+    "correctText": "When does he shave?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i13",
-    "correctText": "I don’t cheat.",
+    "correctText": "When does she visit our grandmother?",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-07:session-31:i15",
-    "correctText": "Where do you work?",
+    "correctText": "When do you babysit?",
     "correctResponseId": "en:lesson-07:session-31:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-31:i16",
-    "correctText": "en:lesson-07:session-31:i16:p1=visit\nen:lesson-07:session-31:i16:p2=guitar\nen:lesson-07:session-31:i16:p3=cheat\nen:lesson-07:session-31:i16:p4=parks",
+    "correctText": "en:lesson-07:session-31:i16:p1=shave\nen:lesson-07:session-31:i16:p2=babysit\nen:lesson-07:session-31:i16:p3=harvest\nen:lesson-07:session-31:i16:p4=visit",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-31:i17",
-    "correctText": "When does Tom visit parks?",
+    "correctText": "When does she harvest apples?",
     "correctResponseId": null
   }
 ]

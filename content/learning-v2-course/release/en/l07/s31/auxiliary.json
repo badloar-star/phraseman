@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-31:intro1:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-31:intro1:r3": {
-          "ru": "После `do you` нужно `visit`, без `s`.",
-          "uk": "Після `do you` потрібне `visit`, без `s`."
+          "ru": "После do you нужно visit, без s.",
+          "uk": "Після do you потрібно visit, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-31:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С she нужно does.",
+          "uk": "З she потрібно does."
         },
         "en:lesson-07:session-31:intro2:r3": {
-          "ru": "После `do you` нужно `shower`, без `s`.",
-          "uk": "Після `do you` потрібне `shower`, без `s`."
+          "ru": "После does нужно harvest, без s.",
+          "uk": "Після does потрібно harvest, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-31:intro3:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно do.",
+          "uk": "З you потрібно do."
         },
         "en:lesson-07:session-31:intro3:r3": {
-          "ru": "После `do you` нужно `work`, без `s`.",
-          "uk": "Після `do you` потрібне `work`, без `s`."
+          "ru": "После do you нужно babysit, без s.",
+          "uk": "Після do you потрібно babysit, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "96577f143b7968ce8b93e15626f927789020c95ec8ab44748fd35d05168051a6"
+  "auxiliaryFingerprint": "1ddb9b9fef507b7209d6b11ac55f22d00f18a9219cd1dd6a8453126f6bf1b44c"
 }

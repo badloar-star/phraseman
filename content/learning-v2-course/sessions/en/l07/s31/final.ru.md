@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 31 — Ты посещаешь парки?
+# Английский · Урок 7 · Занятие 31 — Семейные дела
 
-**Ситуация.** Вы обсуждаете прогулки по паркам, привычное время душа и место работы знакомого.
+**Ситуация.** Вы расспрашиваете семью и соседей: у брата — когда он навещает бабушку, у соседа — когда соседка собирает яблоки, а у сестры — когда она присматривает за детьми.
 
-**Что вы освоите:** задавать вопросы о привычках, месте и времени действий
-**Новые слова:** visit
+**Что вы освоите:** спрашивать с When и Where о семейных делах: с you нужно do, с he и she — does
+**Новые слова:** visit, harvest, babysit, shave
+**Возвращаются:** grandmother, grandfather, apple, pear, call, pick, work
 
 ---
 
 ## Интро 1
 
-### Выходные в парке
+### Поездка к бабушке
 
-Вы обсуждаете с другом, как он проводит выходные. `visit` — «посещать». `Do you visit parks?` — «Ты посещаешь парки?» После `visit` здесь называем место — `parks`. Это вопрос о привычке, поэтому начинаем с `do you`. Скамейки пока не требуют записи на приём.
+Брат регулярно навещает вашу бабушку. Вы тоже хотите приезжать почаще и узнаёте, в какие дни он обычно у неё бывает. visit — «навещать». Спросите: When do you visit our grandmother? — «Когда ты навещаешь нашу бабушку?» С you здесь нужно do, затем visit, без s. У бабушки «зайти на минутку» обычно заканчивается обедом.
 
-**Спросите друга, посещает ли он парки.**
+**Вы узнаёте, в какие дни брат обычно бывает у бабушки. Спросите его: «Когда ты навещаешь нашу бабушку?»**
 
-- ✅ **Do you visit parks?**
-- ❌ Does you visit parks? — *С `you` нужно `do`.*
-- ❌ Do you visits parks? — *После `do you` нужно `visit`, без `s`.*
+- ✅ **When do you visit our grandmother?**
+- ❌ When does you visit our grandmother? — *С you нужно do.*
+- ❌ When do you visits our grandmother? — *После do you нужно visit, без s.*
 
 ---
 
 ## Интро 2
 
-### Общее расписание ванной
+### Яблоки в саду
 
-Вы делите квартиру с другом и обсуждаете обычное время пользования ванной. `When do you shower?` — «Когда ты принимаешь душ?» `When` спрашивает о времени, затем идут `do you shower`. Здесь `shower` — действие «принимать душ».
+Соседка каждый год собирает урожай со своих яблонь. Вы предлагаете помощь и спрашиваете её мужа, когда она обычно собирает урожай яблок. harvest — «собирать урожай». Спросите: When does she harvest apples? — «Когда она собирает яблоки?» С she здесь нужно does, затем harvest, без s. Речь о сборе урожая, а не об одном яблоке к чаю.
 
-**Узнайте, когда друг обычно принимает душ.**
+**Сосед показывает на сад. Спросите его: «Когда она собирает яблоки?»**
 
-- ✅ **When do you shower?**
-- ❌ When does you shower? — *С `you` нужно `do`.*
-- ❌ When do you showers? — *После `do you` нужно `shower`, без `s`.*
+- ✅ **When does she harvest apples?**
+- ❌ When do she harvest apples? — *С she нужно does.*
+- ❌ When does she harvests apples? — *После does нужно harvest, без s.*
 
 ---
 
 ## Интро 3
 
-### Место работы
+### Вечер с детьми
 
-Вы узнаёте, где работает знакомый. `Where do you work?` — «Где ты работаешь?» `Where` спрашивает о месте. После него идут `do you work`, без окончания у `work`.
+Сестра по вечерам присматривает за детьми соседей. Вы хотите выбрать свободный вечер для совместной прогулки и узнаёте, когда она обычно занята. babysit — «присматривать за детьми». Спросите: When do you babysit? — «Когда ты присматриваешь за детьми?» С you здесь нужно do, затем babysit, без s.
 
-**Спросите знакомого: «Где ты работаешь?»**
+**Сестра рассказывает о соседях. Спросите её: «Когда ты присматриваешь за детьми?»**
 
-- ✅ **Where do you work?**
-- ❌ Where does you work? — *С `you` нужно `do`.*
-- ❌ Where do you works? — *После `do you` нужно `work`, без `s`.*
+- ✅ **When do you babysit?**
+- ❌ When does you babysit? — *С you нужно do.*
+- ❌ When do you babysits? — *После do you нужно babysit, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Спросите «Ты посещаешь парки?»**
+**1 · Карточка слова — visit**
+<!-- interaction_id: en:lesson-07:session-31:word:visit; family: word_card -->
+> **visit** — навещать. When do you visit our grandmother? — «Когда ты навещаешь нашу бабушку?» Приходить в гости к человеку.
+
+**2 · Вы узнаёте, в какие дни брат обычно бывает у бабушки. Спросите его: «Когда ты навещаешь нашу бабушку?»**
 <!-- interaction_id: en:lesson-07:session-31:i01; family: phrase_builder -->
-Плитки: `parks` `visit` `you` `Do` → **Do you visit parks?**
+Плитки: `grandmother` `our` `visit` `you` `do` `When` → **When do you visit our grandmother?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте брата**
 <!-- interaction_id: en:lesson-07:session-31:i02; family: listen_choose -->
-🔊 *visit* → **visit** · shower · guitar
-- shower — *В записи первое слово — `visit`, а в этом варианте — `shower`.*
-- guitar — *В записи первое слово — `visit`, а в этом варианте — `guitar`.*
+🔊 *When do you visit our grandmother?* → **When do you visit our grandmother?** · When do you visit our grandfather? · When do you call our grandmother?
+- When do you visit our grandfather? — *В записи последнее слово — `grandmother`, бабушка, а в этом варианте — `grandfather`, дедушка.*
+- When do you call our grandmother? — *В записи четвёртое слово — `visit`, навещать, а в этом варианте — `call`, звонить.*
 
-**3 · Спросите о привычке посещать парки**
+**4 · Спросите брата о бабушке. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-31:i03; family: context_gap_grammar -->
-Do you ___ parks? → **visit** · visits · is visit
-- visits — *После `do you` нужно `visit`.*
-- is visit — *Здесь нужно `visit`, без `is`.*
-
-**4 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-07:session-31:i04; family: speed_match -->
-visit — посещать · shower — принимать душ · guitar — гитара · parks — парки
-
-**5 · Послушайте и соберите вопрос**
-<!-- interaction_id: en:lesson-07:session-31:i05; family: listen_build_dictation -->
-🔊 *Do you visit parks?* Плитки: `parks` `visit` `you` `Do` → **Do you visit parks?**
-
-**6 · Узнайте обычное время душа: «Когда ты принимаешь душ?»**
-<!-- interaction_id: en:lesson-07:session-31:i06; family: phrase_builder -->
-Плитки: `shower` `you` `do` `When` → **When do you shower?**
-
-**7 · Спросите «Где ты работаешь?»**
-<!-- interaction_id: en:lesson-07:session-31:i07; family: scripted_repeat_compare -->
-🎙 **Where do you work?**
-
-**8 · Узнайте место работы знакомого**
-<!-- interaction_id: en:lesson-07:session-31:i08; family: context_gap_grammar -->
-Where ___ you work? → **do** · does · are
+When ___ you visit our grandmother? → **do** · does · are
 - does — *С `you` нужно `do`.*
-- are — *Вопрос о действии `work` здесь строим с `do`.*
+- are — *С действием `visit` нужно `do`, а не `are`.*
 
-**9 · Послушайте и выберите вопрос**
+**5 · Соедините слова со значениями**
+<!-- interaction_id: en:lesson-07:session-31:i04; family: speed_match -->
+visit — навещать · grandmother — бабушка · grandfather — дедушка · call — звонить
+
+**6 · Карточка слова — harvest**
+<!-- interaction_id: en:lesson-07:session-31:word:harvest; family: word_card -->
+> **harvest** — собирать урожай. When does she harvest apples? — «Когда она собирает яблоки?» Снимать с деревьев и грядок то, что выросло.
+
+**7 · Послушайте соседа и соберите вопрос**
+<!-- interaction_id: en:lesson-07:session-31:i05; family: listen_build_dictation -->
+🔊 *When does she harvest apples?* Плитки: `apples` `harvest` `she` `does` `When` → **When does she harvest apples?**
+
+**8 · Карточка слова — babysit**
+<!-- interaction_id: en:lesson-07:session-31:word:babysit; family: word_card -->
+> **babysit** — присматривать за детьми. When do you babysit? — «Когда ты присматриваешь за детьми?» Временно заботиться о ребёнке вместо родителей, например вечером. Это может быть и ребёнок родственников.
+
+**9 · Сестра рассказывает о соседях. Спросите её: «Когда ты присматриваешь за детьми?»**
+<!-- interaction_id: en:lesson-07:session-31:i06; family: phrase_builder -->
+Плитки: `babysit` `you` `do` `When` → **When do you babysit?**
+
+**10 · Карточка слова — shave**
+<!-- interaction_id: en:lesson-07:session-31:word:shave; family: word_card -->
+> **shave** — бриться. When do you shave? — «Когда ты бреешься?» Удалять волосы бритвой; здесь речь о бритье лица.
+
+**11 · Вы с братом живёте в одной квартире и обсуждаете утренние привычки. Спросите брата: «Когда ты бреешься?»**
+<!-- interaction_id: en:lesson-07:session-31:i07; family: scripted_repeat_compare -->
+🎙 **When do you shave?**
+
+**12 · Спросите сестру о детях. Выберите слово**
+<!-- interaction_id: en:lesson-07:session-31:i08; family: context_gap_grammar -->
+When ___ you babysit? → **do** · does · are
+- does — *С `you` нужно `do`.*
+- are — *С действием `babysit` нужно `do`, а не `are`.*
+
+**13 · Послушайте соседа**
 <!-- interaction_id: en:lesson-07:session-31:i09; family: listen_choose -->
-🔊 *Do you visit parks?* → **Do you visit parks?** · Do you visit shops? · Do you visit schools?
-- Do you visit shops? — *В записи последнее слово — `parks`, а в этом варианте — `shops`.*
-- Do you visit schools? — *В записи последнее слово — `parks`, а в этом варианте — `schools`.*
+🔊 *When does she harvest apples?* → **When does she harvest apples?** · When does she harvest pears? · When does she pick apples?
+- When does she harvest pears? — *В записи последнее слово — `apples`, яблоки, а в этом варианте — `pears`, груши.*
+- When does she pick apples? — *В записи четвёртое слово — `harvest`, собирать урожай, а в этом варианте — `pick`, собирать.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-31:i10; family: speed_match -->
-cheat — жульничать · visit — посещать · parks — парки · shower — принимать душ
+visit — навещать · grandmother — бабушка · apple — яблоко · pear — груша
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте сестру и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-31:i11; family: listen_build_dictation -->
-🔊 *When do you shower?* Плитки: `shower` `you` `do` `When` → **When do you shower?**
+🔊 *Where does she babysit?* Плитки: `babysit` `she` `does` `Where` → **Where does she babysit?**
 
-**12 · Друг рассказывает об игре на гитаре. Спросите «У тебя есть гитара?»**
+**16 · Подруга рассказывает об утренних привычках своего брата. Спросите её: «Когда он бреется?»**
 <!-- interaction_id: en:lesson-07:session-31:i12; family: phrase_builder -->
-Плитки: `guitar` `a` `have` `you` `Do` → **Do you have a guitar?**
+Плитки: `shave` `he` `does` `When` → **When does he shave?**
 
-**13 · Перед настольной игрой скажите «Я не жульничаю»**
+**17 · Сестра ездит к бабушке. Спросите брата: «Когда она навещает нашу бабушку?»**
 <!-- interaction_id: en:lesson-07:session-31:i13; family: scripted_repeat_compare -->
-🎙 **I don’t cheat.**
+🎙 **When does she visit our grandmother?**
 
-**14 · Узнайте, посещает ли Том парки**
+**18 · Спросите брата о сестре. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-31:i14; family: context_gap_grammar -->
-Does Tom ___ parks? → **visit** · visits · is visit
-- visits — *После `does` нужно `visit`.*
+When does she ___ our grandmother? → **visit** · visits · is visit
+- visits — *После `does` нужно `visit`, без `s`.*
 - is visit — *Здесь нужно `visit`, без `is`.*
 
-**15 · Послушайте и выберите вопрос**
+**19 · Послушайте сестру**
 <!-- interaction_id: en:lesson-07:session-31:i15; family: listen_choose -->
-🔊 *Where do you work?* → **Where do you work?** · When do you work? · Where do you stay?
-- When do you work? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you stay? — *В записи последнее слово — `work`, а в этом варианте — `stay`.*
+🔊 *When do you babysit?* → **When do you babysit?** · When do you work? · Where do you babysit?
+- When do you work? — *В записи последнее слово — `babysit`, присматривать за детьми, а в этом варианте — `work`, работать.*
+- Where do you babysit? — *В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-31:i16; family: speed_match -->
-visit — посещать · guitar — гитара · cheat — жульничать · parks — парки
+shave — бриться · babysit — присматривать за детьми · harvest — собирать урожай · visit — навещать
 
-**17 · Друг рассказывает о прогулках Тома по паркам. Уточните «Когда Том посещает парки?»**
+**21 · Сосед рассказывает, когда его жена обычно собирает урожай. Спросите: «Когда она собирает яблоки?» Используйте harvest**
 <!-- interaction_id: en:lesson-07:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **When does Tom visit parks?**
-
+🎙 **When does she harvest apples?**

@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 31 — Ти відвідуєш парки?
+# Англійська · Урок 7 · Заняття 31 — Сімейні справи
 
-**Ситуація.** Ви обговорюєте прогулянки парками, звичний час душу й місце роботи знайомого.
+**Ситуація.** Ви розпитуєте родину й сусідів: у брата — коли він провідує бабусю, у сусіда — коли сусідка збирає яблука, а в сестри — коли вона доглядає за дітьми.
 
-**Що ви опануєте:** ставити запитання про звички, місце й час дій
-**Нові слова:** visit
+**Що ви опануєте:** питати з When і Where про сімейні справи: з you потрібно do, з he і she — does
+**Нові слова:** visit, harvest, babysit, shave
+**Повертаються:** grandmother, grandfather, apple, pear, call, pick, work
 
 ---
 
 ## Інтро 1
 
-### Вихідні в парку
+### Поїздка до бабусі
 
-Ви обговорюєте з другом, як він проводить вихідні. `visit` — «відвідувати». `Do you visit parks?` — «Ти відвідуєш парки?» Після `visit` тут називаємо місце — `parks`. Це запитання про звичку, тому починаємо з `do you`. Лавки поки не вимагають запису на прийом.
+Брат регулярно провідує вашу бабусю. Ви теж хочете приїжджати частіше й дізнаєтеся, у які дні він зазвичай у неї буває. visit — «провідувати». Спитайте: When do you visit our grandmother? — «Коли ти провідуєш нашу бабусю?» З you тут потрібне do, далі visit, без s. У бабусі «зайти на хвилинку» зазвичай закінчується обідом.
 
-**Запитайте друга, чи відвідує він парки.**
+**Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»**
 
-- ✅ **Do you visit parks?**
-- ❌ Does you visit parks? — *З `you` потрібне `do`.*
-- ❌ Do you visits parks? — *Після `do you` потрібне `visit`, без `s`.*
+- ✅ **When do you visit our grandmother?**
+- ❌ When does you visit our grandmother? — *З you потрібно do.*
+- ❌ When do you visits our grandmother? — *Після do you потрібно visit, без s.*
 
 ---
 
 ## Інтро 2
 
-### Спільний розклад ванної
+### Яблука в саду
 
-Ви ділите квартиру з другом і обговорюєте звичний час користування ванною. `When do you shower?` — «Коли ти приймаєш душ?» `When` запитує про час, потім ідуть `do you shower`. Тут `shower` — дія «приймати душ».
+Сусідка щороку збирає врожай зі своїх яблунь. Ви пропонуєте допомогу й питаєте її чоловіка, коли вона зазвичай збирає врожай яблук. harvest — «збирати врожай». Спитайте: When does she harvest apples? — «Коли вона збирає яблука?» З she тут потрібне does, далі harvest, без s. Ідеться про збір урожаю, а не про одне яблуко до чаю.
 
-**Дізнайтеся, коли друг зазвичай приймає душ.**
+**Сусід показує на сад. Спитайте його: «Коли вона збирає яблука?»**
 
-- ✅ **When do you shower?**
-- ❌ When does you shower? — *З `you` потрібне `do`.*
-- ❌ When do you showers? — *Після `do you` потрібне `shower`, без `s`.*
+- ✅ **When does she harvest apples?**
+- ❌ When do she harvest apples? — *З she потрібно does.*
+- ❌ When does she harvests apples? — *Після does потрібно harvest, без s.*
 
 ---
 
 ## Інтро 3
 
-### Місце роботи
+### Вечір із дітьми
 
-Ви дізнаєтеся, де працює знайомий. `Where do you work?` — «Де ти працюєш?» `Where` запитує про місце. Після нього ідуть `do you work`, без закінчення у `work`.
+Сестра вечорами доглядає за дітьми сусідів. Ви хочете обрати вільний вечір для спільної прогулянки й дізнаєтеся, коли вона зазвичай зайнята. babysit — «доглядати за дітьми». Спитайте: When do you babysit? — «Коли ти доглядаєш за дітьми?» З you тут потрібне do, далі babysit, без s.
 
-**Запитайте знайомого: «Де ти працюєш?»**
+**Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»**
 
-- ✅ **Where do you work?**
-- ❌ Where does you work? — *З `you` потрібне `do`.*
-- ❌ Where do you works? — *Після `do you` потрібне `work`, без `s`.*
+- ✅ **When do you babysit?**
+- ❌ When does you babysit? — *З you потрібно do.*
+- ❌ When do you babysits? — *Після do you потрібно babysit, без s.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Запитайте «Ти відвідуєш парки?»**
+**1 · Картка слова — visit**
+<!-- interaction_id: en:lesson-07:session-31:word:visit; family: word_card -->
+> **visit** — провідувати. When do you visit our grandmother? — «Коли ти провідуєш нашу бабусю?» Приходити в гості до людини.
+
+**2 · Ви дізнаєтеся, у які дні брат зазвичай буває в бабусі. Спитайте його: «Коли ти провідуєш нашу бабусю?»**
 <!-- interaction_id: en:lesson-07:session-31:i01; family: phrase_builder -->
-Плитки: `parks` `visit` `you` `Do` → **Do you visit parks?**
+Плитки: `grandmother` `our` `visit` `you` `do` `When` → **When do you visit our grandmother?**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте брата**
 <!-- interaction_id: en:lesson-07:session-31:i02; family: listen_choose -->
-🔊 *visit* → **visit** · shower · guitar
-- shower — *У записі перше слово — `visit`, а в цьому варіанті — `shower`.*
-- guitar — *У записі перше слово — `visit`, а в цьому варіанті — `guitar`.*
+🔊 *When do you visit our grandmother?* → **When do you visit our grandmother?** · When do you visit our grandfather? · When do you call our grandmother?
+- When do you visit our grandfather? — *У записі останнє слово — `grandmother`, бабуся, а в цьому варіанті — `grandfather`, дідусь.*
+- When do you call our grandmother? — *У записі четверте слово — `visit`, провідувати, а в цьому варіанті — `call`, телефонувати.*
 
-**3 · Запитайте про звичку відвідувати парки**
+**4 · Спитайте брата про бабусю. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-31:i03; family: context_gap_grammar -->
-Do you ___ parks? → **visit** · visits · is visit
-- visits — *Після `do you` потрібне `visit`.*
-- is visit — *Тут потрібне `visit`, без `is`.*
+When ___ you visit our grandmother? → **do** · does · are
+- does — *З `you` потрібно `do`.*
+- are — *З дією `visit` потрібне `do`, а не `are`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-31:i04; family: speed_match -->
-visit — відвідувати · shower — приймати душ · guitar — гітара · parks — парки
+visit — провідувати · grandmother — бабуся · grandfather — дідусь · call — телефонувати
 
-**5 · Послухайте й складіть запитання**
+**6 · Картка слова — harvest**
+<!-- interaction_id: en:lesson-07:session-31:word:harvest; family: word_card -->
+> **harvest** — збирати врожай. When does she harvest apples? — «Коли вона збирає яблука?» Знімати з дерев і грядок те, що виросло.
+
+**7 · Послухайте сусіда й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-31:i05; family: listen_build_dictation -->
-🔊 *Do you visit parks?* Плитки: `parks` `visit` `you` `Do` → **Do you visit parks?**
+🔊 *When does she harvest apples?* Плитки: `apples` `harvest` `she` `does` `When` → **When does she harvest apples?**
 
-**6 · Дізнайтеся звичний час душу: «Коли ти приймаєш душ?»**
+**8 · Картка слова — babysit**
+<!-- interaction_id: en:lesson-07:session-31:word:babysit; family: word_card -->
+> **babysit** — доглядати за дітьми. When do you babysit? — «Коли ти доглядаєш за дітьми?» Тимчасово дбати про дитину замість батьків, наприклад увечері. Це може бути й дитина родичів.
+
+**9 · Сестра розповідає про сусідів. Спитайте її: «Коли ти доглядаєш за дітьми?»**
 <!-- interaction_id: en:lesson-07:session-31:i06; family: phrase_builder -->
-Плитки: `shower` `you` `do` `When` → **When do you shower?**
+Плитки: `babysit` `you` `do` `When` → **When do you babysit?**
 
-**7 · Запитайте «Де ти працюєш?»**
+**10 · Картка слова — shave**
+<!-- interaction_id: en:lesson-07:session-31:word:shave; family: word_card -->
+> **shave** — голитися. When do you shave? — «Коли ти голишся?» Видаляти волосся бритвою; тут ідеться про гоління обличчя.
+
+**11 · Ви з братом живете в одній квартирі й обговорюєте ранкові звички. Спитайте брата: «Коли ти голишся?»**
 <!-- interaction_id: en:lesson-07:session-31:i07; family: scripted_repeat_compare -->
-🎙 **Where do you work?**
+🎙 **When do you shave?**
 
-**8 · Дізнайтеся місце роботи знайомого**
+**12 · Спитайте сестру про дітей. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-31:i08; family: context_gap_grammar -->
-Where ___ you work? → **do** · does · are
-- does — *З `you` потрібне `do`.*
-- are — *Запитання про дію `work` тут будуємо з `do`.*
+When ___ you babysit? → **do** · does · are
+- does — *З `you` потрібно `do`.*
+- are — *З дією `babysit` потрібне `do`, а не `are`.*
 
-**9 · Послухайте й виберіть запитання**
+**13 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-07:session-31:i09; family: listen_choose -->
-🔊 *Do you visit parks?* → **Do you visit parks?** · Do you visit shops? · Do you visit schools?
-- Do you visit shops? — *У записі останнє слово — `parks`, а в цьому варіанті — `shops`.*
-- Do you visit schools? — *У записі останнє слово — `parks`, а в цьому варіанті — `schools`.*
+🔊 *When does she harvest apples?* → **When does she harvest apples?** · When does she harvest pears? · When does she pick apples?
+- When does she harvest pears? — *У записі останнє слово — `apples`, яблука, а в цьому варіанті — `pears`, груші.*
+- When does she pick apples? — *У записі четверте слово — `harvest`, збирати врожай, а в цьому варіанті — `pick`, збирати.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-31:i10; family: speed_match -->
-cheat — шахрувати · visit — відвідувати · parks — парки · shower — приймати душ
+visit — провідувати · grandmother — бабуся · apple — яблуко · pear — груша
 
-**11 · Послухайте й складіть запитання**
+**15 · Послухайте сестру й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-31:i11; family: listen_build_dictation -->
-🔊 *When do you shower?* Плитки: `shower` `you` `do` `When` → **When do you shower?**
+🔊 *Where does she babysit?* Плитки: `babysit` `she` `does` `Where` → **Where does she babysit?**
 
-**12 · Друг розповідає про гру на гітарі. Запитайте «У тебе є гітара?»**
+**16 · Подруга розповідає про ранкові звички свого брата. Спитайте її: «Коли він голиться?»**
 <!-- interaction_id: en:lesson-07:session-31:i12; family: phrase_builder -->
-Плитки: `guitar` `a` `have` `you` `Do` → **Do you have a guitar?**
+Плитки: `shave` `he` `does` `When` → **When does he shave?**
 
-**13 · Перед настільною грою скажіть «Я не шахрую»**
+**17 · Сестра їздить до бабусі. Спитайте брата: «Коли вона провідує нашу бабусю?»**
 <!-- interaction_id: en:lesson-07:session-31:i13; family: scripted_repeat_compare -->
-🎙 **I don’t cheat.**
+🎙 **When does she visit our grandmother?**
 
-**14 · Дізнайтеся, чи відвідує Том парки**
+**18 · Спитайте брата про сестру. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-31:i14; family: context_gap_grammar -->
-Does Tom ___ parks? → **visit** · visits · is visit
-- visits — *Після `does` потрібне `visit`.*
-- is visit — *Тут потрібне `visit`, без `is`.*
+When does she ___ our grandmother? → **visit** · visits · is visit
+- visits — *Після `does` потрібно `visit`, без `s`.*
+- is visit — *Тут потрібно `visit`, без `is`.*
 
-**15 · Послухайте й виберіть запитання**
+**19 · Послухайте сестру**
 <!-- interaction_id: en:lesson-07:session-31:i15; family: listen_choose -->
-🔊 *Where do you work?* → **Where do you work?** · When do you work? · Where do you stay?
-- When do you work? — *У записі перше слово — `Where`, а в цьому варіанті — `When`.*
-- Where do you stay? — *У записі останнє слово — `work`, а в цьому варіанті — `stay`.*
+🔊 *When do you babysit?* → **When do you babysit?** · When do you work? · Where do you babysit?
+- When do you work? — *У записі останнє слово — `babysit`, доглядати за дітьми, а в цьому варіанті — `work`, працювати.*
+- Where do you babysit? — *У записі перше слово — `When`, коли, а в цьому варіанті — `Where`, де.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-31:i16; family: speed_match -->
-visit — відвідувати · guitar — гітара · cheat — шахрувати · parks — парки
+shave — голитися · babysit — доглядати за дітьми · harvest — збирати врожай · visit — провідувати
 
-**17 · Друг розповідає про прогулянки Тома парками. Уточніть «Коли Том відвідує парки?»**
+**21 · Сусід розповідає, коли його дружина зазвичай збирає врожай. Спитайте: «Коли вона збирає яблука?» Використайте harvest**
 <!-- interaction_id: en:lesson-07:session-31:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **When does Tom visit parks?**
-
+🎙 **When does she harvest apples?**

@@ -6409,7 +6409,7 @@ async function resetConsentsBeforeSignoutWipe(): Promise<void> {
  */
 export type AccountWipeMode = 'full' | 'signout';
 
-async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promise<void> {
+async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full', keepConsents = false): Promise<void> {
   const startedAt = identityTraceClockMs();
   activeWipeStages = {};
   activeWipeStageAt = startedAt;
@@ -6418,8 +6418,8 @@ async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promi
     const { closePhoneStateBeforeLocalWipe } = await import('./phone_state_bootstrap');
     await closePhoneStateBeforeLocalWipe();
     markWipeStage('closePhoneState');
-    await wipeLocalAccountDataUnsafeBody(mode);
-    if (mode === 'signout') {
+    await wipeLocalAccountDataUnsafeBody(mode, keepConsents);
+    if (mode === 'signout' && !keepConsents) {
       // зачем (Ревизор 18.10 по 04bcd2d89): человек B, вошедший сразу после выхода A без перезапуска, тоже принимает
       // Условия сам — стирание прошло, согласия сброшены, корень (_layout) открывает экран согласия сейчас же.
       console.log('[CONSENT-REGATE] emit consent_regate_requested source=signout_wipe'); // guard-ok: одна строка на выход
@@ -6439,7 +6439,7 @@ async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promi
   }
 }
 
-async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<void> {
+async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode, keepConsents = false): Promise<void> {
   const receiptOwnerStableId = captureAccountGeneration().stableId?.trim()
     || peekStableId()?.trim()
     || null;
@@ -6476,7 +6476,8 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
   // Полное стирание (удаление аккаунта, вход со сменой) метки устройства снимает: после удаления онбординг обязан показаться.
   const marksModule = await import('./device_onboarding_marks');
   const deviceMarks = mode === 'signout' ? await marksModule.writeDeviceMarksBeforeSignoutWipe() : [];
-  if (mode === 'signout') await resetConsentsBeforeSignoutWipe();
+  if (mode === 'signout' && !keepConsents) await resetConsentsBeforeSignoutWipe();
+  if (keepConsents) console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'consent_kept', reason: 'handoff_rollback_same_person' })); // guard-ok: ветка решения
   // зачем (сторож cloud_sync_customization_account_isolation «fails closed»): метки снимаются в общем удалении ниже
   // (removeExactly) — сбой роняет стирание целиком, а не глотается отдельным multiRemove.
   const deviceMarksCleared = mode === 'full';
@@ -6671,10 +6672,12 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
 
 export async function wipeLocalAccountData(
   inheritedLease?: AccountTransitionLockLease,
-  options?: Readonly<{ mode?: AccountWipeMode }>,
+  // зачем (координатор 18.10 10:10): keepConsents — откат прерванного входа к гостю: человек тот же, согласия не сбрасываем
+  options?: Readonly<{ mode?: AccountWipeMode; keepConsents?: boolean }>,
 ): Promise<void> {
   const mode = options?.mode ?? 'full';
-  await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode), inheritedLease);
+  const keepConsents = options?.keepConsents === true;
+  await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode, keepConsents), inheritedLease);
 }
 
 const CLEAN_INSTALL_RECOVERY_PRESERVED_KEYS = [

@@ -425,6 +425,28 @@ describe('durable account-switch quarantine', () => {
     markProviderSignInInFlight(false);
   });
 
+  // зачем (координатор 18.10 10:10): откат прерванной передачи входа — тот же человек, стирание без сброса согласий
+  it('rolls an interrupted provider handoff back through the consent-keeping wipe when it is provided', async () => {
+    await prepareProviderCredentialHandoff({
+      operationId: 'provider_handoff_keep_consents_01',
+      nonce: 'provider_handoff_keep_consents_nonce_01',
+      ownerStableId: 'stable-A',
+      ownerAuthUid: 'auth-A',
+      provider: 'google',
+      now: 2_000,
+    });
+    const keepConsentsWipe = jest.fn(async () => undefined);
+    const built: ReturnType<typeof dependencies> = dependencies({
+      // до отката Firebase-сессии нет (прерванный вход), после штатного ensureAnonymousIdentity — новый гость
+      readAuthUser: jest.fn(() => (built.calls.includes('ensureAnon') ? { uid: 'auth-fresh', isAnonymous: true } : null)),
+      wipeLocalDataForHandoffRollback: keepConsentsWipe,
+    });
+
+    await expect(resumeAccountSwitchQuarantine(built.deps)).resolves.toMatchObject({ result: 'completed' });
+    expect(keepConsentsWipe).toHaveBeenCalledTimes(1);
+    expect(built.deps.wipeLocalData).not.toHaveBeenCalled();
+  });
+
   it('recovers a crash before provider credential replacement without wiping the clean source', async () => {
     await prepareProviderCredentialHandoff({
       operationId: 'provider_handoff_01',

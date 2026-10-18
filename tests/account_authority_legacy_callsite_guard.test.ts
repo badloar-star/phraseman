@@ -547,7 +547,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         generationFences: 9,
         transitionLocks: 4,
         anonymousSessionDecisions: 6,
-        localAccountWipes: 5,
+        // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа
+        localAccountWipes: 6,
       },
       cloudSync: {
         stableIdentityReads: 1,
@@ -644,7 +645,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // +1 (R15, ревью Opus 15.10): перепроверка чистоты гостя под замком перехода, если первая сказала «чист» (гонка записей).
         // +1 (Вход 17.10, 💸): перенос подтверждения привязки этого входа в новое поколение после свапа (rememberSwapConfirmedStableAuthLink).
         // +1 (блокер выпуска 18.10): возврат поколения гостя после снятия записи передачи (Firebase отклонил вход).
-        occurrences: 125,
+        // +1 (координатор 18.10 10:10): стирание без сброса согласий для отката прерванной передачи входа.
+        occurrences: 126,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -684,7 +686,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:syncToCloud': 2,
           'call:waitForAccountDeletionCredentialSafe': 4,
           'call:waitForRestoreApplicationIdleWithDeadline': 4,
-          'call:wipeLocalAccountData': 5,
+          'call:wipeLocalAccountData': 6,
           'call:withAccountTransitionLock': 2,
           'call:withAccountTransitionLockWithDeadline': 2,
           'import:./account_generation': 1,
@@ -785,8 +787,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:readStableId': 9,
           'call:resetAnonAuthCacheForSignOut': 1,
           'call:waitForRestoreApplicationIdleWithDeadline': 1,
-          'call:wipeLocalAccountData': 1,
-          'call:wipeLocalData': 2,
+          // 18.10 (координатор): откат прерванной передачи входа — стирание без сброса согласий (wipeLocalDataForHandoffRollback)
+          'call:wipeLocalAccountData': 2,
+          'call:wipeLocalData': 1,
           'require:./account_generation': 1,
           'require:./cloud_sync': 1,
           'require:./stable_id': 1,

@@ -228,6 +228,23 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     });
   });
 
+  // зачем (координатор 18.10 10:10): откат прерванного входа к гостю — тот же человек, согласия и Условия остаются, экран согласия не всплывает
+  it('стирание keepConsents (откат передачи входа) не сбрасывает согласия и не просит экран согласия', async () => {
+    const consent = await import('../app/analytics_consent');
+    await consent.setAnalyticsConsent('granted');
+    await AsyncStorage.setItem('onboarding_terms_privacy_accepted_v1', '1');
+    const events = await import('../app/events');
+    const emitSpy = jest.spyOn(events, 'emitAppEvent');
+
+    await wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true });
+
+    expect(await AsyncStorage.getItem('onboarding_terms_privacy_accepted_v1')).toBe('1');
+    expect(consent.getAnalyticsConsentState()).toBe('granted');
+    expect(await AsyncStorage.getItem(CONSENT_REGATE_PENDING_KEY)).toBeNull();
+    expect(emitSpy.mock.calls.some(([name]) => name === 'consent_regate_requested')).toBe(false);
+    emitSpy.mockRestore();
+  });
+
   it('полное стирание (удаление, вход со сменой) снимает метки устройства — после удаления онбординг показывается', async () => {
     await AsyncStorage.multiSet([[DEVICE_ONBOARDING_DONE_KEY, '1'], ['device_ui_lang_v1', 'en'], ['onboarding_done', '1']]);
 

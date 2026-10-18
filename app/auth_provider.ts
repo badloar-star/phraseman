@@ -4047,6 +4047,8 @@ function accountSwitchRecoveryDependencies() {
     },
     // зачем (координатор 18.10, Ядро 15.10): выход/смена — онбординг, согласия и языки устройства не стираются (R132).
     wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout' }); },
+    // зачем (координатор 18.10 10:10): откат прерванной передачи входа — тот же человек, согласия не сбрасываем
+    wipeLocalDataForHandoffRollback: async (): Promise<void> => { await wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true }); },
     clearStableId: async (): Promise<void> => {
       await clearStableId();
       await clearPendingAuthLink();

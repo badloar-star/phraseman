@@ -86,6 +86,8 @@ export type AccountSwitchRecoveryDependencies = Readonly<{
   quiesce(): Promise<boolean>;
   signOut(): Promise<void>;
   wipeLocalData(): Promise<void>;
+  /** Откат прерванной передачи входа к гостю: тот же человек — согласия не сбрасываются (координатор 18.10). */
+  wipeLocalDataForHandoffRollback?(): Promise<void>;
   clearStableId(): Promise<void>;
   ensureAnonymousIdentity(): Promise<void>;
   activateGeneration(stableId: string): void;
@@ -941,7 +943,9 @@ async function resumeInternal(
       // interrupted credential replacement back to a fresh anonymous identity;
       // this cannot delete provider B and prevents any A-local bytes under B auth.
       if (currentAuth) await deps.signOut();
-      await deps.wipeLocalData();
+      // зачем (координатор 18.10 10:10): откат передачи входа — тот же человек остаётся гостем, его согласия не сбрасываем
+      console.warn(`[SWITCH-QUARANTINE] handoff_rollback phase=${handoff.phase} provider=${handoff.provider} keepConsents=${deps.wipeLocalDataForHandoffRollback ? 'yes' : 'no'}`); // guard-ok: ветка отката
+      await (deps.wipeLocalDataForHandoffRollback ?? deps.wipeLocalData)();
       await deps.clearStableId();
       await deps.ensureAnonymousIdentity();
       const freshAuth = deps.readAuthUser();
@@ -1264,6 +1268,7 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
     },
     // зачем (координатор 18.10, Ядро 15.10): возобновлённая смена — тот же выход: онбординг и языки устройства остаются.
     wipeLocalData: async () => { await cloud.wipeLocalAccountData(undefined, { mode: 'signout' }); },
+    wipeLocalDataForHandoffRollback: async () => { await cloud.wipeLocalAccountData(undefined, { mode: 'signout', keepConsents: true }); },
     clearStableId: async () => {
       const startedAtMs = Date.now();
       await stable.clearStableId();

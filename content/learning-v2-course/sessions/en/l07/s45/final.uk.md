@@ -1,133 +1,149 @@
-# Англійська · Урок 7 · Заняття 45 — Віддаю книжки
+# Англійська · Урок 7 · Заняття 45 — Аптека і здоров’я
 
-**Ситуація.** Ви розповідаєте про книжки для благодійності, збори в подорож і дорогу до офісу.
+**Ситуація.** Ви розповідаєте про звички зі здоров’ям: питаєте фармацевта, описуєте повторюваний головний біль, перевіряєте дозу й ходите до лікаря по рецепт.
 
-**Що ви опануєте:** розповідати про звички з often і usually
-**Нові слова:** donate
+**Що ви опануєте:** говорити про звички, ставлячи often або usually перед дією
+**Нові слова:** pharmacist, headache, dose, prescription
+**Повертаються:** doctor, syrup, cough, thermometer, bandage, brother, ask, check, write
 
 ---
 
 ## Інтро 1
 
-### Книжки для інших
+### Питання в аптеці
 
-Друг помічає коробку книжок біля дверей. Ви часто віддаєте книжки на благодійність. `Donate` — «жертвувати, віддавати на благодійність». `I often donate books` — «Я часто віддаю книжки на благодійність». `Often` стоїть перед `donate`. Книжки вирушають до нових читачів — їм теж набридло стояти без діла.
+Сусід іде з вами в аптеку й питає, до кого ви звертаєтеся, якщо виникає запитання про зберігання ліків. pharmacist — «фармацевт». Це фахівець із ліків, до якого ви звертаєтеся в аптеці: I usually ask the pharmacist — «Я зазвичай питаю фармацевта». Слово usually стоїть перед ask.
 
-**Поясніть другові свою звичку.**
+**Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта».**
 
-- ✅ **I often donate books.**
-- ❌ I often donates books. — *Після `I` потрібне `donate`, без `s`.*
-- ❌ I often donating books. — *Тут потрібна форма `donate`.*
+- ✅ **I usually ask the pharmacist.**
+- ❌ I usually asks the pharmacist. — *Після I потрібно ask, без s.*
+- ❌ I usually asking the pharmacist. — *Для звички після I usually потрібно ask.*
 
 ---
 
 ## Інтро 2
 
-### Збираюся завчасно
+### Важкий день
 
-Друг дивується, що ваша валіза вже готова. `I usually pack early` — «Я зазвичай збираю речі завчасно». `Pack` тут означає «збирати речі», а `early` — «заздалегідь, завчасно». `Usually` стоїть перед `pack`.
+Колега помічає, що ви потираєте лоб, і питає, чи все гаразд. headache — «головний біль». Наприкінці робочого тижня він з’являється часто, і ви чесно відповідаєте: I often have a headache — «У мене часто болить голова». Слово often стоїть перед have.
 
-**Розкажіть, коли ви зазвичай збираєте речі.**
+**Колега помічає, що ви потираєте лоб. Скажіть йому: «У мене часто болить голова».**
 
-- ✅ **I usually pack early.**
-- ❌ I usually packs early. — *Після `I` потрібне `pack`.*
-- ❌ I usually packing early. — *Тут потрібна форма `pack`.*
+- ✅ **I often have a headache.**
+- ❌ I often has a headache. — *Після I потрібно have, не has.*
+- ❌ I often having a headache. — *Тут після I often потрібно have.*
 
 ---
 
 ## Інтро 3
 
-### Пішки до офісу
+### Рядок на упаковці
 
-Колега запитує, як ви зазвичай дістаєтеся до офісу. `I usually walk to the office` — «Я зазвичай ходжу до офісу пішки». `Usually` стоїть перед `walk`; `to the office` говорить, куди ви йдете.
+Подруга помічає, що ви читаєте призначення лікаря поруч з упаковкою ліків, і питає, що ви шукаєте. dose — «доза», кількість ліків на один прийом. Ви пояснюєте, яку інформацію зазвичай звіряєте: I usually check the dose — «Я зазвичай перевіряю дозу».
 
-**Розкажіть про дорогу до офісу.**
+**Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу».**
 
-- ✅ **I usually walk to the office.**
-- ❌ I usually walks to the office. — *Після `I` потрібне `walk`.*
-- ❌ I usually walking to the office. — *Тут потрібна форма `walk`.*
+- ✅ **I usually check the dose.**
+- ❌ I usually checks the dose. — *Після I потрібно check, без s.*
+- ❌ I usually checking the dose. — *Для звички після I usually потрібно check.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я часто віддаю книжки на благодійність»**
+**1 · Картка слова — pharmacist**
+<!-- interaction_id: en:lesson-07:session-45:word:pharmacist; family: word_card -->
+> **pharmacist** — фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці.
+
+**2 · Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта».**
 <!-- interaction_id: en:lesson-07:session-45:i01; family: phrase_builder -->
-Плитки: `books` `donate` `often` `I` → **I often donate books.**
+Плитки: `pharmacist` `the` `ask` `usually` `I` → **I usually ask the pharmacist.**
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте сусіда**
 <!-- interaction_id: en:lesson-07:session-45:i02; family: listen_choose -->
-🔊 *donate* → **donate** · pack · walk
-- pack — *У записі перше слово — `donate`, а в цьому варіанті — `pack`.*
-- walk — *У записі перше слово — `donate`, а в цьому варіанті — `walk`.*
+🔊 *I usually ask the pharmacist.* → **I usually ask the pharmacist.** · I usually ask the doctor. · I usually call the pharmacist.
+- I usually ask the doctor. — *У записі останнє слово — `pharmacist`, фармацевт, а в цьому варіанті — `doctor`, лікар.*
+- I usually call the pharmacist. — *У записі третє слово — `ask`, питати, а в цьому варіанті — `call`, телефонувати.*
 
-**3 · Скажіть «Я часто віддаю книжки на благодійність»**
+**4 · Сусід питає про аптеку. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-45:i03; family: context_gap_grammar -->
-I often ___ books. → **donate** · donates · donating
-- donates — *Після `I` потрібне `donate`.*
-- donating — *Тут потрібна форма `donate`.*
+I usually ___ the pharmacist. → **ask** · asks · asking
+- asks — *Після `I` потрібно `ask`, без `s`.*
+- asking — *Тут потрібна форма `ask`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-45:i04; family: speed_match -->
-donate — віддавати на благодійність · pack — збирати речі · office — офіс · motorbike — мотоцикл
+pharmacist — фармацевт · doctor — лікар · ask — питати · syrup — сироп
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — headache**
+<!-- interaction_id: en:lesson-07:session-45:word:headache; family: word_card -->
+> **headache** — головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові.
+
+**7 · Послухайте колегу й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-45:i05; family: listen_build_dictation -->
-🔊 *I often donate books.* Плитки: `books` `donate` `often` `I` → **I often donate books.**
+🔊 *I often have a headache.* Плитки: `headache` `a` `have` `often` `I` → **I often have a headache.**
 
-**6 · Скажіть «Я зазвичай збираю речі завчасно»**
+**8 · Картка слова — dose**
+<!-- interaction_id: en:lesson-07:session-45:word:dose; family: word_card -->
+> **dose** — доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом.
+
+**9 · Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу».**
 <!-- interaction_id: en:lesson-07:session-45:i06; family: phrase_builder -->
-Плитки: `early` `pack` `usually` `I` → **I usually pack early.**
+Плитки: `dose` `the` `check` `usually` `I` → **I usually check the dose.**
 
-**7 · Скажіть «Я зазвичай ходжу до офісу пішки»**
+**10 · Картка слова — prescription**
+<!-- interaction_id: en:lesson-07:session-45:word:prescription; family: word_card -->
+> **prescription** — рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш.
+
+**11 · Колега питає про вашого лікаря. Скажіть: «Мій лікар часто виписує рецепт».**
 <!-- interaction_id: en:lesson-07:session-45:i07; family: scripted_repeat_compare -->
-🎙 **I usually walk to the office.**
+🎙 **My doctor often writes a prescription.**
 
-**8 · Скажіть «Я зазвичай збираю речі завчасно»**
+**12 · Колега питає про лікаря. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-45:i08; family: context_gap_grammar -->
-I usually ___ early. → **pack** · packs · packing
-- packs — *Після `I` потрібне `pack`.*
-- packing — *Тут потрібна форма `pack`.*
+My doctor often ___ a prescription. → **writes** · write · writing
+- write — *Після `my doctor` потрібно `writes`.*
+- writing — *Тут потрібна форма `writes`.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте колегу**
 <!-- interaction_id: en:lesson-07:session-45:i09; family: listen_choose -->
-🔊 *I often donate books.* → **I often donate books.** · I often donate clothes. · I often donate money.
-- I often donate clothes. — *У записі останнє слово — `books`, а в цьому варіанті — `clothes`.*
-- I often donate money. — *У записі останнє слово — `books`, а в цьому варіанті — `money`.*
+🔊 *I often have a headache.* → **I often have a headache.** · I often have a cough. · I usually have a headache.
+- I often have a cough. — *У записі останнє слово — `headache`, головний біль, а в цьому варіанті — `cough`, кашель.*
+- I usually have a headache. — *У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-45:i10; family: speed_match -->
-pack — збирати речі · donate — віддавати на благодійність · pencil — олівець · office — офіс
+dose — доза · prescription — рецепт · doctor — лікар · syrup — сироп
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте сусіда й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-45:i11; family: listen_build_dictation -->
-🔊 *I usually pack early.* Плитки: `early` `pack` `usually` `I` → **I usually pack early.**
+🔊 *I often ask the pharmacist.* Плитки: `pharmacist` `the` `ask` `often` `I` → **I often ask the pharmacist.**
 
-**12 · Друг розповідає про поїздки. Запитайте «У тебе є мотоцикл?»**
+**16 · Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»**
 <!-- interaction_id: en:lesson-07:session-45:i12; family: phrase_builder -->
-Плитки: `motorbike` `a` `have` `you` `Do` → **Do you have a motorbike?**
+Плитки: `prescription` `a` `have` `you` `Do` → **Do you have a prescription?**
 
-**13 · Ви хочете зробити позначку на папері. Запитайте колегу «У тебе є олівець?»**
+**17 · Брат питає, що сестра звіряє в призначенні. Скажіть: «Вона зазвичай перевіряє дозу».**
 <!-- interaction_id: en:lesson-07:session-45:i13; family: scripted_repeat_compare -->
-🎙 **Do you have a pencil?**
+🎙 **She usually checks the dose.**
 
-**14 · Скажіть «Я часто віддаю книжки на благодійність»**
+**18 · Колега питає про самопочуття. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-45:i14; family: context_gap_grammar -->
-I ___ donate books. → **often** · does · am
-- does — *Для «часто» потрібне `often` перед `donate`.*
-- am — *Для «часто» потрібне `often`; `am` перед `donate` не ставимо.*
+I ___ have a headache. → **often** · does · am
+- does — *Для «часто» потрібне `often` перед `have`.*
+- am — *Для «часто» потрібне `often`; `am` перед `have` не ставимо.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте фармацевта**
 <!-- interaction_id: en:lesson-07:session-45:i15; family: listen_choose -->
-🔊 *The office is here.* → **The office is here.** · The office is there. · The office is upstairs.
-- The office is there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The office is upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Do you have a prescription?* → **Do you have a prescription?** · Do you have a thermometer? · Do you have a bandage?
+- Do you have a thermometer? — *У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `thermometer`, термометр.*
+- Do you have a bandage? — *У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `bandage`, бинт.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-45:i16; family: speed_match -->
-donate — віддавати на благодійність · motorbike — мотоцикл · pack — збирати речі · pencil — олівець
+headache — головний біль · pharmacist — фармацевт · dose — доза · prescription — рецепт
 
-**17 · Друг запитує, як Том допомагає іншим. Скажіть «Том часто віддає книжки на благодійність»**
+**21 · Фармацевт питає про вашого брата. Скажіть: «У мого брата часто болить голова».**
 <!-- interaction_id: en:lesson-07:session-45:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often donates books.**
-
+🎙 **My brother often has a headache.**

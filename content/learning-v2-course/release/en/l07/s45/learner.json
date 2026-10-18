@@ -4,28 +4,72 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-45:i01",
+      "interactionId": "en:lesson-07:session-45:word:pharmacist",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pharmacist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-45:word:pharmacist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pharmacist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-45:word:pharmacist:audio",
+          "transcript": "pharmacist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-45:word:pharmacist:r1",
+            "targetText": "pharmacist",
+            "meaningByLocale": {
+              "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+              "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pharmacist",
+          "definitionByLocale": {
+            "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+            "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "prompt": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "accessibilityLabel": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often donate books.",
+        "targetPhrase": "I usually ask the pharmacist.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
-          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+          "ru": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+          "uk": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта»."
         },
         "orderedTokens": [
           "I",
-          "often",
-          "donate",
-          "books"
+          "usually",
+          "ask",
+          "the",
+          "pharmacist"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -38,51 +82,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Послушайте соседа",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i02:r1",
-          "text": "donate"
+          "text": "I usually ask the pharmacist."
         },
         {
           "responseId": "en:lesson-07:session-45:i02:r2",
-          "text": "pack"
+          "text": "I usually ask the doctor."
         },
         {
           "responseId": "en:lesson-07:session-45:i02:r3",
-          "text": "walk"
+          "text": "I usually call the pharmacist."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте соседа",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i02:audio",
-          "transcript": "donate"
+          "transcript": "I usually ask the pharmacist."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-45:i02:r1",
-            "targetText": "donate",
+            "targetText": "I usually ask the pharmacist.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i02:r2",
-            "targetText": "pack",
+            "targetText": "I usually ask the doctor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i02:r3",
-            "targetText": "walk",
+            "targetText": "I usually call the pharmacist.",
             "meaningByLocale": null
           }
         ],
@@ -91,19 +135,19 @@
           {
             "responseId": "en:lesson-07:session-45:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `donate`, а в этом варианте — `pack`.",
-              "uk": "У записі перше слово — `donate`, а в цьому варіанті — `pack`."
+              "ru": "В записи последнее слово — `pharmacist`, фармацевт, а в этом варианте — `doctor`, врач.",
+              "uk": "У записі останнє слово — `pharmacist`, фармацевт, а в цьому варіанті — `doctor`, лікар."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте соседа",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `donate`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `donate`, а в цьому варіанті — `walk`."
+              "ru": "В записи третье слово — `ask`, спрашивать, а в этом варианте — `call`, звонить.",
+              "uk": "У записі третє слово — `ask`, питати, а в цьому варіанті — `call`, телефонувати."
             }
           }
         ],
@@ -114,67 +158,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "prompt": "Сосед спрашивает про аптеку. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i03:r1",
-          "text": "donate"
+          "text": "ask"
         },
         {
           "responseId": "en:lesson-07:session-45:i03:r2",
-          "text": "donates"
+          "text": "asks"
         },
         {
           "responseId": "en:lesson-07:session-45:i03:r3",
-          "text": "donating"
+          "text": "asking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "accessibilityLabel": "Сосед спрашивает про аптеку. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
-          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+          "ru": "Сосед спрашивает про аптеку. Выберите слово",
+          "uk": "Сусід питає про аптеку. Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ books.",
+        "gappedTargetPhrase": "I usually ___ the pharmacist.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-45:i03:r1",
-            "text": "donate"
+            "text": "ask"
           },
           {
             "responseId": "en:lesson-07:session-45:i03:r2",
-            "text": "donates"
+            "text": "asks"
           },
           {
             "responseId": "en:lesson-07:session-45:i03:r3",
-            "text": "donating"
+            "text": "asking"
           }
         ],
-        "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+        "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `donate`.",
-              "uk": "Після `I` потрібне `donate`."
+              "ru": "После `I` нужно `ask`, без `s`.",
+              "uk": "Після `I` потрібно `ask`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `donate`.",
-              "uk": "Тут потрібна форма `donate`."
+              "ru": "Здесь нужна форма `ask`.",
+              "uk": "Тут потрібна форма `ask`."
             }
           }
         ]
@@ -183,7 +227,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -197,48 +241,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-45:i04:p1",
-            "target": "donate",
+            "target": "pharmacist",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "фармацевт",
+              "uk": "фармацевт"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i04:p2",
-            "target": "pack",
+            "target": "doctor",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "врач",
+              "uk": "лікар"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i04:p3",
-            "target": "office",
+            "target": "ask",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "спрашивать",
+              "uk": "питати"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i04:p4",
-            "target": "motorbike",
+            "target": "syrup",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "сироп",
+              "uk": "сироп"
             }
           }
         ],
         "leftColumn": [
-          "donate",
-          "pack",
-          "office",
-          "motorbike"
+          "pharmacist",
+          "doctor",
+          "ask",
+          "syrup"
         ],
         "rightColumn": [
-          "отдавать на благотворительность",
-          "собирать вещи",
-          "офис",
-          "мотоцикл"
+          "фармацевт",
+          "врач",
+          "спрашивать",
+          "сироп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,64 +299,152 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-45:word:headache",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headache",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-45:word:headache:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headache",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-45:word:headache:audio",
+          "transcript": "headache"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-45:word:headache:r1",
+            "targetText": "headache",
+            "meaningByLocale": {
+              "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+              "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headache",
+          "definitionByLocale": {
+            "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+            "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-45:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте коллегу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте коллегу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i05:audio",
-          "transcript": "I often donate books."
+          "transcript": "I often have a headache."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often donate books.",
+        "hiddenTargetPhrase": "I often have a headache.",
         "orderedTokens": [
           "I",
           "often",
-          "donate",
-          "books"
+          "have",
+          "a",
+          "headache"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:word:dose",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-45:word:dose:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-45:word:dose:audio",
+          "transcript": "dose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-45:word:dose:r1",
+            "targetText": "dose",
+            "meaningByLocale": {
+              "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+              "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dose",
+          "definitionByLocale": {
+            "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+            "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-45:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я обычно собираю вещи заранее»",
+      "prompt": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно собираю вещи заранее»",
+      "accessibilityLabel": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I usually pack early.",
+        "targetPhrase": "I usually check the dose.",
         "localizedMeaning": {
-          "ru": "Скажите «Я обычно собираю вещи заранее»",
-          "uk": "Скажіть «Я зазвичай збираю речі завчасно»"
+          "ru": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+          "uk": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."
         },
         "orderedTokens": [
           "I",
           "usually",
-          "pack",
-          "early"
+          "check",
+          "the",
+          "dose"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -324,26 +456,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-45:word:prescription",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prescription",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-45:word:prescription:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prescription",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-45:word:prescription:audio",
+          "transcript": "prescription"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-45:word:prescription:r1",
+            "targetText": "prescription",
+            "meaningByLocale": {
+              "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+              "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prescription",
+          "definitionByLocale": {
+            "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+            "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-45:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Я обычно хожу в офис пешком»",
+      "prompt": "Коллега спрашивает о вашем враче. Скажите: «Мой врач часто выписывает рецепт».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Я обычно хожу в офис пешком»",
+      "accessibilityLabel": "Коллега спрашивает о вашем враче. Скажите: «Мой врач часто выписывает рецепт».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i07:audio",
-          "transcript": "I usually walk to the office."
+          "transcript": "My doctor often writes a prescription."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I usually walk to the office.",
+        "targetPhrase": "My doctor often writes a prescription.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -358,67 +533,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я обычно собираю вещи заранее»",
+      "prompt": "Коллега спрашивает о враче. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i08:r1",
-          "text": "pack"
+          "text": "writes"
         },
         {
           "responseId": "en:lesson-07:session-45:i08:r2",
-          "text": "packs"
+          "text": "write"
         },
         {
           "responseId": "en:lesson-07:session-45:i08:r3",
-          "text": "packing"
+          "text": "writing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я обычно собираю вещи заранее»",
+      "accessibilityLabel": "Коллега спрашивает о враче. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я обычно собираю вещи заранее»",
-          "uk": "Скажіть «Я зазвичай збираю речі завчасно»"
+          "ru": "Коллега спрашивает о враче. Выберите слово",
+          "uk": "Колега питає про лікаря. Виберіть слово"
         },
-        "gappedTargetPhrase": "I usually ___ early.",
+        "gappedTargetPhrase": "My doctor often ___ a prescription.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-45:i08:r1",
-            "text": "pack"
+            "text": "writes"
           },
           {
             "responseId": "en:lesson-07:session-45:i08:r2",
-            "text": "packs"
+            "text": "write"
           },
           {
             "responseId": "en:lesson-07:session-45:i08:r3",
-            "text": "packing"
+            "text": "writing"
           }
         ],
-        "testedDimension": "Скажите «Я обычно собираю вещи заранее»",
+        "testedDimension": "Коллега спрашивает о враче. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно собираю вещи заранее»",
+            "testedDimension": "Коллега спрашивает о враче. Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `pack`.",
-              "uk": "Після `I` потрібне `pack`."
+              "ru": "После `my doctor` нужно `writes`.",
+              "uk": "Після `my doctor` потрібно `writes`."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я обычно собираю вещи заранее»",
+            "testedDimension": "Коллега спрашивает о враче. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `pack`.",
-              "uk": "Тут потрібна форма `pack`."
+              "ru": "Здесь нужна форма `writes`.",
+              "uk": "Тут потрібна форма `writes`."
             }
           }
         ]
@@ -427,51 +602,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте коллегу",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i09:r1",
-          "text": "I often donate books."
+          "text": "I often have a headache."
         },
         {
           "responseId": "en:lesson-07:session-45:i09:r2",
-          "text": "I often donate clothes."
+          "text": "I often have a cough."
         },
         {
           "responseId": "en:lesson-07:session-45:i09:r3",
-          "text": "I often donate money."
+          "text": "I usually have a headache."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте коллегу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i09:audio",
-          "transcript": "I often donate books."
+          "transcript": "I often have a headache."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-45:i09:r1",
-            "targetText": "I often donate books.",
+            "targetText": "I often have a headache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i09:r2",
-            "targetText": "I often donate clothes.",
+            "targetText": "I often have a cough.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i09:r3",
-            "targetText": "I often donate money.",
+            "targetText": "I usually have a headache.",
             "meaningByLocale": null
           }
         ],
@@ -480,19 +655,19 @@
           {
             "responseId": "en:lesson-07:session-45:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `books`, а в этом варианте — `clothes`.",
-              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `clothes`."
+              "ru": "В записи последнее слово — `headache`, головная боль, а в этом варианте — `cough`, кашель.",
+              "uk": "У записі останнє слово — `headache`, головний біль, а в цьому варіанті — `cough`, кашель."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте коллегу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `books`, а в этом варианте — `money`.",
-              "uk": "У записі останнє слово — `books`, а в цьому варіанті — `money`."
+              "ru": "В записи второе слово — `often`, часто, а в этом варианте — `usually`, обычно.",
+              "uk": "У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай."
             }
           }
         ],
@@ -503,8 +678,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -517,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-45:i10:p1",
-            "target": "pack",
+            "target": "dose",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "доза",
+              "uk": "доза"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i10:p2",
-            "target": "donate",
+            "target": "prescription",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "рецепт",
+              "uk": "рецепт"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i10:p3",
-            "target": "pencil",
+            "target": "doctor",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "врач",
+              "uk": "лікар"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i10:p4",
-            "target": "office",
+            "target": "syrup",
             "meaningByLocale": {
-              "ru": "офис",
-              "uk": "офіс"
+              "ru": "сироп",
+              "uk": "сироп"
             }
           }
         ],
         "leftColumn": [
-          "pack",
-          "donate",
-          "pencil",
-          "office"
+          "dose",
+          "prescription",
+          "doctor",
+          "syrup"
         ],
         "rightColumn": [
-          "собирать вещи",
-          "отдавать на благотворительность",
-          "карандаш",
-          "офис"
+          "доза",
+          "рецепт",
+          "врач",
+          "сироп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -576,30 +751,31 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте соседа и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте соседа и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i11:audio",
-          "transcript": "I usually pack early."
+          "transcript": "I often ask the pharmacist."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I usually pack early.",
+        "hiddenTargetPhrase": "I often ask the pharmacist.",
         "orderedTokens": [
           "I",
-          "usually",
-          "pack",
-          "early"
+          "often",
+          "ask",
+          "the",
+          "pharmacist"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -612,28 +788,28 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг рассказывает о поездках. Спросите «У тебя есть мотоцикл?»",
+      "prompt": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг рассказывает о поездках. Спросите «У тебя есть мотоцикл?»",
+      "accessibilityLabel": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a motorbike?",
+        "targetPhrase": "Do you have a prescription?",
         "localizedMeaning": {
-          "ru": "Друг рассказывает о поездках. Спросите «У тебя есть мотоцикл?»",
-          "uk": "Друг розповідає про поїздки. Запитайте «У тебе є мотоцикл?»"
+          "ru": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
+          "uk": "Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
           "a",
-          "motorbike"
+          "prescription"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -646,25 +822,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы хотите сделать пометку на бумаге. Спросите коллегу «У тебя есть карандаш?»",
+      "prompt": "Брат спрашивает, что сестра сверяет в назначении. Скажите: «Она обычно проверяет дозу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Вы хотите сделать пометку на бумаге. Спросите коллегу «У тебя есть карандаш?»",
+      "accessibilityLabel": "Брат спрашивает, что сестра сверяет в назначении. Скажите: «Она обычно проверяет дозу».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i13:audio",
-          "transcript": "Do you have a pencil?"
+          "transcript": "She usually checks the dose."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you have a pencil?",
+        "targetPhrase": "She usually checks the dose.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -679,11 +855,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "prompt": "Коллега спрашивает о самочувствии. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i14:r1",
@@ -700,14 +876,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "accessibilityLabel": "Коллега спрашивает о самочувствии. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
-          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+          "ru": "Коллега спрашивает о самочувствии. Выберите слово",
+          "uk": "Колега питає про самопочуття. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ donate books.",
+        "gappedTargetPhrase": "I ___ have a headache.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-45:i14:r1",
@@ -722,24 +898,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+        "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `donate`.",
-              "uk": "Для «часто» потрібне `often` перед `donate`."
+              "ru": "Для «часто» нужно `often` перед `have`.",
+              "uk": "Для «часто» потрібне `often` перед `have`."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `donate` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `donate` не ставимо."
+              "ru": "Для «часто» нужно `often`; `am` перед `have` не ставим.",
+              "uk": "Для «часто» потрібне `often`; `am` перед `have` не ставимо."
             }
           }
         ]
@@ -748,51 +924,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите фразу",
+      "prompt": "Послушайте фармацевта",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-45:i15:r1",
-          "text": "The office is here."
+          "text": "Do you have a prescription?"
         },
         {
           "responseId": "en:lesson-07:session-45:i15:r2",
-          "text": "The office is there."
+          "text": "Do you have a thermometer?"
         },
         {
           "responseId": "en:lesson-07:session-45:i15:r3",
-          "text": "The office is upstairs."
+          "text": "Do you have a bandage?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите фразу",
+      "accessibilityLabel": "Послушайте фармацевта",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i15:audio",
-          "transcript": "The office is here."
+          "transcript": "Do you have a prescription?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-45:i15:r1",
-            "targetText": "The office is here.",
+            "targetText": "Do you have a prescription?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i15:r2",
-            "targetText": "The office is there.",
+            "targetText": "Do you have a thermometer?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-45:i15:r3",
-            "targetText": "The office is upstairs.",
+            "targetText": "Do you have a bandage?",
             "meaningByLocale": null
           }
         ],
@@ -801,19 +977,19 @@
           {
             "responseId": "en:lesson-07:session-45:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте фармацевта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `thermometer`, градусник.",
+              "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `thermometer`, термометр."
             }
           },
           {
             "responseId": "en:lesson-07:session-45:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите фразу",
+            "testedDimension": "Послушайте фармацевта",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `bandage`, бинт.",
+              "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `bandage`, бинт."
             }
           }
         ],
@@ -824,7 +1000,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -838,48 +1014,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-45:i16:p1",
-            "target": "donate",
+            "target": "headache",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "головная боль",
+              "uk": "головний біль"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i16:p2",
-            "target": "motorbike",
+            "target": "pharmacist",
             "meaningByLocale": {
-              "ru": "мотоцикл",
-              "uk": "мотоцикл"
+              "ru": "фармацевт",
+              "uk": "фармацевт"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i16:p3",
-            "target": "pack",
+            "target": "dose",
             "meaningByLocale": {
-              "ru": "собирать вещи",
-              "uk": "збирати речі"
+              "ru": "доза",
+              "uk": "доза"
             }
           },
           {
             "pairId": "en:lesson-07:session-45:i16:p4",
-            "target": "pencil",
+            "target": "prescription",
             "meaningByLocale": {
-              "ru": "карандаш",
-              "uk": "олівець"
+              "ru": "рецепт",
+              "uk": "рецепт"
             }
           }
         ],
         "leftColumn": [
-          "donate",
-          "motorbike",
-          "pack",
-          "pencil"
+          "headache",
+          "pharmacist",
+          "dose",
+          "prescription"
         ],
         "rightColumn": [
-          "отдавать на благотворительность",
-          "мотоцикл",
-          "собирать вещи",
-          "карандаш"
+          "головная боль",
+          "фармацевт",
+          "доза",
+          "рецепт"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -897,25 +1073,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-45:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, как Том помогает другим. Скажите «Том часто отдаёт книги на благотворительность»",
+      "prompt": "Фармацевт спрашивает о вашем брате. Скажите: «У моего брата часто болит голова».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-45:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, как Том помогает другим. Скажите «Том часто отдаёт книги на благотворительность»",
+      "accessibilityLabel": "Фармацевт спрашивает о вашем брате. Скажите: «У моего брата часто болит голова».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-45:i17:audio",
-          "transcript": "Tom often donates books."
+          "transcript": "My brother often has a headache."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often donates books.",
+        "targetPhrase": "My brother often has a headache.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -937,11 +1113,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e1580bac561f543f12205b83cb86634cdef7d71e04fefc8e781b69b6355541e7"
+  "learnerFingerprint": "f63c43a085ec50cb387aec3148d2757452beb53751ce1f920dedddfc98996972"
 }

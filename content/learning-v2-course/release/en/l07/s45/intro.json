@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-45",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках с often и usually",
-    "uk": "розповідати про звички з often і usually"
+    "ru": "говорить о привычках, ставя often или usually перед действием",
+    "uk": "говорити про звички, ставлячи often або usually перед дією"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Книги для других",
-        "uk": "Книжки для інших"
+        "ru": "Вопрос в аптеке",
+        "uk": "Питання в аптеці"
       },
       "bodyByLocale": {
-        "ru": "Друг замечает коробку книг у двери. Вы часто отдаёте книги на благотворительность. `Donate` — «жертвовать, отдавать на благотворительность». `I often donate books` — «Я часто отдаю книги на благотворительность». `Often` стоит перед `donate`. Книги отправляются к новым читателям — им тоже надоело стоять без дела.",
-        "uk": "Друг помічає коробку книжок біля дверей. Ви часто віддаєте книжки на благодійність. `Donate` — «жертвувати, віддавати на благодійність». `I often donate books` — «Я часто віддаю книжки на благодійність». `Often` стоїть перед `donate`. Книжки вирушають до нових читачів — їм теж набридло стояти без діла."
+        "ru": "Сосед идёт с вами в аптеку и спрашивает, к кому вы обращаетесь, если возникает вопрос о хранении лекарства. pharmacist — «фармацевт». Это специалист по лекарствам, к которому вы обращаетесь в аптеке: I usually ask the pharmacist — «Я обычно спрашиваю фармацевта». Слово usually стоит перед ask.",
+        "uk": "Сусід іде з вами в аптеку й питає, до кого ви звертаєтеся, якщо виникає запитання про зберігання ліків. pharmacist — «фармацевт». Це фахівець із ліків, до якого ви звертаєтеся в аптеці: I usually ask the pharmacist — «Я зазвичай питаю фармацевта». Слово usually стоїть перед ask."
       },
       "question": {
         "interactionId": "en:lesson-07:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Объясните другу свою привычку.",
-          "uk": "Поясніть другові свою звичку."
+          "ru": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+          "uk": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-45:intro1:r1",
-              "text": "I often donate books."
+              "text": "I usually ask the pharmacist."
             },
             {
               "responseId": "en:lesson-07:session-45:intro1:r2",
-              "text": "I often donates books."
+              "text": "I usually asks the pharmacist."
             },
             {
               "responseId": "en:lesson-07:session-45:intro1:r3",
-              "text": "I often donating books."
+              "text": "I usually asking the pharmacist."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-45:intro1:r1",
-              "text": "I often donate books."
+              "text": "I usually ask the pharmacist."
             },
             {
               "responseId": "en:lesson-07:session-45:intro1:r2",
-              "text": "I often donates books."
+              "text": "I usually asks the pharmacist."
             },
             {
               "responseId": "en:lesson-07:session-45:intro1:r3",
-              "text": "I often donating books."
+              "text": "I usually asking the pharmacist."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Объясните другу свою привычку.",
-          "uk": "Поясніть другові свою звичку."
+          "ru": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+          "uk": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Собираюсь заранее",
-        "uk": "Збираюся завчасно"
+        "ru": "Тяжёлый день",
+        "uk": "Важкий день"
       },
       "bodyByLocale": {
-        "ru": "Друг удивляется, что ваш чемодан уже готов. `I usually pack early` — «Я обычно собираю вещи заранее». `Pack` здесь значит «собирать вещи», а `early` — «заранее, заблаговременно». `Usually` стоит перед `pack`.",
-        "uk": "Друг дивується, що ваша валіза вже готова. `I usually pack early` — «Я зазвичай збираю речі завчасно». `Pack` тут означає «збирати речі», а `early` — «заздалегідь, завчасно». `Usually` стоїть перед `pack`."
+        "ru": "Коллега замечает, что вы потираете лоб, и спрашивает, всё ли в порядке. headache — «головная боль». К концу рабочей недели она появляется часто, и вы честно отвечаете: I often have a headache — «У меня часто болит голова». Слово often стоит перед have.",
+        "uk": "Колега помічає, що ви потираєте лоб, і питає, чи все гаразд. headache — «головний біль». Наприкінці робочого тижня він з’являється часто, і ви чесно відповідаєте: I often have a headache — «У мене часто болить голова». Слово often стоїть перед have."
       },
       "question": {
         "interactionId": "en:lesson-07:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите, когда вы обычно собираете вещи.",
-          "uk": "Розкажіть, коли ви зазвичай збираєте речі."
+          "ru": "Коллега замечает, что вы потираете лоб. Скажите ему: «У меня часто болит голова».",
+          "uk": "Колега помічає, що ви потираєте лоб. Скажіть йому: «У мене часто болить голова»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-45:intro2:r1",
-              "text": "I usually pack early."
+              "text": "I often have a headache."
             },
             {
               "responseId": "en:lesson-07:session-45:intro2:r2",
-              "text": "I usually packs early."
+              "text": "I often has a headache."
             },
             {
               "responseId": "en:lesson-07:session-45:intro2:r3",
-              "text": "I usually packing early."
+              "text": "I often having a headache."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-45:intro2:r1",
-              "text": "I usually pack early."
+              "text": "I often have a headache."
             },
             {
               "responseId": "en:lesson-07:session-45:intro2:r2",
-              "text": "I usually packs early."
+              "text": "I often has a headache."
             },
             {
               "responseId": "en:lesson-07:session-45:intro2:r3",
-              "text": "I usually packing early."
+              "text": "I often having a headache."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите, когда вы обычно собираете вещи.",
-          "uk": "Розкажіть, коли ви зазвичай збираєте речі."
+          "ru": "Коллега замечает, что вы потираете лоб. Скажите ему: «У меня часто болит голова».",
+          "uk": "Колега помічає, що ви потираєте лоб. Скажіть йому: «У мене часто болить голова»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пешком в офис",
-        "uk": "Пішки до офісу"
+        "ru": "Строка на упаковке",
+        "uk": "Рядок на упаковці"
       },
       "bodyByLocale": {
-        "ru": "Коллега спрашивает, как вы обычно добираетесь до офиса. `I usually walk to the office` — «Я обычно хожу в офис пешком». `Usually` стоит перед `walk`; `to the office` говорит, куда вы идёте.",
-        "uk": "Колега запитує, як ви зазвичай дістаєтеся до офісу. `I usually walk to the office` — «Я зазвичай ходжу до офісу пішки». `Usually` стоїть перед `walk`; `to the office` говорить, куди ви йдете."
+        "ru": "Подруга замечает, что вы читаете назначение врача рядом с упаковкой лекарства, и спрашивает, что вы ищете. dose — «доза», количество лекарства на один приём. Вы объясняете, какую информацию обычно сверяете: I usually check the dose — «Я обычно проверяю дозу».",
+        "uk": "Подруга помічає, що ви читаєте призначення лікаря поруч з упаковкою ліків, і питає, що ви шукаєте. dose — «доза», кількість ліків на один прийом. Ви пояснюєте, яку інформацію зазвичай звіряєте: I usually check the dose — «Я зазвичай перевіряю дозу»."
       },
       "question": {
         "interactionId": "en:lesson-07:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Расскажите о дороге в офис.",
-          "uk": "Розкажіть про дорогу до офісу."
+          "ru": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+          "uk": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-45:intro3:r1",
-              "text": "I usually walk to the office."
+              "text": "I usually check the dose."
             },
             {
               "responseId": "en:lesson-07:session-45:intro3:r2",
-              "text": "I usually walks to the office."
+              "text": "I usually checks the dose."
             },
             {
               "responseId": "en:lesson-07:session-45:intro3:r3",
-              "text": "I usually walking to the office."
+              "text": "I usually checking the dose."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-45:intro3:r1",
-              "text": "I usually walk to the office."
+              "text": "I usually check the dose."
             },
             {
               "responseId": "en:lesson-07:session-45:intro3:r2",
-              "text": "I usually walks to the office."
+              "text": "I usually checks the dose."
             },
             {
               "responseId": "en:lesson-07:session-45:intro3:r3",
-              "text": "I usually walking to the office."
+              "text": "I usually checking the dose."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите о дороге в офис.",
-          "uk": "Розкажіть про дорогу до офісу."
+          "ru": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+          "uk": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "00a189393af30c86e746b64db6c6cee426ed9f208583b10bd0e407628efb451a"
+  "introFingerprint": "14cd595bc65e4a16b4095e637dc3c4576cadf8a408d39bf157b4ebe06b2157cc"
 }

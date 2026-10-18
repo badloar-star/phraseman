@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-45:word:pharmacist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pharmacist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:pharmacist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pharmacist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:pharmacist:audio",
+            "transcript": "pharmacist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:pharmacist:r1",
+              "targetText": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+                "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pharmacist",
+            "definitionByLocale": {
+              "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+              "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually ask the pharmacist.",
+          "localizedMeaning": {
+            "ru": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+            "uk": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "ask",
+            "the",
+            "pharmacist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте соседа",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i02:r1",
+            "text": "I usually ask the pharmacist."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i02:r2",
+            "text": "I usually ask the doctor."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i02:r3",
+            "text": "I usually call the pharmacist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i02:audio",
+            "transcript": "I usually ask the pharmacist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i02:r1",
+              "targetText": "I usually ask the pharmacist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r2",
+              "targetText": "I usually ask the doctor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r3",
+              "targetText": "I usually call the pharmacist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pharmacist`, фармацевт, а в этом варианте — `doctor`, врач.",
+                "uk": "У записі останнє слово — `pharmacist`, фармацевт, а в цьому варіанті — `doctor`, лікар."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте соседа",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `ask`, спрашивать, а в этом варианте — `call`, звонить.",
+                "uk": "У записі третє слово — `ask`, питати, а в цьому варіанті — `call`, телефонувати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает про аптеку. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает про аптеку. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает про аптеку. Выберите слово",
+            "uk": "Сусід питає про аптеку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ the pharmacist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `ask`, без `s`.",
+                "uk": "Після `I` потрібно `ask`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает про аптеку. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `ask`.",
+                "uk": "Тут потрібна форма `ask`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i04:p1",
+              "target": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт",
+                "uk": "фармацевт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p2",
+              "target": "doctor",
+              "meaningByLocale": {
+                "ru": "врач",
+                "uk": "лікар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p3",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p4",
+              "target": "syrup",
+              "meaningByLocale": {
+                "ru": "сироп",
+                "uk": "сироп"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pharmacist",
+            "doctor",
+            "ask",
+            "syrup"
+          ],
+          "rightColumn": [
+            "фармацевт",
+            "врач",
+            "спрашивать",
+            "сироп"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:headache",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headache",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:headache:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headache",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:headache:audio",
+            "transcript": "headache"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:headache:r1",
+              "targetText": "headache",
+              "meaningByLocale": {
+                "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+                "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headache",
+            "definitionByLocale": {
+              "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+              "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте коллегу и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i05:audio",
+            "transcript": "I often have a headache."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often have a headache.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "have",
+            "a",
+            "headache"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:dose",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dose",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:dose:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dose",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:dose:audio",
+            "transcript": "dose"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:dose:r1",
+              "targetText": "dose",
+              "meaningByLocale": {
+                "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+                "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dose",
+            "definitionByLocale": {
+              "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+              "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually check the dose.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+            "uk": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "check",
+            "the",
+            "dose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:prescription",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — prescription",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:prescription:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — prescription",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:prescription:audio",
+            "transcript": "prescription"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:prescription:r1",
+              "targetText": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+                "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "prescription",
+            "definitionByLocale": {
+              "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+              "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает о вашем враче. Скажите: «Мой врач часто выписывает рецепт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает о вашем враче. Скажите: «Мой врач часто выписывает рецепт».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i07:audio",
+            "transcript": "My doctor often writes a prescription."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My doctor often writes a prescription.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега спрашивает о враче. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i08:r1",
+            "text": "writes"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i08:r2",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i08:r3",
+            "text": "writing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о враче. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает о враче. Выберите слово",
+            "uk": "Колега питає про лікаря. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My doctor often ___ a prescription.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i08:r1",
+              "text": "writes"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r2",
+              "text": "write"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r3",
+              "text": "writing"
+            }
+          ],
+          "testedDimension": "Коллега спрашивает о враче. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает о враче. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `my doctor` нужно `writes`.",
+                "uk": "Після `my doctor` потрібно `writes`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает о враче. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `writes`.",
+                "uk": "Тут потрібна форма `writes`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте коллегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i09:r1",
+            "text": "I often have a headache."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i09:r2",
+            "text": "I often have a cough."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i09:r3",
+            "text": "I usually have a headache."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте коллегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i09:audio",
+            "transcript": "I often have a headache."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i09:r1",
+              "targetText": "I often have a headache.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r2",
+              "targetText": "I often have a cough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r3",
+              "targetText": "I usually have a headache.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `headache`, головная боль, а в этом варианте — `cough`, кашель.",
+                "uk": "У записі останнє слово — `headache`, головний біль, а в цьому варіанті — `cough`, кашель."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте коллегу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `often`, часто, а в этом варианте — `usually`, обычно.",
+                "uk": "У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i10:p1",
+              "target": "dose",
+              "meaningByLocale": {
+                "ru": "доза",
+                "uk": "доза"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p2",
+              "target": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p3",
+              "target": "doctor",
+              "meaningByLocale": {
+                "ru": "врач",
+                "uk": "лікар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p4",
+              "target": "syrup",
+              "meaningByLocale": {
+                "ru": "сироп",
+                "uk": "сироп"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dose",
+            "prescription",
+            "doctor",
+            "syrup"
+          ],
+          "rightColumn": [
+            "доза",
+            "рецепт",
+            "врач",
+            "сироп"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте соседа и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте соседа и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i11:audio",
+            "transcript": "I often ask the pharmacist."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often ask the pharmacist.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "ask",
+            "the",
+            "pharmacist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a prescription?",
+          "localizedMeaning": {
+            "ru": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
+            "uk": "Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "prescription"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат спрашивает, что сестра сверяет в назначении. Скажите: «Она обычно проверяет дозу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Брат спрашивает, что сестра сверяет в назначении. Скажите: «Она обычно проверяет дозу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i13:audio",
+            "transcript": "She usually checks the dose."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually checks the dose.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коллега спрашивает о самочувствии. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает о самочувствии. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает о самочувствии. Выберите слово",
+            "uk": "Колега питає про самопочуття. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ have a headache.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `have`.",
+                "uk": "Для «часто» потрібне `often` перед `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает о самочувствии. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `have` не ставим.",
+                "uk": "Для «часто» потрібне `often`; `am` перед `have` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте фармацевта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i15:r1",
+            "text": "Do you have a prescription?"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i15:r2",
+            "text": "Do you have a thermometer?"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i15:r3",
+            "text": "Do you have a bandage?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте фармацевта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i15:audio",
+            "transcript": "Do you have a prescription?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i15:r1",
+              "targetText": "Do you have a prescription?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r2",
+              "targetText": "Do you have a thermometer?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r3",
+              "targetText": "Do you have a bandage?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте фармацевта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `thermometer`, градусник.",
+                "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `thermometer`, термометр."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте фармацевта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `bandage`, бинт.",
+                "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `bandage`, бинт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i16:p1",
+              "target": "headache",
+              "meaningByLocale": {
+                "ru": "головная боль",
+                "uk": "головний біль"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p2",
+              "target": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт",
+                "uk": "фармацевт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p3",
+              "target": "dose",
+              "meaningByLocale": {
+                "ru": "доза",
+                "uk": "доза"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p4",
+              "target": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headache",
+            "pharmacist",
+            "dose",
+            "prescription"
+          ],
+          "rightColumn": [
+            "головная боль",
+            "фармацевт",
+            "доза",
+            "рецепт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Фармацевт спрашивает о вашем брате. Скажите: «У моего брата часто болит голова».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Фармацевт спрашивает о вашем брате. Скажите: «У моего брата часто болит голова».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i17:audio",
+            "transcript": "My brother often has a headache."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often has a headache.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-45:word:pharmacist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pharmacist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:pharmacist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pharmacist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:pharmacist:audio",
+            "transcript": "pharmacist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:pharmacist:r1",
+              "targetText": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+                "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pharmacist",
+            "definitionByLocale": {
+              "ru": "фармацевт. I usually ask the pharmacist. — «Я обычно спрашиваю фармацевта». Специалист по лекарствам, который работает, например, в аптеке.",
+              "uk": "фармацевт. I usually ask the pharmacist. — «Я зазвичай питаю фармацевта». Фахівець із ліків, який працює, наприклад, в аптеці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually ask the pharmacist.",
+          "localizedMeaning": {
+            "ru": "Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».",
+            "uk": "Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "ask",
+            "the",
+            "pharmacist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте сусіда",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i02:r1",
+            "text": "I usually ask the pharmacist."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i02:r2",
+            "text": "I usually ask the doctor."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i02:r3",
+            "text": "I usually call the pharmacist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i02:audio",
+            "transcript": "I usually ask the pharmacist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i02:r1",
+              "targetText": "I usually ask the pharmacist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r2",
+              "targetText": "I usually ask the doctor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r3",
+              "targetText": "I usually call the pharmacist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `pharmacist`, фармацевт, а в этом варианте — `doctor`, врач.",
+                "uk": "У записі останнє слово — `pharmacist`, фармацевт, а в цьому варіанті — `doctor`, лікар."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте сусіда",
+              "feedbackByLocale": {
+                "ru": "В записи третье слово — `ask`, спрашивать, а в этом варианте — `call`, звонить.",
+                "uk": "У записі третє слово — `ask`, питати, а в цьому варіанті — `call`, телефонувати."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід питає про аптеку. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід питає про аптеку. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает про аптеку. Выберите слово",
+            "uk": "Сусід питає про аптеку. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I usually ___ the pharmacist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Сусід питає про аптеку. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Сусід питає про аптеку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `ask`, без `s`.",
+                "uk": "Після `I` потрібно `ask`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Сусід питає про аптеку. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `ask`.",
+                "uk": "Тут потрібна форма `ask`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i04:p1",
+              "target": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт",
+                "uk": "фармацевт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p2",
+              "target": "doctor",
+              "meaningByLocale": {
+                "ru": "врач",
+                "uk": "лікар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p3",
+              "target": "ask",
+              "meaningByLocale": {
+                "ru": "спрашивать",
+                "uk": "питати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i04:p4",
+              "target": "syrup",
+              "meaningByLocale": {
+                "ru": "сироп",
+                "uk": "сироп"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pharmacist",
+            "doctor",
+            "ask",
+            "syrup"
+          ],
+          "rightColumn": [
+            "фармацевт",
+            "лікар",
+            "питати",
+            "сироп"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:headache",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headache",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:headache:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headache",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:headache:audio",
+            "transcript": "headache"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:headache:r1",
+              "targetText": "headache",
+              "meaningByLocale": {
+                "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+                "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headache",
+            "definitionByLocale": {
+              "ru": "головная боль. I often have a headache. — «У меня часто болит голова». Боль в голове.",
+              "uk": "головний біль. I often have a headache. — «У мене часто болить голова». Біль у голові."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте колегу й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i05:audio",
+            "transcript": "I often have a headache."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often have a headache.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "have",
+            "a",
+            "headache"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:dose",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dose",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:dose:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dose",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:dose:audio",
+            "transcript": "dose"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:dose:r1",
+              "targetText": "dose",
+              "meaningByLocale": {
+                "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+                "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dose",
+            "definitionByLocale": {
+              "ru": "доза. I usually check the dose. — «Я обычно проверяю дозу». Количество лекарства на один приём.",
+              "uk": "доза. I usually check the dose. — «Я зазвичай перевіряю дозу». Кількість ліків на один прийом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I usually check the dose.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу».",
+            "uk": "Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."
+          },
+          "orderedTokens": [
+            "I",
+            "usually",
+            "check",
+            "the",
+            "dose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:word:prescription",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — prescription",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:word:prescription:audio"
+        ],
+        "accessibilityLabel": "Картка слова — prescription",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:word:prescription:audio",
+            "transcript": "prescription"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:word:prescription:r1",
+              "targetText": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+                "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "prescription",
+            "definitionByLocale": {
+              "ru": "рецепт. My doctor often writes a prescription. — «Мой врач часто выписывает рецепт». Назначение на получение лекарства; бывает бумажным или электронным. По этому рецепту пирог не испечёшь.",
+              "uk": "рецепт. My doctor often writes a prescription. — «Мій лікар часто виписує рецепт». Призначення на отримання ліків; буває паперовим або електронним. За цим рецептом пирога не спечеш."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега питає про вашого лікаря. Скажіть: «Мій лікар часто виписує рецепт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i07:audio"
+        ],
+        "accessibilityLabel": "Колега питає про вашого лікаря. Скажіть: «Мій лікар часто виписує рецепт».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i07:audio",
+            "transcript": "My doctor often writes a prescription."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My doctor often writes a prescription.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега питає про лікаря. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i08:r1",
+            "text": "writes"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i08:r2",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i08:r3",
+            "text": "writing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега питає про лікаря. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает о враче. Выберите слово",
+            "uk": "Колега питає про лікаря. Виберіть слово"
+          },
+          "gappedTargetPhrase": "My doctor often ___ a prescription.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i08:r1",
+              "text": "writes"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r2",
+              "text": "write"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r3",
+              "text": "writing"
+            }
+          ],
+          "testedDimension": "Колега питає про лікаря. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Колега питає про лікаря. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `my doctor` нужно `writes`.",
+                "uk": "Після `my doctor` потрібно `writes`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Колега питає про лікаря. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `writes`.",
+                "uk": "Тут потрібна форма `writes`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте колегу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i09:r1",
+            "text": "I often have a headache."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i09:r2",
+            "text": "I often have a cough."
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i09:r3",
+            "text": "I usually have a headache."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте колегу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i09:audio",
+            "transcript": "I often have a headache."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i09:r1",
+              "targetText": "I often have a headache.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r2",
+              "targetText": "I often have a cough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r3",
+              "targetText": "I usually have a headache.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `headache`, головная боль, а в этом варианте — `cough`, кашель.",
+                "uk": "У записі останнє слово — `headache`, головний біль, а в цьому варіанті — `cough`, кашель."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте колегу",
+              "feedbackByLocale": {
+                "ru": "В записи второе слово — `often`, часто, а в этом варианте — `usually`, обычно.",
+                "uk": "У записі друге слово — `often`, часто, а в цьому варіанті — `usually`, зазвичай."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i10:p1",
+              "target": "dose",
+              "meaningByLocale": {
+                "ru": "доза",
+                "uk": "доза"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p2",
+              "target": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p3",
+              "target": "doctor",
+              "meaningByLocale": {
+                "ru": "врач",
+                "uk": "лікар"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i10:p4",
+              "target": "syrup",
+              "meaningByLocale": {
+                "ru": "сироп",
+                "uk": "сироп"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dose",
+            "prescription",
+            "doctor",
+            "syrup"
+          ],
+          "rightColumn": [
+            "доза",
+            "рецепт",
+            "лікар",
+            "сироп"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте сусіда й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте сусіда й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i11:audio",
+            "transcript": "I often ask the pharmacist."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I often ask the pharmacist.",
+          "orderedTokens": [
+            "I",
+            "often",
+            "ask",
+            "the",
+            "pharmacist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you have a prescription?",
+          "localizedMeaning": {
+            "ru": "Подруга идёт с вами в аптеку. Спросите её: «У тебя есть рецепт?»",
+            "uk": "Подруга йде з вами в аптеку. Спитайте її: «У тебе є рецепт?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "have",
+            "a",
+            "prescription"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Брат питає, що сестра звіряє в призначенні. Скажіть: «Вона зазвичай перевіряє дозу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i13:audio"
+        ],
+        "accessibilityLabel": "Брат питає, що сестра звіряє в призначенні. Скажіть: «Вона зазвичай перевіряє дозу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i13:audio",
+            "transcript": "She usually checks the dose."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually checks the dose.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Колега питає про самопочуття. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i14:r1",
+            "text": "often"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i14:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега питає про самопочуття. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коллега спрашивает о самочувствии. Выберите слово",
+            "uk": "Колега питає про самопочуття. Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ have a headache.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-45:i14:r1",
+              "text": "often"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r2",
+              "text": "does"
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Колега питає про самопочуття. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i14:r2",
+              "correct": false,
+              "testedDimension": "Колега питає про самопочуття. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often` перед `have`.",
+                "uk": "Для «часто» потрібне `often` перед `have`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i14:r3",
+              "correct": false,
+              "testedDimension": "Колега питає про самопочуття. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для «часто» нужно `often`; `am` перед `have` не ставим.",
+                "uk": "Для «часто» потрібне `often`; `am` перед `have` не ставимо."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте фармацевта",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-45:i15:r1",
+            "text": "Do you have a prescription?"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i15:r2",
+            "text": "Do you have a thermometer?"
+          },
+          {
+            "responseId": "en:lesson-07:session-45:i15:r3",
+            "text": "Do you have a bandage?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте фармацевта",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i15:audio",
+            "transcript": "Do you have a prescription?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-45:i15:r1",
+              "targetText": "Do you have a prescription?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r2",
+              "targetText": "Do you have a thermometer?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r3",
+              "targetText": "Do you have a bandage?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-45:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте фармацевта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `thermometer`, градусник.",
+                "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `thermometer`, термометр."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-45:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте фармацевта",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `prescription`, рецепт, а в этом варианте — `bandage`, бинт.",
+                "uk": "У записі останнє слово — `prescription`, рецепт, а в цьому варіанті — `bandage`, бинт."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-45:i16:p1",
+              "target": "headache",
+              "meaningByLocale": {
+                "ru": "головная боль",
+                "uk": "головний біль"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p2",
+              "target": "pharmacist",
+              "meaningByLocale": {
+                "ru": "фармацевт",
+                "uk": "фармацевт"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p3",
+              "target": "dose",
+              "meaningByLocale": {
+                "ru": "доза",
+                "uk": "доза"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-45:i16:p4",
+              "target": "prescription",
+              "meaningByLocale": {
+                "ru": "рецепт",
+                "uk": "рецепт"
+              }
+            }
+          ],
+          "leftColumn": [
+            "headache",
+            "pharmacist",
+            "dose",
+            "prescription"
+          ],
+          "rightColumn": [
+            "головний біль",
+            "фармацевт",
+            "доза",
+            "рецепт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-45:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Фармацевт питає про вашого брата. Скажіть: «У мого брата часто болить голова».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Фармацевт питає про вашого брата. Скажіть: «У мого брата часто болить голова».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-45:i17:audio",
+            "transcript": "My brother often has a headache."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "My brother often has a headache.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-45:word:pharmacist",
+      "correctText": "pharmacist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i01",
+      "correctText": "I usually ask the pharmacist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i02",
+      "correctText": "I usually ask the pharmacist.",
+      "correctResponseId": "en:lesson-07:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i03",
+      "correctText": "ask",
+      "correctResponseId": "en:lesson-07:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:word:headache",
+      "correctText": "headache",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i05",
+      "correctText": "I often have a headache.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:word:dose",
+      "correctText": "dose",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i06",
+      "correctText": "I usually check the dose.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:word:prescription",
+      "correctText": "prescription",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i07",
+      "correctText": "My doctor often writes a prescription.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i08",
+      "correctText": "writes",
+      "correctResponseId": "en:lesson-07:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i09",
+      "correctText": "I often have a headache.",
+      "correctResponseId": "en:lesson-07:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i11",
+      "correctText": "I often ask the pharmacist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i12",
+      "correctText": "Do you have a prescription?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i13",
+      "correctText": "She usually checks the dose.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i14",
+      "correctText": "often",
+      "correctResponseId": "en:lesson-07:session-45:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i15",
+      "correctText": "Do you have a prescription?",
+      "correctResponseId": "en:lesson-07:session-45:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-45:i17",
+      "correctText": "My brother often has a headache.",
+      "correctResponseId": null
+    }
+  ]
+}

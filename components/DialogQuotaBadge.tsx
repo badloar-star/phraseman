@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import { useV2Palette } from './v2/useV2Palette';
 import { useV2GlassStyle } from './v2/V2Glass';
 
@@ -60,17 +61,25 @@ export function aiDialogMonthlyRemainingText(lang: Lang, remaining: number, limi
 }
 
 /** зачем (координатор 18.10, Ревизор 3.45): остаток неизвестен — называем месячный лимит, а не выдуманный остаток. Видимая строка = подпись для диктора. */
+/** Формы слова «ответ» для ru/uk/pl: лимит приходит числом и может быть не только 30. Общие с DialogueV2HubNotices.quotaUnknownA11y. */
+export const DIALOG_REPLY_FORMS = {
+  ru: { one: 'ответ', few: 'ответа', many: 'ответов' },
+  uk: { one: 'відповідь', few: 'відповіді', many: 'відповідей' },
+  pl: { one: 'odpowiedź', few: 'odpowiedzi', many: 'odpowiedzi' },
+} as const;
+
+// зачем (переводчик 18.10): «Лимит — N ответов в месяц» одинаково в бейдже и подписи диктора центра Диалогов, со склонением по числу
 export function aiDialogMonthlyLimitText(lang: Lang, limit: number): string {
   return triLang(lang, {
-    ru: `Лимит — ${limit} ответов в месяц`,
-    uk: `Ліміт — ${limit} відповідей на місяць`,
+    ru: `Лимит — ${limit} ${pluralWord('ru', limit, DIALOG_REPLY_FORMS.ru)} в месяц`,
+    uk: `Ліміт — ${limit} ${pluralWord('uk', limit, DIALOG_REPLY_FORMS.uk)} на місяць`,
     en: `Limit: ${limit} replies a month`,
     es: `Límite: ${limit} respuestas al mes`,
     'pt-BR': `Limite: ${limit} respostas por mês`,
     vi: `Giới hạn: ${limit} lượt trả lời mỗi tháng`,
     id: `Batas: ${limit} balasan per bulan`,
     tr: `Sınır: ayda ${limit} yanıt`,
-    pl: `Limit: ${limit} odpowiedzi miesięcznie`,
+    pl: `Limit: ${limit} ${pluralWord('pl', limit, DIALOG_REPLY_FORMS.pl)} miesięcznie`,
   });
 }
 

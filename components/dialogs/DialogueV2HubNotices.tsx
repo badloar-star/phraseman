@@ -3,6 +3,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import PressableHybrid from '../PressableHybrid';
+import { DIALOG_REPLY_FORMS } from '../DialogQuotaBadge';
+import { pluralWord } from '../../constants/plural';
 import { triLang, type Lang } from '../../constants/i18n';
 import { DialogueGlassCta, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { DialogueGlassQuotaPill } from './glass/DialogueGlassSessionParts';
@@ -24,11 +26,12 @@ export function dialogueV2HubCopy(lang: Lang) {
     }),
     // зачем (Ревизор 3.45): остаток ещё не известен телефону — диктор называет месячный лимит, а не выдуманный остаток.
     quotaUnknownA11y: (total: number) => triLang(lang, {
-      ru: `Лимит — ${total} ответов в месяц`, uk: `Ліміт — ${total} відповідей на місяць`,
+      // зачем (переводчик 18.10): та же фраза, что aiDialogMonthlyLimitText, со склонением по числу для ru/uk/pl
+      ru: `Лимит — ${total} ${pluralWord('ru', total, DIALOG_REPLY_FORMS.ru)} в месяц`, uk: `Ліміт — ${total} ${pluralWord('uk', total, DIALOG_REPLY_FORMS.uk)} на місяць`,
       en: `Limit: ${total} replies a month`, es: `Límite: ${total} respuestas al mes`,
       'pt-BR': `Limite: ${total} respostas por mês`, vi: `Giới hạn: ${total} lượt trả lời mỗi tháng`,
       id: `Batas: ${total} balasan per bulan`, tr: `Sınır: ayda ${total} yanıt`,
-      pl: `Limit: ${total} odpowiedzi miesięcznie`, fr: `Limite : ${total} réponses par mois`,
+      pl: `Limit: ${total} ${pluralWord('pl', total, DIALOG_REPLY_FORMS.pl)} miesięcznie`, fr: `Limite : ${total} réponses par mois`,
       de: `Limit: ${total} Antworten pro Monat`,
     }),
     exhaustedTitle: triLang(lang, { ru: 'Plus снимает лимит ответов', uk: 'Plus знімає ліміт відповідей', en: 'Plus removes the reply limit', es: 'Plus quita el límite de respuestas', 'pt-BR': 'O Plus remove o limite de respostas', vi: 'Plus bỏ giới hạn lượt trả lời', id: 'Plus menghapus batas balasan', tr: 'Plus yanıt sınırını kaldırır', pl: 'Plus znosi limit odpowiedzi', fr: 'Plus supprime la limite de réponses', de: 'Plus hebt das Antwortlimit auf' }),

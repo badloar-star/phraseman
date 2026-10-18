@@ -537,6 +537,34 @@ test('preserves anonymous identity when the credential belongs to an existing pr
   expect(authStampAnonOwnership.mock.calls.length).toBeLessThanOrEqual(1);
 });
 
+// зачем (эмулятор 18.10, сценарий №2): метка «свежий гость после смены аккаунта» (24 ч) не должна пропускать окно смены,
+// когда гость за это время набрал настоящий прогресс — иначе вход в существующий аккаунт молча стирал его уроки и карточки.
+test('post-switch guest WITH real progress still gets the account-switch window (no silent wipe)', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  const now = Date.now();
+  const { signInWithProvider } = loadAuthProvider({
+    unlocked_lessons: '[1,2]',
+    account_switch_post_completion_handoff_v1: JSON.stringify({
+      version: 1,
+      operationId: 'switch-op-1',
+      nonce: 'switch-nonce-1',
+      freshAuthUid: authState.anonUid,
+      freshStableId: 'local-stable-id',
+      createdAt: now,
+      expiresAt: now + 60 * 60 * 1000,
+    }),
+  });
+  const result = await signInWithProvider('google');
+
+  expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(authState.calls).not.toContain('signin');
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+});
+
 test('unsynced MAX outbox makes anonymous account meaningful and blocks provider replacement', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');

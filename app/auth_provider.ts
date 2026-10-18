@@ -2909,12 +2909,19 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           // зачем (ревью Opus 15.10, R15): первая проверка чистоты шла ДО замка и тишины синхронизации — запись в этом окне
           // (начисление, урок) стёрлась бы без копии. Раньше ответ почти всегда был «не чист»; теперь свежий гость «чист»,
           // поэтому при «чист» перепроверяем уже под замком перехода. Стало «не чист» — обычное окно смены аккаунта ниже.
-          if (localClean && !postCompletionHandoff) {
+          if (localClean) {
             localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
             identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof recheck', { provider, localClean }, { persist: true });
           }
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff proof', { provider, localClean, postCompletionHandoff });
-          if (!localClean && !postCompletionHandoff) {
+          // зачем (эмулятор 18.10 10:04, сценарий №2 координатора): метка «свежий гость после смены аккаунта» живёт 24 ч и раньше
+          // пропускала окно смены даже при НАСТОЯЩЕМ прогрессе (уроки, 64 карточки, 4 своих набора) — swap шёл с
+          // preserveLocalProgress=false и молча стирал гостя. С классификатором 15.10 значения по умолчанию уже «чистые»,
+          // поэтому метка больше не перекрывает прогресс: есть что терять → окно «Сменить аккаунт», решает человек.
+          if (!localClean && postCompletionHandoff) {
+            identityTrace('[AUTH-LINK-GOOGLE]', 'post_completion_handoff ignored', { provider, reason: 'guest_has_progress' }, { persist: true });
+          }
+          if (!localClean) {
             identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {
               provider,
               source: 'anonymous_link_conflict',

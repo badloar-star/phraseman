@@ -11524,7 +11524,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('surveys')" title="Опросы: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('home-hints')" title="Выбрать короткие подсказки для главной, посмотреть превью и опубликовать одобренные варианты" style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.35);color:#93c5fd;font-weight:700">💬 Подсказки главной</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
-  <div class="tab" onclick="switchTab('daily-polls')" title="Опрос дня на вкладке «Друзья»: вопросы по датам, архив, результаты">📊 Опрос дня</div>
+  <div class="tab" onclick="switchTab('daily-polls')" title="Наборы опросов на Главной: обезличенные итоги по каждому вопросу">📊 Опросы Главной</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
   <div class="tab" onclick="switchTab('video-phrases')" title="Видео: каталог, AI-импорт фраз, проверка и публикация">▶ Видео</div>
@@ -15199,19 +15199,16 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
 </div>
 
-<!-- DAILY POLLS TAB — «Опрос дня» на вкладке «Друзья» (владелец 2026-09-30) -->
+<!-- HOME POLLS V2 — bundled sets on Home; aggregate results only -->
 <div id="tab-daily-polls" class="reports-tab pm-v4-page" data-pm-v4-section="daily-polls">
-  <div class="pm-v4-section-header" data-pm-v4-header="daily-polls"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Опрос дня</h2><div class="pm-v4-section-sub">Вопрос на дату, 2–4 варианта, архив и результаты.</div></div></div>
+  <div class="pm-v4-section-header" data-pm-v4-header="daily-polls"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Опросы на Главной</h2><div class="pm-v4-section-sub">100 наборов из приложения. Итоги по вопросам без просмотра ответов отдельных людей.</div></div></div>
   <div style="padding:0 24px 12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <button type="button" onclick="openDailyPollEditor()" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">＋ Новый опрос</button>
-    <button type="button" onclick="loadDailyPolls(true)" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
-    <label style="font-size:13px;color:#9ca3af;display:flex;gap:6px;align-items:center"><input type="checkbox" id="dpoll-show-archived" onchange="renderDailyPolls()"> Показать архив</label>
+    <button type="button" onclick="loadDailyPolls(true)" title="Перечитать обезличенные счётчики всех наборов" style="background:#2a2a3a;color:#aaa">🔄 Обновить итоги</button>
   </div>
   <p style="padding:0 24px 12px;margin:0;font-size:13px;color:#9ca3af;line-height:1.55;max-width:900px">
-    Опрос показывается в приложении в свой день (по локальной дате пользователя). Обязательны русский и английский; для остальных языков — запасной английский.
-    После первого голоса варианты менять нельзя (иначе проценты поедут) — можно править только текст вопроса и архивировать. Удалить можно только опрос без голосов.
+    Тексты входят в сборку приложения, а набор выбирается по детерминированному расписанию раз в 3–4 дня. Здесь только чтение общих счётчиков.
+    Сервер хранит для учётной записи лишь отметки «на вопрос отвечено», без выбранного варианта.
   </p>
-  <div id="dpoll-editor" style="display:none;padding:0 24px 16px;max-width:980px"></div>
   <div id="dpoll-list" style="padding:0 24px 32px"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
 </div>
 
@@ -23253,7 +23250,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'ops-log': 'Операционный журнал',
     'community-packs': 'Сообщество',
     'daily-phrases': 'Фразы дня',
-    'daily-polls': 'Опрос дня',
+    'daily-polls': 'Опросы Главной',
     'arena-content': 'Контент Пика',
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
@@ -46382,237 +46379,86 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
 
-  // ═══ «Опрос дня» (daily_polls/{dateKey}) — владелец 2026-09-30 ═══════════════
-  // зачем: вопросы для карточки «Опрос дня» на вкладке «Друзья». Счётчики пишет
-  // ТОЛЬКО сервер (callable dailyPollVote); правила запрещают админке трогать
-  // counts/voteCount, а после первого голоса — и варианты. Голоса (кто за что)
-  // админка не читает — только количества из документа опроса (0 лишних чтений).
-  const DPOLL_LOG = '[DAILY-POLL]';
-  const DPOLL_PAGE = 60;
-  const DPOLL_LOCALES = [
-    ['ru', 'Русский'], ['en', 'English'], ['uk', 'Українська'], ['es', 'Español'], ['pt-BR', 'Português (BR)'],
-    ['vi', 'Tiếng Việt'], ['id', 'Indonesia'], ['tr', 'Türkçe'], ['pl', 'Polski'],
-  ];
-  const DPOLL_OPTION_IDS = ['a', 'b', 'c', 'd'];
+  // ═══ Опросы на Главной v2 — только обезличенные итоги ════════════════════
+  const DPOLL_LOG = '[POLLS-V2]';
+  const DPOLL_PAGE = 120;
   let _dailyPolls = [];
   window._dailyPollsLoaded = false;
 
   function dpollText(map) {
-    const m = map && typeof map === 'object' ? map : {};
-    return String(m.ru || m.en || Object.values(m).find(Boolean) || '');
+    const value = map && typeof map === 'object' ? map : {};
+    return String(value.ru || value.en || Object.values(value).find(Boolean) || '');
   }
 
   function dpollPercents(counts, ids) {
     const values = ids.map(id => Math.max(0, Math.floor(Number(counts?.[id]) || 0)));
-    const total = values.reduce((s, n) => s + n, 0);
+    const total = values.reduce((sum, value) => sum + value, 0);
     if (!total) return ids.map(() => 0);
-    const raw = values.map(n => n * 100 / total);
-    const res = raw.map(Math.floor);
-    let left = 100 - res.reduce((s, n) => s + n, 0);
-    raw.map((v, i) => ({ i, r: v - res[i] })).sort((a, b) => b.r - a.r || a.i - b.i).forEach(({ i }) => { if (left > 0) { res[i] += 1; left -= 1; } });
-    return res;
+    const raw = values.map(value => value * 100 / total);
+    const result = raw.map(Math.floor);
+    let left = 100 - result.reduce((sum, value) => sum + value, 0);
+    raw.map((value, index) => ({ index, remainder: value - result[index] }))
+      .sort((a, b) => b.remainder - a.remainder || a.index - b.index)
+      .forEach(({ index }) => { if (left > 0) { result[index] += 1; left -= 1; } });
+    return result;
   }
 
   window.loadDailyPolls = async function loadDailyPolls(force) {
-    if (!force && window._dailyPollsLoaded) { renderDailyPolls(); return { message: 'Опросы уже загружены' }; }
+    if (!force && window._dailyPollsLoaded) { renderDailyPolls(); return { message: 'Итоги уже загружены' }; }
     const list = document.getElementById('dpoll-list');
-    if (list) list.innerHTML = '<div class="reports-empty">Загружаю опросы…</div>';
+    if (list) list.innerHTML = '<div class="reports-empty">Загружаю итоги…</div>';
     try {
-      const snap = await getDocs(query(collection(db, 'daily_polls'), orderBy(documentId(), 'desc'), limit(DPOLL_PAGE)));
-      _dailyPolls = snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
+      const snap = await getDocs(query(collection(db, 'home_polls_v2'), orderBy(documentId(), 'asc'), limit(DPOLL_PAGE)));
+      _dailyPolls = snap.docs.map(item => ({ id: item.id, ...(item.data() || {}) }));
       window._dailyPollsLoaded = true;
-      console.info(DPOLL_LOG, 'админка: загружено', _dailyPolls.length);
+      console.info(DPOLL_LOG, 'admin:loaded', { sets: _dailyPolls.length });
       renderDailyPolls();
-      if (force) showToast('Опросы обновлены');
-      return { message: 'Опросы обновлены' };
-    } catch (e) {
-      console.warn(DPOLL_LOG, 'админка: загрузка упала', e);
+      if (force) showToast('Итоги опросов обновлены');
+      return { message: 'Итоги опросов обновлены' };
+    } catch (error) {
+      console.warn(DPOLL_LOG, 'admin:load_failed', error);
       _dailyPolls = [];
       window._dailyPollsLoaded = false;
-      if (list) list.innerHTML = `<div class="reports-empty">Ошибка: ${escapeHtml(String(e?.message || e))}</div>`;
-      showToast('Опросы не загрузились: ' + (e?.message || e), 'err');
-      return { message: 'Ошибка загрузки опросов' };
+      if (list) list.innerHTML = `<div class="reports-empty">Ошибка: ${escapeHtml(String(error?.message || error))}</div>`;
+      showToast('Итоги не загрузились: ' + (error?.message || error), 'err');
+      return { message: 'Ошибка загрузки итогов' };
     }
   };
 
   window.renderDailyPolls = function renderDailyPolls() {
     const list = document.getElementById('dpoll-list');
     if (!list) return;
-    const showArchived = !!document.getElementById('dpoll-show-archived')?.checked;
-    const today = new Date().toISOString().slice(0, 10);
-    const rows = _dailyPolls.filter(p => showArchived || p.status !== 'archived');
-    if (!rows.length) {
-      list.innerHTML = '<div class="reports-empty">Опросов пока нет. Нажми «＋ Новый опрос».</div>';
+    if (!_dailyPolls.length) {
+      list.innerHTML = '<div class="reports-empty">Наборов пока нет. Сначала выполните проверенный seed-скрипт.</div>';
       return;
     }
-    list.innerHTML = rows.map(p => {
-      const options = Array.isArray(p.options) ? p.options : [];
-      const ids = options.map(o => String(o?.id || ''));
-      const pct = dpollPercents(p.counts || {}, ids);
-      const votes = Math.max(0, Number(p.voteCount) || 0);
-      const isToday = p.id === today;
-      const badge = p.status === 'archived'
-        ? '<span style="padding:2px 8px;border-radius:4px;font-size:11px;background:#2a2a2a;color:#9ca3af">архив</span>'
-        : (isToday ? '<span style="padding:2px 8px;border-radius:4px;font-size:11px;background:#10331f;color:#4ade80">сегодня</span>'
-          : (p.id > today ? '<span style="padding:2px 8px;border-radius:4px;font-size:11px;background:#1e293b;color:#93c5fd">запланирован</span>' : ''));
-      const optionRows = options.map((o, i) => `
-        <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
-          <div style="flex:1;position:relative;background:#1a1a22;border-radius:8px;overflow:hidden;min-height:30px;display:flex;align-items:center;padding:0 10px">
-            <div style="position:absolute;left:0;top:0;bottom:0;width:${pct[i]}%;background:rgba(129,140,248,.25)"></div>
-            <span style="position:relative;font-size:13px;color:#e5e7eb">${escapeHtml(dpollText(o?.text))}</span>
-          </div>
-          <div style="width:110px;text-align:right;font-size:13px;color:#cbd5e1;font-variant-numeric:tabular-nums">${Number(p.counts?.[ids[i]]) || 0} · ${pct[i]}%</div>
-        </div>`).join('');
-      const del = votes === 0 ? `<button type="button" onclick="deleteDailyPoll('${escapeHtml(p.id)}')" style="background:#3a1a1a;color:#fca5a5">Удалить</button>` : '';
-      const arch = p.status === 'archived'
-        ? `<button type="button" onclick="setDailyPollStatus('${escapeHtml(p.id)}','active')" style="background:#1a3a2a;color:#4ade80">Вернуть из архива</button>`
-        : `<button type="button" onclick="setDailyPollStatus('${escapeHtml(p.id)}','archived')" style="background:#2a2a3a;color:#aaa">В архив</button>`;
-      return `<div class="report-card" style="margin-bottom:12px;padding:14px 16px;background:#14141c;border-radius:12px">
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-          <strong style="font-size:14px;color:#fafafa">${escapeHtml(p.id)}</strong>${badge}
-          <span style="font-size:12px;color:#9ca3af">голосов: ${votes}</span>
-          <span style="margin-left:auto;display:flex;gap:8px">
-            <button type="button" onclick="openDailyPollEditor('${escapeHtml(p.id)}')" style="background:#1e293b;color:#93c5fd">Редактировать</button>${arch}${del}
-          </span>
-        </div>
-        <div style="margin-top:8px;font-size:15px;color:#fafafa;font-weight:600">${escapeHtml(dpollText(p.question))}</div>
-        ${optionRows}
-      </div>`;
+    list.innerHTML = _dailyPolls.map(set => {
+      const questions = Array.isArray(set.questions) ? set.questions : [];
+      const questionRows = questions.map(question => {
+        const options = Array.isArray(question?.options) ? question.options : [];
+        const ids = options.map(option => String(option?.id || ''));
+        const counts = set.counts?.[question.id] || {};
+        const percentages = dpollPercents(counts, ids);
+        const total = ids.reduce((sum, id) => sum + Math.max(0, Number(counts?.[id]) || 0), 0);
+        const optionRows = options.map((option, index) => `
+          <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+            <div style="flex:1;position:relative;background:#1a1a22;border-radius:8px;overflow:hidden;min-height:30px;display:flex;align-items:center;padding:0 10px">
+              <div style="position:absolute;left:0;top:0;bottom:0;width:${percentages[index]}%;background:rgba(129,140,248,.25)"></div>
+              <span style="position:relative;font-size:13px;color:#e5e7eb">${escapeHtml(dpollText(option?.text))}</span>
+            </div>
+            <div style="width:110px;text-align:right;font-size:13px;color:#cbd5e1;font-variant-numeric:tabular-nums">${Number(counts?.[ids[index]]) || 0} · ${percentages[index]}%</div>
+          </div>`).join('');
+        return `<section style="margin-top:12px;padding-top:12px;border-top:1px solid #292938">
+          <div style="display:flex;gap:10px;align-items:baseline"><strong style="color:#fafafa">${escapeHtml(dpollText(question?.text))}</strong><span style="font-size:12px;color:#9ca3af">ответов: ${total}</span></div>
+          ${optionRows}
+        </section>`;
+      }).join('');
+      return `<article class="report-card" style="margin-bottom:12px;padding:14px 16px;background:#14141c;border-radius:12px">
+        <div style="display:flex;gap:10px;align-items:center"><strong style="font-size:14px;color:#fafafa">${escapeHtml(set.id)}</strong><span style="font-size:12px;color:#9ca3af">${questions.length} вопроса · Итоги по вопросам</span></div>
+        ${questionRows}
+      </article>`;
     }).join('');
   };
-
-  function dpollLocaleInputs(prefix, map, disabled) {
-    const m = map && typeof map === 'object' ? map : {};
-    const input = ([code, name]) => `<label style="display:block;font-size:12px;color:#9ca3af;margin-top:6px">${name}${code === 'ru' || code === 'en' ? ' *' : ''}
-      <input type="text" maxlength="200" data-dpoll="${prefix}" data-locale="${code}" value="${escapeHtml(String(m[code] || ''))}" ${disabled ? 'disabled' : ''} style="width:100%;box-sizing:border-box;margin-top:3px"></label>`;
-    return DPOLL_LOCALES.slice(0, 2).map(input).join('')
-      + `<details style="margin-top:6px"><summary style="cursor:pointer;font-size:12px;color:#818cf8">Другие языки (пусто — покажем английский)</summary>${DPOLL_LOCALES.slice(2).map(input).join('')}</details>`;
-  }
-
-  function dpollReadLocale(prefix) {
-    const out = {};
-    document.querySelectorAll(`#dpoll-editor [data-dpoll="${prefix}"]`).forEach(el => {
-      const v = String(el.value || '').trim().slice(0, 200);
-      if (v) out[el.getAttribute('data-locale')] = v;
-    });
-    return out;
-  }
-
-  window.openDailyPollEditor = function openDailyPollEditor(id) {
-    const box = document.getElementById('dpoll-editor');
-    if (!box) return;
-    const row = id ? _dailyPolls.find(p => p.id === id) : null;
-    const locked = Boolean(row) && (Number(row.voteCount) || 0) > 0;
-    const options = Array.isArray(row?.options) ? row.options : [];
-    const optionCount = Math.min(4, Math.max(2, options.length || 2));
-    const optionBlocks = DPOLL_OPTION_IDS.map((optId, i) => `
-      <div data-dpoll-option="${optId}" style="${i < optionCount ? '' : 'display:none;'}margin-top:12px;padding:10px 12px;background:#1a1a22;border-radius:10px">
-        <div style="font-size:13px;color:#e5e7eb;font-weight:600">Вариант ${i + 1}</div>
-        ${dpollLocaleInputs('opt-' + optId, options[i]?.text, locked)}
-      </div>`).join('');
-    box.style.display = 'block';
-    box.innerHTML = `<div style="padding:16px;background:#101018;border-radius:12px">
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:end">
-        <label style="font-size:12px;color:#9ca3af">Дата показа *<br><input type="date" id="dpoll-date" value="${escapeHtml(row?.id || '')}" ${row ? 'disabled' : ''}></label>
-        <label style="font-size:12px;color:#9ca3af">Вариантов<br><select id="dpoll-count" onchange="dailyPollSetOptionCount(this.value)" ${locked ? 'disabled' : ''}>
-          ${[2, 3, 4].map(n => `<option value="${n}" ${n === optionCount ? 'selected' : ''}>${n}</option>`).join('')}</select></label>
-        <label style="font-size:12px;color:#9ca3af">Статус<br><select id="dpoll-status">
-          <option value="active" ${row?.status !== 'archived' ? 'selected' : ''}>Активен</option>
-          <option value="archived" ${row?.status === 'archived' ? 'selected' : ''}>Архив</option></select></label>
-      </div>
-      ${locked ? '<div style="margin-top:10px;font-size:12px;color:#fbbf24">Голоса уже есть — варианты заблокированы.</div>' : ''}
-      <div style="margin-top:12px;font-size:13px;color:#e5e7eb;font-weight:600">Вопрос</div>
-      ${dpollLocaleInputs('question', row?.question, false)}
-      ${optionBlocks}
-      <div style="margin-top:14px;display:flex;gap:10px">
-        <button type="button" onclick="saveDailyPoll('${escapeHtml(row?.id || '')}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">Сохранить</button>
-        <button type="button" onclick="closeDailyPollEditor()" style="background:#2a2a3a;color:#aaa">Отмена</button>
-      </div>
-    </div>`;
-    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  window.dailyPollSetOptionCount = function dailyPollSetOptionCount(value) {
-    const n = Math.min(4, Math.max(2, Number(value) || 2));
-    DPOLL_OPTION_IDS.forEach((optId, i) => {
-      const el = document.querySelector(`#dpoll-editor [data-dpoll-option="${optId}"]`);
-      if (el) el.style.display = i < n ? '' : 'none';
-    });
-  };
-
-  window.closeDailyPollEditor = function closeDailyPollEditor() {
-    const box = document.getElementById('dpoll-editor');
-    if (box) { box.style.display = 'none'; box.innerHTML = ''; }
-  };
-
-  window.saveDailyPoll = async function saveDailyPoll(existingId) {
-    const row = existingId ? _dailyPolls.find(p => p.id === existingId) : null;
-    const dateKey = existingId || String(document.getElementById('dpoll-date')?.value || '').trim();
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Укажи дату показа', 'err'); return; }
-    const question = dpollReadLocale('question');
-    if (!question.ru || !question.en) { showToast('Вопрос: нужны русский и английский', 'err'); return; }
-    const status = document.getElementById('dpoll-status')?.value === 'archived' ? 'archived' : 'active';
-    const locked = Boolean(row) && (Number(row.voteCount) || 0) > 0;
-    const count = Math.min(4, Math.max(2, Number(document.getElementById('dpoll-count')?.value) || 2));
-    const options = DPOLL_OPTION_IDS.slice(0, count).map(optId => ({ id: optId, text: dpollReadLocale('opt-' + optId) }));
-    if (!locked && options.some(o => !o.text.ru || !o.text.en)) { showToast('Каждый вариант: нужны русский и английский', 'err'); return; }
-    const nowMs = Date.now();
-    const actor = auth?.currentUser?.email || auth?.currentUser?.uid || 'admin';
-    try {
-      if (row) {
-        const patch = { question, status, updatedAtMs: nowMs, updatedBy: actor };
-        if (!locked) patch.options = options;
-        await updateDoc(doc(db, 'daily_polls', dateKey), patch);
-      } else {
-        const existing = await getDoc(doc(db, 'daily_polls', dateKey));
-        if (existing.exists()) { showToast('На эту дату опрос уже есть — открой его и отредактируй', 'err'); return; }
-        await setDoc(doc(db, 'daily_polls', dateKey), {
-          dateKey, status, question, options, voteCount: 0, createdAtMs: nowMs, updatedAtMs: nowMs, updatedBy: actor,
-        });
-      }
-      console.info(DPOLL_LOG, 'админка: сохранено', { dateKey, status, locked, options: options.length });
-      logAction(row ? 'daily_poll_edit' : 'daily_poll_create', `daily_poll:${dateKey}`, { status, options: options.length, locked });
-      closeDailyPollEditor();
-      showToast(row ? 'Опрос обновлён' : 'Опрос создан');
-      await loadDailyPolls(true);
-    } catch (e) {
-      console.warn(DPOLL_LOG, 'админка: сохранение упало', { dateKey, error: e });
-      showToast('Опрос не сохранён: ' + (e?.message || e), 'err');
-    }
-  };
-
-  window.setDailyPollStatus = async function setDailyPollStatus(id, status) {
-    const next = status === 'archived' ? 'archived' : 'active';
-    try {
-      await updateDoc(doc(db, 'daily_polls', id), { status: next, updatedAtMs: Date.now() });
-      const row = _dailyPolls.find(p => p.id === id);
-      if (row) row.status = next;
-      logAction('daily_poll_status', `daily_poll:${id}`, { status: next });
-      renderDailyPolls();
-      showToast(next === 'archived' ? 'Опрос в архиве' : 'Опрос снова активен');
-    } catch (e) {
-      console.warn(DPOLL_LOG, 'админка: смена статуса упала', { id, error: e });
-      showToast('Ошибка: ' + (e?.message || e), 'err');
-    }
-  };
-
-  window.deleteDailyPoll = async function deleteDailyPoll(id) {
-    const row = _dailyPolls.find(p => p.id === id);
-    if ((Number(row?.voteCount) || 0) > 0) { showToast('В опросе есть голоса — его можно только архивировать', 'err'); return; }
-    if (!confirm(`Удалить опрос ${id}? Голосов в нём нет.`)) return;
-    try {
-      await deleteDoc(doc(db, 'daily_polls', id));
-      _dailyPolls = _dailyPolls.filter(p => p.id !== id);
-      logAction('daily_poll_delete', `daily_poll:${id}`, {});
-      renderDailyPolls();
-      showToast('Опрос удалён');
-    } catch (e) {
-      console.warn(DPOLL_LOG, 'админка: удаление упало', { id, error: e });
-      showToast('Ошибка: ' + (e?.message || e), 'err');
-    }
-  };
-
-
   window.openUserAnalytics = async function openUserAnalytics(uid, userName) {
     const overlay = document.getElementById('user-analytics-overlay');
     const title   = document.getElementById('ua-title');
@@ -48139,7 +47985,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'cancel-surveys':'Причины отмены','surveys':'Опросы','review-promo':'Опрос Plus',
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
-    'daily-phrases':'Фразы дня','daily-polls':'Опрос дня','arena-content':'Контент Пика','push-notify':'Push-уведомления',
+    'daily-phrases':'Фразы дня','daily-polls':'Опросы Главной','arena-content':'Контент Пика','push-notify':'Push-уведомления',
     'archive':'Архив','audit':'Журнал аудита',
     'ops-log':'Журнал операций','remote-config':'Remote Config','youtube-catalog':'YouTube-каталог',
     'paywall-ab':'A/B paywall','v2-generator':'Генератор Learning V2',

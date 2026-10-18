@@ -2305,6 +2305,19 @@ service cloud.firestore {
       }
     }
 
+    // Home Polls v2. Text is bundled with the app; clients never need a Firestore
+    // read to render. Only admins may inspect aggregate results. Votes and counters
+    // are written atomically by homePollV2Vote through Admin SDK. Per-account vote
+    // documents contain answered booleans only and are deliberately unreadable.
+    match /home_polls_v2/{setId} {
+      allow read: if isAdmin();
+      allow write: if false;
+
+      match /votes/{uid} {
+        allow read, write: if false;
+      }
+    }
+
     match /review_promo_claims/{docId} {
       allow create: if false;
       allow read, update, delete: if isAdmin();
@@ -3398,6 +3411,7 @@ service cloud.firestore {
       allow read, write: if isAdmin()
         && collection != 'users'
         && collection != 'accounts_v2'
+        && collection != 'home_polls_v2'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'
         && collection != 'account_deletion_credential_receipts'

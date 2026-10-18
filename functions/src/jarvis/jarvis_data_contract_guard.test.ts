@@ -1035,6 +1035,45 @@ describe('coin reconcile global receipts Jarvis impact', () => {
   });
 });
 
+// Home Polls v2 is an aggregate product-feedback source, not a Jarvis business
+// metric. Keep that choice explicit so a future reader cannot silently infer
+// demographics from account-scoped duplicate-prevention documents.
+describe('home polls v2 Jarvis and privacy contract', () => {
+  test('keeps aggregate poll results explicit, private, and intentionally unread by Jarvis', () => {
+    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+    const callable = fs.readFileSync(path.join(functionsSrc, 'home_poll_v2_vote.ts'), 'utf8');
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+
+    expect(rules).toContain('match /home_polls_v2/{setId}');
+    expect(rules).toMatch(/match \/votes\/\{uid\} \{\s*allow read, write: if false;/u);
+    expect(callable).toContain('answered: { [input.questionId]: true }');
+    expect(callable).not.toMatch(/answered[^\n]+optionId/u);
+    expect(readers).not.toContain("collection('home_polls_v2')");
+  });
+});
+
+describe('community video-pack listing isolation contract', () => {
+  test('keeps the published-video writer fields and the two client catalogue lanes explicit', () => {
+    const writer = fs.readFileSync(path.join(functionsSrc, 'video_phrases.ts'), 'utf8');
+    const client = fs.readFileSync(path.join(root, 'app', 'community_packs', 'communityFirestore.ts'), 'utf8');
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+
+    expect(writer).toContain("listingStatus: 'published_video'");
+    expect(writer).toContain('videoId: id');
+    expect(client).toContain(".where('listingStatus', '==', 'published_video')");
+    expect(client).toContain(".where('listingStatus', '==', 'published')");
+    expect(readers).not.toContain("collection('community_packs')");
+  });
+});
+
 describe('retired level reward spin Jarvis impact', () => {
   test('keeps retired level-spin writer modules out of the Functions source tree', () => {
     expect(fs.existsSync(path.join(functionsSrc, 'level_reward_spins.ts'))).toBe(false);

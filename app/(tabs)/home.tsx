@@ -54,6 +54,7 @@ import { coinRankDisplaySource } from '../../components/coins/coin_rank_display'
 import { STORY_RING_SLOT } from '../../components/stories/story_ring_constants';
 import StoryAvatarSlotBase from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
+import HomePollV2Card from '../../components/home/HomePollV2Card';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
 import { sameSnapshotSection } from '../home_snapshot_equal';
@@ -2712,6 +2713,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 },
               }}
             />
+            <HomePollV2Card lang={lang} active={homeRuntimeActive} />
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (
             <View onLayout={(event: LayoutChangeEvent) => {

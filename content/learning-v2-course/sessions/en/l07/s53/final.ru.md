@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 53 — На волнах
+# Английский · Урок 7 · Занятие 53 — Бумаги, конспекты и посольство
 
-**Ситуация.** Вы рассказываете о сёрфинге, передаче книг на благотворительность и поиске музея.
+**Ситуация.** Вы рассказываете о бумагах и учёбе: как скрепляете документы, как отмечаете важное в конспекте, что делает учитель с доской, и спрашиваете дорогу к посольству.
 
-**Что вы освоите:** рассказывать о привычках и спрашивать о месте
-**Новые слова:** surf
+**Что вы освоите:** рассказывать о привычках, в том числе о других людях, и спрашивать «Где …?»
+**Новые слова:** staple, highlight, embassy, erase
+**Возвращаются:** page, line, book, teacher, blackboard, museum, library, police
 
 ---
 
 ## Интро 1
 
-### Доска и волны
+### Документы в папку
 
-Друг спрашивает, чем вы часто занимаетесь на море. `Surf` — «заниматься сёрфингом, кататься на доске по волнам». `I often surf` — «Я часто занимаюсь сёрфингом». `Often` стоит перед `surf`. Доску здесь берут для волн, а не чтобы нарезать бутерброды.
+Вы собираете распечатки для рабочего совещания, и отдельные листы так и норовят разлететься по столу. Вы берёте степлер. staple — «скреплять степлером». Скажите: I usually staple the pages together — «Я обычно скрепляю листы вместе». Слово usually стоит перед staple.
 
-**Расскажите другу о своём занятии на море.**
+**Коллега видит степлер у вас на столе. Объясните: «Я обычно скрепляю листы вместе».**
 
-- ✅ **I often surf.**
-- ❌ I often surfs. — *После `I` нужно `surf`.*
-- ❌ I often surfing. — *Здесь нужна форма `surf`.*
+- ✅ **I usually staple the pages together.**
+- ❌ I usually staples the pages together. — *После I нужно staple, без s.*
+- ❌ I usually stapling the pages together. — *После I usually нужна форма staple, без -ing.*
 
 ---
 
 ## Интро 2
 
-### Книги для других
+### Конспект перед экзаменом
 
-Подруга замечает коробку книг, которую вы отдаёте на благотворительность. `I often donate books` — «Я часто отдаю книги на благотворительность». `Often` стоит перед `donate`; `books` говорит, что именно вы отдаёте.
+Перед экзаменом вы читаете учебник и жёлтым маркером отмечаете самые нужные строки, чтобы потом найти их за минуту. highlight — «выделять маркером». Скажите: I often highlight important lines — «Я часто выделяю важные строки». Слово often стоит перед highlight.
 
-**Расскажите подруге о своей привычке.**
+**Подруга спрашивает, как вы учитесь. Ответьте: «Я часто выделяю важные строки».**
 
-- ✅ **I often donate books.**
-- ❌ I often donates books. — *После `I` нужно `donate`.*
-- ❌ I often donating books. — *Здесь нужна форма `donate`.*
+- ✅ **I often highlight important lines.**
+- ❌ I often highlights important lines. — *После I нужно highlight, без s.*
+- ❌ I often highlighting important lines. — *Здесь нужна форма highlight.*
 
 ---
 
 ## Интро 3
 
-### Ищу музей
+### Адрес забыт
 
-Вы хотите попасть на выставку и просите прохожего показать музей. `Where is the museum?` — «Где музей?» После `where` здесь идёт `is`, затем `the museum`.
+Вы ищете посольство и показываете полицейскому название страны на приглашении. Он понимает, какое посольство вам нужно, но вы ещё не знаете дорогу. embassy — «посольство». Спросите: Where is the embassy? — «Где посольство?» После Where идёт is, а потом the embassy.
 
-**Спросите прохожего о музее.**
+**Полицейский на углу ждёт вашего вопроса. Спросите: «Где посольство?»**
 
-- ✅ **Where is the museum?**
-- ❌ Where are the museum? — *Музей один: нужно `is`.*
-- ❌ Where the museum is? — *В этом вопросе `is` стоит перед `the museum`.*
+- ✅ **Where is the embassy?**
+- ❌ Where are the embassy? — *Посольство одно: нужно is.*
+- ❌ Where the embassy is? — *В этом вопросе is стоит перед the embassy.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я часто занимаюсь сёрфингом»**
+**1 · Карточка слова — staple**
+<!-- interaction_id: en:lesson-07:session-53:word:staple; family: word_card -->
+> **staple** — скреплять степлером. I usually staple the pages together. — «Я обычно скрепляю листы вместе». Соединять бумаги металлической скобкой.
+
+**2 · Коллега видит степлер. Скажите: «Я обычно скрепляю листы вместе»**
 <!-- interaction_id: en:lesson-07:session-53:i01; family: phrase_builder -->
-Плитки: `surf` `often` `I` → **I often surf.**
+Плитки: `together` `often` `pages` `the` `staple` `usually` `I` → **I usually staple the pages together.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually staple the pages together.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-53:i02; family: listen_choose -->
-🔊 *surf* → **surf** · ski · sew
-- ski — *В записи первое слово — `surf`, а в этом варианте — `ski`.*
-- sew — *В записи первое слово — `surf`, а в этом варианте — `sew`.*
+🔊 *staple* → **staple** · stay · start
+- stay — *В записи первое слово — `staple`, а в этом варианте — `stay`.*
+- start — *В записи первое слово — `staple`, а в этом варианте — `start`.*
 
-**3 · Скажите «Я часто занимаюсь сёрфингом»**
+**4 · Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-53:i03; family: context_gap_grammar -->
-I often ___. → **surf** · surfs · surfing
-- surfs — *После `I` нужно `surf`.*
-- surfing — *Здесь нужна форма `surf`.*
+I usually ___ the pages together. → **staple** · staples · stapling
+- staples — *После `I` нужно `staple`, без окончания.*
+- stapling — *Здесь нужна форма `staple`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-53:i04; family: speed_match -->
-surf — заниматься сёрфингом · donate — отдавать на благотворительность · museum — музей · court — корт
+staple — скреплять степлером · page — страница · book — книга · teacher — учитель
 
-**5 · Послушайте и соберите фразу**
+**6 · Карточка слова — highlight**
+<!-- interaction_id: en:lesson-07:session-53:word:highlight; family: word_card -->
+> **highlight** — выделять, подчёркивать важное. I often highlight important lines. — «Я часто выделяю важные строки». Выделять важное, например цветным маркером на бумаге или цветом на экране.
+
+**7 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-53:i05; family: listen_build_dictation -->
-🔊 *I often surf.* Плитки: `surf` `often` `I` → **I often surf.**
+🔊 *I often highlight important lines.* Плитки: `lines` `highlights` `important` `highlight` `often` `I` → **I often highlight important lines.**
+*(плитка `highlights` лишняя: здесь нужно `highlight` — `I often highlight important lines.`)*
 
-**6 · Скажите «Я часто отдаю книги на благотворительность»**
+**8 · Карточка слова — embassy**
+<!-- interaction_id: en:lesson-07:session-53:word:embassy; family: word_card -->
+> **embassy** — посольство. Where is the embassy? — «Где посольство?» Дипломатическое представительство одной страны в другой стране.
+
+**9 · Вам нужно в посольство. Спросите полицейского: «Где посольство?»**
 <!-- interaction_id: en:lesson-07:session-53:i06; family: phrase_builder -->
-Плитки: `books` `donate` `often` `I` → **I often donate books.**
+Плитки: `embassy` `are` `the` `is` `Where` → **Where is the embassy?**
+*(плитка `are` лишняя: здесь нужно `is` — `Where is the embassy?`)*
 
-**7 · Спросите прохожего «Где музей?»**
+**10 · Вы показываете полицейскому здание через дорогу. Уточните: «Это посольство?»**
 <!-- interaction_id: en:lesson-07:session-53:i07; family: scripted_repeat_compare -->
-🎙 **Where is the museum?**
+🎙 **Is this the embassy?**
 
-**8 · Скажите «Я часто отдаю книги на благотворительность»**
+**11 · Карточка слова — erase**
+<!-- interaction_id: en:lesson-07:session-53:word:erase; family: word_card -->
+> **erase** — стирать. The teacher often erases the blackboard. — «Учитель часто стирает написанное с доски». Убирать то, что написано.
+
+**12 · Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-53:i08; family: context_gap_grammar -->
-I often ___ books. → **donate** · donates · donating
-- donates — *После `I` нужно `donate`.*
-- donating — *Здесь нужна форма `donate`.*
+The teacher often ___ the blackboard. → **erases** · erase · erasing
+- erase — *После `The teacher` нужно `erases`.*
+- erasing — *Здесь нужна форма `erases`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-53:i09; family: listen_choose -->
-🔊 *I often surf.* → **I often surf.** · I often ski. · I often dance.
-- I often ski. — *В записи последнее слово — `surf`, а в этом варианте — `ski`.*
-- I often dance. — *В записи последнее слово — `surf`, а в этом варианте — `dance`.*
+🔊 *I often highlight important lines.* → **I often highlight important lines.** · I often highlight important pages. · I often highlight important books.
+- I often highlight important pages. — *В записи последнее слово — `lines`, а в этом варианте — `pages`.*
+- I often highlight important books. — *В записи последнее слово — `lines`, а в этом варианте — `books`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-53:i10; family: speed_match -->
-uniform — униформа · surf — заниматься сёрфингом · donate — отдавать на благотворительность · museum — музей
+erase — стирать · staple — скреплять степлером · highlight — выделять маркером · blackboard — школьная доска
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-53:i11; family: listen_build_dictation -->
-🔊 *Where is the museum?* Плитки: `museum` `the` `is` `Where` → **Where is the museum?**
+🔊 *The teacher often erases the blackboard.* Плитки: `blackboard` `erase` `the` `erases` `often` `teacher` `The` → **The teacher often erases the blackboard.**
+*(плитка `erase` лишняя: здесь нужно `erases` — `The teacher often erases the blackboard.`)*
 
-**12 · Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»**
+**16 · Подруга спрашивает, как вы учитесь. Скажите: «Я часто выделяю важные строки»**
 <!-- interaction_id: en:lesson-07:session-53:i12; family: phrase_builder -->
-Плитки: `court` `the` `is` `Where` → **Where is the court?**
+Плитки: `lines` `usually` `important` `highlight` `often` `I` → **I often highlight important lines.**
+*(плитка `usually` лишняя: здесь нужно `often` — `I often highlight important lines.`)*
 
-**13 · Друг рассказывает о работе. Спросите «Ты носишь униформу?»**
+**17 · Знакомый спрашивает про вашу сестру. Скажите: «Она обычно скрепляет листы вместе»**
 <!-- interaction_id: en:lesson-07:session-53:i13; family: scripted_repeat_compare -->
-🎙 **Do you wear a uniform?**
+🎙 **She usually staples the pages together.**
 
-**14 · Скажите «Я часто занимаюсь сёрфингом»**
+**18 · Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-53:i14; family: context_gap_grammar -->
-I ___ surf. → **often** · does · am
-- does — *Для «часто» нужно `often` перед `surf`.*
-- am — *Для «часто» нужно `often`; `am` перед `surf` не ставим.*
+I ___ staple the pages together. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `staple`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `staple` не ставим.*
 
-**15 · Послушайте и выберите фразу**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-53:i15; family: listen_choose -->
-🔊 *Where is the museum?* → **Where is the museum?** · Where is the court? · Where is the pool?
-- Where is the court? — *В записи последнее слово — `museum`, а в этом варианте — `court`.*
-- Where is the pool? — *В записи последнее слово — `museum`, а в этом варианте — `pool`.*
+🔊 *Where is the embassy?* → **Where is the embassy?** · Where is the museum? · Where is the library?
+- Where is the museum? — *В записи последнее слово — `embassy`, а в этом варианте — `museum`.*
+- Where is the library? — *В записи последнее слово — `embassy`, а в этом варианте — `library`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-53:i16; family: speed_match -->
-surf — заниматься сёрфингом · court — корт · uniform — униформа · donate — отдавать на благотворительность
+embassy — посольство · highlight — выделять маркером · erase — стирать · museum — музей
 
-**17 · Друг спрашивает о занятиях Тома на море. Скажите «Том часто занимается сёрфингом»**
+**21 · Сосед спрашивает про уроки. Скажите: «Учитель обычно стирает написанное с доски»**
 <!-- interaction_id: en:lesson-07:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom often surfs.**
-
+🎙 **The teacher usually erases the blackboard.**

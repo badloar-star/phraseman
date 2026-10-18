@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-53:intro1:r2": {
-          "ru": "После `I` нужно `surf`.",
-          "uk": "Після `I` потрібне `surf`."
+          "ru": "После I нужно staple, без s.",
+          "uk": "Після I потрібно staple, без s."
         },
         "en:lesson-07:session-53:intro1:r3": {
-          "ru": "Здесь нужна форма `surf`.",
-          "uk": "Тут потрібна форма `surf`."
+          "ru": "После I usually нужна форма staple, без -ing.",
+          "uk": "Після I usually потрібна форма staple, без -ing."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-53:intro2:r2": {
-          "ru": "После `I` нужно `donate`.",
-          "uk": "Після `I` потрібне `donate`."
+          "ru": "После I нужно highlight, без s.",
+          "uk": "Після I потрібно highlight, без s."
         },
         "en:lesson-07:session-53:intro2:r3": {
-          "ru": "Здесь нужна форма `donate`.",
-          "uk": "Тут потрібна форма `donate`."
+          "ru": "Здесь нужна форма highlight.",
+          "uk": "Тут потрібна форма highlight."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-53:intro3:r2": {
-          "ru": "Музей один: нужно `is`.",
-          "uk": "Музей один: потрібне `is`."
+          "ru": "Посольство одно: нужно is.",
+          "uk": "Посольство одне: потрібно is."
         },
         "en:lesson-07:session-53:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the museum`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the museum`."
+          "ru": "В этом вопросе is стоит перед the embassy.",
+          "uk": "У цьому запитанні is стоїть перед the embassy."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "635dc2fcd1848d43be9f85a9136477b328259b95ef11f6b05984d294e798f9b8"
+  "auxiliaryFingerprint": "7f153fce0df29d586bff6158e5857519a2fc6e08acbd7984fa08dd7aa0414d83"
 }

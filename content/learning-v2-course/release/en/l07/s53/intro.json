@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-53",
   "learningOutcomeByLocale": {
-    "ru": "рассказывать о привычках и спрашивать о месте",
-    "uk": "розповідати про звички й запитувати про місце"
+    "ru": "рассказывать о привычках, в том числе о других людях, и спрашивать «Где …?»",
+    "uk": "розповідати про звички, зокрема інших людей, і питати «Де …?»"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Доска и волны",
-        "uk": "Дошка й хвилі"
+        "ru": "Документы в папку",
+        "uk": "Документи в теку"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, чем вы часто занимаетесь на море. `Surf` — «заниматься сёрфингом, кататься на доске по волнам». `I often surf` — «Я часто занимаюсь сёрфингом». `Often` стоит перед `surf`. Доску здесь берут для волн, а не чтобы нарезать бутерброды.",
-        "uk": "Друг запитує, чим ви часто займаєтеся на морі. `Surf` — «займатися серфінгом, кататися на дошці по хвилях». `I often surf` — «Я часто займаюся серфінгом». `Often` стоїть перед `surf`. Дошку тут беруть для хвиль, а не щоб нарізати бутерброди."
+        "ru": "Вы собираете распечатки для рабочего совещания, и отдельные листы так и норовят разлететься по столу. Вы берёте степлер. staple — «скреплять степлером». Скажите: I usually staple the pages together — «Я обычно скрепляю листы вместе». Слово usually стоит перед staple.",
+        "uk": "Ви збираєте роздруківки для робочої наради, і окремі аркуші так і норовлять розлетітися по столу. Ви берете степлер. staple — «скріплювати степлером». Скажіть: I usually staple the pages together — «Я зазвичай скріплюю аркуші разом». Слово usually стоїть перед staple."
       },
       "question": {
         "interactionId": "en:lesson-07:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своём занятии на море.",
-          "uk": "Розкажіть другові про своє заняття на морі."
+          "ru": "Коллега видит степлер у вас на столе. Объясните: «Я обычно скрепляю листы вместе».",
+          "uk": "Колега бачить степлер у вас на столі. Поясніть: «Я зазвичай скріплюю аркуші разом»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-53:intro1:r1",
-              "text": "I often surf."
+              "text": "I usually staple the pages together."
             },
             {
               "responseId": "en:lesson-07:session-53:intro1:r2",
-              "text": "I often surfs."
+              "text": "I usually staples the pages together."
             },
             {
               "responseId": "en:lesson-07:session-53:intro1:r3",
-              "text": "I often surfing."
+              "text": "I usually stapling the pages together."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-53:intro1:r1",
-              "text": "I often surf."
+              "text": "I usually staple the pages together."
             },
             {
               "responseId": "en:lesson-07:session-53:intro1:r2",
-              "text": "I often surfs."
+              "text": "I usually staples the pages together."
             },
             {
               "responseId": "en:lesson-07:session-53:intro1:r3",
-              "text": "I often surfing."
+              "text": "I usually stapling the pages together."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своём занятии на море.",
-          "uk": "Розкажіть другові про своє заняття на морі."
+          "ru": "Коллега видит степлер у вас на столе. Объясните: «Я обычно скрепляю листы вместе».",
+          "uk": "Колега бачить степлер у вас на столі. Поясніть: «Я зазвичай скріплюю аркуші разом»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Книги для других",
-        "uk": "Книжки для інших"
+        "ru": "Конспект перед экзаменом",
+        "uk": "Конспект перед іспитом"
       },
       "bodyByLocale": {
-        "ru": "Подруга замечает коробку книг, которую вы отдаёте на благотворительность. `I often donate books` — «Я часто отдаю книги на благотворительность». `Often` стоит перед `donate`; `books` говорит, что именно вы отдаёте.",
-        "uk": "Подруга помічає коробку книжок, яку ви віддаєте на благодійність. `I often donate books` — «Я часто віддаю книжки на благодійність». `Often` стоїть перед `donate`; `books` говорить, що саме ви віддаєте."
+        "ru": "Перед экзаменом вы читаете учебник и жёлтым маркером отмечаете самые нужные строки, чтобы потом найти их за минуту. highlight — «выделять маркером». Скажите: I often highlight important lines — «Я часто выделяю важные строки». Слово often стоит перед highlight.",
+        "uk": "Перед іспитом ви читаєте підручник і жовтим маркером позначаєте найпотрібніші рядки, щоб потім знайти їх за хвилину. highlight — «виділяти маркером». Скажіть: I often highlight important lines — «Я часто виділяю важливі рядки». Слово often стоїть перед highlight."
       },
       "question": {
         "interactionId": "en:lesson-07:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите подруге о своей привычке.",
-          "uk": "Розкажіть подрузі про свою звичку."
+          "ru": "Подруга спрашивает, как вы учитесь. Ответьте: «Я часто выделяю важные строки».",
+          "uk": "Подруга питає, як ви вчитеся. Відповідьте: «Я часто виділяю важливі рядки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-53:intro2:r1",
-              "text": "I often donate books."
+              "text": "I often highlight important lines."
             },
             {
               "responseId": "en:lesson-07:session-53:intro2:r2",
-              "text": "I often donates books."
+              "text": "I often highlights important lines."
             },
             {
               "responseId": "en:lesson-07:session-53:intro2:r3",
-              "text": "I often donating books."
+              "text": "I often highlighting important lines."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-53:intro2:r1",
-              "text": "I often donate books."
+              "text": "I often highlight important lines."
             },
             {
               "responseId": "en:lesson-07:session-53:intro2:r2",
-              "text": "I often donates books."
+              "text": "I often highlights important lines."
             },
             {
               "responseId": "en:lesson-07:session-53:intro2:r3",
-              "text": "I often donating books."
+              "text": "I often highlighting important lines."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите подруге о своей привычке.",
-          "uk": "Розкажіть подрузі про свою звичку."
+          "ru": "Подруга спрашивает, как вы учитесь. Ответьте: «Я часто выделяю важные строки».",
+          "uk": "Подруга питає, як ви вчитеся. Відповідьте: «Я часто виділяю важливі рядки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищу музей",
-        "uk": "Шукаю музей"
+        "ru": "Адрес забыт",
+        "uk": "Адресу забуто"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите попасть на выставку и просите прохожего показать музей. `Where is the museum?` — «Где музей?» После `where` здесь идёт `is`, затем `the museum`.",
-        "uk": "Ви хочете потрапити на виставку й просите перехожого показати музей. `Where is the museum?` — «Де музей?» Після `where` тут іде `is`, потім `the museum`."
+        "ru": "Вы ищете посольство и показываете полицейскому название страны на приглашении. Он понимает, какое посольство вам нужно, но вы ещё не знаете дорогу. embassy — «посольство». Спросите: Where is the embassy? — «Где посольство?» После Where идёт is, а потом the embassy.",
+        "uk": "Ви шукаєте посольство й показуєте поліцейському назву країни на запрошенні. Він розуміє, яке посольство вам потрібне, але ви ще не знаєте дороги. embassy — «посольство». Спитайте: Where is the embassy? — «Де посольство?» Після Where йде is, а потім the embassy."
       },
       "question": {
         "interactionId": "en:lesson-07:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите прохожего о музее.",
-          "uk": "Запитайте перехожого про музей."
+          "ru": "Полицейский на углу ждёт вашего вопроса. Спросите: «Где посольство?»",
+          "uk": "Поліцейський на розі чекає на ваше запитання. Спитайте: «Де посольство?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-53:intro3:r1",
-              "text": "Where is the museum?"
+              "text": "Where is the embassy?"
             },
             {
               "responseId": "en:lesson-07:session-53:intro3:r2",
-              "text": "Where are the museum?"
+              "text": "Where are the embassy?"
             },
             {
               "responseId": "en:lesson-07:session-53:intro3:r3",
-              "text": "Where the museum is?"
+              "text": "Where the embassy is?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-53:intro3:r1",
-              "text": "Where is the museum?"
+              "text": "Where is the embassy?"
             },
             {
               "responseId": "en:lesson-07:session-53:intro3:r2",
-              "text": "Where are the museum?"
+              "text": "Where are the embassy?"
             },
             {
               "responseId": "en:lesson-07:session-53:intro3:r3",
-              "text": "Where the museum is?"
+              "text": "Where the embassy is?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите прохожего о музее.",
-          "uk": "Запитайте перехожого про музей."
+          "ru": "Полицейский на углу ждёт вашего вопроса. Спросите: «Где посольство?»",
+          "uk": "Поліцейський на розі чекає на ваше запитання. Спитайте: «Де посольство?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54104f1bfbb499141530a235b7645c06584f83ad82b90117a88c46518880397f"
+  "introFingerprint": "4811b55c0ae02821ee48100f0252610a849c86998e1795ccf13c188b66bf4acc"
 }

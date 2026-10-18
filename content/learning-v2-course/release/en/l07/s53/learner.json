@@ -4,30 +4,88 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-53:i01",
+      "interactionId": "en:lesson-07:session-53:word:staple",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — staple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:word:staple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — staple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:word:staple:audio",
+          "transcript": "staple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:word:staple:r1",
+            "targetText": "staple",
+            "meaningByLocale": {
+              "ru": "скреплять степлером. I usually staple the pages together. — «Я обычно скрепляю листы вместе». Соединять бумаги металлической скобкой.",
+              "uk": "скріплювати степлером. I usually staple the pages together. — «Я зазвичай скріплюю аркуші разом». З’єднувати папери металевою скобою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "staple",
+          "definitionByLocale": {
+            "ru": "скреплять степлером. I usually staple the pages together. — «Я обычно скрепляю листы вместе». Соединять бумаги металлической скобкой.",
+            "uk": "скріплювати степлером. I usually staple the pages together. — «Я зазвичай скріплюю аркуші разом». З’єднувати папери металевою скобою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-53:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "prompt": "Коллега видит степлер. Скажите: «Я обычно скрепляю листы вместе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "accessibilityLabel": "Коллега видит степлер. Скажите: «Я обычно скрепляю листы вместе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often surf.",
+        "targetPhrase": "I usually staple the pages together.",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
-          "uk": "Скажіть «Я часто займаюся серфінгом»"
+          "ru": "Коллега видит степлер. Скажите: «Я обычно скрепляю листы вместе»",
+          "uk": "Колега бачить степлер. Скажіть: «Я зазвичай скріплюю аркуші разом»"
         },
         "orderedTokens": [
           "I",
-          "often",
-          "surf"
+          "usually",
+          "staple",
+          "the",
+          "pages",
+          "together"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "often"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Коллега видит степлер. Скажите: «Я обычно скрепляю листы вместе»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `usually` — `I usually staple the pages together.`",
+              "uk": "тут потрібно `usually` — `I usually staple the pages together.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +95,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,15 +103,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i02:r1",
-          "text": "surf"
+          "text": "staple"
         },
         {
           "responseId": "en:lesson-07:session-53:i02:r2",
-          "text": "ski"
+          "text": "stay"
         },
         {
           "responseId": "en:lesson-07:session-53:i02:r3",
-          "text": "sew"
+          "text": "start"
         }
       ],
       "mediaIds": [],
@@ -65,23 +123,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i02:audio",
-          "transcript": "surf"
+          "transcript": "staple"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-53:i02:r1",
-            "targetText": "surf",
+            "targetText": "staple",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i02:r2",
-            "targetText": "ski",
+            "targetText": "stay",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i02:r3",
-            "targetText": "sew",
+            "targetText": "start",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +150,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `surf`, а в этом варианте — `ski`.",
-              "uk": "У записі перше слово — `surf`, а в цьому варіанті — `ski`."
+              "ru": "В записи первое слово — `staple`, а в этом варианте — `stay`.",
+              "uk": "У записі перше слово — `staple`, а в цьому варіанті — `stay`."
             }
           },
           {
@@ -101,8 +159,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `surf`, а в этом варианте — `sew`.",
-              "uk": "У записі перше слово — `surf`, а в цьому варіанті — `sew`."
+              "ru": "В записи первое слово — `staple`, а в этом варианте — `start`.",
+              "uk": "У записі перше слово — `staple`, а в цьому варіанті — `start`."
             }
           }
         ],
@@ -113,67 +171,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "prompt": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i03:r1",
-          "text": "surf"
+          "text": "staple"
         },
         {
           "responseId": "en:lesson-07:session-53:i03:r2",
-          "text": "surfs"
+          "text": "staples"
         },
         {
           "responseId": "en:lesson-07:session-53:i03:r3",
-          "text": "surfing"
+          "text": "stapling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "accessibilityLabel": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
-          "uk": "Скажіть «Я часто займаюся серфінгом»"
+          "ru": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
+          "uk": "Колега питає про документи. Скажіть: «Я зазвичай скріплюю аркуші разом». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___.",
+        "gappedTargetPhrase": "I usually ___ the pages together.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-53:i03:r1",
-            "text": "surf"
+            "text": "staple"
           },
           {
             "responseId": "en:lesson-07:session-53:i03:r2",
-            "text": "surfs"
+            "text": "staples"
           },
           {
             "responseId": "en:lesson-07:session-53:i03:r3",
-            "text": "surfing"
+            "text": "stapling"
           }
         ],
-        "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+        "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-53:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `surf`.",
-              "uk": "Після `I` потрібне `surf`."
+              "ru": "После `I` нужно `staple`, без окончания.",
+              "uk": "Після `I` потрібно `staple`, без закінчення."
             }
           },
           {
             "responseId": "en:lesson-07:session-53:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `surf`.",
-              "uk": "Тут потрібна форма `surf`."
+              "ru": "Здесь нужна форма `staple`.",
+              "uk": "Тут потрібна форма `staple`."
             }
           }
         ]
@@ -182,7 +240,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +254,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-53:i04:p1",
-            "target": "surf",
+            "target": "staple",
             "meaningByLocale": {
-              "ru": "заниматься сёрфингом",
-              "uk": "займатися серфінгом"
+              "ru": "скреплять степлером",
+              "uk": "скріплювати степлером"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i04:p2",
-            "target": "donate",
+            "target": "page",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "страница",
+              "uk": "сторінка"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i04:p3",
-            "target": "museum",
+            "target": "book",
             "meaningByLocale": {
-              "ru": "музей",
-              "uk": "музей"
+              "ru": "книга",
+              "uk": "книжка"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i04:p4",
-            "target": "court",
+            "target": "teacher",
             "meaningByLocale": {
-              "ru": "корт",
-              "uk": "корт"
+              "ru": "учитель",
+              "uk": "учитель"
             }
           }
         ],
         "leftColumn": [
-          "surf",
-          "donate",
-          "museum",
-          "court"
+          "staple",
+          "page",
+          "book",
+          "teacher"
         ],
         "rightColumn": [
-          "заниматься сёрфингом",
-          "отдавать на благотворительность",
-          "музей",
-          "корт"
+          "скреплять степлером",
+          "страница",
+          "книга",
+          "учитель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -254,8 +312,51 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-53:word:highlight",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — highlight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:word:highlight:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — highlight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:word:highlight:audio",
+          "transcript": "highlight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:word:highlight:r1",
+            "targetText": "highlight",
+            "meaningByLocale": {
+              "ru": "выделять, подчёркивать важное. I often highlight important lines. — «Я часто выделяю важные строки». Выделять важное, например цветным маркером на бумаге или цветом на экране.",
+              "uk": "виділяти, підкреслювати важливе. I often highlight important lines. — «Я часто виділяю важливі рядки». Виділяти важливе, наприклад кольоровим маркером на папері чи кольором на екрані."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "highlight",
+          "definitionByLocale": {
+            "ru": "выделять, подчёркивать важное. I often highlight important lines. — «Я часто выделяю важные строки». Выделять важное, например цветным маркером на бумаге или цветом на экране.",
+            "uk": "виділяти, підкреслювати важливе. I often highlight important lines. — «Я часто виділяю важливі рядки». Виділяти важливе, наприклад кольоровим маркером на папері чи кольором на екрані."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-53:i05",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,17 +371,31 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i05:audio",
-          "transcript": "I often surf."
+          "transcript": "I often highlight important lines."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I often surf.",
+        "hiddenTargetPhrase": "I often highlight important lines.",
         "orderedTokens": [
           "I",
           "often",
-          "surf"
+          "highlight",
+          "important",
+          "lines"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "highlights"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `highlight` — `I often highlight important lines.`",
+              "uk": "тут потрібно `highlight` — `I often highlight important lines.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -289,31 +404,86 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-53:word:embassy",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — embassy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:word:embassy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — embassy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:word:embassy:audio",
+          "transcript": "embassy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:word:embassy:r1",
+            "targetText": "embassy",
+            "meaningByLocale": {
+              "ru": "посольство. Where is the embassy? — «Где посольство?» Дипломатическое представительство одной страны в другой стране.",
+              "uk": "посольство. Where is the embassy? — «Де посольство?» Дипломатичне представництво однієї країни в іншій країні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "embassy",
+          "definitionByLocale": {
+            "ru": "посольство. Where is the embassy? — «Где посольство?» Дипломатическое представительство одной страны в другой стране.",
+            "uk": "посольство. Where is the embassy? — «Де посольство?» Дипломатичне представництво однієї країни в іншій країні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-53:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "prompt": "Вам нужно в посольство. Спросите полицейского: «Где посольство?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "accessibilityLabel": "Вам нужно в посольство. Спросите полицейского: «Где посольство?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I often donate books.",
+        "targetPhrase": "Where is the embassy?",
         "localizedMeaning": {
-          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
-          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+          "ru": "Вам нужно в посольство. Спросите полицейского: «Где посольство?»",
+          "uk": "Вам потрібно в посольство. Спитайте поліцейського: «Де посольство?»"
         },
         "orderedTokens": [
-          "I",
-          "often",
-          "donate",
-          "books"
+          "Where",
+          "is",
+          "the",
+          "embassy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Вам нужно в посольство. Спросите полицейского: «Где посольство?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `Where is the embassy?`",
+              "uk": "тут потрібно `is` — `Where is the embassy?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -323,25 +493,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите прохожего «Где музей?»",
+      "prompt": "Вы показываете полицейскому здание через дорогу. Уточните: «Это посольство?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-53:i07:audio"
       ],
-      "accessibilityLabel": "Спросите прохожего «Где музей?»",
+      "accessibilityLabel": "Вы показываете полицейскому здание через дорогу. Уточните: «Это посольство?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i07:audio",
-          "transcript": "Where is the museum?"
+          "transcript": "Is this the embassy?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is the museum?",
+        "targetPhrase": "Is this the embassy?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,68 +525,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-53:word:erase",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — erase",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-53:word:erase:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — erase",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-53:word:erase:audio",
+          "transcript": "erase"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-53:word:erase:r1",
+            "targetText": "erase",
+            "meaningByLocale": {
+              "ru": "стирать. The teacher often erases the blackboard. — «Учитель часто стирает написанное с доски». Убирать то, что написано.",
+              "uk": "стирати. The teacher often erases the blackboard. — «Учитель часто стирає написане з дошки». Прибирати те, що написано."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "erase",
+          "definitionByLocale": {
+            "ru": "стирать. The teacher often erases the blackboard. — «Учитель часто стирает написанное с доски». Убирать то, что написано.",
+            "uk": "стирати. The teacher often erases the blackboard. — «Учитель часто стирає написане з дошки». Прибирати те, що написано."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-53:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто отдаю книги на благотворительность»",
+      "prompt": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i08:r1",
-          "text": "donate"
+          "text": "erases"
         },
         {
           "responseId": "en:lesson-07:session-53:i08:r2",
-          "text": "donates"
+          "text": "erase"
         },
         {
           "responseId": "en:lesson-07:session-53:i08:r3",
-          "text": "donating"
+          "text": "erasing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто отдаю книги на благотворительность»",
+      "accessibilityLabel": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто отдаю книги на благотворительность»",
-          "uk": "Скажіть «Я часто віддаю книжки на благодійність»"
+          "ru": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
+          "uk": "Учень питає про урок. Скажіть: «Учитель часто стирає написане з дошки». Виберіть слово"
         },
-        "gappedTargetPhrase": "I often ___ books.",
+        "gappedTargetPhrase": "The teacher often ___ the blackboard.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-53:i08:r1",
-            "text": "donate"
+            "text": "erases"
           },
           {
             "responseId": "en:lesson-07:session-53:i08:r2",
-            "text": "donates"
+            "text": "erase"
           },
           {
             "responseId": "en:lesson-07:session-53:i08:r3",
-            "text": "donating"
+            "text": "erasing"
           }
         ],
-        "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+        "testedDimension": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-53:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `donate`.",
-              "uk": "Після `I` потрібне `donate`."
+              "ru": "После `The teacher` нужно `erases`.",
+              "uk": "Після `The teacher` потрібно `erases`."
             }
           },
           {
             "responseId": "en:lesson-07:session-53:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто отдаю книги на благотворительность»",
+            "testedDimension": "Ученик спрашивает про урок. Скажите: «Учитель часто стирает написанное с доски». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Здесь нужна форма `donate`.",
-              "uk": "Тут потрібна форма `donate`."
+              "ru": "Здесь нужна форма `erases`.",
+              "uk": "Тут потрібна форма `erases`."
             }
           }
         ]
@@ -425,7 +638,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -433,15 +646,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i09:r1",
-          "text": "I often surf."
+          "text": "I often highlight important lines."
         },
         {
           "responseId": "en:lesson-07:session-53:i09:r2",
-          "text": "I often ski."
+          "text": "I often highlight important pages."
         },
         {
           "responseId": "en:lesson-07:session-53:i09:r3",
-          "text": "I often dance."
+          "text": "I often highlight important books."
         }
       ],
       "mediaIds": [],
@@ -453,23 +666,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i09:audio",
-          "transcript": "I often surf."
+          "transcript": "I often highlight important lines."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-53:i09:r1",
-            "targetText": "I often surf.",
+            "targetText": "I often highlight important lines.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i09:r2",
-            "targetText": "I often ski.",
+            "targetText": "I often highlight important pages.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i09:r3",
-            "targetText": "I often dance.",
+            "targetText": "I often highlight important books.",
             "meaningByLocale": null
           }
         ],
@@ -480,8 +693,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `surf`, а в этом варианте — `ski`.",
-              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `ski`."
+              "ru": "В записи последнее слово — `lines`, а в этом варианте — `pages`.",
+              "uk": "У записі останнє слово — `lines`, а в цьому варіанті — `pages`."
             }
           },
           {
@@ -489,8 +702,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `surf`, а в этом варианте — `dance`.",
-              "uk": "У записі останнє слово — `surf`, а в цьому варіанті — `dance`."
+              "ru": "В записи последнее слово — `lines`, а в этом варианте — `books`.",
+              "uk": "У записі останнє слово — `lines`, а в цьому варіанті — `books`."
             }
           }
         ],
@@ -501,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -515,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-53:i10:p1",
-            "target": "uniform",
+            "target": "erase",
             "meaningByLocale": {
-              "ru": "униформа",
-              "uk": "уніформа"
+              "ru": "стирать",
+              "uk": "стирати"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i10:p2",
-            "target": "surf",
+            "target": "staple",
             "meaningByLocale": {
-              "ru": "заниматься сёрфингом",
-              "uk": "займатися серфінгом"
+              "ru": "скреплять степлером",
+              "uk": "скріплювати степлером"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i10:p3",
-            "target": "donate",
+            "target": "highlight",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "выделять маркером",
+              "uk": "виділяти маркером"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i10:p4",
-            "target": "museum",
+            "target": "blackboard",
             "meaningByLocale": {
-              "ru": "музей",
-              "uk": "музей"
+              "ru": "школьная доска",
+              "uk": "шкільна дошка"
             }
           }
         ],
         "leftColumn": [
-          "uniform",
-          "surf",
-          "donate",
-          "museum"
+          "erase",
+          "staple",
+          "highlight",
+          "blackboard"
         ],
         "rightColumn": [
-          "униформа",
-          "заниматься сёрфингом",
-          "отдавать на благотворительность",
-          "музей"
+          "стирать",
+          "скреплять степлером",
+          "выделять маркером",
+          "школьная доска"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,8 +787,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -589,18 +802,32 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i11:audio",
-          "transcript": "Where is the museum?"
+          "transcript": "The teacher often erases the blackboard."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is the museum?",
+        "hiddenTargetPhrase": "The teacher often erases the blackboard.",
         "orderedTokens": [
-          "Where",
-          "is",
+          "The",
+          "teacher",
+          "often",
+          "erases",
           "the",
-          "museum"
+          "blackboard"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "erase"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `erases` — `The teacher often erases the blackboard.`",
+              "uk": "тут потрібно `erases` — `The teacher often erases the blackboard.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -610,30 +837,43 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
+      "prompt": "Подруга спрашивает, как вы учитесь. Скажите: «Я часто выделяю важные строки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
+      "accessibilityLabel": "Подруга спрашивает, как вы учитесь. Скажите: «Я часто выделяю важные строки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Where is the court?",
+        "targetPhrase": "I often highlight important lines.",
         "localizedMeaning": {
-          "ru": "Вы пришли поиграть в теннис. Спросите сотрудника «Где корт?»",
-          "uk": "Ви прийшли пограти в теніс. Запитайте працівника «Де корт?»"
+          "ru": "Подруга спрашивает, как вы учитесь. Скажите: «Я часто выделяю важные строки»",
+          "uk": "Подруга питає, як ви вчитеся. Скажіть: «Я часто виділяю важливі рядки»"
         },
         "orderedTokens": [
-          "Where",
-          "is",
-          "the",
-          "court"
+          "I",
+          "often",
+          "highlight",
+          "important",
+          "lines"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "usually"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-53:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга спрашивает, как вы учитесь. Скажите: «Я часто выделяю важные строки»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `often` — `I often highlight important lines.`",
+              "uk": "тут потрібно `often` — `I often highlight important lines.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -643,25 +883,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг рассказывает о работе. Спросите «Ты носишь униформу?»",
+      "prompt": "Знакомый спрашивает про вашу сестру. Скажите: «Она обычно скрепляет листы вместе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-53:i13:audio"
       ],
-      "accessibilityLabel": "Друг рассказывает о работе. Спросите «Ты носишь униформу?»",
+      "accessibilityLabel": "Знакомый спрашивает про вашу сестру. Скажите: «Она обычно скрепляет листы вместе»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i13:audio",
-          "transcript": "Do you wear a uniform?"
+          "transcript": "She usually staples the pages together."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Do you wear a uniform?",
+        "targetPhrase": "She usually staples the pages together.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -676,15 +916,15 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я часто занимаюсь сёрфингом»",
+      "prompt": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i14:r1",
-          "text": "often"
+          "text": "usually"
         },
         {
           "responseId": "en:lesson-07:session-53:i14:r2",
@@ -697,18 +937,18 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я часто занимаюсь сёрфингом»",
+      "accessibilityLabel": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я часто занимаюсь сёрфингом»",
-          "uk": "Скажіть «Я часто займаюся серфінгом»"
+          "ru": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
+          "uk": "Колега питає про документи. Скажіть: «Я зазвичай скріплюю аркуші разом». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ surf.",
+        "gappedTargetPhrase": "I ___ staple the pages together.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-53:i14:r1",
-            "text": "often"
+            "text": "usually"
           },
           {
             "responseId": "en:lesson-07:session-53:i14:r2",
@@ -719,24 +959,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+        "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-53:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often` перед `surf`.",
-              "uk": "Для «часто» потрібне `often` перед `surf`."
+              "ru": "Для «обычно» нужно `usually` перед `staple`.",
+              "uk": "Для «зазвичай» потрібно `usually` перед `staple`."
             }
           },
           {
             "responseId": "en:lesson-07:session-53:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я часто занимаюсь сёрфингом»",
+            "testedDimension": "Коллега спрашивает про документы. Скажите: «Я обычно скрепляю листы вместе». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для «часто» нужно `often`; `am` перед `surf` не ставим.",
-              "uk": "Для «часто» потрібне `often`; `am` перед `surf` не ставимо."
+              "ru": "Для «обычно» нужно `usually`; `am` перед `staple` не ставим.",
+              "uk": "Для «зазвичай» потрібно `usually`; `am` перед `staple` не ставимо."
             }
           }
         ]
@@ -745,7 +985,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -753,15 +993,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-53:i15:r1",
-          "text": "Where is the museum?"
+          "text": "Where is the embassy?"
         },
         {
           "responseId": "en:lesson-07:session-53:i15:r2",
-          "text": "Where is the court?"
+          "text": "Where is the museum?"
         },
         {
           "responseId": "en:lesson-07:session-53:i15:r3",
-          "text": "Where is the pool?"
+          "text": "Where is the library?"
         }
       ],
       "mediaIds": [],
@@ -773,23 +1013,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i15:audio",
-          "transcript": "Where is the museum?"
+          "transcript": "Where is the embassy?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-53:i15:r1",
-            "targetText": "Where is the museum?",
+            "targetText": "Where is the embassy?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i15:r2",
-            "targetText": "Where is the court?",
+            "targetText": "Where is the museum?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-53:i15:r3",
-            "targetText": "Where is the pool?",
+            "targetText": "Where is the library?",
             "meaningByLocale": null
           }
         ],
@@ -800,8 +1040,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `museum`, а в этом варианте — `court`.",
-              "uk": "У записі останнє слово — `museum`, а в цьому варіанті — `court`."
+              "ru": "В записи последнее слово — `embassy`, а в этом варианте — `museum`.",
+              "uk": "У записі останнє слово — `embassy`, а в цьому варіанті — `museum`."
             }
           },
           {
@@ -809,8 +1049,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `museum`, а в этом варианте — `pool`.",
-              "uk": "У записі останнє слово — `museum`, а в цьому варіанті — `pool`."
+              "ru": "В записи последнее слово — `embassy`, а в этом варианте — `library`.",
+              "uk": "У записі останнє слово — `embassy`, а в цьому варіанті — `library`."
             }
           }
         ],
@@ -821,7 +1061,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,48 +1075,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-53:i16:p1",
-            "target": "surf",
+            "target": "embassy",
             "meaningByLocale": {
-              "ru": "заниматься сёрфингом",
-              "uk": "займатися серфінгом"
+              "ru": "посольство",
+              "uk": "посольство"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i16:p2",
-            "target": "court",
+            "target": "highlight",
             "meaningByLocale": {
-              "ru": "корт",
-              "uk": "корт"
+              "ru": "выделять маркером",
+              "uk": "виділяти маркером"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i16:p3",
-            "target": "uniform",
+            "target": "erase",
             "meaningByLocale": {
-              "ru": "униформа",
-              "uk": "уніформа"
+              "ru": "стирать",
+              "uk": "стирати"
             }
           },
           {
             "pairId": "en:lesson-07:session-53:i16:p4",
-            "target": "donate",
+            "target": "museum",
             "meaningByLocale": {
-              "ru": "отдавать на благотворительность",
-              "uk": "віддавати на благодійність"
+              "ru": "музей",
+              "uk": "музей"
             }
           }
         ],
         "leftColumn": [
-          "surf",
-          "court",
-          "uniform",
-          "donate"
+          "embassy",
+          "highlight",
+          "erase",
+          "museum"
         ],
         "rightColumn": [
-          "заниматься сёрфингом",
-          "корт",
-          "униформа",
-          "отдавать на благотворительность"
+          "посольство",
+          "выделять маркером",
+          "стирать",
+          "музей"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,25 +1134,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-53:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о занятиях Тома на море. Скажите «Том часто занимается сёрфингом»",
+      "prompt": "Сосед спрашивает про уроки. Скажите: «Учитель обычно стирает написанное с доски»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-53:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о занятиях Тома на море. Скажите «Том часто занимается сёрфингом»",
+      "accessibilityLabel": "Сосед спрашивает про уроки. Скажите: «Учитель обычно стирает написанное с доски»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-53:i17:audio",
-          "transcript": "Tom often surfs."
+          "transcript": "The teacher usually erases the blackboard."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom often surfs.",
+        "targetPhrase": "The teacher usually erases the blackboard.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1174,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5d37fe73d4d46a9dd912009bb846dfa2bec8c2e574f4a60b5afd82db4c087172"
+  "learnerFingerprint": "4e3d7b18e57b898d113f0db1f7f65d814947a6ab75670f9ae7b7ba3a8cbd8ada"
 }

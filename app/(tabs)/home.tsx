@@ -50,7 +50,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
-import StoryAvatarSlot from '../../components/stories/StoryAvatarSlot';
+import StoryAvatarSlotBase from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
@@ -100,7 +100,7 @@ import { getV2Palette, V2 } from '../../constants/v2Style';
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
 import { runOnJS, useSharedValue } from 'react-native-reanimated';
-import NotificationCenterButton from '../../components/NotificationCenterButton';
+import NotificationCenterButtonBase from '../../components/NotificationCenterButton';
 import type { PlayerInfo } from '../../components/PlayerProfileModal';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
@@ -163,6 +163,9 @@ const HomeV2ContinueCard = withHomeChildCost('continue_card', HomeV2ContinueCard
 const HomeV2FeatureTiles = withHomeChildCost('feature_tiles', HomeV2FeatureTilesBase);
 const HomeV2VideoRail = withHomeChildCost('video_rail', HomeV2VideoRailBase);
 const HomeV2TodayCard = withHomeChildCost('today_card', HomeV2TodayCardBase);
+// шапка и видеорейка уже memo по данным — их «nested-update» (8–16 мс) значит обновление ВНУТРИ; разбивка по вложенным детям
+const StoryAvatarSlot = withHomeChildCost('avatar_slot', StoryAvatarSlotBase);
+const NotificationCenterButton = withHomeChildCost('bell', NotificationCenterButtonBase);
 // зачем (m14A, Ядро 14.10): «Хватает на ранг N» — когда монет впервые хватает на следующий ранг; слот в той же очереди окон (после «С возвращением»), грузится лениво
 const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');

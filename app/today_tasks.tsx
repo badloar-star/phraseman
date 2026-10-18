@@ -26,7 +26,7 @@ import { useV2Palette } from '../components/v2/useV2Palette';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { useTodayTasks } from '../hooks/use_today_tasks';
 import { safeRouterBack } from './navigation_back';
-import { noteBackDecision } from './back_tap_probe';
+import { noteBackDecision, noteBackStep } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
 import BackButton from '../components/v2/BackButton';
@@ -47,6 +47,8 @@ function ringProgress(tasks: readonly TodayTask[]): TodayRingProgress {
 
 export default function TodayTasksScreen() {
   const router = useRouter();
+  // зачем ([BACK-BTN] 18.10, шаги возврата): когда «Сегодня» реально ушло с экрана после тапа «назад»
+  useEffect(() => () => noteBackStep('today_unmount'), []);
   const nav = useGuardedNav();
   const p = useV2Palette();
   const { lang } = useLang();

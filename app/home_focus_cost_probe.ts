@@ -16,6 +16,7 @@ import React, { Profiler, useEffect, useRef, type ComponentType } from 'react';
 
 import { IS_STORE_RELEASE } from './config';
 import { renderWindowEpoch } from './render_cause_probe';
+import { noteBackStep } from './back_tap_probe';
 
 export const HOME_FOCUS_COST_THRESHOLD_MS = 30;
 export const HOME_CHILD_COST_THRESHOLD_MS = 8;
@@ -29,6 +30,7 @@ export const useHomeFocusCostBegin: () => { current: HomeFocusCostState } = ENAB
       const state = useRef<HomeFocusCostState>({ renderStartedAt: 0, firstEffectAt: 0, renders: 0 });
       state.current.renderStartedAt = Date.now();
       state.current.renders += 1;
+      noteBackStep('home_render', { n: state.current.renders }); // зачем ([BACK-BTN] 18.10): рендер Главной на линии возврата
       useEffect(() => { state.current.firstEffectAt = Date.now(); });
       return state;
     }
@@ -40,6 +42,7 @@ export const useHomeFocusCostEnd: (state: { current: HomeFocusCostState }, tag: 
       useEffect(() => {
         const s = state.current;
         const endAt = Date.now();
+        noteBackStep('home_effects_done', { n: s.renders });
         const renderToEffectsMs = s.firstEffectAt - s.renderStartedAt;
         const ownEffectsMs = endAt - s.firstEffectAt;
         if (renderToEffectsMs < HOME_FOCUS_COST_THRESHOLD_MS && ownEffectsMs < HOME_FOCUS_COST_THRESHOLD_MS) return;

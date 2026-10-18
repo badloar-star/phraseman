@@ -27,6 +27,7 @@ export function noteBackTap(screen: string, handler: string, detail: Readonly<Re
   clearProbes();
   const p: Pending = { screen, handler, at: Date.now(), seq: ++seq };
   pending = p;
+  stepsForTap = 0;
   console.log(`${LOG} tap ${JSON.stringify({ seq: p.seq, screen, handler, ...detail })}`);
   requestAnimationFrame(() => {
     if (pending?.seq === p.seq) console.log(`${LOG} frame ${JSON.stringify({ seq: p.seq, screen, ms: Date.now() - p.at })}`);
@@ -69,8 +70,24 @@ export function noteBackArrived(screen: string, via: string): void {
   clearProbes();
 }
 
+export const BACK_STEPS_PER_TAP = 12;
+let stepsForTap = 0;
+
+/**
+ * Шаг возврата: что и когда произошло после тапа (размонтирование экрана, рендеры и эффекты Главной). Пишет только пока есть тап «назад», не больше BACK_STEPS_PER_TAP на тап.
+ * зачем (координатор 18.10, Сверка today_back_x4: decision 0–2 мс, а «прибыли» на Главной через 318–372 мс; правило «сперва логи»): временная линия показывает, где эти 300+ мс — до рендера Главной,
+ * в рендере, в эффектах или в самом переходе стека.
+ */
+export function noteBackStep(step: string, detail: Readonly<Record<string, unknown>> = {}): void {
+  if (!pending) return;
+  if (stepsForTap >= BACK_STEPS_PER_TAP) return;
+  stepsForTap += 1;
+  console.log(`${LOG} step ${JSON.stringify({ seq: pending.seq, step, ms: Date.now() - pending.at, ...detail })}`); // guard-ok: шаг возврата, не больше 12 на тап
+}
+
 export function resetBackTapProbeForTests(): void {
   pending = null;
   seq = 0;
+  stepsForTap = 0;
   clearProbes();
 }

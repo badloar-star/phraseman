@@ -11,8 +11,11 @@ import { colorWithAlpha } from '../../v2/plateAlpha';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { HOME_PLATE_ALPHA } from './homePlate';
 import { animateNextLayoutTransition } from '../../../app/smooth_layout';
-import VideoThumb from '../../../app/flashcards/VideoThumb';
+import VideoThumbBase from '../../../app/flashcards/VideoThumb';
+import { withHomeChildCost } from '../../../app/home_focus_cost_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
+// зачем ([HOME-CHILD-COST] 18.10): превью видео — кандидат на «nested-update» рейки (8–16 мс на возврате): измеряем отдельно; dev, в релизе тот же компонент
+const VideoThumb = withHomeChildCost('video_thumb', VideoThumbBase);
 
 type Props = {
   videos: readonly LingmanYoutubeVideo[];

@@ -4084,6 +4084,9 @@ export type SignOutSwitchOptions = {
   allowPendingShardSpendDiscard?: boolean;
 };
 
+/** Последний пройденный шаг выхода — для итоговой строки [AUTH-LOGOUT] (один выход за раз: замок перехода аккаунта). */
+let lastSignoutStage = 'none';
+
 export async function signOutAndWipeForAccountSwitch(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
@@ -4121,6 +4124,7 @@ export async function signOutAndWipeForAccountSwitch(
     // зачем (TG-0AE4918142EE): в журнал — только код (свои коды замка проходят как есть).
     const reason = identityErrorCode(error);
     console.warn(`[ACC-MUT] signout:out reserve_failed reason=${reason} tookMs=${Date.now() - startedAt}`);
+    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'exit', ok: false, reason: 'reserve_failed', code: reason, lastStage: 'before_start', tookMs: Date.now() - startedAt })); // guard-ok: ранний выход
     return { ok: false, reason: 'clean_recovery_transition_active' };
   }
   try {
@@ -4132,6 +4136,12 @@ export async function signOutAndWipeForAccountSwitch(
       synced: result.ok ? result.synced : null,
       tookMs: Date.now() - startedAt,
     }));
+    // зачем (R131): итог одной строкой — любой ранний выход виден причиной и шагом, на котором он случился.
+    console.log('[AUTH-LOGOUT]', JSON.stringify({
+      stage: 'exit', ok: result.ok, reason: result.ok ? null : result.reason,
+      detail: !result.ok && 'detail' in result ? String(result.detail ?? '') : null,
+      lastStage: lastSignoutStage, tookMs: Date.now() - startedAt,
+    })); // guard-ok: итог выхода, без идентификаторов
     return result;
   } catch (error) {
     // зачем (аудит двойного тапа 11.10): шаг до внутреннего try (возобновление карантина
@@ -4140,6 +4150,7 @@ export async function signOutAndWipeForAccountSwitch(
     // возвращается в исходное состояние, повтор находит маркер и продолжает карантин.
     const code = identityErrorCode(error);
     console.warn(`[ACC-MUT] signout:out threw code=${code} tookMs=${Date.now() - startedAt}`);
+    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'exit', ok: false, reason: 'threw', code, lastStage: lastSignoutStage, tookMs: Date.now() - startedAt })); // guard-ok: catch пишет причину
     return { ok: false, reason: 'unknown', detail: `threw:${code}` };
   } finally {
     releaseTransitionReservation();
@@ -4174,8 +4185,16 @@ async function signOutAndWipeForAccountSwitchReserved(
   // зачем (2-й прогон Сверки 11.10): выход шёл 28,5 с, а стирание — ~1 с. Засечки [ACC-SIGNOUT] по стадиям (время от входа
   // в функцию) показывают, что держит выход: монеты, синхронизация, замок, доведение смены. Логи — навсегда.
   const signoutStartedAtMs = Date.now();
+  // зачем (координатор 18.10 04:52, R131): [AUTH-LOGOUT] — длительность КАЖДОГО шага (stepMs) и от начала; последний шаг
+  // запоминается, чтобы итог signOutAndWipeForAccountSwitch показал, на каком шаге был ранний выход.
+  let previousStageAtMs = signoutStartedAtMs;
+  lastSignoutStage = 'start';
   const signoutStage = (stage: string, extra?: Readonly<Record<string, string | number | boolean | null>>): void => {
-    identityTrace('[ACC-SIGNOUT]', `stage ${stage}`, { sinceStartMs: Date.now() - signoutStartedAtMs, ...(extra ?? {}) });
+    const nowMs = Date.now();
+    identityTrace('[ACC-SIGNOUT]', `stage ${stage}`, { sinceStartMs: nowMs - signoutStartedAtMs, ...(extra ?? {}) });
+    console.log('[AUTH-LOGOUT]', JSON.stringify({ stage, stepMs: nowMs - previousStageAtMs, sinceStartMs: nowMs - signoutStartedAtMs, ...(extra ?? {}) })); // guard-ok: одна строка на шаг выхода, без идентификаторов
+    previousStageAtMs = nowMs;
+    lastSignoutStage = stage;
   };
   const syncDeadlineMs = options?.syncDeadlineMs;
   // зачем (вариант Б): ожидание сети при выходе ограничено; по истечении — тот же путь, что при сбое синхронизации.
@@ -4711,6 +4730,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       // реально долетает (DebugLogger 'critical' → Firestore).
       const line = `[ACC-MUT] delete:bg_out ok=${result.ok} reason=${result.ok ? 'none' : String(result.reason)} cloudDeleted=${result.ok ? String(result.cloudDeleted) : 'n/a'} tookMs=${Date.now() - backgroundStartedAt}`;
       if (__DEV__) console.log(line);
+      // зачем (координатор 18.10 05:03): итог фоновой фазы удаления виден и в обычной сборке (раньше только под __DEV__).
+      console.log('[AUTH-DELETE]', JSON.stringify({ step: 'bg_out', ok: result.ok, reason: result.ok ? null : String(result.reason), cloudDeleted: result.ok ? result.cloudDeleted : null, tookMs: Date.now() - backgroundStartedAt })); // guard-ok: итог, без идентификаторов
       if (!result.ok) {
         DebugLogger.error('acc_mut:delete_background_failed', new Error(line), 'critical');
       }
@@ -4719,6 +4740,7 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       // зачем (TG-0AE4918142EE): строка уходит в DebugLogger 'critical' (Firestore) — только код.
       const line = `[ACC-MUT] delete:bg_threw reason=${identityErrorCode(e)} tookMs=${Date.now() - backgroundStartedAt}`;
       if (__DEV__) console.warn(line);
+      console.warn('[AUTH-DELETE]', JSON.stringify({ step: 'bg_threw', code: identityErrorCode(e), tookMs: Date.now() - backgroundStartedAt })); // guard-ok: catch пишет причину
       logAuthEvent('auth_account_delete_background_failed');
       DebugLogger.error('acc_mut:delete_background_threw', new Error(line), 'critical');
       return { ok: false, reason: 'unknown' } as DeleteAccountResult;

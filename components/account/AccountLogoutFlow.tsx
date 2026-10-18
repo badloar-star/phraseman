@@ -88,6 +88,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
 
   const runLogout = async () => {
     doHaptic();
+    // зачем (координатор 18.10 04:52, R131): [AUTH-LOGOUT] — тап, обе попытки с длительностью и что увидел человек.
+    const tapAtMs = Date.now();
+    console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_tap', userSees: 'button_saving_progress' })); // guard-ok: одна строка на тап
     // зачем (владелец, 2026-08-31): «никаких модалов, выход мгновенный».
     // Раньше здесь было четыре окна-блокировки: несинхронизированная покупка,
     // карантин очереди, упавшая синхронизация, общий отказ — каждое требовало
@@ -109,7 +112,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       reason: res.ok ? null : res.reason,
       detail: !res.ok && 'detail' in res ? String(res.detail ?? '') : null,
     }));
+    console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_attempt_1', ok: res.ok, reason: res.ok ? null : res.reason, ms: Date.now() - tapAtMs })); // guard-ok: итог попытки
     if (res.ok) {
+      console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_done', userSees: 'sign_in_sheet', synced: res.synced, totalMs: Date.now() - tapAtMs })); // guard-ok: итог
       onStageChange('idle');
       onSignedOut({ synced: res.synced });
       return;
@@ -127,7 +132,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       reason: forced.ok ? null : forced.reason,
       detail: !forced.ok && 'detail' in forced ? String(forced.detail ?? '') : null,
     }));
+    console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_attempt_2_forced', ok: forced.ok, reason: forced.ok ? null : forced.reason, ms: Date.now() - tapAtMs })); // guard-ok: итог попытки
     if (forced.ok) {
+      console.log('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_done', userSees: 'sign_in_sheet', synced: forced.synced, forced: true, totalMs: Date.now() - tapAtMs })); // guard-ok: итог
       onStageChange('idle');
       onSignedOut({ synced: forced.synced });
       return;
@@ -146,6 +153,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     // Теперь сообщение живёт в том же окне: показываем причину и даём выход.
     const recovery = forced.reason === 'recovery_required' || forced.reason === 'wipe_failed';
     console.warn('[ACC-MUT] ui:logout_failed_kind', { reason: forced.reason, kind: recovery ? 'recovery' : 'precommit' });
+    console.warn('[AUTH-LOGOUT]', JSON.stringify({ stage: 'ui_failed', userSees: recovery ? 'failed_restart' : 'failed_retry', reason: forced.reason, totalMs: Date.now() - tapAtMs })); // guard-ok: что увидел человек
     setFailureKind(recovery ? 'recovery' : 'precommit');
     setFailureText(recovery
       // зачем: паритет profile.html PRF-20-ATTENTION (13.10): это ВЫХОД, а не «смена аккаунта» — тексты про выход, на «ты».

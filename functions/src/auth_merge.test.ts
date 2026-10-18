@@ -1698,6 +1698,39 @@ describe('mergeStableAccounts', () => {
     expect(store.users['stable-anon']!.identityHidden).toBe(true);
   });
 
+  // зачем (владелец 18.10, правило 2; разбор «9 · САЙТ» 17575aff3): новый клиент (clientMergeContract 2) — гостя в чужой
+  // существующий аккаунт НЕ сливаем: отказ сразу, без записей. Старые сборки (нет поля) — прежнее поведение (тест выше).
+  it('clientMergeContract 2: гость с меткой в существующий аккаунт — отказ merge_existing_account_forbidden, ничего не записано', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-mine': { firebaseAuthUid: 'google-21', progress: { user_total_xp: '5000' }, shards: 100 },
+        'stable-anon': {
+          firebaseAuthUid: 'anon-uid-21',
+          anon_merge_claim: { authUid: 'anon-uid-21', at: NOW - 60_000 },
+          progress: { user_total_xp: '300', streak_count: '7' },
+          shards: 40,
+        },
+      },
+    });
+    const before = JSON.stringify(store);
+    await expect(mergeStableAccounts(
+      db as any, 'google-21', 'stable-mine', 'stable-anon', NOW, null, { provider: 'google.com', authTimeMs: NOW }, 2,
+    )).rejects.toMatchObject({ code: 'failed-precondition', message: 'merge_existing_account_forbidden' });
+    expect(JSON.stringify(store)).toBe(before);
+  });
+
+  it('clientMergeContract 2: оба аккаунта принадлежат вызывающему — слияние идёт как раньше', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': { firebaseAuthUid: 'google-22', progress: { user_total_xp: '5000' } },
+        'stable-b': { firebaseAuthUid: 'google-22', progress: { user_total_xp: '300' } },
+      },
+    });
+    const res = await mergeStableAccounts(db as any, 'google-22', 'stable-a', 'stable-b', NOW, null, null, 2);
+    expect(res).toMatchObject({ canonicalStableId: 'stable-a', mergedFromStableId: 'stable-b' });
+    expect(store.users['stable-b']!.identityHidden).toBe(true);
+  });
+
   it('rejects absorbing an unowned account with NO claim', async () => {
     const { db, store } = makeDbStub({
       users: {

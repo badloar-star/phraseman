@@ -2738,12 +2738,14 @@ export async function mergeStableAccountsViaServer(
   if (!a || !b) return null;
   try {
     const fn = callable<
-      { stableIdA: string; stableIdB: string; anonMergeNonce?: string },
+      { stableIdA: string; stableIdB: string; anonMergeNonce?: string; clientMergeContract: number },
       MergeStableAccountsResult
     >('authMergeStableAccounts');
     // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта — если он
     // выдан одной из сторон слияния; после успешного слияния он больше не нужен.
-    const payload = { stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]) };
+    // зачем (владелец 18.10, правило 2): clientMergeContract 2 — сервер не сливает гостя в чужой существующий аккаунт
+    // (merge_existing_account_forbidden); отказ приходит как обычная ошибка → null → вход без слияния.
+    const payload = { stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]), clientMergeContract: 2 };
     const res = await withTimeout(
       invokeAuthCallable('authMergeStableAccounts', payload, () => fn(payload), { timeoutMs: STABLE_AUTH_LINK_TIMEOUT_MS }),
       STABLE_AUTH_LINK_TIMEOUT_MS,

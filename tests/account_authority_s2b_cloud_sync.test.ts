@@ -95,7 +95,7 @@ describe('AA S2b — anon merge nonce through cloud_sync (пункт 9)', () => 
     expect(links[1]).toMatchObject({ stableId: 'stable-remote' });
     expect(links[1]).not.toHaveProperty('anonMergeNonce');
     expect(callsTo('authMergeStableAccounts')[0]).toEqual({
-      stableIdA: 'stable-local', stableIdB: 'stable-remote', anonMergeNonce: SECRET,
+      stableIdA: 'stable-local', stableIdB: 'stable-remote', anonMergeNonce: SECRET, clientMergeContract: 2,
     });
     expect(anonMergeNonceCountForTests()).toBe(0);
     expect(peekAnonMergeNonce('stable-local')).toBeNull();
@@ -121,7 +121,8 @@ describe('AA S2b — anon merge nonce through cloud_sync (пункт 9)', () => 
     await expect(ensureStableAuthLinkForStableIdDetailed('stable-local', metadata)).resolves.toMatchObject({ ok: true });
     await expect(mergeStableAccountsViaServer('stable-local', 'stable-remote')).resolves.toMatchObject({ ok: true });
     expect(callsTo('authEnsureStableLink')[0]).not.toHaveProperty('anonMergeNonce');
-    expect(callsTo('authMergeStableAccounts')[0]).toEqual({ stableIdA: 'stable-local', stableIdB: 'stable-remote' });
+    // зачем (владелец 18.10, правило 2): новый клиент всегда шлёт договор слияния 2.
+    expect(callsTo('authMergeStableAccounts')[0]).toEqual({ stableIdA: 'stable-local', stableIdB: 'stable-remote', clientMergeContract: 2 });
   });
 
   test('the nonce expires after 10 minutes and is not sent', async () => {

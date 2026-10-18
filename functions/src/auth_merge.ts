@@ -516,6 +516,16 @@ function requireAnonLoserClaim(
   return claim;
 }
 
+/**
+ * Версия договора слияния, с которой клиент знает правило владельца 2 (с 18.10).
+ * зачем (владелец 18.10 через координатора; разбор fc30ae94a): «гость с прогрессом входит в ДРУГОЙ существующий аккаунт —
+ * шторка «прогресс пропадёт», затем чистый вход БЕЗ слияния». Раньше правило держалось только на клиенте, а сервер сливал
+ * гостя в существующий аккаунт по метке анонима и nonce. Новый клиент шлёт clientMergeContract: 2, и сервер такое слияние
+ * отказывает. Старые сборки 1.x (только {stableIdA, stableIdB}) зовут слияние лишь для двух копий ОДНОГО человека
+ * (разбор «9 · САЙТ», 17575aff3) — для них поведение прежнее.
+ */
+export const MERGE_CONTRACT_GUEST_REFUSED = 2;
+
 async function reserveStableAccountMerge(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -524,6 +534,7 @@ async function reserveStableAccountMerge(
   now: number,
   anonMergeNonce: string | null = null,
   anonMergeCaller: AnonMergeCaller | null = null,
+  clientMergeContract = 0,
 ): Promise<TransactionMergeOutcome> {
   const authLinkRef = db.collection(AUTH_LINKS_COL).doc(authUid);
   const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
@@ -610,6 +621,12 @@ async function reserveStableAccountMerge(
     let verifiedClaimNonceHash: string | null = null;
     let verifiedClaimAt: number | null = null;
     if (!userDataOwnedByAuth(loser.data, authUid)) {
+      // Второй аккаунт не принадлежит вызывающему — это гость, которого переносят в существующий аккаунт (правило 2).
+      // Отказ сразу, внутри транзакции до любой записи: якорь и auth_links не тронуты, старый путь «войти без слияния» цел.
+      if (clientMergeContract >= MERGE_CONTRACT_GUEST_REFUSED) {
+        console.warn(`[AUTH-MERGE] refused reason=merge_existing_account_forbidden contract=${clientMergeContract}`);
+        throw new HttpsError('failed-precondition', 'merge_existing_account_forbidden');
+      }
       const claim = requireAnonLoserClaim(loser.data, now);
       const verdict = verifyAnonMergeClaimNonce(
         claim, anonMergeNonce, anonMergeCaller ? { ...anonMergeCaller, door: 'merge' } : anonMergeCaller,
@@ -1042,11 +1059,12 @@ export async function mergeStableAccounts(
   now: number = Date.now(),
   anonMergeNonce: string | null = null,
   anonMergeCaller: AnonMergeCaller | null = null,
+  clientMergeContract = 0,
 ): Promise<MergeResult> {
   const a = cleanStr(stableIdA);
   const b = cleanStr(stableIdB);
   if (!a || !b) throw new HttpsError('invalid-argument', 'stable_ids_required');
-  const reservation = await reserveStableAccountMerge(db, authUid, a, b, now, anonMergeNonce, anonMergeCaller);
+  const reservation = await reserveStableAccountMerge(db, authUid, a, b, now, anonMergeNonce, anonMergeCaller, clientMergeContract);
   if (reservation.alreadyMerged || !reservation.mergedFromStableId) {
     return {
       canonicalStableId: reservation.canonicalStableId,
@@ -1699,8 +1717,11 @@ export const authMergeStableAccounts = onCall({ ...HOT_CALLABLE_OPTIONS, region:
     provider: String(request.auth.token?.firebase?.sign_in_provider ?? '').trim() || null,
     authTimeMs: authTimeMsFromToken(request.auth.token),
   };
+  // Версия договора: нет поля (старые сборки 1.x) — 0, прежнее поведение; 2 — гостя в существующий аккаунт не сливаем.
+  const rawContract = Number(request.data?.clientMergeContract);
+  const clientMergeContract = Number.isInteger(rawContract) && rawContract > 0 && rawContract < 100 ? rawContract : 0;
   const result = await mergeStableAccounts(
-    db, authUid, stableIdA, stableIdB, Date.now(), anonMergeNonce, anonMergeCaller,
+    db, authUid, stableIdA, stableIdB, Date.now(), anonMergeNonce, anonMergeCaller, clientMergeContract,
   );
   return { ok: true, ...result };
 });

@@ -1,0 +1,8 @@
+10-18 05:43:44.482 I/ReactNativeJS( 2125): '[CARDS-LOAD] offline probe', '{"source":"change","offline":false,"reason":"online connected=true reachable=true type=wifi","cancelled":false}'
+10-18 05:43:44.483 I/ReactNativeJS( 2125): '[CARDS-LOAD] branch', '{"branch":"state","reason":"ошибка загрузки","loading":false,"loadError":true,"deviceOffline":false,"collectionDataReady":true,"listCards":0,"savedCa
+10-18 05:43:44.547 I/ReactNativeJS( 2125): '[CARDS-LOAD] offline probe', '{"source":"fetch","offline":false,"reason":"online connected=true reachable=true type=wifi","cancelled":false}'
+10-18 05:43:44.554 I/ReactNativeJS( 2125): '[CARDS-LOAD] load:start', '{"cacheSaved":true,"cacheCustom":true,"studyTarget":"en","source":"cache_warm"}'
+10-18 05:43:44.631 I/ReactNativeJS( 2125): '[CARDS-LOAD] load:ok', '{"ms":76,"saved":0,"custom":0,"holdLoadingForMarket":false,"cacheHit":false}'
+10-18 05:43:45.487 W/ReactNativeJS( 2125): '[LOAD-GATE:fc-saved]', 'тихий повтор', { attempt: 1, status: 'error', waitedMs: 1000 }
+10-18 05:43:45.489 I/ReactNativeJS( 2125): '[CARDS-LOAD] load:start', '{"cacheSaved":true,"cacheCustom":true,"studyTarget":"en","source":"cache_warm"}'
+10-18 05:43:45.498 I/ReactNativeJS( 2125): '[CARDS-LOAD] load:ok', '{"ms":10,"saved":0,"custom":0,"holdLoadingForMarket":false,"cacheHit":false}'

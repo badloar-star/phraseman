@@ -108,7 +108,8 @@ const s = StyleSheet.create({
   head: { alignItems: 'flex-start', paddingTop: 6 },
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m05: надзаголовок — V2_TYPE.overline (13/17 · 700 · трекинг 1,4)
   ov: { ...V2_TYPE.overline, textAlign: 'left' },
-  clock: { marginTop: 6, fontSize: 48, lineHeight: 54, fontWeight: '800', letterSpacing: -1, textAlign: 'left', fontVariant: ['tabular-nums'] },
+  // зачем (координатор 18.10): отсчёт — ровно эталонный `.cd` (34/40, 800, -0,6, цифры равной ширины); 48 появилось при создании m05 без слова владельца
+  clock: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: -0.6, textAlign: 'left', fontVariant: ['tabular-nums'] },
   p: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'left' },
   bold: { fontWeight: '700' },
   cta: { marginTop: 16 },

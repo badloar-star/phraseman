@@ -15,6 +15,7 @@ import StreakMomentFlame from './StreakMomentFlame';
 import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
+import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { STREAK_MOMENT_DURATION_MS, streakFlameStage, type StreakMilestone } from './streak_milestones';
 import { playStreakSceneSound, playStreakTapSound } from './streak_moments_sound';
 import { streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from './streak_moments_strings';
@@ -32,7 +33,12 @@ export type StreakMilestoneToastProps = Readonly<{
 /** Тайминг эталона: burst огня и искры — через 300 мс после появления. */
 export const STREAK_TOAST_BURST_DELAY_MS = 300;
 
+/** Зазор тоста под статус-баром: эталон `.mtoast` top 60 при статус-баре макета 44. */
+const TOAST_GAP_BELOW_STATUS = 16;
+
 function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'streak-milestone-toast' }: StreakMilestoneToastProps) {
+  // зачем (координатор 18.10, проверка выпуска): эталонные top 60 — это статус-бар макета (~44) + 16; на телефоне с вырезом или без статус-бара фиксированные 60 съезжали
+  const insets = useStableSafeAreaInsets();
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
@@ -61,7 +67,7 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   const style = useAnimatedStyle(() => ({ opacity: enter.value, transform: [{ translateY: (1 - enter.value) * -28 }] }));
   const sub = streakMilestoneSubline(lang, milestone);
   return (
-    <Animated.View testID={testID} accessibilityRole="alert" style={[s.toast, { backgroundColor: p.cardRaised }, sh.plate, style]}>
+    <Animated.View testID={testID} accessibilityRole="alert" style={[s.toast, { top: insets.top + TOAST_GAP_BELOW_STATUS, backgroundColor: p.cardRaised }, sh.plate, style]}>
       <StreakMomentFlame days={milestone} size={40} stage={streakFlameStage(milestone)} burstKey={burstKey || undefined} accessibilityLabel={streakMomentText(lang, 'flameA11y', { n: milestone })} />
       <View style={[s.dot, { backgroundColor: p.textSecondary }]} />
       <View style={s.text}>
@@ -75,7 +81,7 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
 }
 
 const s = StyleSheet.create({
-  toast: { position: 'absolute', left: 20, right: 20, top: 60, zIndex: 70, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18 },
+  toast: { position: 'absolute', left: 20, right: 20, zIndex: 70, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18 },
   dot: { width: 4, height: 4, borderRadius: 2, marginLeft: -4 },
   text: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },

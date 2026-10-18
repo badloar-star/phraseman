@@ -1,0 +1,2459 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-50:word:hail",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:hail:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:hail:audio",
+            "transcript": "hail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:hail:r1",
+              "targetText": "hail",
+              "meaningByLocale": {
+                "ru": "ловить, останавливать (такси). I often hail a taxi at night. — «Я часто ловлю такси ночью». Поднять руку, чтобы машина остановилась.",
+                "uk": "ловити, зупиняти (таксі). I often hail a taxi at night. — «Я часто ловлю таксі вночі». Підняти руку, щоб машина зупинилася."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hail",
+            "definitionByLocale": {
+              "ru": "ловить, останавливать (такси). I often hail a taxi at night. — «Я часто ловлю такси ночью». Поднять руку, чтобы машина остановилась.",
+              "uk": "ловити, зупиняти (таксі). I often hail a taxi at night. — «Я часто ловлю таксі вночі». Підняти руку, щоб машина зупинилася."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы поздно возвращаетесь домой. Скажите: «Я часто ловлю такси ночью»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы поздно возвращаетесь домой. Скажите: «Я часто ловлю такси ночью»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often hail a taxi at night.",
+          "localizedMeaning": {
+            "ru": "Вы поздно возвращаетесь домой. Скажите: «Я часто ловлю такси ночью»",
+            "uk": "Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "hail",
+            "a",
+            "taxi",
+            "at",
+            "night"
+          ],
+          "authoredDistractorTokens": [
+            "usually"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы поздно возвращаетесь домой. Скажите: «Я часто ловлю такси ночью»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `often` — `I often hail a taxi at night.`",
+                "uk": "тут потрібно `often` — `I often hail a taxi at night.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i02:r1",
+            "text": "hail"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i02:r2",
+            "text": "hang"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i02:r3",
+            "text": "hug"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i02:audio",
+            "transcript": "hail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i02:r1",
+              "targetText": "hail",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r2",
+              "targetText": "hang",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r3",
+              "targetText": "hug",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hail`, а в этом варианте — `hang`.",
+                "uk": "У записі перше слово — `hail`, а в цьому варіанті — `hang`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hail`, а в этом варианте — `hug`.",
+                "uk": "У записі перше слово — `hail`, а в цьому варіанті — `hug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i03:r1",
+            "text": "hail"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i03:r2",
+            "text": "hails"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i03:r3",
+            "text": "hailing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+            "uk": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I often ___ a taxi at night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i03:r1",
+              "text": "hail"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r2",
+              "text": "hails"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r3",
+              "text": "hailing"
+            }
+          ],
+          "testedDimension": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `hail`, без окончания.",
+                "uk": "Після `I` потрібно `hail`, без закінчення."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `hail`.",
+                "uk": "Тут потрібна форма `hail`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i04:p1",
+              "target": "hail",
+              "meaningByLocale": {
+                "ru": "останавливать (такси)",
+                "uk": "зупиняти (таксі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p2",
+              "target": "taxi",
+              "meaningByLocale": {
+                "ru": "такси",
+                "uk": "таксі"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p3",
+              "target": "night",
+              "meaningByLocale": {
+                "ru": "ночь",
+                "uk": "ніч"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hail",
+            "taxi",
+            "night",
+            "bag"
+          ],
+          "rightColumn": [
+            "останавливать (такси)",
+            "такси",
+            "ночь",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:accept",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — accept",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:accept:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — accept",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:accept:audio",
+            "transcript": "accept"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:accept:r1",
+              "targetText": "accept",
+              "meaningByLocale": {
+                "ru": "принимать. Do you accept cards? — «Вы принимаете карты?» Согласиться взять оплату или то, что предлагают.",
+                "uk": "приймати. Do you accept cards? — «Ви приймаєте картки?» Погодитися взяти оплату або те, що пропонують."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accept",
+            "definitionByLocale": {
+              "ru": "принимать. Do you accept cards? — «Вы принимаете карты?» Согласиться взять оплату или то, что предлагают.",
+              "uk": "приймати. Do you accept cards? — «Ви приймаєте картки?» Погодитися взяти оплату або те, що пропонують."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i05:audio",
+            "transcript": "Do you accept cards?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you accept cards?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "accept",
+            "cards"
+          ],
+          "authoredDistractorTokens": [
+            "Does"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you accept cards?`",
+                "uk": "тут потрібно `Do` — `Do you accept cards?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:terminal",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — terminal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:terminal:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — terminal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:terminal:audio",
+            "transcript": "terminal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:terminal:r1",
+              "targetText": "terminal",
+              "meaningByLocale": {
+                "ru": "терминал, конечная станция. Where is the bus terminal? — «Где автовокзал?» Пассажирский терминал или конечная станция; здесь bus terminal — автовокзал.",
+                "uk": "термінал, кінцева станція. Where is the bus terminal? — «Де автовокзал?» Пасажирський термінал або кінцева станція; тут bus terminal — автовокзал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terminal",
+            "definitionByLocale": {
+              "ru": "терминал, конечная станция. Where is the bus terminal? — «Где автовокзал?» Пассажирский терминал или конечная станция; здесь bus terminal — автовокзал.",
+              "uk": "термінал, кінцева станція. Where is the bus terminal? — «Де автовокзал?» Пасажирський термінал або кінцева станція; тут bus terminal — автовокзал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы вышли из такси в чужом городе. Спросите прохожего: «Где автовокзал?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вышли из такси в чужом городе. Спросите прохожего: «Где автовокзал?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the bus terminal?",
+          "localizedMeaning": {
+            "ru": "Вы вышли из такси в чужом городе. Спросите прохожего: «Где автовокзал?»",
+            "uk": "Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "bus",
+            "terminal"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы вышли из такси в чужом городе. Спросите прохожего: «Где автовокзал?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the bus terminal?`",
+                "uk": "тут потрібно `is` — `Where is the bus terminal?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы видите большое здание у автобусной стоянки. Уточните у прохожего: «Это автовокзал?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Вы видите большое здание у автобусной стоянки. Уточните у прохожего: «Это автовокзал?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i07:audio",
+            "transcript": "Is this the bus terminal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is this the bus terminal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:depart",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — depart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:depart:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — depart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:depart:audio",
+            "transcript": "depart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:depart:r1",
+              "targetText": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться. The bus usually departs from the terminal. — «Автобус обычно отправляется с вокзала». Покидать место, чтобы ехать дальше.",
+                "uk": "відправлятися. The bus usually departs from the terminal. — «Автобус зазвичай відправляється з вокзалу». Залишати місце, щоб їхати далі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "depart",
+            "definitionByLocale": {
+              "ru": "отправляться. The bus usually departs from the terminal. — «Автобус обычно отправляется с вокзала». Покидать место, чтобы ехать дальше.",
+              "uk": "відправлятися. The bus usually departs from the terminal. — «Автобус зазвичай відправляється з вокзалу». Залишати місце, щоб їхати далі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i08:r1",
+            "text": "departs"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i08:r2",
+            "text": "depart"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i08:r3",
+            "text": "departing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+            "uk": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The bus usually ___ from the terminal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i08:r1",
+              "text": "departs"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r2",
+              "text": "depart"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r3",
+              "text": "departing"
+            }
+          ],
+          "testedDimension": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После The bus нужно departs, с s.",
+                "uk": "Після The bus потрібно departs, з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма departs.",
+                "uk": "Тут потрібна форма departs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i09:r1",
+            "text": "Do you accept cards?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i09:r2",
+            "text": "Do you accept cash?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i09:r3",
+            "text": "Do you accept coupons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i09:audio",
+            "transcript": "Do you accept cards?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i09:r1",
+              "targetText": "Do you accept cards?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r2",
+              "targetText": "Do you accept cash?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r3",
+              "targetText": "Do you accept coupons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cards`, а в этом варианте — `cash`.",
+                "uk": "У записі останнє слово — `cards`, а в цьому варіанті — `cash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cards`, а в этом варианте — `coupons`.",
+                "uk": "У записі останнє слово — `cards`, а в цьому варіанті — `coupons`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i10:p1",
+              "target": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться",
+                "uk": "відправлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p2",
+              "target": "hail",
+              "meaningByLocale": {
+                "ru": "останавливать (такси)",
+                "uk": "зупиняти (таксі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p3",
+              "target": "accept",
+              "meaningByLocale": {
+                "ru": "принимать",
+                "uk": "приймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p4",
+              "target": "taxi",
+              "meaningByLocale": {
+                "ru": "такси",
+                "uk": "таксі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "depart",
+            "hail",
+            "accept",
+            "taxi"
+          ],
+          "rightColumn": [
+            "отправляться",
+            "останавливать (такси)",
+            "принимать",
+            "такси"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i11:audio",
+            "transcript": "The bus usually departs from the terminal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bus usually departs from the terminal.",
+          "orderedTokens": [
+            "The",
+            "bus",
+            "usually",
+            "departs",
+            "from",
+            "the",
+            "terminal"
+          ],
+          "authoredDistractorTokens": [
+            "depart"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `departs` — `The bus usually departs from the terminal.`",
+                "uk": "тут потрібно `departs` — `The bus usually departs from the terminal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you accept cards?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+            "uk": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "accept",
+            "cards"
+          ],
+          "authoredDistractorTokens": [
+            "Does"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you accept cards?`",
+                "uk": "тут потрібно `Do` — `Do you accept cards?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сосед спрашивает про вашу сестру. Скажите: «Она часто ловит такси ночью»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Сосед спрашивает про вашу сестру. Скажите: «Она часто ловит такси ночью»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i13:audio",
+            "transcript": "She often hails a taxi at night."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She often hails a taxi at night.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i14:r1",
+            "text": "accept"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i14:r2",
+            "text": "accepts"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i14:r3",
+            "text": "accepting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+            "uk": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ cards?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i14:r1",
+              "text": "accept"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r2",
+              "text": "accepts"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r3",
+              "text": "accepting"
+            }
+          ],
+          "testedDimension": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После Do you нужно accept, без s.",
+                "uk": "Після Do you потрібно accept, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма accept.",
+                "uk": "Тут потрібна форма accept."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i15:r1",
+            "text": "Where is the bus terminal?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i15:r2",
+            "text": "Where is the bus station?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i15:r3",
+            "text": "Where is the bus stop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i15:audio",
+            "transcript": "Where is the bus terminal?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i15:r1",
+              "targetText": "Where is the bus terminal?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r2",
+              "targetText": "Where is the bus station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r3",
+              "targetText": "Where is the bus stop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `terminal`, а в этом варианте — `station`.",
+                "uk": "У записі останнє слово — `terminal`, а в цьому варіанті — `station`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `terminal`, а в этом варианте — `stop`.",
+                "uk": "У записі останнє слово — `terminal`, а в цьому варіанті — `stop`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i16:p1",
+              "target": "terminal",
+              "meaningByLocale": {
+                "ru": "терминал",
+                "uk": "термінал"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p2",
+              "target": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться",
+                "uk": "відправлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p3",
+              "target": "accept",
+              "meaningByLocale": {
+                "ru": "принимать",
+                "uk": "приймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p4",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные",
+                "uk": "готівка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "terminal",
+            "depart",
+            "accept",
+            "cash"
+          ],
+          "rightColumn": [
+            "терминал",
+            "отправляться",
+            "принимать",
+            "наличные"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга уточняет место отправления. Спросите: «Автобус отправляется с вокзала?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга уточняет место отправления. Спросите: «Автобус отправляется с вокзала?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i17:audio",
+            "transcript": "Does the bus depart from the terminal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the bus depart from the terminal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-50:word:hail",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hail",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:hail:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hail",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:hail:audio",
+            "transcript": "hail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:hail:r1",
+              "targetText": "hail",
+              "meaningByLocale": {
+                "ru": "ловить, останавливать (такси). I often hail a taxi at night. — «Я часто ловлю такси ночью». Поднять руку, чтобы машина остановилась.",
+                "uk": "ловити, зупиняти (таксі). I often hail a taxi at night. — «Я часто ловлю таксі вночі». Підняти руку, щоб машина зупинилася."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hail",
+            "definitionByLocale": {
+              "ru": "ловить, останавливать (такси). I often hail a taxi at night. — «Я часто ловлю такси ночью». Поднять руку, чтобы машина остановилась.",
+              "uk": "ловити, зупиняти (таксі). I often hail a taxi at night. — «Я часто ловлю таксі вночі». Підняти руку, щоб машина зупинилася."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often hail a taxi at night.",
+          "localizedMeaning": {
+            "ru": "Вы поздно возвращаетесь домой. Скажите: «Я часто ловлю такси ночью»",
+            "uk": "Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "hail",
+            "a",
+            "taxi",
+            "at",
+            "night"
+          ],
+          "authoredDistractorTokens": [
+            "usually"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `often` — `I often hail a taxi at night.`",
+                "uk": "тут потрібно `often` — `I often hail a taxi at night.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i02:r1",
+            "text": "hail"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i02:r2",
+            "text": "hang"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i02:r3",
+            "text": "hug"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i02:audio",
+            "transcript": "hail"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i02:r1",
+              "targetText": "hail",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r2",
+              "targetText": "hang",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r3",
+              "targetText": "hug",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hail`, а в этом варианте — `hang`.",
+                "uk": "У записі перше слово — `hail`, а в цьому варіанті — `hang`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `hail`, а в этом варианте — `hug`.",
+                "uk": "У записі перше слово — `hail`, а в цьому варіанті — `hug`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i03:r1",
+            "text": "hail"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i03:r2",
+            "text": "hails"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i03:r3",
+            "text": "hailing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, как вы добираетесь поздно. Скажите: «Я часто ловлю такси ночью». Выберите слово",
+            "uk": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I often ___ a taxi at night.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i03:r1",
+              "text": "hail"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r2",
+              "text": "hails"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r3",
+              "text": "hailing"
+            }
+          ],
+          "testedDimension": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `hail`, без окончания.",
+                "uk": "Після `I` потрібно `hail`, без закінчення."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма `hail`.",
+                "uk": "Тут потрібна форма `hail`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i04:p1",
+              "target": "hail",
+              "meaningByLocale": {
+                "ru": "останавливать (такси)",
+                "uk": "зупиняти (таксі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p2",
+              "target": "taxi",
+              "meaningByLocale": {
+                "ru": "такси",
+                "uk": "таксі"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p3",
+              "target": "night",
+              "meaningByLocale": {
+                "ru": "ночь",
+                "uk": "ніч"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i04:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hail",
+            "taxi",
+            "night",
+            "bag"
+          ],
+          "rightColumn": [
+            "зупиняти (таксі)",
+            "таксі",
+            "ніч",
+            "сумка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:accept",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — accept",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:accept:audio"
+        ],
+        "accessibilityLabel": "Картка слова — accept",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:accept:audio",
+            "transcript": "accept"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:accept:r1",
+              "targetText": "accept",
+              "meaningByLocale": {
+                "ru": "принимать. Do you accept cards? — «Вы принимаете карты?» Согласиться взять оплату или то, что предлагают.",
+                "uk": "приймати. Do you accept cards? — «Ви приймаєте картки?» Погодитися взяти оплату або те, що пропонують."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "accept",
+            "definitionByLocale": {
+              "ru": "принимать. Do you accept cards? — «Вы принимаете карты?» Согласиться взять оплату или то, что предлагают.",
+              "uk": "приймати. Do you accept cards? — «Ви приймаєте картки?» Погодитися взяти оплату або те, що пропонують."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i05:audio",
+            "transcript": "Do you accept cards?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Do you accept cards?",
+          "orderedTokens": [
+            "Do",
+            "you",
+            "accept",
+            "cards"
+          ],
+          "authoredDistractorTokens": [
+            "Does"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть запитання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you accept cards?`",
+                "uk": "тут потрібно `Do` — `Do you accept cards?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:terminal",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — terminal",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:terminal:audio"
+        ],
+        "accessibilityLabel": "Картка слова — terminal",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:terminal:audio",
+            "transcript": "terminal"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:terminal:r1",
+              "targetText": "terminal",
+              "meaningByLocale": {
+                "ru": "терминал, конечная станция. Where is the bus terminal? — «Где автовокзал?» Пассажирский терминал или конечная станция; здесь bus terminal — автовокзал.",
+                "uk": "термінал, кінцева станція. Where is the bus terminal? — «Де автовокзал?» Пасажирський термінал або кінцева станція; тут bus terminal — автовокзал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terminal",
+            "definitionByLocale": {
+              "ru": "терминал, конечная станция. Where is the bus terminal? — «Где автовокзал?» Пассажирский терминал или конечная станция; здесь bus terminal — автовокзал.",
+              "uk": "термінал, кінцева станція. Where is the bus terminal? — «Де автовокзал?» Пасажирський термінал або кінцева станція; тут bus terminal — автовокзал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Where is the bus terminal?",
+          "localizedMeaning": {
+            "ru": "Вы вышли из такси в чужом городе. Спросите прохожего: «Где автовокзал?»",
+            "uk": "Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "bus",
+            "terminal"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `is` — `Where is the bus terminal?`",
+                "uk": "тут потрібно `is` — `Where is the bus terminal?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви бачите велику будівлю біля автобусної стоянки. Уточніть у перехожого: «Це автовокзал?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Ви бачите велику будівлю біля автобусної стоянки. Уточніть у перехожого: «Це автовокзал?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i07:audio",
+            "transcript": "Is this the bus terminal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is this the bus terminal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:word:depart",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — depart",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:word:depart:audio"
+        ],
+        "accessibilityLabel": "Картка слова — depart",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:word:depart:audio",
+            "transcript": "depart"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:word:depart:r1",
+              "targetText": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться. The bus usually departs from the terminal. — «Автобус обычно отправляется с вокзала». Покидать место, чтобы ехать дальше.",
+                "uk": "відправлятися. The bus usually departs from the terminal. — «Автобус зазвичай відправляється з вокзалу». Залишати місце, щоб їхати далі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "depart",
+            "definitionByLocale": {
+              "ru": "отправляться. The bus usually departs from the terminal. — «Автобус обычно отправляется с вокзала». Покидать место, чтобы ехать дальше.",
+              "uk": "відправлятися. The bus usually departs from the terminal. — «Автобус зазвичай відправляється з вокзалу». Залишати місце, щоб їхати далі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i08:r1",
+            "text": "departs"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i08:r2",
+            "text": "depart"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i08:r3",
+            "text": "departing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подруга спрашивает, откуда обычно отправляется ваш автобус. Скажите: «Автобус обычно отправляется с вокзала». Выберите слово",
+            "uk": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "The bus usually ___ from the terminal.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i08:r1",
+              "text": "departs"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r2",
+              "text": "depart"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r3",
+              "text": "departing"
+            }
+          ],
+          "testedDimension": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После The bus нужно departs, с s.",
+                "uk": "Після The bus потрібно departs, з s."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма departs.",
+                "uk": "Тут потрібна форма departs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i09:r1",
+            "text": "Do you accept cards?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i09:r2",
+            "text": "Do you accept cash?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i09:r3",
+            "text": "Do you accept coupons?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i09:audio",
+            "transcript": "Do you accept cards?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i09:r1",
+              "targetText": "Do you accept cards?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r2",
+              "targetText": "Do you accept cash?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r3",
+              "targetText": "Do you accept coupons?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cards`, а в этом варианте — `cash`.",
+                "uk": "У записі останнє слово — `cards`, а в цьому варіанті — `cash`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `cards`, а в этом варианте — `coupons`.",
+                "uk": "У записі останнє слово — `cards`, а в цьому варіанті — `coupons`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i10:p1",
+              "target": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться",
+                "uk": "відправлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p2",
+              "target": "hail",
+              "meaningByLocale": {
+                "ru": "останавливать (такси)",
+                "uk": "зупиняти (таксі)"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p3",
+              "target": "accept",
+              "meaningByLocale": {
+                "ru": "принимать",
+                "uk": "приймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i10:p4",
+              "target": "taxi",
+              "meaningByLocale": {
+                "ru": "такси",
+                "uk": "таксі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "depart",
+            "hail",
+            "accept",
+            "taxi"
+          ],
+          "rightColumn": [
+            "відправлятися",
+            "зупиняти (таксі)",
+            "приймати",
+            "таксі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i11:audio",
+            "transcript": "The bus usually departs from the terminal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The bus usually departs from the terminal.",
+          "orderedTokens": [
+            "The",
+            "bus",
+            "usually",
+            "departs",
+            "from",
+            "the",
+            "terminal"
+          ],
+          "authoredDistractorTokens": [
+            "depart"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `departs` — `The bus usually departs from the terminal.`",
+                "uk": "тут потрібно `departs` — `The bus usually departs from the terminal.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you accept cards?",
+          "localizedMeaning": {
+            "ru": "Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»",
+            "uk": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "accept",
+            "cards"
+          ],
+          "authoredDistractorTokens": [
+            "Does"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you accept cards?`",
+                "uk": "тут потрібно `Do` — `Do you accept cards?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сусід питає про вашу сестру. Скажіть: «Вона часто ловить таксі вночі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i13:audio"
+        ],
+        "accessibilityLabel": "Сусід питає про вашу сестру. Скажіть: «Вона часто ловить таксі вночі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i13:audio",
+            "transcript": "She often hails a taxi at night."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She often hails a taxi at night.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i14:r1",
+            "text": "accept"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i14:r2",
+            "text": "accepts"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i14:r3",
+            "text": "accepting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В маленьком магазине вы хотите заплатить картой. Спросите продавца. Выберите слово",
+            "uk": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Do you ___ cards?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-50:i14:r1",
+              "text": "accept"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r2",
+              "text": "accepts"
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r3",
+              "text": "accepting"
+            }
+          ],
+          "testedDimension": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i14:r2",
+              "correct": false,
+              "testedDimension": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После Do you нужно accept, без s.",
+                "uk": "Після Do you потрібно accept, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i14:r3",
+              "correct": false,
+              "testedDimension": "У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма accept.",
+                "uk": "Тут потрібна форма accept."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-50:i15:r1",
+            "text": "Where is the bus terminal?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i15:r2",
+            "text": "Where is the bus station?"
+          },
+          {
+            "responseId": "en:lesson-07:session-50:i15:r3",
+            "text": "Where is the bus stop?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i15:audio",
+            "transcript": "Where is the bus terminal?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-50:i15:r1",
+              "targetText": "Where is the bus terminal?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r2",
+              "targetText": "Where is the bus station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r3",
+              "targetText": "Where is the bus stop?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-50:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `terminal`, а в этом варианте — `station`.",
+                "uk": "У записі останнє слово — `terminal`, а в цьому варіанті — `station`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-50:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `terminal`, а в этом варианте — `stop`.",
+                "uk": "У записі останнє слово — `terminal`, а в цьому варіанті — `stop`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-50:i16:p1",
+              "target": "terminal",
+              "meaningByLocale": {
+                "ru": "терминал",
+                "uk": "термінал"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p2",
+              "target": "depart",
+              "meaningByLocale": {
+                "ru": "отправляться",
+                "uk": "відправлятися"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p3",
+              "target": "accept",
+              "meaningByLocale": {
+                "ru": "принимать",
+                "uk": "приймати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-50:i16:p4",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные",
+                "uk": "готівка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "terminal",
+            "depart",
+            "accept",
+            "cash"
+          ],
+          "rightColumn": [
+            "термінал",
+            "відправлятися",
+            "приймати",
+            "готівка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подруга уточнює місце відправлення. Спитайте: «Автобус відправляється з вокзалу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Подруга уточнює місце відправлення. Спитайте: «Автобус відправляється з вокзалу?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-50:i17:audio",
+            "transcript": "Does the bus depart from the terminal?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Does the bus depart from the terminal?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-50:word:hail",
+      "correctText": "hail",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i01",
+      "correctText": "I often hail a taxi at night.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i02",
+      "correctText": "hail",
+      "correctResponseId": "en:lesson-07:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i03",
+      "correctText": "hail",
+      "correctResponseId": "en:lesson-07:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:word:accept",
+      "correctText": "accept",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i05",
+      "correctText": "Do you accept cards?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:word:terminal",
+      "correctText": "terminal",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i06",
+      "correctText": "Where is the bus terminal?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i07",
+      "correctText": "Is this the bus terminal?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:word:depart",
+      "correctText": "depart",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i08",
+      "correctText": "departs",
+      "correctResponseId": "en:lesson-07:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i09",
+      "correctText": "Do you accept cards?",
+      "correctResponseId": "en:lesson-07:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i11",
+      "correctText": "The bus usually departs from the terminal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i12",
+      "correctText": "Do you accept cards?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i13",
+      "correctText": "She often hails a taxi at night.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i14",
+      "correctText": "accept",
+      "correctResponseId": "en:lesson-07:session-50:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i15",
+      "correctText": "Where is the bus terminal?",
+      "correctResponseId": "en:lesson-07:session-50:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-50:i17",
+      "correctText": "Does the bus depart from the terminal?",
+      "correctResponseId": null
+    }
+  ]
+}

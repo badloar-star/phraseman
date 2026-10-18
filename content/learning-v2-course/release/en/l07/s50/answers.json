@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-07:session-50:word:hail",
+    "correctText": "hail",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-07:session-50:i01",
-    "correctText": "I usually hike.",
+    "correctText": "I often hail a taxi at night.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i02",
-    "correctText": "hike",
+    "correctText": "hail",
     "correctResponseId": "en:lesson-07:session-50:i02:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i03",
-    "correctText": "hike",
+    "correctText": "hail",
     "correctResponseId": "en:lesson-07:session-50:i03:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i04",
-    "correctText": "en:lesson-07:session-50:i04:p1=hike\nen:lesson-07:session-50:i04:p2=deliver\nen:lesson-07:session-50:i04:p3=cinema\nen:lesson-07:session-50:i04:p4=decorate",
+    "correctText": "en:lesson-07:session-50:i04:p1=hail\nen:lesson-07:session-50:i04:p2=taxi\nen:lesson-07:session-50:i04:p3=night\nen:lesson-07:session-50:i04:p4=bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:word:accept",
+    "correctText": "accept",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i05",
-    "correctText": "I usually hike.",
+    "correctText": "Do you accept cards?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:word:terminal",
+    "correctText": "terminal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i06",
-    "correctText": "Do you deliver?",
+    "correctText": "Where is the bus terminal?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i07",
-    "correctText": "Where is the cinema?",
+    "correctText": "Is this the bus terminal?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-07:session-50:word:depart",
+    "correctText": "depart",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i08",
-    "correctText": "deliver",
+    "correctText": "departs",
     "correctResponseId": "en:lesson-07:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i09",
-    "correctText": "I usually hike.",
+    "correctText": "Do you accept cards?",
     "correctResponseId": "en:lesson-07:session-50:i09:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i10",
-    "correctText": "en:lesson-07:session-50:i10:p1=decorate\nen:lesson-07:session-50:i10:p2=hike\nen:lesson-07:session-50:i10:p3=deliver\nen:lesson-07:session-50:i10:p4=cinema",
+    "correctText": "en:lesson-07:session-50:i10:p1=depart\nen:lesson-07:session-50:i10:p2=hail\nen:lesson-07:session-50:i10:p3=accept\nen:lesson-07:session-50:i10:p4=taxi",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i11",
-    "correctText": "Do you deliver?",
+    "correctText": "The bus usually departs from the terminal.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i12",
-    "correctText": "Do you decorate the room?",
+    "correctText": "Do you accept cards?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i13",
-    "correctText": "Does Tom hike?",
+    "correctText": "She often hails a taxi at night.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i14",
-    "correctText": "usually",
+    "correctText": "accept",
     "correctResponseId": "en:lesson-07:session-50:i14:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i15",
-    "correctText": "Where is the cinema?",
+    "correctText": "Where is the bus terminal?",
     "correctResponseId": "en:lesson-07:session-50:i15:r1"
   },
   {
     "interactionId": "en:lesson-07:session-50:i16",
-    "correctText": "en:lesson-07:session-50:i16:p1=hike\nen:lesson-07:session-50:i16:p2=cinema\nen:lesson-07:session-50:i16:p3=decorate\nen:lesson-07:session-50:i16:p4=deliver",
+    "correctText": "en:lesson-07:session-50:i16:p1=terminal\nen:lesson-07:session-50:i16:p2=depart\nen:lesson-07:session-50:i16:p3=accept\nen:lesson-07:session-50:i16:p4=cash",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-07:session-50:i17",
-    "correctText": "Tom usually hikes.",
+    "correctText": "Does the bus depart from the terminal?",
     "correctResponseId": null
   }
 ]

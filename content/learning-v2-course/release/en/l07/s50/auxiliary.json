@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-50:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-50:intro1:r2": {
-          "ru": "После `I` нужно `hike`.",
-          "uk": "Після `I` потрібне `hike`."
+          "ru": "После I нужно hail, без s.",
+          "uk": "Після I потрібно hail, без s."
         },
         "en:lesson-07:session-50:intro1:r3": {
-          "ru": "Здесь нужна форма `hike`.",
-          "uk": "Тут потрібна форма `hike`."
+          "ru": "Здесь нужна форма hail.",
+          "uk": "Тут потрібна форма hail."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-50:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-50:intro2:r2": {
-          "ru": "С `you` нужно `do`.",
-          "uk": "З `you` потрібне `do`."
+          "ru": "С you нужно Do.",
+          "uk": "З you потрібно Do."
         },
         "en:lesson-07:session-50:intro2:r3": {
-          "ru": "После `do you` нужно `deliver`, без `s`.",
-          "uk": "Після `do you` потрібне `deliver`, без `s`."
+          "ru": "После Do you нужно accept, без s.",
+          "uk": "Після Do you потрібно accept, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-50:intro3:r2": {
-          "ru": "Кинотеатр один: нужно `is`.",
-          "uk": "Кінотеатр один: потрібне `is`."
+          "ru": "Автовокзал один: нужно is.",
+          "uk": "Автовокзал один: потрібно is."
         },
         "en:lesson-07:session-50:intro3:r3": {
-          "ru": "В этом вопросе `is` стоит перед `the cinema`.",
-          "uk": "У цьому запитанні `is` стоїть перед `the cinema`."
+          "ru": "В этом вопросе is стоит перед the bus terminal.",
+          "uk": "У цьому запитанні is стоїть перед the bus terminal."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d24eb381c7157ae967f1b7f7e2151877cba5c7dbdb053fd919fd4b83f3d1d6e4"
+  "auxiliaryFingerprint": "8cc3870b63d79bc206d0ae5949d1cb641e73c2d0d7fa29575839f0ba43fc4224"
 }

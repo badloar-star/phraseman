@@ -1,133 +1,154 @@
-# Англійська · Урок 7 · Заняття 50 — Пішки на природу
+# Англійська · Урок 7 · Заняття 50 — Таксі й автовокзал
 
-**Ситуація.** Ви розповідаєте про піші походи, доставку й пошук кінотеатру.
+**Ситуація.** Ви розповідаєте про поїздки: як ловите таксі пізно ввечері, чи приймають у магазині картки та де знайти автовокзал.
 
-**Що ви опануєте:** розповідати про звички й ставити знайомі запитання
-**Нові слова:** hike
+**Що ви опануєте:** розповідати про звички, питати «Ви …?» і «Де …?»
+**Нові слова:** hail, accept, terminal, depart
+**Повертаються:** taxi, night, card, cash, coupon, bus, station, bus stop
 
 ---
 
 ## Інтро 1
 
-### Виходжу на стежку
+### Пізній вечір
 
-Друг запитує, як ви зазвичай проводите час на природі. `Hike` — «ходити в піший похід»: довго йти пішки на природі, наприклад лісовою стежкою. `I usually hike` — «Я зазвичай ходжу в піші походи». `Usually` стоїть перед `hike`. Похід до холодильника не рахується — навіть якщо дуже втомилися.
+Увечері ви стоїте на вулиці з важкими сумками, а автобуси вже не ходять. Ви піднімаєте руку, і поруч зупиняється машина з шашечками. hail — «ловити, зупиняти (таксі)». Скажіть: I often hail a taxi at night — «Я часто ловлю таксі вночі». Слово often стоїть перед hail.
 
-**Розкажіть другові про свою звичку.**
+**Друг питає, як ви добираєтеся додому пізно. Відповідьте: «Я часто ловлю таксі вночі».**
 
-- ✅ **I usually hike.**
-- ❌ I usually hikes. — *Після `I` потрібне `hike`.*
-- ❌ I usually hiking. — *Тут потрібна форма `hike`.*
+- ✅ **I often hail a taxi at night.**
+- ❌ I often hails a taxi at night. — *Після I потрібно hail, без s.*
+- ❌ I often hailing a taxi at night. — *Тут потрібна форма hail.*
 
 ---
 
 ## Інтро 2
 
-### Доставка магазину
+### Біля каси магазину
 
-Ви телефонуєте до магазину й хочете дізнатися, чи доставляють покупки. `Do you deliver?` — «Ви доставляєте?» Запитання починається з `do`, потім ідуть `you` та `deliver`.
+Ви вибрали подарунок у маленькому магазині й підійшли до каси. Готівки мало, і ви хочете заплатити карткою, але не певні, що тут це можна. accept — «приймати (оплату)». Спитайте продавця: Do you accept cards? — «Ви приймаєте картки?» Запитання починається з Do.
 
-**Запитайте працівника про доставку.**
+**Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»**
 
-- ✅ **Do you deliver?**
-- ❌ Does you deliver? — *З `you` потрібне `do`.*
-- ❌ Do you delivers? — *Після `do you` потрібне `deliver`, без `s`.*
+- ✅ **Do you accept cards?**
+- ❌ Does you accept cards? — *З you потрібно Do.*
+- ❌ Do you accepts cards? — *Після Do you потрібно accept, без s.*
 
 ---
 
 ## Інтро 3
 
-### Шукаю кінотеатр
+### Чуже місто
 
-Ви йдете на фільм і просите перехожого показати кінотеатр. `Where is the cinema?` — «Де кінотеатр?» Після `where` тут іде `is`, потім `the cinema`.
+Ви приїхали в чуже місто й шукаєте автовокзал, щоб їхати далі. Біля зупинки стоїть перехожий, і ви вирішуєте спитати в нього дорогу. terminal — «термінал, кінцева станція»; bus terminal — «автовокзал». Спитайте: Where is the bus terminal? — «Де автовокзал?» Після Where йде is, а потім the bus terminal.
 
-**Запитайте, де кінотеатр.**
+**Перехожий біля зупинки чекає на ваше запитання. Спитайте: «Де автовокзал?»**
 
-- ✅ **Where is the cinema?**
-- ❌ Where are the cinema? — *Кінотеатр один: потрібне `is`.*
-- ❌ Where the cinema is? — *У цьому запитанні `is` стоїть перед `the cinema`.*
+- ✅ **Where is the bus terminal?**
+- ❌ Where are the bus terminal? — *Автовокзал один: потрібно is.*
+- ❌ Where the bus terminal is? — *У цьому запитанні is стоїть перед the bus terminal.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я зазвичай ходжу в піші походи»**
+**1 · Картка слова — hail**
+<!-- interaction_id: en:lesson-07:session-50:word:hail; family: word_card -->
+> **hail** — ловити, зупиняти (таксі). I often hail a taxi at night. — «Я часто ловлю таксі вночі». Підняти руку, щоб машина зупинилася.
+
+**2 · Ви пізно повертаєтеся додому. Скажіть: «Я часто ловлю таксі вночі»**
 <!-- interaction_id: en:lesson-07:session-50:i01; family: phrase_builder -->
-Плитки: `hike` `usually` `I` → **I usually hike.**
+Плитки: `night` `usually` `at` `taxi` `a` `hail` `often` `I` → **I often hail a taxi at night.**
+*(плитка `usually` зайва: тут потрібно `often` — `I often hail a taxi at night.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-50:i02; family: listen_choose -->
-🔊 *hike* → **hike** · camp · walk
-- camp — *У записі перше слово — `hike`, а в цьому варіанті — `camp`.*
-- walk — *У записі перше слово — `hike`, а в цьому варіанті — `walk`.*
+🔊 *hail* → **hail** · hang · hug
+- hang — *У записі перше слово — `hail`, а в цьому варіанті — `hang`.*
+- hug — *У записі перше слово — `hail`, а в цьому варіанті — `hug`.*
 
-**3 · Скажіть «Я зазвичай ходжу в піші походи»**
+**4 · Друг питає, як ви добираєтеся пізно. Скажіть: «Я часто ловлю таксі вночі». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-50:i03; family: context_gap_grammar -->
-I usually ___. → **hike** · hikes · hiking
-- hikes — *Після `I` потрібне `hike`.*
-- hiking — *Тут потрібна форма `hike`.*
+I often ___ a taxi at night. → **hail** · hails · hailing
+- hails — *Після `I` потрібно `hail`, без закінчення.*
+- hailing — *Тут потрібна форма `hail`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-50:i04; family: speed_match -->
-hike — ходити в піший похід · deliver — доставляти · cinema — кінотеатр · decorate — прикрашати
+hail — зупиняти (таксі) · taxi — таксі · night — ніч · bag — сумка
 
-**5 · Послухайте й складіть фразу**
+**6 · Картка слова — accept**
+<!-- interaction_id: en:lesson-07:session-50:word:accept; family: word_card -->
+> **accept** — приймати. Do you accept cards? — «Ви приймаєте картки?» Погодитися взяти оплату або те, що пропонують.
+
+**7 · Послухайте й складіть запитання**
 <!-- interaction_id: en:lesson-07:session-50:i05; family: listen_build_dictation -->
-🔊 *I usually hike.* Плитки: `hike` `usually` `I` → **I usually hike.**
+🔊 *Do you accept cards?* Плитки: `cards` `Does` `accept` `you` `Do` → **Do you accept cards?**
+*(плитка `Does` зайва: тут потрібно `Do` — `Do you accept cards?`)*
 
-**6 · Зателефонуйте до магазину й запитайте «Ви доставляєте?»**
+**8 · Картка слова — terminal**
+<!-- interaction_id: en:lesson-07:session-50:word:terminal; family: word_card -->
+> **terminal** — термінал, кінцева станція. Where is the bus terminal? — «Де автовокзал?» Пасажирський термінал або кінцева станція; тут bus terminal — автовокзал.
+
+**9 · Ви вийшли з таксі в чужому місті. Спитайте перехожого: «Де автовокзал?»**
 <!-- interaction_id: en:lesson-07:session-50:i06; family: phrase_builder -->
-Плитки: `deliver` `you` `Do` → **Do you deliver?**
+Плитки: `terminal` `are` `bus` `the` `is` `Where` → **Where is the bus terminal?**
+*(плитка `are` зайва: тут потрібно `is` — `Where is the bus terminal?`)*
 
-**7 · Запитайте перехожого «Де кінотеатр?»**
+**10 · Ви бачите велику будівлю біля автобусної стоянки. Уточніть у перехожого: «Це автовокзал?»**
 <!-- interaction_id: en:lesson-07:session-50:i07; family: scripted_repeat_compare -->
-🎙 **Where is the cinema?**
+🎙 **Is this the bus terminal?**
 
-**8 · Запитайте в магазині «Ви доставляєте?»**
+**11 · Картка слова — depart**
+<!-- interaction_id: en:lesson-07:session-50:word:depart; family: word_card -->
+> **depart** — відправлятися. The bus usually departs from the terminal. — «Автобус зазвичай відправляється з вокзалу». Залишати місце, щоб їхати далі.
+
+**12 · Подруга питає, звідки зазвичай відправляється ваш автобус. Скажіть: «Автобус зазвичай відправляється з вокзалу». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-50:i08; family: context_gap_grammar -->
-Do you ___? → **deliver** · delivers · delivering
-- delivers — *Після `do you` потрібне `deliver`, без `s`.*
-- delivering — *Тут потрібна форма `deliver`.*
+The bus usually ___ from the terminal. → **departs** · depart · departing
+- depart — *Після The bus потрібно departs, з s.*
+- departing — *Тут потрібна форма departs.*
 
-**9 · Послухайте й виберіть фразу**
+**13 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-50:i09; family: listen_choose -->
-🔊 *I usually hike.* → **I usually hike.** · I usually camp. · I usually walk.
-- I usually camp. — *У записі останнє слово — `hike`, а в цьому варіанті — `camp`.*
-- I usually walk. — *У записі останнє слово — `hike`, а в цьому варіанті — `walk`.*
+🔊 *Do you accept cards?* → **Do you accept cards?** · Do you accept cash? · Do you accept coupons?
+- Do you accept cash? — *У записі останнє слово — `cards`, а в цьому варіанті — `cash`.*
+- Do you accept coupons? — *У записі останнє слово — `cards`, а в цьому варіанті — `coupons`.*
 
-**10 · З’єднайте слова зі значеннями**
+**14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-50:i10; family: speed_match -->
-decorate — прикрашати · hike — ходити в піший похід · deliver — доставляти · cinema — кінотеатр
+depart — відправлятися · hail — зупиняти (таксі) · accept — приймати · taxi — таксі
 
-**11 · Послухайте й складіть фразу**
+**15 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-50:i11; family: listen_build_dictation -->
-🔊 *Do you deliver?* Плитки: `deliver` `you` `Do` → **Do you deliver?**
+🔊 *The bus usually departs from the terminal.* Плитки: `terminal` `depart` `the` `from` `departs` `usually` `bus` `The` → **The bus usually departs from the terminal.**
+*(плитка `depart` зайва: тут потрібно `departs` — `The bus usually departs from the terminal.`)*
 
-**12 · Ви обговорюєте, хто зазвичай прикрашає кімнату перед святами. Запитайте друга «Ти прикрашаєш кімнату?»**
+**16 · Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»**
 <!-- interaction_id: en:lesson-07:session-50:i12; family: phrase_builder -->
-Плитки: `room` `the` `decorate` `you` `Do` → **Do you decorate the room?**
+Плитки: `cards` `Does` `accept` `you` `Do` → **Do you accept cards?**
+*(плитка `Does` зайва: тут потрібно `Do` — `Do you accept cards?`)*
 
-**13 · Ви збираєте компанію для походів. Запитайте подругу Тома «Том ходить у піші походи?»**
+**17 · Сусід питає про вашу сестру. Скажіть: «Вона часто ловить таксі вночі»**
 <!-- interaction_id: en:lesson-07:session-50:i13; family: scripted_repeat_compare -->
-🎙 **Does Tom hike?**
+🎙 **She often hails a taxi at night.**
 
-**14 · Скажіть «Я зазвичай ходжу в піші походи»**
+**18 · У маленькому магазині ви хочете заплатити карткою. Спитайте продавця. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-50:i14; family: context_gap_grammar -->
-I ___ hike. → **usually** · does · am
-- does — *Для «зазвичай» потрібне `usually` перед `hike`.*
-- am — *Для «зазвичай» потрібне `usually`; `am` перед `hike` не ставимо.*
+Do you ___ cards? → **accept** · accepts · accepting
+- accepts — *Після Do you потрібно accept, без s.*
+- accepting — *Тут потрібна форма accept.*
 
-**15 · Послухайте й виберіть фразу**
+**19 · Послухайте й виберіть фразу**
 <!-- interaction_id: en:lesson-07:session-50:i15; family: listen_choose -->
-🔊 *Where is the cinema?* → **Where is the cinema?** · Where is the hospital? · Where is the garage?
-- Where is the hospital? — *У записі останнє слово — `cinema`, а в цьому варіанті — `hospital`.*
-- Where is the garage? — *У записі останнє слово — `cinema`, а в цьому варіанті — `garage`.*
+🔊 *Where is the bus terminal?* → **Where is the bus terminal?** · Where is the bus station? · Where is the bus stop?
+- Where is the bus station? — *У записі останнє слово — `terminal`, а в цьому варіанті — `station`.*
+- Where is the bus stop? — *У записі останнє слово — `terminal`, а в цьому варіанті — `stop`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-50:i16; family: speed_match -->
-hike — ходити в піший похід · cinema — кінотеатр · decorate — прикрашати · deliver — доставляти
+terminal — термінал · depart — відправлятися · accept — приймати · cash — готівка
 
-**17 · Друг запитує про звички Тома на природі. Скажіть «Том зазвичай ходить у піші походи»**
+**21 · Подруга уточнює місце відправлення. Спитайте: «Автобус відправляється з вокзалу?»**
 <!-- interaction_id: en:lesson-07:session-50:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually hikes.**
-
+🎙 **Does the bus depart from the terminal?**

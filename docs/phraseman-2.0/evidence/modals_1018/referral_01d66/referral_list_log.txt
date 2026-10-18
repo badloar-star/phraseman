@@ -1,0 +1,11 @@
+10-18 09:19:10.808 W/ReactNativeJS( 8817): '[DEV-STATE] route: replace вызван →', '/referrals', 'canDismiss=true (возможна вторая копия вкладок — артефакт dev)'
+10-18 09:19:11.249 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"render","view":"empty","loading":false,"accountMatches":true,"hasRenderScope":true,"ceilingPassed":false,"count":0}'
+10-18 09:19:11.254 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:start","force":false,"phase":"active","hasScope":true,"warm":"stale","warmCount":0}'
+10-18 09:19:11.350 I/ReactNativeJS( 8817): [SECTION-LANG] {"event":"neutral_route","pathname":"/referrals","lastSection":null}
+10-18 09:19:11.354 I/ReactNativeJS( 8817): [SECTION-LANG] {"event":"neutral_route","pathname":"/referrals","lastSection":null}
+10-18 09:19:12.336 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:done","source":"server","count":0,"ms":1079}'
+10-18 09:19:12.337 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:finally","force":false,"requestCurrent":true,"loadingCleared":true}'
+10-18 09:19:13.151 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"render","view":"empty","loading":false,"accountMatches":true,"hasRenderScope":true,"ceilingPassed":true,"count":0}'
+10-18 09:19:13.919 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:start","force":true,"phase":"active","hasScope":true,"warm":"fresh","warmCount":0}'
+10-18 09:19:17.364 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:done","source":"server","count":0,"ms":3443}'
+10-18 09:19:17.365 I/ReactNativeJS( 8817): '[REFERRAL-LIST]', '{"stage":"load:finally","force":true,"requestCurrent":true,"loadingCleared":true}'

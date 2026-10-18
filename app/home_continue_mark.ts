@@ -20,7 +20,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
-import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { homeContinueMarkKey, homeContinueMarkKeys, type RuntimeStudyTarget } from './target_storage_keys';
 import { triLang, type Lang } from '../constants/i18n';
 
 const LOG = '[HOME-CONTINUE]';
@@ -56,9 +56,10 @@ export type HomeContinueMarks = Readonly<{
   cards?: HomeContinuePlaceMark | null;
 }>;
 
-const v2Key = (target: RuntimeStudyTarget): string => `${lastOpenedLessonKey(target)}__continue_v2`;
-const legacyAtKey = (target: RuntimeStudyTarget): string => `${lastOpenedLessonKey(target)}__continue_at`;
-const placeKey = (target: RuntimeStudyTarget, kind: HomeContinuePlaceKind): string => `${lastOpenedLessonKey(target)}__continue_${kind}`;
+// зачем (координатор 18.10): ключи строит общий homeContinueMarkKey (target_storage_keys.ts) — тот же, что берёт общее стирание
+// аккаунта; чтение и удаление получают готовый массив, без строк внутри вызова (сторож описи принимал 'dialog'/'cards' за ключи).
+const v2Key = (target: RuntimeStudyTarget): string => homeContinueMarkKey('v2', target);
+const placeKey = (target: RuntimeStudyTarget, kind: HomeContinuePlaceKind): string => homeContinueMarkKey(kind, target);
 
 // ключ памяти: изучаемый язык (null/undefined = как у lastOpenedLessonKey, английский)
 const tk = (target: RuntimeStudyTarget): string => String(target ?? 'en');
@@ -69,7 +70,7 @@ const emit = (): void => { listeners.forEach((l) => l()); };
 onAccountOwnerChanged('home_continue_mark', () => {
   memory.clear();
   emit();
-  void AsyncStorage.multiRemove(TARGETS.flatMap((t) => [v2Key(t), legacyAtKey(t), placeKey(t, 'dialog'), placeKey(t, 'cards')])).catch((error: unknown) => {
+  void AsyncStorage.multiRemove(TARGETS.flatMap((t) => homeContinueMarkKeys(t))).catch((error: unknown) => {
     console.warn(`${LOG} mark: ключи прошлого аккаунта не удалились (${error instanceof Error ? error.message : String(error)})`);
   });
 });
@@ -113,7 +114,8 @@ export async function loadHomeContinueMarks(target: RuntimeStudyTarget): Promise
   const known = memory.get(tk(target));
   if (known) return known;
   try {
-    const pairs = await AsyncStorage.multiGet([v2Key(target), legacyAtKey(target), placeKey(target, 'dialog'), placeKey(target, 'cards')]);
+    // порядок homeContinueMarkKeys: v2, at, dialog, cards
+    const pairs = await AsyncStorage.multiGet(homeContinueMarkKeys(target));
     const at = Number(pairs[1]?.[1]);
     const marks: HomeContinueMarks = {
       v2: parseV2(pairs[0]?.[1] ?? null),
@@ -161,7 +163,7 @@ export function recordHomeContinuePlace(kind: HomeContinuePlaceKind, target: Run
 /** Открыт старый урок — время рядом с lastOpenedLessonKey. */
 export function recordHomeContinueLegacy(target: RuntimeStudyTarget, atMs: number = Date.now()): void {
   const prev = memory.get(tk(target)) ?? { v2: null, legacyAtMs: null };
-  write(target, { ...prev, legacyAtMs: atMs }, () => AsyncStorage.setItem(legacyAtKey(target), String(atMs)), 'время старого урока'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
+  write(target, { ...prev, legacyAtMs: atMs }, () => AsyncStorage.setItem(homeContinueMarkKey('at', target), String(atMs)), 'время старого урока'); // guard-ok: строка журнала/причины решения, не текст интерфейса (переводчик 17.10)
 }
 
 export type HomeContinueReason = 'none' | 'legacy_only' | 'v2_only' | 'v2_newer' | 'legacy_newer' | 'dialog_only' | 'cards_only' | 'dialog_newer' | 'cards_newer';

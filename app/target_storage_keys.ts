@@ -256,6 +256,25 @@ export function lastOpenedLessonKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('last_opened_lesson', 'lesson_session_local', studyTarget);
 }
 
+/**
+ * Метки «последнее место» Главной (home_continue_mark.ts): занятие V2, время старого урока, диалог, набор карточек.
+ * зачем (координатор 18.10): один построитель для Главной и для общего стирания аккаунта (cloud_sync
+ * accountLocalDataKeysForToday) — ключи не разойдутся; префикс английского ключа объявлен строкой, чтобы его видел
+ * сторож описи хранилища (guard_phone_state_legacy_inventory).
+ */
+export const HOME_CONTINUE_MARK_PREFIX = 'last_opened_lesson__continue_';
+export const HOME_CONTINUE_MARK_KINDS = ['v2', 'at', 'dialog', 'cards'] as const;
+export type HomeContinueMarkKind = (typeof HOME_CONTINUE_MARK_KINDS)[number];
+
+export function homeContinueMarkKey(kind: HomeContinueMarkKind, studyTarget?: RuntimeStudyTarget): string {
+  return `${lastOpenedLessonKey(studyTarget)}__continue_${kind}`;
+}
+
+/** Все четыре метки языка в порядке HOME_CONTINUE_MARK_KINDS (v2, at, dialog, cards). */
+export function homeContinueMarkKeys(studyTarget?: RuntimeStudyTarget): string[] {
+  return HOME_CONTINUE_MARK_KINDS.map((kind) => homeContinueMarkKey(kind, studyTarget));
+}
+
 export function fiftyFiftyUsageKey(dayKey: string, studyTarget?: RuntimeStudyTarget): string {
   const raw = `fifty_fifty_${dayKey}`;
   return scopedOrLegacyKey(raw, 'lesson_session_local', studyTarget);

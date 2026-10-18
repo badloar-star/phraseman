@@ -184,6 +184,9 @@ export function classifyGuestCleanKey(key: string, raw: string | null): GuestCle
   if (defaults) return defaults.has(value) ? 'default' : 'progress';
   if (GUEST_CHOICE_KEYS.has(key)) return 'default';
   if (SERVICE_KEYS.has(key)) return 'service';
+  // зачем (координатор 18.10): метки «последнее место» Главной (homeContinueMarkKey) вошли в опись аккаунта ради стирания и
+  // копии; до этого «чистый гость» их не видел вовсе — служебный след навигации, вход ведёт себя как раньше.
+  if (/(?:^|::)last_opened_lesson__continue_(?:v2|at|dialog|cards)$/.test(key)) return 'service';
   // Лимит бесплатных уроков по языку: lesson_progress_v2::<язык>::legacy_free_lesson_cap_v1 = 3 у свежей установки.
   if (key.startsWith('lesson_progress_v2::') && key.endsWith('::legacy_free_lesson_cap_v1')) return value === '3' ? 'default' : 'progress';
   // Маркер миграции бесплатных уроков по языку — тот же служебный след, что legacy_free_lesson_migration_v1 без префикса.

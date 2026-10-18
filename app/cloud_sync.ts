@@ -221,6 +221,7 @@ import {
   flashcardsSwipeSessionDraftKey,
   grammarHintSeenKey,
   irregularVerbsGlobalKey,
+  homeContinueMarkKeys,
   lastOpenedLessonKey,
   lessonBestScoreKey,
   lessonBonusHintsKey,
@@ -911,6 +912,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     diagnosticOpenFlagKey(target),
     ...retiredCompetitiveModeStorageKeysForWipe(target),
     irregularVerbsGlobalKey(target),
+    // зачем (координатор 18.10): метки «последнее место» Главной принадлежат аккаунту — общее стирание и аварийная копия;
+    // раньше их снимал только фоновый подписчик home_continue_mark без проверки.
+    ...homeContinueMarkKeys(target),
     lingmanCertificateKey(target),
     flashcardsMarketplaceBuiltCardsCacheKey(target),
     flashcardsMarketDevActivePackKey(target),

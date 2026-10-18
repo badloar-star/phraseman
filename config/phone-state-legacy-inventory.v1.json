@@ -2704,6 +2704,15 @@
   ],
   "prefixRules": [
     {
+      "prefix": "last_opened_lesson__continue_",
+      "domain": "progress",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
       "prefix": "lesson",
       "domain": "lessons",
       "scope": "portable",

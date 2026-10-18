@@ -11,6 +11,7 @@ import React, { useEffect, useRef } from 'react';
 import { useRouter } from 'expo-router';
 
 import { DialogueGlassGate, useDialogueGlass } from './glass/DialogueGlassKit';
+import { safeRouterBack } from '../../app/navigation_back';
 
 export const DIALOGUE_HUB_ROUTE = '/ai_dialog_home';
 
@@ -51,7 +52,14 @@ export function DialogueHubRedirect({
     try {
       router.replace(DIALOGUE_HUB_ROUTE as never);
     } catch (error) {
-      console.warn(`[DIALOGUE-V2] ${screen} → redirect hub failed`, error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
+      // зачем (Ревизор a70855a55 🟡, координатор 08:25): если replace бросил, экран остался бы на скелете навсегда — тоже запрещено.
+      // Запасной путь — безопасный «назад» (с откатом на Главную, если истории нет); причину пишем.
+      console.warn(`[NO-ERROR-SCREEN] [DIALOGUE-V2] ${screen} → redirect hub failed, fallback back`, error instanceof Error ? error.message : String(error)); // guard-ok: catch называет причину
+      try {
+        safeRouterBack(router);
+      } catch (backError) {
+        console.warn(`[NO-ERROR-SCREEN] [DIALOGUE-V2] ${screen} → fallback back failed`, backError instanceof Error ? backError.message : String(backError)); // guard-ok: catch называет причину
+      }
     }
   }, [details, reason, router, scenarioId, screen]);
 

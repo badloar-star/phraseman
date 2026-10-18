@@ -13,6 +13,9 @@ describe('Dialogs never show an error gate — they quietly return to the hub', 
     expect(redirect).toContain('[DIALOGUE-V2] ${screen} → redirect hub');
     expect(redirect).toContain('loading title={loadingLabel}');
     expect(redirect).not.toContain('cloud-offline-outline');
+    // запасной путь: replace бросил — безопасный «назад», а не вечный скелет (Ревизор a70855a55)
+    expect(redirect).toMatch(/catch \(error\) \{[\s\S]{0,1200}safeRouterBack\(router\);/);
+    expect(redirect).toContain('redirect hub failed, fallback back');
   });
 
   it('session: paused and unavailable go to the hub', () => {

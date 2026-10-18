@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-28",
   "learningOutcomeByLocale": {
-    "ru": "спрашивать о месте и времени привычных действий с where и when",
-    "uk": "запитувати про місце й час звичних дій з where і when"
+    "ru": "узнавать время привычных поездок и обычное место ночлега и отдыха",
+    "uk": "дізнаватися час звичних поїздок і звичайне місце ночівлі та відпочинку"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-07:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обеденный перерыв",
-        "uk": "Обідня перерва"
+        "ru": "Брат в разъездах",
+        "uk": "Брат у роз’їздах"
       },
       "bodyByLocale": {
-        "ru": "Вы недавно устроились на работу и спрашиваете коллегу, где он обычно ест в перерыв. `eat` — «есть, принимать пищу». `Where do you eat?` — «Где ты ешь?» `Where` спрашивает о месте; затем идут `do you eat`. Обед лучше искать по адресу, чем по урчанию живота.",
-        "uk": "Ви нещодавно влаштувалися на роботу й запитуєте колегу, де він зазвичай їсть під час перерви. `eat` — «їсти». `Where do you eat?` — «Де ти їси?» `Where` запитує про місце; потім ідуть `do you eat`. Обід краще шукати за адресою, ніж за бурчанням живота."
+        "ru": "Брат регулярно ездит в другие города по работе. Вы хотите выбрать день семейных встреч, когда он обычно дома. travel — «ездить, путешествовать». Спросите о его обычном расписании: When do you travel? — «Когда ты ездишь?» When спрашивает о времени. Перед you здесь нужно do, затем travel, без s. Созвониться можно и из поезда, а вот семейный пирог по телефону не передашь.",
+        "uk": "Брат регулярно їздить до інших міст у справах. Ви хочете обрати день сімейних зустрічей, коли він зазвичай удома. travel — «їздити, подорожувати». Спитайте про його звичний розклад: When do you travel? — «Коли ти їздиш?» When запитує про час. Перед you тут потрібне do, далі travel, без s. Зателефонувати можна й із потяга, а от сімейний пиріг телефоном не передаси."
       },
       "question": {
         "interactionId": "en:lesson-07:session-28:intro1:q",
         "promptByLocale": {
-          "ru": "Узнайте обычное место обеда коллеги: «Где ты ешь?»",
-          "uk": "Дізнайтеся звичне місце обіду колеги: «Де ти їси?»"
+          "ru": "Брат говорит, что часто в разъездах. Спросите его: «Когда ты ездишь?»",
+          "uk": "Брат каже, що часто в роз’їздах. Спитайте його: «Коли ти їздиш?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-28:intro1:r1",
-              "text": "Where do you eat?"
+              "text": "When do you travel?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro1:r2",
-              "text": "Where does you eat?"
+              "text": "When does you travel?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro1:r3",
-              "text": "Where you eat?"
+              "text": "When do you travels?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-28:intro1:r1",
-              "text": "Where do you eat?"
+              "text": "When do you travel?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro1:r2",
-              "text": "Where does you eat?"
+              "text": "When does you travel?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro1:r3",
-              "text": "Where you eat?"
+              "text": "When do you travels?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте обычное место обеда коллеги: «Где ты ешь?»",
-          "uk": "Дізнайтеся звичне місце обіду колеги: «Де ти їси?»"
+          "ru": "Брат говорит, что часто в разъездах. Спросите его: «Когда ты ездишь?»",
+          "uk": "Брат каже, що часто в роз’їздах. Спитайте його: «Коли ти їздиш?»"
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Место разминки",
-        "uk": "Місце розминки"
+        "ru": "Командировка подруги",
+        "uk": "Відрядження подруги"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказывает, что регулярно разминается перед тренировкой. `Where do you stretch?` — «Где ты разминаешься?» Здесь речь о разминке с растяжкой. Вопрос начинается с `where do you`, затем `stretch`, без окончания.",
-        "uk": "Друг розповідає, що регулярно розминається перед тренуванням. `Where do you stretch?` — «Де ти розминаєшся?» Тут ідеться про розминку з розтягуванням. Запитання починається з `where do you`, потім `stretch`, без закінчення."
+        "ru": "Подруга каждый месяц работает несколько дней в другом городе. Вы тоже будете туда ездить и ищете жильё по её совету. stay — «останавливаться, временно жить». Узнайте, где она обычно останавливается: Where do you stay? — «Где ты останавливаешься?» Where спрашивает о месте; дальше идут do you stay. Здесь речь о привычном месте ночлега в поездках.",
+        "uk": "Подруга щомісяця працює кілька днів в іншому місті. Ви теж будете туди їздити й шукаєте житло за її порадою. stay — «зупинятися, тимчасово жити». Дізнайтеся, де вона зазвичай зупиняється: Where do you stay? — «Де ти зупиняєшся?» Where запитує про місце; далі йдуть do you stay. Тут ідеться про звичне місце ночівлі в поїздках."
       },
       "question": {
         "interactionId": "en:lesson-07:session-28:intro2:q",
         "promptByLocale": {
-          "ru": "Узнайте, где друг обычно делает растяжку.",
-          "uk": "Дізнайтеся, де друг зазвичай робить розтяжку."
+          "ru": "Подруга рассказывает о своих регулярных поездках. Спросите её: «Где ты останавливаешься?»",
+          "uk": "Подруга розповідає про свої регулярні поїздки. Спитайте її: «Де ти зупиняєшся?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-28:intro2:r1",
-              "text": "Where do you stretch?"
+              "text": "Where do you stay?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro2:r2",
-              "text": "Where does you stretch?"
+              "text": "Where does you stay?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro2:r3",
-              "text": "Where do you stretches?"
+              "text": "Where do you stays?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-28:intro2:r1",
-              "text": "Where do you stretch?"
+              "text": "Where do you stay?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro2:r2",
-              "text": "Where does you stretch?"
+              "text": "Where does you stay?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro2:r3",
-              "text": "Where do you stretches?"
+              "text": "Where do you stays?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Узнайте, где друг обычно делает растяжку.",
-          "uk": "Дізнайтеся, де друг зазвичай робить розтяжку."
+          "ru": "Подруга рассказывает о своих регулярных поездках. Спросите её: «Где ты останавливаешься?»",
+          "uk": "Подруга розповідає про свої регулярні поїздки. Спитайте її: «Де ти зупиняєшся?»"
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рабочее расписание",
-        "uk": "Робочий розклад"
+        "ru": "Сборы за город",
+        "uk": "Збори за місто"
       },
       "bodyByLocale": {
-        "ru": "Вы договариваетесь о рабочей встрече и уточняете начало работы коллеги. `When does she start?` — «Когда она начинает?» Здесь имеется в виду её рабочий день. `When` спрашивает о времени, затем идут `does she start`.",
-        "uk": "Ви домовляєтеся про робочу зустріч і уточнюєте початок роботи колеги. `When does she start?` — «Коли вона починає?» Тут мається на увазі її робочий день. `When` запитує про час, потім ідуть `does she start`."
+        "ru": "Вы хотите организовать воскресные прогулки с соседями, но одна соседка по выходным редко бывает дома. spend — «проводить время». Узнайте, где она обычно проводит выходные: Where do you spend weekends? — «Где ты проводишь выходные?» Weekends здесь означает выходные вообще, не только ближайшие. С you ставим do, затем spend, без s.",
+        "uk": "Ви хочете організувати недільні прогулянки із сусідами, але одна сусідка на вихідних рідко буває вдома. spend — «проводити час». Дізнайтеся, де вона зазвичай проводить вихідні: Where do you spend weekends? — «Де ти проводиш вихідні?» Weekends тут означає вихідні загалом, не лише найближчі. З you ставимо do, далі spend, без s."
       },
       "question": {
         "interactionId": "en:lesson-07:session-28:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите о начале её рабочего дня.",
-          "uk": "Запитайте про початок її робочого дня."
+          "ru": "Вы узнаёте, где соседка обычно отдыхает по выходным. Спросите её: «Где ты проводишь выходные?»",
+          "uk": "Ви дізнаєтеся, де сусідка зазвичай відпочиває на вихідних. Спитайте її: «Де ти проводиш вихідні?»"
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-28:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where do you spend weekends?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where does you spend weekends?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where do you spends weekends?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-28:intro3:r1",
-              "text": "When does she start?"
+              "text": "Where do you spend weekends?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro3:r2",
-              "text": "When do she start?"
+              "text": "Where does you spend weekends?"
             },
             {
               "responseId": "en:lesson-07:session-28:intro3:r3",
-              "text": "When does she starts?"
+              "text": "Where do you spends weekends?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите о начале её рабочего дня.",
-          "uk": "Запитайте про початок її робочого дня."
+          "ru": "Вы узнаёте, где соседка обычно отдыхает по выходным. Спросите её: «Где ты проводишь выходные?»",
+          "uk": "Ви дізнаєтеся, де сусідка зазвичай відпочиває на вихідних. Спитайте її: «Де ти проводиш вихідні?»"
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "62c4cf126c43f8f4345e6712c309a3b106d88d992cfc6360649891fa28308127"
+  "introFingerprint": "8acdfbc6cfa6e1263a6728999ef8faabf5f0a481765689ebcb90132e4c326010"
 }

@@ -1,133 +1,149 @@
-# Английский · Урок 7 · Занятие 28 — Где ты ешь?
+# Английский · Урок 7 · Занятие 28 — Поездки и выходные
 
-**Ситуация.** Вы узнаёте, где коллега обычно ест, где друг разминается и когда коллега начинает работу.
+**Ситуация.** Вы расспрашиваете родных и знакомых о поездках: когда ездит брат, где останавливается подруга и где соседка проводит выходные.
 
-**Что вы освоите:** спрашивать о месте и времени привычных действий с where и when
-**Новые слова:** eat
+**Что вы освоите:** узнавать время привычных поездок и обычное место ночлега и отдыха
+**Новые слова:** travel, stay, spend, return
+**Возвращаются:** weekend, evening, hotel, airport, bus, leave, work
 
 ---
 
 ## Интро 1
 
-### Обеденный перерыв
+### Брат в разъездах
 
-Вы недавно устроились на работу и спрашиваете коллегу, где он обычно ест в перерыв. `eat` — «есть, принимать пищу». `Where do you eat?` — «Где ты ешь?» `Where` спрашивает о месте; затем идут `do you eat`. Обед лучше искать по адресу, чем по урчанию живота.
+Брат регулярно ездит в другие города по работе. Вы хотите выбрать день семейных встреч, когда он обычно дома. travel — «ездить, путешествовать». Спросите о его обычном расписании: When do you travel? — «Когда ты ездишь?» When спрашивает о времени. Перед you здесь нужно do, затем travel, без s. Созвониться можно и из поезда, а вот семейный пирог по телефону не передашь.
 
-**Узнайте обычное место обеда коллеги: «Где ты ешь?»**
+**Брат говорит, что часто в разъездах. Спросите его: «Когда ты ездишь?»**
 
-- ✅ **Where do you eat?**
-- ❌ Where does you eat? — *С `you` нужно `do`.*
-- ❌ Where you eat? — *После `where` здесь нужно `do`.*
+- ✅ **When do you travel?**
+- ❌ When does you travel? — *С you нужно do.*
+- ❌ When do you travels? — *После do you нужно travel, без s.*
 
 ---
 
 ## Интро 2
 
-### Место разминки
+### Командировка подруги
 
-Друг рассказывает, что регулярно разминается перед тренировкой. `Where do you stretch?` — «Где ты разминаешься?» Здесь речь о разминке с растяжкой. Вопрос начинается с `where do you`, затем `stretch`, без окончания.
+Подруга каждый месяц работает несколько дней в другом городе. Вы тоже будете туда ездить и ищете жильё по её совету. stay — «останавливаться, временно жить». Узнайте, где она обычно останавливается: Where do you stay? — «Где ты останавливаешься?» Where спрашивает о месте; дальше идут do you stay. Здесь речь о привычном месте ночлега в поездках.
 
-**Узнайте, где друг обычно делает растяжку.**
+**Подруга рассказывает о своих регулярных поездках. Спросите её: «Где ты останавливаешься?»**
 
-- ✅ **Where do you stretch?**
-- ❌ Where does you stretch? — *С `you` нужно `do`.*
-- ❌ Where do you stretches? — *После `do you` нужно `stretch`, без `es`.*
+- ✅ **Where do you stay?**
+- ❌ Where does you stay? — *С you нужно do.*
+- ❌ Where do you stays? — *После do you нужно stay, без s.*
 
 ---
 
 ## Интро 3
 
-### Рабочее расписание
+### Сборы за город
 
-Вы договариваетесь о рабочей встрече и уточняете начало работы коллеги. `When does she start?` — «Когда она начинает?» Здесь имеется в виду её рабочий день. `When` спрашивает о времени, затем идут `does she start`.
+Вы хотите организовать воскресные прогулки с соседями, но одна соседка по выходным редко бывает дома. spend — «проводить время». Узнайте, где она обычно проводит выходные: Where do you spend weekends? — «Где ты проводишь выходные?» Weekends здесь означает выходные вообще, не только ближайшие. С you ставим do, затем spend, без s.
 
-**Спросите о начале её рабочего дня.**
+**Вы узнаёте, где соседка обычно отдыхает по выходным. Спросите её: «Где ты проводишь выходные?»**
 
-- ✅ **When does she start?**
-- ❌ When do she start? — *С `she` нужно `does`.*
-- ❌ When does she starts? — *После `does` нужно `start`, без `s`.*
+- ✅ **Where do you spend weekends?**
+- ❌ Where does you spend weekends? — *С you нужно do.*
+- ❌ Where do you spends weekends? — *После do you нужно spend, без s.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Узнайте обычное место обеда: «Где ты ешь?»**
+**1 · Карточка слова — travel**
+<!-- interaction_id: en:lesson-07:session-28:word:travel; family: word_card -->
+> **travel** — ездить, путешествовать. When do you travel? — «Когда ты ездишь?» Ездить из одного места в другое; слово само по себе не означает «часто».
+
+**2 · Брат говорит, что часто в разъездах. Спросите его: «Когда ты ездишь?»**
 <!-- interaction_id: en:lesson-07:session-28:i01; family: phrase_builder -->
-Плитки: `eat` `you` `do` `Where` → **Where do you eat?**
+Плитки: `travel` `you` `do` `When` → **When do you travel?**
 
-**2 · Послушайте и выберите слово**
+**3 · Послушайте брата**
 <!-- interaction_id: en:lesson-07:session-28:i02; family: listen_choose -->
-🔊 *eat* → **eat** · stretch · keycard
-- stretch — *В записи первое слово — `eat`, а в этом варианте — `stretch`.*
-- keycard — *В записи первое слово — `eat`, а в этом варианте — `keycard`.*
+🔊 *When do you travel?* → **When do you travel?** · When do you work? · Where do you travel?
+- When do you work? — *В записи последнее слово — `travel`, ездить, а в этом варианте — `work`, работать.*
+- Where do you travel? — *В записи первое слово — `When`, когда, а в этом варианте — `Where`, где.*
 
-**3 · Спросите о привычном месте приёма пищи**
+**4 · Спросите брата о поездках. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-28:i03; family: context_gap_grammar -->
-Where ___ you eat? → **do** · does · are
+When ___ you travel? → **do** · does · are
 - does — *С `you` нужно `do`.*
-- are — *Вопрос о привычном действии `eat` строим с `do`.*
+- are — *С действием `travel` нужно `do`, а не `are`.*
 
-**4 · Соедините слова со значениями**
+**5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-28:i04; family: speed_match -->
-eat — есть · stretch — делать растяжку · keycard — ключ-карта · chairs — стулья
+travel — ездить, путешествовать · work — работать · leave — уходить · live — жить
 
-**5 · Послушайте и соберите вопрос**
+**6 · Карточка слова — stay**
+<!-- interaction_id: en:lesson-07:session-28:word:stay; family: word_card -->
+> **stay** — останавливаться, жить временно. Where do you stay? — «Где ты останавливаешься?» Жить в гостинице или у знакомых, пока вы в поездке.
+
+**7 · Послушайте подругу и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-28:i05; family: listen_build_dictation -->
-🔊 *Where do you eat?* Плитки: `eat` `you` `do` `Where` → **Where do you eat?**
+🔊 *Where do you stay?* Плитки: `stay` `you` `do` `Where` → **Where do you stay?**
 
-**6 · Спросите друга, где он обычно делает растяжку**
+**8 · Карточка слова — spend**
+<!-- interaction_id: en:lesson-07:session-28:word:spend; family: word_card -->
+> **spend** — проводить время. Where do you spend weekends? — «Где ты проводишь выходные?» Проводить какое-то время: например, выходные или вечер.
+
+**9 · Вы узнаёте, где соседка обычно отдыхает по выходным. Спросите её: «Где ты проводишь выходные?»**
 <!-- interaction_id: en:lesson-07:session-28:i06; family: phrase_builder -->
-Плитки: `stretch` `you` `do` `Where` → **Where do you stretch?**
+Плитки: `weekends` `spend` `you` `do` `Where` → **Where do you spend weekends?**
 
-**7 · Спросите о начале рабочего дня коллеги «Когда она начинает?»**
+**10 · Карточка слова — return**
+<!-- interaction_id: en:lesson-07:session-28:word:return; family: word_card -->
+> **return** — возвращаться. When do you return? — «Когда ты возвращаешься?» Приходить или приезжать обратно.
+
+**11 · Подруга каждую неделю уезжает по работе. Узнайте обычное время её возвращения. Спросите подругу: «Когда ты возвращаешься?»**
 <!-- interaction_id: en:lesson-07:session-28:i07; family: scripted_repeat_compare -->
-🎙 **When does she start?**
+🎙 **When do you return?**
 
-**8 · Спросите о начале её работы**
+**12 · Спросите подругу о её обычном месте ночлега в поездках. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-28:i08; family: context_gap_grammar -->
-When ___ she start? → **does** · do · is
-- do — *С `she` нужно `does`.*
-- is — *Вопрос о действии `start` с `she` строим с `does`.*
+Where ___ you stay? → **do** · does · are
+- does — *С `you` нужно `do`.*
+- are — *С действием `stay` нужно `do`, а не `are`.*
 
-**9 · Послушайте и выберите вопрос**
+**13 · Послушайте соседку**
 <!-- interaction_id: en:lesson-07:session-28:i09; family: listen_choose -->
-🔊 *Where do you eat?* → **Where do you eat?** · When do you eat? · Where do you work?
-- When do you eat? — *В записи первое слово — `Where`, а в этом варианте — `When`.*
-- Where do you work? — *В записи последнее слово — `eat`, а в этом варианте — `work`.*
+🔊 *Where do you spend weekends?* → **Where do you spend weekends?** · Where do you spend the evening? · Where does she spend weekends?
+- Where do you spend the evening? — *В записи последнее слово — `weekends`, выходные, а в этом варианте — `evening`, вечер.*
+- Where does she spend weekends? — *В записи спрашивают у собеседника: do you. В этом варианте спрашивают о ней: does she.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-28:i10; family: speed_match -->
-shout — кричать · eat — есть · chairs — стулья · stretch — делать растяжку
+stay — останавливаться · hotel — отель · airport — аэропорт · weekend — выходные
 
-**11 · Послушайте и соберите вопрос**
+**15 · Послушайте сестру и соберите вопрос**
 <!-- interaction_id: en:lesson-07:session-28:i11; family: listen_build_dictation -->
-🔊 *Where do you stretch?* Плитки: `stretch` `you` `do` `Where` → **Where do you stretch?**
+🔊 *When does the bus return?* Плитки: `return` `bus` `the` `does` `When` → **When does the bus return?**
 
-**12 · У двери номера спросите друга «У тебя есть ключ-карта?»**
+**16 · Подруга говорит о регулярных поездках своего брата. Спросите её: «Когда он ездит?»**
 <!-- interaction_id: en:lesson-07:session-28:i12; family: phrase_builder -->
-Плитки: `keycard` `a` `have` `you` `Do` → **Do you have a keycard?**
+Плитки: `travel` `he` `does` `When` → **When does he travel?**
 
-**13 · Обсуждая поведение в спорах, скажите «Я не кричу»**
+**17 · Соседка рассказывает, что её сестра каждый месяц бывает в другом городе. Спросите её: «Где она останавливается?»**
 <!-- interaction_id: en:lesson-07:session-28:i13; family: scripted_repeat_compare -->
-🎙 **I don’t shout.**
+🎙 **Where does she stay?**
 
-**14 · Узнайте, где Том обычно ест**
+**18 · Спросите соседку о её сестре. Выберите слово**
 <!-- interaction_id: en:lesson-07:session-28:i14; family: context_gap_grammar -->
-Where does Tom ___? → **eat** · eats · is eat
-- eats — *После `does` нужно `eat`.*
-- is eat — *Здесь нужно `eat`, без `is`.*
+Where does she ___? → **stay** · stays · is stay
+- stays — *После `does` нужно `stay`, без `s`.*
+- is stay — *Здесь нужно `stay`, без `is`.*
 
-**15 · Послушайте, где стулья**
+**19 · Послушайте брата**
 <!-- interaction_id: en:lesson-07:session-28:i15; family: listen_choose -->
-🔊 *The chairs are here.* → **The chairs are here.** · The chairs are there. · The chairs are outside.
-- The chairs are there. — *В записи последнее слово — `here`, а в этом варианте — `there`.*
-- The chairs are outside. — *В записи последнее слово — `here`, а в этом варианте — `outside`.*
+🔊 *When do you return?* → **When do you return?** · When do you travel? · When do you leave?
+- When do you travel? — *В записи последнее слово — `return`, возвращаться, а в этом варианте — `travel`, ездить.*
+- When do you leave? — *В записи последнее слово — `return`, возвращаться, а в этом варианте — `leave`, уходить.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-28:i16; family: speed_match -->
-eat — есть · keycard — ключ-карта · shout — кричать · chairs — стулья
+return — возвращаться · spend — проводить время · stay — останавливаться · travel — ездить, путешествовать
 
-**17 · Вы составляете распорядок рабочего дня Тома. Спросите «Когда Том ест?»**
+**21 · Вы разговариваете с братом. Спросите его: «Когда ты ездишь?»**
 <!-- interaction_id: en:lesson-07:session-28:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **When does Tom eat?**
-
+🎙 **When do you travel?**

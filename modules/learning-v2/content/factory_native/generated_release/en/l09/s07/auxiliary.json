@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-07:intro1:r2": {
+          "ru": "С I перед действием нужно am.",
+          "uk": "Із I перед дією потрібне am."
+        },
+        "en:lesson-09:session-07:intro1:r3": {
+          "ru": "После am/is здесь нужна форма с -ing.",
+          "uk": "Після am/is тут потрібна форма з -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-07:intro2:r2": {
+          "ru": "Здесь перед действием нужно is.",
+          "uk": "Тут перед дією потрібне is."
+        },
+        "en:lesson-09:session-07:intro2:r3": {
+          "ru": "После am/is здесь нужна форма с -ing.",
+          "uk": "Після am/is тут потрібна форма з -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-07:intro3:r2": {
+          "ru": "Здесь перед действием нужно is.",
+          "uk": "Тут перед дією потрібне is."
+        },
+        "en:lesson-09:session-07:intro3:r3": {
+          "ru": "После am/is здесь нужна форма с -ing.",
+          "uk": "Після am/is тут потрібна форма з -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9205cd37a84486f5f578609f33e06435fa741c61fcc0e61ee9986c29fd6c734c"
+}

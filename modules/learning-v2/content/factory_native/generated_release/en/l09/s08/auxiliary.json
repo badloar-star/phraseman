@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-08:intro1:r2": {
+          "ru": "С одним мастером в обычном действии нужно makes.",
+          "uk": "З одним майстром у звичній дії потрібне makes."
+        },
+        "en:lesson-09:session-08:intro1:r3": {
+          "ru": "Для обычного действия достаточно makes; is перед ним не нужно.",
+          "uk": "Для звичної дії достатньо makes; is перед ним не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-08:intro2:r2": {
+          "ru": "После don’t нужно touch, без -es.",
+          "uk": "Після don’t потрібне touch, без -es."
+        },
+        "en:lesson-09:session-08:intro2:r3": {
+          "ru": "После don’t нужно touch, без -ing.",
+          "uk": "Після don’t потрібне touch, без -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-08:intro3:r2": {
+          "ru": "Перед using с she нужно is.",
+          "uk": "Перед using із she потрібне is."
+        },
+        "en:lesson-09:session-08:intro3:r3": {
+          "ru": "После is для действия сейчас нужна форма using.",
+          "uk": "Після is для дії зараз потрібна форма using."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "06fc88bcfeb860306582e16c7784c35a8a2ac1b0d39ee50a9ba9ff533fabee91"
+}

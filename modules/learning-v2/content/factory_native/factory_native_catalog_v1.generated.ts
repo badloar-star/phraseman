@@ -3185,4 +3185,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"dig → digging с am/is/are; dig уже знакомо, сейчас закрепляем действие в процессе","uk":"dig → digging з am/is/are; dig уже знайоме, зараз закріплюємо дію в процесі"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 7,
+    sourceFingerprint: "2ed486043eb4dec1e51fe61d59886c07aaf50f58b3da0ba4619c7e984b73c6ec",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"clap → clapping; am/is/are + действие сейчас","uk":"clap → clapping; am/is/are + дія зараз"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 8,
+    sourceFingerprint: "9825ed47ecd527368f5a84af02a9093b87bad7f37026abd3bfaebb2aaabdc4ce",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"обычная работа: makes; действие сейчас: is using; запрет: don’t touch","uk":"звична робота: makes; дія зараз: is using; заборона: don’t touch"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 9,
+    sourceFingerprint: "dfa7b346b6edac6c6f1227163db38304914865aef850d3da9498f686f94dc85b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"am/is/are + not + -ing; guess уже знакомо","uk":"am/is/are + not + -ing; guess уже знайоме"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

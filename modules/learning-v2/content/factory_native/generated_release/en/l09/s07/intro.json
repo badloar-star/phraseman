@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "clap → clapping; am/is/are + действие сейчас",
+    "uk": "clap → clapping; am/is/are + дія зараз"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первое выступление дочери",
+        "uk": "Перший виступ доньки"
+      },
+      "bodyByLocale": {
+        "ru": "Дочь закончила короткий танец на школьной сцене. Вы смотрите на неё и хлопаете в ладоши. Clap — «хлопать в ладоши». I am clapping — «Я хлопаю в ладоши». Для действия сейчас: am + clapping; перед -ing конечная p удваивается. Две p — почти как две ладони, только буквами хлопать неудобно.",
+        "uk": "Донька закінчила короткий танець на шкільній сцені. Ви дивитеся на неї й плескаєте в долоні. Clap — «плескати в долоні». I am clapping — «Я плескаю в долоні». Для дії зараз: am + clapping; перед -ing кінцева p подвоюється. Дві p — майже як дві долоні, тільки літерами плескати незручно."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r1",
+              "text": "I am clapping."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r2",
+              "text": "I clapping."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r3",
+              "text": "I am clap."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r1",
+              "text": "I am clapping."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r2",
+              "text": "I clapping."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro1:r3",
+              "text": "I am clap."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Жонглёр на площади",
+        "uk": "Жонглер на площі"
+      },
+      "bodyByLocale": {
+        "ru": "На площади артист показывает номер с мячами. Он сейчас машет рукой, а вы описываете происходящее другу. Performer — «исполнитель, артист». The performer is waving — «Артист машет рукой». Wave в значении «махать рукой» уже знакомо; один артист — is waving.",
+        "uk": "На площі артист показує номер із м’ячами. Він зараз махає рукою, а ви описуєте те, що відбувається, другові. Performer — «виконавець, артист». The performer is waving — «Артист махає рукою». Wave у значенні «махати рукою» вже знайоме; один артист — is waving."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r1",
+              "text": "The performer is waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r2",
+              "text": "The performer waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r3",
+              "text": "The performer is wave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r1",
+              "text": "The performer is waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r2",
+              "text": "The performer waving."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro2:r3",
+              "text": "The performer is wave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В зале ждут пианистку",
+        "uk": "У залі чекають на піаністку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сидите в концертном зале до выхода пианистки. Все зрители пока ждут. Audience — «зрители, публика», все присутствующие как одна группа. The audience is waiting — «Публика ждёт». Здесь говорим о группе как о целом и используем is waiting. Когда выступление закончится, можно услышать applause — «аплодисменты».",
+        "uk": "Ви сидите в концертній залі до виходу піаністки. Усі глядачі поки чекають. Audience — «глядачі, публіка», усі присутні як одна група. The audience is waiting — «Публіка чекає». Тут говоримо про групу як про ціле й використовуємо is waiting. Коли виступ закінчиться, можна почути applause — «оплески»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r1",
+              "text": "The audience is waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r2",
+              "text": "The audience waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r3",
+              "text": "The audience is wait."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r1",
+              "text": "The audience is waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r2",
+              "text": "The audience waiting."
+            },
+            {
+              "responseId": "en:lesson-09:session-07:intro3:r3",
+              "text": "The audience is wait."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3f0a46b1214e6a3690aec96cbf49e340231f48b7b0d1a72ac6360c8131f504b1"
+}

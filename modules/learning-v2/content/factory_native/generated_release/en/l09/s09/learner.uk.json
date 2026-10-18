@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-09:word:marble",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — marble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:word:marble:audio"
+      ],
+      "accessibilityLabel": "Картка слова — marble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:word:marble:audio",
+          "transcript": "marble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:word:marble:r1",
+            "targetText": "marble",
+            "meaningByLocale": {
+              "ru": "стеклянный игровой шарик. This is a marble. — «Это стеклянный игровой шарик». В этом значении это отдельный предмет, не материал «мрамор».",
+              "uk": "скляна ігрова кулька. This is a marble. — «Це скляна ігрова кулька». У цьому значенні це окремий предмет, не матеріал «мармур»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "marble",
+          "definitionByLocale": {
+            "ru": "стеклянный игровой шарик. This is a marble. — «Это стеклянный игровой шарик». В этом значении это отдельный предмет, не материал «мрамор».",
+            "uk": "скляна ігрова кулька. This is a marble. — «Це скляна ігрова кулька». У цьому значенні це окремий предмет, не матеріал «мармур»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть скляну кульку для гри й назвіть її",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть скляну кульку для гри й назвіть її",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a marble.",
+        "localizedMeaning": {
+          "ru": "Покажите стеклянный шарик для игры и назовите его",
+          "uk": "Покажіть скляну кульку для гри й назвіть її"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "marble"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i02:r1",
+          "text": "marble"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i02:r2",
+          "text": "maple"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i02:r3",
+          "text": "marvel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i02:audio",
+          "transcript": "marble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:i02:r1",
+            "targetText": "marble",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i02:r2",
+            "targetText": "maple",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i02:r3",
+            "targetText": "marvel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит marble",
+              "uk": "У записі звучить marble"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит marble",
+              "uk": "У записі звучить marble"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для заперечення з I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для заперечення з I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для отрицания с I",
+          "uk": "Виберіть форму для заперечення з I"
+        },
+        "gappedTargetPhrase": "I ___ not guessing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-09:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для заперечення з I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для заперечення з I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am, затем not.",
+              "uk": "Із I потрібне am, потім not."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для заперечення з I",
+            "feedbackByLocale": {
+              "ru": "С I нужно am, затем not.",
+              "uk": "Із I потрібне am, потім not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-09:i04:p1",
+            "target": "marble",
+            "meaningByLocale": {
+              "ru": "игровой шарик",
+              "uk": "ігрова кулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i04:p2",
+            "target": "count",
+            "meaningByLocale": {
+              "ru": "считать",
+              "uk": "рахувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i04:p3",
+            "target": "guess",
+            "meaningByLocale": {
+              "ru": "угадывать",
+              "uk": "вгадувати"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i04:p4",
+            "target": "jar",
+            "meaningByLocale": {
+              "ru": "банка",
+              "uk": "банка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "marble",
+          "count",
+          "guess",
+          "jar"
+        ],
+        "rightColumn": [
+          "ігрова кулька",
+          "рахувати",
+          "вгадувати",
+          "банка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i05:audio",
+          "transcript": "I am not guessing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not guessing.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "guessing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:word:quantity",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quantity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:word:quantity:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quantity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:word:quantity:audio",
+          "transcript": "quantity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:word:quantity:r1",
+            "targetText": "quantity",
+            "meaningByLocale": {
+              "ru": "количество. Check the quantity. — «Проверьте количество».",
+              "uk": "кількість. Check the quantity. — «Перевірте кількість»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quantity",
+          "definitionByLocale": {
+            "ru": "количество. Check the quantity. — «Проверьте количество».",
+            "uk": "кількість. Check the quantity. — «Перевірте кількість»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть перевірити кількість кульок: «Перевірте кількість»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть перевірити кількість кульок: «Перевірте кількість»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Check the quantity.",
+        "localizedMeaning": {
+          "ru": "Попросите проверить количество шариков: «Проверьте количество»",
+          "uk": "Попросіть перевірити кількість кульок: «Перевірте кількість»"
+        },
+        "orderedTokens": [
+          "Check",
+          "the",
+          "quantity"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:word:flavour",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flavour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:word:flavour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flavour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:word:flavour:audio",
+          "transcript": "flavour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:word:flavour:r1",
+            "targetText": "flavour",
+            "meaningByLocale": {
+              "ru": "вкус. The flavour is strong. — «Вкус насыщенный». Здесь характеристика еды; flavour — британское написание, flavor — американское.",
+              "uk": "смак. The flavour is strong. — «Смак насичений». Тут характеристика їжі; flavour — британське написання, flavor — американське."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flavour",
+          "definitionByLocale": {
+            "ru": "вкус. The flavour is strong. — «Вкус насыщенный». Здесь характеристика еды; flavour — британское написание, flavor — американское.",
+            "uk": "смак. The flavour is strong. — «Смак насичений». Тут характеристика їжі; flavour — британське написання, flavor — американське."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Варення має насичений смак. Скажіть: «Смак насичений»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Варення має насичений смак. Скажіть: «Смак насичений»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i07:audio",
+          "transcript": "The flavour is strong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The flavour is strong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після is not",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i08:r1",
+          "text": "tasting"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i08:r2",
+          "text": "taste"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i08:r3",
+          "text": "tastes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після is not",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после is not",
+          "uk": "Виберіть форму після is not"
+        },
+        "gappedTargetPhrase": "She is not ___ the jam.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-09:i08:r1",
+            "text": "tasting"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i08:r2",
+            "text": "taste"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i08:r3",
+            "text": "tastes"
+          }
+        ],
+        "testedDimension": "Виберіть форму після is not",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "Для действия сейчас после is not нужна форма tasting.",
+              "uk": "Для дії зараз після is not потрібна форма tasting."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після is not",
+            "feedbackByLocale": {
+              "ru": "Здесь is not tasting, а не is not tastes.",
+              "uk": "Тут is not tasting, а не is not tastes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i09:r1",
+          "text": "She is not tasting the jam."
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i09:r2",
+          "text": "She is tasting the jam."
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i09:r3",
+          "text": "They are not tasting the jam."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i09:audio",
+          "transcript": "She is not tasting the jam."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:i09:r1",
+            "targetText": "She is not tasting the jam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i09:r2",
+            "targetText": "She is tasting the jam.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i09:r3",
+            "targetText": "They are not tasting the jam.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is not tasting the jam.",
+              "uk": "У записі звучить She is not tasting the jam."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is not tasting the jam.",
+              "uk": "У записі звучить She is not tasting the jam."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-09:i10:p1",
+            "target": "marble",
+            "meaningByLocale": {
+              "ru": "игровой шарик",
+              "uk": "ігрова кулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i10:p2",
+            "target": "quantity",
+            "meaningByLocale": {
+              "ru": "количество",
+              "uk": "кількість"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i10:p3",
+            "target": "flavour",
+            "meaningByLocale": {
+              "ru": "вкус",
+              "uk": "смак"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i10:p4",
+            "target": "jam",
+            "meaningByLocale": {
+              "ru": "варенье",
+              "uk": "варення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "marble",
+          "quantity",
+          "flavour",
+          "jam"
+        ],
+        "rightColumn": [
+          "ігрова кулька",
+          "кількість",
+          "смак",
+          "варення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i11:audio",
+          "transcript": "They are not looking."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not looking.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "looking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:word:blindfold",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blindfold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:word:blindfold:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blindfold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:word:blindfold:audio",
+          "transcript": "blindfold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:word:blindfold:r1",
+            "targetText": "blindfold",
+            "meaningByLocale": {
+              "ru": "повязка на глаза. He is wearing a blindfold. — «На нём повязка на глазах».",
+              "uk": "пов’язка на очі. He is wearing a blindfold. — «На ньому пов’язка на очах»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blindfold",
+          "definitionByLocale": {
+            "ru": "повязка на глаза. He is wearing a blindfold. — «На нём повязка на глазах».",
+            "uk": "пов’язка на очі. He is wearing a blindfold. — «На ньому пов’язка на очах»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i12:r1",
+          "text": "blindfold"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i12:r2",
+          "text": "blanket"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i12:r3",
+          "text": "blind"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i12:audio",
+          "transcript": "blindfold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:i12:r1",
+            "targetText": "blindfold",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i12:r2",
+            "targetText": "blanket",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i12:r3",
+            "targetText": "blind",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит blindfold",
+              "uk": "У записі звучить blindfold"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит blindfold",
+              "uk": "У записі звучить blindfold"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На учасникові гри пов’язка на очах. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "На учасникові гри пов’язка на очах. Скажіть про це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i13:audio",
+          "transcript": "He is wearing a blindfold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is wearing a blindfold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму заперечення з they",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму заперечення з they",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму отрицания с they",
+          "uk": "Виберіть форму заперечення з they"
+        },
+        "gappedTargetPhrase": "They ___ not looking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-09:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Виберіть форму заперечення з they",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму заперечення з they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are, затем not.",
+              "uk": "Із they потрібне are, потім not."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму заперечення з they",
+            "feedbackByLocale": {
+              "ru": "С they нужно are, затем not.",
+              "uk": "Із they потрібне are, потім not."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-09:i15:r1",
+          "text": "I am not guessing."
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i15:r2",
+          "text": "I am guessing."
+        },
+        {
+          "responseId": "en:lesson-09:session-09:i15:r3",
+          "text": "We are not guessing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i15:audio",
+          "transcript": "I am not guessing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-09:i15:r1",
+            "targetText": "I am not guessing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i15:r2",
+            "targetText": "I am guessing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i15:r3",
+            "targetText": "We are not guessing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-09:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not guessing.",
+              "uk": "У записі звучить I am not guessing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-09:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not guessing.",
+              "uk": "У записі звучить I am not guessing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-09:i16:p1",
+            "target": "marble",
+            "meaningByLocale": {
+              "ru": "игровой шарик",
+              "uk": "ігрова кулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i16:p2",
+            "target": "quantity",
+            "meaningByLocale": {
+              "ru": "количество",
+              "uk": "кількість"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i16:p3",
+            "target": "flavour",
+            "meaningByLocale": {
+              "ru": "вкус",
+              "uk": "смак"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-09:i16:p4",
+            "target": "blindfold",
+            "meaningByLocale": {
+              "ru": "повязка на глаза",
+              "uk": "пов’язка на очі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "marble",
+          "quantity",
+          "flavour",
+          "blindfold"
+        ],
+        "rightColumn": [
+          "ігрова кулька",
+          "кількість",
+          "смак",
+          "пов’язка на очі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-09:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви рахуєте фішки точно, а друг думає, що ви називаєте відповідь навмання. Скажіть: «Я не вгадую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-09:i17:audio"
+      ],
+      "accessibilityLabel": "Ви рахуєте фішки точно, а друг думає, що ви називаєте відповідь навмання. Скажіть: «Я не вгадую»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-09:i17:audio",
+          "transcript": "I am not guessing."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not guessing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd60ceca39995c90b1fa9378f04e9a01428e53115a637fbe7e090a9a2964fc65"
+}

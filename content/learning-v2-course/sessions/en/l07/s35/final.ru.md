@@ -1,133 +1,154 @@
-# Английский · Урок 7 · Занятие 35 — Обычно езжу на работу
+# Английский · Урок 7 · Занятие 35 — Дорога на работу
 
-**Ситуация.** Вы рассказываете о поездках на работу, привычке ходить пешком и частых звонках знакомой.
+**Ситуация.** Вы рассказываете о дороге на работу: на чём ездите, почему спешите по утрам и как брат пересаживается с поезда на поезд.
 
-**Что вы освоите:** ставить usually и often перед действием и сохранять окончание s после he или she
-**Новые слова:** commute
+**Что вы освоите:** использовать usually и often перед действием в рассказе о дороге
+**Новые слова:** commute, hurry, change, hire
+**Возвращаются:** bus, train, taxi, car, school, work, morning, station
 
 ---
 
 ## Интро 1
 
-### Работа вне дома
+### Дорога в офис
 
-Друг спрашивает, работаете ли вы дома или ездите на работу. `commute` — «регулярно ездить на работу или учёбу». `I usually commute` — «Я обычно езжу на работу». Здесь речь о работе: вы обычно добираетесь туда из дома. `Usually` стоит перед `commute`. Поездка от кровати до чайника в этот маршрут не входит.
+Новая коллега интересуется, как вы добираетесь до офиса, потому что живёт недалеко от вас. commute — «ездить на работу». Скажите: I usually commute by bus — «Я обычно езжу на работу на автобусе». В этой фразе usually — «обычно» — стоит перед commute. by bus означает «на автобусе».
 
-**Ответьте другу: «Я обычно езжу на работу».**
+**Коллега спрашивает, как вы ездите на работу. Ответьте: «Я обычно езжу на работу на автобусе».**
 
-- ✅ **I usually commute.**
-- ❌ I usually commutes. — *После `I` нужно `commute`, без `s`.*
-- ❌ I usually commuting. — *Здесь нужна форма `commute`.*
+- ✅ **I usually commute by bus.**
+- ❌ I usually commutes by bus. — *После I нужно commute, без s.*
+- ❌ I usually commuting by bus. — *Здесь нужна форма commute.*
 
 ---
 
 ## Интро 2
 
-### До магазина пешком
+### Утренняя платформа
 
-Сосед спрашивает, как вы обычно добираетесь до ближайшего магазина. `I usually walk` — «Я обычно хожу пешком». `Usually` стоит перед действием `walk`. Вы сообщаете о привычном способе передвижения.
+Утром на платформе толпа, и до отправления поезда остаются считанные минуты. Подруга видит, как вы почти бежите к вагону. hurry — «спешить». Скажите: I often hurry in the morning — «Я часто спешу по утрам». Здесь often — «часто» — стоит перед hurry. Вы рассказываете о привычных утренних сборах.
 
-**Ответьте соседу: «Я обычно хожу пешком».**
+**Подруга удивляется, что вы бежите к вагону. Ответьте: «Я часто спешу по утрам».**
 
-- ✅ **I usually walk.**
-- ❌ I usually walks. — *После `I` нужно `walk`.*
-- ❌ I usually walking. — *Здесь нужна форма `walk`.*
+- ✅ **I often hurry in the morning.**
+- ❌ I often hurries in the morning. — *После I нужно hurry, без окончания.*
+- ❌ I often hurrying in the morning. — *Здесь нужна форма hurry.*
 
 ---
 
 ## Интро 3
 
-### Звонки знакомой
+### Пересадка брата
 
-Вы рассказываете о знакомой, которая часто звонит вам. `She often calls` — «Она часто звонит». `Often` стоит перед `calls`. После `she` сохраняется окончание `s`.
+Брат живёт далеко от офиса: сначала едет на одном поезде, а на большом вокзале садится на другой. change значит «менять»; change trains — «пересаживаться с поезда на поезд». Скажите: He usually changes trains — «Он обычно пересаживается с поезда на поезд». После he к change добавляем s, а слово usually остаётся перед changes.
 
-**Скажите о знакомой: «Она часто звонит».**
+**Друг спрашивает, как брат добирается до офиса. Ответьте: «Он обычно пересаживается с поезда на поезд».**
 
-- ✅ **She often calls.**
-- ❌ She often call. — *После `she` нужно `calls`.*
-- ❌ She often calling. — *Здесь нужна форма `calls`.*
+- ✅ **He usually changes trains.**
+- ❌ He usually change trains. — *После he нужно changes, с s.*
+- ❌ He usually changing trains. — *Здесь нужна форма changes.*
 
 ---
 
-## Практика (17 заданий)
+## Практика (21 задание)
 
-**1 · Скажите «Я обычно езжу на работу»**
+**1 · Карточка слова — commute**
+<!-- interaction_id: en:lesson-07:session-35:word:commute; family: word_card -->
+> **commute** — ездить на работу. I usually commute by bus. — «Я обычно езжу на работу на автобусе». Регулярно добираться из дома на работу или учёбу и обратно; здесь речь о работе.
+
+**2 · Коллега спрашивает, как вы добираетесь до офиса. Скажите: «Я обычно езжу на работу на автобусе»**
 <!-- interaction_id: en:lesson-07:session-35:i01; family: phrase_builder -->
-Плитки: `commute` `usually` `I` → **I usually commute.**
+Плитки: `bus` `often` `by` `commute` `usually` `I` → **I usually commute by bus.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually commute by bus.`)*
 
-**2 · Послушайте и выберите слово**
+**3 · Карточка слова — hurry**
+<!-- interaction_id: en:lesson-07:session-35:word:hurry; family: word_card -->
+> **hurry** — спешить. I often hurry in the morning. — «Я часто спешу по утрам». Делать что-либо быстрее, чтобы успеть; здесь — спешить к поезду.
+
+**4 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-07:session-35:i02; family: listen_choose -->
-🔊 *commute* → **commute** · sleep · stay
-- sleep — *В записи первое слово — `commute`, а в этом варианте — `sleep`.*
-- stay — *В записи первое слово — `commute`, а в этом варианте — `stay`.*
+🔊 *hurry* → **hurry** · wait · stop
+- wait — *В записи первое слово — `hurry`, а в этом варианте — `wait`.*
+- stop — *В записи первое слово — `hurry`, а в этом варианте — `stop`.*
 
-**3 · Скажите «Я обычно езжу на работу»**
+**5 · Карточка слова — change**
+<!-- interaction_id: en:lesson-07:session-35:word:change; family: word_card -->
+> **change** — пересаживаться. He usually changes trains. — «Он обычно пересаживается с поезда на поезд». Здесь в сочетании change trains — переходить с одного поезда на другой.
+
+**6 · Друг спрашивает, как брат добирается до офиса. Скажите: «Он обычно пересаживается с поезда на поезд». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-35:i03; family: context_gap_grammar -->
-I usually ___. → **commute** · commutes · commuting
-- commutes — *После `I` нужно `commute`.*
-- commuting — *Здесь нужна форма `commute`.*
+He usually ___ trains. → **changes** · change · changing
+- change — *После `He` нужно `changes`.*
+- changing — *Здесь нужна форма `changes`.*
 
-**4 · Соедините слова со значениями**
+**7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-35:i04; family: speed_match -->
-commute — ездить на работу или учёбу · sleep — спать · photos — фотографии · bracelet — браслет
+commute — ездить на работу · hurry — спешить · change — пересаживаться · bus — автобус
 
-**5 · Послушайте и соберите фразу**
+**8 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-35:i05; family: listen_build_dictation -->
-🔊 *I usually commute.* Плитки: `commute` `usually` `I` → **I usually commute.**
+🔊 *I often hurry in the morning.* Плитки: `morning` `hurries` `the` `in` `hurry` `often` `I` → **I often hurry in the morning.**
+*(плитка `hurries` лишняя: здесь нужно `hurry` — `I often hurry in the morning.`)*
 
-**6 · Расскажите о дороге до магазина: «Я обычно хожу пешком»**
+**9 · Карточка слова — hire**
+<!-- interaction_id: en:lesson-07:session-35:word:hire; family: word_card -->
+> **hire** — брать напрокат. I usually hire a car. — «Я обычно беру машину напрокат». В британском английском hire a car — взять машину во временное пользование за плату.
+
+**10 · Коллега спрашивает, как вы обычно передвигаетесь в командировках. Скажите: «Я обычно беру машину напрокат»**
 <!-- interaction_id: en:lesson-07:session-35:i06; family: phrase_builder -->
-Плитки: `walk` `usually` `I` → **I usually walk.**
+Плитки: `car` `often` `a` `hire` `usually` `I` → **I usually hire a car.**
+*(плитка `often` лишняя: здесь нужно `usually` — `I usually hire a car.`)*
 
-**7 · Скажите о знакомой «Она часто звонит»**
+**11 · Подруга спрашивает про вашего брата. Скажите: «Он обычно ездит на работу на поезде»**
 <!-- interaction_id: en:lesson-07:session-35:i07; family: scripted_repeat_compare -->
-🎙 **She often calls.**
+🎙 **He usually commutes by train.**
 
-**8 · Скажите «Она часто звонит»**
+**12 · Друг спрашивает про вашу сестру в командировках. Скажите: «Она часто берёт машину напрокат». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-35:i08; family: context_gap_grammar -->
-She often ___. → **calls** · call · calling
-- call — *После `she` нужно `calls`.*
-- calling — *Здесь нужна форма `calls`.*
+She often ___ a car. → **hires** · hire · hiring
+- hire — *После `She` нужно `hires`.*
+- hiring — *Здесь нужна форма `hires`.*
 
-**9 · Послушайте и выберите фразу**
+**13 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-35:i09; family: listen_choose -->
-🔊 *I usually commute.* → **I usually commute.** · I usually walk. · I usually study.
-- I usually walk. — *В записи последнее слово — `commute`, а в этом варианте — `walk`.*
-- I usually study. — *В записи последнее слово — `commute`, а в этом варианте — `study`.*
+🔊 *I usually commute by bus.* → **I usually commute by bus.** · I usually commute by train. · I usually commute by taxi.
+- I usually commute by train. — *В записи последнее слово — `bus`, а в этом варианте — `train`.*
+- I usually commute by taxi. — *В записи последнее слово — `bus`, а в этом варианте — `taxi`.*
 
-**10 · Соедините слова со значениями**
+**14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-35:i10; family: speed_match -->
-stay — останавливаться на время поездки · commute — ездить на работу или учёбу · photos — фотографии · sleep — спать
+hire — брать напрокат · change — пересаживаться · hurry — спешить · commute — ездить на работу
 
-**11 · Послушайте и соберите фразу**
+**15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-07:session-35:i11; family: listen_build_dictation -->
-🔊 *She often calls.* Плитки: `calls` `often` `She` → **She often calls.**
+🔊 *He usually changes trains.* Плитки: `trains` `change` `changes` `usually` `He` → **He usually changes trains.**
+*(плитка `change` лишняя: здесь нужно `changes` — `He usually changes trains.`)*
 
-**12 · Вы подбираете украшения. Спросите подругу «У тебя есть браслет?»**
+**16 · Вы рассказываете о сестре. Скажите: «Она часто спешит на работу»**
 <!-- interaction_id: en:lesson-07:session-35:i12; family: phrase_builder -->
-Плитки: `bracelet` `a` `have` `you` `Do` → **Do you have a bracelet?**
+Плитки: `work` `hurry` `to` `hurries` `often` `She` → **She often hurries to work.**
+*(плитка `hurry` лишняя: здесь нужно `hurries` — `She often hurries to work.`)*
 
-**13 · Узнайте привычное место ночлега коллеги в поездках**
+**17 · Знакомый спрашивает, на чём брат передвигается в командировках. Скажите: «Он часто берёт машину напрокат»**
 <!-- interaction_id: en:lesson-07:session-35:i13; family: scripted_repeat_compare -->
-🎙 **Where do you stay?**
+🎙 **He often hires a car.**
 
-**14 · Скажите «Я обычно сплю здесь»**
+**18 · Вы рассказываете о дороге на работу. Скажите: «Я обычно езжу на работу на поезде». Выберите слово**
 <!-- interaction_id: en:lesson-07:session-35:i14; family: context_gap_grammar -->
-I ___ sleep here. → **usually** · does · am
-- does — *Для «обычно» нужно `usually` перед `sleep`.*
-- am — *Для «обычно» нужно `usually`; `am` перед `sleep` не ставим.*
+I ___ commute by train. → **usually** · does · am
+- does — *Для «обычно» нужно `usually` перед `commute`.*
+- am — *Для «обычно» нужно `usually`; `am` перед `commute` не ставим.*
 
-**15 · Послушайте и выберите вопрос**
+**19 · Послушайте и выберите фразу**
 <!-- interaction_id: en:lesson-07:session-35:i15; family: listen_choose -->
-🔊 *Do you have photos?* → **Do you have photos?** · Do you have tickets? · Do you have maps?
-- Do you have tickets? — *В записи последнее слово — `photos`, а в этом варианте — `tickets`.*
-- Do you have maps? — *В записи последнее слово — `photos`, а в этом варианте — `maps`.*
+🔊 *She often hurries to work.* → **She often hurries to work.** · She often hurries to school. · She often hurries to class.
+- She often hurries to school. — *В записи последнее слово — `work`, а в этом варианте — `school`.*
+- She often hurries to class. — *В записи последнее слово — `work`, а в этом варианте — `class`.*
 
-**16 · Соедините слова со значениями**
+**20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-07:session-35:i16; family: speed_match -->
-commute — ездить на работу или учёбу · bracelet — браслет · stay — останавливаться на время поездки · photos — фотографии
+commute — ездить на работу · hire — брать напрокат · change — пересаживаться · train — поезд
 
-**17 · Друг спрашивает, работает ли Том дома или ездит на работу. Скажите «Том обычно ездит на работу»**
+**21 · Сосед спрашивает, как ваша сестра ездит на работу. Скажите: «Она обычно ездит на работу на автобусе»**
 <!-- interaction_id: en:lesson-07:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom usually commutes.**
-
+🎙 **She usually commutes by bus.**

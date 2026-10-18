@@ -323,7 +323,7 @@ import {
   type CustomCardsMergeStats,
 } from './flashcards/restore_merge';
 import { warmCallableViaFetch } from './auth_warm_fetch';
-import { ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
+import { ACCOUNT_SWITCH_CELEBRATION_SEEN_KEYS, ACCOUNT_SWITCH_LEAK_KEYS } from './account_switch_leak_keys';
 import { invokeAuthCallable } from './auth_callable_fetch'; // зачем: вызовы входа мимо однопоточной очереди RNFirebase — под флагом auth_callables_fetch_v1 (выкл) // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
@@ -1012,12 +1012,11 @@ const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
 const LAST_SYNC_SNAPSHOT_OWNER_KEY = 'cloud_last_sync_snapshot_owner_v1';
 
 async function writeLastSyncSnapshot(raw: string, ownerUid: string | null): Promise<void> {
-  if (ownerUid) {
-    await AsyncStorage.multiSet([[LAST_SYNC_SNAPSHOT_KEY, raw], [LAST_SYNC_SNAPSHOT_OWNER_KEY, sha256Utf8(ownerUid)]]);
-    return;
-  }
+  // зачем (startup_settings_writer_boundaries): пакетная запись в этом файле живёт только внутри finishSettingsMutation.
+  // Порядок «снять пометку → снимок → пометка»: обрыв посередине оставляет снимок без владельца — значит, запись при выходе.
   await AsyncStorage.removeItem(LAST_SYNC_SNAPSHOT_OWNER_KEY);
   await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, raw);
+  if (ownerUid) await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_OWNER_KEY, sha256Utf8(ownerUid));
 }
 
 // Device-owned ключи: принадлежат ТЕКУЩЕМУ устройству, пишутся заново при каждом
@@ -6351,7 +6350,7 @@ export function prewarmAccountWipeModules(source: string): void {
  * настройки устройства, а не аккаунта. Раньше onboarding_done уходил вместе с SYNC_KEYS, и после выхода и холодного старта
  * человек заново проходил онбординг. Удаление аккаунта (mode 'full') сбрасывает их, как и раньше (account_deleted_notice).
  */
-export const SIGNOUT_DEVICE_KEEP_KEYS = [
+export const SIGNOUT_DEVICE_KEEP_KEYS: readonly string[] = [
   'onboarding_done',
   'onboarding_completed_at_ms_v1',
   'onboarding_step',
@@ -6362,9 +6361,14 @@ export const SIGNOUT_DEVICE_KEEP_KEYS = [
   'lang',
   'study_target_v1',
   'study_languages_started_v1',
-] as const;
+  // зачем (координатор 18.10 03:42): профили языков (уровень/выбор по языку) — настройки устройства, как выбранные языки.
+  ...SYNC_STUDY_TARGETS.map(languageProfileKey),
+];
 
-/** 'full' — удаление аккаунта и вход со сменой (как было); 'signout' — выход/смена: онбординг и языки остаются. */
+/**
+ * 'full' — удаление аккаунта и восстановление чистой установки (как было);
+ * 'signout' — выход, смена аккаунта и вход со сменой (координатор 18.10 03:42): онбординг, согласия, языки устройства остаются.
+ */
 export type AccountWipeMode = 'full' | 'signout';
 
 async function wipeLocalAccountDataUnsafe(mode: AccountWipeMode = 'full'): Promise<void> {
@@ -6420,7 +6424,11 @@ async function wipeLocalAccountDataUnsafeBody(mode: AccountWipeMode): Promise<vo
     'account_provider_handoff_v1',
     ...(mode === 'signout' ? SIGNOUT_DEVICE_KEEP_KEYS : []),
   ]);
-  console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort() })); // guard-ok: одна строка на стирание, только имена ключей
+  // зачем (координатор 18.10 03:42): отметки «поздравление показано» — данные аккаунта; в журнал — какие из них стираются.
+  const wipedCelebrationSeen = await AsyncStorage.multiGet([...ACCOUNT_SWITCH_CELEBRATION_SEEN_KEYS])
+    .then((rows) => rows.filter(([, value]) => value != null).map(([key]) => key))
+    .catch((error: unknown) => [`read_failed:${identityErrorCode(error)}`]);
+  console.log('[ACCOUNT-WIPE]', JSON.stringify({ mode, keep: Array.from(KEEP).sort(), wipedCelebrationSeen })); // guard-ok: одна строка на стирание, только имена ключей
   const removeExactly = async (keys: readonly string[]): Promise<void> => {
     const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
     const chunkSize = 128;

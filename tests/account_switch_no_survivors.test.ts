@@ -58,7 +58,10 @@ const ACCOUNT_A_KEYS_FROM_AUDIT: readonly string[] = [
   'ban_status_cached_at_v1',
   // заморозки и поздравления Plus / VIP
   'premium_free_freeze_month_v1',
-  // флаги *_seen_* живут намеренно (ответ Ядра 15.10: иначе A при повторном входе увидит поздравление снова) — см. DEVICE_OR_OPEN_QUESTION; стираются только *_pending*
+  // зачем (координатор 18.10 03:42): и отметки «поздравление показано» — аккаунт, а не телефон; тому же владельцу их вернёт копия
+  'premium_celebration_seen_v1',
+  'premium_celebration_admin_seen_v1',
+  'vip_celebration_seen_v1',
   'premium_celebration_pending_v1',
   'premium_celebration_pending_marker_v1',
   'premium_celebration_pending_variant_v1',
@@ -85,9 +88,6 @@ const DEVICE_OR_OPEN_QUESTION: readonly string[] = [
   'onboarding_done', // то же: onboarding_* живут
   'onboarding_step',
   'firestore_cache_clear_pending_v1', // метка очистки кэша Firestore: ОБЯЗАНА пережить wipe (патч Ядра, KEEP)
-  'premium_celebration_seen_v1', // флаги «поздравление уже показано» живут намеренно
-  'premium_celebration_admin_seen_v1',
-  'vip_celebration_seen_v1',
 ];
 const DEVICE_OR_OPEN_QUESTION_PREFIXES: readonly string[] = [
   'account_switch_emergency_backup', // аварийная копия A для восстановления (до 30 дней) — риск принят, вопрос владельцу
@@ -159,6 +159,23 @@ describe('ACC-SWITCH: после выхода ничего от аккаунта
     expect(accountKeysInSet.filter((key) => left.includes(key))).toEqual([]);
     // удаление аккаунта сбрасывает онбординг своим списком (account_deleted_notice) — не через режим выхода
     expect(ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE).toEqual(expect.arrayContaining(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']));
+  });
+
+  it('новый аккаунт после смены видит СВОЁ поздравление, даже если выдача у него раньше по времени, чем у прошлого', async () => {
+    const { processVipGrantForCelebration, isVipCelebrationPending } = await import('../app/vip_celebration_state');
+    const { processAdminGrantForCelebration, isCelebrationPending } = await import('../app/premium_celebration_state');
+    // A: обе выдачи уже отпразднованы, метки позднее, чем у B
+    await AsyncStorage.multiSet([['vip_celebration_seen_v1', '2000000000000'], ['premium_celebration_admin_seen_v1', '2000000000000']]);
+
+    await wipeLocalAccountData(undefined, { mode: 'signout' });
+
+    expect(logSpy.mock.calls.some((call) => String(call[0]) === '[ACCOUNT-WIPE]'
+      && String(call[1]).includes('"wipedCelebrationSeen":["premium_celebration_admin_seen_v1","vip_celebration_seen_v1"]'))).toBe(true);
+    beginAccountGeneration('stable-b');
+    await processVipGrantForCelebration('1900000000000');
+    await processAdminGrantForCelebration('1900000000000');
+    expect(await isVipCelebrationPending()).toBe(true);
+    expect(await isCelebrationPending()).toBe(true);
   });
 
   // имена согласованы с Ядром 15.10 (app/account_owner_change.ts: onAccountOwnerChanged поверх subscribeAccountGeneration; сброс только при смене непустого stableId A -> B / null):

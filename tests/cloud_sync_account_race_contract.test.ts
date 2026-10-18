@@ -8,7 +8,8 @@ describe('cloud sync account-transition race contract', () => {
   test('serializes account wipe with wallet commits and hydration', () => {
     expect(cloudSyncSource).toContain('inheritedLease?: AccountTransitionLockLease');
     expect(cloudSyncSource).toContain(
-      'await withAccountTransitionLock(wipeLocalAccountDataUnsafe, inheritedLease);',
+      // 89da06443 (координатор 18.10): режим стирания ('full' | 'signout') — тот же замок вокруг того же тела.
+      'await withAccountTransitionLock(() => wipeLocalAccountDataUnsafe(mode), inheritedLease);',
     );
   });
   test('outbound sync is generation-bound at the user write and local marker boundaries', () => {
@@ -23,7 +24,8 @@ describe('cloud sync account-transition race contract', () => {
     expect(cloudSyncSource).toMatch(
       /if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+const wrote = await writeUserDocWithNestedProgress\(/,
     );
-    expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await AsyncStorage\.setItem\(LAST_SYNC_SNAPSHOT_KEY/);
+    // 077deccd0 (координатор 18.10): снимок пишется вместе с пометкой владельца — writeLastSyncSnapshot; проверка поколения та же, прямо перед записью.
+    expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await writeLastSyncSnapshot\(JSON\.stringify\(snapshotData\), uid\)/);
   });
 
   test('account deletion invalidates and verifies the local wipe before enqueue, then only performs bounded drains', () => {

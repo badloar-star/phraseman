@@ -20,7 +20,8 @@ describe('account details linked identity action', () => {
     ]) {
       expect(source).toContain(label);
     }
-    expect(source).toContain('accessibilityLabel={logoutActionLabel}');
+    // 723613818 (координатор 18.10): пока идёт выход, подпись строки — «Сохраняем прогресс…»; в покое — та же logoutActionLabel.
+    expect(source).toContain('accessibilityLabel={logoutBusy ? logoutSavingLabel : logoutActionLabel}');
     expect(source).not.toContain('account-switch-button');
   });
 });

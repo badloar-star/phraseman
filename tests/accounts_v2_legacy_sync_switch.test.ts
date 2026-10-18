@@ -303,7 +303,8 @@ describe('7A switch — писатели старого облака (струк
     // 8K: страницы карточек пишет общий путь uploadFlashcardListsToPages (app/flashcards_cloud_upload.ts).
     expect(omitAt).toBeLessThan(text.indexOf('await uploadFlashcardListsToPages({'));
     expect(omitAt).toBeLessThan(text.indexOf('progressPatch[key] = value'));
-    expect(omitAt).toBeLessThan(text.indexOf('LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)'));
+    // 077deccd0: снимок пишется через writeLastSyncSnapshot (снимок + пометка владельца)
+    expect(omitAt).toBeLessThan(text.indexOf('writeLastSyncSnapshot(JSON.stringify(snapshotData), uid)'));
   });
 
   test('forceSyncToCloud: пишет и запоминает forceData (тот же объект при выключателе false)', () => {

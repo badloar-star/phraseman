@@ -697,7 +697,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // Ядро 14.10: +1 — поколение в трассировке [AUTH-LOOP] (7f9c95187); +2 — память подтверждённого ответа ensure_link.
         // R20-хвост 15.10 (eca3aae21): +1 — currentRestoreOwner() (владелец дедупа восстановления, только чтение).
         // Вход 17.10 (💸): +1 — поколение при переносе подтверждения привязки после свапа (rememberSwapConfirmedStableAuthLink).
-        occurrences: 79,
+        // Вход 18.10 (координатор): +1 isForceGenerationCurrent — перепроверка поколения перед пропуском записи документа при выходе
+        // (077deccd0); +1 wipeLocalAccountDataUnsafe — замок стирания зовёт тело через обёртку режима 'full' | 'signout' (89da06443).
+        occurrences: 81,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
@@ -713,13 +715,13 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureStableAuthLinkForStableIdDetailed': 8,
           'call:forgetAnonMergeNonce': 1,
           'call:isCurrentAccountGeneration': 9,
-          'call:isForceGenerationCurrent': 5,
+          'call:isForceGenerationCurrent': 6,
           'call:isSyncGenerationCurrent': 15,
           'call:peekStableId': 1,
           'call:setStableId': 1,
           'call:signInAnonymously': 1,
           'call:syncToCloud': 1,
-          'call:wipeLocalAccountDataUnsafe': 2,
+          'call:wipeLocalAccountDataUnsafe': 3,
           'call:wipeLocalAccountDataUnsafeBody': 1,
           'call:withAccountTransitionLock': 3,
           'call:withRestoreApplicationLock': 1,

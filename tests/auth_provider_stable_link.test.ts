@@ -202,7 +202,7 @@ describe('auth provider stable-id linking', () => {
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
       const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');
       const lock = branch.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
-      const wipe = branch.indexOf('await wipeLocalAccountData(transitionLease);', lock);
+      const wipe = branch.indexOf("await wipeLocalAccountData(transitionLease, { mode: 'signout' });", lock);
       const setStable = branch.indexOf('await setStableId(canonicalStableId);');
       const activate = branch.indexOf('beginAccountGeneration(canonicalStableId);');
       const lockEnd = branch.indexOf('});', activate);
@@ -276,7 +276,7 @@ describe('auth provider stable-id linking', () => {
 
   test('remote stable-id swap uses the full cloud sync account wipe before restore', () => {
     const lock = mergeSwapSource.indexOf('await withAccountTransitionLock(async (transitionLease) => {');
-    const wipe = mergeSwapSource.indexOf('await wipeLocalAccountData(transitionLease);', lock);
+    const wipe = mergeSwapSource.indexOf("await wipeLocalAccountData(transitionLease, { mode: 'signout' });", lock);
     const setStable = mergeSwapSource.indexOf('await setStableId(canonicalStableId)', wipe);
     const lockEnd = mergeSwapSource.indexOf('});', setStable);
     expect(lock).toBeGreaterThan(0);
@@ -437,7 +437,8 @@ describe('auth provider stable-id linking', () => {
 test('identity_retired branches delegate to fresh identity handling and never retry with the stale stable id', () => {
   const source = normalizeEol(readFileSync(authProviderPath, 'utf8'));
   expect(source).toContain("ensureFreshPostDeletionIdentity('identity_retired'");
-  const retiredBranches = source.match(/if \([^\n]*failure === 'identity_retired'\)[\s\S]{0,900}?return \{ result: '[^']+'[^\n]*\};/g) ?? [];
+  // 76ab9eac7 (координатор 18.10): в ветки добавлен журнал [ACCOUNT-GONE] — return теперь ≈1080 знаков от if; окно 900 → 1600.
+  const retiredBranches = source.match(/if \([^\n]*failure === 'identity_retired'\)[\s\S]{0,1600}?return \{ result: '[^']+'[^\n]*\};/g) ?? [];
   expect(retiredBranches.length).toBeGreaterThanOrEqual(2);
   for (const branch of retiredBranches) {
     expect(branch).not.toContain('ensureAnonUser().catch(() => null)');

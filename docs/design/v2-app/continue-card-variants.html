@@ -1,118 +1,149 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-mode="dark" data-theme="aurora">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Плашка «Продолжить» — варианты</title>
+<title>Плашка «Продолжить» — 5 стилей × все места</title>
 <style>
-  :root{
-    --bg:#EEF0F7; --card:#F8F8FC; --text:#14131C; --sec:#5C5C70; --track:#B9B9C6; --fill:#5B4BB8; --pill:#E6E6EE; --shadow:0 10px 30px rgba(60,50,120,.14),0 2px 6px rgba(60,50,120,.08);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{ --bg:#0C0D10; --card:#1C1E26; --text:#F4F3F8; --sec:#A8A9B8; --track:#3A3C4A; --fill:#8F82FF; --pill:#2A2C38; --shadow:0 10px 30px rgba(0,0,0,.45); }
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.3 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px 20px 60px}
-  h1{font-size:22px;margin:4px 0 4px}
-  p.lead{color:var(--sec);margin:0 0 22px;font-size:14px}
-  .variant{max-width:390px;margin:0 auto 26px}
-  .tag{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sec);margin:0 0 8px 4px}
-  .card{position:relative;background:var(--card);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
-  .book{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#d9d2c3,#f3efe6);display:grid;place-items:center;font-size:30px}
-  .pill{display:inline-block;background:var(--pill);border-radius:11px;padding:2px 10px;font-size:13px;font-weight:700}
-  .title{font-weight:700;font-size:16px;letter-spacing:-.3px}
-  .bar{height:6px;border-radius:3px;background:var(--track);overflow:hidden}
-  .bar i{display:block;height:100%;background:var(--fill);border-radius:3px}
-  .cnt{font-size:14px;color:var(--sec);font-variant-numeric:tabular-nums}
+  :root{ --font:Inter,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  /* темы: акцент, второй цвет, чернила на акценте */
+  [data-theme=aurora]{ --acc:#7EF0C8; --acc2:#7C5CFF; --on:#04261D; }
+  [data-theme=midnight]{ --acc:#8CC4FF; --acc2:#286EFF; --on:#06224D; }
+  [data-theme=coral]{ --acc:#FFB0A0; --acc2:#FF645A; --on:#4A0F0A; }
+  [data-theme=champagne]{ --acc:#F3D39A; --acc2:#E68296; --on:#3A2608; }
+  [data-mode=dark]{ --bg:#0C0D10; --bgTop:#181A1F; --card:#1B1D24; --card2:#242733; --text:#FFFFFF; --sec:#B4B6C2; --mut:#868899; --track:rgba(255,255,255,.12); --sh:0 18px 40px rgba(0,0,0,.45),0 2px 0 rgba(255,255,255,.04) inset; --glass:rgba(34,36,46,.62); }
+  [data-mode=light]{ --bg:#F1F2F8; --bgTop:#E6E8F4; --card:#FFFFFF; --card2:#F2F3FA; --text:#14131C; --sec:#555769; --mut:#6B6D80; --track:rgba(20,19,28,.12); --sh:0 14px 34px rgba(60,55,120,.16),0 1px 0 #fff inset; --glass:rgba(255,255,255,.7); }
+  *{box-sizing:border-box;margin:0}
+  body{font:16px/1.3 var(--font);background:linear-gradient(180deg,var(--bgTop),var(--bg) 380px);color:var(--text);min-height:100vh;padding:20px 16px 80px;transition:background .3s}
+  header{max-width:1180px;margin:0 auto 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between}
+  h1{font-size:24px;letter-spacing:-.4px} p.lead{color:var(--sec);font-size:14px;margin-top:6px;max-width:640px}
+  .ctl{display:flex;gap:8px;flex-wrap:wrap}
+  .ctl button{font:700 13px var(--font);padding:9px 14px;border-radius:999px;border:0;cursor:pointer;color:var(--text);background:var(--card);box-shadow:var(--sh)}
+  .ctl button.on{background:var(--acc);color:var(--on)}
+  .style{max-width:1180px;margin:0 auto 38px}
+  .style h2{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--sec);margin:0 0 4px 4px}
+  .style .desc{color:var(--mut);font-size:13px;margin:0 0 14px 4px;max-width:640px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+  .cell small{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:0 0 8px 6px}
+  .card{position:relative;overflow:hidden;box-shadow:var(--sh);cursor:pointer;transition:transform .24s cubic-bezier(.3,1.4,.5,1)}
+  .card:active{transform:scale(.98)}
+  /* арт-заглушки: «глиняные» значки (в приложении — настоящий арт) */
+  .art{display:grid;place-items:center;font-size:34px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+  .bar{height:7px;border-radius:4px;background:var(--track);overflow:hidden}.bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+  .num{font-variant-numeric:tabular-nums}
 
-  /* A — как сейчас, но без стрелки: название сверху, под ним полоса и счётчик */
-  .a{min-height:96px;padding:14px 34% 14px 16px;display:flex;flex-direction:column;justify-content:center}
-  .a .row{display:flex;align-items:center;gap:12px;margin-top:8px;min-height:28px}
-  .a .row .bar{flex:1}
-  .a .art{position:absolute;right:0;top:0;bottom:0;width:32%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  /* ① СТЕКЛО: полупрозрачная плашка поверх цветного свечения, арт выходит за край */
+  .s1{border-radius:28px;min-height:104px;padding:16px 118px 16px 18px;background:var(--glass);backdrop-filter:blur(18px)}
+  .s1::before{content:"";position:absolute;right:-30px;top:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,var(--acc) 0,transparent 68%);opacity:.34}
+  .s1 .art{position:absolute;right:14px;top:50%;transform:translateY(-54%) rotate(-6deg);width:84px;height:84px;font-size:58px}
+  .s1 .k{font-size:12px;font-weight:800;color:var(--acc);letter-spacing:.08em;text-transform:uppercase}
+  .s1 .t{font-weight:800;font-size:17px;letter-spacing:-.3px;margin:3px 0 10px;position:relative}
+  .s1 .row{display:flex;align-items:center;gap:10px;position:relative}.s1 .row .bar{flex:1}.s1 .row span{font-size:13px;color:var(--sec)}
+  [data-mode=light] .s1 .k{color:var(--acc2)}
 
-  /* B — счётчик слева, полоса на всю ширину под текстом, плашка урока внизу арта */
-  .b{padding:16px;display:grid;grid-template-columns:1fr 72px;gap:6px 14px;align-items:center}
-  .b .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:14px;color:var(--sec)}
-  .b .meta b{color:var(--text);font-size:15px}
-  .b .art{grid-row:1 / span 2;grid-column:2;display:flex;flex-direction:column;align-items:center;gap:6px}
+  /* ② ОБЛОЖКА: крупная цветная обложка слева, как у книги */
+  .s2{border-radius:24px;display:flex;background:var(--card)}
+  .s2 .cover{width:104px;flex:none;display:grid;place-items:center;background:linear-gradient(160deg,var(--acc),var(--acc2));position:relative}
+  .s2 .cover .art{font-size:46px;filter:drop-shadow(0 6px 8px rgba(0,0,0,.3))}
+  .s2 .cover b{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--on)}
+  .s2 .body{flex:1;padding:16px 16px 16px 18px;min-width:0}
+  .s2 .t{font-weight:800;font-size:16px;letter-spacing:-.3px;line-height:1.25}
+  .s2 .sub{font-size:13px;color:var(--sec);margin:4px 0 12px}
+  .s2 .cta{display:inline-block;background:var(--acc);color:var(--on);font-weight:800;font-size:13px;padding:7px 14px;border-radius:999px}
 
-  /* C — большое кольцо прогресса вместо полосы, арт справа */
-  .c{padding:14px 16px;display:flex;align-items:center;gap:14px}
-  .ring{position:relative;width:64px;height:64px;flex:none;border-radius:50%;background:conic-gradient(var(--fill) calc(var(--p)*1%),var(--track) 0);display:grid;place-items:center}
-  .ring::before{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--card)}
-  .ring span{position:relative;font-weight:800;font-size:15px}
-  .c .txt{flex:1;min-width:0}
-  .c .txt .cnt{margin-top:4px}
-  .c .art{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+  /* ③ БИЛЕТ: корешок с зубцами + основная часть */
+  .s3{border-radius:22px;display:flex;background:var(--card)}
+  .s3 .stub{width:86px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:var(--card2);position:relative}
+  .s3 .stub::after{content:"";position:absolute;right:-7px;top:0;bottom:0;width:14px;background:radial-gradient(circle at 0 50%,transparent 6px,var(--card) 6.5px) 0 0/14px 20px repeat-y}
+  .s3 .stub .art{font-size:34px}.s3 .stub b{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sec)}
+  .s3 .main{flex:1;padding:16px 16px 16px 22px;min-width:0}
+  .s3 .t{font-weight:700;font-size:16px;letter-spacing:-.3px}
+  .s3 .meta{display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 8px;font-size:13px;color:var(--sec)}
+  .s3 .meta b{color:var(--text);font-size:15px}
+  .s3 .dots{display:flex;gap:3px}.s3 .dots i{flex:1;height:8px;border-radius:2px;background:var(--track)}.s3 .dots i.on{background:var(--acc)}
 
-  /* D — сегментная полоса (50 уроков → 10 секций), крупная плашка урока слева */
-  .d{padding:16px}
-  .d .top{display:flex;align-items:center;gap:12px}
-  .d .top .title{flex:1}
-  .seg{display:flex;gap:4px;margin-top:14px}
-  .seg i{flex:1;height:8px;border-radius:4px;background:var(--track)}
-  .seg i.on{background:var(--fill)}
-  .d .foot{display:flex;justify-content:space-between;margin-top:10px}
+  /* ④ КОЛЬЦО: круглый прогресс-арт, всё строго по центру линии */
+  .s4{border-radius:30px;padding:14px 16px;display:flex;align-items:center;gap:14px;background:var(--card)}
+  .s4 .ring{position:relative;width:76px;height:76px;flex:none;border-radius:50%;background:conic-gradient(var(--acc) calc(var(--p)*1%),var(--track) 0);display:grid;place-items:center}
+  .s4 .ring::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--card)}
+  .s4 .ring .art{position:relative;font-size:30px;width:auto;height:auto}
+  .s4 .txt{flex:1;min-width:0}.s4 .t{font-weight:800;font-size:16px;letter-spacing:-.3px;line-height:1.25}
+  .s4 .sub{font-size:13px;color:var(--sec);margin-top:4px}
+  .s4 .chip{flex:none;align-self:flex-start;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--acc);color:var(--on)}
 
-  /* E — компактная: арт-значок слева, одна строка, счётчик справа-вверху */
-  .e{padding:12px 16px;display:flex;align-items:center;gap:14px}
-  .e .txt{flex:1;min-width:0}
-  .e .head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-  .e .bar{margin-top:10px}
-  .e .small{width:48px;height:48px;border-radius:14px;font-size:24px}
-  .note{max-width:390px;margin:28px auto 0;color:var(--sec);font-size:13px}
+  /* ⑤ ТИПОГРАФИКА: огромное число, редакционная плашка без арта */
+  .s5{border-radius:26px;padding:16px 18px;background:var(--card);display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:end}
+  .s5 .k{grid-column:1/-1;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .s5 .t{font-weight:700;font-size:15px;color:var(--sec);align-self:center}
+  .s5 .big{font-size:56px;line-height:.9;font-weight:900;letter-spacing:-3px;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent;text-align:right}
+  .s5 .big small{font-size:20px;font-weight:700;letter-spacing:0;color:var(--mut);-webkit-text-fill-color:var(--mut)}
+  .s5 .bar{grid-column:1/-1;margin-top:12px}
+  .s5 .go{grid-column:1/-1;display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--sec)}
+  .s5 .go b{color:var(--text)}
+  .note{max-width:1180px;margin:30px auto 0;color:var(--sec);font-size:13px}
 </style>
 </head>
 <body>
-<h1>Плашка «Продолжить» — стрелка убрана, 5 вариантов раскладки</h1>
-<p class="lead">Вся плашка — кнопка, отдельной стрелки нет. Светлая и тёмная схемы переключаются системной настройкой.</p>
-
-<div class="variant"><div class="tag">A · как сейчас, без стрелки (в приложении)</div>
-  <div class="card a">
-    <div class="title">Местоимения и глагол To Be</div>
-    <div class="row"><div class="bar"><i style="width:18%"></i></div><span class="cnt">9 / 50</span></div>
-    <div class="art"><div class="book">📖</div><span class="pill">Урок 1</span></div>
+<header>
+  <div>
+    <h1>Плашка «Продолжить» — 5 разных стилей, все места</h1>
+    <p class="lead">Стрелки нет — вся плашка кнопка. Каждый стиль показан во всех состояниях, которые рисует Главная: последний урок, диалог, набор карточек, «Начать урок 1». Тема и светлая/тёмная — кнопками.</p>
   </div>
-</div>
-
-<div class="variant"><div class="tag">B · полоса на всю ширину, счётчик над ней</div>
-  <div class="card b">
-    <div>
-      <div class="title">Местоимения и глагол To Be</div>
-      <div class="meta"><span>Урок 1</span><b>9 из 50</b></div>
-      <div class="bar" style="margin-top:8px"><i style="width:18%"></i></div>
-    </div>
-    <div class="art"><div class="book">📖</div></div>
+  <div class="ctl" id="ctl">
+    <button data-mode="dark" class="on">Тёмная</button><button data-mode="light">Светлая</button>
+    <button data-theme="aurora" class="on">Аврора</button><button data-theme="midnight">Полночь</button><button data-theme="coral">Коралл</button><button data-theme="champagne">Шампань</button>
   </div>
-</div>
+</header>
 
-<div class="variant"><div class="tag">C · кольцо прогресса слева</div>
-  <div class="card c">
-    <div class="ring" style="--p:18"><span>18%</span></div>
-    <div class="txt"><div class="title">Местоимения и глагол To Be</div><div class="cnt">9 / 50 занятий</div></div>
-    <div class="art"><div class="book" style="width:56px;height:56px">📖</div><span class="pill">Урок 1</span></div>
-  </div>
-</div>
+<!-- данные: урок 9/50 · диалог «В кафе» · набор «Путешествия» 24 карточки · начать урок 1 -->
 
-<div class="variant"><div class="tag">D · сегментная полоса, плашка урока сверху</div>
-  <div class="card d">
-    <div class="top"><span class="pill">Урок 1</span><div class="title">Местоимения и глагол To Be</div></div>
-    <div class="seg"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="foot"><span class="cnt">9 / 50</span><span class="cnt">до конца — 41</span></div>
-  </div>
-</div>
+<section class="style"><h2>① Стекло</h2><p class="desc">Полупрозрачная плашка поверх цветного свечения темы, арт наклонён и выходит за край.</p>
+<div class="grid">
+  <div class="cell"><small>Последний урок</small><div class="card s1"><div class="k">Урок 1</div><div class="t">Местоимения и глагол To Be</div><div class="row"><div class="bar"><i style="width:18%"></i></div><span class="num">9 / 50</span></div><div class="art">📖</div></div></div>
+  <div class="cell"><small>Диалог</small><div class="card s1"><div class="k">Диалог</div><div class="t">В кафе: заказать кофе</div><div class="row"><span>Продолжить разговор</span></div><div class="art">💬</div></div></div>
+  <div class="cell"><small>Набор карточек</small><div class="card s1"><div class="k">Карточки</div><div class="t">Путешествия</div><div class="row"><span>24 карточки · 6 к повтору</span></div><div class="art">🗂️</div></div></div>
+  <div class="cell"><small>Начать урок 1</small><div class="card s1"><div class="k">Новичок</div><div class="t">Начать урок 1</div><div class="row"><span>5 минут до первой фразы</span></div><div class="art">🚀</div></div></div>
+</div></section>
 
-<div class="variant"><div class="tag">E · компактная, одна строка</div>
-  <div class="card e">
-    <div class="book small">📖</div>
-    <div class="txt">
-      <div class="head"><div class="title">Местоимения и глагол To Be</div><span class="cnt">9/50</span></div>
-      <div class="bar"><i style="width:18%"></i></div>
-    </div>
-  </div>
-</div>
+<section class="style"><h2>② Обложка</h2><p class="desc">Цветная «обложка» слева, как у книги: арт крупно, на ней — вид занятия; справа название и кнопка-таблетка.</p>
+<div class="grid">
+  <div class="cell"><small>Последний урок</small><div class="card s2"><div class="cover"><div class="art">📖</div><b>Урок 1</b></div><div class="body"><div class="t">Местоимения и глагол To Be</div><div class="sub num">Пройдено 9 из 50</div><span class="cta">Продолжить</span></div></div></div>
+  <div class="cell"><small>Диалог</small><div class="card s2"><div class="cover"><div class="art">💬</div><b>Диалог</b></div><div class="body"><div class="t">В кафе: заказать кофе</div><div class="sub">Разговор не закончен</div><span class="cta">Вернуться</span></div></div></div>
+  <div class="cell"><small>Набор карточек</small><div class="card s2"><div class="cover"><div class="art">🗂️</div><b>Карточки</b></div><div class="body"><div class="t">Путешествия</div><div class="sub">24 карточки · 6 к повтору</div><span class="cta">Повторить</span></div></div></div>
+  <div class="cell"><small>Начать урок 1</small><div class="card s2"><div class="cover"><div class="art">🚀</div><b>Старт</b></div><div class="body"><div class="t">Начать урок 1</div><div class="sub">Первая фраза за 5 минут</div><span class="cta">Начать</span></div></div></div>
+</div></section>
 
-<p class="note">Выберите букву — разложу в приложении токенами темы (цвета, тени, радиусы — как у остальных плашек Главной), без обводок.</p>
+<section class="style"><h2>③ Билет</h2><p class="desc">Корешок с зубцами слева (вид + значок), справа название и сегментная полоса — 10 секций по 5 занятий.</p>
+<div class="grid">
+  <div class="cell"><small>Последний урок</small><div class="card s3"><div class="stub"><div class="art">📖</div><b>Урок 1</b></div><div class="main"><div class="t">Местоимения и глагол To Be</div><div class="meta"><span>9 / 50</span><b>до конца 41</b></div><div class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+  <div class="cell"><small>Диалог</small><div class="card s3"><div class="stub"><div class="art">💬</div><b>Диалог</b></div><div class="main"><div class="t">В кафе: заказать кофе</div><div class="meta"><span>Реплика 6 из 12</span><b>середина</b></div><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+  <div class="cell"><small>Набор карточек</small><div class="card s3"><div class="stub"><div class="art">🗂️</div><b>Карточки</b></div><div class="main"><div class="t">Путешествия</div><div class="meta"><span>24 карточки</span><b>6 к повтору</b></div><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+  <div class="cell"><small>Начать урок 1</small><div class="card s3"><div class="stub"><div class="art">🚀</div><b>Старт</b></div><div class="main"><div class="t">Начать урок 1</div><div class="meta"><span>5 минут</span><b>первая фраза</b></div><div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+</div></section>
+
+<section class="style"><h2>④ Кольцо</h2><p class="desc">Круглый арт внутри кольца прогресса, всё строго по одной линии; справа — компактная метка вида.</p>
+<div class="grid">
+  <div class="cell"><small>Последний урок</small><div class="card s4"><div class="ring" style="--p:18"><div class="art">📖</div></div><div class="txt"><div class="t">Местоимения и глагол To Be</div><div class="sub num">9 / 50 занятий</div></div><span class="chip">Урок 1</span></div></div>
+  <div class="cell"><small>Диалог</small><div class="card s4"><div class="ring" style="--p:50"><div class="art">💬</div></div><div class="txt"><div class="t">В кафе: заказать кофе</div><div class="sub">Реплика 6 из 12</div></div><span class="chip">Диалог</span></div></div>
+  <div class="cell"><small>Набор карточек</small><div class="card s4"><div class="ring" style="--p:75"><div class="art">🗂️</div></div><div class="txt"><div class="t">Путешествия</div><div class="sub">18 из 24 выучено</div></div><span class="chip">Карточки</span></div></div>
+  <div class="cell"><small>Начать урок 1</small><div class="card s4"><div class="ring" style="--p:0"><div class="art">🚀</div></div><div class="txt"><div class="t">Начать урок 1</div><div class="sub">Первая фраза за 5 минут</div></div><span class="chip">Старт</span></div></div>
+</div></section>
+
+<section class="style"><h2>⑤ Типографика</h2><p class="desc">Без арта: огромное число в градиенте темы, полоса на всю ширину. Для тех, кто любит строгий «редакционный» вид.</p>
+<div class="grid">
+  <div class="cell"><small>Последний урок</small><div class="card s5"><div class="k">Урок 1 · продолжить</div><div class="t">Местоимения и глагол To Be</div><div class="big num">9<small> / 50</small></div><div class="bar"><i style="width:18%"></i></div><div class="go"><span>до конца <b>41</b></span><span>18 %</span></div></div></div>
+  <div class="cell"><small>Диалог</small><div class="card s5"><div class="k">Диалог · продолжить</div><div class="t">В кафе: заказать кофе</div><div class="big num">6<small> / 12</small></div><div class="bar"><i style="width:50%"></i></div><div class="go"><span>реплик осталось <b>6</b></span><span>50 %</span></div></div></div>
+  <div class="cell"><small>Набор карточек</small><div class="card s5"><div class="k">Карточки · продолжить</div><div class="t">Путешествия</div><div class="big num">18<small> / 24</small></div><div class="bar"><i style="width:75%"></i></div><div class="go"><span>к повтору <b>6</b></span><span>75 %</span></div></div></div>
+  <div class="cell"><small>Начать урок 1</small><div class="card s5"><div class="k">Новичок</div><div class="t">Начать урок 1</div><div class="big num">0<small> / 50</small></div><div class="bar"><i style="width:0%"></i></div><div class="go"><span>первая фраза за <b>5 минут</b></span><span>старт</span></div></div></div>
+</div></section>
+
+<p class="note">Скажите номер стиля (или «стиль ② для уроков, ④ для диалогов») — сделаю в приложении токенами темы, без обводок, с тенью «Тень». Для разных мест можно брать разные стили.</p>
+<script>
+  const r=document.documentElement;
+  document.getElementById('ctl').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.mode){r.dataset.mode=b.dataset.mode;}
+    if(b.dataset.theme){r.dataset.theme=b.dataset.theme;}
+    [...b.parentNode.children].filter(x=>(b.dataset.mode?x.dataset.mode:x.dataset.theme)).forEach(x=>x.classList.toggle('on',x===b));});
+</script>
 </body>
 </html>

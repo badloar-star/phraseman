@@ -1,0 +1,9 @@
+10-18 01:58:00.934 I/ReactNativeJS(13608): '[TILE-LABEL] lines', '{"key":"lessons","lang":"es","title":"Lecciones","fontScale":1.2999999523162842,"effectiveMultiplier":1.05,"numberOfLines":1,"brokenMidWord":false,"lineTexts":["Lecciones"],"lineWidths":[85.3],"boxWidth":102.857139
+10-18 01:58:00.934 I/ReactNativeJS(13608): '[TILE-LABEL] lines', '{"key":"dialogs","lang":"es","title":"Diálogos","fontScale":1.2999999523162842,"effectiveMultiplier":1.05,"numberOfLines":1,"brokenMidWord":false,"lineTexts":["Diálogos"],"lineWidths":[73.1],"boxWidth":102.476181
+10-18 01:58:00.936 I/ReactNativeJS(13608): '[TILE-LABEL] lines', '{"key":"cards","lang":"es","title":"Tarjetas","fontScale":1.2999999523162842,"effectiveMultiplier":1.05,"numberOfLines":1,"brokenMidWord":false,"lineTexts":["Tarjetas"],"lineWidths":[67.7],"boxWidth":102.8571472167
+10-18 01:58:00.938 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"lessons","lang":"es","title":"Lecciones","boxWidth":102.5}'
+10-18 01:58:00.967 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"dialogs","lang":"es","title":"Diálogos","boxWidth":102.5}'
+10-18 01:58:00.970 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"cards","lang":"es","title":"Tarjetas","boxWidth":102.5}'
+10-18 01:58:01.790 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"lessons","lang":"es","title":"Lecciones","boxWidth":102.5}'
+10-18 01:58:01.790 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"dialogs","lang":"es","title":"Diálogos","boxWidth":102.5}'
+10-18 01:58:01.790 I/ReactNativeJS(13608): '[TILE-LABEL] box', '{"key":"cards","lang":"es","title":"Tarjetas","boxWidth":102.5}'

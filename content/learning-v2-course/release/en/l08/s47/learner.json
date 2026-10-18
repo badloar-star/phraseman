@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-47:i01",
+      "interactionId": "en:lesson-08:session-47:word:adapt",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — adapt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:word:adapt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — adapt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:word:adapt:audio",
+          "transcript": "adapt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:word:adapt:r1",
+            "targetText": "adapt",
+            "meaningByLocale": {
+              "ru": "адаптироваться, приспосабливаться к переменам. I can adapt. — «Я могу адаптироваться».",
+              "uk": "адаптуватися, пристосовуватися до змін. I can adapt. — «Я можу адаптуватися»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "adapt",
+          "definitionByLocale": {
+            "ru": "адаптироваться, приспосабливаться к переменам. I can adapt. — «Я могу адаптироваться».",
+            "uk": "адаптуватися, пристосовуватися до змін. I can adapt. — «Я можу адаптуватися»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите, что можете адаптироваться",
+      "prompt": "Выберите форму для фразы «Я могу адаптироваться»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-47:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите, что можете адаптироваться",
+      "accessibilityLabel": "Выберите форму для фразы «Я могу адаптироваться»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что можете адаптироваться",
-          "uk": "Скажіть, що можете адаптуватися"
+          "ru": "Выберите форму для фразы «Я могу адаптироваться»",
+          "uk": "Виберіть форму для фрази «Я можу адаптуватися»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "adapts"
           }
         ],
-        "testedDimension": "Скажите, что можете адаптироваться",
+        "testedDimension": "Выберите форму для фразы «Я могу адаптироваться»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-47:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите, что можете адаптироваться",
+            "testedDimension": "Выберите форму для фразы «Я могу адаптироваться»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `adapt`, без `to`.",
               "uk": "Після `can` потрібне `adapt`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-47:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите, что можете адаптироваться",
+            "testedDimension": "Выберите форму для фразы «Я могу адаптироваться»",
             "feedbackByLocale": {
               "ru": "После `can` нужно `adapt`, без `s`.",
               "uk": "Після `can` потрібне `adapt`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-47:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-47:word:improvise",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — improvise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:word:improvise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — improvise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:word:improvise:audio",
+          "transcript": "improvise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:word:improvise:r1",
+            "targetText": "improvise",
+            "meaningByLocale": {
+              "ru": "импровизировать: придумывать действия на ходу. She can improvise. — «Она умеет импровизировать».",
+              "uk": "імпровізувати: придумувати дії на ходу. She can improvise. — «Вона вміє імпровізувати»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "improvise",
+          "definitionByLocale": {
+            "ru": "импровизировать: придумывать действия на ходу. She can improvise. — «Она умеет импровизировать».",
+            "uk": "імпровізувати: придумувати дії на ходу. She can improvise. — «Вона вміє імпровізувати»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о подруге «Она умеет водить»",
+      "prompt": "Скажите «Она умеет импровизировать»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о подруге «Она умеет водить»",
+      "accessibilityLabel": "Скажите «Она умеет импровизировать»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can drive.",
+        "targetPhrase": "She can improvise.",
         "localizedMeaning": {
-          "ru": "Скажите о подруге «Она умеет водить»",
-          "uk": "Скажіть про подругу «Вона вміє водити»"
+          "ru": "Скажите «Она умеет импровизировать»",
+          "uk": "Скажіть «Вона вміє імпровізувати»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "improvise"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-47:word:compromise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — compromise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:word:compromise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — compromise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:word:compromise:audio",
+          "transcript": "compromise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:word:compromise:r1",
+            "targetText": "compromise",
+            "meaningByLocale": {
+              "ru": "идти на компромисс. I can compromise. — «Я могу пойти на компромисс». Немного уступить ради общего решения.",
+              "uk": "йти на компроміс. I can compromise. — «Я можу піти на компроміс». Трохи поступитися заради спільного рішення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compromise",
+          "definitionByLocale": {
+            "ru": "идти на компромисс. I can compromise. — «Я могу пойти на компромисс». Немного уступить ради общего решения.",
+            "uk": "йти на компроміс. I can compromise. — «Я можу піти на компроміс». Трохи поступитися заради спільного рішення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-47:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите «Я умею свистеть»",
+      "prompt": "Скажите «Я могу пойти на компромисс»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Скажите «Я умею свистеть»",
+      "accessibilityLabel": "Скажите «Я могу пойти на компромисс»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-47:i07:audio",
-          "transcript": "I can whistle."
+          "transcript": "I can compromise."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can whistle.",
+        "targetPhrase": "I can compromise.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите, что она умеет водить",
+      "prompt": "Выберите форму для фразы «Она умеет импровизировать»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-47:i08:r1",
-          "text": "drive"
+          "text": "improvise"
         },
         {
           "responseId": "en:lesson-08:session-47:i08:r2",
-          "text": "drives"
+          "text": "improvises"
         },
         {
           "responseId": "en:lesson-08:session-47:i08:r3",
-          "text": "to drive"
+          "text": "to improvise"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите, что она умеет водить",
+      "accessibilityLabel": "Выберите форму для фразы «Она умеет импровизировать»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что она умеет водить",
-          "uk": "Скажіть, що вона вміє водити"
+          "ru": "Выберите форму для фразы «Она умеет импровизировать»",
+          "uk": "Виберіть форму для фрази «Вона вміє імпровізувати»"
         },
         "gappedTargetPhrase": "She can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-47:i08:r1",
-            "text": "drive"
+            "text": "improvise"
           },
           {
             "responseId": "en:lesson-08:session-47:i08:r2",
-            "text": "drives"
+            "text": "improvises"
           },
           {
             "responseId": "en:lesson-08:session-47:i08:r3",
-            "text": "to drive"
+            "text": "to improvise"
           }
         ],
-        "testedDimension": "Скажите, что она умеет водить",
+        "testedDimension": "Выберите форму для фразы «Она умеет импровизировать»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите, что она умеет водить",
+            "testedDimension": "Выберите форму для фразы «Она умеет импровизировать»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, даже с `she`.",
-              "uk": "Після `can` потрібне `drive`, навіть із `she`."
+              "ru": "После can нужно improvise, даже с she.",
+              "uk": "Після can потрібне improvise, навіть із she."
             }
           },
           {
             "responseId": "en:lesson-08:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите, что она умеет водить",
+            "testedDimension": "Выберите форму для фразы «Она умеет импровизировать»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `drive`, без `to`.",
-              "uk": "Після `can` потрібне `drive`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +643,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-47:i10:p1",
-            "target": "shove",
+            "target": "adapt",
             "meaningByLocale": {
-              "ru": "грубо толкать",
-              "uk": "грубо штовхати"
+              "ru": "приспосабливаться",
+              "uk": "пристосовуватися"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i10:p2",
-            "target": "adapt",
+            "target": "improvise",
             "meaningByLocale": {
-              "ru": "адаптироваться",
-              "uk": "адаптуватися"
+              "ru": "импровизировать",
+              "uk": "імпровізувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i10:p3",
-            "target": "glove",
+            "target": "compromise",
             "meaningByLocale": {
-              "ru": "перчатка",
-              "uk": "рукавичка"
+              "ru": "идти на компромисс",
+              "uk": "йти на компроміс"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i10:p4",
-            "target": "leftover",
+            "target": "photograph",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "фотографировать",
+              "uk": "фотографувати"
             }
           }
         ],
         "leftColumn": [
-          "shove",
           "adapt",
-          "glove",
-          "leftover"
+          "improvise",
+          "compromise",
+          "photograph"
         ],
         "rightColumn": [
-          "грубо толкать",
-          "адаптироваться",
-          "перчатка",
-          "остаток еды"
+          "приспосабливаться",
+          "импровизировать",
+          "идти на компромисс",
+          "фотографировать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,14 +717,14 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-47:i11:audio",
-          "transcript": "She can drive."
+          "transcript": "She can improvise."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can drive.",
+        "hiddenTargetPhrase": "She can improvise.",
         "orderedTokens": [
           "She",
           "can",
-          "drive"
+          "improvise"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -607,26 +736,72 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-47:word:alternative",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alternative",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-47:word:alternative:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alternative",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-47:word:alternative:audio",
+          "transcript": "alternative"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-47:word:alternative:r1",
+            "targetText": "alternative",
+            "meaningByLocale": {
+              "ru": "другой вариант, альтернатива. I can find an alternative. — «Я могу найти другой вариант». Перед alternative используется an, потому что слово начинается с гласного звука.",
+              "uk": "інший варіант, альтернатива. I can find an alternative. — «Я можу знайти інший варіант». Перед alternative вживається an, бо слово починається з голосного звука."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alternative",
+          "definitionByLocale": {
+            "ru": "другой вариант, альтернатива. I can find an alternative. — «Я могу найти другой вариант». Перед alternative используется an, потому что слово начинается с гласного звука.",
+            "uk": "інший варіант, альтернатива. I can find an alternative. — «Я можу знайти інший варіант». Перед alternative вживається an, бо слово починається з голосного звука."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-47:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг толкает людей у входа в зал. Скажите «Не толкайся»",
+      "prompt": "Все билеты на выбранный спектакль проданы. Скажите «Я могу найти другой вариант»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг толкает людей у входа в зал. Скажите «Не толкайся»",
+      "accessibilityLabel": "Все билеты на выбранный спектакль проданы. Скажите «Я могу найти другой вариант»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t shove.",
+        "targetPhrase": "I can find an alternative.",
         "localizedMeaning": {
-          "ru": "Друг толкает людей у входа в зал. Скажите «Не толкайся»",
-          "uk": "Друг штовхає людей біля входу до зали. Скажіть «Не штовхайся»"
+          "ru": "Все билеты на выбранный спектакль проданы. Скажите «Я могу найти другой вариант»",
+          "uk": "Усі квитки на обрану виставу продано. Скажіть «Я можу знайти інший варіант»"
         },
         "orderedTokens": [
-          "Don’t",
-          "shove"
+          "I",
+          "can",
+          "find",
+          "an",
+          "alternative"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -639,7 +814,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -672,67 +847,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите, что умеете свистеть",
+      "prompt": "Выберите форму для фразы «Я могу пойти на компромисс»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-47:i14:r1",
-          "text": "whistle"
+          "text": "compromise"
         },
         {
           "responseId": "en:lesson-08:session-47:i14:r2",
-          "text": "whistles"
+          "text": "compromises"
         },
         {
           "responseId": "en:lesson-08:session-47:i14:r3",
-          "text": "to whistle"
+          "text": "to compromise"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите, что умеете свистеть",
+      "accessibilityLabel": "Выберите форму для фразы «Я могу пойти на компромисс»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите, что умеете свистеть",
-          "uk": "Скажіть, що вмієте свистіти"
+          "ru": "Выберите форму для фразы «Я могу пойти на компромисс»",
+          "uk": "Виберіть форму для фрази «Я можу піти на компроміс»"
         },
         "gappedTargetPhrase": "I can ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-47:i14:r1",
-            "text": "whistle"
+            "text": "compromise"
           },
           {
             "responseId": "en:lesson-08:session-47:i14:r2",
-            "text": "whistles"
+            "text": "compromises"
           },
           {
             "responseId": "en:lesson-08:session-47:i14:r3",
-            "text": "to whistle"
+            "text": "to compromise"
           }
         ],
-        "testedDimension": "Скажите, что умеете свистеть",
+        "testedDimension": "Выберите форму для фразы «Я могу пойти на компромисс»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-47:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите, что умеете свистеть",
+            "testedDimension": "Выберите форму для фразы «Я могу пойти на компромисс»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `s`.",
-              "uk": "Після `can` потрібне `whistle`, без `s`."
+              "ru": "После can нужно compromise, без s.",
+              "uk": "Після can потрібне compromise, без s."
             }
           },
           {
             "responseId": "en:lesson-08:session-47:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите, что умеете свистеть",
+            "testedDimension": "Выберите форму для фразы «Я могу пойти на компромисс»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `whistle`, без `to`.",
-              "uk": "Після `can` потрібне `whistle`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -741,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -817,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -833,46 +1008,46 @@
             "pairId": "en:lesson-08:session-47:i16:p1",
             "target": "adapt",
             "meaningByLocale": {
-              "ru": "адаптироваться",
-              "uk": "адаптуватися"
+              "ru": "приспосабливаться",
+              "uk": "пристосовуватися"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i16:p2",
-            "target": "photograph",
+            "target": "improvise",
             "meaningByLocale": {
-              "ru": "фотографировать",
-              "uk": "фотографувати"
+              "ru": "импровизировать",
+              "uk": "імпровізувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i16:p3",
-            "target": "shove",
+            "target": "compromise",
             "meaningByLocale": {
-              "ru": "грубо толкать",
-              "uk": "грубо штовхати"
+              "ru": "идти на компромисс",
+              "uk": "йти на компроміс"
             }
           },
           {
             "pairId": "en:lesson-08:session-47:i16:p4",
-            "target": "leftover",
+            "target": "alternative",
             "meaningByLocale": {
-              "ru": "остаток еды",
-              "uk": "залишок їжі"
+              "ru": "другой вариант",
+              "uk": "інший варіант"
             }
           }
         ],
         "leftColumn": [
           "adapt",
-          "photograph",
-          "shove",
-          "leftover"
+          "improvise",
+          "compromise",
+          "alternative"
         ],
         "rightColumn": [
-          "адаптироваться",
-          "фотографировать",
-          "грубо толкать",
-          "остаток еды"
+          "приспосабливаться",
+          "импровизировать",
+          "идти на компромисс",
+          "другой вариант"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -890,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-47:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -930,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "76139d853e557c5e5b550040e0077d74e3dffc174343328729871c88fce3b318"
+  "learnerFingerprint": "f63e64013bcfc2a45692e24eca78dfbfcf63f1f43505b2cc91ddefbc5846f499"
 }

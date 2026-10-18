@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-47:word:adapt",
+    "correctText": "adapt",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-47:i01",
     "correctText": "I can adapt.",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-47:word:improvise",
+    "correctText": "improvise",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-47:i06",
-    "correctText": "She can drive.",
+    "correctText": "She can improvise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:word:compromise",
+    "correctText": "compromise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-47:i07",
-    "correctText": "I can whistle.",
+    "correctText": "I can compromise.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-47:i08",
-    "correctText": "drive",
+    "correctText": "improvise",
     "correctResponseId": "en:lesson-08:session-47:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-47:i10",
-    "correctText": "en:lesson-08:session-47:i10:p1=shove\nen:lesson-08:session-47:i10:p2=adapt\nen:lesson-08:session-47:i10:p3=glove\nen:lesson-08:session-47:i10:p4=leftover",
+    "correctText": "en:lesson-08:session-47:i10:p1=adapt\nen:lesson-08:session-47:i10:p2=improvise\nen:lesson-08:session-47:i10:p3=compromise\nen:lesson-08:session-47:i10:p4=photograph",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-47:i11",
-    "correctText": "She can drive.",
+    "correctText": "She can improvise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-47:word:alternative",
+    "correctText": "alternative",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-47:i12",
-    "correctText": "Don’t shove.",
+    "correctText": "I can find an alternative.",
     "correctResponseId": null
   },
   {
@@ -66,7 +86,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-47:i14",
-    "correctText": "whistle",
+    "correctText": "compromise",
     "correctResponseId": "en:lesson-08:session-47:i14:r1"
   },
   {
@@ -76,7 +96,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-47:i16",
-    "correctText": "en:lesson-08:session-47:i16:p1=adapt\nen:lesson-08:session-47:i16:p2=photograph\nen:lesson-08:session-47:i16:p3=shove\nen:lesson-08:session-47:i16:p4=leftover",
+    "correctText": "en:lesson-08:session-47:i16:p1=adapt\nen:lesson-08:session-47:i16:p2=improvise\nen:lesson-08:session-47:i16:p3=compromise\nen:lesson-08:session-47:i16:p4=alternative",
     "correctResponseId": null
   },
   {

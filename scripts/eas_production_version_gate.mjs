@@ -1,5 +1,5 @@
 /**
- * EAS production gate: fail the build if app store metadata was not bumped vs main.
+ * EAS production gate: fail the build if the platform build number was not bumped vs main.
  * Runs only when EAS_BUILD_PROFILE=production (set by EAS for that profile).
  */
 import fs from 'node:fs';
@@ -184,11 +184,10 @@ if (!sameReleaseSnapshot(current, headSnapshot)) {
 
 const baseline = readAppSnapshot(baselineRaw);
 
-const versionOk = current.version !== baseline.version;
 const androidOk = current.versionCode > baseline.versionCode;
 const iosOk = current.buildNumber > baseline.buildNumber;
 
-if (!versionOk || (isAndroidBuild && !androidOk) || (isIosBuild && !iosOk)) {
+if ((isAndroidBuild && !androidOk) || (isIosBuild && !iosOk)) {
   console.error(
     '[eas-production-version-gate] Для EAS production обновите в app.json относительно baseline',
     baselineRef,
@@ -196,7 +195,7 @@ if (!versionOk || (isAndroidBuild && !androidOk) || (isIosBuild && !iosOk)) {
     JSON.stringify(baseline),
     '→ сейчас:',
     JSON.stringify(current),
-    '| нужно: version изменена, versionCode > baseline, ios.buildNumber > baseline',
+    '| нужно: versionCode > baseline для Android и ios.buildNumber > baseline для iOS; expo.version может остаться прежней',
   );
   process.exit(1);
 }

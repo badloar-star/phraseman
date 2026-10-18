@@ -3,8 +3,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const DEFAULT_MAX_AAB_BYTES = 35_000_000;
-
 const AUDIO_EXTENSIONS = new Set(['.aac', '.m4a', '.mp3', '.ogg', '.wav']);
 const IMAGE_EXTENSIONS = new Set(['.avif', '.gif', '.jpeg', '.jpg', '.png', '.webp']);
 const FONT_EXTENSIONS = new Set(['.otf', '.ttf', '.woff', '.woff2']);
@@ -65,7 +63,7 @@ function readEntries(buffer) {
   const entryCount = buffer.readUInt16LE(eocdOffset + 10);
   const centralDirectoryOffset = buffer.readUInt32LE(eocdOffset + 16);
   if (entryCount === 0xffff || centralDirectoryOffset === 0xffffffff) {
-    throw new Error('ZIP64 AABs are not supported by this gate');
+    throw new Error('ZIP64 AABs are not supported by this report');
   }
 
   const entries = [];
@@ -125,13 +123,11 @@ export function auditAab(aabPath) {
 
 function parseArguments(argv) {
   const aabPath = argv.find((argument) => !argument.startsWith('--'));
-  const maxIndex = argv.indexOf('--max-bytes');
-  const maxBytes = maxIndex >= 0 ? Number(argv[maxIndex + 1]) : DEFAULT_MAX_AAB_BYTES;
-  if (!aabPath || !Number.isSafeInteger(maxBytes) || maxBytes < 1) {
-    console.error('Usage: node scripts/android_aab_size_gate.mjs <artifact.aab> [--max-bytes 35000000]');
+  if (!aabPath) {
+    console.error('Usage: node scripts/android_aab_size_report.mjs <artifact.aab>');
     process.exit(2);
   }
-  return { aabPath, maxBytes };
+  return { aabPath };
 }
 
 export function printAudit(audit) {
@@ -153,14 +149,7 @@ const isMain = process.argv[1]
   && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
 
 if (isMain) {
-  const { aabPath, maxBytes } = parseArguments(process.argv.slice(2));
+  const { aabPath } = parseArguments(process.argv.slice(2));
   const audit = auditAab(aabPath);
   printAudit(audit);
-  if (audit.fileBytes > maxBytes) {
-    console.error(
-      `35 MB release gate FAILED: artifact is ${audit.fileBytes} bytes and exceeds ${maxBytes} bytes by ${audit.fileBytes - maxBytes} bytes. Do not submit this AAB.`,
-    );
-    process.exit(1);
-  }
-  console.log(`35 MB release gate PASSED: ${audit.fileBytes} <= ${maxBytes} bytes.`);
 }

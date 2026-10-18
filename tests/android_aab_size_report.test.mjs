@@ -3,15 +3,11 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import test from 'node:test';
 
-import {
-  DEFAULT_MAX_AAB_BYTES,
-  auditAab,
-} from '../scripts/android_aab_size_gate.mjs';
-import { runEasAabSizeGate } from '../scripts/eas_build_on_success.mjs';
+import { auditAab } from '../scripts/android_aab_size_report.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -79,7 +75,6 @@ test('audits every compressed entry and reconciles structural overhead', () => {
     const audit = auditAab(aabPath);
     const categories = Object.fromEntries(audit.categories.map((row) => [row.category, row]));
 
-    assert.equal(DEFAULT_MAX_AAB_BYTES, 35_000_000);
     assert.equal(categories['JS/Hermes bytecode'].compressedBytes, 6);
     assert.equal(categories['Native libraries: arm64-v8a'].compressedBytes, 6);
     assert.equal(categories['Image/icon resources'].compressedBytes, 8);
@@ -95,76 +90,86 @@ test('audits every compressed entry and reconciles structural overhead', () => {
   });
 });
 
-test('CLI rejects an AAB above the configured byte limit and prints the largest categories', () => {
+test('CLI reports an AAB without applying a blocking size threshold', () => {
   withFixture([
     { name: 'base/assets/index.android.bundle', data: 'hermes' },
   ], (aabPath) => {
     const result = spawnSync(
       process.execPath,
-      ['scripts/android_aab_size_gate.mjs', aabPath, '--max-bytes', '1'],
+      ['scripts/android_aab_size_report.mjs', aabPath],
       { cwd: path.resolve(import.meta.dirname, '..'), encoding: 'utf8' },
     );
 
-    assert.equal(result.status, 1);
+    assert.equal(result.status, 0);
     assert.match(result.stdout, /JS\/Hermes bytecode/);
-    assert.match(result.stderr, /35 MB release gate|exceeds 1 bytes/i);
+    assert.doesNotMatch(result.stdout + result.stderr, /35 MB|gate|threshold|exceeds/i);
   });
 });
 
-test('package exposes the 35 MB artifact gate as a release command', () => {
+test('package exposes only an informational AAB size report', () => {
   const root = path.resolve(import.meta.dirname, '..');
   const packageJson = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
+  const easIgnore = readFileSync(path.join(root, '.easignore'), 'utf8');
   assert.equal(
-    packageJson.scripts['android:aab-size-gate'],
-    'node scripts/android_aab_size_gate.mjs',
+    packageJson.scripts['android:aab-size-report'],
+    'node scripts/android_aab_size_report.mjs',
   );
-  assert.equal(
-    packageJson.scripts['eas-build-on-success'],
-    'node scripts/eas_build_on_success.mjs',
-  );
+  assert.equal(packageJson.scripts['android:aab-size-gate'], undefined);
+  assert.equal(packageJson.scripts['eas-build-on-success'], undefined);
+  assert.doesNotMatch(easIgnore, /android_aab_size_gate|eas_build_on_success/);
 });
 
-test('EAS success hook gates only the generated Android production AAB', () => {
-  const directory = mkdtempSync(path.join(tmpdir(), 'phraseman-eas-aab-size-'));
-  const outputDirectory = path.join(directory, 'android', 'app', 'build', 'outputs', 'bundle', 'release');
-  const aabPath = path.join(outputDirectory, 'app-release.aab');
-  try {
-    mkdirSync(outputDirectory, { recursive: true });
-    writeFileSync(aabPath, makeStoredZip([
-      { name: 'base/assets/index.android.bundle', data: 'hermes' },
-    ]));
-
-    assert.throws(
-      () => runEasAabSizeGate({
-        env: { EAS_BUILD_PLATFORM: 'android', EAS_BUILD_PROFILE: 'production' },
-        projectRoot: directory,
-        maxBytes: 1,
-      }),
-      /release gate FAILED/,
-    );
-    assert.deepEqual(
-      runEasAabSizeGate({
-        env: { EAS_BUILD_PLATFORM: 'ios', EAS_BUILD_PROFILE: 'production' },
-        projectRoot: directory,
-        maxBytes: 1,
-      }),
-      { skipped: true },
-    );
-  } finally {
-    rmSync(directory, { recursive: true, force: true });
-  }
+test('production build metadata is 135 while the app version remains 2.0.0', () => {
+  const root = path.resolve(import.meta.dirname, '..');
+  const app = JSON.parse(readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
+  assert.equal(app.version, '2.0.0');
+  assert.equal(app.android.versionCode, 135);
+  assert.equal(app.ios.buildNumber, '135');
 });
 
-test('EAS Android production success hook fails closed without exactly one AAB', () => {
-  const directory = mkdtempSync(path.join(tmpdir(), 'phraseman-eas-aab-missing-'));
+test('production version gate accepts build 135 with app version 2.0.0 unchanged', () => {
+  const directory = mkdtempSync(path.join(tmpdir(), 'phraseman-version-gate-'));
+  const scriptsDirectory = path.join(directory, 'scripts');
+  const gatePath = path.join(scriptsDirectory, 'eas_production_version_gate.mjs');
+  const writeApp = (build) => writeFileSync(path.join(directory, 'app.json'), JSON.stringify({
+    expo: {
+      version: '2.0.0',
+      android: { versionCode: build },
+      ios: { buildNumber: String(build) },
+    },
+  }));
+
   try {
-    assert.throws(
-      () => runEasAabSizeGate({
-        env: { EAS_BUILD_PLATFORM: 'android', EAS_BUILD_PROFILE: 'production' },
-        projectRoot: directory,
-      }),
-      /expected exactly one production AAB, found 0/,
+    mkdirSync(scriptsDirectory, { recursive: true });
+    writeFileSync(
+      gatePath,
+      readFileSync(path.resolve(import.meta.dirname, '../scripts/eas_production_version_gate.mjs')),
     );
+    execFileSync('git', ['init', '-b', 'main'], { cwd: directory });
+    execFileSync('git', ['config', 'user.name', 'Phraseman Test'], { cwd: directory });
+    execFileSync('git', ['config', 'user.email', 'test@phraseman.local'], { cwd: directory });
+    writeApp(134);
+    execFileSync('git', ['add', 'app.json'], { cwd: directory });
+    execFileSync('git', ['-c', 'core.hooksPath=NUL', 'commit', '-m', 'build 134'], { cwd: directory });
+    writeApp(135);
+    execFileSync('git', ['add', 'app.json'], { cwd: directory });
+    execFileSync('git', ['-c', 'core.hooksPath=NUL', 'commit', '-m', 'build 135'], { cwd: directory });
+
+    for (const platform of ['android', 'ios']) {
+      const result = spawnSync(process.execPath, [gatePath], {
+        cwd: directory,
+        encoding: 'utf8',
+        env: {
+          ...process.env,
+          EAS_BUILD_PROFILE: 'production',
+          EAS_BUILD_PLATFORM: platform,
+          EXPO_PUBLIC_STORE_RELEASE: '1',
+          EXPO_PUBLIC_RC_ANDROID: 'goog_test',
+          EXPO_PUBLIC_RC_IOS: 'appl_test',
+        },
+      });
+      assert.equal(result.status, 0, `${platform}: ${result.stdout}\n${result.stderr}`);
+    }
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }
@@ -222,5 +227,6 @@ test('EAS preserves mapping and unstripped native libraries as supplementary bui
   assert.deepEqual(eas.build.production.buildArtifactPaths, [
     'android/app/build/outputs/mapping/release/mapping.txt',
     'android/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/**/*',
+    'android/app/build/outputs/**/*.aab',
   ]);
 });

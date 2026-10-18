@@ -625,6 +625,8 @@ const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
 // правильно выбранном аккаунте. 5с — всё ещё короткая подсказка: серверный
 // callable авторитетен и сам разрулит anchor при любом исходе hint'а.
 const AUTH_LINK_HINT_TIMEOUT_MS = 5_000;
+// зачем (Ревизор к 1b38ad210): довод прерванного входа при запуске держит заставку не дольше ≈6 с, дальше — безопасный откат.
+const ROLL_FORWARD_NETWORK_DEADLINE_MS = 6_000;
 
 /**
  * Транзиентные failure-классы стадии auth_link — их ретраим (холодный старт,
@@ -4102,14 +4104,24 @@ export async function completeInterruptedProviderHandoff(input: Readonly<{
   console.log(`[AUTH-HANDOFF] roll_forward start provider=${input.provider} authUid=${identityTag(authUid)} owner=${identityTag(input.ownerStableId)}`); // guard-ok: вход
   const firestore = getFirestore();
   if (!firestore) return giveUp('firestore_unavailable');
+  // зачем (Ревизор к 1b38ad210, 🟡): auth_links (до 5 с) + функция связки держали заставку при запуске 5–10 с. Общий срок
+  // ставим ТОЛЬКО на сетевую часть — до замка и стирания: обрезать весь довод нельзя, он продолжился бы в фоне и столкнулся
+  // с откатом (две смены личности сразу). Срок вышел → forward_timeout, сдаёмся без изменений, вызывающий делает откат.
+  const networkLeftMs = (): number => Math.max(0, ROLL_FORWARD_NETWORK_DEADLINE_MS - (Date.now() - startedAt));
+  const forwardTimeout = (step: string): null => {
+    console.warn(`[AUTH-HANDOFF] forward_timeout step=${step} deadlineMs=${ROLL_FORWARD_NETWORK_DEADLINE_MS} tookMs=${Date.now() - startedAt}`); // guard-ok: ранний выход пишет причину
+    return giveUp(`forward_timeout_${step}`);
+  };
   let remoteStableId: string | null = null;
   try {
     // один документ по ключу (auth_links/{uid}), не выборка коллекции
-    const linkSnap = await withTimeout<any>(firestore.collection('auth_links').doc(authUid).get(), AUTH_LINK_HINT_TIMEOUT_MS, 'roll_forward_link_lookup');
+    const linkSnap = await withTimeout<any>(firestore.collection('auth_links').doc(authUid).get(), Math.min(AUTH_LINK_HINT_TIMEOUT_MS, networkLeftMs()), 'roll_forward_link_lookup');
     const linked = linkSnap.exists ? linkSnap.data()?.stable_id : null;
     remoteStableId = typeof linked === 'string' && linked.trim() ? linked.trim() : null;
   } catch (lookupError) {
-    return giveUp(`link_lookup_${identityErrorCode(lookupError)}`);
+    const lookupCode = identityErrorCode(lookupError);
+    if (lookupCode.startsWith('timeout_')) return forwardTimeout('link_lookup');
+    return giveUp(`link_lookup_${lookupCode}`);
   }
   const metadata: StableAuthLinkMetadata = {
     provider: input.provider,
@@ -4120,11 +4132,20 @@ export async function completeInterruptedProviderHandoff(input: Readonly<{
   };
   // Нашлась связка — это существующий аккаунт B; нет — новый B, привязываем к нему чистого гостя (ветка «local» обычного входа).
   const targetStableId = remoteStableId ?? input.ownerStableId;
-  const proof = await ensureStableAuthLinkForStableIdDetailed(targetStableId, metadata, { requireAuthoritative: true })
-    .catch((linkError: unknown) => {
-      console.warn(`[AUTH-HANDOFF] roll_forward ensure_link threw code=${identityErrorCode(linkError)}`); // guard-ok: catch пишет причину
-      return null;
-    });
+  const ensureLeftMs = networkLeftMs();
+  if (ensureLeftMs <= 0) return forwardTimeout('before_ensure_link');
+  let ensureTimedOut = false;
+  const proof = await withTimeout(
+    ensureStableAuthLinkForStableIdDetailed(targetStableId, metadata, { requireAuthoritative: true }),
+    ensureLeftMs,
+    'roll_forward_ensure_link',
+  ).catch((linkError: unknown) => {
+    const linkCode = identityErrorCode(linkError);
+    ensureTimedOut = linkCode.startsWith('timeout_');
+    console.warn(`[AUTH-HANDOFF] roll_forward ensure_link threw code=${linkCode}`); // guard-ok: catch пишет причину
+    return null;
+  });
+  if (ensureTimedOut) return forwardTimeout('ensure_link');
   if (!proof?.ok || !proof.stableUid) return giveUp(`ensure_link_${proof?.failure ?? 'failed'}`);
   const canonicalStableId = proof.stableUid;
   console.log(`[AUTH-HANDOFF] roll_forward linked branch=${remoteStableId ? 'remote' : 'local'} canonical=${identityTag(canonicalStableId)}`); // guard-ok: ветка решения

@@ -33,4 +33,19 @@ describe('вход: аноним + существующий Apple/Google-акк�
     const types = fs.readFileSync(path.join(typesDir, 'lib', 'index.d.ts'), 'utf8');
     expect(types).toContain('authCredential: AuthCredential | null;');
   });
+
+  // зачем (Ревизор к 1b38ad210, 🟡): довод при запуске не держит заставку дольше ≈6 с; срок — только на сетевую часть,
+  // сдача по сроку раньше замка/стирания (иначе довод доделался бы в фоне поверх отката).
+  it('довод прерванного входа: общий сетевой срок 6 с, forward_timeout до замка и стирания', () => {
+    expect(src).toContain('const ROLL_FORWARD_NETWORK_DEADLINE_MS = 6_000;');
+    const fnStart = src.indexOf('export async function completeInterruptedProviderHandoff(');
+    const fn = src.slice(fnStart, src.indexOf('export function resumePendingAccountSwitchQuarantine', fnStart));
+    expect(fn).toContain('[AUTH-HANDOFF] forward_timeout step=${step}');
+    expect(fn).toContain("Math.min(AUTH_LINK_HINT_TIMEOUT_MS, networkLeftMs())");
+    expect(fn).toContain("'roll_forward_ensure_link'");
+    const lastTimeout = fn.lastIndexOf("forwardTimeout('ensure_link')");
+    expect(lastTimeout).toBeGreaterThan(0);
+    expect(lastTimeout).toBeLessThan(fn.indexOf('withAccountTransitionLock('));
+    expect(lastTimeout).toBeLessThan(fn.indexOf('await input.clearHandoff();'));
+  });
 });

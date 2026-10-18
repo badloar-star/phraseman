@@ -25,7 +25,7 @@ import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { useTodayTasks } from '../hooks/use_today_tasks';
-import { safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { noteBackDecision, noteBackStep } from './back_tap_probe';
 import { filterTodayTasksForTarget } from './today_task_surface_filter';
 import { peekTodayRingFrom, readTodayRingFrom, rememberTodayRingSeen, type TodayRingProgress } from './today_ring_seen';
@@ -124,7 +124,7 @@ export default function TodayTasksScreen() {
     console.log('[TODAY-RING] task:open', JSON.stringify({ kind: task.kind, route: task.route, progress: task.progress, target: task.target, done: task.done })); // guard-ok: одна строка на тап
     // зачем: вкладки (Видео, Пик в «Сообществе») — экран «Сегодня» закрывается и открывается вкладка (dismissTo; navigate оставлял экран поверх вкладки —
     // эмулятор 17.10: Пик грузился ПОД «Сегодня»); остальное — защищённый от двойного тапа push
-    if (task.route.startsWith('/(tabs)')) router.dismissTo(task.route as never);
+    if (task.route.startsWith('/(tabs)')) dismissToTabRoute(router, task.route);
     else nav.push(task.route as never);
   };
 

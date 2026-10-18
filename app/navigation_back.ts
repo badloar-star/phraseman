@@ -527,6 +527,25 @@ export function safeRouterBack(
   router.replace(chosen.target);
 }
 
+type TabDismissRouter = Readonly<{ dismissTo?: (target: any) => void; replace: (target: any) => void }>;
+
+/**
+ * Закрыть экран поверх вкладок и открыть вкладку (задача-вкладка на «Сегодня»: «Видео», «Пик в Сообществе»).
+ * зачем (эмулятор 17.10, e017d8ef7; контракт navigation_back_underlay_contract 18.10): router.navigate грузил вкладку ПОД «Сегодня», экран оставался сверху; dismissTo закрывает стек до вкладки.
+ * Прямой dismissTo разрешён только в проверенных файлах, поэтому он живёт здесь, а экран зовёт функцию. Цель всегда `/(tabs)/…` (детерминированная); без dismissTo у роутера — replace.
+ */
+export function dismissToTabRoute(router: TabDismissRouter, route: string): void {
+  if (!route.startsWith('/(tabs)')) {
+    console.warn('[NAV-BACK] dismiss_to_tab: цель не вкладка → replace', JSON.stringify({ route })); // guard-ok: ранний выход называет значение
+    router.replace(route);
+    return;
+  }
+  const method = typeof router.dismissTo === 'function' ? 'dismissTo' : 'replace';
+  console.log('[NAV-BACK] dismiss_to_tab', JSON.stringify({ route, method })); // guard-ok: одна строка на переход
+  if (typeof router.dismissTo === 'function') router.dismissTo(route);
+  else router.replace(route);
+}
+
 export function dismissPaywallModal(
   router: ModalDismissRouter,
   fallback: any = HOME_BACK_FALLBACK,

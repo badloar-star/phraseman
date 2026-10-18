@@ -104,7 +104,13 @@ describe('заголовок экрана «Сегодня» 28/34 (макет �
 describe('задача-вкладка с экрана «Сегодня» закрывает экран и открывает вкладку', () => {
   it('dismissTo для /(tabs)/…, не navigate (эмулятор 17.10: Пик открывался под экраном «Сегодня»)', () => {
     const screen = read('app/today_tasks.tsx');
-    expect(screen).toContain("if (task.route.startsWith('/(tabs)')) router.dismissTo(task.route as never);");
+    // перепин 18.10 (контракт navigation_back_underlay_contract, координатор): прямой router.dismissTo разрешён только в проверенных файлах — вызов вынесен в dismissToTabRoute (app/navigation_back.ts); поведение то же: dismissTo для /(tabs)/…, запасной replace
+    expect(screen).toContain("if (task.route.startsWith('/(tabs)')) dismissToTabRoute(router, task.route);");
+    expect(screen).not.toMatch(/router\.dismissTo\(/);
     expect(screen).not.toMatch(/router\.navigate\(task\.route/);
+    const navigationBack = read('app/navigation_back.ts');
+    expect(navigationBack).toContain('export function dismissToTabRoute(router: TabDismissRouter, route: string): void {');
+    expect(navigationBack).toContain('if (typeof router.dismissTo === \'function\') router.dismissTo(route);');
+    expect(navigationBack).toContain('else router.replace(route);');
   });
 });

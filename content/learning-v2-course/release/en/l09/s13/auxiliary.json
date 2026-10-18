@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-13:intro1:r2": {
+          "ru": "С he перед sneezing нужно is.",
+          "uk": "Із he перед sneezing потрібне is."
+        },
+        "en:lesson-09:session-13:intro1:r3": {
+          "ru": "Для действия сейчас после is нужна форма sneezing.",
+          "uk": "Для дії зараз після is потрібна форма sneezing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-13:intro2:r2": {
+          "ru": "С this здесь нужно is.",
+          "uk": "Із this тут потрібне is."
+        },
+        "en:lesson-09:session-13:intro2:r3": {
+          "ru": "Am употребляется с I; здесь this is.",
+          "uk": "Am уживається з I; тут this is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-13:intro3:r2": {
+          "ru": "С she перед not нужно is.",
+          "uk": "Із she перед not потрібне is."
+        },
+        "en:lesson-09:session-13:intro3:r3": {
+          "ru": "Для действия сейчас здесь нужна форма drawing.",
+          "uk": "Для дії зараз тут потрібна форма drawing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6fbd3bdc03010b7e5bfe79e5475f7165cf207f4b2eac6f0058a2eaec040e624d"
+}

@@ -136,7 +136,12 @@ describe('referral reward animation recovery', () => {
   it('keeps reward cards bright and shows a disabled claim button when no keys remain', () => {
     expect(REFERRALS).toContain('<PrizeArc ref={arcRef} dimmed={false} />');
     expect(REFERRALS).toContain("accessibilityState={{ disabled: spinning || spinCredits <= 0 }}");
-    expect(REFERRALS).toContain("disabled={spinning || spinCredits <= 0}");
+    // зачем (Макеты 18.10, кадр referral_01d66): при 0 ключей кнопка приглушена (opacity 0.5) и по тапу открывает «Как это работает»,
+    // а не молчит; нажатие блокирует только идущий спин. onSpin по-прежнему сам выходит при spinCredits <= 0.
+    expect(REFERRALS).toContain('disabled={spinning}');
+    expect(REFERRALS).toContain("opacity: spinning ? 0.84 : spinCredits <= 0 ? 0.5 : 1");
+    expect(REFERRALS).toContain('setHowSheetOpen(true);');
+    expect(REFERRALS).toContain('if (spinningRef.current || spinCredits <= 0) return;');
     expect(REFERRALS).toContain("L('Получить приз'");
   });
 

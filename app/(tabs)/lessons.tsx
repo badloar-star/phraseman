@@ -259,6 +259,7 @@ import {
 } from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { useMemHomeRegisterSources } from '../mem_home_probe';
 
 const EXEMPT_COLOR_1 = '#8FA0FF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
 const EXEMPT_COLOR_2 = '#B79CFF'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
@@ -2441,6 +2442,7 @@ export default function LessonsTab({
   // заново сразу после открытия сессии, initialPage сбрасывается на "lessons"
   // и внутреннее состояние карты V2 теряется. Лог остаётся навсегда.
   const instanceIdRef = useRef(Math.random().toString(36).slice(2, 8));
+  useMemHomeRegisterSources('lessons_instance'); // зачем ([MEM-HOME] 18.10, R129): живые экземпляры «Обучения»; dev, в релизе пусто
   // R08: время последнего касания экрана «Обучения» — прогрев занятия ждёт, пока человек 2,5 с ничего не трогает
   const lastLessonsTouchAtRef = useRef(Date.now());
   useEffect(() => {

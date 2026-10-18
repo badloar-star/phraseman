@@ -58,6 +58,7 @@ import { sameSnapshotSection } from '../home_snapshot_equal';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { useHomeFocusCostBegin, useHomeFocusCostEnd, withHomeChildCost } from '../home_focus_cost_probe';
 import { noteBackArrived } from '../back_tap_probe';
+import { memHomeSummary, useMemHomeRegisterSources } from '../mem_home_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
@@ -543,6 +544,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
   // зачем ((в), пакет 07:26: фиксация +5,6 с → кадр +8,1 с): ПЕРВЫЙ объявленный пассивный эффект Главной. Пассивные
   // эффекты идут по порядку объявления, дочерние — раньше родителя; пара с последним эффектом ниже делит окно.
   useEffect(() => { if (homeFirstPassiveStartedAt === 0) homeFirstPassiveStartedAt = Date.now(); }, []);
+  useMemHomeRegisterSources('home_instance'); // зачем ([MEM-HOME] 18.10, R129): живые экземпляры Главной — после замены экрана больше одного значит утечка дерева; dev, в релизе пусто
   const homeFocusCost = useHomeFocusCostBegin(); // зачем ([HOME-FOCUS-COST] 18.10, [BACK-BTN] «Сегодня»: JS занят 200–650 мс после возврата): сколько стоит рендер корня с детьми и собственные эффекты корня; dev, в релизе пусто
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
@@ -688,6 +690,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [lang]);
     useEffect(() => {
         noteScrollEvent('home', 'focus', { focusTick, y: Math.round(homeScrollYRef.current), setBy: 'none_no_scrollTo_on_home' });
+        memHomeSummary('home_focus', { focusTick }); // зачем ([MEM-HOME] 18.10): сводка живых картинок/экземпляров и JS-куча на каждом фокусе Главной
         noteBackArrived('home', 'focus_tick'); // зачем ([BACK-BTN] 18.10): возврат с «Сегодня» — «прибыли» на Главной; без нажатия «назад» проба молчит
     }, [focusTick]);
     // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,

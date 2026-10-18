@@ -17,7 +17,7 @@ function load({ dev = true, store = false } = {}) {
     module, exports: module.exports,
     require: (id) => {
       if (id === 'react-native') return { InteractionManager: { runAfterInteractions: () => { framesRequested += 1; } } };
-      if (id === './config') return { IS_STORE_RELEASE: store };
+      if (id === './dev_diag_gate') return { DIAG_ENABLED: dev && !store };
       throw Error(`Unmocked ${id}`);
     },
     __DEV__: dev,
@@ -89,7 +89,8 @@ for (const [name, mode] of [['сторовая сборка (IS_STORE_RELEASE)',
 
 test('в исходнике проба закрыта за __DEV__ && !IS_STORE_RELEASE и каждая функция начинается с проверки', () => {
   const src = fs.readFileSync('app/back_tap_probe.ts', 'utf8').replace(/\r\n/g, '\n');
-  assert.ok(src.includes("const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;"));
+  assert.ok(src.includes('const ENABLED = DIAG_ENABLED;'));
+  assert.ok(src.includes("import { DIAG_ENABLED } from './dev_diag_gate';"));
   for (const fn of ['noteBackTap', 'noteBackDecision', 'noteBackArrived']) {
     const at = src.indexOf(`export function ${fn}(`);
     assert.ok(at > 0 && src.slice(at, at + 240).includes('if (!ENABLED) return;'), fn);

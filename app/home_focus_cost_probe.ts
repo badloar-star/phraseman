@@ -14,13 +14,13 @@
  */
 import React, { Profiler, useEffect, useRef, type ComponentType } from 'react';
 
-import { IS_STORE_RELEASE } from './config';
+import { DIAG_ENABLED } from './dev_diag_gate';
 import { renderWindowEpoch } from './render_cause_probe';
 import { noteBackStep } from './back_tap_probe';
 
 export const HOME_FOCUS_COST_THRESHOLD_MS = 30;
 export const HOME_CHILD_COST_THRESHOLD_MS = 8;
-const ENABLED = __DEV__ && !IS_STORE_RELEASE;
+const ENABLED = DIAG_ENABLED;
 
 export type HomeFocusCostState = { renderStartedAt: number; firstEffectAt: number; renders: number };
 

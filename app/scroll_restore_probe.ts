@@ -7,10 +7,10 @@
  * событиях: смена языка, показ вкладки, изменение высоты содержимого ≥ 24 dp и рывок положения ≥ 300 dp без жеста пальца в окне 2,5 с после события.
  * Не больше 8 строк на событие, значения — числа и имена, без текстов пользователя.
  */
-import { IS_STORE_RELEASE } from './config';
+import { DIAG_ENABLED } from './dev_diag_gate';
 
 // зачем (Ревизор 3.44, координатор 18.10): журналы диагностики — только dev и не стор-релиз; в релизе все функции возвращаются сразу (ни состояния, ни console.log)
-const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+const ENABLED = DIAG_ENABLED;
 
 const LOG = '[SCROLL-RESTORE]';
 export const SCROLL_RESTORE_WINDOW_MS = 2500;

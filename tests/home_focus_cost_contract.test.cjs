@@ -26,7 +26,7 @@ test('журнал стоимости: Begin раньше остальных э�
 
 test('зонд: только dev и не стор-релиз, порог 30 мс, без данных пользователя', () => {
   const probe = read('app/home_focus_cost_probe.ts');
-  assert.ok(probe.includes('const ENABLED = __DEV__ && !IS_STORE_RELEASE;'));
+  assert.ok(probe.includes('const ENABLED = DIAG_ENABLED;'));
   assert.ok(probe.includes('HOME_FOCUS_COST_THRESHOLD_MS = 30'));
   assert.ok(/\[HOME-FOCUS-COST\]/.test(probe));
 });

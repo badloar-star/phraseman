@@ -6,11 +6,11 @@
 // Используют экраны, где есть кнопка «назад»: noteBackTap при тапе → noteBackDecision (что решил) → noteBackArrived (когда экран сменился).
 import { InteractionManager } from 'react-native';
 
-import { IS_STORE_RELEASE } from './config';
+import { DIAG_ENABLED } from './dev_diag_gate';
 
 // зачем (Ревизор 3.44, cf8144a87; координатор 18.10, важно для стора): проба работала без гейта — в сторовой сборке на каждом «назад» шли тики 8 с и console.warn no-arrival.
 // Теперь только dev и не стор-релиз: в релизе ни таймеров, ни рамок кадра, ни журнала, ни warn — все функции возвращаются сразу. Сторож: tests/back_steps_probe.test.cjs.
-const ENABLED = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+const ENABLED = DIAG_ENABLED; // __DEV__ && не стор-релиз (app/dev_diag_gate.ts — без импортов, чтобы не тянуть app/config в каждый тест)
 
 const LOG = '[BACK-BTN]';
 const WATCH_MS = 8000;

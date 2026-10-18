@@ -7,6 +7,7 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { artAccentTint } from './art_tint';
 import { liquidGlassLevelForIntensity } from '../../constants/liquidGlassThemeIntensity';
+import { useMemHomeRegisterSources } from '../../app/mem_home_probe';
 
 // зачем (координатор 15.10, кадры clay_home: деталь рисуется, но бледно): dev-журнал реального цвета слоя .accent — тема, уровень, оттенок tint. Одна строка на смену ключа.
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
@@ -27,6 +28,7 @@ function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'conta
   // Палитра уже кэширована по теме+оформлению+шагу ползунка — тот же объект, без расчётов.
   const tint = artAccentTint(liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }), liquidGlassAppearance); // зачем (координатор 15.10, предложение А): см. art_tint.ts
   const hasAccent = Boolean(accent);
+  useMemHomeRegisterSources('themed_art', source, accent); // зачем ([MEM-HOME] 18.10, R129): сколько слоёв арта живо и какой у них размер источника; dev, в релизе пусто
   useEffect(() => {
     if (!IS_DEV || !hasAccent) return;
     const level = liquidGlassLevelForIntensity(liquidGlassIntensity);

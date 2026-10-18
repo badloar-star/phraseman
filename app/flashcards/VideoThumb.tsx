@@ -13,6 +13,7 @@ import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { thumbTrace, traceThumbMissing, type ThumbSurface } from '../thumb_trace';
+import { useMemHomeRegisterSources } from '../mem_home_probe';
 
 /**
  * Превью для dev-фикстуры роликов.
@@ -66,6 +67,7 @@ function VideoThumbFallback({ surface, id, reason, title, g, showTitle, showPlay
 
 export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId, thumbUrl, title, g, showTitle, showPlay = true, fallbackBackground }: VideoThumbProps) {
   const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  useMemHomeRegisterSources('video_thumb'); // зачем ([MEM-HOME] 18.10, R129): сколько превью живо одновременно (размер источника печатает [THUMB] load); dev, в релизе пусто
   const local = devDemoThumbSource(videoId);
   if (local) {
     // dev-фикстура: превью реального ролика канала (см. DEV_DEMO_THUMBS)

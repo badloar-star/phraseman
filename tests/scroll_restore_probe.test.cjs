@@ -11,8 +11,7 @@ function load({ dev = true, store = false } = {}) {
   const js = ts.transpileModule(fs.readFileSync('app/scroll_restore_probe.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2021 } }).outputText;
   vm.runInNewContext(js, {
     module, exports: module.exports,
-    require: (id) => { if (id === './config') return { IS_STORE_RELEASE: store }; throw Error(`Unmocked ${id}`); },
-    __DEV__: dev,
+    require: (id) => { if (id === './dev_diag_gate') return { DIAG_ENABLED: dev && !store }; throw Error(`Unmocked ${id}`); },
     console: { log: (...a) => lines.push(a), warn: () => {} }, Date, JSON, Math,
   });
   return module.exports;

@@ -1,0 +1,2441 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-07:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-07:session-21:word:lie",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:lie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:lie:audio",
+            "transcript": "lie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:lie:r1",
+              "targetText": "lie",
+              "meaningByLocale": {
+                "ru": "лгать, говорить неправду. They don't lie. — «Они не лгут». Намеренно говорить неправду, а не просто ошибаться.",
+                "uk": "брехати, говорити неправду. They don't lie. — «Вони не брешуть». Навмисне говорити неправду, а не просто помилятися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lie",
+            "definitionByLocale": {
+              "ru": "лгать, говорить неправду. They don't lie. — «Они не лгут». Намеренно говорить неправду, а не просто ошибаться.",
+              "uk": "брехати, говорити неправду. They don't lie. — «Вони не брешуть». Навмисне говорити неправду, а не просто помилятися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг сомневается в вашем рассказе о рыбе. Скажите: «Я не лгу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг сомневается в вашем рассказе о рыбе. Скажите: «Я не лгу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't lie.",
+          "localizedMeaning": {
+            "ru": "Друг сомневается в вашем рассказе о рыбе. Скажите: «Я не лгу»",
+            "uk": "Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»"
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "lie"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг сомневается в вашем рассказе о рыбе. Скажите: «Я не лгу»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't lie.`",
+                "uk": "тут потрібно `don't` — `I don't lie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i02:r1",
+            "text": "lie"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i02:audio",
+            "transcript": "lie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i02:r1",
+              "targetText": "lie",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r2",
+              "targetText": "cook",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r3",
+              "targetText": "scarf",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `lie`, а в этом варианте — `cook`.",
+                "uk": "У записі перше слово — `lie`, а в цьому варіанті — `cook`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `lie`, а в этом варианте — `scarf`.",
+                "uk": "У записі перше слово — `lie`, а в цьому варіанті — `scarf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите «Я не лгу». Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i03:r1",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r2",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Я не лгу». Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Я не лгу». Выберите слово",
+            "uk": "Скажіть «Я не брешу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ lie.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i03:r1",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r2",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажите «Я не лгу». Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите «Я не лгу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `don't`.",
+                "uk": "Після `I` потрібно `don't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите «Я не лгу». Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+                "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i04:p1",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p2",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p3",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p4",
+              "target": "shout",
+              "meaningByLocale": {
+                "ru": "кричать",
+                "uk": "кричати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lie",
+            "cook",
+            "scarf",
+            "shout"
+          ],
+          "rightColumn": [
+            "лгать",
+            "готовить еду",
+            "шарф",
+            "кричать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i05:audio",
+            "transcript": "I don't lie."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I don't lie.",
+          "orderedTokens": [
+            "I",
+            "don't",
+            "lie"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't lie.`",
+                "uk": "тут потрібно `don't` — `I don't lie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:save",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — save",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:save:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — save",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:save:audio",
+            "transcript": "save"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:save:r1",
+              "targetText": "save",
+              "meaningByLocale": {
+                "ru": "копить, сберегать. I save money. — «Я коплю деньги». Откладывать деньги, чтобы использовать их позже.",
+                "uk": "накопичувати, заощаджувати. I save money. — «Я відкладаю гроші». Відкладати гроші, щоб використати їх пізніше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save",
+            "definitionByLocale": {
+              "ru": "копить, сберегать. I save money. — «Я коплю деньги». Откладывать деньги, чтобы использовать их позже.",
+              "uk": "накопичувати, заощаджувати. I save money. — «Я відкладаю гроші». Відкладати гроші, щоб використати їх пізніше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хочет велосипед. Спросите его жену: «Он копит деньги?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хочет велосипед. Спросите его жену: «Он копит деньги?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does he save money?",
+          "localizedMeaning": {
+            "ru": "Брат хочет велосипед. Спросите его жену: «Он копит деньги?»",
+            "uk": "Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "he",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат хочет велосипед. Спросите его жену: «Он копит деньги?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Does` — `Does he save money?`",
+                "uk": "тут потрібно `Does` — `Does he save money?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:banknote",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — banknote",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:banknote:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — banknote",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:banknote:audio",
+            "transcript": "banknote"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:banknote:r1",
+              "targetText": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота, денежная купюра. I have a banknote. — «У меня есть банкнота». Купюра в отличие от монеты.",
+                "uk": "банкнота, грошова купюра. I have a banknote. — «У мене є банкнота». Купюра на відміну від монети."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banknote",
+            "definitionByLocale": {
+              "ru": "банкнота, денежная купюра. I have a banknote. — «У меня есть банкнота». Купюра в отличие от монеты.",
+              "uk": "банкнота, грошова купюра. I have a banknote. — «У мене є банкнота». Купюра на відміну від монети."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам нужны деньги на проезд. Спросите брата: «У тебя есть банкнота?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Вам нужны деньги на проезд. Спросите брата: «У тебя есть банкнота?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i07:audio",
+            "transcript": "Do you have a banknote?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have a banknote?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Узнайте, копит ли брат деньги. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i08:r1",
+            "text": "save"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r2",
+            "text": "saves"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r3",
+            "text": "is save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узнайте, копит ли брат деньги. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узнайте, копит ли брат деньги. Выберите слово",
+            "uk": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does he ___ money?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i08:r1",
+              "text": "save"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r2",
+              "text": "saves"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r3",
+              "text": "is save"
+            }
+          ],
+          "testedDimension": "Узнайте, копит ли брат деньги. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Узнайте, копит ли брат деньги. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `save`, без `s`.",
+                "uk": "Після `Does` потрібно `save`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Узнайте, копит ли брат деньги. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "В этом вопросе нужно `save`, без `is`.",
+                "uk": "У цьому питанні потрібно `save`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте, чего не делает собеседник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i09:r1",
+            "text": "I don't lie."
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r2",
+            "text": "I don't brag."
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r3",
+            "text": "I don't shout."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте, чего не делает собеседник",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i09:audio",
+            "transcript": "I don't lie."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i09:r1",
+              "targetText": "I don't lie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r2",
+              "targetText": "I don't brag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r3",
+              "targetText": "I don't shout.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте, чего не делает собеседник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lie`, а в этом варианте — `brag`.",
+                "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `brag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте, чего не делает собеседник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lie`, а в этом варианте — `shout`.",
+                "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `shout`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i10:p1",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p2",
+              "target": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота",
+                "uk": "банкнота"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p3",
+              "target": "save",
+              "meaningByLocale": {
+                "ru": "копить",
+                "uk": "заощаджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p4",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cash",
+            "banknote",
+            "save",
+            "lie"
+          ],
+          "rightColumn": [
+            "наличные",
+            "банкнота",
+            "копить",
+            "лгать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i11:audio",
+            "transcript": "Does he save money?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does he save money?",
+          "orderedTokens": [
+            "Does",
+            "he",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Does` — `Does he save money?`",
+                "uk": "тут потрібно `Does` — `Does he save money?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:pay",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pay",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:pay:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pay",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:pay:audio",
+            "transcript": "pay"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:pay:r1",
+              "targetText": "pay",
+              "meaningByLocale": {
+                "ru": "платить. I pay here. — «Я плачу здесь». Отдавать деньги за товар или услугу.",
+                "uk": "платити. I pay here. — «Я плачу тут». Віддавати гроші за товар або послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay",
+            "definitionByLocale": {
+              "ru": "платить. I pay here. — «Я плачу здесь». Отдавать деньги за товар или услугу.",
+              "uk": "платити. I pay here. — «Я плачу тут». Віддавати гроші за товар або послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В кафе вы не знаете, где оплачивать заказ. Спросите посетителя у стойки: «Вы платите здесь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В кафе вы не знаете, где оплачивать заказ. Спросите посетителя у стойки: «Вы платите здесь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you pay here?",
+          "localizedMeaning": {
+            "ru": "В кафе вы не знаете, где оплачивать заказ. Спросите посетителя у стойки: «Вы платите здесь?»",
+            "uk": "У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "pay",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "В кафе вы не знаете, где оплачивать заказ. Спросите посетителя у стойки: «Вы платите здесь?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you pay here?`",
+                "uk": "тут потрібно `Do` — `Do you pay here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы заглянули в копилку. Скажите брату: «Здесь нет банкнот»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Вы заглянули в копилку. Скажите брату: «Здесь нет банкнот»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i13:audio",
+            "transcript": "There are no banknotes here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are no banknotes here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите брату, что банкнот нет. Выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите брату, что банкнот нет. Выберите слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите брату, что банкнот нет. Выберите слово",
+            "uk": "Скажіть братові, що банкнот немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no banknotes here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажите брату, что банкнот нет. Выберите слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажите брату, что банкнот нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "banknotes означает «банкноты», а не «банкнота»: нужно `are`.",
+                "uk": "banknotes означає «банкноти», а не «банкнота»: потрібне `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажите брату, что банкнот нет. Выберите слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте вопрос",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i15:r1",
+            "text": "Do you pay here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r2",
+            "text": "Do you work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r3",
+            "text": "Does he pay here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте вопрос",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i15:audio",
+            "transcript": "Do you pay here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i15:r1",
+              "targetText": "Do you pay here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r2",
+              "targetText": "Do you work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r3",
+              "targetText": "Does he pay here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `pay`, а в этом варианте — `work`.",
+                "uk": "У записі дія — `pay`, а в цьому варіанті — `work`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте вопрос",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос обращён к `you`, а этот вариант спрашивает о `he`.",
+                "uk": "У записі питання звернене до `you`, а цей варіант питає про `he`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i16:p1",
+              "target": "save",
+              "meaningByLocale": {
+                "ru": "копить",
+                "uk": "заощаджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p2",
+              "target": "pay",
+              "meaningByLocale": {
+                "ru": "платить",
+                "uk": "платити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p3",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p4",
+              "target": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота",
+                "uk": "банкнота"
+              }
+            }
+          ],
+          "leftColumn": [
+            "save",
+            "pay",
+            "lie",
+            "banknote"
+          ],
+          "rightColumn": [
+            "копить",
+            "платить",
+            "лгать",
+            "банкнота"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, говорит ли ваш брат неправду. Скажите: «Он не лжёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, говорит ли ваш брат неправду. Скажите: «Он не лжёт»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i17:audio",
+            "transcript": "He doesn't lie."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't lie.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-07:session-21:word:lie",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:lie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:lie:audio",
+            "transcript": "lie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:lie:r1",
+              "targetText": "lie",
+              "meaningByLocale": {
+                "ru": "лгать, говорить неправду. They don't lie. — «Они не лгут». Намеренно говорить неправду, а не просто ошибаться.",
+                "uk": "брехати, говорити неправду. They don't lie. — «Вони не брешуть». Навмисне говорити неправду, а не просто помилятися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lie",
+            "definitionByLocale": {
+              "ru": "лгать, говорить неправду. They don't lie. — «Они не лгут». Намеренно говорить неправду, а не просто ошибаться.",
+              "uk": "брехати, говорити неправду. They don't lie. — «Вони не брешуть». Навмисне говорити неправду, а не просто помилятися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I don't lie.",
+          "localizedMeaning": {
+            "ru": "Друг сомневается в вашем рассказе о рыбе. Скажите: «Я не лгу»",
+            "uk": "Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»"
+          },
+          "orderedTokens": [
+            "I",
+            "don't",
+            "lie"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i01:tile:d1",
+              "correct": false,
+              "testedDimension": "Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't lie.`",
+                "uk": "тут потрібно `don't` — `I don't lie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i02:r1",
+            "text": "lie"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i02:r3",
+            "text": "scarf"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i02:audio",
+            "transcript": "lie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i02:r1",
+              "targetText": "lie",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r2",
+              "targetText": "cook",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r3",
+              "targetText": "scarf",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `lie`, а в этом варианте — `cook`.",
+                "uk": "У записі перше слово — `lie`, а в цьому варіанті — `cook`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `lie`, а в этом варианте — `scarf`.",
+                "uk": "У записі перше слово — `lie`, а в цьому варіанті — `scarf`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть «Я не брешу». Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i03:r1",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r2",
+            "text": "doesn't"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i03:r3",
+            "text": "not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Я не брешу». Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите «Я не лгу». Выберите слово",
+            "uk": "Скажіть «Я не брешу». Виберіть слово"
+          },
+          "gappedTargetPhrase": "I ___ lie.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i03:r1",
+              "text": "don't"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r2",
+              "text": "doesn't"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r3",
+              "text": "not"
+            }
+          ],
+          "testedDimension": "Скажіть «Я не брешу». Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть «Я не брешу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `I` нужно `don't`.",
+                "uk": "Після `I` потрібно `don't`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть «Я не брешу». Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+                "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i04:p1",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p2",
+              "target": "cook",
+              "meaningByLocale": {
+                "ru": "готовить еду",
+                "uk": "готувати їжу"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p3",
+              "target": "scarf",
+              "meaningByLocale": {
+                "ru": "шарф",
+                "uk": "шарф"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i04:p4",
+              "target": "shout",
+              "meaningByLocale": {
+                "ru": "кричать",
+                "uk": "кричати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "lie",
+            "cook",
+            "scarf",
+            "shout"
+          ],
+          "rightColumn": [
+            "брехати",
+            "готувати їжу",
+            "шарф",
+            "кричати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i05:audio",
+            "transcript": "I don't lie."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I don't lie.",
+          "orderedTokens": [
+            "I",
+            "don't",
+            "lie"
+          ],
+          "authoredDistractorTokens": [
+            "doesn't"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть фразу",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `don't` — `I don't lie.`",
+                "uk": "тут потрібно `don't` — `I don't lie.`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:save",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — save",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:save:audio"
+        ],
+        "accessibilityLabel": "Картка слова — save",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:save:audio",
+            "transcript": "save"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:save:r1",
+              "targetText": "save",
+              "meaningByLocale": {
+                "ru": "копить, сберегать. I save money. — «Я коплю деньги». Откладывать деньги, чтобы использовать их позже.",
+                "uk": "накопичувати, заощаджувати. I save money. — «Я відкладаю гроші». Відкладати гроші, щоб використати їх пізніше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "save",
+            "definitionByLocale": {
+              "ru": "копить, сберегать. I save money. — «Я коплю деньги». Откладывать деньги, чтобы использовать их позже.",
+              "uk": "накопичувати, заощаджувати. I save money. — «Я відкладаю гроші». Відкладати гроші, щоб використати їх пізніше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does he save money?",
+          "localizedMeaning": {
+            "ru": "Брат хочет велосипед. Спросите его жену: «Он копит деньги?»",
+            "uk": "Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "he",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Does` — `Does he save money?`",
+                "uk": "тут потрібно `Does` — `Does he save money?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:banknote",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — banknote",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:banknote:audio"
+        ],
+        "accessibilityLabel": "Картка слова — banknote",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:banknote:audio",
+            "transcript": "banknote"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:banknote:r1",
+              "targetText": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота, денежная купюра. I have a banknote. — «У меня есть банкнота». Купюра в отличие от монеты.",
+                "uk": "банкнота, грошова купюра. I have a banknote. — «У мене є банкнота». Купюра на відміну від монети."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banknote",
+            "definitionByLocale": {
+              "ru": "банкнота, денежная купюра. I have a banknote. — «У меня есть банкнота». Купюра в отличие от монеты.",
+              "uk": "банкнота, грошова купюра. I have a banknote. — «У мене є банкнота». Купюра на відміну від монети."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам потрібні гроші на проїзд. Спитайте брата: «У тебе є банкнота?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Вам потрібні гроші на проїзд. Спитайте брата: «У тебе є банкнота?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i07:audio",
+            "transcript": "Do you have a banknote?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have a banknote?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i08:r1",
+            "text": "save"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r2",
+            "text": "saves"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i08:r3",
+            "text": "is save"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Узнайте, копит ли брат деньги. Выберите слово",
+            "uk": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово"
+          },
+          "gappedTargetPhrase": "Does he ___ money?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i08:r1",
+              "text": "save"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r2",
+              "text": "saves"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r3",
+              "text": "is save"
+            }
+          ],
+          "testedDimension": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "После `Does` нужно `save`, без `s`.",
+                "uk": "Після `Does` потрібно `save`, без `s`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Дізнайтеся, чи відкладає брат гроші. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В этом вопросе нужно `save`, без `is`.",
+                "uk": "У цьому питанні потрібно `save`, без `is`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте, чого не робить співрозмовник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i09:r1",
+            "text": "I don't lie."
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r2",
+            "text": "I don't brag."
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i09:r3",
+            "text": "I don't shout."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i09:audio",
+            "transcript": "I don't lie."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i09:r1",
+              "targetText": "I don't lie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r2",
+              "targetText": "I don't brag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r3",
+              "targetText": "I don't shout.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте, чого не робить співрозмовник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lie`, а в этом варианте — `brag`.",
+                "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `brag`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте, чого не робить співрозмовник",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `lie`, а в этом варианте — `shout`.",
+                "uk": "У записі останнє слово — `lie`, а в цьому варіанті — `shout`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i10:p1",
+              "target": "cash",
+              "meaningByLocale": {
+                "ru": "наличные",
+                "uk": "готівка"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p2",
+              "target": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота",
+                "uk": "банкнота"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p3",
+              "target": "save",
+              "meaningByLocale": {
+                "ru": "копить",
+                "uk": "заощаджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i10:p4",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cash",
+            "banknote",
+            "save",
+            "lie"
+          ],
+          "rightColumn": [
+            "готівка",
+            "банкнота",
+            "заощаджувати",
+            "брехати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть питання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть питання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i11:audio",
+            "transcript": "Does he save money?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Does he save money?",
+          "orderedTokens": [
+            "Does",
+            "he",
+            "save",
+            "money"
+          ],
+          "authoredDistractorTokens": [
+            "Do"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послухайте й складіть питання",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Does` — `Does he save money?`",
+                "uk": "тут потрібно `Does` — `Does he save money?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:word:pay",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pay",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:word:pay:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pay",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:word:pay:audio",
+            "transcript": "pay"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:word:pay:r1",
+              "targetText": "pay",
+              "meaningByLocale": {
+                "ru": "платить. I pay here. — «Я плачу здесь». Отдавать деньги за товар или услугу.",
+                "uk": "платити. I pay here. — «Я плачу тут». Віддавати гроші за товар або послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pay",
+            "definitionByLocale": {
+              "ru": "платить. I pay here. — «Я плачу здесь». Отдавать деньги за товар или услугу.",
+              "uk": "платити. I pay here. — «Я плачу тут». Віддавати гроші за товар або послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you pay here?",
+          "localizedMeaning": {
+            "ru": "В кафе вы не знаете, где оплачивать заказ. Спросите посетителя у стойки: «Вы платите здесь?»",
+            "uk": "У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "pay",
+            "here"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»",
+              "feedbackByLocale": {
+                "ru": "здесь нужно `Do` — `Do you pay here?`",
+                "uk": "тут потрібно `Do` — `Do you pay here?`"
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви зазирнули в скарбничку. Скажіть братові: «Тут немає банкнот»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Ви зазирнули в скарбничку. Скажіть братові: «Тут немає банкнот»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i13:audio",
+            "transcript": "There are no banknotes here."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are no banknotes here.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть братові, що банкнот немає. Виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i14:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть братові, що банкнот немає. Виберіть слово",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите брату, что банкнот нет. Выберите слово",
+            "uk": "Скажіть братові, що банкнот немає. Виберіть слово"
+          },
+          "gappedTargetPhrase": "There ___ no banknotes here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-07:session-21:i14:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Скажіть братові, що банкнот немає. Виберіть слово",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Скажіть братові, що банкнот немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "banknotes означает «банкноты», а не «банкнота»: нужно `are`.",
+                "uk": "banknotes означає «банкноти», а не «банкнота»: потрібне `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Скажіть братові, що банкнот немає. Виберіть слово",
+              "feedbackByLocale": {
+                "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+                "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте питання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-07:session-21:i15:r1",
+            "text": "Do you pay here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r2",
+            "text": "Do you work here?"
+          },
+          {
+            "responseId": "en:lesson-07:session-21:i15:r3",
+            "text": "Does he pay here?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте питання",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i15:audio",
+            "transcript": "Do you pay here?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-07:session-21:i15:r1",
+              "targetText": "Do you pay here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r2",
+              "targetText": "Do you work here?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r3",
+              "targetText": "Does he pay here?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-07:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи действие — `pay`, а в этом варианте — `work`.",
+                "uk": "У записі дія — `pay`, а в цьому варіанті — `work`."
+              }
+            },
+            {
+              "responseId": "en:lesson-07:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте питання",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос обращён к `you`, а этот вариант спрашивает о `he`.",
+                "uk": "У записі питання звернене до `you`, а цей варіант питає про `he`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-07:session-21:i16:p1",
+              "target": "save",
+              "meaningByLocale": {
+                "ru": "копить",
+                "uk": "заощаджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p2",
+              "target": "pay",
+              "meaningByLocale": {
+                "ru": "платить",
+                "uk": "платити"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p3",
+              "target": "lie",
+              "meaningByLocale": {
+                "ru": "лгать",
+                "uk": "брехати"
+              }
+            },
+            {
+              "pairId": "en:lesson-07:session-21:i16:p4",
+              "target": "banknote",
+              "meaningByLocale": {
+                "ru": "банкнота",
+                "uk": "банкнота"
+              }
+            }
+          ],
+          "leftColumn": [
+            "save",
+            "pay",
+            "lie",
+            "banknote"
+          ],
+          "rightColumn": [
+            "заощаджувати",
+            "платити",
+            "брехати",
+            "банкнота"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-07:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг питає, чи каже ваш брат неправду. Скажіть: «Він не бреше»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-07:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Друг питає, чи каже ваш брат неправду. Скажіть: «Він не бреше»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-07:session-21:i17:audio",
+            "transcript": "He doesn't lie."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He doesn't lie.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-07:session-21:word:lie",
+      "correctText": "lie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i01",
+      "correctText": "I don't lie.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i02",
+      "correctText": "lie",
+      "correctResponseId": "en:lesson-07:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i03",
+      "correctText": "don't",
+      "correctResponseId": "en:lesson-07:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i05",
+      "correctText": "I don't lie.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:word:save",
+      "correctText": "save",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i06",
+      "correctText": "Does he save money?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:word:banknote",
+      "correctText": "banknote",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i07",
+      "correctText": "Do you have a banknote?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i08",
+      "correctText": "save",
+      "correctResponseId": "en:lesson-07:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i09",
+      "correctText": "I don't lie.",
+      "correctResponseId": "en:lesson-07:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i11",
+      "correctText": "Does he save money?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:word:pay",
+      "correctText": "pay",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i12",
+      "correctText": "Do you pay here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i13",
+      "correctText": "There are no banknotes here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i14",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-07:session-21:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i15",
+      "correctText": "Do you pay here?",
+      "correctResponseId": "en:lesson-07:session-21:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-21:i17",
+      "correctText": "He doesn't lie.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-07:session-20",
   "learningOutcomeByLocale": {
-    "ru": "отрицать привычные действия, спрашивать о работе устройства и сообщать об отсутствии вещей",
-    "uk": "заперечувати звичні дії, запитувати про роботу пристрою й повідомляти про відсутність речей"
+    "ru": "сказать, что вы не кричите, спросить о привычном способе поездки и сообщить, что чего-то нет",
+    "uk": "сказати, що ви не кричите, запитати про звичний спосіб поїздки й повідомити, що чогось немає"
   },
   "pages": [
     {
@@ -11,28 +11,28 @@
       "pageId": "en:lesson-07:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Спокойный спор",
-        "uk": "Спокійна суперечка"
+        "ru": "Спор о выходных",
+        "uk": "Суперечка про вихідні"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, повышаете ли вы голос во время споров. `shout` — «кричать». `I don’t shout` — «Я не кричу». Здесь вы описываете своё обычное поведение: после `I` ставим `don’t`, затем `shout`. Убедительный довод не обязан будить соседей.",
-        "uk": "Друг запитує, чи підвищуєте ви голос під час суперечок. `shout` — «кричати». `I don’t shout` — «Я не кричу». Тут ви описуєте свою звичну поведінку: після `I` ставимо `don’t`, потім `shout`. Переконливий аргумент не зобов’язаний будити сусідів."
+        "ru": "Во время жаркого спора о планах на выходные за семейным столом друг спрашивает, повышаете ли вы голос, когда с вами не согласны, и ждёт честного ответа. shout — «кричать». Ответьте: I don't shout — «Я не кричу». После I ставим don't, а shout остаётся без изменений. Убедительный довод не обязан будить соседей.",
+        "uk": "Під час палкої суперечки про плани на вихідні за сімейним столом друг питає, чи підвищуєте ви голос, коли з вами не погоджуються, і чекає чесної відповіді. shout — «кричати». Дайте відповідь: I don't shout — «Я не кричу». Після I ставимо don't, а shout лишається без змін. Переконливий аргумент не мусить будити сусідів."
       },
       "question": {
         "interactionId": "en:lesson-07:session-20:intro1:q",
         "promptByLocale": {
-          "ru": "Расскажите другу о своём поведении: «Я не кричу».",
-          "uk": "Розкажіть другові про свою поведінку: «Я не кричу»."
+          "ru": "Друг спрашивает, кричите ли вы в спорах. Ответьте: «Я не кричу».",
+          "uk": "Друг питає, чи кричите ви в суперечках. Дайте відповідь: «Я не кричу»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-20:intro1:r1",
-              "text": "I don’t shout."
+              "text": "I don't shout."
             },
             {
               "responseId": "en:lesson-07:session-20:intro1:r2",
-              "text": "I doesn’t shout."
+              "text": "I doesn't shout."
             },
             {
               "responseId": "en:lesson-07:session-20:intro1:r3",
@@ -42,11 +42,11 @@
           "uk": [
             {
               "responseId": "en:lesson-07:session-20:intro1:r1",
-              "text": "I don’t shout."
+              "text": "I don't shout."
             },
             {
               "responseId": "en:lesson-07:session-20:intro1:r2",
-              "text": "I doesn’t shout."
+              "text": "I doesn't shout."
             },
             {
               "responseId": "en:lesson-07:session-20:intro1:r3",
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите другу о своём поведении: «Я не кричу».",
-          "uk": "Розкажіть другові про свою поведінку: «Я не кричу»."
+          "ru": "Друг спрашивает, кричите ли вы в спорах. Ответьте: «Я не кричу».",
+          "uk": "Друг питає, чи кричите ви в суперечках. Дайте відповідь: «Я не кричу»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-07:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Проверяем будильник",
-        "uk": "Перевіряємо будильник"
+        "ru": "Поездка соседа",
+        "uk": "Поїздка сусіда"
       },
       "bodyByLocale": {
-        "ru": "Перед ранним подъёмом вы проверяете старый будильник. `Does the alarm work?` — «Будильник работает?» Здесь `alarm` означает будильник. Вопрос об одном устройстве начинается с `does`, а действие остаётся в форме `work`, без `s`.",
-        "uk": "Перед раннім підйомом ви перевіряєте старий будильник. `Does the alarm work?` — «Будильник працює?» Тут `alarm` означає будильник. Запитання про один пристрій починається з `does`, а дія залишається у формі `work`, без `s`."
+        "ru": "Вы переехали в новый дом и хотите ездить на работу вместе с соседом. Его жена знает, как он обычно добирается. take значит «брать», а take the bus — «ехать на автобусе». Спросите: Does he take the bus? — «Он ездит на автобусе?» После Does оставляем take без s: нужная форма уже есть в начале вопроса.",
+        "uk": "Ви переїхали в новий будинок і хочете їздити на роботу разом із сусідом. Його дружина знає, як він зазвичай дістається. take означає «брати», а take the bus — «їхати автобусом». Запитайте: Does he take the bus? — «Він їздить автобусом?» Після Does лишаємо take без s: потрібна форма вже є на початку питання."
       },
       "question": {
         "interactionId": "en:lesson-07:session-20:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите друга: «Будильник работает?»",
-          "uk": "Запитайте друга: «Будильник працює?»"
+          "ru": "Узнайте у жены соседа, ездит ли он на автобусе.",
+          "uk": "Дізнайтеся в дружини сусіда, чи їздить він автобусом."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-20:intro2:r1",
-              "text": "Does the alarm work?"
+              "text": "Does he take the bus?"
             },
             {
               "responseId": "en:lesson-07:session-20:intro2:r2",
-              "text": "Do the alarm work?"
+              "text": "Do he take the bus?"
             },
             {
               "responseId": "en:lesson-07:session-20:intro2:r3",
-              "text": "Does the alarm works?"
+              "text": "Does he takes the bus?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-20:intro2:r1",
-              "text": "Does the alarm work?"
+              "text": "Does he take the bus?"
             },
             {
               "responseId": "en:lesson-07:session-20:intro2:r2",
-              "text": "Do the alarm work?"
+              "text": "Do he take the bus?"
             },
             {
               "responseId": "en:lesson-07:session-20:intro2:r3",
-              "text": "Does the alarm works?"
+              "text": "Does he takes the bus?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите друга: «Будильник работает?»",
-          "uk": "Запитайте друга: «Будильник працює?»"
+          "ru": "Узнайте у жены соседа, ездит ли он на автобусе.",
+          "uk": "Дізнайтеся в дружини сусіда, чи їздить він автобусом."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-07:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ищем карты",
-        "uk": "Шукаємо карти"
+        "ru": "Печка на даче",
+        "uk": "Пічка на дачі"
       },
       "bodyByLocale": {
-        "ru": "Вы проверили полку с дорожными картами: карт там нет. `There are no maps here` — «Здесь нет карт». `Maps` — множественное число, поэтому используем `are no`.",
-        "uk": "Ви перевірили полицю з дорожніми картами: карт там немає. `There are no maps here` — «Тут немає карт». `Maps` — множина, тому використовуємо `are no`."
+        "ru": "На даче вечером стало холодно, и вы решили растопить печку. Дрова сложены, бумага готова, но на полке спичек не нашлось, хотя вы осмотрели всё. matches — «спички». There are no matches here — «Здесь нет спичек». matches означает «спички», а не «спичка», поэтому здесь нужно are. Слово no сообщает, что их нет.",
+        "uk": "На дачі ввечері похолоднішало, і ви вирішили розпалити пічку. Дрова складені, папір готовий, але на полиці сірників не знайшлося, хоча ви оглянули все. matches — «сірники». There are no matches here — «Тут немає сірників». matches означає «сірники», а не «сірник», тому тут потрібне are. Слово no повідомляє, що їх немає."
       },
       "question": {
         "interactionId": "en:lesson-07:session-20:intro3:q",
         "promptByLocale": {
-          "ru": "Сообщите спутнику: «Здесь нет карт».",
-          "uk": "Повідомте супутникові: «Тут немає карт»."
+          "ru": "На полке нет спичек. Скажите брату: «Здесь нет спичек».",
+          "uk": "На полиці немає сірників. Скажіть братові: «Тут немає сірників»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-07:session-20:intro3:r1",
-              "text": "There are no maps here."
+              "text": "There are no matches here."
             },
             {
               "responseId": "en:lesson-07:session-20:intro3:r2",
-              "text": "There is no maps here."
+              "text": "There is no matches here."
             },
             {
               "responseId": "en:lesson-07:session-20:intro3:r3",
-              "text": "There are maps here."
+              "text": "There are matches here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-07:session-20:intro3:r1",
-              "text": "There are no maps here."
+              "text": "There are no matches here."
             },
             {
               "responseId": "en:lesson-07:session-20:intro3:r2",
-              "text": "There is no maps here."
+              "text": "There is no matches here."
             },
             {
               "responseId": "en:lesson-07:session-20:intro3:r3",
-              "text": "There are maps here."
+              "text": "There are matches here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите спутнику: «Здесь нет карт».",
-          "uk": "Повідомте супутникові: «Тут немає карт»."
+          "ru": "На полке нет спичек. Скажите брату: «Здесь нет спичек».",
+          "uk": "На полиці немає сірників. Скажіть братові: «Тут немає сірників»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e9ae78f41866b80b8d70a96893a36bbc2e62dd5ecd5e1bcdb07cc2bce18a9f02"
+  "introFingerprint": "a04ff5e5618ec8507c5f85873e69b817699337be0fb44366f2637ec3090a07cd"
 }

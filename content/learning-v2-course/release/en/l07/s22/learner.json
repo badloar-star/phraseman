@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-22:i01",
+      "interactionId": "en:lesson-07:session-22:word:argue",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — argue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-22:word:argue:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — argue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-22:word:argue:audio",
+          "transcript": "argue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-22:word:argue:r1",
+            "targetText": "argue",
+            "meaningByLocale": {
+              "ru": "спорить. We don't argue. — «Мы не спорим». О том, как люди упорно доказывают разное.",
+              "uk": "сперечатися. We don't argue. — «Ми не сперечаємося». Про те, як люди уперто доводять різне."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "argue",
+          "definitionByLocale": {
+            "ru": "спорить. We don't argue. — «Мы не спорим». О том, как люди упорно доказывают разное.",
+            "uk": "сперечатися. We don't argue. — «Ми не сперечаємося». Про те, як люди уперто доводять різне."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-22:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я не спорю»",
+      "prompt": "Друг спрашивает, спорите ли вы обычно за столом. Скажите: «Я не спорю»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не спорю»",
+      "accessibilityLabel": "Друг спрашивает, спорите ли вы обычно за столом. Скажите: «Я не спорю»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t argue.",
+        "targetPhrase": "I don't argue.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не спорю»",
-          "uk": "Скажіть «Я не сперечаюся»"
+          "ru": "Друг спрашивает, спорите ли вы обычно за столом. Скажите: «Я не спорю»",
+          "uk": "Друг питає, чи сперечаєтеся ви зазвичай за столом. Скажіть: «Я не сперечаюся»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "argue"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-22:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг спрашивает, спорите ли вы обычно за столом. Скажите: «Я не спорю»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't argue.`",
+              "uk": "тут потрібно `don't` — `I don't argue.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,19 +168,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не спорю»",
+      "prompt": "Скажите «Я не спорю». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-22:i03:r1",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-22:i03:r2",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-22:i03:r3",
@@ -134,46 +189,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не спорю»",
+      "accessibilityLabel": "Скажите «Я не спорю». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не спорю»",
-          "uk": "Скажіть «Я не сперечаюся»"
+          "ru": "Скажите «Я не спорю». Выберите слово",
+          "uk": "Скажіть «Я не сперечаюся». Виберіть слово"
         },
         "gappedTargetPhrase": "I ___ argue.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-22:i03:r1",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-22:i03:r2",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-22:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажите «Я не спорю»",
+        "testedDimension": "Скажите «Я не спорю». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-22:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не спорю»",
+            "testedDimension": "Скажите «Я не спорю». Выберите слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "После `I` нужно `don't`.",
+              "uk": "Після `I` потрібно `don't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-22:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не спорю»",
+            "testedDimension": "Скажите «Я не спорю». Выберите слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
             }
           }
         ]
@@ -182,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -212,32 +267,32 @@
           },
           {
             "pairId": "en:lesson-07:session-22:i04:p3",
-            "target": "boots",
+            "target": "cook",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "готовить",
+              "uk": "готувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-22:i04:p4",
-            "target": "cups",
+            "target": "sister",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "сестра",
+              "uk": "сестра"
             }
           }
         ],
         "leftColumn": [
           "argue",
           "read",
-          "boots",
-          "cups"
+          "cook",
+          "sister"
         ],
         "rightColumn": [
           "спорить",
           "читать",
-          "ботинки",
-          "чашки"
+          "готовить",
+          "сестра"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,50 +325,116 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i05:audio",
-          "transcript": "I don’t argue."
+          "transcript": "I don't argue."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t argue.",
+        "hiddenTargetPhrase": "I don't argue.",
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "argue"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-22:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't argue.`",
+              "uk": "тут потрібно `don't` — `I don't argue.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-22:word:hum",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-22:word:hum:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-22:word:hum:audio",
+          "transcript": "hum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-22:word:hum:r1",
+            "targetText": "hum",
+            "meaningByLocale": {
+              "ru": "напевать. We hum in the kitchen. — «Мы напеваем на кухне». О том, как тихо поют мелодию без слов.",
+              "uk": "наспівувати. We hum in the kitchen. — «Ми наспівуємо на кухні». Про те, як тихо співають мелодію без слів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hum",
+          "definitionByLocale": {
+            "ru": "напевать. We hum in the kitchen. — «Мы напеваем на кухне». О том, как тихо поют мелодию без слов.",
+            "uk": "наспівувати. We hum in the kitchen. — «Ми наспівуємо на кухні». Про те, як тихо співають мелодію без слів."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Спросите «Ты читаешь книги?»",
+      "prompt": "Каждый вечер с кухни слышна мелодия без слов. Спросите соседку: «Ты напеваешь?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите «Ты читаешь книги?»",
+      "accessibilityLabel": "Каждый вечер с кухни слышна мелодия без слов. Спросите соседку: «Ты напеваешь?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you read books?",
+        "targetPhrase": "Do you hum?",
         "localizedMeaning": {
-          "ru": "Спросите «Ты читаешь книги?»",
-          "uk": "Запитайте «Ти читаєш книжки?»"
+          "ru": "Каждый вечер с кухни слышна мелодия без слов. Спросите соседку: «Ты напеваешь?»",
+          "uk": "Щовечора з кухні чути мелодію без слів. Спитайте сусідку: «Ти наспівуєш?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "read",
-          "books"
+          "hum"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Каждый вечер с кухни слышна мелодия без слов. Спросите соседку: «Ты напеваешь?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you hum?`",
+              "uk": "тут потрібно `Do` — `Do you hum?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,26 +443,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-22:word:earphones",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — earphones",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-22:word:earphones:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — earphones",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-22:word:earphones:audio",
+          "transcript": "earphones"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-22:word:earphones:r1",
+            "targetText": "earphones",
+            "meaningByLocale": {
+              "ru": "наушники. The earphones are small. — «Наушники маленькие». Две маленькие колонки, которые вставляют в уши.",
+              "uk": "навушники. The earphones are small. — «Навушники маленькі». Дві маленькі колонки, які вставляють у вуха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earphones",
+          "definitionByLocale": {
+            "ru": "наушники. The earphones are small. — «Наушники маленькие». Две маленькие колонки, которые вставляют в уши.",
+            "uk": "навушники. The earphones are small. — «Навушники маленькі». Дві маленькі колонки, які вставляють у вуха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-22:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сообщите «Здесь нет чашек»",
+      "prompt": "Вы перебрали карманы рюкзака. Скажите другу: «Здесь нет наушников»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Сообщите «Здесь нет чашек»",
+      "accessibilityLabel": "Вы перебрали карманы рюкзака. Скажите другу: «Здесь нет наушников»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i07:audio",
-          "transcript": "There are no cups here."
+          "transcript": "There are no earphones here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no cups here.",
+        "targetPhrase": "There are no earphones here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,11 +520,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Спросите о привычке «Ты читаешь книги?»",
+      "prompt": "Спросите соседку о привычке. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-22:i08:r1",
@@ -377,14 +541,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Спросите о привычке «Ты читаешь книги?»",
+      "accessibilityLabel": "Спросите соседку о привычке. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите о привычке «Ты читаешь книги?»",
-          "uk": "Запитайте про звичку «Ти читаєш книжки?»"
+          "ru": "Спросите соседку о привычке. Выберите слово",
+          "uk": "Спитайте сусідку про звичку. Виберіть слово"
         },
-        "gappedTargetPhrase": "___ you read books?",
+        "gappedTargetPhrase": "___ you hum?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-22:i08:r1",
@@ -399,24 +563,24 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Спросите о привычке «Ты читаешь книги?»",
+        "testedDimension": "Спросите соседку о привычке. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Спросите о привычке «Ты читаешь книги?»",
+            "testedDimension": "Спросите соседку о привычке. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `you` нужно `do`.",
-              "uk": "З `you` потрібне `do`."
+              "ru": "С `you` нужно `Do`.",
+              "uk": "З `you` потрібно `Do`."
             }
           },
           {
             "responseId": "en:lesson-07:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Спросите о привычке «Ты читаешь книги?»",
+            "testedDimension": "Спросите соседку о привычке. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Вопрос о привычном действии `read` строим с `do`.",
-              "uk": "Запитання про звичну дію `read` будуємо з `do`."
+              "ru": "С действием `hum` нужно `Do`, а не `Are`.",
+              "uk": "З дією `hum` потрібно `Do`, а не `Are`."
             }
           }
         ]
@@ -425,7 +589,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -433,15 +597,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-22:i09:r1",
-          "text": "I don’t argue."
+          "text": "I don't argue."
         },
         {
           "responseId": "en:lesson-07:session-22:i09:r2",
-          "text": "I don’t lie."
+          "text": "I don't shout."
         },
         {
           "responseId": "en:lesson-07:session-22:i09:r3",
-          "text": "I don’t shout."
+          "text": "I don't complain."
         }
       ],
       "mediaIds": [],
@@ -453,23 +617,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i09:audio",
-          "transcript": "I don’t argue."
+          "transcript": "I don't argue."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-22:i09:r1",
-            "targetText": "I don’t argue.",
+            "targetText": "I don't argue.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-22:i09:r2",
-            "targetText": "I don’t lie.",
+            "targetText": "I don't shout.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-22:i09:r3",
-            "targetText": "I don’t shout.",
+            "targetText": "I don't complain.",
             "meaningByLocale": null
           }
         ],
@@ -480,8 +644,8 @@
             "correct": false,
             "testedDimension": "Послушайте, чего не делает собеседник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `argue`, а в этом варианте — `lie`.",
-              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `lie`."
+              "ru": "В записи последнее слово — `argue`, а в этом варианте — `shout`.",
+              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `shout`."
             }
           },
           {
@@ -489,8 +653,8 @@
             "correct": false,
             "testedDimension": "Послушайте, чего не делает собеседник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `argue`, а в этом варианте — `shout`.",
-              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `shout`."
+              "ru": "В записи последнее слово — `argue`, а в этом варианте — `complain`.",
+              "uk": "У записі останнє слово — `argue`, а в цьому варіанті — `complain`."
             }
           }
         ],
@@ -501,7 +665,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -515,14 +679,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-22:i10:p1",
-            "target": "server",
+            "target": "cook",
             "meaningByLocale": {
-              "ru": "сервер",
-              "uk": "сервер"
+              "ru": "готовить",
+              "uk": "готувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-22:i10:p2",
+            "target": "earphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-22:i10:p3",
             "target": "argue",
             "meaningByLocale": {
               "ru": "спорить",
@@ -530,33 +702,25 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-22:i10:p3",
-            "target": "read",
-            "meaningByLocale": {
-              "ru": "читать",
-              "uk": "читати"
-            }
-          },
-          {
             "pairId": "en:lesson-07:session-22:i10:p4",
-            "target": "boots",
+            "target": "hum",
             "meaningByLocale": {
-              "ru": "ботинки",
-              "uk": "черевики"
+              "ru": "напевать",
+              "uk": "наспівувати"
             }
           }
         ],
         "leftColumn": [
-          "server",
+          "cook",
+          "earphones",
           "argue",
-          "read",
-          "boots"
+          "hum"
         ],
         "rightColumn": [
-          "сервер",
+          "готовить",
+          "наушники",
           "спорить",
-          "читать",
-          "ботинки"
+          "напевать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,8 +738,8 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите вопрос",
@@ -589,18 +753,29 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i11:audio",
-          "transcript": "Do you read books?"
+          "transcript": "Do you hum?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Do you read books?",
+        "hiddenTargetPhrase": "Do you hum?",
         "orderedTokens": [
           "Do",
           "you",
-          "read",
-          "books"
+          "hum"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите вопрос",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you hum?`",
+              "uk": "тут потрібно `Do` — `Do you hum?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,31 +784,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-22:word:tease",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tease",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-22:word:tease:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tease",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-22:word:tease:audio",
+          "transcript": "tease"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-22:word:tease:r1",
+            "targetText": "tease",
+            "meaningByLocale": {
+              "ru": "дразнить. They don't tease. — «Они не дразнят». О том, как человек шутя задевает другого.",
+              "uk": "дражнити. They don't tease. — «Вони не дражнять». Про те, як людина жартома зачіпає іншого."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tease",
+          "definitionByLocale": {
+            "ru": "дразнить. They don't tease. — «Они не дразнят». О том, как человек шутя задевает другого.",
+            "uk": "дражнити. They don't tease. — «Вони не дражнять». Про те, як людина жартома зачіпає іншого."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-22:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед поездкой спросите друга «У тебя есть ботинки?»",
+      "prompt": "Вы обсуждаете, как младший брат обычно ведёт себя с сестрой. Спросите его: «Ты дразнишь сестру?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед поездкой спросите друга «У тебя есть ботинки?»",
+      "accessibilityLabel": "Вы обсуждаете, как младший брат обычно ведёт себя с сестрой. Спросите его: «Ты дразнишь сестру?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have boots?",
+        "targetPhrase": "Do you tease your sister?",
         "localizedMeaning": {
-          "ru": "Перед поездкой спросите друга «У тебя есть ботинки?»",
-          "uk": "Перед поїздкою запитайте друга «У тебе є черевики?»"
+          "ru": "Вы обсуждаете, как младший брат обычно ведёт себя с сестрой. Спросите его: «Ты дразнишь сестру?»",
+          "uk": "Ви обговорюєте, як молодший брат зазвичай поводиться із сестрою. Спитайте його: «Ти дражниш сестру?»"
         },
         "orderedTokens": [
           "Do",
           "you",
-          "have",
-          "boots"
+          "tease",
+          "your",
+          "sister"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Does"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Вы обсуждаете, как младший брат обычно ведёт себя с сестрой. Спросите его: «Ты дразнишь сестру?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you tease your sister?`",
+              "uk": "тут потрібно `Do` — `Do you tease your sister?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -643,25 +874,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сообщите коллеге «Сервер не работает»",
+      "prompt": "Мама спрашивает, дразните ли вы сестру. Ответьте: «Я не дразню»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-22:i13:audio"
       ],
-      "accessibilityLabel": "Сообщите коллеге «Сервер не работает»",
+      "accessibilityLabel": "Мама спрашивает, дразните ли вы сестру. Ответьте: «Я не дразню»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i13:audio",
-          "transcript": "The server doesn’t work."
+          "transcript": "I don't tease."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The server doesn’t work.",
+        "targetPhrase": "I don't tease.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -676,11 +907,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сообщите «Здесь нет чашек»",
+      "prompt": "Скажите другу, что наушников нет. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-22:i14:r1",
@@ -697,14 +928,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сообщите «Здесь нет чашек»",
+      "accessibilityLabel": "Скажите другу, что наушников нет. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет чашек»",
-          "uk": "Повідомте «Тут немає чашок»"
+          "ru": "Скажите другу, что наушников нет. Выберите слово",
+          "uk": "Скажіть другові, що навушників немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no cups here.",
+        "gappedTargetPhrase": "There ___ no earphones here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-22:i14:r1",
@@ -719,24 +950,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Сообщите «Здесь нет чашек»",
+        "testedDimension": "Скажите другу, что наушников нет. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-22:i14:r2",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет чашек»",
+            "testedDimension": "Скажите другу, что наушников нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `cups` нужно `are`.",
-              "uk": "З `cups` потрібне `are`."
+              "ru": "Earphones — «наушники»: здесь нужно `are`.",
+              "uk": "Earphones — «навушники»: тут потрібно `are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-22:i14:r3",
             "correct": false,
-            "testedDimension": "Сообщите «Здесь нет чашек»",
+            "testedDimension": "Скажите другу, что наушников нет. Выберите слово",
             "feedbackByLocale": {
-              "ru": "С `cups` нужно `are`.",
-              "uk": "З `cups` потрібне `are`."
+              "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -745,51 +976,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где чашки",
+      "prompt": "Послушайте вопрос",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-22:i15:r1",
-          "text": "The cups are here."
+          "text": "Do you hum?"
         },
         {
           "responseId": "en:lesson-07:session-22:i15:r2",
-          "text": "The cups are there."
+          "text": "Do you cook?"
         },
         {
           "responseId": "en:lesson-07:session-22:i15:r3",
-          "text": "The cups are upstairs."
+          "text": "Does he hum?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-22:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, где чашки",
+      "accessibilityLabel": "Послушайте вопрос",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i15:audio",
-          "transcript": "The cups are here."
+          "transcript": "Do you hum?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-22:i15:r1",
-            "targetText": "The cups are here.",
+            "targetText": "Do you hum?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-22:i15:r2",
-            "targetText": "The cups are there.",
+            "targetText": "Do you cook?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-22:i15:r3",
-            "targetText": "The cups are upstairs.",
+            "targetText": "Does he hum?",
             "meaningByLocale": null
           }
         ],
@@ -798,19 +1029,19 @@
           {
             "responseId": "en:lesson-07:session-22:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где чашки",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `there`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `there`."
+              "ru": "В записи последнее слово — `hum`, а в этом варианте — `cook`.",
+              "uk": "У записі останнє слово — `hum`, а в цьому варіанті — `cook`."
             }
           },
           {
             "responseId": "en:lesson-07:session-22:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где чашки",
+            "testedDimension": "Послушайте вопрос",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `here`, а в этом варианте — `upstairs`.",
-              "uk": "У записі останнє слово — `here`, а в цьому варіанті — `upstairs`."
+              "ru": "В записи первое слово — `Do`, а в этом варианте — `Does`.",
+              "uk": "У записі перше слово — `Do`, а в цьому варіанті — `Does`."
             }
           }
         ],
@@ -821,7 +1052,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -835,22 +1066,14 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-22:i16:p1",
-            "target": "cups",
+            "target": "hum",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "напевать",
+              "uk": "наспівувати"
             }
           },
           {
             "pairId": "en:lesson-07:session-22:i16:p2",
-            "target": "server",
-            "meaningByLocale": {
-              "ru": "сервер",
-              "uk": "сервер"
-            }
-          },
-          {
-            "pairId": "en:lesson-07:session-22:i16:p3",
             "target": "argue",
             "meaningByLocale": {
               "ru": "спорить",
@@ -858,25 +1081,33 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-22:i16:p4",
-            "target": "read",
+            "pairId": "en:lesson-07:session-22:i16:p3",
+            "target": "tease",
             "meaningByLocale": {
-              "ru": "читать",
-              "uk": "читати"
+              "ru": "дразнить",
+              "uk": "дражнити"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-22:i16:p4",
+            "target": "earphones",
+            "meaningByLocale": {
+              "ru": "наушники",
+              "uk": "навушники"
             }
           }
         ],
         "leftColumn": [
-          "cups",
-          "server",
+          "hum",
           "argue",
-          "read"
+          "tease",
+          "earphones"
         ],
         "rightColumn": [
-          "чашки",
-          "сервер",
+          "напевать",
           "спорить",
-          "читать"
+          "дразнить",
+          "наушники"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -894,25 +1125,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о привычном поведении Тома при разногласиях. Скажите «Том не спорит»",
+      "prompt": "Друг спрашивает, спорит ли ваш брат. Скажите: «Он не спорит»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о привычном поведении Тома при разногласиях. Скажите «Том не спорит»",
+      "accessibilityLabel": "Друг спрашивает, спорит ли ваш брат. Скажите: «Он не спорит»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-22:i17:audio",
-          "transcript": "Tom doesn’t argue."
+          "transcript": "He doesn't argue."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom doesn’t argue.",
+        "targetPhrase": "He doesn't argue.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -934,11 +1165,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89b5dd4206983b35fe29442604042cd0083e8df4367dd5ca5863a3a895df3f6d"
+  "learnerFingerprint": "38c98b832c4b7a706a42b2b1cf2a8f02318b186b3e5cb88b42c00b279c431d0f"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-21:intro1:r2": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-21:intro1:r3": {
-          "ru": "Для отрицания действия нужно `don’t`.",
-          "uk": "Для заперечення дії потрібне `don’t`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-21:intro2:r2": {
-          "ru": "Для вопроса о Томе нужно `does`.",
-          "uk": "Для запитання про Тома потрібне `does`."
+          "ru": "С he в таком вопросе нужно Does.",
+          "uk": "З he в такому питанні потрібне Does."
         },
         "en:lesson-07:session-21:intro2:r3": {
-          "ru": "После `does` нужно `write`, без `s`.",
-          "uk": "Після `does` потрібне `write`, без `s`."
+          "ru": "После Does нужно save, без s.",
+          "uk": "Після Does потрібне save, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-21:intro3:r2": {
-          "ru": "С `pens` нужно `are`.",
-          "uk": "З `pens` потрібне `are`."
+          "ru": "banknotes означает «банкноты», а не «банкнота»: нужно are.",
+          "uk": "banknotes означає «банкноти», а не «банкнота»: потрібне are."
         },
         "en:lesson-07:session-21:intro3:r3": {
-          "ru": "Без `no` фраза сообщает, что ручки есть.",
-          "uk": "Без `no` фраза повідомляє, що ручки є."
+          "ru": "Без no фраза говорит, что банкноты есть.",
+          "uk": "Без no фраза каже, що банкноти є."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9c895c3c9d88eb470f46a06a9b728b1bdf2d7cd8e42dd49f22e37254dea05f00"
+  "auxiliaryFingerprint": "50d31903e7ac3e63a0fdd6cbbbb1e29d91ff1accf3972c1ebc2681699a68f670"
 }

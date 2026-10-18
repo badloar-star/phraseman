@@ -1,133 +1,154 @@
 # Англійська · Урок 7 · Заняття 20 — Я не кричу
 
-**Ситуація.** Ви пояснюєте, як поводитеся в суперечці, перевіряєте будильник і шукаєте карти для подорожі.
+**Ситуація.** Ви обговорюєте звички в суперечці, дізнаєтеся, як сусід дістається на роботу, і шукаєте сірники на дачі.
 
-**Що ви опануєте:** заперечувати звичні дії, запитувати про роботу пристрою й повідомляти про відсутність речей
-**Нові слова:** shout
+**Що ви опануєте:** сказати, що ви не кричите, запитати про звичний спосіб поїздки й повідомити, що чогось немає
+**Нові слова:** shout, take, matches, lighter
+**Повертаються:** bus, work, have, cook, scarf, brag
 
 ---
 
 ## Інтро 1
 
-### Спокійна суперечка
+### Суперечка про вихідні
 
-Друг запитує, чи підвищуєте ви голос під час суперечок. `shout` — «кричати». `I don’t shout` — «Я не кричу». Тут ви описуєте свою звичну поведінку: після `I` ставимо `don’t`, потім `shout`. Переконливий аргумент не зобов’язаний будити сусідів.
+Під час палкої суперечки про плани на вихідні за сімейним столом друг питає, чи підвищуєте ви голос, коли з вами не погоджуються, і чекає чесної відповіді. shout — «кричати». Дайте відповідь: I don't shout — «Я не кричу». Після I ставимо don't, а shout лишається без змін. Переконливий аргумент не мусить будити сусідів.
 
-**Розкажіть другові про свою поведінку: «Я не кричу».**
+**Друг питає, чи кричите ви в суперечках. Дайте відповідь: «Я не кричу».**
 
-- ✅ **I don’t shout.**
-- ❌ I doesn’t shout. — *Після `I` потрібне `don’t`.*
-- ❌ I not shout. — *Для заперечення дії потрібне `don’t`.*
+- ✅ **I don't shout.**
+- ❌ I doesn't shout. — *Після I потрібно don't.*
+- ❌ I not shout. — *Перед дією потрібно don't, а не просто not.*
 
 ---
 
 ## Інтро 2
 
-### Перевіряємо будильник
+### Поїздка сусіда
 
-Перед раннім підйомом ви перевіряєте старий будильник. `Does the alarm work?` — «Будильник працює?» Тут `alarm` означає будильник. Запитання про один пристрій починається з `does`, а дія залишається у формі `work`, без `s`.
+Ви переїхали в новий будинок і хочете їздити на роботу разом із сусідом. Його дружина знає, як він зазвичай дістається. take означає «брати», а take the bus — «їхати автобусом». Запитайте: Does he take the bus? — «Він їздить автобусом?» Після Does лишаємо take без s: потрібна форма вже є на початку питання.
 
-**Запитайте друга: «Будильник працює?»**
+**Дізнайтеся в дружини сусіда, чи їздить він автобусом.**
 
-- ✅ **Does the alarm work?**
-- ❌ Do the alarm work? — *Один будильник: потрібне `does`.*
-- ❌ Does the alarm works? — *Після `does` потрібне `work`, без `s`.*
+- ✅ **Does he take the bus?**
+- ❌ Do he take the bus? — *Перед he в такому питанні потрібне Does.*
+- ❌ Does he takes the bus? — *Після Does потрібне take, без s.*
 
 ---
 
 ## Інтро 3
 
-### Шукаємо карти
+### Пічка на дачі
 
-Ви перевірили полицю з дорожніми картами: карт там немає. `There are no maps here` — «Тут немає карт». `Maps` — множина, тому використовуємо `are no`.
+На дачі ввечері похолоднішало, і ви вирішили розпалити пічку. Дрова складені, папір готовий, але на полиці сірників не знайшлося, хоча ви оглянули все. matches — «сірники». There are no matches here — «Тут немає сірників». matches означає «сірники», а не «сірник», тому тут потрібне are. Слово no повідомляє, що їх немає.
 
-**Повідомте супутникові: «Тут немає карт».**
+**На полиці немає сірників. Скажіть братові: «Тут немає сірників».**
 
-- ✅ **There are no maps here.**
-- ❌ There is no maps here. — *З `maps` потрібне `are`.*
-- ❌ There are maps here. — *Без `no` фраза повідомляє, що карти є.*
+- ✅ **There are no matches here.**
+- ❌ There is no matches here. — *matches означає «сірники», а не «сірник»: потрібне are.*
+- ❌ There are matches here. — *Без no фраза каже, що сірники є.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не кричу»**
+**1 · Картка слова — shout**
+<!-- interaction_id: en:lesson-07:session-20:word:shout; family: word_card -->
+> **shout** — кричати. We don't shout. — «Ми не кричимо». Говорити дуже голосно, наприклад у суперечці або щоб вас почули здалеку.
+
+**2 · Друг питає про ваші суперечки. Скажіть: «Я не кричу»**
 <!-- interaction_id: en:lesson-07:session-20:i01; family: phrase_builder -->
-Плитки: `shout` `don’t` `I` → **I don’t shout.**
+Плитки: `shout` `don't` `I` `doesn't` → **I don't shout.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't shout.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-20:i02; family: listen_choose -->
 🔊 *shout* → **shout** · cook · scarf
 - cook — *У записі перше слово — `shout`, а в цьому варіанті — `cook`.*
 - scarf — *У записі перше слово — `shout`, а в цьому варіанті — `scarf`.*
 
-**3 · Скажіть «Я не кричу»**
+**4 · Скажіть «Я не кричу». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-20:i03; family: context_gap_grammar -->
-I ___ shout. → **don’t** · doesn’t · not
-- doesn’t — *Після `I` потрібне `don’t`.*
-- not — *Для заперечення дії потрібне `don’t`.*
+I ___ shout. → **don't** · doesn't · not
+- doesn't — *Після `I` потрібно `don't`.*
+- not — *Для заперечення дії потрібно `don't`, а не просто `not`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-20:i04; family: speed_match -->
-shout — кричати · cook — готувати · scarf — шарф · maps — карти
+shout — кричати · cook — готувати їжу · scarf — шарф · work — працювати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-20:i05; family: listen_build_dictation -->
-🔊 *I don’t shout.* Плитки: `shout` `don’t` `I` → **I don’t shout.**
+🔊 *I don't shout.* Плитки: `shout` `don't` `I` `doesn't` → **I don't shout.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't shout.`)*
 
-**6 · Запитайте «Будильник працює?»**
+**7 · Картка слова — take**
+<!-- interaction_id: en:lesson-07:session-20:word:take; family: word_card -->
+> **take** — брати. I take the bus. — «Я їжджу автобусом». У сполученні take the bus слово означає поїздку автобусом.
+
+**8 · Запитайте дружину сусіда: «Він їздить автобусом?»**
 <!-- interaction_id: en:lesson-07:session-20:i06; family: phrase_builder -->
-Плитки: `work` `alarm` `the` `Does` → **Does the alarm work?**
+Плитки: `bus` `take` `he` `the` `Does` `Do` → **Does he take the bus?**
+*(плитка `Do` зайва: тут потрібно `Does` — `Does he take the bus?`)*
 
-**7 · Повідомте «Тут немає карт»**
+**9 · Картка слова — matches**
+<!-- interaction_id: en:lesson-07:session-20:word:matches; family: word_card -->
+> **matches** — сірники. The matches are small. — «Сірники маленькі». Тонкі палички, якими запалюють вогонь.
+
+**10 · Ви оглянули полицю на дачі. Скажіть братові: «Тут немає сірників»**
 <!-- interaction_id: en:lesson-07:session-20:i07; family: scripted_repeat_compare -->
-🎙 **There are no maps here.**
+🎙 **There are no matches here.**
 
-**8 · Запитайте «Будильник працює?»**
+**11 · Запитайте, чи їздить сусід автобусом. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-20:i08; family: context_gap_grammar -->
-Does the alarm ___? → **work** · works · is work
-- works — *Після `does` потрібне `work`.*
-- is work — *У цьому запитанні потрібне `work`, без `is`.*
+Does he ___ the bus? → **take** · takes · is take
+- takes — *Після `Does` потрібно `take`, без `s`.*
+- is take — *У цьому питанні потрібно `take`, без `is`.*
 
-**9 · Послухайте, чого не робить співрозмовник**
+**12 · Послухайте, чого не робить співрозмовник**
 <!-- interaction_id: en:lesson-07:session-20:i09; family: listen_choose -->
-🔊 *I don’t shout.* → **I don’t shout.** · I don’t complain. · I don’t smoke.
-- I don’t complain. — *У записі останнє слово — `shout`, а в цьому варіанті — `complain`.*
-- I don’t smoke. — *У записі останнє слово — `shout`, а в цьому варіанті — `smoke`.*
+🔊 *I don't shout.* → **I don't shout.** · I don't complain. · I don't brag.
+- I don't complain. — *У записі останнє слово — `shout`, а в цьому варіанті — `complain`.*
+- I don't brag. — *У записі останнє слово — `shout`, а в цьому варіанті — `brag`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-20:i10; family: speed_match -->
-alarm — будильник · shout — кричати · cook — готувати · scarf — шарф
+take — брати · matches — сірники · shout — кричати · work — працювати
 
-**11 · Послухайте й складіть запитання**
+**14 · Послухайте й складіть питання**
 <!-- interaction_id: en:lesson-07:session-20:i11; family: listen_build_dictation -->
-🔊 *Does the alarm work?* Плитки: `work` `alarm` `the` `Does` → **Does the alarm work?**
+🔊 *Does he take the bus?* Плитки: `bus` `take` `he` `the` `Does` `Do` → **Does he take the bus?**
+*(плитка `Do` зайва: тут потрібно `Does` — `Does he take the bus?`)*
 
-**12 · Перед виходом запитайте друга «У тебе є шарф?»**
+**15 · Картка слова — lighter**
+<!-- interaction_id: en:lesson-07:session-20:word:lighter; family: word_card -->
+> **lighter** — запальничка. I have a lighter. — «У мене є запальничка». Маленький предмет, яким швидко запалюють вогонь.
+
+**16 · Брат хоче розпалити пічку. Спитайте його: «У тебе є запальничка?»**
 <!-- interaction_id: en:lesson-07:session-20:i12; family: phrase_builder -->
-Плитки: `scarf` `a` `have` `you` `Do` → **Do you have a scarf?**
+Плитки: `lighter` `a` `have` `you` `Do` `Are` → **Do you have a lighter?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you have a lighter?`)*
 
-**13 · Покажіть другові «Карти тут»**
+**17 · Брат шукає, чим розпалити пічку. Покажіть на стіл і скажіть: «Запальничка тут»**
 <!-- interaction_id: en:lesson-07:session-20:i13; family: scripted_repeat_compare -->
-🎙 **The maps are here.**
+🎙 **The lighter is here.**
 
-**14 · Повідомте «Тут немає карт»**
+**18 · Скажіть братові, що сірників немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-20:i14; family: context_gap_grammar -->
-There ___ no maps here. → **are** · is · am
-- is — *З `maps` потрібне `are`.*
-- am — *З `maps` потрібне `are`.*
+There ___ no matches here. → **are** · is · am
+- is — *matches означає «сірники», а не «сірник»: потрібне `are`.*
+- am — *Потрібно `There are no`; `am` пасує лише до `I`.*
 
-**15 · Послухайте, чого не робить співрозмовник**
+**19 · Послухайте питання**
 <!-- interaction_id: en:lesson-07:session-20:i15; family: listen_choose -->
-🔊 *I don’t cook.* → **I don’t cook.** · I don’t shout. · I don’t drive.
-- I don’t shout. — *У записі останнє слово — `cook`, а в цьому варіанті — `shout`.*
-- I don’t drive. — *У записі останнє слово — `cook`, а в цьому варіанті — `drive`.*
+🔊 *Do you have a lighter?* → **Do you have a lighter?** · Do you have a scarf? · Does he have a lighter?
+- Do you have a scarf? — *У записі останнє слово — `lighter`, а в цьому варіанті — `scarf`.*
+- Does he have a lighter? — *У записі перше слово — `Do`, а в цьому варіанті — `Does`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-20:i16; family: speed_match -->
-maps — карти · alarm — будильник · shout — кричати · cook — готувати
+take — брати · lighter — запальничка · matches — сірники · shout — кричати
 
-**17 · Друг запитує, як Том поводиться в суперечках. Скажіть «Том не кричить»**
+**21 · Друг питає, чи кричить ваш брат у суперечках. Скажіть: «Він не кричить»**
 <!-- interaction_id: en:lesson-07:session-20:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t shout.**
-
+🎙 **He doesn't shout.**

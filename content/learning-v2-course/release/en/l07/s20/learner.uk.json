@@ -4,30 +4,85 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-07:session-20:i01",
+      "interactionId": "en:lesson-07:session-20:word:shout",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:word:shout:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:word:shout:audio",
+          "transcript": "shout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:word:shout:r1",
+            "targetText": "shout",
+            "meaningByLocale": {
+              "ru": "кричать. We don't shout. — «Мы не кричим». Говорить очень громко, например в споре или чтобы вас услышали издалека.",
+              "uk": "кричати. We don't shout. — «Ми не кричимо». Говорити дуже голосно, наприклад у суперечці або щоб вас почули здалеку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shout",
+          "definitionByLocale": {
+            "ru": "кричать. We don't shout. — «Мы не кричим». Говорить очень громко, например в споре или чтобы вас услышали издалека.",
+            "uk": "кричати. We don't shout. — «Ми не кричимо». Говорити дуже голосно, наприклад у суперечці або щоб вас почули здалеку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не кричу»",
+      "prompt": "Друг питає про ваші суперечки. Скажіть: «Я не кричу»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не кричу»",
+      "accessibilityLabel": "Друг питає про ваші суперечки. Скажіть: «Я не кричу»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I don’t shout.",
+        "targetPhrase": "I don't shout.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не кричу»",
-          "uk": "Скажіть «Я не кричу»"
+          "ru": "Друг спрашивает про ваши споры. Скажите: «Я не кричу»",
+          "uk": "Друг питає про ваші суперечки. Скажіть: «Я не кричу»"
         },
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "shout"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Друг питає про ваші суперечки. Скажіть: «Я не кричу»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't shout.`",
+              "uk": "тут потрібно `don't` — `I don't shout.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -37,7 +92,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -113,19 +168,19 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не кричу»",
+      "prompt": "Скажіть «Я не кричу». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-20:i03:r1",
-          "text": "don’t"
+          "text": "don't"
         },
         {
           "responseId": "en:lesson-07:session-20:i03:r2",
-          "text": "doesn’t"
+          "text": "doesn't"
         },
         {
           "responseId": "en:lesson-07:session-20:i03:r3",
@@ -134,46 +189,46 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не кричу»",
+      "accessibilityLabel": "Скажіть «Я не кричу». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не кричу»",
-          "uk": "Скажіть «Я не кричу»"
+          "ru": "Скажите «Я не кричу». Выберите слово",
+          "uk": "Скажіть «Я не кричу». Виберіть слово"
         },
         "gappedTargetPhrase": "I ___ shout.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-20:i03:r1",
-            "text": "don’t"
+            "text": "don't"
           },
           {
             "responseId": "en:lesson-07:session-20:i03:r2",
-            "text": "doesn’t"
+            "text": "doesn't"
           },
           {
             "responseId": "en:lesson-07:session-20:i03:r3",
             "text": "not"
           }
         ],
-        "testedDimension": "Скажіть «Я не кричу»",
+        "testedDimension": "Скажіть «Я не кричу». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-20:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не кричу»",
+            "testedDimension": "Скажіть «Я не кричу». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `I` нужно `don’t`.",
-              "uk": "Після `I` потрібне `don’t`."
+              "ru": "После `I` нужно `don't`.",
+              "uk": "Після `I` потрібно `don't`."
             }
           },
           {
             "responseId": "en:lesson-07:session-20:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не кричу»",
+            "testedDimension": "Скажіть «Я не кричу». Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Для отрицания действия нужно `don’t`.",
-              "uk": "Для заперечення дії потрібне `don’t`."
+              "ru": "Для отрицания действия нужно `don't`, а не просто `not`.",
+              "uk": "Для заперечення дії потрібно `don't`, а не просто `not`."
             }
           }
         ]
@@ -182,7 +237,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -206,8 +261,8 @@
             "pairId": "en:lesson-07:session-20:i04:p2",
             "target": "cook",
             "meaningByLocale": {
-              "ru": "готовить",
-              "uk": "готувати"
+              "ru": "готовить еду",
+              "uk": "готувати їжу"
             }
           },
           {
@@ -220,10 +275,10 @@
           },
           {
             "pairId": "en:lesson-07:session-20:i04:p4",
-            "target": "maps",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "карты",
-              "uk": "карти"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
@@ -231,13 +286,13 @@
           "shout",
           "cook",
           "scarf",
-          "maps"
+          "work"
         ],
         "rightColumn": [
           "кричати",
-          "готувати",
+          "готувати їжу",
           "шарф",
-          "карти"
+          "працювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +310,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,50 +325,118 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i05:audio",
-          "transcript": "I don’t shout."
+          "transcript": "I don't shout."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I don’t shout.",
+        "hiddenTargetPhrase": "I don't shout.",
         "orderedTokens": [
           "I",
-          "don’t",
+          "don't",
           "shout"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "doesn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `don't` — `I don't shout.`",
+              "uk": "тут потрібно `don't` — `I don't shout.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-07:session-20:word:take",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:word:take:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:word:take:audio",
+          "transcript": "take"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:word:take:r1",
+            "targetText": "take",
+            "meaningByLocale": {
+              "ru": "брать. I take the bus. — «Я езжу на автобусе». В сочетании take the bus слово означает поездку на автобусе.",
+              "uk": "брати. I take the bus. — «Я їжджу автобусом». У сполученні take the bus слово означає поїздку автобусом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take",
+          "definitionByLocale": {
+            "ru": "брать. I take the bus. — «Я езжу на автобусе». В сочетании take the bus слово означает поездку на автобусе.",
+            "uk": "брати. I take the bus. — «Я їжджу автобусом». У сполученні take the bus слово означає поїздку автобусом."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-07:session-20:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Будильник працює?»",
+      "prompt": "Запитайте дружину сусіда: «Він їздить автобусом?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Будильник працює?»",
+      "accessibilityLabel": "Запитайте дружину сусіда: «Він їздить автобусом?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Does the alarm work?",
+        "targetPhrase": "Does he take the bus?",
         "localizedMeaning": {
-          "ru": "Спросите «Будильник работает?»",
-          "uk": "Запитайте «Будильник працює?»"
+          "ru": "Спросите жену соседа: «Он ездит на автобусе?»",
+          "uk": "Запитайте дружину сусіда: «Він їздить автобусом?»"
         },
         "orderedTokens": [
           "Does",
+          "he",
+          "take",
           "the",
-          "alarm",
-          "work"
+          "bus"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Запитайте дружину сусіда: «Він їздить автобусом?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does he take the bus?`",
+              "uk": "тут потрібно `Does` — `Does he take the bus?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -322,26 +445,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-20:word:matches",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — matches",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:word:matches:audio"
+      ],
+      "accessibilityLabel": "Картка слова — matches",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:word:matches:audio",
+          "transcript": "matches"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:word:matches:r1",
+            "targetText": "matches",
+            "meaningByLocale": {
+              "ru": "спички. The matches are small. — «Спички маленькие». Тонкие палочки, которыми зажигают огонь.",
+              "uk": "сірники. The matches are small. — «Сірники маленькі». Тонкі палички, якими запалюють вогонь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "matches",
+          "definitionByLocale": {
+            "ru": "спички. The matches are small. — «Спички маленькие». Тонкие палочки, которыми зажигают огонь.",
+            "uk": "сірники. The matches are small. — «Сірники маленькі». Тонкі палички, якими запалюють вогонь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-20:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Повідомте «Тут немає карт»",
+      "prompt": "Ви оглянули полицю на дачі. Скажіть братові: «Тут немає сірників»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Повідомте «Тут немає карт»",
+      "accessibilityLabel": "Ви оглянули полицю на дачі. Скажіть братові: «Тут немає сірників»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i07:audio",
-          "transcript": "There are no maps here."
+          "transcript": "There are no matches here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There are no maps here.",
+        "targetPhrase": "There are no matches here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -356,67 +522,67 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитайте «Будильник працює?»",
+      "prompt": "Запитайте, чи їздить сусід автобусом. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-20:i08:r1",
-          "text": "work"
+          "text": "take"
         },
         {
           "responseId": "en:lesson-07:session-20:i08:r2",
-          "text": "works"
+          "text": "takes"
         },
         {
           "responseId": "en:lesson-07:session-20:i08:r3",
-          "text": "is work"
+          "text": "is take"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Будильник працює?»",
+      "accessibilityLabel": "Запитайте, чи їздить сусід автобусом. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Спросите «Будильник работает?»",
-          "uk": "Запитайте «Будильник працює?»"
+          "ru": "Спросите, ездит ли сосед на автобусе. Выберите слово",
+          "uk": "Запитайте, чи їздить сусід автобусом. Виберіть слово"
         },
-        "gappedTargetPhrase": "Does the alarm ___?",
+        "gappedTargetPhrase": "Does he ___ the bus?",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-20:i08:r1",
-            "text": "work"
+            "text": "take"
           },
           {
             "responseId": "en:lesson-07:session-20:i08:r2",
-            "text": "works"
+            "text": "takes"
           },
           {
             "responseId": "en:lesson-07:session-20:i08:r3",
-            "text": "is work"
+            "text": "is take"
           }
         ],
-        "testedDimension": "Запитайте «Будильник працює?»",
+        "testedDimension": "Запитайте, чи їздить сусід автобусом. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "Запитайте «Будильник працює?»",
+            "testedDimension": "Запитайте, чи їздить сусід автобусом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "После `does` нужно `work`.",
-              "uk": "Після `does` потрібне `work`."
+              "ru": "После `Does` нужно `take`, без `s`.",
+              "uk": "Після `Does` потрібно `take`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-07:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "Запитайте «Будильник працює?»",
+            "testedDimension": "Запитайте, чи їздить сусід автобусом. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "В этом вопросе нужно `work`, без `is`.",
-              "uk": "У цьому запитанні потрібне `work`, без `is`."
+              "ru": "В этом вопросе нужно `take`, без `is`.",
+              "uk": "У цьому питанні потрібно `take`, без `is`."
             }
           }
         ]
@@ -425,7 +591,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -433,15 +599,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-20:i09:r1",
-          "text": "I don’t shout."
+          "text": "I don't shout."
         },
         {
           "responseId": "en:lesson-07:session-20:i09:r2",
-          "text": "I don’t complain."
+          "text": "I don't complain."
         },
         {
           "responseId": "en:lesson-07:session-20:i09:r3",
-          "text": "I don’t smoke."
+          "text": "I don't brag."
         }
       ],
       "mediaIds": [],
@@ -453,23 +619,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i09:audio",
-          "transcript": "I don’t shout."
+          "transcript": "I don't shout."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-20:i09:r1",
-            "targetText": "I don’t shout.",
+            "targetText": "I don't shout.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-20:i09:r2",
-            "targetText": "I don’t complain.",
+            "targetText": "I don't complain.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-20:i09:r3",
-            "targetText": "I don’t smoke.",
+            "targetText": "I don't brag.",
             "meaningByLocale": null
           }
         ],
@@ -489,8 +655,8 @@
             "correct": false,
             "testedDimension": "Послухайте, чого не робить співрозмовник",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `shout`, а в этом варианте — `smoke`.",
-              "uk": "У записі останнє слово — `shout`, а в цьому варіанті — `smoke`."
+              "ru": "В записи последнее слово — `shout`, а в этом варианте — `brag`.",
+              "uk": "У записі останнє слово — `shout`, а в цьому варіанті — `brag`."
             }
           }
         ],
@@ -501,7 +667,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -515,14 +681,22 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-20:i10:p1",
-            "target": "alarm",
+            "target": "take",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "брать",
+              "uk": "брати"
             }
           },
           {
             "pairId": "en:lesson-07:session-20:i10:p2",
+            "target": "matches",
+            "meaningByLocale": {
+              "ru": "спички",
+              "uk": "сірники"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i10:p3",
             "target": "shout",
             "meaningByLocale": {
               "ru": "кричать",
@@ -530,33 +704,25 @@
             }
           },
           {
-            "pairId": "en:lesson-07:session-20:i10:p3",
-            "target": "cook",
-            "meaningByLocale": {
-              "ru": "готовить",
-              "uk": "готувати"
-            }
-          },
-          {
             "pairId": "en:lesson-07:session-20:i10:p4",
-            "target": "scarf",
+            "target": "work",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "работать",
+              "uk": "працювати"
             }
           }
         ],
         "leftColumn": [
-          "alarm",
+          "take",
+          "matches",
           "shout",
-          "cook",
-          "scarf"
+          "work"
         ],
         "rightColumn": [
-          "будильник",
+          "брати",
+          "сірники",
           "кричати",
-          "готувати",
-          "шарф"
+          "працювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -574,33 +740,46 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Послухайте й складіть питання",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-20:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте й складіть питання",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i11:audio",
-          "transcript": "Does the alarm work?"
+          "transcript": "Does he take the bus?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does the alarm work?",
+        "hiddenTargetPhrase": "Does he take the bus?",
         "orderedTokens": [
           "Does",
+          "he",
+          "take",
           "the",
-          "alarm",
-          "work"
+          "bus"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Do"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть питання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Does` — `Does he take the bus?`",
+              "uk": "тут потрібно `Does` — `Does he take the bus?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -609,32 +788,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-07:session-20:word:lighter",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lighter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-07:session-20:word:lighter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lighter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-07:session-20:word:lighter:audio",
+          "transcript": "lighter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-07:session-20:word:lighter:r1",
+            "targetText": "lighter",
+            "meaningByLocale": {
+              "ru": "зажигалка. I have a lighter. — «У меня есть зажигалка». Маленький предмет, которым быстро зажигают огонь.",
+              "uk": "запальничка. I have a lighter. — «У мене є запальничка». Маленький предмет, яким швидко запалюють вогонь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lighter",
+          "definitionByLocale": {
+            "ru": "зажигалка. I have a lighter. — «У меня есть зажигалка». Маленький предмет, которым быстро зажигают огонь.",
+            "uk": "запальничка. I have a lighter. — «У мене є запальничка». Маленький предмет, яким швидко запалюють вогонь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-07:session-20:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перед виходом запитайте друга «У тебе є шарф?»",
+      "prompt": "Брат хоче розпалити пічку. Спитайте його: «У тебе є запальничка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед виходом запитайте друга «У тебе є шарф?»",
+      "accessibilityLabel": "Брат хоче розпалити пічку. Спитайте його: «У тебе є запальничка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have a scarf?",
+        "targetPhrase": "Do you have a lighter?",
         "localizedMeaning": {
-          "ru": "Перед выходом спросите друга «У тебя есть шарф?»",
-          "uk": "Перед виходом запитайте друга «У тебе є шарф?»"
+          "ru": "Брат хочет растопить печку. Спросите его: «У тебя есть зажигалка?»",
+          "uk": "Брат хоче розпалити пічку. Спитайте його: «У тебе є запальничка?»"
         },
         "orderedTokens": [
           "Do",
           "you",
           "have",
           "a",
-          "scarf"
+          "lighter"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-07:session-20:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Брат хоче розпалити пічку. Спитайте його: «У тебе є запальничка?»",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Do` — `Do you have a lighter?`",
+              "uk": "тут потрібно `Do` — `Do you have a lighter?`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -644,25 +878,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Покажіть другові «Карти тут»",
+      "prompt": "Брат шукає, чим розпалити пічку. Покажіть на стіл і скажіть: «Запальничка тут»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-20:i13:audio"
       ],
-      "accessibilityLabel": "Покажіть другові «Карти тут»",
+      "accessibilityLabel": "Брат шукає, чим розпалити пічку. Покажіть на стіл і скажіть: «Запальничка тут»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i13:audio",
-          "transcript": "The maps are here."
+          "transcript": "The lighter is here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The maps are here.",
+        "targetPhrase": "The lighter is here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -677,11 +911,11 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут немає карт»",
+      "prompt": "Скажіть братові, що сірників немає. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-20:i14:r1",
@@ -698,14 +932,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут немає карт»",
+      "accessibilityLabel": "Скажіть братові, що сірників немає. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь нет карт»",
-          "uk": "Повідомте «Тут немає карт»"
+          "ru": "Скажите брату, что спичек нет. Выберите слово",
+          "uk": "Скажіть братові, що сірників немає. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no maps here.",
+        "gappedTargetPhrase": "There ___ no matches here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-07:session-20:i14:r1",
@@ -720,24 +954,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Повідомте «Тут немає карт»",
+        "testedDimension": "Скажіть братові, що сірників немає. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-07:session-20:i14:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає карт»",
+            "testedDimension": "Скажіть братові, що сірників немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `maps` нужно `are`.",
-              "uk": "З `maps` потрібне `are`."
+              "ru": "matches означает «спички», а не «спичка»: нужно `are`.",
+              "uk": "matches означає «сірники», а не «сірник»: потрібне `are`."
             }
           },
           {
             "responseId": "en:lesson-07:session-20:i14:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут немає карт»",
+            "testedDimension": "Скажіть братові, що сірників немає. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "С `maps` нужно `are`.",
-              "uk": "З `maps` потрібне `are`."
+              "ru": "Нужно `There are no`; `am` подходит только к `I`.",
+              "uk": "Потрібно `There are no`; `am` пасує лише до `I`."
             }
           }
         ]
@@ -746,51 +980,51 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, чого не робить співрозмовник",
+      "prompt": "Послухайте питання",
       "responseOptions": [
         {
           "responseId": "en:lesson-07:session-20:i15:r1",
-          "text": "I don’t cook."
+          "text": "Do you have a lighter?"
         },
         {
           "responseId": "en:lesson-07:session-20:i15:r2",
-          "text": "I don’t shout."
+          "text": "Do you have a scarf?"
         },
         {
           "responseId": "en:lesson-07:session-20:i15:r3",
-          "text": "I don’t drive."
+          "text": "Does he have a lighter?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-20:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, чого не робить співрозмовник",
+      "accessibilityLabel": "Послухайте питання",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i15:audio",
-          "transcript": "I don’t cook."
+          "transcript": "Do you have a lighter?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-07:session-20:i15:r1",
-            "targetText": "I don’t cook.",
+            "targetText": "Do you have a lighter?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-20:i15:r2",
-            "targetText": "I don’t shout.",
+            "targetText": "Do you have a scarf?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-07:session-20:i15:r3",
-            "targetText": "I don’t drive.",
+            "targetText": "Does he have a lighter?",
             "meaningByLocale": null
           }
         ],
@@ -799,19 +1033,19 @@
           {
             "responseId": "en:lesson-07:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cook`, а в этом варианте — `shout`.",
-              "uk": "У записі останнє слово — `cook`, а в цьому варіанті — `shout`."
+              "ru": "В записи последнее слово — `lighter`, а в этом варианте — `scarf`.",
+              "uk": "У записі останнє слово — `lighter`, а в цьому варіанті — `scarf`."
             }
           },
           {
             "responseId": "en:lesson-07:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, чого не робить співрозмовник",
+            "testedDimension": "Послухайте питання",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cook`, а в этом варианте — `drive`.",
-              "uk": "У записі останнє слово — `cook`, а в цьому варіанті — `drive`."
+              "ru": "В записи первое слово — `Do`, а в этом варианте — `Does`.",
+              "uk": "У записі перше слово — `Do`, а в цьому варіанті — `Does`."
             }
           }
         ],
@@ -822,7 +1056,7 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -836,48 +1070,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-07:session-20:i16:p1",
-            "target": "maps",
+            "target": "take",
             "meaningByLocale": {
-              "ru": "карты",
-              "uk": "карти"
+              "ru": "брать",
+              "uk": "брати"
             }
           },
           {
             "pairId": "en:lesson-07:session-20:i16:p2",
-            "target": "alarm",
+            "target": "lighter",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "зажигалка",
+              "uk": "запальничка"
             }
           },
           {
             "pairId": "en:lesson-07:session-20:i16:p3",
+            "target": "matches",
+            "meaningByLocale": {
+              "ru": "спички",
+              "uk": "сірники"
+            }
+          },
+          {
+            "pairId": "en:lesson-07:session-20:i16:p4",
             "target": "shout",
             "meaningByLocale": {
               "ru": "кричать",
               "uk": "кричати"
             }
-          },
-          {
-            "pairId": "en:lesson-07:session-20:i16:p4",
-            "target": "cook",
-            "meaningByLocale": {
-              "ru": "готовить",
-              "uk": "готувати"
-            }
           }
         ],
         "leftColumn": [
-          "maps",
-          "alarm",
-          "shout",
-          "cook"
+          "take",
+          "lighter",
+          "matches",
+          "shout"
         ],
         "rightColumn": [
-          "карти",
-          "будильник",
-          "кричати",
-          "готувати"
+          "брати",
+          "запальничка",
+          "сірники",
+          "кричати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -895,25 +1129,25 @@
     },
     {
       "interactionId": "en:lesson-07:session-20:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, як Том поводиться в суперечках. Скажіть «Том не кричить»",
+      "prompt": "Друг питає, чи кричить ваш брат у суперечках. Скажіть: «Він не кричить»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-07:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, як Том поводиться в суперечках. Скажіть «Том не кричить»",
+      "accessibilityLabel": "Друг питає, чи кричить ваш брат у суперечках. Скажіть: «Він не кричить»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-07:session-20:i17:audio",
-          "transcript": "Tom doesn’t shout."
+          "transcript": "He doesn't shout."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom doesn’t shout.",
+        "targetPhrase": "He doesn't shout.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -935,11 +1169,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7222f8db30d6e6c239143bd50bacba273d08273aefaf4b3c4f5e29894c9c6bda"
+  "learnerFingerprint": "da1c89a1460d6a24c0b03683129d50c50a75754251599b8bff6dd64db9298425"
 }

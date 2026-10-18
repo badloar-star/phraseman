@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-07:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-07:session-20:intro1:r2": {
-          "ru": "После `I` нужно `don’t`.",
-          "uk": "Після `I` потрібне `don’t`."
+          "ru": "После I нужно don't.",
+          "uk": "Після I потрібно don't."
         },
         "en:lesson-07:session-20:intro1:r3": {
-          "ru": "Для отрицания действия нужно `don’t`.",
-          "uk": "Для заперечення дії потрібне `don’t`."
+          "ru": "Перед действием нужно don't, а не просто not.",
+          "uk": "Перед дією потрібно don't, а не просто not."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-07:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-07:session-20:intro2:r2": {
-          "ru": "Один будильник: нужно `does`.",
-          "uk": "Один будильник: потрібне `does`."
+          "ru": "Перед he в таком вопросе нужно Does.",
+          "uk": "Перед he в такому питанні потрібне Does."
         },
         "en:lesson-07:session-20:intro2:r3": {
-          "ru": "После `does` нужно `work`, без `s`.",
-          "uk": "Після `does` потрібне `work`, без `s`."
+          "ru": "После Does нужно take, без s.",
+          "uk": "Після Does потрібне take, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-07:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-07:session-20:intro3:r2": {
-          "ru": "С `maps` нужно `are`.",
-          "uk": "З `maps` потрібне `are`."
+          "ru": "matches означает «спички», а не «спичка»: нужно are.",
+          "uk": "matches означає «сірники», а не «сірник»: потрібне are."
         },
         "en:lesson-07:session-20:intro3:r3": {
-          "ru": "Без `no` фраза сообщает, что карты есть.",
-          "uk": "Без `no` фраза повідомляє, що карти є."
+          "ru": "Без no фраза говорит, что спички есть.",
+          "uk": "Без no фраза каже, що сірники є."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "510823a14146089f02b44ac0b0ea5ccda83c811ba68e27502e48173d3300e35d"
+  "auxiliaryFingerprint": "3dea587cdb134b79fedc46c1787499713aa9d1f995e22814c0e86d41b4755770"
 }

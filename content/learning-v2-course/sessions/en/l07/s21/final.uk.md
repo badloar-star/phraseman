@@ -1,133 +1,154 @@
 # Англійська · Урок 7 · Заняття 21 — Я не брешу
 
-**Ситуація.** Ви говорите про чесність, з’ясовуєте, чи пише Том книжки, і шукаєте ручки на робочому місці.
+**Ситуація.** Ви відповідаєте за правдивість розповіді про рибалку, дізнаєтеся, чи відкладає брат гроші, і шукаєте купюри в скарбничці.
 
-**Що ви опануєте:** заперечувати звичну дію, ставити запитання з does і повідомляти про відсутність предметів
-**Нові слова:** lie
+**Що ви опануєте:** сказати, що ви не брешете, спитати, чи робить він щось, і повідомити, що чогось немає
+**Нові слова:** lie, save, banknote, pay
+**Повертаються:** have, cook, scarf, shout, money, cash
 
 ---
 
 ## Інтро 1
 
-### Розмова про чесність
+### Розповідь про рибалку
 
-Друг запитує, чи буває, що ви навмисно кажете неправду. `lie` — «брехати». `I don’t lie` — «Я не брешу». Тут це твердження про вашу звичну поведінку: після `I` ставимо `don’t`, потім `lie`. Навіть історія про величезну спійману рибу має витримати перевірку лінійкою.
+Ви повернулися з рибалки й показуєте друзям улов. Один із них примружився й спитав, чи не додали ви зайвого до розміру риби. lie — «брехати, говорити неправду». Дайте відповідь: I don't lie — «Я не брешу». Після I ставимо don't, а lie без змін. Риба на фотографії принаймні не росте з кожною новою розповіддю.
 
-**Скажіть другові: «Я не брешу».**
+**Друг сумнівається у вашій розповіді про рибу. Дайте відповідь: «Я не брешу».**
 
-- ✅ **I don’t lie.**
-- ❌ I doesn’t lie. — *Після `I` потрібне `don’t`.*
-- ❌ I not lie. — *Для заперечення дії потрібне `don’t`.*
+- ✅ **I don't lie.**
+- ❌ I doesn't lie. — *Після I потрібно don't.*
+- ❌ I not lie. — *Перед дією потрібно don't, а не просто not.*
 
 ---
 
 ## Інтро 2
 
-### Том — автор?
+### Гроші на велосипед
 
-Ви побачили ім’я Тома на обкладинці й запитуєте знайомого, чи пише Том книжки. `Does Tom write books?` — «Том пише книжки?» Для запитання про Тома ставимо `does` на початок. Після імені — `write`, без `s`.
+Брат хоче новий велосипед, але поки їздить на старому. Ви питаєте його дружину, чи відкладає він гроші на покупку. save — «накопичувати, заощаджувати»; save money — «відкладати гроші». Does he save money? — «Він відкладає гроші?» З he питання починається з Does, а save після нього лишається без s.
 
-**Запитайте знайомого: «Том пише книжки?»**
+**Дізнайтеся в дружини брата: «Він відкладає гроші?»**
 
-- ✅ **Does Tom write books?**
-- ❌ Do Tom write books? — *Для запитання про Тома потрібне `does`.*
-- ❌ Does Tom writes books? — *Після `does` потрібне `write`, без `s`.*
+- ✅ **Does he save money?**
+- ❌ Do he save money? — *З he в такому питанні потрібне Does.*
+- ❌ Does he saves money? — *Після Does потрібне save, без s.*
 
 ---
 
 ## Інтро 3
 
-### Немає чим записати
+### У скарбничці лише монети
 
-Колега хоче записати номер. Ви перевірили стіл: ручок тут немає. `There are no pens here` — «Тут немає ручок». `Pens` — множина, тому `are no`.
+Вам потрібні гроші на проїзд, і ви вирішили зазирнути в скарбничку. Монети на дні є, а купюр у ній немає. banknote — «банкнота, грошова купюра». There are no banknotes here — «Тут немає банкнот». Одна купюра — banknote, а тут ідеться про banknotes. Тому потрібні are та no: купюр немає.
 
-**Повідомте колезі: «Тут немає ручок».**
+**У скарбничці лише монети. Скажіть братові: «Тут немає банкнот».**
 
-- ✅ **There are no pens here.**
-- ❌ There is no pens here. — *З `pens` потрібне `are`.*
-- ❌ There are pens here. — *Без `no` фраза повідомляє, що ручки є.*
+- ✅ **There are no banknotes here.**
+- ❌ There is no banknotes here. — *banknotes означає «банкноти», а не «банкнота»: потрібне are.*
+- ❌ There are banknotes here. — *Без no фраза каже, що банкноти є.*
 
 ---
 
-## Практика (17 завдань)
+## Практика (21 завдання)
 
-**1 · Скажіть «Я не брешу»**
+**1 · Картка слова — lie**
+<!-- interaction_id: en:lesson-07:session-21:word:lie; family: word_card -->
+> **lie** — брехати, говорити неправду. They don't lie. — «Вони не брешуть». Навмисне говорити неправду, а не просто помилятися.
+
+**2 · Друг сумнівається у вашій розповіді про рибу. Скажіть: «Я не брешу»**
 <!-- interaction_id: en:lesson-07:session-21:i01; family: phrase_builder -->
-Плитки: `lie` `don’t` `I` → **I don’t lie.**
+Плитки: `lie` `don't` `I` `doesn't` → **I don't lie.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't lie.`)*
 
-**2 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-07:session-21:i02; family: listen_choose -->
-🔊 *lie* → **lie** · write · screen
-- write — *У записі перше слово — `lie`, а в цьому варіанті — `write`.*
-- screen — *У записі перше слово — `lie`, а в цьому варіанті — `screen`.*
+🔊 *lie* → **lie** · cook · scarf
+- cook — *У записі перше слово — `lie`, а в цьому варіанті — `cook`.*
+- scarf — *У записі перше слово — `lie`, а в цьому варіанті — `scarf`.*
 
-**3 · Скажіть «Я не брешу»**
+**4 · Скажіть «Я не брешу». Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-21:i03; family: context_gap_grammar -->
-I ___ lie. → **don’t** · doesn’t · not
-- doesn’t — *Після `I` потрібне `don’t`.*
-- not — *Для заперечення дії потрібне `don’t`.*
+I ___ lie. → **don't** · doesn't · not
+- doesn't — *Після `I` потрібно `don't`.*
+- not — *Для заперечення дії потрібно `don't`, а не просто `not`.*
 
-**4 · З’єднайте слова зі значеннями**
+**5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-21:i04; family: speed_match -->
-lie — брехати · write — писати · necklace — намисто · pens — ручки
+lie — брехати · cook — готувати їжу · scarf — шарф · shout — кричати
 
-**5 · Послухайте й складіть фразу**
+**6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-07:session-21:i05; family: listen_build_dictation -->
-🔊 *I don’t lie.* Плитки: `lie` `don’t` `I` → **I don’t lie.**
+🔊 *I don't lie.* Плитки: `lie` `don't` `I` `doesn't` → **I don't lie.**
+*(плитка `doesn't` зайва: тут потрібно `don't` — `I don't lie.`)*
 
-**6 · Запитайте «Том пише книжки?»**
+**7 · Картка слова — save**
+<!-- interaction_id: en:lesson-07:session-21:word:save; family: word_card -->
+> **save** — накопичувати, заощаджувати. I save money. — «Я відкладаю гроші». Відкладати гроші, щоб використати їх пізніше.
+
+**8 · Брат хоче велосипед. Запитайте його дружину: «Він відкладає гроші?»**
 <!-- interaction_id: en:lesson-07:session-21:i06; family: phrase_builder -->
-Плитки: `books` `write` `Tom` `Does` → **Does Tom write books?**
+Плитки: `money` `save` `he` `Does` `Do` → **Does he save money?**
+*(плитка `Do` зайва: тут потрібно `Does` — `Does he save money?`)*
 
-**7 · Повідомте «Тут немає ручок»**
+**9 · Картка слова — banknote**
+<!-- interaction_id: en:lesson-07:session-21:word:banknote; family: word_card -->
+> **banknote** — банкнота, грошова купюра. I have a banknote. — «У мене є банкнота». Купюра на відміну від монети.
+
+**10 · Вам потрібні гроші на проїзд. Спитайте брата: «У тебе є банкнота?»**
 <!-- interaction_id: en:lesson-07:session-21:i07; family: scripted_repeat_compare -->
-🎙 **There are no pens here.**
+🎙 **Do you have a banknote?**
 
-**8 · Запитайте «Том пише книжки?»**
+**11 · Дізнайтеся, чи відкладає брат гроші. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-21:i08; family: context_gap_grammar -->
-Does Tom ___ books? → **write** · writes · is write
-- writes — *Після `does` потрібне `write`.*
-- is write — *У цьому запитанні потрібне `write`, без `is`.*
+Does he ___ money? → **save** · saves · is save
+- saves — *Після `Does` потрібно `save`, без `s`.*
+- is save — *У цьому питанні потрібно `save`, без `is`.*
 
-**9 · Послухайте, чого не робить співрозмовник**
+**12 · Послухайте, чого не робить співрозмовник**
 <!-- interaction_id: en:lesson-07:session-21:i09; family: listen_choose -->
-🔊 *I don’t lie.* → **I don’t lie.** · I don’t shout. · I don’t smoke.
-- I don’t shout. — *У записі останнє слово — `lie`, а в цьому варіанті — `shout`.*
-- I don’t smoke. — *У записі останнє слово — `lie`, а в цьому варіанті — `smoke`.*
+🔊 *I don't lie.* → **I don't lie.** · I don't brag. · I don't shout.
+- I don't brag. — *У записі останнє слово — `lie`, а в цьому варіанті — `brag`.*
+- I don't shout. — *У записі останнє слово — `lie`, а в цьому варіанті — `shout`.*
 
-**10 · З’єднайте слова зі значеннями**
+**13 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-21:i10; family: speed_match -->
-screen — екран · lie — брехати · write — писати · necklace — намисто
+cash — готівка · banknote — банкнота · save — заощаджувати · lie — брехати
 
-**11 · Послухайте й складіть запитання**
+**14 · Послухайте й складіть питання**
 <!-- interaction_id: en:lesson-07:session-21:i11; family: listen_build_dictation -->
-🔊 *Does Tom write books?* Плитки: `books` `write` `Tom` `Does` → **Does Tom write books?**
+🔊 *Does he save money?* Плитки: `money` `save` `he` `Does` `Do` → **Does he save money?**
+*(плитка `Do` зайва: тут потрібно `Does` — `Does he save money?`)*
 
-**12 · Ви добираєте прикраси до вбрання. Запитайте подругу «У тебе є намисто?»**
+**15 · Картка слова — pay**
+<!-- interaction_id: en:lesson-07:session-21:word:pay; family: word_card -->
+> **pay** — платити. I pay here. — «Я плачу тут». Віддавати гроші за товар або послугу.
+
+**16 · У кафе ви не знаєте, де оплачувати замовлення. Запитайте відвідувача біля стійки: «Ви платите тут?»**
 <!-- interaction_id: en:lesson-07:session-21:i12; family: phrase_builder -->
-Плитки: `necklace` `a` `have` `you` `Do` → **Do you have a necklace?**
+Плитки: `here` `pay` `you` `Do` `Are` → **Do you pay here?**
+*(плитка `Are` зайва: тут потрібно `Do` — `Do you pay here?`)*
 
-**13 · Попередьте колегу «Екран не працює»**
+**17 · Ви зазирнули в скарбничку. Скажіть братові: «Тут немає банкнот»**
 <!-- interaction_id: en:lesson-07:session-21:i13; family: scripted_repeat_compare -->
-🎙 **The screen doesn’t work.**
+🎙 **There are no banknotes here.**
 
-**14 · Повідомте «Тут немає ручок»**
+**18 · Скажіть братові, що банкнот немає. Виберіть слово**
 <!-- interaction_id: en:lesson-07:session-21:i14; family: context_gap_grammar -->
-There ___ no pens here. → **are** · is · am
-- is — *З `pens` потрібне `are`.*
-- am — *З `pens` потрібне `are`.*
+There ___ no banknotes here. → **are** · is · am
+- is — *banknotes означає «банкноти», а не «банкнота»: потрібне `are`.*
+- am — *Потрібно `There are no`; `am` пасує лише до `I`.*
 
-**15 · Послухайте, де ручки**
+**19 · Послухайте питання**
 <!-- interaction_id: en:lesson-07:session-21:i15; family: listen_choose -->
-🔊 *The pens are here.* → **The pens are here.** · The pens are there. · The pens are upstairs.
-- The pens are there. — *У записі останнє слово — `here`, а в цьому варіанті — `there`.*
-- The pens are upstairs. — *У записі останнє слово — `here`, а в цьому варіанті — `upstairs`.*
+🔊 *Do you pay here?* → **Do you pay here?** · Do you work here? · Does he pay here?
+- Do you work here? — *У записі дія — `pay`, а в цьому варіанті — `work`.*
+- Does he pay here? — *У записі питання звернене до `you`, а цей варіант питає про `he`.*
 
-**16 · З’єднайте слова зі значеннями**
+**20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-07:session-21:i16; family: speed_match -->
-pens — ручки · screen — екран · lie — брехати · write — писати
+save — заощаджувати · pay — платити · lie — брехати · banknote — банкнота
 
-**17 · Друг запитує, чи буває, що Том навмисно каже неправду. Скажіть «Том не бреше»**
+**21 · Друг питає, чи каже ваш брат неправду. Скажіть: «Він не бреше»**
 <!-- interaction_id: en:lesson-07:session-21:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom doesn’t lie.**
-
+🎙 **He doesn't lie.**

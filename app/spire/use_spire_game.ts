@@ -161,6 +161,9 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
             .then((p) => DebugLogger.info(LOG, `game: прогрев пакета status=${p.status} source=${p.source}`));
         });
       }
+    }).catch((error: unknown) => { // зачем (Ревизор c2a45e78d, координатор 18.10): отказ синхронизации комнаты не немой — код и время; экран держит кэш, потолок 2,5 с снимает скелет
+      const code = String((error as { code?: unknown } | null)?.code ?? (error instanceof Error ? error.name : 'unknown')).slice(0, 60);
+      spireLoadMark('room:sync_failed', { code, ms: Date.now() - syncStartedAt, alive }); DebugLogger.warn(LOG, `[PIK-LOAD] sync_failed code=${code} ms=${Date.now() - syncStartedAt}`);
     });
     // зачем (аудит «пропала сеть», Авторизация 13.10): ранние выходы загрузки друзей и итога недели были немыми — пишем причину.
     void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => {

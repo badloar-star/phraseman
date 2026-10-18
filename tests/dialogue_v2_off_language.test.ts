@@ -30,6 +30,12 @@ describe('детектор языка реплики в Диалогах', () =>
     expect(detectDialogueOffLanguage(text, target).offLanguage).toBe(false);
   });
 
+  it('итальянский (D188): чужая фраза ловится, итальянская — нет', () => {
+    expect(detectDialogueOffLanguage('I am not sure what you want', 'it')).toMatchObject({ offLanguage: true, reason: 'stopwords' });
+    expect(detectDialogueOffLanguage('Привет, как дела?', 'it')).toMatchObject({ offLanguage: true, reason: 'script' });
+    expect(detectDialogueOffLanguage('Vorrei un caffè, per favore', 'it').offLanguage).toBe(false);
+  });
+
   it('ответы на изучаемом языке, разные и не повторяются подряд', () => {
     let previous: number | null = null;
     const seen = new Set<string>();
@@ -40,7 +46,7 @@ describe('детектор языка реплики в Диалогах', () =>
       previous = reply.index;
     }
     expect(seen.size).toBeGreaterThan(6);
-    for (const target of ['es', 'fr', 'de'] as const) {
+    for (const target of ['es', 'fr', 'de', 'it'] as const) {
       const all = new Set(Array.from({ length: DIALOGUE_NOT_UNDERSTOOD_POOL_SIZE }, (_, i) => pickDialogueNotUnderstoodReply(target, null, () => i / DIALOGUE_NOT_UNDERSTOOD_POOL_SIZE).text));
       expect(all.size).toBe(DIALOGUE_NOT_UNDERSTOOD_POOL_SIZE);
     }

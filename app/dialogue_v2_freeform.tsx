@@ -3,6 +3,7 @@ import * as Crypto from 'expo-crypto';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { dialogueV2FreeformOpening } from './dialogue_v2_freeform_opening';
+import { detectDialogueOffLanguage, pickDialogueNotUnderstoodReply } from './dialogue_v2_off_language';
 import { DialogueV2FreeformScreen, type DialogueV2FreeformMessage } from '../components/dialogs/DialogueV2FreeformScreen';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -100,6 +101,8 @@ export default function DialogueV2FreeformRoute() {
   const labels = useMemo(() => labelsFor(lang), [lang]);
   const [session, setSession] = useState<ServerSession | null>(null);
   const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>(() => freeformOpeningMessages(studyTarget));
+  // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд.
+  const offLanguageReplyIndexRef = useRef<number | null>(null);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
@@ -318,6 +321,24 @@ export default function DialogueV2FreeformRoute() {
   const send = async (queued: string | null = null) => {
     const userMessage = queued ?? draft.trim();
     const currentSession = sessionRef.current;
+    // зачем (владелец 18.10, координатор: «свободный разговор — та же проверка»): реплика не на изучаемом языке — ответ «не понимаю»
+    // на изучаемом языке, каждый раз другой; на сервер не уходит (ни квоты, ни вызова ИИ). Очередь (queued) уже проверена при постановке.
+    if (queued === null && userMessage.length > 0 && isSupportedTarget(targetRef.current) && !sending && voice.status === 'idle') {
+      const target = targetRef.current;
+      const verdict = detectDialogueOffLanguage(userMessage, target);
+      if (verdict.offLanguage) {
+        const reply = pickDialogueNotUnderstoodReply(target, offLanguageReplyIndexRef.current);
+        offLanguageReplyIndexRef.current = reply.index;
+        console.log('[DIALOG-OFF-LANG]', JSON.stringify({ screen: 'freeform', target, reason: verdict.reason, detected: verdict.detected, length: userMessage.length, replyIndex: reply.index })); // guard-ok: ветка «не тот язык» называет решение
+        setDraft('');
+        setMessages((current) => Object.freeze([
+          ...current,
+          Object.freeze({ id: `learner_${current.length + 1}`, author: 'learner' as const, text: userMessage }),
+          Object.freeze({ id: `assistant_${current.length + 2}`, author: 'assistant' as const, text: reply.text }),
+        ]));
+        return;
+      }
+    }
     // зачем (владелец 01.10 «диалоги без загрузки»; координатор 12.10 Optimistic UI): экран открыт до ответа сервера. Реплика,
     // нажатая раньше готовности сессии, сразу встаёт пузырём, поле очищается, видна «отправка»; ход уйдёт сам, когда сессия
     // придёт. Текст проверяется ДО пузыря той же канонической формой, что у хода.

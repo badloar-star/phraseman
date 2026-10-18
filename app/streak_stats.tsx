@@ -2412,7 +2412,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               {!statsReady && statsUnavailable ? (
                 <View testID="stats-calm-empty" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 8, zIndex: 1, backgroundColor: statsGlass.bg }}>
                   <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>{quietEmptyTitle(lang)}</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>{quietEmptyDetail(lang)}</Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>{quietEmptyDetail(lang)}</Text>
                 </View>
               ) : !statsReady ? (
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 16, gap: 12 }}>

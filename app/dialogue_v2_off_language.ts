@@ -9,7 +9,8 @@
  * Определитель осторожный: короткие реплики, имена и смешанный текст пропускаются как обычно (ложное «не понимаю» на
  * правильный ответ хуже, чем пропущенная чужая фраза). Журнал решений — [DIALOG-OFF-LANG] у вызывающего.
  */
-export type DialogueOffLanguageTarget = 'en' | 'es' | 'fr' | 'de';
+// зачем (координатор 18.10): итальянский открыт (D188) — ответы «не понимаю» нужны и на it.
+export type DialogueOffLanguageTarget = 'en' | 'es' | 'fr' | 'de' | 'it';
 
 export type DialogueOffLanguageVerdict = Readonly<{
   offLanguage: boolean;
@@ -119,6 +120,20 @@ const NOT_UNDERSTOOD: Readonly<Record<DialogueOffLanguageTarget, readonly string
     'Tut mir leid, ich weiß nicht, was das heißt. Sagst du es auf Deutsch?',
     'Hm, da hast du mich verloren. Kannst du es auf Deutsch umformulieren?',
     'Entschuldigung, das kann ich nicht verstehen. Noch einmal auf Deutsch?',
+  ],
+  it: [
+    'Scusa, non capisco cosa intendi.',
+    'Mmm, non sono sicuro di cosa hai detto. Puoi dirlo in italiano?',
+    'Scusa, non ho capito. Me lo dici in italiano?',
+    'Temo di non seguirti. Cosa vuoi dire?',
+    'Aspetta, mi sono perso. Puoi ripeterlo in italiano?',
+    'Scusa, questo non lo capisco. Provi in italiano?',
+    'Non ti capisco bene. Puoi dirlo in un altro modo?',
+    'Come? Purtroppo parlo solo italiano.',
+    'Ops, non ho afferrato. In italiano, per favore?',
+    'Mi dispiace, non so cosa significa. Me lo dici in italiano?',
+    'Mmm, mi hai perso. Puoi riformularlo in italiano?',
+    'Scusami, non riesco a capirlo. Ancora una volta in italiano?',
   ],
 };
 

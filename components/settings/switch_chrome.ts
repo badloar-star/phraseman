@@ -1,3 +1,6 @@
+import { colorContrast } from '../../constants/color_contrast';
+const SWITCH_KNOB_LIGHT = '#FFFFFF'; // theme-exempt: бегунок переключателя на тёмной дорожке всегда светлый
+
 // зачем (Сверка 11.10, светлая «Максимум» / «Акцент»): дорожка выключенного переключателя (opaqueControl) почти сливалась с карточкой
 // (контраст 1.1–1.3:1), а кромка glassEdge в светлой — 12 % чёрного, то есть тоже невидима. В светлой кромка дорожки берётся из
 // secondary (6.6:1) с прозрачностью 65 % — около 3:1 к карточке, как требует контраст границы элемента управления; в тёмной —
@@ -25,5 +28,9 @@ export function switchOffTrackTone(
 export function switchOnTone(
   glass: Readonly<{ accentGraphic: string; accentInk: string }>,
 ): Readonly<{ track: string; knob: string }> {
-  return { track: glass.accentGraphic, knob: glass.accentInk };
+  // зачем ([BLEND-AUDIT] 18.10, красный switch_on_tone: у 11 градиентных тем в светлом режиме бегунок на дорожке 1,78–2,98:1): accentGraphic в светлых
+  // темах углублён до тёмной дорожки (≥ 3:1 к кнопке/фону), а «чернильный» accentInk тоже тёмный и тонул на ней. Если accentInk не держит 3:1 на дорожке —
+  // бегунок белый, как у выключенного (switchOffTrackTone); характер темы — цвет дорожки — не меняется.
+  const knob = colorContrast(glass.accentInk, glass.accentGraphic) >= 3 ? glass.accentInk : SWITCH_KNOB_LIGHT;
+  return { track: glass.accentGraphic, knob };
 }

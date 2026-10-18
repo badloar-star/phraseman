@@ -185,3 +185,8 @@ Scope: docs/design/v2-app/morning-report-2026-10-18.html. Security and privacy: 
 Governance-ID: TG-C354C120C178
 Outcome: в решении «2е» снята фраза «нагрев пока не виден — Моменты чинят»; миниатюра приложения заменена кадром Сверки m08_hold/r2_c5_3 (янтарное кольцо «5» и выглянувшая монета). В реестре m08-a: нагрев снят из отличий, осталась форма индикатора (решение 2е).
 Scope: morning-report-2026-10-18.html, previews/m08-combo-app.jpg, visual_parity.json (m08-a). Security and privacy: без данных пользователей. Technical debt: удар на 10 не снят — доснять. Verification: гейт реестра 12/12; 390 px. Rollback: git revert. Architecture: plain_words.cjs + обрезка кадра.
+
+## «Размер»: финальные цифры, оба варианта заготовлены
+Governance-ID: TG-2D1F4880903D
+Outcome: в карточке «Размер» финальные цифры Ядра (координатор 03:58): 64 кбит/с ≈134 МБ (запас ≈66), 96 кбит/с ≈173 МБ (запас ≈27), 128 кбит/с ≈206 МБ — не проходит; пустых и тихих записей нет ни в одном; рамка «96 годится, только если до релиза не добавятся новые уроки»; после выбора — проверка и сохранение ≈35–50 мин. Кнопки с теми же цифрами. Простыми словами.
+Scope: docs/design/v2-app/morning-report-2026-10-18.html (карточка «Размер»). Security and privacy: без данных пользователей. Technical debt: нет. Verification: старых цифр (203, 205–206, 132, 133–134, 171–173, 27–30, 45–60, 04:15) в карточке нет; 390 px. Rollback: git revert. Architecture: report_upd28.cjs, затем plain_words.cjs.

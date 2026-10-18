@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-38:i01",
+      "interactionId": "en:lesson-08:session-38:word:panic",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — panic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-38:word:panic:audio"
+      ],
+      "accessibilityLabel": "Картка слова — panic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-38:word:panic:audio",
+          "transcript": "panic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-38:word:panic:r1",
+            "targetText": "panic",
+            "meaningByLocale": {
+              "ru": "паниковать. Don’t panic. — «Не паникуй». В этой бытовой ситуации человек испугался, что пришёл не туда.",
+              "uk": "панікувати. Don’t panic. — «Не панікуй». У цій побутовій ситуації людина злякалася, що прийшла не туди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "panic",
+          "definitionByLocale": {
+            "ru": "паниковать. Don’t panic. — «Не паникуй». В этой бытовой ситуации человек испугался, что пришёл не туда.",
+            "uk": "панікувати. Don’t panic. — «Не панікуй». У цій побутовій ситуації людина злякалася, що прийшла не туди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-38:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -36,7 +79,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -112,11 +155,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Не панікуй»",
+      "prompt": "Виберіть форму для «Не панікуй»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-38:i03:r1",
@@ -133,12 +176,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Не панікуй»",
+      "accessibilityLabel": "Виберіть форму для «Не панікуй»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Не паникуй»",
-          "uk": "Скажіть «Не панікуй»"
+          "ru": "Выберите форму для «Не паникуй»",
+          "uk": "Виберіть форму для «Не панікуй»"
         },
         "gappedTargetPhrase": "Don’t ___.",
         "gapOptions": [
@@ -155,12 +198,12 @@
             "text": "to panic"
           }
         ],
-        "testedDimension": "Скажіть «Не панікуй»",
+        "testedDimension": "Виберіть форму для «Не панікуй»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-38:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Не панікуй»",
+            "testedDimension": "Виберіть форму для «Не панікуй»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `panic`, без `s`.",
               "uk": "Після `don’t` потрібне `panic`, без `s`."
@@ -169,7 +212,7 @@
           {
             "responseId": "en:lesson-08:session-38:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Не панікуй»",
+            "testedDimension": "Виберіть форму для «Не панікуй»",
             "feedbackByLocale": {
               "ru": "После `don’t` нужно `panic`, без `to`.",
               "uk": "Після `don’t` потрібне `panic`, без `to`."
@@ -181,7 +224,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -254,7 +297,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -287,27 +330,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-38:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-38:word:hesitate",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hesitate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-38:word:hesitate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hesitate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-38:word:hesitate:audio",
+          "transcript": "hesitate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-38:word:hesitate:r1",
+            "targetText": "hesitate",
+            "meaningByLocale": {
+              "ru": "колебаться, медлить. Don’t hesitate. — «Не медли». Не решаться сделать что-то сразу.",
+              "uk": "вагатися, зволікати. Don’t hesitate. — «Не вагайся». Не наважуватися зробити щось одразу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hesitate",
+          "definitionByLocale": {
+            "ru": "колебаться, медлить. Don’t hesitate. — «Не медли». Не решаться сделать что-то сразу.",
+            "uk": "вагатися, зволікати. Don’t hesitate. — «Не вагайся». Не наважуватися зробити щось одразу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на малюнок: «Не чіпай це»",
+      "prompt": "Скажіть «Не вагайся» — використайте hesitate",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на малюнок: «Не чіпай це»",
+      "accessibilityLabel": "Скажіть «Не вагайся» — використайте hesitate",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Don’t touch this.",
+        "targetPhrase": "Don’t hesitate.",
         "localizedMeaning": {
-          "ru": "Покажите на рисунок: «Не трогай это»",
-          "uk": "Покажіть на малюнок: «Не чіпай це»"
+          "ru": "Скажите «Не медли» — используйте hesitate",
+          "uk": "Скажіть «Не вагайся» — використайте hesitate"
         },
         "orderedTokens": [
           "Don’t",
-          "touch",
-          "this"
+          "hesitate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -319,26 +404,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-38:word:guess",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guess",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-38:word:guess:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guess",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-38:word:guess:audio",
+          "transcript": "guess"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-38:word:guess:r1",
+            "targetText": "guess",
+            "meaningByLocale": {
+              "ru": "угадывать. Don’t guess. — «Не угадывай». Давать ответ, не зная наверняка.",
+              "uk": "вгадувати. Don’t guess. — «Не вгадуй». Давати відповідь, не знаючи напевно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guess",
+          "definitionByLocale": {
+            "ru": "угадывать. Don’t guess. — «Не угадывай». Давать ответ, не зная наверняка.",
+            "uk": "вгадувати. Don’t guess. — «Не вгадуй». Давати відповідь, не знаючи напевно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-38:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "До потяга ще пів години. Скажіть другові «Будь ласка, не поспішай»",
+      "prompt": "Друг вибирає номер автобуса навмання. Скажіть «Не вгадуй»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-38:i07:audio"
       ],
-      "accessibilityLabel": "До потяга ще пів години. Скажіть другові «Будь ласка, не поспішай»",
+      "accessibilityLabel": "Друг вибирає номер автобуса навмання. Скажіть «Не вгадуй»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-38:i07:audio",
-          "transcript": "Please don’t rush."
+          "transcript": "Don’t guess."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Please don’t rush.",
+        "targetPhrase": "Don’t guess.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -353,11 +481,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попросіть друга не поспішати",
+      "prompt": "Виберіть форму для прохання не поспішати",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-38:i08:r1",
@@ -374,12 +502,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попросіть друга не поспішати",
+      "accessibilityLabel": "Виберіть форму для прохання не поспішати",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Попросите друга не торопиться",
-          "uk": "Попросіть друга не поспішати"
+          "ru": "Выберите форму для просьбы не торопиться",
+          "uk": "Виберіть форму для прохання не поспішати"
         },
         "gappedTargetPhrase": "Please ___ rush.",
         "gapOptions": [
@@ -396,12 +524,12 @@
             "text": "not"
           }
         ],
-        "testedDimension": "Попросіть друга не поспішати",
+        "testedDimension": "Виберіть форму для прохання не поспішати",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Попросіть друга не поспішати",
+            "testedDimension": "Виберіть форму для прохання не поспішати",
             "feedbackByLocale": {
               "ru": "В обращении нужно `don’t rush`.",
               "uk": "У звертанні потрібне `don’t rush`."
@@ -410,7 +538,7 @@
           {
             "responseId": "en:lesson-08:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Попросіть друга не поспішати",
+            "testedDimension": "Виберіть форму для прохання не поспішати",
             "feedbackByLocale": {
               "ru": "В этой просьбе нужно `don’t`: `Please don’t rush`.",
               "uk": "У цьому проханні потрібне `don’t`: `Please don’t rush`."
@@ -422,7 +550,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -498,7 +626,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -512,14 +640,6 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-38:i10:p1",
-            "target": "iron",
-            "meaningByLocale": {
-              "ru": "гладить",
-              "uk": "прасувати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-38:i10:p2",
             "target": "panic",
             "meaningByLocale": {
               "ru": "паниковать",
@@ -527,33 +647,41 @@
             }
           },
           {
-            "pairId": "en:lesson-08:session-38:i10:p3",
-            "target": "rest",
+            "pairId": "en:lesson-08:session-38:i10:p2",
+            "target": "hesitate",
             "meaningByLocale": {
-              "ru": "отдыхать",
-              "uk": "відпочивати"
+              "ru": "колебаться",
+              "uk": "вагатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-08:session-38:i10:p3",
+            "target": "guess",
+            "meaningByLocale": {
+              "ru": "угадывать",
+              "uk": "вгадувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-38:i10:p4",
-            "target": "bike shed",
+            "target": "rush",
             "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "сарай для велосипедів"
+              "ru": "торопиться",
+              "uk": "поспішати"
             }
           }
         ],
         "leftColumn": [
-          "iron",
           "panic",
-          "rest",
-          "bike shed"
+          "hesitate",
+          "guess",
+          "rush"
         ],
         "rightColumn": [
-          "прасувати",
           "панікувати",
-          "відпочивати",
-          "сарай для велосипедів"
+          "вагатися",
+          "вгадувати",
+          "поспішати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -571,8 +699,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -605,26 +733,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-38:word:overreact",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overreact",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-38:word:overreact:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overreact",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-38:word:overreact:audio",
+          "transcript": "overreact"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-38:word:overreact:r1",
+            "targetText": "overreact",
+            "meaningByLocale": {
+              "ru": "реагировать слишком остро. Don’t overreact. — «Не реагируй так остро». Слово выражает оценку говорящего; такая фраза может прозвучать критично.",
+              "uk": "реагувати надто гостро. Don’t overreact. — «Не реагуй так гостро». Слово виражає оцінку мовця; така фраза може прозвучати критично."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overreact",
+          "definitionByLocale": {
+            "ru": "реагировать слишком остро. Don’t overreact. — «Не реагируй так остро». Слово выражает оценку говорящего; такая фраза может прозвучать критично.",
+            "uk": "реагувати надто гостро. Don’t overreact. — «Не реагуй так гостро». Слово виражає оцінку мовця; така фраза може прозвучати критично."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-38:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На коробці немає підпису. Дайте вказівку «Підпиши її»",
+      "prompt": "Друг програв один раунд настільної гри й оголошує, що більше ніколи не гратиме. Скажіть «Не реагуй так гостро»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На коробці немає підпису. Дайте вказівку «Підпиши її»",
+      "accessibilityLabel": "Друг програв один раунд настільної гри й оголошує, що більше ніколи не гратиме. Скажіть «Не реагуй так гостро»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Label it.",
+        "targetPhrase": "Don’t overreact.",
         "localizedMeaning": {
-          "ru": "На коробке нет подписи. Дайте указание «Подпиши её»",
-          "uk": "На коробці немає підпису. Дайте вказівку «Підпиши її»"
+          "ru": "Друг проиграл один раунд настольной игры и объявляет, что больше никогда не будет играть. Скажите «Не реагируй так остро»",
+          "uk": "Друг програв один раунд настільної гри й оголошує, що більше ніколи не гратиме. Скажіть «Не реагуй так гостро»"
         },
         "orderedTokens": [
-          "Label",
-          "it"
+          "Don’t",
+          "overreact"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -637,25 +808,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я часто прасую» — використайте iron",
+      "prompt": "Друг поспішає переписати розклад і плутає цифри. Скажіть «Будь ласка, не поспішай»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-38:i13:audio"
       ],
-      "accessibilityLabel": "Скажіть «Я часто прасую» — використайте iron",
+      "accessibilityLabel": "Друг поспішає переписати розклад і плутає цифри. Скажіть «Будь ласка, не поспішай»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-38:i13:audio",
-          "transcript": "I often iron."
+          "transcript": "Please don’t rush."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often iron.",
+        "targetPhrase": "Please don’t rush.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -670,67 +841,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Попередьте «Не чіпай це»",
+      "prompt": "Виберіть форму для прохання не вгадувати",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-38:i14:r1",
-          "text": "touch"
+          "text": "guess"
         },
         {
           "responseId": "en:lesson-08:session-38:i14:r2",
-          "text": "touches"
+          "text": "guesses"
         },
         {
           "responseId": "en:lesson-08:session-38:i14:r3",
-          "text": "to touch"
+          "text": "to guess"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Попередьте «Не чіпай це»",
+      "accessibilityLabel": "Виберіть форму для прохання не вгадувати",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Предупредите «Не трогай это»",
-          "uk": "Попередьте «Не чіпай це»"
+          "ru": "Выберите форму для просьбы не угадывать",
+          "uk": "Виберіть форму для прохання не вгадувати"
         },
-        "gappedTargetPhrase": "Don’t ___ this.",
+        "gappedTargetPhrase": "Don’t ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-38:i14:r1",
-            "text": "touch"
+            "text": "guess"
           },
           {
             "responseId": "en:lesson-08:session-38:i14:r2",
-            "text": "touches"
+            "text": "guesses"
           },
           {
             "responseId": "en:lesson-08:session-38:i14:r3",
-            "text": "to touch"
+            "text": "to guess"
           }
         ],
-        "testedDimension": "Попередьте «Не чіпай це»",
+        "testedDimension": "Виберіть форму для прохання не вгадувати",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-38:i14:r2",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для прохання не вгадувати",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `es`.",
-              "uk": "Після `don’t` потрібне `touch`, без `es`."
+              "ru": "После don’t нужно guess, без es.",
+              "uk": "Після don’t потрібне guess, без es."
             }
           },
           {
             "responseId": "en:lesson-08:session-38:i14:r3",
             "correct": false,
-            "testedDimension": "Попередьте «Не чіпай це»",
+            "testedDimension": "Виберіть форму для прохання не вгадувати",
             "feedbackByLocale": {
-              "ru": "После `don’t` нужно `touch`, без `to`.",
-              "uk": "Після `don’t` потрібне `touch`, без `to`."
+              "ru": "После don’t не нужно to.",
+              "uk": "Після don’t не потрібне to."
             }
           }
         ]
@@ -739,7 +910,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -815,7 +986,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -837,40 +1008,40 @@
           },
           {
             "pairId": "en:lesson-08:session-38:i16:p2",
-            "target": "iron",
+            "target": "hesitate",
             "meaningByLocale": {
-              "ru": "гладить",
-              "uk": "прасувати"
+              "ru": "колебаться",
+              "uk": "вагатися"
             }
           },
           {
             "pairId": "en:lesson-08:session-38:i16:p3",
-            "target": "label",
+            "target": "guess",
             "meaningByLocale": {
-              "ru": "подписать",
-              "uk": "підписати"
+              "ru": "угадывать",
+              "uk": "вгадувати"
             }
           },
           {
             "pairId": "en:lesson-08:session-38:i16:p4",
-            "target": "bike shed",
+            "target": "overreact",
             "meaningByLocale": {
-              "ru": "велосипедный сарай",
-              "uk": "сарай для велосипедів"
+              "ru": "реагировать слишком остро",
+              "uk": "реагувати надто гостро"
             }
           }
         ],
         "leftColumn": [
           "panic",
-          "iron",
-          "label",
-          "bike shed"
+          "hesitate",
+          "guess",
+          "overreact"
         ],
         "rightColumn": [
           "панікувати",
-          "прасувати",
-          "підписати",
-          "сарай для велосипедів"
+          "вагатися",
+          "вгадувати",
+          "реагувати надто гостро"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -888,7 +1059,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-38:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -928,11 +1099,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7704266fd810488455a285202612e57225d70f838acdbffd2ef07fc3543b3601"
+  "learnerFingerprint": "74420ac397d39c63bc5f84080f1fbe0093616d455b7a71953a50e9585769333f"
 }

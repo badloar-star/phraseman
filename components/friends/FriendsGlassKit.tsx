@@ -55,9 +55,10 @@ export function FriendsCard({ glass, children, testID, style, onLayoutHeight }: 
 }) {
   return (
     <View testID={testID} onLayout={onLayoutHeight ? (event) => onLayoutHeight(event.nativeEvent.layout.height) : undefined} style={[friendsCardStyle(glass), style]}>
-      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
+      {/* зачем (владелец 18.10 «острые углы на плашках»): блик сверху и дымка — со скруглением карточки (14), иначе за ней торчат квадратные уголки */}
+      <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14 }} />
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
-      <ThemeGlassSmoke glass={glass} />
+      <ThemeGlassSmoke glass={glass} radius={14} />
       {children}
     </View>
   );

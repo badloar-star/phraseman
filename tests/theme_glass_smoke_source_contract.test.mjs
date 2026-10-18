@@ -19,6 +19,12 @@ test('glass kits and the Themes list carry the smoke layer', () => {
     'components/lessons/LessonMenuGlass.tsx',
     'app/settings_themes.tsx',
   ]) {
-    assert.match(fs.readFileSync(file, 'utf8'), /<ThemeGlassSmoke glass=\{glass\} \/>/, file);
+    // зачем (владелец 18.10 «острые углы на плашках»): слой обязан знать скругление карточки
+    assert.match(fs.readFileSync(file, 'utf8'), /<ThemeGlassSmoke glass=\{glass\} radius=\{\w+\} \/>/, file);
   }
+});
+
+test('smoke clips itself to the card radius — no square corners behind rounded cards', () => {
+  assert.match(smoke, /style=\{\[StyleSheet\.absoluteFill, \{ borderRadius: radius, overflow: 'hidden' \}\]\}/);
+  assert.match(smoke, /radius: number;/);
 });

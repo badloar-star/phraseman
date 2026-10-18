@@ -71,7 +71,7 @@ export function SettingsGlassGroup({ glass, children, testID, marginTop }: { gla
   return (
     // зачем (стиль «Тень»): группа — одна плашка с тенью, без кромки; строки плоские, разделитель — тон `dividerTone`.
     <View testID={testID} style={{ marginTop, borderRadius: 14, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }}>
-      <ThemeGlassSmoke glass={glass} />
+      <ThemeGlassSmoke glass={glass} radius={14} />
       <KitGlassLayer radius={14} />
       <SettingsGroupContext.Provider value>
         {items.map((child, index) => (
@@ -108,7 +108,7 @@ export function SettingsGlassCard({ glass, children, testID, style }: { glass: S
   return (
     <View testID={testID} style={[settingsGlassCardStyle(glass), style]}>
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
-      <ThemeGlassSmoke glass={glass} />
+      <ThemeGlassSmoke glass={glass} radius={14} />
       {/* зачем (стиль «Тень»): строка — плашка (градиент 180°), тень на самом контейнере; кромки нет. */}
       <KitGlassLayer radius={14} />
       {children}
@@ -156,7 +156,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       {grouped ? null : (
         <>
           {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
-          <ThemeGlassSmoke glass={glass} />
+          <ThemeGlassSmoke glass={glass} radius={14} />
           {/* зачем (стиль «Тень»): строка — плашка (градиент 180°), тень на самом контейнере; кромки нет. */}
           <KitGlassLayer radius={14} />
         </>

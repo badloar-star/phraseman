@@ -42,7 +42,7 @@ function ClippedSmoke({ glass, radius }: { glass: LessonMenuGlassTokens; radius:
   if (glass.level !== 'max') return null;
   return (
     <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: 'hidden' }]}>
-      <ThemeGlassSmoke glass={glass} />
+      <ThemeGlassSmoke glass={glass} radius={radius} />
     </View>
   );
 }

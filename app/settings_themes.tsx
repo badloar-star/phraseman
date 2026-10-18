@@ -252,7 +252,7 @@ export default function SettingsThemes() {
               accessibilityRole="radiogroup"
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
-              <ThemeGlassSmoke glass={glass} />
+              <ThemeGlassSmoke glass={glass} radius={20} />
               {THEME_OPTIONS.map((item, index) => (
                 <ThemeRow
                   key={item.mode}
@@ -272,7 +272,7 @@ export default function SettingsThemes() {
               accessibilityRole="radiogroup"
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
-              <ThemeGlassSmoke glass={glass} />
+              <ThemeGlassSmoke glass={glass} radius={20} />
               {GRADIENT_OPTIONS.map((item, index) => (
                 <ThemeRow
                   key={item.mode}

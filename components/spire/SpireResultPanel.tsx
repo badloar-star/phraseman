@@ -22,6 +22,7 @@ import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
 import { spireClock, spireGameText } from './spire_game_strings';
+import { useAfterRoundChoice } from './use_after_round_choice';
 import { SPIRE_FLOOR_COUNT, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from './spire_tower_model';
 
 type Props = Readonly<{
@@ -46,7 +47,8 @@ function CoinPill({ amount, rank }: Readonly<{ amount: number; rank: number | nu
   );
 }
 
-type View_ = Readonly<{ over: string; overBad: boolean; title: string; sub: string; pills: readonly number[]; cta: string; ctaUp: boolean; ghost: string | null; ghostPill: boolean }>;
+// зачем (владелец 18.10 через координатора): те же две кнопки, что в моменте m06 — «следующее» (cta) и «В раздел Пик» (ghost); ctaToSpire — у вершины единственная кнопка «В раздел Пик»
+type View_ = Readonly<{ over: string; overBad: boolean; title: string; sub: string; pills: readonly number[]; cta: string; ctaUp: boolean; ctaToSpire?: boolean; ghost: string | null; ghostPill: boolean }>;
 
 function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, place: number | null): View_ {
   const floorNow = Math.min(o.local.floor, SPIRE_FLOOR_COUNT);
@@ -61,7 +63,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
       over: saveFailed ? '' : spireGameText(lang, 'stepFailed'), overBad: true, title,
       // зачем (Сверка spire-gap-014, savePanel): у «не сохранилась» нет подписи про новый набор; «Позже» там — текст (.sg-ghost), а у провала — таблетка (.cta.gh, spire-011)
       sub: saveFailed ? '' : spireGameText(lang, 'failSub', { n: o.floorBefore }), pills: [],
-      cta: spireGameText(lang, saveFailed ? 'retry' : 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'), ghostPill: !saveFailed,
+      cta: spireGameText(lang, saveFailed ? 'retry' : 'again'), ctaUp: false, ghost: saveFailed ? spireGameText(lang, 'later') : spireGameText(lang, 'toSpire'), ghostPill: !saveFailed,
     };
   }
   if (o.kind === 'summit') {
@@ -69,7 +71,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
       over: spireText(lang, 'summit'), overBad: false, title: spireGameText(lang, 'onFloorN', { n: SPIRE_FLOOR_COUNT }),
       sub: spireGameText(lang, 'summitSub', { s: o.local.stepsCleared, p: place ?? '—' }),
       pills: [spireFloorCoinsOf(SPIRE_FLOOR_COUNT, coins), coins.summitBonus],
-      cta: spireGameText(lang, 'aboveCloudsCta'), ctaUp: true, ghost: null, ghostPill: false,
+      cta: spireGameText(lang, 'toSpire'), ctaUp: false, ctaToSpire: true, ghost: null, ghostPill: false,
     };
   }
   if (o.kind === 'floor') {
@@ -82,7 +84,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
         ? spireGameText(lang, 'guardSub', { n: next, m: coins.guardianMultiplier })
         : `${spireStepsCount(lang, spireStepsIn(next))} · ${spireFloorCoinsOf(next, coins)} ${spireText(lang, 'coinsPerFloor')}`,
       pills: [coins.perStep, spireFloorCoinsOf(o.floorBefore, coins)],
-      cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null, ghostPill: false,
+      cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: spireGameText(lang, 'toSpire'), ghostPill: true,
     };
   }
   const errors = o.errors === 0 ? spireGameText(lang, 'noErrors') : spireGameText(lang, 'errorsN', { n: o.errors });
@@ -90,7 +92,7 @@ function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, plac
   return {
     over: spireGameText(lang, 'stepPassed'), overBad: false, title: spireGameText(lang, 'oneHigher'),
     sub: `${spireClock(o.usedMs)} / ${spireClock(o.budgetMs)} · ${errors} · ${progress}`,
-    pills: [coins.perStep], cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null, ghostPill: false,
+    pills: [coins.perStep], cta: spireGameText(lang, 'nextTask'), ctaUp: true, ghost: spireGameText(lang, 'toSpire'), ghostPill: true,
   };
 }
 
@@ -98,6 +100,7 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
   const p = useSpirePalette(); const sh = useSpireShadow();
   const g = useShadowGlass();
   const v = describe(lang, outcome, coins, myPlace);
+  const choice = useAfterRoundChoice({ outcome, busy, onNext: onHigher, onLater });
   return (
     <View style={[s.panel, { boxShadow: plateBoxShadow(g) }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>
       <PlateFill g={g} radius={24} />
@@ -110,8 +113,8 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
         </View>
       ) : null}
       <V2Pressable
-        onPress={onHigher}
-        disabled={busy}
+        onPress={v.ctaToSpire ? choice.toSpire : choice.next}
+        disabled={busy && !v.ctaToSpire}
         accessibilityRole="button"
         accessibilityLabel={v.cta}
         accessibilityState={{ disabled: busy, busy }}
@@ -123,7 +126,7 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
         {v.ctaUp ? <View pointerEvents="none" style={s.arrow}><Ionicons name="arrow-up" size={20} color={p.ctaText} /></View> : null}
       </V2Pressable>
       {v.ghost ? (
-        <V2Pressable onPress={onLater} accessibilityRole="button" style={[s.ghost, v.ghostPill && [s.ghostPill, { backgroundColor: p.control }, sh.nested]]} testID="spire-result-later">
+        <V2Pressable onPress={choice.toSpire} accessibilityRole="button" style={[s.ghost, v.ghostPill && [s.ghostPill, { backgroundColor: p.control }, sh.nested]]} testID="spire-result-later">
           <Text style={[s.ctaText, { color: p.text }]}>{v.ghost}</Text>
         </V2Pressable>
       ) : null}

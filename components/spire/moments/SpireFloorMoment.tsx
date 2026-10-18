@@ -35,6 +35,7 @@ import MomentFirework, { useMomentRumble } from './moments_effects';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { logMomentReward } from './moment_reward_log';
 import { stepMomentText } from './step_moment_strings';
+import { useAfterRoundChoice } from '../use_after_round_choice';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const TOWER_W = 280;
@@ -60,6 +61,7 @@ export type SpireFloorMomentProps = Readonly<{
 
 function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, testID }: SpireFloorMomentProps & { testID: string }) {
   const p = useSpirePalette();
+  const choice = useAfterRoundChoice({ outcome, busy, onNext, onLater }); // зачем (владелец 18.10): выбор после раунда единый — «следующее» и «В раздел Пик», без автоперехода
   const scene = useSpireScene();
   const reduceMotion = useReducedMotion();
   const next = Math.min(outcome.local.floor, SPIRE_FLOOR_COUNT);
@@ -112,16 +114,17 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
         <Text style={[s.p, { color: p.textSecondary }]}>{sub}</Text>
       </View>
       <View style={s.foot}>
-        <V2Button label={stepMomentText(lang, 'toFloor', { n: next })} icon="arrow-forward" onPress={onNext} disabled={busy} testID={`${testID}-next`} />
+        <V2Button label={stepMomentText(lang, 'toFloor', { n: next })} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-next`} />
         <View style={s.gap} />
-        <V2Button label={stepMomentText(lang, 'rest')} variant="secondary" onPress={onLater} testID={`${testID}-later`} />
+        <V2Button label={spireGameText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
     </>
   );
 }
 
-function SummitView({ lang, coins, coinRank, onNext, busy, testID }: SpireFloorMomentProps & { testID: string }) {
+function SummitView({ lang, outcome, coins, coinRank, onNext, onLater, busy, testID }: SpireFloorMomentProps & { testID: string }) {
   const p = useSpirePalette();
+  const choice = useAfterRoundChoice({ outcome, busy, onNext, onLater });
   const reduceMotion = useReducedMotion();
   const rumble = useMomentRumble();
   const [cheer, setCheer] = useState(reduceMotion);
@@ -157,7 +160,8 @@ function SummitView({ lang, coins, coinRank, onNext, busy, testID }: SpireFloorM
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(500)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-bonus`}>{stepMomentText(lang, 'summitBonus', { n: coins.summitBonus })}</Animated.Text>
       </View>
       <View style={s.foot}>
-        <V2Button label={spireGameText(lang, 'onward')} icon="arrow-forward" onPress={onNext} disabled={busy} testID={`${testID}-next`} />
+        {/* зачем (владелец 18.10 через координатора): на вершине «Дальше» заменено на «В раздел Пик» — выше этажей нет, человек возвращается в раздел сам */}
+        <V2Button label={spireGameText(lang, 'toSpire')} icon="arrow-forward" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
       <MomentFirework fire={fire} x={195} y={180} r={110} />
       <MomentFirework fire={fire} x={110} y={240} r={70} delayMs={400} />

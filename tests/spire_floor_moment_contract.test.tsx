@@ -69,7 +69,11 @@ describe('m07 · этаж пройден', () => {
     expect(screen.getByText('На 5 этаж')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('floor-moment-next'));
     expect(onNext).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('В раздел Пик')).toBeTruthy(); // зачем (владелец 18.10): вместо «Передохнуть»
+    // второй тап в течение 0,7 с — двойной, игнорируется; «через секунду» работает
+    const nowSpy = jest.spyOn(Date, 'now').mockReturnValue(Date.now() + 1000);
     await fireEvent.press(screen.getByTestId('floor-moment-later'));
+    nowSpy.mockRestore();
     expect(onLater).toHaveBeenCalledTimes(1);
   });
 
@@ -81,14 +85,18 @@ describe('m07 · этаж пройден', () => {
 });
 
 describe('m07 · вершина', () => {
-  it('«Вершина», «15 этаж», бонус из config.coins.summitBonus, «Дальше» зовёт подъём; захардкоженного «+200» в коде нет', async () => {
+  it('«Вершина», «15 этаж», бонус из config.coins.summitBonus, вместо «Дальше» единственная кнопка «В раздел Пик» закрывает итог; захардкоженного «+200» в коде нет', async () => {
     const onNext = jest.fn();
-    await render(<SpireFloorMoment lang="ru" outcome={outcome({ kind: 'summit', floorBefore: 15 }, { floor: 16 })} coins={{ ...COINS, summitBonus: 250 } as SpireCoinsConfig} coinRank={5} onNext={onNext} onLater={jest.fn()} />);
+    const onLater = jest.fn();
+    await render(<SpireFloorMoment lang="ru" outcome={outcome({ kind: 'summit', floorBefore: 15 }, { floor: 16 })} coins={{ ...COINS, summitBonus: 250 } as SpireCoinsConfig} coinRank={5} onNext={onNext} onLater={onLater} />);
     expect(screen.getByText('ВЕРШИНА')).toBeTruthy();
     expect(screen.getByTestId('floor-moment-title').props.children).toBe(glueNumbers('15 этаж'));
     expect(screen.getByTestId('floor-moment-bonus').props.children).toBe(glueNumbers('+250 монет за вершину'));
-    await fireEvent.press(screen.getByTestId('floor-moment-next'));
-    expect(onNext).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('В раздел Пик')).toBeTruthy();
+    expect(screen.queryByText('Дальше')).toBeNull();
+    await fireEvent.press(screen.getByTestId('floor-moment-later'));
+    expect(onLater).toHaveBeenCalledTimes(1);
+    expect(onNext).not.toHaveBeenCalled();
     expect(read('components/spire/moments/SpireFloorMoment.tsx').split('\n').filter((l) => !l.trim().startsWith('//')).join('\n')).not.toMatch(/\+200/);
   });
 });

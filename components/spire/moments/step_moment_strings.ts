@@ -16,9 +16,6 @@ const S = {
   clean: ['Чисто!', 'Чисто!', 'Clean!', '¡Limpio!', 'Limpo!', 'Sạch!', 'Bersih!', 'Temiz!', 'Czysto!'],
   failHearts: ['3 ошибки — ступень не пройдена', 'Сходинку не пройдено', '3 mistakes — step not cleared', '3 errores: escalón no superado', '3 erros — degrau não concluído', '3 lỗi — chưa qua bậc', '3 salah — anak tangga belum lewat', '3 hata — basamak geçilmedi', '3 błędy — stopień niezaliczony'],
   retrySet: ['Ещё раз — другой набор', 'Ще раз — інший набір', 'Try again — a new set', 'Otra vez — otro conjunto', 'Outro conjunto', 'Làm lại — bộ khác', 'Lagi — set lain', 'Tekrar — başka set', 'Inny zestaw'],
-  // зачем (владелец 18.10 через координатора): после ступени две кнопки — «Следующее задание» и «В раздел Пик»; переводы кроме RU — предложение, ревью — «Переводчик»
-  nextTask: ['Следующее задание', 'Наступне завдання', 'Next task', 'Siguiente tarea', 'Próxima tarefa', 'Nhiệm vụ tiếp theo', 'Tugas berikutnya', 'Sonraki görev', 'Następne zadanie'],
-  toSpire: ['В раздел Пик', 'У розділ Пік', 'Back to Peak', 'Al Pico', 'Para o Pico', 'Về Đỉnh', 'Ke Puncak', "Zirve'ye", 'Do Szczytu'],
   toTower: ['К башне', 'До вежі', 'To the tower', 'A la torre', 'À torre', 'Về tháp', 'Ke menara', 'Kuleye', 'Do wieży'],
   toFloor: ['На {n} этаж', 'На {n} поверх', 'To floor {n}', 'Al piso {n}', 'Ao andar {n}', 'Lên tầng {n}', 'Ke lantai {n}', '{n}. kata', 'Na piętro {n}'],
   rest: ['Передохнуть', 'Перепочити', 'Take a break', 'Descansar', 'Descansar', 'Nghỉ một chút', 'Istirahat', 'Mola ver', 'Odpocznij'],

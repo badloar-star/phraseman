@@ -37,6 +37,9 @@ const S = {
   promptListenChoose: ['Послушай и выбери', 'Послухай і обери', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],
   promptListenBuild: ['Послушай и собери', 'Послухай і склади', 'Listen and build', 'Escucha y arma', 'Ouça e monte', 'Nghe và ghép', 'Dengarkan dan susun', 'Dinle ve oluştur', 'Posłuchaj i ułóż'],
   promptMatch: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cocokkan pasangan', 'Eşleri bul', 'Połącz pary'],
+  // зачем (владелец 18.10 через координатора): после ступени две кнопки — «Следующее задание» и «В раздел Пик»; переводы кроме RU — предложение, ревью — «Переводчик»
+  nextTask: ['Следующее задание', 'Наступне завдання', 'Next task', 'Siguiente tarea', 'Próxima tarefa', 'Nhiệm vụ tiếp theo', 'Tugas berikutnya', 'Sonraki görev', 'Następne zadanie'],
+  toSpire: ['В раздел Пик', 'У розділ Пік', 'Back to Peak', 'Al Pico', 'Para o Pico', 'Về Đỉnh', 'Ke Puncak', "Zirve'ye", 'Do Szczytu'],
   onward: ['Дальше', 'Далі', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam', 'Dalej'],
   correctIs: ['Правильно:', 'Правильно:', 'Correct:', 'Correcto:', 'Correto:', 'Đáp án:', 'Benar:', 'Doğrusu:', 'Poprawnie:'],
   mistakeSaved: ['Ошибка сохранена в «Мои ошибки»', 'Помилку збережено в «Мої помилки»', 'Saved to “My mistakes”', 'Guardado en «Mis errores»', 'Salvo em “Meus erros”', 'Đã lưu vào “Lỗi của tôi”', 'Disimpan di “Kesalahanku”', '“Hatalarım”a kaydedildi', 'Zapisano w „Moje błędy”'],

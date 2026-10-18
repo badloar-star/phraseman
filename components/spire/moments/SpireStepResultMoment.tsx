@@ -28,7 +28,7 @@ import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { logMomentReward } from './moment_reward_log';
 import { stepMomentText } from './step_moment_strings';
-import { useAfterRoundChoice } from './use_after_round_choice';
+import { useAfterRoundChoice } from '../use_after_round_choice';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -121,9 +121,9 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, test
         <Text style={[s.small, { color: p.textSecondary }]}>{spireGameText(lang, 'onFloorProgress', { k: stepK, n: stairsN })}</Text>
       </View>
       <View style={s.foot}>
-        <V2Button label={stepMomentText(lang, 'nextTask')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-next`} />
+        <V2Button label={spireGameText(lang, 'nextTask')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-next`} />
         <View style={s.gap} />
-        <V2Button label={stepMomentText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
+        <V2Button label={spireGameText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
     </>
   );
@@ -168,7 +168,7 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
       <View style={s.foot}>
         <V2Button label={stepMomentText(lang, 'retrySet')} icon="arrow-forward" onPress={choice.next} disabled={busy} testID={`${testID}-again`} />
         <View style={s.gap} />
-        <V2Button label={stepMomentText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
+        <V2Button label={spireGameText(lang, 'toSpire')} variant="secondary" onPress={choice.toSpire} testID={`${testID}-later`} />
       </View>
     </>
   );

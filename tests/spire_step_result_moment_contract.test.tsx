@@ -51,6 +51,7 @@ jest.mock('../components/spire/useSpirePalette', () => ({
 
 import SpireStepResultMoment from '../components/spire/moments/SpireStepResultMoment';
 import { STEP_MOMENT_LANGS, STEP_MOMENT_STRING_KEYS, stepMomentText } from '../components/spire/moments/step_moment_strings';
+import { spireGameText } from '../components/spire/spire_game_strings';
 import type { SpireStepOutcome } from '../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
 import { normalizeEol } from './helpers/read_source';
@@ -149,6 +150,18 @@ describe('выбор после ступени: «Следующее задан�
     const src = read('components/spire/moments/SpireStepResultMoment.tsx');
     expect(src).toContain("variant=\"secondary\" onPress={choice.toSpire}");
     expect(read('components/v2/V2Pressable.tsx')).toContain('hapticTap()');
+  });
+
+  it('запасная плашка итога и окно этажа/вершины — те же две кнопки и тот же хук; плашка не тянет папку моментов (изоляция), подписи — из общих строк Пика', () => {
+    const panel = read('components/spire/SpireResultPanel.tsx');
+    expect(panel).toContain("from './use_after_round_choice'");
+    expect(panel).toContain("spireGameText(lang, 'toSpire')");
+    expect(panel).not.toMatch(/from '\.\/moments\//);
+    const floor = read('components/spire/moments/SpireFloorMoment.tsx');
+    expect(floor).toContain("from '../use_after_round_choice'");
+    expect(floor).not.toContain("'rest'"); // «Передохнуть» заменено на «В раздел Пик» (владелец 18.10)
+    for (const lang of STEP_MOMENT_LANGS) expect([lang, spireGameText(lang, 'toSpire').length > 0, spireGameText(lang, 'nextTask').length > 0]).toEqual([lang, true, true]);
+    expect(spireGameText('en', 'toSpire')).toBe('Back to Peak');
   });
 });
 

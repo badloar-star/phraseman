@@ -23,11 +23,28 @@ const { stripVTControlCharacters } = require('util');
 
 const target = process.env.METRO_CONSOLE_LOG;
 if (target) {
+  // зачем: 18.10 журнал телефона молча встал в 09:10 — немые catch скрыли причину. Сбои записи пишем
+  // в НАСТОЯЩИЙ stderr (до перехвата, иначе рекурсия через wrap) не чаще раза в 10 с, с путём/кодом/размером.
+  const rawStderrWrite = process.stderr.write.bind(process.stderr);
+  let lastTeeReportAt = 0;
+  const reportTee = (where, e) => {
+    const now = Date.now();
+    if (now - lastTeeReportAt < 10000) return;
+    lastTeeReportAt = now;
+    let size = 'нет';
+    try { size = String(fs.statSync(target).size); } catch (se) { size = `stat:${(se && se.code) || 'ошибка'}`; }
+    try {
+      rawStderrWrite(`[METRO-TEE] ${where} не удалась: путь=${target}, код=${(e && e.code) || (e && e.message) || e}, размер=${size}, pid=${process.pid}
+`);
+    } catch (_) { /* stderr недоступен — сообщить больше некуда, Metro не роняем */ }
+  };
+
   let fd = null;
   try {
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fd = fs.openSync(target, 'a');
-  } catch {
+  } catch (e) {
+    reportTee('открытие журнала', e);
     fd = null;
   }
 
@@ -56,14 +73,14 @@ if (target) {
         out.push(`${stamp()} ${clean.slice(0, MAX_LINE)}`);
       }
       if (out.length) {
-        try { fs.writeSync(fd, out.join('\n') + '\n'); } catch { /* лог не должен ронять Metro */ }
+        try { fs.writeSync(fd, out.join('\n') + '\n'); } catch (e) { reportTee('запись строки', e); /* лог не должен ронять Metro */ }
       }
     };
 
     const wrap = (stream) => {
       const original = stream.write.bind(stream);
       stream.write = function (chunk, encoding, cb) {
-        try { flushChunk(chunk); } catch { /* ignore */ }
+        try { flushChunk(chunk); } catch (e) { reportTee('разбор вывода', e); }
         return original(chunk, encoding, cb);
       };
     };
@@ -75,7 +92,7 @@ if (target) {
         if (carry.trim()) fs.writeSync(fd, `${stamp()} ${stripVTControlCharacters(carry)}\n`);
         fs.writeSync(fd, `${stamp()} --- процесс ${process.pid} завершён (${path.basename(process.argv[1] || 'node')}) ---\n`);
         fs.closeSync(fd);
-      } catch { /* ignore */ }
+      } catch (e) { reportTee('закрытие журнала', e); }
     });
   }
 }

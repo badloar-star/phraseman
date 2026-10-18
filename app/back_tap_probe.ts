@@ -17,6 +17,11 @@ const WATCH_MS = 8000;
 const TICK_MS = 250;
 const BLOCKED_DRIFT_MS = 150;
 
+// зачем (координатор 18.10 03:00, цель «кадры ≤ 32 мс»): после тапа 400 мс считаем кадры по requestAnimationFrame; кадр длиннее 32 мс — строка long-frame, в конце итог.
+const FRAME_WINDOW_MS = 400;
+const LONG_FRAME_MS = 32;
+const MAX_FRAMES = 120; // 400 мс при 120 Гц — 48 кадров; запас ×2.5
+
 type Pending = Readonly<{ screen: string; handler: string; at: number; seq: number }>;
 
 let seq = 0;
@@ -26,6 +31,39 @@ let timers: ReturnType<typeof setTimeout>[] = [];
 function clearProbes(): void {
   timers.forEach((timer) => clearTimeout(timer));
   timers = [];
+}
+
+let frameChainSeq = 0;
+
+/** Цепочка кадров 400 мс после тапа: длинные кадры (>32 мс) поштучно и итог. Новый тап заменяет прежнюю цепочку; «прибыли» её не обрывает — кадры после прибытия тоже мерим. */
+function watchFrames(tapSeq: number, tapAt: number): void {
+  frameChainSeq = tapSeq;
+  let prev = tapAt;
+  let frames = 0;
+  let long = 0;
+  let maxMs = 0;
+  const onFrame = (): void => {
+    if (frameChainSeq !== tapSeq) {
+      console.log(`${LOG} frames-cancelled ${JSON.stringify({ seq: tapSeq, frames, long, maxMs, reason: 'новый тап заменил цепочку' })}`);
+      return;
+    }
+    const now = Date.now();
+    const ms = now - prev;
+    prev = now;
+    frames += 1;
+    if (ms > maxMs) maxMs = ms;
+    if (ms > LONG_FRAME_MS) {
+      long += 1;
+      console.log(`${LOG} long-frame ${JSON.stringify({ seq: tapSeq, ms, atMs: now - tapAt })}`);
+    }
+    // зачем: потолок кадров — страховка от синхронного requestAnimationFrame (тестовые подмены), иначе цепочка рекурсивно не кончилась бы при замороженных часах
+    if (now - tapAt < FRAME_WINDOW_MS && frames < MAX_FRAMES) {
+      requestAnimationFrame(onFrame);
+      return;
+    }
+    console.log(`${LOG} frames ${JSON.stringify({ seq: tapSeq, frames, long, maxMs, windowMs: now - tapAt })}`);
+  };
+  requestAnimationFrame(onFrame);
 }
 
 /** Тап по «назад»: запоминаем момент, запускаем пробы (кадр, InteractionManager, блокировка JS-потока). Новый тап заменяет прежний. */
@@ -39,6 +77,7 @@ export function noteBackTap(screen: string, handler: string, detail: Readonly<Re
   requestAnimationFrame(() => {
     if (pending?.seq === p.seq) console.log(`${LOG} frame ${JSON.stringify({ seq: p.seq, screen, ms: Date.now() - p.at })}`);
   });
+  watchFrames(p.seq, p.at);
   InteractionManager.runAfterInteractions(() => {
     if (pending?.seq === p.seq) console.log(`${LOG} interactions-free ${JSON.stringify({ seq: p.seq, screen, ms: Date.now() - p.at })}`);
   });

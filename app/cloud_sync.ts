@@ -5162,12 +5162,25 @@ export type ForceSyncOptions = Readonly<{
   adoptOnIdentityMismatch?: boolean;
   /** Причина отказа (код без идентификаторов) — для понятного кода в UI и логов. */
   onRefusal?: (code: ForceSyncRefusalCode) => void;
+  /** Префикс засечек по шагам (выход передаёт '[SIGNOUT-SYNC]'); по умолчанию '[FORCE-SYNC]'. */
+  logPrefix?: string;
 }>;
 
 const FORCE_SYNC_DEFERRED_RESTORE_WAIT_MS = 5_000;
 
 export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<boolean> {
+  // зачем (координатор 18.10, «выход 14,5 с»): сперва замер — сколько мс каждый шаг сохранения, сколько записей и каких,
+  // сеть, повторы; ускорять потом по фактам. Одна строка JSON на шаг, без значений ключей и идентификаторов.
+  const syncLogPrefix = options.logPrefix ?? '[FORCE-SYNC]';
+  const syncStartedAt = Date.now();
+  let syncStepStartedAt = syncStartedAt;
+  const syncStep = (step: string, extra: Readonly<Record<string, string | number | boolean | null>> = {}): void => {
+    const at = Date.now();
+    console.log(syncLogPrefix, JSON.stringify({ step, ms: at - syncStepStartedAt, sinceStartMs: at - syncStartedAt, ...extra })); // guard-ok: засечка шага выхода
+    syncStepStartedAt = at;
+  };
   const refuse = (code: ForceSyncRefusalCode): false => {
+    syncStep('refused', { code });
     try {
       options.onRefusal?.(code);
     } catch (error) {
@@ -5179,6 +5192,7 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
   const db = getFirestore();
   if (!db) return refuse('identity_unavailable');
   const uid = await ensureAnonUser();
+  syncStep('identity', { ok: Boolean(uid) });
   if (!uid) return refuse('identity_unavailable');
   beginInitialAccountGeneration(uid);
   const forceGeneration = captureAccountGeneration();
@@ -5191,6 +5205,7 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
     requestDeferredBootRestoreStart('force_sync');
     const deferredWait = await whenDeferredBootRestoreDocRead(FORCE_SYNC_DEFERRED_RESTORE_WAIT_MS);
     console.log('[BOOT-RESTORE-DEFER]', JSON.stringify({ event: 'force_sync_waited', outcome: deferredWait }));
+    syncStep('deferred_restore_wait', { outcome: String(deferredWait) });
     if (!isForceGenerationCurrent()) return refuse('stale_generation');
   }
   try {
@@ -5200,6 +5215,7 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       syncTimer = null;
     }
     // Дожидаемся завершения текущего синка (если он в полёте), затем запускаем свой.
+    const hadInflightSync = Boolean(syncInFlight);
     if (syncInFlight) {
       try {
         await withTimeout(syncInFlight, FORCE_SYNC_WAIT_INFLIGHT_MS, 'wait_inflight');
@@ -5219,9 +5235,11 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
         return refuse('inflight_timeout');
       }
     }
+    syncStep('inflight_wait', { hadInflight: hadInflightSync });
     const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid, {
       adoptOnMismatch: options.adoptOnIdentityMismatch !== false,
     });
+    syncStep('authoritative_identity', { ok: authoritativeIdentity.ok, mismatch: Boolean(authoritativeIdentity.mismatch) });
     if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isForceGenerationCurrent()) {
       pendingSync = false;
       // зачем (AA S2d 🔴2): различимая причина — presync входа превращает её в
@@ -5242,15 +5260,17 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
     if (data['user_frame']) data['user_avatar_frame'] = data['user_frame'];
     await addTodayLessonHelperSnapshots(data);
     const phoneStateOwnsCore = phoneStateOwnsCoreProgress(uid);
+    const localKeyCount = Object.keys(data).length;
+    const droppedKeys = { phoneState: 0, premiumRule: 0, premiumKey: 0, serverOwned: 0 };
     for (const [key, value] of Object.entries({ ...data })) {
-      if (phoneStateOwnsCore && isPhoneStateCoreProgressKey(key)) delete data[key];
-      else if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
+      if (phoneStateOwnsCore && isPhoneStateCoreProgressKey(key)) { delete data[key]; droppedKeys.phoneState += 1; }
+      else if (!shouldSyncPremiumProgressField(key, value, data)) { delete data[key]; droppedKeys.premiumRule += 1; }
       // Premium/VIP-поля клиент в облако не пишет (авторитет — RevenueCat/Admin SDK).
       // Иначе Firestore rules отклонят force-sync целиком при смене устройства/аккаунта
       // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
-      else if (PREMIUM_PROGRESS_KEYS.has(key)) delete data[key];
+      else if (PREMIUM_PROGRESS_KEYS.has(key)) { delete data[key]; droppedKeys.premiumKey += 1; }
       // Server-owned ключи — та же причина: пишет только CF.
-      else if (isServerOwnedProgressKey(key)) delete data[key];
+      else if (isServerOwnedProgressKey(key)) { delete data[key]; droppedKeys.serverOwned += 1; }
     }
     // зачем (Account V2, Пакет 7A): как в doSyncToCloud — при активном выключателе
     // V2-домены (карточки/свайпы/библиотека) в старое облако не переносятся; их
@@ -5261,6 +5281,27 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       await isDevFixtureNoUploadActive(getAuthUserId()),
       'force_sync',
     );
+    // зачем (замер выхода): сколько из отправляемого реально изменилось с прошлой синхронизации — основание для
+    // «слать только изменённое». Одно чтение снимка с телефона, сеть не трогаем.
+    let unchangedVsLastSync = -1;
+    try {
+      const lastSnapRaw = await AsyncStorage.getItem(LAST_SYNC_SNAPSHOT_KEY);
+      if (lastSnapRaw) {
+        const lastSnap = JSON.parse(lastSnapRaw) as Record<string, string | null>;
+        unchangedVsLastSync = Object.entries(forceData).filter(([key, value]) => cloudSyncSnapshotValueMatches(lastSnap[key], value)).length;
+      }
+    } catch (snapError) {
+      console.warn(syncLogPrefix, JSON.stringify({ step: 'last_snapshot_read_failed', code: identityErrorCode(snapError) })); // guard-ok: catch пишет причину
+    }
+    syncStep('local_read', {
+      localKeys: localKeyCount,
+      sendKeys: Object.keys(forceData).length,
+      unchangedVsLastSync,
+      droppedPhoneState: droppedKeys.phoneState,
+      droppedPremiumRule: droppedKeys.premiumRule,
+      droppedPremiumKey: droppedKeys.premiumKey,
+      droppedServerOwned: droppedKeys.serverOwned,
+    });
     if (!isForceGenerationCurrent()) {
       console.log('[LEGACY-V2-SYNC] force_sync aborted reason=stale_generation stage=before_flashcards');
       pendingSync = false;
@@ -5281,6 +5322,9 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       isCurrent: isForceGenerationCurrent,
       timeoutMs: FORCE_SYNC_FIRESTORE_WRITE_MS,
     });
+    syncStep('flashcards', flashcardOutcome.ok
+      ? { ok: true, pagesWritten: flashcardOutcome.plan.clearDocField.size, sentToDoc: flashcardOutcome.plan.sentToDoc.size, locked: flashcardOutcome.plan.lockedNow.size }
+      : { ok: false, reason: String(flashcardOutcome.reason) });
     if (!flashcardOutcome.ok) {
       // Ранний выход: документ не пишем; вызывающий сделает аварийную копию и отменит смену.
       console.log(`[LEGACY-V2-SYNC] force_sync result=false reason=${flashcardOutcome.reason}`);
@@ -5330,6 +5374,12 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
     );
+    syncStep('doc_write', {
+      progressFields: Object.keys(forceDocProgress).length,
+      approxBytes: JSON.stringify(forceDocProgress).length,
+      retries: 0,
+      timeoutMs: FORCE_SYNC_FIRESTORE_WRITE_MS,
+    });
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
     pendingSync = false;
@@ -5340,6 +5390,7 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(swallowError('cloud_sync:forceSyncToCloud'));
     }
+    syncStep('done', { ok: true, totalMs: Date.now() - syncStartedAt });
     return true;
   } catch (e) {
     /**
@@ -5350,6 +5401,7 @@ export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<
      * месяцами. Логи в catch остаются навсегда.
      */
     const code = (e as { code?: string } | null)?.code ?? '';
+    syncStep('failed', { code: code || 'unknown', totalMs: Date.now() - syncStartedAt });
     console.warn('[SYNC-DENY] forceSyncToCloud failed', {
       uid,
       code,

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-24:intro1:r2": {
+          "ru": "Перед inspecting с he нужно is.",
+          "uk": "Перед inspecting із he потрібне is."
+        },
+        "en:lesson-09:session-24:intro1:r3": {
+          "ru": "Для действия сейчас после is нужно inspecting.",
+          "uk": "Для дії зараз після is потрібне inspecting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-24:intro2:r2": {
+          "ru": "С you нужна форма are.",
+          "uk": "Із you потрібна форма are."
+        },
+        "en:lesson-09:session-24:intro2:r3": {
+          "ru": "В вопросе о действии сейчас нужна форма reading.",
+          "uk": "У запитанні про дію зараз потрібна форма reading."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-24:intro3:r2": {
+          "ru": "После don’t нужна форма touch без -ing.",
+          "uk": "Після don’t потрібна форма touch без -ing."
+        },
+        "en:lesson-09:session-24:intro3:r3": {
+          "ru": "После don’t не добавляем -es.",
+          "uk": "Після don’t не додаємо -es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0edeec824208576704dd5068daff1536afb02dc62d086ebb4c30ab0a1bb1f314"
+}

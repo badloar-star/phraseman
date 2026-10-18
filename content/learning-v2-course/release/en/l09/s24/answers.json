@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-24:word:spine",
+    "correctText": "spine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i01",
+    "correctText": "He is inspecting the spine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i02",
+    "correctText": "spine",
+    "correctResponseId": "en:lesson-09:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i04",
+    "correctText": "en:lesson-09:session-24:i04:p1=spine\nen:lesson-09:session-24:i04:p2=inspect\nen:lesson-09:session-24:i04:p3=book\nen:lesson-09:session-24:i04:p4=page",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i05",
+    "correctText": "He is inspecting the spine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:word:hardback",
+    "correctText": "hardback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i06",
+    "correctText": "This is a hardback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:word:paperback",
+    "correctText": "paperback",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i07",
+    "correctText": "I often read a paperback.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i08",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-09:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i09",
+    "correctText": "Are you reading a paperback?",
+    "correctResponseId": "en:lesson-09:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i10",
+    "correctText": "en:lesson-09:session-24:i10:p1=spine\nen:lesson-09:session-24:i10:p2=hardback\nen:lesson-09:session-24:i10:p3=paperback\nen:lesson-09:session-24:i10:p4=read",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i11",
+    "correctText": "Are you reading a paperback?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:word:binding",
+    "correctText": "binding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i12",
+    "correctText": "binding",
+    "correctResponseId": "en:lesson-09:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i13",
+    "correctText": "Please don’t touch the binding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i14",
+    "correctText": "reading",
+    "correctResponseId": "en:lesson-09:session-24:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i15",
+    "correctText": "I am not reading a paperback.",
+    "correctResponseId": "en:lesson-09:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i16",
+    "correctText": "en:lesson-09:session-24:i16:p1=spine\nen:lesson-09:session-24:i16:p2=hardback\nen:lesson-09:session-24:i16:p3=paperback\nen:lesson-09:session-24:i16:p4=binding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-24:i17",
+    "correctText": "Are you reading a paperback?",
+    "correctResponseId": null
+  }
+]

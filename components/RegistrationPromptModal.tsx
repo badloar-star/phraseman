@@ -105,6 +105,7 @@ import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { identityErrorCode } from '../app/identity_trace';
+import { authErrorKind, authErrorLogCode, authErrorTextForKind } from '../app/auth_error_copy';
 import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reasons';
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
@@ -1181,43 +1182,30 @@ function RegistrationPromptModal({
           // Отмена picker'а — retryable: даём «Повторить» под сообщением.
           setRetryProvider(provider);
           // В TestFlight/проде раньше молчали — выглядело как «кнопка сломана».
-          if (__DEV__) {
-            const gpsLine =
-              Platform.OS === 'android'
-                ? '• Google Play Services вернул PSerror.\n'
-                : '';
-            showInlineError(
-              'DEBUG: cancelled',
-              'Native sign-in вернул `cancelled`. Возможные причины:\n\n' +
-              '• Юзер закрыл picker.\n' +
-              gpsLine +
-              '• На устройстве нет Google аккаунта.\n' +
-              '• webClientId / SHA-1 неверный — modal автозакрылся.\n\n' +
-              'Попробуй "Сбросить и войти заново" внизу.',
-            );
-          } else {
-            showInlineError(
-              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', en: 'Sign-in not finished', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
-              triLang(lang, {
-                ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
-                uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
-                en: 'The sign-in window closed without picking an account. Tap the button again or try another method.',
-                es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
-                'pt-BR': 'A janela de login foi fechada sem escolher uma conta. Toque de novo ou tente outro método.',
-                vi: 'Cửa sổ đăng nhập đã đóng mà chưa chọn tài khoản. Hãy nhấn lại hoặc thử cách khác.',
-                id: 'Jendela masuk tertutup tanpa memilih akun. Ketuk lagi atau coba cara lain.',
-                tr: 'Giriş penceresi hesap seçilmeden kapandı. Tekrar dokun veya başka bir yöntem dene.',
-                pl: 'Okno logowania zamknęło się bez wyboru konta. Naciśnij ponownie albo spróbuj innej metody.',
-              }),
-            );
-          }
+          // зачем (координатор 18.10 06:12, «без системных текстов»): подсказки разработчика — только в журнал, на экране словарная фраза в любой сборке.
+          console.warn(`[AUTH-MODAL] sign_in cancelled provider=${provider} — закрыли окно выбора, нет аккаунта Google на устройстве или неверный webClientId/SHA-1`); // guard-ok: ранний выход пишет причину
+          showInlineError(
+            triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', en: 'Sign-in not finished', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
+            triLang(lang, {
+              ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
+              uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
+              en: 'The sign-in window closed without picking an account. Tap the button again or try another method.',
+              es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
+              'pt-BR': 'A janela de login foi fechada sem escolher uma conta. Toque de novo ou tente outro método.',
+              vi: 'Cửa sổ đăng nhập đã đóng mà chưa chọn tài khoản. Hãy nhấn lại hoặc thử cách khác.',
+              id: 'Jendela masuk tertutup tanpa memilih akun. Ketuk lagi atau coba cara lain.',
+              tr: 'Giriş penceresi hesap seçilmeden kapandı. Tekrar dokun veya başka bir yöntem dene.',
+              pl: 'Okno logowania zamknęło się bez wyboru konta. Naciśnij ponownie albo spróbuj innej metody.',
+            }),
+          );
           return;
         }
         if (result.result === 'error') {
           // Большинство ошибок входа retryable (сеть/холодный старт/App Check) —
           // покажем «Повторить»; ветки ниже снимают его там, где повтор бессмыслен.
           setRetryProvider(provider);
-          if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
+          // зачем (координатор 18.10 06:12): код ошибки — всегда в журнал (раньше только в отладке), человеку — словарь.
+          console.warn(`[AUTH-MODAL] sign_in error provider=${provider} code=${authErrorLogCode(result.error)} kind=${authErrorKind(result.error)}`); // guard-ok: причина ошибки входа
           if (result.error === 'account_switch_required') {
             setRetryProvider(null);
             // зачем (§127): простым языком + кнопка «Сменить аккаунт» (рендер ниже) вместо инструкции «Настройки → …».
@@ -1332,7 +1320,8 @@ function RegistrationPromptModal({
             );
             return;
           }
-          const baseMsg = triLang(lang, {
+          // сеть и «слишком много попыток» — свои словарные фразы (общие с онбордингом)
+          const baseMsg = authErrorTextForKind(authErrorKind(result.error), lang) ?? triLang(lang, {
             ru: 'Не получилось войти. Попробуй позже.',
             uk: 'Не вдалося увійти. Спробуй пізніше.',
             en: 'Couldn’t sign in. Try again later.',

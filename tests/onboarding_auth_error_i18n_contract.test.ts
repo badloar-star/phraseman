@@ -9,5 +9,7 @@ test('every branch of describeAuthError is localized through triLang', () => {
   expect(body.length).toBeGreaterThan(500);
   expect(body).not.toMatch(/human = '[А-Яа-яЁё]/);
   expect(body).toMatch(/let human = triLang\(lang, \{/);
-  expect((body.match(/triLang\(lang, \{/g) ?? []).length).toBeGreaterThanOrEqual(11);
+  // 18.10: сеть и «слишком много попыток» переехали в общий словарь app/auth_error_copy.ts (тоже triLang)
+  expect((body.match(/triLang\(lang, \{/g) ?? []).length).toBeGreaterThanOrEqual(10);
+  expect(body).toContain('authErrorTextForKind(authErrorKind(code), lang)');
 });

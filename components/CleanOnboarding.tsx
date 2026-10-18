@@ -60,7 +60,7 @@ import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { warmAuthSignInCallables } from '../app/cloud_sync';
 import { noAndroidOutline, softShadow } from '../constants/androidGlow';
 import { LUM, SUITE } from '../constants/motionHybrid';
-import { ENABLE_DEV_STUDY_TARGET_LANG, ENABLE_DEV_TOOLS, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
+import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { openLegalLink } from '../app/open_legal_link';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
@@ -127,6 +127,7 @@ import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from '../app
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
 import { identityErrorCode } from '../app/identity_trace';
+import { authErrorKind, authErrorLogCode, authErrorTextForKind } from '../app/auth_error_copy';
 import {
   abandonOnboardingAuthAttempt,
   beginOnboardingAuthAttempt,
@@ -451,7 +452,11 @@ async function offerAccountRestore(
 
 /** Текст ошибки входа на языке, который будет в момент показа (см. authErrorText в CleanOnboarding). */
 type AuthErrorText = (uiLang: Lang) => string;
-const authErrorFor = (code: string): AuthErrorText => (uiLang) => describeAuthError(code, uiLang);
+const authErrorFor = (code: string): AuthErrorText => {
+  // зачем (координатор 18.10 06:12): код ошибки — только в журнал, на экран — словарная фраза.
+  console.warn(`[AUTH-ONB] error_text code=${authErrorLogCode(code)} kind=${authErrorKind(code)}`); // guard-ok: причина ошибки входа
+  return (uiLang) => describeAuthError(code, uiLang);
+};
 
 function describeAuthError(raw: string, lang: Lang): string {
   const code = String(raw || '');
@@ -461,15 +466,16 @@ function describeAuthError(raw: string, lang: Lang): string {
     human = triLang(lang, { ru: 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.', uk: 'Цей акаунт ще видаляється. Спробуй увійти за кілька хвилин.', en: 'This account is still being deleted. Try signing in again in a few minutes.', es: 'Esta cuenta aún se está eliminando. Intenta entrar en unos minutos.', 'pt-BR': 'Esta conta ainda está sendo excluída. Tente entrar em alguns minutos.', vi: 'Tài khoản này vẫn đang được xóa. Hãy thử đăng nhập sau vài phút.', id: 'Akun ini masih dihapus. Coba masuk beberapa menit lagi.', tr: 'Bu hesap hâlâ siliniyor. Birkaç dakika sonra giriş yapmayı dene.', pl: 'To konto jest jeszcze usuwane. Spróbuj zalogować się za kilka minut.' });
   } else if (code === 'account_switch_required') {
     human = triLang(lang, {
-      ru: 'Локальный прогресс сохранён. Сначала подтверди безопасную смену аккаунта, затем повтори вход.',
-      uk: 'Локальний прогрес збережено. Спочатку підтвердь безпечну зміну акаунта, потім повтори вхід.',
+      // зачем (Переводчик 18.10, «без системных текстов»): без «локального» и «безопасной смены» — простыми словами.
+      ru: 'Прогресс на этом телефоне сохранён. Сначала подтверди смену аккаунта, потом войди снова.',
+      uk: 'Прогрес на цьому телефоні збережено. Спочатку підтвердь зміну акаунта, потім увійди знову.',
       en: 'Your progress on this phone is safe. Confirm the account switch first, then sign in again.',
-      es: 'El progreso local está guardado. Confirma primero el cambio seguro de cuenta y vuelve a entrar.',
-      'pt-BR': 'O progresso local foi preservado. Primeiro confirme a troca segura de conta e entre novamente.',
-      vi: 'Tiến trình cục bộ đã được giữ nguyên. Trước tiên hãy xác nhận đổi tài khoản an toàn rồi đăng nhập lại.',
-      id: 'Progres lokal tetap tersimpan. Konfirmasikan pergantian akun yang aman terlebih dahulu, lalu masuk lagi.',
-      tr: 'Yerel ilerleme korundu. Önce güvenli hesap değişikliğini onayla, ardından tekrar giriş yap.',
-      pl: 'Postęp lokalny został zachowany. Najpierw potwierdź bezpieczną zmianę konta, potem zaloguj się ponownie.',
+      es: 'Tu progreso en este teléfono está guardado. Primero confirma el cambio de cuenta y vuelve a entrar.',
+      'pt-BR': 'Seu progresso neste celular está salvo. Primeiro confirme a troca de conta e entre de novo.',
+      vi: 'Tiến độ trên điện thoại này vẫn được giữ. Hãy xác nhận đổi tài khoản trước, rồi đăng nhập lại.',
+      id: 'Progres di ponsel ini tetap tersimpan. Konfirmasi pergantian akun dulu, lalu masuk lagi.',
+      tr: 'Bu telefondaki ilerlemen korundu. Önce hesap değişikliğini onayla, sonra tekrar giriş yap.',
+      pl: 'Postęp na tym telefonie jest zapisany. Najpierw potwierdź zmianę konta, potem zaloguj się ponownie.',
     });
   } else if (code === 'local_progress_not_uploaded' || code === 'local_progress_backup_blocked') {
     // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
@@ -496,15 +502,16 @@ function describeAuthError(raw: string, lang: Lang): string {
     human = triLang(lang, { ru: 'Вход через Apple не начался. Попробуй ещё раз.', uk: 'Вхід через Apple не почався. Спробуй ще раз.', en: "Sign in with Apple didn't start. Try again.", es: 'El inicio con Apple no empezó. Inténtalo de nuevo.', 'pt-BR': 'O login com a Apple não começou. Tente de novo.', vi: 'Đăng nhập bằng Apple chưa bắt đầu. Hãy thử lại.', id: 'Masuk dengan Apple belum dimulai. Coba lagi.', tr: 'Apple ile giriş başlamadı. Tekrar dene.', pl: 'Logowanie przez Apple nie ruszyło. Spróbuj ponownie.' });
   } else if (code.includes('apple_signin_no_id_token') || code.includes('apple_oauth_')) {
     human = triLang(lang, { ru: 'Apple не подтвердил вход. Попробуй ещё раз.', uk: 'Apple не підтвердив вхід. Спробуй ще раз.', en: "Apple didn't confirm the sign-in. Try again.", es: 'Apple no confirmó el inicio de sesión. Inténtalo de nuevo.', 'pt-BR': 'A Apple não confirmou o login. Tente de novo.', vi: 'Apple chưa xác nhận đăng nhập. Hãy thử lại.', id: 'Apple belum mengonfirmasi masuk. Coba lagi.', tr: 'Apple girişi onaylamadı. Tekrar dene.', pl: 'Apple nie potwierdził logowania. Spróbuj ponownie.' });
-  } else if (code.includes('network-request-failed') || code.includes('Network')) {
-    human = triLang(lang, { ru: 'Связь пропала. Попробуй ещё раз.', uk: 'Зв’язок зник. Спробуй ще раз.', en: 'Connection lost. Try again.', es: 'Se perdió la conexión. Inténtalo de nuevo.', 'pt-BR': 'A conexão caiu. Tente novamente.', vi: 'Mất kết nối. Hãy thử lại.', id: 'Koneksi terputus. Coba lagi.', tr: 'Bağlantı kesildi. Tekrar dene.', pl: 'Brak połączenia. Spróbuj ponownie.' });
+  } else if (authErrorKind(code) !== 'other') {
+    // сеть и «слишком много попыток» — общий словарь с окном входа (app/auth_error_copy.ts)
+    human = authErrorTextForKind(authErrorKind(code), lang) ?? human;
   } else if (code.includes('operation-not-allowed')) {
-    human = triLang(lang, { ru: 'Этот способ входа сейчас недоступен.', uk: 'Цей спосіб входу зараз недоступний.', en: 'This sign-in method is unavailable right now.', es: 'Este método de inicio de sesión no está disponible ahora.', 'pt-BR': 'Este método de login está indisponível agora.', vi: 'Cách đăng nhập này hiện không khả dụng.', id: 'Cara masuk ini belum tersedia sekarang.', tr: 'Bu giriş yöntemi şu an kullanılamıyor.', pl: 'Ten sposób logowania jest teraz niedostępny.' });
+    human = triLang(lang, { ru: 'Этот способ входа сейчас недоступен.', uk: 'Цей спосіб входу зараз недоступний.', en: 'This sign-in method is unavailable right now.', es: 'Este método de inicio de sesión no está disponible ahora.', 'pt-BR': 'Este método de login está indisponível agora.', vi: 'Cách đăng nhập này hiện không khả dụng.', id: 'Cara masuk ini sedang tidak tersedia.', tr: 'Bu giriş yöntemi şu an kullanılamıyor.', pl: 'Ten sposób logowania jest teraz niedostępny.' });
   } else if (code.includes('invalid-credential') || code.includes('invalid_credential')) {
     human = triLang(lang, { ru: 'Вход не подтвердился. Попробуй ещё раз.', uk: 'Вхід не підтвердився. Спробуй ще раз.', en: "Sign-in wasn't confirmed. Try again.", es: 'No se confirmó el inicio de sesión. Inténtalo de nuevo.', 'pt-BR': 'O login não foi confirmado. Tente de novo.', vi: 'Đăng nhập chưa được xác nhận. Hãy thử lại.', id: 'Masuk belum terkonfirmasi. Coba lagi.', tr: 'Giriş onaylanmadı. Tekrar dene.', pl: 'Logowanie nie zostało potwierdzone. Spróbuj ponownie.' });
   }
-  // зачем (координатор 12.10, съёмка onboarding-004/008): код подмены входа dev_stub:… не дописываем — кадр должен совпасть с макетом.
-  return ENABLE_DEV_TOOLS && code && !code.startsWith('dev_stub:') ? `${human}\n${code.slice(0, 120)}` : human;
+  // зачем (координатор 18.10 06:12, «без системных текстов»): код не дописываем ни в какой сборке — он в журнале [AUTH-ONB] (authErrorFor).
+  return human;
 }
 
 // ── Даты и «дни» на 9 языках — components/onboarding/clean_onboarding_dates.ts (зачем: координатор 12.10) ──

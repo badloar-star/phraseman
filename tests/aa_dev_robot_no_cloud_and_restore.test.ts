@@ -195,8 +195,12 @@ describe('signin=hold|offline|generic', () => {
     expect(src.slice(stub, stub + 900)).toContain('[AUTH-SIGNIN] ignored provider=${provider} reason=dev_state');
   });
 
-  it('онбординг не дописывает код dev_stub: к тексту ошибки', () => {
-    expect(read('components/CleanOnboarding.tsx')).toContain("return ENABLE_DEV_TOOLS && code && !code.startsWith('dev_stub:') ? `${human}");
+  it('онбординг не дописывает код (в т. ч. dev_stub:) к тексту ошибки ни в какой сборке', () => {
+    // зачем (координатор 18.10 06:12, «без системных текстов»): код — только в журнал [AUTH-ONB].
+    const src = read('components/CleanOnboarding.tsx');
+    const fn = src.slice(src.indexOf('function describeAuthError('), src.indexOf('// ── Даты и «дни» на 9 языках'));
+    expect(fn).toContain('return human;');
+    expect(fn).not.toContain('code.slice(');
   });
 
   it('стор-заглушка: подмены входа нет', () => {

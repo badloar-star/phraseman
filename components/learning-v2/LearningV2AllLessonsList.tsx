@@ -48,8 +48,8 @@ const CURRENT_WORD: Record<Lang, string> = {
 const RING_R = 18;
 const RING_LEN = 2 * Math.PI * RING_R;
 
-/** Кольцо прогресса 44 (эталон `ringSvg`: трек 4, дуга 4, круглые концы, старт сверху). Готово — галочка. */
-const ProgressRing = memo(function ProgressRing({ pct, done, g }: Readonly<{ pct: number; done: boolean; g: Lv2Glass }>) {
+/** Кольцо прогресса 44 (эталон `ringSvg`: трек 4, дуга 4, круглые концы, старт сверху). Готово — галочка, иначе число пройденных занятий. */
+const ProgressRing = memo(function ProgressRing({ pct, done, count, g }: Readonly<{ pct: number; done: boolean; count: number; g: Lv2Glass }>) {
   const arc = Math.max(0, Math.min(1, pct)) * RING_LEN;
   return (
     <View style={styles.ring} accessibilityElementsHidden importantForAccessibility="no">
@@ -59,7 +59,8 @@ const ProgressRing = memo(function ProgressRing({ pct, done, g }: Readonly<{ pct
           <Circle cx={22} cy={22} r={RING_R} stroke={g.text} strokeWidth={4} fill="none" strokeDasharray={`${arc} ${RING_LEN}`} strokeLinecap="round" rotation={-90} originX={22} originY={22} />
         ) : null}
       </Svg>
-      {done ? <Ionicons name="checkmark" size={20} color={g.text} /> : null}
+      {/* зачем (вердикт Макетов 18.10, эталон 1.6 `ringSvg`): внутри кольца — число пройденных занятий («12», «0»); галочка только у полностью пройденного урока */}
+      {done ? <Ionicons name="checkmark" size={20} color={g.text} /> : <Text maxFontSizeMultiplier={1.3} style={[styles.ringCount, { color: g.text }]} testID="learning-v2-all-lessons-ring-count">{count}</Text>}
     </View>
   );
 });
@@ -99,7 +100,7 @@ const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onP
       </View>
       {locked ? <Ionicons name="lock-closed" size={22} color={g.text} />
         : row.isInProgress ? <Ionicons name="construct-outline" size={22} color={g.text} />
-        : <ProgressRing pct={pct} done={pct >= 1} g={g} />}
+        : <ProgressRing pct={pct} done={pct >= 1} count={row.completedCount} g={g} />}
       <Ionicons name="chevron-forward" size={20} color={dim ? g.text : g.secondary} />
     </PressableHybrid>
   );
@@ -203,6 +204,9 @@ const styles = StyleSheet.create({
   rowMeta: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 0.4 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: "700", marginTop: 2 },
   ring: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
+  // эталон: 12/700 tabular; шкала проекта ниже заголовка — 13 (D145), без ужатия шрифта; 1,3× шрифта ограничено, чтобы «56» не вышло за кольцо 44
+  ringCount: { fontSize: 13, lineHeight: 17, fontWeight: "700", fontVariant: ["tabular-nums"] },
   dim: { opacity: 0.62 },
-  separator: { height: 12 },
+  // зачем (вердикт Макетов 18.10, `.stack` эталона): зазор между строками 9
+  separator: { height: 9 },
 });

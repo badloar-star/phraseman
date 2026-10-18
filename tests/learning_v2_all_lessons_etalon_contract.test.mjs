@@ -59,3 +59,14 @@ test('классический каталог не тронут: мост render
   const lessons = read('app/(tabs)/lessons.tsx');
   assert.ok(lessons.includes('renderLessonCard={({ title, ordinal'));
 });
+
+// зачем (вердикт Макетов 18.10, эталон 1.6 `ringSvg` и `.stack`): в кольце — число пройденных занятий (tabular, без ужатия), галочка только у пройденного урока;
+// слева плитка урока Ionicons как у заголовка на карте; зазор между строками 9.
+test('строка: плитка урока, число пройденных занятий в кольце, зазор 9', () => {
+  assert.ok(list.includes('count={row.completedCount}'));
+  assert.match(list, /done \? <Ionicons name="checkmark" size=\{20\} color=\{g\.text\} \/> : <Text maxFontSizeMultiplier=\{1\.3\} style=\{\[styles\.ringCount/);
+  assert.match(list, /ringCount: \{ fontSize: 13, lineHeight: 17, fontWeight: "700", fontVariant: \["tabular-nums"\] \}/);
+  assert.match(list, /separator: \{ height: 9 \}/);
+  assert.ok(list.includes('learningV2LessonIonIcon(row.ordinal)'));
+  assert.match(list, /lessonTile: \{ width: 46, height: 46, borderRadius: 12/);
+});

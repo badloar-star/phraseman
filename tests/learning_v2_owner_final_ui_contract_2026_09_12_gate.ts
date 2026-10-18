@@ -42,7 +42,10 @@ assert.match(lessons, /learningV2SessionHrefV1\(\{[\s\S]{0,600}?\bskipIntro,/);
 assert.match(sessionLaunch, /skipIntro:\s*input\.skipIntro \? '1' : undefined/);
 assert.match(lessons, /onUnavailableLessonPress=\{/);
 assert.match(lessons, /Урок ещё в работе/u);
-assert.match(lessons, /!learningV2Available[\s\S]{0,120}"#B5BABD"\s*:\s*"#555960"/u);
+// зачем (f8e8295ea, волна 4б 10.10): серые литералы вынесены в именованные константы — проверяем смысл «недоступный урок приглушён», а не форму записи
+assert.match(lessons, /!learningV2Available[\s\S]{0,120}EXEMPT_COLOR_21\s*:\s*EXEMPT_COLOR_22/u);
+assert.match(lessons, /const EXEMPT_COLOR_21 = '#B5BABD';/);
+assert.match(lessons, /const EXEMPT_COLOR_22 = '#555960';/);
 assert.match(pulse, /props\.renderLessonCard/);
 assert.match(pulse, /isPulseLessonMapAvailable/);
 assert.match(pulse, /devReady/);

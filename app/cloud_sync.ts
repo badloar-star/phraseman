@@ -1030,6 +1030,8 @@ const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_lat
 const ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
 const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS = 64;
 const ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES = 512 * 1024;
+/** Отпечаток страницы — всегда 64 hex-знака: для подсчёта размера страницы подставляем заглушку той же длины. */
+const ACCOUNT_SWITCH_BACKUP_FINGERPRINT_PLACEHOLDER = '0'.repeat(64);
 const ACCOUNT_SWITCH_BACKUP_MAX_PAGES = 512;
 const ACCOUNT_SWITCH_BACKUP_MAX_PAIRS =
   ACCOUNT_SWITCH_BACKUP_MAX_PAGES * ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS;
@@ -6025,6 +6027,24 @@ export async function saveAccountSwitchEmergencyBackup(
     pairCount += pairs.length;
     lastPageFingerprint = pageFingerprint;
   };
+  // зачем (координатор 18.10, «выход < 3 с»; замер 01:35 — копия 2,1 с): раньше на КАЖДУЮ пару страница заново
+  // сериализовалась и хешировалась целиком (SHA-256 на JS) и считалась в UTF-8 — O(пар × размер страницы). Теперь размер
+  // страницы считается точно и по частям: база страницы (те же поля, отпечаток — 64 знака) + длина каждой пары. Страницы и
+  // отпечатки байт в байт те же (стенд: 2228 пар — 36 и 52 страницы, совпадение полное), хеш — один раз в writePage.
+  const backupBuildStartedAt = Date.now();
+  const pageSizeBase = (): { units: number; bytes: number } => {
+    const emptyRaw = canonicalJsonV1({
+      schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
+      backupId,
+      stableId,
+      pageIndex: pageCount,
+      previousPageFingerprint: lastPageFingerprint,
+      pairs: [],
+      pageFingerprint: ACCOUNT_SWITCH_BACKUP_FINGERPRINT_PLACEHOLDER,
+    });
+    // минус «[]» пустого массива пар: дальше прибавляем «[», пары через запятую и «]»
+    return { units: emptyRaw.length - 2, bytes: utf8ByteLengthV1(emptyRaw) - 2 };
+  };
   try {
     for (let offset = 0; offset < keys.length; offset += ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS) {
       const requestedKeys = keys.slice(offset, offset + ACCOUNT_SWITCH_BACKUP_PAGE_MAX_PAIRS);
@@ -6033,6 +6053,9 @@ export async function saveAccountSwitchEmergencyBackup(
         'account_switch_backup_verification_failed',
       );
       let pagePairs: [string, string][] = [];
+      let pageBase = pageSizeBase();
+      let pairsUnits = 0;
+      let pairsBytes = 0;
       for (const [key, liveValue] of rows) {
         // S1e: ключ локальных версий карточек — живое значение + записи прежней копии владельца.
         const value = key === FLASHCARD_FUTURE_KEPT_STASH_KEY
@@ -6047,28 +6070,26 @@ export async function saveAccountSwitchEmergencyBackup(
         if (pairBytes > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
           throw new Error('account_switch_backup_value_upgrade_required');
         }
-        const candidate = [...pagePairs, [key, value] as [string, string]];
-        const candidateBody = {
-          schemaVersion: 'account-switch-emergency-backup-page.v1' as const,
-          backupId,
-          stableId,
-          pageIndex: pageCount,
-          previousPageFingerprint: lastPageFingerprint,
-          pairs: candidate,
-        };
-        const candidateRaw = canonicalJsonV1({
-          ...candidateBody,
-          pageFingerprint: hashCanonicalBody(candidateBody),
-        });
-        if (candidateRaw.length > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
-          utf8ByteLengthV1(candidateRaw) > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+        const pairRaw = canonicalJsonV1([key, value]);
+        const pairUnits = pairRaw.length;
+        const pairUtf8 = utf8ByteLengthV1(pairRaw);
+        const separator = pagePairs.length > 0 ? 1 : 0;
+        const candidateUnits = pageBase.units + 2 + pairsUnits + separator + pairUnits;
+        const candidateBytes = pageBase.bytes + 2 + pairsBytes + separator + pairUtf8;
+        if (candidateUnits > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES ||
+          candidateBytes > ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
           if (pagePairs.length === 0) {
             throw new Error('account_switch_backup_value_upgrade_required');
           }
           await writePage(pagePairs);
           pagePairs = [[key, value]];
+          pageBase = pageSizeBase();
+          pairsUnits = pairUnits;
+          pairsBytes = pairUtf8;
         } else {
-          pagePairs = candidate;
+          pagePairs = [...pagePairs, [key, value]];
+          pairsUnits += separator + pairUnits;
+          pairsBytes += separator + pairUtf8;
         }
         totalUtf8Bytes += pairBytes;
         if (!Number.isSafeInteger(totalUtf8Bytes) ||
@@ -6110,6 +6131,7 @@ export async function saveAccountSwitchEmergencyBackup(
     if (queueRaw !== null && pairCount === 0) {
       throw new Error('account_switch_backup_verification_failed');
     }
+    console.log('[ACC-SWITCH-BACKUP]', JSON.stringify({ step: 'saved', reason: String(reason || 'unknown').slice(0, 80), keys: keys.length, pages: pageCount, pairs: pairCount, utf8Bytes: totalUtf8Bytes, buildMs: Date.now() - backupBuildStartedAt })); // guard-ok: одна строка на копию, без значений
     // Root-last publication makes prior pages unreachable. Reclaim them in
     // bounded chunks after the new root is verified; a cleanup failure never
     // invalidates the new snapshot and can be retried by later storage GC.

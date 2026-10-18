@@ -65,6 +65,17 @@
 .cov { width: 100%; max-width: 980px; border-collapse: collapse; font-size: 14px; margin-top: 18px; }
 .cov td, .cov th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); color: #D6D6D8; vertical-align: top; }
 .cov th { color: var(--sec); font-weight: 600; }
+/* зачем (координатор 10:3x): светлый вариант образца — палитра «Сумерки» (th-ink, как voice-limit-session-start.html); кадр/обложка ролика остаются тёмными. */
+.ph.lt { --bg: #EEF0FA; --text: #17181E; --sec: #595A63; --muted: #8A8B95; --card: #FCFCFF; --card-2: #FFFFFF; --tile: #E4E5F3; --control: #E4E5F3; --line: rgba(23,24,30,.10); --line-2: rgba(23,24,30,.14); --outline: rgba(23,24,30,.28); --cta: #1D1D2F; --cta-ink: #FFFFFF;
+  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%) !important; color: var(--text); }
+.ph.lt .sb { color: #111; background: none; }
+.ph.lt .tabs3 > div.on { color: var(--text); } .ph.lt .tabs3 > div.on::after { background: var(--text); }
+.ph.lt .dot::after { background: var(--text); box-shadow: 0 0 0 2px #EEF0FA; }
+.ph.lt .thumb, .ph.lt .thumb * { color: #fff; } /* обложка — кадр видео */
+.ph.lt .live { background: var(--text); }
+.ph.lt .chbtn, .ph.lt .lang { background: rgba(255,255,255,.78); border-color: var(--line); color: var(--text); box-shadow: 0 6px 18px -10px rgba(51,51,87,.35); }
+.ph.lt .chav { background: linear-gradient(145deg, #E4E5F3, #CFD1E6); color: var(--text); }
+.ph.lt .cta:not(.gh):not(.dis):not(.red) { background-image: none; background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 22px -12px rgba(29,29,47,.55); }
 </style>
 </head>
 <body>
@@ -87,14 +98,14 @@ const vcard = ([cap, t, du, m]) => `<div class="t"><div class="thumb"><span clas
 const vrow = ([cap, t, du, m]) => `<div class="vrow t"><div class="thumb sm"><span class="cap">${cap}</span><span class="pl">${icon('play', 's16')}</span><span class="du">${du}</span></div><div class="grow"><div style="font-size:16px;line-height:21px;font-weight:700">${t}</div><div class="vm">${m}</div></div></div>`;
 // зачем: в одну строку не помещалось — название канала переносилось, точка налезала на стрелку
 const head = (unread) => `<div class="flex" style="justify-content:space-between"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Видео</div>${lang()}</div><div style="margin-top:14px"><span class="chbtn t" data-open="chs"><span class="chav">PE</span>Phraseman English${icon('down', 's16')}${unread ? '<span style="width:8px;height:8px;border-radius:50%;background:#fff;margin-left:2px"></span>' : ''}</span></div>`;
-const tabs = (on) => `<div class="tabs3">${['Главная', 'Все видео', 'Плейлисты'].map((t, i) => `<div class="t${i === on ? ' on' : ''}">${t}</div>`).join('')}</div>`;
+const tabs = (on) => `<div class="tabs3">${['Новое', 'Плейлисты', 'Наборы'].map((t, i) => `<div class="t${i === on ? ' on' : ''}">${t}</div>`).join('')}</div>`;
 const packsRow = `<div class="card t" style="margin-top:18px;display:flex;align-items:center;gap:14px;padding:12px 14px"><div class="tile">${icon('layers', 's20')}</div><div class="grow"><div style="font-size:16px;font-weight:700">Наборы из видео</div><div style="font-size:14px;color:var(--sec);margin-top:2px">Фразы из роликов карточками</div></div>${ch}</div>`;
 const hero = (state) => {
   const B = { soon: ['Скоро премьера', 'через 7 ч 52 мин'], live: ['Премьера сейчас', 'идёт 4 минуты'], air: ['Сейчас в эфире', '128 смотрят'], check: ['Ожидается премьера', 'через минуту'] }[state];
   const btn = state === 'soon' ? `<span class="cta sm t addbtn" data-anim="remind" style="width:auto"><span class="no">${icon('flag', 's18')}Напомнить</span><span class="ok">${icon('check', 's18')}Напоминание установлено</span></span>`
     : state === 'set' ? '' : state === 'check' ? `<span class="cta sm gh t" style="width:auto"><span class="spin" style="width:18px;height:18px"></span>Проверяем начало…</span>` : `<span class="cta sm t" style="width:auto">${icon('play', 's18')}Присоединиться</span>`;
   return `<div class="hero" style="margin-top:18px"><div class="thumb" style="border-radius:14px"><span class="cap" style="top:48px">Sorry<br>to bother you</span><span class="pl">${icon('play', 's24')}</span></div>
-    <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="st">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]} · ${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', state === 'soon' ? 'style="width:auto"' : 'style="width:100%"')}</div>` : ''}</div>`;
+    <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="st">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]} · ${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', state === 'soon' ? 'style="display:inline-flex;width:auto;height:40px;padding:0 16px;border-radius:20px"' : 'style="width:100%"')}</div>` : ''}</div>`;
 };
 const main = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${packsRow}<div class="sec" style="margin-top:26px"><div class="ti">Новые видео</div></div><div class="stack" style="--g:18px;display:flex;flex-direction:column;gap:20px">${VIDS.map(vcard).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
 // зачем (координатор 13.10, video-001/video-008): в приложении вкладка «Видео» открывает страницу канала — «‹», название канала крупно в две строки, кнопка YouTube, чип автора, вкладки «Главная · Плейлисты · Наборы»; ролики и плейлисты — сетка в 2 колонки; «Все видео» убрано (video-007 removed_by_owner). Образец приведён к кадрам приложения.
@@ -105,8 +116,8 @@ const chPlaylists = () => phone(`${chHead(1)}<div style="display:grid;grid-templ
 const channelSheet = () => sheet('chs', `<div style="display:flex;align-items:center;padding:0 4px"><div class="grow" style="font-size:22px;font-weight:700">Наши каналы</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
   <div style="margin-top:14px">${[['PE', 'Phraseman English', 'Английский', 1, 'language_en'], ['PL', 'Professor Lingman', 'Английский', 0, 'language_en']].map(([a, n, s, on, f]) => `<div class="t" style="display:flex;align-items:center;gap:14px;padding:12px 4px;border-bottom:1px solid var(--line)"><span class="chav" style="width:44px;height:44px;font-size:15px">${a}</span><div class="grow"><div style="font-size:17px;font-weight:700">${n}</div><div style="font-size:14px;color:var(--sec);margin-top:2px;display:flex;align-items:center;gap:6px"><img src="${A}${f}.webp" style="width:18px;height:12px;border-radius:2px;object-fit:cover" alt="">${s}</div></div>${on ? icon('check', 's20') : ''}</div>`).join('')}</div>
   <div class="t" style="margin-top:16px;font-size:16px;font-weight:600;color:var(--sec);text-align:center">Все наши каналы</div>`, true);
-const allVideos = () => phone(`${head()}${tabs(1)}<div style="display:flex;flex-direction:column;gap:16px;margin-top:18px">${[...VIDS, ['Tell me<br>about you', 'Английский на собеседовании', '14:20', 'месяц назад · 7,3 тыс.'], ['Break<br>the ice', 'Как начать разговор', '9:12', '2 месяца назад · 5 тыс.']].map(vrow).join('')}</div>`, { time: '12:52' });
-const playlists = () => phone(`${head()}${tabs(2)}<div style="margin-top:14px">${[['В дорогу', 12], ['Работа и карьера', 9], ['Фразовые глаголы', 15], ['Разговорный английский', 21]].map(([t, n], i) => `<div class="plrow t"><div class="plstack"><div class="thumb sm"><span class="cap">${VIDS[i % 4][0]}</span><span class="pl">${icon('play', 's16')}</span></div></div><div class="grow"><div style="font-size:16px;font-weight:700">${t}</div><div class="vm">${n} видео</div></div>${ch}</div>`).join('')}</div>`, { time: '12:52' });
+const allVideos = () => phone(`${head()}<div style="display:flex;flex-direction:column;gap:16px;margin-top:18px">${[...VIDS, ['Tell me<br>about you', 'Английский на собеседовании', '14:20', 'месяц назад · 7,3 тыс.'], ['Break<br>the ice', 'Как начать разговор', '9:12', '2 месяца назад · 5 тыс.']].map(vrow).join('')}</div>`, { time: '12:52' });
+const playlists = () => phone(`${head()}${tabs(1)}<div style="margin-top:14px">${[['В дорогу', 12], ['Работа и карьера', 9], ['Фразовые глаголы', 15], ['Разговорный английский', 21]].map(([t, n], i) => `<div class="plrow t"><div class="plstack"><div class="thumb sm"><span class="cap">${VIDS[i % 4][0]}</span><span class="pl">${icon('play', 's16')}</span></div></div><div class="grow"><div style="font-size:16px;font-weight:700">${t}</div><div class="vm">${n} видео</div></div>${ch}</div>`).join('')}</div>`, { time: '12:52' });
 const playlist = (empty) => phone(`<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span></span></div><div style="font-size:30px;line-height:36px;font-weight:700;margin-top:14px">В дорогу</div><div class="vm" style="font-size:15px">12 видео · Phraseman English</div>
   ${empty ? `<div style="text-align:center;padding:120px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('play', 's24')}</div><div style="font-size:16px;color:var(--sec);margin-top:18px">Видео этого плейлиста пока недоступны.</div></div>` : `<span class="cta t" style="margin-top:18px">${icon('play', 's20')}Воспроизвести всё</span><div style="display:flex;flex-direction:column;gap:16px;margin-top:20px">${VIDS.map(vrow).join('')}</div>`}`, { time: '12:52' });
 
@@ -136,16 +147,17 @@ const pull = () => error().replace('<div class="in">', '<div class="in" style="t
 
 const COV = [
   ['VID-01', 'Вкладка «Видео» — главная канала', 'main'], ['VID-01', 'Премьера: скоро / напоминание / сейчас / эфир / проверяем', 'hero'], ['—', 'Шторка «Наши каналы» (YoutubeChannelPickerSheet)', 'main'],
-  ['—', 'Вкладки канала: Главная / Все видео / Плейлисты', 'tabs'], ['VID-02', 'Плейлист · «Воспроизвести всё» · пустой', 'pl'], ['—', 'Плеер (YoutubeInlinePlayer) · «Закрыть видео»', 'watch'],
+  ['—', 'Вкладки канала: Новое / Плейлисты / Наборы (вкладки «Все видео» нет — владелец 01.10)', 'tabs'], ['VID-02', 'Плейлист · «Воспроизвести всё» · пустой', 'pl'], ['—', 'Плеер (YoutubeInlinePlayer) · «Закрыть видео»', 'watch'],
   ['—', 'Набор к ролику · «Добавить себе» → «В моих наборах»', 'watch'], ['—', 'Фразы из видео по таймкодам · загрузка · ошибка', 'watch'], ['—', 'Фраза подробно · «Сохранить фразу» → «Фраза сохранена»', 'watch'],
   ['—', 'Загрузка · пусто · нет сети · устарел · ошибка · потянуть', 'state'], ['—', 'Непрочитанные видео — точка на кнопке канала', 'main'], ['удалено', 'Монеты/энергия за просмотр (VIDEO.md)', '—']];
 document.getElementById('cov').innerHTML = `<tr><th>ID</th><th>Что</th><th>Где на странице</th></tr>` + COV.map(([a, b, c]) => `<tr><td>${a}</td><td>${b}</td><td>${c === '—' ? 'не рисуется' : `<a href="#${c}" style="text-decoration:underline">${c}</a>`}</td></tr>`).join('');
 
 document.getElementById('root').innerHTML =
-  block('main', 'Главная канала', 'Точка на кнопке канала — есть непрочитанные ролики. «Напомнить» меняется на «Напоминание установлено» сразу, без ожидания сети.', [
+  block('main', 'Вкладка «Новое» канала', 'Точка на кнопке канала — есть непрочитанные ролики. «Напомнить» меняется на «Напоминание установлено» сразу, без ожидания сети.', [
     col('Вкладка «Видео»', chMain()), col('Нажали «Напомнить»', main({}) + replay('remind')), col('Шторка «Наши каналы»', main({ overlay: channelSheet() }))]) +
+  block('light', 'Светлая тема («Сумерки»)', 'Вкладка «Новое» и плейлисты в светлой теме: фон и плашки по токенам темы, обложки — кадр видео (тёмные, белая надпись).', [col('Новое · светлая', main({}).replace('class="ph"', 'class="ph lt"')), col('Плейлисты · светлая', playlists().replace('class="ph"', 'class="ph lt"'))]) +
   block('hero', 'Премьера — все состояния', '', [col('Премьера сейчас', main({ hero: 'live' })), col('Сейчас в эфире', main({ hero: 'air' })), col('Проверяем начало…', main({ hero: 'check' }))]) +
-  block('tabs', 'Все видео и плейлисты', '', [col('Все видео', allVideos()), col('Плейлисты', chPlaylists())]) +
+  block('tabs', 'Плейлисты и список «Все видео»', 'Вкладки как в приложении: «Новое / Плейлисты / Наборы» (38712e350). «Все видео» — список канала без своей вкладки.', [col('Все видео', allVideos()), col('Плейлисты', chPlaylists())]) +
   block('pl', 'Плейлист', '', [col('Плейлист', playlist()), col('Плейлист пуст', playlist(true))]) +
   block('watch', 'Ролик: плеер, набор и фразы по таймкодам', 'Подсветка фразы идёт вместе с роликом (живой пример — первый телефон). «Добавить себе» — мгновенно, сеть догоняет.', [
     col('Смотрю ролик — фразы по таймкодам', watch({}) + replay('tc', 'Запустить ролик')), col('Добавить себе → «В моих наборах»', watch({}) + replay('add')), col('Набор добавлен', addedToast()),

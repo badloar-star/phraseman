@@ -50,8 +50,9 @@ export default function FriendsEmptyState({
     pl: 'Znajdź znajomego po imieniu albo udostępnij swój kod.',
   });
   const add = triLang(lang, { ru: 'Добавить друга', uk: 'Додати друга', en: 'Add friend', es: 'Agregar amigo', 'pt-BR': 'Adicionar amigo', vi: 'Thêm bạn', id: 'Tambah teman', tr: 'Arkadaş ekle', pl: 'Dodaj znajomego' });
+  // зачем (координатор 18.10, паритет с макетом community.html friendsEmpty: padding-top error ? 68 : 190)
   return (
-    <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: 68, paddingBottom: 8, paddingHorizontal: 24 }}>
+    <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: error ? 68 : 190, paddingBottom: 8, paddingHorizontal: 24 }}>
       <View style={{ width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}>
         <Ionicons name="people-outline" size={26} color={glass.lightTint} accessible accessibilityLabel="Friends" />
       </View>

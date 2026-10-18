@@ -63,6 +63,18 @@ git ls-tree -r --name-only "$SHA" -- "${EXIST[@]}" | GIT_INDEX_FILE="$TMP_INDEX"
 rm -f "$TMP_INDEX"
 echo "[DEPLOY-CLEAN] выгружено файлов: $(find "$X" -type f | wc -l)"
 
+# зачем (Сайт 18.10, репетиция R103-0/R111): параметры функций (defineString — адреса писем, версии ключей восстановления…) лежат в
+# functions/.env и functions/.env.<проект>; они в .gitignore, в выгрузке HEAD их нет — CLI без терминала падает «no value for the
+# following environment variables». Копируем ровно эти два файла из рабочего дерева: это настройки, не секреты (секреты — Secret
+# Manager), и обычный `firebase deploy` из рабочего дерева берёт те же файлы. Значения в журнал не пишем — только имена ключей.
+if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
+  for envf in functions/.env "functions/.env.$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).projects.default)" "$(cygpath -w "$ROOT/.firebaserc")")"; do
+    [ -f "$ROOT/$envf" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: нет $envf в рабочем дереве — параметры функций не задать"; exit 1; }
+    cp "$ROOT/$envf" "$X/$envf"
+    echo "[DEPLOY-CLEAN] параметры функций из рабочего дерева: $envf ($(grep -cE '^[A-Z0-9_]+=' "$ROOT/$envf") ключей: $(grep -oE '^[A-Z0-9_]+' "$ROOT/$envf" | tr '\n' ' '))"
+  done
+fi
+
 # 2) зависимости — ссылки на основное дерево (только чтение; Cloud Build ставит пакеты сам по package-lock функций)
 cmd //c "mklink /J $(cygpath -w "$X/node_modules") $(cygpath -w "$ROOT/node_modules")" > /dev/null
 cmd //c "mklink /J $(cygpath -w "$X/functions/node_modules") $(cygpath -w "$ROOT/functions/node_modules")" > /dev/null

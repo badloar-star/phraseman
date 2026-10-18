@@ -260,3 +260,86 @@ Hosting URL: https://knowlyapps.web.app
 ```
 Если любая строка до «ВЫКЛАДКА» — FAIL, скрипт останавливается и ничего не выкладывает. После — проверка §2 (privacy:
 «during its limit period (at most one day)» в §4). Откат — Firebase Console → Hosting → knowlyapps → Release history → Rollback.
+
+## 7. Репетиция выкладки функций — ИИ-диалоги R103-0 и восстановление R111 (18.10 ~03:00, Сайт), только `--dry-run`
+
+Без `--execute`, без записей в Firestore и без смены настроек функций. Прод читался только `gcloud … describe` (версии для отката).
+Сухой прогон: выгрузка HEAD в `C:\Temp\claude\deploy_clean_<sha>` → сборка functions → сторож паритета рантайма → `firebase deploy --dry-run`.
+
+**Найдено и исправлено в скрипте:** у функций есть параметры `defineString` (адреса писем, версии ключей восстановления и т. п.). Они лежат в
+`functions/.env` и `functions/.env.phraseman-ea0b3` — оба в .gitignore. В выгрузке HEAD их не было, и CLI без терминала падал:
+«no value for the following environment variables» (9 имён). То же случилось бы утром и с `--execute`.
+Теперь `scripts/deploy_from_clean_head.sh` для целей `functions…` копирует ровно эти два файла из рабочего дерева и печатает только имена
+ключей (5 + 11). Это настройки, не секреты: секреты лежат в Secret Manager. Обычный `firebase deploy` из рабочего дерева берёт те же файлы.
+
+**Что `--dry-run` делает в облаке (честно):** проверяет, включены ли API (cloudfunctions, cloudbuild, artifactregistry, run, eventarc, pubsub,
+storage, secretmanager, cloudscheduler, firebaseextensions). Ещё он вызывает «generate service identity» для pubsub и eventarc —
+это идемпотентно: служебные аккаунты уже есть, потому что в проекте работают функции на событиях. Функции, данные, правила и настройки
+не меняются, исходники не загружаются.
+
+### 7.1. R103-0 — ИИ-диалоги (первыми; чинят текущий прод, см. firebase-cost-cut-2026-10-17.md «R103-0»)
+
+- `--only` (ровно 3, вместе — общий контракт квоты): `functions:default:premiumDialogSend,functions:default:premiumDialogStream,functions:default:premiumDialogTranslate`
+- Сухой прогон: **PASS** на HEAD a6d4d956c — выгрузка 14902 файла, сборка и паритет рантайма OK, `+ Dry run complete!`.
+- Решение владельца перед выкладкой (из R103-0): старые сборки получат Free 30 ответов в месяц вместо 10 в день (D111).
+- **Одна команда:**
+  ```
+  bash scripts/deploy_from_clean_head.sh --only "functions:default:premiumDialogSend,functions:default:premiumDialogStream,functions:default:premiumDialogTranslate" --execute
+  ```
+- **Ожидаемый вывод** (кроме строк сухого прогона выше):
+  ```
+  ✔  functions[premiumDialogSend(us-central1)] Successful update operation.
+  ✔  functions[premiumDialogStream(us-central1)] Successful update operation.
+  ✔  functions[premiumDialogTranslate(us-central1)] Successful update operation.
+  ✔  Deploy complete!
+  [DEPLOY-CLEAN] firebase deploy exit=0
+  ```
+  Вопрос CLI про удаление функций, которых нет в `--only`, появиться не должен (адресная выкладка). Если появился — отвечать «N».
+- **Проверка после:** `gcloud functions describe <имя> --gen2 --region us-central1 --project phraseman-ea0b3 --format="value(state,updateTime)"`.
+  У всех трёх должно быть ACTIVE и время сегодняшнее. Журнал ERROR за 15 минут пуст. Сверка: ответ en и es в сценарии, «Как сказать…»
+  отдаёт варианты.
+
+### 7.2. R111 — восстановление аккаунта по коду
+
+- `--only` (6 функций, у которых в проде стоит `if (!request.app) throw 'app_check_required'`; в HEAD — лимит вызывающего, HMAC-ключи
+  счётчиков, `expireAt`, дневные потолки неверных кодов):
+  `functions:default:authRequestRecoveryCode,functions:default:authConfirmRecoveryCode,functions:default:authRequestCleanInstallRecoveryCode,functions:default:authConfirmCleanInstallRecoveryCode,functions:default:authIssueRecoveryHandoffToken,functions:default:authCompleteRecoveryHandoff`
+- Не входят: `authCleanInstallRecoveryDeliveryWorker` — его код не менялся, только тип рядом. `authRecoveryHint` живёт в auth_identity.ts,
+  не R111.
+- Секреты на месте: у Request — `AUTH_RECOVERY_CHALLENGE_HMAC_KEY_CURRENT` вместе с RESEND, у Confirm — вместе с ADMIN_ALERT_BOT_TOKEN.
+  Без секрета `recoveryRateKey` ответил бы `unavailable`.
+- Сухой прогон: **PASS** на HEAD ff255d81b — `+ Dry run complete!`.
+- Порядок: после сайта. Абзац §4 в HEAD — запасная фраза, верная при любом состоянии TTL (§3.0).
+- **Одна команда:**
+  ```
+  bash scripts/deploy_from_clean_head.sh --only "functions:default:authRequestRecoveryCode,functions:default:authConfirmRecoveryCode,functions:default:authRequestCleanInstallRecoveryCode,functions:default:authConfirmCleanInstallRecoveryCode,functions:default:authIssueRecoveryHandoffToken,functions:default:authCompleteRecoveryHandoff" --execute
+  ```
+- **Ожидаемый вывод:** шесть строк `✔  functions[<имя>(us-central1)] Successful update operation.`, затем `✔  Deploy complete!`
+  и `[DEPLOY-CLEAN] firebase deploy exit=0`.
+- **Проверка после:** describe → ACTIVE и сегодняшнее время. Журнал: `[AUTH-RECOVERY]` и `[RECOVERY-LIMIT]` без `rate_key_unavailable`.
+  На эмуляторе 2.0 — запрос кода (письмо пришло), один неверный код (отказ) и верный код (вход).
+
+### 7.3. Откат (обоих)
+
+**Быстрый и точный — вернуть трафик Cloud Run на нынешнюю ревизию.** Это тот же образ и те же настройки, пересборки нет.
+`gcloud run services update-traffic <сервис> --to-revisions <ревизия>=100 --region us-central1 --project phraseman-ea0b3`
+
+| Функция | Сервис Cloud Run | Ревизия в проде сейчас | Выложена |
+|---|---|---|---|
+| premiumDialogSend | premiumdialogsend | premiumdialogsend-00073-hav | 17.09 |
+| premiumDialogStream | premiumdialogstream | premiumdialogstream-00015-rig | 17.10 |
+| premiumDialogTranslate | premiumdialogtranslate | premiumdialogtranslate-00030-mow | 14.09 |
+| authRequestRecoveryCode | authrequestrecoverycode | authrequestrecoverycode-00022-xol | 02.09 |
+| authConfirmRecoveryCode | authconfirmrecoverycode | authconfirmrecoverycode-00022-hoj | 02.09 |
+| authRequestCleanInstallRecoveryCode | authrequestcleaninstallrecoverycode | authrequestcleaninstallrecoverycode-00019-zux | 02.09 |
+| authConfirmCleanInstallRecoveryCode | authconfirmcleaninstallrecoverycode | authconfirmcleaninstallrecoverycode-00019-loc | 02.09 |
+| authIssueRecoveryHandoffToken | authissuerecoveryhandofftoken | authissuerecoveryhandofftoken-00019-buk | 02.09 |
+| authCompleteRecoveryHandoff | authcompleterecoveryhandoff | authcompleterecoveryhandoff-00019-zid | 02.09 |
+
+Запасной путь — пересборка из прежнего исходника: `gs://gcf-v2-sources-1047658658799-us-central1/<имя>/function-source.zip#<generation>`.
+- Generation: Send 1789672329852868, Stream 1792260767122293, Translate 1789376455876702; Request 1788332906390016,
+  Confirm 1788332906651813, RequestClean 1788332384806748, ConfirmClean 1788332384718015, IssueHandoff 1788332504903010,
+  CompleteHandoff 1788332386298798.
+- Память и таймаут: 512Mi/30 с, 512Mi/60 с, 256Mi/20 с; у восстановления 256Mi/15 с.
+⚠ Откат R103-0 вернёт и поломку диалогов, откат R111 — мёртвое восстановление по коду в 2.0. Откатывать только при новой, худшей ошибке.
+Следующая обычная выкладка этих функций снова переведёт трафик на новую ревизию.

@@ -37,7 +37,7 @@ export const PAYWALL_MAIN_BENEFITS: readonly MainBenefit[] = [
   {
     icon: 'layers-outline',
     title: LP('Карточки без ограничений', 'Картки без обмежень', 'Cards without limits', 'Tarjetas sin límites', 'Cartões sem limites', 'Thẻ không giới hạn', 'Kartu tanpa batas', 'Sınırsız kartlar', 'Karty bez limitów'),
-    detail: LP('Сохраняй, создавай наборы, тренируйся', 'Зберігай, створюй набори, тренуйся', 'Save, build packs, practice', 'Guarda, crea sets y entrena', 'Salve, crie conjuntos e treine', 'Lưu, tạo bộ thẻ và luyện tập', 'Simpan, buat paket, dan berlatih', 'Kaydet, paket oluştur, çalış', 'Zapisuj, twórz zestawy, ćwicz'),
+    detail: LP('Сохраняй, создавай наборы, тренируйся', 'Зберігай, створюй набори, тренуйся', 'Save, build packs, practice', 'Guarda, crea packs y entrena', 'Salve, crie pacotes e treine', 'Lưu, tạo bộ thẻ và luyện tập', 'Simpan, buat paket, dan berlatih', 'Kaydet, paket oluştur, çalış', 'Zapisuj, twórz zestawy, ćwicz'),
   },
   {
     icon: 'school-outline',
@@ -66,7 +66,7 @@ export const PAYWALL_COMPARISON_ROWS: readonly ComparisonRow[] = [
     free: LP('До 50', 'До 50', 'Up to 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'), plus: UNLIMITED },
   { id: 'own_cards', label: LP('Свои карточки', 'Власні картки', 'Your own cards', 'Tus tarjetas', 'Seus cartões', 'Thẻ của bạn', 'Kartu buatanmu', 'Kendi kartların', 'Własne karty'),
     free: LP('До 50', 'До 50', 'Up to 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'), plus: UNLIMITED },
-  { id: 'own_packs', label: LP('Свои наборы', 'Власні набори', 'Your own packs', 'Tus sets', 'Seus conjuntos', 'Bộ thẻ của bạn', 'Paket buatanmu', 'Kendi setlerin', 'Własne zestawy'),
+  { id: 'own_packs', label: LP('Свои наборы', 'Власні набори', 'Your own packs', 'Tus packs', 'Seus pacotes', 'Bộ thẻ của bạn', 'Paket buatanmu', 'Kendi paketlerin', 'Własne zestawy'),
     free: LP('До 3', 'До 3', 'Up to 3', 'Hasta 3', 'Até 3', 'Tối đa 3', 'Hingga 3', 'En fazla 3', 'Do 3'), plus: UNLIMITED },
   { id: 'flashcard_training', label: LP('Тренировки с карточками', 'Тренування з картками', 'Flashcard training', 'Entrenar con tarjetas', 'Treino com cartões', 'Luyện thẻ', 'Latihan kartu', 'Kart antrenmanı', 'Trening z kartami'),
     free: LP('30 в месяц', '30 на місяць', '30 a month', '30 al mes', '30 por mês', '30 mỗi tháng', '30 per bulan', 'Ayda 30', '30 miesięcznie'), plus: UNLIMITED },

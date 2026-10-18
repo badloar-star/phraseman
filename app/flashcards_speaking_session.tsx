@@ -1302,7 +1302,7 @@ export default function FlashcardsSpeakingSession() {
     }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
-      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw kart',
+      vi: 'Bộ thẻ', id: 'Paket kartu', tr: 'Kart seti', pl: 'Zestaw kart',
     });
     return triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
@@ -1367,7 +1367,7 @@ export default function FlashcardsSpeakingSession() {
       }),
       pickDecks: triLang(lang, {
         ru: 'Выбрать наборы', uk: 'Обрати набори', en: 'Choose packs', es: 'Elegir packs',
-        'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih set kartu',
+        'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket kartu',
         tr: 'Setleri seç', pl: 'Wybierz zestawy',
       }),
       empty: triLang(lang, {
@@ -1377,7 +1377,7 @@ export default function FlashcardsSpeakingSession() {
         es: 'Aún no hay nada que decir: elige los packs',
         'pt-BR': 'Ainda não há o que falar: escolha os pacotes',
         vi: 'Chưa có gì để nói — hãy chọn bộ thẻ',
-        id: 'Belum ada yang bisa diucapkan — pilih set kartu',
+        id: 'Belum ada yang bisa diucapkan — pilih paket kartu',
         tr: 'Söylenecek bir şey yok — setleri seçin',
         pl: 'Nie ma jeszcze czego mówić — wybierz zestawy',
       }),

@@ -30,7 +30,7 @@ function PackMoreMenu({ visible, lang, onClose, onReport, onHide }: Props) {
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
-  const reportLabel = triLang(lang, { ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' });
+  const reportLabel = triLang(lang, { ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw' });
   const hideLabel = triLang(lang, { ru: 'Скрыть набор', uk: 'Приховати набір', en: 'Hide the pack', es: 'Ocultar el pack', 'pt-BR': 'Ocultar o pacote', vi: 'Ẩn bộ thẻ', id: 'Sembunyikan pack', tr: 'Paketi gizle', pl: 'Ukryj zestaw' });
   const row = (testID: string, icon: keyof typeof Ionicons.glyphMap, label: string, onPress: () => void) => (
     <TouchableOpacity

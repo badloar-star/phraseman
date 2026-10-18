@@ -191,7 +191,7 @@ function packBuyUnavailableToast() {
     ru: 'Этот набор сейчас нельзя купить.',
     uk: 'Цей набір зараз не можна купити.',
     en: 'This pack can’t be bought right now.',
-    es: 'Este paquete no se puede comprar ahora.',
+    es: 'Este pack no se puede comprar ahora.',
     'pt-BR': 'Este pacote não pode ser comprado agora.',
     vi: 'Hiện chưa thể mua bộ thẻ này.',
     id: 'Paket ini belum bisa dibeli sekarang.',
@@ -206,7 +206,7 @@ function packBuyFailedToast() {
     ru: 'Не удалось купить набор. Попробуй ещё раз.',
     uk: 'Не вдалося купити набір. Спробуй ще раз.',
     en: 'Couldn’t buy the pack. Try again.',
-    es: 'No se pudo comprar el paquete. Inténtalo de nuevo.',
+    es: 'No se pudo comprar el pack. Inténtalo de nuevo.',
     'pt-BR': 'Não foi possível comprar o pacote. Tente de novo.',
     vi: 'Không mua được bộ thẻ. Hãy thử lại.',
     id: 'Tidak bisa membeli paket. Coba lagi.',
@@ -1651,7 +1651,7 @@ export default function FlashcardsScreen() {
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
                 {triLang(lang, {
                   ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', en: 'Report this pack', es: 'Denunciar el pack',
-                  'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan set',
+                  'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket',
                   tr: 'Seti bildir', pl: 'Zgłoś zestaw',
                 })}
               </Text>

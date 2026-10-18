@@ -195,7 +195,7 @@ function ReportPackModal({
         <View style={{ maxHeight: sheetContentMaxHeight, minHeight: 0, flexShrink: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4 }}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.15} style={{ color: glass.text, fontSize: 22, fontWeight: '700', flex: 1 }}>
-              {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
+              {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś zestaw' })}
             </Text>
             <TouchableOpacity
               testID="report-pack-close"

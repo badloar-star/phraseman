@@ -1438,15 +1438,15 @@ PAYWALL_PLANNED_COPY.pack_create = {
 };
 
 CONTEXT_BENEFITS.pack_create = [
-  { ru: 'Своя колода под поездку, работу или сериал', uk: 'Своя колода під поїздку, роботу чи серіал', es: 'Tu mazo para un viaje, el trabajo o una serie', en: 'Your own deck for a trip, work or a show', 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
+  { ru: 'Своя колода под поездку, работу или сериал', uk: 'Своя колода під поїздку, роботу чи серіал', es: 'Tu pack para un viaje, el trabajo o una serie', en: 'Your own pack for a trip, work or a show', 'pt-BR': 'Seu pacote para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Paket sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi paketin', pl: 'Własny zestaw na wyjazd, pracę lub serial' },
   { ru: 'Фразы собраны в одном месте, а не вразброс', uk: 'Вислови зібрані в одному місці, а не врозсип', es: 'Las frases juntas en un sitio, no dispersas', en: 'Phrases collected in one place, not scattered', 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
-  { ru: 'Набор можно учить целиком и делиться им', uk: 'Набір можна вчити цілком і ділитися ним', es: 'Estudia el mazo entero y compártelo', en: 'Study the whole deck and share it', 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
+  { ru: 'Набор можно учить целиком и делиться им', uk: 'Набір можна вчити цілком і ділитися ним', es: 'Estudia el pack entero y compártelo', en: 'Study the whole pack and share it', 'pt-BR': 'Estude o pacote inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari paket utuh dan bagikan', tr: 'Paketi baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
 ];
 
 CONTEXT_BENEFITS_PLANNED.pack_create = [
-  { 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
+  { 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Paket sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi paketin', pl: 'Własny zestaw na wyjazd, pracę lub serial' },
   { 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
-  { 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
+  { 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari paket utuh dan bagikan', tr: 'Paketi baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
 ];
 
 // ── Комбинированный урок и бейдж скидки (2026-09-20) ───────────────────────

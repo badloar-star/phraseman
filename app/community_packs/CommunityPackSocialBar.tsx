@@ -339,7 +339,7 @@ export default function CommunityPackSocialBar({
         ru: 'Это платный набор. Открой его страницу, чтобы купить.',
         uk: 'Це платний набір. Відкрий його сторінку, щоб купити.',
         en: 'This is a paid pack. Open its page to buy it.',
-        es: 'Este paquete es de pago. Abre su página para comprarlo.',
+        es: 'Este pack es de pago. Abre su página para comprarlo.',
         'pt-BR': 'Este pacote é pago. Abra a página dele para comprar.',
         vi: 'Đây là bộ thẻ trả phí. Hãy mở trang của bộ để mua.',
         id: 'Ini paket berbayar. Buka halamannya untuk membeli.',

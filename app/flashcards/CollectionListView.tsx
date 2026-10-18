@@ -860,7 +860,7 @@ export default function CollectionListView({
             testID="fc-create-pack-from-selection"
             accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
-              ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um conjunto', vi: 'Tạo bộ thẻ', id: 'Buat set', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
+              ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
             })}
             accessibilityHint={canCreatePack ? undefined : triLang(lang, {
               ru: `Нужно ещё ${pluralWithCount('ru', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'карточка', few: 'карточки', many: 'карточек' })}`, uk: `Потрібно ще ${pluralWithCount('uk', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'картка', few: 'картки', many: 'карток' })}`, en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more ${pluralWord('en', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'card', few: 'cards', many: 'cards' })}`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} ${pluralWord('es', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'tarjeta', few: 'tarjetas', many: 'tarjetas' })} más`, 'pt-BR': `Escolha mais ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} ${pluralWord('pt-BR', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'cartão', few: 'cartões', many: 'cartões' })}`, vi: `Chọn thêm ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} thẻ`, id: `Pilih ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kartu lagi`, tr: `${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart daha seç`, pl: `Wybierz jeszcze ${pluralWithCount('pl', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'kartę', few: 'karty', many: 'kart' })}`,
@@ -872,7 +872,7 @@ export default function CollectionListView({
           >
             <Text style={{ color: canCreatePack ? g.ctaInk : g.secondary, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {
-                ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um conjunto', vi: 'Tạo bộ thẻ', id: 'Buat set', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
+                ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
               })}
             </Text>
           </DuoPressable>

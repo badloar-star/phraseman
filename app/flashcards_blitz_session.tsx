@@ -1264,7 +1264,7 @@ export default function FlashcardsBlitzSession() {
         es: 'Elegir packs',
         'pt-BR': 'Escolher pacotes',
         vi: 'Chọn bộ thẻ',
-        id: 'Pilih set kartu',
+        id: 'Pilih paket kartu',
         tr: 'Setleri seç',
         pl: 'Wybierz zestawy',
       }),
@@ -1294,7 +1294,7 @@ export default function FlashcardsBlitzSession() {
     }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
-      vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw kart',
+      vi: 'Bộ thẻ', id: 'Paket kartu', tr: 'Kart seti', pl: 'Zestaw kart',
     });
     return triLang(lang, {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',

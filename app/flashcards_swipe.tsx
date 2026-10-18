@@ -907,7 +907,7 @@ async function buildCommunitySources(
         vi: "Gói cộng đồng",
         id: "Paket komunitas",
         tr: "Topluluk paketi",
-        pl: "Pakiet społeczności",
+        pl: "Zestaw społeczności",
       }),
       count: pack.cardCount,
       icon: 'people-outline',
@@ -1561,7 +1561,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Các gói sẽ hiện ở đây — thêm cụm từ của bạn hoặc ghé cửa hàng.",
         id: "Tidak ada paket yang tersedia untuk latihan.",
         tr: "Pratik için kullanılabilir paket yok.",
-        pl: "Brak pakietów dostępnych do ćwiczenia.",
+        pl: "Brak zestawów dostępnych do ćwiczenia.",
       }),
       saved: triLang(lang, {
         ru: 'Сохранённые карточки',
@@ -1594,7 +1594,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Gói chính thức",
         id: "Paket resmi",
         tr: "Resmi paket",
-        pl: "Pakiet oficjalny",
+        pl: "Zestaw oficjalny",
       }),
       match: triLang(lang, {
         ru: 'Да',
@@ -1782,7 +1782,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         es: 'Elige un pack abajo',
         'pt-BR': 'Escolha um pacote abaixo',
         vi: 'Chọn bộ thẻ bên dưới',
-        id: 'Pilih set di bawah',
+        id: 'Pilih paket di bawah',
         tr: 'Aşağıdan paket seç',
         pl: 'Wybierz zestaw poniżej',
       }),
@@ -2043,7 +2043,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Gói",
         id: "Paket",
         tr: "Paketler",
-        pl: "Pakiety",
+        pl: "Zestawy",
       }),
       noCardsTitle: triLang(lang, {
         ru: 'Нет карточек для тренировки',
@@ -2065,7 +2065,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         vi: "Lưu thẻ hoặc thêm một gói, rồi buổi luyện tập sẽ bắt đầu từ đây chỉ với một lần chạm.",
         id: "Simpan kartu atau tambahkan paket, lalu latihan akan mulai dari sini dengan satu ketukan.",
         tr: "Kart kaydet ya da bir paket ekle; alıştırma buradan tek dokunuşla başlar.",
-        pl: "Zapisz karty albo dodaj pakiet, a trening ruszy stąd jednym dotknięciem.",
+        pl: "Zapisz karty albo dodaj zestaw, a trening ruszy stąd jednym dotknięciem.",
       }),
       // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
       swipeHint: triLang(lang, {
@@ -2468,7 +2468,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             vi: "Các gói đã chọn không có thẻ kèm bản dịch.",
             id: "Paket yang dipilih tidak memiliki kartu dengan terjemahan.",
             tr: "Seçilen paketlerde çevirili kart yok.",
-            pl: "Wybrane pakiety nie mają kart z tłumaczeniem.",
+            pl: "Wybrane zestawy nie mają kart z tłumaczeniem.",
           }),
         );
         return;

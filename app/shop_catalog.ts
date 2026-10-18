@@ -73,7 +73,7 @@ export const SHOP_CATEGORIES: readonly ShopCategory[] = Object.freeze([
   },
   {
     id: 'cards', icon: 'albums-outline',
-    title: { ru: 'Наборы', uk: 'Набори', es: 'Paquetes', en: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Setler', pl: 'Zestawy' },
+    title: { ru: 'Наборы', uk: 'Набори', es: 'Packs', en: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Setler', pl: 'Zestawy' },
   },
 ]);
 
@@ -141,19 +141,19 @@ export const SHOP_ITEMS: readonly ShopItem[] = Object.freeze([
   {
     id: 'cards-basic', category: 'cards', currency: 'runes', price: 80,
     tone: 'cards', icon: 'albums-outline',
-    title: { ru: 'Набор карточек', uk: 'Набір карток', es: 'Paquete de tarjetas', en: 'Card pack', 'pt-BR': 'Pacote de cartões', vi: 'Bộ thẻ', id: 'Paket kartu', tr: 'Kart seti', pl: 'Zestaw fiszek' },
-    detail: { ru: 'Тематический набор фраз в твою коллекцию.', uk: 'Тематичний набір висловів до твоєї колекції.', es: 'Un set temático de frases para tu colección.', en: 'A themed set of phrases for your collection.', 'pt-BR': 'Um conjunto temático de frases para sua coleção.', vi: 'Bộ cụm từ theo chủ đề cho bộ sưu tập của bạn.', id: 'Set frasa bertema untuk koleksimu.', tr: 'Koleksiyonun için temalı ifade seti.', pl: 'Tematyczny zestaw zwrotów do twojej kolekcji.' },
+    title: { ru: 'Набор карточек', uk: 'Набір карток', es: 'Pack de tarjetas', en: 'Card pack', 'pt-BR': 'Pacote de cartões', vi: 'Bộ thẻ', id: 'Paket kartu', tr: 'Kart seti', pl: 'Zestaw fiszek' },
+    detail: { ru: 'Тематический набор фраз в твою коллекцию.', uk: 'Тематичний набір висловів до твоєї колекції.', es: 'Un pack temático de frases para tu colección.', en: 'A themed pack of phrases for your collection.', 'pt-BR': 'Um pacote temático de frases para sua coleção.', vi: 'Bộ cụm từ theo chủ đề cho bộ sưu tập của bạn.', id: 'Paket frasa bertema untuk koleksimu.', tr: 'Koleksiyonun için temalı ifade paketi.', pl: 'Tematyczny zestaw zwrotów do twojej kolekcji.' },
   },
   {
     id: 'cards-travel', category: 'cards', currency: 'runes', price: 80,
     tone: 'cards', icon: 'airplane-outline',
-    title: { ru: 'Набор «Поездка»', uk: 'Набір «Подорож»', es: 'Paquete «Viaje»', en: '“Trip” pack', 'pt-BR': 'Pacote «Viagem»', vi: 'Bộ «Du lịch»', id: 'Paket «Perjalanan»', tr: '«Seyahat» seti', pl: 'Zestaw «Podróż»' },
+    title: { ru: 'Набор «Поездка»', uk: 'Набір «Подорож»', es: 'Pack «Viaje»', en: '“Trip” pack', 'pt-BR': 'Pacote «Viagem»', vi: 'Bộ «Du lịch»', id: 'Paket «Perjalanan»', tr: '«Seyahat» seti', pl: 'Zestaw «Podróż»' },
     detail: { ru: 'Фразы для аэропорта, отеля и такси.', uk: 'Вислови для аеропорту, готелю й таксі.', es: 'Frases para el aeropuerto, el hotel y el taxi.', en: 'Phrases for the airport, hotel and taxi.', 'pt-BR': 'Frases para aeroporto, hotel e táxi.', vi: 'Cụm từ cho sân bay, khách sạn và taxi.', id: 'Frasa untuk bandara, hotel, dan taksi.', tr: 'Havaalanı, otel ve taksi için ifadeler.', pl: 'Zwroty na lotnisko, do hotelu i taksówki.' },
   },
   {
     id: 'cards-work', category: 'cards', currency: 'runes', price: 80,
     tone: 'cards', icon: 'briefcase-outline',
-    title: { ru: 'Набор «Работа»', uk: 'Набір «Робота»', es: 'Paquete «Trabajo»', en: '“Work” pack', 'pt-BR': 'Pacote «Trabalho»', vi: 'Bộ «Công việc»', id: 'Paket «Kerja»', tr: '«İş» seti', pl: 'Zestaw «Praca»' },
+    title: { ru: 'Набор «Работа»', uk: 'Набір «Робота»', es: 'Pack «Trabajo»', en: '“Work” pack', 'pt-BR': 'Pacote «Trabalho»', vi: 'Bộ «Công việc»', id: 'Paket «Kerja»', tr: '«İş» seti', pl: 'Zestaw «Praca»' },
     // зачем (D188, 14.10): язык изучения не только английский — описание без названия языка.
     detail: { ru: 'Фразы для созвонов, писем и переговоров.', uk: 'Вислови для дзвінків, листів і перемовин.', es: 'Frases para llamadas, correos y negociaciones.', en: 'Phrases for calls, emails and negotiations.', 'pt-BR': 'Frases para chamadas, e-mails e negociações.', vi: 'Cụm từ cho cuộc gọi, email và đàm phán.', id: 'Frasa untuk panggilan, email, dan negosiasi.', tr: 'Toplantılar, e-postalar ve müzakereler için ifadeler.', pl: 'Zwroty do rozmów, maili i negocjacji.' },
   },

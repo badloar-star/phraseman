@@ -418,7 +418,7 @@ export async function buildCommunitySources(
         vi: 'Gói cộng đồng',
         id: 'Paket komunitas',
         tr: 'Topluluk paketi',
-        pl: 'Pakiet społeczności',
+        pl: 'Zestaw społeczności',
       }),
       count: pack.cardCount,
       icon: 'people-outline',

@@ -978,7 +978,7 @@ function LessonMenu() {
   vi: 'Nội dung đang chờ duyệt',
   id: 'Materi sedang ditinjau',
   tr: 'Paket yükleniyor',
-  pl: 'Ładowanie pakietu',
+  pl: 'Ładowanie zestawu',
 })
         : showReplayCta
         ? triLang(lang, {

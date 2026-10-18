@@ -46,7 +46,7 @@ import {
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
-import DialogQuotaBadge, { formatAiDialogQuotaResetDate } from './DialogQuotaBadge';
+import DialogQuotaBadge, { aiDialogMonthlyLimitText, formatAiDialogQuotaResetDate } from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
 import { captureAccountGeneration } from '../app/account_generation';
@@ -338,13 +338,20 @@ function DialogsTabContentBody({
    */
   const upsellContext: PremiumContext = monthlyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level';
   const quotaLimit = quota?.limit ?? REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
+  // зачем (координатор 18.10, Ревизор 3.45): остаток знаем только из зеркала ('allowed'/'exhausted'). 'unknown' — зеркала нет или оно из прошлого
+  // месяца, лимит мог уйти на другом устройстве: цифру не выдумываем (null → «—/30» и строка «Лимит — 30 ответов в месяц»). Точная цифра придёт
+  // с ответом сервера на реплику (зеркало перезапишется) — Firestore здесь не читаем.
   const repliesLeftThisMonth = !hasPremiumAccess
     ? quota?.status === 'allowed'
       ? quota.remaining
       : monthlyLimitExhausted
         ? 0
-        : quotaLimit
+        : null
     : null;
+  useEffect(() => {
+    if (hasPremiumAccess || !accessResolved) return;
+    console.log(`[DIALOGUE-V2] tab:quota status=${quota?.status ?? 'not_read'} → badge=${repliesLeftThisMonth === null ? '—' : repliesLeftThisMonth}/${quotaLimit}`);
+  }, [accessResolved, hasPremiumAccess, quota, quotaLimit, repliesLeftThisMonth]);
   const quotaResetAt = quotaResetAtMs(quota);
   const quotaResetDate = formatAiDialogQuotaResetDate(quotaResetAt, lang);
   const accent = t.accent; // light-accent-ok: используется только как вуаль (accent+альфа) и подложка значка 15 %
@@ -688,7 +695,7 @@ function DialogsTabContentBody({
       {!hasPremiumAccess && (
         <DialogQuotaBadge
           lang={lang}
-          remaining={repliesLeftThisMonth ?? quotaLimit}
+          remaining={repliesLeftThisMonth}
           limit={quotaLimit}
           resetAtMs={quotaResetAt}
           variant="monthly"
@@ -932,7 +939,9 @@ function DialogsTabContentBody({
             >
               {/* Серверная граница календарного месяца показывается как есть:
                   клиент не вычисляет и не придумывает дату сброса. */}
-              {repliesLeftThisMonth != null
+              {!hasPremiumAccess && repliesLeftThisMonth == null
+                ? `${aiDialogMonthlyLimitText(lang, quotaLimit)}.`
+                : repliesLeftThisMonth != null
                 ? triLang(lang, {
                     ru: `В этом календарном месяце осталось ${repliesLeftThisMonth} из ${quotaLimit} реплик.${quotaResetDate ? ` Сброс — ${quotaResetDate}.` : ''}`,
                     uk: `У цьому календарному місяці залишилося ${repliesLeftThisMonth} з ${quotaLimit} реплік.${quotaResetDate ? ` Скидання — ${quotaResetDate}.` : ''}`,

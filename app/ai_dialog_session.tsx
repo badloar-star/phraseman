@@ -362,7 +362,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       if (cancelled) return;
       console.log('[DIALOG-QUOTA] entry:gate', JSON.stringify({ status: state.status, limit: state.limit, stableId: accountStableId }));
       setDailyQuotaLimit(state.limit);
-      setDailyQuotaRemaining(state.status === 'allowed' || state.status === 'exhausted' ? state.remaining : state.limit);
+      // зачем (координатор 18.10, Ревизор 3.45): 'unknown' — остаток телефону неизвестен; «—/30» до первого ответа сервера, а не полный лимит.
+      setDailyQuotaRemaining(state.status === 'allowed' || state.status === 'exhausted' ? state.remaining : null);
       setQuotaResetAtMs(state.status === 'allowed' || state.status === 'exhausted' ? state.resetAtMs : null);
       if (state.status === 'unknown' || state.status === 'allowed') {
         setDailyQuotaGate('open');
@@ -2389,7 +2390,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           {!hasPremiumAccess ? (
             <DialogQuotaBadge
               lang={lang}
-              remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
+              remaining={dailyQuotaRemaining}
               limit={dailyQuotaLimit}
               resetAtMs={quotaResetAtMs}
               testID="ai-dialog-daily-quota"

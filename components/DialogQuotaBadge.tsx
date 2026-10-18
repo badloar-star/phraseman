@@ -8,7 +8,8 @@ import { useV2GlassStyle } from './v2/V2Glass';
 
 type DialogQuotaBadgeProps = Readonly<{
   lang: Lang;
-  remaining: number;
+  /** null — остаток телефону неизвестен (зеркала нет / прошлый месяц): «—/30», не обещаем полный лимит (Ревизор 3.45). */
+  remaining: number | null;
   limit: number;
   /** Серверная граница месяца (UTC). Нет значения — дату не показываем, не выдумываем. */
   resetAtMs?: number | null;
@@ -58,6 +59,21 @@ export function aiDialogMonthlyRemainingText(lang: Lang, remaining: number, limi
   });
 }
 
+/** зачем (координатор 18.10, Ревизор 3.45): остаток неизвестен — называем месячный лимит, а не выдуманный остаток. Видимая строка = подпись для диктора. */
+export function aiDialogMonthlyLimitText(lang: Lang, limit: number): string {
+  return triLang(lang, {
+    ru: `Лимит — ${limit} ответов в месяц`,
+    uk: `Ліміт — ${limit} відповідей на місяць`,
+    en: `Limit: ${limit} replies a month`,
+    es: `Límite: ${limit} respuestas al mes`,
+    'pt-BR': `Limite: ${limit} respostas por mês`,
+    vi: `Giới hạn: ${limit} lượt trả lời mỗi tháng`,
+    id: `Batas: ${limit} balasan per bulan`,
+    tr: `Sınır: ayda ${limit} yanıt`,
+    pl: `Limit: ${limit} odpowiedzi miesięcznie`,
+  });
+}
+
 function resetText(lang: Lang, date: string): string {
   return triLang(lang, {
     ru: `сброс ${date}`,
@@ -88,9 +104,10 @@ export default function DialogQuotaBadge({
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   const safeLimit = Math.max(1, Math.floor(limit));
-  const safeRemaining = Math.max(0, Math.min(safeLimit, Math.floor(remaining)));
+  const known = remaining !== null && Number.isFinite(remaining);
+  const safeRemaining = known ? Math.max(0, Math.min(safeLimit, Math.floor(remaining))) : null;
   const resetDate = formatAiDialogQuotaResetDate(resetAtMs, lang);
-  const monthly = aiDialogMonthlyRemainingText(lang, safeRemaining, safeLimit);
+  const monthly = safeRemaining === null ? aiDialogMonthlyLimitText(lang, safeLimit) : aiDialogMonthlyRemainingText(lang, safeRemaining, safeLimit);
   const label = resetDate ? `${monthly}, ${resetText(lang, resetDate)}` : monthly;
 
   return (
@@ -126,7 +143,7 @@ export default function DialogQuotaBadge({
         </>
       ) : (
         <Text style={{ color: p.text, fontSize: 16, fontWeight: '700' }}>
-          {safeRemaining}/{safeLimit}
+          {safeRemaining === null ? '—' : safeRemaining}/{safeLimit}
         </Text>
       )}
     </View>

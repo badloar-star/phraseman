@@ -1,0 +1,100 @@
+<title>Вход в другой аккаунт</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<style>
+/* Макет PhraseMan 2.0, стиль «Тень»: шторка снизу поверх экрана «Аккаунт». Два телефона — тёмная (графит) и светлая («Сумерки»).
+   Цвета телефонов — токены приложения (kit.css / th-ink), страница вокруг следует теме зрителя. */
+:root {
+  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-line: rgba(23,24,30,.10);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); color-scheme: dark; } }
+:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); color-scheme: dark; }
+
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin: 0; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 64ch; }
+.row { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 26px; justify-content: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
+.spec { margin-top: 32px; border-top: 1px solid var(--page-line); padding-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px; }
+.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); min-width: 0; }
+.spec b { color: var(--page-ink); font-weight: 600; }
+
+/* ── телефон: 390 × 844, как iPhone 14 / Pixel 8 по ширине dp ── */
+.ph { --bg: #0C0C0D; --bg-top: #151516; --text: #FFFFFF; --sec: #A6A6A8; --card: #151517; --tile: #242426; --sheet: #1B1B1D;
+  --cta: #F2F1F6; --cta-ink: #0B0C0E; --btn2: #2E2E32; --btn2-ink: #FFFFFF; --grab: #4A4A4E; --scrim: rgba(0,0,0,.6);
+  --sheet-sh: 0 -18px 40px -16px rgba(0,0,0,.8); --btn2-sh: inset 0 1px 0 rgba(255,255,255,.07), 0 6px 16px -10px rgba(0,0,0,.8);
+  --cta-sh: inset 0 1px 0 #fff, 0 10px 24px -12px rgba(0,0,0,.75); --sb: #fff;
+  position: relative; width: 390px; max-width: 100%; aspect-ratio: 390 / 844; border-radius: 52px; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); color: var(--text);
+  box-shadow: 0 0 0 10px #1A1A1C, 0 30px 60px -30px rgba(0,0,0,.6); font-family: var(--font); }
+.ph.lt { --bg: #ECEEF9; --bg-top: #F3F4FD; --text: #17181E; --sec: #595A63; --card: #FFFFFF; --tile: #E4E5F3; --sheet: #FCFCFF;
+  --cta: #1D1D2F; --cta-ink: #FFFFFF; --btn2: #E4E5F3; --btn2-ink: #17181E; --grab: #C9CADB; --scrim: rgba(23,24,30,.38);
+  --sheet-sh: 0 -18px 40px -18px rgba(51,51,87,.35); --btn2-sh: inset 0 1px 0 rgba(255,255,255,.9), 0 6px 14px -10px rgba(51,51,87,.45);
+  --cta-sh: 0 10px 22px -12px rgba(29,29,47,.55); --sb: #111;
+  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); box-shadow: 0 0 0 10px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.sbar { position: absolute; top: 0; left: 0; right: 0; height: 48px; padding: 16px 30px 0; display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--sb); z-index: 5; }
+.scr { position: absolute; inset: 48px 0 0; padding: 8px 18px; }
+/* экран под шторкой — «Аккаунт» гостя, приглушён */
+.back { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.ttl { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 6px; }
+.av { width: 84px; height: 84px; border-radius: 50%; margin: 18px auto 0; background: radial-gradient(circle at 35% 30%, #D9925E, #8C4A24); }
+.nm { text-align: center; font-size: 20px; font-weight: 700; margin-top: 12px; }
+.rw { margin-top: 12px; height: 58px; border-radius: 18px; background: var(--card); }
+.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 10; }
+/* шторка */
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--sheet); border-radius: 30px 30px 0 0; box-shadow: var(--sheet-sh);
+  padding: 10px 20px 34px; display: flex; flex-direction: column; align-items: center; }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--grab); }
+.ic { width: 60px; height: 60px; border-radius: 18px; background: var(--tile); display: flex; align-items: center; justify-content: center; margin-top: 22px; color: var(--text); }
+.st { font-size: 21px; line-height: 27px; font-weight: 700; text-align: center; margin: 16px 0 0; text-wrap: balance; }
+.sm { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin: 8px 0 0; max-width: 300px; text-wrap: pretty; }
+.acts { align-self: stretch; display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.btn { height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; border: 0; font-family: inherit; cursor: pointer; transition: transform 160ms cubic-bezier(.23,1,.32,1); }
+.btn:active { transform: scale(.97); }
+.btn:focus-visible { outline: 3px solid #7C8CFF; outline-offset: 2px; }
+.btn.main { background: var(--cta); color: var(--cta-ink); box-shadow: var(--cta-sh); }
+.ph:not(.lt) .btn.main { background-image: linear-gradient(180deg, #FFFFFF 0%, var(--cta) 48%, #E3E2E8 100%); }
+.btn.sec { background: var(--btn2); color: var(--btn2-ink); box-shadow: var(--btn2-sh); }
+.hi { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--text); opacity: .9; z-index: 30; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+</style>
+
+<div class="wrap">
+  <h1>Вход в другой аккаунт</h1>
+  <p class="lead">Гость с прогрессом входит в другой, уже существующий аккаунт. Перед входом — одна шторка: прогресс гостя ни к чему не привязан и пропадёт. Главная кнопка — «Войти», рядом «Отмена». Тёмная и светлая тема.</p>
+
+  <div class="row" id="phones"></div>
+
+  <div class="spec">
+    <div><b>Шторка.</b> Снизу поверх экрана, радиус 30, ручка 40×5, поля 20, снизу 34 (над системной полосой). Таббар закрыт затемнением — под ним ничего нет.</div>
+    <div><b>Текст.</b> Заголовок 21/27 жирный, текст 16/22 вторым цветом, по центру — как окна 2.0 (ThemedConfirmModal).</div>
+    <div><b>Кнопки.</b> Высота 52, радиус 26, зазор 12. «Войти» — главная заливка темы (тёмная: светлая кнопка, светлая: тёмная). «Отмена» — второй тон с тенью, на фоне шторки не теряется. Красного нет.</div>
+    <div><b>Поведение.</b> «Войти» — сразу вход, шторка закрывается. «Отмена» и смахивание вниз — остаёмся гостем, ничего не меняется.</div>
+  </div>
+</div>
+
+<script>
+const icon = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><path d="M16 7h5m0 0-2-2m2 2-2 2"/><path d="M21 13h-5m0 0 2-2m-2 2 2 2"/></svg>`;
+const back = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>`;
+const phone = (cls) => `<div class="ph ${cls}" role="img" aria-label="Шторка «Войти в другой аккаунт?»">
+  <div class="sbar"><span>9:41</span><span>●●●</span></div>
+  <div class="scr"><div class="back">${back}</div><div class="ttl">Аккаунт</div><div class="av"></div><div class="nm">Не задано</div><div class="rw"></div><div class="rw"></div><div class="rw"></div></div>
+  <div class="scrim"></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="ic">${icon}</div>
+    <h2 class="st">Войти в другой аккаунт?</h2>
+    <p class="sm">Прогресс этого гостя не привязан ни к какому аккаунту и пропадёт.</p>
+    <div class="acts"><button class="btn main" type="button">Войти</button><button class="btn sec" type="button">Отмена</button></div>
+  </div>
+  <div class="hi"></div>
+</div>`;
+document.getElementById('phones').innerHTML =
+  `<div class="col">${phone('')}<div class="cap">Тёмная · графит</div></div>` +
+  `<div class="col">${phone('lt')}<div class="cap">Светлая · «Сумерки»</div></div>`;
+</script>

@@ -138,7 +138,8 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
       </CascadeItem>
 
       <CascadeItem index={2}>
-        {introduction ? <Text style={[styles.body, { color: glass.text, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
+        {/* зачем (dialogs-009, вердикт Макетов c0cd6e2ae, координатор 18.10): первый абзац в образце полужирный («первый яркий, остальные приглушены»); текст согласия не менялся */}
+        {introduction ? <Text style={[styles.body, styles.introBold, { color: glass.text, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
       </CascadeItem>
       </ScrollView>
       {/* Disclosure stays beside the consent actions, not below a scroll fold. */}
@@ -151,9 +152,10 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
           accessibilityRole="button"
           accessibilityLabel={declineLabel}
           onPress={handleDecline}
-          style={styles.secondaryBtn}
+          style={[styles.secondaryBtn, { backgroundColor: glass.buttonFill }]}
         >
-          <Text style={[styles.secondaryBtnText, { color: glass.secondary, fontSize: f.body }]}>{declineLabel}</Text>
+          {/* зачем (dialogs-009, kit.css `.quiet.t`; владелец 13.10 «кнопки не сливаются»): «Не сейчас» — пилюля-плашка по центру (мин. 148×46, радиус 23, поля 22), заливка buttonFill, текст цвета text */}
+          <Text style={[styles.secondaryBtnText, { color: glass.text, fontSize: f.body }]}>{declineLabel}</Text>
         </Pressable>
       </CascadeItem>
     </HybridSheetShell>
@@ -196,8 +198,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     letterSpacing: 0.3,
   },
+  introBold: {
+    fontWeight: '700',
+  },
   secondaryBtn: {
-    minHeight: 48,
+    minHeight: 46,
+    minWidth: 148,
+    alignSelf: 'center',
+    paddingHorizontal: 22,
+    borderRadius: 23,
     alignItems: 'center',
     justifyContent: 'center',
   },

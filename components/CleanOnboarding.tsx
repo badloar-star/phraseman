@@ -3577,6 +3577,12 @@ function CleanOnboarding({
     await setAnalyticsConsent(analyticsChoice).catch(noteSwallowedAs('CleanOnboarding:finishConsentOnly.setAnalyticsConsent', null));
     console.log(`[CONSENT-REGATE] accepted legal=1 analytics=${analyticsChoice} age=yes written=${written} tookMs=${Date.now() - startedAt}`); // guard-ok: итог экрана согласия
     finishingRef.current = false;
+    // зачем (Ядро 18.10, сторож aa_auth_double_tap_contract): онбординг закрывается один раз — как все пути onDone()
+    if (authCompletionRef.current.doneCalled) {
+      console.log('[CONSENT-REGATE] done skipped reason=already_closed'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    authCompletionRef.current.doneCalled = true;
     onDone();
   }, [ageAnswer, analyticsAllowed, oc, onDone]);
 

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-32:intro1:r2": {
-          "ru": "К имени владельца добавляем `’s`: `Anna’s lunchbox`.",
-          "uk": "До імені власниці додаємо `’s`: `Anna’s lunchbox`."
+          "ru": "После слова aunt нужно 's: my aunt's cupboard.",
+          "uk": "Після слова aunt потрібно 's: my aunt's cupboard."
         },
         "en:lesson-05:session-32:intro1:r3": {
-          "ru": "Это ланчбокс Тома; здесь владелица Анна.",
-          "uk": "Це ланчбокс Тома; тут власниця Анна."
+          "ru": "uncle — дядя, а шкафчик принадлежит тёте: нужно aunt's.",
+          "uk": "uncle — дядько, а шафка належить тітці: потрібно aunt's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-32:intro2:r2": {
-          "ru": "С `These` и `headphones` нужна форма `are`.",
-          "uk": "З `These` і `headphones` потрібна форма `are`."
+          "ru": "Так получилось бы, что скатерть — это сама бабушка. Хозяйку называем через 's: my grandmother's.",
+          "uk": "Так вийшло б, що скатертина — це сама бабуся. Господиню називаємо через 's: my grandmother's."
         },
         "en:lesson-05:session-32:intro2:r3": {
-          "ru": "Для принадлежности нужно `Tom’s headphones`.",
-          "uk": "Для належності потрібне `Tom’s headphones`."
+          "ru": "aunt — тётя, а скатерть принесла бабушка: нужно grandmother's.",
+          "uk": "aunt — тітка, а скатертину принесла бабуся: потрібно grandmother's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-32:intro3:r2": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "Столовые приборы — один набор, поэтому вопрос начинаем с Is.",
+          "uk": "Столові прибори — один набір, тому питання починаємо з Is."
         },
         "en:lesson-05:session-32:intro3:r3": {
-          "ru": "Другу говорим о его ключ-карте: `your keycard`.",
-          "uk": "Другові говоримо про його ключ-картку: `your keycard`."
+          "ru": "Так получилось бы, что приборы — это сама сестра. Хозяйку называем через 's: your sister's.",
+          "uk": "Так вийшло б, що прибори — це сама сестра. Господиню називаємо через 's: your sister's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4b14bc75a151939f46c87d2d8e941e053beec6a96e8e97391bea679b558d16f2"
+  "auxiliaryFingerprint": "f7f705e81ab2bc7bea6c2a68ab3d297550da7a4e587cb03389b359787a8ae458"
 }

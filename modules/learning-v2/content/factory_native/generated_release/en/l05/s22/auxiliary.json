@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-22:intro1:r2": {
-          "ru": "`boots` — множественное число: `are`.",
-          "uk": "`boots` — множина: `are`."
+          "ru": "Who — «кто». Чтобы спросить «чья», нужно whose.",
+          "uk": "Who — «хто». Щоб спитати «чия», потрібно whose."
         },
         "en:lesson-05:session-22:intro1:r3": {
-          "ru": "Без названия вещи нужна форма `mine`.",
-          "uk": "Без назви речі потрібна форма `mine`."
+          "ru": "Порядок слов другой: сначала whose и вещь, потом is this.",
+          "uk": "Порядок слів інший: спочатку whose і річ, потім is this."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-22:intro2:r2": {
-          "ru": "`rich` — богатые; знаменитые — `famous`.",
-          "uk": "`rich` — багаті; знамениті — `famous`."
+          "ru": "Перчаток две, поэтому нужно are these, а не is this.",
+          "uk": "Рукавичок дві, тому потрібно are these, а не is this."
         },
         "en:lesson-05:session-22:intro2:r3": {
-          "ru": "С `They` нужна форма `are`.",
-          "uk": "З `They` потрібна форма `are`."
+          "ru": "После are нужно «перчатки» во множественном числе: gloves.",
+          "uk": "Після are потрібно «рукавички» у множині: gloves."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-22:intro3:r2": {
-          "ru": "Без названия вещи нужна форма `hers`.",
-          "uk": "Без назви речі потрібна форма `hers`."
+          "ru": "После is одно her не ставят: без названия вещи нужно hers.",
+          "uk": "Після is саме her не ставлять: без назви речі потрібно hers."
         },
         "en:lesson-05:session-22:intro3:r3": {
-          "ru": "`his` — его; её — `hers`.",
-          "uk": "`his` — його; її — `hers`."
+          "ru": "his — его, а микрофон принадлежит коллеге-женщине: нужно hers.",
+          "uk": "his — його, а мікрофон належить колезі-жінці: потрібно hers."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c9e10a22e217d18fa5006312c6c316b040b9f02ea5f40a2348bbe69deec8a2e0"
+  "auxiliaryFingerprint": "54c213244b28e81e68b4925c3fe4aa79143f0a11510359c4c698c3a4e40f513a"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-29",
   "learningOutcomeByLocale": {
-    "ru": "назвать владельца вещей и уточнить место встречи",
-    "uk": "назвати власника речей і уточнити місце зустрічі"
+    "ru": "различать два смысла 's: «чей» (my aunt's piano) и «есть, находится» (my cousin's here)",
+    "uk": "розрізняти два значення 's: «чий» (my aunt's piano) і «є, перебуває» (my cousin's here)"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Доска на колёсах",
-        "uk": "Дошка на колесах"
+        "ru": "Старое пианино",
+        "uk": "Старе піаніно"
       },
       "bodyByLocale": {
-        "ru": "`skateboard` — «скейтборд». `This is Tom’s skateboard` — «Это скейтборд Тома». `Anna’s skateboard is here` — «Скейтборд Анны здесь». Имя владельца с `’s` ставим перед названием вещи. Скейтборд уже у остановки: сегодня его колёса отдыхают, едем автобусом.",
-        "uk": "`skateboard` — «скейтборд». `This is Tom’s skateboard` — «Це скейтборд Тома». `Anna’s skateboard is here` — «Скейтборд Анни тут». Ім’я власника з `’s` ставимо перед назвою речі. Скейтборд уже біля зупинки: сьогодні його колеса відпочивають, їдемо автобусом."
+        "ru": "На празднике у тёти в гостиной стоит пианино с закрытой крышкой, и подруга спрашивает, какое оно. piano — «пианино». Оно вашей тёти и очень старое: ему больше ста лет. Когда после 's идёт вещь, 's говорит, чьё она: My aunt's piano is old — «Пианино моей тёти старое».",
+        "uk": "На святі в тітки у вітальні стоїть піаніно із закритою кришкою, і подруга питає, яке воно. piano — «піаніно». Воно вашої тітки й дуже старе: йому понад сто років. Коли після 's іде річ, 's каже, чия вона: My aunt's piano is old — «Піаніно моєї тітки старе»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на скейтборд Тома.",
-          "uk": "Укажіть на скейтборд Тома."
+          "ru": "Подруга спрашивает про пианино. Оно вашей тёти и очень старое. Скажите: «Пианино моей тёти старое».",
+          "uk": "Подруга питає про піаніно. Воно вашої тітки й дуже старе. Скажіть: «Піаніно моєї тітки старе»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-29:intro1:r1",
-              "text": "This is Tom's skateboard."
+              "text": "My aunt's piano is old."
             },
             {
               "responseId": "en:lesson-05:session-29:intro1:r2",
-              "text": "This is Tom skateboard."
+              "text": "My aunt piano is old."
             },
             {
               "responseId": "en:lesson-05:session-29:intro1:r3",
-              "text": "This is Anna's skateboard."
+              "text": "My aunt's piano are old."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-29:intro1:r1",
-              "text": "This is Tom's skateboard."
+              "text": "My aunt's piano is old."
             },
             {
               "responseId": "en:lesson-05:session-29:intro1:r2",
-              "text": "This is Tom skateboard."
+              "text": "My aunt piano is old."
             },
             {
               "responseId": "en:lesson-05:session-29:intro1:r3",
-              "text": "This is Anna's skateboard."
+              "text": "My aunt's piano are old."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на скейтборд Тома.",
-          "uk": "Укажіть на скейтборд Тома."
+          "ru": "Подруга спрашивает про пианино. Оно вашей тёти и очень старое. Скажите: «Пианино моей тёти старое».",
+          "uk": "Подруга питає про піаніно. Воно вашої тітки й дуже старе. Скажіть: «Піаніно моєї тітки старе»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Местный, иностранный, в сети",
-        "uk": "Місцевий, іноземний, у мережі"
+        "ru": "Барабан в прихожей",
+        "uk": "Барабан у передпокої"
       },
       "bodyByLocale": {
-        "ru": "`local` — «местный», `foreign` — «иностранный», `online` — «в сети». `The shop is local` — «Магазин местный». `The car is foreign` — «Машина иностранная», то есть из другой страны. `Anna is online` — «Анна в сети». Здесь `online` описывает присутствие в интернете, а не место на улице.",
-        "uk": "`local` — «місцевий», `foreign` — «іноземний», `online` — «у мережі». `The shop is local` — «Магазин місцевий». `The car is foreign` — «Машина іноземна», тобто з іншої країни. `Anna is online` — «Анна в мережі». Тут `online` описує присутність в інтернеті, а не місце на вулиці."
+        "ru": "Все уже сели за стол, и тут в дверь позвонили. Из прихожей слышен стук: пришёл двоюродный брат с барабаном. drum — «барабан». Если после 's вещи нет, то 's — это is: My cousin's here — «Мой двоюродный брат здесь». Бабушка ждёт именно его, скажите ей.",
+        "uk": "Усі вже сіли за стіл, і тут у двері подзвонили. З передпокою чути стукіт: прийшов двоюрідний брат із барабаном. drum — «барабан». Якщо після 's речі немає, то 's — це is: My cousin's here — «Мій двоюрідний брат тут». Бабуся чекає саме на нього, скажіть їй."
       },
       "question": {
         "interactionId": "en:lesson-05:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Анна сейчас в сети. Выберите фразу.",
-          "uk": "Анна зараз у мережі. Виберіть фразу."
+          "ru": "В прихожей слышен барабан. Скажите бабушке, что двоюродный брат уже пришёл: «Мой двоюродный брат здесь».",
+          "uk": "У передпокої чути барабан. Скажіть бабусі, що двоюрідний брат уже прийшов: «Мій двоюрідний брат тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-29:intro2:r1",
-              "text": "Anna is online."
+              "text": "My cousin's here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro2:r2",
-              "text": "Anna are online."
+              "text": "My cousin here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro2:r3",
-              "text": "Anna is outside."
+              "text": "My cousin's drum is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-29:intro2:r1",
-              "text": "Anna is online."
+              "text": "My cousin's here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro2:r2",
-              "text": "Anna are online."
+              "text": "My cousin here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro2:r3",
-              "text": "Anna is outside."
+              "text": "My cousin's drum is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Анна сейчас в сети. Выберите фразу.",
-          "uk": "Анна зараз у мережі. Виберіть фразу."
+          "ru": "В прихожей слышен барабан. Скажите бабушке, что двоюродный брат уже пришёл: «Мой двоюродный брат здесь».",
+          "uk": "У передпокої чути барабан. Скажіть бабусі, що двоюрідний брат уже прийшов: «Мій двоюрідний брат тут»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кафе у остановки",
-        "uk": "Кафе біля зупинки"
+        "ru": "Флейта на диване",
+        "uk": "Флейта на дивані"
       },
       "bodyByLocale": {
-        "ru": "`tables` — «столы», `bus stop` — «автобусная остановка», `necklace` — «ожерелье». `The tables are outside` — «Столы снаружи». `Tom is at the bus stop` — «Том на автобусной остановке». `Anna’s necklace is on the table` — «Ожерелье Анны на столе». `Where is my skateboard?` — «Где мой скейтборд?»",
-        "uk": "`tables` — «столи», `bus stop` — «автобусна зупинка», `necklace` — «намисто». `The tables are outside` — «Столи зовні». `Tom is at the bus stop` — «Том на автобусній зупинці». `Anna’s necklace is on the table` — «Намисто Анни на столі». `Where is my skateboard?` — «Де мій скейтборд?»"
+        "ru": "Подруга ещё в дороге, но её флейта уже лежит на диване: она оставила её утром, ещё до праздника. flute — «флейта», в неё дуют, чтобы играть мелодию. Теперь после 's снова идёт вещь, поэтому 's значит «чья»: My friend's flute is here — «Флейта моей подруги здесь».",
+        "uk": "Подруга ще в дорозі, але її флейта вже лежить на дивані: вона залишила її зранку, ще до свята. flute — «флейта», у неї дмуть, щоб грати мелодію. Тепер після 's знову йде річ, тому 's означає «чия»: My friend's flute is here — «Флейта моєї подруги тут»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Том ждёт на автобусной остановке. Выберите фразу.",
-          "uk": "Том чекає на автобусній зупинці. Виберіть фразу."
+          "ru": "Подруги ещё нет, но её флейта лежит на диване. Скажите бабушке: «Флейта моей подруги здесь».",
+          "uk": "Подруги ще немає, але її флейта лежить на дивані. Скажіть бабусі: «Флейта моєї подруги тут»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-29:intro3:r1",
-              "text": "Tom is at the bus stop."
+              "text": "My friend's flute is here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro3:r2",
-              "text": "Tom are at the bus stop."
+              "text": "My friend's here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro3:r3",
-              "text": "Anna is at the bus stop."
+              "text": "My friend flute is here."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-29:intro3:r1",
-              "text": "Tom is at the bus stop."
+              "text": "My friend's flute is here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro3:r2",
-              "text": "Tom are at the bus stop."
+              "text": "My friend's here."
             },
             {
               "responseId": "en:lesson-05:session-29:intro3:r3",
-              "text": "Anna is at the bus stop."
+              "text": "My friend flute is here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Том ждёт на автобусной остановке. Выберите фразу.",
-          "uk": "Том чекає на автобусній зупинці. Виберіть фразу."
+          "ru": "Подруги ещё нет, но её флейта лежит на диване. Скажите бабушке: «Флейта моей подруги здесь».",
+          "uk": "Подруги ще немає, але її флейта лежить на дивані. Скажіть бабусі: «Флейта моєї подруги тут»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b5add1e4340a108a08380cd66323d578dabf9d1cf3c2febbea0c0a13bbc85752"
+  "introFingerprint": "128a4dc125933ff4bb652ed174dd059637b14790394905044c169e7a20466e82"
 }

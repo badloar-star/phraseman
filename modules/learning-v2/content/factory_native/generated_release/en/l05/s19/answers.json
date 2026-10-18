@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-19:word:kite",
+    "correctText": "kite",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-19:i01",
-    "correctText": "We are together.",
+    "correctText": "The kite is ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-19:word:puzzle",
+    "correctText": "puzzle",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i02",
-    "correctText": "tablet",
+    "correctText": "The puzzle is theirs.",
     "correctResponseId": "en:lesson-05:session-19:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-19:word:racket",
+    "correctText": "racket",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-19:i03",
-    "correctText": "tablet",
+    "correctText": "racket",
     "correctResponseId": "en:lesson-05:session-19:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-19:i04",
-    "correctText": "en:lesson-05:session-19:i04:p1=tablet\nen:lesson-05:session-19:i04:p2=together\nen:lesson-05:session-19:i04:p3=alone\nen:lesson-05:session-19:i04:p4=nearby",
+    "correctText": "en:lesson-05:session-19:i04:p1=kite\nen:lesson-05:session-19:i04:p2=puzzle\nen:lesson-05:session-19:i04:p3=racket\nen:lesson-05:session-19:i04:p4=football",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-19:word:football",
+    "correctText": "football",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i05",
-    "correctText": "My tablet is in your backpack.",
+    "correctText": "The football is ours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i06",
-    "correctText": "The bags are ours.",
+    "correctText": "Is the kite ours?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i07",
-    "correctText": "I am alone.",
+    "correctText": "The rackets are theirs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i08",
-    "correctText": "his",
+    "correctText": "theirs",
     "correctResponseId": "en:lesson-05:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-19:i09",
-    "correctText": "She is nearby.",
+    "correctText": "Are the rackets ours?",
     "correctResponseId": "en:lesson-05:session-19:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-19:i10",
-    "correctText": "en:lesson-05:session-19:i10:p1=tablet\nen:lesson-05:session-19:i10:p2=bags\nen:lesson-05:session-19:i10:p3=soup\nen:lesson-05:session-19:i10:p4=backpack",
+    "correctText": "en:lesson-05:session-19:i10:p1=kite\nen:lesson-05:session-19:i10:p2=football\nen:lesson-05:session-19:i10:p3=table\nen:lesson-05:session-19:i10:p4=bag",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i11",
-    "correctText": "Where is my tablet?",
+    "correctText": "The puzzle is not ours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i12",
-    "correctText": "There is no soup.",
+    "correctText": "The bag is ours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i13",
-    "correctText": "I have your tablet.",
+    "correctText": "The puzzle is ours.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i14",
-    "correctText": "hers",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-19:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-19:i15",
-    "correctText": "The tablet is yours.",
+    "correctText": "The football is ours.",
     "correctResponseId": "en:lesson-05:session-19:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-19:i16",
-    "correctText": "en:lesson-05:session-19:i16:p1=tablet\nen:lesson-05:session-19:i16:p2=bags\nen:lesson-05:session-19:i16:p3=soup\nen:lesson-05:session-19:i16:p4=backpack",
+    "correctText": "en:lesson-05:session-19:i16:p1=racket\nen:lesson-05:session-19:i16:p2=puzzle\nen:lesson-05:session-19:i16:p3=desk\nen:lesson-05:session-19:i16:p4=key",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-19:i17",
-    "correctText": "The tablet is mine.",
+    "correctText": "The kite is ours.",
     "correctResponseId": null
   }
 ]

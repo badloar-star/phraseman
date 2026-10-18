@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-27:intro1:r2": {
-          "ru": "К имени владельца добавляем `’s`: `Anna’s passport`.",
-          "uk": "До імені власниці додаємо `’s`: `Anna’s passport`."
+          "ru": "Так получилось бы, что маркер — это сама учительница. Хозяйку называем через 's: the teacher's.",
+          "uk": "Так вийшло б, що маркер — це сама вчителька. Господиню називаємо через 's: the teacher's."
         },
         "en:lesson-05:session-27:intro1:r3": {
-          "ru": "Это паспорт Тома; здесь владелица Анна.",
-          "uk": "Це паспорт Тома; тут власниця Анна."
+          "ru": "cousin — двоюродный брат, а маркер принадлежит учительнице: нужно teacher's.",
+          "uk": "cousin — двоюрідний брат, а маркер належить вчительці: потрібно teacher's."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-27:intro2:r2": {
-          "ru": "`awake` — не спит; спит — `asleep`.",
-          "uk": "`awake` — не спить; спить — `asleep`."
+          "ru": "Так получилось бы, что калькулятор — это сам брат. Хозяина называем через 's: my brother's.",
+          "uk": "Так вийшло б, що калькулятор — це сам брат. Господаря називаємо через 's: my brother's."
         },
         "en:lesson-05:session-27:intro2:r3": {
-          "ru": "Один Том: `Tom is`.",
-          "uk": "Один Том: `Tom is`."
+          "ru": "your — твоего, а брат ваш: нужно my.",
+          "uk": "your — твого, а брат ваш: потрібно my."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-27:intro3:r2": {
-          "ru": "Одна машина: `car is`.",
-          "uk": "Одна машина: `car is`."
+          "ru": "Так получилось бы, что учебник — это сама учительница. Хозяйку называем через 's: the teacher's.",
+          "uk": "Так вийшло б, що підручник — це сама вчителька. Господиню називаємо через 's: the teacher's."
         },
         "en:lesson-05:session-27:intro3:r3": {
-          "ru": "`asleep` — спит; доступна — `available`.",
-          "uk": "`asleep` — спить; доступна — `available`."
+          "ru": "Учебник один, поэтому вопрос начинаем с Is.",
+          "uk": "Підручник один, тому питання починаємо з Is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "37847a53ee62b29bbe048db25f92ee88c82e7d49f35f376c1f5b1538116615ce"
+  "auxiliaryFingerprint": "67f236078abfd2fe15343b0a392d55eb8afef9a16d93b72adfd8619ff8faeacb"
 }

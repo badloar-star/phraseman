@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-21",
   "learningOutcomeByLocale": {
-    "ru": "уточнить место и владельца найденной вещи",
-    "uk": "уточнити місце й власника знайденої речі"
+    "ru": "назвать хозяина вещи по роли: the neighbour’s, the student’s, the manager’s",
+    "uk": "назвати власника речі за роллю: the neighbour’s, the student’s, the manager’s"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Украшение на шею",
-        "uk": "Прикраса на шию"
+        "ru": "Лай за дверью",
+        "uk": "Гавкіт за дверима"
       },
       "bodyByLocale": {
-        "ru": "`necklace` — «ожерелье», украшение на шею. `The necklace is mine` — «Ожерелье моё». `Her necklace is here` — «Её ожерелье здесь», но `The necklace is hers` — «Ожерелье её»: без названия вещи используем `hers`, не `her`. Ожерелье лежит на столе: сегодня оно украшает мебель.",
-        "uk": "`necklace` — «намисто», прикраса на шию. `The necklace is mine` — «Намисто моє». `Her necklace is here` — «Її намисто тут», але `The necklace is hers` — «Намисто її»: без назви речі використовуємо `hers`, не `her`. Намисто лежить на столі: сьогодні воно прикрашає меблі."
+        "ru": "Вы с подругой поднимаетесь по лестнице и слышите громкий лай за дверью соседней квартиры. Подруга спрашивает, чья это собака. Она принадлежит соседу. neighbour — «сосед, соседка». Перед ним ставим the и добавляем ’s: The dog is the neighbour’s — «Собака соседа».",
+        "uk": "Ви з подругою піднімаєтеся сходами й чуєте гучний гавкіт за дверима сусідньої квартири. Подруга питає, чия це собака. Вона належить сусідові. neighbour — «сусід, сусідка». Перед ним ставимо the і додаємо ’s: The dog is the neighbour’s — «Собака сусіда»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-21:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Ожерелье её», не повторяя название после указания владельца.",
-          "uk": "Скажіть «Намисто її», не повторюючи назву після вказівки на власницю."
+          "ru": "Подруга слышит лай и спрашивает, чья это собака. Она принадлежит соседу. Скажите ей: «Собака соседа».",
+          "uk": "Подруга чує гавкіт і питає, чия це собака. Вона належить сусідові. Скажіть їй: «Собака сусіда»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-21:intro1:r1",
-              "text": "The necklace is hers."
+              "text": "The dog is the neighbour’s."
             },
             {
               "responseId": "en:lesson-05:session-21:intro1:r2",
-              "text": "The necklace is her."
+              "text": "The dog is the neighbour."
             },
             {
               "responseId": "en:lesson-05:session-21:intro1:r3",
-              "text": "The necklace is his."
+              "text": "The dog is neighbour’s."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-21:intro1:r1",
-              "text": "The necklace is hers."
+              "text": "The dog is the neighbour’s."
             },
             {
               "responseId": "en:lesson-05:session-21:intro1:r2",
-              "text": "The necklace is her."
+              "text": "The dog is the neighbour."
             },
             {
               "responseId": "en:lesson-05:session-21:intro1:r3",
-              "text": "The necklace is his."
+              "text": "The dog is neighbour’s."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Ожерелье её», не повторяя название после указания владельца.",
-          "uk": "Скажіть «Намисто її», не повторюючи назву після вказівки на власницю."
+          "ru": "Подруга слышит лай и спрашивает, чья это собака. Она принадлежит соседу. Скажите ей: «Собака соседа».",
+          "uk": "Подруга чує гавкіт і питає, чия це собака. Вона належить сусідові. Скажіть їй: «Собака сусіда»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Внутри, снаружи, наверху",
-        "uk": "Усередині, зовні, нагорі"
+        "ru": "Тетрадь на парте",
+        "uk": "Зошит на парті"
       },
       "bodyByLocale": {
-        "ru": "`inside` — «внутри», `outside` — «снаружи», `upstairs` — «наверху, на верхнем этаже». `She is inside` — «Она внутри». `He is outside` — «Он снаружи». `The necklace is upstairs` — «Ожерелье наверху». Здесь эти слова сами указывают место: перед `upstairs` не ставим `in` или `on`.",
-        "uk": "`inside` — «усередині», `outside` — «зовні», `upstairs` — «нагорі, на верхньому поверсі». `She is inside` — «Вона всередині». `He is outside` — «Він зовні». `The necklace is upstairs` — «Намисто нагорі». Тут ці слова самі вказують місце: перед `upstairs` не ставимо `in` чи `on`."
+        "ru": "Учительница нашла в пустой аудитории после лекции тетрадь и спрашивает, чья она. Тетрадь принадлежит студентке в синем свитере. student — «студент, студентка». Хозяина называем перед вещью: This is the student’s notebook — «Это тетрадь студентки».",
+        "uk": "Вчителька знайшла в порожній аудиторії після лекції зошит і питає, чий він. Зошит належить студентці в синьому вовняному светрі. student — «студент, студентка». Власника називаємо перед річчю: This is the student’s notebook — «Це зошит студентки»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-21:intro2:q",
         "promptByLocale": {
-          "ru": "Друг стоит снаружи дома. Скажите «Он снаружи» без сокращения.",
-          "uk": "Друг стоїть зовні будинку. Скажіть «Він зовні» без скорочення."
+          "ru": "Учительница держит тетрадь и спрашивает, чья она. Тетрадь принадлежит студентке. Скажите ей: «Это тетрадь студентки».",
+          "uk": "Вчителька тримає зошит і питає, чий він. Зошит належить студентці. Скажіть їй: «Це зошит студентки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-21:intro2:r1",
-              "text": "He is outside."
+              "text": "This is the student’s notebook."
             },
             {
               "responseId": "en:lesson-05:session-21:intro2:r2",
-              "text": "He is inside."
+              "text": "This is the notebook student’s."
             },
             {
               "responseId": "en:lesson-05:session-21:intro2:r3",
-              "text": "He are outside."
+              "text": "This is the student notebook."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-21:intro2:r1",
-              "text": "He is outside."
+              "text": "This is the student’s notebook."
             },
             {
               "responseId": "en:lesson-05:session-21:intro2:r2",
-              "text": "He is inside."
+              "text": "This is the notebook student’s."
             },
             {
               "responseId": "en:lesson-05:session-21:intro2:r3",
-              "text": "He are outside."
+              "text": "This is the student notebook."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг стоит снаружи дома. Скажите «Он снаружи» без сокращения.",
-          "uk": "Друг стоїть зовні будинку. Скажіть «Він зовні» без скорочення."
+          "ru": "Учительница держит тетрадь и спрашивает, чья она. Тетрадь принадлежит студентке. Скажите ей: «Это тетрадь студентки».",
+          "uk": "Вчителька тримає зошит і питає, чий він. Зошит належить студентці. Скажіть їй: «Це зошит студентки»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ручки, сок и зонт",
-        "uk": "Ручки, сік і парасоля"
+        "ru": "Стол у окна",
+        "uk": "Стіл біля вікна"
       },
       "bodyByLocale": {
-        "ru": "`pens` — «ручки», `juice` — «сок», `umbrella` — «зонт». `The pens are ours` — «Ручки наши». `The umbrella is yours` — «Зонт твой». `There is no juice` — «Сока нет»: здесь `juice` не считаем поштучно, поэтому `is`. `Where is my necklace?` — «Где моё ожерелье?»",
-        "uk": "`pens` — «ручки», `juice` — «сік», `umbrella` — «парасоля». `The pens are ours` — «Ручки наші». `The umbrella is yours` — «Парасоля твоя». `There is no juice` — «Соку немає»: тут `juice` не рахуємо поштучно, тому `is`. `Where is my necklace?` — «Де моє намисто?»"
+        "ru": "Новый сотрудник в первый день ищет свободное место и показывает на стол у окна. Он спрашивает вас, не ваш ли это стол. Стол принадлежит руководителю. manager — «руководитель». Вы отвечаете коротко: No, it is the manager’s desk — «Нет, это стол руководителя».",
+        "uk": "Новий співробітник першого дня шукає вільне місце й показує на стіл біля вікна. Він питає вас, чи не ваш це стіл. Стіл належить керівникові. manager — «керівник». Ви відповідаєте коротко: No, it is the manager’s desk — «Ні, це стіл керівника»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-21:intro3:q",
         "promptByLocale": {
-          "ru": "Ручки принадлежат вам и другу. Скажите «Ручки наши».",
-          "uk": "Ручки належать вам і другові. Скажіть «Ручки наші»."
+          "ru": "Новый сотрудник показывает на стол и спрашивает, не ваш ли он. Стол принадлежит руководителю. Ответьте ему: «Нет, это стол руководителя».",
+          "uk": "Новий співробітник показує на стіл і питає, чи не ваш він. Стіл належить керівникові. Відповідьте йому: «Ні, це стіл керівника»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-21:intro3:r1",
-              "text": "The pens are ours."
+              "text": "No, it is the manager’s desk."
             },
             {
               "responseId": "en:lesson-05:session-21:intro3:r2",
-              "text": "The pens is ours."
+              "text": "No, it is the manager desk."
             },
             {
               "responseId": "en:lesson-05:session-21:intro3:r3",
-              "text": "The pens are our."
+              "text": "Yes, it is the manager’s desk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-21:intro3:r1",
-              "text": "The pens are ours."
+              "text": "No, it is the manager’s desk."
             },
             {
               "responseId": "en:lesson-05:session-21:intro3:r2",
-              "text": "The pens is ours."
+              "text": "No, it is the manager desk."
             },
             {
               "responseId": "en:lesson-05:session-21:intro3:r3",
-              "text": "The pens are our."
+              "text": "Yes, it is the manager’s desk."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ручки принадлежат вам и другу. Скажите «Ручки наши».",
-          "uk": "Ручки належать вам і другові. Скажіть «Ручки наші»."
+          "ru": "Новый сотрудник показывает на стол и спрашивает, не ваш ли он. Стол принадлежит руководителю. Ответьте ему: «Нет, это стол руководителя».",
+          "uk": "Новий співробітник показує на стіл і питає, чи не ваш він. Стіл належить керівникові. Відповідьте йому: «Ні, це стіл керівника»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5068e42cbb30305b407588241828c67158893f42d91c47b323ceb0e5058cd42c"
+  "introFingerprint": "29f94d05e8d42d871fc4904bd8b225f232f2a368a591bbf931f9e906c64c29a9"
 }

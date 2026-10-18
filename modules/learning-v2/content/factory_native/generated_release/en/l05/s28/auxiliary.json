@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-28:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-28:intro1:r2": {
-          "ru": "К имени владельца добавляем `’s`: `Anna’s keycard`.",
-          "uk": "До імені власниці додаємо `’s`: `Anna’s keycard`."
+          "ru": "После слова aunt нужно 's: my aunt's screwdriver.",
+          "uk": "Після слова aunt потрібно 's: my aunt's screwdriver."
         },
         "en:lesson-05:session-28:intro1:r3": {
-          "ru": "Это ключ-карта Тома; здесь владелица Анна.",
-          "uk": "Це ключ-картка Тома; тут власниця Анна."
+          "ru": "garden — «сад», а отвёртка лежит в сарае: нужно shed.",
+          "uk": "garden — «сад», а викрутка лежить у сараї: потрібно shed."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-28:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-28:intro2:r2": {
-          "ru": "С `That` нужна форма `is`.",
-          "uk": "З `That` потрібна форма `is`."
+          "ru": "Так получилось бы, что пила — это сам дядя. Хозяина называем через 's: my uncle's.",
+          "uk": "Так вийшло б, що пилка — це сам дядько. Господаря називаємо через 's: my uncle's."
         },
         "en:lesson-05:session-28:intro2:r3": {
-          "ru": "Это «Я уверен»; подтвердить «Это верно» — `That is correct`.",
-          "uk": "Це «Я впевнений»; підтвердити «Це правильно» — `That is correct`."
+          "ru": "aunt — тётя, а пила принадлежит дяде: нужно uncle's.",
+          "uk": "aunt — тітка, а пилка належить дядькові: потрібно uncle's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-28:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-28:intro3:r2": {
-          "ru": "Без названия вещи нужна форма `hers`.",
-          "uk": "Без назви речі потрібна форма `hers`."
+          "ru": "После слова grandmother нужно 's: my grandmother's spade.",
+          "uk": "Після слова grandmother потрібно 's: my grandmother's spade."
         },
         "en:lesson-05:session-28:intro3:r3": {
-          "ru": "`his` — его; её — `hers`.",
-          "uk": "`his` — його; її — `hers`."
+          "ru": "saw — «пила», а у грядки стоит лопата: нужно spade.",
+          "uk": "saw — «пилка», а біля грядки стоїть лопата: потрібно spade."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7e4ab0026ddd5becaddbcb14da65023221551d6c91d64aac9e9c51d8fd39ee83"
+  "auxiliaryFingerprint": "9532551e82da2646f8d25f3bd65c56c90cda38543d2d965502672db4d1c845d8"
 }

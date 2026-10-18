@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-21:intro1:r2": {
-          "ru": "Без названия вещи нужна форма `hers`.",
-          "uk": "Без назви речі потрібна форма `hers`."
+          "ru": "Без ’s получится «собака — это сосед». Чтобы назвать хозяина, нужно ’s.",
+          "uk": "Без ’s вийде «собака — це сусід». Щоб назвати власника, потрібно ’s."
         },
         "en:lesson-05:session-21:intro1:r3": {
-          "ru": "`his` — его; её — `hers`.",
-          "uk": "`his` — його; її — `hers`."
+          "ru": "Перед словом neighbour нужно the: the neighbour’s.",
+          "uk": "Перед словом neighbour потрібно the: the neighbour’s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-21:intro2:r2": {
-          "ru": "`inside` — внутри; снаружи — `outside`.",
-          "uk": "`inside` — усередині; зовні — `outside`."
+          "ru": "Хозяин стоит перед вещью: the student’s notebook.",
+          "uk": "Власник стоїть перед річчю: the student’s notebook."
         },
         "en:lesson-05:session-21:intro2:r3": {
-          "ru": "С `He` нужна форма `is`.",
-          "uk": "З `He` потрібна форма `is`."
+          "ru": "Без ’s не видно, что тетрадь принадлежит студентке. Нужно the student’s notebook.",
+          "uk": "Без ’s не видно, що зошит належить студентці. Потрібно the student’s notebook."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-21:intro3:r2": {
-          "ru": "Несколько ручек: `pens are`.",
-          "uk": "Кілька ручок: `pens are`."
+          "ru": "Без ’s не видно, что стол принадлежит руководителю. Нужно the manager’s desk.",
+          "uk": "Без ’s не видно, що стіл належить керівникові. Потрібно the manager’s desk."
         },
         "en:lesson-05:session-21:intro3:r3": {
-          "ru": "Без названия вещи нужна форма `ours`.",
-          "uk": "Без назви речі потрібна форма `ours`."
+          "ru": "Yes — «да», а стол не ваш: нужно No.",
+          "uk": "Yes — «так», а стіл не ваш: потрібно No."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4ac9845a3ee06307d46b2817e05a269341155dd6aea5dc3d90640a66b7b41da0"
+  "auxiliaryFingerprint": "d946ac636704fae01755bd07223f493230b7235d7ea33fdc2441a8d18490f08d"
 }

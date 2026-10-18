@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro1:r2": {
-          "ru": "С `These` и множественным `headphones` нужно `are`.",
-          "uk": "З `These` і множиною `headphones` потрібне `are`."
+          "ru": "Варежки — пара, поэтому нужно are, а не is.",
+          "uk": "Рукавиці — пара, тому потрібно are, а не is."
         },
         "en:lesson-05:session-30:intro1:r3": {
-          "ru": "К имени владельца добавляем `’s`: `Anna’s headphones`.",
-          "uk": "До імені власниці додаємо `’s`: `Anna’s headphones`."
+          "ru": "После слова tourist нужно 's: the tourist's mittens.",
+          "uk": "Після слова tourist потрібно 's: the tourist's mittens."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro2:r2": {
-          "ru": "`headphones` — множественное число: `are`.",
-          "uk": "`headphones` — множина: `are`."
+          "ru": "После слова guest нужно 's: the guest's hoodie.",
+          "uk": "Після слова guest потрібно 's: the guest's hoodie."
         },
         "en:lesson-05:session-30:intro2:r3": {
-          "ru": "Это «Мои наушники здесь»; пропали — `are missing`.",
-          "uk": "Це «Мої навушники тут»; зникли — `are missing`."
+          "ru": "Стул занимает турист, а не гость: нужно tourist's.",
+          "uk": "Стілець займає турист, а не гість: потрібно tourist's."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro3:r2": {
-          "ru": "Несколько окон: `windows are`.",
-          "uk": "Кілька вікон: `windows are`."
+          "ru": "Кроссовки — пара, поэтому вопрос начинаем с Are, а не с Is.",
+          "uk": "Кросівки — пара, тому питання починаємо з Are, а не з Is."
         },
         "en:lesson-05:session-30:intro3:r3": {
-          "ru": "`closed` — закрыты; открыты — `open`.",
-          "uk": "`closed` — зачинені; відчинені — `open`."
+          "ru": "После слова guest нужно 's: the guest's sneakers.",
+          "uk": "Після слова guest потрібно 's: the guest's sneakers."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "37d97a3066edf032f1d39fcc3e4d3a0913857e856972cbfc6fca68a21b300e71"
+  "auxiliaryFingerprint": "607ce4454dcad8c460d06bbd5a228cfadd7621742be1993d75cad8f122a30680"
 }

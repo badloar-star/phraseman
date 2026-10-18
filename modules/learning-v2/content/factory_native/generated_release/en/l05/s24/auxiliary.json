@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-24:intro1:r2": {
-          "ru": "`gloves` — множественное число, нужна форма `are`.",
-          "uk": "`gloves` — множина, потрібна форма `are`."
+          "ru": "Очки — пара, поэтому нужно They are, а не It is.",
+          "uk": "Окуляри — пара, тому потрібно They are, а не It is."
         },
         "en:lesson-05:session-24:intro1:r3": {
-          "ru": "Без названия вещи нужна форма `yours`.",
-          "uk": "Без назви речі потрібна форма `yours`."
+          "ru": "Без ’s получится «они — моя сестра». Чтобы назвать хозяйку, нужно ’s.",
+          "uk": "Без ’s вийде «вони — моя сестра». Щоб назвати власницю, потрібно ’s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-24:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-24:intro2:r2": {
-          "ru": "Без названия вещи нужна форма `ours`.",
-          "uk": "Без назви речі потрібна форма `ours`."
+          "ru": "Мужчина один, как he, поэтому нужно has, а не have.",
+          "uk": "Чоловік один, як he, тому потрібно has, а не have."
         },
         "en:lesson-05:session-24:intro2:r3": {
-          "ru": "Одна камера: `camera is`.",
-          "uk": "Одна камера: `camera is`."
+          "ru": "is значит «является»: получится «он — усы». Чтобы сказать «у него», нужно has.",
+          "uk": "is означає «є, являється»: вийде «він — вуса». Щоб сказати «у нього», потрібно has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-24:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-24:intro3:r2": {
-          "ru": "С `I` нужно `have`.",
-          "uk": "З `I` потрібне `have`."
+          "ru": "He — «он», а перед вещью нужно слово-владелец his.",
+          "uk": "He — «він», а перед річчю потрібно слово-власник his."
         },
         "en:lesson-05:session-24:intro3:r3": {
-          "ru": "Другу говорим о его шарфе: `your scarf`, не `my scarf`.",
-          "uk": "Другові говоримо про його шарф: `your scarf`, не `my scarf`."
+          "ru": "Татуировка одна, поэтому нужно is, а не are.",
+          "uk": "Татуювання одне, тому потрібно is, а не are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6f55877b5d5ea7ab6fd1a2464e142d96de4cbd67c6720ec4bd5513702df70ac4"
+  "auxiliaryFingerprint": "2e8310f41ba1b9e3d426fde5757a0b8cef0e59f357179852cbd7b907019c8d9e"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-25",
   "learningOutcomeByLocale": {
-    "ru": "указать владельца через имя или существительное с апострофом и s",
-    "uk": "вказати власника через ім’я чи іменник з апострофом і s"
+    "ru": "сказать, чья вещь, добавив 's к названию человека: my sister's thermos",
+    "uk": "сказати, чия річ, додавши 's до назви людини: my sister's thermos"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обед с собой",
-        "uk": "Обід із собою"
+        "ru": "Термос на скамейке",
+        "uk": "Термос на лавці"
       },
       "bodyByLocale": {
-        "ru": "`lunchbox` — «ланчбокс, контейнер для обеда». `Anna’s lunchbox` — «ланчбокс Анны»: сначала владелец, затем `’s`, затем вещь. `This is Anna’s lunchbox` — «Это ланчбокс Анны». Ланчбокс уже у двери: обед готов к прогулке раньше хозяев.",
-        "uk": "`lunchbox` — «ланчбокс, контейнер для обіду». `Anna’s lunchbox` — «ланчбокс Анни»: спочатку власник, потім `’s`, потім річ. `This is Anna’s lunchbox` — «Це ланчбокс Анни». Ланчбокс уже біля дверей: обід готовий до прогулянки раніше за господарів."
+        "ru": "На пикнике у озера подруга показывает на термос на скамейке и спрашивает, чей он. Это термос вашей сестры: она налила в него горячий чай ещё дома, перед выездом. thermos — «термос». Хозяина называем через 's: my sister's thermos — «термос моей сестры».",
+        "uk": "На пікніку біля озера подруга показує на термос на лавці й питає, чий він. Це термос вашої сестри: вона налила в нього гарячий чай ще вдома, перед виїздом. thermos — «термос». Господаря називаємо через 's: my sister's thermos — «термос моєї сестри»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите ланчбокс Анны.",
-          "uk": "Назвіть ланчбокс Анни."
+          "ru": "Подруга спрашивает, чей термос на скамейке. Он вашей сестры. Скажите: «Это термос моей сестры».",
+          "uk": "Подруга питає, чий термос на лавці. Він вашої сестри. Скажіть: «Це термос моєї сестри»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-25:intro1:r1",
-              "text": "This is Anna's lunchbox."
+              "text": "This is my sister's thermos."
             },
             {
               "responseId": "en:lesson-05:session-25:intro1:r2",
-              "text": "This is Anna lunchbox."
+              "text": "This is my sister thermos."
             },
             {
               "responseId": "en:lesson-05:session-25:intro1:r3",
-              "text": "This is Tom's lunchbox."
+              "text": "This is my brother's thermos."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-25:intro1:r1",
-              "text": "This is Anna's lunchbox."
+              "text": "This is my sister's thermos."
             },
             {
               "responseId": "en:lesson-05:session-25:intro1:r2",
-              "text": "This is Anna lunchbox."
+              "text": "This is my sister thermos."
             },
             {
               "responseId": "en:lesson-05:session-25:intro1:r3",
-              "text": "This is Tom's lunchbox."
+              "text": "This is my brother's thermos."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите ланчбокс Анны.",
-          "uk": "Назвіть ланчбокс Анни."
+          "ru": "Подруга спрашивает, чей термос на скамейке. Он вашей сестры. Скажите: «Это термос моей сестры».",
+          "uk": "Подруга питає, чий термос на лавці. Він вашої сестри. Скажіть: «Це термос моєї сестри»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Имя или слово-владелец",
-        "uk": "Ім’я чи слово-власник"
+        "ru": "Салфетка для бабушки",
+        "uk": "Серветка для бабусі"
       },
       "bodyByLocale": {
-        "ru": "`Tom’s jacket` — «куртка Тома». `My friend’s jacket` — «куртка моего друга»: владелец один, `my friend`, к нему добавляем `’s`. `The dog’s bowl` — «миска собаки»: здесь тоже одна собака. В таких сочетаниях `’s` показывает принадлежность, а не сокращает `is`. `dogs` без апострофа — «собаки», несколько животных.",
-        "uk": "`Tom’s jacket` — «куртка Тома». `My friend’s jacket` — «куртка мого друга»: власник один, `my friend`, до нього додаємо `’s`. `The dog’s bowl` — «миска собаки»: тут теж одна собака. У таких сполученнях `’s` показує належність, а не скорочує `is`. `dogs` без апострофа — «собаки», кілька тварин."
+        "ru": "Бабушка достала булочки, посыпала крошками колени и просит салфетку, чтобы вытереть руки. Салфетки лежат на самом дне корзины, которую собрал ваш дядя. napkin — «салфетка». Место тоже называем через 's: in my uncle's basket — «в корзине моего дяди».",
+        "uk": "Бабуся дістала булочки, насипала крихт на коліна й просить серветку, щоб витерти руки. Серветки лежать на самому дні кошика, який зібрав ваш дядько. napkin — «серветка». Місце теж називаємо через 's: in my uncle's basket — «у кошику мого дядька»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите «Куртка Тома здесь».",
-          "uk": "Скажіть «Куртка Тома тут»."
+          "ru": "Бабушка просит салфетку. Она в корзине вашего дяди. Скажите: «Салфетка в корзине моего дяди».",
+          "uk": "Бабуся просить серветку. Вона в кошику вашого дядька. Скажіть: «Серветка в кошику мого дядька»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-25:intro2:r1",
-              "text": "Tom's jacket is here."
+              "text": "The napkin is in my uncle's basket."
             },
             {
               "responseId": "en:lesson-05:session-25:intro2:r2",
-              "text": "Tom jacket is here."
+              "text": "The napkin is in my uncle basket."
             },
             {
               "responseId": "en:lesson-05:session-25:intro2:r3",
-              "text": "Tom's jacket are here."
+              "text": "The napkin is on my uncle's basket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-25:intro2:r1",
-              "text": "Tom's jacket is here."
+              "text": "The napkin is in my uncle's basket."
             },
             {
               "responseId": "en:lesson-05:session-25:intro2:r2",
-              "text": "Tom jacket is here."
+              "text": "The napkin is in my uncle basket."
             },
             {
               "responseId": "en:lesson-05:session-25:intro2:r3",
-              "text": "Tom's jacket are here."
+              "text": "The napkin is on my uncle's basket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Куртка Тома здесь».",
-          "uk": "Скажіть «Куртка Тома тут»."
+          "ru": "Бабушка просит салфетку. Она в корзине вашего дяди. Скажите: «Салфетка в корзине моего дяди».",
+          "uk": "Бабуся просить серветку. Вона в кошику вашого дядька. Скажіть: «Серветка в кошику мого дядька»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Реакции на сборы",
-        "uk": "Реакції на збори"
+        "ru": "Диск под деревом",
+        "uk": "Диск під деревом"
       },
       "bodyByLocale": {
-        "ru": "`proud` — «гордый», `ashamed` — «испытывающий стыд», `surprised` — «удивлённый». `I am proud` — «Я горжусь», `I am ashamed` — «Мне стыдно», `I am surprised` — «Я удивлён / удивлена». `sink` — «раковина», `jacket` — «куртка», `dogs` — «собаки». `Anna’s lunchbox is next to the sink` — «Ланчбокс Анны рядом с раковиной».",
-        "uk": "`proud` — «гордий», `ashamed` — «той, кому соромно», `surprised` — «здивований». `I am proud` — «Я пишаюся», `I am ashamed` — «Мені соромно», `I am surprised` — «Я здивований / здивована». `sink` — «раковина», `jacket` — «куртка», `dogs` — «собаки». `Anna’s lunchbox is next to the sink` — «Ланчбокс Анни поруч із раковиною»."
+        "ru": "Под деревом лежит пластиковый диск. frisbee — «фрисби»: такие диски бросают друг другу на траве. Подруга пришла на пикник с братом, а он любит такие игры, так что диск, похоже, его. Спросите её: Is this your brother's frisbee? — «Это фрисби твоего брата?»",
+        "uk": "Під деревом лежить пластиковий диск. frisbee — «фрісбі»: такі диски кидають одне одному на траві. Подруга прийшла на пікнік із братом, а він любить такі ігри, тож диск, схоже, його. Спитайте її: Is this your brother's frisbee? — «Це фрісбі твого брата?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Сборы закончились неожиданно быстро. Скажите «Я удивлён» без сокращения.",
-          "uk": "Збори закінчилися несподівано швидко. Скажіть «Я здивований» без скорочення."
+          "ru": "Диск лежит под деревом. Спросите подругу, не её ли брата это фрисби.",
+          "uk": "Диск лежить під деревом. Спитайте подругу, чи не її брата це фрісбі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-25:intro3:r1",
-              "text": "I am surprised."
+              "text": "Is this your brother's frisbee?"
             },
             {
               "responseId": "en:lesson-05:session-25:intro3:r2",
-              "text": "I is surprised."
+              "text": "This is your brother's frisbee?"
             },
             {
               "responseId": "en:lesson-05:session-25:intro3:r3",
-              "text": "I am ashamed."
+              "text": "Is this my brother's frisbee?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-25:intro3:r1",
-              "text": "I am surprised."
+              "text": "Is this your brother's frisbee?"
             },
             {
               "responseId": "en:lesson-05:session-25:intro3:r2",
-              "text": "I is surprised."
+              "text": "This is your brother's frisbee?"
             },
             {
               "responseId": "en:lesson-05:session-25:intro3:r3",
-              "text": "I am ashamed."
+              "text": "Is this my brother's frisbee?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сборы закончились неожиданно быстро. Скажите «Я удивлён» без сокращения.",
-          "uk": "Збори закінчилися несподівано швидко. Скажіть «Я здивований» без скорочення."
+          "ru": "Диск лежит под деревом. Спросите подругу, не её ли брата это фрисби.",
+          "uk": "Диск лежить під деревом. Спитайте подругу, чи не її брата це фрісбі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6c67b391b598a1ff5556caa54341f42c222504692511a05c244f8c5485390f1f"
+  "introFingerprint": "6ae2929f98537a9151e6600796038809d8bcee856dc48788e289d56668189208"
 }

@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-23:word:grandfather",
+    "correctText": "grandfather",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-23:i01",
-    "correctText": "They are married.",
+    "correctText": "The chair is my grandfather’s.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-23:word:nephew",
+    "correctText": "nephew",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i02",
-    "correctText": "camera",
+    "correctText": "My nephew has a puppy.",
     "correctResponseId": "en:lesson-05:session-23:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-23:word:twins",
+    "correctText": "twins",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-23:i03",
-    "correctText": "camera",
+    "correctText": "twins",
     "correctResponseId": "en:lesson-05:session-23:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-23:i04",
-    "correctText": "en:lesson-05:session-23:i04:p1=camera\nen:lesson-05:session-23:i04:p2=married\nen:lesson-05:session-23:i04:p3=single\nen:lesson-05:session-23:i04:p4=different",
+    "correctText": "en:lesson-05:session-23:i04:p1=grandfather\nen:lesson-05:session-23:i04:p2=nephew\nen:lesson-05:session-23:i04:p3=niece\nen:lesson-05:session-23:i04:p4=twins",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-23:word:niece",
+    "correctText": "niece",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i05",
-    "correctText": "Your camera is on the table.",
+    "correctText": "My niece has a diary.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i06",
-    "correctText": "The tickets are ours.",
+    "correctText": "Is this your nephew’s ball?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i07",
-    "correctText": "I am single.",
+    "correctText": "It is my grandfather’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i08",
-    "correctText": "hers",
+    "correctText": "have",
     "correctResponseId": "en:lesson-05:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-23:i09",
-    "correctText": "The tickets are different.",
+    "correctText": "My niece has a kite.",
     "correctResponseId": "en:lesson-05:session-23:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-23:i10",
-    "correctText": "en:lesson-05:session-23:i10:p1=camera\nen:lesson-05:session-23:i10:p2=tickets\nen:lesson-05:session-23:i10:p3=cheese\nen:lesson-05:session-23:i10:p4=helmet",
+    "correctText": "en:lesson-05:session-23:i10:p1=nephew\nen:lesson-05:session-23:i10:p2=twins\nen:lesson-05:session-23:i10:p3=kite\nen:lesson-05:session-23:i10:p4=dog",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i11",
-    "correctText": "Where is my camera?",
+    "correctText": "The twins have a kite.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i12",
-    "correctText": "There is no cheese.",
+    "correctText": "The dog is my niece’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i13",
-    "correctText": "I have your camera.",
+    "correctText": "My grandfather has a guitar.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i14",
-    "correctText": "theirs",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-23:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-23:i15",
-    "correctText": "The camera is yours.",
+    "correctText": "The kite is my nephew’s.",
     "correctResponseId": "en:lesson-05:session-23:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-23:i16",
-    "correctText": "en:lesson-05:session-23:i16:p1=camera\nen:lesson-05:session-23:i16:p2=tickets\nen:lesson-05:session-23:i16:p3=cheese\nen:lesson-05:session-23:i16:p4=helmet",
+    "correctText": "en:lesson-05:session-23:i16:p1=grandfather\nen:lesson-05:session-23:i16:p2=niece\nen:lesson-05:session-23:i16:p3=chair\nen:lesson-05:session-23:i16:p4=guitar",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-23:i17",
-    "correctText": "The camera is mine.",
+    "correctText": "The twins have a puppy.",
     "correctResponseId": null
   }
 ]

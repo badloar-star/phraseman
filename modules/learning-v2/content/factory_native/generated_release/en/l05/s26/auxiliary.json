@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-26:intro1:r2": {
-          "ru": "После имени владельца нужно `’s`: `Anna’s badge`.",
-          "uk": "Після імені власниці потрібне `’s`: `Anna’s badge`."
+          "ru": "После слова baby нужно 's: the baby's nappy.",
+          "uk": "Після слова baby потрібно 's: the baby's nappy."
         },
         "en:lesson-05:session-26:intro1:r3": {
-          "ru": "Это значок Тома; здесь владелица Анна.",
-          "uk": "Це значок Тома; тут власниця Анна."
+          "ru": "table — «стол», а подгузник лежит на полке: нужно shelf.",
+          "uk": "table — «стіл», а підгузок лежить на полиці: потрібно shelf."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-26:intro2:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "После слова baby нужно 's: the baby's rattle.",
+          "uk": "Після слова baby потрібно 's: the baby's rattle."
         },
         "en:lesson-05:session-26:intro2:r3": {
-          "ru": "`bored` — скучно; волнуюсь — `worried`.",
-          "uk": "`bored` — нудно; хвилююся — `worried`."
+          "ru": "Погремушка одна, поэтому нужно is, а не are.",
+          "uk": "Брязкальце одне, тому потрібно is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-26:intro3:r2": {
-          "ru": "Несколько перчаток: `gloves are`.",
-          "uk": "Кілька рукавичок: `gloves are`."
+          "ru": "Хозяйка сумки тоже называется через 's: my sister's bag.",
+          "uk": "Господиня сумки теж називається через 's: my sister's bag."
         },
         "en:lesson-05:session-26:intro3:r3": {
-          "ru": "Это перчатки Тома; здесь владелица Анна.",
-          "uk": "Це рукавички Тома; тут власниця Анна."
+          "ru": "brother — это брат, а сумка принадлежит сестре: нужно sister's.",
+          "uk": "brother — це брат, а сумка належить сестрі: потрібно sister's."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7a94893e91449a352711b6b0c52d1ce6de3a064d74499d74ca58eb1f4201a5cd"
+  "auxiliaryFingerprint": "2d3a07a8e876ba231cec4d2d064420295b6ddc698fe5a8471cf49d40a9e0e00b"
 }

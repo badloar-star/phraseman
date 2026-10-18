@@ -4,39 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-29:i01",
+      "interactionId": "en:lesson-05:session-29:word:piano",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — piano",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:word:piano:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — piano",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:word:piano:audio",
+          "transcript": "piano"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:word:piano:r1",
+            "targetText": "piano",
+            "meaningByLocale": {
+              "ru": "пианино. My friend's piano is big. — «Пианино моей подруги большое». О большом музыкальном инструменте с клавишами.",
+              "uk": "піаніно. My friend's piano is big. — «Піаніно моєї подруги велике». Про великий музичний інструмент із клавішами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "piano",
+          "definitionByLocale": {
+            "ru": "пианино. My friend's piano is big. — «Пианино моей подруги большое». О большом музыкальном инструменте с клавишами.",
+            "uk": "піаніно. My friend's piano is big. — «Піаніно моєї подруги велике». Про великий музичний інструмент із клавішами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Анна сейчас в сети. Скажите «Анна в сети»",
+      "prompt": "Подруга спрашивает, где пианино вашей тёти. Оно в холле. Скажите: «Пианино моей тёти в холле»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна сейчас в сети. Скажите «Анна в сети»",
+      "accessibilityLabel": "Подруга спрашивает, где пианино вашей тёти. Оно в холле. Скажите: «Пианино моей тёти в холле»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Anna is online.",
+        "targetPhrase": "My aunt's piano is in the hall.",
         "localizedMeaning": {
-          "ru": "Анна сейчас в сети. Скажите «Анна в сети»",
-          "uk": "Анна зараз у мережі. Скажіть «Анна в мережі»"
+          "ru": "Подруга спрашивает, где пианино вашей тёти. Оно в холле. Скажите: «Пианино моей тёти в холле»",
+          "uk": "Подруга питає, де піаніно вашої тітки. Воно в холі. Скажіть: «Піаніно моєї тітки в холі»"
         },
         "orderedTokens": [
-          "Anna",
+          "My",
+          "aunt's",
+          "piano",
           "is",
-          "online"
+          "in",
+          "the",
+          "hall"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aunt"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Анна сейчас в сети. Скажите «Анна в сети»",
+            "testedDimension": "Подруга спрашивает, где пианино вашей тёти. Оно в холле. Скажите: «Пианино моей тёти в холле»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna is online.`",
-              "uk": "тут потрібно `is` — `Anna is online.`"
+              "ru": "здесь нужно `aunt's` — `My aunt's piano is in the hall.`",
+              "uk": "тут потрібно `aunt's` — `My aunt's piano is in the hall.`"
             }
           }
         ],
@@ -48,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-29:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-29:word:drum",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — drum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:word:drum:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:word:drum:audio",
+          "transcript": "drum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:word:drum:r1",
+            "targetText": "drum",
+            "meaningByLocale": {
+              "ru": "барабан. My cousin's drum is loud. — «Барабан моего двоюродного брата громкий». Об инструменте, по которому бьют палочками.",
+              "uk": "барабан. My cousin's drum is loud. — «Барабан мого двоюрідного брата гучний». Про інструмент, по якому б’ють паличками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drum",
+          "definitionByLocale": {
+            "ru": "барабан. My cousin's drum is loud. — «Барабан моего двоюродного брата громкий». Об инструменте, по которому бьют палочками.",
+            "uk": "барабан. My cousin's drum is loud. — «Барабан мого двоюрідного брата гучний». Про інструмент, по якому б’ють паличками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-29:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте бабушку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i02:r1",
-          "text": "skateboard"
+          "text": "My cousin's drum is on the sofa."
         },
         {
           "responseId": "en:lesson-05:session-29:i02:r2",
-          "text": "tablet"
+          "text": "My cousin's drum is on the floor."
         },
         {
           "responseId": "en:lesson-05:session-29:i02:r3",
-          "text": "suitcase"
+          "text": "My cousin's on the sofa."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте бабушку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i02:audio",
-          "transcript": "skateboard"
+          "transcript": "My cousin's drum is on the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-29:i02:r1",
-            "targetText": "skateboard",
+            "targetText": "My cousin's drum is on the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i02:r2",
-            "targetText": "tablet",
+            "targetText": "My cousin's drum is on the floor.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i02:r3",
-            "targetText": "suitcase",
+            "targetText": "My cousin's on the sofa.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-29:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `skateboard`, а в этом варианте — `tablet`.",
-              "uk": "У записі перше слово — `skateboard`, а в цьому варіанті — `tablet`."
+              "ru": "В записи последнее слово — `sofa`, диван, а в этом варианте — `floor`, пол.",
+              "uk": "У записі останнє слово — `sofa`, диван, а в цьому варіанті — `floor`, підлога."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `skateboard`, а в этом варианте — `suitcase`.",
-              "uk": "У записі перше слово — `skateboard`, а в цьому варіанті — `suitcase`."
+              "ru": "В записи после `cousin's` идёт `drum` — барабан двоюродного брата, а в этом варианте `cousin's` — это `cousin is`: брат сам сидит на диване.",
+              "uk": "У записі після `cousin's` іде `drum` — барабан двоюрідного брата, а в цьому варіанті `cousin's` — це `cousin is`: брат сам сидить на дивані."
             }
           }
         ],
@@ -124,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-29:word:flute",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:word:flute:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:word:flute:audio",
+          "transcript": "flute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:word:flute:r1",
+            "targetText": "flute",
+            "meaningByLocale": {
+              "ru": "флейта. My friend's flute is small. — «Флейта моей подруги маленькая». О тонкой трубке, в которую дуют, чтобы играть мелодию.",
+              "uk": "флейта. My friend's flute is small. — «Флейта моєї подруги маленька». Про тонку трубку, у яку дмуть, щоб грати мелодію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flute",
+          "definitionByLocale": {
+            "ru": "флейта. My friend's flute is small. — «Флейта моей подруги маленькая». О тонкой трубке, в которую дуют, чтобы играть мелодию.",
+            "uk": "флейта. My friend's flute is small. — «Флейта моєї подруги маленька». Про тонку трубку, у яку дмуть, щоб грати мелодію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-29:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите скейтборд",
+      "prompt": "Подруга пришла, а её флейта осталась дома. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i03:r1",
-          "text": "skateboard"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-29:i03:r2",
-          "text": "necklace"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-29:i03:r3",
-          "text": "helmet"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите скейтборд",
+      "accessibilityLabel": "Подруга пришла, а её флейта осталась дома. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите скейтборд",
-          "uk": "Назвіть скейтборд"
+          "ru": "Подруга пришла, а её флейта осталась дома. Выберите слово",
+          "uk": "Подруга прийшла, а її флейта залишилася вдома. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "My friend's flute ___ at home.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-29:i03:r1",
-            "text": "skateboard"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-29:i03:r2",
-            "text": "necklace"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-29:i03:r3",
-            "text": "helmet"
+            "text": "has"
           }
         ],
-        "testedDimension": "Назовите скейтборд",
+        "testedDimension": "Подруга пришла, а её флейта осталась дома. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите скейтборд",
+            "testedDimension": "Подруга пришла, а её флейта осталась дома. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`necklace` — ожерелье; скейтборд — `skateboard`.",
-              "uk": "`necklace` — намисто; скейтборд — `skateboard`."
+              "ru": "Флейта одна, поэтому нужно `is`, а не `are`.",
+              "uk": "Флейта одна, тому потрібно `is`, а не `are`."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите скейтборд",
+            "testedDimension": "Подруга пришла, а её флейта осталась дома. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`helmet` — шлем; скейтборд — `skateboard`.",
-              "uk": "`helmet` — шолом; скейтборд — `skateboard`."
+              "ru": "`has` значит «иметь», а здесь мы говорим, где лежит флейта: нужно `is`.",
+              "uk": "`has` означає «мати», а тут ми кажемо, де лежить флейта: потрібно `is`."
             }
           }
         ]
@@ -194,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-29:i04:p1",
-            "target": "skateboard",
+            "target": "piano",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "пианино",
+              "uk": "піаніно"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i04:p2",
-            "target": "local",
+            "target": "drum",
             "meaningByLocale": {
-              "ru": "местный",
-              "uk": "місцевий"
+              "ru": "барабан",
+              "uk": "барабан"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i04:p3",
-            "target": "foreign",
+            "target": "flute",
             "meaningByLocale": {
-              "ru": "иностранный",
-              "uk": "іноземний"
+              "ru": "флейта",
+              "uk": "флейта"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i04:p4",
-            "target": "online",
+            "target": "trumpet",
             "meaningByLocale": {
-              "ru": "в сети",
-              "uk": "у мережі"
+              "ru": "труба",
+              "uk": "труба"
             }
           }
         ],
         "leftColumn": [
-          "skateboard",
-          "local",
-          "foreign",
-          "online"
+          "piano",
+          "drum",
+          "flute",
+          "trumpet"
         ],
         "rightColumn": [
-          "скейтборд",
-          "местный",
-          "иностранный",
-          "в сети"
+          "пианино",
+          "барабан",
+          "флейта",
+          "труба"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,31 +399,75 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-29:word:trumpet",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trumpet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-29:word:trumpet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trumpet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-29:word:trumpet:audio",
+          "transcript": "trumpet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-29:word:trumpet:r1",
+            "targetText": "trumpet",
+            "meaningByLocale": {
+              "ru": "труба. My uncle's trumpet is shiny. — «Труба моего дяди блестящая». Об инструменте, в который дуют, и он звучит громко и ярко.",
+              "uk": "труба. My uncle's trumpet is shiny. — «Труба мого дядька блискуча». Про інструмент, у який дмуть, і він звучить гучно й яскраво."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trumpet",
+          "definitionByLocale": {
+            "ru": "труба. My uncle's trumpet is shiny. — «Труба моего дяди блестящая». Об инструменте, в который дуют, и он звучит громко и ярко.",
+            "uk": "труба. My uncle's trumpet is shiny. — «Труба мого дядька блискуча». Про інструмент, у який дмуть, і він звучить гучно й яскраво."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-29:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте дядю и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте дядю и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i05:audio",
-          "transcript": "This is Tom's skateboard."
+          "transcript": "My uncle's trumpet is loud."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is Tom's skateboard.",
+        "hiddenTargetPhrase": "My uncle's trumpet is loud.",
         "orderedTokens": [
-          "This",
+          "My",
+          "uncle's",
+          "trumpet",
           "is",
-          "Tom's",
-          "skateboard"
+          "loud"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -299,10 +476,10 @@
           {
             "responseId": "en:lesson-05:session-29:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте дядю и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is Tom's skateboard.`",
-              "uk": "тут потрібно `is` — `This is Tom's skateboard.`"
+              "ru": "здесь нужно `is` — `My uncle's trumpet is loud.`",
+              "uk": "тут потрібно `is` — `My uncle's trumpet is loud.`"
             }
           }
         ],
@@ -315,41 +492,38 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Ожерелье Анны на столе»",
+      "prompt": "Бабушка ждёт двоюродного брата. Он уже пришёл. Скажите ей: «Мой двоюродный брат здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Ожерелье Анны на столе»",
+      "accessibilityLabel": "Бабушка ждёт двоюродного брата. Он уже пришёл. Скажите ей: «Мой двоюродный брат здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Anna's necklace is on the table.",
+        "targetPhrase": "My cousin's here.",
         "localizedMeaning": {
-          "ru": "Скажите «Ожерелье Анны на столе»",
-          "uk": "Скажіть «Намисто Анни на столі»"
+          "ru": "Бабушка ждёт двоюродного брата. Он уже пришёл. Скажите ей: «Мой двоюродный брат здесь»",
+          "uk": "Бабуся чекає двоюрідного брата. Він уже прийшов. Скажіть їй: «Мій двоюрідний брат тут»"
         },
         "orderedTokens": [
-          "Anna's",
-          "necklace",
-          "is",
-          "on",
-          "the",
-          "table"
+          "My",
+          "cousin's",
+          "here"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "cousin"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Скажите «Ожерелье Анны на столе»",
+            "testedDimension": "Бабушка ждёт двоюродного брата. Он уже пришёл. Скажите ей: «Мой двоюродный брат здесь»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Anna's necklace is on the table.`",
-              "uk": "тут потрібно `is` — `Anna's necklace is on the table.`"
+              "ru": "здесь нужно `cousin's` — `My cousin's here.`",
+              "uk": "тут потрібно `cousin's` — `My cousin's here.`"
             }
           }
         ],
@@ -362,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Магазин находится в вашей местности. Скажите «Магазин местный»",
+      "prompt": "Бабушка спрашивает, где тётя. Она на кухне. Скажите: «Моя тётя на кухне»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Магазин находится в вашей местности. Скажите «Магазин местный»",
+      "accessibilityLabel": "Бабушка спрашивает, где тётя. Она на кухне. Скажите: «Моя тётя на кухне»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i07:audio",
-          "transcript": "The shop is local."
+          "transcript": "My aunt's in the kitchen."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The shop is local.",
+        "targetPhrase": "My aunt's in the kitchen.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,67 +569,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скейтборд принадлежит Анне. Укажите владельца",
+      "prompt": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i08:r1",
-          "text": "Anna's"
+          "text": "drum"
         },
         {
           "responseId": "en:lesson-05:session-29:i08:r2",
-          "text": "Anna"
+          "text": "tired"
         },
         {
           "responseId": "en:lesson-05:session-29:i08:r3",
-          "text": "Tom's"
+          "text": "here"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скейтборд принадлежит Анне. Укажите владельца",
+      "accessibilityLabel": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скейтборд принадлежит Анне. Укажите владельца",
-          "uk": "Скейтборд належить Анні. Укажіть власницю"
+          "ru": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
+          "uk": "Ви говорите про барабан двоюрідного брата. Виберіть слово, яке підходить"
         },
-        "gappedTargetPhrase": "This is ___ skateboard.",
+        "gappedTargetPhrase": "My cousin's ___ is on the sofa.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-29:i08:r1",
-            "text": "Anna's"
+            "text": "drum"
           },
           {
             "responseId": "en:lesson-05:session-29:i08:r2",
-            "text": "Anna"
+            "text": "tired"
           },
           {
             "responseId": "en:lesson-05:session-29:i08:r3",
-            "text": "Tom's"
+            "text": "here"
           }
         ],
-        "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+        "testedDimension": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+            "testedDimension": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
             "feedbackByLocale": {
-              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
-              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+              "ru": "После 's вещь, чья она: `tired` — «усталый», это не вещь.",
+              "uk": "Після 's річ, чия вона: `tired` — «втомлений», це не річ."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Скейтборд принадлежит Анне. Укажите владельца",
+            "testedDimension": "Вы говорите о барабане двоюродного брата. Выберите слово, которое подходит",
             "feedbackByLocale": {
-              "ru": "Это принадлежность Тому; здесь владелица Анна.",
-              "uk": "Це належність Тому; тут власниця Анна."
+              "ru": "После 's вещь, чья она: `here` — «здесь», это не вещь.",
+              "uk": "Після 's річ, чия вона: `here` — «тут», це не річ."
             }
           }
         ]
@@ -464,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг сообщает о машине",
+      "prompt": "Послушайте тётю",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i09:r1",
-          "text": "The car is foreign."
+          "text": "My aunt's home."
         },
         {
           "responseId": "en:lesson-05:session-29:i09:r2",
-          "text": "The car is local."
+          "text": "My aunt's phone."
         },
         {
           "responseId": "en:lesson-05:session-29:i09:r3",
-          "text": "The car is available."
+          "text": "My aunt's late."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг сообщает о машине",
+      "accessibilityLabel": "Послушайте тётю",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i09:audio",
-          "transcript": "The car is foreign."
+          "transcript": "My aunt's home."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-29:i09:r1",
-            "targetText": "The car is foreign.",
+            "targetText": "My aunt's home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i09:r2",
-            "targetText": "The car is local.",
+            "targetText": "My aunt's phone.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i09:r3",
-            "targetText": "The car is available.",
+            "targetText": "My aunt's late.",
             "meaningByLocale": null
           }
         ],
@@ -517,19 +691,19 @@
           {
             "responseId": "en:lesson-05:session-29:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "testedDimension": "Послушайте тётю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `local`.",
-              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `local`."
+              "ru": "В записи `home` — «дома»: тётя пришла домой, а в этом варианте `phone` — «телефон тёти».",
+              "uk": "У записі `home` — «вдома»: тітка прийшла додому, а в цьому варіанті `phone` — «телефон тітки»."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг сообщает о машине",
+            "testedDimension": "Послушайте тётю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `foreign`, а в этом варианте — `available`.",
-              "uk": "У записі останнє слово — `foreign`, а в цьому варіанті — `available`."
+              "ru": "В записи `home` — «дома», а в этом варианте `late` — «опоздала».",
+              "uk": "У записі `home` — «вдома», а в цьому варіанті `late` — «спізнилася»."
             }
           }
         ],
@@ -540,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -554,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-29:i10:p1",
-            "target": "skateboard",
+            "target": "piano",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "пианино",
+              "uk": "піаніно"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i10:p2",
-            "target": "tables",
+            "target": "drum",
             "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
+              "ru": "барабан",
+              "uk": "барабан"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i10:p3",
-            "target": "bus stop",
+            "target": "sofa",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "диван",
+              "uk": "диван"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i10:p4",
-            "target": "necklace",
+            "target": "hall",
             "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
+              "ru": "холл, коридор",
+              "uk": "хол, коридор"
             }
           }
         ],
         "leftColumn": [
-          "skateboard",
-          "tables",
-          "bus stop",
-          "necklace"
+          "piano",
+          "drum",
+          "sofa",
+          "hall"
         ],
         "rightColumn": [
-          "скейтборд",
-          "столы",
-          "автобусная остановка",
-          "ожерелье"
+          "пианино",
+          "барабан",
+          "диван",
+          "холл, коридор"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -613,32 +787,33 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i11:audio",
-          "transcript": "Tom is at the bus stop."
+          "transcript": "My friend's flute is on the sofa."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Tom is at the bus stop.",
+        "hiddenTargetPhrase": "My friend's flute is on the sofa.",
         "orderedTokens": [
-          "Tom",
+          "My",
+          "friend's",
+          "flute",
           "is",
-          "at",
+          "on",
           "the",
-          "bus",
-          "stop"
+          "sofa"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -647,10 +822,10 @@
           {
             "responseId": "en:lesson-05:session-29:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom is at the bus stop.`",
-              "uk": "тут потрібно `is` — `Tom is at the bus stop.`"
+              "ru": "здесь нужно `is` — `My friend's flute is on the sofa.`",
+              "uk": "тут потрібно `is` — `My friend's flute is on the sofa.`"
             }
           }
         ],
@@ -663,39 +838,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+      "prompt": "У вашей тёти есть пианино. Скажите подруге: «У моей тёти есть пианино»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+      "accessibilityLabel": "У вашей тёти есть пианино. Скажите подруге: «У моей тёти есть пианино»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tables are outside.",
+        "targetPhrase": "My aunt has a piano.",
         "localizedMeaning": {
-          "ru": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
-          "uk": "Столи кафе стоять зовні. Скажіть «Столи зовні»"
+          "ru": "У вашей тёти есть пианино. Скажите подруге: «У моей тёти есть пианино»",
+          "uk": "У вашої тітки є піаніно. Скажіть подрузі: «У моєї тітки є піаніно»"
         },
         "orderedTokens": [
-          "The",
-          "tables",
-          "are",
-          "outside"
+          "My",
+          "aunt",
+          "has",
+          "a",
+          "piano"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Столы кафе стоят снаружи. Скажите «Столы снаружи»",
+            "testedDimension": "У вашей тёти есть пианино. Скажите подруге: «У моей тёти есть пианино»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The tables are outside.`",
-              "uk": "тут потрібно `are` — `The tables are outside.`"
+              "ru": "здесь нужно `has` — `My aunt has a piano.`",
+              "uk": "тут потрібно `has` — `My aunt has a piano.`"
             }
           }
         ],
@@ -708,25 +884,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ищете свой скейтборд. Спросите «Где мой скейтборд?»",
+      "prompt": "Подруга спрашивает, чей барабан у двери. Он вашего двоюродного брата. Скажите: «Это барабан моего двоюродного брата»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i13:audio"
       ],
-      "accessibilityLabel": "Вы ищете свой скейтборд. Спросите «Где мой скейтборд?»",
+      "accessibilityLabel": "Подруга спрашивает, чей барабан у двери. Он вашего двоюродного брата. Скажите: «Это барабан моего двоюродного брата»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i13:audio",
-          "transcript": "Where is my skateboard?"
+          "transcript": "This is my cousin's drum."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my skateboard?",
+        "targetPhrase": "This is my cousin's drum.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -741,67 +917,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "prompt": "У вашей тёти есть флейта. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i14:r1",
-          "text": "hers"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-29:i14:r2",
-          "text": "her"
+          "text": "'s"
         },
         {
           "responseId": "en:lesson-05:session-29:i14:r3",
-          "text": "his"
+          "text": "have"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+      "accessibilityLabel": "У вашей тёти есть флейта. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
-          "uk": "Намисто належить подрузі. Скажіть «Намисто її»"
+          "ru": "У вашей тёти есть флейта. Выберите слово",
+          "uk": "У вашої тітки є флейта. Виберіть слово"
         },
-        "gappedTargetPhrase": "The necklace is ___.",
+        "gappedTargetPhrase": "My aunt ___ a flute.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-29:i14:r1",
-            "text": "hers"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-29:i14:r2",
-            "text": "her"
+            "text": "'s"
           },
           {
             "responseId": "en:lesson-05:session-29:i14:r3",
-            "text": "his"
+            "text": "have"
           }
         ],
-        "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+        "testedDimension": "У вашей тёти есть флейта. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-29:i14:r2",
             "correct": false,
-            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "testedDimension": "У вашей тёти есть флейта. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "После 's без вещи это `is`: получилось бы «тётя — флейта». Когда у тёти есть флейта, нужно `has`.",
+              "uk": "Після 's без речі це `is`: вийшло б «тітка — флейта». Коли у тітки є флейта, потрібно `has`."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i14:r3",
             "correct": false,
-            "testedDimension": "Ожерелье принадлежит подруге. Скажите «Ожерелье её»",
+            "testedDimension": "У вашей тёти есть флейта. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`his` — его; её — `hers`.",
-              "uk": "`his` — його; її — `hers`."
+              "ru": "К слову `aunt` нужно `has`, а не `have`.",
+              "uk": "До слова `aunt` потрібно `has`, а не `have`."
             }
           }
         ]
@@ -810,51 +986,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, чей скейтборд здесь",
+      "prompt": "Послушайте бабушку",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-29:i15:r1",
-          "text": "Your skateboard is here."
+          "text": "My friend's flute is here."
         },
         {
           "responseId": "en:lesson-05:session-29:i15:r2",
-          "text": "My skateboard is here."
+          "text": "My friend's here."
         },
         {
           "responseId": "en:lesson-05:session-29:i15:r3",
-          "text": "His skateboard is here."
+          "text": "My friend's flute is there."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, чей скейтборд здесь",
+      "accessibilityLabel": "Послушайте бабушку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i15:audio",
-          "transcript": "Your skateboard is here."
+          "transcript": "My friend's flute is here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-29:i15:r1",
-            "targetText": "Your skateboard is here.",
+            "targetText": "My friend's flute is here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i15:r2",
-            "targetText": "My skateboard is here.",
+            "targetText": "My friend's here.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-29:i15:r3",
-            "targetText": "His skateboard is here.",
+            "targetText": "My friend's flute is there.",
             "meaningByLocale": null
           }
         ],
@@ -863,19 +1039,19 @@
           {
             "responseId": "en:lesson-05:session-29:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи после `friend's` идёт `flute` — флейта подруги, а в этом варианте `friend's here` — «подруга здесь».",
+              "uk": "У записі після `friend's` іде `flute` — флейта подруги, а в цьому варіанті `friend's here` — «подруга тут»."
             }
           },
           {
             "responseId": "en:lesson-05:session-29:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, чей скейтборд здесь",
+            "testedDimension": "Послушайте бабушку",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `His`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `His`."
+              "ru": "В записи последнее слово — `here`, «здесь», а в этом варианте — `there`, «там».",
+              "uk": "У записі останнє слово — `here`, «тут», а в цьому варіанті — `there`, «там»."
             }
           }
         ],
@@ -886,7 +1062,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -900,48 +1076,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-29:i16:p1",
-            "target": "skateboard",
+            "target": "piano",
             "meaningByLocale": {
-              "ru": "скейтборд",
-              "uk": "скейтборд"
+              "ru": "пианино",
+              "uk": "піаніно"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i16:p2",
-            "target": "tables",
+            "target": "drum",
             "meaningByLocale": {
-              "ru": "столы",
-              "uk": "столи"
+              "ru": "барабан",
+              "uk": "барабан"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i16:p3",
-            "target": "bus stop",
+            "target": "flute",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "флейта",
+              "uk": "флейта"
             }
           },
           {
             "pairId": "en:lesson-05:session-29:i16:p4",
-            "target": "necklace",
+            "target": "trumpet",
             "meaningByLocale": {
-              "ru": "ожерелье",
-              "uk": "намисто"
+              "ru": "труба",
+              "uk": "труба"
             }
           }
         ],
         "leftColumn": [
-          "skateboard",
-          "tables",
-          "bus stop",
-          "necklace"
+          "piano",
+          "drum",
+          "flute",
+          "trumpet"
         ],
         "rightColumn": [
-          "скейтборд",
-          "столы",
-          "автобусная остановка",
-          "ожерелье"
+          "пианино",
+          "барабан",
+          "флейта",
+          "труба"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -959,25 +1135,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-29:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о владельце скейтборда. Он принадлежит Тому. Скажите «Это скейтборд Тома»",
+      "prompt": "Бабушка спрашивает, где ваш двоюродный брат. Он уже здесь. Скажите ей: «Мой двоюродный брат здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-29:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о владельце скейтборда. Он принадлежит Тому. Скажите «Это скейтборд Тома»",
+      "accessibilityLabel": "Бабушка спрашивает, где ваш двоюродный брат. Он уже здесь. Скажите ей: «Мой двоюродный брат здесь»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-29:i17:audio",
-          "transcript": "This is Tom's skateboard."
+          "transcript": "My cousin's here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is Tom's skateboard.",
+        "targetPhrase": "My cousin's here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -999,11 +1175,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a3f5d0ca613cb20258456e6b75f5e38ae3d63315a057325ce6eed5bf1d64674"
+  "learnerFingerprint": "44be4b07ca92cd551502caffcf5516e6576000b84ddbb181a9d30bba3f83d117"
 }

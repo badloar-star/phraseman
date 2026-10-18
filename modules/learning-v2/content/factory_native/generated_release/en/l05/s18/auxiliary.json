@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-18:intro1:r2": {
-          "ru": "Перчатки — множественное число: `gloves are`.",
-          "uk": "Рукавички — множина: `gloves are`."
+          "ru": "he — «он», а «его» без названия вещи — his.",
+          "uk": "he — «він», а «його» без назви речі — his."
         },
         "en:lesson-05:session-18:intro1:r3": {
-          "ru": "Без названия вещи нужна форма `mine`.",
-          "uk": "Без назви речі потрібна форма `mine`."
+          "ru": "hers — её, а бритва брата: нужно his.",
+          "uk": "hers — її, а бритва брата: потрібно his."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-18:intro2:r2": {
-          "ru": "С `I` нужна форма `am`.",
-          "uk": "З `I` потрібна форма `am`."
+          "ru": "После is одно her не ставят: без названия вещи нужно hers.",
+          "uk": "Після is саме her не ставлять: без назви речі потрібно hers."
         },
         "en:lesson-05:session-18:intro2:r3": {
-          "ru": "`lucky` — везучий; неправ — `wrong`.",
-          "uk": "`lucky` — везучий; не мати рації — `be wrong`."
+          "ru": "perfume — одно слово, поэтому is, а не are.",
+          "uk": "perfume — одне слово, тому is, а не are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-18:intro3:r2": {
-          "ru": "С `milk` здесь нужна форма `is`.",
-          "uk": "З `milk` тут потрібна форма `is`."
+          "ru": "hers — её, а кольцо брата: нужно his.",
+          "uk": "hers — її, а каблучка брата: потрібно his."
         },
         "en:lesson-05:session-18:intro3:r3": {
-          "ru": "Это значит, что молоко есть; для отсутствия нужно `no`.",
-          "uk": "Це означає, що молоко є; для відсутності потрібне `no`."
+          "ru": "he — «он», а «его» без названия вещи — his.",
+          "uk": "he — «він», а «його» без назви речі — his."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2f1e374d0f3cadbcf6ba12e4872257cad88ce315eda4c37541adbc4e71fb0400"
+  "auxiliaryFingerprint": "f2a232a107bb03bc3e3d69779766cdbcc57f4664aadb5a6a96424b8bf770cde7"
 }

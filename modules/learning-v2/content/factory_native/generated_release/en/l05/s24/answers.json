@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-24:word:glasses",
+    "correctText": "glasses",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-24:i01",
-    "correctText": "The jacket is mine.",
+    "correctText": "These are my sister’s glasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-24:word:moustache",
+    "correctText": "moustache",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i02",
-    "correctText": "The gloves are yours.",
+    "correctText": "He has a moustache.",
     "correctResponseId": "en:lesson-05:session-24:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-24:word:tattoo",
+    "correctText": "tattoo",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-24:i03",
-    "correctText": "is",
+    "correctText": "tattoo",
     "correctResponseId": "en:lesson-05:session-24:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-24:i04",
-    "correctText": "en:lesson-05:session-24:i04:p1=yoghurt\nen:lesson-05:session-24:i04:p2=jacket\nen:lesson-05:session-24:i04:p3=gloves\nen:lesson-05:session-24:i04:p4=tablet",
+    "correctText": "en:lesson-05:session-24:i04:p1=moustache\nen:lesson-05:session-24:i04:p2=glasses\nen:lesson-05:session-24:i04:p3=freckles\nen:lesson-05:session-24:i04:p4=tattoo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-24:word:freckles",
+    "correctText": "freckles",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i05",
-    "correctText": "Where is my tablet?",
+    "correctText": "She has freckles.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i06",
-    "correctText": "The scarf is his.",
+    "correctText": "Whose glasses are these?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i07",
-    "correctText": "The camera is ours.",
+    "correctText": "The jacket is his.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i08",
-    "correctText": "hers",
+    "correctText": "has",
     "correctResponseId": "en:lesson-05:session-24:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-24:i09",
-    "correctText": "Your boots are under the bed.",
+    "correctText": "Whose glasses are these?",
     "correctResponseId": "en:lesson-05:session-24:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-24:i10",
-    "correctText": "en:lesson-05:session-24:i10:p1=scarf\nen:lesson-05:session-24:i10:p2=necklace\nen:lesson-05:session-24:i10:p3=boots\nen:lesson-05:session-24:i10:p4=camera",
+    "correctText": "en:lesson-05:session-24:i10:p1=glasses\nen:lesson-05:session-24:i10:p2=tattoo\nen:lesson-05:session-24:i10:p3=jacket\nen:lesson-05:session-24:i10:p4=umbrella",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i11",
-    "correctText": "I have your scarf.",
+    "correctText": "The suitcase is theirs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i12",
-    "correctText": "My jacket is next to your gloves.",
+    "correctText": "The bag is my friend’s.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i13",
-    "correctText": "The boots are theirs.",
+    "correctText": "My friend has freckles.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i14",
-    "correctText": "yours",
+    "correctText": "are",
     "correctResponseId": "en:lesson-05:session-24:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-24:i15",
-    "correctText": "Her camera is here.",
+    "correctText": "His tattoo is small.",
     "correctResponseId": "en:lesson-05:session-24:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-24:i16",
-    "correctText": "en:lesson-05:session-24:i16:p1=scarf\nen:lesson-05:session-24:i16:p2=necklace\nen:lesson-05:session-24:i16:p3=boots\nen:lesson-05:session-24:i16:p4=camera",
+    "correctText": "en:lesson-05:session-24:i16:p1=moustache\nen:lesson-05:session-24:i16:p2=freckles\nen:lesson-05:session-24:i16:p3=suitcase\nen:lesson-05:session-24:i16:p4=ring",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-24:i17",
-    "correctText": "The camera is ours.",
+    "correctText": "They are mine.",
     "correctResponseId": null
   }
 ]

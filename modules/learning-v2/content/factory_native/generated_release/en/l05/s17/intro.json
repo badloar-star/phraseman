@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-17",
   "learningOutcomeByLocale": {
-    "ru": "указать владельца без повторения названия вещи",
-    "uk": "вказати власника без повторення назви речі"
+    "ru": "сказать, чья вещь, одним словом без названия: mine (мой) и yours (твой)",
+    "uk": "сказати, чия річ, одним словом без назви: mine (мій) і yours (твій)"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Можно не повторять",
-        "uk": "Можна не повторювати"
+        "ru": "Какой шлем ваш",
+        "uk": "Який шолом ваш"
       },
       "bodyByLocale": {
-        "ru": "`jacket` — «куртка». `my jacket` — «моя куртка», но `The jacket is mine` — «Куртка моя». `mine` уже означает «мой / моя / моё / мои», поэтому после него название вещи не повторяем. `yours` — «твой / ваш» без названия вещи: `The charger is yours` — «Зарядка твоя». Куртки похожи, но карман с вашей забытой ягодой — убедительная подсказка.",
-        "uk": "`jacket` — «куртка». `my jacket` — «моя куртка», але `The jacket is mine` — «Куртка моя». `mine` уже означає «мій / моя / моє / мої», тому після нього назву речі не повторюємо. `yours` — «твій / ваш» без назви речі: `The charger is yours` — «Зарядка твоя». Куртки схожі, але кишеня з вашою забутою ягодою — переконлива підказка."
+        "ru": "Вы с подругой оставили велосипеды у стойки, и рядом лежат два похожих шлема, серый и синий. Подруга спрашивает, какой ваш. helmet — «шлем». Когда вещь уже названа, после is ставим mine — «мой»: The helmet is mine — «Шлем мой». Название второй раз не повторяем.",
+        "uk": "Ви з подругою залишили велосипеди біля стійки, і поруч лежать два схожі шоломи, сірий і синій. Подруга питає, який ваш. helmet — «шолом». Коли річ уже названо, після is ставимо mine — «мій»: The helmet is mine — «Шолом мій». Назву вдруге не повторюємо."
       },
       "question": {
         "interactionId": "en:lesson-05:session-17:intro1:q",
         "promptByLocale": {
-          "ru": "Куртка принадлежит вам. Выберите фразу.",
-          "uk": "Куртка належить вам. Виберіть фразу."
+          "ru": "Подруга показывает на шлем и спрашивает, чей он. Шлем ваш. Скажите ей: «Шлем мой».",
+          "uk": "Подруга показує на шолом і питає, чий він. Шолом ваш. Скажіть їй: «Шолом мій»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-17:intro1:r1",
-              "text": "The jacket is mine."
+              "text": "The helmet is mine."
             },
             {
               "responseId": "en:lesson-05:session-17:intro1:r2",
-              "text": "The jacket is my."
+              "text": "The helmet is my."
             },
             {
               "responseId": "en:lesson-05:session-17:intro1:r3",
-              "text": "The jacket is yours."
+              "text": "The helmet is yours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-17:intro1:r1",
-              "text": "The jacket is mine."
+              "text": "The helmet is mine."
             },
             {
               "responseId": "en:lesson-05:session-17:intro1:r2",
-              "text": "The jacket is my."
+              "text": "The helmet is my."
             },
             {
               "responseId": "en:lesson-05:session-17:intro1:r3",
-              "text": "The jacket is yours."
+              "text": "The helmet is yours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Куртка принадлежит вам. Выберите фразу.",
-          "uk": "Куртка належить вам. Виберіть фразу."
+          "ru": "Подруга показывает на шлем и спрашивает, чей он. Шлем ваш. Скажите ей: «Шлем мой».",
+          "uk": "Подруга показує на шолом і питає, чий він. Шолом ваш. Скажіть їй: «Шолом мій»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Его, её, наши, их",
-        "uk": "Його, її, наші, їхні"
+        "ru": "Гитара у входа",
+        "uk": "Гітара біля входу"
       },
       "bodyByLocale": {
-        "ru": "Без названия вещи: `his` — «его», `hers` — «её», `ours` — «наш / наши», `theirs` — «их». `his` одинаково в `his jacket` и `The jacket is his`. Сравните: `her jacket`, но `The jacket is hers`. `The books are ours` — «Книги наши»: несколько книг, поэтому `are`.",
-        "uk": "Без назви речі: `his` — «його», `hers` — «її», `ours` — «наш / наші», `theirs` — «їхній / їхні». `his` однакове в `his jacket` і `The jacket is his`. Порівняйте: `her jacket`, але `The jacket is hers`. `The books are ours` — «Книжки наші»: кілька книжок, тому `are`."
+        "ru": "После вечеринки у входа осталась гитара: её забыл друг. Он как раз вернулся и озирается. Вы держите её в руках. guitar — «гитара». О вещи собеседника говорим yours — «твой, твоя»: The guitar is yours — «Гитара твоя». Для вашей вещи подошло бы mine.",
+        "uk": "Після вечірки біля входу залишилася гітара: її забув друг. Він саме повернувся й роззирається. Ви тримаєте її в руках. guitar — «гітара». Про річ співрозмовника кажемо yours — «твій, твоя»: The guitar is yours — «Гітара твоя». Для вашої речі підійшло б mine."
       },
       "question": {
         "interactionId": "en:lesson-05:session-17:intro2:q",
         "promptByLocale": {
-          "ru": "Книги принадлежат вам и вашему другу. Скажите «Книги наши».",
-          "uk": "Книжки належать вам і вашому другові. Скажіть «Книжки наші»."
+          "ru": "Друг вернулся за гитарой, которую забыл у вас. Скажите ему: «Гитара твоя».",
+          "uk": "Друг повернувся по гітару, яку забув у вас. Скажіть йому: «Гітара твоя»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-17:intro2:r1",
-              "text": "The books are ours."
+              "text": "The guitar is yours."
             },
             {
               "responseId": "en:lesson-05:session-17:intro2:r2",
-              "text": "The books are our."
+              "text": "The guitar is your."
             },
             {
               "responseId": "en:lesson-05:session-17:intro2:r3",
-              "text": "The books is ours."
+              "text": "The guitar is mine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-17:intro2:r1",
-              "text": "The books are ours."
+              "text": "The guitar is yours."
             },
             {
               "responseId": "en:lesson-05:session-17:intro2:r2",
-              "text": "The books are our."
+              "text": "The guitar is your."
             },
             {
               "responseId": "en:lesson-05:session-17:intro2:r3",
-              "text": "The books is ours."
+              "text": "The guitar is mine."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Книги принадлежат вам и вашему другу. Скажите «Книги наши».",
-          "uk": "Книжки належать вам і вашому другові. Скажіть «Книжки наші»."
+          "ru": "Друг вернулся за гитарой, которую забыл у вас. Скажите ему: «Гитара твоя».",
+          "uk": "Друг повернувся по гітару, яку забув у вас. Скажіть йому: «Гітара твоя»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вещи в безопасности",
-        "uk": "Речі в безпеці"
+        "ru": "Папка на общем столе",
+        "uk": "Папка на спільному столі"
       },
       "bodyByLocale": {
-        "ru": "Повторим: `welcome` — «желанный», `safe` — «в безопасности», `right` — «прав», `books` — «книги», `berry` — «ягода», `charger` — «зарядка». `You are welcome here` — «Тебе здесь рады». `You are right` — «Ты прав / права». `The books are safe` — «Книги в безопасности». `The berry is hers` — «Ягода её». Форма `hers` говорит о владелице, а `is` — об одной ягоде.",
-        "uk": "Повторімо: `welcome` — «бажаний», `safe` — «у безпеці», `right` — «має рацію», `books` — «книжки», `berry` — «ягода», `charger` — «зарядка». `You are welcome here` — «Тобі тут раді». `You are right` — «Ти маєш рацію». `The books are safe` — «Книжки в безпеці». `The berry is hers` — «Ягода її». Форма `hers` говорить про власницю, а `is` — про одну ягоду."
+        "ru": "Коллега принёс с общего стола папку с бумагами и спрашивает, не ваша ли она. folder — «папка». Вопрос звучит так: Is the folder yours? — «Папка твоя?» Папка ваша, и вы отвечаете коротко, без повтора названия: Yes, it is mine — «Да, она моя».",
+        "uk": "Колега приніс зі спільного столу папку з паперами й питає, чи не ваша вона. folder — «папка». Питання звучить так: Is the folder yours? — «Папка твоя?» Папка ваша, і ви відповідаєте коротко, без повтору назви: Yes, it is mine — «Так, вона моя»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-17:intro3:q",
         "promptByLocale": {
-          "ru": "Друг верно определил владельца. Скажите «Ты прав» без сокращения.",
-          "uk": "Друг правильно визначив власника. Скажіть «Ти маєш рацію» без скорочення."
+          "ru": "Коллега держит папку и спрашивает: «Is the folder yours?» Папка ваша. Ответьте ему коротко.",
+          "uk": "Колега тримає папку й питає: «Is the folder yours?» Папка ваша. Відповідьте йому коротко."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-17:intro3:r1",
-              "text": "You are right."
+              "text": "Yes, it is mine."
             },
             {
               "responseId": "en:lesson-05:session-17:intro3:r2",
-              "text": "You is right."
+              "text": "Yes, it is my."
             },
             {
               "responseId": "en:lesson-05:session-17:intro3:r3",
-              "text": "You are safe."
+              "text": "Yes, it is yours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-17:intro3:r1",
-              "text": "You are right."
+              "text": "Yes, it is mine."
             },
             {
               "responseId": "en:lesson-05:session-17:intro3:r2",
-              "text": "You is right."
+              "text": "Yes, it is my."
             },
             {
               "responseId": "en:lesson-05:session-17:intro3:r3",
-              "text": "You are safe."
+              "text": "Yes, it is yours."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг верно определил владельца. Скажите «Ты прав» без сокращения.",
-          "uk": "Друг правильно визначив власника. Скажіть «Ти маєш рацію» без скорочення."
+          "ru": "Коллега держит папку и спрашивает: «Is the folder yours?» Папка ваша. Ответьте ему коротко.",
+          "uk": "Колега тримає папку й питає: «Is the folder yours?» Папка ваша. Відповідьте йому коротко."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ed81172f9838d61f9a104380388e29639257a36eb5c817435ed885ec419af664"
+  "introFingerprint": "391ce00a49a5d9aa8039b4809b87de01be79172df1db1e95c8154e7413b98cf2"
 }

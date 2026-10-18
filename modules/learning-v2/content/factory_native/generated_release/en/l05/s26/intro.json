@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-26",
   "learningOutcomeByLocale": {
-    "ru": "найти вещи, назвать владельца и описать своё состояние",
-    "uk": "знайти речі, назвати власника й описати свій стан"
+    "ru": "называть вещи малыша и сказать, где они: the baby's nappy, in my sister's bag",
+    "uk": "називати речі малюка й сказати, де вони: the baby's nappy, in my sister's bag"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маленький значок",
-        "uk": "Маленький значок"
+        "ru": "Подгузник на полке",
+        "uk": "Підгузок на полиці"
       },
       "bodyByLocale": {
-        "ru": "`badge` — «значок», который можно прикрепить к одежде. `This is Anna’s badge` — «Это значок Анны». `Tom’s badge is here` — «Значок Тома здесь». После имени владельца добавляем `’s`. Значок маленький, зато поиски заняли всю кухню.",
-        "uk": "`badge` — «значок», який можна прикріпити до одягу. `This is Anna’s badge` — «Це значок Анни». `Tom’s badge is here` — «Значок Тома тут». Після імені власника додаємо `’s`. Значок маленький, зате пошуки охопили всю кухню."
+        "ru": "Вы приехали к сестре помочь с малышом. Она переодевает его на диване и просит подать чистый подгузник: он лежит на высокой полке у окна, а руки у неё заняты. nappy — «подгузник». Малыш — the baby, поэтому подгузник — the baby's nappy, «подгузник малыша».",
+        "uk": "Ви приїхали до сестри допомогти з малюком. Вона переодягає його на дивані й просить подати чистий підгузок: він лежить на високій полиці біля вікна, а руки в неї зайняті. nappy — «підгузок». Малюк — the baby, тому підгузок — the baby's nappy, «підгузок малюка»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Укажите на значок Анны.",
-          "uk": "Укажіть на значок Анни."
+          "ru": "Сестра просит подгузник. Он лежит на полке. Скажите ей: «Подгузник малыша на полке».",
+          "uk": "Сестра просить підгузок. Він лежить на полиці. Скажіть їй: «Підгузок малюка на полиці»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-26:intro1:r1",
-              "text": "This is Anna's badge."
+              "text": "The baby's nappy is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-26:intro1:r2",
-              "text": "This is Anna badge."
+              "text": "The baby nappy is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-26:intro1:r3",
-              "text": "This is Tom's badge."
+              "text": "The baby's nappy is on the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-26:intro1:r1",
-              "text": "This is Anna's badge."
+              "text": "The baby's nappy is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-26:intro1:r2",
-              "text": "This is Anna badge."
+              "text": "The baby nappy is on the shelf."
             },
             {
               "responseId": "en:lesson-05:session-26:intro1:r3",
-              "text": "This is Tom's badge."
+              "text": "The baby's nappy is on the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Укажите на значок Анны.",
-          "uk": "Укажіть на значок Анни."
+          "ru": "Сестра просит подгузник. Он лежит на полке. Скажите ей: «Подгузник малыша на полке».",
+          "uk": "Сестра просить підгузок. Він лежить на полиці. Скажіть їй: «Підгузок малюка на полиці»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что вы чувствуете",
-        "uk": "Що ви відчуваєте"
+        "ru": "Где погремушка",
+        "uk": "Де брязкальце"
       },
       "bodyByLocale": {
-        "ru": "`bored` — «скучающий»: `I am bored` — «Мне скучно». `confused` — «растерянный, не понимающий, что происходит»: `I am confused` — «Я растерян / растеряна». `worried` — «обеспокоенный»: `I am worried` — «Я волнуюсь». Здесь эти слова описывают человека: после `I` нужна форма `am`.",
-        "uk": "`bored` — «той, кому нудно»: `I am bored` — «Мені нудно». `confused` — «розгублений, не розуміє, що відбувається»: `I am confused` — «Я розгублений / розгублена». `worried` — «стурбований»: `I am worried` — «Я хвилююся». Тут ці слова описують людину: після `I` потрібна форма `am`."
+        "ru": "Малыш заплакал и покраснел, и сестра хочет его отвлечь, но любимая погремушка куда-то закатилась, а искать её некогда. rattle — «погремушка», игрушка, которая гремит, когда её трясут. Спросите сестру, где она: Where is the baby's rattle? — «Где погремушка малыша?»",
+        "uk": "Малюк заплакав і почервонів, і сестра хоче його відвернути, але улюблене брязкальце кудись закотилося, а шукати його ніколи. rattle — «брязкальце», іграшка, що гримить, коли її трусять. Спитайте сестру, де воно: Where is the baby's rattle? — «Де брязкальце малюка?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Вы переживаете из-за пропавшего значка. Скажите «Я волнуюсь» без сокращения.",
-          "uk": "Ви переживаєте через зниклий значок. Скажіть «Я хвилююся» без скорочення."
+          "ru": "Малыш плачет, а погремушки не видно. Спросите сестру, где погремушка малыша.",
+          "uk": "Малюк плаче, а брязкальця не видно. Спитайте сестру, де брязкальце малюка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-26:intro2:r1",
-              "text": "I am worried."
+              "text": "Where is the baby's rattle?"
             },
             {
               "responseId": "en:lesson-05:session-26:intro2:r2",
-              "text": "I is worried."
+              "text": "Where is the baby rattle?"
             },
             {
               "responseId": "en:lesson-05:session-26:intro2:r3",
-              "text": "I am bored."
+              "text": "Where are the baby's rattle?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-26:intro2:r1",
-              "text": "I am worried."
+              "text": "Where is the baby's rattle?"
             },
             {
               "responseId": "en:lesson-05:session-26:intro2:r2",
-              "text": "I is worried."
+              "text": "Where is the baby rattle?"
             },
             {
               "responseId": "en:lesson-05:session-26:intro2:r3",
-              "text": "I am bored."
+              "text": "Where are the baby's rattle?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы переживаете из-за пропавшего значка. Скажите «Я волнуюсь» без сокращения.",
-          "uk": "Ви переживаєте через зниклий значок. Скажіть «Я хвилююся» без скорочення."
+          "ru": "Малыш плачет, а погремушки не видно. Спросите сестру, где погремушка малыша.",
+          "uk": "Малюк плаче, а брязкальця не видно. Спитайте сестру, де брязкальце малюка."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "На кухне",
-        "uk": "На кухні"
+        "ru": "Слюнявчик для каши",
+        "uk": "Слинявчик для каші"
       },
       "bodyByLocale": {
-        "ru": "`cats` — «кошки», `worktop` — «кухонная столешница», `gloves` — «перчатки». `Anna’s gloves are on the worktop` — «Перчатки Анны на кухонной столешнице»: несколько перчаток, поэтому `are`, хотя владелица одна. `The cats are under the table` — «Кошки под столом». `Where is my badge?` — «Где мой значок?»",
-        "uk": "`cats` — «коти», `worktop` — «кухонна стільниця», `gloves` — «рукавички». `Anna’s gloves are on the worktop` — «Рукавички Анни на кухонній стільниці»: кілька рукавичок, тому `are`, хоча власниця одна. `The cats are under the table` — «Коти під столом». `Where is my badge?` — «Де мій значок?»"
+        "ru": "Бабушка пришла кормить малыша тёплой кашей и просит слюнявчик, пока каша не остыла. bib — «слюнявчик»: его повязывают на шею, чтобы не испачкать одежду. Он лежит в сумке вашей сестры. Здесь два хозяина: the baby's bib is in my sister's bag.",
+        "uk": "Бабуся прийшла годувати малюка теплою кашею й просить слинявчик, поки каша не охолола. bib — «слинявчик»: його зав’язують на шиї, щоб не забруднити одяг. Він лежить у сумці вашої сестри. Тут двоє господарів: the baby's bib is in my sister's bag."
       },
       "question": {
         "interactionId": "en:lesson-05:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Перчатки Анны на кухонной столешнице. Выберите фразу.",
-          "uk": "Рукавички Анни на кухонній стільниці. Виберіть фразу."
+          "ru": "Бабушка просит слюнявчик малыша. Он в сумке вашей сестры. Скажите ей: «Слюнявчик малыша в сумке моей сестры».",
+          "uk": "Бабуся просить слинявчик малюка. Він у сумці вашої сестри. Скажіть їй: «Слинявчик малюка в сумці моєї сестри»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-26:intro3:r1",
-              "text": "Anna's gloves are on the worktop."
+              "text": "The baby's bib is in my sister's bag."
             },
             {
               "responseId": "en:lesson-05:session-26:intro3:r2",
-              "text": "Anna's gloves is on the worktop."
+              "text": "The baby's bib is in my sister bag."
             },
             {
               "responseId": "en:lesson-05:session-26:intro3:r3",
-              "text": "Tom's gloves are on the worktop."
+              "text": "The baby's bib is in my brother's bag."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-26:intro3:r1",
-              "text": "Anna's gloves are on the worktop."
+              "text": "The baby's bib is in my sister's bag."
             },
             {
               "responseId": "en:lesson-05:session-26:intro3:r2",
-              "text": "Anna's gloves is on the worktop."
+              "text": "The baby's bib is in my sister bag."
             },
             {
               "responseId": "en:lesson-05:session-26:intro3:r3",
-              "text": "Tom's gloves are on the worktop."
+              "text": "The baby's bib is in my brother's bag."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Перчатки Анны на кухонной столешнице. Выберите фразу.",
-          "uk": "Рукавички Анни на кухонній стільниці. Виберіть фразу."
+          "ru": "Бабушка просит слюнявчик малыша. Он в сумке вашей сестры. Скажите ей: «Слюнявчик малыша в сумке моей сестры».",
+          "uk": "Бабуся просить слинявчик малюка. Він у сумці вашої сестри. Скажіть їй: «Слинявчик малюка в сумці моєї сестри»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7b882e6cfc26409920544f38a4e9110c36d61c55fe4ffd8385ebc7535429a52c"
+  "introFingerprint": "0392c8209670723fcaa10662377292dae83a3db1091f6b67bee2c18344f08f50"
 }

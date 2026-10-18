@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-20",
   "learningOutcomeByLocale": {
-    "ru": "назвать владельца вещей и описать готовность к прогулке",
-    "uk": "назвати власника речей і описати готовність до прогулянки"
+    "ru": "назвать хозяина вещи с ’s: my husband’s, his wife’s, my son’s",
+    "uk": "назвати власника речі з ’s: my husband’s, his wife’s, my son’s"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Тепло для шеи",
-        "uk": "Тепло для шиї"
+        "ru": "Кружка на полке",
+        "uk": "Кухоль на полиці"
       },
       "bodyByLocale": {
-        "ru": "`scarf` — «шарф». `The scarf is mine` — «Шарф мой». `Your scarf is here` — «Твой шарф здесь». Перед названием вещи — `my`, без повторения названия — `mine`. `The scarf is hers` — «Шарф её». Шарф уже на шее, а вы ищете его в сумке: он готов к прогулке раньше вас.",
-        "uk": "`scarf` — «шарф». `The scarf is mine` — «Шарф мій». `Your scarf is here` — «Твій шарф тут». Перед назвою речі — `my`, без повторення назви — `mine`. `The scarf is hers` — «Шарф її». Шарф уже на шиї, а ви шукаєте його в сумці: він готовий до прогулянки раніше за вас."
+        "ru": "Вы с подругой после ужина убираете общую кухню. На полке стоит кружка, и подруга спрашивает, чья она. Кружка вашего мужа. husband — «муж». Чтобы назвать хозяина, добавляем ’s: my husband’s — «моего мужа». The mug is my husband’s — «Кружка моего мужа».",
+        "uk": "Ви з подругою після вечері прибираєте спільну кухню. На полиці стоїть кухоль, і подруга питає, чий він. Кухоль вашого чоловіка. husband — «чоловік». Щоб назвати власника, додаємо ’s: my husband’s — «мого чоловіка». The mug is my husband’s — «Кухоль мого чоловіка»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-20:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите «Шарф мой».",
-          "uk": "Скажіть «Шарф мій»."
+          "ru": "Подруга показывает на кружку и спрашивает, чья она. Кружка вашего мужа. Скажите ей: «Кружка моего мужа».",
+          "uk": "Подруга показує на кухоль і питає, чий він. Кухоль вашого чоловіка. Скажіть їй: «Кухоль мого чоловіка»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-20:intro1:r1",
-              "text": "The scarf is mine."
+              "text": "The mug is my husband’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro1:r2",
-              "text": "The scarf is my."
+              "text": "The mug is my husband."
             },
             {
               "responseId": "en:lesson-05:session-20:intro1:r3",
-              "text": "The scarf is yours."
+              "text": "The mug is mine husband’s."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-20:intro1:r1",
-              "text": "The scarf is mine."
+              "text": "The mug is my husband’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro1:r2",
-              "text": "The scarf is my."
+              "text": "The mug is my husband."
             },
             {
               "responseId": "en:lesson-05:session-20:intro1:r3",
-              "text": "The scarf is yours."
+              "text": "The mug is mine husband’s."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Шарф мой».",
-          "uk": "Скажіть «Шарф мій»."
+          "ru": "Подруга показывает на кружку и спрашивает, чья она. Кружка вашего мужа. Скажите ей: «Кружка моего мужа».",
+          "uk": "Подруга показує на кухоль і питає, чий він. Кухоль вашого чоловіка. Скажіть їй: «Кухоль мого чоловіка»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подготовлены и осторожны",
-        "uk": "Підготовлені й обережні"
+        "ru": "Зонт у двери",
+        "uk": "Парасолька біля дверей"
       },
       "bodyByLocale": {
-        "ru": "`prepared` — «подготовлен / подготовлены», `careful` — «осторожный / осторожны», `lost` — «заблудился / заблудились», когда речь о людях, не знающих дороги. `We are prepared` — «Мы подготовлены». `We are careful` — «Мы осторожны». `We are lost` — «Мы заблудились». Эти слова описывают состояние; с `We` ставим `are`.",
-        "uk": "`prepared` — «підготовлений / підготовлені», `careful` — «обережний / обережні», `lost` — «заблукав / заблукали», коли йдеться про людей, які не знають дороги. `We are prepared` — «Ми підготовлені». `We are careful` — «Ми обережні». `We are lost` — «Ми заблукали». Ці слова описують стан; з `We` ставимо `are`."
+        "ru": "В офисе в конце рабочего дня охранник замечает у двери зонт и спрашивает, чей он. Зонт принадлежит жене вашего коллеги, а коллега стоит рядом. wife — «жена». Коллега — «он», поэтому his, и снова ’s: The umbrella is his wife’s — «Зонт его жены».",
+        "uk": "В офісі наприкінці робочого дня охоронець помічає біля дверей парасольку й питає, чия вона. Парасолька належить дружині вашого колеги, а колега стоїть поруч. wife — «дружина». Колега — «він», тому his, і знову ’s: The umbrella is his wife’s — «Парасолька його дружини»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-20:intro2:q",
         "promptByLocale": {
-          "ru": "У вас есть карты и всё нужное для прогулки. Скажите «Мы подготовлены».",
-          "uk": "У вас є карти й усе потрібне для прогулянки. Скажіть «Ми підготовлені»."
+          "ru": "Охранник спрашивает, чей зонт у двери. Зонт принадлежит жене вашего коллеги. Скажите ему: «Зонт его жены».",
+          "uk": "Охоронець питає, чия парасолька біля дверей. Парасолька належить дружині вашого колеги. Скажіть йому: «Парасолька його дружини»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-20:intro2:r1",
-              "text": "We are prepared."
+              "text": "The umbrella is his wife’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro2:r2",
-              "text": "We is prepared."
+              "text": "The umbrella is his wife."
             },
             {
               "responseId": "en:lesson-05:session-20:intro2:r3",
-              "text": "We are lost."
+              "text": "The umbrella is her wife’s."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-20:intro2:r1",
-              "text": "We are prepared."
+              "text": "The umbrella is his wife’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro2:r2",
-              "text": "We is prepared."
+              "text": "The umbrella is his wife."
             },
             {
               "responseId": "en:lesson-05:session-20:intro2:r3",
-              "text": "We are lost."
+              "text": "The umbrella is her wife’s."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У вас есть карты и всё нужное для прогулки. Скажите «Мы подготовлены».",
-          "uk": "У вас є карти й усе потрібне для прогулянки. Скажіть «Ми підготовлені»."
+          "ru": "Охранник спрашивает, чей зонт у двери. Зонт принадлежит жене вашего коллеги. Скажите ему: «Зонт его жены».",
+          "uk": "Охоронець питає, чия парасолька біля дверей. Парасолька належить дружині вашого колеги. Скажіть йому: «Парасолька його дружини»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Карта, гриб и тетрадь",
-        "uk": "Карта, гриб і зошит"
+        "ru": "Мяч во дворе",
+        "uk": "М’яч на подвір’ї"
       },
       "bodyByLocale": {
-        "ru": "`maps` — «карты», `mushroom` — «гриб», `notebook` — «тетрадь». `The maps are ours` — «Карты наши». `The notebook is his` — «Тетрадь его». `There is a mushroom next to the tree` — «Рядом с деревом есть гриб». `Where is my scarf?` — «Где мой шарф?» С одной вещью — `is`, с несколькими картами — `are`.",
-        "uk": "`maps` — «карти», `mushroom` — «гриб», `notebook` — «зошит». `The maps are ours` — «Карти наші». `The notebook is his` — «Зошит його». `There is a mushroom next to the tree` — «Поруч із деревом є гриб». `Where is my scarf?` — «Де мій шарф?» З однією річчю — `is`, з кількома картами — `are`."
+        "ru": "Сосед по площадке нашёл во дворе синий мяч и спрашивает, чей он. Мяч принадлежит вашему сыну, ему три года. son — «сын». Хозяина называем так же: my son’s — «моего сына». The ball is my son’s — «Мяч моего сына». Для дочери было бы my daughter’s.",
+        "uk": "Сусід по площадці знайшов на подвір’ї синій м’яч і питає, чий він. М’яч належить вашому синові, йому три роки. son — «син». Власника називаємо так само: my son’s — «мого сина». The ball is my son’s — «М’яч мого сина». Для доньки було б my daughter’s."
       },
       "question": {
         "interactionId": "en:lesson-05:session-20:intro3:q",
         "promptByLocale": {
-          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши».",
-          "uk": "Карти належать вам і другові. Скажіть «Карти наші»."
+          "ru": "Сосед держит мяч и спрашивает, чей он. Мяч вашего сына. Скажите ему: «Мяч моего сына».",
+          "uk": "Сусід тримає м’яч і питає, чий він. М’яч вашого сина. Скажіть йому: «М’яч мого сина»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-20:intro3:r1",
-              "text": "The maps are ours."
+              "text": "The ball is my son’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro3:r2",
-              "text": "The maps is ours."
+              "text": "The ball is my son."
             },
             {
               "responseId": "en:lesson-05:session-20:intro3:r3",
-              "text": "The maps are our."
+              "text": "The ball is mine son’s."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-20:intro3:r1",
-              "text": "The maps are ours."
+              "text": "The ball is my son’s."
             },
             {
               "responseId": "en:lesson-05:session-20:intro3:r2",
-              "text": "The maps is ours."
+              "text": "The ball is my son."
             },
             {
               "responseId": "en:lesson-05:session-20:intro3:r3",
-              "text": "The maps are our."
+              "text": "The ball is mine son’s."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши».",
-          "uk": "Карти належать вам і другові. Скажіть «Карти наші»."
+          "ru": "Сосед держит мяч и спрашивает, чей он. Мяч вашего сына. Скажите ему: «Мяч моего сына».",
+          "uk": "Сусід тримає м’яч і питає, чий він. М’яч вашого сина. Скажіть йому: «М’яч мого сина»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "351061603a950b0e789f2f929390eb99562c679eeb99673c4cb759a434ddb5a7"
+  "introFingerprint": "84e2c9cec5d66b826a1cb29cc0e0c40ca7955dd31f7574d2c76240204bc48a1c"
 }

@@ -4,39 +4,86 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-26:i01",
+      "interactionId": "en:lesson-05:session-26:word:nappy",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nappy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:word:nappy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nappy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:word:nappy:audio",
+          "transcript": "nappy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:word:nappy:r1",
+            "targetText": "nappy",
+            "meaningByLocale": {
+              "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+              "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nappy",
+          "definitionByLocale": {
+            "ru": "подгузник. The baby's nappy is clean. — «Подгузник малыша чистый». О детских трусиках для малышей, которые ещё не ходят в туалет сами.",
+            "uk": "підгузок. The baby's nappy is clean. — «Підгузок малюка чистий». Про дитячі трусики для малюків, які ще не ходять до туалету самі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+      "prompt": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+      "accessibilityLabel": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am worried.",
+        "targetPhrase": "The baby's nappy is in the bag.",
         "localizedMeaning": {
-          "ru": "Вы переживаете из-за пропавшей вещи. Скажите «Я волнуюсь» без сокращения",
-          "uk": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення"
+          "ru": "Сестра просит подгузник малыша. Он в сумке. Скажите ей: «Подгузник малыша в сумке»",
+          "uk": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "worried"
+          "The",
+          "baby's",
+          "nappy",
+          "is",
+          "in",
+          "the",
+          "bag"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "baby"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Ви переживаєте через зниклу річ. Скажіть «Я хвилююся» без скорочення",
+            "testedDimension": "Сестра просить підгузок малюка. Він у сумці. Скажіть їй: «Підгузок малюка в сумці»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `am` — `I am worried.`",
-              "uk": "тут потрібно `am` — `I am worried.`"
+              "ru": "здесь нужно `baby's` — `The baby's nappy is in the bag.`",
+              "uk": "тут потрібно `baby's` — `The baby's nappy is in the bag.`"
             }
           }
         ],
@@ -48,52 +95,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-26:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-26:word:rattle",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Картка слова — rattle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:word:rattle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rattle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:word:rattle:audio",
+          "transcript": "rattle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:word:rattle:r1",
+            "targetText": "rattle",
+            "meaningByLocale": {
+              "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+              "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rattle",
+          "definitionByLocale": {
+            "ru": "погремушка. The baby's rattle is red. — «Погремушка малыша красная». Об игрушке, которая гремит, когда её трясут.",
+            "uk": "брязкальце. The baby's rattle is red. — «Брязкальце малюка червоне». Про іграшку, що гримить, коли її трусять."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-26:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i02:r1",
-          "text": "badge"
+          "text": "The baby's rattle is under the sofa."
         },
         {
           "responseId": "en:lesson-05:session-26:i02:r2",
-          "text": "bag"
+          "text": "The baby's rattle is under the bed."
         },
         {
           "responseId": "en:lesson-05:session-26:i02:r3",
-          "text": "jacket"
+          "text": "The baby's bottle is under the sofa."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i02:audio",
-          "transcript": "badge"
+          "transcript": "The baby's rattle is under the sofa."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-26:i02:r1",
-            "targetText": "badge",
+            "targetText": "The baby's rattle is under the sofa.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i02:r2",
-            "targetText": "bag",
+            "targetText": "The baby's rattle is under the bed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i02:r3",
-            "targetText": "jacket",
+            "targetText": "The baby's bottle is under the sofa.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +192,19 @@
           {
             "responseId": "en:lesson-05:session-26:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `badge`, а в этом варианте — `bag`.",
-              "uk": "У записі перше слово — `badge`, а в цьому варіанті — `bag`."
+              "ru": "В записи последнее слово — `sofa`, а в этом варианте — `bed`.",
+              "uk": "У записі останнє слово — `sofa`, а в цьому варіанті — `bed`."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `badge`, а в этом варианте — `jacket`.",
-              "uk": "У записі перше слово — `badge`, а в цьому варіанті — `jacket`."
+              "ru": "В записи вещь — `rattle`, а в этом варианте — `bottle`.",
+              "uk": "У записі річ — `rattle`, а в цьому варіанті — `bottle`."
             }
           }
         ],
@@ -124,68 +214,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-26:word:bib",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bib",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:word:bib:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bib",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:word:bib:audio",
+          "transcript": "bib"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:word:bib:r1",
+            "targetText": "bib",
+            "meaningByLocale": {
+              "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+              "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bib",
+          "definitionByLocale": {
+            "ru": "слюнявчик. The baby's bib is on the table. — «Слюнявчик малыша на столе». О тканевом нагруднике, который надевают малышу во время еды.",
+            "uk": "слинявчик. The baby's bib is on the table. — «Слинявчик малюка на столі». Про тканинний нагрудник, який надягають малюкові під час їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-26:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назвіть значок на одязі",
+      "prompt": "Слинявчик належить малюкові. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i03:r1",
-          "text": "badge"
+          "text": "baby's"
         },
         {
           "responseId": "en:lesson-05:session-26:i03:r2",
-          "text": "gloves"
+          "text": "baby"
         },
         {
           "responseId": "en:lesson-05:session-26:i03:r3",
-          "text": "lunchbox"
+          "text": "babies"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть значок на одязі",
+      "accessibilityLabel": "Слинявчик належить малюкові. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите значок на одежде",
-          "uk": "Назвіть значок на одязі"
+          "ru": "Слюнявчик принадлежит малышу. Выберите слово",
+          "uk": "Слинявчик належить малюкові. Виберіть слово"
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "This is the ___ bib.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-26:i03:r1",
-            "text": "badge"
+            "text": "baby's"
           },
           {
             "responseId": "en:lesson-05:session-26:i03:r2",
-            "text": "gloves"
+            "text": "baby"
           },
           {
             "responseId": "en:lesson-05:session-26:i03:r3",
-            "text": "lunchbox"
+            "text": "babies"
           }
         ],
-        "testedDimension": "Назвіть значок на одязі",
+        "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Назвіть значок на одязі",
+            "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`gloves` — перчатки; значок — `badge`.",
-              "uk": "`gloves` — рукавички; значок — `badge`."
+              "ru": "После слова baby нужно `'s`: `baby's bib` — «слюнявчик малыша».",
+              "uk": "Після слова baby потрібно `'s`: `baby's bib` — «слинявчик малюка»."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Назвіть значок на одязі",
+            "testedDimension": "Слинявчик належить малюкові. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "`lunchbox` — контейнер для обеда; значок — `badge`.",
-              "uk": "`lunchbox` — контейнер для обіду; значок — `badge`."
+              "ru": "`babies` — это «малыши», несколько детей; чтобы назвать хозяина, нужно `baby's`.",
+              "uk": "`babies` — це «малюки», кілька дітей; щоб назвати господаря, потрібно `baby's`."
             }
           }
         ]
@@ -194,7 +327,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +341,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-26:i04:p1",
-            "target": "badge",
+            "target": "nappy",
             "meaningByLocale": {
-              "ru": "значок",
-              "uk": "значок"
+              "ru": "подгузник",
+              "uk": "підгузок"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i04:p2",
-            "target": "bored",
+            "target": "rattle",
             "meaningByLocale": {
-              "ru": "скучающий",
-              "uk": "той, кому нудно"
+              "ru": "погремушка",
+              "uk": "брязкальце"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i04:p3",
-            "target": "confused",
+            "target": "bib",
             "meaningByLocale": {
-              "ru": "растерянный",
-              "uk": "розгублений"
+              "ru": "слюнявчик",
+              "uk": "слинявчик"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i04:p4",
-            "target": "worried",
+            "target": "crib",
             "meaningByLocale": {
-              "ru": "обеспокоенный",
-              "uk": "стурбований"
+              "ru": "детская кроватка",
+              "uk": "дитяче ліжечко"
             }
           }
         ],
         "leftColumn": [
-          "badge",
-          "bored",
-          "confused",
-          "worried"
+          "nappy",
+          "rattle",
+          "bib",
+          "crib"
         ],
         "rightColumn": [
-          "значок",
-          "той, кому нудно",
-          "розгублений",
-          "стурбований"
+          "підгузок",
+          "брязкальце",
+          "слинявчик",
+          "дитяче ліжечко"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,9 +399,52 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-26:word:crib",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crib",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-26:word:crib:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crib",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-26:word:crib:audio",
+          "transcript": "crib"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-26:word:crib:r1",
+            "targetText": "crib",
+            "meaningByLocale": {
+              "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+              "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crib",
+          "definitionByLocale": {
+            "ru": "детская кроватка. The baby's crib is small. — «Кроватка малыша маленькая». О кроватке с бортиками, в которой спит малыш.",
+            "uk": "дитяче ліжечко. The baby's crib is small. — «Ліжечко малюка маленьке». Про ліжечко з бортиками, у якому спить малюк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-26:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -282,15 +458,19 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i05:audio",
-          "transcript": "This is Anna's badge."
+          "transcript": "The baby's crib is next to the window."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is Anna's badge.",
+        "hiddenTargetPhrase": "The baby's crib is next to the window.",
         "orderedTokens": [
-          "This",
+          "The",
+          "baby's",
+          "crib",
           "is",
-          "Anna's",
-          "badge"
+          "next",
+          "to",
+          "the",
+          "window"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -301,8 +481,8 @@
             "correct": false,
             "testedDimension": "Послухайте й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is Anna's badge.`",
-              "uk": "тут потрібно `is` — `This is Anna's badge.`"
+              "ru": "здесь нужно `is` — `The baby's crib is next to the window.`",
+              "uk": "тут потрібно `is` — `The baby's crib is next to the window.`"
             }
           }
         ],
@@ -315,39 +495,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+      "prompt": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+      "accessibilityLabel": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Tom's badge is here.",
+        "targetPhrase": "Is this the baby's rattle?",
         "localizedMeaning": {
-          "ru": "Вы нашли значок Тома. Скажите «Значок Тома здесь»",
-          "uk": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»"
+          "ru": "Вы нашли погремушку и спрашиваете сестру, не малыша ли она. Задайте вопрос: «Это погремушка малыша?»",
+          "uk": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»"
         },
         "orderedTokens": [
-          "Tom's",
-          "badge",
-          "is",
-          "here"
+          "Is",
+          "this",
+          "the",
+          "baby's",
+          "rattle"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Ви знайшли значок Тома. Скажіть «Значок Тома тут»",
+            "testedDimension": "Ви знайшли брязкальце й питаєте сестру, чи не малюкове воно. Задайте питання: «Це брязкальце малюка?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Tom's badge is here.`",
-              "uk": "тут потрібно `is` — `Tom's badge is here.`"
+              "ru": "здесь нужно `Is` — `Is this the baby's rattle?`",
+              "uk": "тут потрібно `Is` — `Is this the baby's rattle?`"
             }
           }
         ],
@@ -360,25 +541,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви довго чекаєте без діла. Скажіть «Мені нудно» без скорочення",
+      "prompt": "Сестра питає, чиє ліжечко біля вікна. Воно малюка. Скажіть: «Це ліжечко малюка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i07:audio"
       ],
-      "accessibilityLabel": "Ви довго чекаєте без діла. Скажіть «Мені нудно» без скорочення",
+      "accessibilityLabel": "Сестра питає, чиє ліжечко біля вікна. Воно малюка. Скажіть: «Це ліжечко малюка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i07:audio",
-          "transcript": "I am bored."
+          "transcript": "This is the baby's crib."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am bored.",
+        "targetPhrase": "This is the baby's crib.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,67 +574,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Рукавички належать Анні. Укажіть власницю",
+      "prompt": "Капці малюка лежать на килимку. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i08:r1",
-          "text": "Anna's"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-05:session-26:i08:r2",
-          "text": "Anna"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-05:session-26:i08:r3",
-          "text": "Tom's"
+          "text": "has"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рукавички належать Анні. Укажіть власницю",
+      "accessibilityLabel": "Капці малюка лежать на килимку. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перчатки принадлежат Анне. Укажите владельца",
-          "uk": "Рукавички належать Анні. Укажіть власницю"
+          "ru": "Тапочки малыша лежат на ковре. Выберите слово",
+          "uk": "Капці малюка лежать на килимку. Виберіть слово"
         },
-        "gappedTargetPhrase": "These are ___ gloves.",
+        "gappedTargetPhrase": "The baby's slippers ___ on the rug.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-26:i08:r1",
-            "text": "Anna's"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-05:session-26:i08:r2",
-            "text": "Anna"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-05:session-26:i08:r3",
-            "text": "Tom's"
+            "text": "has"
           }
         ],
-        "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+        "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+            "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "К имени владельца добавляем `’s`: `Anna’s`.",
-              "uk": "До імені власниці додаємо `’s`: `Anna’s`."
+              "ru": "Тапочки — пара, поэтому нужно `are`, а не `is`.",
+              "uk": "Капці — пара, тому потрібно `are`, а не `is`."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Рукавички належать Анні. Укажіть власницю",
+            "testedDimension": "Капці малюка лежать на килимку. Виберіть слово",
             "feedbackByLocale": {
-              "ru": "Это принадлежность Тому; здесь владелица Анна.",
-              "uk": "Це належність Тому; тут власниця Анна."
+              "ru": "`has` значит «иметь», а здесь мы говорим, где лежат тапочки: нужно `are`.",
+              "uk": "`has` означає «мати», а тут ми кажемо, де лежать капці: потрібно `are`."
             }
           }
         ]
@@ -462,51 +643,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, який стан називає друг",
+      "prompt": "Послухайте бабусю",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i09:r1",
-          "text": "I am confused."
+          "text": "Where is my sister's bag?"
         },
         {
           "responseId": "en:lesson-05:session-26:i09:r2",
-          "text": "I am worried."
+          "text": "Where is my brother's bag?"
         },
         {
           "responseId": "en:lesson-05:session-26:i09:r3",
-          "text": "I am bored."
+          "text": "Where is my sister's book?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте, який стан називає друг",
+      "accessibilityLabel": "Послухайте бабусю",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i09:audio",
-          "transcript": "I am confused."
+          "transcript": "Where is my sister's bag?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-26:i09:r1",
-            "targetText": "I am confused.",
+            "targetText": "Where is my sister's bag?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i09:r2",
-            "targetText": "I am worried.",
+            "targetText": "Where is my brother's bag?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i09:r3",
-            "targetText": "I am bored.",
+            "targetText": "Where is my sister's book?",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +696,19 @@
           {
             "responseId": "en:lesson-05:session-26:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте, який стан називає друг",
+            "testedDimension": "Послухайте бабусю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `confused`, а в этом варианте — `worried`.",
-              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `worried`."
+              "ru": "В записи хозяйка — `sister's`, сестра, а в этом варианте — `brother's`, брат.",
+              "uk": "У записі господиня — `sister's`, сестра, а в цьому варіанті — `brother's`, брат."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте, який стан називає друг",
+            "testedDimension": "Послухайте бабусю",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `confused`, а в этом варианте — `bored`.",
-              "uk": "У записі останнє слово — `confused`, а в цьому варіанті — `bored`."
+              "ru": "В записи последнее слово — `bag`, а в этом варианте — `book`.",
+              "uk": "У записі останнє слово — `bag`, а в цьому варіанті — `book`."
             }
           }
         ],
@@ -538,8 +719,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -552,48 +733,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-26:i10:p1",
-            "target": "badge",
+            "target": "nappy",
             "meaningByLocale": {
-              "ru": "значок",
-              "uk": "значок"
+              "ru": "подгузник",
+              "uk": "підгузок"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i10:p2",
-            "target": "cats",
+            "target": "rattle",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "погремушка",
+              "uk": "брязкальце"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i10:p3",
-            "target": "worktop",
+            "target": "crib",
             "meaningByLocale": {
-              "ru": "кухонная столешница",
-              "uk": "кухонна стільниця"
+              "ru": "детская кроватка",
+              "uk": "дитяче ліжечко"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i10:p4",
-            "target": "gloves",
+            "target": "blanket",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "плед",
+              "uk": "плед"
             }
           }
         ],
         "leftColumn": [
-          "badge",
-          "cats",
-          "worktop",
-          "gloves"
+          "nappy",
+          "rattle",
+          "crib",
+          "blanket"
         ],
         "rightColumn": [
-          "значок",
-          "коти",
-          "кухонна стільниця",
-          "рукавички"
+          "підгузок",
+          "брязкальце",
+          "дитяче ліжечко",
+          "плед"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,44 +792,44 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Послухайте бабусю й складіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте бабусю й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i11:audio",
-          "transcript": "Anna's gloves are on the worktop."
+          "transcript": "My sister's baby has a rattle."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Anna's gloves are on the worktop.",
+        "hiddenTargetPhrase": "My sister's baby has a rattle.",
         "orderedTokens": [
-          "Anna's",
-          "gloves",
-          "are",
-          "on",
-          "the",
-          "worktop"
+          "My",
+          "sister's",
+          "baby",
+          "has",
+          "a",
+          "rattle"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
+            "testedDimension": "Послухайте бабусю й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `Anna's gloves are on the worktop.`",
-              "uk": "тут потрібно `are` — `Anna's gloves are on the worktop.`"
+              "ru": "здесь нужно `has` — `My sister's baby has a rattle.`",
+              "uk": "тут потрібно `has` — `My sister's baby has a rattle.`"
             }
           }
         ],
@@ -661,41 +842,42 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коти сховалися під столом. Скажіть «Коти під столом»",
+      "prompt": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коти сховалися під столом. Скажіть «Коти під столом»",
+      "accessibilityLabel": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The cats are under the table.",
+        "targetPhrase": "The bib is in the baby's crib.",
         "localizedMeaning": {
-          "ru": "Кошки спрятались под столом. Скажите «Кошки под столом»",
-          "uk": "Коти сховалися під столом. Скажіть «Коти під столом»"
+          "ru": "Бабушка ищет слюнявчик. Он в кроватке малыша. Скажите ей: «Слюнявчик в кроватке малыша»",
+          "uk": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»"
         },
         "orderedTokens": [
           "The",
-          "cats",
-          "are",
-          "under",
+          "bib",
+          "is",
+          "in",
           "the",
-          "table"
+          "baby's",
+          "crib"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Коти сховалися під столом. Скажіть «Коти під столом»",
+            "testedDimension": "Бабуся шукає слинявчик. Він у ліжечку малюка. Скажіть їй: «Слинявчик у ліжечку малюка»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The cats are under the table.`",
-              "uk": "тут потрібно `are` — `The cats are under the table.`"
+              "ru": "здесь нужно `is` — `The bib is in the baby's crib.`",
+              "uk": "тут потрібно `is` — `The bib is in the baby's crib.`"
             }
           }
         ],
@@ -708,25 +890,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви шукаєте свій значок. Запитайте «Де мій значок?»",
+      "prompt": "Сестра шукає брязкальце. Воно у вас. Скажіть їй: «У мене брязкальце малюка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i13:audio"
       ],
-      "accessibilityLabel": "Ви шукаєте свій значок. Запитайте «Де мій значок?»",
+      "accessibilityLabel": "Сестра шукає брязкальце. Воно у вас. Скажіть їй: «У мене брязкальце малюка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i13:audio",
-          "transcript": "Where is my badge?"
+          "transcript": "I have the baby's rattle."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Where is my badge?",
+        "targetPhrase": "I have the baby's rattle.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -741,67 +923,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Значок належить подрузі. Скажіть «Значок її»",
+      "prompt": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i14:r1",
-          "text": "hers"
+          "text": "'s"
         },
         {
           "responseId": "en:lesson-05:session-26:i14:r2",
-          "text": "her"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-26:i14:r3",
-          "text": "ours"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Значок належить подрузі. Скажіть «Значок її»",
+      "accessibilityLabel": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Значок принадлежит подруге. Скажите «Значок её»",
-          "uk": "Значок належить подрузі. Скажіть «Значок її»"
+          "ru": "Малыш спит, и вы говорите о нём как о ребёнке сестры. Выберите нужное",
+          "uk": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне"
         },
-        "gappedTargetPhrase": "The badge is ___.",
+        "gappedTargetPhrase": "My sister ___ baby is asleep.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-26:i14:r1",
-            "text": "hers"
+            "text": "'s"
           },
           {
             "responseId": "en:lesson-05:session-26:i14:r2",
-            "text": "her"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-26:i14:r3",
-            "text": "ours"
+            "text": "is"
           }
         ],
-        "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+        "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-26:i14:r2",
             "correct": false,
-            "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+            "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "`has` значит «иметь»; «малыш сестры» говорим через `'s`: `my sister's baby`.",
+              "uk": "`has` означає «мати»; «малюк сестри» кажемо через `'s`: `my sister's baby`."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i14:r3",
             "correct": false,
-            "testedDimension": "Значок належить подрузі. Скажіть «Значок її»",
+            "testedDimension": "Малюк спить, і ви кажете про нього як про дитину сестри. Виберіть потрібне",
             "feedbackByLocale": {
-              "ru": "`ours` — наш; её — `hers`.",
-              "uk": "`ours` — наш; її — `hers`."
+              "ru": "Слово `is` здесь не нужно: «малыш сестры» — это `my sister's baby`.",
+              "uk": "Слово `is` тут не потрібне: «малюк сестри» — це `my sister's baby`."
             }
           }
         ]
@@ -810,51 +992,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де значок",
+      "prompt": "Послухайте сестру",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-26:i15:r1",
-          "text": "Your badge is on the worktop."
+          "text": "The baby's nappy is in my brother's bag."
         },
         {
           "responseId": "en:lesson-05:session-26:i15:r2",
-          "text": "My badge is on the worktop."
+          "text": "The baby's nappy is in my sister's bag."
         },
         {
           "responseId": "en:lesson-05:session-26:i15:r3",
-          "text": "Your badge is on the table."
+          "text": "The baby's bib is in my brother's bag."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте, де значок",
+      "accessibilityLabel": "Послухайте сестру",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i15:audio",
-          "transcript": "Your badge is on the worktop."
+          "transcript": "The baby's nappy is in my brother's bag."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-26:i15:r1",
-            "targetText": "Your badge is on the worktop.",
+            "targetText": "The baby's nappy is in my brother's bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i15:r2",
-            "targetText": "My badge is on the worktop.",
+            "targetText": "The baby's nappy is in my sister's bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-26:i15:r3",
-            "targetText": "Your badge is on the table.",
+            "targetText": "The baby's bib is in my brother's bag.",
             "meaningByLocale": null
           }
         ],
@@ -863,19 +1045,19 @@
           {
             "responseId": "en:lesson-05:session-26:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де значок",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `Your`, а в этом варианте — `My`.",
-              "uk": "У записі перше слово — `Your`, а в цьому варіанті — `My`."
+              "ru": "В записи сумка брата, `brother's`, а в этом варианте — сестры, `sister's`.",
+              "uk": "У записі сумка брата, `brother's`, а в цьому варіанті — сестри, `sister's`."
             }
           },
           {
             "responseId": "en:lesson-05:session-26:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де значок",
+            "testedDimension": "Послухайте сестру",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `worktop`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `worktop`, а в цьому варіанті — `table`."
+              "ru": "В записи вещь — `nappy`, а в этом варианте — `bib`.",
+              "uk": "У записі річ — `nappy`, а в цьому варіанті — `bib`."
             }
           }
         ],
@@ -886,7 +1068,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -900,48 +1082,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-26:i16:p1",
-            "target": "badge",
+            "target": "nappy",
             "meaningByLocale": {
-              "ru": "значок",
-              "uk": "значок"
+              "ru": "подгузник",
+              "uk": "підгузок"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i16:p2",
-            "target": "cats",
+            "target": "rattle",
             "meaningByLocale": {
-              "ru": "кошки",
-              "uk": "коти"
+              "ru": "погремушка",
+              "uk": "брязкальце"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i16:p3",
-            "target": "worktop",
+            "target": "bib",
             "meaningByLocale": {
-              "ru": "кухонная столешница",
-              "uk": "кухонна стільниця"
+              "ru": "слюнявчик",
+              "uk": "слинявчик"
             }
           },
           {
             "pairId": "en:lesson-05:session-26:i16:p4",
-            "target": "gloves",
+            "target": "crib",
             "meaningByLocale": {
-              "ru": "перчатки",
-              "uk": "рукавички"
+              "ru": "детская кроватка",
+              "uk": "дитяче ліжечко"
             }
           }
         ],
         "leftColumn": [
-          "badge",
-          "cats",
-          "worktop",
-          "gloves"
+          "nappy",
+          "rattle",
+          "bib",
+          "crib"
         ],
         "rightColumn": [
-          "значок",
-          "коти",
-          "кухонна стільниця",
-          "рукавички"
+          "підгузок",
+          "брязкальце",
+          "слинявчик",
+          "дитяче ліжечко"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -959,25 +1141,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-26:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, кому належить знайдений значок. Він належить Анні. Скажіть «Це значок Анни»",
+      "prompt": "Бабуся питає, де брязкальце малюка. Воно на підлозі. Скажіть їй: «Брязкальце малюка на підлозі»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-26:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, кому належить знайдений значок. Він належить Анні. Скажіть «Це значок Анни»",
+      "accessibilityLabel": "Бабуся питає, де брязкальце малюка. Воно на підлозі. Скажіть їй: «Брязкальце малюка на підлозі»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-26:i17:audio",
-          "transcript": "This is Anna's badge."
+          "transcript": "The baby's rattle is on the floor."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is Anna's badge.",
+        "targetPhrase": "The baby's rattle is on the floor.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -999,11 +1181,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5ee9f66a82415e6c5c6fd57d3e8e1d0f49ef2ad8d8170a1c2025c9e6fa7471c3"
+  "learnerFingerprint": "8a0bc8b03a7a211110c4afb4c0d4724f816eee04aeaf33459c0ccb0cbb6a5a2f"
 }

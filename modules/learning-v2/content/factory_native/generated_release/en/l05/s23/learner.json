@@ -4,39 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-23:i01",
+      "interactionId": "en:lesson-05:session-23:word:grandfather",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grandfather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:word:grandfather:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grandfather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:word:grandfather:audio",
+          "transcript": "grandfather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:word:grandfather:r1",
+            "targetText": "grandfather",
+            "meaningByLocale": {
+              "ru": "дедушка. My grandfather is here. — «Мой дедушка здесь». Об отце отца или матери.",
+              "uk": "дідусь. My grandfather is here. — «Мій дідусь тут». Про батька батька або матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grandfather",
+          "definitionByLocale": {
+            "ru": "дедушка. My grandfather is here. — «Мой дедушка здесь». Об отце отца или матери.",
+            "uk": "дідусь. My grandfather is here. — «Мій дідусь тут». Про батька батька або матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Двое знакомых состоят в браке. Скажите «Они женаты» без сокращения",
+      "prompt": "Подруга спрашивает, чей это стул. Он принадлежит вашему дедушке. Скажите ей полной фразой: «Стул моего дедушки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двое знакомых состоят в браке. Скажите «Они женаты» без сокращения",
+      "accessibilityLabel": "Подруга спрашивает, чей это стул. Он принадлежит вашему дедушке. Скажите ей полной фразой: «Стул моего дедушки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They are married.",
+        "targetPhrase": "The chair is my grandfather’s.",
         "localizedMeaning": {
-          "ru": "Двое знакомых состоят в браке. Скажите «Они женаты» без сокращения",
-          "uk": "Двоє знайомих перебувають у шлюбі. Скажіть «Вони одружені» без скорочення"
+          "ru": "Подруга спрашивает, чей это стул. Он принадлежит вашему дедушке. Скажите ей полной фразой: «Стул моего дедушки»",
+          "uk": "Подруга питає, чий це стілець. Він належить вашому дідусеві. Скажіть їй повною фразою: «Стілець мого дідуся»"
         },
         "orderedTokens": [
-          "They",
-          "are",
-          "married"
+          "The",
+          "chair",
+          "is",
+          "my",
+          "grandfather’s"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Двое знакомых состоят в браке. Скажите «Они женаты» без сокращения",
+            "testedDimension": "Подруга спрашивает, чей это стул. Он принадлежит вашему дедушке. Скажите ей полной фразой: «Стул моего дедушки»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `They are married.`",
-              "uk": "тут потрібно `are` — `They are married.`"
+              "ru": "здесь нужно `my` — `The chair is my grandfather’s.`",
+              "uk": "тут потрібно `my` — `The chair is my grandfather’s.`"
             }
           }
         ],
@@ -48,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-23:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-23:word:nephew",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — nephew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:word:nephew:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nephew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:word:nephew:audio",
+          "transcript": "nephew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:word:nephew:r1",
+            "targetText": "nephew",
+            "meaningByLocale": {
+              "ru": "племянник. His nephew is here. — «Его племянник здесь». О сыне брата или сестры.",
+              "uk": "племінник. His nephew is here. — «Його племінник тут». Про сина брата або сестри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nephew",
+          "definitionByLocale": {
+            "ru": "племянник. His nephew is here. — «Его племянник здесь». О сыне брата или сестры.",
+            "uk": "племінник. His nephew is here. — «Його племінник тут». Про сина брата або сестри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-23:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i02:r1",
-          "text": "camera"
+          "text": "My nephew has a puppy."
         },
         {
           "responseId": "en:lesson-05:session-23:i02:r2",
-          "text": "tablet"
+          "text": "My nephew have a puppy."
         },
         {
           "responseId": "en:lesson-05:session-23:i02:r3",
-          "text": "helmet"
+          "text": "My nephew has a ball."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i02:audio",
-          "transcript": "camera"
+          "transcript": "My nephew has a puppy."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-23:i02:r1",
-            "targetText": "camera",
+            "targetText": "My nephew has a puppy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i02:r2",
-            "targetText": "tablet",
+            "targetText": "My nephew have a puppy.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i02:r3",
-            "targetText": "helmet",
+            "targetText": "My nephew has a ball.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-23:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `camera`, а в этом варианте — `tablet`.",
-              "uk": "У записі перше слово — `camera`, а в цьому варіанті — `tablet`."
+              "ru": "В записи `has` — у одного человека, а в этом варианте `have` — форма для двоих или для I, you.",
+              "uk": "У записі `has` — в однієї людини, а в цьому варіанті `have` — форма для двох або для I, you."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `camera`, а в этом варианте — `helmet`.",
-              "uk": "У записі перше слово — `camera`, а в цьому варіанті — `helmet`."
+              "ru": "В записи последнее слово `puppy` — щенок, а в этом варианте `ball` — мяч.",
+              "uk": "У записі останнє слово `puppy` — цуценя, а в цьому варіанті `ball` — м’яч."
             }
           }
         ],
@@ -124,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-23:word:twins",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — twins",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:word:twins:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — twins",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:word:twins:audio",
+          "transcript": "twins"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:word:twins:r1",
+            "targetText": "twins",
+            "meaningByLocale": {
+              "ru": "близнецы. The twins are here. — «Близнецы здесь». О двух детях, которые родились в один день у одной матери.",
+              "uk": "близнюки. The twins are here. — «Близнюки тут». Про двох дітей, які народилися в один день в однієї матері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "twins",
+          "definitionByLocale": {
+            "ru": "близнецы. The twins are here. — «Близнецы здесь». О двух детях, которые родились в один день у одной матери.",
+            "uk": "близнюки. The twins are here. — «Близнюки тут». Про двох дітей, які народилися в один день в однієї матері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-23:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите камеру для съёмки",
+      "prompt": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i03:r1",
-          "text": "camera"
+          "text": "twins"
         },
         {
           "responseId": "en:lesson-05:session-23:i03:r2",
-          "text": "charger"
+          "text": "cousins"
         },
         {
           "responseId": "en:lesson-05:session-23:i03:r3",
-          "text": "helmet"
+          "text": "brothers"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите камеру для съёмки",
+      "accessibilityLabel": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите камеру для съёмки",
-          "uk": "Назвіть камеру для знімання"
+          "ru": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
+          "uk": "Двоє дітей, які народилися в один день в однієї матері. Як їх називають англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-23:i03:r1",
-            "text": "camera"
+            "text": "twins"
           },
           {
             "responseId": "en:lesson-05:session-23:i03:r2",
-            "text": "charger"
+            "text": "cousins"
           },
           {
             "responseId": "en:lesson-05:session-23:i03:r3",
-            "text": "helmet"
+            "text": "brothers"
           }
         ],
-        "testedDimension": "Назовите камеру для съёмки",
+        "testedDimension": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите камеру для съёмки",
+            "testedDimension": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
             "feedbackByLocale": {
-              "ru": "`charger` — зарядка; камера — `camera`.",
-              "uk": "`charger` — зарядка; камера — `camera`."
+              "ru": "cousins — это двоюродные братья и сёстры, а двое детей одного дня рождения — twins.",
+              "uk": "cousins — це двоюрідні брати й сестри, а двоє дітей одного дня народження — twins."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите камеру для съёмки",
+            "testedDimension": "Двое детей, которые родились в один день у одной матери. Как их называют по-английски?",
             "feedbackByLocale": {
-              "ru": "`helmet` — шлем; камера — `camera`.",
-              "uk": "`helmet` — шолом; камера — `camera`."
+              "ru": "brothers — это братья, а двое детей одного дня рождения — twins.",
+              "uk": "brothers — це брати, а двоє дітей одного дня народження — twins."
             }
           }
         ]
@@ -194,62 +325,62 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями; single здесь об отношениях",
+      "prompt": "Соедините слова со значениями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями; single здесь об отношениях",
+      "accessibilityLabel": "Соедините слова со значениями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-23:i04:p1",
-            "target": "camera",
+            "target": "grandfather",
             "meaningByLocale": {
-              "ru": "камера для съёмки",
-              "uk": "камера для знімання"
+              "ru": "дедушка",
+              "uk": "дідусь"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i04:p2",
-            "target": "married",
+            "target": "nephew",
             "meaningByLocale": {
-              "ru": "состоят в браке",
-              "uk": "перебувають у шлюбі"
+              "ru": "племянник",
+              "uk": "племінник"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i04:p3",
-            "target": "single",
+            "target": "niece",
             "meaningByLocale": {
-              "ru": "не в отношениях",
-              "uk": "не у стосунках"
+              "ru": "племянница",
+              "uk": "племінниця"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i04:p4",
-            "target": "different",
+            "target": "twins",
             "meaningByLocale": {
-              "ru": "разные",
-              "uk": "різні"
+              "ru": "близнецы",
+              "uk": "близнюки"
             }
           }
         ],
         "leftColumn": [
-          "camera",
-          "married",
-          "single",
-          "different"
+          "grandfather",
+          "nephew",
+          "niece",
+          "twins"
         ],
         "rightColumn": [
-          "камера для съёмки",
-          "состоят в браке",
-          "не в отношениях",
-          "разные"
+          "дедушка",
+          "племянник",
+          "племянница",
+          "близнецы"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,45 +397,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-23:word:niece",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — niece",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-23:word:niece:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — niece",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-23:word:niece:audio",
+          "transcript": "niece"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-23:word:niece:r1",
+            "targetText": "niece",
+            "meaningByLocale": {
+              "ru": "племянница. Her niece is here. — «Её племянница здесь». О дочери брата или сестры.",
+              "uk": "племінниця. Her niece is here. — «Її племінниця тут». Про доньку брата або сестри."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "niece",
+          "definitionByLocale": {
+            "ru": "племянница. Her niece is here. — «Её племянница здесь». О дочери брата или сестры.",
+            "uk": "племінниця. Her niece is here. — «Її племінниця тут». Про доньку брата або сестри."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-23:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i05:audio",
-          "transcript": "Your camera is on the table."
+          "transcript": "My niece has a diary."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Your camera is on the table.",
+        "hiddenTargetPhrase": "My niece has a diary.",
         "orderedTokens": [
-          "Your",
-          "camera",
-          "is",
-          "on",
-          "the",
-          "table"
+          "My",
+          "niece",
+          "has",
+          "a",
+          "diary"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "have"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Your camera is on the table.`",
-              "uk": "тут потрібно `is` — `Your camera is on the table.`"
+              "ru": "здесь нужно `has` — `My niece has a diary.`",
+              "uk": "тут потрібно `has` — `My niece has a diary.`"
             }
           }
         ],
@@ -317,39 +490,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Билеты принадлежат вам и другу. Скажите «Билеты наши»",
+      "prompt": "Вы показываете подруге мяч и спрашиваете, не её ли племянника он. Задайте вопрос полностью: «Это мяч твоего племянника?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Билеты принадлежат вам и другу. Скажите «Билеты наши»",
+      "accessibilityLabel": "Вы показываете подруге мяч и спрашиваете, не её ли племянника он. Задайте вопрос полностью: «Это мяч твоего племянника?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The tickets are ours.",
+        "targetPhrase": "Is this your nephew’s ball?",
         "localizedMeaning": {
-          "ru": "Билеты принадлежат вам и другу. Скажите «Билеты наши»",
-          "uk": "Квитки належать вам і другові. Скажіть «Квитки наші»"
+          "ru": "Вы показываете подруге мяч и спрашиваете, не её ли племянника он. Задайте вопрос полностью: «Это мяч твоего племянника?»",
+          "uk": "Ви показуєте подрузі м’яч і питаєте, чи не її племінника він. Задайте питання повністю: «Це м’яч твого племінника?»"
         },
         "orderedTokens": [
-          "The",
-          "tickets",
-          "are",
-          "ours"
+          "Is",
+          "this",
+          "your",
+          "nephew’s",
+          "ball"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Билеты принадлежат вам и другу. Скажите «Билеты наши»",
+            "testedDimension": "Вы показываете подруге мяч и спрашиваете, не её ли племянника он. Задайте вопрос полностью: «Это мяч твоего племянника?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The tickets are ours.`",
-              "uk": "тут потрібно `are` — `The tickets are ours.`"
+              "ru": "здесь нужно `Is` — `Is this your nephew’s ball?`",
+              "uk": "тут потрібно `Is` — `Is this your nephew’s ball?`"
             }
           }
         ],
@@ -362,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В разговоре об отношениях скажите «Я не в отношениях» без сокращения",
+      "prompt": "Подруга спрашивает: «Whose chair is this?» Стул принадлежит вашему дедушке. Ответьте: «Он моего дедушки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i07:audio"
       ],
-      "accessibilityLabel": "В разговоре об отношениях скажите «Я не в отношениях» без сокращения",
+      "accessibilityLabel": "Подруга спрашивает: «Whose chair is this?» Стул принадлежит вашему дедушке. Ответьте: «Он моего дедушки»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i07:audio",
-          "transcript": "I am single."
+          "transcript": "It is my grandfather’s."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am single.",
+        "targetPhrase": "It is my grandfather’s.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,67 +569,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шлем принадлежит подруге. Скажите «Шлем её»",
+      "prompt": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i08:r1",
-          "text": "hers"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-23:i08:r2",
-          "text": "her"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-23:i08:r3",
-          "text": "ours"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шлем принадлежит подруге. Скажите «Шлем её»",
+      "accessibilityLabel": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шлем принадлежит подруге. Скажите «Шлем её»",
-          "uk": "Шолом належить подрузі. Скажіть «Шолом її»"
+          "ru": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
+          "uk": "Подруга питає про двох близнюків на фотографії. У них є собака. Виберіть слово"
         },
-        "gappedTargetPhrase": "The helmet is ___.",
+        "gappedTargetPhrase": "The twins ___ a dog.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-23:i08:r1",
-            "text": "hers"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-23:i08:r2",
-            "text": "her"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-23:i08:r3",
-            "text": "ours"
+            "text": "is"
           }
         ],
-        "testedDimension": "Шлем принадлежит подруге. Скажите «Шлем её»",
+        "testedDimension": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i08:r2",
             "correct": false,
-            "testedDimension": "Шлем принадлежит подруге. Скажите «Шлем её»",
+            "testedDimension": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "Близнецов двое, как they, поэтому нужно have, а не has.",
+              "uk": "Близнюків двоє, як they, тому потрібно have, а не has."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i08:r3",
             "correct": false,
-            "testedDimension": "Шлем принадлежит подруге. Скажите «Шлем её»",
+            "testedDimension": "Подруга спрашивает про двух близнецов на фотографии. У них есть собака. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`ours` — наш; её — `hers`.",
-              "uk": "`ours` — наш; її — `hers`."
+              "ru": "is значит «является», а для «есть» нужно have.",
+              "uk": "is означає «є, являється», а для «є» потрібно have."
             }
           }
         ]
@@ -464,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, что друг замечает о билетах",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i09:r1",
-          "text": "The tickets are different."
+          "text": "My niece has a kite."
         },
         {
           "responseId": "en:lesson-05:session-23:i09:r2",
-          "text": "The tickets are here."
+          "text": "My nephew has a kite."
         },
         {
           "responseId": "en:lesson-05:session-23:i09:r3",
-          "text": "The tickets are ours."
+          "text": "My niece has a diary."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, что друг замечает о билетах",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i09:audio",
-          "transcript": "The tickets are different."
+          "transcript": "My niece has a kite."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-23:i09:r1",
-            "targetText": "The tickets are different.",
+            "targetText": "My niece has a kite.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i09:r2",
-            "targetText": "The tickets are here.",
+            "targetText": "My nephew has a kite.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i09:r3",
-            "targetText": "The tickets are ours.",
+            "targetText": "My niece has a diary.",
             "meaningByLocale": null
           }
         ],
@@ -517,19 +691,19 @@
           {
             "responseId": "en:lesson-05:session-23:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, что друг замечает о билетах",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `different`, а в этом варианте — `here`.",
-              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `here`."
+              "ru": "В записи `niece` — племянница, а в этом варианте `nephew` — племянник.",
+              "uk": "У записі `niece` — племінниця, а в цьому варіанті `nephew` — племінник."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, что друг замечает о билетах",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `different`, а в этом варианте — `ours`.",
-              "uk": "У записі останнє слово — `different`, а в цьому варіанті — `ours`."
+              "ru": "В записи последнее слово `kite` — змей, а в этом варианте `diary` — дневник.",
+              "uk": "У записі останнє слово `kite` — змій, а в цьому варіанті `diary` — щоденник."
             }
           }
         ],
@@ -540,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -554,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-23:i10:p1",
-            "target": "camera",
+            "target": "nephew",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "племянник",
+              "uk": "племінник"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i10:p2",
-            "target": "tickets",
+            "target": "twins",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "близнецы",
+              "uk": "близнюки"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i10:p3",
-            "target": "cheese",
+            "target": "kite",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "воздушный змей",
+              "uk": "повітряний змій"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i10:p4",
-            "target": "helmet",
+            "target": "dog",
             "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
+              "ru": "собака",
+              "uk": "собака"
             }
           }
         ],
         "leftColumn": [
-          "camera",
-          "tickets",
-          "cheese",
-          "helmet"
+          "nephew",
+          "twins",
+          "kite",
+          "dog"
         ],
         "rightColumn": [
-          "камера",
-          "билеты",
-          "сыр",
-          "шлем"
+          "племянник",
+          "близнецы",
+          "воздушный змей",
+          "собака"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -613,33 +787,46 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i11:audio",
-          "transcript": "Where is my camera?"
+          "transcript": "The twins have a kite."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is my camera?",
+        "hiddenTargetPhrase": "The twins have a kite.",
         "orderedTokens": [
-          "Where",
-          "is",
-          "my",
-          "camera"
+          "The",
+          "twins",
+          "have",
+          "a",
+          "kite"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "has"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-23:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `have` — `The twins have a kite.`",
+              "uk": "тут потрібно `have` — `The twins have a kite.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -649,39 +836,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сыр закончился. Скажите «Сыра нет»",
+      "prompt": "Подруга спрашивает, чья собака во дворе. Она принадлежит вашей племяннице. Скажите ей полной фразой: «Собака моей племянницы»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сыр закончился. Скажите «Сыра нет»",
+      "accessibilityLabel": "Подруга спрашивает, чья собака во дворе. Она принадлежит вашей племяннице. Скажите ей полной фразой: «Собака моей племянницы»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "There is no cheese.",
+        "targetPhrase": "The dog is my niece’s.",
         "localizedMeaning": {
-          "ru": "Сыр закончился. Скажите «Сыра нет»",
-          "uk": "Сир закінчився. Скажіть «Сиру немає»"
+          "ru": "Подруга спрашивает, чья собака во дворе. Она принадлежит вашей племяннице. Скажите ей полной фразой: «Собака моей племянницы»",
+          "uk": "Подруга питає, чия собака на подвір’ї. Вона належить вашій племінниці. Скажіть їй повною фразою: «Собака моєї племінниці»"
         },
         "orderedTokens": [
-          "There",
+          "The",
+          "dog",
           "is",
-          "no",
-          "cheese"
+          "my",
+          "niece’s"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Сыр закончился. Скажите «Сыра нет»",
+            "testedDimension": "Подруга спрашивает, чья собака во дворе. Она принадлежит вашей племяннице. Скажите ей полной фразой: «Собака моей племянницы»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is no cheese.`",
-              "uk": "тут потрібно `is` — `There is no cheese.`"
+              "ru": "здесь нужно `my` — `The dog is my niece’s.`",
+              "uk": "тут потрібно `my` — `The dog is my niece’s.`"
             }
           }
         ],
@@ -694,25 +882,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Камера друга у вас. Скажите ему «Твоя камера у меня»",
+      "prompt": "Подруга спрашивает, есть ли у вашего дедушки гитара. Да, есть. Ответьте: «У моего дедушки есть гитара»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i13:audio"
       ],
-      "accessibilityLabel": "Камера друга у вас. Скажите ему «Твоя камера у меня»",
+      "accessibilityLabel": "Подруга спрашивает, есть ли у вашего дедушки гитара. Да, есть. Ответьте: «У моего дедушки есть гитара»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i13:audio",
-          "transcript": "I have your camera."
+          "transcript": "My grandfather has a guitar."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have your camera.",
+        "targetPhrase": "My grandfather has a guitar.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -727,67 +915,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Камера принадлежит друзьям. Скажите «Камера их»",
+      "prompt": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i14:r1",
-          "text": "theirs"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-05:session-23:i14:r2",
-          "text": "their"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-05:session-23:i14:r3",
-          "text": "mine"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Камера принадлежит друзьям. Скажите «Камера их»",
+      "accessibilityLabel": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Камера принадлежит друзьям. Скажите «Камера их»",
-          "uk": "Камера належить друзям. Скажіть «Камера їхня»"
+          "ru": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
+          "uk": "Ви розповідаєте подрузі про дідуся. У нього є собака. Виберіть слово"
         },
-        "gappedTargetPhrase": "The camera is ___.",
+        "gappedTargetPhrase": "My grandfather ___ a dog.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-23:i14:r1",
-            "text": "theirs"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-05:session-23:i14:r2",
-            "text": "their"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-05:session-23:i14:r3",
-            "text": "mine"
+            "text": "is"
           }
         ],
-        "testedDimension": "Камера принадлежит друзьям. Скажите «Камера их»",
+        "testedDimension": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-23:i14:r2",
             "correct": false,
-            "testedDimension": "Камера принадлежит друзьям. Скажите «Камера их»",
+            "testedDimension": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `theirs`.",
-              "uk": "Без назви речі потрібна форма `theirs`."
+              "ru": "Дедушка один, как he, поэтому нужно has, а не have.",
+              "uk": "Дідусь один, як he, тому потрібно has, а не have."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i14:r3",
             "correct": false,
-            "testedDimension": "Камера принадлежит друзьям. Скажите «Камера их»",
+            "testedDimension": "Вы рассказываете подруге про дедушку. У него есть собака. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`mine` — моя; их — `theirs`.",
-              "uk": "`mine` — моя; їхня — `theirs`."
+              "ru": "is значит «является», а для «есть» нужно has.",
+              "uk": "is означає «є, являється», а для «є» потрібно has."
             }
           }
         ]
@@ -796,51 +984,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежит камера",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-23:i15:r1",
-          "text": "The camera is yours."
+          "text": "The kite is my nephew’s."
         },
         {
           "responseId": "en:lesson-05:session-23:i15:r2",
-          "text": "The camera is mine."
+          "text": "The kite is my niece’s."
         },
         {
           "responseId": "en:lesson-05:session-23:i15:r3",
-          "text": "The camera is his."
+          "text": "The kite is my nephew."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежит камера",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i15:audio",
-          "transcript": "The camera is yours."
+          "transcript": "The kite is my nephew’s."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-23:i15:r1",
-            "targetText": "The camera is yours.",
+            "targetText": "The kite is my nephew’s.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i15:r2",
-            "targetText": "The camera is mine.",
+            "targetText": "The kite is my niece’s.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-23:i15:r3",
-            "targetText": "The camera is his.",
+            "targetText": "The kite is my nephew.",
             "meaningByLocale": null
           }
         ],
@@ -849,19 +1037,19 @@
           {
             "responseId": "en:lesson-05:session-23:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит камера",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи `nephew’s` — племянника, а в этом варианте `niece’s` — племянницы.",
+              "uk": "У записі `nephew’s` — племінника, а в цьому варіанті `niece’s` — племінниці."
             }
           },
           {
             "responseId": "en:lesson-05:session-23:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит камера",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `his`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `his`."
+              "ru": "В записи есть ’s: змей принадлежит племяннику. Без ’s получится «змей — это племянник».",
+              "uk": "У записі є ’s: змій належить племінникові. Без ’s вийде «змій — це племінник»."
             }
           }
         ],
@@ -872,7 +1060,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -886,48 +1074,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-23:i16:p1",
-            "target": "camera",
+            "target": "grandfather",
             "meaningByLocale": {
-              "ru": "камера",
-              "uk": "камера"
+              "ru": "дедушка",
+              "uk": "дідусь"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i16:p2",
-            "target": "tickets",
+            "target": "niece",
             "meaningByLocale": {
-              "ru": "билеты",
-              "uk": "квитки"
+              "ru": "племянница",
+              "uk": "племінниця"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i16:p3",
-            "target": "cheese",
+            "target": "chair",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "стул",
+              "uk": "стілець"
             }
           },
           {
             "pairId": "en:lesson-05:session-23:i16:p4",
-            "target": "helmet",
+            "target": "guitar",
             "meaningByLocale": {
-              "ru": "шлем",
-              "uk": "шолом"
+              "ru": "гитара",
+              "uk": "гітара"
             }
           }
         ],
         "leftColumn": [
-          "camera",
-          "tickets",
-          "cheese",
-          "helmet"
+          "grandfather",
+          "niece",
+          "chair",
+          "guitar"
         ],
         "rightColumn": [
-          "камера",
-          "билеты",
-          "сыр",
-          "шлем"
+          "дедушка",
+          "племянница",
+          "стул",
+          "гитара"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -945,25 +1133,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-23:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг нашёл вашу камеру. Уточните «Камера моя»",
+      "prompt": "Подруга показывает на двух мальчиков на фотографии. Это близнецы, у них есть щенок. Скажите ей: «У близнецов есть щенок»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-23:i17:audio"
       ],
-      "accessibilityLabel": "Друг нашёл вашу камеру. Уточните «Камера моя»",
+      "accessibilityLabel": "Подруга показывает на двух мальчиков на фотографии. Это близнецы, у них есть щенок. Скажите ей: «У близнецов есть щенок»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-23:i17:audio",
-          "transcript": "The camera is mine."
+          "transcript": "The twins have a puppy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The camera is mine.",
+        "targetPhrase": "The twins have a puppy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -985,11 +1173,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8bf9154ea7e16bd1f3007bb1ccbc85e2e34fb5649426d0cf598662b0a2c96375"
+  "learnerFingerprint": "58312cfff3b772b439456c965cd2c228844141ca9c64b4d416f09fdda4d1386e"
 }

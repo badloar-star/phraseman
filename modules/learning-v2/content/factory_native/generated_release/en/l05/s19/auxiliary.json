@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-05:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-19:intro1:r2": {
-          "ru": "Без названия вещи нужна форма `mine`.",
-          "uk": "Без назви речі потрібна форма `mine`."
+          "ru": "После is одно our не ставят: без названия вещи нужно ours.",
+          "uk": "Після is саме our не ставлять: без назви речі потрібно ours."
         },
         "en:lesson-05:session-19:intro1:r3": {
-          "ru": "`yours` — твой; мой — `mine`.",
-          "uk": "`yours` — твій; мій — `mine`."
+          "ru": "theirs — их, а змей ваш с сестрой: нужно ours.",
+          "uk": "theirs — їхній, а змій ваш із сестрою: потрібно ours."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-19:intro2:r2": {
-          "ru": "С `She` нужна форма `is`.",
-          "uk": "З `She` потрібна форма `is`."
+          "ru": "После is одно their не ставят: без названия вещи нужно theirs.",
+          "uk": "Після is саме their не ставлять: без назви речі потрібно theirs."
         },
         "en:lesson-05:session-19:intro2:r3": {
-          "ru": "`alone` — одна; поблизости — `nearby`.",
-          "uk": "`alone` — сама; поблизу — `nearby`."
+          "ru": "ours — наш, а пазл детей соседей: нужно theirs.",
+          "uk": "ours — наш, а пазл дітей сусідів: потрібно theirs."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-05:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-19:intro3:r2": {
-          "ru": "Несколько сумок: `bags are`.",
-          "uk": "Кілька сумок: `bags are`."
+          "ru": "Ракеток две, поэтому нужно are, а не is.",
+          "uk": "Ракеток дві, тому потрібно are, а не is."
         },
         "en:lesson-05:session-19:intro3:r3": {
-          "ru": "Без названия вещи нужна форма `ours`.",
-          "uk": "Без назви речі потрібна форма `ours`."
+          "ru": "theirs — их, а ракетки ваши с другом: нужно ours.",
+          "uk": "theirs — їхні, а ракетки ваші з другом: потрібно ours."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "29df5c61b74b922d47017a70ef1330fb5d3f9924003961268d2344a53fec0e8f"
+  "auxiliaryFingerprint": "f569bad4051d92c39a6e2ac5fdf2eb36b986efb8ebb29b492e42c2f36c1ff701"
 }

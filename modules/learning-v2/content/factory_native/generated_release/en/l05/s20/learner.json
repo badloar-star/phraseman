@@ -4,39 +4,84 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-05:session-20:i01",
+      "interactionId": "en:lesson-05:session-20:word:husband",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — husband",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:word:husband:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — husband",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:word:husband:audio",
+          "transcript": "husband"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:word:husband:r1",
+            "targetText": "husband",
+            "meaningByLocale": {
+              "ru": "муж. My husband is here. — «Мой муж здесь». О мужчине, с которым человек состоит в браке.",
+              "uk": "чоловік. My husband is here. — «Мій чоловік тут». Про чоловіка, з яким людина одружена."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "husband",
+          "definitionByLocale": {
+            "ru": "муж. My husband is here. — «Мой муж здесь». О мужчине, с которым человек состоит в браке.",
+            "uk": "чоловік. My husband is here. — «Мій чоловік тут». Про чоловіка, з яким людина одружена."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+      "prompt": "Подруга спрашивает, чья кружка. Она принадлежит вашему мужу. Скажите ей полной фразой: «Кружка моего мужа»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+      "accessibilityLabel": "Подруга спрашивает, чья кружка. Она принадлежит вашему мужу. Скажите ей полной фразой: «Кружка моего мужа»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We are prepared.",
+        "targetPhrase": "The mug is my husband’s.",
         "localizedMeaning": {
-          "ru": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
-          "uk": "Карти й усе потрібне у вас із собою. Скажіть «Ми підготовлені» без скорочення"
+          "ru": "Подруга спрашивает, чья кружка. Она принадлежит вашему мужу. Скажите ей полной фразой: «Кружка моего мужа»",
+          "uk": "Подруга питає, чий кухоль. Він належить вашому чоловікові. Скажіть їй повною фразою: «Кухоль мого чоловіка»"
         },
         "orderedTokens": [
-          "We",
-          "are",
-          "prepared"
+          "The",
+          "mug",
+          "is",
+          "my",
+          "husband’s"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Карты и всё нужное у вас с собой. Скажите «Мы подготовлены» без сокращения",
+            "testedDimension": "Подруга спрашивает, чья кружка. Она принадлежит вашему мужу. Скажите ей полной фразой: «Кружка моего мужа»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `We are prepared.`",
-              "uk": "тут потрібно `are` — `We are prepared.`"
+              "ru": "здесь нужно `my` — `The mug is my husband’s.`",
+              "uk": "тут потрібно `my` — `The mug is my husband’s.`"
             }
           }
         ],
@@ -48,52 +93,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-05:session-20:i02",
-      "ordinal": 5,
+      "interactionId": "en:lesson-05:session-20:word:wife",
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите слово",
+      "prompt": "Карточка слова — wife",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:word:wife:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wife",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:word:wife:audio",
+          "transcript": "wife"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:word:wife:r1",
+            "targetText": "wife",
+            "meaningByLocale": {
+              "ru": "жена. His wife is here. — «Его жена здесь». О женщине, с которой человек состоит в браке.",
+              "uk": "дружина. His wife is here. — «Його дружина тут». Про жінку, з якою людина одружена."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wife",
+          "definitionByLocale": {
+            "ru": "жена. His wife is here. — «Его жена здесь». О женщине, с которой человек состоит в браке.",
+            "uk": "дружина. His wife is here. — «Його дружина тут». Про жінку, з якою людина одружена."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-05:session-20:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте охранника",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i02:r1",
-          "text": "scarf"
+          "text": "The umbrella is his wife’s."
         },
         {
           "responseId": "en:lesson-05:session-20:i02:r2",
-          "text": "coat"
+          "text": "The umbrella is his wife."
         },
         {
           "responseId": "en:lesson-05:session-20:i02:r3",
-          "text": "shirt"
+          "text": "The scarf is his wife’s."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите слово",
+      "accessibilityLabel": "Послушайте охранника",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i02:audio",
-          "transcript": "scarf"
+          "transcript": "The umbrella is his wife’s."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-20:i02:r1",
-            "targetText": "scarf",
+            "targetText": "The umbrella is his wife’s.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i02:r2",
-            "targetText": "coat",
+            "targetText": "The umbrella is his wife.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i02:r3",
-            "targetText": "shirt",
+            "targetText": "The scarf is his wife’s.",
             "meaningByLocale": null
           }
         ],
@@ -102,19 +190,19 @@
           {
             "responseId": "en:lesson-05:session-20:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте охранника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `scarf`, а в этом варианте — `coat`.",
-              "uk": "У записі перше слово — `scarf`, а в цьому варіанті — `coat`."
+              "ru": "В записи `wife’s` — «жены» (чья вещь), а в этом варианте `wife` — сама жена.",
+              "uk": "У записі `wife’s` — «дружини» (чия річ), а в цьому варіанті `wife` — сама дружина."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите слово",
+            "testedDimension": "Послушайте охранника",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `scarf`, а в этом варианте — `shirt`.",
-              "uk": "У записі перше слово — `scarf`, а в цьому варіанті — `shirt`."
+              "ru": "В записи говорят о зонте `umbrella`, а в этом варианте — о шарфе `scarf`.",
+              "uk": "У записі говорять про парасольку `umbrella`, а в цьому варіанті — про шарф `scarf`."
             }
           }
         ],
@@ -124,68 +212,111 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-20:word:son",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:word:son:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — son",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:word:son:audio",
+          "transcript": "son"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:word:son:r1",
+            "targetText": "son",
+            "meaningByLocale": {
+              "ru": "сын. My son is here. — «Мой сын здесь». О мальчике или мужчине по отношению к его родителям.",
+              "uk": "син. My son is here. — «Мій син тут». Про хлопчика чи чоловіка щодо його батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "son",
+          "definitionByLocale": {
+            "ru": "сын. My son is here. — «Мой сын здесь». О мальчике или мужчине по отношению к его родителям.",
+            "uk": "син. My son is here. — «Мій син тут». Про хлопчика чи чоловіка щодо його батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-20:i03",
-      "ordinal": 6,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Назовите шарф",
+      "prompt": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i03:r1",
-          "text": "scarf"
+          "text": "son"
         },
         {
           "responseId": "en:lesson-05:session-20:i03:r2",
-          "text": "jacket"
+          "text": "brother"
         },
         {
           "responseId": "en:lesson-05:session-20:i03:r3",
-          "text": "gloves"
+          "text": "uncle"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Назовите шарф",
+      "accessibilityLabel": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Назовите шарф",
-          "uk": "Назвіть шарф"
+          "ru": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
+          "uk": "Хлопчик щодо своїх батьків. Як його називають англійською?"
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-20:i03:r1",
-            "text": "scarf"
+            "text": "son"
           },
           {
             "responseId": "en:lesson-05:session-20:i03:r2",
-            "text": "jacket"
+            "text": "brother"
           },
           {
             "responseId": "en:lesson-05:session-20:i03:r3",
-            "text": "gloves"
+            "text": "uncle"
           }
         ],
-        "testedDimension": "Назовите шарф",
+        "testedDimension": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i03:r2",
             "correct": false,
-            "testedDimension": "Назовите шарф",
+            "testedDimension": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
             "feedbackByLocale": {
-              "ru": "`jacket` — куртка; шарф — `scarf`.",
-              "uk": "`jacket` — куртка; шарф — `scarf`."
+              "ru": "brother — это брат, а мальчик по отношению к родителям — son.",
+              "uk": "brother — це брат, а хлопчик щодо батьків — son."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i03:r3",
             "correct": false,
-            "testedDimension": "Назовите шарф",
+            "testedDimension": "Мальчик по отношению к своим родителям. Как его называют по-английски?",
             "feedbackByLocale": {
-              "ru": "`gloves` — перчатки; шарф — `scarf`.",
-              "uk": "`gloves` — рукавички; шарф — `scarf`."
+              "ru": "uncle — это дядя, а мальчик по отношению к родителям — son.",
+              "uk": "uncle — це дядько, а хлопчик щодо батьків — son."
             }
           }
         ]
@@ -194,7 +325,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i04",
-      "ordinal": 7,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -208,48 +339,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-20:i04:p1",
-            "target": "scarf",
+            "target": "husband",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "муж",
+              "uk": "чоловік"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i04:p2",
-            "target": "lost",
+            "target": "wife",
             "meaningByLocale": {
-              "ru": "заблудились",
-              "uk": "заблукали"
+              "ru": "жена",
+              "uk": "дружина"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i04:p3",
-            "target": "prepared",
+            "target": "son",
             "meaningByLocale": {
-              "ru": "подготовлены",
-              "uk": "підготовлені"
+              "ru": "сын",
+              "uk": "син"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i04:p4",
-            "target": "careful",
+            "target": "daughter",
             "meaningByLocale": {
-              "ru": "осторожны",
-              "uk": "обережні"
+              "ru": "дочь",
+              "uk": "донька"
             }
           }
         ],
         "leftColumn": [
-          "scarf",
-          "lost",
-          "prepared",
-          "careful"
+          "husband",
+          "wife",
+          "son",
+          "daughter"
         ],
         "rightColumn": [
-          "шарф",
-          "заблудились",
-          "подготовлены",
-          "осторожны"
+          "муж",
+          "жена",
+          "сын",
+          "дочь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,43 +397,87 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-05:session-20:word:daughter",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — daughter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-05:session-20:word:daughter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — daughter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-05:session-20:word:daughter:audio",
+          "transcript": "daughter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-05:session-20:word:daughter:r1",
+            "targetText": "daughter",
+            "meaningByLocale": {
+              "ru": "дочь. Her daughter is here. — «Её дочь здесь». О девочке или женщине по отношению к её родителям.",
+              "uk": "донька. Her daughter is here. — «Її донька тут». Про дівчинку чи жінку щодо її батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daughter",
+          "definitionByLocale": {
+            "ru": "дочь. Her daughter is here. — «Её дочь здесь». О девочке или женщине по отношению к её родителям.",
+            "uk": "донька. Her daughter is here. — «Її донька тут». Про дівчинку чи жінку щодо її батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-05:session-20:i05",
-      "ordinal": 8,
-      "purpose": "supported_practice",
+      "ordinal": 12,
+      "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Послушайте подругу и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i05:audio",
-          "transcript": "Your scarf is here."
+          "transcript": "The bag is my daughter’s."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Your scarf is here.",
+        "hiddenTargetPhrase": "The bag is my daughter’s.",
         "orderedTokens": [
-          "Your",
-          "scarf",
+          "The",
+          "bag",
           "is",
-          "here"
+          "my",
+          "daughter’s"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
+            "testedDimension": "Послушайте подругу и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `Your scarf is here.`",
-              "uk": "тут потрібно `is` — `Your scarf is here.`"
+              "ru": "здесь нужно `my` — `The bag is my daughter’s.`",
+              "uk": "тут потрібно `my` — `The bag is my daughter’s.`"
             }
           }
         ],
@@ -315,39 +490,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+      "prompt": "Вы спрашиваете соседку, не её ли сына футбольный мяч. Задайте вопрос полностью: «Футбольный мяч вашего сына?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+      "accessibilityLabel": "Вы спрашиваете соседку, не её ли сына футбольный мяч. Задайте вопрос полностью: «Футбольный мяч вашего сына?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The maps are ours.",
+        "targetPhrase": "Is the football your son’s?",
         "localizedMeaning": {
-          "ru": "Карты принадлежат вам и другу. Скажите «Карты наши»",
-          "uk": "Карти належать вам і другові. Скажіть «Карти наші»"
+          "ru": "Вы спрашиваете соседку, не её ли сына футбольный мяч. Задайте вопрос полностью: «Футбольный мяч вашего сына?»",
+          "uk": "Ви питаєте сусідку, чи не її сина футбольний м’яч. Задайте питання повністю: «Футбольний м’яч вашого сина?»"
         },
         "orderedTokens": [
-          "The",
-          "maps",
-          "are",
-          "ours"
+          "Is",
+          "the",
+          "football",
+          "your",
+          "son’s"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "Are"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Карты принадлежат вам и другу. Скажите «Карты наши»",
+            "testedDimension": "Вы спрашиваете соседку, не её ли сына футбольный мяч. Задайте вопрос полностью: «Футбольный мяч вашего сына?»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The maps are ours.`",
-              "uk": "тут потрібно `are` — `The maps are ours.`"
+              "ru": "здесь нужно `Is` — `Is the football your son’s?`",
+              "uk": "тут потрібно `Is` — `Is the football your son’s?`"
             }
           }
         ],
@@ -360,25 +536,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i07",
-      "ordinal": 10,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы с другом не знаете, как вернуться. Скажите «Мы заблудились» без сокращения",
+      "prompt": "Охранник спрашивает, чей зонт. Он принадлежит вашей жене. Ответьте: «Зонт моей жены»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Вы с другом не знаете, как вернуться. Скажите «Мы заблудились» без сокращения",
+      "accessibilityLabel": "Охранник спрашивает, чей зонт. Он принадлежит вашей жене. Ответьте: «Зонт моей жены»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i07:audio",
-          "transcript": "We are lost."
+          "transcript": "The umbrella is my wife’s."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are lost.",
+        "targetPhrase": "The umbrella is my wife’s.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -393,67 +569,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i08",
-      "ordinal": 11,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шарф принадлежит подруге. Скажите «Шарф её»",
+      "prompt": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i08:r1",
-          "text": "hers"
+          "text": "son’s"
         },
         {
           "responseId": "en:lesson-05:session-20:i08:r2",
-          "text": "her"
+          "text": "son"
         },
         {
           "responseId": "en:lesson-05:session-20:i08:r3",
-          "text": "ours"
+          "text": "sons"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шарф принадлежит подруге. Скажите «Шарф её»",
+      "accessibilityLabel": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шарф принадлежит подруге. Скажите «Шарф её»",
-          "uk": "Шарф належить подрузі. Скажіть «Шарф її»"
+          "ru": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
+          "uk": "Подруга питає, чий м’яч. Він належить вашому синові. Виберіть слово"
         },
-        "gappedTargetPhrase": "The scarf is ___.",
+        "gappedTargetPhrase": "The ball is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-20:i08:r1",
-            "text": "hers"
+            "text": "son’s"
           },
           {
             "responseId": "en:lesson-05:session-20:i08:r2",
-            "text": "her"
+            "text": "son"
           },
           {
             "responseId": "en:lesson-05:session-20:i08:r3",
-            "text": "ours"
+            "text": "sons"
           }
         ],
-        "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+        "testedDimension": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+            "testedDimension": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
             "feedbackByLocale": {
-              "ru": "Без названия вещи нужна форма `hers`.",
-              "uk": "Без назви речі потрібна форма `hers`."
+              "ru": "Без ’s получится «мяч — это мой сын». Чтобы назвать хозяина, нужно ’s.",
+              "uk": "Без ’s вийде «м’яч — це мій син». Щоб назвати власника, потрібно ’s."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "Шарф принадлежит подруге. Скажите «Шарф её»",
+            "testedDimension": "Подруга спрашивает, чей мяч. Он принадлежит вашему сыну. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`ours` — наш; её — `hers`.",
-              "uk": "`ours` — наш; її — `hers`."
+              "ru": "sons — это «сыновья», а чтобы назвать хозяина мяча, нужно ’s.",
+              "uk": "sons — це «сини», а щоб назвати власника м’яча, потрібно ’s."
             }
           }
         ]
@@ -462,51 +638,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i09",
-      "ordinal": 12,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, как друг описывает вашу осторожность",
+      "prompt": "Послушайте подругу",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i09:r1",
-          "text": "We are careful."
+          "text": "It is my daughter’s bag."
         },
         {
           "responseId": "en:lesson-05:session-20:i09:r2",
-          "text": "We are prepared."
+          "text": "It is my son’s bag."
         },
         {
           "responseId": "en:lesson-05:session-20:i09:r3",
-          "text": "We are lost."
+          "text": "It is my daughter’s ball."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i09:audio"
       ],
-      "accessibilityLabel": "Послушайте, как друг описывает вашу осторожность",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i09:audio",
-          "transcript": "We are careful."
+          "transcript": "It is my daughter’s bag."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-20:i09:r1",
-            "targetText": "We are careful.",
+            "targetText": "It is my daughter’s bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i09:r2",
-            "targetText": "We are prepared.",
+            "targetText": "It is my son’s bag.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i09:r3",
-            "targetText": "We are lost.",
+            "targetText": "It is my daughter’s ball.",
             "meaningByLocale": null
           }
         ],
@@ -515,19 +691,19 @@
           {
             "responseId": "en:lesson-05:session-20:i09:r2",
             "correct": false,
-            "testedDimension": "Послушайте, как друг описывает вашу осторожность",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careful`, а в этом варианте — `prepared`.",
-              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `prepared`."
+              "ru": "В записи `daughter’s` — дочери, а в этом варианте `son’s` — сына.",
+              "uk": "У записі `daughter’s` — доньки, а в цьому варіанті `son’s` — сина."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i09:r3",
             "correct": false,
-            "testedDimension": "Послушайте, как друг описывает вашу осторожность",
+            "testedDimension": "Послушайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `careful`, а в этом варианте — `lost`.",
-              "uk": "У записі останнє слово — `careful`, а в цьому варіанті — `lost`."
+              "ru": "В записи последнее слово `bag` — сумка, а в этом варианте `ball` — мяч.",
+              "uk": "У записі останнє слово `bag` — сумка, а в цьому варіанті `ball` — м’яч."
             }
           }
         ],
@@ -538,8 +714,8 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -552,48 +728,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-20:i10:p1",
-            "target": "scarf",
+            "target": "mug",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "кружка",
+              "uk": "кухоль"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i10:p2",
-            "target": "maps",
+            "target": "football",
             "meaningByLocale": {
-              "ru": "карты",
-              "uk": "карти"
+              "ru": "футбольный мяч",
+              "uk": "футбольний м’яч"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i10:p3",
-            "target": "mushroom",
+            "target": "key",
             "meaningByLocale": {
-              "ru": "гриб",
-              "uk": "гриб"
+              "ru": "ключ",
+              "uk": "ключ"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i10:p4",
-            "target": "notebook",
+            "target": "backpack",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "рюкзак",
+              "uk": "рюкзак"
             }
           }
         ],
         "leftColumn": [
-          "scarf",
-          "maps",
-          "mushroom",
-          "notebook"
+          "mug",
+          "football",
+          "key",
+          "backpack"
         ],
         "rightColumn": [
-          "шарф",
-          "карты",
-          "гриб",
-          "тетрадь"
+          "кружка",
+          "футбольный мяч",
+          "ключ",
+          "рюкзак"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -611,33 +787,46 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос",
+      "prompt": "Послушайте соседку и соберите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос",
+      "accessibilityLabel": "Послушайте соседку и соберите фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i11:audio",
-          "transcript": "Where is my scarf?"
+          "transcript": "The football is her son’s."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Where is my scarf?",
+        "hiddenTargetPhrase": "The football is her son’s.",
         "orderedTokens": [
-          "Where",
+          "The",
+          "football",
           "is",
-          "my",
-          "scarf"
+          "her",
+          "son’s"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
+        "authoredDistractorTokens": [
+          "his"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-05:session-20:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте соседку и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `her` — `The football is her son’s.`",
+              "uk": "тут потрібно `her` — `The football is her son’s.`"
+            }
+          }
+        ],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
@@ -647,39 +836,40 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+      "prompt": "Подруга спрашивает, чей ключ лежит на столе. Он принадлежит вашей жене. Скажите ей полной фразой: «Ключ моей жены»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+      "accessibilityLabel": "Подруга спрашивает, чей ключ лежит на столе. Он принадлежит вашей жене. Скажите ей полной фразой: «Ключ моей жены»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The notebook is his.",
+        "targetPhrase": "The key is my wife’s.",
         "localizedMeaning": {
-          "ru": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
-          "uk": "Зошит належить другові-чоловікові. Скажіть «Зошит його»"
+          "ru": "Подруга спрашивает, чей ключ лежит на столе. Он принадлежит вашей жене. Скажите ей полной фразой: «Ключ моей жены»",
+          "uk": "Подруга питає, чий ключ лежить на столі. Він належить вашій дружині. Скажіть їй повною фразою: «Ключ моєї дружини»"
         },
         "orderedTokens": [
           "The",
-          "notebook",
+          "key",
           "is",
-          "his"
+          "my",
+          "wife’s"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "your"
         ],
         "slotFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Тетрадь принадлежит другу-мужчине. Скажите «Тетрадь его»",
+            "testedDimension": "Подруга спрашивает, чей ключ лежит на столе. Он принадлежит вашей жене. Скажите ей полной фразой: «Ключ моей жены»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The notebook is his.`",
-              "uk": "тут потрібно `is` — `The notebook is his.`"
+              "ru": "здесь нужно `my` — `The key is my wife’s.`",
+              "uk": "тут потрібно `my` — `The key is my wife’s.`"
             }
           }
         ],
@@ -692,25 +882,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы заметили один гриб рядом с деревом. Сообщите «Рядом с деревом есть гриб»",
+      "prompt": "Охранник спрашивает про шарф у двери. Он принадлежит вашей дочери. Ответьте: «Шарф моей дочери»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i13:audio"
       ],
-      "accessibilityLabel": "Вы заметили один гриб рядом с деревом. Сообщите «Рядом с деревом есть гриб»",
+      "accessibilityLabel": "Охранник спрашивает про шарф у двери. Он принадлежит вашей дочери. Ответьте: «Шарф моей дочери»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i13:audio",
-          "transcript": "There is a mushroom next to the tree."
+          "transcript": "The scarf is my daughter’s."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is a mushroom next to the tree.",
+        "targetPhrase": "The scarf is my daughter’s.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -725,67 +915,67 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Нет ни одной карты. Выберите форму для множественного числа",
+      "prompt": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i14:r1",
-          "text": "are"
+          "text": "husband’s"
         },
         {
           "responseId": "en:lesson-05:session-20:i14:r2",
-          "text": "is"
+          "text": "husband"
         },
         {
           "responseId": "en:lesson-05:session-20:i14:r3",
-          "text": "am"
+          "text": "wife’s"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Нет ни одной карты. Выберите форму для множественного числа",
+      "accessibilityLabel": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Нет ни одной карты. Выберите форму для множественного числа",
-          "uk": "Немає жодної карти. Виберіть форму для множини"
+          "ru": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
+          "uk": "Подруга питає, чий рюкзак. Він належить вашому чоловікові. Виберіть слово"
         },
-        "gappedTargetPhrase": "There ___ no maps.",
+        "gappedTargetPhrase": "The backpack is my ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-05:session-20:i14:r1",
-            "text": "are"
+            "text": "husband’s"
           },
           {
             "responseId": "en:lesson-05:session-20:i14:r2",
-            "text": "is"
+            "text": "husband"
           },
           {
             "responseId": "en:lesson-05:session-20:i14:r3",
-            "text": "am"
+            "text": "wife’s"
           }
         ],
-        "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+        "testedDimension": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-05:session-20:i14:r2",
             "correct": false,
-            "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+            "testedDimension": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`maps` — множественное число: `There are`.",
-              "uk": "`maps` — множина: `There are`."
+              "ru": "Без ’s получится «рюкзак — это мой муж». Чтобы назвать хозяина, нужно ’s.",
+              "uk": "Без ’s вийде «рюкзак — це мій чоловік». Щоб назвати власника, потрібно ’s."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i14:r3",
             "correct": false,
-            "testedDimension": "Нет ни одной карты. Выберите форму для множественного числа",
+            "testedDimension": "Подруга спрашивает, чей рюкзак. Он принадлежит вашему мужу. Выберите слово",
             "feedbackByLocale": {
-              "ru": "`am` используется с `I`; здесь `There are`.",
-              "uk": "`am` використовується з `I`; тут `There are`."
+              "ru": "wife’s — жены, а рюкзак мужа: нужно husband’s.",
+              "uk": "wife’s — дружини, а рюкзак чоловіка: потрібно husband’s."
             }
           }
         ]
@@ -794,51 +984,51 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, кому принадлежит шарф",
+      "prompt": "Послушайте брата",
       "responseOptions": [
         {
           "responseId": "en:lesson-05:session-20:i15:r1",
-          "text": "The scarf is yours."
+          "text": "Is the mug your wife’s?"
         },
         {
           "responseId": "en:lesson-05:session-20:i15:r2",
-          "text": "The scarf is mine."
+          "text": "Is the mug your husband’s?"
         },
         {
           "responseId": "en:lesson-05:session-20:i15:r3",
-          "text": "The scarf is theirs."
+          "text": "Is the mug your son’s?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i15:audio"
       ],
-      "accessibilityLabel": "Послушайте, кому принадлежит шарф",
+      "accessibilityLabel": "Послушайте брата",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i15:audio",
-          "transcript": "The scarf is yours."
+          "transcript": "Is the mug your wife’s?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-05:session-20:i15:r1",
-            "targetText": "The scarf is yours.",
+            "targetText": "Is the mug your wife’s?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i15:r2",
-            "targetText": "The scarf is mine.",
+            "targetText": "Is the mug your husband’s?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-05:session-20:i15:r3",
-            "targetText": "The scarf is theirs.",
+            "targetText": "Is the mug your son’s?",
             "meaningByLocale": null
           }
         ],
@@ -847,19 +1037,19 @@
           {
             "responseId": "en:lesson-05:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит шарф",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `mine`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `mine`."
+              "ru": "В записи `wife’s` — жены, а в этом варианте `husband’s` — мужа.",
+              "uk": "У записі `wife’s` — дружини, а в цьому варіанті `husband’s` — чоловіка."
             }
           },
           {
             "responseId": "en:lesson-05:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "Послушайте, кому принадлежит шарф",
+            "testedDimension": "Послушайте брата",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `yours`, а в этом варианте — `theirs`.",
-              "uk": "У записі останнє слово — `yours`, а в цьому варіанті — `theirs`."
+              "ru": "В записи `wife’s` — жены, а в этом варианте `son’s` — сына.",
+              "uk": "У записі `wife’s` — дружини, а в цьому варіанті `son’s` — сина."
             }
           }
         ],
@@ -870,7 +1060,7 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -884,48 +1074,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-05:session-20:i16:p1",
-            "target": "scarf",
+            "target": "husband",
             "meaningByLocale": {
-              "ru": "шарф",
-              "uk": "шарф"
+              "ru": "муж",
+              "uk": "чоловік"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i16:p2",
-            "target": "maps",
+            "target": "wife",
             "meaningByLocale": {
-              "ru": "карты",
-              "uk": "карти"
+              "ru": "жена",
+              "uk": "дружина"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i16:p3",
-            "target": "mushroom",
+            "target": "umbrella",
             "meaningByLocale": {
-              "ru": "гриб",
-              "uk": "гриб"
+              "ru": "зонт",
+              "uk": "парасолька"
             }
           },
           {
             "pairId": "en:lesson-05:session-20:i16:p4",
-            "target": "notebook",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "тетрадь",
-              "uk": "зошит"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           }
         ],
         "leftColumn": [
-          "scarf",
-          "maps",
-          "mushroom",
-          "notebook"
+          "husband",
+          "wife",
+          "umbrella",
+          "ball"
         ],
         "rightColumn": [
-          "шарф",
-          "карты",
-          "гриб",
-          "тетрадь"
+          "муж",
+          "жена",
+          "зонт",
+          "мяч"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -943,25 +1133,25 @@
     },
     {
       "interactionId": "en:lesson-05:session-20:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг нашёл ваш шарф и спрашивает о владельце. Скажите «Шарф мой»",
+      "prompt": "Сосед берёт мяч вашего сына. Скажите ему: «Мяч моего сына»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-05:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Друг нашёл ваш шарф и спрашивает о владельце. Скажите «Шарф мой»",
+      "accessibilityLabel": "Сосед берёт мяч вашего сына. Скажите ему: «Мяч моего сына»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-05:session-20:i17:audio",
-          "transcript": "The scarf is mine."
+          "transcript": "The ball is my son’s."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The scarf is mine.",
+        "targetPhrase": "The ball is my son’s.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -983,11 +1173,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1419b26753833b3dfb0739673631455789547b4926fd9e90365c9557f3d8c46a"
+  "learnerFingerprint": "134fca0a37febfce66b320ee6b688587d1e251e6693b7f7451e8ce0333db68f4"
 }

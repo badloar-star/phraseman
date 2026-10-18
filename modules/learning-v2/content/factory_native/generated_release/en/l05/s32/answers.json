@@ -1,87 +1,107 @@
 [
   {
+    "interactionId": "en:lesson-05:session-32:word:jug",
+    "correctText": "jug",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-32:i01",
-    "correctText": "Tom is next to the fountain.",
+    "correctText": "My grandmother's jug is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-32:word:tablecloth",
+    "correctText": "tablecloth",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i02",
-    "correctText": "This is Anna's lunchbox.",
+    "correctText": "The tablecloth is my aunt's.",
     "correctResponseId": "en:lesson-05:session-32:i02:r1"
   },
   {
+    "interactionId": "en:lesson-05:session-32:word:cutlery",
+    "correctText": "cutlery",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-05:session-32:i03",
-    "correctText": "Tom's",
+    "correctText": "uncle's",
     "correctResponseId": "en:lesson-05:session-32:i03:r1"
   },
   {
     "interactionId": "en:lesson-05:session-32:i04",
-    "correctText": "en:lesson-05:session-32:i04:p1=fountain\nen:lesson-05:session-32:i04:p2=lunchbox\nen:lesson-05:session-32:i04:p3=badge\nen:lesson-05:session-32:i04:p4=passport",
+    "correctText": "en:lesson-05:session-32:i04:p1=jug\nen:lesson-05:session-32:i04:p2=tablecloth\nen:lesson-05:session-32:i04:p3=cutlery\nen:lesson-05:session-32:i04:p4=cookbook",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-05:session-32:word:cookbook",
+    "correctText": "cookbook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i05",
-    "correctText": "Tom's passport is in the bag.",
+    "correctText": "My aunt's cookbook is on the shelf.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i06",
-    "correctText": "These are Tom's headphones.",
+    "correctText": "Is this tablecloth your grandmother's?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i07",
-    "correctText": "I have your keycard.",
+    "correctText": "It is my uncle's.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i08",
-    "correctText": "his",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-32:i08:r1"
   },
   {
     "interactionId": "en:lesson-05:session-32:i09",
-    "correctText": "Anna's guitar is here.",
+    "correctText": "Is this cutlery your sister's?",
     "correctResponseId": "en:lesson-05:session-32:i09:r1"
   },
   {
     "interactionId": "en:lesson-05:session-32:i10",
-    "correctText": "en:lesson-05:session-32:i10:p1=keycard\nen:lesson-05:session-32:i10:p2=skateboard\nen:lesson-05:session-32:i10:p3=headphones\nen:lesson-05:session-32:i10:p4=guitar",
+    "correctText": "en:lesson-05:session-32:i10:p1=jug\nen:lesson-05:session-32:i10:p2=tablecloth\nen:lesson-05:session-32:i10:p3=fork\nen:lesson-05:session-32:i10:p4=plate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i11",
-    "correctText": "Where is my badge?",
+    "correctText": "My cousin's cookbook is next to the jug.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i12",
-    "correctText": "There is no fountain here.",
+    "correctText": "My aunt has a cookbook.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i13",
-    "correctText": "Anna's skateboard is under the table.",
+    "correctText": "My cousin's in the kitchen.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i14",
-    "correctText": "are",
+    "correctText": "is",
     "correctResponseId": "en:lesson-05:session-32:i14:r1"
   },
   {
     "interactionId": "en:lesson-05:session-32:i15",
-    "correctText": "Your keycard is here.",
+    "correctText": "My cousin's in the kitchen.",
     "correctResponseId": "en:lesson-05:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-05:session-32:i16",
-    "correctText": "en:lesson-05:session-32:i16:p1=keycard\nen:lesson-05:session-32:i16:p2=skateboard\nen:lesson-05:session-32:i16:p3=headphones\nen:lesson-05:session-32:i16:p4=guitar",
+    "correctText": "en:lesson-05:session-32:i16:p1=jug\nen:lesson-05:session-32:i16:p2=tablecloth\nen:lesson-05:session-32:i16:p3=cutlery\nen:lesson-05:session-32:i16:p4=cookbook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-05:session-32:i17",
-    "correctText": "These are Tom's headphones.",
+    "correctText": "This is my aunt's tablecloth.",
     "correctResponseId": null
   }
 ]

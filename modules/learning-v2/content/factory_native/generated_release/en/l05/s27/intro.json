@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-05:session-27",
   "learningOutcomeByLocale": {
-    "ru": "уточнить владельца документа, состояние человека и доступность машины",
-    "uk": "уточнити власника документа, стан людини й доступність машини"
+    "ru": "спросить, чья вещь, и ответить, не повторяя её название: Is this textbook the teacher's? It is my brother's",
+    "uk": "спитати, чия річ, і відповісти, не повторюючи її назву: Is this textbook the teacher's? It is my brother's"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-05:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Главный документ",
-        "uk": "Головний документ"
+        "ru": "Маркер со стола",
+        "uk": "Маркер зі столу"
       },
       "bodyByLocale": {
-        "ru": "`passport` — «паспорт». `This is Anna’s passport` — «Это паспорт Анны». `Tom’s passport is here` — «Паспорт Тома здесь». Имя владельца с `’s` ставим перед вещью. Паспорт уже на столе: к поездке он готов, осталось разбудить владельца.",
-        "uk": "`passport` — «паспорт». `This is Anna’s passport` — «Це паспорт Анни». `Tom’s passport is here` — «Паспорт Тома тут». Ім’я власника з `’s` ставимо перед річчю. Паспорт уже на столі: до поїздки він готовий, залишилося розбудити власника."
+        "ru": "После урока двоюродный брат взял со стола маркер и собрался убрать его в рюкзак. marker — «маркер», им пишут на белой доске. Но маркер не его. Скажите, чей он: The marker is the teacher's — «Маркер учительницы». Название вещи после 's повторять не нужно.",
+        "uk": "Після уроку двоюрідний брат узяв зі столу маркер і зібрався сховати його в рюкзак. marker — «маркер», ним пишуть на білій дошці. Але маркер не його. Скажіть, чий він: The marker is the teacher's — «Маркер вчительки». Назву речі після 's повторювати не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-05:session-27:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите паспорт Анны.",
-          "uk": "Покажіть паспорт Анни."
+          "ru": "Двоюродный брат берёт маркер со стола. Маркер принадлежит учительнице. Скажите ему: «Маркер учительницы».",
+          "uk": "Двоюрідний брат бере маркер зі столу. Маркер належить вчительці. Скажіть йому: «Маркер вчительки»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-27:intro1:r1",
-              "text": "This is Anna's passport."
+              "text": "The marker is the teacher's."
             },
             {
               "responseId": "en:lesson-05:session-27:intro1:r2",
-              "text": "This is Anna passport."
+              "text": "The marker is the teacher."
             },
             {
               "responseId": "en:lesson-05:session-27:intro1:r3",
-              "text": "This is Tom's passport."
+              "text": "The marker is the cousin's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-27:intro1:r1",
-              "text": "This is Anna's passport."
+              "text": "The marker is the teacher's."
             },
             {
               "responseId": "en:lesson-05:session-27:intro1:r2",
-              "text": "This is Anna passport."
+              "text": "The marker is the teacher."
             },
             {
               "responseId": "en:lesson-05:session-27:intro1:r3",
-              "text": "This is Tom's passport."
+              "text": "The marker is the cousin's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите паспорт Анны.",
-          "uk": "Покажіть паспорт Анни."
+          "ru": "Двоюродный брат берёт маркер со стола. Маркер принадлежит учительнице. Скажите ему: «Маркер учительницы».",
+          "uk": "Двоюрідний брат бере маркер зі столу. Маркер належить вчительці. Скажіть йому: «Маркер вчительки»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-05:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто проснулся",
-        "uk": "Хто прокинувся"
+        "ru": "Чей калькулятор",
+        "uk": "Чий калькулятор"
       },
       "bodyByLocale": {
-        "ru": "`awake` — «не спит», `asleep` — «спит». `Anna is awake` — «Анна не спит», `Tom is asleep` — «Том спит». Это состояния: здесь нужна форма `is`. `available` — «доступен, свободен»: `The car is available` — «Машина доступна», её можно взять. Это не значит, что она бесплатная.",
-        "uk": "`awake` — «не спить», `asleep` — «спить». `Anna is awake` — «Анна не спить», `Tom is asleep` — «Том спить». Це стани: тут потрібна форма `is`. `available` — «доступний, вільний»: `The car is available` — «Машина доступна», її можна взяти. Це не означає, що вона безкоштовна."
+        "ru": "Подруга показывает на калькулятор на парте среди тетрадей и спрашивает, не ваш ли он. calculator — «калькулятор», на нём считают числа. Он не ваш, а вашего брата. Название вещи можно не повторять: It is my brother's — «Он моего брата». Вещь и так понятна.",
+        "uk": "Подруга показує на калькулятор на парті серед зошитів і питає, чи не ваш він. calculator — «калькулятор», на ньому рахують числа. Він не ваш, а вашого брата. Назву речі можна не повторювати: It is my brother's — «Він мого брата». Річ і так зрозуміла."
       },
       "question": {
         "interactionId": "en:lesson-05:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "Том ещё спит. Выберите фразу.",
-          "uk": "Том іще спить. Виберіть фразу."
+          "ru": "Подруга спрашивает, ваш ли это калькулятор. Он вашего брата. Скажите ей: «Он моего брата».",
+          "uk": "Подруга питає, чи це ваш калькулятор. Він вашого брата. Скажіть їй: «Він мого брата»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-27:intro2:r1",
-              "text": "Tom is asleep."
+              "text": "It is my brother's."
             },
             {
               "responseId": "en:lesson-05:session-27:intro2:r2",
-              "text": "Tom is awake."
+              "text": "It is my brother."
             },
             {
               "responseId": "en:lesson-05:session-27:intro2:r3",
-              "text": "Tom are asleep."
+              "text": "It is your brother's."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-27:intro2:r1",
-              "text": "Tom is asleep."
+              "text": "It is my brother's."
             },
             {
               "responseId": "en:lesson-05:session-27:intro2:r2",
-              "text": "Tom is awake."
+              "text": "It is my brother."
             },
             {
               "responseId": "en:lesson-05:session-27:intro2:r3",
-              "text": "Tom are asleep."
+              "text": "It is your brother's."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Том ещё спит. Выберите фразу.",
-          "uk": "Том іще спить. Виберіть фразу."
+          "ru": "Подруга спрашивает, ваш ли это калькулятор. Он вашего брата. Скажите ей: «Он моего брата».",
+          "uk": "Подруга питає, чи це ваш калькулятор. Він вашого брата. Скажіть їй: «Він мого брата»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-05:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Машины у входа",
-        "uk": "Машини біля входу"
+        "ru": "Учебник на стуле",
+        "uk": "Підручник на стільці"
       },
       "bodyByLocale": {
-        "ru": "`cars` — «машины», `awning` — «навес», `tablet` — «планшет». `The cars are under the awning` — «Машины под навесом». `Anna’s tablet is on the table` — «Планшет Анны на столе». `Where is my passport?` — «Где мой паспорт?» С несколькими машинами — `are`, с одним планшетом или паспортом — `is`.",
-        "uk": "`cars` — «машини», `awning` — «навіс», `tablet` — «планшет». `The cars are under the awning` — «Машини під навісом». `Anna’s tablet is on the table` — «Планшет Анни на столі». `Where is my passport?` — «Де мій паспорт?» З кількома машинами — `are`, з одним планшетом чи паспортом — `is`."
+        "ru": "На стуле у двери лежит учебник. textbook — «учебник», по нему учатся на уроках и дома. Он совсем новый, и вы думаете, что его оставила учительница, когда уходила. Спросите двоюродного брата: Is this textbook the teacher's? — «Это учебник учительницы?»",
+        "uk": "На стільці біля дверей лежить підручник. textbook — «підручник», за ним навчаються на уроках і вдома. Він зовсім новий, і ви думаєте, що його залишила вчителька, коли йшла. Спитайте двоюрідного брата: Is this textbook the teacher's? — «Це підручник вчительки?»"
       },
       "question": {
         "interactionId": "en:lesson-05:session-27:intro3:q",
         "promptByLocale": {
-          "ru": "Машину можно взять. Скажите «Машина доступна».",
-          "uk": "Машину можна взяти. Скажіть «Машина доступна»."
+          "ru": "Вы нашли на стуле учебник. Спросите двоюродного брата, не учительницы ли он.",
+          "uk": "Ви знайшли на стільці підручник. Спитайте двоюрідного брата, чи не вчительки він."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-05:session-27:intro3:r1",
-              "text": "The car is available."
+              "text": "Is this textbook the teacher's?"
             },
             {
               "responseId": "en:lesson-05:session-27:intro3:r2",
-              "text": "The car are available."
+              "text": "Is this textbook the teacher?"
             },
             {
               "responseId": "en:lesson-05:session-27:intro3:r3",
-              "text": "The car is asleep."
+              "text": "Are this textbook the teacher's?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-05:session-27:intro3:r1",
-              "text": "The car is available."
+              "text": "Is this textbook the teacher's?"
             },
             {
               "responseId": "en:lesson-05:session-27:intro3:r2",
-              "text": "The car are available."
+              "text": "Is this textbook the teacher?"
             },
             {
               "responseId": "en:lesson-05:session-27:intro3:r3",
-              "text": "The car is asleep."
+              "text": "Are this textbook the teacher's?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Машину можно взять. Скажите «Машина доступна».",
-          "uk": "Машину можна взяти. Скажіть «Машина доступна»."
+          "ru": "Вы нашли на стуле учебник. Спросите двоюродного брата, не учительницы ли он.",
+          "uk": "Ви знайшли на стільці підручник. Спитайте двоюрідного брата, чи не вчительки він."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2a30048e3f3e4e183cbb43248d14e2e863c53e33b0992ffb751c430d99bfb9be"
+  "introFingerprint": "4a6cc20962d668923b74d2827514709f90a81158c48ee7cacf8caf5ad4ccb7be"
 }

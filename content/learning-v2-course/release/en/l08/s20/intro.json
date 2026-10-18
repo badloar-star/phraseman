@@ -11,18 +11,18 @@
       "pageId": "en:lesson-08:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Нужно завязать шнурок",
-        "uk": "Треба зав’язати шнурок"
+        "ru": "Рама перед креплением",
+        "uk": "Рама перед кріпленням"
       },
       "bodyByLocale": {
-        "ru": "Вы держите коробку и замечаете развязанный шнурок. Друг рядом. `Hold` — «держать». `Can you hold this?` — «Можешь это подержать?» Вы показываете на коробку: `this` значит «это». После `Can you` нужно `hold this`, без `to`. Коробка подождёт, а шнурок уже пытается попасть под ногу.",
-        "uk": "Ви тримаєте коробку й помічаєте розв’язаний шнурок. Друг поруч. `Hold` — «тримати». `Can you hold this?` — «Можеш це потримати?» Ви показуєте на коробку: `this` означає «це». Після `Can you` потрібне `hold this`, без `to`. Коробка зачекає, а шнурок уже намагається потрапити під ногу."
+        "ru": "Вы хотите повесить раму с фотографией. Нужно освободить руки, чтобы отметить место для крепления. Друг рядом. `Hold` — «держать». `Can you hold this?` — «Можешь это подержать?» Вы показываете на раму: `this` значит «это». После `Can you` нужно `hold this`, без `to`. Вы просите временно подержать предмет, пока делаете отметку.",
+        "uk": "Ви хочете повісити раму з фотографією. Треба звільнити руки, щоб позначити місце для кріплення. Друг поруч. `Hold` — «тримати». `Can you hold this?` — «Можеш це потримати?» Ви показуєте на раму: `this` означає «це». Після `Can you` потрібне `hold this`, без `to`. Ви просите тимчасово потримати предмет, поки робите позначку."
       },
       "question": {
         "interactionId": "en:lesson-08:session-20:intro1:q",
         "promptByLocale": {
-          "ru": "Попросите друга подержать коробку.",
-          "uk": "Попросіть друга потримати коробку."
+          "ru": "Попросите друга подержать раму.",
+          "uk": "Попросіть друга потримати раму."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга подержать коробку.",
-          "uk": "Попросіть друга потримати коробку."
+          "ru": "Попросите друга подержать раму.",
+          "uk": "Попросіть друга потримати раму."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Коробка перед дверью",
-        "uk": "Коробка перед дверима"
+        "ru": "Свет попадает мимо",
+        "uk": "Світло падає не туди"
       },
       "bodyByLocale": {
-        "ru": "Вы снова несёте коробку. Дверь закрыта, а друг стоит возле ручки. `Can you open the door?` — «Можешь открыть дверь?» Начните с `Can you`, затем добавьте `open the door`.",
-        "uk": "Ви знову несете коробку. Двері зачинені, а друг стоїть біля ручки. `Can you open the door?` — «Можеш відчинити двері?» Почніть із `Can you`, потім додайте `open the door`."
+        "ru": "Вы снимаете небольшой предмет на столе. Лампа направлена слишком высоко, а друг стоит возле неё. Adjust — «отрегулировать, настроить». `Can you adjust the lamp?` — «Можешь отрегулировать лампу?» Вы просите изменить положение лампы, чтобы свет попал на предмет. После can нужно adjust, без to.",
+        "uk": "Ви знімаєте невеликий предмет на столі. Лампа спрямована надто високо, а друг стоїть біля неї. Adjust — «відрегулювати, налаштувати». `Can you adjust the lamp?` — «Можеш відрегулювати лампу?» Ви просите змінити положення лампи, щоб світло потрапило на предмет. Після can потрібне adjust, без to."
       },
       "question": {
         "interactionId": "en:lesson-08:session-20:intro2:q",
         "promptByLocale": {
-          "ru": "Попросите друга открыть дверь.",
-          "uk": "Попросіть друга відчинити двері."
+          "ru": "Попросите друга отрегулировать лампу.",
+          "uk": "Попросіть друга відрегулювати лампу."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-20:intro2:r1",
-              "text": "Can you open the door?"
+              "text": "Can you adjust the lamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro2:r2",
-              "text": "Can you opens the door?"
+              "text": "Can you adjusts the lamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro2:r3",
-              "text": "Can you to open the door?"
+              "text": "Can you to adjust the lamp?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-20:intro2:r1",
-              "text": "Can you open the door?"
+              "text": "Can you adjust the lamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro2:r2",
-              "text": "Can you opens the door?"
+              "text": "Can you adjusts the lamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro2:r3",
-              "text": "Can you to open the door?"
+              "text": "Can you to adjust the lamp?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Попросите друга открыть дверь.",
-          "uk": "Попросіть друга відчинити двері."
+          "ru": "Попросите друга отрегулировать лампу.",
+          "uk": "Попросіть друга відрегулювати лампу."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Шарф своими руками",
-        "uk": "Шарф власноруч"
+        "ru": "Ткань соскальзывает со стойки",
+        "uk": "Тканина зісковзує зі стійки"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает вам связать шарф. Вы пока не научились вязать. `I can’t knit` — «Я не умею вязать». После `can’t` нужно `knit`, без `to`.",
-        "uk": "Друг пропонує вам зв’язати шарф. Ви поки не навчилися в’язати. `I can’t knit` — «Я не вмію в’язати». Після `can’t` потрібне `knit`, без `to`."
+        "ru": "Вы натягиваете ткань на стойке в фотостудии. Её край соскальзывает, а зажим лежит возле друга. Clamp — «зажим»: инструмент, который прижимает и удерживает предмет. `Can you pass me the clamp?` — «Можешь передать мне зажим?» Pass me уже знакомо; после the называем нужный предмет.",
+        "uk": "Ви натягуєте тканину на стійці у фотостудії. Її край зісковзує, а затискач лежить біля друга. Clamp — «затискач»: інструмент, який притискає й утримує предмет. `Can you pass me the clamp?` — «Можеш передати мені затискач?» Pass me вже знайоме; після the називаємо потрібний предмет."
       },
       "question": {
         "interactionId": "en:lesson-08:session-20:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что пока не умеете вязать.",
-          "uk": "Скажіть другові, що поки не вмієте в’язати."
+          "ru": "Попросите друга передать зажим.",
+          "uk": "Попросіть друга передати затискач."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-20:intro3:r1",
-              "text": "I can’t knit."
+              "text": "Can you pass me the clamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro3:r2",
-              "text": "I can knit."
+              "text": "Can you passes me the clamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro3:r3",
-              "text": "I can’t to knit."
+              "text": "You can pass me the clamp."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-20:intro3:r1",
-              "text": "I can’t knit."
+              "text": "Can you pass me the clamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro3:r2",
-              "text": "I can knit."
+              "text": "Can you passes me the clamp?"
             },
             {
               "responseId": "en:lesson-08:session-20:intro3:r3",
-              "text": "I can’t to knit."
+              "text": "You can pass me the clamp."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что пока не умеете вязать.",
-          "uk": "Скажіть другові, що поки не вмієте в’язати."
+          "ru": "Попросите друга передать зажим.",
+          "uk": "Попросіть друга передати затискач."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "702de4a812bdc61dab30d47865955862f883d0686b8f5fadaf6bfc41599cc19d"
+  "introFingerprint": "817c7aad4c0742f6f9ff64b900593795a3e5d98884f68a49a25116fb30d98721"
 }

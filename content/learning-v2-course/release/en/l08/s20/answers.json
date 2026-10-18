@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-20:word:hold",
+    "correctText": "hold",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-20:i01",
     "correctText": "Can you hold this?",
     "correctResponseId": null
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-20:word:adjust",
+    "correctText": "adjust",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-20:i06",
-    "correctText": "Can you help me?",
+    "correctText": "Can you adjust the lamp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:word:clamp",
+    "correctText": "clamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-20:i07",
-    "correctText": "I can’t knit.",
+    "correctText": "Can you pass me the clamp?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-20:i08",
-    "correctText": "help",
+    "correctText": "adjust",
     "correctResponseId": "en:lesson-08:session-20:i08:r1"
   },
   {
@@ -46,17 +61,22 @@
   },
   {
     "interactionId": "en:lesson-08:session-20:i10",
-    "correctText": "en:lesson-08:session-20:i10:p1=shout\nen:lesson-08:session-20:i10:p2=hold\nen:lesson-08:session-20:i10:p3=mushroom\nen:lesson-08:session-20:i10:p4=cook",
+    "correctText": "en:lesson-08:session-20:i10:p1=hold\nen:lesson-08:session-20:i10:p2=adjust\nen:lesson-08:session-20:i10:p3=clamp\nen:lesson-08:session-20:i10:p4=lamp",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-20:i11",
-    "correctText": "Can you help me?",
+    "correctText": "Can you adjust the lamp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-20:word:backdrop",
+    "correctText": "backdrop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-20:i12",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you adjust the backdrop?",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-20:i15",
-    "correctText": "Can you open the door?",
+    "correctText": "Can you adjust the backdrop?",
     "correctResponseId": "en:lesson-08:session-20:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-20:i16",
-    "correctText": "en:lesson-08:session-20:i16:p1=hold\nen:lesson-08:session-20:i16:p2=shout\nen:lesson-08:session-20:i16:p3=knit\nen:lesson-08:session-20:i16:p4=mushroom",
+    "correctText": "en:lesson-08:session-20:i16:p1=hold\nen:lesson-08:session-20:i16:p2=adjust\nen:lesson-08:session-20:i16:p3=clamp\nen:lesson-08:session-20:i16:p4=backdrop",
     "correctResponseId": null
   },
   {

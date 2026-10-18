@@ -409,6 +409,9 @@ export default function SettingsMain() {
     applyUserSettingsNow({ ...getUserSettingsSnapshot(), [key]: value });
   }, []);
   const [userName, setUserName] = useState(() => appSnapshot.profile?.name ?? '');
+  // зачем (прогон 18.10 11:29, утечка): вкладка переживает выход — гость видел ник прошлого аккаунта (decision=kept_previous).
+  // Помним, чей ник в состоянии; «пустое не затирает загруженное» действует только внутри одного владельца.
+  const userNameOwnerRef = useRef<string | null>(captureAccountGeneration().stableId ?? null);
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
   const settingsStorageHydratedRef = useRef(false);
   const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
@@ -654,11 +657,15 @@ export default function SettingsMain() {
       // показывал бы старое имя до перезапуска. Пустое имя из снапшота не
       // затирает локально загруженное (историческая защита гидрации).
       const snapshotName = appSnapshot.profile.name;
+      const snapshotOwner = captureAccountGeneration().stableId ?? null;
+      const foreignCurrent = userNameOwnerRef.current !== snapshotOwner;
       setUserName(current => {
         // зачем (координатор 15.10, логи до починки): после входа ~20 с виден временный ник — какое решение принял эффект.
-        console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'snapshot', owner: (captureAccountGeneration().stableId ?? '').slice(0, 8) || null, profileSource: appSnapshot.profile?.source ?? null, snapshotPresent: Boolean(snapshotName), currentPresent: Boolean(current), decision: snapshotName ? 'set_snapshot' : current ? 'kept_previous' : 'empty' })); // guard-ok: без имён
-        return snapshotName || current;
+        const decision = snapshotName ? 'set_snapshot' : !current ? 'empty' : foreignCurrent ? 'cleared_foreign' : 'kept_previous';
+        console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'snapshot', owner: (snapshotOwner ?? '').slice(0, 8) || null, profileSource: appSnapshot.profile?.source ?? null, snapshotPresent: Boolean(snapshotName), currentPresent: Boolean(current), decision })); // guard-ok: без имён
+        return snapshotName || (foreignCurrent ? '' : current);
       });
+      userNameOwnerRef.current = snapshotOwner;
     }
     if (appSnapshot.settings?.tapHaptics != null) {
       setHapticTap(appSnapshot.settings.tapHaptics);
@@ -709,7 +716,14 @@ export default function SettingsMain() {
         }
         const hydratedName = resolveHydratedProfileName(settingsHydrationStartedAt, pairs[0][1]);
         console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'storage', owner: token.stableId.slice(0, 8), storedPresent: Boolean(pairs[0][1]?.trim()), hydratedPresent: Boolean(hydratedName), ms: Date.now() - settingsHydrationStartedAt })); // guard-ok: без имён
-        if (hydratedName) setUserName(hydratedName);
+        if (hydratedName) {
+          setUserName(hydratedName);
+        } else if (userNameOwnerRef.current !== token.stableId) {
+          // зачем (прогон 18.10, утечка): у нового владельца ника нет — ник прежнего не оставляем.
+          console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'storage', owner: token.stableId.slice(0, 8), decision: 'cleared_foreign' })); // guard-ok: без имён
+          setUserName('');
+        }
+        userNameOwnerRef.current = token.stableId;
         patchAppSnapshot((current) => current.profile ? {
           profile: {
             ...current.profile,

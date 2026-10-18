@@ -42,7 +42,8 @@
   .bm { flex: none; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; color: var(--sec); }
   .bm.on { background: var(--acc); color: var(--on); }
   .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; margin-top: 16px; }
-  .gt { font-size: 15px; line-height: 20px; font-weight: 700; margin-top: 8px; } .gm { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 3px; }
+  .gt { font-size: 15px; line-height: 20px; font-weight: 700; margin-top: 8px; } /* зачем (владелец 11.10 — мета ролика 11 sp; код YoutubeVideoGridCard styles.meta 11/14, цвет accentText, 0.85, одна строка): */
+  .gm { font-size: 11px; line-height: 14px; min-height: 14px; color: var(--acc-text, var(--acc)); opacity: .85; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .stk { position: relative; margin-top: 10px; isolation: isolate; }
   .stk::before, .stk::after { content: ""; position: absolute; top: -6px; left: 12px; right: 12px; height: 14px; border-radius: 12px 12px 0 0; background: rgba(255,255,255,.16); z-index: -1; }
   .stk::after { top: -11px; left: 24px; right: 24px; background: rgba(255,255,255,.08); }
@@ -66,6 +67,22 @@
   .toast2 { position: absolute; left: 20px; right: 20px; bottom: 112px; z-index: 30; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; background: rgba(30,30,34,.96); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); font-size: 15px; font-weight: 600; }
   .nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; }
   .cta2 { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; border-radius: 26px; background: var(--acc); color: var(--on); font-size: 17px; font-weight: 700; }
+
+  /* зачем (координатор 10:3x): светлый вариант образца — палитра «Сумерки» (th-ink, как voice-limit-session-start.html); обложки роликов остаются тёмными (это картинка видео). */
+  .ph.lt { --bg: #EEF0FA; --text: #17181E; --sec: #595A63; --acc-text: color-mix(in srgb, var(--acc) 40%, #17181E); --line: rgba(23,24,30,.10);
+    background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%) !important; color: var(--text); }
+  .ph.lt .sb { color: #111; background: none; }
+  .ph.lt .lg, .ph.lt .chn, .ph.lt .ib, .ph.lt .rd, .ph.lt .setc { background: rgba(255,255,255,.72); box-shadow: 0 6px 18px -10px rgba(51,51,87,.35); color: var(--text); }
+  .ph.lt .ib.bare { background: transparent; box-shadow: none; }
+  .ph.lt .tb3 { box-shadow: inset 0 -1px 0 rgba(23,24,30,.10); } .ph.lt .tb3 span.on { color: var(--text); }
+  .ph.lt .sg { background: rgba(255,255,255,.6); box-shadow: none; }
+  .ph.lt .bm { background: rgba(23,24,30,.07); color: var(--sec); } .ph.lt .bm.on { background: var(--acc); color: var(--on); }
+  .ph.lt .row + .row, .ph.lt .ph1 + .ph1 { box-shadow: inset 0 1px 0 rgba(23,24,30,.08); }
+  .ph.lt .pillb.gh { background: rgba(255,255,255,.72); color: var(--text); box-shadow: none; }
+  .ph.lt .bar { background: rgba(23,24,30,.12); }
+  .ph.lt .th { color: #fff; } /* обложка — кадр видео: надпись и длительность белые в любой теме */
+  .ph.lt .stick { background: linear-gradient(rgba(238,240,250,.98) 82%, rgba(238,240,250,0)); }
+  .ph.lt .bot2 { background: linear-gradient(rgba(238,240,250,0), rgba(238,240,250,.95) 42%); }
 </style>
 </head>
 <body>
@@ -105,27 +122,27 @@ const phr = (cur, from = 0, to = 7) => PH.slice(from, to).map(([tm, w, r], i) =>
 const cta = (t, s = '') => `<div class="cta2 t">${t}${s ? `<span style="opacity:.7;font-weight:600">${s}</span>` : ''}</div>`;
 
 // ================= ВАРИАНТ 1: СЕТКА 2×N — видно сразу 6 роликов =================
-const a1 = () => phone(`${hd}${chan}${tabs(0, ['Главная', 'Плейлисты', 'Наборы'])}
+const a1 = () => phone(`${hd}${chan}${tabs(0, ['Новое', 'Плейлисты', 'Наборы'])}
   <div class="g2">${V.map(([t, m, c, d], i) => `<div class="t"><div class="rel">${th(c, d, 15, '', i)}</div><div class="gt">${t}</div><div class="gmr"><div class="gm">${m}</div><span class="bm${i === 1 ? ' on' : ''}">${icon('bookmark', 's16')}</span></div></div>`).join('')}</div>`);
-const a2 = () => phone(`${hd}${chan}${tabs(1, ['Главная', 'Плейлисты', 'Наборы'])}
+const a2 = () => phone(`${hd}${chan}${tabs(1, ['Новое', 'Плейлисты', 'Наборы'])}
   <div class="g2">${PL.map(([n, k], i) => `<div class="t"><div class="stk">${th(V[i][2], '', 15, '', i + 2)}</div><div class="gt">${n}</div><div class="gm">${k} видео</div></div>`).join('')}</div>`);
 const a3 = () => phone(`${back(ib('bookmark'))}<div style="margin-top:6px">${th('Catch<br>a flight', '12:34', 26, '', 2, 2)}</div><div class="bar"><i></i></div>
   <div class="mid" style="margin-top:16px">30 фраз для поездки за границу</div><div class="lab" style="margin-top:20px">Фразы из видео<span class="all">${PH.length}</span></div>${phr(3)}<div style="height:90px"></div>`, { fixed: bot(cta('Добавить набор себе', '30 карточек')) });
-const a4 = () => phone(`${hd}${chan}${tabs(2, ['Главная', 'Плейлисты', 'Наборы'])}
+const a4 = () => phone(`${hd}${chan}${tabs(2, ['Новое', 'Плейлисты', 'Наборы'])}
   ${V.slice(0, 5).map(([t, m, c, d, n], i) => `<div class="row"><div style="width:132px;flex:none">${th(c, '', 12, '', i)}</div><div style="flex:1;min-width:0"><div class="t" style="font-size:16px;line-height:21px">${t}</div><div class="m">${n} карточек</div></div><span class="rd t${i === 1 ? ' on' : ''}">${icon(i === 1 ? 'check' : 'plus', 's20')}</span></div>`).join('')}`);
 
 // ================= ВАРИАНТ 2: ЛЕНТА ПО ДАТАМ — действия прямо в строке =================
 const grp = (t) => `<div class="lab" style="margin:20px 0 4px">${t}</div>`;
 const vrow = (v, i, added = 0) => `<div class="row"><div style="width:148px;flex:none">${th(v[2], v[3], 13, '', i)}</div><div style="flex:1;min-width:0"><div class="t" style="font-size:16px;line-height:21px">${v[0]}</div><div class="m">${v[1]}</div>
   <div class="acts"><span class="pillb t${added ? ' ok' : ''}">${icon(added ? 'check' : 'plus', 's18')}${v[4]} фраз</span><span class="rd t">${icon('bookmark', 's18')}</span></div></div></div>`;
-const b1 = () => phone(`${hd}${chan}${sg(0, ['Главная', 'Плейлисты', 'Наборы'])}
+const b1 = () => phone(`${hd}${chan}${sg(0, ['Новое', 'Плейлисты', 'Наборы'])}
   ${grp('Сегодня')}${vrow(V[0], 0)}${grp('На этой неделе')}${vrow(V[1], 1, 1)}${vrow(V[2], 2)}${vrow(V[3], 3)}`);
-const b2 = () => phone(`${hd}${chan}${sg(1, ['Главная', 'Плейлисты', 'Наборы'])}
+const b2 = () => phone(`${hd}${chan}${sg(1, ['Новое', 'Плейлисты', 'Наборы'])}
   ${PL.map(([n, k], i) => `<div class="row" style="align-items:center"><div class="stk" style="width:148px;flex:none;margin-top:8px">${th(V[i][2], '', 13, '', i + 2)}</div><div style="flex:1"><div class="t" style="font-size:18px">${n}</div><div class="m">${k} видео</div></div><span class="sec2">${icon('fwd', 's20')}</span></div>`).join('')}`);
 const b3 = () => phone(`<div class="stick">${back(ib('bookmark'))}${th('Catch<br>a flight', '12:34', 26, '', 2, 2)}<div class="bar"><i></i></div>
   <div class="mid" style="margin-top:14px">30 фраз для поездки за границу</div><div class="acts" style="margin-top:12px"><span class="pillb t">${icon('plus', 's18')}Добавить набор · 30</span><span class="pillb gh t">${icon('bookmark', 's18')}Сохранить ролик</span></div></div>
   <div class="lab" style="margin-top:8px">Фразы из видео<span class="all">${PH.length}</span></div>${phr(3)}${phr(-1, 0, 3)}`);
-const b4 = () => phone(`${hd}${chan}${sg(2, ['Главная', 'Плейлисты', 'Наборы'])}
+const b4 = () => phone(`${hd}${chan}${sg(2, ['Новое', 'Плейлисты', 'Наборы'])}
   ${V.slice(0, 4).map(([t, m, c, d, n], i) => `<div class="row"><div style="flex:1;min-width:0"><div class="t">${t}</div><div class="m">${PH.slice(i % 2, (i % 2) + 3).map((p) => p[1]).join(' · ')}</div><div class="m">${n} карточек · ${[118, 64, 207, 31][i]} добавили</div></div><div style="padding-top:2px"><span class="pillb t${i === 1 ? ' ok' : ''}">${icon(i === 1 ? 'check' : 'plus', 's18')}${i === 1 ? 'Мой' : 'Добавить'}</span></div></div>`).join('')}`);
 
 // ================= ВАРИАНТ 3: ВИТРИНА — главный ролик и ленты, вкладки не нужны =================
@@ -144,9 +161,12 @@ const c3 = () => phone(`${back(ib('bookmark'))}<div style="margin-top:6px">${th(
 const c4 = () => phone(`${back()}<div class="h1" style="margin-top:6px">Наборы из видео</div>
   <div class="g2" style="gap:12px">${V.slice(0, 6).map(([t, m, c, d, n], i) => `<div class="setc t" style="width:auto;min-height:168px;display:flex;flex-direction:column"><div style="font-size:16px;font-weight:700;line-height:21px">${t}</div><div class="sec2" style="font-size:13px;margin:6px 0 12px">${n} карточек</div><div style="margin-top:auto"><span class="pillb t${i === 2 ? ' ok' : ''}" style="height:38px;font-size:14px">${icon(i === 2 ? 'check' : 'plus', 's16')}${i === 2 ? 'Мой' : 'Добавить'}</span></div></div>`).join('')}</div>`);
 
-const L = ['1 · Главная', '2 · Плейлисты', '3 · Ролик и фразы', '4 · Наборы из видео'];
+const L = ['1 · Новое', '2 · Плейлисты', '3 · Ролик и фразы', '4 · Наборы из видео'];
 document.getElementById('root').innerHTML =
   block('c1', 'Вариант 1 · Сетка', 'Чем отличается: ролики в две колонки — на экране сразу шесть вместо одного-двух. «Наборы» теперь третья вкладка, а не плашка сверху. Закладка лежит прямо на обложке. В ролике главная кнопка «Добавить набор себе» всегда внизу под большим пальцем.', [col(L[0], a1()), col(L[1], a2()), col(L[2], a3()), col(L[3], a4())]) +
+  block('c1-light', 'Вариант 1 · Сетка — светлая тема («Сумерки»)', 'Тот же экран в светлой теме: фон и карточки по токенам темы, обложки роликов тёмные (это кадр видео), закладка — круг 28 в строке меты, мета 11/14 в одну строку.', [
+    col('Новое · светлая', a1().replace('class="ph"', 'class="ph lt"')), col('Плейлисты · светлая', a2().replace('class="ph"', 'class="ph lt"')), col('Наборы · светлая', a4().replace('class="ph"', 'class="ph lt"')),
+  ]) +
   block('c2', 'Вариант 2 · Лента с действиями в строке', 'Чем отличается: ролики по датам («Сегодня», «На этой неделе»), а набор можно добавить и ролик сохранить прямо из списка, не заходя внутрь. В ролике плеер закреплён сверху, фразы листаются под ним.', [col(L[0], b1()), col(L[1], b2()), col(L[2], b3()), col(L[3], b4())]) +
   block('c3', 'Вариант 3 · Витрина', 'Чем отличается: вкладок нет. Сверху главный ролик с кнопками «Смотреть» и «Набор», ниже ленты, которые листаются вбок: новые, плейлист, наборы. «Все ›» открывает полный список. Внутри ролика текущая фраза крупно, со стрелками «назад» и «дальше».', [col(L[0], c1()), col(L[1], c2()), col(L[2], c3()), col(L[3], c4())]);
 K.init();

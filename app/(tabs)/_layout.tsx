@@ -1420,7 +1420,8 @@ function ReleasedTabLayout() {
       // занимала синхронная загрузка модуля Настроек — кадр с каркасом не успевал. Теперь каркас лежит в слоте вкладки ВСЕГДА (тот же экземпляр,
       // смонтирован заранее), панель с экраном — поверх: лента сдвигается на UI-потоке и сразу показывает каркас; экран (ScreenGradient) его закрывает.
       <View key="slot-settings" style={{ width: tabPaneWidth, flex: 1 }} collapsable={false}>
-        <View style={StyleSheet.absoluteFill} pointerEvents="none"><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
+        {/* зачем (Ревизор 18.10, доступность): каркас декоративный и остаётся под открытым экраном — скрыт от TalkBack/VoiceOver, иначе заголовок читался бы дважды, а фокус попадал на невидимые плашки */}
+        <View style={StyleSheet.absoluteFill} pointerEvents="none" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden><TabShellSkeleton title={SETTINGS_TAB_TITLE} /></View>
         {show(4) ? <TabPane freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} shellUnderlay /></TabRenderProbe></TabPane> : null}
       </View>,
     ];

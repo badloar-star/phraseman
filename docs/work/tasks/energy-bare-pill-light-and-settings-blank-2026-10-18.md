@@ -6,6 +6,8 @@ Governance-ID: TG-581CA24C992F (сторож deferred_tab_prewarm_contract по�
 Governance-ID: TG-FC4A40F08EB7 (пересъёмка 7e1c3c093: 1,8 с пусто до каркаса — пустой была заглушка ленты placeholder('ph-settings') до первого посещения; каркас рисуется и в ней)
 Governance-ID: TG-65E5F37168A4 (каркас по разметке экрана; логи «почему отсрочка не сработала»)
 Governance-ID: TG-AE8F5522D0B6 (Ревизор: блокировка премаунта только по сроку HOLD, без бесконечного foregroundMounts.size)
+Governance-ID: TG-EA3F798498E6 (Ревизор: каркас под экраном скрыт от TalkBack/VoiceOver)
+Governance-ID: TG-ED07D41761D4 (очередь: логотип онбординга — только цвет; разбор холодного старта — таблица до правок)
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: координатор, находки Сверки walk/FINDINGS.md (2) и (10)

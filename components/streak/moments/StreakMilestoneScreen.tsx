@@ -26,6 +26,7 @@ import StreakConfetti from './StreakConfetti';
 import StreakMomentFlame from './StreakMomentFlame';
 import { STREAK_PROBE, STREAK_PROBE_DELAYS_MS } from './streak_calendar_probe';
 import { streakSublineInk } from './streak_subline_ink';
+import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 import { STREAK_FLAME_FULL_DAYS } from '../StreakFlameFill';
 
 // зачем (Сверка моментов v3 15.10, эталон engagement-moments-v3-all m19): на окне рубежа огонь залит целиком — стадию несут цвет и число.
@@ -154,7 +155,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const subInk = streakSublineInk({ text: p.text, secondary: p.textSecondary, bg: p.bg, bgTop: p.bgTop, accentSoft: glass.accentSoft, isLight: glass.isLight });
 
   const T = (text: string, style: 'ov' | 'ovMuted' | 'xl' | 'md' | 'p') => (
-    <Text style={[s[style], { color: style === 'ov' ? glass.accentTextSafe : style === 'p' || style === 'ovMuted' ? subInk : p.text }]}>{text}</Text>
+    // зачем (координатор 18.10, проверка выпуска, шрифт 1,3): заголовки 34/40 и 24 — с тем же потолком масштаба, что у остальных моментов (иначе глиф выше строки)
+    <Text maxFontSizeMultiplier={style === 'xl' || style === 'md' ? MOMENT_TITLE_MAX_FONT_SCALE : undefined} style={[s[style], { color: style === 'ov' ? glass.accentTextSafe : style === 'p' || style === 'ovMuted' ? subInk : p.text }]}>{text}</Text>
   );
   const foot = (
     <View style={s.foot}>
@@ -274,7 +276,9 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   }
 
   const withFoot = kind === 'year' || kind === 'legend' ? finalAct : has('text');
-  const skippable = (kind === 'year' || kind === 'legend') && !finalAct;
+  // зачем (координатор 18.10, проверка выпуска: «кнопка закрытия доступна сразу»): на iOS нет «назад», а «Дальше» у большого рубежа появляется через ~2,3 с,
+  // у 500 — ~3,2 с, у двух лет — ~5 с. «Пропустить» (та же плашка эталона, что у «Года»/«Легенды») — во всех сценах, пока нет «Дальше»; тап — сразу итог.
+  const skippable = !withFoot;
   const bodyKey = `${kind}-${act}`;
   return (
     <MomentFullScreen testID={testID} glowTop={glowTop ?? undefined}>

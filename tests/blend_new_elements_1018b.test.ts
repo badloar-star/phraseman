@@ -44,6 +44,14 @@ const PAIRS: Pair[] = [
   { el: '«Сохранить» в наборе из видео', what: 'значок text / сохранённый accentGraphic на круге', min: GRAPHIC, v: (t) => Math.min(...plates(t).flatMap((p) => { const f = over(t.buttonFill!, p); return [ratio(over(t.text!, f), f), ratio(over(t.accentGraphic!, f), f)]; })) },
   { el: 'Каркас «Настроек»', what: 'плашки plateFillFrom к фону (тон, каркас ≥ 1,05)', min: 1.05, v: (t) => toneOn(t.plateFillFrom!, [solid(t.bg!)]) },
   { el: 'Каркас «Настроек»', what: 'заголовок text к фону', min: TEXT, v: (t) => worstOn(t.text!, [solid(t.bg!)]) },
+  // Карта V2 (LearningV2ChaptersCourse). intended-tone: плитка-подложка значка glassTone(text, 9 %) — НЕ кнопка, смысл несёт значок.
+  // зачем (владелец через координатора 18.10, вариант (а)): «такие же, как в Диалогах» — эталон docs/design/v2-app/dialogs.html
+  // (плитка ≈ 1,27 к карточке). Порог 1,15 — храповик «не бледнее нынешнего», а не правило 1,5 для кнопок.
+  { el: 'Карта V2: плитка главы', what: 'intended-tone glassTone(text, 9 %) к карточке, эталон dialogs.html', min: 1.15, v: (t) => toneOn(`${t.text!.slice(0, 7)}17`, plates(t)) },
+  { el: 'Карта V2: плитка главы', what: 'значок text / закрытой главы secondary на плитке', min: GRAPHIC, v: (t) => Math.min(...plates(t).flatMap((p) => { const f = over(`${t.text!.slice(0, 7)}17`, p); return [ratio(over(t.text!, f), f), ratio(over(t.secondary!, f), f)]; })) },
+  { el: 'Карта V2: плитка урока 46', what: 'intended-tone glassTone(text, 9 %) к фону, эталон dialogs.html', min: 1.15, v: (t) => toneOn(`${t.text!.slice(0, 7)}17`, pages(t)) },
+  { el: 'Карта V2: плитка урока 46', what: 'значок text на плитке', min: GRAPHIC, v: (t) => Math.min(...pages(t).map((p) => { const f = over(`${t.text!.slice(0, 7)}17`, p); return ratio(over(t.text!, f), f); })) },
+  { el: 'Карта V2: прогресс главы', what: 'заливка accentGraphic к дорожке opaqueControl на карточке', min: GRAPHIC, v: (t) => Math.min(...plates(t).map((p) => { const track = over(t.opaqueControl!, p); return ratio(over(t.accentGraphic!, track), track); })) },
 ];
 
 describe('[BLEND-1018B] новые элементы 18.10 — все 138 сочетаний', () => {

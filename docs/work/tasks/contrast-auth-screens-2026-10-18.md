@@ -2,6 +2,7 @@
 
 Governance-ID: TG-B92AFDA89A20
 Governance-ID: TG-CCF8B102863C (координатор: «Удалить» в окне удаления — вариант (а): сплошной bad, подпись по контрасту ≥ 4,5; «Отмена» — buttonFill)
+Governance-ID: TG-4C27D33C0712 (координатор: плитки карты V2 — intended-tone 9 % по dialogs.html в blend_new_elements_1018b; белая Google-кнопка в светлой теме — пара «линия/тень к шторке» в blend_auth_1018, тёмная без изменений)
 Status: In progress
 Owner: сессия «4 · ТЕМЫ 2.0»
 Related epic/enabler: координатор 18.10 — все ресурсы на авторизацию; правило «кнопки нигде не сливаются»

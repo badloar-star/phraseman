@@ -7,6 +7,7 @@ import { customCardLocalizationForLang } from './flashcards/custom_card_localiza
 // каждое поле хранит ТОЛЬКО свой язык. Редактируем в UK — обновляется только `uk`,
 // `ru`/`es` берутся из существующей карточки; аналогично для RU и ES.
 // Запись — только через очередь `flashcards/custom_cards_store.ts`.
+import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -686,21 +687,9 @@ export default function FlashcardsCardEditorScreen() {
             {/* зачем: при закрытом создании показываем ТОТ ЖЕ скелет, что при
                 загрузке — форма не мелькает за кадр до ухода на пейвол, и
                 геометрия первого кадра совпадает с обычной (layout stability). */}
+            {/* зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Карточка не найдена / Назад» заменено тихим уходом — карточки нет, показывать нечего (причина в [NO-ERROR-SCREEN] card_editor). */}
             {notFound ? (
-              <CardsGlassStateBlock
-                g={g}
-                testID="fc-editor-not-found"
-                icon="search"
-                title={triLang(lang, {
-                  ru: 'Карточка не найдена', uk: 'Картку не знайдено', en: 'Card not found', es: 'No se encontró la tarjeta',
-                  'pt-BR': 'Cartão não encontrado', vi: 'Không tìm thấy thẻ', id: 'Kartu tidak ditemukan', tr: 'Kart bulunamadı', pl: 'Nie znaleziono karty',
-                })}
-                actionLabel={triLang(lang, {
-                  ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
-                  'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-                })}
-                onAction={leaveEditor}
-              />
+              <QuietLeave screen="card_editor" reason="card_not_found" onLeave={leaveEditor} />
             ) : loadingCard || creatorGated ? (
               <View testID="fc-editor-skeleton" style={{ flex: 1, paddingHorizontal: 20, paddingTop: 12 }}>
                 {[0, 1, 2].map((i) => (

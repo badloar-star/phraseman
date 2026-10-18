@@ -29,19 +29,14 @@ describe('каталог без сети', () => {
     expect(catalogOfflineVerdict({ isConnected: null, isInternetReachable: null, type: 'unknown' } as any).offline).toBe(false);
   });
 
-  it('«Нет сети» и «Повторить» переведены на все 9 языков интерфейса', () => {
-    const noNet = block(hub, "ru: 'Нет сети'", 420);
-    const retry = block(hub, "ru: 'Повторить'", 420);
-    for (const l of LANGS) {
-      expect(noNet).toContain(`${l}:`);
-      expect(retry).toContain(`${l}:`);
-    }
-  });
-
-  it('хаб рисует состояние только при пустом каталоге + офлайне, кнопка зовёт onRetryCatalog', () => {
-    expect(hub).toMatch(/catalogCommunityPacks\.length === 0 && communityOffline/);
-    expect(hub).toMatch(/testID="flashcards-community-offline-retry"/);
-    expect(hub).toMatch(/'cloud-offline-outline'/);
+  // зачем (правило владельца 01.10 и 18.10 «экранов-ошибок нигде», координатор 08:00): «Нет сети» с облаком и «Повторить» заменены обычным пустым каталогом; каталог тихо перечитывается сам.
+  it('хаб без сети: нет «Нет сети», облака и кнопки; пустой каталог — обычное пустое, повтор через ворота, причина в журнале', () => {
+    expect(hub).not.toContain("'Нет сети'");
+    expect(hub).not.toContain('cloud-offline-outline');
+    expect(hub).not.toContain('flashcards-community-offline-retry');
+    expect(hub).toContain('const catalogOfflineEmpty = communityOffline && catalogCommunityPacks.length === 0;');
+    expect(hub).toContain("useLoadGate({ id: 'cards-community-catalog'");
+    expect(hub).toContain("logNoErrorScreen('flashcards_category_hub', 'community_offline_empty', 'quiet_empty')");
   });
 
   it('экран подключает хук и «Повторить»; логи [CATALOG-OFFLINE] несут причину', () => {

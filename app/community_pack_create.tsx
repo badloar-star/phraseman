@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -1040,42 +1041,21 @@ export default function CommunityPackCreateScreen() {
   const fieldLabel = { color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.2 };
   const cardsCountText = `${rows.length} ${L('из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z')} 10–50`;
 
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Создание наборов пока недоступно» / «Наборы сообщества для французского пока закрыты» вместо экрана — тихий уход назад
+  // (раздел для языка включает только владелец, D129/D130; причина — в журнале [NO-ERROR-SCREEN] community_pack_create).
   if (!canUse) {
     return (
       <CardsGlassScreen g={g}>
-        <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
-          {renderHeader('')}
-          <ContentWrap>
-            <View style={styles.formHorizontalInset}>
-              <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, marginTop: 24 }}>
-                {communityPacksTargetEnabled
-                  ? L('Создание наборов пока недоступно.', 'Створення наборів поки недоступне.', 'Creating packs isn’t available yet.', 'Crear packs aún no está disponible.', 'La creación de pacotes ainda não está disponível.', 'Chưa thể tạo bộ thẻ.', 'Pembuatan paket belum tersedia.', 'Paket oluşturma henüz kullanılamıyor.', 'Tworzenie zestawów nie jest jeszcze dostępne.')
-                  : L('Наборы сообщества для французского пока закрыты.', 'Набори спільноти для французької поки закриті.', 'Community packs for French aren’t open yet.', 'Los packs de la comunidad para francés aún no están abiertos.', 'Os pacotes da comunidade para francês ainda não estão abertos.', 'Bộ thẻ cộng đồng cho tiếng Pháp chưa mở.', 'Paket komunitas untuk bahasa Prancis belum dibuka.', 'Fransızca için topluluk paketleri henüz açık değil.', 'Zestawy społeczności dla francuskiego nie są jeszcze otwarte.')}
-              </Text>
-            </View>
-          </ContentWrap>
-        </SafeAreaView>
+        <QuietLeave screen="community_pack_create" reason={communityPacksTargetEnabled ? 'create_unavailable' : 'target_closed'} onLeave={goBack} />
       </CardsGlassScreen>
     );
   }
 
-  // Недоступно для правки / ошибка загрузки (макет #74): плитка-замок, заголовок, «Назад».
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00): «Набор недоступен для редактирования» (замок + «Назад», макет #74) — набора для правки нет или он закрыт: тихо уходим назад, причина — в [NO-ERROR-SCREEN].
   if (isEditMode && loadErr) {
     return (
       <CardsGlassScreen g={g}>
-        <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
-          {renderHeader(L('Редактирование', 'Редагування', 'Editing', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja'))}
-          <ContentWrap>
-            <CardsGlassStateBlock
-              g={g}
-              testID="ugc-pack-load-error"
-              icon="lock-closed-outline" // зачем (Макеты cards-074): в образце замок контурный, а не залитый
-              title={loadErr}
-              actionLabel={backLabel}
-              onAction={goBack}
-            />
-          </ContentWrap>
-        </SafeAreaView>
+        <QuietLeave screen="community_pack_create" reason="edit_load_error" onLeave={goBack} />
       </CardsGlassScreen>
     );
   }

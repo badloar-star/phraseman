@@ -65,8 +65,9 @@ test('training setup: shared gate, calm «Сейчас недоступно», n
   expect(src).toContain('loadGateBackoffMs(silentRetryRef.current + 1)');
   // зачем (cards-section): разметка «Сейчас недоступно» — в TrainingSetupV2
   const setupView = read('app/flashcards/TrainingSetupV2.tsx');
-  expect(setupView).toContain('testID="fc-training-setup-unavailable"');
-  expect(setupView).toContain('actionTestID="fc-training-setup-try-again"');
+  // зачем (правило владельца 18.10): «Сейчас недоступно» с кнопкой заменено спокойным пустым состоянием — повтор идёт сам (ворота), без кнопки
+  expect(setupView).toContain('testID="fc-training-setup-quiet"');
+  expect(setupView).not.toContain('fc-training-setup-try-again');
   expect(src).toContain("AppState.addEventListener('change'");
   expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20_000);');
@@ -76,8 +77,11 @@ test('video packs: hung load has a ceiling, retries 1/3/8 s, then calm «Сей�
   const src = read('app/flashcards_video_packs.tsx');
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain("const delayMs = loadState === 'loading' ? LOAD_GATE_TOTAL_MS : (backoffMs as number);");
-  expect(src).toContain('testID="fc-video-packs-unavailable"');
-  expect(src).toContain('actionTestID="fc-video-packs-try-again"');
+  // зачем (правило владельца 18.10 «экранов-ошибок нигде»): сбой каталога рисует то же спокойное «Пока пусто», что и пустой список; повтор идёт сам
+  expect(src).not.toContain('fc-video-packs-unavailable');
+  expect(src).not.toContain('fc-video-packs-try-again');
+  expect(src).toContain("branch === 'empty' || branch === 'error'");
+  expect(src).toContain("logNoErrorScreen('flashcards_video_packs'");
   expect(src).toContain("AppState.addEventListener('change'");
   expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20_000);');

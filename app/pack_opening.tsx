@@ -1,4 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { QuietLeave } from '../components/cards-grid/QuietEmptyState';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
@@ -594,23 +595,13 @@ export default function PackOpeningScreen() {
     );
   }
 
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Сейчас недоступно / Не удалось открыть набор / Набор не найден + Назад» заменено тихим уходом назад —
+  // набора для открытия нет, показывать нечего. Причина (текст ошибки или его отсутствие) — в журнал [NO-ERROR-SCREEN] pack_opening.
   if (error || !pack) {
     return (
       <ScreenGradient artBackdrop="flashcards">
-        <View style={styles.fillCenter}>
-          <Stack.Screen options={{ headerShown: false }} />
-          <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
-            {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Pack no encontrado', 'pt-BR': 'Pacote não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono zestawu' })}
-          </Text>
-          <Pressable
-            onPress={() => safeRouterBack(router, '/flashcards' as any)}
-            style={[styles.primaryBtn, { backgroundColor: accent }]}
-          >
-            <Text style={{ color: EXEMPT_COLOR_1, fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-            </Text>
-          </Pressable>
-        </View>
+        <Stack.Screen options={{ headerShown: false }} />
+        <QuietLeave screen="pack_opening" reason={error ? 'load_error' : 'pack_not_found'} onLeave={() => safeRouterBack(router, '/flashcards' as any)} />
       </ScreenGradient>
     );
   }

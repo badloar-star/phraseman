@@ -17,9 +17,13 @@ describe('набор не загрузился', () => {
     expect(data).toContain('retryDeeplinkCards');
     expect(data).toContain("source: 'retry'");
   });
-  it('на экране есть обе кнопки', () => {
+  // зачем (правило владельца 18.10 «экранов-ошибок нигде»): кнопки «Повторить» больше нет — загрузка карточек набора тихо повторяется сама (useLoadGate), остаётся «Назад»
+  it('на экране нет кнопки повтора и слов об ошибке; повтор идёт сам, «Назад» остаётся', () => {
     const view = read('app/flashcards/PackOpenFailedView.tsx');
-    expect(view).toContain('fc-pack-open-retry');
+    expect(view).not.toContain('fc-pack-open-retry');
+    expect(view).not.toContain('cloud-offline-outline');
+    expect(view).toContain("useLoadGate({ id: 'pack-open-cards', status: 'error', retry: onRetry, persistAcrossMounts: true })");
+    expect(view).toContain('QuietEmptyState');
     expect(view).toContain('fc-pack-open-back');
   });
 });

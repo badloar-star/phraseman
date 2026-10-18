@@ -28,6 +28,8 @@ import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { logCardsOptimisticFrame, logCardsOptimisticStep, markCardsOptimisticTap } from './cards_optimistic_trace';
+import { logNoErrorScreen } from '../no_error_screen_log';
+import { useLoadGate } from '../use_load_gate';
 import {
   AccessibilityInfo,
   ActivityIndicator,
@@ -500,6 +502,13 @@ export default function FlashcardsCategoryHub({
     () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && !isLocalAuthorPackId(p.id)),
     [communityPacks, hiddenCommunityPackIds],
   );
+
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00): пустой каталог без сети больше не «Нет сети + Повторить» — обычное пустое состояние, а каталог тихо перечитывается сам (паузы 1/3/8 с, затем при возврате в приложение).
+  const catalogOfflineEmpty = communityOffline && catalogCommunityPacks.length === 0;
+  useLoadGate({ id: 'cards-community-catalog', status: catalogOfflineEmpty ? 'error' : 'ready', retry: onRetryCatalog ?? (() => undefined), enabled: catalogOfflineEmpty && !!onRetryCatalog, persistAcrossMounts: true });
+  useEffect(() => {
+    if (catalogOfflineEmpty) logNoErrorScreen('flashcards_category_hub', 'community_offline_empty', 'quiet_empty');
+  }, [catalogOfflineEmpty]);
 
   const visibleCommunityPacks = useMemo(() => {
     const found = applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage);
@@ -1023,22 +1032,10 @@ export default function FlashcardsCategoryHub({
             // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
             <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
               <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name={catalogCommunityPacks.length === 0 ? (communityOffline ? 'cloud-offline-outline' : 'people-outline') : 'search-outline'} size={26} color={g.text} />
+                <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
               </View>
               <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>
-                {catalogCommunityPacks.length === 0 && communityOffline
-                  ? triLang(lang, {
-                      ru: 'Нет сети',
-                      uk: 'Немає мережі',
-                      en: 'No connection',
-                      es: 'Sin conexión',
-                      'pt-BR': 'Sem conexão',
-                      vi: 'Không có mạng',
-                      id: 'Tidak ada koneksi',
-                      tr: 'Bağlantı yok',
-                      pl: 'Brak sieci',
-                    })
-                  : catalogCommunityPacks.length === 0
+                {catalogCommunityPacks.length === 0
                   ? triLang(lang, {
                       ru: 'Здесь появятся наборы после публикации.',
                       uk: 'Тут з\'являться набори після публікації.',
@@ -1075,19 +1072,7 @@ export default function FlashcardsCategoryHub({
                       pl: 'Nic nie znaleziono',
                     })}
               </FlowText>
-              {catalogCommunityPacks.length === 0 && communityOffline && onRetryCatalog ? (
-                <TouchableOpacity
-                  testID="flashcards-community-offline-retry"
-                  accessibilityRole="button"
-                  activeOpacity={0.86}
-                  onPress={() => { console.log('[CATALOG-OFFLINE] retry tap'); onRetryCatalog(); }}
-                  style={{ marginTop: 26, minHeight: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: g.ctaFill }}
-                >
-                  <Text style={{ color: g.ctaFillInk, fontSize: 16, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
+              {/* зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Нет сети» с облаком и кнопкой «Повторить» заменено обычным пустым каталогом; повтор идёт сам (useLoadGate выше, [NO-ERROR-SCREEN]). */}
               {/* зачем (Сверка cards-section-023 catalogNone, координатор 05.10): на пустой результат ПОИСКА — подсказка и
                   «Сбросить фильтры» (`.empty .l` 16/22 через 8, `.cta` 0/28 через 26). Сброс только строки поиска: язык набора —
                   сохранённый выбор человека, его кнопка не трогает. Без запросов в сеть — фильтр клиентский. */}

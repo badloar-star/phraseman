@@ -54,6 +54,7 @@ import { MyPacksV2 } from './flashcards/MyPacksV2';
 import { runPublishPackFlow } from './flashcards/publish_pack_flow';
 import { safeRouterBack } from './navigation_back';
 import { useLoadGate } from './use_load_gate';
+import { logNoErrorScreen } from './no_error_screen_log';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIds, loadCommunityOwnedPackIdsResult, loadCommunityOwnedPackTitles } from './community_packs/communityOwnedStorage';
@@ -888,13 +889,19 @@ export default function FlashcardsMyPacksScreen() {
 
   // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Мои наборы»): разметка списка вынесена
   // в MyPacksV2 (строки-карточки, разделы, «Создать набор», шторка действий); здесь остаётся только логика экрана.
-  const listStatus: 'list' | 'loading' | 'unavailable' | 'empty' = packCount > 0
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): раньше при исчерпанных воротах и нуле наборов рисовалось «Сейчас недоступно / Повторить».
+  // Теперь — то же, что при пустом списке ('empty'), а загрузка тихо повторяется сама: ворота myPacksGate ставят паузы 1/3/8 с и повторяют при возврате в приложение.
+  const listStatus: 'list' | 'loading' | 'empty' = packCount > 0
     ? 'list'
     : loadStatus !== 'ready' && myPacksGate.exhausted
-      ? 'unavailable'
+      ? 'empty'
       : loadStatus !== 'ready'
         ? 'loading'
         : 'empty';
+  const myPacksQuietEmptyReason = packCount === 0 && loadStatus !== 'ready' && myPacksGate.exhausted ? 'load_exhausted' : null;
+  useEffect(() => {
+    if (myPacksQuietEmptyReason) logNoErrorScreen('flashcards_my_packs', myPacksQuietEmptyReason, 'quiet_empty', { loadStatus });
+  }, [loadStatus, myPacksQuietEmptyReason]);
   const labelFor = useCallback((pack: FlashcardMarketPack): string => {
     // зачем (координатор 17.10): код набора людям не показываем — у наборов из видео и официальных та же цепочка названий, что везде
     return packTitleForInterface(pack, lang).trim() || packHubCodeName(pack);

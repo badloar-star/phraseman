@@ -49,6 +49,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { DebugLogger } from './debug-logger';
+import { logNoErrorScreen } from './no_error_screen_log';
 import { isDevCardsFail } from './dev_cards_state';
 import { initialVideoCatalogLoadState, videoCatalogBranch, videoCatalogWaiting } from './video_packs_catalog_branch';
 // зачем (владелец 01.10): «Из видео» берёт ГОТОВЫЕ наборы фраз роликов
@@ -271,14 +272,6 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
       ru: 'Показать все', uk: 'Показати всі', en: 'Show all', es: 'Mostrar todos',
       'pt-BR': 'Mostrar todos', vi: 'Hiện tất cả', id: 'Tampilkan semua', tr: 'Tümünü göster', pl: 'Pokaż wszystkie',
     }),
-    unavailable: triLang(lang, {
-      ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
-      'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
-    }),
-    checkInternet: triLang(lang, {
-      ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
-      'pt-BR': 'Verifique sua conexão', vi: 'Kiểm tra kết nối', id: 'Periksa koneksi', tr: 'Bağlantını kontrol et', pl: 'Sprawdź połączenie',
-    }),
     searchOpenLabel: triLang(lang, {
       ru: 'Поиск', uk: 'Пошук', en: 'Search', es: 'Buscar', 'pt-BR': 'Buscar', vi: 'Tìm', id: 'Cari', tr: 'Ara', pl: 'Szukaj',
     }),
@@ -293,10 +286,6 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     }),
     clear: triLang(lang, {
       ru: 'Очистить', uk: 'Очистити', en: 'Clear', es: 'Borrar', 'pt-BR': 'Limpar', vi: 'Xóa', id: 'Hapus', tr: 'Temizle', pl: 'Wyczyść',
-    }),
-    tryAgain: triLang(lang, {
-      ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
-      'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
     }),
   }), [lang]);
 
@@ -473,7 +462,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     const nextAttempt = silentRetryRef.current + 1;
     const backoffMs = loadGateBackoffMs(nextAttempt);
     if (loadState !== 'loading' && backoffMs === null) {
-      DebugLogger.warn(LOG, `каталог пуст после ${silentRetryRef.current} тихих повторов (loadState=${loadState}) → «Сейчас недоступно»`);
+      DebugLogger.warn(LOG, `каталог пуст после ${silentRetryRef.current} тихих повторов (loadState=${loadState}) → тихое пустое состояние`);
       setCatalogExhausted(true);
       return undefined;
     }
@@ -481,7 +470,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     const delayMs = loadState === 'loading' ? LOAD_GATE_TOTAL_MS : (backoffMs as number);
     const timer = setTimeout(() => {
       if (backoffMs === null) {
-        DebugLogger.warn(LOG, `загрузка каталога не ответила за ${LOAD_GATE_TOTAL_MS} мс после ${silentRetryRef.current} повторов → «Сейчас недоступно»`);
+        DebugLogger.warn(LOG, `загрузка каталога не ответила за ${LOAD_GATE_TOTAL_MS} мс после ${silentRetryRef.current} повторов → тихое пустое состояние`);
         setCatalogExhausted(true);
         return;
       }
@@ -496,7 +485,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   }, [catalogExhausted, loadState, targetKey, waitingForCatalog]);
 
   const retryCatalog = useCallback((source: 'tap' | 'foreground') => {
-    DebugLogger.info(LOG, `повтор каталога после «Сейчас недоступно» (${source})`);
+    DebugLogger.info(LOG, `повтор каталога после исчерпания ворот (${source})`);
     if (source === 'tap') void hapticTap();
     silentRetryRef.current = 0;
     setCatalogExhausted(false);
@@ -530,6 +519,10 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     DebugLogger.info(VIDEO_EMPTY_LOG, `ветка=${branch} причина=${branchReason} loadState=${loadState} наборов=${packs.length} видимых=${visible.length} поиск=${searching ? 'да' : 'нет'} язык=${packLanguage} исчерпано=${catalogExhausted ? 'да' : 'нет'} embedded=${embedded ? 'да' : 'нет'}`);
   }, [branch, branchReason, catalogExhausted, embedded, loadState, packLanguage, packs.length, searching, visible.length]);
 
+  useEffect(() => {
+    if (branch === 'error') logNoErrorScreen('flashcards_video_packs', branchReason, 'quiet_empty', { loadState });
+  }, [branch, branchReason, loadState]);
+
   // зачем (video-redesign #c1, `.row + .row`): во вкладке строки разделяет тонкая линия, без карточек и зазоров.
   const rowSeparator = useMemo(
     () => (embedded ? function HairlineGap() { return <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: g.line }} />; } : RowGap),
@@ -537,19 +530,9 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
   );
   const content = (
     <>
-      {branch === 'error' ? (
-                <KitEmpty
-                  g={kg}
-                  testID="fc-video-packs-unavailable"
-                  icon="cloud-offline-outline"
-                  title={copy.unavailable}
-                  detail={copy.checkInternet}
-                  action={copy.tryAgain}
-                  actionIcon="refresh"
-                  onAction={() => retryCatalog('tap')}
-                  actionTestID="fc-video-packs-try-again"
-                />
-              ) : branch === 'loading' ? (
+      {/* зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): ветка 'error' («Сейчас недоступно / Проверь интернет / Попробовать снова») больше не рисуется — при сбое каталога показываем то же спокойное «Пока пусто», что и при пустом списке (ниже);
+          повтор идёт сам (ворота каталога, при возврате в приложение), причина — [NO-ERROR-SCREEN] flashcards_video_packs. */}
+      {branch === 'loading' ? (
                 /**
                  * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
                  * геометрии с готовым списком, иначе экран «прыгает», когда данные
@@ -566,7 +549,7 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
                     </View>
                   ))}
                 </View>
-              ) : branch === 'empty' ? (
+              ) : branch === 'empty' || branch === 'error' ? (
                 // зачем (владелец, журнал п.85(2); макет cards-states «Наборы из видео — Пока пусто»): наборов из видео нет — спокойное «Пока пусто» вместо скелета и «Сейчас недоступно»; кнопки в макете нет
                 <KitEmpty
                   g={kg}

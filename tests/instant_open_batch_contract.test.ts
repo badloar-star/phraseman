@@ -29,7 +29,9 @@ describe('instant open batch', () => {
     const src = read('app/community_packs/PackCommentsSheet.tsx');
     expect(src).toContain('const PACK_COMMENTS_LOAD_DEADLINE_MS = 8_000;');
     expect(src).toContain('[PACK-COMMENTS] load:deadline');
-    expect(src).toContain('testID="pack-comments-load-failed"');
+    // зачем (правило владельца 18.10): экрана «Не удалось загрузить комментарии» нет — при сбое то же пустое состояние и тихий повтор
+    expect(src).not.toContain('pack-comments-load-failed');
+    expect(src).toContain("logNoErrorScreen('pack_comments'");
     expect(src).toContain('[visible, packId, isPackAuthor, reloadTick]');
   });
 

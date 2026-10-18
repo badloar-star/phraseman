@@ -21,8 +21,10 @@ describe('настройка тренировки — пусто: блок в п
     expect(setup).toContain('<KitEmpty inline g={g} testID="fc-training-setup-empty"');
     const scrollEnd = setup.indexOf('</ScrollView>');
     expect(setup.indexOf('<KitEmpty inline g={g} testID="fc-training-setup-empty"')).toBeLessThan(scrollEnd);
-    // «недоступно» и «ошибка» по-прежнему по центру экрана (отдельные образцы)
-    expect(setup).toContain('<KitEmpty g={g} testID="fc-training-setup-unavailable"');
-    expect(setup).toContain('<KitEmpty g={g} testID="fc-training-setup-error"');
+    // зачем (правило владельца 18.10 «экранов-ошибок нигде»): «недоступно» — спокойное пустое состояние без слов об ошибке, «режим недоступен» — тихий уход назад
+    expect(setup).toContain('testID="fc-training-setup-quiet"');
+    expect(setup).toContain('<QuietLeave screen="training_setup"');
+    expect(setup).not.toContain('fc-training-setup-unavailable');
+    expect(setup).not.toContain('fc-training-setup-error');
   });
 });

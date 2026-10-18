@@ -10,7 +10,8 @@ describe('PM-214: Карточки и Сообщество — первый ка
   it('«Мои наборы»: группы из прогретого кэша в начальном состоянии, список показывается и при loading, если наборы уже есть', () => {
     const src = read('app/flashcards_my_packs.tsx');
     expect(src).toContain('useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget');
-    expect(src).toContain("const listStatus: 'list' | 'loading' | 'unavailable' | 'empty' = packCount > 0\n    ? 'list'".replace(/\n/g, src.includes('\r\n') ? '\r\n' : '\n'));
+    // зачем (правило владельца 18.10 «экранов-ошибок нигде»): состояния 'unavailable' больше нет — при исчерпанных воротах и нуле наборов экран рисует то же, что при пустом списке
+    expect(src).toContain("const listStatus: 'list' | 'loading' | 'empty' = packCount > 0\n    ? 'list'".replace(/\n/g, src.includes('\r\n') ? '\r\n' : '\n'));
     // единственный спиннер — на кнопке удаления (действие), не загрузка экрана
     expect(src.match(/<ActivityIndicator/g)?.length).toBe(1);
     expect(src).toContain('deletePackBusy ? <ActivityIndicator');

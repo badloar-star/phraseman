@@ -377,7 +377,7 @@ test('setup screen delegates the view to TrainingSetupV2 and keeps the start/quo
   assert.match(routeSource, /onStart=\{\(\) => void startTraining\(\)\}/);
   assert.match(routeSource, /onRetry=\{\(\) => retryDecksLoad\('tap'\)\}/);
   assert.match(routeSource, /quotaPreview\.status === 'exhausted'/);
-  for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-upgrade', 'fc-training-setup-unavailable', 'fc-training-setup-empty']) {
+  for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-upgrade', 'fc-training-setup-quiet', 'fc-training-setup-empty']) {
     assert.ok(view.includes(id), `missing testID ${id}`);
   }
   // зачем (Карточки 2.0 12.10, cards-v2.html «Настройка»): наборы — плитки `.pk` в 2 колонки (DeckPickTile) с круглой отметкой; сегменты и кнопка — общие части kit.

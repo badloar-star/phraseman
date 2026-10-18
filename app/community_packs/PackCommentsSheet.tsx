@@ -12,6 +12,8 @@
  * на Главной должен вести прямо к новому отклику без промежуточных экранов
  * (owner-решение — см. тот же макет, раздел 3).
  */
+import { logNoErrorScreen } from '../no_error_screen_log';
+import { useLoadGate } from '../use_load_gate';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -206,6 +208,12 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   // иначе она мигала бы у тех, кому писать можно (canWrite поднимается асинхронно).
   const [writeCheckDone, setWriteCheckDone] = useState(false);
   const [reloadTick, setReloadTick] = useState(0);
+  // зачем (правило владельца 01.10 и 18.10, координатор 08:00): сбой чтения комментариев без кэша — не экран ошибки, а тихий повтор (паузы 1/3/8 с, затем при возврате в приложение) и обычное пустое состояние; причина — [NO-ERROR-SCREEN] pack_comments.
+  const commentsLoadFailedEmpty = loadFailed && comments.length === 0;
+  useLoadGate({ id: 'pack-comments', status: commentsLoadFailedEmpty ? 'error' : 'ready', retry: () => setReloadTick((tick) => tick + 1), enabled: visible && commentsLoadFailedEmpty });
+  useEffect(() => {
+    if (visible && commentsLoadFailedEmpty) logNoErrorScreen('pack_comments', 'load_failed_empty', 'quiet_empty');
+  }, [visible, commentsLoadFailedEmpty]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const sendLockRef = useRef(false);
@@ -734,8 +742,6 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const pinnedBadge = triLang(lang, { ru: 'закреплено', uk: 'закріплено', en: 'pinned', es: 'fijado', 'pt-BR': 'fixado', vi: 'đã ghim', id: 'disematkan', tr: 'sabitlendi', pl: 'przypięte' });
   const headerTitle = triLang(lang, { ru: 'Отклик', uk: 'Відгук', en: 'Comments', es: 'Comentarios', 'pt-BR': 'Comentários', vi: 'Phản hồi', id: 'Tanggapan', tr: 'Yorumlar', pl: 'Komentarze' });
 
-  const loadFailedTitle = triLang(lang, { ru: 'Не удалось загрузить комментарии', uk: 'Не вдалося завантажити коментарі', en: 'Could not load comments', es: 'No se pudieron cargar los comentarios', 'pt-BR': 'Não foi possível carregar os comentários', vi: 'Không tải được bình luận', id: 'Komentar tidak dapat dimuat', tr: 'Yorumlar yüklenemedi', pl: 'Nie udało się wczytać komentarzy' });
-  const retryLabel = triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' });
   const loadingLabel = triLang(lang, { ru: 'Загрузка комментариев…', uk: 'Завантаження коментарів…', en: 'Loading comments…', es: 'Cargando comentarios…', 'pt-BR': 'Carregando comentários…', vi: 'Đang tải bình luận…', id: 'Memuat komentar…', tr: 'Yorumlar yükleniyor…', pl: 'Ładowanie komentarzy…' });
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
   const sendLabel = triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' });
@@ -917,13 +923,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <ActivityIndicator color={glass.secondary} />
               <Text style={{ color: glass.secondary, fontSize: f.caption }}>{loadingLabel}</Text>
             </View>
-          ) : comments.length === 0 && loadFailed ? (
-            <View testID="pack-comments-load-failed" style={{ alignItems: 'center', paddingVertical: 28, paddingHorizontal: 20 }}>
-              <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>{loadFailedTitle}</Text>
-              <TouchableOpacity accessibilityRole="button" onPress={() => setReloadTick((tick) => tick + 1)} style={{ minHeight: 44, paddingHorizontal: 20, marginTop: 12, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>{retryLabel}</Text>
-              </TouchableOpacity>
-            </View>
+          /* зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Не удалось загрузить комментарии / Повторить» убрано — при сбое без кэша показываем то же пустое состояние, что и при нуле комментариев, а чтение тихо повторяется само (useLoadGate выше). */
           ) : comments.length === 0 ? (
             <View style={{ alignItems: 'center', paddingVertical: 28, paddingHorizontal: 20 }}>
               <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>

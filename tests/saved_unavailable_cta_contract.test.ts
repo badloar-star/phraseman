@@ -3,27 +3,25 @@ import path from 'path';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
-// 18.10 (Макеты cards-039, эталон t16): «Сейчас недоступно» на «Сохранённых» — светлая нейтральная кнопка с тёмной надписью
-// (не мятная KitCta), значок ↺, без счётчика «0» у заголовка. Общая KitCta не меняется.
-describe('saved «Сейчас недоступно» matches the cards-039 reference', () => {
+// 18.10 (Макеты cards-039, эталон t16; Сайт fe82ecd30) → переписан после правила владельца «экранов-ошибок нигде» (координатор 08:00, разрешение Сайта):
+// экрана «Сейчас недоступно» на «Сохранённых» больше нет — спокойное пустое состояние, кнопки повтора нет. Общие части (KitEmpty.actionNode, «0» у заголовка) остаются.
+describe('saved list failure is a quiet empty state (no «Сейчас недоступно» screen)', () => {
   const states = read('app/flashcards/SavedCollectionStates.tsx');
-  const unavailable = states.slice(states.indexOf('function SavedCollectionUnavailable('), states.indexOf('const retryStyles'));
 
-  it('uses its own neutral button: theme text as fill, theme background as ink — contrast in every theme', () => {
-    expect(unavailable).toContain('actionNode={retryButton}');
-    expect(unavailable).toContain('{ backgroundColor: g.text }');
-    expect(unavailable).toContain('color={g.bg}');
-    expect(unavailable).toContain('{ color: g.bg }');
-    expect(unavailable).toContain('testID="fc-saved-try-again"');
-    expect(unavailable).not.toContain('actionIcon="refresh"');
+  it('has no unavailable view, no retry button and no tap-retry state', () => {
+    expect(states).not.toContain('SavedCollectionUnavailable');
+    expect(states).not.toContain('fc-saved-try-again');
+    expect(states).not.toContain('fc-saved-unavailable');
+    expect(states).not.toContain('cloud-offline-outline');
+    expect(states).not.toContain('retryIconCcw');
   });
 
-  it('mirrors the refresh glyph to the counter-clockwise ↺ of the reference', () => {
-    expect(states).toContain('retryIconCcw: { transform: [{ scaleX: -1 }] }');
-    expect(unavailable).toContain('style={retryStyles.retryIconCcw}');
+  it('draws the ordinary empty state once the gate is exhausted or the device is offline, and logs why', () => {
+    expect(states).toContain('const quietEmpty = loadError && (gate.exhausted || !!props.deviceOffline);');
+    expect(states).toContain("logNoErrorScreen('flashcards_saved'");
   });
 
-  it('shared KitCta keeps its accent fill; KitEmpty only gains an opt-in override', () => {
+  it('shared KitCta keeps its accent fill; KitEmpty keeps its opt-in override', () => {
     const kit = read('components/cards-grid/CardsKit.tsx');
     expect(kit).toContain('{ backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }');
     expect(kit.match(/\{actionNode \?\? <KitCta g=\{g\} label=\{action\} icon=\{actionIcon\} onPress=\{onAction\} testID=\{actionTestID\} \/>\}/g)?.length).toBe(2);

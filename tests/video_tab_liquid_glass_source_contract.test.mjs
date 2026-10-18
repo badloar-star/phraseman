@@ -73,5 +73,5 @@ test('video.html: loading, empty, error and note states use the shared glass kit
 test('video packs screen: empty/error states carry the tile and a filled cta', () => {
   // зачем: пустые состояния рисует общий KitEmpty (плитка 61, мятная кнопка) — макет cards-section
   assert.ok(packs.includes('KitEmpty'), 'state tile');
-  assert.ok(packs.includes('actionTestID="fc-video-packs-try-again"') && packs.includes('actionTestID="fc-video-packs-clear-search"'), 'filled cta');
+  assert.ok(packs.includes('actionTestID="fc-video-packs-clear-search"') && !packs.includes('fc-video-packs-try-again'), 'filled cta (поиск без результатов); экрана-ошибки с «Попробовать снова» нет — правило владельца 18.10');
 });

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { StyleSheet, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { useTheme } from '../../components/ThemeContext';
@@ -8,6 +7,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLoadGate } from '../use_load_gate';
+import { logNoErrorScreen } from '../no_error_screen_log';
 
 type Props = {
   lang: Lang;
@@ -42,21 +42,18 @@ export function SavedCollectionLoading({ lang }: { lang: Lang }) {
   </View>;
 }
 
-// зачем (владелец 01.10 + D158 / PM-214): экрана ошибки загрузки нет — при сбое скелетон той же геометрии
-// и тихий повтор, но не бесконечный: общий useLoadGate (паузы 1/3/8 с), затем «Сейчас недоступно» +
-// «Попробовать снова». Счётчик живёт между монтированиями (persistAcrossMounts): экран размонтируется на
-// время самой загрузки, и локальный счётчик сбрасывался бы каждый круг.
+// зачем (владелец 01.10 + D158 / PM-214; правило владельца 18.10, координатор 08:00: «экранов-ошибок нигде»): экрана ошибки загрузки нет — при сбое скелетон той же геометрии и тихий повтор,
+// но не бесконечный: общий useLoadGate (паузы 1/3/8 с, затем повтор при возврате в приложение). После исчерпания ИЛИ без сети (NetInfo) — не «Сейчас недоступно / Попробовать снова»,
+// а то же спокойное пустое состояние, что у пустого списка (SavedCollectionEmpty): кнопки повтора нет, повтор идёт сам; когда карточки приедут — список подставится тихо.
+// Счётчик живёт между монтированиями (persistAcrossMounts): экран размонтируется на время самой загрузки, и локальный счётчик сбрасывался бы каждый круг.
 export function SavedCollectionState(props: Props) {
-  const { lang, loadError, onRetry } = props;
-  // зачем (cards-039, Сверка 81d2dfe38, координатор 18.10 05:52): контракт useLoadGate — «retry() обязан перевести status в 'loading'»: эффект ворот перезапускается ТОЛЬКО по смене status. Раньше сюда уходило лишь 'error' | 'ready':
-  // после первого тихого повтора status оставался 'error', эффект не перезапускался, паузы attempt 2/3 не ставились, ворота не исчерпывались — скелетон вечно (журнал: attempt 1 → load:ok 10 мс → тишина 52 с).
-  // Теперь `retrying` живёт на время повтора (любой исход его снимает) и отдаётся воротам как 'loading'; по завершении status возвращается в 'error' → ворота ставят следующий повтор либо исчерпываются («Сейчас недоступно»).
+  const { loadError, onRetry } = props;
+  // зачем (cards-039, Сверка 81d2dfe38, координатор 18.10 05:52): контракт useLoadGate — «retry() обязан перевести status в 'loading'»; `retrying` живёт на время повтора (любой исход его снимает) и отдаётся воротам как 'loading'.
   const [retrying, setRetrying] = useState(false);
   const aliveRef = useRef(true);
   useEffect(() => () => { aliveRef.current = false; }, []);
-  // зачем (Сайт, проверка 9be415d23): защита от двойного тапа — пока загрузка идёт, второй повтор не запускаем (иначе сколько тапов, столько параллельных loadAll), а тап даёт видимый отклик и без сети.
+  // зачем (Сайт, проверка 9be415d23): пока загрузка идёт, второй повтор не запускаем (иначе параллельные loadAll) — защита остаётся для повторов ворот и возврата в приложение.
   const retryingRef = useRef(false);
-  const [tapPending, setTapPending] = useState(false);
   const retry = useCallback(() => {
     if (retryingRef.current) {
       console.log('[CARDS-LOAD] retry → skipped in_flight'); // guard-ok: второй повтор при идущей загрузке
@@ -68,77 +65,27 @@ export function SavedCollectionState(props: Props) {
     const settle = (outcome: string) => {
       console.log('[CARDS-LOAD] retry:settled', JSON.stringify({ outcome, stillMounted: aliveRef.current })); // guard-ok: итог одного повтора
       retryingRef.current = false;
-      if (aliveRef.current) { setRetrying(false); setTapPending(false); }
+      if (aliveRef.current) setRetrying(false);
     };
     try { Promise.resolve(onRetry()).then(() => settle('ok'), (e) => { console.warn('[FC-SAVED] повтор отклонён', e); settle('rejected'); }); }
     catch (e) { console.warn('[FC-SAVED] повтор упал', e); settle('threw'); }
   }, [onRetry]);
   const gateStatus = retrying ? 'loading' : loadError ? 'error' : 'ready';
   const gate = useLoadGate({ id: 'fc-saved', status: gateStatus, retry, persistAcrossMounts: true });
-  // зачем (координатор 18.10 05:47): без сети (NetInfo) экран ошибки — сразу после первой неудачи; автоповтор useLoadGate при этом продолжается и при успехе тихо подставит список
-  // зачем (Сайт): на время ручного повтора по тапу — скелетон, даже без сети (иначе кнопка «не реагирует»); после неудачи tapPending снимается и экран возвращается в «Сейчас недоступно». Фоновые автоповторы экран ошибки не трогают.
-  const onTapRetry = useCallback(() => {
-    console.log('[CARDS-LOAD] tap retry', JSON.stringify({ inFlight: retryingRef.current })); // guard-ok: тап «Попробовать снова»
-    setTapPending(true);
-    if (retryingRef.current) return; // идущая загрузка уже вернёт результат, tapPending снимет её settle
-    gate.retryNow('tap');
-  }, [gate.retryNow]);
-  const drawn = loadError && !tapPending && (gate.exhausted || props.deviceOffline) ? 'unavailable' : loadError ? 'skeleton' : 'empty';
-  const drawnKey = `${drawn}|${gateStatus}|${gate.exhausted}|${String(props.deviceOffline)}|${String(tapPending)}`;
+  // зачем (координатор 18.10 05:47 + правило владельца 18.10 08:00): без сети (NetInfo) — спокойное пустое состояние сразу после первой неудачи; автоповтор useLoadGate при этом продолжается.
+  const quietEmpty = loadError && (gate.exhausted || !!props.deviceOffline);
+  const drawn = quietEmpty ? 'empty' : loadError ? 'skeleton' : 'empty';
+  const drawnKey = `${drawn}|${gateStatus}|${gate.exhausted}|${String(props.deviceOffline)}|${String(quietEmpty)}`;
   const drawnLoggedRef = useRef('');
   useEffect(() => {
     if (drawnLoggedRef.current === drawnKey) return;
     drawnLoggedRef.current = drawnKey;
-    console.log('[CARDS-LOAD] state:render', JSON.stringify({ drawn, loadError, retrying, gateStatus, gateExhausted: gate.exhausted, deviceOffline: !!props.deviceOffline })); // guard-ok: что рисует состояние и по каким флагам
-  }, [drawn, drawnKey, gate.exhausted, gateStatus, loadError, props.deviceOffline, retrying]);
-  if (drawn === 'unavailable') return <SavedCollectionUnavailable lang={lang} onRetry={onTapRetry} />;
-  if (drawn === 'skeleton') return <SavedCollectionLoading lang={lang} />;
+    console.log('[CARDS-LOAD] state:render', JSON.stringify({ drawn, loadError, retrying, gateStatus, gateExhausted: gate.exhausted, deviceOffline: !!props.deviceOffline, quietEmpty })); // guard-ok: что рисует состояние и по каким флагам
+    if (quietEmpty) logNoErrorScreen('flashcards_saved', gate.exhausted ? 'load_exhausted' : 'offline_first_fail', 'quiet_empty', { deviceOffline: !!props.deviceOffline });
+  }, [drawn, drawnKey, gate.exhausted, gateStatus, loadError, props.deviceOffline, quietEmpty, retrying]);
+  if (drawn === 'skeleton') return <SavedCollectionLoading lang={props.lang} />;
   return <SavedCollectionEmpty {...props} />;
 }
-
-function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; onRetry: () => void }>) {
-  const { liquidGlassThemeId } = useTheme();
-  const g = liquidGlassTokens(liquidGlassThemeId);
-  const title = triLang(lang, {
-    ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
-    'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
-  });
-  const action = triLang(lang, {
-    ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
-    'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
-  });
-  // зачем (Сверка cards-section offline, шаблон .empty): плитка 61 со значком «нет сети», «Сейчас недоступно» 24/30,
-  // строка 16/22, кнопка «Попробовать снова» со значком обновления — тот же блок по центру экрана, что у «Пусто».
-  const hint = triLang(lang, {
-    ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Revisa tu conexión',
-    'pt-BR': 'Verifique a internet', vi: 'Kiểm tra kết nối mạng', id: 'Periksa koneksi internet', tr: 'İnternetini kontrol et', pl: 'Sprawdź internet',
-  });
-  // зачем (Макеты cards-039, эталон t16): кнопка здесь светлая нейтральная с тёмной надписью, а не акцентная (мятная) KitCta;
-  // значок — ↺ (против часовой). Только это состояние — общую KitCta не трогаем. Цвета — пара «текст темы / фон темы»:
-  // в тёмных темах белая кнопка с тёмной надписью (как эталон), в светлых — тёмная со светлой, ни в одной не сливается с фоном.
-  const retryButton = (
-    <Pressable
-      testID="fc-saved-try-again"
-      accessibilityRole="button"
-      accessibilityLabel={action}
-      onPress={onRetry}
-      style={({ pressed }) => [retryStyles.retry, { backgroundColor: g.text }, pressed && retryStyles.retryPressed]}
-    >
-      <Ionicons name="refresh" size={20} color={g.bg} style={retryStyles.retryIconCcw} />
-      <Text style={[retryStyles.retryText, { color: g.bg }]}>{action}</Text>
-    </Pressable>
-  );
-  return <KitEmpty g={g} testID="fc-saved-unavailable" icon="cloud-offline-outline" title={title} detail={hint} action={action} onAction={onRetry} actionNode={retryButton} />;
-}
-
-const retryStyles = StyleSheet.create({
-  // тот же размер и форма, что у KitCta (48, r24, поля 28, зазор 12, 16/700) — отличается только цвет
-  retry: { minHeight: 48, paddingVertical: 6, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
-  retryPressed: { opacity: 0.85, transform: [{ scale: 0.97 }] },
-  retryText: { fontSize: 16, fontWeight: '700' },
-  // Ionicons «refresh» нарисован по часовой (↻) — зеркалим, чтобы вышел ↺ эталона
-  retryIconCcw: { transform: [{ scaleX: -1 }] },
-});
 
 // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section кадр 7 «Пусто»): блок стоит
 // по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,

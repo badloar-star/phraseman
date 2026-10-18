@@ -13,6 +13,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useLineScale, useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { KitCta, KitEmpty, KitSectionHead, KitSegment } from '../../components/cards-grid/CardsKit';
+import { QuietEmptyState, QuietLeave } from '../../components/cards-grid/QuietEmptyState';
 import KitTouchable from '../../components/KitTouchable';
 import { useLv2Glass, type Lv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { BackButton, PanelDock } from '../../components/mistakes-panel/PanelKit';
@@ -73,15 +74,15 @@ type Props = Readonly<{
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', packs: 'Что повторяем', cards: 'Сколько', unlimited: 'Безлимит с Plus', empty: 'Нет карточек', emptyHint: 'Сохрани пару слов', find: 'Открыть каталог', unavailable: 'Сейчас недоступно', checkNet: 'Проверь интернет', retry: 'Попробовать снова', selectedOf: 'карточек выбрано', language: 'Язык тренировки' },
-  uk: { back: 'Назад', packs: 'Що повторюємо', cards: 'Скільки', unlimited: 'Безліміт з Plus', empty: 'Немає карток', emptyHint: 'Збережи кілька слів', find: 'Відкрити каталог', unavailable: 'Зараз недоступно', checkNet: 'Перевір інтернет', retry: 'Спробувати ще', selectedOf: 'карток вибрано', language: 'Мова тренування' },
-  en: { back: 'Back', packs: 'What to practise', cards: 'How many', unlimited: 'Unlimited with Plus', empty: 'No cards', emptyHint: 'Save a few words', find: 'Open the catalog', unavailable: 'Not available right now', checkNet: 'Check your connection', retry: 'Try again', selectedOf: 'cards selected', language: 'Practice language' },
-  es: { back: 'Atrás', packs: 'Qué repasamos', cards: 'Cuántas', unlimited: 'Ilimitado con Plus', empty: 'Sin tarjetas', emptyHint: 'Guarda unas palabras', find: 'Abrir el catálogo', unavailable: 'No disponible ahora', checkNet: 'Comprueba tu conexión', retry: 'Intentar de nuevo', selectedOf: 'tarjetas elegidas', language: 'Idioma de práctica' },
-  'pt-BR': { back: 'Voltar', packs: 'O que vamos revisar', cards: 'Quantos', unlimited: 'Ilimitado com Plus', empty: 'Sem cartões', emptyHint: 'Salve algumas palavras', find: 'Abrir o catálogo', unavailable: 'Indisponível agora', checkNet: 'Verifique sua conexão', retry: 'Tentar de novo', selectedOf: 'cartões selecionados', language: 'Idioma da prática' },
-  vi: { back: 'Quay lại', packs: 'Ôn gì', cards: 'Bao nhiêu', unlimited: 'Không giới hạn với Plus', empty: 'Chưa có thẻ', emptyHint: 'Hãy lưu vài từ', find: 'Mở danh mục', unavailable: 'Hiện chưa khả dụng', checkNet: 'Kiểm tra kết nối', retry: 'Thử lại', selectedOf: 'thẻ đã chọn', language: 'Ngôn ngữ luyện tập' },
-  id: { back: 'Kembali', packs: 'Apa yang diulang', cards: 'Berapa banyak', unlimited: 'Tanpa batas dengan Plus', empty: 'Tidak ada kartu', emptyHint: 'Simpan beberapa kata', find: 'Buka katalog', unavailable: 'Belum tersedia sekarang', checkNet: 'Periksa koneksi', retry: 'Coba lagi', selectedOf: 'kartu dipilih', language: 'Bahasa latihan' },
-  tr: { back: 'Geri', packs: 'Neyi tekrarlıyoruz', cards: 'Kaç tane', unlimited: 'Plus ile sınırsız', empty: 'Kart yok', emptyHint: 'Birkaç kelime kaydet', find: 'Kataloğu aç', unavailable: 'Şu anda kullanılamıyor', checkNet: 'Bağlantını kontrol et', retry: 'Tekrar dene', selectedOf: 'kart seçildi', language: 'Pratik dili' },
-  pl: { back: 'Wstecz', packs: 'Co powtarzamy', cards: 'Ile', unlimited: 'Bez limitu z Plus', empty: 'Brak kart', emptyHint: 'Zapisz kilka słów', find: 'Otwórz katalog', unavailable: 'Teraz niedostępne', checkNet: 'Sprawdź połączenie', retry: 'Spróbuj ponownie', selectedOf: 'kart wybrano', language: 'Język ćwiczeń' },
+  ru: { back: 'Назад', packs: 'Что повторяем', cards: 'Сколько', unlimited: 'Безлимит с Plus', empty: 'Нет карточек', emptyHint: 'Сохрани пару слов', find: 'Открыть каталог', selectedOf: 'карточек выбрано', language: 'Язык тренировки' },
+  uk: { back: 'Назад', packs: 'Що повторюємо', cards: 'Скільки', unlimited: 'Безліміт з Plus', empty: 'Немає карток', emptyHint: 'Збережи кілька слів', find: 'Відкрити каталог', selectedOf: 'карток вибрано', language: 'Мова тренування' },
+  en: { back: 'Back', packs: 'What to practise', cards: 'How many', unlimited: 'Unlimited with Plus', empty: 'No cards', emptyHint: 'Save a few words', find: 'Open the catalog', selectedOf: 'cards selected', language: 'Practice language' },
+  es: { back: 'Atrás', packs: 'Qué repasamos', cards: 'Cuántas', unlimited: 'Ilimitado con Plus', empty: 'Sin tarjetas', emptyHint: 'Guarda unas palabras', find: 'Abrir el catálogo', selectedOf: 'tarjetas elegidas', language: 'Idioma de práctica' },
+  'pt-BR': { back: 'Voltar', packs: 'O que vamos revisar', cards: 'Quantos', unlimited: 'Ilimitado com Plus', empty: 'Sem cartões', emptyHint: 'Salve algumas palavras', find: 'Abrir o catálogo', selectedOf: 'cartões selecionados', language: 'Idioma da prática' },
+  vi: { back: 'Quay lại', packs: 'Ôn gì', cards: 'Bao nhiêu', unlimited: 'Không giới hạn với Plus', empty: 'Chưa có thẻ', emptyHint: 'Hãy lưu vài từ', find: 'Mở danh mục', selectedOf: 'thẻ đã chọn', language: 'Ngôn ngữ luyện tập' },
+  id: { back: 'Kembali', packs: 'Apa yang diulang', cards: 'Berapa banyak', unlimited: 'Tanpa batas dengan Plus', empty: 'Tidak ada kartu', emptyHint: 'Simpan beberapa kata', find: 'Buka katalog', selectedOf: 'kartu dipilih', language: 'Bahasa latihan' },
+  tr: { back: 'Geri', packs: 'Neyi tekrarlıyoruz', cards: 'Kaç tane', unlimited: 'Plus ile sınırsız', empty: 'Kart yok', emptyHint: 'Birkaç kelime kaydet', find: 'Kataloğu aç', selectedOf: 'kart seçildi', language: 'Pratik dili' },
+  pl: { back: 'Wstecz', packs: 'Co powtarzamy', cards: 'Ile', unlimited: 'Bez limitu z Plus', empty: 'Brak kart', emptyHint: 'Zapisz kilka słów', find: 'Otwórz katalog', selectedOf: 'kart wybrano', language: 'Język ćwiczeń' },
 });
 
 /** Плитка набора `.pk`: название 16/700, под ним число карточек, справа сверху круглая отметка; выбранная приподнята (стиль «Тень»). */
@@ -250,12 +251,12 @@ function TrainingSetupV2Inner(props: Props) {
         ) : null}
       </ScrollView>
 
+      {/* зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): «Сейчас недоступно / Проверь интернет / Попробовать снова» заменено спокойным пустым состоянием без слов об ошибке и без кнопки —
+          загрузка наборов тихо повторяется сама (useLoadGate экрана: 1/3/8 с, затем при возврате в приложение). «Режим недоступен» (режим не задан) — не показываем: тихо уходим назад. */}
       {status === 'unavailable' ? (
-        <KitEmpty g={g} testID="fc-training-setup-unavailable" icon="cloud-offline-outline" title={copy.unavailable} detail={copy.checkNet} action={copy.retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-training-setup-try-again" />
+        <QuietEmptyState g={g} lang={lang} testID="fc-training-setup-quiet" screen="training_setup" reason="setup_decks_exhausted" />
       ) : null}
-      {status === 'invalid' ? (
-        <KitEmpty g={g} testID="fc-training-setup-error" icon="alert-circle-outline" title={invalidText} detail="" action={copy.back} onAction={onBack} actionTestID="fc-training-setup-error-back" />
-      ) : null}
+      {status === 'invalid' ? <QuietLeave screen="training_setup" reason="invalid_mode_or_load_kind" onLeave={onBack} /> : null}
 
       {showList ? (
         <PanelDock>

@@ -1,38 +1,29 @@
-// ═══════════════════════════════════════════════════════════════════════════
-// PackOpenFailedView.tsx — честное состояние «Не удалось загрузить набор» с «Повторить» и «Назад».
+// ═════════════════════════════════════════════════════════════════════
+// PackOpenFailedView.tsx — спокойное состояние набора, у которого не загрузились карточки (без слов об ошибке).
 //
-// зачем (🟡 от Макетов, эмулятор B, координатор 15.10): набор, у которого не загрузились карточки, 5 с показывал скелет и молча закрывался,
-// выбрасывая в отдельный каталог. Теперь экран остаётся, говорит причину и даёт выбор: повторить загрузку или вернуться туда, откуда пришли.
-// Журнал причины — [PACK-OPEN] в flashcards_collection.tsx.
-// ═══════════════════════════════════════════════════════════════════════════
+// зачем (правило владельца 01.10 и 18.10, координатор 08:00: «экранов-ошибок нигде»): раньше здесь был честный экран «Не удалось загрузить / Проверь интернет / Повторить» (🟡 Макеты, эмулятор B, 15.10).
+// Теперь — спокойное пустое состояние без слов об ошибке и без кнопки повтора: загрузка карточек набора тихо повторяется сама (useLoadGate: паузы 1/3/8 с, затем при возврате в приложение),
+// счётчик живёт между монтированиями — view исчезает на время повтора и возвращается. «Назад» остаётся.
+// Журнал причины — [NO-ERROR-SCREEN] pack_open_failed (и прежний [PACK-OPEN] в flashcards_collection.tsx).
+// ═════════════════════════════════════════════════════════════════════
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { KitEmpty } from '../../components/cards-grid/CardsKit';
+import QuietEmptyState from '../../components/cards-grid/QuietEmptyState';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useLoadGate } from '../use_load_gate';
 
 export default function PackOpenFailedView({ lang, onRetry, onBack }: Readonly<{ lang: Lang; onRetry: () => void; onBack: () => void }>) {
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets(); // зачем (Ревизор 3e4531ac1 🟡 (3)): «Назад» не должна уходить под жестовую полосу
-  const title = triLang(lang, {
-    ru: 'Не удалось загрузить', uk: 'Не вдалося завантажити', en: "Couldn't load this pack", es: 'No se pudo cargar',
-    'pt-BR': 'Não foi possível carregar', vi: 'Không tải được', id: 'Gagal memuat', tr: 'Yüklenemedi', pl: 'Nie udało się wczytać',
-  });
-  const detail = triLang(lang, {
-    ru: 'Проверь интернет', uk: 'Перевір інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
-    'pt-BR': 'Verifique sua conexão', vi: 'Kiểm tra kết nối', id: 'Periksa koneksi', tr: 'Bağlantını kontrol et', pl: 'Sprawdź połączenie',
-  });
-  const retry = triLang(lang, {
-    ru: 'Повторить', uk: 'Повторити', en: 'Try again', es: 'Reintentar',
-    'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
-  });
+  useLoadGate({ id: 'pack-open-cards', status: 'error', retry: onRetry, persistAcrossMounts: true });
   const back = triLang(lang, {
     ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
   });
   return (
     <View style={[styles.root, { backgroundColor: g.bg }]} testID="fc-pack-open-failed">
-      <KitEmpty g={g} icon="cloud-offline-outline" title={title} detail={detail} action={retry} actionIcon="refresh" onAction={onRetry} actionTestID="fc-pack-open-retry" />
+      <QuietEmptyState g={g} lang={lang} screen="pack_open_failed" reason="deeplink_cards_failed" testID="fc-pack-open-quiet" />
       <Pressable accessibilityRole="button" accessibilityLabel={back} hitSlop={12} onPress={onBack} style={[styles.back, { bottom: 16 + insets.bottom }]} testID="fc-pack-open-back">
         <Text style={[styles.backText, { color: g.text }]}>{back}</Text>
       </Pressable>

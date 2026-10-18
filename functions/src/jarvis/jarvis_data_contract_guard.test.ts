@@ -1002,23 +1002,12 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     }
   });
 
-  test('панель админки знает каждый департамент по имени', () => {
-    // зачем: незнакомый департамент отрисовался бы серым «payments»-подобным
-    // кодом вместо названия — владелец не понял бы, о чём речь.
-    const decision = readSource('jarvis/decision.ts');
+  // зачем (владелец 17.10, 86aa201b6): вкладки Jarvis («Око Саурона») удалены из админки целиком вместе с JF_DEPARTMENT_META —
+  // функции Jarvis сняты из облака (расходы). Проверяем обратное: панель не тянет вкладку и не зовёт удалённые функции.
+  test('панель админки без вкладки Jarvis — нет мёртвых кнопок и вызовов удалённых функций', () => {
     const panel = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
-
-    const unionMatch = decision.match(/export type Department =([^;]+);/);
-    const departments = [...(unionMatch?.[1] ?? '').matchAll(/'([a-z]+)'/g)].map((m) => m[1]);
-
-    const metaMatch = panel.match(/const JF_DEPARTMENT_META = \{([\s\S]*?)\n {2}\};/);
-    expect(metaMatch).not.toBeNull();
-    const meta = metaMatch?.[1] ?? '';
-
-    for (const department of departments) {
-      const verdict = new RegExp(`\\b${department}:`).test(meta)
-        ? 'ok'
-        : `ПАНЕЛЬ НЕ ЗНАЕТ ДЕПАРТАМЕНТ: "${department}" отсутствует в JF_DEPARTMENT_META (admin/v2/legacy.html)`;
+    for (const gone of ['const JF_DEPARTMENT_META', 'id="tab-jarvis"', 'id="tab-jarvis-plans"', "httpsCallable(functions, 'jarvisGetBusinessTier')", "'jarvisGetBusinessTier')"]) {
+      const verdict = panel.includes(gone) ? `ВКЛАДКА JARVIS ВЕРНУЛАСЬ: в admin/v2/legacy.html снова есть «${gone}»` : 'ok';
       expect(verdict).toBe('ok');
     }
   });

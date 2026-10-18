@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-16:word:lens",
+    "correctText": "lens",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i01",
+    "correctText": "This is a lens.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i02",
+    "correctText": "lens",
+    "correctResponseId": "en:lesson-09:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i03",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i04",
+    "correctText": "en:lesson-09:session-16:i04:p1=lens\nen:lesson-09:session-16:i04:p2=camera\nen:lesson-09:session-16:i04:p3=clean\nen:lesson-09:session-16:i04:p4=touch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i05",
+    "correctText": "Please don’t touch the lens.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:word:shutter",
+    "correctText": "shutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i06",
+    "correctText": "The shutter is working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:word:photographer",
+    "correctText": "photographer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i07",
+    "correctText": "The photographer is cleaning the lens.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i09",
+    "correctText": "The shutter is working.",
+    "correctResponseId": "en:lesson-09:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i10",
+    "correctText": "en:lesson-09:session-16:i10:p1=lens\nen:lesson-09:session-16:i10:p2=shutter\nen:lesson-09:session-16:i10:p3=photographer\nen:lesson-09:session-16:i10:p4=photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i11",
+    "correctText": "The photographer works here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:word:flash",
+    "correctText": "flash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i12",
+    "correctText": "flash",
+    "correctResponseId": "en:lesson-09:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i13",
+    "correctText": "The flash is not working.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i14",
+    "correctText": "working",
+    "correctResponseId": "en:lesson-09:session-16:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i15",
+    "correctText": "The flash is not working.",
+    "correctResponseId": "en:lesson-09:session-16:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i16",
+    "correctText": "en:lesson-09:session-16:i16:p1=lens\nen:lesson-09:session-16:i16:p2=shutter\nen:lesson-09:session-16:i16:p3=photographer\nen:lesson-09:session-16:i16:p4=flash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-16:i17",
+    "correctText": "Please don’t touch the lens.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "is cleaning / is not working; Please don’t touch…",
+    "uk": "is cleaning / is not working; Please don’t touch…"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "След на объективе",
+        "uk": "Слід на об’єктиві"
+      },
+      "bodyByLocale": {
+        "ru": "Перед снимком игрушечного корабля вы замечаете след пальца на объективе. Lens — «объектив» камеры; это слово также означает «линза». Помощник снова тянется к стеклу. Please don’t touch the lens — «Пожалуйста, не трогай объектив». После don’t ставим touch без изменений. Палец уже оставил автограф; второго не нужно.",
+        "uk": "Перед знімком іграшкового корабля ви помічаєте слід пальця на об’єктиві. Lens — «об’єктив» камери; це слово також означає «лінза». Помічник знову тягнеться до скла. Please don’t touch the lens — «Будь ласка, не торкайся об’єктива». Після don’t ставимо touch без змін. Палець уже залишив автограф; другого не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r1",
+              "text": "Please don’t touch the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r2",
+              "text": "Please don’t touching the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r3",
+              "text": "Please not touch the lens."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r1",
+              "text": "Please don’t touch the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r2",
+              "text": "Please don’t touching the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro1:r3",
+              "text": "Please not touch the lens."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пауза перед портретом",
+        "uk": "Пауза перед портретом"
+      },
+      "bodyByLocale": {
+        "ru": "Фотограф протирает объектив перед портретом выпускницы. Photographer — «фотограф». The photographer is cleaning the lens — «Фотограф чистит объектив». Он делает это сейчас, поэтому is cleaning. The photographer works here — «Фотограф работает здесь» — сообщает о его обычном месте работы, а не о действии в эту секунду. Профессия сама по себе не показывает действие: слово cleaning объясняет, чем занят фотограф.",
+        "uk": "Фотограф протирає об’єктив перед портретом випускниці. Photographer — «фотограф». The photographer is cleaning the lens — «Фотограф чистить об’єктив». Він робить це зараз, тому is cleaning. The photographer works here — «Фотограф працює тут» — повідомляє про його звичайне місце роботи, а не про дію цієї секунди. Професія сама собою не показує дію: слово cleaning пояснює, чим зайнятий фотограф."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r1",
+              "text": "The photographer is cleaning the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r2",
+              "text": "The photographer cleaning the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r3",
+              "text": "The photographer is clean the lens."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r1",
+              "text": "The photographer is cleaning the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r2",
+              "text": "The photographer cleaning the lens."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro2:r3",
+              "text": "The photographer is clean the lens."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не сработала вспышка",
+        "uk": "Не спрацював спалах"
+      },
+      "bodyByLocale": {
+        "ru": "Вы фотографируете бумажный город в мастерской. Камера делает снимок, но вспышка не срабатывает. Flash — «вспышка». The flash is not working — «Вспышка не работает». Not стоит после is: говорим, что сейчас устройство не работает. Здесь working относится к работе устройства, а не к профессии человека.",
+        "uk": "Ви фотографуєте паперове місто в майстерні. Камера робить знімок, але спалах не спрацьовує. Flash — «спалах». The flash is not working — «Спалах не працює». Not стоїть після is: кажемо, що зараз пристрій не працює. Тут working стосується роботи пристрою, а не професії людини."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r1",
+              "text": "The flash is not working."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r2",
+              "text": "The flash not working."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r3",
+              "text": "The flash is not work."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r1",
+              "text": "The flash is not working."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r2",
+              "text": "The flash not working."
+            },
+            {
+              "responseId": "en:lesson-09:session-16:intro3:r3",
+              "text": "The flash is not work."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ef560348812faa3875bff26cd666dbf77c282e7904d6667e36d5d615f502e9f4"
+}

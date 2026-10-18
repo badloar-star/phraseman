@@ -1,0 +1,1162 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-16:word:lens",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lens",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:word:lens:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lens",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:word:lens:audio",
+          "transcript": "lens"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:word:lens:r1",
+            "targetText": "lens",
+            "meaningByLocale": {
+              "ru": "объектив камеры; также линза. This is a lens. — «Это объектив».",
+              "uk": "об’єктив камери; також лінза. This is a lens. — «Це об’єктив»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lens",
+          "definitionByLocale": {
+            "ru": "объектив камеры; также линза. This is a lens. — «Это объектив».",
+            "uk": "об’єктив камери; також лінза. This is a lens. — «Це об’єктив»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажіть окремий об’єктив: «Це об’єктив»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажіть окремий об’єктив: «Це об’єктив»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a lens.",
+        "localizedMeaning": {
+          "ru": "Покажите отдельный объектив: «Это объектив»",
+          "uk": "Покажіть окремий об’єктив: «Це об’єктив»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "lens"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i02:r1",
+          "text": "lens"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i02:r2",
+          "text": "fence"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i02:r3",
+          "text": "bench"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i02:audio",
+          "transcript": "lens"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:i02:r1",
+            "targetText": "lens",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i02:r2",
+            "targetText": "fence",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i02:r3",
+            "targetText": "bench",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит lens",
+              "uk": "У записі звучить lens"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит lens",
+              "uk": "У записі звучить lens"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Завершіть прохання не торкатися об’єктива",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i03:r1",
+          "text": "touch"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i03:r2",
+          "text": "touching"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i03:r3",
+          "text": "touches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Завершіть прохання не торкатися об’єктива",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Завершите просьбу не трогать объектив",
+          "uk": "Завершіть прохання не торкатися об’єктива"
+        },
+        "gappedTargetPhrase": "Please don’t ___ the lens.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-16:i03:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i03:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i03:r3",
+            "text": "touches"
+          }
+        ],
+        "testedDimension": "Завершіть прохання не торкатися об’єктива",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Завершіть прохання не торкатися об’єктива",
+            "feedbackByLocale": {
+              "ru": "После don’t нужно touch без -ing.",
+              "uk": "Після don’t потрібне touch без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Завершіть прохання не торкатися об’єктива",
+            "feedbackByLocale": {
+              "ru": "После don’t нужно touch без -es.",
+              "uk": "Після don’t потрібне touch без -es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-16:i04:p1",
+            "target": "lens",
+            "meaningByLocale": {
+              "ru": "объектив",
+              "uk": "об’єктив"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i04:p2",
+            "target": "camera",
+            "meaningByLocale": {
+              "ru": "камера",
+              "uk": "камера"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i04:p3",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "чистить",
+              "uk": "чистити"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i04:p4",
+            "target": "touch",
+            "meaningByLocale": {
+              "ru": "трогать",
+              "uk": "торкатися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lens",
+          "camera",
+          "clean",
+          "touch"
+        ],
+        "rightColumn": [
+          "об’єктив",
+          "камера",
+          "чистити",
+          "торкатися"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i05:audio",
+          "transcript": "Please don’t touch the lens."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don’t touch the lens.",
+        "orderedTokens": [
+          "Please",
+          "don’t",
+          "touch",
+          "the",
+          "lens"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:word:shutter",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shutter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:word:shutter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shutter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:word:shutter:audio",
+          "transcript": "shutter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:word:shutter:r1",
+            "targetText": "shutter",
+            "meaningByLocale": {
+              "ru": "затвор фотоаппарата: механизм, который открывается при съёмке. The shutter is working. — «Затвор работает». Здесь не оконная ставня.",
+              "uk": "затвор фотоапарата: механізм, який відкривається під час знімання. The shutter is working. — «Затвор працює». Тут не віконна віконниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shutter",
+          "definitionByLocale": {
+            "ru": "затвор фотоаппарата: механизм, который открывается при съёмке. The shutter is working. — «Затвор работает». Здесь не оконная ставня.",
+            "uk": "затвор фотоапарата: механізм, який відкривається під час знімання. The shutter is working. — «Затвор працює». Тут не віконна віконниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після перевірки камера знову знімає: «Затвор працює»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після перевірки камера знову знімає: «Затвор працює»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shutter is working.",
+        "localizedMeaning": {
+          "ru": "После проверки камера снова снимает: «Затвор работает»",
+          "uk": "Після перевірки камера знову знімає: «Затвор працює»"
+        },
+        "orderedTokens": [
+          "The",
+          "shutter",
+          "is",
+          "working"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:word:photographer",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — photographer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:word:photographer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — photographer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:word:photographer:audio",
+          "transcript": "photographer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:word:photographer:r1",
+            "targetText": "photographer",
+            "meaningByLocale": {
+              "ru": "фотограф. The photographer is cleaning the lens. — «Фотограф чистит объектив».",
+              "uk": "фотограф. The photographer is cleaning the lens. — «Фотограф чистить об’єктив»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photographer",
+          "definitionByLocale": {
+            "ru": "фотограф. The photographer is cleaning the lens. — «Фотограф чистит объектив».",
+            "uk": "фотограф. The photographer is cleaning the lens. — «Фотограф чистить об’єктив»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фотограф просто зараз чистить об’єктив. Скажіть про це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Фотограф просто зараз чистить об’єктив. Скажіть про це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i07:audio",
+          "transcript": "The photographer is cleaning the lens."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The photographer is cleaning the lens.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для одного фотографа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для одного фотографа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одного фотографа",
+          "uk": "Виберіть форму для одного фотографа"
+        },
+        "gappedTargetPhrase": "The photographer ___ cleaning the lens.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-16:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть форму для одного фотографа",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного фотографа",
+            "feedbackByLocale": {
+              "ru": "Am используется с I. Здесь нужно is.",
+              "uk": "Am вживається з I. Тут потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного фотографа",
+            "feedbackByLocale": {
+              "ru": "Речь об одном фотографе: is cleaning.",
+              "uk": "Йдеться про одного фотографа: is cleaning."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i09:r1",
+          "text": "The shutter is working."
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i09:r2",
+          "text": "The shutter is not working."
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i09:r3",
+          "text": "The photographer is working."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i09:audio",
+          "transcript": "The shutter is working."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:i09:r1",
+            "targetText": "The shutter is working.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i09:r2",
+            "targetText": "The shutter is not working.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i09:r3",
+            "targetText": "The photographer is working.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shutter is working.",
+              "uk": "У записі звучить The shutter is working."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shutter is working.",
+              "uk": "У записі звучить The shutter is working."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-16:i10:p1",
+            "target": "lens",
+            "meaningByLocale": {
+              "ru": "объектив",
+              "uk": "об’єктив"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i10:p2",
+            "target": "shutter",
+            "meaningByLocale": {
+              "ru": "затвор",
+              "uk": "затвор"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i10:p3",
+            "target": "photographer",
+            "meaningByLocale": {
+              "ru": "фотограф",
+              "uk": "фотограф"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i10:p4",
+            "target": "photo",
+            "meaningByLocale": {
+              "ru": "фотография",
+              "uk": "фотографія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lens",
+          "shutter",
+          "photographer",
+          "photo"
+        ],
+        "rightColumn": [
+          "об’єктив",
+          "затвор",
+          "фотограф",
+          "фотографія"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, де зазвичай працює фотограф, і складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте, де зазвичай працює фотограф, і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i11:audio",
+          "transcript": "The photographer works here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The photographer works here.",
+        "orderedTokens": [
+          "The",
+          "photographer",
+          "works",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:word:flash",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:word:flash:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:word:flash:audio",
+          "transcript": "flash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:word:flash:r1",
+            "targetText": "flash",
+            "meaningByLocale": {
+              "ru": "вспышка фотоаппарата. The flash is not working. — «Вспышка не работает».",
+              "uk": "спалах фотоапарата. The flash is not working. — «Спалах не працює»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flash",
+          "definitionByLocale": {
+            "ru": "вспышка фотоаппарата. The flash is not working. — «Вспышка не работает».",
+            "uk": "спалах фотоапарата. The flash is not working. — «Спалах не працює»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i12:r1",
+          "text": "flash"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i12:r2",
+          "text": "fish"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i12:r3",
+          "text": "fresh"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i12:audio",
+          "transcript": "flash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:i12:r1",
+            "targetText": "flash",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i12:r2",
+            "targetText": "fish",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i12:r3",
+            "targetText": "fresh",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит flash",
+              "uk": "У записі звучить flash"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит flash",
+              "uk": "У записі звучить flash"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Камера знімає, але спалах не працює. Скажіть: «Спалах не працює»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Камера знімає, але спалах не працює. Скажіть: «Спалах не працює»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i13:audio",
+          "transcript": "The flash is not working."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The flash is not working.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму дії після is not",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i14:r1",
+          "text": "working"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i14:r2",
+          "text": "work"
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i14:r3",
+          "text": "works"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму дії після is not",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму действия после is not",
+          "uk": "Виберіть форму дії після is not"
+        },
+        "gappedTargetPhrase": "The flash is not ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-16:i14:r1",
+            "text": "working"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i14:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i14:r3",
+            "text": "works"
+          }
+        ],
+        "testedDimension": "Виберіть форму дії після is not",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії після is not",
+            "feedbackByLocale": {
+              "ru": "Для состояния сейчас здесь нужно is not working.",
+              "uk": "Для стану зараз тут потрібне is not working."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму дії після is not",
+            "feedbackByLocale": {
+              "ru": "После is not здесь нужно working без -s.",
+              "uk": "Після is not тут потрібне working без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-16:i15:r1",
+          "text": "The flash is not working."
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i15:r2",
+          "text": "The flash is working."
+        },
+        {
+          "responseId": "en:lesson-09:session-16:i15:r3",
+          "text": "The shutter is not working."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i15:audio",
+          "transcript": "The flash is not working."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-16:i15:r1",
+            "targetText": "The flash is not working.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i15:r2",
+            "targetText": "The flash is working.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i15:r3",
+            "targetText": "The shutter is not working.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The flash is not working.",
+              "uk": "У записі звучить The flash is not working."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The flash is not working.",
+              "uk": "У записі звучить The flash is not working."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-16:i16:p1",
+            "target": "lens",
+            "meaningByLocale": {
+              "ru": "объектив",
+              "uk": "об’єктив"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i16:p2",
+            "target": "shutter",
+            "meaningByLocale": {
+              "ru": "затвор",
+              "uk": "затвор"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i16:p3",
+            "target": "photographer",
+            "meaningByLocale": {
+              "ru": "фотограф",
+              "uk": "фотограф"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-16:i16:p4",
+            "target": "flash",
+            "meaningByLocale": {
+              "ru": "вспышка",
+              "uk": "спалах"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lens",
+          "shutter",
+          "photographer",
+          "flash"
+        ],
+        "rightColumn": [
+          "об’єктив",
+          "затвор",
+          "фотограф",
+          "спалах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-16:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На прогулянці друг тягнеться пальцем до об’єктива вашої камери. Ввічливо попросіть: «Будь ласка, не торкайся об’єктива»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "На прогулянці друг тягнеться пальцем до об’єктива вашої камери. Ввічливо попросіть: «Будь ласка, не торкайся об’єктива»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-16:i17:audio",
+          "transcript": "Please don’t touch the lens."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don’t touch the lens.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "397862cd6b82f721f1ffb16447f4190b55cb303592442b29b86725781d9728fb"
+}

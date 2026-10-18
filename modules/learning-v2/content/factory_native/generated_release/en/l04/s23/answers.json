@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-23:i01",
-    "correctText": "There are some tickets.",
+    "correctText": "en:lesson-04:session-23:i01:p1=cheese\nen:lesson-04:session-23:i01:p2=honey\nen:lesson-04:session-23:i01:p3=jam\nen:lesson-04:session-23:i01:p4=cereal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:word:cheese",
+    "correctText": "cheese",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i02",
     "correctText": "cheese",
-    "correctResponseId": "en:lesson-04:session-23:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-23:i03",
-    "correctText": "cheese",
-    "correctResponseId": "en:lesson-04:session-23:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-23:i04",
-    "correctText": "en:lesson-04:session-23:i04:p1=cheese\nen:lesson-04:session-23:i04:p2=valid\nen:lesson-04:session-23:i04:p3=tickets\nen:lesson-04:session-23:i04:p4=gym",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-23:i03",
+    "correctText": "There is some cheese near the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:word:honey",
+    "correctText": "honey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:i04",
+    "correctText": "honey",
+    "correctResponseId": "en:lesson-04:session-23:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-23:i05",
-    "correctText": "There is some cheese.",
+    "correctText": "Is there any honey here?",
+    "correctResponseId": "en:lesson-04:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:word:jam",
+    "correctText": "jam",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i06",
-    "correctText": "Are there any tickets here?",
+    "correctText": "jam",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i07",
-    "correctText": "It's valid.",
+    "correctText": "There isn't any jam here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-23:word:cereal",
+    "correctText": "cereal",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i08",
-    "correctText": "is",
+    "correctText": "cereal",
     "correctResponseId": "en:lesson-04:session-23:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-23:i09",
-    "correctText": "Is there a gym?",
-    "correctResponseId": "en:lesson-04:session-23:i09:r1"
+    "correctText": "Is there any cereal near the bowl?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i10",
-    "correctText": "en:lesson-04:session-23:i10:p1=cheese\nen:lesson-04:session-23:i10:p2=tickets\nen:lesson-04:session-23:i10:p3=gym\nen:lesson-04:session-23:i10:p4=valid",
+    "correctText": "en:lesson-04:session-23:i10:p1=cereal\nen:lesson-04:session-23:i10:p2=jam\nen:lesson-04:session-23:i10:p3=cheese\nen:lesson-04:session-23:i10:p4=honey",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i11",
-    "correctText": "Is there any cheese?",
-    "correctResponseId": null
+    "correctText": "There isn't any cheese here.",
+    "correctResponseId": "en:lesson-04:session-23:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-23:i12",
-    "correctText": "There are some tickets here.",
-    "correctResponseId": null
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-23:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-23:i13",
-    "correctText": "Is there a gym here?",
+    "correctText": "Is there any jam near the door?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i14",
-    "correctText": "Is",
-    "correctResponseId": "en:lesson-04:session-23:i14:r1"
+    "correctText": "There is some honey near the basket.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i15",
-    "correctText": "It is valid.",
-    "correctResponseId": "en:lesson-04:session-23:i15:r1"
+    "correctText": "There are some berries near the box.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i16",
-    "correctText": "en:lesson-04:session-23:i16:p1=cheese\nen:lesson-04:session-23:i16:p2=valid\nen:lesson-04:session-23:i16:p3=tickets\nen:lesson-04:session-23:i16:p4=gym",
+    "correctText": "en:lesson-04:session-23:i16:p1=honey\nen:lesson-04:session-23:i16:p2=cereal\nen:lesson-04:session-23:i16:p3=jam\nen:lesson-04:session-23:i16:p4=cheese",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-23:i17",
-    "correctText": "Is there any cheese here?",
+    "correctText": "There isn't any jam near the plate.",
     "correctResponseId": null
   }
 ]

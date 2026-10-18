@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-40",
   "learningOutcomeByLocale": {
-    "ru": "назвать термостат и повторить вопросы о наличии и описания расположения",
-    "uk": "назвати термостат і повторити запитання про наявність та описи розташування"
+    "ru": "самому сказать, что нет одного или нескольких предметов, без двойного отрицания",
+    "uk": "самому сказати, що немає одного чи кількох предметів, без подвійного заперечення"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Нужная температура",
-        "uk": "Потрібна температура"
+        "ru": "Строка в акте",
+        "uk": "Рядок в акті"
       },
       "bodyByLocale": {
-        "ru": "`thermostat` — «термостат»: устройство для поддержания заданной температуры. В доме с его помощью задают температуру для отопления. Один прибор — `a thermostat`. `This is a thermostat` — «Это термостат». Он следит за температурой, но спорить с вами о том, кому жарко, не умеет. `boiler` — отопительный котёл; это другое устройство.",
-        "uk": "`thermostat` — «термостат»: пристрій для підтримання заданої температури. У будинку з його допомогою задають температуру для опалення. Один прилад — `a thermostat`. `This is a thermostat` — «Це термостат». Він стежить за температурою, але сперечатися з вами про те, кому спекотно, не вміє. `boiler` — опалювальний котел; це інший пристрій."
+        "ru": "Хозяин диктует вам акт приёмки и доходит до строки про отопление. На стене должен висеть прибор с кнопками, которым выставляют, насколько тепло в квартире, но стена пуста. thermostat — «термостат». There isn’t a thermostat — «Термостата нет».",
+        "uk": "Господар диктує вам акт приймання й доходить до рядка про опалення. На стіні має висіти прилад із кнопками, яким виставляють, наскільки тепло в квартирі, але стіна порожня. thermostat — «термостат». There isn’t a thermostat — «Термостата немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-40:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один термостат.",
-          "uk": "Назвіть один термостат."
+          "ru": "Хозяин диктует акт. Скажите ему, что термостата нет.",
+          "uk": "Господар диктує акт. Скажіть йому, що термостата немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-40:intro1:r1",
-              "text": "This is a thermostat."
+              "text": "There isn’t a thermostat."
             },
             {
               "responseId": "en:lesson-04:session-40:intro1:r2",
-              "text": "This is thermostat."
+              "text": "There aren’t a thermostat."
             },
             {
               "responseId": "en:lesson-04:session-40:intro1:r3",
-              "text": "These are thermostats."
+              "text": "There isn’t thermostat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-40:intro1:r1",
-              "text": "This is a thermostat."
+              "text": "There isn’t a thermostat."
             },
             {
               "responseId": "en:lesson-04:session-40:intro1:r2",
-              "text": "This is thermostat."
+              "text": "There aren’t a thermostat."
             },
             {
               "responseId": "en:lesson-04:session-40:intro1:r3",
-              "text": "These are thermostats."
+              "text": "There isn’t thermostat."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один термостат.",
-          "uk": "Назвіть один термостат."
+          "ru": "Хозяин диктует акт. Скажите ему, что термостата нет.",
+          "uk": "Господар диктує акт. Скажіть йому, що термостата немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что есть в доме",
-        "uk": "Що є в будинку"
+        "ru": "Голые кровати",
+        "uk": "Голі ліжка"
       },
       "bodyByLocale": {
-        "ru": "`doorbell` — дверной звонок, `smoke alarm` — дымовой пожарный извещатель. `Is there a boiler?` — «Есть отопительный котёл?» `There is a thermostat` — «Есть термостат». `There isn’t a doorbell` — «Дверного звонка нет». `There aren’t any smoke alarms` — «Нет ни одного дымового пожарного извещателя». Для одного предмета — `is`, для нескольких — `are`; в отрицании `isn’t` и `aren’t`.",
-        "uk": "`doorbell` — дверний дзвінок, `smoke alarm` — димовий пожежний сповіщувач. `Is there a boiler?` — «Є опалювальний котел?» `There is a thermostat` — «Є термостат». `There isn’t a doorbell` — «Дверного дзвінка немає». `There aren’t any smoke alarms` — «Немає жодного димового пожежного сповіщувача». Для одного предмета — `is`, для кількох — `are`; у запереченні `isn’t` і `aren’t`."
+        "ru": "Хозяин читает вслух строку акта: в спальне две кровати, и на каждой должна лежать мягкая толстая подстилка для сна. Вы смотрите: на кроватях одни голые доски, лечь не на что. mattress — «матрас». Их два, поэтому There aren’t any mattresses — «Матрасов нет».",
+        "uk": "Господар читає вголос рядок акта: у спальні два ліжка, і на кожному має лежати м’яка товста підстилка для сну. Ви дивитеся: на ліжках самі голі дошки, лягти нема на чому. mattress — «матрац». Їх два, тому There aren’t any mattresses — «Матраців немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-40:intro2:q",
         "promptByLocale": {
-          "ru": "У двери нет звонка. Выберите фразу.",
-          "uk": "Біля дверей немає дзвінка. Виберіть фразу."
+          "ru": "Хозяин спрашивает про спальню. Скажите ему, что матрасов нет.",
+          "uk": "Господар питає про спальню. Скажіть йому, що матраців немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-40:intro2:r1",
-              "text": "There isn’t a doorbell."
+              "text": "There aren’t any mattresses."
             },
             {
               "responseId": "en:lesson-04:session-40:intro2:r2",
-              "text": "There is a doorbell."
+              "text": "There isn’t any mattresses."
             },
             {
               "responseId": "en:lesson-04:session-40:intro2:r3",
-              "text": "There aren’t a doorbell."
+              "text": "There aren’t any mattress."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-40:intro2:r1",
-              "text": "There isn’t a doorbell."
+              "text": "There aren’t any mattresses."
             },
             {
               "responseId": "en:lesson-04:session-40:intro2:r2",
-              "text": "There is a doorbell."
+              "text": "There isn’t any mattresses."
             },
             {
               "responseId": "en:lesson-04:session-40:intro2:r3",
-              "text": "There aren’t a doorbell."
+              "text": "There aren’t any mattress."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "У двери нет звонка. Выберите фразу.",
-          "uk": "Біля дверей немає дзвінка. Виберіть фразу."
+          "ru": "Хозяин спрашивает про спальню. Скажите ему, что матрасов нет.",
+          "uk": "Господар питає про спальню. Скажіть йому, що матраців немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что видно снаружи",
-        "uk": "Що видно зовні"
+        "ru": "Суп на новоселье",
+        "uk": "Суп на новосілля"
       },
       "bodyByLocale": {
-        "ru": "`handrail` — поручень, `ramp` — пандус, `fountain` — фонтан. `parcel locker` — постамат, `bike shed` — сарай для велосипедов. `The handrail is next to the ramp` — «Поручень рядом с пандусом». `The parcel locker is next to the bike shed` — «Постамат рядом с сараем для велосипедов». `The fountain is between the shops` — «Фонтан между магазинами».",
-        "uk": "`handrail` — поручень, `ramp` — пандус, `fountain` — фонтан. `parcel locker` — поштомат, `bike shed` — сарай для велосипедів. `The handrail is next to the ramp` — «Поручень поруч із пандусом». `The parcel locker is next to the bike shed` — «Поштомат поруч із сараєм для велосипедів». `The fountain is between the shops` — «Фонтан між магазинами»."
+        "ru": "Подруга пришла на новоселье с кастрюлей супа, который стынет, и ищет, на чём его разогреть. Между шкафчиками осталась пустая ниша, а кухонной плиты в ней нет. cooker — «плита». Одного «нет» хватает: There isn’t a cooker, без второго отрицания.",
+        "uk": "Подруга прийшла на новосілля з каструлею супу, який холоне, й шукає, на чому його розігріти. Між шафками залишилася порожня ніша, а кухонної плити в ній немає. cooker — «плита». Одного «немає» вистачає: There isn’t a cooker, без другого заперечення."
       },
       "question": {
         "interactionId": "en:lesson-04:session-40:intro3:q",
         "promptByLocale": {
-          "ru": "Фонтан между двумя магазинами. Выберите описание.",
-          "uk": "Фонтан між двома магазинами. Виберіть опис."
+          "ru": "Подруга ищет плиту. Скажите ей, что плиты нет.",
+          "uk": "Подруга шукає плиту. Скажіть їй, що плити немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-40:intro3:r1",
-              "text": "The fountain is between the shops."
+              "text": "There isn’t a cooker."
             },
             {
               "responseId": "en:lesson-04:session-40:intro3:r2",
-              "text": "The fountain is in the shops."
+              "text": "There isn’t no cooker."
             },
             {
               "responseId": "en:lesson-04:session-40:intro3:r3",
-              "text": "The fountain are between the shops."
+              "text": "There aren’t a cooker."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-40:intro3:r1",
-              "text": "The fountain is between the shops."
+              "text": "There isn’t a cooker."
             },
             {
               "responseId": "en:lesson-04:session-40:intro3:r2",
-              "text": "The fountain is in the shops."
+              "text": "There isn’t no cooker."
             },
             {
               "responseId": "en:lesson-04:session-40:intro3:r3",
-              "text": "The fountain are between the shops."
+              "text": "There aren’t a cooker."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Фонтан между двумя магазинами. Выберите описание.",
-          "uk": "Фонтан між двома магазинами. Виберіть опис."
+          "ru": "Подруга ищет плиту. Скажите ей, что плиты нет.",
+          "uk": "Подруга шукає плиту. Скажіть їй, що плити немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1eff0ee634bd1f69aed8d3cbe7c1b86cc8be69874e5a44360511f85dddc1fb33"
+  "introFingerprint": "e02984ad27fa18b96aa8f2cc7d6ab6ea8431457c4cf21c5c033d58dad8cd258a"
 }

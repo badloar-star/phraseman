@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-36",
   "learningOutcomeByLocale": {
-    "ru": "назвать дымовой пожарный извещатель и спросить о его наличии",
-    "uk": "назвати димовий пожежний сповіщувач і запитати про його наявність"
+    "ru": "на слух различить isn’t для одного предмета и aren’t для нескольких",
+    "uk": "на слух розрізнити isn’t для одного предмета й aren’t для кількох"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сигнал при дыме",
-        "uk": "Сигнал у разі диму"
+        "ru": "Тишина под потолком",
+        "uk": "Тиша під стелею"
       },
       "bodyByLocale": {
-        "ru": "`smoke alarm` — «дымовой пожарный извещатель»: устройство, которое подаёт звуковой сигнал при обнаружении дыма. Два слова называют один прибор: `a smoke alarm`. `This is a smoke alarm` — «Это дымовой пожарный извещатель». Даже если сигнал слышат десять гостей, прибор остаётся один.",
-        "uk": "`smoke alarm` — «димовий пожежний сповіщувач»: пристрій, який подає звуковий сигнал у разі виявлення диму. Два слова називають один прилад: `a smoke alarm`. `This is a smoke alarm` — «Це димовий пожежний сповіщувач». Навіть якщо сигнал чують десятеро гостей, прилад залишається один."
+        "ru": "Инспектор идёт по коридору с листом безопасности и поднимает глаза к потолку. Там должна висеть круглая белая коробочка, которая громко пищит, если в доме дым, но потолок гладкий. smoke alarm — «датчик дыма». There isn’t a smoke alarm — «Датчика дыма нет».",
+        "uk": "Інспектор іде коридором з аркушем безпеки й піднімає очі до стелі. Там має висіти кругла біла коробочка, яка голосно пищить, якщо в домі дим, але стеля гладенька. smoke alarm — «датчик диму». There isn’t a smoke alarm — «Датчика диму немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один такой прибор рядом.",
-          "uk": "Назвіть один такий прилад поруч."
+          "ru": "Инспектор диктует лист. Скажите ему, что датчика дыма нет.",
+          "uk": "Інспектор диктує аркуш. Скажіть йому, що датчика диму немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-36:intro1:r1",
-              "text": "This is a smoke alarm."
+              "text": "There isn’t a smoke alarm."
             },
             {
               "responseId": "en:lesson-04:session-36:intro1:r2",
-              "text": "This is smoke alarm."
+              "text": "There aren’t any smoke alarms."
             },
             {
               "responseId": "en:lesson-04:session-36:intro1:r3",
-              "text": "These are smoke alarms."
+              "text": "There is a smoke alarm."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-36:intro1:r1",
-              "text": "This is a smoke alarm."
+              "text": "There isn’t a smoke alarm."
             },
             {
               "responseId": "en:lesson-04:session-36:intro1:r2",
-              "text": "This is smoke alarm."
+              "text": "There aren’t any smoke alarms."
             },
             {
               "responseId": "en:lesson-04:session-36:intro1:r3",
-              "text": "These are smoke alarms."
+              "text": "There is a smoke alarm."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один такой прибор рядом.",
-          "uk": "Назвіть один такий прилад поруч."
+          "ru": "Инспектор диктует лист. Скажите ему, что датчика дыма нет.",
+          "uk": "Інспектор диктує аркуш. Скажіть йому, що датчика диму немає."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дети и переулок",
-        "uk": "Діти й провулок"
+        "ru": "Красный баллон",
+        "uk": "Червоний балон"
       },
       "bodyByLocale": {
-        "ru": "`children` — «дети», `alley` — «узкий переулок». `The children are next to the table` — «Дети рядом со столом». `The door is in the alley` — «Дверь в переулке». С `children` нужно `are`: это несколько детей, хотя окончания `s` нет.",
-        "uk": "`children` — «діти», `alley` — «вузький провулок». `The children are next to the table` — «Діти поруч зі столом». `The door is in the alley` — «Двері в провулку». З `children` потрібне `are`: це кілька дітей, хоча закінчення `s` немає."
+        "ru": "Сосед по лестничной площадке спрашивает, что делать, если загорится кухня. Вы оба ищете на стене красный баллон с шлангом, из которого идёт пена, но стена пустая. fire extinguisher — «огнетушитель». There isn’t a fire extinguisher — «Огнетушителя нет».",
+        "uk": "Сусід по сходовому майданчику питає, що робити, якщо загориться кухня. Ви обоє шукаєте на стіні червоний балон зі шлангом, з якого йде піна, але стіна порожня. fire extinguisher — «вогнегасник». There isn’t a fire extinguisher — «Вогнегасника немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-36:intro2:q",
         "promptByLocale": {
-          "ru": "Дети рядом со столом. Выберите описание.",
-          "uk": "Діти поруч зі столом. Виберіть опис."
+          "ru": "Сосед ищет огнетушитель. Скажите ему, что огнетушителя нет.",
+          "uk": "Сусід шукає вогнегасник. Скажіть йому, що вогнегасника немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-36:intro2:r1",
-              "text": "The children are next to the table."
+              "text": "There isn’t a fire extinguisher."
             },
             {
               "responseId": "en:lesson-04:session-36:intro2:r2",
-              "text": "The children is next to the table."
+              "text": "There isn’t an fire extinguisher."
             },
             {
               "responseId": "en:lesson-04:session-36:intro2:r3",
-              "text": "The children are under the table."
+              "text": "There aren’t a fire extinguisher."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-36:intro2:r1",
-              "text": "The children are next to the table."
+              "text": "There isn’t a fire extinguisher."
             },
             {
               "responseId": "en:lesson-04:session-36:intro2:r2",
-              "text": "The children is next to the table."
+              "text": "There isn’t an fire extinguisher."
             },
             {
               "responseId": "en:lesson-04:session-36:intro2:r3",
-              "text": "The children are under the table."
+              "text": "There aren’t a fire extinguisher."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Дети рядом со столом. Выберите описание.",
-          "uk": "Діти поруч зі столом. Виберіть опис."
+          "ru": "Сосед ищет огнетушитель. Скажите ему, что огнетушителя нет.",
+          "uk": "Сусід шукає вогнегасник. Скажіть йому, що вогнегасника немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Неформально, но понятно",
-        "uk": "Неформально, але зрозуміло"
+        "ru": "Свет погас",
+        "uk": "Світло згасло"
       },
       "bodyByLocale": {
-        "ru": "`informal` — «неформальный». Дружеская встреча без строгого официального формата: `It is informal`, короче `It’s informal`. О приборе можно спросить: `Is there a smoke alarm?` — «Есть дымовой пожарный извещатель?» Если его нет: `There isn’t a smoke alarm`. `There aren’t any smoke alarms` — «Нет ни одного дымового пожарного извещателя».",
-        "uk": "`informal` — «неформальний». Дружня зустріч без строгого офіційного формату: `It is informal`, коротше `It’s informal`. Про прилад можна запитати: `Is there a smoke alarm?` — «Є димовий пожежний сповіщувач?» Якщо його немає: `There isn’t a smoke alarm`. `There aren’t any smoke alarms` — «Немає жодного димового пожежного сповіщувача»."
+        "ru": "В подъезде погас свет, и подруга просит вас найти в ящике маленькие лампы с кнопкой, которые держат в руке. Вы шарите в ящике, но там пусто. torch — «фонарик». Фонариков обычно несколько, поэтому слышно aren’t: There aren’t any torches — «Фонариков нет».",
+        "uk": "У під’їзді згасло світло, і подруга просить вас знайти в шухляді маленькі лампи з кнопкою, які тримають у руці. Ви нишпорите в шухляді, але там порожньо. torch — «ліхтарик». Ліхтариків зазвичай кілька, тому чути aren’t: There aren’t any torches — «Ліхтариків немає»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-36:intro3:q",
         "promptByLocale": {
-          "ru": "Встреча дружеская, без строгого официального формата. Выберите описание с сокращением.",
-          "uk": "Зустріч дружня, без строгого офіційного формату. Виберіть опис зі скороченням."
+          "ru": "Подруга ищет фонарики. Скажите ей, что фонариков нет.",
+          "uk": "Подруга шукає ліхтарики. Скажіть їй, що ліхтариків немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-36:intro3:r1",
-              "text": "It's informal."
+              "text": "There aren’t any torches."
             },
             {
               "responseId": "en:lesson-04:session-36:intro3:r2",
-              "text": "It's formal."
+              "text": "There isn’t any torches."
             },
             {
               "responseId": "en:lesson-04:session-36:intro3:r3",
-              "text": "It are informal."
+              "text": "There aren’t any torch."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-36:intro3:r1",
-              "text": "It's informal."
+              "text": "There aren’t any torches."
             },
             {
               "responseId": "en:lesson-04:session-36:intro3:r2",
-              "text": "It's formal."
+              "text": "There isn’t any torches."
             },
             {
               "responseId": "en:lesson-04:session-36:intro3:r3",
-              "text": "It are informal."
+              "text": "There aren’t any torch."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Встреча дружеская, без строгого официального формата. Выберите описание с сокращением.",
-          "uk": "Зустріч дружня, без строгого офіційного формату. Виберіть опис зі скороченням."
+          "ru": "Подруга ищет фонарики. Скажите ей, что фонариков нет.",
+          "uk": "Подруга шукає ліхтарики. Скажіть їй, що ліхтариків немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6bfd3017d3952f0df77b403fafbc1c8b54e380c216b5e43eb7ee57e121a699b0"
+  "introFingerprint": "7913974a4f175ed4a2097dcdb3b7de8c61e6095e681837d6a405aa0e5343e444"
 }

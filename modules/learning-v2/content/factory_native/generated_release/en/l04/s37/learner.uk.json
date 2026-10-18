@@ -7,249 +7,60 @@
       "interactionId": "en:lesson-04:session-37:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Інформацію офіційно підтверджено. Скажіть «Це офіційно» без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Інформацію офіційно підтверджено. Скажіть «Це офіційно» без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is official.",
-        "localizedMeaning": {
-          "ru": "Информация официально подтверждена. Скажите «Это официально» без сокращения",
-          "uk": "Інформацію офіційно підтверджено. Скажіть «Це офіційно» без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "official"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Інформацію офіційно підтверджено. Скажіть «Це офіційно» без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is official.`",
-              "uk": "тут потрібно `is` — `It is official.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-37:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть назву",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-37:i02:r1",
-          "text": "parcel locker"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i02:r2",
-          "text": "parcel lockers"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i02:r3",
-          "text": "doorbell"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-37:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть назву",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i02:audio",
-          "transcript": "parcel locker"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-37:i02:r1",
-            "targetText": "parcel locker",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i02:r2",
-            "targetText": "parcel lockers",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i02:r3",
-            "targetText": "doorbell",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `locker`, а в этом варианте — `lockers`.",
-              "uk": "У записі останнє слово — `locker`, а в цьому варіанті — `lockers`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `parcel`, а в этом варианте — `doorbell`.",
-              "uk": "У записі перше слово — `parcel`, а в цьому варіанті — `doorbell`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-37:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть поштомат",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-37:i03:r1",
-          "text": "parcel locker"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i03:r2",
-          "text": "bus stop"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i03:r3",
-          "text": "car park"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть поштомат",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите постамат",
-          "uk": "Назвіть поштомат"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-37:i03:r1",
-            "text": "parcel locker"
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i03:r2",
-            "text": "bus stop"
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i03:r3",
-            "text": "car park"
-          }
-        ],
-        "testedDimension": "Назвіть поштомат",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть поштомат",
-            "feedbackByLocale": {
-              "ru": "`bus stop` — остановка; постамат — `parcel locker`.",
-              "uk": "`bus stop` — зупинка; поштомат — `parcel locker`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть поштомат",
-            "feedbackByLocale": {
-              "ru": "`car park` — парковка; постамат — `parcel locker`.",
-              "uk": "`car park` — парковка; поштомат — `parcel locker`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-37:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-37:i04:p1",
+            "pairId": "en:lesson-04:session-37:i01:p1",
             "target": "parcel locker",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "почтомат (шкаф для посылок)",
+              "uk": "поштомат (шафа для посилок)"
             }
           },
           {
-            "pairId": "en:lesson-04:session-37:i04:p2",
-            "target": "official",
+            "pairId": "en:lesson-04:session-37:i01:p2",
+            "target": "pallet",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "поддон",
+              "uk": "піддон"
             }
           },
           {
-            "pairId": "en:lesson-04:session-37:i04:p3",
-            "target": "car",
+            "pairId": "en:lesson-04:session-37:i01:p3",
+            "target": "crate",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "ящик (для груза)",
+              "uk": "ящик (для вантажу)"
             }
           },
           {
-            "pairId": "en:lesson-04:session-37:i04:p4",
-            "target": "bus stop",
+            "pairId": "en:lesson-04:session-37:i01:p4",
+            "target": "loading bay",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "площадка для разгрузки",
+              "uk": "майданчик для розвантаження"
             }
           }
         ],
         "leftColumn": [
           "parcel locker",
-          "official",
-          "car",
-          "bus stop"
+          "pallet",
+          "crate",
+          "loading bay"
         ],
         "rightColumn": [
-          "поштомат",
-          "офіційний",
-          "машина",
-          "автобусна зупинка"
+          "поштомат (шафа для посилок)",
+          "піддон",
+          "ящик (для вантажу)",
+          "майданчик для розвантаження"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,123 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-37:word:parcel locker",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parcel locker",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-37:i05:audio"
+        "en:lesson-04:session-37:word:parcel locker:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — parcel locker",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i05:audio",
-          "transcript": "This is a parcel locker."
+          "audioTargetId": "en:lesson-04:session-37:word:parcel locker:audio",
+          "transcript": "parcel locker"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a parcel locker.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "parcel",
-          "locker"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-37:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a parcel locker.`",
-              "uk": "тут потрібно `is` — `This is a parcel locker.`"
+            "responseId": "en:lesson-04:session-37:word:parcel locker:r1",
+            "targetText": "parcel locker",
+            "meaningByLocale": {
+              "ru": "почтомат. There isn’t a parcel locker. — «Почтомата нет». О шкафе с ячейками, в который курьер кладёт посылки для жильцов.",
+              "uk": "поштомат. There isn’t a parcel locker. — «Поштомату немає». Про шафу з комірками, до якої кур’єр кладе посилки для мешканців."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parcel locker",
+          "definitionByLocale": {
+            "ru": "почтомат. There isn’t a parcel locker. — «Почтомата нет». О шкафе с ячейками, в который курьер кладёт посылки для жильцов.",
+            "uk": "поштомат. There isn’t a parcel locker. — «Поштомату немає». Про шафу з комірками, до якої кур’єр кладе посилки для мешканців."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Машина поруч із магазином. Скажіть, де вона",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Машина поруч із магазином. Скажіть, де вона",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The car is next to the shop.",
-        "localizedMeaning": {
-          "ru": "Машина рядом с магазином. Скажите, где она",
-          "uk": "Машина поруч із магазином. Скажіть, де вона"
-        },
-        "orderedTokens": [
-          "The",
-          "car",
-          "is",
-          "next",
-          "to",
-          "the",
-          "shop"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Машина поруч із магазином. Скажіть, де вона",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The car is next to the shop.`",
-              "uk": "тут потрібно `is` — `The car is next to the shop.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-37:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-37:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг вважає інформацію чуткою, але організація її підтвердила. Скажіть «Це офіційно» зі скороченням",
+      "prompt": "Сусідка показує залізну шафу з комірками для посилок, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-37:i07:audio"
+        "en:lesson-04:session-37:i02:audio"
       ],
-      "accessibilityLabel": "Друг вважає інформацію чуткою, але організація її підтвердила. Скажіть «Це офіційно» зі скороченням",
+      "accessibilityLabel": "Сусідка показує залізну шафу з комірками для посилок, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i07:audio",
-          "transcript": "It's official."
+          "audioTargetId": "en:lesson-04:session-37:i02:audio",
+          "transcript": "parcel locker"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's official.",
+        "targetPhrase": "parcel locker",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кур’єр шукає, куди покласти посилки. Скажіть йому повною фразою: у дворі немає поштомата",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кур’єр шукає, куди покласти посилки. Скажіть йому повною фразою: у дворі немає поштомата",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a parcel locker in the yard.",
+        "localizedMeaning": {
+          "ru": "Курьер ищет, куда положить посылки. Скажите ему полной фразой: во дворе нет почтомата",
+          "uk": "Кур’єр шукає, куди покласти посилки. Скажіть йому повною фразою: у дворі немає поштомата"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "parcel",
+          "locker",
+          "in",
+          "the",
+          "yard"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Кур’єр шукає, куди покласти посилки. Скажіть йому повною фразою: у дворі немає поштомата",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a parcel locker in the yard.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a parcel locker in the yard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:word:pallet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pallet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:word:pallet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pallet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:word:pallet:audio",
+          "transcript": "pallet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-37:word:pallet:r1",
+            "targetText": "pallet",
+            "meaningByLocale": {
+              "ru": "поддон. There aren’t any pallets. — «Поддонов нет». О плоской деревянной платформе, на которую ставят коробки.",
+              "uk": "піддон. There aren’t any pallets. — «Піддонів немає». Про пласку дерев’яну платформу, на яку ставлять коробки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pallet",
+          "definitionByLocale": {
+            "ru": "поддон. There aren’t any pallets. — «Поддонов нет». О плоской деревянной платформе, на которую ставят коробки.",
+            "uk": "піддон. There aren’t any pallets. — «Піддонів немає». Про пласку дерев’яну платформу, на яку ставлять коробки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Поштомата немає. Виберіть форму",
+      "prompt": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-37:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-37:i04:r1",
+          "text": "pallet"
         },
         {
-          "responseId": "en:lesson-04:session-37:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-37:i04:r2",
+          "text": "shelf"
         },
         {
-          "responseId": "en:lesson-04:session-37:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-37:i04:r3",
+          "text": "tray"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поштомата немає. Виберіть форму",
+      "accessibilityLabel": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Постамата нет. Выберите форму",
-          "uk": "Поштомата немає. Виберіть форму"
+          "ru": "Курьер ставит коробки на плоскую деревянную платформу, чтобы их поднять погрузчиком. Как она называется по-английски?",
+          "uk": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a parcel locker.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-37:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-37:i04:r1",
+            "text": "pallet"
           },
           {
-            "responseId": "en:lesson-04:session-37:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-37:i04:r2",
+            "text": "shelf"
           },
           {
-            "responseId": "en:lesson-04:session-37:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-37:i04:r3",
+            "text": "tray"
           }
         ],
-        "testedDimension": "Поштомата немає. Виберіть форму",
+        "testedDimension": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-37:i08:r2",
+            "responseId": "en:lesson-04:session-37:i04:r2",
             "correct": false,
-            "testedDimension": "Поштомата немає. Виберіть форму",
+            "testedDimension": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`is` сообщает о наличии; здесь отсутствие: `isn’t`.",
-              "uk": "`is` повідомляє про наявність; тут відсутність: `isn’t`."
+              "ru": "shelf — это полка, а плоская деревянная платформа для коробок называется pallet.",
+              "uk": "shelf — це полиця, а пласка дерев’яна платформа для коробок називається pallet."
             }
           },
           {
-            "responseId": "en:lesson-04:session-37:i08:r3",
+            "responseId": "en:lesson-04:session-37:i04:r3",
             "correct": false,
-            "testedDimension": "Поштомата немає. Виберіть форму",
+            "testedDimension": "Кур’єр ставить коробки на пласку дерев’яну платформу, щоб їх підняти навантажувачем. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "Один постамат: `isn’t a parcel locker`.",
-              "uk": "Один поштомат: `isn’t a parcel locker`."
+              "ru": "tray — это поднос, а плоская деревянная платформа для коробок называется pallet.",
+              "uk": "tray — це піднос, а пласка дерев’яна платформа для коробок називається pallet."
             }
           }
         ]
@@ -465,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де зупинка",
+      "prompt": "Послухайте кур’єра",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-37:i09:r1",
-          "text": "The bus stop is next to the hotel."
+          "responseId": "en:lesson-04:session-37:i05:r1",
+          "text": "There aren’t any pallets."
         },
         {
-          "responseId": "en:lesson-04:session-37:i09:r2",
-          "text": "The bus stop is next to the shop."
+          "responseId": "en:lesson-04:session-37:i05:r2",
+          "text": "There aren’t any boxes."
         },
         {
-          "responseId": "en:lesson-04:session-37:i09:r3",
-          "text": "The bus stop is next to the gym."
+          "responseId": "en:lesson-04:session-37:i05:r3",
+          "text": "There isn’t a pallet."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-37:i09:audio"
+        "en:lesson-04:session-37:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де зупинка",
+      "accessibilityLabel": "Послухайте кур’єра",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i09:audio",
-          "transcript": "The bus stop is next to the hotel."
+          "audioTargetId": "en:lesson-04:session-37:i05:audio",
+          "transcript": "There aren’t any pallets."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-37:i09:r1",
-            "targetText": "The bus stop is next to the hotel.",
+            "responseId": "en:lesson-04:session-37:i05:r1",
+            "targetText": "There aren’t any pallets.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-37:i09:r2",
-            "targetText": "The bus stop is next to the shop.",
+            "responseId": "en:lesson-04:session-37:i05:r2",
+            "targetText": "There aren’t any boxes.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-37:i09:r3",
-            "targetText": "The bus stop is next to the gym.",
+            "responseId": "en:lesson-04:session-37:i05:r3",
+            "targetText": "There isn’t a pallet.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-37:i09:r2",
+            "responseId": "en:lesson-04:session-37:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де зупинка",
+            "testedDimension": "Послухайте кур’єра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `shop`."
+              "ru": "В записи `pallets`, а в этом варианте `boxes`.",
+              "uk": "У записі `pallets`, а в цьому варіанті `boxes`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-37:i09:r3",
+            "responseId": "en:lesson-04:session-37:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де зупинка",
+            "testedDimension": "Послухайте кур’єра",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `gym`."
+              "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — один.",
+              "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — один."
             }
           }
         ],
@@ -541,9 +390,297 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i10",
+      "interactionId": "en:lesson-04:session-37:word:crate",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:word:crate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:word:crate:audio",
+          "transcript": "crate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-37:word:crate:r1",
+            "targetText": "crate",
+            "meaningByLocale": {
+              "ru": "ящик. There isn’t a crate. — «Ящика нет». О большом деревянном или пластиковом ящике для груза.",
+              "uk": "ящик. There isn’t a crate. — «Ящика немає». Про великий дерев’яний або пластиковий ящик для вантажу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crate",
+          "definitionByLocale": {
+            "ru": "ящик. There isn’t a crate. — «Ящика нет». О большом деревянном или пластиковом ящике для груза.",
+            "uk": "ящик. There isn’t a crate. — «Ящика немає». Про великий дерев’яний або пластиковий ящик для вантажу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Управитель показує великий дерев’яний ящик зі щілинами для пляшок, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:i06:audio"
+      ],
+      "accessibilityLabel": "Управитель показує великий дерев’яний ящик зі щілинами для пляшок, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:i06:audio",
+          "transcript": "crate"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "crate",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте управителя й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте управителя й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:i07:audio",
+          "transcript": "There isn’t a crate near the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There isn’t a crate near the door.",
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "crate",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте управителя й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a crate near the door.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a crate near the door.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:word:loading bay",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — loading bay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:word:loading bay:audio"
+      ],
+      "accessibilityLabel": "Картка слова — loading bay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:word:loading bay:audio",
+          "transcript": "loading bay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-37:word:loading bay:r1",
+            "targetText": "loading bay",
+            "meaningByLocale": {
+              "ru": "площадка для разгрузки. There isn’t a loading bay. — «Площадки для разгрузки нет». О месте у здания, где машина останавливается и разгружает груз.",
+              "uk": "майданчик для розвантаження. There isn’t a loading bay. — «Майданчика для розвантаження немає». Про місце біля будівлі, де машина зупиняється й розвантажує вантаж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loading bay",
+          "definitionByLocale": {
+            "ru": "площадка для разгрузки. There isn’t a loading bay. — «Площадки для разгрузки нет». О месте у здания, где машина останавливается и разгружает груз.",
+            "uk": "майданчик для розвантаження. There isn’t a loading bay. — «Майданчика для розвантаження немає». Про місце біля будівлі, де машина зупиняється й розвантажує вантаж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-37:i08:r1",
+          "text": "loading bay"
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i08:r2",
+          "text": "entrance"
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i08:r3",
+          "text": "yard"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Курьер ищет место у здания, где машина останавливается и разгружает груз. Как оно называется по-английски?",
+          "uk": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-37:i08:r1",
+            "text": "loading bay"
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i08:r2",
+            "text": "entrance"
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i08:r3",
+            "text": "yard"
+          }
+        ],
+        "testedDimension": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "entrance — это вход, а место, где машина разгружает груз, называется loading bay.",
+              "uk": "entrance — це вхід, а місце, де машина розвантажує вантаж, називається loading bay."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Кур’єр шукає місце біля будівлі, де машина зупиняється й розвантажує вантаж. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "yard — это двор, а место, где машина разгружает груз, называется loading bay.",
+              "uk": "yard — це двір, а місце, де машина розвантажує вантаж, називається loading bay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кур’єр шукає розвантаження. Скажіть йому повною фразою: за будівлею немає майданчика для розвантаження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кур’єр шукає розвантаження. Скажіть йому повною фразою: за будівлею немає майданчика для розвантаження",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a loading bay behind the building.",
+        "localizedMeaning": {
+          "ru": "Курьер ищет разгрузку. Скажите ему полной фразой: за зданием нет площадки для разгрузки",
+          "uk": "Кур’єр шукає розвантаження. Скажіть йому повною фразою: за будівлею немає майданчика для розвантаження"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "loading",
+          "bay",
+          "behind",
+          "the",
+          "building"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Кур’єр шукає розвантаження. Скажіть йому повною фразою: за будівлею немає майданчика для розвантаження",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a loading bay behind the building.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a loading bay behind the building.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -556,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-37:i10:p1",
-            "target": "parcel locker",
+            "target": "loading bay",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "площадка для разгрузки",
+              "uk": "майданчик для розвантаження"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i10:p2",
-            "target": "official",
+            "target": "crate",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "ящик (для груза)",
+              "uk": "ящик (для вантажу)"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i10:p3",
-            "target": "car",
+            "target": "parcel",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "посылка",
+              "uk": "посилка"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i10:p4",
-            "target": "bus stop",
+            "target": "trolley",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "тележка для покупок",
+              "uk": "візок для покупок"
             }
           }
         ],
         "leftColumn": [
-          "parcel locker",
-          "official",
-          "car",
-          "bus stop"
+          "loading bay",
+          "crate",
+          "parcel",
+          "trolley"
         ],
         "rightColumn": [
-          "поштомат",
-          "офіційний",
-          "машина",
-          "автобусна зупинка"
+          "майданчик для розвантаження",
+          "ящик (для вантажу)",
+          "посилка",
+          "візок для покупок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,77 +752,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-37:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сусідку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-37:i11:r1",
+          "text": "There aren’t any parcels."
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i11:r2",
+          "text": "There isn’t a parcel."
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i11:r3",
+          "text": "There aren’t any boxes."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-37:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-37:i11:audio",
-          "transcript": "There aren't any parcel lockers."
+          "transcript": "There aren’t any parcels."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any parcel lockers.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "parcel",
-          "lockers"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-37:i11:r1",
+            "targetText": "There aren’t any parcels.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i11:r2",
+            "targetText": "There isn’t a parcel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i11:r3",
+            "targetText": "There aren’t any boxes.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку",
+            "feedbackByLocale": {
+              "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — одна.",
+              "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку",
+            "feedbackByLocale": {
+              "ru": "В записи `parcels`, а в этом варианте `boxes`.",
+              "uk": "У записі `parcels`, а в цьому варіанті `boxes`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-37:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Тут є поштомат. Повідомте про це",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-37:i12:r1",
+          "text": "aren’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i12:r2",
+          "text": "isn’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-37:i12:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тут є поштомат. Повідомте про це",
+      "accessibilityLabel": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a parcel locker.",
-        "localizedMeaning": {
-          "ru": "Здесь есть постамат. Сообщите об этом",
-          "uk": "Тут є поштомат. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Управляющий заглянул во двор: ящиков там нет. Выберите нужное слово",
+          "uk": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There ___ any crates in the yard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-37:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Ящики — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+              "uk": "Ящики — кілька предметів, тому потрібно aren’t, а не isn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Управитель зазирнув у двір: ящиків там немає. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "is значит «есть», а ящиков нет: нужно aren’t.",
+              "uk": "is означає «є», а ящиків немає: потрібно aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-37:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте управителя й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте управителя й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-37:i13:audio",
+          "transcript": "There aren’t any trolleys near the entrance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren’t any trolleys near the entrance.",
         "orderedTokens": [
           "There",
-          "is",
-          "a",
-          "parcel",
-          "locker"
+          "aren’t",
+          "any",
+          "trolleys",
+          "near",
+          "the",
+          "entrance"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "isn’t"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-37:i12:tile:d1",
+            "responseId": "en:lesson-04:session-37:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Тут є поштомат. Повідомте про це",
+            "testedDimension": "Послухайте управителя й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a parcel locker.`",
-              "uk": "тут потрібно `is` — `There is a parcel locker.`"
+              "ru": "здесь нужно `aren’t` — `There aren’t any trolleys near the entrance.`",
+              "uk": "тут потрібно `aren’t` — `There aren’t any trolleys near the entrance.`"
             }
           }
         ],
@@ -697,26 +947,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-37:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви в новому районі. Запитайте, чи є поштомат",
+      "prompt": "Кур’єр питає про склад. Скажіть йому: «Тут немає піддонів»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-37:i13:audio"
+        "en:lesson-04:session-37:i14:audio"
       ],
-      "accessibilityLabel": "Ви в новому районі. Запитайте, чи є поштомат",
+      "accessibilityLabel": "Кур’єр питає про склад. Скажіть йому: «Тут немає піддонів»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i13:audio",
-          "transcript": "Is there a parcel locker?"
+          "audioTargetId": "en:lesson-04:session-37:i14:audio",
+          "transcript": "There aren’t any pallets here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a parcel locker?",
+        "targetPhrase": "There aren’t any pallets here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -730,161 +980,64 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-37:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-37:i14:r1",
-          "text": "between"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусідка перевіряє посилку. Скажіть їй повною фразою: на коробці немає наклейки",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово",
+      "accessibilityLabel": "Сусідка перевіряє посилку. Скажіть їй повною фразою: на коробці немає наклейки",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Машина между двумя магазинами, не внутри и не под ними. Выберите слово",
-          "uk": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a label on the box.",
+        "localizedMeaning": {
+          "ru": "Соседка проверяет посылку. Скажите ей полной фразой: на коробке нет наклейки",
+          "uk": "Сусідка перевіряє посилку. Скажіть їй повною фразою: на коробці немає наклейки"
         },
-        "gappedTargetPhrase": "The car is ___ the shops.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "label",
+          "on",
+          "the",
+          "box"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-37:i14:r1",
-            "text": "between"
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-37:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка перевіряє посилку. Скажіть їй повною фразою: на коробці немає наклейки",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a label on the box.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a label on the box.`"
+            }
           }
         ],
-        "testedDimension": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i14:r2",
-            "correct": false,
-            "testedDimension": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; между — `between`.",
-              "uk": "`in` — усередині; між — `between`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i14:r3",
-            "correct": false,
-            "testedDimension": "Машина між двома магазинами, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; между — `between`.",
-              "uk": "`under` — під; між — `between`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-37:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-37:i15:r1",
-          "text": "That is a parcel locker."
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i15:r2",
-          "text": "This is a parcel locker."
-        },
-        {
-          "responseId": "en:lesson-04:session-37:i15:r3",
-          "text": "There is a parcel locker."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-37:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-37:i15:audio",
-          "transcript": "That is a parcel locker."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-37:i15:r1",
-            "targetText": "That is a parcel locker.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i15:r2",
-            "targetText": "This is a parcel locker.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i15:r3",
-            "targetText": "There is a parcel locker.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-37:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-37:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `There`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `There`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-37:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -892,46 +1045,46 @@
             "pairId": "en:lesson-04:session-37:i16:p1",
             "target": "parcel locker",
             "meaningByLocale": {
-              "ru": "постамат",
-              "uk": "поштомат"
+              "ru": "почтомат (шкаф для посылок)",
+              "uk": "поштомат (шафа для посилок)"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i16:p2",
-            "target": "official",
+            "target": "pallet",
             "meaningByLocale": {
-              "ru": "официальный",
-              "uk": "офіційний"
+              "ru": "поддон",
+              "uk": "піддон"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i16:p3",
-            "target": "car",
+            "target": "crate",
             "meaningByLocale": {
-              "ru": "машина",
-              "uk": "машина"
+              "ru": "ящик (для груза)",
+              "uk": "ящик (для вантажу)"
             }
           },
           {
             "pairId": "en:lesson-04:session-37:i16:p4",
-            "target": "bus stop",
+            "target": "loading bay",
             "meaningByLocale": {
-              "ru": "автобусная остановка",
-              "uk": "автобусна зупинка"
+              "ru": "площадка для разгрузки",
+              "uk": "майданчик для розвантаження"
             }
           }
         ],
         "leftColumn": [
           "parcel locker",
-          "official",
-          "car",
-          "bus stop"
+          "pallet",
+          "crate",
+          "loading bay"
         ],
         "rightColumn": [
-          "поштомат",
-          "офіційний",
-          "машина",
-          "автобусна зупинка"
+          "поштомат (шафа для посилок)",
+          "піддон",
+          "ящик (для вантажу)",
+          "майданчик для розвантаження"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,25 +1102,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-37:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті друг шукає поштомат. Він поруч із готелем. Скажіть «Поштомат поруч із готелем»",
+      "prompt": "В іншому дворі кур’єр шукає шафу для посилок. Скажіть йому: «Поштомата тут немає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-37:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті друг шукає поштомат. Він поруч із готелем. Скажіть «Поштомат поруч із готелем»",
+      "accessibilityLabel": "В іншому дворі кур’єр шукає шафу для посилок. Скажіть йому: «Поштомата тут немає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-37:i17:audio",
-          "transcript": "The parcel locker is next to the hotel."
+          "transcript": "There isn’t a parcel locker here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The parcel locker is next to the hotel.",
+        "targetPhrase": "There isn’t a parcel locker here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1142,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1ff3448ed4eaa078d4683b02ca32cdf7004ccf0843bc6c53810cc4a1349cc954"
+  "learnerFingerprint": "c2d43d1383f3cf83594a5e8fe20ce694481df855e4368aa4ce86f24b822e86cc"
 }

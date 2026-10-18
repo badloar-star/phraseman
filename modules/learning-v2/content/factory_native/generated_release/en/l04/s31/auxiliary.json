@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-31:intro1:r2": {
-          "ru": "`park` — парк; парковка — `car park`.",
-          "uk": "`park` — парк; парковка — `car park`."
+          "ru": "The — когда оба уже знают предмет, а гость о стоянке ещё не слышал: There is a car park.",
+          "uk": "The — коли обоє вже знають предмет, а гість про стоянку ще не чув: There is a car park."
         },
         "en:lesson-04:session-31:intro1:r3": {
-          "ru": "Одна парковка: `This is`.",
-          "uk": "Одна парковка: `This is`."
+          "ru": "Стоянка одна и названа впервые, поэтому нужно a: a car park.",
+          "uk": "Стоянка одна й названа вперше, тому потрібно a: a car park."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-31:intro2:r2": {
-          "ru": "Несколько парков: `The parks are`.",
-          "uk": "Кілька парків: `The parks are`."
+          "ru": "There is a — для нового предмета, а шлагбаум вы оба уже видите: The barrier is.",
+          "uk": "There is a — для нового предмета, а шлагбаум ви обоє вже бачите: The barrier is."
         },
         "en:lesson-04:session-31:intro2:r3": {
-          "ru": "`in` — внутри; здесь парки рядом с отелем: `next to`.",
-          "uk": "`in` — усередині; тут парки поруч із готелем: `next to`."
+          "ru": "Шлагбаум один, поэтому нужно is: The barrier is.",
+          "uk": "Шлагбаум один, тому потрібно is: The barrier is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-31:intro3:r2": {
-          "ru": "`on` — на поверхности; внутри сумки — `in the bag`.",
-          "uk": "`on` — на поверхні; усередині сумки — `in the bag`."
+          "ru": "The — когда оба знают предмет, а для гостя заправка новая: There is a petrol station.",
+          "uk": "The — коли обоє знають предмет, а для гостя заправка нова: There is a petrol station."
         },
         "en:lesson-04:session-31:intro3:r3": {
-          "ru": "Сыр как продукт: `The cheese is`.",
-          "uk": "Сир як продукт: `The cheese is`."
+          "ru": "Заправка одна, поэтому нужно is: There is a petrol station.",
+          "uk": "Заправка одна, тому потрібно is: There is a petrol station."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "98ea802f0a04763d97bbd5e52e1feebae854c69935b826016a8216d79ad53484"
+  "auxiliaryFingerprint": "bb219382e2b62fe68729b360325d0e47584c4ef53813d67510b0ff482cd650d7"
 }

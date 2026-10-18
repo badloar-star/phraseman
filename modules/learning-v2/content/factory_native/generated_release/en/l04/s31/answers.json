@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-31:i01",
-    "correctText": "The cheese is in the bag.",
+    "correctText": "en:lesson-04:session-31:i01:p1=car park\nen:lesson-04:session-31:i01:p2=barrier\nen:lesson-04:session-31:i01:p3=petrol station\nen:lesson-04:session-31:i01:p4=roundabout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-31:word:car park",
+    "correctText": "car park",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i02",
     "correctText": "car park",
-    "correctResponseId": "en:lesson-04:session-31:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-31:i03",
-    "correctText": "car park",
-    "correctResponseId": "en:lesson-04:session-31:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-31:i04",
-    "correctText": "en:lesson-04:session-31:i04:p1=car park\nen:lesson-04:session-31:i04:p2=unusual\nen:lesson-04:session-31:i04:p3=parks\nen:lesson-04:session-31:i04:p4=cheese",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-31:i03",
+    "correctText": "There is a car park near the library.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-31:word:barrier",
+    "correctText": "barrier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-31:i04",
+    "correctText": "barrier",
+    "correctResponseId": "en:lesson-04:session-31:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-31:i05",
-    "correctText": "This is a car park.",
+    "correctText": "The barrier is near the car park.",
+    "correctResponseId": "en:lesson-04:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-31:word:petrol station",
+    "correctText": "petrol station",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i06",
-    "correctText": "The car park is unusual.",
+    "correctText": "petrol station",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i07",
-    "correctText": "There is some cheese.",
+    "correctText": "There is a petrol station near the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-31:word:roundabout",
+    "correctText": "roundabout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i08",
-    "correctText": "next to",
+    "correctText": "roundabout",
     "correctResponseId": "en:lesson-04:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-31:i09",
-    "correctText": "The parks are next to the hotel.",
-    "correctResponseId": "en:lesson-04:session-31:i09:r1"
+    "correctText": "The roundabout is near the bank.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i10",
-    "correctText": "en:lesson-04:session-31:i10:p1=car park\nen:lesson-04:session-31:i10:p2=unusual\nen:lesson-04:session-31:i10:p3=parks\nen:lesson-04:session-31:i10:p4=cheese",
+    "correctText": "en:lesson-04:session-31:i10:p1=roundabout\nen:lesson-04:session-31:i10:p2=petrol station\nen:lesson-04:session-31:i10:p3=barrier\nen:lesson-04:session-31:i10:p4=bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i11",
-    "correctText": "There aren't any cars.",
-    "correctResponseId": null
+    "correctText": "There is a hotel near the park.",
+    "correctResponseId": "en:lesson-04:session-31:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-31:i12",
-    "correctText": "The bag is under the table.",
-    "correctResponseId": null
+    "correctText": "The",
+    "correctResponseId": "en:lesson-04:session-31:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-31:i13",
-    "correctText": "The car park is between the parks.",
+    "correctText": "The car park is near the hotel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i14",
-    "correctText": "on",
-    "correctResponseId": "en:lesson-04:session-31:i14:r1"
+    "correctText": "There is a roundabout near the school.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i15",
-    "correctText": "That is unusual.",
-    "correctResponseId": "en:lesson-04:session-31:i15:r1"
+    "correctText": "The barrier is next to the car park.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i16",
-    "correctText": "en:lesson-04:session-31:i16:p1=car park\nen:lesson-04:session-31:i16:p2=unusual\nen:lesson-04:session-31:i16:p3=parks\nen:lesson-04:session-31:i16:p4=cheese",
+    "correctText": "en:lesson-04:session-31:i16:p1=car park\nen:lesson-04:session-31:i16:p2=barrier\nen:lesson-04:session-31:i16:p3=petrol station\nen:lesson-04:session-31:i16:p4=roundabout",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-31:i17",
-    "correctText": "The car park is next to the hotel.",
+    "correctText": "There is a petrol station next to the bank.",
     "correctResponseId": null
   }
 ]

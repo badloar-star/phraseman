@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-50:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is effective.",
-        "localizedMeaning": {
-          "ru": "Способ даёт нужный результат. Скажите «Это эффективно» без сокращения",
-          "uk": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "effective"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Спосіб дає потрібний результат. Скажіть «Це ефективно» без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is effective.`",
-              "uk": "тут потрібно `is` — `It is effective.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-50:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-50:i02:r1",
-          "text": "river"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i02:r2",
-          "text": "rivers"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i02:r3",
-          "text": "canal"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-50:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i02:audio",
-          "transcript": "river"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-50:i02:r1",
-            "targetText": "river",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i02:r2",
-            "targetText": "rivers",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i02:r3",
-            "targetText": "canal",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `river`, а в этом варианте — `rivers`.",
-              "uk": "У записі перше слово — `river`, а в цьому варіанті — `rivers`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `river`, а в этом варианте — `canal`.",
-              "uk": "У записі перше слово — `river`, а в цьому варіанті — `canal`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-50:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть річку одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-50:i03:r1",
-          "text": "river"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i03:r2",
-          "text": "canal"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i03:r3",
-          "text": "fountain"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть річку одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите реку одним словом",
-          "uk": "Назвіть річку одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-50:i03:r1",
-            "text": "river"
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i03:r2",
-            "text": "canal"
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i03:r3",
-            "text": "fountain"
-          }
-        ],
-        "testedDimension": "Назвіть річку одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть річку одним словом",
-            "feedbackByLocale": {
-              "ru": "`canal` — искусственный канал; река — `river`.",
-              "uk": "`canal` — штучний канал; річка — `river`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть річку одним словом",
-            "feedbackByLocale": {
-              "ru": "`fountain` — фонтан; река — `river`.",
-              "uk": "`fountain` — фонтан; річка — `river`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-50:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-50:i04:p1",
+            "pairId": "en:lesson-04:session-50:i01:p1",
             "target": "river",
             "meaningByLocale": {
               "ru": "река",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-50:i04:p2",
-            "target": "effective",
+            "pairId": "en:lesson-04:session-50:i01:p2",
+            "target": "detour",
             "meaningByLocale": {
-              "ru": "действенный",
-              "uk": "дієвий"
+              "ru": "объезд, обход",
+              "uk": "об’їзд, обхід"
             }
           },
           {
-            "pairId": "en:lesson-04:session-50:i04:p3",
-            "target": "cinema",
+            "pairId": "en:lesson-04:session-50:i01:p3",
+            "target": "footbridge",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "пешеходный мостик",
+              "uk": "пішохідний місток"
             }
           },
           {
-            "pairId": "en:lesson-04:session-50:i04:p4",
-            "target": "bus shelter",
+            "pairId": "en:lesson-04:session-50:i01:p4",
+            "target": "cone",
             "meaningByLocale": {
-              "ru": "остановочный павильон",
-              "uk": "зупинковий павільйон"
+              "ru": "дорожный конус",
+              "uk": "дорожній конус"
             }
           }
         ],
         "leftColumn": [
           "river",
-          "effective",
-          "cinema",
-          "bus shelter"
+          "detour",
+          "footbridge",
+          "cone"
         ],
         "rightColumn": [
           "річка",
-          "дієвий",
-          "кінотеатр",
-          "зупинковий павільйон"
+          "об’їзд, обхід",
+          "пішохідний місток",
+          "дорожній конус"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-50:word:river",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — river",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-50:i05:audio"
+        "en:lesson-04:session-50:word:river:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — river",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i05:audio",
-          "transcript": "This is a river."
+          "audioTargetId": "en:lesson-04:session-50:word:river:audio",
+          "transcript": "river"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a river.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "river"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-50:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a river.`",
-              "uk": "тут потрібно `is` — `This is a river.`"
+            "responseId": "en:lesson-04:session-50:word:river:r1",
+            "targetText": "river",
+            "meaningByLocale": {
+              "ru": "река. Is there a river behind the library? — «Есть ли река за библиотекой?» О длинной воде, которая течёт через город.",
+              "uk": "річка. Is there a river behind the library? — «Чи є річка за бібліотекою?» Про довгу воду, яка тече через місто."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "river",
+          "definitionByLocale": {
+            "ru": "река. Is there a river behind the library? — «Есть ли река за библиотекой?» О длинной воде, которая течёт через город.",
+            "uk": "річка. Is there a river behind the library? — «Чи є річка за бібліотекою?» Про довгу воду, яка тече через місто."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Кінотеатр поруч із річкою. Скажіть, де він",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Кінотеатр поруч із річкою. Скажіть, де він",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The cinema is next to the river.",
-        "localizedMeaning": {
-          "ru": "Кинотеатр рядом с рекой. Скажите, где он",
-          "uk": "Кінотеатр поруч із річкою. Скажіть, де він"
-        },
-        "orderedTokens": [
-          "The",
-          "cinema",
-          "is",
-          "next",
-          "to",
-          "the",
-          "river"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Кінотеатр поруч із річкою. Скажіть, де він",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cinema is next to the river.`",
-              "uk": "тут потрібно `is` — `The cinema is next to the river.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-50:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-50:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваш спосіб пояснювати дорогу допомагає знаходити місце. Скажіть «Це ефективно» зі скороченням",
+      "prompt": "Сусідка показує на довгу воду, яка тече через місто, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-50:i07:audio"
+        "en:lesson-04:session-50:i02:audio"
       ],
-      "accessibilityLabel": "Ваш спосіб пояснювати дорогу допомагає знаходити місце. Скажіть «Це ефективно» зі скороченням",
+      "accessibilityLabel": "Сусідка показує на довгу воду, яка тече через місто, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i07:audio",
-          "transcript": "It's effective."
+          "audioTargetId": "en:lesson-04:session-50:i02:audio",
+          "transcript": "river"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's effective.",
+        "targetPhrase": "river",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте воду за бібліотекою. Запитайте сусідку повною фразою: чи є за бібліотекою річка?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте воду за бібліотекою. Запитайте сусідку повною фразою: чи є за бібліотекою річка?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a river behind the library?",
+        "localizedMeaning": {
+          "ru": "Вы ищете воду за библиотекой. Спросите соседку полной фразой: за библиотекой есть река?",
+          "uk": "Ви шукаєте воду за бібліотекою. Запитайте сусідку повною фразою: чи є за бібліотекою річка?"
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "river",
+          "behind",
+          "the",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте воду за бібліотекою. Запитайте сусідку повною фразою: чи є за бібліотекою річка?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a river behind the library?`",
+              "uk": "тут потрібно `Is` — `Is there a river behind the library?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:word:cone",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:word:cone:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:word:cone:audio",
+          "transcript": "cone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:word:cone:r1",
+            "targetText": "cone",
+            "meaningByLocale": {
+              "ru": "дорожный конус. Are there cones near the bridge? — «Есть ли конусы возле моста?» О пластиковом колпаке, которым закрывают проход.",
+              "uk": "дорожній конус. Are there cones near the bridge? — «Чи є конуси біля мосту?» Про пластиковий ковпак, яким закривають прохід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cone",
+          "definitionByLocale": {
+            "ru": "дорожный конус. Are there cones near the bridge? — «Есть ли конусы возле моста?» О пластиковом колпаке, которым закрывают проход.",
+            "uk": "дорожній конус. Are there cones near the bridge? — «Чи є конуси біля мосту?» Про пластиковий ковпак, яким закривають прохід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Кінотеатру немає. Виберіть форму",
+      "prompt": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-50:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-50:i04:r1",
+          "text": "cone"
         },
         {
-          "responseId": "en:lesson-04:session-50:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-50:i04:r2",
+          "text": "barrier"
         },
         {
-          "responseId": "en:lesson-04:session-50:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-50:i04:r3",
+          "text": "sign"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Кінотеатру немає. Виберіть форму",
+      "accessibilityLabel": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Кинотеатра нет. Выберите форму",
-          "uk": "Кінотеатру немає. Виберіть форму"
+          "ru": "Оранжевый пластиковый колпак, которым закрывают проход. Как он называется по-английски?",
+          "uk": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a cinema.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-50:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-50:i04:r1",
+            "text": "cone"
           },
           {
-            "responseId": "en:lesson-04:session-50:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-50:i04:r2",
+            "text": "barrier"
           },
           {
-            "responseId": "en:lesson-04:session-50:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-50:i04:r3",
+            "text": "sign"
           }
         ],
-        "testedDimension": "Кінотеатру немає. Виберіть форму",
+        "testedDimension": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-50:i08:r2",
+            "responseId": "en:lesson-04:session-50:i04:r2",
             "correct": false,
-            "testedDimension": "Кінотеатру немає. Виберіть форму",
+            "testedDimension": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "barrier — это шлагбаум, а оранжевый колпак на тротуаре называется cone.",
+              "uk": "barrier — це шлагбаум, а помаранчевий ковпак на тротуарі називається cone."
             }
           },
           {
-            "responseId": "en:lesson-04:session-50:i08:r3",
+            "responseId": "en:lesson-04:session-50:i04:r3",
             "correct": false,
-            "testedDimension": "Кінотеатру немає. Виберіть форму",
+            "testedDimension": "Помаранчевий пластиковий ковпак, яким закривають прохід. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Один кинотеатр: `isn’t a cinema`.",
-              "uk": "Один кінотеатр: `isn’t a cinema`."
+              "ru": "sign — это табличка, а оранжевый колпак на тротуаре называется cone.",
+              "uk": "sign — це табличка, а помаранчевий ковпак на тротуарі називається cone."
             }
           }
         ]
@@ -464,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де павільйон",
+      "prompt": "Послухайте бігуна",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-50:i09:r1",
-          "text": "The bus shelter is next to the cinema."
+          "responseId": "en:lesson-04:session-50:i05:r1",
+          "text": "Are there cones on the pavement?"
         },
         {
-          "responseId": "en:lesson-04:session-50:i09:r2",
-          "text": "The bus shelter is next to the hospital."
+          "responseId": "en:lesson-04:session-50:i05:r2",
+          "text": "Is there a cone on the pavement?"
         },
         {
-          "responseId": "en:lesson-04:session-50:i09:r3",
-          "text": "The bus shelter is next to the shop."
+          "responseId": "en:lesson-04:session-50:i05:r3",
+          "text": "Are there cones on the bridge?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-50:i09:audio"
+        "en:lesson-04:session-50:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де павільйон",
+      "accessibilityLabel": "Послухайте бігуна",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i09:audio",
-          "transcript": "The bus shelter is next to the cinema."
+          "audioTargetId": "en:lesson-04:session-50:i05:audio",
+          "transcript": "Are there cones on the pavement?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-50:i09:r1",
-            "targetText": "The bus shelter is next to the cinema.",
+            "responseId": "en:lesson-04:session-50:i05:r1",
+            "targetText": "Are there cones on the pavement?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-50:i09:r2",
-            "targetText": "The bus shelter is next to the hospital.",
+            "responseId": "en:lesson-04:session-50:i05:r2",
+            "targetText": "Is there a cone on the pavement?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-50:i09:r3",
-            "targetText": "The bus shelter is next to the shop.",
+            "responseId": "en:lesson-04:session-50:i05:r3",
+            "targetText": "Are there cones on the bridge?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-50:i09:r2",
+            "responseId": "en:lesson-04:session-50:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де павільйон",
+            "testedDimension": "Послухайте бігуна",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cinema`, а в этом варианте — `hospital`.",
-              "uk": "У записі останнє слово — `cinema`, а в цьому варіанті — `hospital`."
+              "ru": "В записи вопрос `Are there cones` о нескольких, а в этом варианте `Is there a cone` об одном.",
+              "uk": "У записі запитання `Are there cones` про кілька, а в цьому варіанті `Is there a cone` про один."
             }
           },
           {
-            "responseId": "en:lesson-04:session-50:i09:r3",
+            "responseId": "en:lesson-04:session-50:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де павільйон",
+            "testedDimension": "Послухайте бігуна",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `cinema`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `cinema`, а в цьому варіанті — `shop`."
+              "ru": "В записи место `pavement`, а в этом варианте `bridge`.",
+              "uk": "У записі місце `pavement`, а в цьому варіанті `bridge`."
             }
           }
         ],
@@ -540,9 +389,295 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i10",
+      "interactionId": "en:lesson-04:session-50:word:detour",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — detour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:word:detour:audio"
+      ],
+      "accessibilityLabel": "Картка слова — detour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:word:detour:audio",
+          "transcript": "detour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:word:detour:r1",
+            "targetText": "detour",
+            "meaningByLocale": {
+              "ru": "объезд, обход. Is there a detour near the park? — «Есть ли обход возле парка?» О пути в стороне, когда прямой путь закрыт.",
+              "uk": "об’їзд, обхід. Is there a detour near the park? — «Чи є обхід біля парку?» Про шлях осторонь, коли прямий шлях закритий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "detour",
+          "definitionByLocale": {
+            "ru": "объезд, обход. Is there a detour near the park? — «Есть ли обход возле парка?» О пути в стороне, когда прямой путь закрыт.",
+            "uk": "об’їзд, обхід. Is there a detour near the park? — «Чи є обхід біля парку?» Про шлях осторонь, коли прямий шлях закритий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бігун називає шлях осторонь, коли пряма стежка закрита, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Бігун називає шлях осторонь, коли пряма стежка закрита, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i06:audio",
+          "transcript": "detour"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "detour",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте бігуна й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте бігуна й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i07:audio",
+          "transcript": "Is there a detour near the bridge?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is there a detour near the bridge?",
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "detour",
+          "near",
+          "the",
+          "bridge"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте бігуна й складіть запитання",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a detour near the bridge?`",
+              "uk": "тут потрібно `Is` — `Is there a detour near the bridge?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:word:footbridge",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — footbridge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:word:footbridge:audio"
+      ],
+      "accessibilityLabel": "Картка слова — footbridge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:word:footbridge:audio",
+          "transcript": "footbridge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:word:footbridge:r1",
+            "targetText": "footbridge",
+            "meaningByLocale": {
+              "ru": "пешеходный мостик. Is there a footbridge behind the cafe? — «Есть ли мостик за кафе?» О маленьком мосту только для пешеходов.",
+              "uk": "пішохідний місток. Is there a footbridge behind the cafe? — «Чи є місток за кафе?» Про маленький міст лише для пішоходів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "footbridge",
+          "definitionByLocale": {
+            "ru": "пешеходный мостик. Is there a footbridge behind the cafe? — «Есть ли мостик за кафе?» О маленьком мосту только для пешеходов.",
+            "uk": "пішохідний місток. Is there a footbridge behind the cafe? — «Чи є місток за кафе?» Про маленький міст лише для пішоходів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вузький міст, яким ходять лише пішки. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i08:r1",
+          "text": "footbridge"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i08:r2",
+          "text": "bridge"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i08:r3",
+          "text": "pavement"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вузький міст, яким ходять лише пішки. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Узкий мост, по которому ходят только пешком. Как он называется по-английски?",
+          "uk": "Вузький міст, яким ходять лише пішки. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-50:i08:r1",
+            "text": "footbridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r3",
+            "text": "pavement"
+          }
+        ],
+        "testedDimension": "Вузький міст, яким ходять лише пішки. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Вузький міст, яким ходять лише пішки. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "bridge — это любой мост, а мост только для пешеходов называется footbridge.",
+              "uk": "bridge — це будь-який міст, а міст лише для пішоходів називається footbridge."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Вузький міст, яким ходять лише пішки. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "pavement — это тротуар, а мост только для пешеходов называется footbridge.",
+              "uk": "pavement — це тротуар, а міст лише для пішоходів називається footbridge."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте перехід на інший берег. Запитайте бігуна повною фразою: чи є біля кафе містки?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте перехід на інший берег. Запитайте бігуна повною фразою: чи є біля кафе містки?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are there footbridges near the cafe?",
+        "localizedMeaning": {
+          "ru": "Вы ищете переход на другой берег. Спросите бегуна полной фразой: возле кафе есть мостики?",
+          "uk": "Ви шукаєте перехід на інший берег. Запитайте бігуна повною фразою: чи є біля кафе містки?"
+        },
+        "orderedTokens": [
+          "Are",
+          "there",
+          "footbridges",
+          "near",
+          "the",
+          "cafe"
+        ],
+        "authoredDistractorTokens": [
+          "Is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте перехід на інший берег. Запитайте бігуна повною фразою: чи є біля кафе містки?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Are` — `Are there footbridges near the cafe?`",
+              "uk": "тут потрібно `Are` — `Are there footbridges near the cafe?`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -555,48 +690,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-50:i10:p1",
-            "target": "river",
+            "target": "cone",
             "meaningByLocale": {
-              "ru": "река",
-              "uk": "річка"
+              "ru": "дорожный конус",
+              "uk": "дорожній конус"
             }
           },
           {
             "pairId": "en:lesson-04:session-50:i10:p2",
-            "target": "effective",
+            "target": "footbridge",
             "meaningByLocale": {
-              "ru": "действенный",
-              "uk": "дієвий"
+              "ru": "пешеходный мостик",
+              "uk": "пішохідний місток"
             }
           },
           {
             "pairId": "en:lesson-04:session-50:i10:p3",
-            "target": "cinema",
+            "target": "pond",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "пруд",
+              "uk": "ставок"
             }
           },
           {
             "pairId": "en:lesson-04:session-50:i10:p4",
-            "target": "bus shelter",
+            "target": "bridge",
             "meaningByLocale": {
-              "ru": "остановочный павильон",
-              "uk": "зупинковий павільйон"
+              "ru": "мост",
+              "uk": "міст"
             }
           }
         ],
         "leftColumn": [
-          "river",
-          "effective",
-          "cinema",
-          "bus shelter"
+          "cone",
+          "footbridge",
+          "pond",
+          "bridge"
         ],
         "rightColumn": [
-          "річка",
-          "дієвий",
-          "кінотеатр",
-          "зупинковий павільйон"
+          "дорожній конус",
+          "пішохідний місток",
+          "ставок",
+          "міст"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,77 +749,189 @@
     },
     {
       "interactionId": "en:lesson-04:session-50:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку відповідь бігуна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i11:r1",
+          "text": "Yes, there is."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i11:r2",
+          "text": "No, there isn’t."
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i11:r3",
+          "text": "Yes, there are."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-50:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте коротку відповідь бігуна",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-50:i11:audio",
-          "transcript": "Is there a river?"
+          "transcript": "Yes, there is."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is there a river?",
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "river"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-50:i11:r1",
+            "targetText": "Yes, there is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i11:r2",
+            "targetText": "No, there isn’t.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i11:r3",
+            "targetText": "Yes, there are.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь бігуна",
+            "feedbackByLocale": {
+              "ru": "В записи ответ начинается с `Yes`, а в этом варианте — с `No`.",
+              "uk": "У записі відповідь починається з `Yes`, а в цьому варіанті — з `No`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь бігуна",
+            "feedbackByLocale": {
+              "ru": "В записи `there is` — один, а в этом варианте `there are` — несколько.",
+              "uk": "У записі `there is` — один, а в цьому варіанті `there are` — кілька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-50:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-50:i12:r1",
+          "text": "isn’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i12:r2",
+          "text": "aren’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-50:i12:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
+      "accessibilityLabel": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is in the bus shelter.",
-        "localizedMeaning": {
-          "ru": "Друг в остановочном павильоне. Скажите, где он, без сокращения",
-          "uk": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бегун спросил, есть ли обход. Вы знаете, что обхода нет. Дополните ваш короткий ответ",
+          "uk": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь"
         },
+        "gappedTargetPhrase": "No, there ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-50:i12:r1",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i12:r2",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "Обход один, поэтому нужно isn’t, а не aren’t.",
+              "uk": "Обхід один, тому потрібно isn’t, а не aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Бігун спитав, чи є обхід. Ви знаєте, що обходу немає. Доповніть вашу коротку відповідь",
+            "feedbackByLocale": {
+              "ru": "После No нужно isn’t: No, there isn’t.",
+              "uk": "Після No потрібно isn’t: No, there isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте бігуна й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте бігуна й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-50:i13:audio",
+          "transcript": "Are there cones near the cafe?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are there cones near the cafe?",
         "orderedTokens": [
-          "He",
-          "is",
-          "in",
+          "Are",
+          "there",
+          "cones",
+          "near",
           "the",
-          "bus",
-          "shelter"
+          "cafe"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "Is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-50:i12:tile:d1",
+            "responseId": "en:lesson-04:session-50:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Друг у зупинковому павільйоні. Скажіть, де він, без скорочення",
+            "testedDimension": "Послухайте бігуна й складіть запитання",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is in the bus shelter.`",
-              "uk": "тут потрібно `is` — `He is in the bus shelter.`"
+              "ru": "здесь нужно `Are` — `Are there cones near the cafe?`",
+              "uk": "тут потрібно `Are` — `Are there cones near the cafe?`"
             }
           }
         ],
@@ -696,26 +943,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-50:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви хочете подивитися фільм. Запитайте, чи є кінотеатр",
+      "prompt": "Зустрічний бігун питає, чи є на тротуарі конуси. Вони там є. Відповідайте йому коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-50:i13:audio"
+        "en:lesson-04:session-50:i14:audio"
       ],
-      "accessibilityLabel": "Ви хочете подивитися фільм. Запитайте, чи є кінотеатр",
+      "accessibilityLabel": "Зустрічний бігун питає, чи є на тротуарі конуси. Вони там є. Відповідайте йому коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i13:audio",
-          "transcript": "Is there a cinema?"
+          "audioTargetId": "en:lesson-04:session-50:i14:audio",
+          "transcript": "Yes, there are."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a cinema?",
+        "targetPhrase": "Yes, there are.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -729,153 +976,56 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-50:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-50:i14:r1",
-          "text": "next to"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дивитеся на мапу. Запитайте бігуна повною фразою: чи є за кафе місток?",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
+      "accessibilityLabel": "Ви дивитеся на мапу. Запитайте бігуна повною фразою: чи є за кафе місток?",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Отель рядом с рекой, не в воде и не под рекой. Выберите слова",
-          "uk": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова"
+        "family": "phrase_builder",
+        "targetPhrase": "Is there a footbridge behind the cafe?",
+        "localizedMeaning": {
+          "ru": "Вы смотрите на карту. Спросите бегуна полной фразой: за кафе есть мостик?",
+          "uk": "Ви дивитеся на мапу. Запитайте бігуна повною фразою: чи є за кафе місток?"
         },
-        "gappedTargetPhrase": "The hotel is ___ the river.",
-        "gapOptions": [
+        "orderedTokens": [
+          "Is",
+          "there",
+          "a",
+          "footbridge",
+          "behind",
+          "the",
+          "cafe"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-50:i14:r1",
-            "text": "next to"
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-50:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви дивитеся на мапу. Запитайте бігуна повною фразою: чи є за кафе місток?",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `Is` — `Is there a footbridge behind the cafe?`",
+              "uk": "тут потрібно `Is` — `Is there a footbridge behind the cafe?`"
+            }
           }
         ],
-        "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i14:r2",
-            "correct": false,
-            "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; рядом — `next to`.",
-              "uk": "`in` — усередині; поруч — `next to`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i14:r3",
-            "correct": false,
-            "testedDimension": "Готель поруч із річкою, не у воді й не під річкою. Виберіть слова",
-            "feedbackByLocale": {
-              "ru": "`under` — под; рядом — `next to`.",
-              "uk": "`under` — під; поруч — `next to`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-50:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-50:i15:r1",
-          "text": "That is a river."
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i15:r2",
-          "text": "This is a river."
-        },
-        {
-          "responseId": "en:lesson-04:session-50:i15:r3",
-          "text": "That is a canal."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-50:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-50:i15:audio",
-          "transcript": "That is a river."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-50:i15:r1",
-            "targetText": "That is a river.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i15:r2",
-            "targetText": "This is a river.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i15:r3",
-            "targetText": "That is a canal.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-50:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-50:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `river`, а в этом варианте — `canal`.",
-              "uk": "У записі останнє слово — `river`, а в цьому варіанті — `canal`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-50:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -897,40 +1047,40 @@
           },
           {
             "pairId": "en:lesson-04:session-50:i16:p2",
-            "target": "effective",
+            "target": "detour",
             "meaningByLocale": {
-              "ru": "действенный",
-              "uk": "дієвий"
+              "ru": "объезд, обход",
+              "uk": "об’їзд, обхід"
             }
           },
           {
             "pairId": "en:lesson-04:session-50:i16:p3",
-            "target": "cinema",
+            "target": "footbridge",
             "meaningByLocale": {
-              "ru": "кинотеатр",
-              "uk": "кінотеатр"
+              "ru": "пешеходный мостик",
+              "uk": "пішохідний місток"
             }
           },
           {
             "pairId": "en:lesson-04:session-50:i16:p4",
-            "target": "bus shelter",
+            "target": "cone",
             "meaningByLocale": {
-              "ru": "остановочный павильон",
-              "uk": "зупинковий павільйон"
+              "ru": "дорожный конус",
+              "uk": "дорожній конус"
             }
           }
         ],
         "leftColumn": [
           "river",
-          "effective",
-          "cinema",
-          "bus shelter"
+          "detour",
+          "footbridge",
+          "cone"
         ],
         "rightColumn": [
           "річка",
-          "дієвий",
-          "кінотеатр",
-          "зупинковий павільйон"
+          "об’їзд, обхід",
+          "пішохідний місток",
+          "дорожній конус"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -948,25 +1098,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-50:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті друг шукає кінотеатр. Він поруч із річкою. Поясніть, де кінотеатр, повною фразою",
+      "prompt": "Бігун питає, чи є тут пішохідні містки. Їх немає. Відповідайте йому коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-50:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті друг шукає кінотеатр. Він поруч із річкою. Поясніть, де кінотеатр, повною фразою",
+      "accessibilityLabel": "Бігун питає, чи є тут пішохідні містки. Їх немає. Відповідайте йому коротко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-50:i17:audio",
-          "transcript": "The cinema is next to the river."
+          "transcript": "No, there aren’t."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The cinema is next to the river.",
+        "targetPhrase": "No, there aren’t.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -988,11 +1138,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fde81b6e9dd363e60b9c2dc7ffc552e2c9a2cfdbedb0048276a419c96e926db5"
+  "learnerFingerprint": "5ecbd6bdd0ed72706bb6600bf3bf7290772bc128469a875c0bc1d63e38d1e950"
 }

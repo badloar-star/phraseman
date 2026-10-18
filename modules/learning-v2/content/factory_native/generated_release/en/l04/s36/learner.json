@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-36:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is informal.",
-        "localizedMeaning": {
-          "ru": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
-          "uk": "Зустріч дружня, без строгого офіційного формату. Скажіть без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "informal"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Встреча дружеская, без строгого официального формата. Скажите без сокращения",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is informal.`",
-              "uk": "тут потрібно `is` — `It is informal.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-36:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите название",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-36:i02:r1",
-          "text": "smoke alarm"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i02:r2",
-          "text": "smoke alarms"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i02:r3",
-          "text": "doorbell"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-36:i02:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите название",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i02:audio",
-          "transcript": "smoke alarm"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-36:i02:r1",
-            "targetText": "smoke alarm",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i02:r2",
-            "targetText": "smoke alarms",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i02:r3",
-            "targetText": "doorbell",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i02:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите название",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alarm`, а в этом варианте — `alarms`.",
-              "uk": "У записі останнє слово — `alarm`, а в цьому варіанті — `alarms`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i02:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите название",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `smoke`, а в этом варианте — `doorbell`.",
-              "uk": "У записі перше слово — `smoke`, а в цьому варіанті — `doorbell`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-36:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назовите прибор, подающий сигнал при дыме",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-36:i03:r1",
-          "text": "smoke alarm"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i03:r2",
-          "text": "doorbell"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i03:r3",
-          "text": "handrail"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назовите прибор, подающий сигнал при дыме",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите прибор, подающий сигнал при дыме",
-          "uk": "Назвіть прилад, що подає сигнал у разі диму"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-36:i03:r1",
-            "text": "smoke alarm"
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i03:r2",
-            "text": "doorbell"
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i03:r3",
-            "text": "handrail"
-          }
-        ],
-        "testedDimension": "Назовите прибор, подающий сигнал при дыме",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i03:r2",
-            "correct": false,
-            "testedDimension": "Назовите прибор, подающий сигнал при дыме",
-            "feedbackByLocale": {
-              "ru": "`doorbell` — дверной звонок; здесь `smoke alarm`.",
-              "uk": "`doorbell` — дверний дзвінок; тут `smoke alarm`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i03:r3",
-            "correct": false,
-            "testedDimension": "Назовите прибор, подающий сигнал при дыме",
-            "feedbackByLocale": {
-              "ru": "`handrail` — поручень; здесь `smoke alarm`.",
-              "uk": "`handrail` — поручень; тут `smoke alarm`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-36:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -207,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-36:i04:p1",
+            "pairId": "en:lesson-04:session-36:i01:p1",
             "target": "smoke alarm",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "датчик дыма",
+              "uk": "датчик диму"
             }
           },
           {
-            "pairId": "en:lesson-04:session-36:i04:p2",
-            "target": "informal",
+            "pairId": "en:lesson-04:session-36:i01:p2",
+            "target": "fire extinguisher",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "огнетушитель",
+              "uk": "вогнегасник"
             }
           },
           {
-            "pairId": "en:lesson-04:session-36:i04:p3",
-            "target": "children",
+            "pairId": "en:lesson-04:session-36:i01:p3",
+            "target": "torch",
             "meaningByLocale": {
-              "ru": "дети",
-              "uk": "діти"
+              "ru": "фонарик",
+              "uk": "ліхтарик"
             }
           },
           {
-            "pairId": "en:lesson-04:session-36:i04:p4",
-            "target": "alley",
+            "pairId": "en:lesson-04:session-36:i01:p4",
+            "target": "fuse box",
             "meaningByLocale": {
-              "ru": "узкий переулок",
-              "uk": "вузький провулок"
+              "ru": "электрощиток",
+              "uk": "електрощиток"
             }
           }
         ],
         "leftColumn": [
           "smoke alarm",
-          "informal",
-          "children",
-          "alley"
+          "fire extinguisher",
+          "torch",
+          "fuse box"
         ],
         "rightColumn": [
-          "дымовой пожарный извещатель",
-          "неформальный",
-          "дети",
-          "узкий переулок"
+          "датчик дыма",
+          "огнетушитель",
+          "фонарик",
+          "электрощиток"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,123 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-36:word:smoke alarm",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smoke alarm",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-36:i05:audio"
+        "en:lesson-04:session-36:word:smoke alarm:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Карточка слова — smoke alarm",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i05:audio",
-          "transcript": "This is a smoke alarm."
+          "audioTargetId": "en:lesson-04:session-36:word:smoke alarm:audio",
+          "transcript": "smoke alarm"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a smoke alarm.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "smoke",
-          "alarm"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-36:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послушайте и соберите фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a smoke alarm.`",
-              "uk": "тут потрібно `is` — `This is a smoke alarm.`"
+            "responseId": "en:lesson-04:session-36:word:smoke alarm:r1",
+            "targetText": "smoke alarm",
+            "meaningByLocale": {
+              "ru": "датчик дыма. There isn’t a smoke alarm. — «Датчика дыма нет». О коробочке под потолком, которая пищит, если в доме дым.",
+              "uk": "датчик диму. There isn’t a smoke alarm. — «Датчика диму немає». Про коробочку під стелею, яка пищить, якщо в домі дим."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smoke alarm",
+          "definitionByLocale": {
+            "ru": "датчик дыма. There isn’t a smoke alarm. — «Датчика дыма нет». О коробочке под потолком, которая пищит, если в доме дым.",
+            "uk": "датчик диму. There isn’t a smoke alarm. — «Датчика диму немає». Про коробочку під стелею, яка пищить, якщо в домі дим."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Дети рядом со столом. Скажите, где они",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дети рядом со столом. Скажите, где они",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The children are next to the table.",
-        "localizedMeaning": {
-          "ru": "Дети рядом со столом. Скажите, где они",
-          "uk": "Діти поруч зі столом. Скажіть, де вони"
-        },
-        "orderedTokens": [
-          "The",
-          "children",
-          "are",
-          "next",
-          "to",
-          "the",
-          "table"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Дети рядом со столом. Скажите, где они",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The children are next to the table.`",
-              "uk": "тут потрібно `are` — `The children are next to the table.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-36:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-36:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает о формате встречи. Она дружеская, неформальная. Ответьте с сокращением",
+      "prompt": "Инспектор показывает под потолком круглую белую коробочку, которая пищит при дыме, а вы повторяете за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-36:i07:audio"
+        "en:lesson-04:session-36:i02:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает о формате встречи. Она дружеская, неформальная. Ответьте с сокращением",
+      "accessibilityLabel": "Инспектор показывает под потолком круглую белую коробочку, которая пищит при дыме, а вы повторяете за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i07:audio",
-          "transcript": "It's informal."
+          "audioTargetId": "en:lesson-04:session-36:i02:audio",
+          "transcript": "smoke alarm"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's informal.",
+        "targetPhrase": "smoke alarm",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Инспектор диктует лист. Скажите ему полной фразой: в холле нет датчика дыма",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Инспектор диктует лист. Скажите ему полной фразой: в холле нет датчика дыма",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a smoke alarm in the hall.",
+        "localizedMeaning": {
+          "ru": "Инспектор диктует лист. Скажите ему полной фразой: в холле нет датчика дыма",
+          "uk": "Інспектор диктує аркуш. Скажіть йому повною фразою: у холі немає датчика диму"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "smoke",
+          "alarm",
+          "in",
+          "the",
+          "hall"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Инспектор диктует лист. Скажите ему полной фразой: в холле нет датчика дыма",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a smoke alarm in the hall.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a smoke alarm in the hall.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:word:fire extinguisher",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fire extinguisher",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:word:fire extinguisher:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fire extinguisher",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:word:fire extinguisher:audio",
+          "transcript": "fire extinguisher"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:word:fire extinguisher:r1",
+            "targetText": "fire extinguisher",
+            "meaningByLocale": {
+              "ru": "огнетушитель. There isn’t a fire extinguisher. — «Огнетушителя нет». О красном баллоне, из которого при пожаре идёт пена.",
+              "uk": "вогнегасник. There isn’t a fire extinguisher. — «Вогнегасника немає». Про червоний балон, з якого під час пожежі йде піна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fire extinguisher",
+          "definitionByLocale": {
+            "ru": "огнетушитель. There isn’t a fire extinguisher. — «Огнетушителя нет». О красном баллоне, из которого при пожаре идёт пена.",
+            "uk": "вогнегасник. There isn’t a fire extinguisher. — «Вогнегасника немає». Про червоний балон, з якого під час пожежі йде піна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дымового пожарного извещателя нет. Выберите форму",
+      "prompt": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-36:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-36:i04:r1",
+          "text": "fire extinguisher"
         },
         {
-          "responseId": "en:lesson-04:session-36:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-36:i04:r2",
+          "text": "lamp"
         },
         {
-          "responseId": "en:lesson-04:session-36:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-36:i04:r3",
+          "text": "bucket"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дымового пожарного извещателя нет. Выберите форму",
+      "accessibilityLabel": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дымового пожарного извещателя нет. Выберите форму",
-          "uk": "Димового пожежного сповіщувача немає. Виберіть форму"
+          "ru": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
+          "uk": "Сусід показує червоний балон на стіні, з якого під час пожежі йде піна. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a smoke alarm.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-36:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-36:i04:r1",
+            "text": "fire extinguisher"
           },
           {
-            "responseId": "en:lesson-04:session-36:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-36:i04:r2",
+            "text": "lamp"
           },
           {
-            "responseId": "en:lesson-04:session-36:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-36:i04:r3",
+            "text": "bucket"
           }
         ],
-        "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+        "testedDimension": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-36:i08:r2",
+            "responseId": "en:lesson-04:session-36:i04:r2",
             "correct": false,
-            "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+            "testedDimension": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "`is` сообщает о наличии; здесь отсутствие: `isn’t`.",
-              "uk": "`is` повідомляє про наявність; тут відсутність: `isn’t`."
+              "ru": "lamp — это лампа, а красный баллон с пеной называется fire extinguisher.",
+              "uk": "lamp — це лампа, а червоний балон із піною називається fire extinguisher."
             }
           },
           {
-            "responseId": "en:lesson-04:session-36:i08:r3",
+            "responseId": "en:lesson-04:session-36:i04:r3",
             "correct": false,
-            "testedDimension": "Дымового пожарного извещателя нет. Выберите форму",
+            "testedDimension": "Сосед показывает красный баллон на стене, из которого при пожаре идёт пена. Как он называется по-английски?",
             "feedbackByLocale": {
-              "ru": "Один прибор: `isn’t a smoke alarm`.",
-              "uk": "Один прилад: `isn’t a smoke alarm`."
+              "ru": "bucket — это ведро, а красный баллон с пеной называется fire extinguisher.",
+              "uk": "bucket — це відро, а червоний балон із піною називається fire extinguisher."
             }
           }
         ]
@@ -465,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте, где дверь",
+      "prompt": "Послушайте инспектора",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-36:i09:r1",
-          "text": "The door is in the alley."
+          "responseId": "en:lesson-04:session-36:i05:r1",
+          "text": "There isn’t a fire extinguisher."
         },
         {
-          "responseId": "en:lesson-04:session-36:i09:r2",
-          "text": "The door is in the hotel."
+          "responseId": "en:lesson-04:session-36:i05:r2",
+          "text": "There isn’t a smoke alarm."
         },
         {
-          "responseId": "en:lesson-04:session-36:i09:r3",
-          "text": "The door is in the shop."
+          "responseId": "en:lesson-04:session-36:i05:r3",
+          "text": "There aren’t any fire extinguishers."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-36:i09:audio"
+        "en:lesson-04:session-36:i05:audio"
       ],
-      "accessibilityLabel": "Послушайте, где дверь",
+      "accessibilityLabel": "Послушайте инспектора",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i09:audio",
-          "transcript": "The door is in the alley."
+          "audioTargetId": "en:lesson-04:session-36:i05:audio",
+          "transcript": "There isn’t a fire extinguisher."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-36:i09:r1",
-            "targetText": "The door is in the alley.",
+            "responseId": "en:lesson-04:session-36:i05:r1",
+            "targetText": "There isn’t a fire extinguisher.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-36:i09:r2",
-            "targetText": "The door is in the hotel.",
+            "responseId": "en:lesson-04:session-36:i05:r2",
+            "targetText": "There isn’t a smoke alarm.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-36:i09:r3",
-            "targetText": "The door is in the shop.",
+            "responseId": "en:lesson-04:session-36:i05:r3",
+            "targetText": "There aren’t any fire extinguishers.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-36:i09:r2",
+            "responseId": "en:lesson-04:session-36:i05:r2",
             "correct": false,
-            "testedDimension": "Послушайте, где дверь",
+            "testedDimension": "Послушайте инспектора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alley`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `hotel`."
+              "ru": "В записи `fire extinguisher`, а в этом варианте `smoke alarm`.",
+              "uk": "У записі `fire extinguisher`, а в цьому варіанті `smoke alarm`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-36:i09:r3",
+            "responseId": "en:lesson-04:session-36:i05:r3",
             "correct": false,
-            "testedDimension": "Послушайте, где дверь",
+            "testedDimension": "Послушайте инспектора",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alley`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `shop`."
+              "ru": "В записи `isn’t a` — один, а в этом варианте `aren’t any` — несколько.",
+              "uk": "У записі `isn’t a` — один, а в цьому варіанті `aren’t any` — кілька."
             }
           }
         ],
@@ -541,9 +390,297 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i10",
+      "interactionId": "en:lesson-04:session-36:word:torch",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — torch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:word:torch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — torch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:word:torch:audio",
+          "transcript": "torch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:word:torch:r1",
+            "targetText": "torch",
+            "meaningByLocale": {
+              "ru": "фонарик. There aren’t any torches. — «Фонариков нет». О маленькой ручной лампе с кнопкой, которая светит в темноте.",
+              "uk": "ліхтарик. There aren’t any torches. — «Ліхтариків немає». Про маленьку ручну лампу з кнопкою, яка світить у темряві."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "torch",
+          "definitionByLocale": {
+            "ru": "фонарик. There aren’t any torches. — «Фонариков нет». О маленькой ручной лампе с кнопкой, которая светит в темноте.",
+            "uk": "ліхтарик. There aren’t any torches. — «Ліхтариків немає». Про маленьку ручну лампу з кнопкою, яка світить у темряві."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга показывает маленькую ручную лампу с кнопкой, которая светит в темноте, а вы повторяете за ней слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Подруга показывает маленькую ручную лампу с кнопкой, которая светит в темноте, а вы повторяете за ней слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i06:audio",
+          "transcript": "torch"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "torch",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте подругу и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте подругу и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i07:audio",
+          "transcript": "There aren’t any torches in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren’t any torches in the cupboard.",
+        "orderedTokens": [
+          "There",
+          "aren’t",
+          "any",
+          "torches",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [
+          "isn’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте подругу и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren’t` — `There aren’t any torches in the cupboard.`",
+              "uk": "тут потрібно `aren’t` — `There aren’t any torches in the cupboard.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:word:fuse box",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fuse box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:word:fuse box:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fuse box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:word:fuse box:audio",
+          "transcript": "fuse box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:word:fuse box:r1",
+            "targetText": "fuse box",
+            "meaningByLocale": {
+              "ru": "электрощиток. There isn’t a fuse box. — «Электрощитка нет». О серой коробке на стене, в которой собраны пробки света в квартире.",
+              "uk": "електрощиток. There isn’t a fuse box. — «Електрощитка немає». Про сіру коробку на стіні, у якій зібрані пробки світла в квартирі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fuse box",
+          "definitionByLocale": {
+            "ru": "электрощиток. There isn’t a fuse box. — «Электрощитка нет». О серой коробке на стене, в которой собраны пробки света в квартире.",
+            "uk": "електрощиток. There isn’t a fuse box. — «Електрощитка немає». Про сіру коробку на стіні, у якій зібрані пробки світла в квартирі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i08:r1",
+          "text": "fuse box"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i08:r2",
+          "text": "socket"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i08:r3",
+          "text": "switch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+          "uk": "Господар відчиняє сіру коробку на стіні, де зібрані пробки світла в квартирі. Як вона називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-36:i08:r1",
+            "text": "fuse box"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r2",
+            "text": "socket"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r3",
+            "text": "switch"
+          }
+        ],
+        "testedDimension": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "socket — это розетка, а серая коробка с пробками называется fuse box.",
+              "uk": "socket — це розетка, а сіра коробка з пробками називається fuse box."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Хозяин открывает серую коробку на стене, где собраны пробки света в квартире. Как она называется по-английски?",
+            "feedbackByLocale": {
+              "ru": "switch — это выключатель, а серая коробка с пробками называется fuse box.",
+              "uk": "switch — це вимикач, а сіра коробка з пробками називається fuse box."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Инспектор ищет щиток. Скажите ему полной фразой: на стене нет электрощитка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Инспектор ищет щиток. Скажите ему полной фразой: на стене нет электрощитка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a fuse box on the wall.",
+        "localizedMeaning": {
+          "ru": "Инспектор ищет щиток. Скажите ему полной фразой: на стене нет электрощитка",
+          "uk": "Інспектор шукає щиток. Скажіть йому повною фразою: на стіні немає електрощитка"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "fuse",
+          "box",
+          "on",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Инспектор ищет щиток. Скажите ему полной фразой: на стене нет электрощитка",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a fuse box on the wall.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a fuse box on the wall.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините слова со значениями",
@@ -556,48 +693,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-36:i10:p1",
-            "target": "smoke alarm",
+            "target": "fuse box",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "электрощиток",
+              "uk": "електрощиток"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i10:p2",
-            "target": "informal",
+            "target": "torch",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "фонарик",
+              "uk": "ліхтарик"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i10:p3",
-            "target": "children",
+            "target": "battery",
             "meaningByLocale": {
-              "ru": "дети",
-              "uk": "діти"
+              "ru": "батарейка",
+              "uk": "батарейка"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i10:p4",
-            "target": "alley",
+            "target": "socket",
             "meaningByLocale": {
-              "ru": "узкий переулок",
-              "uk": "вузький провулок"
+              "ru": "розетка",
+              "uk": "розетка"
             }
           }
         ],
         "leftColumn": [
-          "smoke alarm",
-          "informal",
-          "children",
-          "alley"
+          "fuse box",
+          "torch",
+          "battery",
+          "socket"
         ],
         "rightColumn": [
-          "дымовой пожарный извещатель",
-          "неформальный",
-          "дети",
-          "узкий переулок"
+          "электрощиток",
+          "фонарик",
+          "батарейка",
+          "розетка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,77 +752,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-36:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте подругу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i11:r1",
+          "text": "There aren’t any batteries."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i11:r2",
+          "text": "There isn’t a battery."
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i11:r3",
+          "text": "There aren’t any sockets."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-36:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Послушайте подругу",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-36:i11:audio",
-          "transcript": "There aren't any smoke alarms."
+          "transcript": "There aren’t any batteries."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any smoke alarms.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "smoke",
-          "alarms"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-36:i11:r1",
+            "targetText": "There aren’t any batteries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i11:r2",
+            "targetText": "There isn’t a battery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i11:r3",
+            "targetText": "There aren’t any sockets.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте подругу",
+            "feedbackByLocale": {
+              "ru": "В записи `aren’t any` — несколько, а в этом варианте `isn’t a` — одна.",
+              "uk": "У записі `aren’t any` — кілька, а в цьому варіанті `isn’t a` — одна."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте подругу",
+            "feedbackByLocale": {
+              "ru": "В записи `batteries`, а в этом варианте `sockets`.",
+              "uk": "У записі `batteries`, а в цьому варіанті `sockets`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-36:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-36:i12:r1",
+          "text": "aren’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i12:r2",
+          "text": "isn’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-36:i12:r3",
+          "text": "is"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+      "accessibilityLabel": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a smoke alarm.",
-        "localizedMeaning": {
-          "ru": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
-          "uk": "Тут є димовий пожежний сповіщувач. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
+          "uk": "Подруга зазирнула в коробку: ліхтариків там немає. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There ___ any torches in the box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-36:i12:r1",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i12:r2",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "Фонарики — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+              "uk": "Ліхтарики — кілька предметів, тому потрібно aren’t, а не isn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Подруга заглянула в коробку: фонариков там нет. Выберите нужное слово",
+            "feedbackByLocale": {
+              "ru": "is значит «есть», а фонариков нет: нужно aren’t.",
+              "uk": "is означає «є», а ліхтариків немає: потрібно aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте инспектора и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте инспектора и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-36:i13:audio",
+          "transcript": "There isn’t a socket in the hall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There isn’t a socket in the hall.",
         "orderedTokens": [
           "There",
-          "is",
+          "isn’t",
           "a",
-          "smoke",
-          "alarm"
+          "socket",
+          "in",
+          "the",
+          "hall"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aren’t"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-36:i12:tile:d1",
+            "responseId": "en:lesson-04:session-36:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Здесь есть дымовой пожарный извещатель. Сообщите об этом",
+            "testedDimension": "Послушайте инспектора и соберите фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a smoke alarm.`",
-              "uk": "тут потрібно `is` — `There is a smoke alarm.`"
+              "ru": "здесь нужно `isn’t` — `There isn’t a socket in the hall.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a socket in the hall.`"
             }
           }
         ],
@@ -697,26 +947,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-36:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы ещё не осмотрели комнату. Спросите, есть ли дымовой пожарный извещатель",
+      "prompt": "Инспектор диктует лист. Скажите ему: «На стене нет розеток»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-36:i13:audio"
+        "en:lesson-04:session-36:i14:audio"
       ],
-      "accessibilityLabel": "Вы ещё не осмотрели комнату. Спросите, есть ли дымовой пожарный извещатель",
+      "accessibilityLabel": "Инспектор диктует лист. Скажите ему: «На стене нет розеток»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i13:audio",
-          "transcript": "Is there a smoke alarm?"
+          "audioTargetId": "en:lesson-04:session-36:i14:audio",
+          "transcript": "There aren’t any sockets on the wall."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a smoke alarm?",
+        "targetPhrase": "There aren’t any sockets on the wall.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -730,153 +980,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-36:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дети в комнате. Выберите форму",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-36:i14:r1",
-          "text": "are"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i14:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i14:r3",
-          "text": "am"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хозяин проверяет выход. Скажите ему полной фразой: у двери нет огнетушителя",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дети в комнате. Выберите форму",
+      "accessibilityLabel": "Хозяин проверяет выход. Скажите ему полной фразой: у двери нет огнетушителя",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дети в комнате. Выберите форму",
-          "uk": "Діти в кімнаті. Виберіть форму"
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a fire extinguisher near the door.",
+        "localizedMeaning": {
+          "ru": "Хозяин проверяет выход. Скажите ему полной фразой: у двери нет огнетушителя",
+          "uk": "Господар перевіряє вихід. Скажіть йому повною фразою: біля дверей немає вогнегасника"
         },
-        "gappedTargetPhrase": "The children ___ in the room.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "fire",
+          "extinguisher",
+          "near",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-36:i14:r1",
-            "text": "are"
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i14:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i14:r3",
-            "text": "am"
+            "responseId": "en:lesson-04:session-36:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Хозяин проверяет выход. Скажите ему полной фразой: у двери нет огнетушителя",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a fire extinguisher near the door.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a fire extinguisher near the door.`"
+            }
           }
         ],
-        "testedDimension": "Дети в комнате. Выберите форму",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i14:r2",
-            "correct": false,
-            "testedDimension": "Дети в комнате. Выберите форму",
-            "feedbackByLocale": {
-              "ru": "`children` — дети, несколько человек: `are`.",
-              "uk": "`children` — діти, кілька людей: `are`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i14:r3",
-            "correct": false,
-            "testedDimension": "Дети в комнате. Выберите форму",
-            "feedbackByLocale": {
-              "ru": "`am` используется с I; с children нужно `are`.",
-              "uk": "`am` використовують з I; з children потрібне `are`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-36:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте, что показывает друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-36:i15:r1",
-          "text": "That is a smoke alarm."
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i15:r2",
-          "text": "This is a smoke alarm."
-        },
-        {
-          "responseId": "en:lesson-04:session-36:i15:r3",
-          "text": "There is a smoke alarm."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-36:i15:audio"
-      ],
-      "accessibilityLabel": "Послушайте, что показывает друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-36:i15:audio",
-          "transcript": "That is a smoke alarm."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-36:i15:r1",
-            "targetText": "That is a smoke alarm.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i15:r2",
-            "targetText": "This is a smoke alarm.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i15:r3",
-            "targetText": "There is a smoke alarm.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-36:i15:r2",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-36:i15:r3",
-            "correct": false,
-            "testedDimension": "Послушайте, что показывает друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `There`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `There`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-36:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -892,46 +1046,46 @@
             "pairId": "en:lesson-04:session-36:i16:p1",
             "target": "smoke alarm",
             "meaningByLocale": {
-              "ru": "дымовой пожарный извещатель",
-              "uk": "димовий пожежний сповіщувач"
+              "ru": "датчик дыма",
+              "uk": "датчик диму"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i16:p2",
-            "target": "informal",
+            "target": "fire extinguisher",
             "meaningByLocale": {
-              "ru": "неформальный",
-              "uk": "неформальний"
+              "ru": "огнетушитель",
+              "uk": "вогнегасник"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i16:p3",
-            "target": "children",
+            "target": "torch",
             "meaningByLocale": {
-              "ru": "дети",
-              "uk": "діти"
+              "ru": "фонарик",
+              "uk": "ліхтарик"
             }
           },
           {
             "pairId": "en:lesson-04:session-36:i16:p4",
-            "target": "alley",
+            "target": "fuse box",
             "meaningByLocale": {
-              "ru": "узкий переулок",
-              "uk": "вузький провулок"
+              "ru": "электрощиток",
+              "uk": "електрощиток"
             }
           }
         ],
         "leftColumn": [
           "smoke alarm",
-          "informal",
-          "children",
-          "alley"
+          "fire extinguisher",
+          "torch",
+          "fuse box"
         ],
         "rightColumn": [
-          "дымовой пожарный извещатель",
-          "неформальный",
-          "дети",
-          "узкий переулок"
+          "датчик дыма",
+          "огнетушитель",
+          "фонарик",
+          "электрощиток"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -949,25 +1103,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-36:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В другом помещении такого прибора нет. Сообщите «Дымового пожарного извещателя нет»",
+      "prompt": "В другой квартире инспектор ищет датчик дыма. Скажите ему: «Датчика дыма здесь нет»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-36:i17:audio"
       ],
-      "accessibilityLabel": "В другом помещении такого прибора нет. Сообщите «Дымового пожарного извещателя нет»",
+      "accessibilityLabel": "В другой квартире инспектор ищет датчик дыма. Скажите ему: «Датчика дыма здесь нет»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-36:i17:audio",
-          "transcript": "There isn't a smoke alarm."
+          "transcript": "There isn’t a smoke alarm here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There isn't a smoke alarm.",
+        "targetPhrase": "There isn’t a smoke alarm here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -989,11 +1143,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "361af3593ec7dc858dfd454a8fb194ea9a94aac22845601d7849ce07443d4c8d"
+  "learnerFingerprint": "7f0fa04a1b2ca329603de6639d70da5ebb952c7b9322e6a4cb4ba060fe012a8f"
 }

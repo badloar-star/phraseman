@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-42:intro1:r2": {
-          "ru": "Перед одним павильоном нужно `a`: `a bus shelter`.",
-          "uk": "Перед одним павільйоном потрібне `a`: `a bus shelter`."
+          "ru": "Вопрос о наличии начинают с Is there, а не с There is.",
+          "uk": "Запитання про наявність починають з Is there, а не з There is."
         },
         "en:lesson-04:session-42:intro1:r3": {
-          "ru": "Здесь один павильон: `This is a bus shelter`.",
-          "uk": "Тут один павільйон: `This is a bus shelter`."
+          "ru": "Павильон один, поэтому перед bus shelter нужно a.",
+          "uk": "Павільйон один, тому перед bus shelter потрібно a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-42:intro2:r2": {
-          "ru": "Это сообщение о наличии; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення про наявність; запитання починається з `Is there`."
+          "ru": "Автоматов несколько, поэтому вопрос начинают с Are there, а не с Is there.",
+          "uk": "Автоматів кілька, тому запитання починають з Are there, а не з Is there."
         },
         "en:lesson-04:session-42:intro2:r3": {
-          "ru": "Один поручень: `Is there a handrail?`.",
-          "uk": "Один поручень: `Is there a handrail?`."
+          "ru": "После any слово ставят во множественном числе: ticket machines.",
+          "uk": "Після any слово ставлять у множині: ticket machines."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-42:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-42:intro3:r2": {
-          "ru": "`accurate` — точно; здесь ошибка: `inaccurate`.",
-          "uk": "`accurate` — точно; тут помилка: `inaccurate`."
+          "ru": "Турникет один, поэтому перед turnstile нужно a.",
+          "uk": "Турнікет один, тому перед turnstile потрібно a."
         },
         "en:lesson-04:session-42:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Турникет один, поэтому нужно There is, а не There are.",
+          "uk": "Турнікет один, тому потрібно There is, а не There are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9690d8d969b8417b931e1280bc7d0385acc961621b1cd759392b802799dd7fd6"
+  "auxiliaryFingerprint": "236429a85fea822af9b19f99515101b2f6f2f7f9583eb8e27291b94f879b3987"
 }

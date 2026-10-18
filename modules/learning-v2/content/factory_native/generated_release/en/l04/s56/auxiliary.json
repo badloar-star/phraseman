@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-56:intro1:r2": {
-          "ru": "Нужно `a corner shop`: один магазин.",
-          "uk": "Потрібне `a corner shop`: один магазин."
+          "ru": "Магазин один, поэтому нужно is, а не are.",
+          "uk": "Магазин один, тому потрібно is, а не are."
         },
         "en:lesson-04:session-56:intro1:r3": {
-          "ru": "Здесь один магазин: `This is a corner shop`.",
-          "uk": "Тут один магазин: `This is a corner shop`."
+          "ru": "Для слова between нужны два ориентира: between the bank and the bakery.",
+          "uk": "Для слова between потрібні два орієнтири: between the bank and the bakery."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-56:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-56:intro2:r2": {
-          "ru": "Одна кухня: `Is there a community kitchen?`.",
-          "uk": "Одна кухня: `Is there a community kitchen?`."
+          "ru": "Заведение одно, поэтому вопрос начинаем с Is there, а не с Are there.",
+          "uk": "Заклад один, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-56:intro2:r3": {
-          "ru": "Это сообщение; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення; запитання починається з `Is there`."
+          "ru": "Это порядок слов утверждения. В вопросе сначала Is: Is there a takeaway?",
+          "uk": "Це порядок слів твердження. У запитанні спочатку Is: Is there a takeaway?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-56:intro3:r2": {
-          "ru": "С несколькими путями `shortcuts` нужно `aren’t`.",
-          "uk": "З кількома шляхами `shortcuts` потрібне `aren’t`."
+          "ru": "Лавка одна, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Крамниця одна, тому потрібно isn’t, а не aren’t."
         },
         "en:lesson-04:session-56:intro3:r3": {
-          "ru": "Так вы скажете, что короткие пути есть; здесь `aren’t any`.",
-          "uk": "Так ви скажете, що короткі шляхи є; тут `aren’t any`."
+          "ru": "Лавка одна, поэтому после isn’t нужно a: isn’t a butcher.",
+          "uk": "Крамниця одна, тому після isn’t потрібно a: isn’t a butcher."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a36898c1e2e595670e020b8acbf61734a02af0f1d3378ca5afc1d896eae90556"
+  "auxiliaryFingerprint": "08fa77fcbec95d4fb46568acce1c39d8e489792913b2b325a7bc99e1b5e39468"
 }

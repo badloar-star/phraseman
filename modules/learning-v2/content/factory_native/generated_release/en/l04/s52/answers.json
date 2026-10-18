@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-52:i01",
-    "correctText": "It is fair.",
+    "correctText": "en:lesson-04:session-52:i01:p1=nursery\nen:lesson-04:session-52:i01:p2=sandpit\nen:lesson-04:session-52:i01:p3=swing\nen:lesson-04:session-52:i01:p4=slide",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:word:nursery",
+    "correctText": "nursery",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i02",
     "correctText": "nursery",
-    "correctResponseId": "en:lesson-04:session-52:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-52:i03",
-    "correctText": "nursery",
-    "correctResponseId": "en:lesson-04:session-52:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-52:i04",
-    "correctText": "en:lesson-04:session-52:i04:p1=nursery\nen:lesson-04:session-52:i04:p2=fair\nen:lesson-04:session-52:i04:p3=stations\nen:lesson-04:session-52:i04:p4=freezer",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-52:i03",
+    "correctText": "There is a nursery near the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:word:sandpit",
+    "correctText": "sandpit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:i04",
+    "correctText": "sandpit",
+    "correctResponseId": "en:lesson-04:session-52:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-52:i05",
-    "correctText": "This is a nursery.",
+    "correctText": "Is there a sandpit behind the nursery?",
+    "correctResponseId": "en:lesson-04:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:word:swing",
+    "correctText": "swing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i06",
-    "correctText": "The stations are next to the park.",
+    "correctText": "swing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i07",
-    "correctText": "It's fair.",
+    "correctText": "There aren’t any swings near the nursery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-52:word:slide",
+    "correctText": "slide",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i08",
-    "correctText": "isn't",
+    "correctText": "slide",
     "correctResponseId": "en:lesson-04:session-52:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-52:i09",
-    "correctText": "The freezer is in the kitchen.",
-    "correctResponseId": "en:lesson-04:session-52:i09:r1"
+    "correctText": "Are there any slides in the yard?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i10",
-    "correctText": "en:lesson-04:session-52:i10:p1=nursery\nen:lesson-04:session-52:i10:p2=fair\nen:lesson-04:session-52:i10:p3=stations\nen:lesson-04:session-52:i10:p4=freezer",
+    "correctText": "en:lesson-04:session-52:i10:p1=sandpit\nen:lesson-04:session-52:i10:p2=swing\nen:lesson-04:session-52:i10:p3=slide\nen:lesson-04:session-52:i10:p4=yard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i11",
-    "correctText": "Is there a nursery?",
-    "correctResponseId": null
+    "correctText": "There are swings behind the nursery.",
+    "correctResponseId": "en:lesson-04:session-52:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-52:i12",
-    "correctText": "There isn't a nursery.",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-52:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-52:i13",
-    "correctText": "Is there a freezer?",
+    "correctText": "There is a slide next to the sandpit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-52:i14:r1"
+    "correctText": "There is a nursery near here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i15",
-    "correctText": "That is a nursery.",
-    "correctResponseId": "en:lesson-04:session-52:i15:r1"
+    "correctText": "There isn’t a sandpit in the yard.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i16",
-    "correctText": "en:lesson-04:session-52:i16:p1=nursery\nen:lesson-04:session-52:i16:p2=fair\nen:lesson-04:session-52:i16:p3=stations\nen:lesson-04:session-52:i16:p4=freezer",
+    "correctText": "en:lesson-04:session-52:i16:p1=nursery\nen:lesson-04:session-52:i16:p2=sandpit\nen:lesson-04:session-52:i16:p3=swing\nen:lesson-04:session-52:i16:p4=slide",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-52:i17",
-    "correctText": "The nursery is next to the park.",
+    "correctText": "There aren’t any slides here.",
     "correctResponseId": null
   }
 ]

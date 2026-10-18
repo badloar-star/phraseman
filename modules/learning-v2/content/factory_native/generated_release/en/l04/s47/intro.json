@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-47",
   "learningOutcomeByLocale": {
-    "ru": "назвать оставшуюся еду, сообщить о её наличии и оценить приемлемость варианта",
-    "uk": "назвати їжу, що залишилася, повідомити про її наявність і оцінити прийнятність варіанта"
+    "ru": "самому выбрать: сказать, что есть, спросить, сказать, что нет, или назвать место",
+    "uk": "самому вибрати: сказати, що є, запитати, сказати, що немає, або назвати місце"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Еда осталась",
-        "uk": "Їжа залишилася"
+        "ru": "Вчерашний ужин",
+        "uk": "Вчорашня вечеря"
       },
       "bodyByLocale": {
-        "ru": "`leftover` — «остаток еды». Когда говорят об оставшейся после еды порции или нескольких продуктах вместе, обычно используют множественное число `leftovers` — «остатки еды». `There are some leftovers` — «Осталась еда». С `leftovers` нужно `are`. Ужин закончился, а еда решила остаться на второй сезон.",
-        "uk": "`leftover` — «залишок їжі». Коли говорять про порцію чи кілька продуктів, що залишилися після їжі, зазвичай використовують множину `leftovers` — «залишки їжі». `There are some leftovers` — «Залишилася їжа». З `leftovers` потрібне `are`. Вечеря закінчилася, а їжа вирішила залишитися на другий сезон."
+        "ru": "Ужин был вчера, а сегодня вы уезжаете. В холодильнике стоят контейнеры с едой, которую никто не доел. Выбрасывать жалко, пусть сосед доест. leftovers — «остатки еды». Их там несколько: There are some leftovers in the fridge — «В холодильнике есть остатки еды».",
+        "uk": "Вечеря була вчора, а сьогодні ви їдете. У холодильнику стоять контейнери з їжею, яку ніхто не доїв. Викидати шкода, нехай сусід доїсть. leftovers — «залишки їжі». Їх там кілька: There are some leftovers in the fridge — «У холодильнику є залишки їжі»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-47:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите, что осталась еда, используя leftovers.",
-          "uk": "Повідомте, що залишилася їжа, використовуючи leftovers."
+          "ru": "Сосед забирает ключи. Скажите ему, что в холодильнике есть остатки еды.",
+          "uk": "Сусід забирає ключі. Скажіть йому, що в холодильнику є залишки їжі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-47:intro1:r1",
-              "text": "There are some leftovers."
+              "text": "There are some leftovers in the fridge."
             },
             {
               "responseId": "en:lesson-04:session-47:intro1:r2",
-              "text": "There is some leftovers."
+              "text": "There is some leftovers in the fridge."
             },
             {
               "responseId": "en:lesson-04:session-47:intro1:r3",
-              "text": "There aren’t any leftovers."
+              "text": "There are some leftovers on the fridge."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-47:intro1:r1",
-              "text": "There are some leftovers."
+              "text": "There are some leftovers in the fridge."
             },
             {
               "responseId": "en:lesson-04:session-47:intro1:r2",
-              "text": "There is some leftovers."
+              "text": "There is some leftovers in the fridge."
             },
             {
               "responseId": "en:lesson-04:session-47:intro1:r3",
-              "text": "There aren’t any leftovers."
+              "text": "There are some leftovers on the fridge."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите, что осталась еда, используя leftovers.",
-          "uk": "Повідомте, що залишилася їжа, використовуючи leftovers."
+          "ru": "Сосед забирает ключи. Скажите ему, что в холодильнике есть остатки еды.",
+          "uk": "Сусід забирає ключі. Скажіть йому, що в холодильнику є залишки їжі."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что рядом",
-        "uk": "Що поруч"
+        "ru": "Голодный сосед",
+        "uk": "Голодний сусід"
       },
       "bodyByLocale": {
-        "ru": "`restaurants` — «рестораны», `boiler` — «отопительный котёл». `The restaurants are next to the hotel` — «Рестораны рядом с отелем». `Is there a boiler?` — «Есть отопительный котёл?» `There isn’t a boiler` — «Отопительного котла нет». Несколько ресторанов — `are`, один котёл — `is`.",
-        "uk": "`restaurants` — «ресторани», `boiler` — «опалювальний котел». `The restaurants are next to the hotel` — «Ресторани поруч із готелем». `Is there a boiler?` — «Є опалювальний котел?» `There isn’t a boiler` — «Опалювального котла немає». Кілька ресторанів — `are`, один котел — `is`."
+        "ru": "Сосед проголодался после работы и ищет, что съесть. Вы вспоминаете запечённое блюдо из слоёв теста, мяса и сыра: оно осталось в духовке. lasagne — «лазанья». Её не считают поштучно, поэтому в вопросе ставят any: Is there any lasagne in the oven?",
+        "uk": "Сусід зголоднів після роботи й шукає, що з’їсти. Ви згадуєте запечену страву з шарів тіста, м’яса й сиру: вона залишилася в духовці. lasagne — «лазанья». Її не рахують поштучно, тому в запитанні ставлять any: Is there any lasagne in the oven?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-47:intro2:q",
         "promptByLocale": {
-          "ru": "Рестораны рядом с отелем. Выберите описание.",
-          "uk": "Ресторани поруч із готелем. Виберіть опис."
+          "ru": "Сосед хочет есть. Спросите его, осталась ли лазанья в духовке.",
+          "uk": "Сусід хоче їсти. Запитайте його, чи залишилася лазанья в духовці."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-47:intro2:r1",
-              "text": "The restaurants are next to the hotel."
+              "text": "Is there any lasagne in the oven?"
             },
             {
               "responseId": "en:lesson-04:session-47:intro2:r2",
-              "text": "The restaurants is next to the hotel."
+              "text": "Is there some lasagne in the oven?"
             },
             {
               "responseId": "en:lesson-04:session-47:intro2:r3",
-              "text": "The restaurants are in the hotel."
+              "text": "Are there any lasagne in the oven?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-47:intro2:r1",
-              "text": "The restaurants are next to the hotel."
+              "text": "Is there any lasagne in the oven?"
             },
             {
               "responseId": "en:lesson-04:session-47:intro2:r2",
-              "text": "The restaurants is next to the hotel."
+              "text": "Is there some lasagne in the oven?"
             },
             {
               "responseId": "en:lesson-04:session-47:intro2:r3",
-              "text": "The restaurants are in the hotel."
+              "text": "Are there any lasagne in the oven?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Рестораны рядом с отелем. Выберите описание.",
-          "uk": "Ресторани поруч із готелем. Виберіть опис."
+          "ru": "Сосед хочет есть. Спросите его, осталась ли лазанья в духовке.",
+          "uk": "Сусід хоче їсти. Запитайте його, чи залишилася лазанья в духовці."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Можно принять",
-        "uk": "Можна прийняти"
+        "ru": "Куда делся пирог",
+        "uk": "Куди зник пиріг"
       },
       "bodyByLocale": {
-        "ru": "`acceptable` — «приемлемый»: вариант удовлетворяет требованиям, его можно принять, даже если он не идеален. `It is acceptable` — «Это приемлемо», короче `It’s acceptable`. Например, вы обсуждаете время встречи: предложенное время вас устраивает.",
-        "uk": "`acceptable` — «прийнятний»: варіант відповідає вимогам, його можна прийняти, навіть якщо він не ідеальний. `It is acceptable` — «Це прийнятно», коротше `It’s acceptable`. Наприклад, ви обговорюєте час зустрічі: запропонований час вас влаштовує."
+        "ru": "Сосед спрашивает про пирог, который вы купили вчера вечером в булочной. Вы заглядываете в духовку, на подоконник и на полку: пирога нигде нет. pie — «пирог». Он один, а «нет» сказано один раз: There isn’t a pie in the kitchen — «На кухне нет пирога».",
+        "uk": "Сусід питає про пиріг, який ви купили вчора ввечері в пекарні. Ви заглядаєте в духовку, на підвіконня й на полицю: пирога ніде немає. pie — «пиріг». Він один, а «немає» сказано один раз: There isn’t a pie in the kitchen — «На кухні немає пирога»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-47:intro3:q",
         "promptByLocale": {
-          "ru": "Предложенное время встречи вас устраивает. Скажите «Это приемлемо» с сокращением.",
-          "uk": "Запропонований час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням."
+          "ru": "Сосед ждёт ответа. Скажите ему, что на кухне нет пирога.",
+          "uk": "Сусід чекає на відповідь. Скажіть йому, що на кухні немає пирога."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-47:intro3:r1",
-              "text": "It's acceptable."
+              "text": "There isn’t a pie in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-47:intro3:r2",
-              "text": "It's unacceptable."
+              "text": "There isn’t no pie in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-47:intro3:r3",
-              "text": "It are acceptable."
+              "text": "There aren’t a pie in the kitchen."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-47:intro3:r1",
-              "text": "It's acceptable."
+              "text": "There isn’t a pie in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-47:intro3:r2",
-              "text": "It's unacceptable."
+              "text": "There isn’t no pie in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-47:intro3:r3",
-              "text": "It are acceptable."
+              "text": "There aren’t a pie in the kitchen."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Предложенное время встречи вас устраивает. Скажите «Это приемлемо» с сокращением.",
-          "uk": "Запропонований час зустрічі вас влаштовує. Скажіть «Це прийнятно» зі скороченням."
+          "ru": "Сосед ждёт ответа. Скажите ему, что на кухне нет пирога.",
+          "uk": "Сусід чекає на відповідь. Скажіть йому, що на кухні немає пирога."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "df2f811659c6c0b1351a64f6c4196c01b7e3c0e11457455ced01fbce06188a5b"
+  "introFingerprint": "164f89ace247b860502ec8455a31dc2e7057a35dad162ec82b55c09e9a22637e"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-45:intro1:r2": {
-          "ru": "Перед одним прибором нужно `a`: `a microwave`.",
-          "uk": "Перед одним приладом потрібне `a`: `a microwave`."
+          "ru": "Микроволновка одна, поэтому нужно There is, а не There are.",
+          "uk": "Мікрохвильовка одна, тому потрібно There is, а не There are."
         },
         "en:lesson-04:session-45:intro1:r3": {
-          "ru": "Здесь один прибор: `This is a microwave`.",
-          "uk": "Тут один прилад: `This is a microwave`."
+          "ru": "Микроволновка одна, поэтому перед microwave нужно a.",
+          "uk": "Мікрохвильовка одна, тому перед microwave потрібно a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-45:intro2:r2": {
-          "ru": "Это сообщение о наличии; вопрос начинается с `Is there`.",
-          "uk": "Це повідомлення про наявність; запитання починається з `Is there`."
+          "ru": "Машин несколько, поэтому нужно There are, а не There is.",
+          "uk": "Машин кілька, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-45:intro2:r3": {
-          "ru": "Одна микроволновка: `Is there a microwave?`.",
-          "uk": "Одна мікрохвильовка: `Is there a microwave?`."
+          "ru": "После some слово ставят во множественном числе: washing machines.",
+          "uk": "Після some слово ставлять у множині: washing machines."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-45:intro3:r2": {
-          "ru": "`legal` — законно; здесь `illegal`.",
-          "uk": "`legal` — законно; тут `illegal`."
+          "ru": "Слова isn’t уже достаточно для «нет». Второе отрицание no не нужно.",
+          "uk": "Слова isn’t уже достатньо для «немає». Друге заперечення no не потрібне."
         },
         "en:lesson-04:session-45:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Слово ironing начинается с гласного звука, поэтому нужно an, а не a.",
+          "uk": "Слово ironing починається з голосного звуку, тому потрібно an, а не a."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4816cf181546441de528918a317c9fda3e41e7ec2208541d2c3d82712d31a14d"
+  "auxiliaryFingerprint": "e09d68855ba3a2f5812d3e251bb9ece9b88bc490f37a0eb1dd5b6c03a27fb450"
 }

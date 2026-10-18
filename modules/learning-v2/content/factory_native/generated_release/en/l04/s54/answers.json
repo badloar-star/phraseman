@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-54:i01",
-    "correctText": "The car is reliable.",
+    "correctText": "en:lesson-04:session-54:i01:p1=junction\nen:lesson-04:session-54:i01:p2=lorry\nen:lesson-04:session-54:i01:p3=roadworks\nen:lesson-04:session-54:i01:p4=motorway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:word:junction",
+    "correctText": "junction",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i02",
-    "correctText": "petrol station",
-    "correctResponseId": "en:lesson-04:session-54:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-54:i03",
-    "correctText": "petrol station",
-    "correctResponseId": "en:lesson-04:session-54:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-54:i04",
-    "correctText": "en:lesson-04:session-54:i04:p1=petrol station\nen:lesson-04:session-54:i04:p2=reliable\nen:lesson-04:session-54:i04:p3=striped\nen:lesson-04:session-54:i04:p4=pantry",
+    "correctText": "junction",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-54:i03",
+    "correctText": "There is a junction behind the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:word:lorry",
+    "correctText": "lorry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:i04",
+    "correctText": "lorry",
+    "correctResponseId": "en:lesson-04:session-54:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-54:i05",
-    "correctText": "This is a petrol station.",
+    "correctText": "Are there any lorries near the junction?",
+    "correctResponseId": "en:lesson-04:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:word:roadworks",
+    "correctText": "roadworks",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i06",
-    "correctText": "The bag is striped.",
+    "correctText": "roadworks",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i07",
-    "correctText": "It's reliable.",
+    "correctText": "There are roadworks near the bridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-54:word:motorway",
+    "correctText": "motorway",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i08",
-    "correctText": "isn't",
+    "correctText": "motorway",
     "correctResponseId": "en:lesson-04:session-54:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-54:i09",
-    "correctText": "The bag is in the pantry.",
-    "correctResponseId": "en:lesson-04:session-54:i09:r1"
+    "correctText": "There isn’t a motorway near the park.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i10",
-    "correctText": "en:lesson-04:session-54:i10:p1=petrol station\nen:lesson-04:session-54:i10:p2=reliable\nen:lesson-04:session-54:i10:p3=striped\nen:lesson-04:session-54:i10:p4=pantry",
+    "correctText": "en:lesson-04:session-54:i10:p1=lorry\nen:lesson-04:session-54:i10:p2=roadworks\nen:lesson-04:session-54:i10:p3=petrol station\nen:lesson-04:session-54:i10:p4=bridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i11",
-    "correctText": "Is there a petrol station?",
-    "correctResponseId": null
+    "correctText": "There aren’t any lorries on the motorway.",
+    "correctResponseId": "en:lesson-04:session-54:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-54:i12",
-    "correctText": "There isn't a petrol station.",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-54:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-54:i13",
-    "correctText": "Is there a pantry?",
+    "correctText": "There is a junction between the bank and the park.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-54:i14:r1"
+    "correctText": "There isn’t a petrol station near here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i15",
-    "correctText": "The shirt is striped.",
-    "correctResponseId": "en:lesson-04:session-54:i15:r1"
+    "correctText": "Are there any roadworks near the bridge?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i16",
-    "correctText": "en:lesson-04:session-54:i16:p1=petrol station\nen:lesson-04:session-54:i16:p2=reliable\nen:lesson-04:session-54:i16:p3=striped\nen:lesson-04:session-54:i16:p4=pantry",
+    "correctText": "en:lesson-04:session-54:i16:p1=junction\nen:lesson-04:session-54:i16:p2=lorry\nen:lesson-04:session-54:i16:p3=roadworks\nen:lesson-04:session-54:i16:p4=motorway",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-54:i17",
-    "correctText": "The petrol station is next to the supermarket.",
+    "correctText": "There are lorries on the road.",
     "correctResponseId": null
   }
 ]

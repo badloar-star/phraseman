@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-53:i01",
-    "correctText": "It is unfair.",
+    "correctText": "en:lesson-04:session-53:i01:p1=police station\nen:lesson-04:session-53:i01:p2=gift shop\nen:lesson-04:session-53:i01:p3=officer\nen:lesson-04:session-53:i01:p4=tourist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-53:word:police station",
+    "correctText": "police station",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i02",
     "correctText": "police station",
-    "correctResponseId": "en:lesson-04:session-53:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-53:i03",
-    "correctText": "police station",
-    "correctResponseId": "en:lesson-04:session-53:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-53:i04",
-    "correctText": "en:lesson-04:session-53:i04:p1=police station\nen:lesson-04:session-53:i04:p2=unfair\nen:lesson-04:session-53:i04:p3=museum\nen:lesson-04:session-53:i04:p4=microwave",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-53:i03",
+    "correctText": "There is a police station next to the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-53:word:gift shop",
+    "correctText": "gift shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-53:i04",
+    "correctText": "gift shop",
+    "correctResponseId": "en:lesson-04:session-53:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-53:i05",
-    "correctText": "This is a police station.",
+    "correctText": "It is behind the gift shop.",
+    "correctResponseId": "en:lesson-04:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-53:word:officer",
+    "correctText": "officer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i06",
-    "correctText": "The museum is next to the park.",
+    "correctText": "officer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i07",
-    "correctText": "It's unfair.",
+    "correctText": "There is an officer in the police station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-53:word:tourist",
+    "correctText": "tourist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i08",
-    "correctText": "isn't",
+    "correctText": "tourist",
     "correctResponseId": "en:lesson-04:session-53:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-53:i09",
-    "correctText": "The microwave is in the kitchen.",
-    "correctResponseId": "en:lesson-04:session-53:i09:r1"
+    "correctText": "There are tourists near the museum.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i10",
-    "correctText": "en:lesson-04:session-53:i10:p1=police station\nen:lesson-04:session-53:i10:p2=unfair\nen:lesson-04:session-53:i10:p3=museum\nen:lesson-04:session-53:i10:p4=microwave",
+    "correctText": "en:lesson-04:session-53:i10:p1=gift shop\nen:lesson-04:session-53:i10:p2=tourist\nen:lesson-04:session-53:i10:p3=museum\nen:lesson-04:session-53:i10:p4=bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i11",
-    "correctText": "Is there a police station?",
-    "correctResponseId": null
+    "correctText": "There is a gift shop next to the library.",
+    "correctResponseId": "en:lesson-04:session-53:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-53:i12",
-    "correctText": "There isn't a police station.",
-    "correctResponseId": null
+    "correctText": "It",
+    "correctResponseId": "en:lesson-04:session-53:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-53:i13",
-    "correctText": "Is there a microwave?",
+    "correctText": "It is next to the police station.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-53:i14:r1"
+    "correctText": "There is a police station near here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i15",
-    "correctText": "That is a police station.",
-    "correctResponseId": "en:lesson-04:session-53:i15:r1"
+    "correctText": "There is an officer next to the door.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i16",
-    "correctText": "en:lesson-04:session-53:i16:p1=police station\nen:lesson-04:session-53:i16:p2=unfair\nen:lesson-04:session-53:i16:p3=museum\nen:lesson-04:session-53:i16:p4=microwave",
+    "correctText": "en:lesson-04:session-53:i16:p1=police station\nen:lesson-04:session-53:i16:p2=gift shop\nen:lesson-04:session-53:i16:p3=officer\nen:lesson-04:session-53:i16:p4=tourist",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-53:i17",
-    "correctText": "The police station is next to the museum.",
+    "correctText": "It is near the museum.",
     "correctResponseId": null
   }
 ]

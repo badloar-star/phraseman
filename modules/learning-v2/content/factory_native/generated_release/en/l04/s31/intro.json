@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-31",
   "learningOutcomeByLocale": {
-    "ru": "назвать парковку, отличить её от парка и описать расположение",
-    "uk": "назвати парковку, відрізнити її від парку та описати розташування"
+    "ru": "различать There is a… (предмет называем впервые) и The… is… (предмет уже известен)",
+    "uk": "розрізняти There is a… (предмет називаємо вперше) і The… is… (предмет уже відомий)"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для машин",
-        "uk": "Місце для машин"
+        "ru": "Где оставить машину",
+        "uk": "Де залишити машину"
       },
       "bodyByLocale": {
-        "ru": "`car park` — «парковка», место для машин. Это два слова, но одно название: `a car park`. `This is a car park` — «Это парковка». В парке гуляют, на парковке оставляют машину: слово `car` помогает не отправить автомобиль на прогулку.",
-        "uk": "`car park` — «парковка», місце для машин. Це два слова, але одна назва: `a car park`. `This is a car park` — «Це парковка». У парку гуляють, на парковці залишають машину: слово `car` допомагає не відправити автомобіль на прогулянку."
+        "ru": "Гость приехал на машине и не знает вашего района. Он спрашивает, где её оставить. Вы смотрите на карту и находите площадку для машин рядом с отелем. car park — «автостоянка». Гость о ней ещё не слышал, поэтому: There is a car park near the hotel — «Рядом с отелем есть автостоянка».",
+        "uk": "Гість приїхав на машині й не знає вашого району. Він питає, де її залишити. Ви дивитеся на мапу й знаходите майданчик для машин поруч із готелем. car park — «автостоянка». Гість про неї ще не чув, тому: There is a car park near the hotel — «Поруч із готелем є автостоянка»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите одну парковку рядом.",
-          "uk": "Покажіть одну парковку поруч."
+          "ru": "Гость спрашивает, где оставить машину. Скажите ему, что рядом с отелем есть автостоянка.",
+          "uk": "Гість питає, де залишити машину. Скажіть йому, що поруч із готелем є автостоянка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-31:intro1:r1",
-              "text": "This is a car park."
+              "text": "There is a car park near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r2",
-              "text": "This is a park."
+              "text": "The car park is near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r3",
-              "text": "This are a car park."
+              "text": "There is car park near the hotel."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-31:intro1:r1",
-              "text": "This is a car park."
+              "text": "There is a car park near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r2",
-              "text": "This is a park."
+              "text": "The car park is near the hotel."
             },
             {
               "responseId": "en:lesson-04:session-31:intro1:r3",
-              "text": "This are a car park."
+              "text": "There is car park near the hotel."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите одну парковку рядом.",
-          "uk": "Покажіть одну парковку поруч."
+          "ru": "Гость спрашивает, где оставить машину. Скажите ему, что рядом с отелем есть автостоянка.",
+          "uk": "Гість питає, де залишити машину. Скажіть йому, що поруч із готелем є автостоянка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Необычная парковка",
-        "uk": "Незвичайна парковка"
+        "ru": "У въезда",
+        "uk": "Біля в’їзду"
       },
       "bodyByLocale": {
-        "ru": "`unusual` — «необычный»: `The car park is unusual` — «Парковка необычная». `parks` — «парки»: `The parks are next to the hotel` — «Парки рядом с отелем». Несколько парков требуют `are`, одна парковка — `is`. Необычной бывает и пустая парковка у оживлённого отеля: `There aren’t any cars` — «Нет ни одной машины».",
-        "uk": "`unusual` — «незвичайний»: `The car park is unusual` — «Парковка незвичайна». `parks` — «парки»: `The parks are next to the hotel` — «Парки поруч із готелем». Кілька парків потребують `are`, одна парковка — `is`. Незвичайною буває й порожня парковка біля жвавого готелю: `There aren’t any cars` — «Немає жодної машини»."
+        "ru": "Вы подъехали к стоянке. Перед въездом лежит длинная полосатая перекладина, которая поднимается, когда машине нужно проехать. Вы оба её видите. barrier — «шлагбаум». Предмет известен, поэтому the: The barrier is near the gate — «Шлагбаум рядом с воротами».",
+        "uk": "Ви під’їхали до стоянки. Перед в’їздом лежить довга смугаста перекладина, яка піднімається, коли машині треба проїхати. Ви обоє її бачите. barrier — «шлагбаум». Предмет відомий, тому the: The barrier is near the gate — «Шлагбаум поруч із воротами»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro2:q",
         "promptByLocale": {
-          "ru": "Два парка находятся рядом с отелем. Выберите описание.",
-          "uk": "Два парки розташовані поруч із готелем. Виберіть опис."
+          "ru": "Гость показывает на полосатую перекладину. Скажите ему, что шлагбаум рядом с воротами.",
+          "uk": "Гість показує на смугасту перекладину. Скажіть йому, що шлагбаум поруч із воротами."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-31:intro2:r1",
-              "text": "The parks are next to the hotel."
+              "text": "The barrier is near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r2",
-              "text": "The parks is next to the hotel."
+              "text": "There is a barrier near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r3",
-              "text": "The parks are in the hotel."
+              "text": "The barrier are near the gate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-31:intro2:r1",
-              "text": "The parks are next to the hotel."
+              "text": "The barrier is near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r2",
-              "text": "The parks is next to the hotel."
+              "text": "There is a barrier near the gate."
             },
             {
               "responseId": "en:lesson-04:session-31:intro2:r3",
-              "text": "The parks are in the hotel."
+              "text": "The barrier are near the gate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Два парка находятся рядом с отелем. Выберите описание.",
-          "uk": "Два парки розташовані поруч із готелем. Виберіть опис."
+          "ru": "Гость показывает на полосатую перекладину. Скажите ему, что шлагбаум рядом с воротами.",
+          "uk": "Гість показує на смугасту перекладину. Скажіть йому, що шлагбаум поруч із воротами."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перекус рядом",
-        "uk": "Перекус поруч"
+        "ru": "Не хватает бензина",
+        "uk": "Не вистачає бензину"
       },
       "bodyByLocale": {
-        "ru": "`cheese` — «сыр». `There is some cheese` — «Есть немного сыра». `The cheese is in the bag` — «Сыр в сумке». Когда речь о сыре как продукте, используем `is`. `The bag is under the table` — «Сумка под столом». Удобно сначала найти сумку, а потом обсуждать необычную парковку.",
-        "uk": "`cheese` — «сир». `There is some cheese` — «Є трохи сиру». `The cheese is in the bag` — «Сир у сумці». Коли йдеться про сир як продукт, використовуємо `is`. `The bag is under the table` — «Сумка під столом». Зручно спочатку знайти сумку, а потім обговорювати незвичайну парковку."
+        "ru": "Гость собирается ехать обратно, но бензина в машине почти нет. Он спрашивает, где его купить. Вы помните одно такое место в вашем районе, рядом с банком. petrol station — «заправка». Для гостя она новая: There is a petrol station next to the bank.",
+        "uk": "Гість збирається їхати назад, але бензину в машині майже немає. Він питає, де його купити. Ви пам’ятаєте одне таке місце у вашому районі, поруч із банком. petrol station — «заправка». Для гостя вона нова: There is a petrol station next to the bank."
       },
       "question": {
         "interactionId": "en:lesson-04:session-31:intro3:q",
         "promptByLocale": {
-          "ru": "Сыр находится внутри сумки. Выберите описание.",
-          "uk": "Сир лежить усередині сумки. Виберіть опис."
+          "ru": "Гость ищет, где заправить машину. Скажите ему, что рядом с банком есть заправка.",
+          "uk": "Гість шукає, де заправити машину. Скажіть йому, що поруч із банком є заправка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-31:intro3:r1",
-              "text": "The cheese is in the bag."
+              "text": "There is a petrol station next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r2",
-              "text": "The cheese is on the bag."
+              "text": "The petrol station is next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r3",
-              "text": "The cheese are in the bag."
+              "text": "There are a petrol station next to the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-31:intro3:r1",
-              "text": "The cheese is in the bag."
+              "text": "There is a petrol station next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r2",
-              "text": "The cheese is on the bag."
+              "text": "The petrol station is next to the bank."
             },
             {
               "responseId": "en:lesson-04:session-31:intro3:r3",
-              "text": "The cheese are in the bag."
+              "text": "There are a petrol station next to the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сыр находится внутри сумки. Выберите описание.",
-          "uk": "Сир лежить усередині сумки. Виберіть опис."
+          "ru": "Гость ищет, где заправить машину. Скажите ему, что рядом с банком есть заправка.",
+          "uk": "Гість шукає, де заправити машину. Скажіть йому, що поруч із банком є заправка."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "81b9f24217e4a83e010f2075e7d1e2318252073a242bb9c36e22ac4b7663ec8d"
+  "introFingerprint": "9751be3a43b70f91805facbc5e8914d8656e34ee7eebd6424548106bff2f10d5"
 }

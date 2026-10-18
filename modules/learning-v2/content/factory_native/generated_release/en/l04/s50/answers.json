@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-50:i01",
-    "correctText": "It is effective.",
+    "correctText": "en:lesson-04:session-50:i01:p1=river\nen:lesson-04:session-50:i01:p2=detour\nen:lesson-04:session-50:i01:p3=footbridge\nen:lesson-04:session-50:i01:p4=cone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:word:river",
+    "correctText": "river",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i02",
     "correctText": "river",
-    "correctResponseId": "en:lesson-04:session-50:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-50:i03",
-    "correctText": "river",
-    "correctResponseId": "en:lesson-04:session-50:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-50:i04",
-    "correctText": "en:lesson-04:session-50:i04:p1=river\nen:lesson-04:session-50:i04:p2=effective\nen:lesson-04:session-50:i04:p3=cinema\nen:lesson-04:session-50:i04:p4=bus shelter",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-50:i03",
+    "correctText": "Is there a river behind the library?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:word:cone",
+    "correctText": "cone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:i04",
+    "correctText": "cone",
+    "correctResponseId": "en:lesson-04:session-50:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-50:i05",
-    "correctText": "This is a river.",
+    "correctText": "Are there cones on the pavement?",
+    "correctResponseId": "en:lesson-04:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:word:detour",
+    "correctText": "detour",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i06",
-    "correctText": "The cinema is next to the river.",
+    "correctText": "detour",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i07",
-    "correctText": "It's effective.",
+    "correctText": "Is there a detour near the bridge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-50:word:footbridge",
+    "correctText": "footbridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i08",
-    "correctText": "isn't",
+    "correctText": "footbridge",
     "correctResponseId": "en:lesson-04:session-50:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-50:i09",
-    "correctText": "The bus shelter is next to the cinema.",
-    "correctResponseId": "en:lesson-04:session-50:i09:r1"
+    "correctText": "Are there footbridges near the cafe?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i10",
-    "correctText": "en:lesson-04:session-50:i10:p1=river\nen:lesson-04:session-50:i10:p2=effective\nen:lesson-04:session-50:i10:p3=cinema\nen:lesson-04:session-50:i10:p4=bus shelter",
+    "correctText": "en:lesson-04:session-50:i10:p1=cone\nen:lesson-04:session-50:i10:p2=footbridge\nen:lesson-04:session-50:i10:p3=pond\nen:lesson-04:session-50:i10:p4=bridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i11",
-    "correctText": "Is there a river?",
-    "correctResponseId": null
+    "correctText": "Yes, there is.",
+    "correctResponseId": "en:lesson-04:session-50:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-50:i12",
-    "correctText": "He is in the bus shelter.",
-    "correctResponseId": null
+    "correctText": "isn’t",
+    "correctResponseId": "en:lesson-04:session-50:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-50:i13",
-    "correctText": "Is there a cinema?",
+    "correctText": "Are there cones near the cafe?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i14",
-    "correctText": "next to",
-    "correctResponseId": "en:lesson-04:session-50:i14:r1"
+    "correctText": "Yes, there are.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i15",
-    "correctText": "That is a river.",
-    "correctResponseId": "en:lesson-04:session-50:i15:r1"
+    "correctText": "Is there a footbridge behind the cafe?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i16",
-    "correctText": "en:lesson-04:session-50:i16:p1=river\nen:lesson-04:session-50:i16:p2=effective\nen:lesson-04:session-50:i16:p3=cinema\nen:lesson-04:session-50:i16:p4=bus shelter",
+    "correctText": "en:lesson-04:session-50:i16:p1=river\nen:lesson-04:session-50:i16:p2=detour\nen:lesson-04:session-50:i16:p3=footbridge\nen:lesson-04:session-50:i16:p4=cone",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-50:i17",
-    "correctText": "The cinema is next to the river.",
+    "correctText": "No, there aren’t.",
     "correctResponseId": null
   }
 ]

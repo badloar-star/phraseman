@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-23",
   "learningOutcomeByLocale": {
-    "ru": "спросить о сыре с any, сообщить о нём с some и подтвердить действительность билета",
-    "uk": "запитати про сир з any, повідомити про нього із some та підтвердити дійсність квитка"
+    "ru": "выбрать some или any: some в сообщении, any в вопросе и когда чего-то нет",
+    "uk": "вибрати some або any: some у повідомленні, any у запитанні й коли чогось немає"
   },
   "pages": [
     {
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-04:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сыр",
-        "uk": "Сир"
+        "ru": "Стол для гостей",
+        "uk": "Стіл для гостей"
       },
       "bodyByLocale": {
-        "ru": "`cheese` — «сыр». О продукте вообще: `There is some cheese` — «Есть немного сыра». Здесь не считаем отдельные куски или сорта: перед `cheese` не нужно `a`, начало — `There is`. Даже если отрезать десять кусочков, сам сыр не потребует `are`. Кусочков больше, сыра столько же.",
-        "uk": "`cheese` — «сир». Про продукт загалом: `There is some cheese` — «Є трохи сиру». Тут не рахуємо окремі шматки чи сорти: перед `cheese` не потрібне `a`, початок — `There is`. Навіть якщо відрізати десять шматочків, сам сир не потребуватиме `are`. Шматочків більше, сиру стільки ж."
+        "ru": "Через час придут гости, и вы проверяете, что есть на стол. На нижней полке вы замечаете кусок сыра. cheese — «сыр». Когда мы просто сообщаем, что что-то есть, ставим some. Скажите подруге: There is some cheese here. — «Здесь есть немного сыра».",
+        "uk": "За годину прийдуть гості, і ви перевіряєте, що є на святковий стіл. На нижній полиці ви помічаєте шматок сиру. cheese — «сир». Коли ми просто повідомляємо, що щось є, ставимо some. Скажіть подрузі: There is some cheese here. — «Тут є трохи сиру»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-23:intro1:q",
         "promptByLocale": {
-          "ru": "Сообщите «Здесь есть немного сыра».",
-          "uk": "Повідомте «Тут є трохи сиру»."
+          "ru": "Скоро придут гости. Скажите подруге, что здесь есть немного сыра.",
+          "uk": "Скоро прийдуть гості. Скажіть подрузі, що тут є трохи сиру."
         },
         "choicesByLocale": {
           "ru": [
@@ -32,11 +32,11 @@
             },
             {
               "responseId": "en:lesson-04:session-23:intro1:r2",
-              "text": "There are some cheese here."
+              "text": "There is any cheese here."
             },
             {
               "responseId": "en:lesson-04:session-23:intro1:r3",
-              "text": "There is a cheese here."
+              "text": "There are some cheese here."
             }
           ],
           "uk": [
@@ -46,17 +46,17 @@
             },
             {
               "responseId": "en:lesson-04:session-23:intro1:r2",
-              "text": "There are some cheese here."
+              "text": "There is any cheese here."
             },
             {
               "responseId": "en:lesson-04:session-23:intro1:r3",
-              "text": "There is a cheese here."
+              "text": "There are some cheese here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сообщите «Здесь есть немного сыра».",
-          "uk": "Повідомте «Тут є трохи сиру»."
+          "ru": "Скоро придут гости. Скажите подруге, что здесь есть немного сыра.",
+          "uk": "Скоро прийдуть гості. Скажіть подрузі, що тут є трохи сиру."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сыр и билеты",
-        "uk": "Сир і квитки"
+        "ru": "Чай с мёдом",
+        "uk": "Чай із медом"
       },
       "bodyByLocale": {
-        "ru": "`Is there any cheese?` — «Есть ли сыр?» Вы ещё не знаете ответа. `tickets` — «билеты»: `Are there any tickets?` — «Есть ли билеты?» Билетов несколько, поэтому `Are there`. В сообщении: `There are some tickets` — «Есть несколько билетов».",
-        "uk": "`Is there any cheese?` — «Чи є сир?» Ви ще не знаєте відповіді. `tickets` — «квитки»: `Are there any tickets?` — «Чи є квитки?» Квитків кілька, тому `Are there`. У повідомленні: `There are some tickets` — «Є кілька квитків»."
+        "ru": "Один из гостей любит чай с мёдом. Вы не знаете, остался ли мёд, и спрашиваете у брата, который закупал продукты. honey — «мёд». В вопросе, когда ответа мы не знаем, ставим any. Спросите брата: Is there any honey near the bowl? — «Рядом с миской есть мёд?»",
+        "uk": "Один із гостей любить чай із медом. Ви не знаєте, чи лишився мед, і питаєте в брата, який купував продукти. honey — «мед». У запитанні, коли відповіді ми не знаємо, ставимо any. Запитайте брата: Is there any honey near the bowl? — «Поруч із мискою є мед?»"
       },
       "question": {
         "interactionId": "en:lesson-04:session-23:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите «Здесь есть сыр?» с `any`.",
-          "uk": "Запитайте «Тут є сир?» з `any`."
+          "ru": "Гость любит чай с мёдом. Спросите брата, есть ли рядом с миской мёд.",
+          "uk": "Гість любить чай із медом. Запитайте брата, чи є поруч із мискою мед."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-23:intro2:r1",
-              "text": "Is there any cheese here?"
+              "text": "Is there any honey near the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-23:intro2:r2",
-              "text": "Are there any cheese here?"
+              "text": "Are there any honey near the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-23:intro2:r3",
-              "text": "There is any cheese here?"
+              "text": "There is any honey near the bowl?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-23:intro2:r1",
-              "text": "Is there any cheese here?"
+              "text": "Is there any honey near the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-23:intro2:r2",
-              "text": "Are there any cheese here?"
+              "text": "Are there any honey near the bowl?"
             },
             {
               "responseId": "en:lesson-04:session-23:intro2:r3",
-              "text": "There is any cheese here?"
+              "text": "There is any honey near the bowl?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите «Здесь есть сыр?» с `any`.",
-          "uk": "Запитайте «Тут є сир?» з `any`."
+          "ru": "Гость любит чай с мёдом. Спросите брата, есть ли рядом с миской мёд.",
+          "uk": "Гість любить чай із медом. Запитайте брата, чи є поруч із мискою мед."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Билет подходит",
-        "uk": "Квиток підходить"
+        "ru": "Блины к чаю",
+        "uk": "Млинці до чаю"
       },
       "bodyByLocale": {
-        "ru": "`valid` — «действительный». Вы проверили дату и условия билета: по нему можно пройти на выставку сегодня. `It is valid` — «Он действителен». Сокращённо: `It’s valid`. Это не значит, что билет действует всегда и везде: важны его условия. `gym` — «тренажёрный зал»: `Is there a gym here?` — «Здесь есть тренажёрный зал?»",
-        "uk": "`valid` — «дійсний». Ви перевірили дату й умови квитка: за ним можна пройти на виставку сьогодні. `It is valid` — «Він дійсний». Скорочено: `It’s valid`. Це не означає, що квиток діє завжди й усюди: важливі його умови. `gym` — «тренажерна зала»: `Is there a gym here?` — «Тут є тренажерна зала?»"
+        "ru": "Подруга печёт блины и хочет подать их с вареньем. Вы заглядываете за корзину, где стоит банка, но там пусто. jam — «варенье, джем». Когда чего-то нет, тоже ставим any. Скажите ей: There isn't any jam behind the basket. — «За корзиной нет варенья».",
+        "uk": "Подруга пече млинці й хоче подати їх із варенням. Ви заглядаєте за кошик, де стоїть банка, але там порожньо. jam — «варення, джем». Коли чогось немає, теж ставимо any. Скажіть їй: There isn't any jam behind the basket. — «За кошиком немає варення»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-23:intro3:q",
         "promptByLocale": {
-          "ru": "Условия билета подходят для сегодняшнего посещения. Скажите «Он действителен» с сокращением.",
-          "uk": "Умови квитка підходять для сьогоднішнього відвідування. Скажіть «Він дійсний» зі скороченням."
+          "ru": "Подруга печёт блины. Скажите ей, что за корзиной варенья нет.",
+          "uk": "Подруга пече млинці. Скажіть їй, що за кошиком варення немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-23:intro3:r1",
-              "text": "It's valid."
+              "text": "There isn't any jam behind the basket."
             },
             {
               "responseId": "en:lesson-04:session-23:intro3:r2",
-              "text": "It's broken."
+              "text": "There isn't some jam behind the basket."
             },
             {
               "responseId": "en:lesson-04:session-23:intro3:r3",
-              "text": "It are valid."
+              "text": "There is any jam behind the basket."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-23:intro3:r1",
-              "text": "It's valid."
+              "text": "There isn't any jam behind the basket."
             },
             {
               "responseId": "en:lesson-04:session-23:intro3:r2",
-              "text": "It's broken."
+              "text": "There isn't some jam behind the basket."
             },
             {
               "responseId": "en:lesson-04:session-23:intro3:r3",
-              "text": "It are valid."
+              "text": "There is any jam behind the basket."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Условия билета подходят для сегодняшнего посещения. Скажите «Он действителен» с сокращением.",
-          "uk": "Умови квитка підходять для сьогоднішнього відвідування. Скажіть «Він дійсний» зі скороченням."
+          "ru": "Подруга печёт блины. Скажите ей, что за корзиной варенья нет.",
+          "uk": "Подруга пече млинці. Скажіть їй, що за кошиком варення немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f99cd46a226b8e49958ca5e432c15e0c3dc9232e29c2e52b4556c3710e6f052e"
+  "introFingerprint": "65da9e495f37a3aab9d26670d3388dac253b6a42fa2c5b76a1f69ca2803386f0"
 }

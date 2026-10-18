@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-21:intro1:r2": {
-          "ru": "О соке как напитке говорим `There is some juice here`.",
-          "uk": "Про сік як напій кажемо `There is some juice here`."
+          "ru": "В отрицании вместо some нужно any: There isn't any juice.",
+          "uk": "У запереченні замість some потрібно any: There isn't any juice."
         },
         "en:lesson-04:session-21:intro1:r3": {
-          "ru": "Здесь речь о напитке вообще, а не заказанной порции: `some juice`.",
-          "uk": "Тут ідеться про напій загалом, а не замовлену порцію: `some juice`."
+          "ru": "Сок не считают штуками, поэтому нужно isn't, а не aren't.",
+          "uk": "Сік не рахують штуками, тому потрібно isn't, а не aren't."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-21:intro2:r2": {
-          "ru": "С соком как напитком нужно `Is there`.",
-          "uk": "Із соком як напоєм потрібне `Is there`."
+          "ru": "Чай не считают штуками, поэтому вместо a нужно any.",
+          "uk": "Чай не рахують штуками, тому замість a потрібно any."
         },
         "en:lesson-04:session-21:intro2:r3": {
-          "ru": "В этом вопросе сначала `Is there`: `Is there any juice here?`.",
-          "uk": "У цьому запитанні спочатку `Is there`: `Is there any juice here?`."
+          "ru": "Чтобы сказать «нет», нужно isn't: There isn't any tea.",
+          "uk": "Щоб сказати «немає», потрібно isn't: There isn't any tea."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-21:intro3:r2": {
-          "ru": "На вопрос, работает ли сломанная ручка, отвечаем «Нет»: `No`.",
-          "uk": "На запитання, чи працює зламана ручка, відповідаємо «Ні»: `No`."
+          "ru": "Кофе не считают штуками, поэтому нужно isn't, а не aren't.",
+          "uk": "Каву не рахують штуками, тому потрібно isn't, а не aren't."
         },
         "en:lesson-04:session-21:intro3:r3": {
-          "ru": "С `it` нужно `is`: `it’s broken`.",
-          "uk": "З `it` потрібне `is`: `it’s broken`."
+          "ru": "Кофе не считают штуками, поэтому на конце нет -s: coffee.",
+          "uk": "Каву не рахують штуками, тому наприкінці немає -s: coffee."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "84c565555c2e91a701eb93843ef04a48bba12dad7e664ee056091b3a73f85ae2"
+  "auxiliaryFingerprint": "8089c9aa0bf20696df09b2be5b2d72e7667a8c2b8700df1aa13dc829ffeec6d7"
 }

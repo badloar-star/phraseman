@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-26:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-26:intro1:r2": {
-          "ru": "`under` — под; пакет стоит на поверхности: `on`.",
-          "uk": "`under` — під; пакет стоїть на поверхні: `on`."
+          "ru": "in — «внутри», а чашки стоят сверху: нужно on.",
+          "uk": "in — «всередині», а чашки стоять зверху: потрібно on."
         },
         "en:lesson-04:session-26:intro1:r3": {
-          "ru": "О молоке говорим `The milk is`.",
-          "uk": "Про молоко кажемо `The milk is`."
+          "ru": "Чашек несколько, поэтому нужно are: The cups are.",
+          "uk": "Чашок кілька, тому потрібно are: The cups are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-26:intro2:r2": {
-          "ru": "Это «на столешнице»; в условии под ней: `under`.",
-          "uk": "Це «на стільниці»; в умові під нею: `under`."
+          "ru": "in — «внутри», а цветок стоит сверху: нужно on.",
+          "uk": "in — «всередині», а квітка стоїть зверху: потрібно on."
         },
         "en:lesson-04:session-26:intro2:r3": {
-          "ru": "Кошек несколько: `The cats are`.",
-          "uk": "Котів кілька: `The cats are`."
+          "ru": "Цветок один, поэтому нужно is: The plant is.",
+          "uk": "Квітка одна, тому потрібно is: The plant is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-26:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-26:intro3:r2": {
-          "ru": "`careful` — осторожный; здесь признаёте неосторожность: `careless`.",
-          "uk": "`careful` — обережний; тут визнаєте необережність: `careless`."
+          "ru": "in — «внутри», а шарф висит сверху: нужно on.",
+          "uk": "in — «всередині», а шарф висить зверху: потрібно on."
         },
         "en:lesson-04:session-26:intro3:r3": {
-          "ru": "С `I` нужно `am`: `I’m careless`.",
-          "uk": "З `I` потрібне `am`: `I’m careless`."
+          "ru": "Батарею вы оба знаете, поэтому перед ней нужно the: on the radiator.",
+          "uk": "Батарею ви обоє знаєте, тому перед нею потрібно the: on the radiator."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f73ddb29d1c06c8c182c10ce57b28257b5202816b2ba051db669ad35bf13abc1"
+  "auxiliaryFingerprint": "aeea17a6a679d9bb665cb9ba8ec33f7b0dca6e0f6d10338ac4e6cad102ab7507"
 }

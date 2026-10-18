@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-45",
   "learningOutcomeByLocale": {
-    "ru": "назвать микроволновку, спросить о её наличии и понять слово illegal",
-    "uk": "назвати мікрохвильовку, запитати про її наявність і зрозуміти слово illegal"
+    "ru": "исправить в описании ошибку в числе и в отрицании: There is, There are, There isn’t",
+    "uk": "виправити в описі помилку в числі й у запереченні: There is, There are, There isn’t"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Разогреть обед",
-        "uk": "Розігріти обід"
+        "ru": "Строка про кухню",
+        "uk": "Рядок про кухню"
       },
       "bodyByLocale": {
-        "ru": "`microwave` — «микроволновка». Здесь это название прибора для разогрева еды. Один прибор — `a microwave`. `This is a microwave` — «Это микроволновка». Обед после неё теплее, а рабочий день, увы, не короче.",
-        "uk": "`microwave` — «мікрохвильовка». Тут це назва приладу для розігрівання їжі. Один прилад — `a microwave`. `This is a microwave` — «Це мікрохвильовка». Обід після неї тепліший, а робочий день, на жаль, не коротший."
+        "ru": "В описании квартиры написано: There are a microwave in the kitchen. Вы стоите на кухне и видите одну печку, в которой еду разогревают за минуту. microwave — «микроволновка». Она одна, поэтому строку исправляют: There is a microwave in the kitchen.",
+        "uk": "В описі квартири написано: There are a microwave in the kitchen. Ви стоїте на кухні й бачите одну пічку, у якій їжу розігрівають за хвилину. microwave — «мікрохвильовка». Вона одна, тому рядок виправляють: There is a microwave in the kitchen."
       },
       "question": {
         "interactionId": "en:lesson-04:session-45:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну микроволновку.",
-          "uk": "Назвіть одну мікрохвильовку."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: на кухне есть микроволновка.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: на кухні є мікрохвильовка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-45:intro1:r1",
-              "text": "This is a microwave."
+              "text": "There is a microwave in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-45:intro1:r2",
-              "text": "This is microwave."
+              "text": "There are a microwave in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-45:intro1:r3",
-              "text": "These are microwaves."
+              "text": "There is microwave in the kitchen."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-45:intro1:r1",
-              "text": "This is a microwave."
+              "text": "There is a microwave in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-45:intro1:r2",
-              "text": "This is microwave."
+              "text": "There are a microwave in the kitchen."
             },
             {
               "responseId": "en:lesson-04:session-45:intro1:r3",
-              "text": "These are microwaves."
+              "text": "There is microwave in the kitchen."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну микроволновку.",
-          "uk": "Назвіть одну мікрохвильовку."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: на кухне есть микроволновка.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: на кухні є мікрохвильовка."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "В офисе",
-        "uk": "В офісі"
+        "ru": "Строка про подвал",
+        "uk": "Рядок про підвал"
       },
       "bodyByLocale": {
-        "ru": "`office` — «офис», `parcel locker` — «постамат». `The microwave is in the office` — «Микроволновка в офисе». `The parcel locker is next to the door` — «Постамат рядом с дверью». `Is there a microwave?` — «Есть микроволновка?» В вопросе `is` идёт перед `there`.",
-        "uk": "`office` — «офіс», `parcel locker` — «поштомат». `The microwave is in the office` — «Мікрохвильовка в офісі». `The parcel locker is next to the door` — «Поштомат поруч із дверима». `Is there a microwave?` — «Є мікрохвильовка?» У запитанні `is` стоїть перед `there`."
+        "ru": "Дальше в описании: There is some washing machines in the basement. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». Машин несколько, поэтому: There are some washing machines in the basement.",
+        "uk": "Далі в описі: There is some washing machines in the basement. Ви спускаєтеся в підвал і бачите там кілька машин, у які завантажують білизну й вмикають прання. washing machine — «пральна машина». Машин кілька, тому: There are some washing machines in the basement."
       },
       "question": {
         "interactionId": "en:lesson-04:session-45:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли микроволновка.",
-          "uk": "Запитайте, чи є мікрохвильовка."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: в подвале есть стиральные машины.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: у підвалі є пральні машини."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-45:intro2:r1",
-              "text": "Is there a microwave?"
+              "text": "There are some washing machines in the basement."
             },
             {
               "responseId": "en:lesson-04:session-45:intro2:r2",
-              "text": "There is a microwave."
+              "text": "There is some washing machines in the basement."
             },
             {
               "responseId": "en:lesson-04:session-45:intro2:r3",
-              "text": "Are there a microwave?"
+              "text": "There are some washing machine in the basement."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-45:intro2:r1",
-              "text": "Is there a microwave?"
+              "text": "There are some washing machines in the basement."
             },
             {
               "responseId": "en:lesson-04:session-45:intro2:r2",
-              "text": "There is a microwave."
+              "text": "There is some washing machines in the basement."
             },
             {
               "responseId": "en:lesson-04:session-45:intro2:r3",
-              "text": "Are there a microwave?"
+              "text": "There are some washing machine in the basement."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли микроволновка.",
-          "uk": "Запитайте, чи є мікрохвильовка."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: в подвале есть стиральные машины.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: у підвалі є пральні машини."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Против закона",
-        "uk": "Проти закону"
+        "ru": "Строка про холл",
+        "uk": "Рядок про хол"
       },
       "bodyByLocale": {
-        "ru": "`illegal` — «незаконный, запрещённый законом». `It is illegal` — «Это незаконно», короче `It’s illegal`. Слово относится к закону: оно не означает просто «мне не нравится» или «начальник против». Для законного действия было `legal`; здесь противоположный смысл — `illegal`.",
-        "uk": "`illegal` — «незаконний, заборонений законом». `It is illegal` — «Це незаконно», коротше `It’s illegal`. Слово стосується закону: воно не означає просто «мені не подобається» чи «керівник проти». Для законної дії було `legal`; тут протилежне значення — `illegal`."
+        "ru": "В описании записано: There isn’t no ironing board in the hall. Вы смотрите в холл: длинной узкой доски на ножках, на которой гладят бельё, там нет. ironing board — «гладильная доска». Достаточно одного «нет»: There isn’t an ironing board in the hall.",
+        "uk": "В описі записано: There isn’t no ironing board in the hall. Ви дивитеся в хол: довгої вузької дошки на ніжках, на якій прасують білизну, там немає. ironing board — «прасувальна дошка». Досить одного «немає»: There isn’t an ironing board in the hall."
       },
       "question": {
         "interactionId": "en:lesson-04:session-45:intro3:q",
         "promptByLocale": {
-          "ru": "Переведите «Это незаконно» с сокращением.",
-          "uk": "Перекладіть «Це незаконно» зі скороченням."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: в холле нет гладильной доски.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: у холі немає прасувальної дошки."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-45:intro3:r1",
-              "text": "It's illegal."
+              "text": "There isn’t an ironing board in the hall."
             },
             {
               "responseId": "en:lesson-04:session-45:intro3:r2",
-              "text": "It's legal."
+              "text": "There isn’t no ironing board in the hall."
             },
             {
               "responseId": "en:lesson-04:session-45:intro3:r3",
-              "text": "It are illegal."
+              "text": "There isn’t a ironing board in the hall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-45:intro3:r1",
-              "text": "It's illegal."
+              "text": "There isn’t an ironing board in the hall."
             },
             {
               "responseId": "en:lesson-04:session-45:intro3:r2",
-              "text": "It's legal."
+              "text": "There isn’t no ironing board in the hall."
             },
             {
               "responseId": "en:lesson-04:session-45:intro3:r3",
-              "text": "It are illegal."
+              "text": "There isn’t a ironing board in the hall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Переведите «Это незаконно» с сокращением.",
-          "uk": "Перекладіть «Це незаконно» зі скороченням."
+          "ru": "Агент ждёт поправки. Скажите ему верную фразу: в холле нет гладильной доски.",
+          "uk": "Агент чекає на виправлення. Скажіть йому правильну фразу: у холі немає прасувальної дошки."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f3f91664d181d1485ef0809ec613b3e43c6db799401203e2a7177dc4821f319"
+  "introFingerprint": "f3c68ca50207625db14634832dee70858427ff1f2769173305ee988b8aaac757"
 }

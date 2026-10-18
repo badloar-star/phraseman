@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-20:i01",
-    "correctText": "Yes, I am innocent.",
+    "correctText": "en:lesson-04:session-20:i01:p1=mushroom\nen:lesson-04:session-20:i01:p2=bean\nen:lesson-04:session-20:i01:p3=nut\nen:lesson-04:session-20:i01:p4=pea",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:word:mushroom",
+    "correctText": "mushroom",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i02",
     "correctText": "mushroom",
-    "correctResponseId": "en:lesson-04:session-20:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-20:i03",
-    "correctText": "mushroom",
-    "correctResponseId": "en:lesson-04:session-20:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-20:i04",
-    "correctText": "en:lesson-04:session-20:i04:p1=mushroom\nen:lesson-04:session-20:i04:p2=innocent\nen:lesson-04:session-20:i04:p3=maps\nen:lesson-04:session-20:i04:p4=platform",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-20:i03",
+    "correctText": "Are there any mushrooms near the box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:word:bean",
+    "correctText": "bean",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:i04",
+    "correctText": "bean",
+    "correctResponseId": "en:lesson-04:session-20:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-20:i05",
-    "correctText": "This is a mushroom.",
+    "correctText": "Are there any beans here?",
+    "correctResponseId": "en:lesson-04:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:word:nut",
+    "correctText": "nut",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i06",
-    "correctText": "There are some maps here.",
+    "correctText": "nut",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i07",
-    "correctText": "Yes, I'm innocent.",
+    "correctText": "Are there any nuts here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-20:word:pea",
+    "correctText": "pea",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i08",
-    "correctText": "some",
+    "correctText": "pea",
     "correctResponseId": "en:lesson-04:session-20:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-20:i09",
-    "correctText": "Are there any maps?",
-    "correctResponseId": "en:lesson-04:session-20:i09:r1"
+    "correctText": "Are there any peas near the bowl?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i10",
-    "correctText": "en:lesson-04:session-20:i10:p1=mushroom\nen:lesson-04:session-20:i10:p2=mushrooms\nen:lesson-04:session-20:i10:p3=maps\nen:lesson-04:session-20:i10:p4=platform",
+    "correctText": "en:lesson-04:session-20:i10:p1=pea\nen:lesson-04:session-20:i10:p2=nut\nen:lesson-04:session-20:i10:p3=mushroom\nen:lesson-04:session-20:i10:p4=bean",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i11",
-    "correctText": "There are some mushrooms.",
-    "correctResponseId": null
+    "correctText": "Yes, there are.",
+    "correctResponseId": "en:lesson-04:session-20:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-20:i12",
-    "correctText": "Are there any mushrooms?",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-20:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-20:i13",
-    "correctText": "That is a platform.",
+    "correctText": "Are there any beans near the door?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i14",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-04:session-20:i14:r1"
+    "correctText": "Are there any mushrooms behind the box?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i15",
-    "correctText": "It is a mushroom.",
-    "correctResponseId": "en:lesson-04:session-20:i15:r1"
+    "correctText": "Are there any nuts near the basket?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i16",
-    "correctText": "en:lesson-04:session-20:i16:p1=mushroom\nen:lesson-04:session-20:i16:p2=yes\nen:lesson-04:session-20:i16:p3=innocent\nen:lesson-04:session-20:i16:p4=maps",
+    "correctText": "en:lesson-04:session-20:i16:p1=mushroom\nen:lesson-04:session-20:i16:p2=pea\nen:lesson-04:session-20:i16:p3=bean\nen:lesson-04:session-20:i16:p4=nut",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-20:i17",
-    "correctText": "Are there any mushrooms here?",
+    "correctText": "No, there aren't.",
     "correctResponseId": null
   }
 ]

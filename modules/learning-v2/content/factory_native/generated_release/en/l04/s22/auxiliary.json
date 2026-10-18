@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro1:r2": {
-          "ru": "Это несколько морковок; здесь одна: `This is a carrot`.",
-          "uk": "Це кілька морквин; тут одна: `This is a carrot`."
+          "ru": "Морковок несколько, поэтому нужно aren't, а не isn't.",
+          "uk": "Морквин кілька, тому потрібно aren't, а не isn't."
         },
         "en:lesson-04:session-22:intro1:r3": {
-          "ru": "После `a` нужна форма для одной морковки: `carrot`.",
-          "uk": "Після `a` потрібна форма для однієї морквини: `carrot`."
+          "ru": "В отрицании вместо some нужно any: There aren't any carrots.",
+          "uk": "У запереченні замість some потрібно any: There aren't any carrots."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro2:r2": {
-          "ru": "`carrots` — несколько морковок: `Are there`.",
-          "uk": "`carrots` — кілька морквин: `Are there`."
+          "ru": "Печенья несколько, поэтому на конце biscuits, а не biscuit.",
+          "uk": "Печива кілька, тому наприкінці biscuits, а не biscuit."
         },
         "en:lesson-04:session-22:intro2:r3": {
-          "ru": "Перед несколькими морковками не ставим `a`; здесь нужно `any carrots`.",
-          "uk": "Перед кількома морквинами не ставимо `a`; тут потрібне `any carrots`."
+          "ru": "Чтобы сказать «нет», нужно aren't: There aren't any biscuits.",
+          "uk": "Щоб сказати «немає», потрібно aren't: There aren't any biscuits."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro3:r2": {
-          "ru": "`broken` — сломанный; полный список — `complete`.",
-          "uk": "`broken` — зламаний; повний список — `complete`."
+          "ru": "Сосисок несколько, поэтому нужно aren't, а не isn't.",
+          "uk": "Сосисок кілька, тому потрібно aren't, а не isn't."
         },
         "en:lesson-04:session-22:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s complete`.",
-          "uk": "З `It` потрібне `is`: `It’s complete`."
+          "ru": "Сосисок несколько, поэтому на конце sausages, а не sausage.",
+          "uk": "Сосисок кілька, тому наприкінці sausages, а не sausage."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "084552d62d1f452c40f105ddc1e7eb28614d54c1d5588240e0af0de19afb721e"
+  "auxiliaryFingerprint": "613699e1f01603250736da24257c5cdb90943e24bfd6ed92cf2a6e0bf1afeaa4"
 }

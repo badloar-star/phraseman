@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-41",
   "learningOutcomeByLocale": {
-    "ru": "назвать банкомат, спросить о его наличии и подтвердить точность информации",
-    "uk": "назвати банкомат, запитати про його наявність і підтвердити точність інформації"
+    "ru": "узнавать и произносить короткое There’s для одного предмета",
+    "uk": "впізнавати й вимовляти коротке There’s для одного предмета"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Где снять наличные",
-        "uk": "Де зняти готівку"
+        "ru": "Наличные для рынка",
+        "uk": "Готівка для ринку"
       },
       "bodyByLocale": {
-        "ru": "`cashpoint` — «банкомат». Один банкомат — `a cashpoint`. `This is a cashpoint` — «Это банкомат». Деньги он выдаёт, но подарком их считать не стоит: это ваши деньги со счёта.",
-        "uk": "`cashpoint` — «банкомат». Один банкомат — `a cashpoint`. `This is a cashpoint` — «Це банкомат». Гроші він видає, але подарунком їх вважати не варто: це ваші гроші з рахунку."
+        "ru": "Вы вышли из дома, а наличных нет, и на рынке карту не принимают. Сосед в голосовом сообщении говорит, что аппарат, который выдаёт деньги по карте, стоит у банка. cashpoint — «банкомат». В речи говорят коротко: There’s a cashpoint near the bank — «Рядом с банком есть банкомат».",
+        "uk": "Ви вийшли з дому, а готівки немає, і на ринку картку не приймають. Сусід у голосовому повідомленні каже, що апарат, який видає гроші за карткою, стоїть біля банку. cashpoint — «банкомат». У мовленні кажуть коротко: There’s a cashpoint near the bank — «Поруч із банком є банкомат»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-41:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один банкомат рядом.",
-          "uk": "Назвіть один банкомат поруч."
+          "ru": "Сосед спрашивает, где взять наличные. Скажите ему, что рядом с банком есть банкомат.",
+          "uk": "Сусід питає, де взяти готівку. Скажіть йому, що поруч із банком є банкомат."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-41:intro1:r1",
-              "text": "This is a cashpoint."
+              "text": "There’s a cashpoint near the bank."
             },
             {
               "responseId": "en:lesson-04:session-41:intro1:r2",
-              "text": "This is cashpoint."
+              "text": "There’s cashpoint near the bank."
             },
             {
               "responseId": "en:lesson-04:session-41:intro1:r3",
-              "text": "These are cashpoints."
+              "text": "There are a cashpoint near the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-41:intro1:r1",
-              "text": "This is a cashpoint."
+              "text": "There’s a cashpoint near the bank."
             },
             {
               "responseId": "en:lesson-04:session-41:intro1:r2",
-              "text": "This is cashpoint."
+              "text": "There’s cashpoint near the bank."
             },
             {
               "responseId": "en:lesson-04:session-41:intro1:r3",
-              "text": "These are cashpoints."
+              "text": "There are a cashpoint near the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один банкомат рядом.",
-          "uk": "Назвіть один банкомат поруч."
+          "ru": "Сосед спрашивает, где взять наличные. Скажите ему, что рядом с банком есть банкомат.",
+          "uk": "Сусід питає, де взяти готівку. Скажіть йому, що поруч із банком є банкомат."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Перед выходом",
-        "uk": "Перед виходом"
+        "ru": "Открытка для подруги",
+        "uk": "Листівка для подруги"
       },
       "bodyByLocale": {
-        "ru": "`kitchen` — «кухня», `doorbell` — «дверной звонок». `He is in the kitchen` — «Он на кухне»: по-английски здесь `in`. `There isn’t a doorbell` — «Дверного звонка нет». `Is there a cashpoint?` — «Есть банкомат?» `The cashpoint is next to the shop` — «Банкомат рядом с магазином».",
-        "uk": "`kitchen` — «кухня», `doorbell` — «дверний дзвінок». `He is in the kitchen` — «Він на кухні»: англійською тут `in`. `There isn’t a doorbell` — «Дверного дзвінка немає». `Is there a cashpoint?` — «Є банкомат?» `The cashpoint is next to the shop` — «Банкомат поруч із магазином»."
+        "ru": "Вы написали подруге открытку и хотите отправить её сегодня. Сосед в сообщении говорит про красный ящик на улице, куда бросают письма. postbox — «уличный почтовый ящик». Ящик один, поэтому в речи: There’s a postbox next to the gate — «У ворот есть почтовый ящик».",
+        "uk": "Ви написали подрузі листівку й хочете відправити її сьогодні. Сусід у повідомленні каже про червону скриньку на вулиці, куди кидають листи. postbox — «вулична поштова скринька». Скринька одна, тому в мовленні: There’s a postbox next to the gate — «Біля воріт є поштова скринька»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-41:intro2:q",
         "promptByLocale": {
-          "ru": "Друг на кухне. Выберите описание.",
-          "uk": "Друг на кухні. Виберіть опис."
+          "ru": "Подруга ищет, куда бросить открытку. Скажите ей, что у ворот есть почтовый ящик.",
+          "uk": "Подруга шукає, куди кинути листівку. Скажіть їй, що біля воріт є поштова скринька."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-41:intro2:r1",
-              "text": "He is in the kitchen."
+              "text": "There’s a postbox next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-41:intro2:r2",
-              "text": "He is under the kitchen."
+              "text": "There’s a postboxes next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-41:intro2:r3",
-              "text": "He are in the kitchen."
+              "text": "There’s a postbox under the gate."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-41:intro2:r1",
-              "text": "He is in the kitchen."
+              "text": "There’s a postbox next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-41:intro2:r2",
-              "text": "He is under the kitchen."
+              "text": "There’s a postboxes next to the gate."
             },
             {
               "responseId": "en:lesson-04:session-41:intro2:r3",
-              "text": "He are in the kitchen."
+              "text": "There’s a postbox under the gate."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Друг на кухне. Выберите описание.",
-          "uk": "Друг на кухні. Виберіть опис."
+          "ru": "Подруга ищет, куда бросить открытку. Скажите ей, что у ворот есть почтовый ящик.",
+          "uk": "Подруга шукає, куди кинути листівку. Скажіть їй, що біля воріт є поштова скринька."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Точно, без ошибки",
-        "uk": "Точно, без помилки"
+        "ru": "Вечер без магазинов",
+        "uk": "Вечір без крамниць"
       },
       "bodyByLocale": {
-        "ru": "`accurate` — «точный, соответствующий действительности». Вы проверили информацию о расположении банкомата: ошибок нет. `It is accurate` — «Это точно», короче `It’s accurate`. Здесь речь о точности сведений, а не об аккуратном почерке или чистоте.",
-        "uk": "`accurate` — «точний, такий, що відповідає дійсності». Ви перевірили інформацію про розташування банкомата: помилок немає. `It is accurate` — «Це точно», коротше `It’s accurate`. Тут ідеться про точність відомостей, а не про охайний почерк чи чистоту."
+        "ru": "Вечером магазины закрыты, а брат голоден. Сосед пишет про автомат, в который бросают монеты и получают воду или шоколадку. vending machine — «торговый автомат». Он один и стоит внутри здания, в холле у входа: There’s a vending machine in the hall.",
+        "uk": "Увечері крамниці зачинені, а брат голодний. Сусід пише про автомат, у який кидають монети й отримують воду або шоколадку. vending machine — «торговий автомат». Він один і стоїть усередині будівлі, у холі біля входу: There’s a vending machine in the hall."
       },
       "question": {
         "interactionId": "en:lesson-04:session-41:intro3:q",
         "promptByLocale": {
-          "ru": "Информация проверена и соответствует действительности. Скажите о её точности с сокращением.",
-          "uk": "Інформацію перевірено, вона відповідає дійсності. Скажіть про її точність зі скороченням."
+          "ru": "Брат хочет пить. Скажите ему, что в холле есть торговый автомат.",
+          "uk": "Брат хоче пити. Скажіть йому, що в холі є торговий автомат."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-41:intro3:r1",
-              "text": "It's accurate."
+              "text": "There’s a vending machine in the hall."
             },
             {
               "responseId": "en:lesson-04:session-41:intro3:r2",
-              "text": "It's inaccurate."
+              "text": "There’s a vending machine on the hall."
             },
             {
               "responseId": "en:lesson-04:session-41:intro3:r3",
-              "text": "It are accurate."
+              "text": "There’s a vending machines in the hall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-41:intro3:r1",
-              "text": "It's accurate."
+              "text": "There’s a vending machine in the hall."
             },
             {
               "responseId": "en:lesson-04:session-41:intro3:r2",
-              "text": "It's inaccurate."
+              "text": "There’s a vending machine on the hall."
             },
             {
               "responseId": "en:lesson-04:session-41:intro3:r3",
-              "text": "It are accurate."
+              "text": "There’s a vending machines in the hall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Информация проверена и соответствует действительности. Скажите о её точности с сокращением.",
-          "uk": "Інформацію перевірено, вона відповідає дійсності. Скажіть про її точність зі скороченням."
+          "ru": "Брат хочет пить. Скажите ему, что в холле есть торговый автомат.",
+          "uk": "Брат хоче пити. Скажіть йому, що в холі є торговий автомат."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "248e9ddbd4a7911fa2b9ee1e84c342fe63fef511fc018238e39c766aa45ca963"
+  "introFingerprint": "e267c8ef0b0e36207cf6a724ba30de5e4bd2ea60a2c2730545999dd0cb57c248"
 }

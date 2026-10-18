@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-49:intro1:r2": {
-          "ru": "Перед одним каналом нужно `a`: `a canal`.",
-          "uk": "Перед одним каналом потрібне `a`: `a canal`."
+          "ru": "Канал один, поэтому нужно is, а не are.",
+          "uk": "Канал один, тому потрібно is, а не are."
         },
         "en:lesson-04:session-49:intro1:r3": {
-          "ru": "Здесь один канал: `This is a canal`.",
-          "uk": "Тут один канал: `This is a canal`."
+          "ru": "Канал один, поэтому перед ним нужно a: a canal.",
+          "uk": "Канал один, тому перед ним потрібно a: a canal."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-49:intro2:r2": {
-          "ru": "`in` — внутри; здесь рядом: `next to`.",
-          "uk": "`in` — усередині; тут поруч: `next to`."
+          "ru": "Лебедей несколько, поэтому нужно are, а не is.",
+          "uk": "Лебедів кілька, тому потрібно are, а не is."
         },
         "en:lesson-04:session-49:intro2:r3": {
-          "ru": "Один банкомат: `The cashpoint is`.",
-          "uk": "Один банкомат: `The cashpoint is`."
+          "ru": "Лебедей несколько, поэтому на конце swans, а не swan.",
+          "uk": "Лебедів кілька, тому наприкінці swans, а не swan."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-49:intro3:r2": {
-          "ru": "`acceptable` — приемлемо; здесь `unacceptable`.",
-          "uk": "`acceptable` — прийнятно; тут `unacceptable`."
+          "ru": "Тропа одна, поэтому нужно is, а не are.",
+          "uk": "Стежка одна, тому потрібно is, а не are."
         },
         "en:lesson-04:session-49:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Для слова between нужны два ориентира: between the canal and the hedge.",
+          "uk": "Для слова between потрібні два орієнтири: between the canal and the hedge."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "28efd65da1d7db5ec9c5c551146c433748d5c69aab71202bf4e0dfbcab804eba"
+  "auxiliaryFingerprint": "823e77d974d2ea8a146f3ec47dc2a4853494f23069e48b7f20337247aee22b69"
 }

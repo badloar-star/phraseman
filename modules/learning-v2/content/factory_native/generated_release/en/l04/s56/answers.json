@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-56:i01",
-    "correctText": "There is a community kitchen.",
+    "correctText": "en:lesson-04:session-56:i01:p1=corner shop\nen:lesson-04:session-56:i01:p2=florist\nen:lesson-04:session-56:i01:p3=takeaway\nen:lesson-04:session-56:i01:p4=butcher",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:word:corner shop",
+    "correctText": "corner shop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i02",
     "correctText": "corner shop",
-    "correctResponseId": "en:lesson-04:session-56:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-56:i03",
-    "correctText": "corner shop",
-    "correctResponseId": "en:lesson-04:session-56:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-56:i04",
-    "correctText": "en:lesson-04:session-56:i04:p1=corner shop\nen:lesson-04:session-56:i04:p2=canal\nen:lesson-04:session-56:i04:p3=river\nen:lesson-04:session-56:i04:p4=community centre",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-56:i03",
+    "correctText": "There is a corner shop next to the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:word:florist",
+    "correctText": "florist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:i04",
+    "correctText": "florist",
+    "correctResponseId": "en:lesson-04:session-56:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-56:i05",
-    "correctText": "This is a corner shop.",
+    "correctText": "There is a florist behind the library.",
+    "correctResponseId": "en:lesson-04:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:word:takeaway",
+    "correctText": "takeaway",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i06",
-    "correctText": "The nursery is next to the community centre.",
+    "correctText": "takeaway",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i07",
-    "correctText": "Is there a police station?",
+    "correctText": "Is there a takeaway between the bank and the library?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-56:word:butcher",
+    "correctText": "butcher",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i08",
-    "correctText": "isn't",
+    "correctText": "butcher",
     "correctResponseId": "en:lesson-04:session-56:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-56:i09",
-    "correctText": "The canal is next to the park.",
-    "correctResponseId": "en:lesson-04:session-56:i09:r1"
+    "correctText": "There isn’t a butcher near the bus stop.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i10",
-    "correctText": "en:lesson-04:session-56:i10:p1=nursery\nen:lesson-04:session-56:i10:p2=police station\nen:lesson-04:session-56:i10:p3=petrol station\nen:lesson-04:session-56:i10:p4=shortcut",
+    "correctText": "en:lesson-04:session-56:i10:p1=florist\nen:lesson-04:session-56:i10:p2=butcher\nen:lesson-04:session-56:i10:p3=bakery\nen:lesson-04:session-56:i10:p4=pharmacy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i11",
-    "correctText": "Is there a corner shop?",
-    "correctResponseId": null
+    "correctText": "There aren’t any takeaways on this street.",
+    "correctResponseId": "en:lesson-04:session-56:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-56:i12",
-    "correctText": "The river is next to the park.",
-    "correctResponseId": null
+    "correctText": "a",
+    "correctResponseId": "en:lesson-04:session-56:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-56:i13",
-    "correctText": "Is there a shortcut?",
+    "correctText": "There is a florist between the corner shop and the takeaway.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i14",
-    "correctText": "aren't",
-    "correctResponseId": "en:lesson-04:session-56:i14:r1"
+    "correctText": "Is there a corner shop near here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i15",
-    "correctText": "It's a community kitchen.",
-    "correctResponseId": "en:lesson-04:session-56:i15:r1"
+    "correctText": "There aren’t any butchers on this street.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i16",
-    "correctText": "en:lesson-04:session-56:i16:p1=corner shop\nen:lesson-04:session-56:i16:p2=community kitchen\nen:lesson-04:session-56:i16:p3=canal\nen:lesson-04:session-56:i16:p4=river",
+    "correctText": "en:lesson-04:session-56:i16:p1=corner shop\nen:lesson-04:session-56:i16:p2=florist\nen:lesson-04:session-56:i16:p3=takeaway\nen:lesson-04:session-56:i16:p4=butcher",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-56:i17",
-    "correctText": "The corner shop is next to the nursery.",
+    "correctText": "There is a florist near here.",
     "correctResponseId": null
   }
 ]

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-29:i01",
-    "correctText": "He is away.",
+    "correctText": "en:lesson-04:session-29:i01:p1=bus stop\nen:lesson-04:session-29:i01:p2=traffic light\nen:lesson-04:session-29:i01:p3=statue\nen:lesson-04:session-29:i01:p4=pavement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-29:word:bus stop",
+    "correctText": "bus stop",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i02",
     "correctText": "bus stop",
-    "correctResponseId": "en:lesson-04:session-29:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-29:i03",
-    "correctText": "bus stop",
-    "correctResponseId": "en:lesson-04:session-29:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-29:i04",
-    "correctText": "en:lesson-04:session-29:i04:p1=bus stop\nen:lesson-04:session-29:i04:p2=away\nen:lesson-04:session-29:i04:p3=tables\nen:lesson-04:session-29:i04:p4=juice",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-29:i03",
+    "correctText": "The bus stop is between the school and the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-29:word:traffic light",
+    "correctText": "traffic light",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-29:i04",
+    "correctText": "traffic light",
+    "correctResponseId": "en:lesson-04:session-29:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-29:i05",
-    "correctText": "This is a bus stop.",
+    "correctText": "The traffic light is between the bank and the school.",
+    "correctResponseId": "en:lesson-04:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-29:word:statue",
+    "correctText": "statue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i06",
-    "correctText": "The juice is on the table.",
+    "correctText": "statue",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i07",
-    "correctText": "He's away.",
+    "correctText": "The statue is between the cafe and the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-29:word:pavement",
+    "correctText": "pavement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i08",
-    "correctText": "next to",
+    "correctText": "pavement",
     "correctResponseId": "en:lesson-04:session-29:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-29:i09",
-    "correctText": "The tables are under the awning.",
-    "correctResponseId": "en:lesson-04:session-29:i09:r1"
+    "correctText": "The pavement is between the road and the park.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i10",
-    "correctText": "en:lesson-04:session-29:i10:p1=bus stop\nen:lesson-04:session-29:i10:p2=bus stops\nen:lesson-04:session-29:i10:p3=tables\nen:lesson-04:session-29:i10:p4=juice",
+    "correctText": "en:lesson-04:session-29:i10:p1=pavement\nen:lesson-04:session-29:i10:p2=statue\nen:lesson-04:session-29:i10:p3=traffic light\nen:lesson-04:session-29:i10:p4=bank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i11",
-    "correctText": "The bus stop is between the buildings.",
-    "correctResponseId": null
+    "correctText": "The cafe is between the bank and the hotel.",
+    "correctResponseId": "en:lesson-04:session-29:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-29:i12",
-    "correctText": "The tables are in the alley.",
-    "correctResponseId": null
+    "correctText": "between",
+    "correctResponseId": "en:lesson-04:session-29:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-29:i13",
-    "correctText": "The juice is next to the milk.",
+    "correctText": "The hotel is between the bank and the school.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-29:i14:r1"
+    "correctText": "The bus stop is between the bank and the library.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i15",
-    "correctText": "That is a bus stop.",
-    "correctResponseId": "en:lesson-04:session-29:i15:r1"
+    "correctText": "The statue is between the tree and the bench.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i16",
-    "correctText": "en:lesson-04:session-29:i16:p1=bus stop\nen:lesson-04:session-29:i16:p2=away\nen:lesson-04:session-29:i16:p3=tables\nen:lesson-04:session-29:i16:p4=juice",
+    "correctText": "en:lesson-04:session-29:i16:p1=bus stop\nen:lesson-04:session-29:i16:p2=traffic light\nen:lesson-04:session-29:i16:p3=statue\nen:lesson-04:session-29:i16:p4=pavement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-29:i17",
-    "correctText": "The bus stop is next to the hotel.",
+    "correctText": "The traffic light is between the school and the park.",
     "correctResponseId": null
   }
 ]

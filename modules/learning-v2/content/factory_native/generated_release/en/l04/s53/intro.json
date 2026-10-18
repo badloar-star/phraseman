@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-53",
   "learningOutcomeByLocale": {
-    "ru": "назвать полицейский участок, объяснить дорогу и сказать, что решение несправедливо",
-    "uk": "назвати поліцейський відділок, пояснити дорогу й сказати, що рішення несправедливе"
+    "ru": "различать There is a… (место называем впервые) и It is… (место уже известно)",
+    "uk": "розрізняти There is a… (місце називаємо вперше) і It is… (місце вже відоме)"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два слова — одно место",
-        "uk": "Два слова — одне місце"
+        "ru": "Потерянный кошелёк",
+        "uk": "Загублений гаманець"
       },
       "bodyByLocale": {
-        "ru": "`police station` — «полицейский участок». Здесь `station` не железнодорожная станция: слово `police` уточняет, что это за место. `This is a police station` — «Это полицейский участок». Билет на поезд здесь покупать не стоит: кассы вы не найдёте. Перед одним участком нужно `a`: `a police station`.",
-        "uk": "`police station` — «поліцейський відділок». Тут `station` не залізнична станція: слово `police` уточнює, що це за місце. `This is a police station` — «Це поліцейський відділок». Квиток на потяг тут купувати не варто: каси ви не знайдете. Перед одним відділком потрібне `a`: `a police station`."
+        "ru": "Приезжий потерял на улице кошелёк и спрашивает, куда с этим идти. Вы смотрите на здание с синей табличкой, где принимают заявления о пропажах и кражах. police station — «полицейский участок». Гость о нём ещё не знает: There is a police station near the museum.",
+        "uk": "Приїжджий загубив на вулиці гаманець і питає, куди з цим іти. Ви дивитеся на будівлю з синьою табличкою, де приймають заяви про пропажі й крадіжки. police station — «поліцейська дільниця». Гість про неї ще не знає: There is a police station near the museum."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один полицейский участок.",
-          "uk": "Назвіть один поліцейський відділок."
+          "ru": "Гость потерял кошелёк. Скажите ему, что возле музея есть полицейский участок.",
+          "uk": "Гість загубив гаманець. Скажіть йому, що біля музею є поліцейська дільниця."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-53:intro1:r1",
-              "text": "This is a police station."
+              "text": "There is a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r2",
-              "text": "This is police station."
+              "text": "It is a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r3",
-              "text": "These are police stations."
+              "text": "There is police station near the museum."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-53:intro1:r1",
-              "text": "This is a police station."
+              "text": "There is a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r2",
-              "text": "This is police station."
+              "text": "It is a police station near the museum."
             },
             {
               "responseId": "en:lesson-04:session-53:intro1:r3",
-              "text": "These are police stations."
+              "text": "There is police station near the museum."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один полицейский участок.",
-          "uk": "Назвіть один поліцейський відділок."
+          "ru": "Гость потерял кошелёк. Скажите ему, что возле музея есть полицейский участок.",
+          "uk": "Гість загубив гаманець. Скажіть йому, що біля музею є поліцейська дільниця."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рядом с музеем",
-        "uk": "Поруч із музеєм"
+        "ru": "Куда именно идти",
+        "uk": "Куди саме йти"
       },
       "bodyByLocale": {
-        "ru": "`museum` — «музей». `The police station is next to the museum` — «Полицейский участок рядом с музеем». Чтобы спросить, есть ли участок: `Is there a police station?` Если его нет: `There isn’t a police station`.",
-        "uk": "`museum` — «музей». `The police station is next to the museum` — «Поліцейський відділок поруч із музеєм». Щоб запитати, чи є відділок: `Is there a police station?` Якщо його немає: `There isn’t a police station`."
+        "ru": "Гость идёт по вашей подсказке и звонит: он стоит у музея и не видит участка. Вы оба уже говорили о нём, поэтому называть его заново не нужно. Рядом с участком витрина с открытками и брелоками. gift shop — «магазин сувениров». Скажите: It is next to the gift shop.",
+        "uk": "Гість іде за вашою підказкою й телефонує: він стоїть біля музею й не бачить дільниці. Ви обоє вже говорили про неї, тому називати її заново не треба. Поруч із дільницею вітрина з листівками й брелоками. gift shop — «магазин сувенірів». Скажіть: It is next to the gift shop."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro2:q",
         "promptByLocale": {
-          "ru": "В этом районе нет полицейского участка. Сообщите об этом.",
-          "uk": "У цьому районі немає поліцейського відділку. Повідомте про це."
+          "ru": "Гость стоит у музея и не видит участка. Скажите ему, что участок рядом с магазином сувениров.",
+          "uk": "Гість стоїть біля музею й не бачить дільниці. Скажіть йому, що дільниця поруч із магазином сувенірів."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-53:intro2:r1",
-              "text": "There isn't a police station."
+              "text": "It is next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r2",
-              "text": "There aren't a police station."
+              "text": "There is a police station next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r3",
-              "text": "There is a police station."
+              "text": "It are next to the gift shop."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-53:intro2:r1",
-              "text": "There isn't a police station."
+              "text": "It is next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r2",
-              "text": "There aren't a police station."
+              "text": "There is a police station next to the gift shop."
             },
             {
               "responseId": "en:lesson-04:session-53:intro2:r3",
-              "text": "There is a police station."
+              "text": "It are next to the gift shop."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "В этом районе нет полицейского участка. Сообщите об этом.",
-          "uk": "У цьому районі немає поліцейського відділку. Повідомте про це."
+          "ru": "Гость стоит у музея и не видит участка. Скажите ему, что участок рядом с магазином сувениров.",
+          "uk": "Гість стоїть біля музею й не бачить дільниці. Скажіть йому, що дільниця поруч із магазином сувенірів."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковая кухня, разные правила",
-        "uk": "Однакова кухня, різні правила"
+        "ru": "Возле стола в участке",
+        "uk": "Біля столу в дільниці"
       },
       "bodyByLocale": {
-        "ru": "`microwave` — «микроволновая печь», в быту «микроволновка». `The microwave is in the kitchen` — «Микроволновка на кухне». Одному сотруднику можно разогреть обед, другому без причины нельзя. Вы считаете это несправедливым: `It is unfair`, короче `It’s unfair`. `unfair` — «несправедливый».",
-        "uk": "`microwave` — «мікрохвильова піч», у побуті «мікрохвильовка». `The microwave is in the kitchen` — «Мікрохвильовка на кухні». Одному працівнику можна розігріти обід, іншому без причини не можна. Ви вважаєте це несправедливим: `It is unfair`, коротше `It’s unfair`. `unfair` — «несправедливий»."
+        "ru": "Вы зашли с гостем внутрь, и он спрашивает, к кому здесь обратиться с заявлением. Возле стола в углу стоит человек в форме с нашивкой на рукаве и рацией на груди. officer — «сотрудник полиции». Для гостя он новый: There is an officer next to the desk.",
+        "uk": "Ви зайшли з гостем усередину, і він питає, до кого тут звернутися із заявою. Біля столу в кутку стоїть людина у формі з нашивкою на рукаві й рацією на грудях. officer — «співробітник поліції». Для гостя він новий: There is an officer next to the desk."
       },
       "question": {
         "interactionId": "en:lesson-04:session-53:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите «Это несправедливо» с сокращением.",
-          "uk": "Скажіть «Це несправедливо» зі скороченням."
+          "ru": "Гость спрашивает, кто примет заявление. Скажите ему, что возле стола стоит сотрудник полиции.",
+          "uk": "Гість питає, хто прийме заяву. Скажіть йому, що біля столу стоїть співробітник поліції."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-53:intro3:r1",
-              "text": "It's unfair."
+              "text": "There is an officer next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r2",
-              "text": "It's fair."
+              "text": "The officer is next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r3",
-              "text": "It are unfair."
+              "text": "There is a officer next to the desk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-53:intro3:r1",
-              "text": "It's unfair."
+              "text": "There is an officer next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r2",
-              "text": "It's fair."
+              "text": "The officer is next to the desk."
             },
             {
               "responseId": "en:lesson-04:session-53:intro3:r3",
-              "text": "It are unfair."
+              "text": "There is a officer next to the desk."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите «Это несправедливо» с сокращением.",
-          "uk": "Скажіть «Це несправедливо» зі скороченням."
+          "ru": "Гость спрашивает, кто примет заявление. Скажите ему, что возле стола стоит сотрудник полиции.",
+          "uk": "Гість питає, хто прийме заяву. Скажіть йому, що біля столу стоїть співробітник поліції."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e4524120c03b3b867b57b57ac2d666a09944f87daf7c33f72027647a3ff92f66"
+  "introFingerprint": "594f12477917f904f97ba5c7c64b0088fd42568fb5069910e4031e68e6d82c8d"
 }

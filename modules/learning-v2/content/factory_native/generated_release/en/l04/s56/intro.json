@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-56",
   "learningOutcomeByLocale": {
-    "ru": "описать район и спросить о нужных местах",
-    "uk": "описати район і запитати про потрібні місця"
+    "ru": "самому сказать, что есть и чего нет, и спросить о наличии, назвав место",
+    "uk": "самому сказати, що є і чого немає, і спитати про наявність, назвавши місце"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Магазин у дома",
-        "uk": "Магазин біля дому"
+        "ru": "Пустой холодильник",
+        "uk": "Порожній холодильник"
       },
       "bodyByLocale": {
-        "ru": "`corner shop` — небольшой «магазин у дома», где покупают повседневные мелочи. `This is a corner shop` — «Это магазин у дома». В названии есть «угол», но магазин не обязан стоять точно на углу: линейку для проверки брать не надо. Перед одним магазином нужно `a`: `a corner shop`.",
-        "uk": "`corner shop` — невеликий «магазин біля дому», де купують повсякденні дрібниці. `This is a corner shop` — «Це магазин біля дому». У назві є «кут», але магазин не обов’язково має стояти саме на розі: лінійку для перевірки брати не треба. Перед одним магазином потрібне `a`: `a corner shop`."
+        "ru": "Новый сосед въехал вчера, холодильник у него пустой, а большие магазины далеко. Он спрашивает, где купить хлеб и молоко. Вы вспоминаете маленький магазин в доме на углу. corner shop — «магазин у дома». Он один: There is a corner shop between the bank and the bakery.",
+        "uk": "Новий сусід в’їхав учора, холодильник у нього порожній, а великі магазини далеко. Він питає, де купити хліб і молоко. Ви згадуєте маленький магазин у будинку на розі. corner shop — «магазин біля дому». Він один: There is a corner shop between the bank and the bakery."
       },
       "question": {
         "interactionId": "en:lesson-04:session-56:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите один магазин у дома.",
-          "uk": "Покажіть один магазин біля дому."
+          "ru": "Сосед ищет, где купить хлеб и молоко. Скажите ему, что между банком и булочной есть магазин у дома.",
+          "uk": "Сусід шукає, де купити хліб і молоко. Скажіть йому, що між банком і пекарнею є магазин біля дому."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-56:intro1:r1",
-              "text": "This is a corner shop."
+              "text": "There is a corner shop between the bank and the bakery."
             },
             {
               "responseId": "en:lesson-04:session-56:intro1:r2",
-              "text": "This is corner shop."
+              "text": "There are a corner shop between the bank and the bakery."
             },
             {
               "responseId": "en:lesson-04:session-56:intro1:r3",
-              "text": "These are corner shops."
+              "text": "There is a corner shop between the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-56:intro1:r1",
-              "text": "This is a corner shop."
+              "text": "There is a corner shop between the bank and the bakery."
             },
             {
               "responseId": "en:lesson-04:session-56:intro1:r2",
-              "text": "This is corner shop."
+              "text": "There are a corner shop between the bank and the bakery."
             },
             {
               "responseId": "en:lesson-04:session-56:intro1:r3",
-              "text": "These are corner shops."
+              "text": "There is a corner shop between the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите один магазин у дома.",
-          "uk": "Покажіть один магазин біля дому."
+          "ru": "Сосед ищет, где купить хлеб и молоко. Скажите ему, что между банком и булочной есть магазин у дома.",
+          "uk": "Сусід шукає, де купити хліб і молоко. Скажіть йому, що між банком і пекарнею є магазин біля дому."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Места для соседей",
-        "uk": "Місця для сусідів"
+        "ru": "Ужин без плиты",
+        "uk": "Вечеря без плити"
       },
       "bodyByLocale": {
-        "ru": "`community centre` — «общественный центр», `community kitchen` — «общая кухня», `nursery` — «детский сад». `The nursery is next to the community centre` — «Детский сад рядом с общественным центром». `Is there a community kitchen?` — «Есть ли общая кухня?» В ответ о её наличии можно сказать `There is a community kitchen`.",
-        "uk": "`community centre` — «громадський центр», `community kitchen` — «спільна кухня», `nursery` — «дитячий садок». `The nursery is next to the community centre` — «Дитячий садок поруч із громадським центром». `Is there a community kitchen?` — «Чи є спільна кухня?» У відповідь про її наявність можна сказати `There is a community kitchen`."
+        "ru": "В первый вечер соседу нечем готовить, плиту ещё не подключили. Вы стоите с ним на остановке, и он просит узнать, где купить горячую еду, чтобы забрать её с собой. takeaway — «заведение с едой на вынос». Спросите прохожего: Is there a takeaway near the bus stop?",
+        "uk": "Першого вечора сусідові нічим готувати, плиту ще не підключили. Ви стоїте з ним на зупинці, і він просить дізнатися, де купити гарячу їжу, щоб забрати її з собою. takeaway — «заклад з їжею на винос». Запитайте перехожого: Is there a takeaway near the bus stop?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-56:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, есть ли общая кухня.",
-          "uk": "Запитайте, чи є спільна кухня."
+          "ru": "Сосед хочет горячий ужин с собой. Спросите прохожего, есть ли возле остановки заведение с едой на вынос.",
+          "uk": "Сусід хоче гарячу вечерю з собою. Запитайте перехожого, чи є біля зупинки заклад з їжею на винос."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-56:intro2:r1",
-              "text": "Is there a community kitchen?"
+              "text": "Is there a takeaway near the bus stop?"
             },
             {
               "responseId": "en:lesson-04:session-56:intro2:r2",
-              "text": "Are there a community kitchen?"
+              "text": "Are there a takeaway near the bus stop?"
             },
             {
               "responseId": "en:lesson-04:session-56:intro2:r3",
-              "text": "There is a community kitchen."
+              "text": "There is a takeaway near the bus stop?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-56:intro2:r1",
-              "text": "Is there a community kitchen?"
+              "text": "Is there a takeaway near the bus stop?"
             },
             {
               "responseId": "en:lesson-04:session-56:intro2:r2",
-              "text": "Are there a community kitchen?"
+              "text": "Are there a takeaway near the bus stop?"
             },
             {
               "responseId": "en:lesson-04:session-56:intro2:r3",
-              "text": "There is a community kitchen."
+              "text": "There is a takeaway near the bus stop?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, есть ли общая кухня.",
-          "uk": "Запитайте, чи є спільна кухня."
+          "ru": "Сосед хочет горячий ужин с собой. Спросите прохожего, есть ли возле остановки заведение с едой на вынос.",
+          "uk": "Сусід хоче гарячу вечерю з собою. Запитайте перехожого, чи є біля зупинки заклад з їжею на винос."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вода и дорога",
-        "uk": "Вода й дорога"
+        "ru": "Мясо на выходные",
+        "uk": "М’ясо на вихідні"
       },
       "bodyByLocale": {
-        "ru": "`canal` — «канал», `river` — «река», `police station` — «полицейский участок», `petrol station` — «заправка», `shortcut` — «короткий путь». `There isn’t a petrol station` — «Заправки нет». `Are there any shortcuts?` — «Есть ли какие-нибудь короткие пути?» Если их нет: `There aren’t any shortcuts`.",
-        "uk": "`canal` — «канал», `river` — «річка», `police station` — «поліцейський відділок», `petrol station` — «заправка», `shortcut` — «короткий шлях». `There isn’t a petrol station` — «Заправки немає». `Are there any shortcuts?` — «Чи є якісь короткі шляхи?» Якщо їх немає: `There aren’t any shortcuts`."
+        "ru": "Сосед любит готовить и мечтает о куске мяса на выходные. Он спрашивает про лавку, где мясо рубят и взвешивают при покупателе. Вы много раз ходили по этой улице и знаете: такой лавки на ней нет. butcher — «мясная лавка». There isn’t a butcher on this street.",
+        "uk": "Сусід любить готувати й мріє про шматок м’яса на вихідні. Він питає про крамницю, де м’ясо рубають і важать при покупцеві. Ви багато разів ходили цією вулицею й знаєте: такої крамниці на ній немає. butcher — «м’ясна крамниця». There isn’t a butcher on this street."
       },
       "question": {
         "interactionId": "en:lesson-04:session-56:intro3:q",
         "promptByLocale": {
-          "ru": "Коротких путей нет. Выберите ответ.",
-          "uk": "Коротких шляхів немає. Виберіть відповідь."
+          "ru": "Сосед ищет мясную лавку. Скажите ему, что на этой улице мясной лавки нет.",
+          "uk": "Сусід шукає м’ясну крамницю. Скажіть йому, що на цій вулиці м’ясної крамниці немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-56:intro3:r1",
-              "text": "There aren't any shortcuts."
+              "text": "There isn’t a butcher on this street."
             },
             {
               "responseId": "en:lesson-04:session-56:intro3:r2",
-              "text": "There isn't any shortcuts."
+              "text": "There aren’t a butcher on this street."
             },
             {
               "responseId": "en:lesson-04:session-56:intro3:r3",
-              "text": "There are some shortcuts."
+              "text": "There isn’t butcher on this street."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-56:intro3:r1",
-              "text": "There aren't any shortcuts."
+              "text": "There isn’t a butcher on this street."
             },
             {
               "responseId": "en:lesson-04:session-56:intro3:r2",
-              "text": "There isn't any shortcuts."
+              "text": "There aren’t a butcher on this street."
             },
             {
               "responseId": "en:lesson-04:session-56:intro3:r3",
-              "text": "There are some shortcuts."
+              "text": "There isn’t butcher on this street."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коротких путей нет. Выберите ответ.",
-          "uk": "Коротких шляхів немає. Виберіть відповідь."
+          "ru": "Сосед ищет мясную лавку. Скажите ему, что на этой улице мясной лавки нет.",
+          "uk": "Сусід шукає м’ясну крамницю. Скажіть йому, що на цій вулиці м’ясної крамниці немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "26acaa55688e1e96936a6cfa1bc6095034c5965d4af79e4a9ed87d018902f705"
+  "introFingerprint": "c4395f49dde58c9af643c00355e881e079bb5019a17fe0c0c4f9532d699a0746"
 }

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-51:i01",
-    "correctText": "It is ineffective.",
+    "correctText": "en:lesson-04:session-51:i01:p1=community centre\nen:lesson-04:session-51:i01:p2=leaflet\nen:lesson-04:session-51:i01:p3=stage\nen:lesson-04:session-51:i01:p4=board game",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:word:community centre",
+    "correctText": "community centre",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i02",
     "correctText": "community centre",
-    "correctResponseId": "en:lesson-04:session-51:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-51:i03",
-    "correctText": "community centre",
-    "correctResponseId": "en:lesson-04:session-51:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-51:i04",
-    "correctText": "en:lesson-04:session-51:i04:p1=community centre\nen:lesson-04:session-51:i04:p2=ineffective\nen:lesson-04:session-51:i04:p3=libraries\nen:lesson-04:session-51:i04:p4=recycling bin",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-51:i03",
+    "correctText": "There is a community centre near the bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:word:leaflet",
+    "correctText": "leaflet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:i04",
+    "correctText": "leaflet",
+    "correctResponseId": "en:lesson-04:session-51:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-51:i05",
-    "correctText": "This is a community centre.",
+    "correctText": "There are some leaflets near the door.",
+    "correctResponseId": "en:lesson-04:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:word:board game",
+    "correctText": "board game",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i06",
-    "correctText": "The libraries are next to the park.",
+    "correctText": "board game",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i07",
-    "correctText": "It's ineffective.",
+    "correctText": "Are there any board games on the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-51:word:stage",
+    "correctText": "stage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i08",
-    "correctText": "isn't",
+    "correctText": "stage",
     "correctResponseId": "en:lesson-04:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-51:i09",
-    "correctText": "The recycling bin is next to the door.",
-    "correctResponseId": "en:lesson-04:session-51:i09:r1"
+    "correctText": "There isn’t a stage in the hall.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i10",
-    "correctText": "en:lesson-04:session-51:i10:p1=community centre\nen:lesson-04:session-51:i10:p2=ineffective\nen:lesson-04:session-51:i10:p3=libraries\nen:lesson-04:session-51:i10:p4=recycling bin",
+    "correctText": "en:lesson-04:session-51:i10:p1=leaflet\nen:lesson-04:session-51:i10:p2=stage\nen:lesson-04:session-51:i10:p3=hall\nen:lesson-04:session-51:i10:p4=noticeboard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i11",
-    "correctText": "Is there a community centre?",
-    "correctResponseId": null
+    "correctText": "Are there any leaflets here?",
+    "correctResponseId": "en:lesson-04:session-51:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-51:i12",
-    "correctText": "There is a community centre.",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-51:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-51:i13",
-    "correctText": "Is there a recycling bin?",
+    "correctText": "There are some board games in the hall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i14",
-    "correctText": "between",
-    "correctResponseId": "en:lesson-04:session-51:i14:r1"
+    "correctText": "Is there a community centre near here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i15",
-    "correctText": "That is a community centre.",
-    "correctResponseId": "en:lesson-04:session-51:i15:r1"
+    "correctText": "There aren’t any leaflets on the stage.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i16",
-    "correctText": "en:lesson-04:session-51:i16:p1=community centre\nen:lesson-04:session-51:i16:p2=ineffective\nen:lesson-04:session-51:i16:p3=libraries\nen:lesson-04:session-51:i16:p4=recycling bin",
+    "correctText": "en:lesson-04:session-51:i16:p1=community centre\nen:lesson-04:session-51:i16:p2=leaflet\nen:lesson-04:session-51:i16:p3=stage\nen:lesson-04:session-51:i16:p4=board game",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-51:i17",
-    "correctText": "The community centre is next to the park.",
+    "correctText": "There aren’t any leaflets here.",
     "correctResponseId": null
   }
 ]

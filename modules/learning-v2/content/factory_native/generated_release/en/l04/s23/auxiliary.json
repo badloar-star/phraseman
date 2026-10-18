@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-23:intro1:r2": {
-          "ru": "О сыре как продукте говорим `There is some cheese here`.",
-          "uk": "Про сир як продукт кажемо `There is some cheese here`."
+          "ru": "Когда мы просто сообщаем, что есть, ставим some, а не any.",
+          "uk": "Коли ми просто повідомляємо, що є, ставимо some, а не any."
         },
         "en:lesson-04:session-23:intro1:r3": {
-          "ru": "Здесь речь о продукте вообще, а не отдельном сорте или головке: `some cheese`.",
-          "uk": "Тут ідеться про продукт загалом, а не окремий сорт чи головку: `some cheese`."
+          "ru": "Сыр не считают штуками, поэтому нужно There is, а не There are.",
+          "uk": "Сир не рахують штуками, тому потрібно There is, а не There are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-23:intro2:r2": {
-          "ru": "С сыром как продуктом нужно `Is there`.",
-          "uk": "Із сиром як продуктом потрібне `Is there`."
+          "ru": "Мёд не считают штуками, поэтому нужно Is there, а не Are there.",
+          "uk": "Мед не рахують штуками, тому потрібно Is there, а не Are there."
         },
         "en:lesson-04:session-23:intro2:r3": {
-          "ru": "В этом вопросе сначала `Is there`: `Is there any cheese here?`.",
-          "uk": "У цьому запитанні спочатку `Is there`: `Is there any cheese here?`."
+          "ru": "Вопрос начинаем с Is there: Is there any honey…?",
+          "uk": "Запитання починаємо з Is there: Is there any honey…?"
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-23:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-23:intro3:r2": {
-          "ru": "`broken` — сломанный; действительный билет — `valid`.",
-          "uk": "`broken` — зламаний; дійсний квиток — `valid`."
+          "ru": "Когда чего-то нет, вместо some нужно any: There isn't any jam.",
+          "uk": "Коли чогось немає, замість some потрібно any: There isn't any jam."
         },
         "en:lesson-04:session-23:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s valid`.",
-          "uk": "З `It` потрібне `is`: `It’s valid`."
+          "ru": "Чтобы сказать «нет», нужно isn't: There isn't any jam.",
+          "uk": "Щоб сказати «немає», потрібно isn't: There isn't any jam."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7d709b411078d571d3959d26eb619bad9508f35ae1d3666d22ef46eaceb33cc1"
+  "auxiliaryFingerprint": "2e8b1c9b61e3344fb73b6424b9f96e340e2bb49e562779a7409bba03866da473"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-29",
   "learningOutcomeByLocale": {
-    "ru": "назвать автобусную остановку, описать её расположение и сказать, что человек в отъезде",
-    "uk": "назвати автобусну зупинку, описати її розташування та сказати, що людина у від’їзді"
+    "ru": "сказать, что предмет находится ровно между двумя местами, со словом between",
+    "uk": "сказати, що предмет перебуває рівно між двома місцями, зі словом between"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место, где ждут автобус",
-        "uk": "Місце, де чекають на автобус"
+        "ru": "Как доехать",
+        "uk": "Як доїхати"
       },
       "bodyByLocale": {
-        "ru": "`bus stop` — «автобусная остановка». Два слова называют одно место: `a bus stop`. Несколько — `bus stops`. `The bus stop is next to the hotel` — «Автобусная остановка рядом с отелем». Остановка остаётся на месте, даже когда автобус уехал: `bus stop` — место, а не автобус.",
-        "uk": "`bus stop` — «автобусна зупинка». Два слова називають одне місце: `a bus stop`. Кілька — `bus stops`. `The bus stop is next to the hotel` — «Автобусна зупинка поруч із готелем». Зупинка залишається на місці, навіть коли автобус поїхав: `bus stop` — місце, а не автобус."
+        "ru": "Друг приехал в ваш город на выходные и спрашивает, где сесть на автобус. Нужное место стоит посередине улицы: слева банк, справа библиотека. bus stop — «автобусная остановка». between значит «между»: The bus stop is between the bank and the library.",
+        "uk": "Друг приїхав у ваше місто на вихідні й питає, де сісти на автобус. Потрібне місце стоїть посередині вулиці: ліворуч банк, праворуч бібліотека. bus stop — «автобусна зупинка». between означає «між»: The bus stop is between the bank and the library."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите автобусную остановку рядом: «Это автобусная остановка».",
-          "uk": "Назвіть автобусну зупинку поруч: «Це автобусна зупинка»."
+          "ru": "Друг ищет остановку. Скажите ему, что она между банком и библиотекой.",
+          "uk": "Друг шукає зупинку. Скажіть йому, що вона між банком і бібліотекою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-29:intro1:r1",
-              "text": "This is a bus stop."
+              "text": "The bus stop is between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-29:intro1:r2",
-              "text": "These are bus stops."
+              "text": "The bus stop is between the bank."
             },
             {
               "responseId": "en:lesson-04:session-29:intro1:r3",
-              "text": "This is bus stop."
+              "text": "The bus stop is between the bank the library."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-29:intro1:r1",
-              "text": "This is a bus stop."
+              "text": "The bus stop is between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-29:intro1:r2",
-              "text": "These are bus stops."
+              "text": "The bus stop is between the bank."
             },
             {
               "responseId": "en:lesson-04:session-29:intro1:r3",
-              "text": "This is bus stop."
+              "text": "The bus stop is between the bank the library."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите автобусную остановку рядом: «Это автобусная остановка».",
-          "uk": "Назвіть автобусну зупинку поруч: «Це автобусна зупинка»."
+          "ru": "Друг ищет остановку. Скажите ему, что она между банком и библиотекой.",
+          "uk": "Друг шукає зупинку. Скажіть йому, що вона між банком і бібліотекою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Столы и сок",
-        "uk": "Столи й сік"
+        "ru": "Первый раз одна",
+        "uk": "Перший раз сама"
       },
       "bodyByLocale": {
-        "ru": "`tables` — «столы»: `The tables are under the awning` — «Столы под навесом». `juice` — «сок»: `The juice is on the table` — «Сок на столе». Речь о соке в посуде, а не о разлитом напитке. `The bus stop is between the buildings` — «Автобусная остановка между зданиями». Для нескольких столов — `are`, для сока или одной остановки — `is`.",
-        "uk": "`tables` — «столи»: `The tables are under the awning` — «Столи під навісом». `juice` — «сік»: `The juice is on the table` — «Сік на столі». Ідеться про сік у посуді, а не про розлитий напій. `The bus stop is between the buildings` — «Автобусна зупинка між будівлями». Для кількох столів — `are`, для соку чи однієї зупинки — `is`."
+        "ru": "Сестра впервые идёт в школу одна. Дорогу можно перейти только в одном месте: там горит красный, а потом зелёный сигнал. Он стоит посередине между школой и парком. traffic light — «светофор». The traffic light is between the school and the park.",
+        "uk": "Сестра вперше йде до школи сама. Дорогу можна перейти лише в одному місці: там горить червоний, а потім зелений сигнал. Він стоїть посередині між школою й парком. traffic light — «світлофор». The traffic light is between the school and the park."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro2:q",
         "promptByLocale": {
-          "ru": "Столы стоят под навесом. Выберите описание.",
-          "uk": "Столи стоять під навісом. Виберіть опис."
+          "ru": "Сестра спрашивает, где переходить дорогу. Скажите ей, что светофор между школой и парком.",
+          "uk": "Сестра питає, де переходити дорогу. Скажіть їй, що світлофор між школою й парком."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-29:intro2:r1",
-              "text": "The tables are under the awning."
+              "text": "The traffic light is between the school and the park."
             },
             {
               "responseId": "en:lesson-04:session-29:intro2:r2",
-              "text": "The tables is under the awning."
+              "text": "The traffic light are between the school and the park."
             },
             {
               "responseId": "en:lesson-04:session-29:intro2:r3",
-              "text": "The tables are on the awning."
+              "text": "The traffic light is next to the school and the park."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-29:intro2:r1",
-              "text": "The tables are under the awning."
+              "text": "The traffic light is between the school and the park."
             },
             {
               "responseId": "en:lesson-04:session-29:intro2:r2",
-              "text": "The tables is under the awning."
+              "text": "The traffic light are between the school and the park."
             },
             {
               "responseId": "en:lesson-04:session-29:intro2:r3",
-              "text": "The tables are on the awning."
+              "text": "The traffic light is next to the school and the park."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Столы стоят под навесом. Выберите описание.",
-          "uk": "Столи стоять під навісом. Виберіть опис."
+          "ru": "Сестра спрашивает, где переходить дорогу. Скажите ей, что светофор между школой и парком.",
+          "uk": "Сестра питає, де переходити дорогу. Скажіть їй, що світлофор між школою й парком."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Он в отъезде",
-        "uk": "Він у від’їзді"
+        "ru": "Фото на память",
+        "uk": "Фото на згадку"
       },
       "bodyByLocale": {
-        "ru": "`away` может означать «не здесь, в отъезде». Знакомый уехал на несколько дней: `He is away` — «Он в отъезде». Сокращённо: `He’s away`. Здесь `away` не сообщает точного расстояния или места: мы только говорим, что его сейчас нет здесь.",
-        "uk": "`away` може означати «не тут, у від’їзді». Знайомий поїхав на кілька днів: `He is away` — «Він у від’їзді». Скорочено: `He’s away`. Тут `away` не повідомляє точної відстані чи місця: ми лише кажемо, що його зараз немає тут."
+        "ru": "Гость города хочет сфотографироваться у старой фигуры из камня, которая стоит в парке. Вы знаете дорогу: по одну сторону от неё дерево, по другую скамейка. statue — «статуя». The statue is between the tree and the bench — «Статуя между деревом и скамейкой».",
+        "uk": "Гість міста хоче сфотографуватися біля старої фігури з каменю, що стоїть у парку. Ви знаєте дорогу: з одного боку від неї дерево, з другого лавка. statue — «статуя». The statue is between the tree and the bench — «Статуя між деревом і лавкою»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-29:intro3:q",
         "promptByLocale": {
-          "ru": "Знакомый уехал на несколько дней. Скажите «Он в отъезде» с сокращением.",
-          "uk": "Знайомий поїхав на кілька днів. Скажіть «Він у від’їзді» зі скороченням."
+          "ru": "Гость ищет статую. Скажите ему, что она между деревом и скамейкой.",
+          "uk": "Гість шукає статую. Скажіть йому, що вона між деревом і лавкою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-29:intro3:r1",
-              "text": "He's away."
+              "text": "The statue is between the tree and the bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r2",
-              "text": "He's here."
+              "text": "The statue is between the tree and bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r3",
-              "text": "He are away."
+              "text": "The statue is under the tree and the bench."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-29:intro3:r1",
-              "text": "He's away."
+              "text": "The statue is between the tree and the bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r2",
-              "text": "He's here."
+              "text": "The statue is between the tree and bench."
             },
             {
               "responseId": "en:lesson-04:session-29:intro3:r3",
-              "text": "He are away."
+              "text": "The statue is under the tree and the bench."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Знакомый уехал на несколько дней. Скажите «Он в отъезде» с сокращением.",
-          "uk": "Знайомий поїхав на кілька днів. Скажіть «Він у від’їзді» зі скороченням."
+          "ru": "Гость ищет статую. Скажите ему, что она между деревом и скамейкой.",
+          "uk": "Гість шукає статую. Скажіть йому, що вона між деревом і лавкою."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "67f697b78b1c7d2bbd5461dbbbf4a7bcea2631a89405d2c12bfeb13045603d01"
+  "introFingerprint": "74713f9a29e68382733c9880140187cabf9f45d898a6a9d7e24afeefa2e3c4ae"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-30:intro1:r2": {
-          "ru": "Это несколько столбов; здесь один: `This is a signpost`.",
-          "uk": "Це кілька стовпів; тут один: `This is a signpost`."
+          "ru": "behind — «за», а указатель стоит недалеко от моста: нужно near.",
+          "uk": "behind — «за», а покажчик стоїть недалеко від мосту: потрібно near."
         },
         "en:lesson-04:session-30:intro1:r3": {
-          "ru": "Перед одним столбом нужно `a`: `a signpost`.",
-          "uk": "Перед одним стовпом потрібне `a`: `a signpost`."
+          "ru": "Указатель один, поэтому нужно is: The signpost is.",
+          "uk": "Покажчик один, тому потрібно is: The signpost is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-30:intro2:r2": {
-          "ru": "`under` — под; морковка на поверхности стола: `on`.",
-          "uk": "`under` — під; морквина на поверхні столу: `on`."
+          "ru": "under — «под», а калитка стоит позади кустов: нужно behind.",
+          "uk": "under — «під», а хвіртка стоїть позаду кущів: потрібно behind."
         },
         "en:lesson-04:session-30:intro2:r3": {
-          "ru": "Одна морковка: `The carrot is`.",
-          "uk": "Одна морквина: `The carrot is`."
+          "ru": "Изгородь вы оба видите, поэтому перед ней нужно the: behind the hedge.",
+          "uk": "Живопліт ви обоє бачите, тому перед ним потрібно the: behind the hedge."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-30:intro3:r2": {
-          "ru": "`here` — здесь; в условии в другом месте: `elsewhere`.",
-          "uk": "`here` — тут; в умові в іншому місці: `elsewhere`."
+          "ru": "Сарай вы оба знаете, поэтому перед ним нужно the: behind the shed.",
+          "uk": "Сарай ви обоє знаєте, тому перед ним потрібно the: behind the shed."
         },
         "en:lesson-04:session-30:intro3:r3": {
-          "ru": "С `It` нужно `is`: `It’s elsewhere`.",
-          "uk": "З `It` потрібне `is`: `It’s elsewhere`."
+          "ru": "Лестница одна, поэтому нужно is: The ladder is.",
+          "uk": "Драбина одна, тому потрібно is: The ladder is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ed97e17af10542ca08fb5eea94768c90f8ff6275b7dcd7750606a8e93f33e967"
+  "auxiliaryFingerprint": "9028040e6b29a4729e4bc1ab0de4063c44e07094b29c2026e4f2158d39707dab"
 }

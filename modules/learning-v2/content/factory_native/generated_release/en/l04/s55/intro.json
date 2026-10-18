@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-55",
   "learningOutcomeByLocale": {
-    "ru": "назвать короткий путь, спросить о нём и описать расположение мест и еды",
-    "uk": "назвати короткий шлях, запитати про нього й описати розташування місць та їжі"
+    "ru": "самому выбрать утверждение, вопрос или отрицание и назвать место: in, on, under, next to, between",
+    "uk": "самому вибрати твердження, запитання чи заперечення й назвати місце: in, on, under, next to, between"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Путь покороче",
-        "uk": "Шлях коротший"
+        "ru": "Опаздываем на автобус",
+        "uk": "Спізнюємося на автобус"
       },
       "bodyByLocale": {
-        "ru": "`shortcut` — «короткий путь»: маршрут короче обычного. `This is a shortcut` — «Это короткий путь». Если после вашего «короткого пути» друг успел проголодаться дважды, стоит ещё раз посмотреть на карту. Перед одним путём нужно `a`: `a shortcut`.",
-        "uk": "`shortcut` — «короткий шлях»: маршрут коротший за звичайний. `This is a shortcut` — «Це короткий шлях». Якщо після вашого «короткого шляху» друг устиг зголодніти двічі, варто ще раз подивитися на карту. Перед одним шляхом потрібне `a`: `a shortcut`."
+        "ru": "Подруга опаздывает на автобус, а идёт домой кружным путём. Вы знаете дорогу, которая идёт напрямую и экономит десять минут. shortcut — «короткий путь». Он один и проходит между парком и библиотекой: There is a shortcut between the park and the library.",
+        "uk": "Подруга спізнюється на автобус, а йде додому околицею. Ви знаєте дорогу, яка йде навпростець і заощаджує десять хвилин. shortcut — «короткий шлях». Він один і проходить між парком і бібліотекою: There is a shortcut between the park and the library."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro1:q",
         "promptByLocale": {
-          "ru": "Покажите один короткий путь.",
-          "uk": "Покажіть один короткий шлях."
+          "ru": "Подруга опаздывает на автобус. Скажите ей, что между парком и библиотекой есть короткий путь.",
+          "uk": "Подруга спізнюється на автобус. Скажіть їй, що між парком і бібліотекою є короткий шлях."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-55:intro1:r1",
-              "text": "This is a shortcut."
+              "text": "There is a shortcut between the park and the library."
             },
             {
               "responseId": "en:lesson-04:session-55:intro1:r2",
-              "text": "This is shortcut."
+              "text": "There are a shortcut between the park and the library."
             },
             {
               "responseId": "en:lesson-04:session-55:intro1:r3",
-              "text": "These are shortcuts."
+              "text": "There is a shortcut between the park."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-55:intro1:r1",
-              "text": "This is a shortcut."
+              "text": "There is a shortcut between the park and the library."
             },
             {
               "responseId": "en:lesson-04:session-55:intro1:r2",
-              "text": "This is shortcut."
+              "text": "There are a shortcut between the park and the library."
             },
             {
               "responseId": "en:lesson-04:session-55:intro1:r3",
-              "text": "These are shortcuts."
+              "text": "There is a shortcut between the park."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Покажите один короткий путь.",
-          "uk": "Покажіть один короткий шлях."
+          "ru": "Подруга опаздывает на автобус. Скажите ей, что между парком и библиотекой есть короткий путь.",
+          "uk": "Подруга спізнюється на автобус. Скажіть їй, що між парком і бібліотекою є короткий шлях."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Карте нельзя доверять",
-        "uk": "Карті не можна довіряти"
+        "ru": "Подальше от машин",
+        "uk": "Подалі від машин"
       },
       "bodyByLocale": {
-        "ru": "`unreliable` — «ненадёжный». Если карта часто показывает несуществующие проходы: `The map is unreliable` — «Карта ненадёжная». Лучше уточнить: `Is there a shortcut?` — «Есть ли короткий путь?» Если его нет: `There isn’t a shortcut`.",
-        "uk": "`unreliable` — «ненадійний». Якщо карта часто показує проходи, яких немає: `The map is unreliable` — «Карта ненадійна». Краще уточнити: `Is there a shortcut?` — «Чи є короткий шлях?» Якщо його немає: `There isn’t a shortcut`."
+        "ru": "Подруга не хочет идти по шоссе рядом с машинами и спрашивает, как пройти пешком. Вы думаете об узкой дорожке в траве, по которой ходят только люди. footpath — «пешая тропа». Вы не уверены и спрашиваете у прохожего: Is there a footpath between the park and the school?",
+        "uk": "Подруга не хоче йти по шосе поруч із машинами й питає, як пройти пішки. Ви думаєте про вузьку доріжку в траві, по якій ходять лише люди. footpath — «піша стежка». Ви не впевнені й питаєте в перехожого: Is there a footpath between the park and the school?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что карта ненадёжная.",
-          "uk": "Скажіть, що карта ненадійна."
+          "ru": "Подруга не хочет идти рядом с машинами. Спросите прохожего, есть ли между парком и школой пешая тропа.",
+          "uk": "Подруга не хоче йти поруч із машинами. Запитайте перехожого, чи є між парком і школою піша стежка."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-55:intro2:r1",
-              "text": "The map is unreliable."
+              "text": "Is there a footpath between the park and the school?"
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r2",
-              "text": "The map are unreliable."
+              "text": "Are there a footpath between the park and the school?"
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r3",
-              "text": "The map is reliable."
+              "text": "There is a footpath between the park and the school?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-55:intro2:r1",
-              "text": "The map is unreliable."
+              "text": "Is there a footpath between the park and the school?"
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r2",
-              "text": "The map are unreliable."
+              "text": "Are there a footpath between the park and the school?"
             },
             {
               "responseId": "en:lesson-04:session-55:intro2:r3",
-              "text": "The map is reliable."
+              "text": "There is a footpath between the park and the school?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что карта ненадёжная.",
-          "uk": "Скажіть, що карта ненадійна."
+          "ru": "Подруга не хочет идти рядом с машинами. Спросите прохожего, есть ли между парком и школой пешая тропа.",
+          "uk": "Подруга не хоче йти поруч із машинами. Запитайте перехожого, чи є між парком і школою піша стежка."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кафе и остатки обеда",
-        "uk": "Кафе й залишки обіду"
+        "ru": "После дождя",
+        "uk": "Після дощу"
       },
       "bodyByLocale": {
-        "ru": "`cafes` — несколько кафе: `The cafes are next to the park` — «Кафе рядом с парком». `leftover` как название — «остаток еды», но о еде после обеда обычно говорят во множественном числе: `leftovers`. `The leftovers are in the fridge` — «Остатки еды в холодильнике». Несколько кафе и остатки еды в этих фразах требуют `are`.",
-        "uk": "`cafes` — кілька кафе: `The cafes are next to the park` — «Кафе поруч із парком». `leftover` як назва — «залишок їжі», але про їжу після обіду зазвичай говорять у множині: `leftovers`. `The leftovers are in the fridge` — «Залишки їжі в холодильнику». Кілька кафе й залишки їжі в цих фразах потребують `are`."
+        "ru": "Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». Таких ям нет совсем, поэтому aren’t any: There aren’t any puddles on the footpath.",
+        "uk": "Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». Таких ям немає зовсім, тому aren’t any: There aren’t any puddles on the footpath."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro3:q",
         "promptByLocale": {
-          "ru": "Остатки еды в холодильнике. Выберите описание.",
-          "uk": "Залишки їжі в холодильнику. Виберіть опис."
+          "ru": "Подруга боится промочить ноги. Скажите ей, что на тропе луж нет.",
+          "uk": "Подруга боїться промочити ноги. Скажіть їй, що на стежці калюж немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-55:intro3:r1",
-              "text": "The leftovers are in the fridge."
+              "text": "There aren’t any puddles on the footpath."
             },
             {
               "responseId": "en:lesson-04:session-55:intro3:r2",
-              "text": "The leftovers is in the fridge."
+              "text": "There isn’t any puddles on the footpath."
             },
             {
               "responseId": "en:lesson-04:session-55:intro3:r3",
-              "text": "The leftovers are under the fridge."
+              "text": "There aren’t any puddle on the footpath."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-55:intro3:r1",
-              "text": "The leftovers are in the fridge."
+              "text": "There aren’t any puddles on the footpath."
             },
             {
               "responseId": "en:lesson-04:session-55:intro3:r2",
-              "text": "The leftovers is in the fridge."
+              "text": "There isn’t any puddles on the footpath."
             },
             {
               "responseId": "en:lesson-04:session-55:intro3:r3",
-              "text": "The leftovers are under the fridge."
+              "text": "There aren’t any puddle on the footpath."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Остатки еды в холодильнике. Выберите описание.",
-          "uk": "Залишки їжі в холодильнику. Виберіть опис."
+          "ru": "Подруга боится промочить ноги. Скажите ей, что на тропе луж нет.",
+          "uk": "Подруга боїться промочити ноги. Скажіть їй, що на стежці калюж немає."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c85be453722885a71a6349adcf3f9b5143fe2ea6b3d23ec589e2c47efccb3be"
+  "introFingerprint": "ac4e861d58d96181671d7bc33ef294b8dd44337b00832790353ce8fe9570c194"
 }

@@ -7,196 +7,6 @@
       "interactionId": "en:lesson-04:session-22:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Чашки для гостей знайшлися. Повідомте «Є кілька чашок» із some",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Чашки для гостей знайшлися. Повідомте «Є кілька чашок» із some",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There are some cups.",
-        "localizedMeaning": {
-          "ru": "Чашки для гостей нашлись. Сообщите «Есть несколько чашек» с some",
-          "uk": "Чашки для гостей знайшлися. Повідомте «Є кілька чашок» із some"
-        },
-        "orderedTokens": [
-          "There",
-          "are",
-          "some",
-          "cups"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-22:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Чашки для гостей знайшлися. Повідомте «Є кілька чашок» із some",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `There are some cups.`",
-              "uk": "тут потрібно `are` — `There are some cups.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-22:i02:r1",
-          "text": "carrot"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i02:r2",
-          "text": "carrots"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i02:r3",
-          "text": "mushroom"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-22:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i02:audio",
-          "transcript": "carrot"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-22:i02:r1",
-            "targetText": "carrot",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i02:r2",
-            "targetText": "carrots",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i02:r3",
-            "targetText": "mushroom",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-22:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `carrot`, а в этом варианте — `carrots`.",
-              "uk": "У записі перше слово — `carrot`, а в цьому варіанті — `carrots`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `carrot`, а в этом варианте — `mushroom`.",
-              "uk": "У записі перше слово — `carrot`, а в цьому варіанті — `mushroom`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть одну морквину",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-22:i03:r1",
-          "text": "carrot"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i03:r2",
-          "text": "carrots"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i03:r3",
-          "text": "cups"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть одну морквину",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите одну морковку",
-          "uk": "Назвіть одну морквину"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-22:i03:r1",
-            "text": "carrot"
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i03:r2",
-            "text": "carrots"
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i03:r3",
-            "text": "cups"
-          }
-        ],
-        "testedDimension": "Назвіть одну морквину",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-22:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть одну морквину",
-            "feedbackByLocale": {
-              "ru": "`carrots` — несколько морковок; одна — `carrot`.",
-              "uk": "`carrots` — кілька морквин; одна — `carrot`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть одну морквину",
-            "feedbackByLocale": {
-              "ru": "`cups` — чашки; морковка — `carrot`.",
-              "uk": "`cups` — чашки; морквина — `carrot`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -208,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-22:i04:p1",
+            "pairId": "en:lesson-04:session-22:i01:p1",
             "target": "carrot",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "морковь",
+              "uk": "морква"
             }
           },
           {
-            "pairId": "en:lesson-04:session-22:i04:p2",
-            "target": "complete",
+            "pairId": "en:lesson-04:session-22:i01:p2",
+            "target": "biscuit",
             "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
+              "ru": "печенье",
+              "uk": "печиво"
             }
           },
           {
-            "pairId": "en:lesson-04:session-22:i04:p3",
-            "target": "cups",
+            "pairId": "en:lesson-04:session-22:i01:p3",
+            "target": "sausage",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "сосиска",
+              "uk": "сосиска"
             }
           },
           {
-            "pairId": "en:lesson-04:session-22:i04:p4",
-            "target": "laundrette",
+            "pairId": "en:lesson-04:session-22:i01:p4",
+            "target": "plum",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "слива",
+              "uk": "слива"
             }
           }
         ],
         "leftColumn": [
           "carrot",
-          "complete",
-          "cups",
-          "laundrette"
+          "biscuit",
+          "sausage",
+          "plum"
         ],
         "rightColumn": [
-          "морквина",
-          "повний, завершений",
-          "чашки",
-          "пральня самообслуговування"
+          "морква",
+          "печиво",
+          "сосиска",
+          "слива"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -267,108 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-22:word:carrot",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — carrot",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-22:i05:audio"
+        "en:lesson-04:session-22:word:carrot:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — carrot",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i05:audio",
-          "transcript": "This is a carrot."
+          "audioTargetId": "en:lesson-04:session-22:word:carrot:audio",
+          "transcript": "carrot"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a carrot.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "carrot"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-22:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a carrot.`",
-              "uk": "тут потрібно `is` — `This is a carrot.`"
+            "responseId": "en:lesson-04:session-22:word:carrot:r1",
+            "targetText": "carrot",
+            "meaningByLocale": {
+              "ru": "морковь, морковка. There aren't any carrots here. — «Здесь нет моркови». Об оранжевом корнеплоде.",
+              "uk": "морква, морквина. There aren't any carrots here. — «Тут немає моркви». Про оранжевий коренеплід."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carrot",
+          "definitionByLocale": {
+            "ru": "морковь, морковка. There aren't any carrots here. — «Здесь нет моркови». Об оранжевом корнеплоде.",
+            "uk": "морква, морквина. There aren't any carrots here. — «Тут немає моркви». Про оранжевий коренеплід."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Запитайте «Тут є чашки?» з any",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Тут є чашки?» з any",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there any cups here?",
-        "localizedMeaning": {
-          "ru": "Спросите «Здесь есть чашки?» с any",
-          "uk": "Запитайте «Тут є чашки?» з any"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "any",
-          "cups",
-          "here"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-22:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви внесли до списку всі потрібні пункти. Скажіть «Він повний» зі скороченням",
+      "prompt": "Подруга показує довгий оранжевий коренеплід і називає слово, а ви повторюєте за нею",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-22:i07:audio"
+        "en:lesson-04:session-22:i02:audio"
       ],
-      "accessibilityLabel": "Ви внесли до списку всі потрібні пункти. Скажіть «Він повний» зі скороченням",
+      "accessibilityLabel": "Подруга показує довгий оранжевий коренеплід і називає слово, а ви повторюєте за нею",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i07:audio",
-          "transcript": "It's complete."
+          "audioTargetId": "en:lesson-04:session-22:i02:audio",
+          "transcript": "carrot"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's complete.",
+        "targetPhrase": "carrot",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -382,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга варить суп. Скажіть їй повною фразою: поруч із холодильником немає моркви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга варить суп. Скажіть їй повною фразою: поруч із холодильником немає моркви",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any carrots near the fridge.",
+        "localizedMeaning": {
+          "ru": "Подруга варит суп. Скажите ей полной фразой: рядом с холодильником нет моркови",
+          "uk": "Подруга варить суп. Скажіть їй повною фразою: поруч із холодильником немає моркви"
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "carrots",
+          "near",
+          "the",
+          "fridge"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга варить суп. Скажіть їй повною фразою: поруч із холодильником немає моркви",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren't` — `There aren't any carrots near the fridge.`",
+              "uk": "тут потрібно `aren't` — `There aren't any carrots near the fridge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:word:biscuit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — biscuit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:word:biscuit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — biscuit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:word:biscuit:audio",
+          "transcript": "biscuit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-22:word:biscuit:r1",
+            "targetText": "biscuit",
+            "meaningByLocale": {
+              "ru": "печенье. There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья». О сухой сладкой выпечке к чаю.",
+              "uk": "печиво. There aren't any biscuits near the plate. — «Поруч із тарілкою немає печива». Про суху солодку випічку до чаю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "biscuit",
+          "definitionByLocale": {
+            "ru": "печенье. There aren't any biscuits near the plate. — «Рядом с тарелкой нет печенья». О сухой сладкой выпечке к чаю.",
+            "uk": "печиво. There aren't any biscuits near the plate. — «Поруч із тарілкою немає печива». Про суху солодку випічку до чаю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Повідомте «Тут є трохи моркви»",
+      "prompt": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-22:i08:r1",
-          "text": "some"
+          "responseId": "en:lesson-04:session-22:i04:r1",
+          "text": "biscuit"
         },
         {
-          "responseId": "en:lesson-04:session-22:i08:r2",
-          "text": "a"
+          "responseId": "en:lesson-04:session-22:i04:r2",
+          "text": "bread"
         },
         {
-          "responseId": "en:lesson-04:session-22:i08:r3",
-          "text": "an"
+          "responseId": "en:lesson-04:session-22:i04:r3",
+          "text": "sugar"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Повідомте «Тут є трохи моркви»",
+      "accessibilityLabel": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сообщите «Здесь есть немного моркови»",
-          "uk": "Повідомте «Тут є трохи моркви»"
+          "ru": "Сухая сладкая выпечка, которую едят к чаю. Как она называется по-английски?",
+          "uk": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "There are ___ carrots here.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-22:i08:r1",
-            "text": "some"
+            "responseId": "en:lesson-04:session-22:i04:r1",
+            "text": "biscuit"
           },
           {
-            "responseId": "en:lesson-04:session-22:i08:r2",
-            "text": "a"
+            "responseId": "en:lesson-04:session-22:i04:r2",
+            "text": "bread"
           },
           {
-            "responseId": "en:lesson-04:session-22:i08:r3",
-            "text": "an"
+            "responseId": "en:lesson-04:session-22:i04:r3",
+            "text": "sugar"
           }
         ],
-        "testedDimension": "Повідомте «Тут є трохи моркви»",
+        "testedDimension": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-22:i08:r2",
+            "responseId": "en:lesson-04:session-22:i04:r2",
             "correct": false,
-            "testedDimension": "Повідомте «Тут є трохи моркви»",
+            "testedDimension": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`a` относится к одной морковке; здесь нужно `some carrots`.",
-              "uk": "`a` стосується однієї морквини; тут потрібне `some carrots`."
+              "ru": "bread — это хлеб, а сухая сладкая выпечка к чаю называется biscuit.",
+              "uk": "bread — це хліб, а суха солодка випічка до чаю називається biscuit."
             }
           },
           {
-            "responseId": "en:lesson-04:session-22:i08:r3",
+            "responseId": "en:lesson-04:session-22:i04:r3",
             "correct": false,
-            "testedDimension": "Повідомте «Тут є трохи моркви»",
+            "testedDimension": "Суха солодка випічка, яку їдять до чаю. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`an` тоже относится к одной вещи; здесь несколько морковок: `some carrots`.",
-              "uk": "`an` теж стосується однієї речі; тут кілька морквин: `some carrots`."
+              "ru": "sugar — это сахар, а сухая сладкая выпечка к чаю называется biscuit.",
+              "uk": "sugar — це цукор, а суха солодка випічка до чаю називається biscuit."
             }
           }
         ]
@@ -451,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте запитання",
+      "prompt": "Послухайте повідомлення подруги",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-22:i09:r1",
-          "text": "Is there a laundrette?"
+          "responseId": "en:lesson-04:session-22:i05:r1",
+          "text": "There aren't any biscuits here."
         },
         {
-          "responseId": "en:lesson-04:session-22:i09:r2",
-          "text": "Is there a gym?"
+          "responseId": "en:lesson-04:session-22:i05:r2",
+          "text": "There aren't any carrots here."
         },
         {
-          "responseId": "en:lesson-04:session-22:i09:r3",
-          "text": "Is there a hotel?"
+          "responseId": "en:lesson-04:session-22:i05:r3",
+          "text": "There are some biscuits here."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-22:i09:audio"
+        "en:lesson-04:session-22:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте запитання",
+      "accessibilityLabel": "Послухайте повідомлення подруги",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i09:audio",
-          "transcript": "Is there a laundrette?"
+          "audioTargetId": "en:lesson-04:session-22:i05:audio",
+          "transcript": "There aren't any biscuits here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-22:i09:r1",
-            "targetText": "Is there a laundrette?",
+            "responseId": "en:lesson-04:session-22:i05:r1",
+            "targetText": "There aren't any biscuits here.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-22:i09:r2",
-            "targetText": "Is there a gym?",
+            "responseId": "en:lesson-04:session-22:i05:r2",
+            "targetText": "There aren't any carrots here.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-22:i09:r3",
-            "targetText": "Is there a hotel?",
+            "responseId": "en:lesson-04:session-22:i05:r3",
+            "targetText": "There are some biscuits here.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-22:i09:r2",
+            "responseId": "en:lesson-04:session-22:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте повідомлення подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laundrette`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `laundrette`, а в цьому варіанті — `gym`."
+              "ru": "В записи говорят про `biscuits`, а в этом варианте про `carrots`.",
+              "uk": "У записі говорять про `biscuits`, а в цьому варіанті про `carrots`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-22:i09:r3",
+            "responseId": "en:lesson-04:session-22:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте запитання",
+            "testedDimension": "Послухайте повідомлення подруги",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `laundrette`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `laundrette`, а в цьому варіанті — `hotel`."
+              "ru": "В записи печенья нет: `There aren't any`, а в этом варианте оно есть: `There are some`.",
+              "uk": "У записі печива немає: `There aren't any`, а в цьому варіанті воно є: `There are some`."
             }
           }
         ],
@@ -527,9 +389,294 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i10",
+      "interactionId": "en:lesson-04:session-22:word:sausage",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sausage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:word:sausage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sausage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:word:sausage:audio",
+          "transcript": "sausage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-22:word:sausage:r1",
+            "targetText": "sausage",
+            "meaningByLocale": {
+              "ru": "сосиска. There aren't any sausages behind the box. — «За коробкой нет сосисок». О мясной колбаске для жарки.",
+              "uk": "сосиска. There aren't any sausages behind the box. — «За коробкою немає сосисок». Про м’ясну ковбаску для смаження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sausage",
+          "definitionByLocale": {
+            "ru": "сосиска. There aren't any sausages behind the box. — «За коробкой нет сосисок». О мясной колбаске для жарки.",
+            "uk": "сосиска. There aren't any sausages behind the box. — «За коробкою немає сосисок». Про м’ясну ковбаску для смаження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат дістає із сумки рожеву ковбаску для смаження й називає слово, а ви повторюєте за ним",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:i06:audio"
+      ],
+      "accessibilityLabel": "Брат дістає із сумки рожеву ковбаску для смаження й називає слово, а ви повторюєте за ним",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:i06:audio",
+          "transcript": "sausage"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "sausage",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте брата й складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте брата й складіть повідомлення",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:i07:audio",
+          "transcript": "There aren't any sausages here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There aren't any sausages here.",
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "sausages",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте брата й складіть повідомлення",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren't` — `There aren't any sausages here.`",
+              "uk": "тут потрібно `aren't` — `There aren't any sausages here.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:word:plum",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:word:plum:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:word:plum:audio",
+          "transcript": "plum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-22:word:plum:r1",
+            "targetText": "plum",
+            "meaningByLocale": {
+              "ru": "слива. There aren't any plums near the bowl. — «Рядом с миской нет слив». О фиолетовом сладком фрукте с косточкой.",
+              "uk": "слива. There aren't any plums near the bowl. — «Поруч із мискою немає слив». Про фіолетовий солодкий фрукт із кісточкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plum",
+          "definitionByLocale": {
+            "ru": "слива. There aren't any plums near the bowl. — «Рядом с миской нет слив». О фиолетовом сладком фрукте с косточкой.",
+            "uk": "слива. There aren't any plums near the bowl. — «Поруч із мискою немає слив». Про фіолетовий солодкий фрукт із кісточкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-22:i08:r1",
+          "text": "plum"
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i08:r2",
+          "text": "cherry"
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i08:r3",
+          "text": "pear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сладкий фиолетовый фрукт с косточкой, похожий на крупную вишню. Как он называется по-английски?",
+          "uk": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-22:i08:r1",
+            "text": "plum"
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i08:r2",
+            "text": "cherry"
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i08:r3",
+            "text": "pear"
+          }
+        ],
+        "testedDimension": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "cherry — это маленькая вишня, а крупный фиолетовый фрукт называется plum.",
+              "uk": "cherry — це маленька вишня, а великий фіолетовий фрукт називається plum."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Солодкий фіолетовий фрукт із кісточкою, схожий на велику вишню. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "pear — это зелёная груша, а крупный фиолетовый фрукт называется plum.",
+              "uk": "pear — це зелена груша, а великий фіолетовий фрукт називається plum."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга хоче слив до чаю. Скажіть їй повною фразою: поруч із мискою немає слив",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга хоче слив до чаю. Скажіть їй повною фразою: поруч із мискою немає слив",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any plums near the bowl.",
+        "localizedMeaning": {
+          "ru": "Подруга хочет слив к чаю. Скажите ей полной фразой: рядом с миской нет слив",
+          "uk": "Подруга хоче слив до чаю. Скажіть їй повною фразою: поруч із мискою немає слив"
+        },
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "plums",
+          "near",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга хоче слив до чаю. Скажіть їй повною фразою: поруч із мискою немає слив",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren't` — `There aren't any plums near the bowl.`",
+              "uk": "тут потрібно `aren't` — `There aren't any plums near the bowl.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -542,48 +689,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-22:i10:p1",
-            "target": "carrot",
+            "target": "plum",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "слива",
+              "uk": "слива"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i10:p2",
-            "target": "carrots",
+            "target": "sausage",
             "meaningByLocale": {
-              "ru": "морковь, несколько морковок",
-              "uk": "морква, кілька морквин"
+              "ru": "сосиска",
+              "uk": "сосиска"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i10:p3",
-            "target": "cups",
+            "target": "carrot",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "морковь",
+              "uk": "морква"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i10:p4",
-            "target": "complete",
+            "target": "biscuit",
             "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
+              "ru": "печенье",
+              "uk": "печиво"
             }
           }
         ],
         "leftColumn": [
+          "plum",
+          "sausage",
           "carrot",
-          "carrots",
-          "cups",
-          "complete"
+          "biscuit"
         ],
         "rightColumn": [
-          "морквина",
-          "морква, кілька морквин",
-          "чашки",
-          "повний, завершений"
+          "слива",
+          "сосиска",
+          "морква",
+          "печиво"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -601,42 +748,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-22:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте коротку відповідь брата",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-22:i11:r1",
+          "text": "No, there aren't."
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i11:r2",
+          "text": "Yes, there are."
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i11:r3",
+          "text": "No, there isn't."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-22:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення",
+      "accessibilityLabel": "Послухайте коротку відповідь брата",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-22:i11:audio",
+          "transcript": "No, there aren't."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-22:i11:r1",
+            "targetText": "No, there aren't.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i11:r2",
+            "targetText": "Yes, there are.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i11:r3",
+            "targetText": "No, there isn't.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь брата",
+            "feedbackByLocale": {
+              "ru": "В записи ответ начинается с `No`, а в этом варианте — с `Yes`.",
+              "uk": "У записі відповідь починається з `No`, а в цьому варіанті — з `Yes`."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте коротку відповідь брата",
+            "feedbackByLocale": {
+              "ru": "В записи `there aren't`, а в этом варианте `there isn't`.",
+              "uk": "У записі `there aren't`, а в цьому варіанті `there isn't`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга каже, що моркви немає зовсім. Доповніть її фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-22:i12:r1",
+          "text": "any"
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i12:r2",
+          "text": "some"
+        },
+        {
+          "responseId": "en:lesson-04:session-22:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга каже, що моркви немає зовсім. Доповніть її фразу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга говорит, что моркови нет совсем. Дополните её фразу",
+          "uk": "Подруга каже, що моркви немає зовсім. Доповніть її фразу"
+        },
+        "gappedTargetPhrase": "There aren't ___ carrots here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-22:i12:r1",
+            "text": "any"
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i12:r2",
+            "text": "some"
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Подруга каже, що моркви немає зовсім. Доповніть її фразу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Подруга каже, що моркви немає зовсім. Доповніть її фразу",
+            "feedbackByLocale": {
+              "ru": "В отрицании some не нужно: There aren't any carrots.",
+              "uk": "У запереченні some не потрібно: There aren't any carrots."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Подруга каже, що моркви немає зовсім. Доповніть її фразу",
+            "feedbackByLocale": {
+              "ru": "Слово a ставят перед одним предметом, а морковок несколько: any carrots.",
+              "uk": "Слово a ставлять перед одним предметом, а морквин кілька: any carrots."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте подругу й складіть повідомлення",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-22:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте подругу й складіть повідомлення",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i11:audio",
-          "transcript": "There are some carrots."
+          "audioTargetId": "en:lesson-04:session-22:i13:audio",
+          "transcript": "There aren't any biscuits near the door."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There are some carrots.",
+        "hiddenTargetPhrase": "There aren't any biscuits near the door.",
         "orderedTokens": [
           "There",
-          "are",
-          "some",
-          "carrots"
+          "aren't",
+          "any",
+          "biscuits",
+          "near",
+          "the",
+          "door"
         ],
         "authoredDistractorTokens": [
-          "is"
+          "isn't"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-22:i11:tile:d1",
+            "responseId": "en:lesson-04:session-22:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть повідомлення",
+            "testedDimension": "Послухайте подругу й складіть повідомлення",
             "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `There are some carrots.`",
-              "uk": "тут потрібно `are` — `There are some carrots.`"
+              "ru": "здесь нужно `aren't` — `There aren't any biscuits near the door.`",
+              "uk": "тут потрібно `aren't` — `There aren't any biscuits near the door.`"
             }
           }
         ],
@@ -648,59 +943,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ви перевіряєте продукти за списком. Запитайте «Чи є морква?» з any",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ви перевіряєте продукти за списком. Запитайте «Чи є морква?» з any",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Are there any carrots?",
-        "localizedMeaning": {
-          "ru": "Вы проверяете продукты по списку. Спросите «Есть ли морковь?» с any",
-          "uk": "Ви перевіряєте продукти за списком. Запитайте «Чи є морква?» з any"
-        },
-        "orderedTokens": [
-          "Are",
-          "there",
-          "any",
-          "carrots"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-22:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Щоб випрати речі, запитайте «Тут є пральня самообслуговування?»",
+      "prompt": "Брат шукає сосиски. Поруч із кошиком їх немає. Скажіть йому про це повною фразою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-22:i13:audio"
+        "en:lesson-04:session-22:i14:audio"
       ],
-      "accessibilityLabel": "Щоб випрати речі, запитайте «Тут є пральня самообслуговування?»",
+      "accessibilityLabel": "Брат шукає сосиски. Поруч із кошиком їх немає. Скажіть йому про це повною фразою",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i13:audio",
-          "transcript": "Is there a laundrette here?"
+          "audioTargetId": "en:lesson-04:session-22:i14:audio",
+          "transcript": "There aren't any sausages near the basket."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a laundrette here?",
+        "targetPhrase": "There aren't any sausages near the basket.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -714,153 +976,56 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-22:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Запитайте «Тут є морква?»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-22:i14:r1",
-          "text": "Are"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i14:r2",
-          "text": "Is"
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i14:r3",
-          "text": "Am"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга перевіряє замовлення. Скажіть їй повною фразою: за мискою немає моркви",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитайте «Тут є морква?»",
+      "accessibilityLabel": "Подруга перевіряє замовлення. Скажіть їй повною фразою: за мискою немає моркви",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Спросите «Здесь есть морковь?»",
-          "uk": "Запитайте «Тут є морква?»"
+        "family": "phrase_builder",
+        "targetPhrase": "There aren't any carrots behind the bowl.",
+        "localizedMeaning": {
+          "ru": "Подруга проверяет заказ. Скажите ей полной фразой: за миской нет моркови",
+          "uk": "Подруга перевіряє замовлення. Скажіть їй повною фразою: за мискою немає моркви"
         },
-        "gappedTargetPhrase": "___ there any carrots here?",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "aren't",
+          "any",
+          "carrots",
+          "behind",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-22:i14:r1",
-            "text": "Are"
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i14:r2",
-            "text": "Is"
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i14:r3",
-            "text": "Am"
+            "responseId": "en:lesson-04:session-22:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга перевіряє замовлення. Скажіть їй повною фразою: за мискою немає моркви",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren't` — `There aren't any carrots behind the bowl.`",
+              "uk": "тут потрібно `aren't` — `There aren't any carrots behind the bowl.`"
+            }
           }
         ],
-        "testedDimension": "Запитайте «Тут є морква?»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-22:i14:r2",
-            "correct": false,
-            "testedDimension": "Запитайте «Тут є морква?»",
-            "feedbackByLocale": {
-              "ru": "`carrots` — несколько морковок: `Are there any carrots here?`.",
-              "uk": "`carrots` — кілька морквин: `Are there any carrots here?`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i14:r3",
-            "correct": false,
-            "testedDimension": "Запитайте «Тут є морква?»",
-            "feedbackByLocale": {
-              "ru": "Вопрос о нескольких морковках начинается с `Are there`.",
-              "uk": "Запитання про кілька морквин починається з `Are there`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-22:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що друг каже про список",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-22:i15:r1",
-          "text": "It is complete."
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i15:r2",
-          "text": "It is broken."
-        },
-        {
-          "responseId": "en:lesson-04:session-22:i15:r3",
-          "text": "It is wet."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-22:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що друг каже про список",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-22:i15:audio",
-          "transcript": "It is complete."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-22:i15:r1",
-            "targetText": "It is complete.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i15:r2",
-            "targetText": "It is broken.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i15:r3",
-            "targetText": "It is wet.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-22:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що друг каже про список",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `broken`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `broken`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-22:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що друг каже про список",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `complete`, а в этом варианте — `wet`.",
-              "uk": "У записі останнє слово — `complete`, а в цьому варіанті — `wet`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-22:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -874,48 +1039,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-22:i16:p1",
-            "target": "carrot",
+            "target": "biscuit",
             "meaningByLocale": {
-              "ru": "морковка",
-              "uk": "морквина"
+              "ru": "печенье",
+              "uk": "печиво"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i16:p2",
-            "target": "complete",
+            "target": "plum",
             "meaningByLocale": {
-              "ru": "полный, завершённый",
-              "uk": "повний, завершений"
+              "ru": "слива",
+              "uk": "слива"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i16:p3",
-            "target": "cups",
+            "target": "carrot",
             "meaningByLocale": {
-              "ru": "чашки",
-              "uk": "чашки"
+              "ru": "морковь",
+              "uk": "морква"
             }
           },
           {
             "pairId": "en:lesson-04:session-22:i16:p4",
-            "target": "laundrette",
+            "target": "sausage",
             "meaningByLocale": {
-              "ru": "прачечная самообслуживания",
-              "uk": "пральня самообслуговування"
+              "ru": "сосиска",
+              "uk": "сосиска"
             }
           }
         ],
         "leftColumn": [
+          "biscuit",
+          "plum",
           "carrot",
-          "complete",
-          "cups",
-          "laundrette"
+          "sausage"
         ],
         "rightColumn": [
-          "морквина",
-          "повний, завершений",
-          "чашки",
-          "пральня самообслуговування"
+          "печиво",
+          "слива",
+          "морква",
+          "сосиска"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -933,25 +1098,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-22:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Іншого дня ви збираєтеся варити суп. Запитайте «Тут є морква?» з any",
+      "prompt": "Брат питає, чи лишилися сливи. Слив немає. Скажіть йому про це повною фразою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-22:i17:audio"
       ],
-      "accessibilityLabel": "Іншого дня ви збираєтеся варити суп. Запитайте «Тут є морква?» з any",
+      "accessibilityLabel": "Брат питає, чи лишилися сливи. Слив немає. Скажіть йому про це повною фразою",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-22:i17:audio",
-          "transcript": "Are there any carrots here?"
+          "transcript": "There aren't any plums here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Are there any carrots here?",
+        "targetPhrase": "There aren't any plums here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -973,11 +1138,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "56cb5ecc73267fa519f6e542e3d21be44d43d0d5a0b13406bf3c7caa5fc5c441"
+  "learnerFingerprint": "ab19dbd77f60e0aeb548ee9bfda24fba87649e53ec60054ea8062253e53ae0fc"
 }

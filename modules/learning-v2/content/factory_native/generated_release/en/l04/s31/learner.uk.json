@@ -7,252 +7,60 @@
       "interactionId": "en:lesson-04:session-31:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Сир у сумці. Скажіть, де він",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Сир у сумці. Скажіть, де він",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The cheese is in the bag.",
-        "localizedMeaning": {
-          "ru": "Сыр в сумке. Скажите, где он",
-          "uk": "Сир у сумці. Скажіть, де він"
-        },
-        "orderedTokens": [
-          "The",
-          "cheese",
-          "is",
-          "in",
-          "the",
-          "bag"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Сир у сумці. Скажіть, де він",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The cheese is in the bag.`",
-              "uk": "тут потрібно `is` — `The cheese is in the bag.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-31:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть назву",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-31:i02:r1",
-          "text": "car park"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i02:r2",
-          "text": "car parks"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i02:r3",
-          "text": "car door"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-31:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть назву",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i02:audio",
-          "transcript": "car park"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-31:i02:r1",
-            "targetText": "car park",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i02:r2",
-            "targetText": "car parks",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i02:r3",
-            "targetText": "car door",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `park`, а в этом варианте — `parks`.",
-              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `parks`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть назву",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `park`, а в этом варианте — `door`.",
-              "uk": "У записі останнє слово — `park`, а в цьому варіанті — `door`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-31:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть місце для стоянки машин",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-31:i03:r1",
-          "text": "car park"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i03:r2",
-          "text": "park"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i03:r3",
-          "text": "hotel"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть місце для стоянки машин",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите место для стоянки машин",
-          "uk": "Назвіть місце для стоянки машин"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-31:i03:r1",
-            "text": "car park"
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i03:r2",
-            "text": "park"
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i03:r3",
-            "text": "hotel"
-          }
-        ],
-        "testedDimension": "Назвіть місце для стоянки машин",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть місце для стоянки машин",
-            "feedbackByLocale": {
-              "ru": "`park` — парк; парковка — `car park`.",
-              "uk": "`park` — парк; парковка — `car park`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть місце для стоянки машин",
-            "feedbackByLocale": {
-              "ru": "`hotel` — отель; парковка — `car park`.",
-              "uk": "`hotel` — готель; парковка — `car park`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-31:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте назви зі значеннями",
+      "prompt": "З’єднайте слова зі значеннями",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте назви зі значеннями",
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-31:i04:p1",
+            "pairId": "en:lesson-04:session-31:i01:p1",
             "target": "car park",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "автостоянка",
+              "uk": "автостоянка"
             }
           },
           {
-            "pairId": "en:lesson-04:session-31:i04:p2",
-            "target": "unusual",
+            "pairId": "en:lesson-04:session-31:i01:p2",
+            "target": "barrier",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "шлагбаум",
+              "uk": "шлагбаум"
             }
           },
           {
-            "pairId": "en:lesson-04:session-31:i04:p3",
-            "target": "parks",
+            "pairId": "en:lesson-04:session-31:i01:p3",
+            "target": "petrol station",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "заправка",
+              "uk": "заправка"
             }
           },
           {
-            "pairId": "en:lesson-04:session-31:i04:p4",
-            "target": "cheese",
+            "pairId": "en:lesson-04:session-31:i01:p4",
+            "target": "roundabout",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "кольцевая развязка",
+              "uk": "кільцева розв’язка"
             }
           }
         ],
         "leftColumn": [
           "car park",
-          "unusual",
-          "parks",
-          "cheese"
+          "barrier",
+          "petrol station",
+          "roundabout"
         ],
         "rightColumn": [
-          "парковка",
-          "незвичайний",
-          "парки",
-          "сир"
+          "автостоянка",
+          "шлагбаум",
+          "заправка",
+          "кільцева розв’язка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -269,121 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-31:word:car park",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car park",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-31:i05:audio"
+        "en:lesson-04:session-31:word:car park:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — car park",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i05:audio",
-          "transcript": "This is a car park."
+          "audioTargetId": "en:lesson-04:session-31:word:car park:audio",
+          "transcript": "car park"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a car park.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "car",
-          "park"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-31:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a car park.`",
-              "uk": "тут потрібно `is` — `This is a car park.`"
+            "responseId": "en:lesson-04:session-31:word:car park:r1",
+            "targetText": "car park",
+            "meaningByLocale": {
+              "ru": "автостоянка. There is a car park near the library. — «Рядом с библиотекой есть автостоянка». О площадке, где оставляют машины.",
+              "uk": "автостоянка. There is a car park near the library. — «Поруч із бібліотекою є автостоянка». Про майданчик, де залишають машини."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car park",
+          "definitionByLocale": {
+            "ru": "автостоянка. There is a car park near the library. — «Рядом с библиотекой есть автостоянка». О площадке, где оставляют машины.",
+            "uk": "автостоянка. There is a car park near the library. — «Поруч із бібліотекою є автостоянка». Про майданчик, де залишають машини."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Ця парковка незвичайна. Опишіть її",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Ця парковка незвичайна. Опишіть її",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The car park is unusual.",
-        "localizedMeaning": {
-          "ru": "Эта парковка необычная. Опишите её",
-          "uk": "Ця парковка незвичайна. Опишіть її"
-        },
-        "orderedTokens": [
-          "The",
-          "car",
-          "park",
-          "is",
-          "unusual"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Ця парковка незвичайна. Опишіть її",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The car park is unusual.`",
-              "uk": "тут потрібно `is` — `The car park is unusual.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-31:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-31:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Для перекусу є трохи сиру. Повідомте про це",
+      "prompt": "Гість показує майданчик, де залишають машини, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-31:i07:audio"
+        "en:lesson-04:session-31:i02:audio"
       ],
-      "accessibilityLabel": "Для перекусу є трохи сиру. Повідомте про це",
+      "accessibilityLabel": "Гість показує майданчик, де залишають машини, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i07:audio",
-          "transcript": "There is some cheese."
+          "audioTargetId": "en:lesson-04:session-31:i02:audio",
+          "transcript": "car park"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There is some cheese.",
+        "targetPhrase": "car park",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -397,68 +153,160 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гість шукає, де залишити машину. Скажіть йому повною фразою: біля бібліотеки є автостоянка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гість шукає, де залишити машину. Скажіть йому повною фразою: біля бібліотеки є автостоянка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a car park near the library.",
+        "localizedMeaning": {
+          "ru": "Гость ищет, где оставить машину. Скажите ему полной фразой: у библиотеки есть автостоянка",
+          "uk": "Гість шукає, де залишити машину. Скажіть йому повною фразою: біля бібліотеки є автостоянка"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "car",
+          "park",
+          "near",
+          "the",
+          "library"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Гість шукає, де залишити машину. Скажіть йому повною фразою: біля бібліотеки є автостоянка",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a car park near the library.`",
+              "uk": "тут потрібно `is` — `There is a car park near the library.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:word:barrier",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barrier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:word:barrier:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barrier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:word:barrier:audio",
+          "transcript": "barrier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-31:word:barrier:r1",
+            "targetText": "barrier",
+            "meaningByLocale": {
+              "ru": "шлагбаум. The barrier is next to the car park. — «Шлагбаум рядом с автостоянкой». О перекладине на въезде, которая поднимается для машин.",
+              "uk": "шлагбаум. The barrier is next to the car park. — «Шлагбаум поруч з автостоянкою». Про перекладину на в’їзді, яка піднімається для машин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barrier",
+          "definitionByLocale": {
+            "ru": "шлагбаум. The barrier is next to the car park. — «Шлагбаум рядом с автостоянкой». О перекладине на въезде, которая поднимается для машин.",
+            "uk": "шлагбаум. The barrier is next to the car park. — «Шлагбаум поруч з автостоянкою». Про перекладину на в’їзді, яка піднімається для машин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Парковка зовні поруч із готелем, не під ним. Виберіть слова",
+      "prompt": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-31:i08:r1",
-          "text": "next to"
+          "responseId": "en:lesson-04:session-31:i04:r1",
+          "text": "barrier"
         },
         {
-          "responseId": "en:lesson-04:session-31:i08:r2",
-          "text": "under"
+          "responseId": "en:lesson-04:session-31:i04:r2",
+          "text": "gate"
         },
         {
-          "responseId": "en:lesson-04:session-31:i08:r3",
-          "text": "in"
+          "responseId": "en:lesson-04:session-31:i04:r3",
+          "text": "fence"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Парковка зовні поруч із готелем, не під ним. Виберіть слова",
+      "accessibilityLabel": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Парковка снаружи рядом с отелем, не под ним. Выберите слова",
-          "uk": "Парковка зовні поруч із готелем, не під ним. Виберіть слова"
+          "ru": "Полосатая перекладина на въезде, которая поднимается для машин. Как она называется по-английски?",
+          "uk": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?"
         },
-        "gappedTargetPhrase": "The car park is ___ the hotel.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-31:i08:r1",
-            "text": "next to"
+            "responseId": "en:lesson-04:session-31:i04:r1",
+            "text": "barrier"
           },
           {
-            "responseId": "en:lesson-04:session-31:i08:r2",
-            "text": "under"
+            "responseId": "en:lesson-04:session-31:i04:r2",
+            "text": "gate"
           },
           {
-            "responseId": "en:lesson-04:session-31:i08:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-31:i04:r3",
+            "text": "fence"
           }
         ],
-        "testedDimension": "Парковка зовні поруч із готелем, не під ним. Виберіть слова",
+        "testedDimension": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-31:i08:r2",
+            "responseId": "en:lesson-04:session-31:i04:r2",
             "correct": false,
-            "testedDimension": "Парковка зовні поруч із готелем, не під ним. Виберіть слова",
+            "testedDimension": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`under` — под; здесь рядом: `next to`.",
-              "uk": "`under` — під; тут поруч: `next to`."
+              "ru": "gate — это ворота или калитка, а полосатая перекладина называется barrier.",
+              "uk": "gate — це ворота або хвіртка, а смугаста перекладина називається barrier."
             }
           },
           {
-            "responseId": "en:lesson-04:session-31:i08:r3",
+            "responseId": "en:lesson-04:session-31:i04:r3",
             "correct": false,
-            "testedDimension": "Парковка зовні поруч із готелем, не під ним. Виберіть слова",
+            "testedDimension": "Смугаста перекладина на в’їзді, яка піднімається для машин. Як вона називається англійською?",
             "feedbackByLocale": {
-              "ru": "`in` — внутри; парковка снаружи рядом: `next to`.",
-              "uk": "`in` — усередині; парковка зовні поруч: `next to`."
+              "ru": "fence — это забор, а полосатая перекладина называется barrier.",
+              "uk": "fence — це паркан, а смугаста перекладина називається barrier."
             }
           }
         ]
@@ -466,73 +314,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де розташовані парки",
+      "prompt": "Послухайте гостя",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-31:i09:r1",
-          "text": "The parks are next to the hotel."
+          "responseId": "en:lesson-04:session-31:i05:r1",
+          "text": "The barrier is near the car park."
         },
         {
-          "responseId": "en:lesson-04:session-31:i09:r2",
-          "text": "The parks are next to the shop."
+          "responseId": "en:lesson-04:session-31:i05:r2",
+          "text": "There is a barrier near the car park."
         },
         {
-          "responseId": "en:lesson-04:session-31:i09:r3",
-          "text": "The parks are next to the gym."
+          "responseId": "en:lesson-04:session-31:i05:r3",
+          "text": "The barrier is near the bank."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-31:i09:audio"
+        "en:lesson-04:session-31:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де розташовані парки",
+      "accessibilityLabel": "Послухайте гостя",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i09:audio",
-          "transcript": "The parks are next to the hotel."
+          "audioTargetId": "en:lesson-04:session-31:i05:audio",
+          "transcript": "The barrier is near the car park."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-31:i09:r1",
-            "targetText": "The parks are next to the hotel.",
+            "responseId": "en:lesson-04:session-31:i05:r1",
+            "targetText": "The barrier is near the car park.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-31:i09:r2",
-            "targetText": "The parks are next to the shop.",
+            "responseId": "en:lesson-04:session-31:i05:r2",
+            "targetText": "There is a barrier near the car park.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-31:i09:r3",
-            "targetText": "The parks are next to the gym.",
+            "responseId": "en:lesson-04:session-31:i05:r3",
+            "targetText": "The barrier is near the bank.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-31:i09:r2",
+            "responseId": "en:lesson-04:session-31:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де розташовані парки",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `shop`."
+              "ru": "В записи `The barrier` — шлагбаум уже известен, а в этом варианте `There is a` — новый.",
+              "uk": "У записі `The barrier` — шлагбаум уже відомий, а в цьому варіанті `There is a` — новий."
             }
           },
           {
-            "responseId": "en:lesson-04:session-31:i09:r3",
+            "responseId": "en:lesson-04:session-31:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де розташовані парки",
+            "testedDimension": "Послухайте гостя",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `gym`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `gym`."
+              "ru": "В записи последнее место `car park`, а в этом варианте `bank`.",
+              "uk": "У записі останнє місце `car park`, а в цьому варіанті `bank`."
             }
           }
         ],
@@ -542,9 +390,296 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i10",
+      "interactionId": "en:lesson-04:session-31:word:petrol station",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — petrol station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:word:petrol station:audio"
+      ],
+      "accessibilityLabel": "Картка слова — petrol station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:word:petrol station:audio",
+          "transcript": "petrol station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-31:word:petrol station:r1",
+            "targetText": "petrol station",
+            "meaningByLocale": {
+              "ru": "заправка. There is a petrol station near the bank. — «Рядом с банком есть заправка». О месте, где машинам дают бензин.",
+              "uk": "заправка. There is a petrol station near the bank. — «Поруч із банком є заправка». Про місце, де машинам дають бензин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "petrol station",
+          "definitionByLocale": {
+            "ru": "заправка. There is a petrol station near the bank. — «Рядом с банком есть заправка». О месте, где машинам дают бензин.",
+            "uk": "заправка. There is a petrol station near the bank. — «Поруч із банком є заправка». Про місце, де машинам дають бензин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Гість показує місце, де машинам дають бензин, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Гість показує місце, де машинам дають бензин, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:i06:audio",
+          "transcript": "petrol station"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "petrol station",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте гостя й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте гостя й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:i07:audio",
+          "transcript": "There is a petrol station near the bank."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a petrol station near the bank.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "petrol",
+          "station",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте гостя й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a petrol station near the bank.`",
+              "uk": "тут потрібно `is` — `There is a petrol station near the bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:word:roundabout",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roundabout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:word:roundabout:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roundabout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:word:roundabout:audio",
+          "transcript": "roundabout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-31:word:roundabout:r1",
+            "targetText": "roundabout",
+            "meaningByLocale": {
+              "ru": "кольцевая развязка. The roundabout is near the bank. — «Кольцо рядом с банком». О круглом перекрёстке, где машины едут по кругу.",
+              "uk": "кільцева розв’язка. The roundabout is near the bank. — «Кільце поруч із банком». Про кругле перехрестя, де машини їдуть по колу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roundabout",
+          "definitionByLocale": {
+            "ru": "кольцевая развязка. The roundabout is near the bank. — «Кольцо рядом с банком». О круглом перекрёстке, где машины едут по кругу.",
+            "uk": "кільцева розв’язка. The roundabout is near the bank. — «Кільце поруч із банком». Про кругле перехрестя, де машини їдуть по колу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-31:i08:r1",
+          "text": "roundabout"
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i08:r2",
+          "text": "bridge"
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i08:r3",
+          "text": "road"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Круглый перекрёсток, где машины едут по кругу. Как он называется по-английски?",
+          "uk": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-31:i08:r1",
+            "text": "roundabout"
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i08:r2",
+            "text": "bridge"
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i08:r3",
+            "text": "road"
+          }
+        ],
+        "testedDimension": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "bridge — это мост, а круглый перекрёсток называется roundabout.",
+              "uk": "bridge — це міст, а кругле перехрестя називається roundabout."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Кругле перехрестя, де машини їдуть по колу. Як воно називається англійською?",
+            "feedbackByLocale": {
+              "ru": "road — это обычная дорога, а круглый перекрёсток называется roundabout.",
+              "uk": "road — це звичайна дорога, а кругле перехрестя називається roundabout."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гість питає про дорогу. Скажіть йому повною фразою: кільце поруч із банком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гість питає про дорогу. Скажіть йому повною фразою: кільце поруч із банком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The roundabout is near the bank.",
+        "localizedMeaning": {
+          "ru": "Гость спрашивает про дорогу. Скажите ему полной фразой: кольцо рядом с банком",
+          "uk": "Гість питає про дорогу. Скажіть йому повною фразою: кільце поруч із банком"
+        },
+        "orderedTokens": [
+          "The",
+          "roundabout",
+          "is",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Гість питає про дорогу. Скажіть йому повною фразою: кільце поруч із банком",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The roundabout is near the bank.`",
+              "uk": "тут потрібно `is` — `The roundabout is near the bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -557,48 +692,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-31:i10:p1",
-            "target": "car park",
+            "target": "roundabout",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "кольцевая развязка",
+              "uk": "кільцева розв’язка"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i10:p2",
-            "target": "unusual",
+            "target": "petrol station",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "заправка",
+              "uk": "заправка"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i10:p3",
-            "target": "parks",
+            "target": "barrier",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "шлагбаум",
+              "uk": "шлагбаум"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i10:p4",
-            "target": "cheese",
+            "target": "bank",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "банк",
+              "uk": "банк"
             }
           }
         ],
         "leftColumn": [
-          "car park",
-          "unusual",
-          "parks",
-          "cheese"
+          "roundabout",
+          "petrol station",
+          "barrier",
+          "bank"
         ],
         "rightColumn": [
-          "парковка",
-          "незвичайний",
-          "парки",
-          "сир"
+          "кільцева розв’язка",
+          "заправка",
+          "шлагбаум",
+          "банк"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -616,77 +751,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-31:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу про машини",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте гостя",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-31:i11:r1",
+          "text": "There is a hotel near the park."
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i11:r2",
+          "text": "The hotel is near the park."
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i11:r3",
+          "text": "There is a hotel near the bank."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-31:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу про машини",
+      "accessibilityLabel": "Послухайте гостя",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-31:i11:audio",
-          "transcript": "There aren't any cars."
+          "transcript": "There is a hotel near the park."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any cars.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "cars"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-31:i11:r1",
+            "targetText": "There is a hotel near the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i11:r2",
+            "targetText": "The hotel is near the park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i11:r3",
+            "targetText": "There is a hotel near the bank.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте гостя",
+            "feedbackByLocale": {
+              "ru": "В записи `There is a` — предмет назван впервые, а в этом варианте `The hotel is` — уже известный.",
+              "uk": "У записі `There is a` — предмет названо вперше, а в цьому варіанті `The hotel is` — уже відомий."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте гостя",
+            "feedbackByLocale": {
+              "ru": "В записи последнее место `park`, а в этом варианте `bank`.",
+              "uk": "У записі останнє місце `park`, а в цьому варіанті `bank`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-31:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Сумка під столом. Скажіть, де вона",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви обоє вже бачите шлагбаум. Виберіть перше слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-31:i12:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i12:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-04:session-31:i12:r3",
+          "text": "There"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка під столом. Скажіть, де вона",
+      "accessibilityLabel": "Ви обоє вже бачите шлагбаум. Виберіть перше слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The bag is under the table.",
-        "localizedMeaning": {
-          "ru": "Сумка под столом. Скажите, где она",
-          "uk": "Сумка під столом. Скажіть, де вона"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы оба уже видите шлагбаум. Выберите первое слово",
+          "uk": "Ви обоє вже бачите шлагбаум. Виберіть перше слово"
         },
+        "gappedTargetPhrase": "___ barrier is near the gate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-31:i12:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i12:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i12:r3",
+            "text": "There"
+          }
+        ],
+        "testedDimension": "Ви обоє вже бачите шлагбаум. Виберіть перше слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви обоє вже бачите шлагбаум. Виберіть перше слово",
+            "feedbackByLocale": {
+              "ru": "A — для нового предмета, а шлагбаум вы оба уже видите: нужно The.",
+              "uk": "A — для нового предмета, а шлагбаум ви обоє вже бачите: потрібно The."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви обоє вже бачите шлагбаум. Виберіть перше слово",
+            "feedbackByLocale": {
+              "ru": "После There нужно is, а здесь сразу barrier is: нужно The.",
+              "uk": "Після There потрібно is, а тут одразу barrier is: потрібно The."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте гостя й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте гостя й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-31:i13:audio",
+          "transcript": "The car park is near the hotel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The car park is near the hotel.",
         "orderedTokens": [
           "The",
-          "bag",
+          "car",
+          "park",
           "is",
-          "under",
+          "near",
           "the",
-          "table"
+          "hotel"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-31:i12:tile:d1",
+            "responseId": "en:lesson-04:session-31:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Сумка під столом. Скажіть, де вона",
+            "testedDimension": "Послухайте гостя й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The bag is under the table.`",
-              "uk": "тут потрібно `is` — `The bag is under the table.`"
+              "ru": "здесь нужно `is` — `The car park is near the hotel.`",
+              "uk": "тут потрібно `is` — `The car park is near the hotel.`"
             }
           }
         ],
@@ -698,26 +946,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-31:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Парковка розташована між двома парками. Скажіть, де вона",
+      "prompt": "Гість питає про дорогу до школи. Відповідайте йому: поруч зі школою є кільце",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-31:i13:audio"
+        "en:lesson-04:session-31:i14:audio"
       ],
-      "accessibilityLabel": "Парковка розташована між двома парками. Скажіть, де вона",
+      "accessibilityLabel": "Гість питає про дорогу до школи. Відповідайте йому: поруч зі школою є кільце",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i13:audio",
-          "transcript": "The car park is between the parks."
+          "audioTargetId": "en:lesson-04:session-31:i14:audio",
+          "transcript": "There is a roundabout near the school."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The car park is between the parks.",
+        "targetPhrase": "There is a roundabout near the school.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -731,153 +979,57 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-31:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-31:i14:r1",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i14:r2",
-          "text": "under"
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i14:r3",
-          "text": "in"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гість питає про шлагбаум. Скажіть йому повною фразою: шлагбаум поруч з автостоянкою",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово",
+      "accessibilityLabel": "Гість питає про шлагбаум. Скажіть йому повною фразою: шлагбаум поруч з автостоянкою",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Сыр лежит на поверхности стола, не под ним и не внутри. Выберите слово",
-          "uk": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "The barrier is next to the car park.",
+        "localizedMeaning": {
+          "ru": "Гость спрашивает про шлагбаум. Скажите ему полной фразой: шлагбаум рядом с автостоянкой",
+          "uk": "Гість питає про шлагбаум. Скажіть йому повною фразою: шлагбаум поруч з автостоянкою"
         },
-        "gappedTargetPhrase": "The cheese is ___ the table.",
-        "gapOptions": [
+        "orderedTokens": [
+          "The",
+          "barrier",
+          "is",
+          "next",
+          "to",
+          "the",
+          "car",
+          "park"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-31:i14:r1",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i14:r2",
-            "text": "under"
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i14:r3",
-            "text": "in"
+            "responseId": "en:lesson-04:session-31:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Гість питає про шлагбаум. Скажіть йому повною фразою: шлагбаум поруч з автостоянкою",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The barrier is next to the car park.`",
+              "uk": "тут потрібно `is` — `The barrier is next to the car park.`"
+            }
           }
         ],
-        "testedDimension": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i14:r2",
-            "correct": false,
-            "testedDimension": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; на поверхности — `on`.",
-              "uk": "`under` — під; на поверхні — `on`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i14:r3",
-            "correct": false,
-            "testedDimension": "Сир лежить на поверхні столу, не під ним і не всередині. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; на поверхности — `on`.",
-              "uk": "`in` — усередині; на поверхні — `on`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-31:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте реакцію друга",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-31:i15:r1",
-          "text": "That is unusual."
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i15:r2",
-          "text": "This is unusual."
-        },
-        {
-          "responseId": "en:lesson-04:session-31:i15:r3",
-          "text": "That is normal."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-31:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте реакцію друга",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-31:i15:audio",
-          "transcript": "That is unusual."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-31:i15:r1",
-            "targetText": "That is unusual.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i15:r2",
-            "targetText": "This is unusual.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i15:r3",
-            "targetText": "That is normal.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-31:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте реакцію друга",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-31:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте реакцію друга",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `unusual`, а в этом варианте — `normal`.",
-              "uk": "У записі останнє слово — `unusual`, а в цьому варіанті — `normal`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-31:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -893,46 +1045,46 @@
             "pairId": "en:lesson-04:session-31:i16:p1",
             "target": "car park",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "автостоянка",
+              "uk": "автостоянка"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i16:p2",
-            "target": "unusual",
+            "target": "barrier",
             "meaningByLocale": {
-              "ru": "необычный",
-              "uk": "незвичайний"
+              "ru": "шлагбаум",
+              "uk": "шлагбаум"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i16:p3",
-            "target": "parks",
+            "target": "petrol station",
             "meaningByLocale": {
-              "ru": "парки",
-              "uk": "парки"
+              "ru": "заправка",
+              "uk": "заправка"
             }
           },
           {
             "pairId": "en:lesson-04:session-31:i16:p4",
-            "target": "cheese",
+            "target": "roundabout",
             "meaningByLocale": {
-              "ru": "сыр",
-              "uk": "сир"
+              "ru": "кольцевая развязка",
+              "uk": "кільцева розв’язка"
             }
           }
         ],
         "leftColumn": [
           "car park",
-          "unusual",
-          "parks",
-          "cheese"
+          "barrier",
+          "petrol station",
+          "roundabout"
         ],
         "rightColumn": [
-          "парковка",
-          "незвичайний",
-          "парки",
-          "сир"
+          "автостоянка",
+          "шлагбаум",
+          "заправка",
+          "кільцева розв’язка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -950,25 +1102,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-31:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті знайомий шукає парковку. Вона поруч із готелем. Скажіть «Парковка поруч із готелем»",
+      "prompt": "В іншому місті друг шукає заправку. Скажіть йому: «Поруч із банком є заправка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-31:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті знайомий шукає парковку. Вона поруч із готелем. Скажіть «Парковка поруч із готелем»",
+      "accessibilityLabel": "В іншому місті друг шукає заправку. Скажіть йому: «Поруч із банком є заправка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-31:i17:audio",
-          "transcript": "The car park is next to the hotel."
+          "transcript": "There is a petrol station next to the bank."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The car park is next to the hotel.",
+        "targetPhrase": "There is a petrol station next to the bank.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -990,11 +1142,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3b156c9a3784a450607853932bd9398330a9f4d51417af5e9f3d1cec14db0d27"
+  "learnerFingerprint": "47815a15ead75982791610cdf74cc430dcc367eefff182aed81ed1c4d5c66c5b"
 }

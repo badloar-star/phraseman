@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-25:intro1:r2": {
-          "ru": "`on` — на поверхности; в условии ягода внутри: `in the sink`.",
-          "uk": "`on` — на поверхні; в умові ягода всередині: `in the sink`."
+          "ru": "Раковину вы оба знаете, поэтому перед ней нужно the: in the sink.",
+          "uk": "Раковину ви обоє знаєте, тому перед нею потрібно the: in the sink."
         },
         "en:lesson-04:session-25:intro1:r3": {
-          "ru": "Одна ягода: `The berry is`.",
-          "uk": "Одна ягода: `The berry is`."
+          "ru": "Лимон один, поэтому нужно is: The lemon is.",
+          "uk": "Лимон один, тому потрібно is: The lemon is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-25:intro2:r2": {
-          "ru": "Это «под окном», а в условии рядом: `next to`.",
-          "uk": "Це «під вікном», а в умові поруч: `next to`."
+          "ru": "Чашек несколько, поэтому нужно are: The cups are.",
+          "uk": "Чашок кілька, тому потрібно are: The cups are."
         },
         "en:lesson-04:session-25:intro2:r3": {
-          "ru": "Одна раковина: `The sink is`.",
-          "uk": "Одна раковина: `The sink is`."
+          "ru": "Посудомоечную машину вы оба знаете, поэтому перед ней нужно the.",
+          "uk": "Посудомийну машину ви обоє знаєте, тому перед нею потрібно the."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-25:intro3:r2": {
-          "ru": "`present` — присутствует; здесь отсутствует: `absent`.",
-          "uk": "`present` — присутній; тут відсутній: `absent`."
+          "ru": "Подвал вы оба знаете, поэтому перед ним нужно the: in the basement.",
+          "uk": "Підвал ви обоє знаєте, тому перед ним потрібно the: in the basement."
         },
         "en:lesson-04:session-25:intro3:r3": {
-          "ru": "С `He` нужно `is`: `He’s absent`.",
-          "uk": "З `He` потрібне `is`: `He’s absent`."
+          "ru": "Велосипед один, поэтому нужно is: The bicycle is.",
+          "uk": "Велосипед один, тому потрібно is: The bicycle is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e68a71f561ab37cea2c5be1ec1805da07190e66b41d3a75be3a6a38cab3d3368"
+  "auxiliaryFingerprint": "fdf934cebf4dc7fa0c7943cc4f96405179d7cc45abd89351034fd535ca00ae13"
 }

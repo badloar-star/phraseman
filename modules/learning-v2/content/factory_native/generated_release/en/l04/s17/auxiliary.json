@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro1:r2": {
-          "ru": "Это несколько ягод, а здесь одна: `This is a berry`.",
-          "uk": "Це кілька ягід, а тут одна: `This is a berry`."
+          "ru": "Ягод несколько, поэтому нужно There are, а не There is.",
+          "uk": "Ягід кілька, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-17:intro1:r3": {
-          "ru": "После `a` нужна одна ягода: `a berry`.",
-          "uk": "Після `a` потрібна одна ягода: `a berry`."
+          "ru": "Ягод несколько, поэтому на конце berries, а не berry.",
+          "uk": "Ягід кілька, тому наприкінці berries, а не berry."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro2:r2": {
-          "ru": "Ягод несколько: `There are some berries here`.",
-          "uk": "Ягід кілька: `There are some berries here`."
+          "ru": "Контейнеров несколько, поэтому на конце containers.",
+          "uk": "Контейнерів кілька, тому наприкінці containers."
         },
         "en:lesson-04:session-17:intro2:r3": {
-          "ru": "`a` относится к одной вещи; для некоторого количества ягод нужно `some berries`.",
-          "uk": "`a` стосується однієї речі; для певної кількості ягід потрібне `some berries`."
+          "ru": "Слово some стоит прямо перед предметом: some containers.",
+          "uk": "Слово some стоїть просто перед предметом: some containers."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-17:intro3:r2": {
-          "ru": "`berries` — несколько: `Are there any berries here?`.",
-          "uk": "`berries` — кілька: `Are there any berries here?`."
+          "ru": "Вишен несколько, поэтому нужно There are, а не There is.",
+          "uk": "Вишень кілька, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-17:intro3:r3": {
-          "ru": "В этом вопросе сначала `Are there`: `Are there any berries here?`.",
-          "uk": "У цьому запитанні спочатку `Are there`: `Are there any berries here?`."
+          "ru": "Вишен несколько, поэтому на конце cherries, а не cherry.",
+          "uk": "Вишень кілька, тому наприкінці cherries, а не cherry."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8301e988f1b87e939f707bf2bb471718fd5ce4ed7c3944c80f34094594babb86"
+  "auxiliaryFingerprint": "7019455952e46131395d21c9e8a6a1a3d22618c87da63e51672ea82e299d3ded"
 }

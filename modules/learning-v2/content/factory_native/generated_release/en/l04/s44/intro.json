@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-44",
   "learningOutcomeByLocale": {
-    "ru": "назвать морозильник, спросить о наличии оборудования и понять слово legal",
-    "uk": "назвати морозильник, запитати про наявність обладнання й зрозуміти слово legal"
+    "ru": "на слух различать in, on, under, next to и between и говорить, где что стоит",
+    "uk": "на слух розрізняти in, on, under, next to і between та говорити, де що стоїть"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для замороженных продуктов",
-        "uk": "Для заморожених продуктів"
+        "ru": "Где холодно",
+        "uk": "Де холодно"
       },
       "bodyByLocale": {
-        "ru": "`freezer` — «морозильник», отделение или прибор для хранения замороженных продуктов. Один морозильник — `a freezer`. `This is a freezer` — «Это морозильник». Мороженому там хорошо, а вам для ночлега лучше выбрать комнату.",
-        "uk": "`freezer` — «морозильник», відділення або прилад для зберігання заморожених продуктів. Один морозильник — `a freezer`. `This is a freezer` — «Це морозильник». Морозиву там добре, а вам для ночівлі краще вибрати кімнату."
+        "ru": "Управляющий ведёт вас на общую кухню и показывает, где хранится замороженная еда. Это большой белый шкаф, в котором продукты держат при сильном холоде. freezer — «морозильник». Он стоит у шкафчика: The freezer is next to the cupboard — «Морозильник стоит рядом со шкафчиком».",
+        "uk": "Управитель веде вас на спільну кухню й показує, де зберігається заморожена їжа. Це велика біла шафа, у якій продукти тримають за сильного холоду. freezer — «морозильник». Він стоїть біля шафки: The freezer is next to the cupboard — «Морозильник стоїть поруч із шафкою»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один морозильник.",
-          "uk": "Назвіть один морозильник."
+          "ru": "Соседка спрашивает, где морозильник. Скажите ей, что он стоит рядом со шкафчиком.",
+          "uk": "Сусідка питає, де морозильник. Скажіть їй, що він стоїть поруч із шафкою."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-44:intro1:r1",
-              "text": "This is a freezer."
+              "text": "The freezer is next to the cupboard."
             },
             {
               "responseId": "en:lesson-04:session-44:intro1:r2",
-              "text": "This is freezer."
+              "text": "The freezer is between the cupboard."
             },
             {
               "responseId": "en:lesson-04:session-44:intro1:r3",
-              "text": "These are freezers."
+              "text": "The freezer are next to the cupboard."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-44:intro1:r1",
-              "text": "This is a freezer."
+              "text": "The freezer is next to the cupboard."
             },
             {
               "responseId": "en:lesson-04:session-44:intro1:r2",
-              "text": "This is freezer."
+              "text": "The freezer is between the cupboard."
             },
             {
               "responseId": "en:lesson-04:session-44:intro1:r3",
-              "text": "These are freezers."
+              "text": "The freezer are next to the cupboard."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один морозильник.",
-          "uk": "Назвіть один морозильник."
+          "ru": "Соседка спрашивает, где морозильник. Скажите ей, что он стоит рядом со шкафчиком.",
+          "uk": "Сусідка питає, де морозильник. Скажіть їй, що він стоїть поруч із шафкою."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что есть в отеле",
-        "uk": "Що є в готелі"
+        "ru": "Комната для запасов",
+        "uk": "Кімната для запасів"
       },
       "bodyByLocale": {
-        "ru": "`hotels` — «отели», `smoke alarm` — «дымовой пожарный извещатель». `The hotels are next to the park` — «Отели рядом с парком». `Is there a smoke alarm?` — «Есть дымовой пожарный извещатель?» `There is a freezer` — «Есть морозильник». С несколькими отелями используйте `are`, с одним прибором — `is`.",
-        "uk": "`hotels` — «готелі», `smoke alarm` — «димовий пожежний сповіщувач». `The hotels are next to the park` — «Готелі поруч із парком». `Is there a smoke alarm?` — «Є димовий пожежний сповіщувач?» `There is a freezer` — «Є морозильник». Із кількома готелями використовуйте `are`, з одним приладом — `is`."
+        "ru": "Вы ищете, куда убрать запасные лампочки и вёдра. Управляющий открывает небольшую комнату без окон, где держат всякие запасы. storeroom — «кладовая». Она зажата с двух сторон: There is a storeroom between the kitchen and the hall — «Между кухней и холлом есть кладовая».",
+        "uk": "Ви шукаєте, куди прибрати запасні лампочки й відра. Управитель відчиняє невелику кімнату без вікон, де тримають усілякі запаси. storeroom — «комора». Вона затиснута з двох боків: There is a storeroom between the kitchen and the hall — «Між кухнею й холом є комора»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro2:q",
         "promptByLocale": {
-          "ru": "Отели рядом с парком. Выберите описание.",
-          "uk": "Готелі поруч із парком. Виберіть опис."
+          "ru": "Управляющий проверяет, что вы запомнили. Скажите ему, что между кухней и холлом есть кладовая.",
+          "uk": "Управитель перевіряє, що ви запам’ятали. Скажіть йому, що між кухнею й холом є комора."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-44:intro2:r1",
-              "text": "The hotels are next to the park."
+              "text": "There is a storeroom between the kitchen and the hall."
             },
             {
               "responseId": "en:lesson-04:session-44:intro2:r2",
-              "text": "The hotels is next to the park."
+              "text": "There is a storeroom between the kitchen the hall."
             },
             {
               "responseId": "en:lesson-04:session-44:intro2:r3",
-              "text": "The hotels are under the park."
+              "text": "There is a storeroom under the kitchen and the hall."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-44:intro2:r1",
-              "text": "The hotels are next to the park."
+              "text": "There is a storeroom between the kitchen and the hall."
             },
             {
               "responseId": "en:lesson-04:session-44:intro2:r2",
-              "text": "The hotels is next to the park."
+              "text": "There is a storeroom between the kitchen the hall."
             },
             {
               "responseId": "en:lesson-04:session-44:intro2:r3",
-              "text": "The hotels are under the park."
+              "text": "There is a storeroom under the kitchen and the hall."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Отели рядом с парком. Выберите описание.",
-          "uk": "Готелі поруч із парком. Виберіть опис."
+          "ru": "Управляющий проверяет, что вы запомнили. Скажите ему, что между кухней и холлом есть кладовая.",
+          "uk": "Управитель перевіряє, що ви запам’ятали. Скажіть йому, що між кухнею й холом є комора."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Разрешено законом",
-        "uk": "Дозволено законом"
+        "ru": "Мокрые куртки",
+        "uk": "Мокрі куртки"
       },
       "bodyByLocale": {
-        "ru": "`legal` — «законный, разрешённый законом». `It is legal` — «Это законно», короче `It’s legal`. Эта фраза сообщает именно о законе; она не означает, что действие удобно или нравится хозяину.",
-        "uk": "`legal` — «законний, дозволений законом». `It is legal` — «Це законно», коротше `It’s legal`. Ця фраза повідомляє саме про закон; вона не означає, що дія зручна чи подобається господарю."
+        "ru": "В холле у входа мокрые куртки лежат на стуле. Подруга показывает высокую подставку на ножке с крючками, куда их вешают. coat rack — «вешалка для одежды». Она стоит у двери, но с другой стороны: The coat rack is behind the door — «Вешалка за дверью».",
+        "uk": "У холі біля входу мокрі куртки лежать на стільці. Подруга показує високу підставку на ніжці з гачками, куди їх вішають. coat rack — «вішак для одягу». Вона стоїть біля дверей, але з іншого боку: The coat rack is behind the door — «Вішак за дверима»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-44:intro3:q",
         "promptByLocale": {
-          "ru": "Вы переводите фразу «Это законно». Выберите вариант с сокращением.",
-          "uk": "Ви перекладаєте фразу «Це законно». Виберіть варіант зі скороченням."
+          "ru": "Подруга ищет, куда повесить куртку. Скажите ей, что вешалка за дверью.",
+          "uk": "Подруга шукає, куди повісити куртку. Скажіть їй, що вішак за дверима."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-44:intro3:r1",
-              "text": "It's legal."
+              "text": "The coat rack is behind the door."
             },
             {
               "responseId": "en:lesson-04:session-44:intro3:r2",
-              "text": "It's illegal."
+              "text": "The coat rack is under the door."
             },
             {
               "responseId": "en:lesson-04:session-44:intro3:r3",
-              "text": "It are legal."
+              "text": "The coat rack are behind the door."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-44:intro3:r1",
-              "text": "It's legal."
+              "text": "The coat rack is behind the door."
             },
             {
               "responseId": "en:lesson-04:session-44:intro3:r2",
-              "text": "It's illegal."
+              "text": "The coat rack is under the door."
             },
             {
               "responseId": "en:lesson-04:session-44:intro3:r3",
-              "text": "It are legal."
+              "text": "The coat rack are behind the door."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы переводите фразу «Это законно». Выберите вариант с сокращением.",
-          "uk": "Ви перекладаєте фразу «Це законно». Виберіть варіант зі скороченням."
+          "ru": "Подруга ищет, куда повесить куртку. Скажите ей, что вешалка за дверью.",
+          "uk": "Подруга шукає, куди повісити куртку. Скажіть їй, що вішак за дверима."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5a9fdb8d1a83813714f3a7f51159bb22498f75e9c367e184feda9258780a9c5c"
+  "introFingerprint": "5d3fbdde28bdacaca20b222b5aba31ad824f06c13e003059ae40d82ab9a15b3e"
 }

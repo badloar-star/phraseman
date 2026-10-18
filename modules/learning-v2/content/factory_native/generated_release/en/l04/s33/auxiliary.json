@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-33:intro1:r2": {
-          "ru": "Перед одним звонком нужно `a`: `a doorbell`.",
-          "uk": "Перед одним дзвінком потрібне `a`: `a doorbell`."
+          "ru": "is значит «есть», а звонка нет: нужно isn’t.",
+          "uk": "is означає «є», а дзвінка немає: потрібно isn’t."
         },
         "en:lesson-04:session-33:intro1:r3": {
-          "ru": "Здесь один звонок: `This is a doorbell`.",
-          "uk": "Тут один дзвінок: `This is a doorbell`."
+          "ru": "Звонок один, поэтому после isn’t нужно a: isn’t a doorbell.",
+          "uk": "Дзвінок один, тому після isn’t потрібно a: isn’t a doorbell."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-33:intro2:r2": {
-          "ru": "`is` сообщает, что телефон есть; для отсутствия нужно `isn’t`.",
-          "uk": "`is` повідомляє, що телефон є; для відсутності потрібне `isn’t`."
+          "ru": "Слово intercom начинается с гласного звука, поэтому нужно an: an intercom.",
+          "uk": "Слово intercom починається з голосного звуку, тому потрібно an: an intercom."
         },
         "en:lesson-04:session-33:intro2:r3": {
-          "ru": "Один телефон: `There isn’t a phone`.",
-          "uk": "Один телефон: `There isn’t a phone`."
+          "ru": "is значит «есть», а домофона нет: нужно isn’t.",
+          "uk": "is означає «є», а домофона немає: потрібно isn’t."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-33:intro3:r2": {
-          "ru": "Так вы сообщаете, что стулья есть; здесь их нет: `aren’t any`.",
-          "uk": "Так ви повідомляєте, що стільці є; тут їх немає: `aren’t any`."
+          "ru": "Щель одна, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Отвір один, тому потрібно isn’t, а не aren’t."
         },
         "en:lesson-04:session-33:intro3:r3": {
-          "ru": "С несколькими стульями, `chairs`, нужно `aren’t`.",
-          "uk": "З кількома стільцями, `chairs`, потрібне `aren’t`."
+          "ru": "is значит «есть», а щели нет: нужно isn’t.",
+          "uk": "is означає «є», а отвору немає: потрібно isn’t."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "e95738c560d8a8047bc3fbcb7c28b7b8bfe08e1ea511a5e74a1a31924d161572"
+  "auxiliaryFingerprint": "11dd4777e6fec19d2729f41f339822f33fb7e9d20b4785fb8f1eac52ae3988ab"
 }

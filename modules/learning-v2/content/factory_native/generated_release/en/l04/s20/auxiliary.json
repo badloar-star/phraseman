@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-20:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-20:intro1:r2": {
-          "ru": "Это несколько грибов; здесь один: `This is a mushroom`.",
-          "uk": "Це кілька грибів; тут один: `This is a mushroom`."
+          "ru": "Грибов несколько, поэтому нужно Are there, а не Is there.",
+          "uk": "Грибів кілька, тому потрібно Are there, а не Is there."
         },
         "en:lesson-04:session-20:intro1:r3": {
-          "ru": "После `a` нужна форма для одного гриба: `mushroom`.",
-          "uk": "Після `a` потрібна форма для одного гриба: `mushroom`."
+          "ru": "Грибов несколько, поэтому на конце mushrooms, а не mushroom.",
+          "uk": "Грибів кілька, тому наприкінці mushrooms, а не mushroom."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-20:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-20:intro2:r2": {
-          "ru": "Грибов несколько: `Are there any mushrooms here?`.",
-          "uk": "Грибів кілька: `Are there any mushrooms here?`."
+          "ru": "Фасолин несколько, поэтому на конце beans, а не bean.",
+          "uk": "Квасолин кілька, тому наприкінці beans, а не bean."
         },
         "en:lesson-04:session-20:intro2:r3": {
-          "ru": "`a` относится к одному грибу; здесь нужен вопрос с `any mushrooms`.",
-          "uk": "`a` стосується одного гриба; тут потрібне запитання з `any mushrooms`."
+          "ru": "Фасолин несколько, поэтому нужно Are there, а не Is there.",
+          "uk": "Квасолин кілька, тому потрібно Are there, а не Is there."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-20:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-20:intro3:r2": {
-          "ru": "`guilty` — виноват; здесь вы невиновны: `innocent`.",
-          "uk": "`guilty` — винний; тут ви невинні: `innocent`."
+          "ru": "Орехов несколько, поэтому на конце nuts, а не nut.",
+          "uk": "Горіхів кілька, тому наприкінці nuts, а не nut."
         },
         "en:lesson-04:session-20:intro3:r3": {
-          "ru": "В условии нужно подтвердить «Да»: `Yes`.",
-          "uk": "В умові потрібно підтвердити «Так»: `Yes`."
+          "ru": "Вопрос начинаем с Are there: Are there any nuts…?",
+          "uk": "Запитання починаємо з Are there: Are there any nuts…?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "49cc2fcecc879a3ad6474eb8537348b5d1591dbcf9cb963842dba392d093a046"
+  "auxiliaryFingerprint": "8cd01dfc8cb48bdd5ac20cb567bb87b5a45b885d45ddb6e0505d0bd6335e5a32"
 }

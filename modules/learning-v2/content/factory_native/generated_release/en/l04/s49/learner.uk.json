@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-49:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Пропозицію не можна прийняти. Скажіть «Це неприйнятно» без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пропозицію не можна прийняти. Скажіть «Це неприйнятно» без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is unacceptable.",
-        "localizedMeaning": {
-          "ru": "Предложение нельзя принять. Скажите «Это неприемлемо» без сокращения",
-          "uk": "Пропозицію не можна прийняти. Скажіть «Це неприйнятно» без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "unacceptable"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Пропозицію не можна прийняти. Скажіть «Це неприйнятно» без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is unacceptable.`",
-              "uk": "тут потрібно `is` — `It is unacceptable.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-49:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-49:i02:r1",
-          "text": "canal"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i02:r2",
-          "text": "canals"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i02:r3",
-          "text": "cashpoint"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-49:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i02:audio",
-          "transcript": "canal"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-49:i02:r1",
-            "targetText": "canal",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i02:r2",
-            "targetText": "canals",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i02:r3",
-            "targetText": "cashpoint",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `canal`, а в этом варианте — `canals`.",
-              "uk": "У записі перше слово — `canal`, а в цьому варіанті — `canals`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `canal`, а в этом варианте — `cashpoint`.",
-              "uk": "У записі перше слово — `canal`, а в цьому варіанті — `cashpoint`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-49:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть штучний водний шлях одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-49:i03:r1",
-          "text": "canal"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i03:r2",
-          "text": "fountain"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i03:r3",
-          "text": "hospital"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть штучний водний шлях одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите искусственный водный путь одним словом",
-          "uk": "Назвіть штучний водний шлях одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-49:i03:r1",
-            "text": "canal"
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i03:r2",
-            "text": "fountain"
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i03:r3",
-            "text": "hospital"
-          }
-        ],
-        "testedDimension": "Назвіть штучний водний шлях одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть штучний водний шлях одним словом",
-            "feedbackByLocale": {
-              "ru": "`fountain` — фонтан; водный канал — `canal`.",
-              "uk": "`fountain` — фонтан; водний канал — `canal`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть штучний водний шлях одним словом",
-            "feedbackByLocale": {
-              "ru": "`hospital` — больница; канал — `canal`.",
-              "uk": "`hospital` — лікарня; канал — `canal`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-49:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-49:i04:p1",
+            "pairId": "en:lesson-04:session-49:i01:p1",
             "target": "canal",
             "meaningByLocale": {
-              "ru": "водный канал",
-              "uk": "водний канал"
+              "ru": "канал",
+              "uk": "канал"
             }
           },
           {
-            "pairId": "en:lesson-04:session-49:i04:p2",
-            "target": "unacceptable",
+            "pairId": "en:lesson-04:session-49:i01:p2",
+            "target": "towpath",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "тропа вдоль канала",
+              "uk": "стежка вздовж каналу"
             }
           },
           {
-            "pairId": "en:lesson-04:session-49:i04:p3",
-            "target": "hospital",
+            "pairId": "en:lesson-04:session-49:i01:p3",
+            "target": "narrowboat",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "узкая лодка-баржа",
+              "uk": "вузький човен-баржа"
             }
           },
           {
-            "pairId": "en:lesson-04:session-49:i04:p4",
-            "target": "cashpoint",
+            "pairId": "en:lesson-04:session-49:i01:p4",
+            "target": "swan",
             "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
+              "ru": "лебедь",
+              "uk": "лебідь"
             }
           }
         ],
         "leftColumn": [
           "canal",
-          "unacceptable",
-          "hospital",
-          "cashpoint"
+          "towpath",
+          "narrowboat",
+          "swan"
         ],
         "rightColumn": [
-          "водний канал",
-          "неприйнятний",
-          "лікарня",
-          "банкомат"
+          "канал",
+          "стежка вздовж каналу",
+          "вузький човен-баржа",
+          "лебідь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,122 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-49:word:canal",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — canal",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-49:i05:audio"
+        "en:lesson-04:session-49:word:canal:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — canal",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i05:audio",
-          "transcript": "This is a canal."
+          "audioTargetId": "en:lesson-04:session-49:word:canal:audio",
+          "transcript": "canal"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a canal.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "canal"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-49:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a canal.`",
-              "uk": "тут потрібно `is` — `This is a canal.`"
+            "responseId": "en:lesson-04:session-49:word:canal:r1",
+            "targetText": "canal",
+            "meaningByLocale": {
+              "ru": "канал. There is a canal near the bank. — «Рядом с банком есть канал». О длинной узкой полосе воды, по которой ходят лодки.",
+              "uk": "канал. There is a canal near the bank. — «Поруч із банком є канал». Про довгу вузьку смугу води, по якій ходять човни."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "canal",
+          "definitionByLocale": {
+            "ru": "канал. There is a canal near the bank. — «Рядом с банком есть канал». О длинной узкой полосе воды, по которой ходят лодки.",
+            "uk": "канал. There is a canal near the bank. — «Поруч із банком є канал». Про довгу вузьку смугу води, по якій ходять човни."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Лікарня поруч із каналом. Скажіть, де вона",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Лікарня поруч із каналом. Скажіть, де вона",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The hospital is next to the canal.",
-        "localizedMeaning": {
-          "ru": "Больница рядом с каналом. Скажите, где она",
-          "uk": "Лікарня поруч із каналом. Скажіть, де вона"
-        },
-        "orderedTokens": [
-          "The",
-          "hospital",
-          "is",
-          "next",
-          "to",
-          "the",
-          "canal"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Лікарня поруч із каналом. Скажіть, де вона",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The hospital is next to the canal.`",
-              "uk": "тут потрібно `is` — `The hospital is next to the canal.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-49:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-49:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пропозиція суперечить погодженим умовам. Передайте «Це неприйнятно» зі скороченням",
+      "prompt": "Сусідка показує на довгу вузьку смугу води, по якій ходять човни, а ви повторюєте за нею слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-49:i07:audio"
+        "en:lesson-04:session-49:i02:audio"
       ],
-      "accessibilityLabel": "Пропозиція суперечить погодженим умовам. Передайте «Це неприйнятно» зі скороченням",
+      "accessibilityLabel": "Сусідка показує на довгу вузьку смугу води, по якій ходять човни, а ви повторюєте за нею слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i07:audio",
-          "transcript": "It's unacceptable."
+          "audioTargetId": "en:lesson-04:session-49:i02:audio",
+          "transcript": "canal"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's unacceptable.",
+        "targetPhrase": "canal",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -395,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусідка питає, що поруч із банком. Скажіть їй повною фразою: поруч із банком є канал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусідка питає, що поруч із банком. Скажіть їй повною фразою: поруч із банком є канал",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a canal near the bank.",
+        "localizedMeaning": {
+          "ru": "Соседка спрашивает, что рядом с банком. Скажите ей полной фразой: рядом с банком есть канал",
+          "uk": "Сусідка питає, що поруч із банком. Скажіть їй повною фразою: поруч із банком є канал"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "canal",
+          "near",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка питає, що поруч із банком. Скажіть їй повною фразою: поруч із банком є канал",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a canal near the bank.`",
+              "uk": "тут потрібно `is` — `There is a canal near the bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:word:swan",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swan",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:word:swan:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swan",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:word:swan:audio",
+          "transcript": "swan"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-49:word:swan:r1",
+            "targetText": "swan",
+            "meaningByLocale": {
+              "ru": "лебедь. There are swans on the pond. — «На пруду есть лебеди». О большой белой птице с длинной шеей, которая плавает по воде.",
+              "uk": "лебідь. There are swans on the pond. — «На ставку є лебеді». Про великого білого птаха з довгою шиєю, який плаває по воді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swan",
+          "definitionByLocale": {
+            "ru": "лебедь. There are swans on the pond. — «На пруду есть лебеди». О большой белой птице с длинной шеей, которая плавает по воде.",
+            "uk": "лебідь. There are swans on the pond. — «На ставку є лебеді». Про великого білого птаха з довгою шиєю, який плаває по воді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Банкомата немає. Виберіть форму",
+      "prompt": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-49:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-49:i04:r1",
+          "text": "swan"
         },
         {
-          "responseId": "en:lesson-04:session-49:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-49:i04:r2",
+          "text": "pigeon"
         },
         {
-          "responseId": "en:lesson-04:session-49:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-49:i04:r3",
+          "text": "bridge"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Банкомата немає. Виберіть форму",
+      "accessibilityLabel": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Банкомата нет. Выберите форму",
-          "uk": "Банкомата немає. Виберіть форму"
+          "ru": "Большая белая птица с длинной шеей, которая плавает по воде. Как она называется по-английски?",
+          "uk": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "There ___ a cashpoint.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-49:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-49:i04:r1",
+            "text": "swan"
           },
           {
-            "responseId": "en:lesson-04:session-49:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-49:i04:r2",
+            "text": "pigeon"
           },
           {
-            "responseId": "en:lesson-04:session-49:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-49:i04:r3",
+            "text": "bridge"
           }
         ],
-        "testedDimension": "Банкомата немає. Виберіть форму",
+        "testedDimension": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-49:i08:r2",
+            "responseId": "en:lesson-04:session-49:i04:r2",
             "correct": false,
-            "testedDimension": "Банкомата немає. Виберіть форму",
+            "testedDimension": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`is` — есть; здесь нет: `isn’t`.",
-              "uk": "`is` — є; тут немає: `isn’t`."
+              "ru": "pigeon — это голубь, а большая белая птица с длинной шеей называется swan.",
+              "uk": "pigeon — це голуб, а великий білий птах з довгою шиєю називається swan."
             }
           },
           {
-            "responseId": "en:lesson-04:session-49:i08:r3",
+            "responseId": "en:lesson-04:session-49:i04:r3",
             "correct": false,
-            "testedDimension": "Банкомата немає. Виберіть форму",
+            "testedDimension": "Великий білий птах з довгою шиєю, який плаває по воді. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "Один банкомат: `isn’t a cashpoint`.",
-              "uk": "Один банкомат: `isn’t a cashpoint`."
+              "ru": "bridge — это мост, а большая белая птица с длинной шеей называется swan.",
+              "uk": "bridge — це міст, а великий білий птах з довгою шиєю називається swan."
             }
           }
         ]
@@ -464,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де банкомат",
+      "prompt": "Послухайте сусідку",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-49:i09:r1",
-          "text": "The cashpoint is next to the hospital."
+          "responseId": "en:lesson-04:session-49:i05:r1",
+          "text": "There are swans on the canal."
         },
         {
-          "responseId": "en:lesson-04:session-49:i09:r2",
-          "text": "The cashpoint is next to the hotel."
+          "responseId": "en:lesson-04:session-49:i05:r2",
+          "text": "There is a swan on the canal."
         },
         {
-          "responseId": "en:lesson-04:session-49:i09:r3",
-          "text": "The cashpoint is next to the shop."
+          "responseId": "en:lesson-04:session-49:i05:r3",
+          "text": "There are swans on the bridge."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-49:i09:audio"
+        "en:lesson-04:session-49:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де банкомат",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i09:audio",
-          "transcript": "The cashpoint is next to the hospital."
+          "audioTargetId": "en:lesson-04:session-49:i05:audio",
+          "transcript": "There are swans on the canal."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-49:i09:r1",
-            "targetText": "The cashpoint is next to the hospital.",
+            "responseId": "en:lesson-04:session-49:i05:r1",
+            "targetText": "There are swans on the canal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-49:i09:r2",
-            "targetText": "The cashpoint is next to the hotel.",
+            "responseId": "en:lesson-04:session-49:i05:r2",
+            "targetText": "There is a swan on the canal.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-49:i09:r3",
-            "targetText": "The cashpoint is next to the shop.",
+            "responseId": "en:lesson-04:session-49:i05:r3",
+            "targetText": "There are swans on the bridge.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-49:i09:r2",
+            "responseId": "en:lesson-04:session-49:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де банкомат",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `hotel`."
+              "ru": "В записи `There are swans` — несколько, а в этом варианте `There is a swan` — одна.",
+              "uk": "У записі `There are swans` — кілька, а в цьому варіанті `There is a swan` — одна."
             }
           },
           {
-            "responseId": "en:lesson-04:session-49:i09:r3",
+            "responseId": "en:lesson-04:session-49:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де банкомат",
+            "testedDimension": "Послухайте сусідку",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hospital`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `hospital`, а в цьому варіанті — `shop`."
+              "ru": "В записи последнее место `canal`, а в этом варианте `bridge`.",
+              "uk": "У записі останнє місце `canal`, а в цьому варіанті `bridge`."
             }
           }
         ],
@@ -540,9 +389,296 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i10",
+      "interactionId": "en:lesson-04:session-49:word:towpath",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — towpath",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:word:towpath:audio"
+      ],
+      "accessibilityLabel": "Картка слова — towpath",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:word:towpath:audio",
+          "transcript": "towpath"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-49:word:towpath:r1",
+            "targetText": "towpath",
+            "meaningByLocale": {
+              "ru": "тропа вдоль канала. There is a towpath behind the hedge. — «За изгородью есть тропа». О дорожке для пешеходов вдоль воды.",
+              "uk": "стежка вздовж каналу. There is a towpath behind the hedge. — «За живоплотом є стежка». Про доріжку для пішоходів уздовж води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towpath",
+          "definitionByLocale": {
+            "ru": "тропа вдоль канала. There is a towpath behind the hedge. — «За изгородью есть тропа». О дорожке для пешеходов вдоль воды.",
+            "uk": "стежка вздовж каналу. There is a towpath behind the hedge. — «За живоплотом є стежка». Про доріжку для пішоходів уздовж води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сусідка показує рівну доріжку для пішоходів уздовж води, а ви повторюєте за нею слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Сусідка показує рівну доріжку для пішоходів уздовж води, а ви повторюєте за нею слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:i06:audio",
+          "transcript": "towpath"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "towpath",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте сусідку й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:i07:audio",
+          "transcript": "There is a towpath behind the hedge."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a towpath behind the hedge.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "towpath",
+          "behind",
+          "the",
+          "hedge"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a towpath behind the hedge.`",
+              "uk": "тут потрібно `is` — `There is a towpath behind the hedge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:word:narrowboat",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — narrowboat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:word:narrowboat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — narrowboat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:word:narrowboat:audio",
+          "transcript": "narrowboat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-49:word:narrowboat:r1",
+            "targetText": "narrowboat",
+            "meaningByLocale": {
+              "ru": "узкая лодка-баржа. There is a narrowboat under the bridge. — «Под мостом стоит узкая лодка». О длинной узкой лодке, на которой плавают по каналу.",
+              "uk": "вузький човен-баржа. There is a narrowboat under the bridge. — «Під мостом стоїть вузький човен». Про довгий вузький човен, на якому плавають каналом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "narrowboat",
+          "definitionByLocale": {
+            "ru": "узкая лодка-баржа. There is a narrowboat under the bridge. — «Под мостом стоит узкая лодка». О длинной узкой лодке, на которой плавают по каналу.",
+            "uk": "вузький човен-баржа. There is a narrowboat under the bridge. — «Під мостом стоїть вузький човен». Про довгий вузький човен, на якому плавають каналом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-49:i08:r1",
+          "text": "narrowboat"
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i08:r2",
+          "text": "bench"
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i08:r3",
+          "text": "bridge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Длинная узкая лодка, на которой плавают по каналу. Как она называется по-английски?",
+          "uk": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-49:i08:r1",
+            "text": "narrowboat"
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i08:r2",
+            "text": "bench"
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i08:r3",
+            "text": "bridge"
+          }
+        ],
+        "testedDimension": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "bench — это скамейка, а длинная узкая лодка называется narrowboat.",
+              "uk": "bench — це лавка, а довгий вузький човен називається narrowboat."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Довгий вузький човен, на якому плавають каналом. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "bridge — это мост, а длинная узкая лодка называется narrowboat.",
+              "uk": "bridge — це міст, а довгий вузький човен називається narrowboat."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусідка дивиться на воду. Скажіть їй повною фразою: біля мосту стоїть вузький човен",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сусідка дивиться на воду. Скажіть їй повною фразою: біля мосту стоїть вузький човен",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a narrowboat near the bridge.",
+        "localizedMeaning": {
+          "ru": "Соседка смотрит на воду. Скажите ей полной фразой: у моста стоит узкая лодка",
+          "uk": "Сусідка дивиться на воду. Скажіть їй повною фразою: біля мосту стоїть вузький човен"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "narrowboat",
+          "near",
+          "the",
+          "bridge"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка дивиться на воду. Скажіть їй повною фразою: біля мосту стоїть вузький човен",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `There is a narrowboat near the bridge.`",
+              "uk": "тут потрібно `is` — `There is a narrowboat near the bridge.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -555,48 +691,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-49:i10:p1",
-            "target": "canal",
+            "target": "swan",
             "meaningByLocale": {
-              "ru": "водный канал",
-              "uk": "водний канал"
+              "ru": "лебедь",
+              "uk": "лебідь"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i10:p2",
-            "target": "unacceptable",
+            "target": "narrowboat",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "узкая лодка-баржа",
+              "uk": "вузький човен-баржа"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i10:p3",
-            "target": "hospital",
+            "target": "bridge",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "мост",
+              "uk": "міст"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i10:p4",
-            "target": "cashpoint",
+            "target": "pond",
             "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
+              "ru": "пруд",
+              "uk": "ставок"
             }
           }
         ],
         "leftColumn": [
-          "canal",
-          "unacceptable",
-          "hospital",
-          "cashpoint"
+          "swan",
+          "narrowboat",
+          "bridge",
+          "pond"
         ],
         "rightColumn": [
-          "водний канал",
-          "неприйнятний",
-          "лікарня",
-          "банкомат"
+          "лебідь",
+          "вузький човен-баржа",
+          "міст",
+          "ставок"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -614,75 +750,189 @@
     },
     {
       "interactionId": "en:lesson-04:session-49:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте сусідку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-49:i11:r1",
+          "text": "There are narrowboats near the bridge."
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i11:r2",
+          "text": "There is a narrowboat near the bridge."
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i11:r3",
+          "text": "There are narrowboats near the bank."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-49:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Послухайте сусідку",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-49:i11:audio",
-          "transcript": "Is there a canal?"
+          "transcript": "There are narrowboats near the bridge."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is there a canal?",
-        "orderedTokens": [
-          "Is",
-          "there",
-          "a",
-          "canal"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-49:i11:r1",
+            "targetText": "There are narrowboats near the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i11:r2",
+            "targetText": "There is a narrowboat near the bridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i11:r3",
+            "targetText": "There are narrowboats near the bank.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку",
+            "feedbackByLocale": {
+              "ru": "В записи `There are narrowboats` — несколько, а в этом варианте `There is a narrowboat` — одна.",
+              "uk": "У записі `There are narrowboats` — кілька, а в цьому варіанті `There is a narrowboat` — одна."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте сусідку",
+            "feedbackByLocale": {
+              "ru": "В записи последнее место `bridge`, а в этом варианте `bank`.",
+              "uk": "У записі останнє місце `bridge`, а в цьому варіанті `bank`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-49:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Тут є канал. Повідомте про це",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сусідка питає, що під деревом. Виберіть потрібне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-49:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-04:session-49:i12:r3",
+          "text": "am"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тут є канал. Повідомте про це",
+      "accessibilityLabel": "Сусідка питає, що під деревом. Виберіть потрібне слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a canal.",
-        "localizedMeaning": {
-          "ru": "Здесь есть канал. Сообщите об этом",
-          "uk": "Тут є канал. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Соседка спрашивает, что под деревом. Выберите нужное слово",
+          "uk": "Сусідка питає, що під деревом. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "There ___ a bench under the tree.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-49:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Сусідка питає, що під деревом. Виберіть потрібне слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Сусідка питає, що під деревом. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Скамейка одна, поэтому нужно is, а не are.",
+              "uk": "Лавка одна, тому потрібно is, а не are."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Сусідка питає, що під деревом. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Слово am стоит только после I, а здесь нужно is.",
+              "uk": "Слово am стоїть лише після I, а тут потрібно is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте сусідку й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте сусідку й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-49:i13:audio",
+          "transcript": "There are swans near the bench."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There are swans near the bench.",
         "orderedTokens": [
           "There",
-          "is",
-          "a",
-          "canal"
+          "are",
+          "swans",
+          "near",
+          "the",
+          "bench"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "is"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-49:i12:tile:d1",
+            "responseId": "en:lesson-04:session-49:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Тут є канал. Повідомте про це",
+            "testedDimension": "Послухайте сусідку й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a canal.`",
-              "uk": "тут потрібно `is` — `There is a canal.`"
+              "ru": "здесь нужно `are` — `There are swans near the bench.`",
+              "uk": "тут потрібно `are` — `There are swans near the bench.`"
             }
           }
         ],
@@ -694,26 +944,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-49:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вам потрібна готівка. Запитайте, чи є банкомат",
+      "prompt": "Сусідка питає, де ходять пішки. Скажіть їй: «Поруч із каналом є стежка»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-49:i13:audio"
+        "en:lesson-04:session-49:i14:audio"
       ],
-      "accessibilityLabel": "Вам потрібна готівка. Запитайте, чи є банкомат",
+      "accessibilityLabel": "Сусідка питає, де ходять пішки. Скажіть їй: «Поруч із каналом є стежка»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i13:audio",
-          "transcript": "Is there a cashpoint?"
+          "audioTargetId": "en:lesson-04:session-49:i14:audio",
+          "transcript": "There is a towpath next to the canal."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a cashpoint?",
+        "targetPhrase": "There is a towpath next to the canal.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -727,153 +977,55 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-49:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-49:i14:r1",
-          "text": "next to"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сусідка питає про птахів. Скажіть їй повною фразою: біля ставка є лебеді",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова",
+      "accessibilityLabel": "Сусідка питає про птахів. Скажіть їй повною фразою: біля ставка є лебеді",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Отель рядом с каналом, не в воде и не под каналом. Выберите слова",
-          "uk": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова"
+        "family": "phrase_builder",
+        "targetPhrase": "There are swans near the pond.",
+        "localizedMeaning": {
+          "ru": "Соседка спрашивает про птиц. Скажите ей полной фразой: у пруда есть лебеди",
+          "uk": "Сусідка питає про птахів. Скажіть їй повною фразою: біля ставка є лебеді"
         },
-        "gappedTargetPhrase": "The hotel is ___ the canal.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "are",
+          "swans",
+          "near",
+          "the",
+          "pond"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-49:i14:r1",
-            "text": "next to"
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-49:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Сусідка питає про птахів. Скажіть їй повною фразою: біля ставка є лебеді",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `There are swans near the pond.`",
+              "uk": "тут потрібно `are` — `There are swans near the pond.`"
+            }
           }
         ],
-        "testedDimension": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i14:r2",
-            "correct": false,
-            "testedDimension": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; рядом — `next to`.",
-              "uk": "`in` — усередині; поруч — `next to`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i14:r3",
-            "correct": false,
-            "testedDimension": "Готель поруч із каналом, не у воді й не під каналом. Виберіть слова",
-            "feedbackByLocale": {
-              "ru": "`under` — под; рядом — `next to`.",
-              "uk": "`under` — під; поруч — `next to`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-49:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-49:i15:r1",
-          "text": "That is a canal."
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i15:r2",
-          "text": "This is a canal."
-        },
-        {
-          "responseId": "en:lesson-04:session-49:i15:r3",
-          "text": "That is a fountain."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-49:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-49:i15:audio",
-          "transcript": "That is a canal."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-49:i15:r1",
-            "targetText": "That is a canal.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i15:r2",
-            "targetText": "This is a canal.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i15:r3",
-            "targetText": "That is a fountain.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-49:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-49:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `canal`, а в этом варианте — `fountain`.",
-              "uk": "У записі останнє слово — `canal`, а в цьому варіанті — `fountain`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-49:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -889,46 +1041,46 @@
             "pairId": "en:lesson-04:session-49:i16:p1",
             "target": "canal",
             "meaningByLocale": {
-              "ru": "водный канал",
-              "uk": "водний канал"
+              "ru": "канал",
+              "uk": "канал"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i16:p2",
-            "target": "unacceptable",
+            "target": "towpath",
             "meaningByLocale": {
-              "ru": "неприемлемый",
-              "uk": "неприйнятний"
+              "ru": "тропа вдоль канала",
+              "uk": "стежка вздовж каналу"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i16:p3",
-            "target": "hospital",
+            "target": "narrowboat",
             "meaningByLocale": {
-              "ru": "больница",
-              "uk": "лікарня"
+              "ru": "узкая лодка-баржа",
+              "uk": "вузький човен-баржа"
             }
           },
           {
             "pairId": "en:lesson-04:session-49:i16:p4",
-            "target": "cashpoint",
+            "target": "swan",
             "meaningByLocale": {
-              "ru": "банкомат",
-              "uk": "банкомат"
+              "ru": "лебедь",
+              "uk": "лебідь"
             }
           }
         ],
         "leftColumn": [
           "canal",
-          "unacceptable",
-          "hospital",
-          "cashpoint"
+          "towpath",
+          "narrowboat",
+          "swan"
         ],
         "rightColumn": [
-          "водний канал",
-          "неприйнятний",
-          "лікарня",
-          "банкомат"
+          "канал",
+          "стежка вздовж каналу",
+          "вузький човен-баржа",
+          "лебідь"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -946,25 +1098,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-49:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому місті друг шукає лікарню. Вона поруч із каналом. Поясніть, де лікарня, повною фразою",
+      "prompt": "Інший сусід шукає човни. Скажіть йому: «Під мостом стоять вузькі човни»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-49:i17:audio"
       ],
-      "accessibilityLabel": "В іншому місті друг шукає лікарню. Вона поруч із каналом. Поясніть, де лікарня, повною фразою",
+      "accessibilityLabel": "Інший сусід шукає човни. Скажіть йому: «Під мостом стоять вузькі човни»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-49:i17:audio",
-          "transcript": "The hospital is next to the canal."
+          "transcript": "There are narrowboats under the bridge."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The hospital is next to the canal.",
+        "targetPhrase": "There are narrowboats under the bridge.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -986,11 +1138,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b13eb1d6068bbebdc84072e53374e3c6d234ddc20fda3d63ece3bd8d58190388"
+  "learnerFingerprint": "d4f9d111a610cdae7af604f1102e313570eb2f3e47f9659123e75ae25a1b58e9"
 }

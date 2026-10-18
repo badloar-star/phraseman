@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-40:intro1:r2": {
-          "ru": "Перед одним прибором нужно `a`: `a thermostat`.",
-          "uk": "Перед одним приладом потрібне `a`: `a thermostat`."
+          "ru": "Термостат один, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Термостат один, тому потрібно isn’t, а не aren’t."
         },
         "en:lesson-04:session-40:intro1:r3": {
-          "ru": "Здесь один прибор: `This is a thermostat`.",
-          "uk": "Тут один прилад: `This is a thermostat`."
+          "ru": "Термостат один, поэтому после isn’t нужно a: isn’t a thermostat.",
+          "uk": "Термостат один, тому після isn’t потрібно a: isn’t a thermostat."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-40:intro2:r2": {
-          "ru": "Так вы говорите, что звонок есть; здесь нужно `isn’t`.",
-          "uk": "Так ви кажете, що дзвінок є; тут потрібне `isn’t`."
+          "ru": "Матрасы — несколько предметов, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Матраци — кілька предметів, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-40:intro2:r3": {
-          "ru": "Один звонок: `There isn’t a doorbell`.",
-          "uk": "Один дзвінок: `There isn’t a doorbell`."
+          "ru": "После any слово ставят во множественном числе: mattresses.",
+          "uk": "Після any слово ставлять у множині: mattresses."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-40:intro3:r2": {
-          "ru": "`in` — внутри; здесь между: `between`.",
-          "uk": "`in` — усередині; тут між: `between`."
+          "ru": "Слова isn’t уже достаточно для «нет». Второе отрицание no не нужно.",
+          "uk": "Слова isn’t уже достатньо для «немає». Друге заперечення no не потрібне."
         },
         "en:lesson-04:session-40:intro3:r3": {
-          "ru": "Один фонтан: `The fountain is`.",
-          "uk": "Один фонтан: `The fountain is`."
+          "ru": "Плита одна, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Плита одна, тому потрібно isn’t, а не aren’t."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0e9f4dcb961b00baaf3b8883fe566f40fc6108533a17b431e837a3ebc6d7f649"
+  "auxiliaryFingerprint": "dcef01b737768c09629e354ef3c21197d5fb7b73d27cb5a67c5bfebb8fa9dc10"
 }

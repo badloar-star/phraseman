@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-47:i01",
-    "correctText": "It is acceptable.",
+    "correctText": "en:lesson-04:session-47:i01:p1=leftovers\nen:lesson-04:session-47:i01:p2=lasagne\nen:lesson-04:session-47:i01:p3=pie\nen:lesson-04:session-47:i01:p4=curry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:word:leftovers",
+    "correctText": "leftovers",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i02",
-    "correctText": "leftover",
-    "correctResponseId": "en:lesson-04:session-47:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-47:i03",
-    "correctText": "leftover",
-    "correctResponseId": "en:lesson-04:session-47:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-47:i04",
-    "correctText": "en:lesson-04:session-47:i04:p1=leftover\nen:lesson-04:session-47:i04:p2=acceptable\nen:lesson-04:session-47:i04:p3=restaurants\nen:lesson-04:session-47:i04:p4=boiler",
+    "correctText": "leftovers",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-47:i03",
+    "correctText": "There are some leftovers on the worktop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:word:lasagne",
+    "correctText": "lasagne",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:i04",
+    "correctText": "lasagne",
+    "correctResponseId": "en:lesson-04:session-47:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-47:i05",
-    "correctText": "There are some leftovers.",
+    "correctText": "Is there any lasagne in the fridge?",
+    "correctResponseId": "en:lesson-04:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:word:pie",
+    "correctText": "pie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i06",
-    "correctText": "The restaurants are next to the hotel.",
+    "correctText": "pie",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i07",
-    "correctText": "It's acceptable.",
+    "correctText": "There isn’t a pie in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-47:word:curry",
+    "correctText": "curry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i08",
-    "correctText": "aren't",
+    "correctText": "curry",
     "correctResponseId": "en:lesson-04:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-47:i09",
-    "correctText": "The boiler is in the kitchen.",
-    "correctResponseId": "en:lesson-04:session-47:i09:r1"
+    "correctText": "There is some curry in the fridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i10",
-    "correctText": "en:lesson-04:session-47:i10:p1=leftovers\nen:lesson-04:session-47:i10:p2=acceptable\nen:lesson-04:session-47:i10:p3=restaurants\nen:lesson-04:session-47:i10:p4=boiler",
+    "correctText": "en:lesson-04:session-47:i10:p1=curry\nen:lesson-04:session-47:i10:p2=pie\nen:lesson-04:session-47:i10:p3=soup\nen:lesson-04:session-47:i10:p4=rice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i11",
-    "correctText": "Are there any leftovers?",
-    "correctResponseId": null
+    "correctText": "There isn’t any curry in the fridge.",
+    "correctResponseId": "en:lesson-04:session-47:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-47:i12",
-    "correctText": "The leftovers are in the kitchen.",
-    "correctResponseId": null
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-04:session-47:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-47:i13",
-    "correctText": "Is there a boiler?",
+    "correctText": "Are there any leftovers in the oven?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i14",
-    "correctText": "on",
-    "correctResponseId": "en:lesson-04:session-47:i14:r1"
+    "correctText": "Yes, there are.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i15",
-    "correctText": "There are some restaurants.",
-    "correctResponseId": "en:lesson-04:session-47:i15:r1"
+    "correctText": "There isn’t a pie in the oven.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i16",
-    "correctText": "en:lesson-04:session-47:i16:p1=leftovers\nen:lesson-04:session-47:i16:p2=acceptable\nen:lesson-04:session-47:i16:p3=restaurants\nen:lesson-04:session-47:i16:p4=boiler",
+    "correctText": "en:lesson-04:session-47:i16:p1=leftovers\nen:lesson-04:session-47:i16:p2=lasagne\nen:lesson-04:session-47:i16:p3=pie\nen:lesson-04:session-47:i16:p4=curry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-47:i17",
-    "correctText": "Are there any leftovers?",
+    "correctText": "There are some leftovers here.",
     "correctResponseId": null
   }
 ]

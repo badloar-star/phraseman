@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-51",
   "learningOutcomeByLocale": {
-    "ru": "назвать общественный центр, объяснить расположение и сказать, что способ не даёт результата",
-    "uk": "назвати громадський центр, пояснити розташування й сказати, що спосіб не дає результату"
+    "ru": "самому выбрать some в утверждении и any в вопросе или отрицании",
+    "uk": "самому вибрати some у ствердженні й any у запитанні чи запереченні"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для жителей",
-        "uk": "Місце для мешканців"
+        "ru": "Куда сходить в дождь",
+        "uk": "Куди піти в дощ"
       },
       "bodyByLocale": {
-        "ru": "`community centre` — «общественный центр», место встреч и занятий для жителей района. Два слова называют одно место: `a community centre`. `This is a community centre` — «Это общественный центр». Здесь могут встречаться и шахматисты, и танцоры; главное, чтобы шахматные фигуры не начали танцевать.",
-        "uk": "`community centre` — «громадський центр», місце зустрічей і занять для мешканців району. Два слова називають одне місце: `a community centre`. `This is a community centre` — «Це громадський центр». Тут можуть зустрічатися і шахісти, і танцівники; головне, щоб шахові фігури не почали танцювати."
+        "ru": "Сосед хочет провести дождливый вечер с детьми не дома. Вы вспоминаете большое здание, где жители района собираются на занятия и праздники. community centre — «районный центр». Он один, и стоит между банком и библиотекой: There is a community centre between the bank and the library.",
+        "uk": "Сусід хоче провести дощовий вечір із дітьми не вдома. Ви згадуєте велику будівлю, де мешканці району збираються на заняття й свята. community centre — «районний центр». Він один, і стоїть між банком і бібліотекою: There is a community centre between the bank and the library."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите один общественный центр.",
-          "uk": "Назвіть один громадський центр."
+          "ru": "Сосед ищет, куда сходить с детьми. Скажите ему, что между банком и библиотекой есть районный центр.",
+          "uk": "Сусід шукає, куди піти з дітьми. Скажіть йому, що між банком і бібліотекою є районний центр."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-51:intro1:r1",
-              "text": "This is a community centre."
+              "text": "There is a community centre between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-51:intro1:r2",
-              "text": "This is community centre."
+              "text": "There are a community centre between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-51:intro1:r3",
-              "text": "These are community centres."
+              "text": "There is a community centre between the bank."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-51:intro1:r1",
-              "text": "This is a community centre."
+              "text": "There is a community centre between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-51:intro1:r2",
-              "text": "This is community centre."
+              "text": "There are a community centre between the bank and the library."
             },
             {
               "responseId": "en:lesson-04:session-51:intro1:r3",
-              "text": "These are community centres."
+              "text": "There is a community centre between the bank."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите один общественный центр.",
-          "uk": "Назвіть один громадський центр."
+          "ru": "Сосед ищет, куда сходить с детьми. Скажите ему, что между банком и библиотекой есть районный центр.",
+          "uk": "Сусід шукає, куди піти з дітьми. Скажіть йому, що між банком і бібліотекою є районний центр."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Библиотеки и контейнер",
-        "uk": "Бібліотеки й контейнер"
+        "ru": "Что лежит на столе",
+        "uk": "Що лежить на столі"
       },
       "bodyByLocale": {
-        "ru": "`libraries` — «библиотеки», `recycling bin` — «контейнер для вторсырья». `The libraries are next to the park` — «Библиотеки рядом с парком». `The recycling bin is next to the door` — «Контейнер для вторсырья рядом с дверью». Несколько библиотек требуют `are`, один контейнер — `is`.",
-        "uk": "`libraries` — «бібліотеки», `recycling bin` — «контейнер для вторсировини». `The libraries are next to the park` — «Бібліотеки поруч із парком». `The recycling bin is next to the door` — «Контейнер для вторсировини поруч із дверима». Кілька бібліотек потребують `are`, один контейнер — `is`."
+        "ru": "Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок».",
+        "uk": "Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Библиотеки рядом с парком. Выберите описание.",
-          "uk": "Бібліотеки поруч із парком. Виберіть опис."
+          "ru": "Подруга спрашивает, как узнать про занятия. Скажите ей, что на столе есть несколько листовок.",
+          "uk": "Подруга питає, як дізнатися про заняття. Скажіть їй, що на столі є кілька листівок."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-51:intro2:r1",
-              "text": "The libraries are next to the park."
+              "text": "There are some leaflets on the table."
             },
             {
               "responseId": "en:lesson-04:session-51:intro2:r2",
-              "text": "The libraries is next to the park."
+              "text": "There is some leaflets on the table."
             },
             {
               "responseId": "en:lesson-04:session-51:intro2:r3",
-              "text": "The libraries are in the park."
+              "text": "There are some leaflet on the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-51:intro2:r1",
-              "text": "The libraries are next to the park."
+              "text": "There are some leaflets on the table."
             },
             {
               "responseId": "en:lesson-04:session-51:intro2:r2",
-              "text": "The libraries is next to the park."
+              "text": "There is some leaflets on the table."
             },
             {
               "responseId": "en:lesson-04:session-51:intro2:r3",
-              "text": "The libraries are in the park."
+              "text": "There are some leaflet on the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Библиотеки рядом с парком. Выберите описание.",
-          "uk": "Бібліотеки поруч із парком. Виберіть опис."
+          "ru": "Подруга спрашивает, как узнать про занятия. Скажите ей, что на столе есть несколько листовок.",
+          "uk": "Подруга питає, як дізнатися про заняття. Скажіть їй, що на столі є кілька листівок."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Результата нет",
-        "uk": "Результату немає"
+        "ru": "Скучные дети",
+        "uk": "Нудьгуючі діти"
       },
       "bodyByLocale": {
-        "ru": "`ineffective` — «неэффективный, недейственный»: способ не даёт нужного результата. Вы объясняете дорогу, но люди всё равно не находят центр: `It is ineffective`, короче `It’s ineffective`. Речь о результате, а не о том, нравится ли вам способ.",
-        "uk": "`ineffective` — «неефективний, недієвий»: спосіб не дає потрібного результату. Ви пояснюєте дорогу, але люди все одно не знаходять центр: `It is ineffective`, коротше `It’s ineffective`. Ідеться про результат, а не про те, чи подобається вам спосіб."
+        "ru": "Дети соседа заскучали и просят во что-нибудь сыграть за столом. Вы подходите к администратору и спрашиваете про коробки с полем, фишками и кубиком, в которые играют вдвоём или втроём. board game — «настольная игра». Are there any board games in the hall?",
+        "uk": "Діти сусіда занудьгували й просять у щось пограти за столом. Ви підходите до адміністратора й питаєте про коробки з полем, фішками й кубиком, у які грають удвох чи втрьох. board game — «настільна гра». Are there any board games in the hall?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Способ не помогает гостям находить центр. Скажите «Это неэффективно» с сокращением.",
-          "uk": "Спосіб не допомагає гостям знаходити центр. Скажіть «Це неефективно» зі скороченням."
+          "ru": "Дети просят во что-нибудь сыграть. Спросите администратора, есть ли в зале настольные игры.",
+          "uk": "Діти просять у щось пограти. Запитайте адміністратора, чи є в залі настільні ігри."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-51:intro3:r1",
-              "text": "It's ineffective."
+              "text": "Are there any board games in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r2",
-              "text": "It's effective."
+              "text": "Are there some board games in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r3",
-              "text": "It are ineffective."
+              "text": "Is there any board games in the hall?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-51:intro3:r1",
-              "text": "It's ineffective."
+              "text": "Are there any board games in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r2",
-              "text": "It's effective."
+              "text": "Are there some board games in the hall?"
             },
             {
               "responseId": "en:lesson-04:session-51:intro3:r3",
-              "text": "It are ineffective."
+              "text": "Is there any board games in the hall?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Способ не помогает гостям находить центр. Скажите «Это неэффективно» с сокращением.",
-          "uk": "Спосіб не допомагає гостям знаходити центр. Скажіть «Це неефективно» зі скороченням."
+          "ru": "Дети просят во что-нибудь сыграть. Спросите администратора, есть ли в зале настольные игры.",
+          "uk": "Діти просять у щось пограти. Запитайте адміністратора, чи є в залі настільні ігри."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6e0a29441c5fdb339489d10e5c97c6ef55aee6ce010285bbb9847298fd314a96"
+  "introFingerprint": "958f2b010f3d18f102313d0d78668344954b270e31657817893cc5aa5124907d"
 }

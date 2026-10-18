@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro1:r2": {
-          "ru": "`leftovers` — множественное число: `are`.",
-          "uk": "`leftovers` — множина: `are`."
+          "ru": "Остатки — это несколько порций, поэтому нужно There are, а не There is.",
+          "uk": "Залишки — це кілька порцій, тому потрібно There are, а не There is."
         },
         "en:lesson-04:session-47:intro1:r3": {
-          "ru": "Это значит, что ничего не осталось; здесь еда есть.",
-          "uk": "Це означає, що нічого не залишилося; тут їжа є."
+          "ru": "Внутри холодильника говорят in the fridge, а не on.",
+          "uk": "Усередині холодильника кажуть in the fridge, а не on."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro2:r2": {
-          "ru": "Несколько ресторанов: `The restaurants are`.",
-          "uk": "Кілька ресторанів: `The restaurants are`."
+          "ru": "В вопросе о наличии ставят any, а не some.",
+          "uk": "У запитанні про наявність ставлять any, а не some."
         },
         "en:lesson-04:session-47:intro2:r3": {
-          "ru": "`in` — внутри; здесь рядом: `next to`.",
-          "uk": "`in` — усередині; тут поруч: `next to`."
+          "ru": "Лазанья — одно блюдо без счёта, поэтому Is there, а не Are there.",
+          "uk": "Лазанья — одна страва без рахунку, тому Is there, а не Are there."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro3:r2": {
-          "ru": "`unacceptable` — неприемлемо; здесь `acceptable`.",
-          "uk": "`unacceptable` — неприйнятно; тут `acceptable`."
+          "ru": "Слова isn’t уже достаточно для «нет». Второе отрицание no не нужно.",
+          "uk": "Слова isn’t уже достатньо для «немає». Друге заперечення no не потрібне."
         },
         "en:lesson-04:session-47:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "Пирог один, поэтому нужно isn’t, а не aren’t.",
+          "uk": "Пиріг один, тому потрібно isn’t, а не aren’t."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "430adda339d87298f840a1f83a9cf1a8dfe0bf5398753ac8aaec1e5b9385ee27"
+  "auxiliaryFingerprint": "8fd1319600c501cb9762c003f1e100f68df0663c6860e8dbf3c92140090c57c4"
 }

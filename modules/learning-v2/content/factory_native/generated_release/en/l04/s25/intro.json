@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-25",
   "learningOutcomeByLocale": {
-    "ru": "указать место с in, on, under, next to и between",
-    "uk": "указати місце з in, on, under, next to та between"
+    "ru": "сказать, что предмет находится внутри места, со словом in",
+    "uk": "сказати, що предмет перебуває всередині місця, зі словом in"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Внутри или сверху",
-        "uk": "Усередині чи зверху"
+        "ru": "Чай для сестры",
+        "uk": "Чай для сестри"
       },
       "bodyByLocale": {
-        "ru": "`sink` — «раковина», на кухне также «мойка». `in` — «внутри»: `The berry is in the sink` — «Ягода в раковине». `on` — «на поверхности»: `The berry is on the table` — «Ягода на столе». Здесь говорим о конкретной ягоде и знакомом месте, поэтому используем `the`. Ягода в раковине — `in`, на столе — `on`; для ягоды это короткое путешествие, для нас — два разных слова.",
-        "uk": "`sink` — «раковина», на кухні також «мийка». `in` — «усередині»: `The berry is in the sink` — «Ягода в раковині». `on` — «на поверхні»: `The berry is on the table` — «Ягода на столі». Тут говоримо про конкретну ягоду й знайоме місце, тому використовуємо `the`. Ягода в раковині — `in`, на столі — `on`; для ягоди це коротка подорож, для нас — два різні слова."
+        "ru": "Сестра заваривает чай и просит лимон. Вы заглядываете в раковину: лимон лежит там, среди мокрых тарелок. sink — «раковина». Слово in значит «внутри»: The lemon is in the sink — «Лимон в раковине». Вы оба знаете и лимон, и раковину, поэтому the.",
+        "uk": "Сестра заварює чай і просить лимон. Ви зазираєте в раковину: лимон лежить там, серед мокрих тарілок. sink — «раковина». Слово in означає «усередині»: The lemon is in the sink — «Лимон у раковині». Ви обоє знаєте і лимон, і раковину, тому the."
       },
       "question": {
         "interactionId": "en:lesson-04:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Ягода лежит внутри раковины. Выберите описание.",
-          "uk": "Ягода лежить усередині раковини. Виберіть опис."
+          "ru": "Сестра ищет лимон. Скажите ей, что он в раковине.",
+          "uk": "Сестра шукає лимон. Скажіть їй, що він у раковині."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-25:intro1:r1",
-              "text": "The berry is in the sink."
+              "text": "The lemon is in the sink."
             },
             {
               "responseId": "en:lesson-04:session-25:intro1:r2",
-              "text": "The berry is on the sink."
+              "text": "The lemon is in sink."
             },
             {
               "responseId": "en:lesson-04:session-25:intro1:r3",
-              "text": "The berry are in the sink."
+              "text": "The lemon are in the sink."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-25:intro1:r1",
-              "text": "The berry is in the sink."
+              "text": "The lemon is in the sink."
             },
             {
               "responseId": "en:lesson-04:session-25:intro1:r2",
-              "text": "The berry is on the sink."
+              "text": "The lemon is in sink."
             },
             {
               "responseId": "en:lesson-04:session-25:intro1:r3",
-              "text": "The berry are in the sink."
+              "text": "The lemon are in the sink."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ягода лежит внутри раковины. Выберите описание.",
-          "uk": "Ягода лежить усередині раковини. Виберіть опис."
+          "ru": "Сестра ищет лимон. Скажите ей, что он в раковине.",
+          "uk": "Сестра шукає лимон. Скажіть їй, що він у раковині."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Под, рядом и между",
-        "uk": "Під, поруч і між"
+        "ru": "Грязные чашки",
+        "uk": "Брудні чашки"
       },
       "bodyByLocale": {
-        "ru": "`under` — «под»: `The dogs are under the table` — «Собаки под столом». `next to` — «рядом с»: `The sink is next to the window` — «Раковина рядом с окном». `between` — «между»: `The berry is between the cups` — «Ягода между чашками». Сначала называем предмет, затем `is` или `are`, потом место.",
-        "uk": "`under` — «під»: `The dogs are under the table` — «Собаки під столом». `next to` — «поруч із»: `The sink is next to the window` — «Раковина поруч із вікном». `between` — «між»: `The berry is between the cups` — «Ягода між чашками». Спочатку називаємо предмет, потім `is` або `are`, далі місце."
+        "ru": "Брат пришёл с работы и спрашивает, куда делись чашки со стола. Вы уже убрали их в большой шкаф на кухне, который моет посуду сам. dishwasher — «посудомоечная машина». Чашек несколько, поэтому are: The cups are in the dishwasher — «Чашки в посудомоечной машине».",
+        "uk": "Брат прийшов з роботи й питає, куди поділися чашки зі столу. Ви вже прибрали їх у велику шафу на кухні, яка сама миє посуд. dishwasher — «посудомийна машина». Чашок кілька, тому are: The cups are in the dishwasher — «Чашки в посудомийній машині»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Раковина стоит рядом с окном. Выберите описание.",
-          "uk": "Раковина стоїть поруч із вікном. Виберіть опис."
+          "ru": "Брат ищет чашки. Скажите ему, что они в посудомоечной машине.",
+          "uk": "Брат шукає чашки. Скажіть йому, що вони в посудомийній машині."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-25:intro2:r1",
-              "text": "The sink is next to the window."
+              "text": "The cups are in the dishwasher."
             },
             {
               "responseId": "en:lesson-04:session-25:intro2:r2",
-              "text": "The sink is under the window."
+              "text": "The cups is in the dishwasher."
             },
             {
               "responseId": "en:lesson-04:session-25:intro2:r3",
-              "text": "The sink are next to the window."
+              "text": "The cups are in dishwasher."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-25:intro2:r1",
-              "text": "The sink is next to the window."
+              "text": "The cups are in the dishwasher."
             },
             {
               "responseId": "en:lesson-04:session-25:intro2:r2",
-              "text": "The sink is under the window."
+              "text": "The cups is in the dishwasher."
             },
             {
               "responseId": "en:lesson-04:session-25:intro2:r3",
-              "text": "The sink are next to the window."
+              "text": "The cups are in dishwasher."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Раковина стоит рядом с окном. Выберите описание.",
-          "uk": "Раковина стоїть поруч із вікном. Виберіть опис."
+          "ru": "Брат ищет чашки. Скажите ему, что они в посудомоечной машине.",
+          "uk": "Брат шукає чашки. Скажіть йому, що вони в посудомийній машині."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кто где",
-        "uk": "Хто де"
+        "ru": "Зимний велосипед",
+        "uk": "Зимовий велосипед"
       },
       "bodyByLocale": {
-        "ru": "`dogs` — «собаки», поэтому `The dogs are`. `berry` — одна «ягода», поэтому `The berry is`. `absent` — «отсутствующий». Хозяин не пришёл на запланированную встречу: `He is absent` — «Он отсутствует». Сокращённо: `He’s absent`. Эта фраза сообщает об отсутствии, но не объясняет, куда он ушёл.",
-        "uk": "`dogs` — «собаки», тому `The dogs are`. `berry` — одна «ягода», тому `The berry is`. `absent` — «відсутній». Господар не прийшов на заплановану зустріч: `He is absent` — «Він відсутній». Скорочено: `He’s absent`. Ця фраза повідомляє про відсутність, але не пояснює, куди він пішов."
+        "ru": "Соседка собралась на прогулку и спрашивает, где ваш велосипед. Зимой он вам не нужен: он стоит в подвале дома, где сухо и никто не ходит. basement — «подвал». Велосипед один, поэтому is: The bicycle is in the basement — «Велосипед в подвале».",
+        "uk": "Сусідка зібралася на прогулянку й питає, де ваш велосипед. Узимку він вам не потрібен: він стоїть у підвалі будинку, де сухо й ніхто не ходить. basement — «підвал». Велосипед один, тому is: The bicycle is in the basement — «Велосипед у підвалі»."
       },
       "question": {
         "interactionId": "en:lesson-04:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Хозяина нет на запланированной встрече. Скажите «Он отсутствует» с сокращением.",
-          "uk": "Господаря немає на запланованій зустрічі. Скажіть «Він відсутній» зі скороченням."
+          "ru": "Соседка ищет ваш велосипед. Скажите ей, что он в подвале.",
+          "uk": "Сусідка шукає ваш велосипед. Скажіть їй, що він у підвалі."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-25:intro3:r1",
-              "text": "He's absent."
+              "text": "The bicycle is in the basement."
             },
             {
               "responseId": "en:lesson-04:session-25:intro3:r2",
-              "text": "He's present."
+              "text": "The bicycle is in basement."
             },
             {
               "responseId": "en:lesson-04:session-25:intro3:r3",
-              "text": "He are absent."
+              "text": "The bicycle are in the basement."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-25:intro3:r1",
-              "text": "He's absent."
+              "text": "The bicycle is in the basement."
             },
             {
               "responseId": "en:lesson-04:session-25:intro3:r2",
-              "text": "He's present."
+              "text": "The bicycle is in basement."
             },
             {
               "responseId": "en:lesson-04:session-25:intro3:r3",
-              "text": "He are absent."
+              "text": "The bicycle are in the basement."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Хозяина нет на запланированной встрече. Скажите «Он отсутствует» с сокращением.",
-          "uk": "Господаря немає на запланованій зустрічі. Скажіть «Він відсутній» зі скороченням."
+          "ru": "Соседка ищет ваш велосипед. Скажите ей, что он в подвале.",
+          "uk": "Сусідка шукає ваш велосипед. Скажіть їй, що він у підвалі."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "854702682095d3979b917190589ac8fba1491fca0034cb587d539b9423a6b97e"
+  "introFingerprint": "355fe793ce7c660833d510abe6cc5314737e295f9af203d1e1be2f6e7950ae2a"
 }

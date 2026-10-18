@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-46:intro1:r2": {
-          "ru": "Перед одной кладовой нужно `a`: `a pantry`.",
-          "uk": "Перед однією коморою потрібне `a`: `a pantry`."
+          "ru": "Кладовая одна, поэтому перед pantry нужно a.",
+          "uk": "Комора одна, тому перед pantry потрібно a."
         },
         "en:lesson-04:session-46:intro1:r3": {
-          "ru": "Здесь одна кладовая: `This is a pantry`.",
-          "uk": "Тут одна комора: `This is a pantry`."
+          "ru": "under — это «под», а «рядом» говорят next to.",
+          "uk": "under — це «під», а «поруч» кажуть next to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-46:intro2:r2": {
-          "ru": "`in` — внутри; здесь рядом: `next to`.",
-          "uk": "`in` — усередині; тут поруч: `next to`."
+          "ru": "Вопрос о наличии начинают с Is there, а не с There is.",
+          "uk": "Запитання про наявність починають з Is there, а не з There is."
         },
         "en:lesson-04:session-46:intro2:r3": {
-          "ru": "Один отель: `The hotel is`.",
-          "uk": "Один готель: `The hotel is`."
+          "ru": "Мешок один, поэтому перед sack нужно a.",
+          "uk": "Мішок один, тому перед sack потрібно a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-46:intro3:r2": {
-          "ru": "`inappropriate` — неуместно; здесь `appropriate`.",
-          "uk": "`inappropriate` — недоречно; тут `appropriate`."
+          "ru": "Пачек несколько, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Пачок кілька, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-46:intro3:r3": {
-          "ru": "С `It` нужно `is`, сокращённо `It’s`.",
-          "uk": "З `It` потрібне `is`, скорочено `It’s`."
+          "ru": "После any слово ставят во множественном числе: packets.",
+          "uk": "Після any слово ставлять у множині: packets."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5d06bd833e2adb749131c64648974f11e2dd951a11a067aa173a814c50ad751e"
+  "auxiliaryFingerprint": "f20e1555ee7499da1548e3d28f017497d0964d670ebcad0c82dae3075571e4b6"
 }

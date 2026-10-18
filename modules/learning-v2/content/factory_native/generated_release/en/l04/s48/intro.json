@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-48",
   "learningOutcomeByLocale": {
-    "ru": "назвать общественную кухню и повторить названия оборудования и городских объектов",
-    "uk": "назвати громадську кухню й повторити назви обладнання та міських об’єктів"
+    "ru": "провести устный обход и каждую фразу сказать отдельно: утверждение, вопрос, отрицание, место",
+    "uk": "провести усний обхід і кожну фразу сказати окремо: ствердження, запитання, заперечення, місце"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Готовим вместе",
-        "uk": "Готуємо разом"
+        "ru": "Кухня для всех",
+        "uk": "Кухня для всіх"
       },
       "bodyByLocale": {
-        "ru": "`community kitchen` — «общественная кухня»: кухня, которой пользуется местное сообщество, например жители района. Одна кухня — `a community kitchen`. `This is a community kitchen` — «Это общественная кухня». Поваров может быть десять, но кухня остаётся одной.",
-        "uk": "`community kitchen` — «громадська кухня»: кухня, якою користується місцева громада, наприклад мешканці району. Одна кухня — `a community kitchen`. `This is a community kitchen` — «Це громадська кухня». Кухарів може бути десятеро, але кухня залишається одна."
+        "ru": "В вашем районе открыли большую кухню, где соседи вместе готовят обеды и накрывают общий стол. Двери открыты для всех жильцов. community kitchen — «общественная кухня». Она рядом с библиотекой: There is a community kitchen next to the library.",
+        "uk": "У вашому районі відкрили велику кухню, де сусіди разом готують обіди й накривають спільний стіл. Двері відчинені для всіх мешканців. community kitchen — «громадська кухня». Вона поруч із бібліотекою: There is a community kitchen next to the library."
       },
       "question": {
         "interactionId": "en:lesson-04:session-48:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну такую кухню.",
-          "uk": "Назвіть одну таку кухню."
+          "ru": "Новый жилец спрашивает, где готовят соседи. Скажите ему, что рядом с библиотекой есть общественная кухня.",
+          "uk": "Новий мешканець питає, де готують сусіди. Скажіть йому, що поруч із бібліотекою є громадська кухня."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-48:intro1:r1",
-              "text": "This is a community kitchen."
+              "text": "There is a community kitchen next to the library."
             },
             {
               "responseId": "en:lesson-04:session-48:intro1:r2",
-              "text": "This is community kitchen."
+              "text": "There is community kitchen next to the library."
             },
             {
               "responseId": "en:lesson-04:session-48:intro1:r3",
-              "text": "These are community kitchens."
+              "text": "There are a community kitchen next to the library."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-48:intro1:r1",
-              "text": "This is a community kitchen."
+              "text": "There is a community kitchen next to the library."
             },
             {
               "responseId": "en:lesson-04:session-48:intro1:r2",
-              "text": "This is community kitchen."
+              "text": "There is community kitchen next to the library."
             },
             {
               "responseId": "en:lesson-04:session-48:intro1:r3",
-              "text": "These are community kitchens."
+              "text": "There are a community kitchen next to the library."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну такую кухню.",
-          "uk": "Назвіть одну таку кухню."
+          "ru": "Новый жилец спрашивает, где готовят соседи. Скажите ему, что рядом с библиотекой есть общественная кухня.",
+          "uk": "Новий мешканець питає, де готують сусіди. Скажіть йому, що поруч із бібліотекою є громадська кухня."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что есть внутри",
-        "uk": "Що є всередині"
+        "ru": "Светлый свитер",
+        "uk": "Світлий светр"
       },
       "bodyByLocale": {
-        "ru": "`freezer` — морозильник, `microwave` — микроволновка, `pantry` — кладовая для продуктов, `thermostat` — термостат. `Is there a freezer?` — «Есть морозильник?» `The microwave is on the worktop` — «Микроволновка на столешнице». `leftover` — остаток еды; обычно говорят `leftovers`: `Are there any leftovers?` — «Осталась еда?» С этой формой нужно `are`.",
-        "uk": "`freezer` — морозильник, `microwave` — мікрохвильовка, `pantry` — комора для продуктів, `thermostat` — термостат. `Is there a freezer?` — «Є морозильник?» `The microwave is on the worktop` — «Мікрохвильовка на стільниці». `leftover` — залишок їжі; зазвичай кажуть `leftovers`: `Are there any leftovers?` — «Залишилася їжа?» Із цією формою потрібне `are`."
+        "ru": "Вы пришли готовить, а свитер на вас новый и светлый. Организатор показывает крючки у двери, где обычно висит одежда, которую надевают поверх своей, чтобы не испачкаться. Крючки пустые. apron — «фартук». Фартуков нет: There aren’t any aprons on the hooks.",
+        "uk": "Ви прийшли готувати, а светр на вас новий і світлий. Організатор показує гачки біля дверей, де зазвичай висить одяг, який вдягають поверх свого, щоб не забруднитися. Гачки порожні. apron — «фартух». Фартухів немає: There aren’t any aprons on the hooks."
       },
       "question": {
         "interactionId": "en:lesson-04:session-48:intro2:q",
         "promptByLocale": {
-          "ru": "Спросите, осталась ли еда, используя leftovers.",
-          "uk": "Запитайте, чи залишилася їжа, використовуючи leftovers."
+          "ru": "Организатор спрашивает, что на крючках. Скажите ему, что фартуков на крючках нет.",
+          "uk": "Організатор питає, що на гачках. Скажіть йому, що фартухів на гачках немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-48:intro2:r1",
-              "text": "Are there any leftovers?"
+              "text": "There aren’t any aprons on the hooks."
             },
             {
               "responseId": "en:lesson-04:session-48:intro2:r2",
-              "text": "Is there any leftovers?"
+              "text": "There isn’t any aprons on the hooks."
             },
             {
               "responseId": "en:lesson-04:session-48:intro2:r3",
-              "text": "There are some leftovers."
+              "text": "There aren’t any apron on the hooks."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-48:intro2:r1",
-              "text": "Are there any leftovers?"
+              "text": "There aren’t any aprons on the hooks."
             },
             {
               "responseId": "en:lesson-04:session-48:intro2:r2",
-              "text": "Is there any leftovers?"
+              "text": "There isn’t any aprons on the hooks."
             },
             {
               "responseId": "en:lesson-04:session-48:intro2:r3",
-              "text": "There are some leftovers."
+              "text": "There aren’t any apron on the hooks."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, осталась ли еда, используя leftovers.",
-          "uk": "Запитайте, чи залишилася їжа, використовуючи leftovers."
+          "ru": "Организатор спрашивает, что на крючках. Скажите ему, что фартуков на крючках нет.",
+          "uk": "Організатор питає, що на гачках. Скажіть йому, що фартухів на гачках немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рядом с кухней",
-        "uk": "Поруч із кухнею"
+        "ru": "Суп для всех",
+        "uk": "Суп для всіх"
       },
       "bodyByLocale": {
-        "ru": "`cashpoint` — банкомат, `bus shelter` — остановочный павильон, `recycling bin` — контейнер для вторсырья. `The cashpoint is next to the bus shelter` — «Банкомат рядом с остановочным павильоном». `The recycling bin is next to the door` — «Контейнер для вторсырья рядом с дверью». Один объект — `is`, даже если его название состоит из двух слов.",
-        "uk": "`cashpoint` — банкомат, `bus shelter` — зупинковий павільйон, `recycling bin` — контейнер для вторсировини. `The cashpoint is next to the bus shelter` — «Банкомат поруч із зупинковим павільйоном». `The recycling bin is next to the door` — «Контейнер для вторсировини поруч із дверима». Один об’єкт — `is`, навіть якщо його назва складається з двох слів."
+        "ru": "Вам поручили сварить суп на всех, а подходящей посуды не видно. Гостей много, и ждать некогда. Организатор открывает шкафчик под столешницей. saucepan — «кастрюля», высокая круглая посуда с ручкой. Вы спрашиваете про одну: Is there a saucepan under the worktop?",
+        "uk": "Вам доручили зварити суп на всіх, а відповідної посудини не видно. Гостей багато, і чекати ніколи. Організатор відчиняє шафку під стільницею. saucepan — «каструля», висока кругла посудина з ручкою. Ви питаєте про одну: Is there a saucepan under the worktop?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-48:intro3:q",
         "promptByLocale": {
-          "ru": "Контейнер для вторсырья рядом с дверью. Выберите описание.",
-          "uk": "Контейнер для вторсировини поруч із дверима. Виберіть опис."
+          "ru": "Спросите организатора, есть ли под столешницей кастрюля.",
+          "uk": "Запитайте організатора, чи є під стільницею каструля."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-48:intro3:r1",
-              "text": "The recycling bin is next to the door."
+              "text": "Is there a saucepan under the worktop?"
             },
             {
               "responseId": "en:lesson-04:session-48:intro3:r2",
-              "text": "The recycling bin are next to the door."
+              "text": "Is there saucepan under the worktop?"
             },
             {
               "responseId": "en:lesson-04:session-48:intro3:r3",
-              "text": "The recycling bin is under the door."
+              "text": "Are there a saucepan under the worktop?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-48:intro3:r1",
-              "text": "The recycling bin is next to the door."
+              "text": "Is there a saucepan under the worktop?"
             },
             {
               "responseId": "en:lesson-04:session-48:intro3:r2",
-              "text": "The recycling bin are next to the door."
+              "text": "Is there saucepan under the worktop?"
             },
             {
               "responseId": "en:lesson-04:session-48:intro3:r3",
-              "text": "The recycling bin is under the door."
+              "text": "Are there a saucepan under the worktop?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Контейнер для вторсырья рядом с дверью. Выберите описание.",
-          "uk": "Контейнер для вторсировини поруч із дверима. Виберіть опис."
+          "ru": "Спросите организатора, есть ли под столешницей кастрюля.",
+          "uk": "Запитайте організатора, чи є під стільницею каструля."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "38db45b9c19294bc88a8ed27764093cb50ffe951684f373c5be29ef6bdfdcabd"
+  "introFingerprint": "eb3387ab35f77ead532d3627e7fdc8682d0d484e08a42917f912be182c884626"
 }

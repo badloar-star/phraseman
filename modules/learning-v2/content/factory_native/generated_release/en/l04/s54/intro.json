@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-54",
   "learningOutcomeByLocale": {
-    "ru": "назвать заправку, спросить о ней и описать вещи перед поездкой",
-    "uk": "назвати заправку, запитати про неї й описати речі перед поїздкою"
+    "ru": "самому выбрать по смыслу утверждение, вопрос или отрицание о том, что есть",
+    "uk": "самому вибрати за змістом твердження, запитання чи заперечення про те, що є"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-04:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Заправка, а не вокзал",
-        "uk": "Заправка, а не вокзал"
+        "ru": "Где повернуть",
+        "uk": "Де повернути"
       },
       "bodyByLocale": {
-        "ru": "`petrol station` — «заправочная станция», обычно просто «заправка». Здесь пополняют запас топлива. `This is a petrol station` — «Это заправка». На такой станции поезд ждать не нужно: заправляете машину и едете сами. Перед одной заправкой ставим `a`: `a petrol station`.",
-        "uk": "`petrol station` — «заправна станція», зазвичай просто «заправка». Тут поповнюють запас пального. `This is a petrol station` — «Це заправка». На такій станції потяг чекати не потрібно: заправляєте машину та їдете самі. Перед однією заправкою ставимо `a`: `a petrol station`."
+        "ru": "Вы едете ночью в такси, и водитель, который не знает этот район, просит подсказать, где поворачивать. За заправкой дорога делится надвое: влево и вправо, и там сходятся две дороги. junction — «перекрёсток». Он один: There is a junction near the petrol station.",
+        "uk": "Ви їдете вночі в таксі, і водій, який не знає цього району, просить підказати, де повертати. За заправкою дорога ділиться надвоє: ліворуч і праворуч, і там сходяться дві дороги. junction — «перехрестя». Воно одне: There is a junction near the petrol station."
       },
       "question": {
         "interactionId": "en:lesson-04:session-54:intro1:q",
         "promptByLocale": {
-          "ru": "Назовите одну заправку.",
-          "uk": "Назвіть одну заправку."
+          "ru": "Водитель просит подсказать поворот. Скажите ему, что возле заправки есть перекрёсток.",
+          "uk": "Водій просить підказати поворот. Скажіть йому, що біля заправки є перехрестя."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-54:intro1:r1",
-              "text": "This is a petrol station."
+              "text": "There is a junction near the petrol station."
             },
             {
               "responseId": "en:lesson-04:session-54:intro1:r2",
-              "text": "This is petrol station."
+              "text": "There are a junction near the petrol station."
             },
             {
               "responseId": "en:lesson-04:session-54:intro1:r3",
-              "text": "These are petrol stations."
+              "text": "There is junction near the petrol station."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-54:intro1:r1",
-              "text": "This is a petrol station."
+              "text": "There is a junction near the petrol station."
             },
             {
               "responseId": "en:lesson-04:session-54:intro1:r2",
-              "text": "This is petrol station."
+              "text": "There are a junction near the petrol station."
             },
             {
               "responseId": "en:lesson-04:session-54:intro1:r3",
-              "text": "These are petrol stations."
+              "text": "There is junction near the petrol station."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Назовите одну заправку.",
-          "uk": "Назвіть одну заправку."
+          "ru": "Водитель просит подсказать поворот. Скажите ему, что возле заправки есть перекрёсток.",
+          "uk": "Водій просить підказати поворот. Скажіть йому, що біля заправки є перехрестя."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-04:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Есть ли заправка",
-        "uk": "Чи є заправка"
+        "ru": "Пустая ночная дорога",
+        "uk": "Порожня нічна дорога"
       },
       "bodyByLocale": {
-        "ru": "`Is there a petrol station?` — «Есть ли заправка?» Если поблизости её нет: `There isn’t a petrol station`. Чтобы сказать «Нет ни одной заправки», можно использовать форму для нескольких: `There aren’t any petrol stations`. `reliable` — «надёжный». О машине, которая не подводит: `The car is reliable`.",
-        "uk": "`Is there a petrol station?` — «Чи є заправка?» Якщо поблизу її немає: `There isn’t a petrol station`. Щоб сказати «Немає жодної заправки», можна використати форму для кількох: `There aren’t any petrol stations`. `reliable` — «надійний». Про машину, яка не підводить: `The car is reliable`."
+        "ru": "Подруга уснула на заднем сиденье, а водитель шёпотом спрашивает вас, много ли на дороге больших машин, которые возят грузы. Вы смотрите в окно: они обычно медленные, а сегодня ни одной не видно. lorry — «грузовик». Скажите: There aren’t any lorries on the road.",
+        "uk": "Подруга заснула на задньому сидінні, а водій пошепки питає вас, чи багато на дорозі великих машин, які возять вантажі. Ви дивитеся у вікно: вони зазвичай повільні, а сьогодні жодної не видно. lorry — «вантажівка». Скажіть: There aren’t any lorries on the road."
       },
       "question": {
         "interactionId": "en:lesson-04:session-54:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что машина надёжная.",
-          "uk": "Скажіть, що машина надійна."
+          "ru": "Водитель спрашивает про большие машины. Скажите ему, что на дороге грузовиков нет.",
+          "uk": "Водій питає про великі машини. Скажіть йому, що на дорозі вантажівок немає."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-54:intro2:r1",
-              "text": "The car is reliable."
+              "text": "There aren’t any lorries on the road."
             },
             {
               "responseId": "en:lesson-04:session-54:intro2:r2",
-              "text": "The car are reliable."
+              "text": "There isn’t any lorries on the road."
             },
             {
               "responseId": "en:lesson-04:session-54:intro2:r3",
-              "text": "The car is unreliable."
+              "text": "There aren’t any lorry on the road."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-54:intro2:r1",
-              "text": "The car is reliable."
+              "text": "There aren’t any lorries on the road."
             },
             {
               "responseId": "en:lesson-04:session-54:intro2:r2",
-              "text": "The car are reliable."
+              "text": "There isn’t any lorries on the road."
             },
             {
               "responseId": "en:lesson-04:session-54:intro2:r3",
-              "text": "The car is unreliable."
+              "text": "There aren’t any lorry on the road."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что машина надёжная.",
-          "uk": "Скажіть, що машина надійна."
+          "ru": "Водитель спрашивает про большие машины. Скажите ему, что на дороге грузовиков нет.",
+          "uk": "Водій питає про великі машини. Скажіть йому, що на дорозі вантажівок немає."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-04:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где сумка с продуктами",
-        "uk": "Де сумка з продуктами"
+        "ru": "Мигающие огни",
+        "uk": "Миготливі вогні"
       },
       "bodyByLocale": {
-        "ru": "`striped` — «полосатый»: `The bag is striped` — «Сумка полосатая». `pantry` — «кладовая для продуктов». `The bag is in the pantry` — «Сумка в кладовой». `in` говорит, что сумка внутри; `next to` означало бы рядом.",
-        "uk": "`striped` — «смугастий»: `The bag is striped` — «Сумка смугаста». `pantry` — «комора для продуктів». `The bag is in the pantry` — «Сумка в коморі». `in` означає, що сумка всередині; `next to` означало б поруч."
+        "ru": "Впереди вдруг загорелись жёлтые мигающие огни, а дорогу перегородили оранжевыми заборчиками. Подруга проснулась, испугалась и просит узнать у водителя, что случилось. roadworks — «дорожные работы». Спросите: Are there roadworks near the junction?",
+        "uk": "Попереду раптом засвітилися жовті миготливі вогні, а дорогу перегородили помаранчевими загорожами. Подруга прокинулася, злякалася й просить дізнатися у водія, що сталося. roadworks — «дорожні роботи». Запитайте: Are there roadworks near the junction?"
       },
       "question": {
         "interactionId": "en:lesson-04:session-54:intro3:q",
         "promptByLocale": {
-          "ru": "Сумка внутри кладовой. Выберите описание.",
-          "uk": "Сумка всередині комори. Виберіть опис."
+          "ru": "Подруга проснулась и спрашивает про огни. Спросите водителя, есть ли дорожные работы возле перекрёстка.",
+          "uk": "Подруга прокинулася й питає про вогні. Запитайте водія, чи є дорожні роботи біля перехрестя."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-04:session-54:intro3:r1",
-              "text": "The bag is in the pantry."
+              "text": "Are there roadworks near the junction?"
             },
             {
               "responseId": "en:lesson-04:session-54:intro3:r2",
-              "text": "The bag is next to the pantry."
+              "text": "Is there roadworks near the junction?"
             },
             {
               "responseId": "en:lesson-04:session-54:intro3:r3",
-              "text": "The bag are in the pantry."
+              "text": "There are roadworks near the junction?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-04:session-54:intro3:r1",
-              "text": "The bag is in the pantry."
+              "text": "Are there roadworks near the junction?"
             },
             {
               "responseId": "en:lesson-04:session-54:intro3:r2",
-              "text": "The bag is next to the pantry."
+              "text": "Is there roadworks near the junction?"
             },
             {
               "responseId": "en:lesson-04:session-54:intro3:r3",
-              "text": "The bag are in the pantry."
+              "text": "There are roadworks near the junction?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Сумка внутри кладовой. Выберите описание.",
-          "uk": "Сумка всередині комори. Виберіть опис."
+          "ru": "Подруга проснулась и спрашивает про огни. Спросите водителя, есть ли дорожные работы возле перекрёстка.",
+          "uk": "Подруга прокинулася й питає про вогні. Запитайте водія, чи є дорожні роботи біля перехрестя."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "495c506772b6b052cd96976a21db520fe77b172bbcd2800566ee075f4610d5dd"
+  "introFingerprint": "7c93eeb9a84a2a7ed78f3991b943273103cabb6aa8408800e0378730fc6730e2"
 }

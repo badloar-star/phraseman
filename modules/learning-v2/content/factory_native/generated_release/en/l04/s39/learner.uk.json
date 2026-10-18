@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-39:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Інформація стосується обговорюваної теми. Скажіть про це без скорочення",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Інформація стосується обговорюваної теми. Скажіть про це без скорочення",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is relevant.",
-        "localizedMeaning": {
-          "ru": "Информация относится к обсуждаемой теме. Скажите об этом без сокращения",
-          "uk": "Інформація стосується обговорюваної теми. Скажіть про це без скорочення"
-        },
-        "orderedTokens": [
-          "It",
-          "is",
-          "relevant"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Інформація стосується обговорюваної теми. Скажіть про це без скорочення",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `It is relevant.`",
-              "uk": "тут потрібно `is` — `It is relevant.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-39:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-39:i02:r1",
-          "text": "boiler"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i02:r2",
-          "text": "boilers"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i02:r3",
-          "text": "doorbell"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-39:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i02:audio",
-          "transcript": "boiler"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-39:i02:r1",
-            "targetText": "boiler",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i02:r2",
-            "targetText": "boilers",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i02:r3",
-            "targetText": "doorbell",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `boiler`, а в этом варианте — `boilers`.",
-              "uk": "У записі перше слово — `boiler`, а в цьому варіанті — `boilers`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `boiler`, а в этом варианте — `doorbell`.",
-              "uk": "У записі перше слово — `boiler`, а в цьому варіанті — `doorbell`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-39:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть опалювальний котел одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-39:i03:r1",
-          "text": "boiler"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i03:r2",
-          "text": "sink"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i03:r3",
-          "text": "handrail"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть опалювальний котел одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите отопительный котёл одним словом",
-          "uk": "Назвіть опалювальний котел одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-39:i03:r1",
-            "text": "boiler"
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i03:r2",
-            "text": "sink"
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i03:r3",
-            "text": "handrail"
-          }
-        ],
-        "testedDimension": "Назвіть опалювальний котел одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть опалювальний котел одним словом",
-            "feedbackByLocale": {
-              "ru": "`sink` — раковина; котёл — `boiler`.",
-              "uk": "`sink` — раковина; котел — `boiler`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть опалювальний котел одним словом",
-            "feedbackByLocale": {
-              "ru": "`handrail` — поручень; котёл — `boiler`.",
-              "uk": "`handrail` — поручень; котел — `boiler`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-39:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,49 +18,49 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-39:i04:p1",
+            "pairId": "en:lesson-04:session-39:i01:p1",
             "target": "boiler",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "бойлер, котёл",
+              "uk": "бойлер, котел"
             }
           },
           {
-            "pairId": "en:lesson-04:session-39:i04:p2",
-            "target": "relevant",
+            "pairId": "en:lesson-04:session-39:i01:p2",
+            "target": "tap",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "пов’язаний із темою"
+              "ru": "кран",
+              "uk": "кран"
             }
           },
           {
-            "pairId": "en:lesson-04:session-39:i04:p3",
-            "target": "bottles",
+            "pairId": "en:lesson-04:session-39:i01:p3",
+            "target": "pipe",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "труба",
+              "uk": "труба"
             }
           },
           {
-            "pairId": "en:lesson-04:session-39:i04:p4",
-            "target": "car park",
+            "pairId": "en:lesson-04:session-39:i01:p4",
+            "target": "heater",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "обогреватель",
+              "uk": "обігрівач"
             }
           }
         ],
         "leftColumn": [
           "boiler",
-          "relevant",
-          "bottles",
-          "car park"
+          "tap",
+          "pipe",
+          "heater"
         ],
         "rightColumn": [
-          "опалювальний котел",
-          "пов’язаний із темою",
-          "пляшки",
-          "парковка"
+          "бойлер, котел",
+          "кран",
+          "труба",
+          "обігрівач"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,121 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-39:word:boiler",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boiler",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-39:i05:audio"
+        "en:lesson-04:session-39:word:boiler:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Картка слова — boiler",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i05:audio",
-          "transcript": "This is a boiler."
+          "audioTargetId": "en:lesson-04:session-39:word:boiler:audio",
+          "transcript": "boiler"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "This is a boiler.",
-        "orderedTokens": [
-          "This",
-          "is",
-          "a",
-          "boiler"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-39:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть фразу",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `This is a boiler.`",
-              "uk": "тут потрібно `is` — `This is a boiler.`"
+            "responseId": "en:lesson-04:session-39:word:boiler:r1",
+            "targetText": "boiler",
+            "meaningByLocale": {
+              "ru": "бойлер, котёл. There isn’t a boiler. — «Бойлера нет». О большом баке или котле, который греет воду для всей квартиры.",
+              "uk": "бойлер, котел. There isn’t a boiler. — «Бойлера немає». Про великий бак або котел, який гріє воду для всієї квартири."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boiler",
+          "definitionByLocale": {
+            "ru": "бойлер, котёл. There isn’t a boiler. — «Бойлера нет». О большом баке или котле, который греет воду для всей квартиры.",
+            "uk": "бойлер, котел. There isn’t a boiler. — «Бойлера немає». Про великий бак або котел, який гріє воду для всієї квартири."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Пляшки на столі. Скажіть, де вони",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пляшки на столі. Скажіть, де вони",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The bottles are on the table.",
-        "localizedMeaning": {
-          "ru": "Бутылки на столе. Скажите, где они",
-          "uk": "Пляшки на столі. Скажіть, де вони"
-        },
-        "orderedTokens": [
-          "The",
-          "bottles",
-          "are",
-          "on",
-          "the",
-          "table"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Пляшки на столі. Скажіть, де вони",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The bottles are on the table.`",
-              "uk": "тут потрібно `are` — `The bottles are on the table.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-39:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-39:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви обговорюєте опалення. Запитання про котел стосується теми. Скажіть про це зі скороченням",
+      "prompt": "Господар показує великий бак, який гріє воду для всієї квартири, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-39:i07:audio"
+        "en:lesson-04:session-39:i02:audio"
       ],
-      "accessibilityLabel": "Ви обговорюєте опалення. Запитання про котел стосується теми. Скажіть про це зі скороченням",
+      "accessibilityLabel": "Господар показує великий бак, який гріє воду для всієї квартири, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i07:audio",
-          "transcript": "It's relevant."
+          "audioTargetId": "en:lesson-04:session-39:i02:audio",
+          "transcript": "boiler"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It's relevant.",
+        "targetPhrase": "boiler",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -394,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Господар питає про підвал. Скажіть йому повною фразою: у підвалі немає бойлера",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Господар питає про підвал. Скажіть йому повною фразою: у підвалі немає бойлера",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a boiler in the basement.",
+        "localizedMeaning": {
+          "ru": "Хозяин спрашивает про подвал. Скажите ему полной фразой: в подвале нет бойлера",
+          "uk": "Господар питає про підвал. Скажіть йому повною фразою: у підвалі немає бойлера"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "boiler",
+          "in",
+          "the",
+          "basement"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Господар питає про підвал. Скажіть йому повною фразою: у підвалі немає бойлера",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a boiler in the basement.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a boiler in the basement.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:word:tap",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:word:tap:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:word:tap:audio",
+          "transcript": "tap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-39:word:tap:r1",
+            "targetText": "tap",
+            "meaningByLocale": {
+              "ru": "кран. The tap isn’t here. — «Крана здесь нет». О детали над раковиной, из которой льётся вода.",
+              "uk": "кран. The tap isn’t here. — «Крана тут немає». Про деталь над раковиною, з якої ллється вода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tap",
+          "definitionByLocale": {
+            "ru": "кран. The tap isn’t here. — «Крана здесь нет». О детали над раковиной, из которой льётся вода.",
+            "uk": "кран. The tap isn’t here. — «Крана тут немає». Про деталь над раковиною, з якої ллється вода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Опалювального котла немає. Виберіть форму",
+      "prompt": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-39:i08:r1",
-          "text": "isn't"
+          "responseId": "en:lesson-04:session-39:i04:r1",
+          "text": "tap"
         },
         {
-          "responseId": "en:lesson-04:session-39:i08:r2",
-          "text": "is"
+          "responseId": "en:lesson-04:session-39:i04:r2",
+          "text": "handle"
         },
         {
-          "responseId": "en:lesson-04:session-39:i08:r3",
-          "text": "aren't"
+          "responseId": "en:lesson-04:session-39:i04:r3",
+          "text": "bucket"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Опалювального котла немає. Виберіть форму",
+      "accessibilityLabel": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Отопительного котла нет. Выберите форму",
-          "uk": "Опалювального котла немає. Виберіть форму"
+          "ru": "Хозяин поворачивает рукоятку над раковиной, и льётся вода. Как называется эта деталь по-английски?",
+          "uk": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?"
         },
-        "gappedTargetPhrase": "There ___ a boiler.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-39:i08:r1",
-            "text": "isn't"
+            "responseId": "en:lesson-04:session-39:i04:r1",
+            "text": "tap"
           },
           {
-            "responseId": "en:lesson-04:session-39:i08:r2",
-            "text": "is"
+            "responseId": "en:lesson-04:session-39:i04:r2",
+            "text": "handle"
           },
           {
-            "responseId": "en:lesson-04:session-39:i08:r3",
-            "text": "aren't"
+            "responseId": "en:lesson-04:session-39:i04:r3",
+            "text": "bucket"
           }
         ],
-        "testedDimension": "Опалювального котла немає. Виберіть форму",
+        "testedDimension": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-39:i08:r2",
+            "responseId": "en:lesson-04:session-39:i04:r2",
             "correct": false,
-            "testedDimension": "Опалювального котла немає. Виберіть форму",
+            "testedDimension": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?",
             "feedbackByLocale": {
-              "ru": "`is` сообщает о наличии; здесь отсутствие: `isn’t`.",
-              "uk": "`is` повідомляє про наявність; тут відсутність: `isn’t`."
+              "ru": "handle — это ручка, а деталь над раковиной, из которой льётся вода, называется tap.",
+              "uk": "handle — це ручка, а деталь над раковиною, з якої ллється вода, називається tap."
             }
           },
           {
-            "responseId": "en:lesson-04:session-39:i08:r3",
+            "responseId": "en:lesson-04:session-39:i04:r3",
             "correct": false,
-            "testedDimension": "Опалювального котла немає. Виберіть форму",
+            "testedDimension": "Господар повертає рукоятку над раковиною, і ллється вода. Як називається ця деталь англійською?",
             "feedbackByLocale": {
-              "ru": "Один котёл: `isn’t a boiler`.",
-              "uk": "Один котел: `isn’t a boiler`."
+              "ru": "bucket — это ведро, а деталь над раковиной, из которой льётся вода, называется tap.",
+              "uk": "bucket — це відро, а деталь над раковиною, з якої ллється вода, називається tap."
             }
           }
         ]
@@ -463,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де парковка",
+      "prompt": "Послухайте господаря",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-39:i09:r1",
-          "text": "The car park is next to the house."
+          "responseId": "en:lesson-04:session-39:i05:r1",
+          "text": "The tap isn’t here."
         },
         {
-          "responseId": "en:lesson-04:session-39:i09:r2",
-          "text": "The car park is next to the hotel."
+          "responseId": "en:lesson-04:session-39:i05:r2",
+          "text": "The tap isn’t hot."
         },
         {
-          "responseId": "en:lesson-04:session-39:i09:r3",
-          "text": "The car park is next to the shop."
+          "responseId": "en:lesson-04:session-39:i05:r3",
+          "text": "There isn’t a tap."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-39:i09:audio"
+        "en:lesson-04:session-39:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де парковка",
+      "accessibilityLabel": "Послухайте господаря",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i09:audio",
-          "transcript": "The car park is next to the house."
+          "audioTargetId": "en:lesson-04:session-39:i05:audio",
+          "transcript": "The tap isn’t here."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-39:i09:r1",
-            "targetText": "The car park is next to the house.",
+            "responseId": "en:lesson-04:session-39:i05:r1",
+            "targetText": "The tap isn’t here.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-39:i09:r2",
-            "targetText": "The car park is next to the hotel.",
+            "responseId": "en:lesson-04:session-39:i05:r2",
+            "targetText": "The tap isn’t hot.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-39:i09:r3",
-            "targetText": "The car park is next to the shop.",
+            "responseId": "en:lesson-04:session-39:i05:r3",
+            "targetText": "There isn’t a tap.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-39:i09:r2",
+            "responseId": "en:lesson-04:session-39:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де парковка",
+            "testedDimension": "Послухайте господаря",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `house`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `house`, а в цьому варіанті — `hotel`."
+              "ru": "В записи `here` — «здесь», а в этом варианте `hot` — «горячий».",
+              "uk": "У записі `here` — «тут», а в цьому варіанті `hot` — «гарячий»."
             }
           },
           {
-            "responseId": "en:lesson-04:session-39:i09:r3",
+            "responseId": "en:lesson-04:session-39:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де парковка",
+            "testedDimension": "Послухайте господаря",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `house`, а в этом варианте — `shop`.",
-              "uk": "У записі останнє слово — `house`, а в цьому варіанті — `shop`."
+              "ru": "В записи говорят о знакомом кране (`The tap`), а в этом варианте крана нет вообще (`There isn’t a tap`).",
+              "uk": "У записі говорять про знайомий кран (`The tap`), а в цьому варіанті крана немає взагалі (`There isn’t a tap`)."
             }
           }
         ],
@@ -539,9 +389,293 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i10",
+      "interactionId": "en:lesson-04:session-39:word:pipe",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pipe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:word:pipe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pipe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:word:pipe:audio",
+          "transcript": "pipe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-39:word:pipe:r1",
+            "targetText": "pipe",
+            "meaningByLocale": {
+              "ru": "труба. The pipe isn’t hot. — «Труба не горячая». О трубе, по которой идёт вода или тепло.",
+              "uk": "труба. The pipe isn’t hot. — «Труба не гаряча». Про трубу, якою йде вода або тепло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pipe",
+          "definitionByLocale": {
+            "ru": "труба. The pipe isn’t hot. — «Труба не горячая». О трубе, по которой идёт вода или тепло.",
+            "uk": "труба. The pipe isn’t hot. — «Труба не гаряча». Про трубу, якою йде вода або тепло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Майстер показує металеву трубу, якою йде вода, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Майстер показує металеву трубу, якою йде вода, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:i06:audio",
+          "transcript": "pipe"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "pipe",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте майстра й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте майстра й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:i07:audio",
+          "transcript": "The pipe isn’t new."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The pipe isn’t new.",
+        "orderedTokens": [
+          "The",
+          "pipe",
+          "isn’t",
+          "new"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте майстра й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `The pipe isn’t new.`",
+              "uk": "тут потрібно `isn’t` — `The pipe isn’t new.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:word:heater",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heater",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:word:heater:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heater",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:word:heater:audio",
+          "transcript": "heater"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-39:word:heater:r1",
+            "targetText": "heater",
+            "meaningByLocale": {
+              "ru": "обогреватель. There isn’t a heater. — «Обогревателя нет». О приборе, который греет комнату.",
+              "uk": "обігрівач. There isn’t a heater. — «Обігрівача немає». Про прилад, який гріє кімнату."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heater",
+          "definitionByLocale": {
+            "ru": "обогреватель. There isn’t a heater. — «Обогревателя нет». О приборе, который греет комнату.",
+            "uk": "обігрівач. There isn’t a heater. — «Обігрівача немає». Про прилад, який гріє кімнату."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-39:i08:r1",
+          "text": "heater"
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i08:r2",
+          "text": "kettle"
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i08:r3",
+          "text": "lamp"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хозяин включает в розетку электрический прибор, который греет комнату. Как он называется по-английски?",
+          "uk": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-39:i08:r1",
+            "text": "heater"
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i08:r2",
+            "text": "kettle"
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i08:r3",
+            "text": "lamp"
+          }
+        ],
+        "testedDimension": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "kettle — это чайник, а прибор, который греет комнату, называется heater.",
+              "uk": "kettle — це чайник, а прилад, який гріє кімнату, називається heater."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Господар вмикає в розетку електричний прилад, який гріє кімнату. Як він називається англійською?",
+            "feedbackByLocale": {
+              "ru": "lamp — это лампа, а прибор, который греет комнату, называется heater.",
+              "uk": "lamp — це лампа, а прилад, який гріє кімнату, називається heater."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Господар шукає обігрівач. Скажіть йому повною фразою: поруч із ліжком немає обігрівача",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Господар шукає обігрівач. Скажіть йому повною фразою: поруч із ліжком немає обігрівача",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There isn’t a heater near the bed.",
+        "localizedMeaning": {
+          "ru": "Хозяин ищет обогреватель. Скажите ему полной фразой: рядом с кроватью нет обогревателя",
+          "uk": "Господар шукає обігрівач. Скажіть йому повною фразою: поруч із ліжком немає обігрівача"
+        },
+        "orderedTokens": [
+          "There",
+          "isn’t",
+          "a",
+          "heater",
+          "near",
+          "the",
+          "bed"
+        ],
+        "authoredDistractorTokens": [
+          "aren’t"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Господар шукає обігрівач. Скажіть йому повною фразою: поруч із ліжком немає обігрівача",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `isn’t` — `There isn’t a heater near the bed.`",
+              "uk": "тут потрібно `isn’t` — `There isn’t a heater near the bed.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -554,48 +688,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-39:i10:p1",
-            "target": "boiler",
+            "target": "heater",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "обогреватель",
+              "uk": "обігрівач"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i10:p2",
-            "target": "relevant",
+            "target": "pipe",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "пов’язаний із темою"
+              "ru": "труба",
+              "uk": "труба"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i10:p3",
-            "target": "bottles",
+            "target": "tap",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "кран",
+              "uk": "кран"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i10:p4",
-            "target": "car park",
+            "target": "radiator",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "батарея отопления",
+              "uk": "радіатор опалення"
             }
           }
         ],
         "leftColumn": [
-          "boiler",
-          "relevant",
-          "bottles",
-          "car park"
+          "heater",
+          "pipe",
+          "tap",
+          "radiator"
         ],
         "rightColumn": [
-          "опалювальний котел",
-          "пов’язаний із темою",
-          "пляшки",
-          "парковка"
+          "обігрівач",
+          "труба",
+          "кран",
+          "радіатор опалення"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -613,75 +747,187 @@
     },
     {
       "interactionId": "en:lesson-04:session-39:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте майстра",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-39:i11:r1",
+          "text": "The boiler isn’t broken."
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i11:r2",
+          "text": "The boiler isn’t here."
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i11:r3",
+          "text": "There isn’t a boiler."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-39:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Послухайте майстра",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-39:i11:audio",
-          "transcript": "There aren't any boilers."
+          "transcript": "The boiler isn’t broken."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "There aren't any boilers.",
-        "orderedTokens": [
-          "There",
-          "aren't",
-          "any",
-          "boilers"
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-39:i11:r1",
+            "targetText": "The boiler isn’t broken.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i11:r2",
+            "targetText": "The boiler isn’t here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i11:r3",
+            "targetText": "There isn’t a boiler.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте майстра",
+            "feedbackByLocale": {
+              "ru": "В записи `broken` — «сломан», а в этом варианте `here` — «здесь».",
+              "uk": "У записі `broken` — «зламаний», а в цьому варіанті `here` — «тут»."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте майстра",
+            "feedbackByLocale": {
+              "ru": "В записи говорят о знакомом бойлере (`The boiler`), а в этом варианте бойлера нет вообще (`There isn’t a boiler`).",
+              "uk": "У записі говорять про знайомий бойлер (`The boiler`), а в цьому варіанті бойлера немає взагалі (`There isn’t a boiler`)."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-39:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Тут є опалювальний котел. Повідомте про це",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-39:i12:r1",
+          "text": "isn’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i12:r2",
+          "text": "aren’t"
+        },
+        {
+          "responseId": "en:lesson-04:session-39:i12:r3",
+          "text": "are"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тут є опалювальний котел. Повідомте про це",
+      "accessibilityLabel": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "There is a boiler.",
-        "localizedMeaning": {
-          "ru": "Здесь есть отопительный котёл. Сообщите об этом",
-          "uk": "Тут є опалювальний котел. Повідомте про це"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер говорит о бойлере, который вы видели вчера: сегодня его унесли. Выберите нужное слово",
+          "uk": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово"
         },
+        "gappedTargetPhrase": "The boiler ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-39:i12:r1",
+            "text": "isn’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i12:r2",
+            "text": "aren’t"
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "Бойлер один, поэтому нужно isn’t, а не aren’t.",
+              "uk": "Бойлер один, тому потрібно isn’t, а не aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Майстер говорить про бойлер, який ви бачили вчора: сьогодні його винесли. Виберіть потрібне слово",
+            "feedbackByLocale": {
+              "ru": "are не подходит к одному бойлеру: нужно isn’t.",
+              "uk": "are не підходить до одного бойлера: потрібно isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте господаря й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте господаря й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-39:i13:audio",
+          "transcript": "The heater isn’t broken."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The heater isn’t broken.",
         "orderedTokens": [
-          "There",
-          "is",
-          "a",
-          "boiler"
+          "The",
+          "heater",
+          "isn’t",
+          "broken"
         ],
         "authoredDistractorTokens": [
-          "are"
+          "aren’t"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-39:i12:tile:d1",
+            "responseId": "en:lesson-04:session-39:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Тут є опалювальний котел. Повідомте про це",
+            "testedDimension": "Послухайте господаря й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `There is a boiler.`",
-              "uk": "тут потрібно `is` — `There is a boiler.`"
+              "ru": "здесь нужно `isn’t` — `The heater isn’t broken.`",
+              "uk": "тут потрібно `isn’t` — `The heater isn’t broken.`"
             }
           }
         ],
@@ -693,26 +939,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-39:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви ще не оглянули будинок. Запитайте, чи є опалювальний котел",
+      "prompt": "Господар питає про батареї в холі. Скажіть йому: «У холі немає батарей»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-39:i13:audio"
+        "en:lesson-04:session-39:i14:audio"
       ],
-      "accessibilityLabel": "Ви ще не оглянули будинок. Запитайте, чи є опалювальний котел",
+      "accessibilityLabel": "Господар питає про батареї в холі. Скажіть йому: «У холі немає батарей»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i13:audio",
-          "transcript": "Is there a boiler?"
+          "audioTargetId": "en:lesson-04:session-39:i14:audio",
+          "transcript": "There aren’t any radiators in the hall."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Is there a boiler?",
+        "targetPhrase": "There aren’t any radiators in the hall.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -726,153 +972,56 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-39:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-39:i14:r1",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i14:r2",
-          "text": "on"
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Майстер зазирнув під раковину. Скажіть йому повною фразою: під раковиною немає труб",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово",
+      "accessibilityLabel": "Майстер зазирнув під раковину. Скажіть йому повною фразою: під раковиною немає труб",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Бутылки внутри сумки, не на ней и не под ней. Выберите слово",
-          "uk": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "There aren’t any pipes under the sink.",
+        "localizedMeaning": {
+          "ru": "Мастер заглянул под раковину. Скажите ему полной фразой: под раковиной нет труб",
+          "uk": "Майстер зазирнув під раковину. Скажіть йому повною фразою: під раковиною немає труб"
         },
-        "gappedTargetPhrase": "The bottles are ___ the bag.",
-        "gapOptions": [
+        "orderedTokens": [
+          "There",
+          "aren’t",
+          "any",
+          "pipes",
+          "under",
+          "the",
+          "sink"
+        ],
+        "authoredDistractorTokens": [
+          "isn’t"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-39:i14:r1",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i14:r2",
-            "text": "on"
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-39:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Майстер зазирнув під раковину. Скажіть йому повною фразою: під раковиною немає труб",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `aren’t` — `There aren’t any pipes under the sink.`",
+              "uk": "тут потрібно `aren’t` — `There aren’t any pipes under the sink.`"
+            }
           }
         ],
-        "testedDimension": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i14:r2",
-            "correct": false,
-            "testedDimension": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`on` — на поверхности; внутри — `in`.",
-              "uk": "`on` — на поверхні; всередині — `in`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i14:r3",
-            "correct": false,
-            "testedDimension": "Пляшки всередині сумки, не на ній і не під нею. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; внутри — `in`.",
-              "uk": "`under` — під; всередині — `in`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-39:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-39:i15:r1",
-          "text": "That is a boiler."
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i15:r2",
-          "text": "This is a boiler."
-        },
-        {
-          "responseId": "en:lesson-04:session-39:i15:r3",
-          "text": "That is a sink."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-39:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-39:i15:audio",
-          "transcript": "That is a boiler."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-39:i15:r1",
-            "targetText": "That is a boiler.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i15:r2",
-            "targetText": "This is a boiler.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i15:r3",
-            "targetText": "That is a sink.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-39:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-39:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `boiler`, а в этом варианте — `sink`.",
-              "uk": "У записі останнє слово — `boiler`, а в цьому варіанті — `sink`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-39:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -888,46 +1037,46 @@
             "pairId": "en:lesson-04:session-39:i16:p1",
             "target": "boiler",
             "meaningByLocale": {
-              "ru": "отопительный котёл",
-              "uk": "опалювальний котел"
+              "ru": "бойлер, котёл",
+              "uk": "бойлер, котел"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i16:p2",
-            "target": "relevant",
+            "target": "tap",
             "meaningByLocale": {
-              "ru": "относящийся к теме",
-              "uk": "пов’язаний із темою"
+              "ru": "кран",
+              "uk": "кран"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i16:p3",
-            "target": "bottles",
+            "target": "pipe",
             "meaningByLocale": {
-              "ru": "бутылки",
-              "uk": "пляшки"
+              "ru": "труба",
+              "uk": "труба"
             }
           },
           {
             "pairId": "en:lesson-04:session-39:i16:p4",
-            "target": "car park",
+            "target": "heater",
             "meaningByLocale": {
-              "ru": "парковка",
-              "uk": "парковка"
+              "ru": "обогреватель",
+              "uk": "обігрівач"
             }
           }
         ],
         "leftColumn": [
           "boiler",
-          "relevant",
-          "bottles",
-          "car park"
+          "tap",
+          "pipe",
+          "heater"
         ],
         "rightColumn": [
-          "опалювальний котел",
-          "пов’язаний із темою",
-          "пляшки",
-          "парковка"
+          "бойлер, котел",
+          "кран",
+          "труба",
+          "обігрівач"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -945,25 +1094,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-39:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви оглянули інший будинок: опалювального котла там немає. Повідомте про це однією фразою",
+      "prompt": "Господар питає про бойлер, який ви бачили вчора. Скажіть йому: «Бойлера тут немає»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-39:i17:audio"
       ],
-      "accessibilityLabel": "Ви оглянули інший будинок: опалювального котла там немає. Повідомте про це однією фразою",
+      "accessibilityLabel": "Господар питає про бойлер, який ви бачили вчора. Скажіть йому: «Бойлера тут немає»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-39:i17:audio",
-          "transcript": "There isn't a boiler."
+          "transcript": "The boiler isn’t here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "There isn't a boiler.",
+        "targetPhrase": "The boiler isn’t here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -985,11 +1134,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5074a3379971d62de1e1fa298e85d683cc754501133aebe1860c180b07af74be"
+  "learnerFingerprint": "09d06b253b63830e36cedd5260e9214861c7e0eaec41f153b42afc0af5d27679"
 }

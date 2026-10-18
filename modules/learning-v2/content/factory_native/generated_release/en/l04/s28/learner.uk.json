@@ -7,195 +7,6 @@
       "interactionId": "en:lesson-04:session-28:i01",
       "ordinal": 4,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He is flexible.",
-        "localizedMeaning": {
-          "ru": "Друг готов менять планы. Скажите это без сокращения со словом flexible",
-          "uk": "Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible"
-        },
-        "orderedTokens": [
-          "He",
-          "is",
-          "flexible"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i01:tile:d1",
-            "correct": false,
-            "testedDimension": "Друг готовий змінювати плани. Скажіть це без скорочення зі словом flexible",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `He is flexible.`",
-              "uk": "тут потрібно `is` — `He is flexible.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i02",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-28:i02:r1",
-          "text": "alley"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i02:r2",
-          "text": "awning"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i02:r3",
-          "text": "table"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-28:i02:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i02:audio",
-          "transcript": "alley"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-28:i02:r1",
-            "targetText": "alley",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i02:r2",
-            "targetText": "awning",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i02:r3",
-            "targetText": "table",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `alley`, а в этом варианте — `awning`.",
-              "uk": "У записі перше слово — `alley`, а в цьому варіанті — `awning`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `alley`, а в этом варианте — `table`.",
-              "uk": "У записі перше слово — `alley`, а в цьому варіанті — `table`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i03",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Назвіть вузький провулок одним словом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-28:i03:r1",
-          "text": "alley"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i03:r2",
-          "text": "awning"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i03:r3",
-          "text": "window"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Назвіть вузький провулок одним словом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Назовите узкий переулок одним словом",
-          "uk": "Назвіть вузький провулок одним словом"
-        },
-        "gappedTargetPhrase": "___",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-04:session-28:i03:r1",
-            "text": "alley"
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i03:r2",
-            "text": "awning"
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i03:r3",
-            "text": "window"
-          }
-        ],
-        "testedDimension": "Назвіть вузький провулок одним словом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i03:r2",
-            "correct": false,
-            "testedDimension": "Назвіть вузький провулок одним словом",
-            "feedbackByLocale": {
-              "ru": "`awning` — навес; переулок — `alley`.",
-              "uk": "`awning` — навіс; провулок — `alley`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i03:r3",
-            "correct": false,
-            "testedDimension": "Назвіть вузький провулок одним словом",
-            "feedbackByLocale": {
-              "ru": "`window` — окно; переулок — `alley`.",
-              "uk": "`window` — вікно; провулок — `alley`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i04",
-      "ordinal": 7,
-      "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -207,7 +18,7 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-04:session-28:i04:p1",
+            "pairId": "en:lesson-04:session-28:i01:p1",
             "target": "alley",
             "meaningByLocale": {
               "ru": "переулок",
@@ -215,41 +26,41 @@
             }
           },
           {
-            "pairId": "en:lesson-04:session-28:i04:p2",
-            "target": "flexible",
+            "pairId": "en:lesson-04:session-28:i01:p2",
+            "target": "lamppost",
             "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
+              "ru": "фонарный столб",
+              "uk": "ліхтарний стовп"
             }
           },
           {
-            "pairId": "en:lesson-04:session-28:i04:p3",
-            "target": "chairs",
+            "pairId": "en:lesson-04:session-28:i01:p3",
+            "target": "gate",
             "meaningByLocale": {
-              "ru": "стулья",
-              "uk": "стільці"
+              "ru": "ворота, калитка",
+              "uk": "ворота, хвіртка"
             }
           },
           {
-            "pairId": "en:lesson-04:session-28:i04:p4",
-            "target": "mushroom",
+            "pairId": "en:lesson-04:session-28:i01:p4",
+            "target": "fence",
             "meaningByLocale": {
-              "ru": "гриб",
-              "uk": "гриб"
+              "ru": "забор",
+              "uk": "паркан"
             }
           }
         ],
         "leftColumn": [
           "alley",
-          "flexible",
-          "chairs",
-          "mushroom"
+          "lamppost",
+          "gate",
+          "fence"
         ],
         "rightColumn": [
           "провулок",
-          "гнучкий",
-          "стільці",
-          "гриб"
+          "ліхтарний стовп",
+          "ворота, хвіртка",
+          "паркан"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -266,123 +77,69 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i05",
-      "ordinal": 8,
+      "interactionId": "en:lesson-04:session-28:word:alley",
+      "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть опис",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — alley",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-28:i05:audio"
+        "en:lesson-04:session-28:word:alley:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть опис",
+      "accessibilityLabel": "Картка слова — alley",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i05:audio",
-          "transcript": "The chairs are in the alley."
+          "audioTargetId": "en:lesson-04:session-28:word:alley:audio",
+          "transcript": "alley"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The chairs are in the alley.",
-        "orderedTokens": [
-          "The",
-          "chairs",
-          "are",
-          "in",
-          "the",
-          "alley"
-        ],
-        "authoredDistractorTokens": [
-          "is"
-        ],
-        "slotFeedback": [
+        "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-28:i05:tile:d1",
-            "correct": false,
-            "testedDimension": "Послухайте й складіть опис",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `are` — `The chairs are in the alley.`",
-              "uk": "тут потрібно `are` — `The chairs are in the alley.`"
+            "responseId": "en:lesson-04:session-28:word:alley:r1",
+            "targetText": "alley",
+            "meaningByLocale": {
+              "ru": "переулок. The alley is next to the bank. — «Переулок рядом с банком». О узком проходе между двумя домами.",
+              "uk": "провулок. The alley is next to the bank. — «Провулок поруч із банком». Про вузький прохід між двома будинками."
             }
           }
         ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alley",
+          "definitionByLocale": {
+            "ru": "переулок. The alley is next to the bank. — «Переулок рядом с банком». О узком проходе между двумя домами.",
+            "uk": "провулок. The alley is next to the bank. — «Провулок поруч із банком». Про вузький прохід між двома будинками."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Гриб лежить на столі. Скажіть, де він",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Гриб лежить на столі. Скажіть, де він",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The mushroom is on the table.",
-        "localizedMeaning": {
-          "ru": "Гриб лежит на столе. Скажите, где он",
-          "uk": "Гриб лежить на столі. Скажіть, де він"
-        },
-        "orderedTokens": [
-          "The",
-          "mushroom",
-          "is",
-          "on",
-          "the",
-          "table"
-        ],
-        "authoredDistractorTokens": [
-          "are"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i06:tile:d1",
-            "correct": false,
-            "testedDimension": "Гриб лежить на столі. Скажіть, де він",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The mushroom is on the table.`",
-              "uk": "тут потрібно `is` — `The mushroom is on the table.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i07",
-      "ordinal": 10,
+      "interactionId": "en:lesson-04:session-28:i02",
+      "ordinal": 6,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг легко погодився змінити плани. Опишіть його зі словом flexible і скороченням",
+      "prompt": "Кур’єр називає вузький прохід між будинками, а ви повторюєте за ним слово",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-28:i07:audio"
+        "en:lesson-04:session-28:i02:audio"
       ],
-      "accessibilityLabel": "Друг легко погодився змінити плани. Опишіть його зі словом flexible і скороченням",
+      "accessibilityLabel": "Кур’єр називає вузький прохід між будинками, а ви повторюєте за ним слово",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i07:audio",
-          "transcript": "He's flexible."
+          "audioTargetId": "en:lesson-04:session-28:i02:audio",
+          "transcript": "alley"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He's flexible.",
+        "targetPhrase": "alley",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -396,68 +153,159 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i08",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Кур’єр шукає кафе. Скажіть йому повною фразою: провулок поруч із банком",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кур’єр шукає кафе. Скажіть йому повною фразою: провулок поруч із банком",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The alley is next to the bank.",
+        "localizedMeaning": {
+          "ru": "Курьер ищет кафе. Скажите ему полной фразой: переулок рядом с банком",
+          "uk": "Кур’єр шукає кафе. Скажіть йому повною фразою: провулок поруч із банком"
+        },
+        "orderedTokens": [
+          "The",
+          "alley",
+          "is",
+          "next",
+          "to",
+          "the",
+          "bank"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Кур’єр шукає кафе. Скажіть йому повною фразою: провулок поруч із банком",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The alley is next to the bank.`",
+              "uk": "тут потрібно `is` — `The alley is next to the bank.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:word:lamppost",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lamppost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:word:lamppost:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lamppost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:word:lamppost:audio",
+          "transcript": "lamppost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:word:lamppost:r1",
+            "targetText": "lamppost",
+            "meaningByLocale": {
+              "ru": "фонарный столб. The bin is next to the lamppost. — «Урна рядом с фонарным столбом». О высоком столбе с фонарём на улице.",
+              "uk": "ліхтарний стовп. The bin is next to the lamppost. — «Урна поруч із ліхтарним стовпом». Про високий стовп із ліхтарем на вулиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lamppost",
+          "definitionByLocale": {
+            "ru": "фонарный столб. The bin is next to the lamppost. — «Урна рядом с фонарным столбом». О высоком столбе с фонарём на улице.",
+            "uk": "ліхтарний стовп. The bin is next to the lamppost. — «Урна поруч із ліхтарним стовпом». Про високий стовп із ліхтарем на вулиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Провулок проходить між двома будівлями, не під ними. Виберіть слово",
+      "prompt": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-28:i08:r1",
-          "text": "between"
+          "responseId": "en:lesson-04:session-28:i04:r1",
+          "text": "lamppost"
         },
         {
-          "responseId": "en:lesson-04:session-28:i08:r2",
-          "text": "on"
+          "responseId": "en:lesson-04:session-28:i04:r2",
+          "text": "tree"
         },
         {
-          "responseId": "en:lesson-04:session-28:i08:r3",
-          "text": "under"
+          "responseId": "en:lesson-04:session-28:i04:r3",
+          "text": "clock"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Провулок проходить між двома будівлями, не під ними. Виберіть слово",
+      "accessibilityLabel": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Переулок проходит между двумя зданиями, не под ними. Выберите слово",
-          "uk": "Провулок проходить між двома будівлями, не під ними. Виберіть слово"
+          "ru": "Высокий столб на улице, на котором горит фонарь. Как он называется по-английски?",
+          "uk": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?"
         },
-        "gappedTargetPhrase": "The alley is ___ the buildings.",
+        "gappedTargetPhrase": "___",
         "gapOptions": [
           {
-            "responseId": "en:lesson-04:session-28:i08:r1",
-            "text": "between"
+            "responseId": "en:lesson-04:session-28:i04:r1",
+            "text": "lamppost"
           },
           {
-            "responseId": "en:lesson-04:session-28:i08:r2",
-            "text": "on"
+            "responseId": "en:lesson-04:session-28:i04:r2",
+            "text": "tree"
           },
           {
-            "responseId": "en:lesson-04:session-28:i08:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-28:i04:r3",
+            "text": "clock"
           }
         ],
-        "testedDimension": "Провулок проходить між двома будівлями, не під ними. Виберіть слово",
+        "testedDimension": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-28:i08:r2",
+            "responseId": "en:lesson-04:session-28:i04:r2",
             "correct": false,
-            "testedDimension": "Провулок проходить між двома будівлями, не під ними. Виберіть слово",
+            "testedDimension": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`on` — на поверхности; между — `between`.",
-              "uk": "`on` — на поверхні; між — `between`."
+              "ru": "tree — это дерево, а столб с фонарём называется lamppost.",
+              "uk": "tree — це дерево, а стовп із ліхтарем називається lamppost."
             }
           },
           {
-            "responseId": "en:lesson-04:session-28:i08:r3",
+            "responseId": "en:lesson-04:session-28:i04:r3",
             "correct": false,
-            "testedDimension": "Провулок проходить між двома будівлями, не під ними. Виберіть слово",
+            "testedDimension": "Високий стовп на вулиці, на якому горить ліхтар. Як він називається англійською?",
             "feedbackByLocale": {
-              "ru": "`under` — под; здесь между зданиями: `between the buildings`.",
-              "uk": "`under` — під; тут між будівлями: `between the buildings`."
+              "ru": "clock — это часы, а столб с фонарём называется lamppost.",
+              "uk": "clock — це годинник, а стовп із ліхтарем називається lamppost."
             }
           }
         ]
@@ -465,73 +313,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-04:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте, де стільці",
+      "prompt": "Послухайте подругу",
       "responseOptions": [
         {
-          "responseId": "en:lesson-04:session-28:i09:r1",
-          "text": "The chairs are under the awning."
+          "responseId": "en:lesson-04:session-28:i05:r1",
+          "text": "The bin is next to the lamppost."
         },
         {
-          "responseId": "en:lesson-04:session-28:i09:r2",
-          "text": "The chairs are under the table."
+          "responseId": "en:lesson-04:session-28:i05:r2",
+          "text": "The bin is next to the bench."
         },
         {
-          "responseId": "en:lesson-04:session-28:i09:r3",
-          "text": "The chairs are under the window."
+          "responseId": "en:lesson-04:session-28:i05:r3",
+          "text": "The bins are next to the lamppost."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-28:i09:audio"
+        "en:lesson-04:session-28:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте, де стільці",
+      "accessibilityLabel": "Послухайте подругу",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i09:audio",
-          "transcript": "The chairs are under the awning."
+          "audioTargetId": "en:lesson-04:session-28:i05:audio",
+          "transcript": "The bin is next to the lamppost."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-04:session-28:i09:r1",
-            "targetText": "The chairs are under the awning.",
+            "responseId": "en:lesson-04:session-28:i05:r1",
+            "targetText": "The bin is next to the lamppost.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-28:i09:r2",
-            "targetText": "The chairs are under the table.",
+            "responseId": "en:lesson-04:session-28:i05:r2",
+            "targetText": "The bin is next to the bench.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-04:session-28:i09:r3",
-            "targetText": "The chairs are under the window.",
+            "responseId": "en:lesson-04:session-28:i05:r3",
+            "targetText": "The bins are next to the lamppost.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-04:session-28:i09:r2",
+            "responseId": "en:lesson-04:session-28:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте, де стільці",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awning`, а в этом варианте — `table`.",
-              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `table`."
+              "ru": "В записи `lamppost`, а в этом варианте `bench`.",
+              "uk": "У записі `lamppost`, а в цьому варіанті `bench`."
             }
           },
           {
-            "responseId": "en:lesson-04:session-28:i09:r3",
+            "responseId": "en:lesson-04:session-28:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте, де стільці",
+            "testedDimension": "Послухайте подругу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `awning`, а в этом варианте — `window`.",
-              "uk": "У записі останнє слово — `awning`, а в цьому варіанті — `window`."
+              "ru": "В записи урна одна (`bin is`), а в этом варианте несколько.",
+              "uk": "У записі урна одна (`bin is`), а в цьому варіанті кілька."
             }
           }
         ],
@@ -541,9 +389,296 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i10",
+      "interactionId": "en:lesson-04:session-28:word:gate",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:word:gate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:word:gate:audio",
+          "transcript": "gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:word:gate:r1",
+            "targetText": "gate",
+            "meaningByLocale": {
+              "ru": "ворота, калитка. The bicycles are next to the gate. — «Велосипеды рядом с воротами». О двери в заборе или стене двора.",
+              "uk": "ворота, хвіртка. The bicycles are next to the gate. — «Велосипеди поруч із воротами». Про двері в паркані або стіні двору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gate",
+          "definitionByLocale": {
+            "ru": "ворота, калитка. The bicycles are next to the gate. — «Велосипеды рядом с воротами». О двери в заборе или стене двора.",
+            "uk": "ворота, хвіртка. The bicycles are next to the gate. — «Велосипеди поруч із воротами». Про двері в паркані або стіні двору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат показує хвіртку у двір, а ви повторюєте за ним слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i06:audio"
+      ],
+      "accessibilityLabel": "Брат показує хвіртку у двір, а ви повторюєте за ним слово",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i06:audio",
+          "transcript": "gate"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "gate",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте брата й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте брата й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i07:audio",
+          "transcript": "The bicycles are next to the gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bicycles are next to the gate.",
+        "orderedTokens": [
+          "The",
+          "bicycles",
+          "are",
+          "next",
+          "to",
+          "the",
+          "gate"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте брата й складіть фразу",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `are` — `The bicycles are next to the gate.`",
+              "uk": "тут потрібно `are` — `The bicycles are next to the gate.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:word:fence",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:word:fence:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:word:fence:audio",
+          "transcript": "fence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:word:fence:r1",
+            "targetText": "fence",
+            "meaningByLocale": {
+              "ru": "забор. The tree is next to the fence. — «Дерево рядом с забором». О невысокой стене из досок вокруг двора.",
+              "uk": "паркан. The tree is next to the fence. — «Дерево поруч із парканом». Про невисоку стіну з дощок навколо двору."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fence",
+          "definitionByLocale": {
+            "ru": "забор. The tree is next to the fence. — «Дерево рядом с забором». О невысокой стене из досок вокруг двора.",
+            "uk": "паркан. The tree is next to the fence. — «Дерево поруч із парканом». Про невисоку стіну з дощок навколо двору."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Невисока стіна з дощок навколо двору. Як вона називається англійською?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i08:r1",
+          "text": "fence"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i08:r2",
+          "text": "wall"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i08:r3",
+          "text": "door"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Невисока стіна з дощок навколо двору. Як вона називається англійською?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Невысокая стена из досок вокруг двора. Как она называется по-английски?",
+          "uk": "Невисока стіна з дощок навколо двору. Як вона називається англійською?"
+        },
+        "gappedTargetPhrase": "___",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-28:i08:r1",
+            "text": "fence"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r2",
+            "text": "wall"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r3",
+            "text": "door"
+          }
+        ],
+        "testedDimension": "Невисока стіна з дощок навколо двору. Як вона називається англійською?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Невисока стіна з дощок навколо двору. Як вона називається англійською?",
+            "feedbackByLocale": {
+              "ru": "wall — это стена здания, а стена из досок вокруг двора называется fence.",
+              "uk": "wall — це стіна будівлі, а стіна з дощок навколо двору називається fence."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Невисока стіна з дощок навколо двору. Як вона називається англійською?",
+            "feedbackByLocale": {
+              "ru": "door — это дверь, а стена из досок вокруг двора называется fence.",
+              "uk": "door — це двері, а стіна з дощок навколо двору називається fence."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте дерево. Скажіть братові повною фразою: дерево поруч із парканом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте дерево. Скажіть братові повною фразою: дерево поруч із парканом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The tree is next to the fence.",
+        "localizedMeaning": {
+          "ru": "Вы ищете дерево. Скажите брату полной фразой: дерево рядом с забором",
+          "uk": "Ви шукаєте дерево. Скажіть братові повною фразою: дерево поруч із парканом"
+        },
+        "orderedTokens": [
+          "The",
+          "tree",
+          "is",
+          "next",
+          "to",
+          "the",
+          "fence"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Ви шукаєте дерево. Скажіть братові повною фразою: дерево поруч із парканом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The tree is next to the fence.`",
+              "uk": "тут потрібно `is` — `The tree is next to the fence.`"
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "З’єднайте слова зі значеннями",
@@ -556,48 +691,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-04:session-28:i10:p1",
-            "target": "alley",
+            "target": "fence",
             "meaningByLocale": {
-              "ru": "переулок",
-              "uk": "провулок"
+              "ru": "забор",
+              "uk": "паркан"
             }
           },
           {
             "pairId": "en:lesson-04:session-28:i10:p2",
-            "target": "in",
+            "target": "gate",
             "meaningByLocale": {
-              "ru": "внутри",
-              "uk": "усередині"
+              "ru": "ворота, калитка",
+              "uk": "ворота, хвіртка"
             }
           },
           {
             "pairId": "en:lesson-04:session-28:i10:p3",
-            "target": "under",
+            "target": "lamppost",
             "meaningByLocale": {
-              "ru": "под",
-              "uk": "під"
+              "ru": "фонарный столб",
+              "uk": "ліхтарний стовп"
             }
           },
           {
             "pairId": "en:lesson-04:session-28:i10:p4",
-            "target": "between",
+            "target": "hotel",
             "meaningByLocale": {
-              "ru": "между",
-              "uk": "між"
+              "ru": "отель",
+              "uk": "готель"
             }
           }
         ],
         "leftColumn": [
-          "alley",
-          "in",
-          "under",
-          "between"
+          "fence",
+          "gate",
+          "lamppost",
+          "hotel"
         ],
         "rightColumn": [
-          "провулок",
-          "усередині",
-          "під",
-          "між"
+          "паркан",
+          "ворота, хвіртка",
+          "ліхтарний стовп",
+          "готель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -615,45 +750,190 @@
     },
     {
       "interactionId": "en:lesson-04:session-28:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть опис",
-      "responseOptions": [],
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте друга",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i11:r1",
+          "text": "The bag is next to the chair."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i11:r2",
+          "text": "The bag is under the chair."
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i11:r3",
+          "text": "The bag is on the chair."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-28:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть опис",
+      "accessibilityLabel": "Послухайте друга",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-04:session-28:i11:audio",
+          "transcript": "The bag is next to the chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-04:session-28:i11:r1",
+            "targetText": "The bag is next to the chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i11:r2",
+            "targetText": "The bag is under the chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i11:r3",
+            "targetText": "The bag is on the chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте друга",
+            "feedbackByLocale": {
+              "ru": "В записи `next to` — рядом, а в этом варианте `under` — под.",
+              "uk": "У записі `next to` — поруч, а в цьому варіанті `under` — під."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте друга",
+            "feedbackByLocale": {
+              "ru": "В записи `next to` — рядом, а в этом варианте `on` — на.",
+              "uk": "У записі `next to` — поруч, а в цьому варіанті `on` — на."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кафе стоїть збоку від готелю, поруч. Виберіть слова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-04:session-28:i12:r1",
+          "text": "next to"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i12:r2",
+          "text": "under"
+        },
+        {
+          "responseId": "en:lesson-04:session-28:i12:r3",
+          "text": "in"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кафе стоїть збоку від готелю, поруч. Виберіть слова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кафе стоит сбоку от отеля, рядом. Выберите слова",
+          "uk": "Кафе стоїть збоку від готелю, поруч. Виберіть слова"
+        },
+        "gappedTargetPhrase": "The cafe is ___ the hotel.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-04:session-28:i12:r1",
+            "text": "next to"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i12:r2",
+            "text": "under"
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i12:r3",
+            "text": "in"
+          }
+        ],
+        "testedDimension": "Кафе стоїть збоку від готелю, поруч. Виберіть слова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-04:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Кафе стоїть збоку від готелю, поруч. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "under — «под», а кафе стоит сбоку: нужно next to.",
+              "uk": "under — «під», а кафе стоїть збоку: потрібно next to."
+            }
+          },
+          {
+            "responseId": "en:lesson-04:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Кафе стоїть збоку від готелю, поруч. Виберіть слова",
+            "feedbackByLocale": {
+              "ru": "in — «внутри», а кафе стоит сбоку: нужно next to.",
+              "uk": "in — «всередині», а кафе стоїть збоку: потрібно next to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-04:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте друга й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-04:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте друга й складіть фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i11:audio",
-          "transcript": "The mushroom is next to the cup."
+          "audioTargetId": "en:lesson-04:session-28:i13:audio",
+          "transcript": "The cafe is next to the library."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The mushroom is next to the cup.",
+        "hiddenTargetPhrase": "The cafe is next to the library.",
         "orderedTokens": [
           "The",
-          "mushroom",
+          "cafe",
           "is",
           "next",
           "to",
           "the",
-          "cup"
+          "library"
         ],
         "authoredDistractorTokens": [
           "are"
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-28:i11:tile:d1",
+            "responseId": "en:lesson-04:session-28:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте й складіть опис",
+            "testedDimension": "Послухайте друга й складіть фразу",
             "feedbackByLocale": {
-              "ru": "здесь нужно `is` — `The mushroom is next to the cup.`",
-              "uk": "тут потрібно `is` — `The mushroom is next to the cup.`"
+              "ru": "здесь нужно `is` — `The cafe is next to the library.`",
+              "uk": "тут потрібно `is` — `The cafe is next to the library.`"
             }
           }
         ],
@@ -665,71 +945,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Покажіть на вузький прохід між будівлями: «Це провулок»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Покажіть на вузький прохід між будівлями: «Це провулок»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "This is an alley.",
-        "localizedMeaning": {
-          "ru": "Покажите на узкий проход между зданиями: «Это переулок»",
-          "uk": "Покажіть на вузький прохід між будівлями: «Це провулок»"
-        },
-        "orderedTokens": [
-          "This",
-          "is",
-          "an",
-          "alley"
-        ],
-        "authoredDistractorTokens": [
-          "a"
-        ],
-        "slotFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i12:tile:d1",
-            "correct": false,
-            "testedDimension": "Покажіть на вузький прохід між будівлями: «Це провулок»",
-            "feedbackByLocale": {
-              "ru": "здесь нужно `an` — `This is an alley.`",
-              "uk": "тут потрібно `an` — `This is an alley.`"
-            }
-          }
-        ],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-04:session-28:i14",
+      "ordinal": 21,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Стільці поруч зі столом. Скажіть, де вони",
+      "prompt": "Кур’єр питає, де провулок. Відповідайте йому: провулок поруч із готелем",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-04:session-28:i13:audio"
+        "en:lesson-04:session-28:i14:audio"
       ],
-      "accessibilityLabel": "Стільці поруч зі столом. Скажіть, де вони",
+      "accessibilityLabel": "Кур’єр питає, де провулок. Відповідайте йому: провулок поруч із готелем",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i13:audio",
-          "transcript": "The chairs are next to the table."
+          "audioTargetId": "en:lesson-04:session-28:i14:audio",
+          "transcript": "The alley is next to the hotel."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The chairs are next to the table.",
+        "targetPhrase": "The alley is next to the hotel.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -743,153 +978,56 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-04:session-28:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-28:i14:r1",
-          "text": "between"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i14:r2",
-          "text": "in"
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i14:r3",
-          "text": "under"
-        }
-      ],
+      "interactionId": "en:lesson-04:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подруга шукає вас. Скажіть їй повною фразою: лавка поруч із парканом",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово",
+      "accessibilityLabel": "Подруга шукає вас. Скажіть їй повною фразою: лавка поруч із парканом",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Гриб лежит между двумя чашками, не внутри и не под ними. Выберите слово",
-          "uk": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово"
+        "family": "phrase_builder",
+        "targetPhrase": "The bench is next to the fence.",
+        "localizedMeaning": {
+          "ru": "Подруга ищет вас. Скажите ей полной фразой: скамейка рядом с забором",
+          "uk": "Подруга шукає вас. Скажіть їй повною фразою: лавка поруч із парканом"
         },
-        "gappedTargetPhrase": "The mushroom is ___ the cups.",
-        "gapOptions": [
+        "orderedTokens": [
+          "The",
+          "bench",
+          "is",
+          "next",
+          "to",
+          "the",
+          "fence"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-04:session-28:i14:r1",
-            "text": "between"
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i14:r2",
-            "text": "in"
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i14:r3",
-            "text": "under"
+            "responseId": "en:lesson-04:session-28:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Подруга шукає вас. Скажіть їй повною фразою: лавка поруч із парканом",
+            "feedbackByLocale": {
+              "ru": "здесь нужно `is` — `The bench is next to the fence.`",
+              "uk": "тут потрібно `is` — `The bench is next to the fence.`"
+            }
           }
         ],
-        "testedDimension": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i14:r2",
-            "correct": false,
-            "testedDimension": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`in` — внутри; между чашками — `between the cups`.",
-              "uk": "`in` — усередині; між чашками — `between the cups`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i14:r3",
-            "correct": false,
-            "testedDimension": "Гриб лежить між двома чашками, не всередині й не під ними. Виберіть слово",
-            "feedbackByLocale": {
-              "ru": "`under` — под; между — `between`.",
-              "uk": "`under` — під; між — `between`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-04:session-28:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте, що показує друг",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-04:session-28:i15:r1",
-          "text": "That is an alley."
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i15:r2",
-          "text": "This is an alley."
-        },
-        {
-          "responseId": "en:lesson-04:session-28:i15:r3",
-          "text": "That is an awning."
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
         }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-04:session-28:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте, що показує друг",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-04:session-28:i15:audio",
-          "transcript": "That is an alley."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-04:session-28:i15:r1",
-            "targetText": "That is an alley.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i15:r2",
-            "targetText": "This is an alley.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i15:r3",
-            "targetText": "That is an awning.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-04:session-28:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи первое слово — `That`, а в этом варианте — `This`.",
-              "uk": "У записі перше слово — `That`, а в цьому варіанті — `This`."
-            }
-          },
-          {
-            "responseId": "en:lesson-04:session-28:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте, що показує друг",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `alley`, а в этом варианте — `awning`.",
-              "uk": "У записі останнє слово — `alley`, а в цьому варіанті — `awning`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-04:session-28:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -911,40 +1049,40 @@
           },
           {
             "pairId": "en:lesson-04:session-28:i16:p2",
-            "target": "flexible",
+            "target": "lamppost",
             "meaningByLocale": {
-              "ru": "гибкий",
-              "uk": "гнучкий"
+              "ru": "фонарный столб",
+              "uk": "ліхтарний стовп"
             }
           },
           {
             "pairId": "en:lesson-04:session-28:i16:p3",
-            "target": "chairs",
+            "target": "gate",
             "meaningByLocale": {
-              "ru": "стулья",
-              "uk": "стільці"
+              "ru": "ворота, калитка",
+              "uk": "ворота, хвіртка"
             }
           },
           {
             "pairId": "en:lesson-04:session-28:i16:p4",
-            "target": "mushroom",
+            "target": "fence",
             "meaningByLocale": {
-              "ru": "гриб",
-              "uk": "гриб"
+              "ru": "забор",
+              "uk": "паркан"
             }
           }
         ],
         "leftColumn": [
           "alley",
-          "flexible",
-          "chairs",
-          "mushroom"
+          "lamppost",
+          "gate",
+          "fence"
         ],
         "rightColumn": [
           "провулок",
-          "гнучкий",
-          "стільці",
-          "гриб"
+          "ліхтарний стовп",
+          "ворота, хвіртка",
+          "паркан"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -962,25 +1100,25 @@
     },
     {
       "interactionId": "en:lesson-04:session-28:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В іншому кафе друг шукає винесені стільці. Вони у вузькому провулку. Скажіть «Стільці в провулку»",
+      "prompt": "В іншому дворі друг шукає велосипед. Він поруч із воротами. Скажіть йому: «Велосипед поруч із воротами»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-04:session-28:i17:audio"
       ],
-      "accessibilityLabel": "В іншому кафе друг шукає винесені стільці. Вони у вузькому провулку. Скажіть «Стільці в провулку»",
+      "accessibilityLabel": "В іншому дворі друг шукає велосипед. Він поруч із воротами. Скажіть йому: «Велосипед поруч із воротами»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-04:session-28:i17:audio",
-          "transcript": "The chairs are in the alley."
+          "transcript": "The bicycle is next to the gate."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The chairs are in the alley.",
+        "targetPhrase": "The bicycle is next to the gate.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1002,11 +1140,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "828e50fe61fcb155d2bbe86773c604550b9f26a934cbc39d76ac11e921e8bb41"
+  "learnerFingerprint": "32e3b26bfa0acb828a3b078c1d8033299e91c598d6fe3c8afb4d21d13a2009fe"
 }

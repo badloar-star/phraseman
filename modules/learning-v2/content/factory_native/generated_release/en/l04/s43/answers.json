@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-43:i01",
-    "correctText": "I am uncertain.",
+    "correctText": "en:lesson-04:session-43:i01:p1=recycling bin\nen:lesson-04:session-43:i01:p2=bottle bank\nen:lesson-04:session-43:i01:p3=raincoat\nen:lesson-04:session-43:i01:p4=drain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:word:recycling bin",
+    "correctText": "recycling bin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i02",
     "correctText": "recycling bin",
-    "correctResponseId": "en:lesson-04:session-43:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-43:i03",
-    "correctText": "recycling bin",
-    "correctResponseId": "en:lesson-04:session-43:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-43:i04",
-    "correctText": "en:lesson-04:session-43:i04:p1=recycling bin\nen:lesson-04:session-43:i04:p2=uncertain\nen:lesson-04:session-43:i04:p3=bedrooms\nen:lesson-04:session-43:i04:p4=ramp",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-43:i03",
+    "correctText": "Are there any recycling bins near the gate?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:word:bottle bank",
+    "correctText": "bottle bank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:i04",
+    "correctText": "bottle bank",
+    "correctResponseId": "en:lesson-04:session-43:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-43:i05",
-    "correctText": "This is a recycling bin.",
+    "correctText": "Are there any bottle banks behind the school?",
+    "correctResponseId": "en:lesson-04:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:word:raincoat",
+    "correctText": "raincoat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i06",
-    "correctText": "The bedrooms are upstairs.",
+    "correctText": "raincoat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i07",
-    "correctText": "I'm uncertain.",
+    "correctText": "There are some raincoats on the hooks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-43:word:drain",
+    "correctText": "drain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i08",
-    "correctText": "isn't",
+    "correctText": "drain",
     "correctResponseId": "en:lesson-04:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-43:i09",
-    "correctText": "The recycling bin is next to the ramp.",
-    "correctResponseId": "en:lesson-04:session-43:i09:r1"
+    "correctText": "There is a drain next to the kerb.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i10",
-    "correctText": "en:lesson-04:session-43:i10:p1=recycling bin\nen:lesson-04:session-43:i10:p2=uncertain\nen:lesson-04:session-43:i10:p3=bedrooms\nen:lesson-04:session-43:i10:p4=ramp",
+    "correctText": "en:lesson-04:session-43:i10:p1=drain\nen:lesson-04:session-43:i10:p2=raincoat\nen:lesson-04:session-43:i10:p3=kerb\nen:lesson-04:session-43:i10:p4=pavement",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i11",
-    "correctText": "There aren't any recycling bins.",
-    "correctResponseId": null
+    "correctText": "Are there any raincoats in the hall?",
+    "correctResponseId": "en:lesson-04:session-43:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-43:i12",
-    "correctText": "There is a recycling bin.",
-    "correctResponseId": null
+    "correctText": "any",
+    "correctResponseId": "en:lesson-04:session-43:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-43:i13",
-    "correctText": "Is there a recycling bin?",
+    "correctText": "Are there any drains near the bank?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i14",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-04:session-43:i14:r1"
+    "correctText": "Yes, there is.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i15",
-    "correctText": "That is a recycling bin.",
-    "correctResponseId": "en:lesson-04:session-43:i15:r1"
+    "correctText": "There are some recycling bins behind the market.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i16",
-    "correctText": "en:lesson-04:session-43:i16:p1=recycling bin\nen:lesson-04:session-43:i16:p2=uncertain\nen:lesson-04:session-43:i16:p3=bedrooms\nen:lesson-04:session-43:i16:p4=ramp",
+    "correctText": "en:lesson-04:session-43:i16:p1=recycling bin\nen:lesson-04:session-43:i16:p2=bottle bank\nen:lesson-04:session-43:i16:p3=raincoat\nen:lesson-04:session-43:i16:p4=drain",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-43:i17",
-    "correctText": "The recycling bin is next to the shop.",
+    "correctText": "Are there any recycling bins here?",
     "correctResponseId": null
   }
 ]

@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-17:i01",
-    "correctText": "He is well.",
+    "correctText": "en:lesson-04:session-17:i01:p1=berry\nen:lesson-04:session-17:i01:p2=container\nen:lesson-04:session-17:i01:p3=cherry\nen:lesson-04:session-17:i01:p4=fridge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:word:berry",
+    "correctText": "berry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i02",
     "correctText": "berry",
-    "correctResponseId": "en:lesson-04:session-17:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-17:i03",
-    "correctText": "berry",
-    "correctResponseId": "en:lesson-04:session-17:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-17:i04",
-    "correctText": "en:lesson-04:session-17:i04:p1=berry\nen:lesson-04:session-17:i04:p2=well\nen:lesson-04:session-17:i04:p3=books\nen:lesson-04:session-17:i04:p4=dentist",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-17:i03",
+    "correctText": "There are some berries near the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:word:container",
+    "correctText": "container",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:i04",
+    "correctText": "container",
+    "correctResponseId": "en:lesson-04:session-17:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-17:i05",
-    "correctText": "This is a berry.",
+    "correctText": "There are some containers here.",
+    "correctResponseId": "en:lesson-04:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:word:cherry",
+    "correctText": "cherry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i06",
-    "correctText": "There are some books.",
+    "correctText": "cherry",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i07",
-    "correctText": "Are there any berries?",
+    "correctText": "There are some cherries here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-17:word:fridge",
+    "correctText": "fridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i08",
-    "correctText": "some",
+    "correctText": "fridge",
     "correctResponseId": "en:lesson-04:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i09",
-    "correctText": "Are there any books?",
-    "correctResponseId": "en:lesson-04:session-17:i09:r1"
+    "correctText": "There are some berries near the fridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i10",
-    "correctText": "en:lesson-04:session-17:i10:p1=berry\nen:lesson-04:session-17:i10:p2=berries\nen:lesson-04:session-17:i10:p3=books\nen:lesson-04:session-17:i10:p4=dentist",
+    "correctText": "en:lesson-04:session-17:i10:p1=fridge\nen:lesson-04:session-17:i10:p2=cherry\nen:lesson-04:session-17:i10:p3=berry\nen:lesson-04:session-17:i10:p4=container",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i11",
-    "correctText": "There are some berries.",
-    "correctResponseId": null
+    "correctText": "There are some cherries near the fridge.",
+    "correctResponseId": "en:lesson-04:session-17:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i12",
-    "correctText": "Are there any books here?",
-    "correctResponseId": null
+    "correctText": "some",
+    "correctResponseId": "en:lesson-04:session-17:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-17:i13",
-    "correctText": "He's well.",
+    "correctText": "There are some containers behind the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i14",
-    "correctText": "Are",
-    "correctResponseId": "en:lesson-04:session-17:i14:r1"
+    "correctText": "There are some cherries behind the fridge.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i15",
-    "correctText": "He is a dentist.",
-    "correctResponseId": "en:lesson-04:session-17:i15:r1"
+    "correctText": "There are some containers near the basket.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i16",
-    "correctText": "en:lesson-04:session-17:i16:p1=berry\nen:lesson-04:session-17:i16:p2=well\nen:lesson-04:session-17:i16:p3=books\nen:lesson-04:session-17:i16:p4=dentist",
+    "correctText": "en:lesson-04:session-17:i16:p1=berry\nen:lesson-04:session-17:i16:p2=cherry\nen:lesson-04:session-17:i16:p3=container\nen:lesson-04:session-17:i16:p4=fridge",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-17:i17",
-    "correctText": "Are there any berries here?",
+    "correctText": "There are some berries behind the bowl.",
     "correctResponseId": null
   }
 ]

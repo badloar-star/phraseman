@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-48:i01",
-    "correctText": "Is there a freezer?",
+    "correctText": "en:lesson-04:session-48:i01:p1=community kitchen\nen:lesson-04:session-48:i01:p2=apron\nen:lesson-04:session-48:i01:p3=saucepan\nen:lesson-04:session-48:i01:p4=frying pan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:word:community kitchen",
+    "correctText": "community kitchen",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i02",
     "correctText": "community kitchen",
-    "correctResponseId": "en:lesson-04:session-48:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-48:i03",
-    "correctText": "community kitchen",
-    "correctResponseId": "en:lesson-04:session-48:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-48:i04",
-    "correctText": "en:lesson-04:session-48:i04:p1=community kitchen\nen:lesson-04:session-48:i04:p2=freezer\nen:lesson-04:session-48:i04:p3=microwave\nen:lesson-04:session-48:i04:p4=pantry",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-48:i03",
+    "correctText": "There is a community kitchen near the school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:word:apron",
+    "correctText": "apron",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:i04",
+    "correctText": "apron",
+    "correctResponseId": "en:lesson-04:session-48:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-48:i05",
-    "correctText": "This is a community kitchen.",
+    "correctText": "There aren’t any aprons near the door.",
+    "correctResponseId": "en:lesson-04:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:word:saucepan",
+    "correctText": "saucepan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i06",
-    "correctText": "The microwave is on the worktop.",
+    "correctText": "saucepan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i07",
-    "correctText": "Are there any leftovers?",
+    "correctText": "Is there a saucepan next to the cooker?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-48:word:frying pan",
+    "correctText": "frying pan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i08",
-    "correctText": "isn't",
+    "correctText": "frying pan",
     "correctResponseId": "en:lesson-04:session-48:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-48:i09",
-    "correctText": "The recycling bin is next to the door.",
-    "correctResponseId": "en:lesson-04:session-48:i09:r1"
+    "correctText": "There is a frying pan on the cooker.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i10",
-    "correctText": "en:lesson-04:session-48:i10:p1=thermostat\nen:lesson-04:session-48:i10:p2=cashpoint\nen:lesson-04:session-48:i10:p3=bus shelter\nen:lesson-04:session-48:i10:p4=recycling bin",
+    "correctText": "en:lesson-04:session-48:i10:p1=frying pan\nen:lesson-04:session-48:i10:p2=apron\nen:lesson-04:session-48:i10:p3=freezer\nen:lesson-04:session-48:i10:p4=microwave",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i11",
-    "correctText": "The cashpoint is next to the bus shelter.",
-    "correctResponseId": null
+    "correctText": "There isn’t a microwave in the community kitchen.",
+    "correctResponseId": "en:lesson-04:session-48:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-48:i12",
-    "correctText": "There is a community kitchen.",
-    "correctResponseId": null
+    "correctText": "aren’t",
+    "correctResponseId": "en:lesson-04:session-48:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-48:i13",
-    "correctText": "Is there a pantry?",
+    "correctText": "There are some frying pans under the worktop.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i14",
-    "correctText": "on",
-    "correctResponseId": "en:lesson-04:session-48:i14:r1"
+    "correctText": "There’s a cashpoint next to the kitchen.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i15",
-    "correctText": "That is a community kitchen.",
-    "correctResponseId": "en:lesson-04:session-48:i15:r1"
+    "correctText": "There is a bus shelter behind the community kitchen.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i16",
-    "correctText": "en:lesson-04:session-48:i16:p1=leftovers\nen:lesson-04:session-48:i16:p2=pantry\nen:lesson-04:session-48:i16:p3=thermostat\nen:lesson-04:session-48:i16:p4=community kitchen",
+    "correctText": "en:lesson-04:session-48:i16:p1=community kitchen\nen:lesson-04:session-48:i16:p2=apron\nen:lesson-04:session-48:i16:p3=saucepan\nen:lesson-04:session-48:i16:p4=frying pan",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-48:i17",
-    "correctText": "Is there a community kitchen?",
+    "correctText": "There aren’t any aprons here.",
     "correctResponseId": null
   }
 ]

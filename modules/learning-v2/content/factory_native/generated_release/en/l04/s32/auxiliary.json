@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-32:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-32:intro1:r2": {
-          "ru": "Перед одним фонтаном нужно `a`: `a fountain`.",
-          "uk": "Перед одним фонтаном потрібне `a`: `a fountain`."
+          "ru": "Для between нужны два места, а здесь одно: за отелем — behind the hotel.",
+          "uk": "Для between потрібні два місця, а тут одне: за готелем — behind the hotel."
         },
         "en:lesson-04:session-32:intro1:r3": {
-          "ru": "Здесь один фонтан: `This is a fountain`.",
-          "uk": "Тут один фонтан: `This is a fountain`."
+          "ru": "Фонтан один, поэтому нужно is: The fountain is.",
+          "uk": "Фонтан один, тому потрібно is: The fountain is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-32:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-32:intro2:r2": {
-          "ru": "`under` — под; на поверхности — `on`.",
-          "uk": "`under` — під; на поверхні — `on`."
+          "ru": "in — «внутри», а голубь сидит сверху: нужно on.",
+          "uk": "in — «всередині», а голуб сидить зверху: потрібно on."
         },
         "en:lesson-04:session-32:intro2:r3": {
-          "ru": "Здесь йогурт как продукт: `The yoghurt is`.",
-          "uk": "Тут йогурт як продукт: `The yoghurt is`."
+          "ru": "Голубь один, поэтому нужно is: The pigeon is.",
+          "uk": "Голуб один, тому потрібно is: The pigeon is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-32:intro3:r2": {
-          "ru": "`in` — внутри; остановка рядом: `next to`.",
-          "uk": "`in` — усередині; зупинка поруч: `next to`."
+          "ru": "Для between нужны два места: the bank and the school.",
+          "uk": "Для between потрібні два місця: the bank and the school."
         },
         "en:lesson-04:session-32:intro3:r3": {
-          "ru": "Одна остановка: `The bus stop is`.",
-          "uk": "Одна зупинка: `The bus stop is`."
+          "ru": "Школу вы оба знаете, поэтому и перед ней нужно the: the school.",
+          "uk": "Школу ви обоє знаєте, тому й перед нею потрібно the: the school."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2d0ac23b222acdb93f4beaa0e6b972438df77b9b711040c022ad5cf9b31b1ecd"
+  "auxiliaryFingerprint": "61af2e453c983336ae0b9388a45f17154be7e082431536e97b7f77df0820b426"
 }

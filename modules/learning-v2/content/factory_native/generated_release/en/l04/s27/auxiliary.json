@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-27:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-27:intro1:r2": {
-          "ru": "`on` — на поверхности навеса; стол стоит под ним: `under`.",
-          "uk": "`on` — на поверхні навісу; стіл стоїть під ним: `under`."
+          "ru": "on — «на поверхности», а скамейка стоит снизу: нужно under.",
+          "uk": "on — «на поверхні», а лавка стоїть знизу: потрібно under."
         },
         "en:lesson-04:session-27:intro1:r3": {
-          "ru": "Один стол: `The table is`.",
-          "uk": "Один стіл: `The table is`."
+          "ru": "Навес вы оба видите, поэтому перед ним нужно the: under the awning.",
+          "uk": "Навіс ви обоє бачите, тому перед ним потрібно the: under the awning."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-27:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-27:intro2:r2": {
-          "ru": "Машин несколько: `The cars are`.",
-          "uk": "Машин кілька: `The cars are`."
+          "ru": "on — «сверху», а ключ лежит снизу: нужно under.",
+          "uk": "on — «зверху», а ключ лежить знизу: потрібно under."
         },
         "en:lesson-04:session-27:intro2:r3": {
-          "ru": "`in` — внутри; в условии рядом с домом: `next to`.",
-          "uk": "`in` — усередині; в умові поруч із будинком: `next to`."
+          "ru": "Коврик вы оба знаете, поэтому перед ним нужно the: under the doormat.",
+          "uk": "Килимок ви обоє знаєте, тому перед ним потрібно the: under the doormat."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-27:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-27:intro3:r2": {
-          "ru": "`careless` — неосторожный; щедрый — `generous`.",
-          "uk": "`careless` — необережний; щедрий — `generous`."
+          "ru": "in — «внутри», а сумка стоит в тени, снизу: нужно under.",
+          "uk": "in — «всередині», а сумка стоїть у тіні, знизу: потрібно under."
         },
         "en:lesson-04:session-27:intro3:r3": {
-          "ru": "С `He` нужно `is`: `He’s generous`.",
-          "uk": "З `He` потрібне `is`: `He’s generous`."
+          "ru": "Сумка одна, поэтому нужно is: The bag is.",
+          "uk": "Сумка одна, тому потрібно is: The bag is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "8b602a9a9349eb5402ae561cc09e90da95749bffddec4e7928e64a69bf6a77a9"
+  "auxiliaryFingerprint": "0e80cd1b7254cb25397dfc72e1dc2491667e4cbd5ea3fc9cbd5e69a53f1986dc"
 }

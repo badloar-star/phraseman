@@ -1,87 +1,107 @@
 [
   {
     "interactionId": "en:lesson-04:session-44:i01",
-    "correctText": "It is legal.",
+    "correctText": "en:lesson-04:session-44:i01:p1=freezer\nen:lesson-04:session-44:i01:p2=storeroom\nen:lesson-04:session-44:i01:p3=coat rack\nen:lesson-04:session-44:i01:p4=tin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:word:freezer",
+    "correctText": "freezer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i02",
     "correctText": "freezer",
-    "correctResponseId": "en:lesson-04:session-44:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-44:i03",
-    "correctText": "freezer",
-    "correctResponseId": "en:lesson-04:session-44:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-04:session-44:i04",
-    "correctText": "en:lesson-04:session-44:i04:p1=freezer\nen:lesson-04:session-44:i04:p2=legal\nen:lesson-04:session-44:i04:p3=hotels\nen:lesson-04:session-44:i04:p4=smoke alarm",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-04:session-44:i03",
+    "correctText": "The freezer is in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:word:storeroom",
+    "correctText": "storeroom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:i04",
+    "correctText": "storeroom",
+    "correctResponseId": "en:lesson-04:session-44:i04:r1"
+  },
+  {
     "interactionId": "en:lesson-04:session-44:i05",
-    "correctText": "This is a freezer.",
+    "correctText": "The storeroom is next to the hall.",
+    "correctResponseId": "en:lesson-04:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:word:coat rack",
+    "correctText": "coat rack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i06",
-    "correctText": "The hotels are next to the park.",
+    "correctText": "coat rack",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i07",
-    "correctText": "It's legal.",
+    "correctText": "The coat rack is between the door and the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-04:session-44:word:tin",
+    "correctText": "tin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i08",
-    "correctText": "isn't",
+    "correctText": "tin",
     "correctResponseId": "en:lesson-04:session-44:i08:r1"
   },
   {
     "interactionId": "en:lesson-04:session-44:i09",
-    "correctText": "The hotels are next to the shop.",
-    "correctResponseId": "en:lesson-04:session-44:i09:r1"
+    "correctText": "The tin is next to the jar.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i10",
-    "correctText": "en:lesson-04:session-44:i10:p1=freezer\nen:lesson-04:session-44:i10:p2=legal\nen:lesson-04:session-44:i10:p3=hotels\nen:lesson-04:session-44:i10:p4=smoke alarm",
+    "correctText": "en:lesson-04:session-44:i10:p1=tin\nen:lesson-04:session-44:i10:p2=coat rack\nen:lesson-04:session-44:i10:p3=shelf\nen:lesson-04:session-44:i10:p4=hook",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i11",
-    "correctText": "There aren't any freezers.",
-    "correctResponseId": null
+    "correctText": "The tin is in the storeroom.",
+    "correctResponseId": "en:lesson-04:session-44:i11:r1"
   },
   {
     "interactionId": "en:lesson-04:session-44:i12",
-    "correctText": "There is a freezer.",
-    "correctResponseId": null
+    "correctText": "on",
+    "correctResponseId": "en:lesson-04:session-44:i12:r1"
   },
   {
     "interactionId": "en:lesson-04:session-44:i13",
-    "correctText": "Is there a smoke alarm?",
+    "correctText": "The freezer is between the sink and the wall.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i14",
-    "correctText": "in",
-    "correctResponseId": "en:lesson-04:session-44:i14:r1"
+    "correctText": "The coat rack is next to the door.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i15",
-    "correctText": "That is a freezer.",
-    "correctResponseId": "en:lesson-04:session-44:i15:r1"
+    "correctText": "The tin is under the shelf.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i16",
-    "correctText": "en:lesson-04:session-44:i16:p1=freezer\nen:lesson-04:session-44:i16:p2=legal\nen:lesson-04:session-44:i16:p3=hotels\nen:lesson-04:session-44:i16:p4=smoke alarm",
+    "correctText": "en:lesson-04:session-44:i16:p1=freezer\nen:lesson-04:session-44:i16:p2=storeroom\nen:lesson-04:session-44:i16:p3=coat rack\nen:lesson-04:session-44:i16:p4=tin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-04:session-44:i17",
-    "correctText": "Is there a freezer?",
+    "correctText": "The freezer is in the storeroom.",
     "correctResponseId": null
   }
 ]

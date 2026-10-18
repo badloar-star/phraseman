@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-54:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-54:intro1:r2": {
-          "ru": "Перед одной заправкой нужно `a`: `a petrol station`.",
-          "uk": "Перед однією заправкою потрібне `a`: `a petrol station`."
+          "ru": "Перекрёсток один, поэтому нужно is, а не are.",
+          "uk": "Перехрестя одне, тому потрібно is, а не are."
         },
         "en:lesson-04:session-54:intro1:r3": {
-          "ru": "Здесь одна заправка: `This is a petrol station`.",
-          "uk": "Тут одна заправка: `This is a petrol station`."
+          "ru": "Перекрёсток один, поэтому перед ним нужно a: a junction.",
+          "uk": "Перехрестя одне, тому перед ним потрібно a: a junction."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-54:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-54:intro2:r2": {
-          "ru": "Одна машина: `The car is`.",
-          "uk": "Одна машина: `The car is`."
+          "ru": "Грузовиков несколько, поэтому нужно aren’t, а не isn’t.",
+          "uk": "Вантажівок кілька, тому потрібно aren’t, а не isn’t."
         },
         "en:lesson-04:session-54:intro2:r3": {
-          "ru": "`unreliable` — ненадёжный; здесь `reliable`.",
-          "uk": "`unreliable` — ненадійний; тут `reliable`."
+          "ru": "Грузовиков несколько, поэтому на конце lorries, а не lorry.",
+          "uk": "Вантажівок кілька, тому наприкінці lorries, а не lorry."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-54:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-54:intro3:r2": {
-          "ru": "Здесь внутри: `in`, а не рядом — `next to`.",
-          "uk": "Тут усередині: `in`, а не поруч — `next to`."
+          "ru": "Дорожные работы — слово во множественном числе, поэтому вопрос начинаем с Are there.",
+          "uk": "Дорожні роботи — слово у множині, тому запитання починаємо з Are there."
         },
         "en:lesson-04:session-54:intro3:r3": {
-          "ru": "Одна сумка: `The bag is`.",
-          "uk": "Одна сумка: `The bag is`."
+          "ru": "Это порядок слов утверждения. В вопросе сначала Are: Are there roadworks?",
+          "uk": "Це порядок слів твердження. У запитанні спочатку Are: Are there roadworks?"
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "819aaff788a20c536f76f946981d076e450629a4d8268eac4be2334c02c2ace5"
+  "auxiliaryFingerprint": "6d2cd14247df73c8e55f5abfed6c0de4ea4966fdd0df2cd2f8ecdd98bff028fc"
 }

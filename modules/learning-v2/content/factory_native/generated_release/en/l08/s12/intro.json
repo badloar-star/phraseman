@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-12",
   "learningOutcomeByLocale": {
-    "ru": "сказать, чего вы пока не умеете, и повторить знакомые вопросы",
-    "uk": "сказати, чого ви поки не вмієте, і повторити знайомі запитання"
+    "ru": "различать can и can’t и спрашивать о кухонных вещах",
+    "uk": "розрізняти can і can’t та запитувати про кухонні речі"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Первое занятие в кружке",
-        "uk": "Перше заняття в гуртку"
+        "ru": "Яйцо без скорлупы",
+        "uk": "Яйце без шкаралупи"
       },
       "bodyByLocale": {
-        "ru": "В кружке предлагают связать шарф. Вы пришли учиться и пока не умеете вязать. `Knit` — «вязать». `I can’t knit` — «Я не умею вязать». После `can’t` нужно `knit`, без `to`. Купить шарф вы уже умеете — теперь хочется научиться вязать.",
-        "uk": "У гуртку пропонують зв’язати шарф. Ви прийшли вчитися й поки не вмієте в’язати. `Knit` — «в’язати». `I can’t knit` — «Я не вмію в’язати». Після `can’t` потрібне `knit`, без `to`. Купити шарф ви вже вмієте — тепер хочеться навчитися в’язати."
+        "ru": "Друг предлагает приготовить на завтрак яйца пашот: их варят без скорлупы в горячей воде. Вы ещё не умеете делать это. Poach — «готовить в жидкости без кипения»; poach eggs — «готовить яйца пашот». I can’t poach eggs — «Я не умею готовить яйца пашот». После can’t нужен глагол poach, без to.",
+        "uk": "Друг пропонує приготувати на сніданок яйця пашот: їх варять без шкаралупи в гарячій воді. Ви ще не вмієте цього робити. Poach — «готувати в рідині без кипіння»; poach eggs — «готувати яйця пашот». I can’t poach eggs — «Я не вмію готувати яйця пашот». Після can’t потрібне дієслово poach, без to."
       },
       "question": {
         "interactionId": "en:lesson-08:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите ведущему, что пока не умеете вязать.",
-          "uk": "Скажіть керівникові гуртка, що поки не вмієте в’язати."
+          "ru": "Скажите, что не умеете готовить яйца пашот.",
+          "uk": "Скажіть, що не вмієте готувати яйця пашот."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-12:intro1:r1",
-              "text": "I can’t knit."
+              "text": "I can’t poach eggs."
             },
             {
               "responseId": "en:lesson-08:session-12:intro1:r2",
-              "text": "I can knit."
+              "text": "I can poach eggs."
             },
             {
               "responseId": "en:lesson-08:session-12:intro1:r3",
-              "text": "I can’t to knit."
+              "text": "I can’t to poach eggs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-12:intro1:r1",
-              "text": "I can’t knit."
+              "text": "I can’t poach eggs."
             },
             {
               "responseId": "en:lesson-08:session-12:intro1:r2",
-              "text": "I can knit."
+              "text": "I can poach eggs."
             },
             {
               "responseId": "en:lesson-08:session-12:intro1:r3",
-              "text": "I can’t to knit."
+              "text": "I can’t to poach eggs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите ведущему, что пока не умеете вязать.",
-          "uk": "Скажіть керівникові гуртка, що поки не вмієте в’язати."
+          "ru": "Скажите, что не умеете готовить яйца пашот.",
+          "uk": "Скажіть, що не вмієте готувати яйця пашот."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подруга выбирает рисование",
-        "uk": "Подруга вибирає малювання"
+        "ru": "Суп на слабом огне",
+        "uk": "Суп на слабкому вогні"
       },
       "bodyByLocale": {
-        "ru": "В том же кружке подруга выбирает рисование: она уже умеет рисовать красками. `She can paint` — «Она умеет рисовать красками». После `can` нужно `paint`, без окончания `s`. Если бы она не умела, получилось бы `She can’t paint`.",
-        "uk": "У тому самому гуртку подруга вибирає малювання: вона вже вміє малювати фарбами. `She can paint` — «Вона вміє малювати фарбами». Після `can` потрібне `paint`, без закінчення `s`. Якби вона не вміла, вийшло б `She can’t paint`."
+        "ru": "На общей кухне нужно поручить кому-то суп, который должен едва кипеть. Подруга уже умеет поддерживать нужный нагрев. Simmer — «варить при слабом кипении». She can simmer soup — «Она умеет варить суп на слабом огне». После can нужно simmer, без окончания s. Здесь подруга умеет, поэтому нужно can, а не can’t.",
+        "uk": "На спільній кухні потрібно доручити комусь суп, який має ледь кипіти. Подруга вже вміє підтримувати потрібне нагрівання. Simmer — «варити за слабкого кипіння». She can simmer soup — «Вона вміє варити суп на слабкому вогні». Після can потрібне simmer, без закінчення s. Тут подруга вміє, тому потрібне can, а не can’t."
       },
       "question": {
         "interactionId": "en:lesson-08:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите, что подруга умеет рисовать красками.",
-          "uk": "Скажіть, що подруга вміє малювати фарбами."
+          "ru": "Скажите, что подруга умеет варить суп на слабом огне.",
+          "uk": "Скажіть, що подруга вміє варити суп на слабкому вогні."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-12:intro2:r1",
-              "text": "She can paint."
+              "text": "She can simmer soup."
             },
             {
               "responseId": "en:lesson-08:session-12:intro2:r2",
-              "text": "She can paints."
+              "text": "She can simmers soup."
             },
             {
               "responseId": "en:lesson-08:session-12:intro2:r3",
-              "text": "She can’t paint."
+              "text": "She can’t simmer soup."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-12:intro2:r1",
-              "text": "She can paint."
+              "text": "She can simmer soup."
             },
             {
               "responseId": "en:lesson-08:session-12:intro2:r2",
-              "text": "She can paints."
+              "text": "She can simmers soup."
             },
             {
               "responseId": "en:lesson-08:session-12:intro2:r3",
-              "text": "She can’t paint."
+              "text": "She can’t simmer soup."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите, что подруга умеет рисовать красками.",
-          "uk": "Скажіть, що подруга вміє малювати фарбами."
+          "ru": "Скажите, что подруга умеет варить суп на слабом огне.",
+          "uk": "Скажіть, що подруга вміє варити суп на слабкому вогні."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Забытый будильник",
-        "uk": "Забутий будильник"
+        "ru": "Сито после выпечки",
+        "uk": "Сито після випікання"
       },
       "bodyByLocale": {
-        "ru": "После занятия на столе остался будильник. Вы хотите найти хозяина. Здесь `alarm` — будильник. `Whose alarm is this?` — «Чей это будильник?» Начните с `whose alarm`, затем добавьте `is this`.",
-        "uk": "Після заняття на столі залишився будильник. Ви хочете знайти власника. Тут `alarm` — будильник. `Whose alarm is this?` — «Чий це будильник?» Почніть із `whose alarm`, потім додайте `is this`."
+        "ru": "После совместного приготовления печенья вы моете инвентарь. На сушилке лежит чужое сито для муки. Sieve — «сито», мелкая сетка для просеивания. Whose sieve is this? — «Чьё это сито?» Сначала whose sieve, затем is this: сито одно.",
+        "uk": "Після спільного приготування печива ви миєте інвентар. На сушарці лежить чуже сито для борошна. Sieve — «сито», дрібна сітка для просіювання. Whose sieve is this? — «Чиє це сито?» Спочатку whose sieve, потім is this: сито одне."
       },
       "question": {
         "interactionId": "en:lesson-08:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, чей это будильник.",
-          "uk": "Запитайте, чий це будильник."
+          "ru": "Спросите участников, чьё это сито.",
+          "uk": "Запитайте учасників, чиє це сито."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-12:intro3:r1",
-              "text": "Whose alarm is this?"
+              "text": "Whose sieve is this?"
             },
             {
               "responseId": "en:lesson-08:session-12:intro3:r2",
-              "text": "Who alarm is this?"
+              "text": "Who sieve is this?"
             },
             {
               "responseId": "en:lesson-08:session-12:intro3:r3",
-              "text": "Whose alarm are this?"
+              "text": "Whose sieve are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-12:intro3:r1",
-              "text": "Whose alarm is this?"
+              "text": "Whose sieve is this?"
             },
             {
               "responseId": "en:lesson-08:session-12:intro3:r2",
-              "text": "Who alarm is this?"
+              "text": "Who sieve is this?"
             },
             {
               "responseId": "en:lesson-08:session-12:intro3:r3",
-              "text": "Whose alarm are this?"
+              "text": "Whose sieve are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, чей это будильник.",
-          "uk": "Запитайте, чий це будильник."
+          "ru": "Спросите участников, чьё это сито.",
+          "uk": "Запитайте учасників, чиє це сито."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bd67d89df72d654462943332c48e1053fba8b672605c44fbf1ebdd3be8079772"
+  "introFingerprint": "14185877c2fd1243c4e0a7e1b2bae0df336ffce1c4a42de711f3c168b4b1f796"
 }

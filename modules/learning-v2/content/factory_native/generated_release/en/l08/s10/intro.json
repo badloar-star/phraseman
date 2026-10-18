@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "В бассейне",
-        "uk": "У басейні"
+        "ru": "Фонарь из тыквы",
+        "uk": "Ліхтар із гарбуза"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, умеете ли вы нырять. Вы пока не научились. `Dive` — «нырять». `I can’t dive` — «Я не умею нырять». После `can’t` нужно `dive`, без `to` и окончания `s`. Намочить волосы легко; красиво нырнуть — отдельное умение.",
-        "uk": "Друг запитує, чи вмієте ви пірнати. Ви поки не навчилися. `Dive` — «пірнати». `I can’t dive` — «Я не вмію пірнати». Після `can’t` потрібне `dive`, без `to` й закінчення `s`. Намочити волосся легко; красиво пірнути — окреме вміння."
+        "ru": "На празднике нужно вырезать узор на тыкве. Друг предлагает вам заняться этим, но вы никогда не пробовали. `Carve` — «вырезать фигуры или узоры из твёрдого материала». `I can’t carve` — «Я не умею вырезать фигуры». После `can’t` нужно `carve`, без `to` и окончания `s`. Вы сообщаете, что пока не владеете этим умением.",
+        "uk": "На святі потрібно вирізати візерунок на гарбузі. Друг пропонує вам це зробити, але ви ніколи не пробували. `Carve` — «вирізати фігури чи візерунки з твердого матеріалу». `I can’t carve` — «Я не вмію вирізати фігури». Після `can’t` потрібне `carve`, без `to` й закінчення `s`. Ви повідомляєте, що поки не володієте цим умінням."
       },
       "question": {
         "interactionId": "en:lesson-08:session-10:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что не умеете нырять.",
-          "uk": "Скажіть другові, що не вмієте пірнати."
+          "ru": "Скажите другу, что не умеете вырезать фигуры.",
+          "uk": "Скажіть другові, що не вмієте вирізати фігури."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-10:intro1:r1",
-              "text": "I can’t dive."
+              "text": "I can’t carve."
             },
             {
               "responseId": "en:lesson-08:session-10:intro1:r2",
-              "text": "I can dive."
+              "text": "I can carve."
             },
             {
               "responseId": "en:lesson-08:session-10:intro1:r3",
-              "text": "I can’t to dive."
+              "text": "I can’t to carve."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-10:intro1:r1",
-              "text": "I can’t dive."
+              "text": "I can’t carve."
             },
             {
               "responseId": "en:lesson-08:session-10:intro1:r2",
-              "text": "I can dive."
+              "text": "I can carve."
             },
             {
               "responseId": "en:lesson-08:session-10:intro1:r3",
-              "text": "I can’t to dive."
+              "text": "I can’t to carve."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что не умеете нырять.",
-          "uk": "Скажіть другові, що не вмієте пірнати."
+          "ru": "Скажите другу, что не умеете вырезать фигуры.",
+          "uk": "Скажіть другові, що не вмієте вирізати фігури."
         }
       }
     },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мячи падают",
-        "uk": "М’ячі падають"
+        "ru": "Запись в скульптурную мастерскую",
+        "uk": "Запис до скульптурної майстерні"
       },
       "bodyByLocale": {
-        "ru": "Знакомая пробует жонглировать, но пока не умеет. Вы рассказываете об этом другу. `She can’t juggle` — «Она не умеет жонглировать». `Can’t` не меняется после `she`; после него нужно `juggle`, без окончания `s`.",
-        "uk": "Знайома пробує жонглювати, але поки не вміє. Ви розповідаєте про це другові. `She can’t juggle` — «Вона не вміє жонглювати». `Can’t` не змінюється після `she`; після нього потрібне `juggle`, без закінчення `s`."
+        "ru": "При записи в скульптурную мастерскую нужно указать опыт. Знакомая никогда не создавала объёмные фигуры из глины или камня. Sculpt — «создавать скульптуры». Вы сообщаете администратору, что ей нужна начальная группа. `She can’t sculpt` — «Она не умеет создавать скульптуры». `Can’t` не меняется после `she`; после него нужно `sculpt`, без окончания `s`.",
+        "uk": "Під час запису до скульптурної майстерні потрібно вказати досвід. Знайома ніколи не створювала об’ємні фігури з глини чи каменю. Sculpt — «створювати скульптури». Ви повідомляєте адміністратору, що їй потрібна початкова група. `She can’t sculpt` — «Вона не вміє створювати скульптури». `Can’t` не змінюється після `she`; після нього потрібне `sculpt`, без закінчення `s`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-10:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-10:intro2:r1",
-              "text": "She can’t juggle."
+              "text": "She can’t sculpt."
             },
             {
               "responseId": "en:lesson-08:session-10:intro2:r2",
-              "text": "She can juggle."
+              "text": "She can sculpt."
             },
             {
               "responseId": "en:lesson-08:session-10:intro2:r3",
-              "text": "She can’t juggles."
+              "text": "She can’t sculpts."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-10:intro2:r1",
-              "text": "She can’t juggle."
+              "text": "She can’t sculpt."
             },
             {
               "responseId": "en:lesson-08:session-10:intro2:r2",
-              "text": "She can juggle."
+              "text": "She can sculpt."
             },
             {
               "responseId": "en:lesson-08:session-10:intro2:r3",
-              "text": "She can’t juggles."
+              "text": "She can’t sculpts."
             }
           ]
         },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чьё устройство",
-        "uk": "Чий пристрій"
+        "ru": "Стамеска у верстака",
+        "uk": "Стамеска біля верстака"
       },
       "bodyByLocale": {
-        "ru": "На рабочем столе стоит небольшое устройство. Вы хотите узнать, кому оно принадлежит. `Whose machine is this?` — «Чьё это устройство?» Здесь `machine` — устройство. Сначала `whose machine`, затем `is this`.",
-        "uk": "На робочому столі стоїть невеликий пристрій. Ви хочете дізнатися, кому він належить. `Whose machine is this?` — «Чий це пристрій?» Тут `machine` — пристрій. Спочатку `whose machine`, потім `is this`."
+        "ru": "Перед занятием по дереву вы нашли у верстака стамеску. Chisel — «стамеска»: ручной инструмент с металлическим лезвием для обработки дерева. Вы хотите вернуть её владельцу. `Whose chisel is this?` — «Чья это стамеска?» Сначала `whose chisel`, затем `is this`.",
+        "uk": "Перед заняттям із роботи з деревом ви знайшли біля верстака стамеску. Chisel — «стамеска»: ручний інструмент із металевим лезом для обробки дерева. Ви хочете повернути її власникові. `Whose chisel is this?` — «Чия це стамеска?» Спочатку `whose chisel`, потім `is this`."
       },
       "question": {
         "interactionId": "en:lesson-08:session-10:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чьё это устройство.",
-          "uk": "Запитайте колег, чий це пристрій."
+          "ru": "Спросите коллег, чья это стамеска.",
+          "uk": "Запитайте колег, чия це стамеска."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-10:intro3:r1",
-              "text": "Whose machine is this?"
+              "text": "Whose chisel is this?"
             },
             {
               "responseId": "en:lesson-08:session-10:intro3:r2",
-              "text": "Who machine is this?"
+              "text": "Who chisel is this?"
             },
             {
               "responseId": "en:lesson-08:session-10:intro3:r3",
-              "text": "Whose machine are this?"
+              "text": "Whose chisel are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-10:intro3:r1",
-              "text": "Whose machine is this?"
+              "text": "Whose chisel is this?"
             },
             {
               "responseId": "en:lesson-08:session-10:intro3:r2",
-              "text": "Who machine is this?"
+              "text": "Who chisel is this?"
             },
             {
               "responseId": "en:lesson-08:session-10:intro3:r3",
-              "text": "Whose machine are this?"
+              "text": "Whose chisel are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чьё это устройство.",
-          "uk": "Запитайте колег, чий це пристрій."
+          "ru": "Спросите коллег, чья это стамеска.",
+          "uk": "Запитайте колег, чия це стамеска."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "949908ac64bf5715713efc97132d4a4cdd23005e09bc346bcbf225c56afd5d91"
+  "introFingerprint": "283c9c38a5f23503ffc46be076b51fb3261c18983bb6718893efee127878377f"
 }

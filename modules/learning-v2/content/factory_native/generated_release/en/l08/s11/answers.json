@@ -1,5 +1,10 @@
 [
   {
+    "interactionId": "en:lesson-08:session-11:word:code",
+    "correctText": "code",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-11:i01",
     "correctText": "I can’t code.",
     "correctResponseId": null
@@ -16,7 +21,7 @@
   },
   {
     "interactionId": "en:lesson-08:session-11:i04",
-    "correctText": "en:lesson-08:session-11:i04:p1=code\nen:lesson-08:session-11:i04:p2=tram\nen:lesson-08:session-11:i04:p3=learn\nen:lesson-08:session-11:i04:p4=printer",
+    "correctText": "en:lesson-08:session-11:i04:p1=code\nen:lesson-08:session-11:i04:p2=type\nen:lesson-08:session-11:i04:p3=ball\nen:lesson-08:session-11:i04:p4=coat",
     "correctResponseId": null
   },
   {
@@ -25,18 +30,28 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-08:session-11:word:debug",
+    "correctText": "debug",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-11:i06",
-    "correctText": "She can’t type.",
+    "correctText": "She can’t debug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-11:word:webcam",
+    "correctText": "webcam",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i07",
-    "correctText": "Whose printer is this?",
+    "correctText": "Whose webcam is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i08",
-    "correctText": "type",
+    "correctText": "debug",
     "correctResponseId": "en:lesson-08:session-11:i08:r1"
   },
   {
@@ -46,22 +61,27 @@
   },
   {
     "interactionId": "en:lesson-08:session-11:i10",
-    "correctText": "en:lesson-08:session-11:i10:p1=type\nen:lesson-08:session-11:i10:p2=code\nen:lesson-08:session-11:i10:p3=tram\nen:lesson-08:session-11:i10:p4=learn",
+    "correctText": "en:lesson-08:session-11:i10:p1=debug\nen:lesson-08:session-11:i10:p2=code\nen:lesson-08:session-11:i10:p3=webcam\nen:lesson-08:session-11:i10:p4=learn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i11",
-    "correctText": "Whose printer is this?",
+    "correctText": "Whose webcam is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-11:word:modem",
+    "correctText": "modem",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i12",
-    "correctText": "I can type.",
+    "correctText": "Whose modem is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i13",
-    "correctText": "I usually learn at home.",
+    "correctText": "This is my modem.",
     "correctResponseId": null
   },
   {
@@ -71,12 +91,12 @@
   },
   {
     "interactionId": "en:lesson-08:session-11:i15",
-    "correctText": "Where is the tram?",
+    "correctText": "This is my modem.",
     "correctResponseId": "en:lesson-08:session-11:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i16",
-    "correctText": "en:lesson-08:session-11:i16:p1=code\nen:lesson-08:session-11:i16:p2=printer\nen:lesson-08:session-11:i16:p3=learn\nen:lesson-08:session-11:i16:p4=type",
+    "correctText": "en:lesson-08:session-11:i16:p1=code\nen:lesson-08:session-11:i16:p2=debug\nen:lesson-08:session-11:i16:p3=webcam\nen:lesson-08:session-11:i16:p4=modem",
     "correctResponseId": null
   },
   {

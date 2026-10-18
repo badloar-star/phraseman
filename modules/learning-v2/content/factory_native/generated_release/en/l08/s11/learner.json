@@ -4,8 +4,51 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-11:i01",
+      "interactionId": "en:lesson-08:session-11:word:code",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — code",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:code:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — code",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:code:audio",
+          "transcript": "code"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:code:r1",
+            "targetText": "code",
+            "meaningByLocale": {
+              "ru": "писать код. I can’t code. — «Я не умею писать код». Создавать компьютерные программы.",
+              "uk": "писати код. I can’t code. — «Я не вмію писати код». Створювати комп’ютерні програми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "code",
+          "definitionByLocale": {
+            "ru": "писать код. I can’t code. — «Я не умею писать код». Создавать компьютерные программы.",
+            "uk": "писати код. I can’t code. — «Я не вмію писати код». Створювати комп’ютерні програми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `code`, а в этом варианте — `type`.",
-              "uk": "У записі перше слово — `code`, а в цьому варіанті — `type`."
+              "ru": "В записи code — «писать код», а не type — «печатать».",
+              "uk": "У записі code — «писати код», а не type — «друкувати»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `code`, а в этом варианте — `learn`.",
-              "uk": "У записі перше слово — `code`, а в цьому варіанті — `learn`."
+              "ru": "В записи code, а не learn — «учиться».",
+              "uk": "У записі code, а не learn — «вчитися»."
             }
           }
         ],
@@ -113,11 +156,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не умею писать код»",
+      "prompt": "Выберите слово: «Я не умею писать код»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i03:r1",
@@ -134,12 +177,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не умею писать код»",
+      "accessibilityLabel": "Выберите слово: «Я не умею писать код»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею писать код»",
-          "uk": "Скажіть «Я не вмію писати код»"
+          "ru": "Выберите слово: «Я не умею писать код»",
+          "uk": "Виберіть слово: «Я не вмію писати код»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
@@ -156,12 +199,12 @@
             "text": "codes"
           }
         ],
-        "testedDimension": "Скажите «Я не умею писать код»",
+        "testedDimension": "Выберите слово: «Я не умею писать код»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею писать код»",
+            "testedDimension": "Выберите слово: «Я не умею писать код»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `code`, без `to`.",
               "uk": "Після `can’t` потрібне `code`, без `to`."
@@ -170,7 +213,7 @@
           {
             "responseId": "en:lesson-08:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею писать код»",
+            "testedDimension": "Выберите слово: «Я не умею писать код»",
             "feedbackByLocale": {
               "ru": "После `can’t` нужно `code`, без `s`.",
               "uk": "Після `can’t` потрібне `code`, без `s`."
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -204,40 +247,40 @@
           },
           {
             "pairId": "en:lesson-08:session-11:i04:p2",
-            "target": "tram",
+            "target": "type",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "печатать на клавиатуре",
+              "uk": "друкувати на клавіатурі"
             }
           },
           {
             "pairId": "en:lesson-08:session-11:i04:p3",
-            "target": "learn",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-11:i04:p4",
-            "target": "printer",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           }
         ],
         "leftColumn": [
           "code",
-          "tram",
-          "learn",
-          "printer"
+          "type",
+          "ball",
+          "coat"
         ],
         "rightColumn": [
           "писать код",
-          "трамвай",
-          "учиться",
-          "принтер"
+          "печатать на клавиатуре",
+          "мяч",
+          "пальто"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -289,27 +332,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-11:i06",
-      "ordinal": 9,
+      "interactionId": "en:lesson-08:session-11:word:debug",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — debug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:debug:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — debug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:debug:audio",
+          "transcript": "debug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:debug:r1",
+            "targetText": "debug",
+            "meaningByLocale": {
+              "ru": "отлаживать программы. She can’t debug. — «Она не умеет отлаживать программы». Находить и исправлять ошибки в коде.",
+              "uk": "налагоджувати програми. She can’t debug. — «Вона не вміє налагоджувати програми». Знаходити й виправляти помилки в коді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "debug",
+          "definitionByLocale": {
+            "ru": "отлаживать программы. She can’t debug. — «Она не умеет отлаживать программы». Находить и исправлять ошибки в коде.",
+            "uk": "налагоджувати програми. She can’t debug. — «Вона не вміє налагоджувати програми». Знаходити й виправляти помилки в коді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
+      "prompt": "Скажите о знакомой «Она не умеет отлаживать программы»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
+      "accessibilityLabel": "Скажите о знакомой «Она не умеет отлаживать программы»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can’t type.",
+        "targetPhrase": "She can’t debug.",
         "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она не умеет печатать на клавиатуре»",
-          "uk": "Скажіть про знайому «Вона не вміє друкувати на клавіатурі»"
+          "ru": "Скажите о знакомой «Она не умеет отлаживать программы»",
+          "uk": "Скажіть про знайому «Вона не вміє налагоджувати програми»"
         },
         "orderedTokens": [
           "She",
           "can’t",
-          "type"
+          "debug"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-11:word:webcam",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — webcam",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:webcam:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — webcam",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:webcam:audio",
+          "transcript": "webcam"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:webcam:r1",
+            "targetText": "webcam",
+            "meaningByLocale": {
+              "ru": "веб-камера. Whose webcam is this? — «Чья это веб-камера?» Камера для передачи видео через компьютер.",
+              "uk": "вебкамера. Whose webcam is this? — «Чия це вебкамера?» Камера для передавання відео через комп’ютер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "webcam",
+          "definitionByLocale": {
+            "ru": "веб-камера. Whose webcam is this? — «Чья это веб-камера?» Камера для передачи видео через компьютер.",
+            "uk": "вебкамера. Whose webcam is this? — «Чия це вебкамера?» Камера для передавання відео через комп’ютер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-11:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите коллег «Чей это принтер?»",
+      "prompt": "Спросите коллег «Чья это веб-камера?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-11:i07:audio"
       ],
-      "accessibilityLabel": "Спросите коллег «Чей это принтер?»",
+      "accessibilityLabel": "Спросите коллег «Чья это веб-камера?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i07:audio",
-          "transcript": "Whose printer is this?"
+          "transcript": "Whose webcam is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose printer is this?",
+        "targetPhrase": "Whose webcam is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она не умеет печатать на клавиатуре»",
+      "prompt": "Выберите слово: «Она не умеет отлаживать программы»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i08:r1",
-          "text": "type"
+          "text": "debug"
         },
         {
           "responseId": "en:lesson-08:session-11:i08:r2",
-          "text": "types"
+          "text": "debugs"
         },
         {
           "responseId": "en:lesson-08:session-11:i08:r3",
-          "text": "to type"
+          "text": "to debug"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет печатать на клавиатуре»",
+      "accessibilityLabel": "Выберите слово: «Она не умеет отлаживать программы»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она не умеет печатать на клавиатуре»",
-          "uk": "Скажіть «Вона не вміє друкувати на клавіатурі»"
+          "ru": "Выберите слово: «Она не умеет отлаживать программы»",
+          "uk": "Виберіть слово: «Вона не вміє налагоджувати програми»"
         },
         "gappedTargetPhrase": "She can’t ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-11:i08:r1",
-            "text": "type"
+            "text": "debug"
           },
           {
             "responseId": "en:lesson-08:session-11:i08:r2",
-            "text": "types"
+            "text": "debugs"
           },
           {
             "responseId": "en:lesson-08:session-11:i08:r3",
-            "text": "to type"
+            "text": "to debug"
           }
         ],
-        "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+        "testedDimension": "Выберите слово: «Она не умеет отлаживать программы»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+            "testedDimension": "Выберите слово: «Она не умеет отлаживать программы»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `type`, без `s`.",
-              "uk": "Після `can’t` потрібне `type`, без `s`."
+              "ru": "После `can’t` нужно `debug`, без `s`.",
+              "uk": "Після `can’t` потрібне `debug`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет печатать на клавиатуре»",
+            "testedDimension": "Выберите слово: «Она не умеет отлаживать программы»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `type`, без `to`.",
-              "uk": "Після `can’t` потрібне `type`, без `to`."
+              "ru": "После `can’t` нужно `debug`, без `to`.",
+              "uk": "Після `can’t` потрібне `debug`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -436,7 +565,7 @@
         },
         {
           "responseId": "en:lesson-08:session-11:i09:r2",
-          "text": "I can’t type."
+          "text": "I can’t debug."
         },
         {
           "responseId": "en:lesson-08:session-11:i09:r3",
@@ -463,7 +592,7 @@
           },
           {
             "responseId": "en:lesson-08:session-11:i09:r2",
-            "targetText": "I can’t type.",
+            "targetText": "I can’t debug.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `code`, а в этом варианте — `type`.",
-              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `type`."
+              "ru": "В записи последнее слово — `code`, а в этом варианте — `debug`.",
+              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `debug`."
             }
           },
           {
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,10 +643,10 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-11:i10:p1",
-            "target": "type",
+            "target": "debug",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "отлаживать программы",
+              "uk": "налагоджувати програми"
             }
           },
           {
@@ -530,10 +659,10 @@
           },
           {
             "pairId": "en:lesson-08:session-11:i10:p3",
-            "target": "tram",
+            "target": "webcam",
             "meaningByLocale": {
-              "ru": "трамвай",
-              "uk": "трамвай"
+              "ru": "веб-камера",
+              "uk": "вебкамера"
             }
           },
           {
@@ -546,15 +675,15 @@
           }
         ],
         "leftColumn": [
-          "type",
+          "debug",
           "code",
-          "tram",
+          "webcam",
           "learn"
         ],
         "rightColumn": [
-          "печатать на клавиатуре",
+          "отлаживать программы",
           "писать код",
-          "трамвай",
+          "веб-камера",
           "учиться"
         ],
         "pairingKey": "pair_id",
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i11:audio",
-          "transcript": "Whose printer is this?"
+          "transcript": "Whose webcam is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose printer is this?",
+        "hiddenTargetPhrase": "Whose webcam is this?",
         "orderedTokens": [
           "Whose",
-          "printer",
+          "webcam",
           "is",
           "this"
         ],
@@ -608,27 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-11:word:modem",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — modem",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:modem:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — modem",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:modem:audio",
+          "transcript": "modem"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:modem:r1",
+            "targetText": "modem",
+            "meaningByLocale": {
+              "ru": "модем. Whose modem is this? — «Чей это модем?» Устройство связи для подключения к интернету.",
+              "uk": "модем. Whose modem is this? — «Чий це модем?» Пристрій зв’язку для підключення до інтернету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "modem",
+          "definitionByLocale": {
+            "ru": "модем. Whose modem is this? — «Чей это модем?» Устройство связи для подключения к интернету.",
+            "uk": "модем. Whose modem is this? — «Чий це модем?» Пристрій зв’язку для підключення до інтернету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-11:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
+      "prompt": "После настройки интернета на столе остался модем. Спросите: «Чей это модем?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
+      "accessibilityLabel": "После настройки интернета на столе остался модем. Спросите: «Чей это модем?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can type.",
+        "targetPhrase": "Whose modem is this?",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает о вашем умении. Скажите «Я умею печатать на клавиатуре»",
-          "uk": "Колега запитує про ваше вміння. Скажіть «Я вмію друкувати на клавіатурі»"
+          "ru": "После настройки интернета на столе остался модем. Спросите: «Чей это модем?»",
+          "uk": "Після налаштування інтернету на столі залишився модем. Запитайте: «Чий це модем?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "type"
+          "Whose",
+          "modem",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, где вы обычно учитесь. Используйте learn: «Я обычно учусь дома»",
+      "prompt": "Сосед спрашивает о модеме рядом с вашей сумкой. Скажите: «Это мой модем».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-11:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, где вы обычно учитесь. Используйте learn: «Я обычно учусь дома»",
+      "accessibilityLabel": "Сосед спрашивает о модеме рядом с вашей сумкой. Скажите: «Это мой модем».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i13:audio",
-          "transcript": "I usually learn at home."
+          "transcript": "This is my modem."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I usually learn at home.",
+        "targetPhrase": "This is my modem.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +847,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она не умеет писать код»",
+      "prompt": "Выберите форму: «Она не умеет писать код»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i14:r1",
@@ -695,12 +868,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет писать код»",
+      "accessibilityLabel": "Выберите форму: «Она не умеет писать код»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она не умеет писать код»",
-          "uk": "Скажіть «Вона не вміє писати код»"
+          "ru": "Выберите форму: «Она не умеет писать код»",
+          "uk": "Виберіть форму: «Вона не вміє писати код»"
         },
         "gappedTargetPhrase": "She ___ code.",
         "gapOptions": [
@@ -717,12 +890,12 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажите «Она не умеет писать код»",
+        "testedDimension": "Выберите форму: «Она не умеет писать код»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-11:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет писать код»",
+            "testedDimension": "Выберите форму: «Она не умеет писать код»",
             "feedbackByLocale": {
               "ru": "`Can` значит «умеет», здесь нужно `can’t` — «не умеет».",
               "uk": "`Can` означає «вміє», тут потрібне `can’t` — «не вміє»."
@@ -731,7 +904,7 @@
           {
             "responseId": "en:lesson-08:session-11:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет писать код»",
+            "testedDimension": "Выберите форму: «Она не умеет писать код»",
             "feedbackByLocale": {
               "ru": "Достаточно `she can’t`; `is` не нужно.",
               "uk": "Достатньо `she can’t`; `is` не потрібне."
@@ -743,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -751,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i15:r1",
-          "text": "Where is the tram?"
+          "text": "This is my modem."
         },
         {
           "responseId": "en:lesson-08:session-11:i15:r2",
-          "text": "Where is the bus?"
+          "text": "This is your modem."
         },
         {
           "responseId": "en:lesson-08:session-11:i15:r3",
-          "text": "Where is the train?"
+          "text": "This is my webcam."
         }
       ],
       "mediaIds": [],
@@ -771,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i15:audio",
-          "transcript": "Where is the tram?"
+          "transcript": "This is my modem."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-11:i15:r1",
-            "targetText": "Where is the tram?",
+            "targetText": "This is my modem.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-11:i15:r2",
-            "targetText": "Where is the bus?",
+            "targetText": "This is your modem.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-11:i15:r3",
-            "targetText": "Where is the train?",
+            "targetText": "This is my webcam.",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `tram`, а в этом варианте — `bus`.",
-              "uk": "У записі останнє слово — `tram`, а в цьому варіанті — `bus`."
+              "ru": "В записи my — «мой», а не your.",
+              "uk": "У записі my — «мій», а не your."
             }
           },
           {
@@ -807,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `tram`, а в этом варианте — `train`.",
-              "uk": "У записі останнє слово — `tram`, а в цьому варіанті — `train`."
+              "ru": "В записи modem — «модем», а не webcam.",
+              "uk": "У записі modem — «модем», а не webcam."
             }
           }
         ],
@@ -819,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -841,40 +1014,40 @@
           },
           {
             "pairId": "en:lesson-08:session-11:i16:p2",
-            "target": "printer",
+            "target": "debug",
             "meaningByLocale": {
-              "ru": "принтер",
-              "uk": "принтер"
+              "ru": "отлаживать программы",
+              "uk": "налагоджувати програми"
             }
           },
           {
             "pairId": "en:lesson-08:session-11:i16:p3",
-            "target": "learn",
+            "target": "webcam",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "веб-камера",
+              "uk": "вебкамера"
             }
           },
           {
             "pairId": "en:lesson-08:session-11:i16:p4",
-            "target": "type",
+            "target": "modem",
             "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
+              "ru": "модем",
+              "uk": "модем"
             }
           }
         ],
         "leftColumn": [
           "code",
-          "printer",
-          "learn",
-          "type"
+          "debug",
+          "webcam",
+          "modem"
         ],
         "rightColumn": [
           "писать код",
-          "принтер",
-          "учиться",
-          "печатать на клавиатуре"
+          "отлаживать программы",
+          "веб-камера",
+          "модем"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,7 +1065,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-11:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -932,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "30a6220a2d7de93e67a339acd1fca5646cfb3bb548a26e0c6c780755ee498a69"
+  "learnerFingerprint": "2520f0baad05938cf8c3c5dc16f2b2edc9a50ce089b5c46a79f8b5155ee95200"
 }

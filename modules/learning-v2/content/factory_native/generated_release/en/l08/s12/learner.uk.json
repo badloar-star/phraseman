@@ -4,27 +4,71 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-12:i01",
+      "interactionId": "en:lesson-08:session-12:word:poach",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — poach",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-12:word:poach:audio"
+      ],
+      "accessibilityLabel": "Картка слова — poach",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-12:word:poach:audio",
+          "transcript": "poach"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-12:word:poach:r1",
+            "targetText": "poach",
+            "meaningByLocale": {
+              "ru": "готовить в жидкости без кипения. I can’t poach eggs. — «Я не умею готовить яйца пашот». В этом занятии готовим яйца без скорлупы.",
+              "uk": "готувати в рідині без кипіння. I can’t poach eggs. — «Я не вмію готувати яйця пашот». У цьому занятті готуємо яйця без шкаралупи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poach",
+          "definitionByLocale": {
+            "ru": "готовить в жидкости без кипения. I can’t poach eggs. — «Я не умею готовить яйца пашот». В этом занятии готовим яйца без скорлупы.",
+            "uk": "готувати в рідині без кипіння. I can’t poach eggs. — «Я не вмію готувати яйця пашот». У цьому занятті готуємо яйця без шкаралупи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-12:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не вмію в’язати»",
+      "prompt": "Скажіть «Я не вмію готувати яйця пашот»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію в’язати»",
+      "accessibilityLabel": "Скажіть «Я не вмію готувати яйця пашот»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can’t knit.",
+        "targetPhrase": "I can’t poach eggs.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не умею вязать»",
-          "uk": "Скажіть «Я не вмію в’язати»"
+          "ru": "Скажите «Я не умею готовить яйца пашот»",
+          "uk": "Скажіть «Я не вмію готувати яйця пашот»"
         },
         "orderedTokens": [
           "I",
           "can’t",
-          "knit"
+          "poach",
+          "eggs"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,51 +81,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i02:r1",
-          "text": "knit"
+          "text": "poach"
         },
         {
           "responseId": "en:lesson-08:session-12:i02:r2",
-          "text": "paint"
+          "text": "swim"
         },
         {
           "responseId": "en:lesson-08:session-12:i02:r3",
-          "text": "balance"
+          "text": "knit"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i02:audio",
-          "transcript": "knit"
+          "transcript": "poach"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-12:i02:r1",
-            "targetText": "knit",
+            "targetText": "poach",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i02:r2",
-            "targetText": "paint",
+            "targetText": "swim",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i02:r3",
-            "targetText": "balance",
+            "targetText": "knit",
             "meaningByLocale": null
           }
         ],
@@ -90,19 +134,19 @@
           {
             "responseId": "en:lesson-08:session-12:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `knit`, а в этом варианте — `paint`.",
-              "uk": "У записі перше слово — `knit`, а в цьому варіанті — `paint`."
+              "ru": "В записи poach, а не swim — «плавать».",
+              "uk": "У записі poach, а не swim — «плавати»."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `knit`, а в этом варианте — `balance`.",
-              "uk": "У записі перше слово — `knit`, а в цьому варіанті — `balance`."
+              "ru": "В записи poach, а не knit — «вязать спицами».",
+              "uk": "У записі poach, а не knit — «в’язати спицями»."
             }
           }
         ],
@@ -113,67 +157,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Я не вмію в’язати»",
+      "prompt": "Виберіть слово: «Я не вмію готувати яйця пашот»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i03:r1",
-          "text": "knit"
+          "text": "poach"
         },
         {
           "responseId": "en:lesson-08:session-12:i03:r2",
-          "text": "to knit"
+          "text": "to poach"
         },
         {
           "responseId": "en:lesson-08:session-12:i03:r3",
-          "text": "knits"
+          "text": "poaches"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію в’язати»",
+      "accessibilityLabel": "Виберіть слово: «Я не вмію готувати яйця пашот»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею вязать»",
-          "uk": "Скажіть «Я не вмію в’язати»"
+          "ru": "Выберите слово: «Я не умею готовить яйца пашот»",
+          "uk": "Виберіть слово: «Я не вмію готувати яйця пашот»"
         },
-        "gappedTargetPhrase": "I can’t ___.",
+        "gappedTargetPhrase": "I can’t ___ eggs.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-12:i03:r1",
-            "text": "knit"
+            "text": "poach"
           },
           {
             "responseId": "en:lesson-08:session-12:i03:r2",
-            "text": "to knit"
+            "text": "to poach"
           },
           {
             "responseId": "en:lesson-08:session-12:i03:r3",
-            "text": "knits"
+            "text": "poaches"
           }
         ],
-        "testedDimension": "Скажіть «Я не вмію в’язати»",
+        "testedDimension": "Виберіть слово: «Я не вмію готувати яйця пашот»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію в’язати»",
+            "testedDimension": "Виберіть слово: «Я не вмію готувати яйця пашот»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `knit`, без `to`.",
-              "uk": "Після `can’t` потрібне `knit`, без `to`."
+              "ru": "После can’t не нужно to.",
+              "uk": "Після can’t не потрібне to."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Я не вмію в’язати»",
+            "testedDimension": "Виберіть слово: «Я не вмію готувати яйця пашот»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `knit`, без `s`.",
-              "uk": "Після `can’t` потрібне `knit`, без `s`."
+              "ru": "После can’t нужно poach, без es.",
+              "uk": "Після can’t потрібне poach, без es."
             }
           }
         ]
@@ -182,7 +226,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +240,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-12:i04:p1",
-            "target": "knit",
+            "target": "poach",
             "meaningByLocale": {
-              "ru": "вязать",
-              "uk": "в’язати"
+              "ru": "готовить в жидкости без кипения",
+              "uk": "готувати в рідині без кипіння"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i04:p2",
-            "target": "platform",
+            "target": "egg",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "яйцо",
+              "uk": "яйце"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i04:p3",
-            "target": "paint",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "рисовать красками",
-              "uk": "малювати фарбами"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i04:p4",
-            "target": "alarm",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           }
         ],
         "leftColumn": [
-          "knit",
-          "platform",
-          "paint",
-          "alarm"
+          "poach",
+          "egg",
+          "ball",
+          "coat"
         ],
         "rightColumn": [
-          "в’язати",
-          "платформа",
-          "малювати фарбами",
-          "будильник"
+          "готувати в рідині без кипіння",
+          "яйце",
+          "м’яч",
+          "пальто"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +299,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,46 +314,91 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i05:audio",
-          "transcript": "I can’t knit."
+          "transcript": "I can’t poach eggs."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can’t knit.",
+        "hiddenTargetPhrase": "I can’t poach eggs.",
         "orderedTokens": [
           "I",
           "can’t",
-          "knit"
+          "poach",
+          "eggs"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-12:word:simmer",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — simmer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-12:word:simmer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — simmer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-12:word:simmer:audio",
+          "transcript": "simmer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-12:word:simmer:r1",
+            "targetText": "simmer",
+            "meaningByLocale": {
+              "ru": "варить при слабом кипении. She can simmer soup. — «Она умеет варить суп на слабом огне». Жидкость слегка кипит.",
+              "uk": "варити за слабкого кипіння. She can simmer soup. — «Вона вміє варити суп на слабкому вогні». Рідина злегка кипить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "simmer",
+          "definitionByLocale": {
+            "ru": "варить при слабом кипении. She can simmer soup. — «Она умеет варить суп на слабом огне». Жидкость слегка кипит.",
+            "uk": "варити за слабкого кипіння. She can simmer soup. — «Вона вміє варити суп на слабкому вогні». Рідина злегка кипить."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-12:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона вміє малювати фарбами»",
+      "prompt": "Скажіть «Вона вміє варити суп на слабкому вогні»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє малювати фарбами»",
+      "accessibilityLabel": "Скажіть «Вона вміє варити суп на слабкому вогні»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can paint.",
+        "targetPhrase": "She can simmer soup.",
         "localizedMeaning": {
-          "ru": "Скажите «Она умеет рисовать красками»",
-          "uk": "Скажіть «Вона вміє малювати фарбами»"
+          "ru": "Скажите «Она умеет варить суп на слабом огне»",
+          "uk": "Скажіть «Вона вміє варити суп на слабкому вогні»"
         },
         "orderedTokens": [
           "She",
           "can",
-          "paint"
+          "simmer",
+          "soup"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +410,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-12:word:sieve",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sieve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-12:word:sieve:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sieve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-12:word:sieve:audio",
+          "transcript": "sieve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-12:word:sieve:r1",
+            "targetText": "sieve",
+            "meaningByLocale": {
+              "ru": "сито. Whose sieve is this? — «Чьё это сито?» Мелкая сетка для просеивания муки.",
+              "uk": "сито. Whose sieve is this? — «Чиє це сито?» Дрібна сітка для просіювання борошна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sieve",
+          "definitionByLocale": {
+            "ru": "сито. Whose sieve is this? — «Чьё это сито?» Мелкая сетка для просеивания муки.",
+            "uk": "сито. Whose sieve is this? — «Чиє це сито?» Дрібна сітка для просіювання борошна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-12:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Чий це будильник?»",
+      "prompt": "Запитайте «Чиє це сито?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Запитайте «Чий це будильник?»",
+      "accessibilityLabel": "Запитайте «Чиє це сито?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i07:audio",
-          "transcript": "Whose alarm is this?"
+          "transcript": "Whose sieve is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose alarm is this?",
+        "targetPhrase": "Whose sieve is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +487,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Вона вміє малювати фарбами»",
+      "prompt": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i08:r1",
-          "text": "paint"
+          "text": "simmer"
         },
         {
           "responseId": "en:lesson-08:session-12:i08:r2",
-          "text": "paints"
+          "text": "simmers"
         },
         {
           "responseId": "en:lesson-08:session-12:i08:r3",
-          "text": "to paint"
+          "text": "to simmer"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє малювати фарбами»",
+      "accessibilityLabel": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она умеет рисовать красками»",
-          "uk": "Скажіть «Вона вміє малювати фарбами»"
+          "ru": "Выберите слово: «Она умеет варить суп на слабом огне»",
+          "uk": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»"
         },
-        "gappedTargetPhrase": "She can ___.",
+        "gappedTargetPhrase": "She can ___ soup.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-12:i08:r1",
-            "text": "paint"
+            "text": "simmer"
           },
           {
             "responseId": "en:lesson-08:session-12:i08:r2",
-            "text": "paints"
+            "text": "simmers"
           },
           {
             "responseId": "en:lesson-08:session-12:i08:r3",
-            "text": "to paint"
+            "text": "to simmer"
           }
         ],
-        "testedDimension": "Скажіть «Вона вміє малювати фарбами»",
+        "testedDimension": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-12:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє малювати фарбами»",
+            "testedDimension": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `paint`, без `s`.",
-              "uk": "Після `can` потрібне `paint`, без `s`."
+              "ru": "После can не нужно s.",
+              "uk": "Після can не потрібне s."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Вона вміє малювати фарбами»",
+            "testedDimension": "Виберіть слово: «Вона вміє варити суп на слабкому вогні»",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `paint`, без `to`.",
-              "uk": "Після `can` потрібне `paint`, без `to`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
@@ -424,51 +556,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i09:r1",
-          "text": "I can’t knit."
+          "text": "I can’t poach eggs."
         },
         {
           "responseId": "en:lesson-08:session-12:i09:r2",
-          "text": "I can’t paint."
+          "text": "I can’t simmer soup."
         },
         {
           "responseId": "en:lesson-08:session-12:i09:r3",
-          "text": "I can’t balance."
+          "text": "I can’t knit."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i09:audio",
-          "transcript": "I can’t knit."
+          "transcript": "I can’t poach eggs."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-12:i09:r1",
-            "targetText": "I can’t knit.",
+            "targetText": "I can’t poach eggs.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i09:r2",
-            "targetText": "I can’t paint.",
+            "targetText": "I can’t simmer soup.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i09:r3",
-            "targetText": "I can’t balance.",
+            "targetText": "I can’t knit.",
             "meaningByLocale": null
           }
         ],
@@ -477,19 +609,19 @@
           {
             "responseId": "en:lesson-08:session-12:i09:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `knit`, а в этом варианте — `paint`.",
-              "uk": "У записі останнє слово — `knit`, а в цьому варіанті — `paint`."
+              "ru": "В записи poach eggs, а не simmer soup.",
+              "uk": "У записі poach eggs, а не simmer soup."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i09:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `knit`, а в этом варианте — `balance`.",
-              "uk": "У записі останнє слово — `knit`, а в цьому варіанті — `balance`."
+              "ru": "В записи poach eggs, а не knit.",
+              "uk": "У записі poach eggs, а не knit."
             }
           }
         ],
@@ -500,7 +632,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +646,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-12:i10:p1",
-            "target": "balance",
+            "target": "simmer",
             "meaningByLocale": {
-              "ru": "удерживать равновесие",
-              "uk": "утримувати рівновагу"
+              "ru": "варить при слабом кипении",
+              "uk": "варити за слабкого кипіння"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i10:p2",
-            "target": "knit",
+            "target": "poach",
             "meaningByLocale": {
-              "ru": "вязать",
-              "uk": "в’язати"
+              "ru": "готовить в жидкости без кипения",
+              "uk": "готувати в рідині без кипіння"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i10:p3",
-            "target": "alarm",
+            "target": "sieve",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "сито",
+              "uk": "сито"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i10:p4",
-            "target": "paint",
+            "target": "soup",
             "meaningByLocale": {
-              "ru": "рисовать красками",
-              "uk": "малювати фарбами"
+              "ru": "суп",
+              "uk": "суп"
             }
           }
         ],
         "leftColumn": [
-          "balance",
-          "knit",
-          "alarm",
-          "paint"
+          "simmer",
+          "poach",
+          "sieve",
+          "soup"
         ],
         "rightColumn": [
-          "утримувати рівновагу",
-          "в’язати",
-          "будильник",
-          "малювати фарбами"
+          "варити за слабкого кипіння",
+          "готувати в рідині без кипіння",
+          "сито",
+          "суп"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +705,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послухайте й складіть фразу",
@@ -588,13 +720,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i11:audio",
-          "transcript": "Whose alarm is this?"
+          "transcript": "Whose sieve is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose alarm is this?",
+        "hiddenTargetPhrase": "Whose sieve is this?",
         "orderedTokens": [
           "Whose",
-          "alarm",
+          "sieve",
           "is",
           "this"
         ],
@@ -608,27 +740,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-12:word:tongs",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tongs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-12:word:tongs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tongs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-12:word:tongs:audio",
+          "transcript": "tongs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-12:word:tongs:r1",
+            "targetText": "tongs",
+            "meaningByLocale": {
+              "ru": "кухонные щипцы. Where are the tongs? — «Где кухонные щипцы?» Tongs употребляется во множественном числе: нужно are, даже если щипцы одни.",
+              "uk": "кухонні щипці. Where are the tongs? — «Де кухонні щипці?» Tongs вживається у множині: потрібне are, навіть якщо щипці одні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tongs",
+          "definitionByLocale": {
+            "ru": "кухонные щипцы. Where are the tongs? — «Где кухонные щипцы?» Tongs употребляется во множественном числе: нужно are, даже если щипцы одни.",
+            "uk": "кухонні щипці. Where are the tongs? — «Де кухонні щипці?» Tongs вживається у множині: потрібне are, навіть якщо щипці одні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-12:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Під час вправи ви стоїте на одній нозі. Скажіть «Я вмію утримувати рівновагу»",
+      "prompt": "Хочете перекласти гарячу їжу. Запитайте «Де кухонні щипці?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Під час вправи ви стоїте на одній нозі. Скажіть «Я вмію утримувати рівновагу»",
+      "accessibilityLabel": "Хочете перекласти гарячу їжу. Запитайте «Де кухонні щипці?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can balance.",
+        "targetPhrase": "Where are the tongs?",
         "localizedMeaning": {
-          "ru": "На упражнении вы стоите на одной ноге. Скажите «Я умею удерживать равновесие»",
-          "uk": "Під час вправи ви стоїте на одній нозі. Скажіть «Я вмію утримувати рівновагу»"
+          "ru": "Хотите переложить горячую еду. Спросите «Где кухонные щипцы?»",
+          "uk": "Хочете перекласти гарячу їжу. Запитайте «Де кухонні щипці?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "balance"
+          "Where",
+          "are",
+          "the",
+          "tongs"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +817,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, де ви малюєте. Скажіть «Я часто малюю фарбами вдома»",
+      "prompt": "Покажіть другові щипці поряд із собою: «Щипці тут».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i13:audio"
       ],
-      "accessibilityLabel": "Друг запитує, де ви малюєте. Скажіть «Я часто малюю фарбами вдома»",
+      "accessibilityLabel": "Покажіть другові щипці поряд із собою: «Щипці тут».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i13:audio",
-          "transcript": "I often paint at home."
+          "transcript": "The tongs are here."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often paint at home.",
+        "targetPhrase": "The tongs are here.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +850,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть «Він не вміє в’язати»",
+      "prompt": "Виберіть форму: «Він не вміє готувати яйця пашот»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i14:r1",
@@ -695,14 +871,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Він не вміє в’язати»",
+      "accessibilityLabel": "Виберіть форму: «Він не вміє готувати яйця пашот»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Он не умеет вязать»",
-          "uk": "Скажіть «Він не вміє в’язати»"
+          "ru": "Выберите форму: «Он не умеет готовить яйца пашот»",
+          "uk": "Виберіть форму: «Він не вміє готувати яйця пашот»"
         },
-        "gappedTargetPhrase": "He ___ knit.",
+        "gappedTargetPhrase": "He ___ poach eggs.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-12:i14:r1",
@@ -717,24 +893,24 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажіть «Він не вміє в’язати»",
+        "testedDimension": "Виберіть форму: «Він не вміє готувати яйця пашот»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть «Він не вміє в’язати»",
+            "testedDimension": "Виберіть форму: «Він не вміє готувати яйця пашот»",
             "feedbackByLocale": {
-              "ru": "Он не умеет: нужно `can’t`.",
-              "uk": "Він не вміє: потрібне `can’t`."
+              "ru": "Он не умеет: нужно can’t.",
+              "uk": "Він не вміє: потрібне can’t."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть «Він не вміє в’язати»",
+            "testedDimension": "Виберіть форму: «Він не вміє готувати яйця пашот»",
             "feedbackByLocale": {
-              "ru": "Достаточно `he can’t`; `is` не нужно.",
-              "uk": "Достатньо `he can’t`; `is` не потрібне."
+              "ru": "Перед can’t не нужно is.",
+              "uk": "Перед can’t не потрібне is."
             }
           }
         ]
@@ -743,51 +919,51 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-12:i15:r1",
-          "text": "Where is the platform?"
+          "text": "Where are the tongs?"
         },
         {
           "responseId": "en:lesson-08:session-12:i15:r2",
-          "text": "Where is the hotel?"
+          "text": "Where is the sieve?"
         },
         {
           "responseId": "en:lesson-08:session-12:i15:r3",
-          "text": "Where is the printer?"
+          "text": "Where is the soup?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i15:audio",
-          "transcript": "Where is the platform?"
+          "transcript": "Where are the tongs?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-12:i15:r1",
-            "targetText": "Where is the platform?",
+            "targetText": "Where are the tongs?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i15:r2",
-            "targetText": "Where is the hotel?",
+            "targetText": "Where is the sieve?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-12:i15:r3",
-            "targetText": "Where is the printer?",
+            "targetText": "Where is the soup?",
             "meaningByLocale": null
           }
         ],
@@ -796,19 +972,19 @@
           {
             "responseId": "en:lesson-08:session-12:i15:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `platform`, а в этом варианте — `hotel`.",
-              "uk": "У записі останнє слово — `platform`, а в цьому варіанті — `hotel`."
+              "ru": "В записи tongs — «щипцы», а не sieve.",
+              "uk": "У записі tongs — «щипці», а не sieve."
             }
           },
           {
             "responseId": "en:lesson-08:session-12:i15:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `platform`, а в этом варианте — `printer`.",
-              "uk": "У записі останнє слово — `platform`, а в цьому варіанті — `printer`."
+              "ru": "В записи tongs — «щипцы», а не soup.",
+              "uk": "У записі tongs — «щипці», а не soup."
             }
           }
         ],
@@ -819,7 +995,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -833,48 +1009,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-12:i16:p1",
-            "target": "knit",
+            "target": "poach",
             "meaningByLocale": {
-              "ru": "вязать",
-              "uk": "в’язати"
+              "ru": "готовить в жидкости без кипения",
+              "uk": "готувати в рідині без кипіння"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i16:p2",
-            "target": "platform",
+            "target": "simmer",
             "meaningByLocale": {
-              "ru": "платформа",
-              "uk": "платформа"
+              "ru": "варить при слабом кипении",
+              "uk": "варити за слабкого кипіння"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i16:p3",
-            "target": "balance",
+            "target": "sieve",
             "meaningByLocale": {
-              "ru": "удерживать равновесие",
-              "uk": "утримувати рівновагу"
+              "ru": "сито",
+              "uk": "сито"
             }
           },
           {
             "pairId": "en:lesson-08:session-12:i16:p4",
-            "target": "alarm",
+            "target": "tongs",
             "meaningByLocale": {
-              "ru": "будильник",
-              "uk": "будильник"
+              "ru": "кухонные щипцы",
+              "uk": "кухонні щипці"
             }
           }
         ],
         "leftColumn": [
-          "knit",
-          "platform",
-          "balance",
-          "alarm"
+          "poach",
+          "simmer",
+          "sieve",
+          "tongs"
         ],
         "rightColumn": [
-          "в’язати",
-          "платформа",
-          "утримувати рівновагу",
-          "будильник"
+          "готувати в рідині без кипіння",
+          "варити за слабкого кипіння",
+          "сито",
+          "кухонні щипці"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,25 +1068,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-12:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг пропонує Томові зв’язати шарф. Том ще не навчився. Скажіть «Том не вміє в’язати»",
+      "prompt": "Томові пропонують приготувати яйця пашот, але він ще не вчився. Скажіть «Том не вміє готувати яйця пашот».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-12:i17:audio"
       ],
-      "accessibilityLabel": "Друг пропонує Томові зв’язати шарф. Том ще не навчився. Скажіть «Том не вміє в’язати»",
+      "accessibilityLabel": "Томові пропонують приготувати яйця пашот, але він ще не вчився. Скажіть «Том не вміє готувати яйця пашот».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-12:i17:audio",
-          "transcript": "Tom can’t knit."
+          "transcript": "Tom can’t poach eggs."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can’t knit.",
+        "targetPhrase": "Tom can’t poach eggs.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -932,11 +1108,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2cd7d31d3deb0a1c4dccef04a6f5f3993f2babedf792052079279377c224b489"
+  "learnerFingerprint": "35480154e2970a3a60d4e89627cd2938a1d522a5a5c6e1cb4ce6bb83156ca2cc"
 }

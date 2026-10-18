@@ -1,67 +1,87 @@
 [
   {
+    "interactionId": "en:lesson-08:session-12:word:poach",
+    "correctText": "poach",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-12:i01",
-    "correctText": "I can’t knit.",
+    "correctText": "I can’t poach eggs.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i02",
-    "correctText": "knit",
+    "correctText": "poach",
     "correctResponseId": "en:lesson-08:session-12:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-12:i03",
-    "correctText": "knit",
+    "correctText": "poach",
     "correctResponseId": "en:lesson-08:session-12:i03:r1"
   },
   {
     "interactionId": "en:lesson-08:session-12:i04",
-    "correctText": "en:lesson-08:session-12:i04:p1=knit\nen:lesson-08:session-12:i04:p2=platform\nen:lesson-08:session-12:i04:p3=paint\nen:lesson-08:session-12:i04:p4=alarm",
+    "correctText": "en:lesson-08:session-12:i04:p1=poach\nen:lesson-08:session-12:i04:p2=egg\nen:lesson-08:session-12:i04:p3=ball\nen:lesson-08:session-12:i04:p4=coat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i05",
-    "correctText": "I can’t knit.",
+    "correctText": "I can’t poach eggs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-12:word:simmer",
+    "correctText": "simmer",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i06",
-    "correctText": "She can paint.",
+    "correctText": "She can simmer soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-12:word:sieve",
+    "correctText": "sieve",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i07",
-    "correctText": "Whose alarm is this?",
+    "correctText": "Whose sieve is this?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i08",
-    "correctText": "paint",
+    "correctText": "simmer",
     "correctResponseId": "en:lesson-08:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-12:i09",
-    "correctText": "I can’t knit.",
+    "correctText": "I can’t poach eggs.",
     "correctResponseId": "en:lesson-08:session-12:i09:r1"
   },
   {
     "interactionId": "en:lesson-08:session-12:i10",
-    "correctText": "en:lesson-08:session-12:i10:p1=balance\nen:lesson-08:session-12:i10:p2=knit\nen:lesson-08:session-12:i10:p3=alarm\nen:lesson-08:session-12:i10:p4=paint",
+    "correctText": "en:lesson-08:session-12:i10:p1=simmer\nen:lesson-08:session-12:i10:p2=poach\nen:lesson-08:session-12:i10:p3=sieve\nen:lesson-08:session-12:i10:p4=soup",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i11",
-    "correctText": "Whose alarm is this?",
+    "correctText": "Whose sieve is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-08:session-12:word:tongs",
+    "correctText": "tongs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i12",
-    "correctText": "I can balance.",
+    "correctText": "Where are the tongs?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i13",
-    "correctText": "I often paint at home.",
+    "correctText": "The tongs are here.",
     "correctResponseId": null
   },
   {
@@ -71,17 +91,17 @@
   },
   {
     "interactionId": "en:lesson-08:session-12:i15",
-    "correctText": "Where is the platform?",
+    "correctText": "Where are the tongs?",
     "correctResponseId": "en:lesson-08:session-12:i15:r1"
   },
   {
     "interactionId": "en:lesson-08:session-12:i16",
-    "correctText": "en:lesson-08:session-12:i16:p1=knit\nen:lesson-08:session-12:i16:p2=platform\nen:lesson-08:session-12:i16:p3=balance\nen:lesson-08:session-12:i16:p4=alarm",
+    "correctText": "en:lesson-08:session-12:i16:p1=poach\nen:lesson-08:session-12:i16:p2=simmer\nen:lesson-08:session-12:i16:p3=sieve\nen:lesson-08:session-12:i16:p4=tongs",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-12:i17",
-    "correctText": "Tom can’t knit.",
+    "correctText": "Tom can’t poach eggs.",
     "correctResponseId": null
   }
 ]

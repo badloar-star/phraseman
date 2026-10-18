@@ -4,27 +4,70 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-10:i01",
+      "interactionId": "en:lesson-08:session-10:word:carve",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — carve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-10:word:carve:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — carve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-10:word:carve:audio",
+          "transcript": "carve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-10:word:carve:r1",
+            "targetText": "carve",
+            "meaningByLocale": {
+              "ru": "вырезать фигуры. I can’t carve. — «Я не умею вырезать фигуры». Придавать форму, срезая части материала.",
+              "uk": "вирізати фігури. I can’t carve. — «Я не вмію вирізати фігури». Надавати форму, зрізаючи частини матеріалу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "carve",
+          "definitionByLocale": {
+            "ru": "вырезать фигуры. I can’t carve. — «Я не умею вырезать фигуры». Придавать форму, срезая части материала.",
+            "uk": "вирізати фігури. I can’t carve. — «Я не вмію вирізати фігури». Надавати форму, зрізаючи частини матеріалу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-10:i01",
+      "ordinal": 5,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите «Я не умею нырять»",
+      "prompt": "Скажите «Я не умею вырезать фигуры»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не умею нырять»",
+      "accessibilityLabel": "Скажите «Я не умею вырезать фигуры»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can’t dive.",
+        "targetPhrase": "I can’t carve.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не умею нырять»",
-          "uk": "Скажіть «Я не вмію пірнати»"
+          "ru": "Скажите «Я не умею вырезать фигуры»",
+          "uk": "Скажіть «Я не вмію вирізати фігури»"
         },
         "orderedTokens": [
           "I",
           "can’t",
-          "dive"
+          "carve"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -37,7 +80,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i02",
-      "ordinal": 5,
+      "ordinal": 6,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -45,7 +88,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i02:r1",
-          "text": "dive"
+          "text": "carve"
         },
         {
           "responseId": "en:lesson-08:session-10:i02:r2",
@@ -53,7 +96,7 @@
         },
         {
           "responseId": "en:lesson-08:session-10:i02:r3",
-          "text": "juggle"
+          "text": "skate"
         }
       ],
       "mediaIds": [],
@@ -65,13 +108,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i02:audio",
-          "transcript": "dive"
+          "transcript": "carve"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-10:i02:r1",
-            "targetText": "dive",
+            "targetText": "carve",
             "meaningByLocale": null
           },
           {
@@ -81,7 +124,7 @@
           },
           {
             "responseId": "en:lesson-08:session-10:i02:r3",
-            "targetText": "juggle",
+            "targetText": "skate",
             "meaningByLocale": null
           }
         ],
@@ -92,8 +135,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dive`, а в этом варианте — `swim`.",
-              "uk": "У записі перше слово — `dive`, а в цьому варіанті — `swim`."
+              "ru": "В записи carve — «вырезать фигуры», а не swim — «плавать».",
+              "uk": "У записі carve — «вирізати фігури», а не swim — «плавати»."
             }
           },
           {
@@ -101,8 +144,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `dive`, а в этом варианте — `juggle`.",
-              "uk": "У записі перше слово — `dive`, а в цьому варіанті — `juggle`."
+              "ru": "В записи carve, а не skate — «кататься на коньках».",
+              "uk": "У записі carve, а не skate — «кататися на ковзанах»."
             }
           }
         ],
@@ -113,67 +156,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i03",
-      "ordinal": 6,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Я не умею нырять»",
+      "prompt": "Выберите слово: «Я не умею вырезать фигуры»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i03:r1",
-          "text": "dive"
+          "text": "carve"
         },
         {
           "responseId": "en:lesson-08:session-10:i03:r2",
-          "text": "to dive"
+          "text": "to carve"
         },
         {
           "responseId": "en:lesson-08:session-10:i03:r3",
-          "text": "dives"
+          "text": "carves"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Я не умею нырять»",
+      "accessibilityLabel": "Выберите слово: «Я не умею вырезать фигуры»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Я не умею нырять»",
-          "uk": "Скажіть «Я не вмію пірнати»"
+          "ru": "Выберите слово: «Я не умею вырезать фигуры»",
+          "uk": "Виберіть слово: «Я не вмію вирізати фігури»"
         },
         "gappedTargetPhrase": "I can’t ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-10:i03:r1",
-            "text": "dive"
+            "text": "carve"
           },
           {
             "responseId": "en:lesson-08:session-10:i03:r2",
-            "text": "to dive"
+            "text": "to carve"
           },
           {
             "responseId": "en:lesson-08:session-10:i03:r3",
-            "text": "dives"
+            "text": "carves"
           }
         ],
-        "testedDimension": "Скажите «Я не умею нырять»",
+        "testedDimension": "Выберите слово: «Я не умею вырезать фигуры»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-10:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею нырять»",
+            "testedDimension": "Выберите слово: «Я не умею вырезать фигуры»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `dive`, без `to`.",
-              "uk": "Після `can’t` потрібне `dive`, без `to`."
+              "ru": "После `can’t` нужно `carve`, без `to`.",
+              "uk": "Після `can’t` потрібне `carve`, без `to`."
             }
           },
           {
             "responseId": "en:lesson-08:session-10:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите «Я не умею нырять»",
+            "testedDimension": "Выберите слово: «Я не умею вырезать фигуры»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `dive`, без `s`.",
-              "uk": "Після `can’t` потрібне `dive`, без `s`."
+              "ru": "После `can’t` нужно `carve`, без `s`.",
+              "uk": "Після `can’t` потрібне `carve`, без `s`."
             }
           }
         ]
@@ -182,7 +225,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i04",
-      "ordinal": 7,
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -196,48 +239,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-10:i04:p1",
-            "target": "dive",
+            "target": "carve",
             "meaningByLocale": {
-              "ru": "нырять",
-              "uk": "пірнати"
+              "ru": "вырезать фигуры",
+              "uk": "вирізати фігури"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i04:p2",
-            "target": "hotel",
+            "target": "swim",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "плавать",
+              "uk": "плавати"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i04:p3",
-            "target": "practice",
+            "target": "ball",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "мяч",
+              "uk": "м’яч"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i04:p4",
-            "target": "machine",
+            "target": "coat",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "пальто",
+              "uk": "пальто"
             }
           }
         ],
         "leftColumn": [
-          "dive",
-          "hotel",
-          "practice",
-          "machine"
+          "carve",
+          "swim",
+          "ball",
+          "coat"
         ],
         "rightColumn": [
-          "нырять",
-          "отель",
-          "практиковаться",
-          "устройство"
+          "вырезать фигуры",
+          "плавать",
+          "мяч",
+          "пальто"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -255,7 +298,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i05",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -270,46 +313,89 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i05:audio",
-          "transcript": "I can’t dive."
+          "transcript": "I can’t carve."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can’t dive.",
+        "hiddenTargetPhrase": "I can’t carve.",
         "orderedTokens": [
           "I",
           "can’t",
-          "dive"
+          "carve"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
         "completionFeedbackByLocale": {
           "ru": "",
           "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-10:word:sculpt",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sculpt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-10:word:sculpt:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sculpt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-10:word:sculpt:audio",
+          "transcript": "sculpt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-10:word:sculpt:r1",
+            "targetText": "sculpt",
+            "meaningByLocale": {
+              "ru": "создавать скульптуры. She can’t sculpt. — «Она не умеет создавать скульптуры». Делать объёмные фигуры, например из глины.",
+              "uk": "створювати скульптури. She can’t sculpt. — «Вона не вміє створювати скульптури». Робити об’ємні фігури, наприклад із глини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sculpt",
+          "definitionByLocale": {
+            "ru": "создавать скульптуры. She can’t sculpt. — «Она не умеет создавать скульптуры». Делать объёмные фигуры, например из глины.",
+            "uk": "створювати скульптури. She can’t sculpt. — «Вона не вміє створювати скульптури». Робити об’ємні фігури, наприклад із глини."
+          }
         }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-10:i06",
-      "ordinal": 9,
-      "purpose": "supported_practice",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите о знакомой «Она не умеет жонглировать»",
+      "prompt": "Скажите о знакомой «Она не умеет создавать скульптуры»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о знакомой «Она не умеет жонглировать»",
+      "accessibilityLabel": "Скажите о знакомой «Она не умеет создавать скульптуры»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She can’t juggle.",
+        "targetPhrase": "She can’t sculpt.",
         "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она не умеет жонглировать»",
-          "uk": "Скажіть про знайому «Вона не вміє жонглювати»"
+          "ru": "Скажите о знакомой «Она не умеет создавать скульптуры»",
+          "uk": "Скажіть про знайому «Вона не вміє створювати скульптури»"
         },
         "orderedTokens": [
           "She",
           "can’t",
-          "juggle"
+          "sculpt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -321,26 +407,69 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-10:word:chisel",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chisel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-10:word:chisel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chisel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-10:word:chisel:audio",
+          "transcript": "chisel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-10:word:chisel:r1",
+            "targetText": "chisel",
+            "meaningByLocale": {
+              "ru": "стамеска. Whose chisel is this? — «Чья это стамеска?» Инструмент с лезвием для обработки дерева.",
+              "uk": "стамеска. Whose chisel is this? — «Чия це стамеска?» Інструмент із лезом для обробки дерева."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chisel",
+          "definitionByLocale": {
+            "ru": "стамеска. Whose chisel is this? — «Чья это стамеска?» Инструмент с лезвием для обработки дерева.",
+            "uk": "стамеска. Whose chisel is this? — «Чия це стамеска?» Інструмент із лезом для обробки дерева."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-10:i07",
-      "ordinal": 10,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Спросите коллег «Чьё это устройство?»",
+      "prompt": "Спросите коллег «Чья это стамеска?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-10:i07:audio"
       ],
-      "accessibilityLabel": "Спросите коллег «Чьё это устройство?»",
+      "accessibilityLabel": "Спросите коллег «Чья это стамеска?»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i07:audio",
-          "transcript": "Whose machine is this?"
+          "transcript": "Whose chisel is this?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Whose machine is this?",
+        "targetPhrase": "Whose chisel is this?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -355,67 +484,67 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i08",
-      "ordinal": 11,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она не умеет жонглировать»",
+      "prompt": "Выберите слово: «Она не умеет создавать скульптуры»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i08:r1",
-          "text": "juggle"
+          "text": "sculpt"
         },
         {
           "responseId": "en:lesson-08:session-10:i08:r2",
-          "text": "juggles"
+          "text": "sculpts"
         },
         {
           "responseId": "en:lesson-08:session-10:i08:r3",
-          "text": "to juggle"
+          "text": "to sculpt"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет жонглировать»",
+      "accessibilityLabel": "Выберите слово: «Она не умеет создавать скульптуры»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она не умеет жонглировать»",
-          "uk": "Скажіть «Вона не вміє жонглювати»"
+          "ru": "Выберите слово: «Она не умеет создавать скульптуры»",
+          "uk": "Виберіть слово: «Вона не вміє створювати скульптури»"
         },
         "gappedTargetPhrase": "She can’t ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-10:i08:r1",
-            "text": "juggle"
+            "text": "sculpt"
           },
           {
             "responseId": "en:lesson-08:session-10:i08:r2",
-            "text": "juggles"
+            "text": "sculpts"
           },
           {
             "responseId": "en:lesson-08:session-10:i08:r3",
-            "text": "to juggle"
+            "text": "to sculpt"
           }
         ],
-        "testedDimension": "Скажите «Она не умеет жонглировать»",
+        "testedDimension": "Выберите слово: «Она не умеет создавать скульптуры»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет жонглировать»",
+            "testedDimension": "Выберите слово: «Она не умеет создавать скульптуры»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `juggle`, без `s`.",
-              "uk": "Після `can’t` потрібне `juggle`, без `s`."
+              "ru": "После `can’t` нужно `sculpt`, без `s`.",
+              "uk": "Після `can’t` потрібне `sculpt`, без `s`."
             }
           },
           {
             "responseId": "en:lesson-08:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет жонглировать»",
+            "testedDimension": "Выберите слово: «Она не умеет создавать скульптуры»",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `juggle`, без `to`.",
-              "uk": "Після `can’t` потрібне `juggle`, без `to`."
+              "ru": "После `can’t` нужно `sculpt`, без `to`.",
+              "uk": "Після `can’t` потрібне `sculpt`, без `to`."
             }
           }
         ]
@@ -424,7 +553,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i09",
-      "ordinal": 12,
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -432,7 +561,7 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i09:r1",
-          "text": "I can’t dive."
+          "text": "I can’t carve."
         },
         {
           "responseId": "en:lesson-08:session-10:i09:r2",
@@ -452,13 +581,13 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i09:audio",
-          "transcript": "I can’t dive."
+          "transcript": "I can’t carve."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-10:i09:r1",
-            "targetText": "I can’t dive.",
+            "targetText": "I can’t carve.",
             "meaningByLocale": null
           },
           {
@@ -479,8 +608,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dive`, а в этом варианте — `swim`.",
-              "uk": "У записі останнє слово — `dive`, а в цьому варіанті — `swim`."
+              "ru": "В записи последнее слово — `carve`, а в этом варианте — `swim`.",
+              "uk": "У записі останнє слово — `carve`, а в цьому варіанті — `swim`."
             }
           },
           {
@@ -488,8 +617,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `dive`, а в этом варианте — `skate`.",
-              "uk": "У записі останнє слово — `dive`, а в цьому варіанті — `skate`."
+              "ru": "В записи последнее слово — `carve`, а в этом варианте — `skate`.",
+              "uk": "У записі останнє слово — `carve`, а в цьому варіанті — `skate`."
             }
           }
         ],
@@ -500,7 +629,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i10",
-      "ordinal": 13,
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -514,48 +643,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-10:i10:p1",
-            "target": "juggle",
+            "target": "sculpt",
             "meaningByLocale": {
-              "ru": "жонглировать",
-              "uk": "жонглювати"
+              "ru": "создавать скульптуры",
+              "uk": "створювати скульптури"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i10:p2",
-            "target": "dive",
+            "target": "carve",
             "meaningByLocale": {
-              "ru": "нырять",
-              "uk": "пірнати"
+              "ru": "вырезать фигуры",
+              "uk": "вирізати фігури"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i10:p3",
-            "target": "hotel",
+            "target": "chisel",
             "meaningByLocale": {
-              "ru": "отель",
-              "uk": "готель"
+              "ru": "стамеска",
+              "uk": "стамеска"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i10:p4",
-            "target": "practice",
+            "target": "swim",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "плавать",
+              "uk": "плавати"
             }
           }
         ],
         "leftColumn": [
-          "juggle",
-          "dive",
-          "hotel",
-          "practice"
+          "sculpt",
+          "carve",
+          "chisel",
+          "swim"
         ],
         "rightColumn": [
-          "жонглировать",
-          "нырять",
-          "отель",
-          "практиковаться"
+          "создавать скульптуры",
+          "вырезать фигуры",
+          "стамеска",
+          "плавать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -573,8 +702,8 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
       "prompt": "Послушайте и соберите фразу",
@@ -588,13 +717,13 @@
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i11:audio",
-          "transcript": "Whose machine is this?"
+          "transcript": "Whose chisel is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose machine is this?",
+        "hiddenTargetPhrase": "Whose chisel is this?",
         "orderedTokens": [
           "Whose",
-          "machine",
+          "chisel",
           "is",
           "this"
         ],
@@ -608,27 +737,71 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-08:session-10:word:clay",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-10:word:clay:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-10:word:clay:audio",
+          "transcript": "clay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-10:word:clay:r1",
+            "targetText": "clay",
+            "meaningByLocale": {
+              "ru": "глина. Whose clay is this? — «Чья это глина?» Материал для лепки. Как yarn, слово clay здесь неисчисляемое: нужно is, без a перед clay.",
+              "uk": "глина. Whose clay is this? — «Чия це глина?» Матеріал для ліплення. Як yarn, слово clay тут незлічуване: потрібне is, без a перед clay."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clay",
+          "definitionByLocale": {
+            "ru": "глина. Whose clay is this? — «Чья это глина?» Материал для лепки. Как yarn, слово clay здесь неисчисляемое: нужно is, без a перед clay.",
+            "uk": "глина. Whose clay is this? — «Чия це глина?» Матеріал для ліплення. Як yarn, слово clay тут незлічуване: потрібне is, без a перед clay."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-08:session-10:i12",
-      "ordinal": 15,
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает, умеете ли вы плавать. Скажите «Я умею плавать»",
+      "prompt": "На столе лежит глина для лепки. Спросите: «Чья это глина?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает, умеете ли вы плавать. Скажите «Я умею плавать»",
+      "accessibilityLabel": "На столе лежит глина для лепки. Спросите: «Чья это глина?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can swim.",
+        "targetPhrase": "Whose clay is this?",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, умеете ли вы плавать. Скажите «Я умею плавать»",
-          "uk": "Друг запитує, чи вмієте ви плавати. Скажіть «Я вмію плавати»"
+          "ru": "На столе лежит глина для лепки. Спросите: «Чья это глина?»",
+          "uk": "На столі лежить глина для ліплення. Запитайте: «Чия це глина?»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "swim"
+          "Whose",
+          "clay",
+          "is",
+          "this"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -641,25 +814,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i13",
-      "ordinal": 16,
+      "ordinal": 20,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, как вы учитесь жонглировать. Скажите «Я часто практикуюсь»",
+      "prompt": "Участник спрашивает о глине у вашего места. Скажите: «Это моя глина».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-10:i13:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, как вы учитесь жонглировать. Скажите «Я часто практикуюсь»",
+      "accessibilityLabel": "Участник спрашивает о глине у вашего места. Скажите: «Это моя глина».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i13:audio",
-          "transcript": "I often practice."
+          "transcript": "This is my clay."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often practice.",
+        "targetPhrase": "This is my clay.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -674,11 +847,11 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите «Она не умеет нырять»",
+      "prompt": "Выберите форму: «Она не умеет вырезать фигуры»",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i14:r1",
@@ -695,14 +868,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите «Она не умеет нырять»",
+      "accessibilityLabel": "Выберите форму: «Она не умеет вырезать фигуры»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите «Она не умеет нырять»",
-          "uk": "Скажіть «Вона не вміє пірнати»"
+          "ru": "Выберите форму: «Она не умеет вырезать фигуры»",
+          "uk": "Виберіть форму: «Вона не вміє вирізати фігури»"
         },
-        "gappedTargetPhrase": "She ___ dive.",
+        "gappedTargetPhrase": "She ___ carve.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-10:i14:r1",
@@ -717,12 +890,12 @@
             "text": "is can’t"
           }
         ],
-        "testedDimension": "Скажите «Она не умеет нырять»",
+        "testedDimension": "Выберите форму: «Она не умеет вырезать фигуры»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-10:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет нырять»",
+            "testedDimension": "Выберите форму: «Она не умеет вырезать фигуры»",
             "feedbackByLocale": {
               "ru": "`Can` значит «умеет», здесь нужно `can’t` — «не умеет».",
               "uk": "`Can` означає «вміє», тут потрібне `can’t` — «не вміє»."
@@ -731,7 +904,7 @@
           {
             "responseId": "en:lesson-08:session-10:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите «Она не умеет нырять»",
+            "testedDimension": "Выберите форму: «Она не умеет вырезать фигуры»",
             "feedbackByLocale": {
               "ru": "Достаточно `she can’t`; `is` не нужно.",
               "uk": "Достатньо `she can’t`; `is` не потрібне."
@@ -743,7 +916,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i15",
-      "ordinal": 18,
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -751,15 +924,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-10:i15:r1",
-          "text": "Where is the hotel?"
+          "text": "This is my clay."
         },
         {
           "responseId": "en:lesson-08:session-10:i15:r2",
-          "text": "Where is the clinic?"
+          "text": "This is your clay."
         },
         {
           "responseId": "en:lesson-08:session-10:i15:r3",
-          "text": "Where is the bank?"
+          "text": "This is my chisel."
         }
       ],
       "mediaIds": [],
@@ -771,23 +944,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i15:audio",
-          "transcript": "Where is the hotel?"
+          "transcript": "This is my clay."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-10:i15:r1",
-            "targetText": "Where is the hotel?",
+            "targetText": "This is my clay.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-10:i15:r2",
-            "targetText": "Where is the clinic?",
+            "targetText": "This is your clay.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-10:i15:r3",
-            "targetText": "Where is the bank?",
+            "targetText": "This is my chisel.",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +971,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `clinic`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `clinic`."
+              "ru": "В записи my — «моя», а не your.",
+              "uk": "У записі my — «моя», а не your."
             }
           },
           {
@@ -807,8 +980,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите фразу",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `hotel`, а в этом варианте — `bank`.",
-              "uk": "У записі останнє слово — `hotel`, а в цьому варіанті — `bank`."
+              "ru": "В записи clay — «глина», а не chisel.",
+              "uk": "У записі clay — «глина», а не chisel."
             }
           }
         ],
@@ -819,7 +992,7 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i16",
-      "ordinal": 19,
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -833,48 +1006,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-08:session-10:i16:p1",
-            "target": "dive",
+            "target": "carve",
             "meaningByLocale": {
-              "ru": "нырять",
-              "uk": "пірнати"
+              "ru": "вырезать фигуры",
+              "uk": "вирізати фігури"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i16:p2",
-            "target": "machine",
+            "target": "sculpt",
             "meaningByLocale": {
-              "ru": "устройство",
-              "uk": "пристрій"
+              "ru": "создавать скульптуры",
+              "uk": "створювати скульптури"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i16:p3",
-            "target": "practice",
+            "target": "chisel",
             "meaningByLocale": {
-              "ru": "практиковаться",
-              "uk": "практикуватися"
+              "ru": "стамеска",
+              "uk": "стамеска"
             }
           },
           {
             "pairId": "en:lesson-08:session-10:i16:p4",
-            "target": "juggle",
+            "target": "clay",
             "meaningByLocale": {
-              "ru": "жонглировать",
-              "uk": "жонглювати"
+              "ru": "глина",
+              "uk": "глина"
             }
           }
         ],
         "leftColumn": [
-          "dive",
-          "machine",
-          "practice",
-          "juggle"
+          "carve",
+          "sculpt",
+          "chisel",
+          "clay"
         ],
         "rightColumn": [
-          "нырять",
-          "устройство",
-          "практиковаться",
-          "жонглировать"
+          "вырезать фигуры",
+          "создавать скульптуры",
+          "стамеска",
+          "глина"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -892,25 +1065,25 @@
     },
     {
       "interactionId": "en:lesson-08:session-10:i17",
-      "ordinal": 20,
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает об умении Тома нырять. Том пока не научился. Скажите «Том не умеет нырять»",
+      "prompt": "Друг спрашивает об умении Тома вырезать фигуры. Том пока не научился. Скажите «Том не умеет вырезать фигуры»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает об умении Тома нырять. Том пока не научился. Скажите «Том не умеет нырять»",
+      "accessibilityLabel": "Друг спрашивает об умении Тома вырезать фигуры. Том пока не научился. Скажите «Том не умеет вырезать фигуры»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-10:i17:audio",
-          "transcript": "Tom can’t dive."
+          "transcript": "Tom can’t carve."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can’t dive.",
+        "targetPhrase": "Tom can’t carve.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -932,11 +1105,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 17,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e7a931a48dbdda886770ac8ee3f4e9c09ff2df2169d3ea53c53ae22acceab7d7"
+  "learnerFingerprint": "50afc920055f704deb2e9fbb153dc199293a0d2c00b87ac7a60c06e122763c1c"
 }

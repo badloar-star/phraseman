@@ -45,7 +45,7 @@ import {
 } from '../home_feature_tips';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
-import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { useRuntimeActiveSettled } from '../../hooks/use_runtime_active_settled';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
@@ -702,7 +702,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Root Stack монтирует Home под полноэкранным CleanOnboarding. Владение табом
     // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем
     // тяжёлые загрузки, Firestore, префетчи и циклы анимаций.
-    const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);
+    // зачем (R137 18.10, журнал Сверки back_after3): после возврата с экрана стека («Сегодня» → «назад») активность ждёт конца перехода (focusTick) — два рендера Главной (≈110 и ≈75 мс)
+    // сливаются в один и не идут внутри анимации; Главная при этом уже нарисована из кэша. Вкладки внутри группы и холодный старт не откладываются (hooks/use_runtime_active_settled.ts).
+    const homeRuntimeActive = useRuntimeActiveSettled(isHomeOwner && homeOnboardingDone);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);

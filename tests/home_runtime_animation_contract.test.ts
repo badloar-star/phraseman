@@ -10,7 +10,8 @@ describe('Home runtime animation ownership', () => {
     // Home is mounted underneath the full-screen onboarding overlay. Owning the
     // tab is not enough: heavy work and repeating animation stay off until the
     // overlay has actually finished.
-    expect(source).toContain('const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);');
+    // перепин R137 (18.10): та же активность, но с отсрочкой после возврата с экрана стека (hooks/use_runtime_active_settled.ts); условие `isHomeOwner && homeOnboardingDone` не менялось
+    expect(source).toContain('const homeRuntimeActive = useRuntimeActiveSettled(isHomeOwner && homeOnboardingDone);');
     expect(source).toContain('if (!homeRuntimeActive || !shouldPulse)');
     // зачем (координатор §46, 2026-10-01): условие homeStatsReady стерегло цикл
     // статистики Главной V1 — он удалён вместе с ней (4169840e9). Вместо одной

@@ -11,8 +11,10 @@ describe('hidden Home runtime behind onboarding', () => {
     // зачем (HOME-COLD_cold1, 11.10): стартовое значение — одноразовый флаг, уже прочитанный корнем; «пройден» только при '1'.
     expect(home).toContain('const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true)');
     expect(rootLayout).toContain("rememberOnboardingDonePeek(val === '1')");
-    expect(home).toContain('useRuntimeActive(isHomeOwner && homeOnboardingDone)');
+    // перепин R137 (18.10): Главная берёт активность через useRuntimeActiveSettled — тот же useRuntimeActive с отсрочкой активации до конца перехода после возврата с экрана стека; условие владения прежнее
+    expect(home).toContain('useRuntimeActiveSettled(isHomeOwner && homeOnboardingDone)');
     expect(home).not.toContain('useRuntimeActive(isHomeOwner);');
+    expect(home).not.toContain('useRuntimeActiveSettled(isHomeOwner);');
     expect(home).toContain('HOME_ONBOARDING_DONE_KEY');
     expect(home).toContain('AsyncStorage.multiGet([HOME_FEATURE_TIPS_INDEX_KEY, HOME_FEATURE_TIPS_DONE_KEY, HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, HOME_ONBOARDING_DONE_KEY])');
     expect(home).toContain("setHomeOnboardingDone(stored.get(HOME_ONBOARDING_DONE_KEY) === '1')");

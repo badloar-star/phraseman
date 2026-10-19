@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-37:word:admit",
+    "correctText": "admit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i01",
+    "correctText": "Please admit your mistake.",
+    "correctResponseId": "en:lesson-09:session-37:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i02",
+    "correctText": "admitting",
+    "correctResponseId": "en:lesson-09:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i03",
+    "correctText": "I am admitting my mistake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i04",
+    "correctText": "en:lesson-09:session-37:i04:p1=admit\nen:lesson-09:session-37:i04:p2=submit\nen:lesson-09:session-37:i04:p3=rub\nen:lesson-09:session-37:i04:p4=hop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i05",
+    "correctText": "Are you admitting your mistake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:word:error",
+    "correctText": "error",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i06",
+    "correctText": "The error is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i07",
+    "correctText": "I am admitting the error.",
+    "correctResponseId": "en:lesson-09:session-37:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:word:honesty",
+    "correctText": "honesty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i09",
+    "correctText": "I like your honesty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i10",
+    "correctText": "I like your honesty.",
+    "correctResponseId": "en:lesson-09:session-37:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i11",
+    "correctText": "like",
+    "correctResponseId": "en:lesson-09:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:word:blame",
+    "correctText": "blame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i12",
+    "correctText": "Please don't blame the courier.",
+    "correctResponseId": "en:lesson-09:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i13",
+    "correctText": "Please don't blame the courier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i14",
+    "correctText": "I am not blaming you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i15",
+    "correctText": "blame",
+    "correctResponseId": "en:lesson-09:session-37:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i16",
+    "correctText": "en:lesson-09:session-37:i16:p1=admit\nen:lesson-09:session-37:i16:p2=error\nen:lesson-09:session-37:i16:p3=honesty\nen:lesson-09:session-37:i16:p4=blame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-37:i17",
+    "correctText": "I am not blaming you.",
+    "correctResponseId": null
+  }
+]

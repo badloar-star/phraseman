@@ -3395,4 +3395,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ...","uk":"rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ..."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 37,
+    sourceFingerprint: "9a219adf96908b58ff08db7d141f52feb607eb357684300a3474f6815932d259",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"admit → admitting; I like your honesty; Please don’t blame ...","uk":"admit → admitting; I like your honesty; Please don’t blame ..."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-35:intro1:r2": {
+          "ru": "Здесь hopping с двумя p; hoping — форма другого глагола.",
+          "uk": "Тут hopping із двома p; hoping — форма іншого дієслова."
+        },
+        "en:lesson-09:session-35:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма hopping.",
+          "uk": "Після am для дії зараз потрібна форма hopping."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-35:intro2:r2": {
+          "ru": "Один воробей: is.",
+          "uk": "Один горобець: is."
+        },
+        "en:lesson-09:session-35:intro2:r3": {
+          "ru": "После is для действия сейчас нужна форма hopping.",
+          "uk": "Після is для дії зараз потрібна форма hopping."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-35:intro3:r2": {
+          "ru": "После don’t нужна форма touch.",
+          "uk": "Після don’t потрібна форма touch."
+        },
+        "en:lesson-09:session-35:intro3:r3": {
+          "ru": "Для отрицательной просьбы нужно don’t.",
+          "uk": "Для заперечного прохання потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "444aa912e2e8c5902265ec22c0d5df07b666a61d9cdd66109310051080a12d86"
+}

@@ -3374,4 +3374,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"submit → submitting; make → making; sit → sitting","uk":"submit → submitting; make → making; sit → sitting"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 34,
+    sourceFingerprint: "8330c5d6a968ac233976bcd124e8589bdabbab8d468fdce60703152caed2e77e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"tie → tying; is / am tying; The loop is small","uk":"tie → tying; is / am tying; The loop is small"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

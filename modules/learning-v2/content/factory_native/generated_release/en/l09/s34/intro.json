@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "tie → tying; is / am tying; The loop is small",
+    "uk": "tie → tying; is / am tying; The loop is small"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почему вы остановились?",
+        "uk": "Чому ви зупинилися?"
+      },
+      "bodyByLocale": {
+        "ru": "На прогулке друг идёт дальше, а вы остановились у скамейки из-за развязанного шнурка. Shoelace — «шнурок для обуви». I am tying my shoelace — «Я завязываю свой шнурок». Tie здесь глагол «завязывать», а не знакомое существительное «галстук». Для формы tying меняем ie на y и добавляем -ing. Другу достаточно этого объяснения: не нужно рассказывать всю историю ботинка.",
+        "uk": "На прогулянці друг іде далі, а ви зупинилися біля лавки через розв’язаний шнурок. Shoelace — «шнурок для взуття». I am tying my shoelace — «Я зав’язую свій шнурок». Tie тут дієслово «зав’язувати», а не знайомий іменник «краватка». Для форми tying змінюємо ie на y й додаємо -ing. Другові достатньо цього пояснення: не потрібно розповідати всю історію черевика."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r1",
+              "text": "I am tying my shoelace."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r2",
+              "text": "I am tieing my shoelace."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r3",
+              "text": "I am tie my shoelace."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r1",
+              "text": "I am tying my shoelace."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r2",
+              "text": "I am tieing my shoelace."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro1:r3",
+              "text": "I am tie my shoelace."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Украшение на коробке",
+        "uk": "Прикраса на коробці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассматривает украшение подарочной коробки и спрашивает, как назвать ленту с двумя петлями. Bow — «бант». It is a bow — «Это бант». Здесь bow рифмуется с go; это не слово bow со значением «поклон». Перед названием одного банта ставим a. Сейчас называем готовое украшение, а не описываем, как его завязывают.",
+        "uk": "Друг розглядає прикрасу подарункової коробки й запитує, як назвати стрічку з двома петлями. Bow — «бант». It is a bow — «Це бант». Тут bow римується з go; це не слово bow зі значенням «уклін». Перед назвою одного банта ставимо a. Зараз називаємо готову прикрасу, а не описуємо, як її зав’язують."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r1",
+              "text": "It is a bow."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r2",
+              "text": "It is bow."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r3",
+              "text": "It are a bow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r1",
+              "text": "It is a bow."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r2",
+              "text": "It is bow."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro2:r3",
+              "text": "It are a bow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Размер петли",
+        "uk": "Розмір петлі"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии по изготовлению подвесок вы показываете преподавателю петлю для крепления. Loop — «петля». Он просит описать её размер. The loop is small — «Петля маленькая». Is связывает предмет и признак small. Описываем уже видимую петлю: после is здесь не требуется действие с -ing.",
+        "uk": "На занятті з виготовлення підвісок ви показуєте викладачеві петлю для кріплення. Loop — «петля». Він просить описати її розмір. The loop is small — «Петля маленька». Is пов’язує предмет і ознаку small. Описуємо вже видиму петлю: після is тут не потрібна дія з -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r1",
+              "text": "The loop is small."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r2",
+              "text": "The loop small."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r3",
+              "text": "The loop are small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r1",
+              "text": "The loop is small."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r2",
+              "text": "The loop small."
+            },
+            {
+              "responseId": "en:lesson-09:session-34:intro3:r3",
+              "text": "The loop are small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5820435ab8f0d1fa5dc156fba6f45e56940b3aaa0a224636722594b8460e52ca"
+}

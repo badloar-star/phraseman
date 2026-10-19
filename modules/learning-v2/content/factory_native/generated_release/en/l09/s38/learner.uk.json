@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-38:word:occur",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — occur",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:word:occur:audio"
+      ],
+      "accessibilityLabel": "Картка слова — occur",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:word:occur:audio",
+          "transcript": "occur"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:word:occur:r1",
+            "targetText": "occur",
+            "meaningByLocale": {
+              "ru": "«происходить, возникать». Errors can occur. — «Могут возникать ошибки». Более формальное слово, чем happen.",
+              "uk": "«відбуватися, виникати». Errors can occur. — «Можуть виникати помилки». Формальніше слово, ніж happen."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "occur",
+          "definitionByLocale": {
+            "ru": "«происходить, возникать». Errors can occur. — «Могут возникать ошибки». Более формальное слово, чем happen.",
+            "uk": "«відбуватися, виникати». Errors can occur. — «Можуть виникати помилки». Формальніше слово, ніж happen."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i01:r1",
+          "text": "Errors can occur."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i01:r2",
+          "text": "Errors are occurring."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i01:r3",
+          "text": "Errors can happen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i01:audio",
+          "transcript": "Errors can occur."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:i01:r1",
+            "targetText": "Errors can occur.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i01:r2",
+            "targetText": "Errors are occurring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i01:r3",
+            "targetText": "Errors can happen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Errors can occur.",
+              "uk": "У записі звучить Errors can occur."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Errors can occur.",
+              "uk": "У записі звучить Errors can occur."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильне написання occur з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i02:r1",
+          "text": "occurring"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i02:r2",
+          "text": "occuring"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i02:r3",
+          "text": "occur"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильне написання occur з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание occur с -ing",
+          "uk": "Виберіть правильне написання occur з -ing"
+        },
+        "gappedTargetPhrase": "Errors are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-38:i02:r1",
+            "text": "occurring"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i02:r2",
+            "text": "occuring"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i02:r3",
+            "text": "occur"
+          }
+        ],
+        "testedDimension": "Виберіть правильне написання occur з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання occur з -ing",
+            "feedbackByLocale": {
+              "ru": "В occurring удваивается r.",
+              "uk": "У occurring подвоюється r."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання occur з -ing",
+            "feedbackByLocale": {
+              "ru": "После are для действия сейчас нужна форма occurring.",
+              "uk": "Після are для дії зараз потрібна форма occurring."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У програмі під час перевірки з’являються помилки. Повідомте: «Виникають помилки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У програмі під час перевірки з’являються помилки. Повідомте: «Виникають помилки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Errors are occurring.",
+        "localizedMeaning": {
+          "ru": "В программе во время проверки появляются ошибки. Сообщите: «Возникают ошибки»",
+          "uk": "У програмі під час перевірки з’являються помилки. Повідомте: «Виникають помилки»"
+        },
+        "orderedTokens": [
+          "Errors",
+          "are",
+          "occurring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте початкові форми з формами на -ing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте початкові форми з формами на -ing",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-38:i04:p1",
+            "target": "occur",
+            "meaningByLocale": {
+              "ru": "occurring",
+              "uk": "occurring"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i04:p2",
+            "target": "admit",
+            "meaningByLocale": {
+              "ru": "admitting",
+              "uk": "admitting"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i04:p3",
+            "target": "submit",
+            "meaningByLocale": {
+              "ru": "submitting",
+              "uk": "submitting"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i04:p4",
+            "target": "rub",
+            "meaningByLocale": {
+              "ru": "rubbing",
+              "uk": "rubbing"
+            }
+          }
+        ],
+        "leftColumn": [
+          "occur",
+          "admit",
+          "submit",
+          "rub"
+        ],
+        "rightColumn": [
+          "occurring",
+          "admitting",
+          "submitting",
+          "rubbing"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i05:audio",
+          "transcript": "Are errors occurring?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are errors occurring?",
+        "orderedTokens": [
+          "Are",
+          "errors",
+          "occurring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:word:outage",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — outage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:word:outage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — outage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:word:outage:audio",
+          "transcript": "outage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:word:outage:r1",
+            "targetText": "outage",
+            "meaningByLocale": {
+              "ru": "«перерыв в работе или подаче услуги». There is a power outage. — «Произошло отключение электричества». Power outage — отключение электричества.",
+              "uk": "«перерва в роботі або наданні послуги». There is a power outage. — «Сталося відключення електрики». Power outage — відключення електрики."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outage",
+          "definitionByLocale": {
+            "ru": "«перерыв в работе или подаче услуги». There is a power outage. — «Произошло отключение электричества». Power outage — отключение электричества.",
+            "uk": "«перерва в роботі або наданні послуги». There is a power outage. — «Сталося відключення електрики». Power outage — відключення електрики."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть, чому в будівлі немає світла: відключення електрики",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть, чому в будівлі немає світла: відключення електрики",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is a power outage.",
+        "localizedMeaning": {
+          "ru": "Объясните, почему в здании нет света: отключение электричества",
+          "uk": "Поясніть, чому в будівлі немає світла: відключення електрики"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "power",
+          "outage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i07:r1",
+          "text": "There is a power outage."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i07:r2",
+          "text": "There is a problem."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i07:r3",
+          "text": "There is an error."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i07:audio",
+          "transcript": "There is a power outage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:i07:r1",
+            "targetText": "There is a power outage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i07:r2",
+            "targetText": "There is a problem.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i07:r3",
+            "targetText": "There is an error.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a power outage.",
+              "uk": "У записі звучить There is a power outage."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a power outage.",
+              "uk": "У записі звучить There is a power outage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для одного відключення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i08:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i08:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для одного відключення",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для одного отключения",
+          "uk": "Виберіть форму для одного відключення"
+        },
+        "gappedTargetPhrase": "There ___ a power outage.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-38:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму для одного відключення",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного відключення",
+            "feedbackByLocale": {
+              "ru": "Одно событие: there is.",
+              "uk": "Одна подія: there is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для одного відключення",
+            "feedbackByLocale": {
+              "ru": "В конструкции there is форма am не подходит.",
+              "uk": "У конструкції there is форма am не підходить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:word:glitch",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glitch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:word:glitch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glitch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:word:glitch:audio",
+          "transcript": "glitch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:word:glitch:r1",
+            "targetText": "glitch",
+            "meaningByLocale": {
+              "ru": "«небольшой сбой». It is a glitch. — «Это небольшой сбой». Например, краткое нарушение работы программы.",
+              "uk": "«невеликий збій». It is a glitch. — «Це невеликий збій». Наприклад, коротке порушення роботи програми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glitch",
+          "definitionByLocale": {
+            "ru": "«небольшой сбой». It is a glitch. — «Это небольшой сбой». Например, краткое нарушение работы программы.",
+            "uk": "«невеликий збій». It is a glitch. — «Це невеликий збій». Наприклад, коротке порушення роботи програми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Технік підтвердив невеликий збій програми. Назвіть проблему: «Це невеликий збій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Технік підтвердив невеликий збій програми. Назвіть проблему: «Це невеликий збій»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a glitch.",
+        "localizedMeaning": {
+          "ru": "Техник подтвердил небольшой сбой программы. Назовите проблему: «Это небольшой сбой»",
+          "uk": "Технік підтвердив невеликий збій програми. Назвіть проблему: «Це невеликий збій»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "glitch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i10:r1",
+          "text": "A glitch is occurring."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i10:r2",
+          "text": "A glitch is not occurring."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i10:r3",
+          "text": "It is a glitch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i10:audio",
+          "transcript": "A glitch is occurring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:i10:r1",
+            "targetText": "A glitch is occurring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i10:r2",
+            "targetText": "A glitch is not occurring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i10:r3",
+            "targetText": "It is a glitch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A glitch is occurring.",
+              "uk": "У записі звучить A glitch is occurring."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A glitch is occurring.",
+              "uk": "У записі звучить A glitch is occurring."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед одним збоєм",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i11:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i11:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i11:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед одним збоєм",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед одним сбоем",
+          "uk": "Виберіть артикль перед одним збоєм"
+        },
+        "gappedTargetPhrase": "It is ___ glitch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-38:i11:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i11:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i11:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед одним збоєм",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i11:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед одним збоєм",
+            "feedbackByLocale": {
+              "ru": "Glitch начинается с согласного звука, поэтому a.",
+              "uk": "Glitch починається з приголосного звука, тому a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i11:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед одним збоєм",
+            "feedbackByLocale": {
+              "ru": "Are — форма глагола, не артикль перед существительным.",
+              "uk": "Are — форма дієслова, не артикль перед іменником."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:word:eclipse",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eclipse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:word:eclipse:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eclipse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:word:eclipse:audio",
+          "transcript": "eclipse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:word:eclipse:r1",
+            "targetText": "eclipse",
+            "meaningByLocale": {
+              "ru": "«затмение». Is an eclipse occurring? — «Сейчас происходит затмение?» Здесь вопрос об учебной анимации.",
+              "uk": "«затемнення». Is an eclipse occurring? — «Зараз відбувається затемнення?» Тут запитання про навчальну анімацію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eclipse",
+          "definitionByLocale": {
+            "ru": "«затмение». Is an eclipse occurring? — «Сейчас происходит затмение?» Здесь вопрос об учебной анимации.",
+            "uk": "«затемнення». Is an eclipse occurring? — «Зараз відбувається затемнення?» Тут запитання про навчальну анімацію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи відбувається зараз затемнення в показаній анімації",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи відбувається зараз затемнення в показаній анімації",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is an eclipse occurring?",
+        "localizedMeaning": {
+          "ru": "Спросите, происходит ли сейчас затмение в показанной анимации",
+          "uk": "Запитайте, чи відбувається зараз затемнення в показаній анімації"
+        },
+        "orderedTokens": [
+          "Is",
+          "an",
+          "eclipse",
+          "occurring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-38:i13:r1",
+          "text": "An eclipse is occurring."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i13:r2",
+          "text": "An eclipse is not occurring."
+        },
+        {
+          "responseId": "en:lesson-09:session-38:i13:r3",
+          "text": "Is an eclipse occurring?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i13:audio",
+          "transcript": "An eclipse is occurring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-38:i13:r1",
+            "targetText": "An eclipse is occurring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i13:r2",
+            "targetText": "An eclipse is not occurring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i13:r3",
+            "targetText": "Is an eclipse occurring?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит An eclipse is occurring.",
+              "uk": "У записі звучить An eclipse is occurring."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит An eclipse is occurring.",
+              "uk": "У записі звучить An eclipse is occurring."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ведучий пояснив, що в анімації цей момент ще не настав. Скажіть: «Затемнення не відбувається»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ведучий пояснив, що в анімації цей момент ще не настав. Скажіть: «Затемнення не відбувається»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "An eclipse is not occurring.",
+        "localizedMeaning": {
+          "ru": "Ведущий объяснил, что в анимации этот момент ещё не наступил. Скажите: «Затмение не происходит»",
+          "uk": "Ведучий пояснив, що в анімації цей момент ще не настав. Скажіть: «Затемнення не відбувається»"
+        },
+        "orderedTokens": [
+          "An",
+          "eclipse",
+          "is",
+          "not",
+          "occurring"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви записуєте повідомлення про помилку. Друг тягнеться закрити програму. Попросіть не закривати її; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Ви записуєте повідомлення про помилку. Друг тягнеться закрити програму. Попросіть не закривати її; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i15:audio",
+          "transcript": "Please don't close the program."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't close the program.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-38:i16:p1",
+            "target": "occur",
+            "meaningByLocale": {
+              "ru": "происходить",
+              "uk": "відбуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i16:p2",
+            "target": "outage",
+            "meaningByLocale": {
+              "ru": "перерыв в работе",
+              "uk": "перерва в роботі"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i16:p3",
+            "target": "glitch",
+            "meaningByLocale": {
+              "ru": "небольшой сбой",
+              "uk": "невеликий збій"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-38:i16:p4",
+            "target": "eclipse",
+            "meaningByLocale": {
+              "ru": "затмение",
+              "uk": "затемнення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "occur",
+          "outage",
+          "glitch",
+          "eclipse"
+        ],
+        "rightColumn": [
+          "відбуватися",
+          "перерва в роботі",
+          "невеликий збій",
+          "затемнення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви надсилаєте колезі короткий голосовий звіт про перевірку таблиці: помилки продовжують з’являтися. Повідомте: «Виникають помилки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Ви надсилаєте колезі короткий голосовий звіт про перевірку таблиці: помилки продовжують з’являтися. Повідомте: «Виникають помилки»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-38:i17:audio",
+          "transcript": "Errors are occurring."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Errors are occurring.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e1d7abc82711590d810ce3d21d7e9ea0d261f5d1b90da280c3cb88a99738d383"
+}

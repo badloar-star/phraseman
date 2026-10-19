@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "occur → occurring; Errors are occurring; There is a power outage",
+    "uk": "occur → occurring; Errors are occurring; There is a power outage"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ошибки продолжают появляться",
+        "uk": "Помилки продовжують з’являтися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверяете учебную программу. После каждого запуска она показывает новую ошибку. Для короткого сообщения разработчику подходит: Errors are occurring — «Возникают ошибки». Occur — «происходить, возникать», более формальное слово, чем happen. В occurring удваиваем r. Errors — несколько ошибок, поэтому are. Описываем происходящее во время проверки, а не утверждаем, что программа всегда неисправна.",
+        "uk": "Ви перевіряєте навчальну програму. Після кожного запуску вона показує нову помилку. Для короткого повідомлення розробникові підходить: Errors are occurring — «Виникають помилки». Occur — «відбуватися, виникати», формальніше слово, ніж happen. У occurring подвоюємо r. Errors — кілька помилок, тому are. Описуємо те, що відбувається під час перевірки, а не стверджуємо, що програма завжди несправна."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r1",
+              "text": "Errors are occurring."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r2",
+              "text": "Errors is occurring."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r3",
+              "text": "Errors are occuring."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r1",
+              "text": "Errors are occurring."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r2",
+              "text": "Errors is occurring."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro1:r3",
+              "text": "Errors are occuring."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свет не просто выключили",
+        "uk": "Світло не просто вимкнули"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской погас свет. По сообщению управляющего известно, что отключилось электричество во всём здании. Посетитель думает, что мастерская закрывается. Объясните: There is a power outage — «Произошло отключение электричества». Outage — «перерыв в работе или подаче услуги»; power outage — отключение электричества. There is сообщает о текущей ситуации. Причину отключения мы не придумываем.",
+        "uk": "У майстерні згасло світло. З повідомлення керівника відомо, що електрика зникла в усій будівлі. Відвідувач думає, що майстерня зачиняється. Поясніть: There is a power outage — «Сталося відключення електрики». Outage — «перерва в роботі або наданні послуги»; power outage — відключення електрики. There is повідомляє про поточну ситуацію. Причину відключення ми не вигадуємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r1",
+              "text": "There is a power outage."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r2",
+              "text": "There are a power outage."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r3",
+              "text": "There is power outage."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r1",
+              "text": "There is a power outage."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r2",
+              "text": "There are a power outage."
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro2:r3",
+              "text": "There is power outage."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что показывает анимация?",
+        "uk": "Що показує анімація?"
+      },
+      "bodyByLocale": {
+        "ru": "В планетарии идёт учебная анимация. Вы не уверены, наступил ли уже показанный в ней момент затмения, и спрашиваете ведущего: Is an eclipse occurring? — «Сейчас происходит затмение?» Eclipse — «затмение». Вопрос относится к событию в анимации, не к небу за окном. Is ставим перед an eclipse. Перед eclipse нужен an, потому что слово начинается с гласного звука.",
+        "uk": "У планетарії йде навчальна анімація. Ви не впевнені, чи вже настав показаний у ній момент затемнення, і запитуєте ведучого: Is an eclipse occurring? — «Зараз відбувається затемнення?» Eclipse — «затемнення». Запитання стосується події в анімації, а не неба за вікном. Is ставимо перед an eclipse. Перед eclipse потрібне an, бо слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r1",
+              "text": "Is an eclipse occurring?"
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r2",
+              "text": "Are an eclipse occurring?"
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r3",
+              "text": "Is an eclipse occuring?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r1",
+              "text": "Is an eclipse occurring?"
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r2",
+              "text": "Are an eclipse occurring?"
+            },
+            {
+              "responseId": "en:lesson-09:session-38:intro3:r3",
+              "text": "Is an eclipse occuring?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e44ca54fa48902adebba7e72f98ad8ade720b4aee8a4d700f995d5bfd3f264f4"
+}

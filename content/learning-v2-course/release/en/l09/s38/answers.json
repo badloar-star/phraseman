@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-38:word:occur",
+    "correctText": "occur",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i01",
+    "correctText": "Errors can occur.",
+    "correctResponseId": "en:lesson-09:session-38:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i02",
+    "correctText": "occurring",
+    "correctResponseId": "en:lesson-09:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i03",
+    "correctText": "Errors are occurring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i04",
+    "correctText": "en:lesson-09:session-38:i04:p1=occur\nen:lesson-09:session-38:i04:p2=admit\nen:lesson-09:session-38:i04:p3=submit\nen:lesson-09:session-38:i04:p4=rub",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i05",
+    "correctText": "Are errors occurring?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:word:outage",
+    "correctText": "outage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i06",
+    "correctText": "There is a power outage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i07",
+    "correctText": "There is a power outage.",
+    "correctResponseId": "en:lesson-09:session-38:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:word:glitch",
+    "correctText": "glitch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i09",
+    "correctText": "It is a glitch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i10",
+    "correctText": "A glitch is occurring.",
+    "correctResponseId": "en:lesson-09:session-38:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i11",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:word:eclipse",
+    "correctText": "eclipse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i12",
+    "correctText": "Is an eclipse occurring?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i13",
+    "correctText": "An eclipse is occurring.",
+    "correctResponseId": "en:lesson-09:session-38:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i14",
+    "correctText": "An eclipse is not occurring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i15",
+    "correctText": "Please don't close the program.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i16",
+    "correctText": "en:lesson-09:session-38:i16:p1=occur\nen:lesson-09:session-38:i16:p2=outage\nen:lesson-09:session-38:i16:p3=glitch\nen:lesson-09:session-38:i16:p4=eclipse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-38:i17",
+    "correctText": "Errors are occurring.",
+    "correctResponseId": null
+  }
+]

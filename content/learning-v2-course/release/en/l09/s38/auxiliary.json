@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-38:intro1:r2": {
+          "ru": "С errors во множественном числе нужно are.",
+          "uk": "З errors у множині потрібне are."
+        },
+        "en:lesson-09:session-38:intro1:r3": {
+          "ru": "В occurring две r.",
+          "uk": "У occurring дві r."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-38:intro2:r2": {
+          "ru": "Одно отключение: there is.",
+          "uk": "Одне відключення: there is."
+        },
+        "en:lesson-09:session-38:intro2:r3": {
+          "ru": "Для одного события здесь нужно a power outage.",
+          "uk": "Для однієї події тут потрібне a power outage."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-38:intro3:r2": {
+          "ru": "Одно затмение: is.",
+          "uk": "Одне затемнення: is."
+        },
+        "en:lesson-09:session-38:intro3:r3": {
+          "ru": "В occurring две r.",
+          "uk": "У occurring дві r."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7802770689dcae7234ec734201f1ec8081998d1b6754f2b0fb05ce1dfa25e214"
+}

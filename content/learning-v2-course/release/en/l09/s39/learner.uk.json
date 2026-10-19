@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-39:word:refer",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — refer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:word:refer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — refer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:word:refer:audio",
+          "transcript": "refer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:word:refer:r1",
+            "targetText": "refer",
+            "meaningByLocale": {
+              "ru": "«ссылаться; обращаться к источнику». Please refer to the manual. — «Пожалуйста, обратитесь к руководству». Здесь refer to, с предлогом to.",
+              "uk": "«посилатися; звертатися до джерела». Please refer to the manual. — «Будь ласка, зверніться до посібника». Тут refer to, з прийменником to."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "refer",
+          "definitionByLocale": {
+            "ru": "«ссылаться; обращаться к источнику». Please refer to the manual. — «Пожалуйста, обратитесь к руководству». Здесь refer to, с предлогом to.",
+            "uk": "«посилатися; звертатися до джерела». Please refer to the manual. — «Будь ласка, зверніться до посібника». Тут refer to, з прийменником to."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i01:r1",
+          "text": "Please refer to the manual."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i01:r2",
+          "text": "Please don't refer to the manual."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i01:r3",
+          "text": "Please read the manual."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i01:audio",
+          "transcript": "Please refer to the manual."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:i01:r1",
+            "targetText": "Please refer to the manual.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i01:r2",
+            "targetText": "Please don't refer to the manual.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i01:r3",
+            "targetText": "Please read the manual.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please refer to the manual.",
+              "uk": "У записі звучить Please refer to the manual."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please refer to the manual.",
+              "uk": "У записі звучить Please refer to the manual."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть написання форми refer з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i02:r1",
+          "text": "referring"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i02:r2",
+          "text": "refering"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i02:r3",
+          "text": "refer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть написання форми refer з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание формы refer с -ing",
+          "uk": "Виберіть написання форми refer з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ to the manual.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-39:i02:r1",
+            "text": "referring"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i02:r2",
+            "text": "refering"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i02:r3",
+            "text": "refer"
+          }
+        ],
+        "testedDimension": "Виберіть написання форми refer з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть написання форми refer з -ing",
+            "feedbackByLocale": {
+              "ru": "В referring удваивается r.",
+              "uk": "У referring подвоюється r."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть написання форми refer з -ing",
+            "feedbackByLocale": {
+              "ru": "После am для текущего действия нужна форма referring.",
+              "uk": "Після am для поточної дії потрібна форма referring."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть, що посилаєтеся на посібник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що посилаєтеся на посібник",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am referring to the manual.",
+        "localizedMeaning": {
+          "ru": "Уточните, что ссылаетесь на руководство",
+          "uk": "Уточніть, що посилаєтеся на посібник"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "referring",
+          "to",
+          "the",
+          "manual"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте початкові форми з формами на -ing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте початкові форми з формами на -ing",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-39:i04:p1",
+            "target": "refer",
+            "meaningByLocale": {
+              "ru": "referring",
+              "uk": "referring"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i04:p2",
+            "target": "occur",
+            "meaningByLocale": {
+              "ru": "occurring",
+              "uk": "occurring"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i04:p3",
+            "target": "admit",
+            "meaningByLocale": {
+              "ru": "admitting",
+              "uk": "admitting"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i04:p4",
+            "target": "submit",
+            "meaningByLocale": {
+              "ru": "submitting",
+              "uk": "submitting"
+            }
+          }
+        ],
+        "leftColumn": [
+          "refer",
+          "occur",
+          "admit",
+          "submit"
+        ],
+        "rightColumn": [
+          "referring",
+          "occurring",
+          "admitting",
+          "submitting"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i05:audio",
+          "transcript": "Are you referring to the manual?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you referring to the manual?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "referring",
+          "to",
+          "the",
+          "manual"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:word:appendix",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — appendix",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:word:appendix:audio"
+      ],
+      "accessibilityLabel": "Картка слова — appendix",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:word:appendix:audio",
+          "transcript": "appendix"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:word:appendix:r1",
+            "targetText": "appendix",
+            "meaningByLocale": {
+              "ru": "«приложение к книге или документу». The table is in the appendix. — «Таблица в приложении».",
+              "uk": "«додаток до книжки або документа». The table is in the appendix. — «Таблиця в додатку»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appendix",
+          "definitionByLocale": {
+            "ru": "«приложение к книге или документу». The table is in the appendix. — «Таблица в приложении».",
+            "uk": "«додаток до книжки або документа». The table is in the appendix. — «Таблиця в додатку»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг шукає таблицю. Скажіть, що вона в додатку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг шукає таблицю. Скажіть, що вона в додатку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The table is in the appendix.",
+        "localizedMeaning": {
+          "ru": "Друг ищет таблицу. Скажите, что она в приложении",
+          "uk": "Друг шукає таблицю. Скажіть, що вона в додатку"
+        },
+        "orderedTokens": [
+          "The",
+          "table",
+          "is",
+          "in",
+          "the",
+          "appendix"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i07:r1",
+          "text": "I am referring to the appendix."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i07:r2",
+          "text": "I am referring to the manual."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i07:r3",
+          "text": "The table is in the appendix."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i07:audio",
+          "transcript": "I am referring to the appendix."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:i07:r1",
+            "targetText": "I am referring to the appendix.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i07:r2",
+            "targetText": "I am referring to the manual.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i07:r3",
+            "targetText": "The table is in the appendix.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am referring to the appendix.",
+              "uk": "У записі звучить I am referring to the appendix."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am referring to the appendix.",
+              "uk": "У записі звучить I am referring to the appendix."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник після referring",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i08:r1",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i08:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i08:r3",
+          "text": "on"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник після referring",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог после referring",
+          "uk": "Виберіть прийменник після referring"
+        },
+        "gappedTargetPhrase": "I am referring ___ the appendix.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-39:i08:r1",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i08:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i08:r3",
+            "text": "on"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник після referring",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після referring",
+            "feedbackByLocale": {
+              "ru": "В значении «ссылаться на» используется refer to.",
+              "uk": "У значенні «посилатися на» використовується refer to."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після referring",
+            "feedbackByLocale": {
+              "ru": "Для источника после refer нужен to, не on.",
+              "uk": "Для джерела після refer потрібне to, не on."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:word:footnote",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — footnote",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:word:footnote:audio"
+      ],
+      "accessibilityLabel": "Картка слова — footnote",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:word:footnote:audio",
+          "transcript": "footnote"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:word:footnote:r1",
+            "targetText": "footnote",
+            "meaningByLocale": {
+              "ru": "«сноска». It is a footnote. — «Это сноска». Короткое пояснение внизу страницы.",
+              "uk": "«виноска». It is a footnote. — «Це виноска». Коротке пояснення внизу сторінки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "footnote",
+          "definitionByLocale": {
+            "ru": "«сноска». It is a footnote. — «Это сноска». Короткое пояснение внизу страницы.",
+            "uk": "«виноска». It is a footnote. — «Це виноска». Коротке пояснення внизу сторінки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назвіть пояснення внизу сторінки: «Це виноска»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть пояснення внизу сторінки: «Це виноска»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a footnote.",
+        "localizedMeaning": {
+          "ru": "Назовите пояснение внизу страницы: «Это сноска»",
+          "uk": "Назвіть пояснення внизу сторінки: «Це виноска»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "footnote"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i10:r1",
+          "text": "I am reading the footnote."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i10:r2",
+          "text": "I am not reading the footnote."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i10:r3",
+          "text": "It is a footnote."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i10:audio",
+          "transcript": "I am reading the footnote."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:i10:r1",
+            "targetText": "I am reading the footnote.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i10:r2",
+            "targetText": "I am not reading the footnote.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i10:r3",
+            "targetText": "It is a footnote.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am reading the footnote.",
+              "uk": "У записі звучить I am reading the footnote."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am reading the footnote.",
+              "uk": "У записі звучить I am reading the footnote."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль для однієї виноски",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i11:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i11:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i11:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль для однієї виноски",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль для одной сноски",
+          "uk": "Виберіть артикль для однієї виноски"
+        },
+        "gappedTargetPhrase": "It is ___ footnote.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-39:i11:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i11:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i11:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль для однієї виноски",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї виноски",
+            "feedbackByLocale": {
+              "ru": "Footnote начинается с согласного звука: a.",
+              "uk": "Footnote починається з приголосного звука: a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї виноски",
+            "feedbackByLocale": {
+              "ru": "Are — глагол, не артикль перед названием предмета.",
+              "uk": "Are — дієслово, не артикль перед назвою предмета."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:word:index",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — index",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:word:index:audio"
+      ],
+      "accessibilityLabel": "Картка слова — index",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:word:index:audio",
+          "transcript": "index"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:word:index:r1",
+            "targetText": "index",
+            "meaningByLocale": {
+              "ru": "«указатель в книге». I am checking the index. — «Я смотрю указатель». Список тем или названий с номерами страниц; здесь не оглавление.",
+              "uk": "«покажчик у книжці». I am checking the index. — «Я переглядаю покажчик». Список тем або назв із номерами сторінок; тут не зміст книжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "index",
+          "definitionByLocale": {
+            "ru": "«указатель в книге». I am checking the index. — «Я смотрю указатель». Список тем или названий с номерами страниц; здесь не оглавление.",
+            "uk": "«покажчик у книжці». I am checking the index. — «Я переглядаю покажчик». Список тем або назв із номерами сторінок; тут не зміст книжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви шукаєте сторінку за темою в покажчику. Скажіть: «Я переглядаю покажчик»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви шукаєте сторінку за темою в покажчику. Скажіть: «Я переглядаю покажчик»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the index.",
+        "localizedMeaning": {
+          "ru": "Вы ищете страницу по теме в указателе. Скажите: «Я смотрю указатель»",
+          "uk": "Ви шукаєте сторінку за темою в покажчику. Скажіть: «Я переглядаю покажчик»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "index"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-39:i13:r1",
+          "text": "The index is here."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i13:r2",
+          "text": "The appendix is here."
+        },
+        {
+          "responseId": "en:lesson-09:session-39:i13:r3",
+          "text": "The footnote is here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i13:audio",
+          "transcript": "The index is here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-39:i13:r1",
+            "targetText": "The index is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i13:r2",
+            "targetText": "The appendix is here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i13:r3",
+            "targetText": "The footnote is here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The index is here.",
+              "uk": "У записі звучить The index is here."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The index is here.",
+              "uk": "У записі звучить The index is here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник думає, що ви посилаєтеся на покажчик. Заперечте саме це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник думає, що ви посилаєтеся на покажчик. Заперечте саме це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not referring to the index.",
+        "localizedMeaning": {
+          "ru": "Собеседник думает, что вы ссылаетесь на указатель. Отрицайте именно это",
+          "uk": "Співрозмовник думає, що ви посилаєтеся на покажчик. Заперечте саме це"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "referring",
+          "to",
+          "the",
+          "index"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви переписуєте номер сторінки, а друг хоче закрити книжку. Попросіть не закривати книжку; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Ви переписуєте номер сторінки, а друг хоче закрити книжку. Попросіть не закривати книжку; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i15:audio",
+          "transcript": "Please don't close the book."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't close the book.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-39:i16:p1",
+            "target": "refer",
+            "meaningByLocale": {
+              "ru": "ссылаться",
+              "uk": "посилатися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i16:p2",
+            "target": "appendix",
+            "meaningByLocale": {
+              "ru": "приложение к книге",
+              "uk": "додаток до книжки"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i16:p3",
+            "target": "footnote",
+            "meaningByLocale": {
+              "ru": "сноска",
+              "uk": "виноска"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-39:i16:p4",
+            "target": "index",
+            "meaningByLocale": {
+              "ru": "указатель в книге",
+              "uk": "покажчик у книжці"
+            }
+          }
+        ],
+        "leftColumn": [
+          "refer",
+          "appendix",
+          "footnote",
+          "index"
+        ],
+        "rightColumn": [
+          "посилатися",
+          "додаток до книжки",
+          "виноска",
+          "покажчик у книжці"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На зустрічі книжкового клубу ведучий запитує вас, чому ви гортаєте кінець довідника. Ви шукаєте сторінку за назвою рослини в покажчику. Поясніть: «Я переглядаю покажчик»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "На зустрічі книжкового клубу ведучий запитує вас, чому ви гортаєте кінець довідника. Ви шукаєте сторінку за назвою рослини в покажчику. Поясніть: «Я переглядаю покажчик»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-39:i17:audio",
+          "transcript": "I am checking the index."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am checking the index.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5ac5ade5ebc3b91e9dc90c422ad8e052fffddd73893d975486ca7e891109a057"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-39:intro1:r2": {
+          "ru": "В referring две r.",
+          "uk": "У referring дві r."
+        },
+        "en:lesson-09:session-39:intro1:r3": {
+          "ru": "В значении «ссылаться на» нужно refer to.",
+          "uk": "У значенні «посилатися на» потрібне refer to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-39:intro2:r2": {
+          "ru": "Перед местом здесь нужна связка is.",
+          "uk": "Перед місцем тут потрібна зв’язка is."
+        },
+        "en:lesson-09:session-39:intro2:r3": {
+          "ru": "Одна таблица: is.",
+          "uk": "Одна таблиця: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-39:intro3:r2": {
+          "ru": "Для одной сноски здесь нужно a footnote.",
+          "uk": "Для однієї виноски тут потрібне a footnote."
+        },
+        "en:lesson-09:session-39:intro3:r3": {
+          "ru": "С it нужна форма is.",
+          "uk": "З it потрібна форма is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "835c72eec46b4191ce30d496abb3ae83d81b344958d4d3b1226705359376dc94"
+}

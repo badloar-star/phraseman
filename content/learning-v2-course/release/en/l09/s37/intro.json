@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "admit → admitting; I like your honesty; Please don’t blame ...",
+    "uk": "admit → admitting; I like your honesty; Please don’t blame ..."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неверный счёт в игре",
+        "uk": "Неправильний рахунок у грі"
+      },
+      "bodyByLocale": {
+        "ru": "В командной игре вы неверно сложили очки и теперь прямо говорите об этом. Admit — «признавать». I am admitting my mistake — «Я признаю свою ошибку». В admitting удваивается t. Mistake уже знакомо: ошибка. Сейчас вы не обвиняете другого игрока, а признаёте собственный промах. Admit здесь не значит «впускать».",
+        "uk": "У командній грі ви неправильно додали очки й тепер прямо говорите про це. Admit — «визнавати». I am admitting my mistake — «Я визнаю свою помилку». У admitting подвоюється t. Mistake вже знайоме: помилка. Зараз ви не звинувачуєте іншого гравця, а визнаєте власну хибу. Admit тут не означає «впускати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r1",
+              "text": "I am admitting my mistake."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r2",
+              "text": "I am admiting my mistake."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r3",
+              "text": "I am admit my mistake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r1",
+              "text": "I am admitting my mistake."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r2",
+              "text": "I am admiting my mistake."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro1:r3",
+              "text": "I am admit my mistake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спасибо за прямой ответ",
+        "uk": "Дякую за пряму відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Друг честно сказал, что не прочитал вашу рукопись, вместо того чтобы выдумывать отзыв. Вам нравится такая прямота. Honesty — «честность». I like your honesty — «Мне нравится твоя честность». Здесь like описывает отношение: I like, без am и -ing. Honesty — качество, а не отдельный предмет, который можно посчитать.",
+        "uk": "Друг чесно сказав, що не прочитав ваш рукопис, замість того щоб вигадувати відгук. Вам подобається така прямота. Honesty — «чесність». I like your honesty — «Мені подобається твоя чесність». Тут like описує ставлення: I like, без am та -ing. Honesty — якість, а не окремий предмет, який можна порахувати."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r1",
+              "text": "I like your honesty."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r2",
+              "text": "I am like your honesty."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r3",
+              "text": "I likes your honesty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r1",
+              "text": "I like your honesty."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r2",
+              "text": "I am like your honesty."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro2:r3",
+              "text": "I likes your honesty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обвиняют не того",
+        "uk": "Звинувачують не того"
+      },
+      "bodyByLocale": {
+        "ru": "В приглашении указан неверный адрес. Коллега обвиняет курьера, хотя курьер получил уже готовое приглашение с этой ошибкой. Blame — «обвинять, винить». Please don’t blame the courier — «Пожалуйста, не вини курьера». После don’t нужна обычная форма blame. Вы просите прекратить обвинение конкретного человека, а не объявляете, что ошибок не было.",
+        "uk": "У запрошенні вказано неправильну адресу. Колега звинувачує кур’єра, хоча кур’єр отримав уже готове запрошення з цією помилкою. Blame — «звинувачувати, винити». Please don’t blame the courier — «Будь ласка, не звинувачуй кур’єра». Після don’t потрібна звичайна форма blame. Ви просите припинити звинувачення конкретної людини, а не оголошуєте, що помилок не було."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r1",
+              "text": "Please don't blame the courier."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r2",
+              "text": "Please don't blaming the courier."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r3",
+              "text": "Please not blame the courier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r1",
+              "text": "Please don't blame the courier."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r2",
+              "text": "Please don't blaming the courier."
+            },
+            {
+              "responseId": "en:lesson-09:session-37:intro3:r3",
+              "text": "Please not blame the courier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7f6cc74b08e67b22030357af182e570e769374dccbc056aa1ebc288713928424"
+}

@@ -1,0 +1,2409 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-37:word:admit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — admit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:admit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — admit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:admit:audio",
+            "transcript": "admit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:admit:r1",
+              "targetText": "admit",
+              "meaningByLocale": {
+                "ru": "«признавать». Please admit your mistake. — «Пожалуйста, признай свою ошибку». Здесь признать, что допустил ошибку.",
+                "uk": "«визнавати». Please admit your mistake. — «Будь ласка, визнай свою помилку». Тут визнати, що припустився помилки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "admit",
+            "definitionByLocale": {
+              "ru": "«признавать». Please admit your mistake. — «Пожалуйста, признай свою ошибку». Здесь признать, что допустил ошибку.",
+              "uk": "«визнавати». Please admit your mistake. — «Будь ласка, визнай свою помилку». Тут визнати, що припустився помилки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i01:r1",
+            "text": "Please admit your mistake."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i01:r2",
+            "text": "Please don't admit your mistake."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i01:r3",
+            "text": "Please find your mistake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i01:audio",
+            "transcript": "Please admit your mistake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i01:r1",
+              "targetText": "Please admit your mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r2",
+              "targetText": "Please don't admit your mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r3",
+              "targetText": "Please find your mistake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please admit your mistake.",
+                "uk": "У записі звучить Please admit your mistake."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please admit your mistake.",
+                "uk": "У записі звучить Please admit your mistake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильное написание admit с -ing",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i02:r1",
+            "text": "admitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i02:r2",
+            "text": "admiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i02:r3",
+            "text": "admit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильное написание admit с -ing",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание admit с -ing",
+            "uk": "Виберіть правильне написання admit з -ing"
+          },
+          "gappedTargetPhrase": "I am ___ my mistake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i02:r1",
+              "text": "admitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r2",
+              "text": "admiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r3",
+              "text": "admit"
+            }
+          ],
+          "testedDimension": "Выберите правильное написание admit с -ing",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание admit с -ing",
+              "feedbackByLocale": {
+                "ru": "В admitting удваивается t.",
+                "uk": "У admitting подвоюється t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание admit с -ing",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма admitting.",
+                "uk": "Після am для дії зараз потрібна форма admitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы прямо признаёте свой промах в счёте. Скажите: «Я признаю свою ошибку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы прямо признаёте свой промах в счёте. Скажите: «Я признаю свою ошибку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am admitting my mistake.",
+          "localizedMeaning": {
+            "ru": "Вы прямо признаёте свой промах в счёте. Скажите: «Я признаю свою ошибку»",
+            "uk": "Ви прямо визнаєте свою хибу в рахунку. Скажіть: «Я визнаю свою помилку»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "admitting",
+            "my",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините исходные формы с формами на -ing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините исходные формы с формами на -ing",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-37:i04:p1",
+              "target": "admit",
+              "meaningByLocale": {
+                "ru": "admitting",
+                "uk": "admitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p2",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "submitting",
+                "uk": "submitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p3",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "rubbing",
+                "uk": "rubbing"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p4",
+              "target": "hop",
+              "meaningByLocale": {
+                "ru": "hopping",
+                "uk": "hopping"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admit",
+            "submit",
+            "rub",
+            "hop"
+          ],
+          "rightColumn": [
+            "admitting",
+            "submitting",
+            "rubbing",
+            "hopping"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i05:audio",
+            "transcript": "Are you admitting your mistake?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you admitting your mistake?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "admitting",
+            "your",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:error",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — error",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:error:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — error",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:error:audio",
+            "transcript": "error"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:error:r1",
+              "targetText": "error",
+              "meaningByLocale": {
+                "ru": "«ошибка». The error is here. — «Ошибка здесь». Например, неверное число в записи; по смыслу близко к mistake.",
+                "uk": "«помилка». The error is here. — «Помилка тут». Наприклад, неправильне число в записі; за значенням близьке до mistake."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "error",
+            "definitionByLocale": {
+              "ru": "«ошибка». The error is here. — «Ошибка здесь». Например, неверное число в записи; по смыслу близко к mistake.",
+              "uk": "«помилка». The error is here. — «Помилка тут». Наприклад, неправильне число в записі; за значенням близьке до mistake."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Покажите на неверное число в записи и скажите: «Ошибка здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Покажите на неверное число в записи и скажите: «Ошибка здесь»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The error is here.",
+          "localizedMeaning": {
+            "ru": "Покажите на неверное число в записи и скажите: «Ошибка здесь»",
+            "uk": "Покажіть на неправильне число в записі й скажіть: «Помилка тут»"
+          },
+          "orderedTokens": [
+            "The",
+            "error",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i07:r1",
+            "text": "I am admitting the error."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i07:r2",
+            "text": "I am not admitting the error."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i07:r3",
+            "text": "The error is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i07:audio",
+            "transcript": "I am admitting the error."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i07:r1",
+              "targetText": "I am admitting the error.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r2",
+              "targetText": "I am not admitting the error.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r3",
+              "targetText": "The error is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am admitting the error.",
+                "uk": "У записі звучить I am admitting the error."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am admitting the error.",
+                "uk": "У записі звучить I am admitting the error."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для одного человека",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для одного человека",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного человека",
+            "uk": "Виберіть форму для однієї людини"
+          },
+          "gappedTargetPhrase": "She ___ admitting the error.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для одного человека",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного человека",
+              "feedbackByLocale": {
+                "ru": "С she нужна форма is.",
+                "uk": "З she потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного человека",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:honesty",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — honesty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:honesty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — honesty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:honesty:audio",
+            "transcript": "honesty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:honesty:r1",
+              "targetText": "honesty",
+              "meaningByLocale": {
+                "ru": "«честность». I like your honesty. — «Мне нравится твоя честность».",
+                "uk": "«чесність». I like your honesty. — «Мені подобається твоя чесність»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "honesty",
+            "definitionByLocale": {
+              "ru": "«честность». I like your honesty. — «Мне нравится твоя честность».",
+              "uk": "«чесність». I like your honesty. — «Мені подобається твоя чесність»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг дал честный ответ. Скажите, что вам нравится его честность",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг дал честный ответ. Скажите, что вам нравится его честность",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I like your honesty.",
+          "localizedMeaning": {
+            "ru": "Друг дал честный ответ. Скажите, что вам нравится его честность",
+            "uk": "Друг дав чесну відповідь. Скажіть, що вам подобається його чесність"
+          },
+          "orderedTokens": [
+            "I",
+            "like",
+            "your",
+            "honesty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i10:r1",
+            "text": "I like your honesty."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i10:r2",
+            "text": "We like your honesty."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i10:r3",
+            "text": "I like his honesty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i10:audio",
+            "transcript": "I like your honesty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i10:r1",
+              "targetText": "I like your honesty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r2",
+              "targetText": "We like your honesty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r3",
+              "targetText": "I like his honesty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I like your honesty.",
+                "uk": "У записі звучить I like your honesty."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I like your honesty.",
+                "uk": "У записі звучить I like your honesty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму like для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i11:r1",
+            "text": "like"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i11:r2",
+            "text": "likes"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i11:r3",
+            "text": "am like"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму like для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму like для I",
+            "uk": "Виберіть форму like для I"
+          },
+          "gappedTargetPhrase": "I ___ your honesty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i11:r1",
+              "text": "like"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r2",
+              "text": "likes"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r3",
+              "text": "am like"
+            }
+          ],
+          "testedDimension": "Выберите форму like для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму like для I",
+              "feedbackByLocale": {
+                "ru": "После I здесь нет окончания -s.",
+                "uk": "Після I тут немає закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму like для I",
+              "feedbackByLocale": {
+                "ru": "В этой фразе перед like связка am не нужна.",
+                "uk": "У цій фразі перед like зв’язка am не потрібна."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:blame",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:blame:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:blame:audio",
+            "transcript": "blame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:blame:r1",
+              "targetText": "blame",
+              "meaningByLocale": {
+                "ru": "«обвинять, винить». Please don’t blame the courier. — «Пожалуйста, не вини курьера».",
+                "uk": "«звинувачувати, винити». Please don’t blame the courier. — «Будь ласка, не звинувачуй кур’єра»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blame",
+            "definitionByLocale": {
+              "ru": "«обвинять, винить». Please don’t blame the courier. — «Пожалуйста, не вини курьера».",
+              "uk": "«звинувачувати, винити». Please don’t blame the courier. — «Будь ласка, не звинувачуй кур’єра»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i12:r1",
+            "text": "Please don't blame the courier."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i12:r2",
+            "text": "Please blame the courier."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i12:r3",
+            "text": "Please don't call the courier."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i12:audio",
+            "transcript": "Please don't blame the courier."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i12:r1",
+              "targetText": "Please don't blame the courier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r2",
+              "targetText": "Please blame the courier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r3",
+              "targetText": "Please don't call the courier.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't blame the courier.",
+                "uk": "У записі звучить Please don't blame the courier."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't blame the courier.",
+                "uk": "У записі звучить Please don't blame the courier."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Курьер не составлял приглашение с ошибкой. Попросите коллегу не винить курьера; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Курьер не составлял приглашение с ошибкой. Попросите коллегу не винить курьера; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i13:audio",
+            "transcript": "Please don't blame the courier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't blame the courier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i14:audio",
+            "transcript": "I am not blaming you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am not blaming you.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "blaming",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму глагола после don’t",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i15:r1",
+            "text": "blame"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i15:r2",
+            "text": "blaming"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i15:r3",
+            "text": "blames"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму глагола после don’t",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола после don’t",
+            "uk": "Виберіть форму дієслова після don’t"
+          },
+          "gappedTargetPhrase": "Please don't ___ me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i15:r1",
+              "text": "blame"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r2",
+              "text": "blaming"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r3",
+              "text": "blames"
+            }
+          ],
+          "testedDimension": "Выберите форму глагола после don’t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола после don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна обычная форма blame.",
+                "uk": "Після don’t потрібна звичайна форма blame."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму глагола после don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t окончание -s не нужно.",
+                "uk": "Після don’t закінчення -s не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-37:i16:p1",
+              "target": "admit",
+              "meaningByLocale": {
+                "ru": "признавать",
+                "uk": "визнавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p2",
+              "target": "error",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p3",
+              "target": "honesty",
+              "meaningByLocale": {
+                "ru": "честность",
+                "uk": "чесність"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p4",
+              "target": "blame",
+              "meaningByLocale": {
+                "ru": "винить",
+                "uk": "звинувачувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admit",
+            "error",
+            "honesty",
+            "blame"
+          ],
+          "rightColumn": [
+            "признавать",
+            "ошибка",
+            "честность",
+            "винить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг решил, что ваш вопрос о сломанной чашке — обвинение в его адрес. Вы лишь уточняете, что случилось. Скажите: «Я тебя не обвиняю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Друг решил, что ваш вопрос о сломанной чашке — обвинение в его адрес. Вы лишь уточняете, что случилось. Скажите: «Я тебя не обвиняю»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i17:audio",
+            "transcript": "I am not blaming you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am not blaming you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-37:word:admit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — admit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:admit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — admit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:admit:audio",
+            "transcript": "admit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:admit:r1",
+              "targetText": "admit",
+              "meaningByLocale": {
+                "ru": "«признавать». Please admit your mistake. — «Пожалуйста, признай свою ошибку». Здесь признать, что допустил ошибку.",
+                "uk": "«визнавати». Please admit your mistake. — «Будь ласка, визнай свою помилку». Тут визнати, що припустився помилки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "admit",
+            "definitionByLocale": {
+              "ru": "«признавать». Please admit your mistake. — «Пожалуйста, признай свою ошибку». Здесь признать, что допустил ошибку.",
+              "uk": "«визнавати». Please admit your mistake. — «Будь ласка, визнай свою помилку». Тут визнати, що припустився помилки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i01:r1",
+            "text": "Please admit your mistake."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i01:r2",
+            "text": "Please don't admit your mistake."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i01:r3",
+            "text": "Please find your mistake."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i01:audio",
+            "transcript": "Please admit your mistake."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i01:r1",
+              "targetText": "Please admit your mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r2",
+              "targetText": "Please don't admit your mistake.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r3",
+              "targetText": "Please find your mistake.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please admit your mistake.",
+                "uk": "У записі звучить Please admit your mistake."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please admit your mistake.",
+                "uk": "У записі звучить Please admit your mistake."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильне написання admit з -ing",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i02:r1",
+            "text": "admitting"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i02:r2",
+            "text": "admiting"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i02:r3",
+            "text": "admit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильне написання admit з -ing",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание admit с -ing",
+            "uk": "Виберіть правильне написання admit з -ing"
+          },
+          "gappedTargetPhrase": "I am ___ my mistake.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i02:r1",
+              "text": "admitting"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r2",
+              "text": "admiting"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r3",
+              "text": "admit"
+            }
+          ],
+          "testedDimension": "Виберіть правильне написання admit з -ing",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання admit з -ing",
+              "feedbackByLocale": {
+                "ru": "В admitting удваивается t.",
+                "uk": "У admitting подвоюється t."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання admit з -ing",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма admitting.",
+                "uk": "Після am для дії зараз потрібна форма admitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви прямо визнаєте свою хибу в рахунку. Скажіть: «Я визнаю свою помилку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прямо визнаєте свою хибу в рахунку. Скажіть: «Я визнаю свою помилку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am admitting my mistake.",
+          "localizedMeaning": {
+            "ru": "Вы прямо признаёте свой промах в счёте. Скажите: «Я признаю свою ошибку»",
+            "uk": "Ви прямо визнаєте свою хибу в рахунку. Скажіть: «Я визнаю свою помилку»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "admitting",
+            "my",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте початкові форми з формами на -ing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте початкові форми з формами на -ing",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-37:i04:p1",
+              "target": "admit",
+              "meaningByLocale": {
+                "ru": "admitting",
+                "uk": "admitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p2",
+              "target": "submit",
+              "meaningByLocale": {
+                "ru": "submitting",
+                "uk": "submitting"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p3",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "rubbing",
+                "uk": "rubbing"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i04:p4",
+              "target": "hop",
+              "meaningByLocale": {
+                "ru": "hopping",
+                "uk": "hopping"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admit",
+            "submit",
+            "rub",
+            "hop"
+          ],
+          "rightColumn": [
+            "admitting",
+            "submitting",
+            "rubbing",
+            "hopping"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i05:audio",
+            "transcript": "Are you admitting your mistake?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you admitting your mistake?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "admitting",
+            "your",
+            "mistake"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:error",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — error",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:error:audio"
+        ],
+        "accessibilityLabel": "Картка слова — error",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:error:audio",
+            "transcript": "error"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:error:r1",
+              "targetText": "error",
+              "meaningByLocale": {
+                "ru": "«ошибка». The error is here. — «Ошибка здесь». Например, неверное число в записи; по смыслу близко к mistake.",
+                "uk": "«помилка». The error is here. — «Помилка тут». Наприклад, неправильне число в записі; за значенням близьке до mistake."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "error",
+            "definitionByLocale": {
+              "ru": "«ошибка». The error is here. — «Ошибка здесь». Например, неверное число в записи; по смыслу близко к mistake.",
+              "uk": "«помилка». The error is here. — «Помилка тут». Наприклад, неправильне число в записі; за значенням близьке до mistake."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Покажіть на неправильне число в записі й скажіть: «Помилка тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Покажіть на неправильне число в записі й скажіть: «Помилка тут»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The error is here.",
+          "localizedMeaning": {
+            "ru": "Покажите на неверное число в записи и скажите: «Ошибка здесь»",
+            "uk": "Покажіть на неправильне число в записі й скажіть: «Помилка тут»"
+          },
+          "orderedTokens": [
+            "The",
+            "error",
+            "is",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i07:r1",
+            "text": "I am admitting the error."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i07:r2",
+            "text": "I am not admitting the error."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i07:r3",
+            "text": "The error is here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i07:audio",
+            "transcript": "I am admitting the error."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i07:r1",
+              "targetText": "I am admitting the error.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r2",
+              "targetText": "I am not admitting the error.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r3",
+              "targetText": "The error is here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am admitting the error.",
+                "uk": "У записі звучить I am admitting the error."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am admitting the error.",
+                "uk": "У записі звучить I am admitting the error."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для однієї людини",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i08:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для однієї людини",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного человека",
+            "uk": "Виберіть форму для однієї людини"
+          },
+          "gappedTargetPhrase": "She ___ admitting the error.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для однієї людини",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для однієї людини",
+              "feedbackByLocale": {
+                "ru": "С she нужна форма is.",
+                "uk": "З she потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для однієї людини",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:honesty",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — honesty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:honesty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — honesty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:honesty:audio",
+            "transcript": "honesty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:honesty:r1",
+              "targetText": "honesty",
+              "meaningByLocale": {
+                "ru": "«честность». I like your honesty. — «Мне нравится твоя честность».",
+                "uk": "«чесність». I like your honesty. — «Мені подобається твоя чесність»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "honesty",
+            "definitionByLocale": {
+              "ru": "«честность». I like your honesty. — «Мне нравится твоя честность».",
+              "uk": "«чесність». I like your honesty. — «Мені подобається твоя чесність»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг дав чесну відповідь. Скажіть, що вам подобається його чесність",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг дав чесну відповідь. Скажіть, що вам подобається його чесність",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I like your honesty.",
+          "localizedMeaning": {
+            "ru": "Друг дал честный ответ. Скажите, что вам нравится его честность",
+            "uk": "Друг дав чесну відповідь. Скажіть, що вам подобається його чесність"
+          },
+          "orderedTokens": [
+            "I",
+            "like",
+            "your",
+            "honesty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i10:r1",
+            "text": "I like your honesty."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i10:r2",
+            "text": "We like your honesty."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i10:r3",
+            "text": "I like his honesty."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i10:audio",
+            "transcript": "I like your honesty."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i10:r1",
+              "targetText": "I like your honesty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r2",
+              "targetText": "We like your honesty.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r3",
+              "targetText": "I like his honesty.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I like your honesty.",
+                "uk": "У записі звучить I like your honesty."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I like your honesty.",
+                "uk": "У записі звучить I like your honesty."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму like для I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i11:r1",
+            "text": "like"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i11:r2",
+            "text": "likes"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i11:r3",
+            "text": "am like"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму like для I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму like для I",
+            "uk": "Виберіть форму like для I"
+          },
+          "gappedTargetPhrase": "I ___ your honesty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i11:r1",
+              "text": "like"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r2",
+              "text": "likes"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r3",
+              "text": "am like"
+            }
+          ],
+          "testedDimension": "Виберіть форму like для I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму like для I",
+              "feedbackByLocale": {
+                "ru": "После I здесь нет окончания -s.",
+                "uk": "Після I тут немає закінчення -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму like для I",
+              "feedbackByLocale": {
+                "ru": "В этой фразе перед like связка am не нужна.",
+                "uk": "У цій фразі перед like зв’язка am не потрібна."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:word:blame",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:word:blame:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:word:blame:audio",
+            "transcript": "blame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:word:blame:r1",
+              "targetText": "blame",
+              "meaningByLocale": {
+                "ru": "«обвинять, винить». Please don’t blame the courier. — «Пожалуйста, не вини курьера».",
+                "uk": "«звинувачувати, винити». Please don’t blame the courier. — «Будь ласка, не звинувачуй кур’єра»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blame",
+            "definitionByLocale": {
+              "ru": "«обвинять, винить». Please don’t blame the courier. — «Пожалуйста, не вини курьера».",
+              "uk": "«звинувачувати, винити». Please don’t blame the courier. — «Будь ласка, не звинувачуй кур’єра»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i12:r1",
+            "text": "Please don't blame the courier."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i12:r2",
+            "text": "Please blame the courier."
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i12:r3",
+            "text": "Please don't call the courier."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i12:audio",
+            "transcript": "Please don't blame the courier."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-37:i12:r1",
+              "targetText": "Please don't blame the courier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r2",
+              "targetText": "Please blame the courier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r3",
+              "targetText": "Please don't call the courier.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't blame the courier.",
+                "uk": "У записі звучить Please don't blame the courier."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't blame the courier.",
+                "uk": "У записі звучить Please don't blame the courier."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Кур’єр не складав запрошення з помилкою. Попросіть колегу не звинувачувати кур’єра; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Кур’єр не складав запрошення з помилкою. Попросіть колегу не звинувачувати кур’єра; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i13:audio",
+            "transcript": "Please don't blame the courier."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't blame the courier.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i14:audio",
+            "transcript": "I am not blaming you."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am not blaming you.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "blaming",
+            "you"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму дієслова після don’t",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-37:i15:r1",
+            "text": "blame"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i15:r2",
+            "text": "blaming"
+          },
+          {
+            "responseId": "en:lesson-09:session-37:i15:r3",
+            "text": "blames"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму дієслова після don’t",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму глагола после don’t",
+            "uk": "Виберіть форму дієслова після don’t"
+          },
+          "gappedTargetPhrase": "Please don't ___ me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-37:i15:r1",
+              "text": "blame"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r2",
+              "text": "blaming"
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r3",
+              "text": "blames"
+            }
+          ],
+          "testedDimension": "Виберіть форму дієслова після don’t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-37:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова після don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна обычная форма blame.",
+                "uk": "Після don’t потрібна звичайна форма blame."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-37:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму дієслова після don’t",
+              "feedbackByLocale": {
+                "ru": "После don’t окончание -s не нужно.",
+                "uk": "Після don’t закінчення -s не потрібне."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-37:i16:p1",
+              "target": "admit",
+              "meaningByLocale": {
+                "ru": "признавать",
+                "uk": "визнавати"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p2",
+              "target": "error",
+              "meaningByLocale": {
+                "ru": "ошибка",
+                "uk": "помилка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p3",
+              "target": "honesty",
+              "meaningByLocale": {
+                "ru": "честность",
+                "uk": "чесність"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-37:i16:p4",
+              "target": "blame",
+              "meaningByLocale": {
+                "ru": "винить",
+                "uk": "звинувачувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "admit",
+            "error",
+            "honesty",
+            "blame"
+          ],
+          "rightColumn": [
+            "визнавати",
+            "помилка",
+            "чесність",
+            "звинувачувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-37:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг вирішив, що ваше запитання про розбиту чашку — звинувачення на його адресу. Ви лише уточнюєте, що сталося. Скажіть: «Я тебе не звинувачую»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Друг вирішив, що ваше запитання про розбиту чашку — звинувачення на його адресу. Ви лише уточнюєте, що сталося. Скажіть: «Я тебе не звинувачую»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-37:i17:audio",
+            "transcript": "I am not blaming you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am not blaming you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-37:word:admit",
+      "correctText": "admit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i01",
+      "correctText": "Please admit your mistake.",
+      "correctResponseId": "en:lesson-09:session-37:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i02",
+      "correctText": "admitting",
+      "correctResponseId": "en:lesson-09:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i03",
+      "correctText": "I am admitting my mistake.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i05",
+      "correctText": "Are you admitting your mistake?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:word:error",
+      "correctText": "error",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i06",
+      "correctText": "The error is here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i07",
+      "correctText": "I am admitting the error.",
+      "correctResponseId": "en:lesson-09:session-37:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i08",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:word:honesty",
+      "correctText": "honesty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i09",
+      "correctText": "I like your honesty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i10",
+      "correctText": "I like your honesty.",
+      "correctResponseId": "en:lesson-09:session-37:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i11",
+      "correctText": "like",
+      "correctResponseId": "en:lesson-09:session-37:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:word:blame",
+      "correctText": "blame",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i12",
+      "correctText": "Please don't blame the courier.",
+      "correctResponseId": "en:lesson-09:session-37:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i13",
+      "correctText": "Please don't blame the courier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i14",
+      "correctText": "I am not blaming you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i15",
+      "correctText": "blame",
+      "correctResponseId": "en:lesson-09:session-37:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:i17",
+      "correctText": "I am not blaming you.",
+      "correctResponseId": null
+    }
+  ]
+}

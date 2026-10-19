@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-37:intro1:r2": {
+          "ru": "В admitting две t.",
+          "uk": "У admitting дві t."
+        },
+        "en:lesson-09:session-37:intro1:r3": {
+          "ru": "После am для действия сейчас нужна форма admitting.",
+          "uk": "Після am для дії зараз потрібна форма admitting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-37:intro2:r2": {
+          "ru": "Перед like в этой фразе am не нужно.",
+          "uk": "Перед like у цій фразі am не потрібне."
+        },
+        "en:lesson-09:session-37:intro2:r3": {
+          "ru": "После I здесь like без -s.",
+          "uk": "Після I тут like без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-37:intro3:r2": {
+          "ru": "После don’t нужна форма blame.",
+          "uk": "Після don’t потрібна форма blame."
+        },
+        "en:lesson-09:session-37:intro3:r3": {
+          "ru": "Для отрицательной просьбы нужно don’t.",
+          "uk": "Для заперечного прохання потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ba11cf9911694e40a7f546bbe0914a8fab1bbda4d5630acf9bb69415e15e80d8"
+}

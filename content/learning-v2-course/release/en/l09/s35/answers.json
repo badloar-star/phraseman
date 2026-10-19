@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-35:word:hop",
+    "correctText": "hop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i01",
+    "correctText": "Please hop.",
+    "correctResponseId": "en:lesson-09:session-35:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i02",
+    "correctText": "hopping",
+    "correctResponseId": "en:lesson-09:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i03",
+    "correctText": "I am hopping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i04",
+    "correctText": "en:lesson-09:session-35:i04:p1=hop\nen:lesson-09:session-35:i04:p2=tie\nen:lesson-09:session-35:i04:p3=sit\nen:lesson-09:session-35:i04:p4=make",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i05",
+    "correctText": "Are you hopping?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:word:hopscotch",
+    "correctText": "hopscotch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i06",
+    "correctText": "We are playing hopscotch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i07",
+    "correctText": "We are not playing hopscotch.",
+    "correctResponseId": "en:lesson-09:session-35:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i08",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-09:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:word:sparrow",
+    "correctText": "sparrow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i09",
+    "correctText": "The sparrow is hopping.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i10",
+    "correctText": "The sparrow is not hopping.",
+    "correctResponseId": "en:lesson-09:session-35:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i11",
+    "correctText": "I often play hopscotch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:word:grasshopper",
+    "correctText": "grasshopper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i12",
+    "correctText": "The grasshopper is green.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i13",
+    "correctText": "Please don't touch the grasshopper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i14",
+    "correctText": "touch",
+    "correctResponseId": "en:lesson-09:session-35:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i15",
+    "correctText": "Is the sparrow hopping?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i16",
+    "correctText": "en:lesson-09:session-35:i16:p1=hop\nen:lesson-09:session-35:i16:p2=hopscotch\nen:lesson-09:session-35:i16:p3=sparrow\nen:lesson-09:session-35:i16:p4=grasshopper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-35:i17",
+    "correctText": "I am hopping.",
+    "correctResponseId": null
+  }
+]

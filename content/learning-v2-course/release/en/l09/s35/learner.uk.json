@@ -1,0 +1,1076 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-35:word:hop",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:word:hop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:word:hop:audio",
+          "transcript": "hop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:word:hop:r1",
+            "targetText": "hop",
+            "meaningByLocale": {
+              "ru": "«подпрыгивать, передвигаться короткими прыжками». Please hop. — «Пожалуйста, подпрыгни». Для человека в игре здесь прыжок на одной ноге.",
+              "uk": "«підстрибувати, пересуватися короткими стрибками». Please hop. — «Будь ласка, підстрибни». Для людини у грі тут стрибок на одній нозі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hop",
+          "definitionByLocale": {
+            "ru": "«подпрыгивать, передвигаться короткими прыжками». Please hop. — «Пожалуйста, подпрыгни». Для человека в игре здесь прыжок на одной ноге.",
+            "uk": "«підстрибувати, пересуватися короткими стрибками». Please hop. — «Будь ласка, підстрибни». Для людини у грі тут стрибок на одній нозі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i01:r1",
+          "text": "Please hop."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i01:r2",
+          "text": "Please don't hop."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i01:r3",
+          "text": "Please sit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i01:audio",
+          "transcript": "Please hop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:i01:r1",
+            "targetText": "Please hop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i01:r2",
+            "targetText": "Please don't hop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i01:r3",
+            "targetText": "Please sit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please hop.",
+              "uk": "У записі звучить Please hop."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please hop.",
+              "uk": "У записі звучить Please hop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть написання форми hop",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i02:r1",
+          "text": "hopping"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i02:r2",
+          "text": "hoping"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i02:r3",
+          "text": "hop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть написання форми hop",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание формы hop",
+          "uk": "Виберіть написання форми hop"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-35:i02:r1",
+            "text": "hopping"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i02:r2",
+            "text": "hoping"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i02:r3",
+            "text": "hop"
+          }
+        ],
+        "testedDimension": "Виберіть написання форми hop",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Виберіть написання форми hop",
+            "feedbackByLocale": {
+              "ru": "Для hop нужно hopping с двумя p.",
+              "uk": "Для hop потрібне hopping із двома p."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i02:r3",
+            "correct": false,
+            "testedDimension": "Виберіть написання форми hop",
+            "feedbackByLocale": {
+              "ru": "После am нужна форма hopping.",
+              "uk": "Після am потрібна форма hopping."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви показуєте стрибки на одній нозі. Скажіть, що робите",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви показуєте стрибки на одній нозі. Скажіть, що робите",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am hopping.",
+        "localizedMeaning": {
+          "ru": "Вы показываете прыжки на одной ноге. Скажите, что делаете",
+          "uk": "Ви показуєте стрибки на одній нозі. Скажіть, що робите"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "hopping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте початкові форми з формами на -ing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте початкові форми з формами на -ing",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-35:i04:p1",
+            "target": "hop",
+            "meaningByLocale": {
+              "ru": "hopping",
+              "uk": "hopping"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i04:p2",
+            "target": "tie",
+            "meaningByLocale": {
+              "ru": "tying",
+              "uk": "tying"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i04:p3",
+            "target": "sit",
+            "meaningByLocale": {
+              "ru": "sitting",
+              "uk": "sitting"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i04:p4",
+            "target": "make",
+            "meaningByLocale": {
+              "ru": "making",
+              "uk": "making"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hop",
+          "tie",
+          "sit",
+          "make"
+        ],
+        "rightColumn": [
+          "hopping",
+          "tying",
+          "sitting",
+          "making"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i05:audio",
+          "transcript": "Are you hopping?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you hopping?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "hopping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:word:hopscotch",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hopscotch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:word:hopscotch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hopscotch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:word:hopscotch:audio",
+          "transcript": "hopscotch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:word:hopscotch:r1",
+            "targetText": "hopscotch",
+            "meaningByLocale": {
+              "ru": "«классики, игра с прыжками по клеткам». We are playing hopscotch. — «Мы играем в классики».",
+              "uk": "«класики, гра зі стрибками по клітинках». We are playing hopscotch. — «Ми граємо в класики»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hopscotch",
+          "definitionByLocale": {
+            "ru": "«классики, игра с прыжками по клеткам». We are playing hopscotch. — «Мы играем в классики».",
+            "uk": "«класики, гра зі стрибками по клітинках». We are playing hopscotch. — «Ми граємо в класики»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перехожий запитує, що ви робите на розміченому майданчику. Скажіть: «Ми граємо в класики»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перехожий запитує, що ви робите на розміченому майданчику. Скажіть: «Ми граємо в класики»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are playing hopscotch.",
+        "localizedMeaning": {
+          "ru": "Прохожий спрашивает, что вы делаете на размеченной площадке. Скажите: «Мы играем в классики»",
+          "uk": "Перехожий запитує, що ви робите на розміченому майданчику. Скажіть: «Ми граємо в класики»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "playing",
+          "hopscotch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i07:r1",
+          "text": "We are not playing hopscotch."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i07:r2",
+          "text": "We are playing hopscotch."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i07:r3",
+          "text": "I am playing hopscotch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i07:audio",
+          "transcript": "We are not playing hopscotch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:i07:r1",
+            "targetText": "We are not playing hopscotch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i07:r2",
+            "targetText": "We are playing hopscotch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i07:r3",
+            "targetText": "I am playing hopscotch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are not playing hopscotch.",
+              "uk": "У записі звучить We are not playing hopscotch."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are not playing hopscotch.",
+              "uk": "У записі звучить We are not playing hopscotch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для кількох гравців",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i08:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i08:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для кількох гравців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для нескольких игроков",
+          "uk": "Виберіть форму для кількох гравців"
+        },
+        "gappedTargetPhrase": "We ___ playing hopscotch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-35:i08:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i08:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму для кількох гравців",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i08:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для кількох гравців",
+            "feedbackByLocale": {
+              "ru": "С we нужна форма are.",
+              "uk": "З we потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i08:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для кількох гравців",
+            "feedbackByLocale": {
+              "ru": "Am употребляем с I.",
+              "uk": "Am уживаємо з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:word:sparrow",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sparrow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:word:sparrow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sparrow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:word:sparrow:audio",
+          "transcript": "sparrow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:word:sparrow:r1",
+            "targetText": "sparrow",
+            "meaningByLocale": {
+              "ru": "«воробей». The sparrow is hopping. — «Воробей скачет».",
+              "uk": "«горобець». The sparrow is hopping. — «Горобець скаче»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sparrow",
+          "definitionByLocale": {
+            "ru": "«воробей». The sparrow is hopping. — «Воробей скачет».",
+            "uk": "«горобець». The sparrow is hopping. — «Горобець скаче»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Птах рухається короткими стрибками. Повідомте: «Горобець скаче»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Птах рухається короткими стрибками. Повідомте: «Горобець скаче»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sparrow is hopping.",
+        "localizedMeaning": {
+          "ru": "Птица движется короткими прыжками. Сообщите: «Воробей скачет»",
+          "uk": "Птах рухається короткими стрибками. Повідомте: «Горобець скаче»"
+        },
+        "orderedTokens": [
+          "The",
+          "sparrow",
+          "is",
+          "hopping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i10:r1",
+          "text": "The sparrow is not hopping."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i10:r2",
+          "text": "The sparrow is hopping."
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i10:r3",
+          "text": "The sparrow is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i10:audio",
+          "transcript": "The sparrow is not hopping."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:i10:r1",
+            "targetText": "The sparrow is not hopping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i10:r2",
+            "targetText": "The sparrow is hopping.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i10:r3",
+            "targetText": "The sparrow is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sparrow is not hopping.",
+              "uk": "У записі звучить The sparrow is not hopping."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sparrow is not hopping.",
+              "uk": "У записі звучить The sparrow is not hopping."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Це ваша звичка, а не дія зараз: «Я часто граю в класики»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це ваша звичка, а не дія зараз: «Я часто граю в класики»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I often play hopscotch.",
+        "localizedMeaning": {
+          "ru": "Это ваша привычка, а не действие сейчас: «Я часто играю в классики»",
+          "uk": "Це ваша звичка, а не дія зараз: «Я часто граю в класики»"
+        },
+        "orderedTokens": [
+          "I",
+          "often",
+          "play",
+          "hopscotch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:word:grasshopper",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grasshopper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:word:grasshopper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grasshopper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:word:grasshopper:audio",
+          "transcript": "grasshopper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-35:word:grasshopper:r1",
+            "targetText": "grasshopper",
+            "meaningByLocale": {
+              "ru": "«кузнечик». The grasshopper is green. — «Кузнечик зелёный».",
+              "uk": "«коник-стрибунець». The grasshopper is green. — «Коник-стрибунець зелений»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grasshopper",
+          "definitionByLocale": {
+            "ru": "«кузнечик». The grasshopper is green. — «Кузнечик зелёный».",
+            "uk": "«коник-стрибунець». The grasshopper is green. — «Коник-стрибунець зелений»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Опишіть колір коника-стрибунця на малюнку: він зелений",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть колір коника-стрибунця на малюнку: він зелений",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The grasshopper is green.",
+        "localizedMeaning": {
+          "ru": "Опишите цвет кузнечика на картинке: он зелёный",
+          "uk": "Опишіть колір коника-стрибунця на малюнку: він зелений"
+        },
+        "orderedTokens": [
+          "The",
+          "grasshopper",
+          "is",
+          "green"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг хоче взяти коника-стрибунця з лавки. Попросіть не торкатися коника-стрибунця; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Друг хоче взяти коника-стрибунця з лавки. Попросіть не торкатися коника-стрибунця; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i13:audio",
+          "transcript": "Please don't touch the grasshopper."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't touch the grasshopper.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть звичайну форму дієслова після don’t",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-35:i14:r1",
+          "text": "touch"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i14:r2",
+          "text": "touching"
+        },
+        {
+          "responseId": "en:lesson-09:session-35:i14:r3",
+          "text": "touches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть звичайну форму дієслова після don’t",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите обычную форму глагола после don’t",
+          "uk": "Виберіть звичайну форму дієслова після don’t"
+        },
+        "gappedTargetPhrase": "Please don't ___ the grasshopper.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-35:i14:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i14:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i14:r3",
+            "text": "touches"
+          }
+        ],
+        "testedDimension": "Виберіть звичайну форму дієслова після don’t",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-35:i14:r2",
+            "correct": false,
+            "testedDimension": "Виберіть звичайну форму дієслова після don’t",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна форма touch.",
+              "uk": "Після don’t потрібна форма touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-35:i14:r3",
+            "correct": false,
+            "testedDimension": "Виберіть звичайну форму дієслова після don’t",
+            "feedbackByLocale": {
+              "ru": "После don’t окончание -es не нужно.",
+              "uk": "Після don’t закінчення -es не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i15:audio",
+          "transcript": "Is the sparrow hopping?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the sparrow hopping?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "sparrow",
+          "hopping"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-35:i16:p1",
+            "target": "hop",
+            "meaningByLocale": {
+              "ru": "двигаться короткими прыжками",
+              "uk": "рухатися короткими стрибками"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i16:p2",
+            "target": "hopscotch",
+            "meaningByLocale": {
+              "ru": "классики",
+              "uk": "класики"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i16:p3",
+            "target": "sparrow",
+            "meaningByLocale": {
+              "ru": "воробей",
+              "uk": "горобець"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-35:i16:p4",
+            "target": "grasshopper",
+            "meaningByLocale": {
+              "ru": "кузнечик",
+              "uk": "коник-стрибунець"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hop",
+          "hopscotch",
+          "sparrow",
+          "grasshopper"
+        ],
+        "rightColumn": [
+          "рухатися короткими стрибками",
+          "класики",
+          "горобець",
+          "коник-стрибунець"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-35:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра зайшла до кімнати й почула ритмічні кроки. Ви знімаєте коротке відео, стрибаючи на одній нозі. Поясніть: «Я стрибаю на одній нозі»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Сестра зайшла до кімнати й почула ритмічні кроки. Ви знімаєте коротке відео, стрибаючи на одній нозі. Поясніть: «Я стрибаю на одній нозі»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-35:i17:audio",
+          "transcript": "I am hopping."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am hopping.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ed9007928a2b66ea920c647fc1d32414fed93eb6facf45f2c67aef42dfcf9e65"
+}

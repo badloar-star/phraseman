@@ -119,12 +119,12 @@ test('package exposes only an informational AAB size report', () => {
   assert.doesNotMatch(easIgnore, /android_aab_size_gate|eas_build_on_success/);
 });
 
-test('production build metadata is 136 while the app version remains 2.0.0', () => {
+test('production build metadata is 138 while the app version remains 2.0.0', () => {
   const root = path.resolve(import.meta.dirname, '..');
   const app = JSON.parse(readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
   assert.equal(app.version, '2.0.0');
-  assert.equal(app.android.versionCode, 136);
-  assert.equal(app.ios.buildNumber, '136');
+  assert.equal(app.android.versionCode, 138);
+  assert.equal(app.ios.buildNumber, '138');
 });
 
 test('production version gate accepts build 135 with app version 2.0.0 unchanged', () => {

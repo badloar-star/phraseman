@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-36:intro1:r2": {
+          "ru": "С this здесь нужна связка is.",
+          "uk": "З this тут потрібна зв’язка is."
+        },
+        "en:lesson-09:session-36:intro1:r3": {
+          "ru": "В этой фразе brass — материал, без a.",
+          "uk": "У цій фразі brass — матеріал, без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-36:intro2:r2": {
+          "ru": "В rubbing нужны две b.",
+          "uk": "У rubbing потрібні дві b."
+        },
+        "en:lesson-09:session-36:intro2:r3": {
+          "ru": "После am для действия сейчас нужна форма rubbing.",
+          "uk": "Після am для дії зараз потрібна форма rubbing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-36:intro3:r2": {
+          "ru": "После don’t нужна обычная форма rub.",
+          "uk": "Після don’t потрібна звичайна форма rub."
+        },
+        "en:lesson-09:session-36:intro3:r3": {
+          "ru": "Для отрицательной просьбы используем don’t.",
+          "uk": "Для заперечного прохання використовуємо don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8dee9d4601ceda17859eb9dbdfaf114cbb23dd05b6da7ca2ac5a0c4ab6a86f1a"
+}

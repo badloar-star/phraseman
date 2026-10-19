@@ -3388,4 +3388,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"hop → hopping; is hopping / is not hopping; Please don’t touch ...","uk":"hop → hopping; is hopping / is not hopping; Please don’t touch ..."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 36,
+    sourceFingerprint: "10ffaa1cdb254bafe5358ae3cf092623a88833a2e8d8c05a22b6a7edc40ebd4f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ...","uk":"rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ..."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ...",
+    "uk": "rub → rubbing; This is brass; I am rubbing the copper; Please don’t rub ..."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Из чего сделана ручка?",
+        "uk": "Із чого зроблена ручка?"
+      },
+      "bodyByLocale": {
+        "ru": "В мастерской вам показывают старую дверную ручку с подписью о материале. Brass — «латунь». По подписи вы объясняете другу: This is brass — «Это латунь». Brass здесь название материала, поэтому перед ним нет a. Не определяем металл только по цвету: сведения даны на подписи.",
+        "uk": "У майстерні вам показують стару дверну ручку з підписом про матеріал. Brass — «латунь». За підписом ви пояснюєте другові: This is brass — «Це латунь». Brass тут назва матеріалу, тому перед ним немає a. Не визначаємо метал лише за кольором: відомості подано в підписі."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r1",
+              "text": "This is brass."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r2",
+              "text": "This are brass."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r3",
+              "text": "This is a brass."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r1",
+              "text": "This is brass."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r2",
+              "text": "This are brass."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro1:r3",
+              "text": "This is a brass."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что происходит с образцом?",
+        "uk": "Що відбувається зі зразком?"
+      },
+      "bodyByLocale": {
+        "ru": "На занятии с металлическими образцами вы трёте медную пластинку по инструкции преподавателя. Copper — «медь». На вопрос о действии отвечаете: I am rubbing the copper — «Я тру медь». Rub уже знакомо как «тереть». В rubbing удваиваем b. The copper здесь конкретный образец перед вами; фраза не сообщает, какой будет результат работы.",
+        "uk": "На занятті з металевими зразками ви трете мідну пластинку за інструкцією викладача. Copper — «мідь». На запитання про дію відповідаєте: I am rubbing the copper — «Я тру мідь». Rub уже знайоме як «терти». У rubbing подвоюємо b. The copper тут конкретний зразок перед вами; фраза не повідомляє, яким буде результат роботи."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r1",
+              "text": "I am rubbing the copper."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r2",
+              "text": "I am rubing the copper."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r3",
+              "text": "I am rub the copper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r1",
+              "text": "I am rubbing the copper."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r2",
+              "text": "I am rubing the copper."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro2:r3",
+              "text": "I am rub the copper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Передать просьбу мастера",
+        "uk": "Передати прохання майстра"
+      },
+      "bodyByLocale": {
+        "ru": "В обувной мастерской мастер просит пока не тереть кусочек замши: он ещё должен показать способ работы с этим образцом. Suede — «замша». Помощник не расслышал просьбу. Передайте её: Please don’t rub the suede — «Пожалуйста, не три замшу». После don’t нужна форма rub. Это просьба в данной работе, а не правило ухода за любой замшей.",
+        "uk": "У взуттєвій майстерні майстер просить поки не терти шматочок замші: він ще має показати спосіб роботи з цим зразком. Suede — «замша». Помічник не розчув прохання. Передайте його: Please don’t rub the suede — «Будь ласка, не три замшу». Після don’t потрібна форма rub. Це прохання в цій роботі, а не правило догляду за будь-якою замшею."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r1",
+              "text": "Please don't rub the suede."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r2",
+              "text": "Please don't rubbing the suede."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r3",
+              "text": "Please not rub the suede."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r1",
+              "text": "Please don't rub the suede."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r2",
+              "text": "Please don't rubbing the suede."
+            },
+            {
+              "responseId": "en:lesson-09:session-36:intro3:r3",
+              "text": "Please not rub the suede."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0512f8d50f66a672b8f3efe82c67339a4cea477c691d563fc7945cea53767f15"
+}

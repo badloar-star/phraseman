@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-36:word:brass",
+    "correctText": "brass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i01",
+    "correctText": "This is brass.",
+    "correctResponseId": "en:lesson-09:session-36:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i02",
+    "correctText": "This is brass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i04",
+    "correctText": "en:lesson-09:session-36:i04:p1=brass\nen:lesson-09:session-36:i04:p2=rub\nen:lesson-09:session-36:i04:p3=clean\nen:lesson-09:session-36:i04:p4=small",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i05",
+    "correctText": "The brass is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:word:copper",
+    "correctText": "copper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i06",
+    "correctText": "I am rubbing the copper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i07",
+    "correctText": "rubbing",
+    "correctResponseId": "en:lesson-09:session-36:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i08",
+    "correctText": "I am not rubbing the copper.",
+    "correctResponseId": "en:lesson-09:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:word:rag",
+    "correctText": "rag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i09",
+    "correctText": "The rag is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i10",
+    "correctText": "The rag is wet.",
+    "correctResponseId": "en:lesson-09:session-36:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i11",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-09:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:word:suede",
+    "correctText": "suede",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i12",
+    "correctText": "Please don't rub the suede.",
+    "correctResponseId": "en:lesson-09:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i13",
+    "correctText": "Please don't rub the suede.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i14",
+    "correctText": "Are you rubbing the copper?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i15",
+    "correctText": "I often clean my desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i16",
+    "correctText": "en:lesson-09:session-36:i16:p1=brass\nen:lesson-09:session-36:i16:p2=copper\nen:lesson-09:session-36:i16:p3=rag\nen:lesson-09:session-36:i16:p4=suede",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-36:i17",
+    "correctText": "The rag is dry.",
+    "correctResponseId": null
+  }
+]

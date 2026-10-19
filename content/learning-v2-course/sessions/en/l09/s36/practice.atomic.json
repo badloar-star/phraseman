@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-36:word:brass",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:brass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:brass:audio",
+            "transcript": "brass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:brass:r1",
+              "targetText": "brass",
+              "meaningByLocale": {
+                "ru": "«латунь». This is brass. — «Это латунь». Название материала.",
+                "uk": "«латунь». This is brass. — «Це латунь». Назва матеріалу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brass",
+            "definitionByLocale": {
+              "ru": "«латунь». This is brass. — «Это латунь». Название материала.",
+              "uk": "«латунь». This is brass. — «Це латунь». Назва матеріалу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i01:r1",
+            "text": "This is brass."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i01:r2",
+            "text": "This is not brass."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i01:r3",
+            "text": "The brass is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i01:audio",
+            "transcript": "This is brass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i01:r1",
+              "targetText": "This is brass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r2",
+              "targetText": "This is not brass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r3",
+              "targetText": "The brass is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is brass.",
+                "uk": "У записі звучить This is brass."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is brass.",
+                "uk": "У записі звучить This is brass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На табличке указан материал детали: латунь. Назовите его",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На табличке указан материал детали: латунь. Назовите его",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is brass.",
+          "localizedMeaning": {
+            "ru": "На табличке указан материал детали: латунь. Назовите его",
+            "uk": "На табличці вказано матеріал деталі: латунь. Назвіть його"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "brass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку в названии материала",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку в названии материала",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку в названии материала",
+            "uk": "Виберіть зв’язку в назві матеріалу"
+          },
+          "gappedTargetPhrase": "This ___ brass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку в названии материала",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку в названии материала",
+              "feedbackByLocale": {
+                "ru": "С this используем is.",
+                "uk": "З this використовуємо is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку в названии материала",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-36:i04:p1",
+              "target": "brass",
+              "meaningByLocale": {
+                "ru": "латунь",
+                "uk": "латунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p2",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p3",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p4",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brass",
+            "rub",
+            "clean",
+            "small"
+          ],
+          "rightColumn": [
+            "латунь",
+            "тереть",
+            "чистый",
+            "маленький"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i05:audio",
+            "transcript": "The brass is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The brass is clean.",
+          "orderedTokens": [
+            "The",
+            "brass",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:copper",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — copper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:copper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — copper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:copper:audio",
+            "transcript": "copper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:copper:r1",
+              "targetText": "copper",
+              "meaningByLocale": {
+                "ru": "«медь». I am rubbing the copper. — «Я тру медь». Здесь речь о медном образце.",
+                "uk": "«мідь». I am rubbing the copper. — «Я тру мідь». Тут ідеться про мідний зразок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "copper",
+            "definitionByLocale": {
+              "ru": "«медь». I am rubbing the copper. — «Я тру медь». Здесь речь о медном образце.",
+              "uk": "«мідь». I am rubbing the copper. — «Я тру мідь». Тут ідеться про мідний зразок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы трёте медный образец. Сообщите, что делаете",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы трёте медный образец. Сообщите, что делаете",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am rubbing the copper.",
+          "localizedMeaning": {
+            "ru": "Вы трёте медный образец. Сообщите, что делаете",
+            "uk": "Ви трете мідний зразок. Повідомте, що робите"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "rubbing",
+            "the",
+            "copper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильное написание формы rub",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i07:r1",
+            "text": "rubbing"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i07:r2",
+            "text": "rubing"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i07:r3",
+            "text": "rub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильное написание формы rub",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rub",
+            "uk": "Виберіть правильне написання форми rub"
+          },
+          "gappedTargetPhrase": "I am ___ the copper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i07:r1",
+              "text": "rubbing"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r2",
+              "text": "rubing"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r3",
+              "text": "rub"
+            }
+          ],
+          "testedDimension": "Выберите правильное написание формы rub",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i07:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rub",
+              "feedbackByLocale": {
+                "ru": "В rubbing удваивается b.",
+                "uk": "У rubbing подвоюється b."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rub",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма rubbing.",
+                "uk": "Після am для дії зараз потрібна форма rubbing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i08:r1",
+            "text": "I am not rubbing the copper."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i08:r2",
+            "text": "I am rubbing the copper."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i08:r3",
+            "text": "The copper is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i08:audio",
+            "transcript": "I am not rubbing the copper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i08:r1",
+              "targetText": "I am not rubbing the copper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r2",
+              "targetText": "I am rubbing the copper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r3",
+              "targetText": "The copper is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not rubbing the copper.",
+                "uk": "У записі звучить I am not rubbing the copper."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not rubbing the copper.",
+                "uk": "У записі звучить I am not rubbing the copper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:rag",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:rag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:rag:audio",
+            "transcript": "rag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:rag:r1",
+              "targetText": "rag",
+              "meaningByLocale": {
+                "ru": "«ветошь, тряпка для вытирания». The rag is dry. — «Тряпка сухая». Обычно старый кусок ткани; не обязательно грязный.",
+                "uk": "«ганчірка для витирання». The rag is dry. — «Ганчірка суха». Зазвичай старий шматок тканини; не обов’язково брудний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rag",
+            "definitionByLocale": {
+              "ru": "«ветошь, тряпка для вытирания». The rag is dry. — «Тряпка сухая». Обычно старый кусок ткани; не обязательно грязный.",
+              "uk": "«ганчірка для витирання». The rag is dry. — «Ганчірка суха». Зазвичай старий шматок тканини; не обов’язково брудний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега выбирает сухую тряпку. Сообщите: «Тряпка сухая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега выбирает сухую тряпку. Сообщите: «Тряпка сухая»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The rag is dry.",
+          "localizedMeaning": {
+            "ru": "Коллега выбирает сухую тряпку. Сообщите: «Тряпка сухая»",
+            "uk": "Колега обирає суху ганчірку. Повідомте: «Ганчірка суха»"
+          },
+          "orderedTokens": [
+            "The",
+            "rag",
+            "is",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i10:r1",
+            "text": "The rag is wet."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i10:r2",
+            "text": "The rag is dry."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i10:r3",
+            "text": "The rag is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i10:audio",
+            "transcript": "The rag is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i10:r1",
+              "targetText": "The rag is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r2",
+              "targetText": "The rag is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r3",
+              "targetText": "The rag is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rag is wet.",
+                "uk": "У записі звучить The rag is wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rag is wet.",
+                "uk": "У записі звучить The rag is wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для одного медного образца",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i11:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i11:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для одного медного образца",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного медного образца",
+            "uk": "Виберіть форму для одного мідного зразка"
+          },
+          "gappedTargetPhrase": "The copper ___ clean.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i11:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для одного медного образца",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного медного образца",
+              "feedbackByLocale": {
+                "ru": "Copper здесь название материала: is.",
+                "uk": "Copper тут назва матеріалу: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для одного медного образца",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:suede",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — suede",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:suede:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — suede",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:suede:audio",
+            "transcript": "suede"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:suede:r1",
+              "targetText": "suede",
+              "meaningByLocale": {
+                "ru": "«замша». Please don’t rub the suede. — «Пожалуйста, не три замшу». Материал с мягкой ворсистой поверхностью.",
+                "uk": "«замша». Please don’t rub the suede. — «Будь ласка, не три замшу». Матеріал із м’якою ворсистою поверхнею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suede",
+            "definitionByLocale": {
+              "ru": "«замша». Please don’t rub the suede. — «Пожалуйста, не три замшу». Материал с мягкой ворсистой поверхностью.",
+              "uk": "«замша». Please don’t rub the suede. — «Будь ласка, не три замшу». Матеріал із м’якою ворсистою поверхнею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i12:r1",
+            "text": "Please don't rub the suede."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i12:r2",
+            "text": "Please rub the suede."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i12:r3",
+            "text": "Please don't touch the suede."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i12:audio",
+            "transcript": "Please don't rub the suede."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i12:r1",
+              "targetText": "Please don't rub the suede.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r2",
+              "targetText": "Please rub the suede.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r3",
+              "targetText": "Please don't touch the suede.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't rub the suede.",
+                "uk": "У записі звучить Please don't rub the suede."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't rub the suede.",
+                "uk": "У записі звучить Please don't rub the suede."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Мастер попросил пока не тереть образец замши. Повторите просьбу помощнику; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Мастер попросил пока не тереть образец замши. Повторите просьбу помощнику; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i13:audio",
+            "transcript": "Please don't rub the suede."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't rub the suede.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i14:audio",
+            "transcript": "Are you rubbing the copper?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you rubbing the copper?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "rubbing",
+            "the",
+            "copper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Это привычка: «Я часто убираю свой стол»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это привычка: «Я часто убираю свой стол»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often clean my desk.",
+          "localizedMeaning": {
+            "ru": "Это привычка: «Я часто убираю свой стол»",
+            "uk": "Це звичка: «Я часто прибираю свій стіл»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "clean",
+            "my",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-36:i16:p1",
+              "target": "brass",
+              "meaningByLocale": {
+                "ru": "латунь",
+                "uk": "латунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p2",
+              "target": "copper",
+              "meaningByLocale": {
+                "ru": "медь",
+                "uk": "мідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p3",
+              "target": "rag",
+              "meaningByLocale": {
+                "ru": "ветошь",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p4",
+              "target": "suede",
+              "meaningByLocale": {
+                "ru": "замша",
+                "uk": "замша"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brass",
+            "copper",
+            "rag",
+            "suede"
+          ],
+          "rightColumn": [
+            "латунь",
+            "медь",
+            "ветошь",
+            "замша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "При переезде мастерской помощник ищет сухую тряпку, чтобы обернуть деталь перед укладкой в коробку. Вы проверили кусок ткани перед собой: он сухой. Сообщите: «Тряпка сухая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "При переезде мастерской помощник ищет сухую тряпку, чтобы обернуть деталь перед укладкой в коробку. Вы проверили кусок ткани перед собой: он сухой. Сообщите: «Тряпка сухая»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i17:audio",
+            "transcript": "The rag is dry."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rag is dry.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-36:word:brass",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:brass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:brass:audio",
+            "transcript": "brass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:brass:r1",
+              "targetText": "brass",
+              "meaningByLocale": {
+                "ru": "«латунь». This is brass. — «Это латунь». Название материала.",
+                "uk": "«латунь». This is brass. — «Це латунь». Назва матеріалу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brass",
+            "definitionByLocale": {
+              "ru": "«латунь». This is brass. — «Это латунь». Название материала.",
+              "uk": "«латунь». This is brass. — «Це латунь». Назва матеріалу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i01:r1",
+            "text": "This is brass."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i01:r2",
+            "text": "This is not brass."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i01:r3",
+            "text": "The brass is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i01:audio",
+            "transcript": "This is brass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i01:r1",
+              "targetText": "This is brass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r2",
+              "targetText": "This is not brass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r3",
+              "targetText": "The brass is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is brass.",
+                "uk": "У записі звучить This is brass."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is brass.",
+                "uk": "У записі звучить This is brass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На табличці вказано матеріал деталі: латунь. Назвіть його",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На табличці вказано матеріал деталі: латунь. Назвіть його",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is brass.",
+          "localizedMeaning": {
+            "ru": "На табличке указан материал детали: латунь. Назовите его",
+            "uk": "На табличці вказано матеріал деталі: латунь. Назвіть його"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "brass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку в назві матеріалу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку в назві матеріалу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку в названии материала",
+            "uk": "Виберіть зв’язку в назві матеріалу"
+          },
+          "gappedTargetPhrase": "This ___ brass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку в назві матеріалу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку в назві матеріалу",
+              "feedbackByLocale": {
+                "ru": "С this используем is.",
+                "uk": "З this використовуємо is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку в назві матеріалу",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-36:i04:p1",
+              "target": "brass",
+              "meaningByLocale": {
+                "ru": "латунь",
+                "uk": "латунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p2",
+              "target": "rub",
+              "meaningByLocale": {
+                "ru": "тереть",
+                "uk": "терти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p3",
+              "target": "clean",
+              "meaningByLocale": {
+                "ru": "чистый",
+                "uk": "чистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i04:p4",
+              "target": "small",
+              "meaningByLocale": {
+                "ru": "маленький",
+                "uk": "маленький"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brass",
+            "rub",
+            "clean",
+            "small"
+          ],
+          "rightColumn": [
+            "латунь",
+            "терти",
+            "чистий",
+            "маленький"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i05:audio",
+            "transcript": "The brass is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The brass is clean.",
+          "orderedTokens": [
+            "The",
+            "brass",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:copper",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — copper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:copper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — copper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:copper:audio",
+            "transcript": "copper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:copper:r1",
+              "targetText": "copper",
+              "meaningByLocale": {
+                "ru": "«медь». I am rubbing the copper. — «Я тру медь». Здесь речь о медном образце.",
+                "uk": "«мідь». I am rubbing the copper. — «Я тру мідь». Тут ідеться про мідний зразок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "copper",
+            "definitionByLocale": {
+              "ru": "«медь». I am rubbing the copper. — «Я тру медь». Здесь речь о медном образце.",
+              "uk": "«мідь». I am rubbing the copper. — «Я тру мідь». Тут ідеться про мідний зразок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви трете мідний зразок. Повідомте, що робите",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви трете мідний зразок. Повідомте, що робите",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am rubbing the copper.",
+          "localizedMeaning": {
+            "ru": "Вы трёте медный образец. Сообщите, что делаете",
+            "uk": "Ви трете мідний зразок. Повідомте, що робите"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "rubbing",
+            "the",
+            "copper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильне написання форми rub",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i07:r1",
+            "text": "rubbing"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i07:r2",
+            "text": "rubing"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i07:r3",
+            "text": "rub"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильне написання форми rub",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rub",
+            "uk": "Виберіть правильне написання форми rub"
+          },
+          "gappedTargetPhrase": "I am ___ the copper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i07:r1",
+              "text": "rubbing"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r2",
+              "text": "rubing"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r3",
+              "text": "rub"
+            }
+          ],
+          "testedDimension": "Виберіть правильне написання форми rub",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i07:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rub",
+              "feedbackByLocale": {
+                "ru": "В rubbing удваивается b.",
+                "uk": "У rubbing подвоюється b."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i07:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rub",
+              "feedbackByLocale": {
+                "ru": "После am для действия сейчас нужна форма rubbing.",
+                "uk": "Після am для дії зараз потрібна форма rubbing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i08:r1",
+            "text": "I am not rubbing the copper."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i08:r2",
+            "text": "I am rubbing the copper."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i08:r3",
+            "text": "The copper is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i08:audio",
+            "transcript": "I am not rubbing the copper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i08:r1",
+              "targetText": "I am not rubbing the copper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r2",
+              "targetText": "I am rubbing the copper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r3",
+              "targetText": "The copper is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not rubbing the copper.",
+                "uk": "У записі звучить I am not rubbing the copper."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am not rubbing the copper.",
+                "uk": "У записі звучить I am not rubbing the copper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:rag",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:rag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:rag:audio",
+            "transcript": "rag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:rag:r1",
+              "targetText": "rag",
+              "meaningByLocale": {
+                "ru": "«ветошь, тряпка для вытирания». The rag is dry. — «Тряпка сухая». Обычно старый кусок ткани; не обязательно грязный.",
+                "uk": "«ганчірка для витирання». The rag is dry. — «Ганчірка суха». Зазвичай старий шматок тканини; не обов’язково брудний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rag",
+            "definitionByLocale": {
+              "ru": "«ветошь, тряпка для вытирания». The rag is dry. — «Тряпка сухая». Обычно старый кусок ткани; не обязательно грязный.",
+              "uk": "«ганчірка для витирання». The rag is dry. — «Ганчірка суха». Зазвичай старий шматок тканини; не обов’язково брудний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега обирає суху ганчірку. Повідомте: «Ганчірка суха»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега обирає суху ганчірку. Повідомте: «Ганчірка суха»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The rag is dry.",
+          "localizedMeaning": {
+            "ru": "Коллега выбирает сухую тряпку. Сообщите: «Тряпка сухая»",
+            "uk": "Колега обирає суху ганчірку. Повідомте: «Ганчірка суха»"
+          },
+          "orderedTokens": [
+            "The",
+            "rag",
+            "is",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i10:r1",
+            "text": "The rag is wet."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i10:r2",
+            "text": "The rag is dry."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i10:r3",
+            "text": "The rag is clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i10:audio",
+            "transcript": "The rag is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i10:r1",
+              "targetText": "The rag is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r2",
+              "targetText": "The rag is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r3",
+              "targetText": "The rag is clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rag is wet.",
+                "uk": "У записі звучить The rag is wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rag is wet.",
+                "uk": "У записі звучить The rag is wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для одного мідного зразка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i11:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i11:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для одного мідного зразка",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для одного медного образца",
+            "uk": "Виберіть форму для одного мідного зразка"
+          },
+          "gappedTargetPhrase": "The copper ___ clean.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-36:i11:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для одного мідного зразка",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного мідного зразка",
+              "feedbackByLocale": {
+                "ru": "Copper здесь название материала: is.",
+                "uk": "Copper тут назва матеріалу: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для одного мідного зразка",
+              "feedbackByLocale": {
+                "ru": "Am употребляем с I.",
+                "uk": "Am уживаємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:word:suede",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — suede",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:word:suede:audio"
+        ],
+        "accessibilityLabel": "Картка слова — suede",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:word:suede:audio",
+            "transcript": "suede"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:word:suede:r1",
+              "targetText": "suede",
+              "meaningByLocale": {
+                "ru": "«замша». Please don’t rub the suede. — «Пожалуйста, не три замшу». Материал с мягкой ворсистой поверхностью.",
+                "uk": "«замша». Please don’t rub the suede. — «Будь ласка, не три замшу». Матеріал із м’якою ворсистою поверхнею."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "suede",
+            "definitionByLocale": {
+              "ru": "«замша». Please don’t rub the suede. — «Пожалуйста, не три замшу». Материал с мягкой ворсистой поверхностью.",
+              "uk": "«замша». Please don’t rub the suede. — «Будь ласка, не три замшу». Матеріал із м’якою ворсистою поверхнею."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-36:i12:r1",
+            "text": "Please don't rub the suede."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i12:r2",
+            "text": "Please rub the suede."
+          },
+          {
+            "responseId": "en:lesson-09:session-36:i12:r3",
+            "text": "Please don't touch the suede."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i12:audio",
+            "transcript": "Please don't rub the suede."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-36:i12:r1",
+              "targetText": "Please don't rub the suede.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r2",
+              "targetText": "Please rub the suede.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r3",
+              "targetText": "Please don't touch the suede.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't rub the suede.",
+                "uk": "У записі звучить Please don't rub the suede."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't rub the suede.",
+                "uk": "У записі звучить Please don't rub the suede."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Майстер попросив поки не терти зразок замші. Повторіть прохання помічникові; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i13:audio"
+        ],
+        "accessibilityLabel": "Майстер попросив поки не терти зразок замші. Повторіть прохання помічникові; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i13:audio",
+            "transcript": "Please don't rub the suede."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't rub the suede.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i14:audio",
+            "transcript": "Are you rubbing the copper?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you rubbing the copper?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "rubbing",
+            "the",
+            "copper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Це звичка: «Я часто прибираю свій стіл»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це звичка: «Я часто прибираю свій стіл»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I often clean my desk.",
+          "localizedMeaning": {
+            "ru": "Это привычка: «Я часто убираю свой стол»",
+            "uk": "Це звичка: «Я часто прибираю свій стіл»"
+          },
+          "orderedTokens": [
+            "I",
+            "often",
+            "clean",
+            "my",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-36:i16:p1",
+              "target": "brass",
+              "meaningByLocale": {
+                "ru": "латунь",
+                "uk": "латунь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p2",
+              "target": "copper",
+              "meaningByLocale": {
+                "ru": "медь",
+                "uk": "мідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p3",
+              "target": "rag",
+              "meaningByLocale": {
+                "ru": "ветошь",
+                "uk": "ганчірка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-36:i16:p4",
+              "target": "suede",
+              "meaningByLocale": {
+                "ru": "замша",
+                "uk": "замша"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brass",
+            "copper",
+            "rag",
+            "suede"
+          ],
+          "rightColumn": [
+            "латунь",
+            "мідь",
+            "ганчірка",
+            "замша"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-36:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Під час переїзду майстерні помічник шукає суху ганчірку, щоб обгорнути деталь перед укладанням у коробку. Ви перевірили шматок тканини перед собою: він сухий. Повідомте: «Ганчірка суха»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Під час переїзду майстерні помічник шукає суху ганчірку, щоб обгорнути деталь перед укладанням у коробку. Ви перевірили шматок тканини перед собою: він сухий. Повідомте: «Ганчірка суха»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-36:i17:audio",
+            "transcript": "The rag is dry."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rag is dry.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-36:word:brass",
+      "correctText": "brass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i01",
+      "correctText": "This is brass.",
+      "correctResponseId": "en:lesson-09:session-36:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i02",
+      "correctText": "This is brass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i05",
+      "correctText": "The brass is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:word:copper",
+      "correctText": "copper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i06",
+      "correctText": "I am rubbing the copper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i07",
+      "correctText": "rubbing",
+      "correctResponseId": "en:lesson-09:session-36:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i08",
+      "correctText": "I am not rubbing the copper.",
+      "correctResponseId": "en:lesson-09:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:word:rag",
+      "correctText": "rag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i09",
+      "correctText": "The rag is dry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i10",
+      "correctText": "The rag is wet.",
+      "correctResponseId": "en:lesson-09:session-36:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i11",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:word:suede",
+      "correctText": "suede",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i12",
+      "correctText": "Please don't rub the suede.",
+      "correctResponseId": "en:lesson-09:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i13",
+      "correctText": "Please don't rub the suede.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i14",
+      "correctText": "Are you rubbing the copper?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i15",
+      "correctText": "I often clean my desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-36:i17",
+      "correctText": "The rag is dry.",
+      "correctResponseId": null
+    }
+  ]
+}

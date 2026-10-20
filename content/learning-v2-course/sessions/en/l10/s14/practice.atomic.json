@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-14:word:cockpit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cockpit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:cockpit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cockpit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:cockpit:audio",
+            "transcript": "cockpit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:cockpit:r1",
+              "targetText": "cockpit",
+              "meaningByLocale": {
+                "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
+                "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cockpit",
+            "definitionByLocale": {
+              "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
+              "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is in the cockpit.",
+          "localizedMeaning": {
+            "ru": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+            "uk": "Колега шукає вашу знайому-пілота. Скажіть: «Вона в кабіні пілотів»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "in",
+            "the",
+            "cockpit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i02:r1",
+            "text": "She usually works at a large airport."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i02:r2",
+            "text": "He usually works at a large airport."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i02:r3",
+            "text": "She usually works at a small airport."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i02:audio",
+            "transcript": "She usually works at a large airport."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i02:r1",
+              "targetText": "She usually works at a large airport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r2",
+              "targetText": "He usually works at a large airport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r3",
+              "targetText": "She usually works at a small airport.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works at a large airport.",
+                "uk": "У записі звучить She usually works at a large airport."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works at a large airport.",
+                "uk": "У записі звучить She usually works at a large airport."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму work для обычной работы с she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму work для обычной работы с she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с she",
+            "uk": "Виберіть форму work для звичайної роботи з she"
+          },
+          "gappedTargetPhrase": "She usually ___ at a large airport.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Выберите форму work для обычной работы с she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с she",
+              "feedbackByLocale": {
+                "ru": "С she нужна works.",
+                "uk": "З she потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму work для обычной работы с she",
+              "feedbackByLocale": {
+                "ru": "Для обычной работы здесь нужна works.",
+                "uk": "Для звичайної роботи тут потрібна works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:runway",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — runway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:runway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — runway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:runway:audio",
+            "transcript": "runway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:runway:r1",
+              "targetText": "runway",
+              "meaningByLocale": {
+                "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
+                "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "runway",
+            "definitionByLocale": {
+              "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
+              "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The runway is long.",
+          "localizedMeaning": {
+            "ru": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+            "uk": "Друг розглядає аеропорт на фотографії й запитує про довжину смуги. Скажіть: «Злітно-посадкова смуга довга»"
+          },
+          "orderedTokens": [
+            "The",
+            "runway",
+            "is",
+            "long"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i05:r1",
+            "text": "The runway is wet."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i05:r2",
+            "text": "The runway is dry."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i05:r3",
+            "text": "The road is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i05:audio",
+            "transcript": "The runway is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i05:r1",
+              "targetText": "The runway is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r2",
+              "targetText": "The runway is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r3",
+              "targetText": "The road is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The runway is wet.",
+                "uk": "У записі звучить The runway is wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The runway is wet.",
+                "uk": "У записі звучить The runway is wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одной полосы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одной полосы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одной полосы",
+            "uk": "Виберіть зв’язку для однієї смуги"
+          },
+          "gappedTargetPhrase": "The runway ___ long.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одной полосы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одной полосы",
+              "feedbackByLocale": {
+                "ru": "Одна полоса: is.",
+                "uk": "Одна смуга: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одной полосы",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:hangar",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hangar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:hangar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hangar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:hangar:audio",
+            "transcript": "hangar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:hangar:r1",
+              "targetText": "hangar",
+              "meaningByLocale": {
+                "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
+                "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hangar",
+            "definitionByLocale": {
+              "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
+              "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The plane is in the hangar.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+            "uk": "Колега запитує, де літак. Скажіть: «Літак в ангарі»"
+          },
+          "orderedTokens": [
+            "The",
+            "plane",
+            "is",
+            "in",
+            "the",
+            "hangar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i08:r1",
+            "text": "The hangar is near the runway."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i08:r2",
+            "text": "The hangar is near the road."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i08:r3",
+            "text": "The hotel is near the runway."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i08:audio",
+            "transcript": "The hangar is near the runway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i08:r1",
+              "targetText": "The hangar is near the runway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r2",
+              "targetText": "The hangar is near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r3",
+              "targetText": "The hotel is near the runway.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hangar is near the runway.",
+                "uk": "У записі звучить The hangar is near the runway."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hangar is near the runway.",
+                "uk": "У записі звучить The hangar is near the runway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму sit после is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i09:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i09:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i09:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму sit после is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit после is",
+            "uk": "Виберіть форму sit після is"
+          },
+          "gappedTargetPhrase": "She is ___ in the cockpit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i09:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Выберите форму sit после is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму sit после is",
+              "feedbackByLocale": {
+                "ru": "Sit удваивает t: sitting.",
+                "uk": "Sit подвоює t: sitting."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму sit после is",
+              "feedbackByLocale": {
+                "ru": "После is нужна sitting.",
+                "uk": "Після is потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:fuselage",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fuselage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:fuselage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fuselage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:fuselage:audio",
+            "transcript": "fuselage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:fuselage:r1",
+              "targetText": "fuselage",
+              "meaningByLocale": {
+                "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
+                "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fuselage",
+            "definitionByLocale": {
+              "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
+              "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fuselage is white.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+            "uk": "Друг запитує про колір корпусу літака на фотографії. Скажіть: «Фюзеляж білий»"
+          },
+          "orderedTokens": [
+            "The",
+            "fuselage",
+            "is",
+            "white"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i11:r1",
+            "text": "The fuselage is blue."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i11:r2",
+            "text": "The fuselage is red."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i11:r3",
+            "text": "The wing is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i11:audio",
+            "transcript": "The fuselage is blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i11:r1",
+              "targetText": "The fuselage is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r2",
+              "targetText": "The fuselage is red.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r3",
+              "targetText": "The wing is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fuselage is blue.",
+                "uk": "У записі звучить The fuselage is blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fuselage is blue.",
+                "uk": "У записі звучить The fuselage is blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку перед working с she для временной работы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку перед working с she для временной работы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку перед working с she для временной работы",
+            "uk": "Виберіть зв’язку перед working з she для тимчасової роботи"
+          },
+          "gappedTargetPhrase": "She ___ working here this month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку перед working с she для временной работы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку перед working с she для временной работы",
+              "feedbackByLocale": {
+                "ru": "С she нужна is.",
+                "uk": "З she потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку перед working с she для временной работы",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-14:i13:p1",
+              "target": "cockpit",
+              "meaningByLocale": {
+                "ru": "кабина пилотов",
+                "uk": "кабіна пілотів"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p2",
+              "target": "runway",
+              "meaningByLocale": {
+                "ru": "взлётно-посадочная полоса",
+                "uk": "злітно-посадкова смуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p3",
+              "target": "hangar",
+              "meaningByLocale": {
+                "ru": "ангар",
+                "uk": "ангар"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p4",
+              "target": "fuselage",
+              "meaningByLocale": {
+                "ru": "фюзеляж",
+                "uk": "фюзеляж"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cockpit",
+            "runway",
+            "hangar",
+            "fuselage"
+          ],
+          "rightColumn": [
+            "кабина пилотов",
+            "взлётно-посадочная полоса",
+            "ангар",
+            "фюзеляж"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i14:audio",
+            "transcript": "Is she working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she working here this month?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, в каком аэропорту ваша знакомая обычно работает. Скажите: «Обычно она работает в большом аэропорту»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, в каком аэропорту ваша знакомая обычно работает. Скажите: «Обычно она работает в большом аэропорту»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i15:audio",
+            "transcript": "She usually works at a large airport."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually works at a large airport.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is working here this month.",
+          "localizedMeaning": {
+            "ru": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+            "uk": "Пілот тимчасово працює у вашому місті. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваша знакомая обычно работает в большом аэропорту другого города. Она временно приехала работать в ваш аэропорт на месяц. Коллега спрашивает, почему она здесь. Объясните: «В этом месяце она работает здесь»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Ваша знакомая обычно работает в большом аэропорту другого города. Она временно приехала работать в ваш аэропорт на месяц. Коллега спрашивает, почему она здесь. Объясните: «В этом месяце она работает здесь»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i17:audio",
+            "transcript": "She is working here this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is working here this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-14:word:cockpit",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cockpit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:cockpit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cockpit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:cockpit:audio",
+            "transcript": "cockpit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:cockpit:r1",
+              "targetText": "cockpit",
+              "meaningByLocale": {
+                "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
+                "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cockpit",
+            "definitionByLocale": {
+              "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
+              "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега шукає вашу знайому-пілота. Скажіть: «Вона в кабіні пілотів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега шукає вашу знайому-пілота. Скажіть: «Вона в кабіні пілотів»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is in the cockpit.",
+          "localizedMeaning": {
+            "ru": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+            "uk": "Колега шукає вашу знайому-пілота. Скажіть: «Вона в кабіні пілотів»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "in",
+            "the",
+            "cockpit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i02:r1",
+            "text": "She usually works at a large airport."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i02:r2",
+            "text": "He usually works at a large airport."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i02:r3",
+            "text": "She usually works at a small airport."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i02:audio",
+            "transcript": "She usually works at a large airport."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i02:r1",
+              "targetText": "She usually works at a large airport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r2",
+              "targetText": "He usually works at a large airport.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r3",
+              "targetText": "She usually works at a small airport.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works at a large airport.",
+                "uk": "У записі звучить She usually works at a large airport."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She usually works at a large airport.",
+                "uk": "У записі звучить She usually works at a large airport."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму work для звичайної роботи з she",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i03:r1",
+            "text": "works"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i03:r2",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i03:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму work для звичайної роботи з she",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму work для обычной работы с she",
+            "uk": "Виберіть форму work для звичайної роботи з she"
+          },
+          "gappedTargetPhrase": "She usually ___ at a large airport.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i03:r1",
+              "text": "works"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r2",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Виберіть форму work для звичайної роботи з she",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "feedbackByLocale": {
+                "ru": "С she нужна works.",
+                "uk": "З she потрібна works."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму work для звичайної роботи з she",
+              "feedbackByLocale": {
+                "ru": "Для обычной работы здесь нужна works.",
+                "uk": "Для звичайної роботи тут потрібна works."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:runway",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — runway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:runway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — runway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:runway:audio",
+            "transcript": "runway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:runway:r1",
+              "targetText": "runway",
+              "meaningByLocale": {
+                "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
+                "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "runway",
+            "definitionByLocale": {
+              "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
+              "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг розглядає аеропорт на фотографії й запитує про довжину смуги. Скажіть: «Злітно-посадкова смуга довга»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг розглядає аеропорт на фотографії й запитує про довжину смуги. Скажіть: «Злітно-посадкова смуга довга»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The runway is long.",
+          "localizedMeaning": {
+            "ru": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+            "uk": "Друг розглядає аеропорт на фотографії й запитує про довжину смуги. Скажіть: «Злітно-посадкова смуга довга»"
+          },
+          "orderedTokens": [
+            "The",
+            "runway",
+            "is",
+            "long"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i05:r1",
+            "text": "The runway is wet."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i05:r2",
+            "text": "The runway is dry."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i05:r3",
+            "text": "The road is wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i05:audio",
+            "transcript": "The runway is wet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i05:r1",
+              "targetText": "The runway is wet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r2",
+              "targetText": "The runway is dry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r3",
+              "targetText": "The road is wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The runway is wet.",
+                "uk": "У записі звучить The runway is wet."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The runway is wet.",
+                "uk": "У записі звучить The runway is wet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для однієї смуги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для однієї смуги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одной полосы",
+            "uk": "Виберіть зв’язку для однієї смуги"
+          },
+          "gappedTargetPhrase": "The runway ___ long.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для однієї смуги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для однієї смуги",
+              "feedbackByLocale": {
+                "ru": "Одна полоса: is.",
+                "uk": "Одна смуга: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для однієї смуги",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:hangar",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hangar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:hangar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hangar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:hangar:audio",
+            "transcript": "hangar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:hangar:r1",
+              "targetText": "hangar",
+              "meaningByLocale": {
+                "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
+                "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hangar",
+            "definitionByLocale": {
+              "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
+              "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, де літак. Скажіть: «Літак в ангарі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега запитує, де літак. Скажіть: «Літак в ангарі»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The plane is in the hangar.",
+          "localizedMeaning": {
+            "ru": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+            "uk": "Колега запитує, де літак. Скажіть: «Літак в ангарі»"
+          },
+          "orderedTokens": [
+            "The",
+            "plane",
+            "is",
+            "in",
+            "the",
+            "hangar"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i08:r1",
+            "text": "The hangar is near the runway."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i08:r2",
+            "text": "The hangar is near the road."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i08:r3",
+            "text": "The hotel is near the runway."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i08:audio",
+            "transcript": "The hangar is near the runway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i08:r1",
+              "targetText": "The hangar is near the runway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r2",
+              "targetText": "The hangar is near the road.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r3",
+              "targetText": "The hotel is near the runway.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hangar is near the runway.",
+                "uk": "У записі звучить The hangar is near the runway."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hangar is near the runway.",
+                "uk": "У записі звучить The hangar is near the runway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму sit після is",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i09:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i09:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i09:r3",
+            "text": "sit"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму sit після is",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму sit после is",
+            "uk": "Виберіть форму sit після is"
+          },
+          "gappedTargetPhrase": "She is ___ in the cockpit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i09:r1",
+              "text": "sitting"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r2",
+              "text": "siting"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r3",
+              "text": "sit"
+            }
+          ],
+          "testedDimension": "Виберіть форму sit після is",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit після is",
+              "feedbackByLocale": {
+                "ru": "Sit удваивает t: sitting.",
+                "uk": "Sit подвоює t: sitting."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму sit після is",
+              "feedbackByLocale": {
+                "ru": "После is нужна sitting.",
+                "uk": "Після is потрібна sitting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:word:fuselage",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fuselage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:word:fuselage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fuselage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:word:fuselage:audio",
+            "transcript": "fuselage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:word:fuselage:r1",
+              "targetText": "fuselage",
+              "meaningByLocale": {
+                "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
+                "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fuselage",
+            "definitionByLocale": {
+              "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
+              "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує про колір корпусу літака на фотографії. Скажіть: «Фюзеляж білий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує про колір корпусу літака на фотографії. Скажіть: «Фюзеляж білий»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fuselage is white.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+            "uk": "Друг запитує про колір корпусу літака на фотографії. Скажіть: «Фюзеляж білий»"
+          },
+          "orderedTokens": [
+            "The",
+            "fuselage",
+            "is",
+            "white"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i11:r1",
+            "text": "The fuselage is blue."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i11:r2",
+            "text": "The fuselage is red."
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i11:r3",
+            "text": "The wing is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i11:audio",
+            "transcript": "The fuselage is blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-14:i11:r1",
+              "targetText": "The fuselage is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r2",
+              "targetText": "The fuselage is red.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r3",
+              "targetText": "The wing is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fuselage is blue.",
+                "uk": "У записі звучить The fuselage is blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fuselage is blue.",
+                "uk": "У записі звучить The fuselage is blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку перед working з she для тимчасової роботи",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-14:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-14:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку перед working з she для тимчасової роботи",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку перед working с she для временной работы",
+            "uk": "Виберіть зв’язку перед working з she для тимчасової роботи"
+          },
+          "gappedTargetPhrase": "She ___ working here this month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-14:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+              "feedbackByLocale": {
+                "ru": "С she нужна is.",
+                "uk": "З she потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку перед working з she для тимчасової роботи",
+              "feedbackByLocale": {
+                "ru": "Am употребляется с I.",
+                "uk": "Am уживається з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-14:i13:p1",
+              "target": "cockpit",
+              "meaningByLocale": {
+                "ru": "кабина пилотов",
+                "uk": "кабіна пілотів"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p2",
+              "target": "runway",
+              "meaningByLocale": {
+                "ru": "взлётно-посадочная полоса",
+                "uk": "злітно-посадкова смуга"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p3",
+              "target": "hangar",
+              "meaningByLocale": {
+                "ru": "ангар",
+                "uk": "ангар"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-14:i13:p4",
+              "target": "fuselage",
+              "meaningByLocale": {
+                "ru": "фюзеляж",
+                "uk": "фюзеляж"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cockpit",
+            "runway",
+            "hangar",
+            "fuselage"
+          ],
+          "rightColumn": [
+            "кабіна пілотів",
+            "злітно-посадкова смуга",
+            "ангар",
+            "фюзеляж"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання; this month поставте наприкінці",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i14:audio",
+            "transcript": "Is she working here this month?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she working here this month?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, у якому аеропорту ваша знайома зазвичай працює. Скажіть: «Зазвичай вона працює у великому аеропорту»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, у якому аеропорту ваша знайома зазвичай працює. Скажіть: «Зазвичай вона працює у великому аеропорту»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i15:audio",
+            "transcript": "She usually works at a large airport."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She usually works at a large airport.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пілот тимчасово працює у вашому місті. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пілот тимчасово працює у вашому місті. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is working here this month.",
+          "localizedMeaning": {
+            "ru": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
+            "uk": "Пілот тимчасово працює у вашому місті. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "working",
+            "here",
+            "this",
+            "month"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-14:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваша знайома зазвичай працює у великому аеропорту іншого міста. Вона тимчасово приїхала працювати у ваш аеропорт на місяць. Колега запитує, чому вона тут. Поясніть: «Цього місяця вона працює тут»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Ваша знайома зазвичай працює у великому аеропорту іншого міста. Вона тимчасово приїхала працювати у ваш аеропорт на місяць. Колега запитує, чому вона тут. Поясніть: «Цього місяця вона працює тут»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-14:i17:audio",
+            "transcript": "She is working here this month."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is working here this month.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-14:word:cockpit",
+      "correctText": "cockpit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i01",
+      "correctText": "She is in the cockpit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i02",
+      "correctText": "She usually works at a large airport.",
+      "correctResponseId": "en:lesson-10:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i03",
+      "correctText": "works",
+      "correctResponseId": "en:lesson-10:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:word:runway",
+      "correctText": "runway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i04",
+      "correctText": "The runway is long.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i05",
+      "correctText": "The runway is wet.",
+      "correctResponseId": "en:lesson-10:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:word:hangar",
+      "correctText": "hangar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i07",
+      "correctText": "The plane is in the hangar.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i08",
+      "correctText": "The hangar is near the runway.",
+      "correctResponseId": "en:lesson-10:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i09",
+      "correctText": "sitting",
+      "correctResponseId": "en:lesson-10:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:word:fuselage",
+      "correctText": "fuselage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i10",
+      "correctText": "The fuselage is white.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i11",
+      "correctText": "The fuselage is blue.",
+      "correctResponseId": "en:lesson-10:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i12",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i14",
+      "correctText": "Is she working here this month?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i15",
+      "correctText": "She usually works at a large airport.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i16",
+      "correctText": "She is working here this month.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i17",
+      "correctText": "She is working here this month.",
+      "correctResponseId": null
+    }
+  ]
+}

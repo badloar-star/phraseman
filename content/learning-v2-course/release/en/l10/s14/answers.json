@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-14:word:cockpit",
+    "correctText": "cockpit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i01",
+    "correctText": "She is in the cockpit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i02",
+    "correctText": "She usually works at a large airport.",
+    "correctResponseId": "en:lesson-10:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i03",
+    "correctText": "works",
+    "correctResponseId": "en:lesson-10:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:word:runway",
+    "correctText": "runway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i04",
+    "correctText": "The runway is long.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i05",
+    "correctText": "The runway is wet.",
+    "correctResponseId": "en:lesson-10:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:word:hangar",
+    "correctText": "hangar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i07",
+    "correctText": "The plane is in the hangar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i08",
+    "correctText": "The hangar is near the runway.",
+    "correctResponseId": "en:lesson-10:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i09",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:word:fuselage",
+    "correctText": "fuselage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i10",
+    "correctText": "The fuselage is white.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i11",
+    "correctText": "The fuselage is blue.",
+    "correctResponseId": "en:lesson-10:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i13",
+    "correctText": "en:lesson-10:session-14:i13:p1=cockpit\nen:lesson-10:session-14:i13:p2=runway\nen:lesson-10:session-14:i13:p3=hangar\nen:lesson-10:session-14:i13:p4=fuselage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i14",
+    "correctText": "Is she working here this month?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i15",
+    "correctText": "She usually works at a large airport.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i16",
+    "correctText": "She is working here this month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-14:i17",
+    "correctText": "She is working here this month.",
+    "correctResponseId": null
+  }
+]

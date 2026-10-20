@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "We attend a workshop every month; I am completing the worksheet; I understand the tutorial",
+    "uk": "We attend a workshop every month; I am completing the worksheet; I understand the tutorial"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учимся на практике",
+        "uk": "Навчаємося на практиці"
+      },
+      "bodyByLocale": {
+        "ru": "Workshop здесь — «практический семинар»: занятие, на котором участники пробуют что-то делать сами. Ваша команда посещает его ежемесячно: We attend a workshop every month — «Мы посещаем практический семинар каждый месяц». Для регулярного действия используем Present Simple.",
+        "uk": "Workshop тут — «практичний семінар»: заняття, на якому учасники пробують щось робити самі. Ваша команда відвідує його щомісяця: We attend a workshop every month — «Ми відвідуємо практичний семінар щомісяця». Для регулярної дії використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r1",
+              "text": "We attend a workshop every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r2",
+              "text": "We attends a workshop every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r3",
+              "text": "We attending a workshop every month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r1",
+              "text": "We attend a workshop every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r2",
+              "text": "We attends a workshop every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro1:r3",
+              "text": "We attending a workshop every month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работаем с листом заданий",
+        "uk": "Працюємо з аркушем завдань"
+      },
+      "bodyByLocale": {
+        "ru": "Worksheet — «лист с заданиями». Вы сейчас заполняете ответы на таком листе: I am completing the worksheet — «Я выполняю задания на листе». Это действие сейчас: am + completing. У complete перед ing убираем конечную e.",
+        "uk": "Worksheet — «аркуш із завданнями». Ви зараз заповнюєте відповіді на такому аркуші: I am completing the worksheet — «Я виконую завдання на аркуші». Це дія зараз: am + completing. У complete перед ing прибираємо кінцеву e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r1",
+              "text": "I am completing the worksheet."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r2",
+              "text": "I completing the worksheet."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r3",
+              "text": "I am completeing the worksheet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r1",
+              "text": "I am completing the worksheet."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r2",
+              "text": "I completing the worksheet."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro2:r3",
+              "text": "I am completeing the worksheet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понятная инструкция",
+        "uk": "Зрозуміла інструкція"
+      },
+      "bodyByLocale": {
+        "ru": "Tutorial здесь — «пошаговое руководство»: учебный материал, который объясняет, как выполнить задачу. Вы поняли объяснение: I understand the tutorial — «Я понимаю пошаговое руководство». Understand выражает понимание, поэтому здесь используем Present Simple.",
+        "uk": "Tutorial тут — «покроковий посібник»: навчальний матеріал, який пояснює, як виконати завдання. Ви зрозуміли пояснення: I understand the tutorial — «Я розумію покроковий посібник». Understand виражає розуміння, тому тут використовуємо Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r1",
+              "text": "I understand the tutorial."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r2",
+              "text": "I understands the tutorial."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r3",
+              "text": "I am understand the tutorial."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r1",
+              "text": "I understand the tutorial."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r2",
+              "text": "I understands the tutorial."
+            },
+            {
+              "responseId": "en:lesson-10:session-42:intro3:r3",
+              "text": "I am understand the tutorial."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d549cc2391d79c595a7581ecb25435d5d43236bc8a76626279487259e2afb4c8"
+}

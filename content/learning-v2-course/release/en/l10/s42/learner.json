@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-42:word:workshop",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — workshop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:word:workshop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — workshop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:word:workshop:audio",
+          "transcript": "workshop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:word:workshop:r1",
+            "targetText": "workshop",
+            "meaningByLocale": {
+              "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
+              "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workshop",
+          "definitionByLocale": {
+            "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
+            "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We attend a workshop every month.",
+        "localizedMeaning": {
+          "ru": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
+          "uk": "Команда навчається на практичних заняттях щомісяця. Скажіть: «Ми відвідуємо практичний семінар щомісяця». Поставте every month у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "attend",
+          "a",
+          "workshop",
+          "every",
+          "month"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i02:r1",
+          "text": "The workshop is on Friday."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i02:r2",
+          "text": "The workshop is on Monday."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i02:r3",
+          "text": "The conference is on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i02:audio",
+          "transcript": "The workshop is on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:i02:r1",
+            "targetText": "The workshop is on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i02:r2",
+            "targetText": "The workshop is on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i02:r3",
+            "targetText": "The conference is on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The workshop is on Friday.",
+              "uk": "У записі звучить The workshop is on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The workshop is on Friday.",
+              "uk": "У записі звучить The workshop is on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы участвуете регулярно. Выберите форму attend",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i03:r1",
+          "text": "attend"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i03:r2",
+          "text": "attends"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i03:r3",
+          "text": "attending"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы участвуете регулярно. Выберите форму attend",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы участвуете регулярно. Выберите форму attend",
+          "uk": "Ви берете участь регулярно. Виберіть форму attend"
+        },
+        "gappedTargetPhrase": "We ___ a workshop every month.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-42:i03:r1",
+            "text": "attend"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i03:r2",
+            "text": "attends"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i03:r3",
+            "text": "attending"
+          }
+        ],
+        "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+            "feedbackByLocale": {
+              "ru": "С we нужна attend без s.",
+              "uk": "З we потрібна attend без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+            "feedbackByLocale": {
+              "ru": "Для регулярного действия нужна attend.",
+              "uk": "Для регулярної дії потрібна attend."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:word:worksheet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worksheet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:word:worksheet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — worksheet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:word:worksheet:audio",
+          "transcript": "worksheet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:word:worksheet:r1",
+            "targetText": "worksheet",
+            "meaningByLocale": {
+              "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
+              "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worksheet",
+          "definitionByLocale": {
+            "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
+            "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am completing the worksheet.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
+          "uk": "Ви зараз записуєте відповіді на виданому аркуші. Скажіть: «Я виконую завдання на аркуші»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "completing",
+          "the",
+          "worksheet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i05:r1",
+          "text": "The worksheet has six questions."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i05:r2",
+          "text": "The worksheet has seven questions."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i05:r3",
+          "text": "The report has six questions."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i05:audio",
+          "transcript": "The worksheet has six questions."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:i05:r1",
+            "targetText": "The worksheet has six questions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i05:r2",
+            "targetText": "The worksheet has seven questions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i05:r3",
+            "targetText": "The report has six questions.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The worksheet has six questions.",
+              "uk": "У записі звучить The worksheet has six questions."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The worksheet has six questions.",
+              "uk": "У записі звучить The worksheet has six questions."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы complete",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i06:r1",
+          "text": "completing"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i06:r2",
+          "text": "completeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i06:r3",
+          "text": "complete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы complete",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы complete",
+          "uk": "Виберіть правильне написання форми complete"
+        },
+        "gappedTargetPhrase": "I am ___ the worksheet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-42:i06:r1",
+            "text": "completing"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i06:r2",
+            "text": "completeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i06:r3",
+            "text": "complete"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы complete",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы complete",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: completing.",
+              "uk": "Перед ing прибираємо e: completing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы complete",
+            "feedbackByLocale": {
+              "ru": "После am для действия сейчас нужна completing.",
+              "uk": "Після am для дії зараз потрібна completing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:word:tutorial",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tutorial",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:word:tutorial:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tutorial",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:word:tutorial:audio",
+          "transcript": "tutorial"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:word:tutorial:r1",
+            "targetText": "tutorial",
+            "meaningByLocale": {
+              "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
+              "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tutorial",
+          "definitionByLocale": {
+            "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
+            "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand the tutorial.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
+          "uk": "Колега запитує, чи зрозумілий вам навчальний матеріал із поясненням кроків. Скажіть: «Я розумію покроковий посібник»"
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "the",
+          "tutorial"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i08:r1",
+          "text": "The tutorial is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i08:r2",
+          "text": "The tutorial is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i08:r3",
+          "text": "The worksheet is on the website."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i08:audio",
+          "transcript": "The tutorial is on the website."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:i08:r1",
+            "targetText": "The tutorial is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i08:r2",
+            "targetText": "The tutorial is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i08:r3",
+            "targetText": "The worksheet is on the website.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tutorial is on the website.",
+              "uk": "У записі звучить The tutorial is on the website."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The tutorial is on the website.",
+              "uk": "У записі звучить The tutorial is on the website."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму understand с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i09:r1",
+          "text": "understand"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i09:r2",
+          "text": "understands"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i09:r3",
+          "text": "am understand"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму understand с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму understand с I",
+          "uk": "Виберіть форму understand з I"
+        },
+        "gappedTargetPhrase": "I ___ the tutorial.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-42:i09:r1",
+            "text": "understand"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i09:r2",
+            "text": "understands"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i09:r3",
+            "text": "am understand"
+          }
+        ],
+        "testedDimension": "Выберите форму understand с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму understand с I",
+            "feedbackByLocale": {
+              "ru": "С I нужна understand без s.",
+              "uk": "З I потрібна understand без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму understand с I",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна understand без am.",
+              "uk": "Тут потрібна understand без am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:word:workbook",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — workbook",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:word:workbook:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — workbook",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:word:workbook:audio",
+          "transcript": "workbook"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:word:workbook:r1",
+            "targetText": "workbook",
+            "meaningByLocale": {
+              "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
+              "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workbook",
+          "definitionByLocale": {
+            "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
+            "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My workbook is open.",
+        "localizedMeaning": {
+          "ru": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
+          "uk": "Ви розгорнули зошит із вправами й готові працювати. Скажіть: «Мій робочий зошит відкритий»"
+        },
+        "orderedTokens": [
+          "My",
+          "workbook",
+          "is",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i11:r1",
+          "text": "The workbook is beside the laptop."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i11:r2",
+          "text": "The workbook is under the laptop."
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i11:r3",
+          "text": "The notebook is beside the laptop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i11:audio",
+          "transcript": "The workbook is beside the laptop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-42:i11:r1",
+            "targetText": "The workbook is beside the laptop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i11:r2",
+            "targetText": "The workbook is under the laptop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i11:r3",
+            "targetText": "The notebook is beside the laptop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The workbook is beside the laptop.",
+              "uk": "У записі звучить The workbook is beside the laptop."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The workbook is beside the laptop.",
+              "uk": "У записі звучить The workbook is beside the laptop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одной тетради. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-42:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-42:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одной тетради. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одной тетради. Выберите связку",
+          "uk": "Ідеться про один зошит. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "My workbook ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-42:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одной тетради. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь об одной тетради. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Одна тетрадь: is.",
+              "uk": "Один зошит: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь об одной тетради. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-42:i13:p1",
+            "target": "workshop",
+            "meaningByLocale": {
+              "ru": "практический семинар",
+              "uk": "практичний семінар"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-42:i13:p2",
+            "target": "worksheet",
+            "meaningByLocale": {
+              "ru": "лист с заданиями",
+              "uk": "аркуш із завданнями"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-42:i13:p3",
+            "target": "tutorial",
+            "meaningByLocale": {
+              "ru": "пошаговое руководство",
+              "uk": "покроковий посібник"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-42:i13:p4",
+            "target": "workbook",
+            "meaningByLocale": {
+              "ru": "рабочая тетрадь",
+              "uk": "робочий зошит"
+            }
+          }
+        ],
+        "leftColumn": [
+          "workshop",
+          "worksheet",
+          "tutorial",
+          "workbook"
+        ],
+        "rightColumn": [
+          "практический семинар",
+          "лист с заданиями",
+          "пошаговое руководство",
+          "рабочая тетрадь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i14:audio",
+          "transcript": "I am completing the worksheet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am completing the worksheet.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "completing",
+          "the",
+          "worksheet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как часто команда проходит практическое обучение. Скажите: «Мы посещаем практический семинар каждый месяц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как часто команда проходит практическое обучение. Скажите: «Мы посещаем практический семинар каждый месяц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i15:audio",
+          "transcript": "We attend a workshop every month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We attend a workshop every month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand the tutorial.",
+        "localizedMeaning": {
+          "ru": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
+          "uk": "Колега уточнює, чи зрозуміле покрокове пояснення. Скажіть: «Я розумію покроковий посібник»"
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "the",
+          "tutorial"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-42:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы записываете ответы на листе, который выдал преподаватель. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я выполняю задания на листе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Вы записываете ответы на листе, который выдал преподаватель. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я выполняю задания на листе»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-42:i17:audio",
+          "transcript": "I am completing the worksheet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am completing the worksheet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1fb56dbe2fde7a188f61232ce10da9b948a5c0bc0dd71bea6699071c7cfaecd3"
+}

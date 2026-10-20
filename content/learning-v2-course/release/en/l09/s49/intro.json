@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "She is murmuring to the baby; This is a onesie; Please don’t move the cradle",
+    "uk": "She is murmuring to the baby; This is a onesie; Please don’t move the cradle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слова почти не слышны",
+        "uk": "Слова майже не чутно"
+      },
+      "bodyByLocale": {
+        "ru": "Гости разговаривают в соседней комнате. Сестра держит малыша и говорит ему что-то очень тихим голосом. Брат спрашивает, поёт ли она. She is murmuring to the baby — «Она тихо говорит малышу». Murmur — произносить слова негромким мягким голосом; это не обязательно петь или говорить неразборчиво. Сейчас она говорит: is murmuring.",
+        "uk": "Гості розмовляють у сусідній кімнаті. Сестра тримає малюка й каже йому щось дуже тихим голосом. Брат запитує, чи вона співає. She is murmuring to the baby — «Вона тихо говорить малюкові». Murmur — вимовляти слова негучним м’яким голосом; це не обов’язково співати чи говорити нерозбірливо. Зараз вона говорить: is murmuring."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r1",
+              "text": "She is murmuring to the baby."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r2",
+              "text": "She murmuring to the baby."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r3",
+              "text": "She is murmur to the baby."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r1",
+              "text": "She is murmuring to the baby."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r2",
+              "text": "She murmuring to the baby."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro1:r3",
+              "text": "She is murmur to the baby."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подарок из одного предмета",
+        "uk": "Подарунок з одного предмета"
+      },
+      "bodyByLocale": {
+        "ru": "Вы раскрываете подарок: это одежда для малыша, в которой верх и низ соединены, а снизу есть застёжки. Друг принимает её за маленькую футболку. This is a onesie — «Это детское боди». Onesie здесь — цельная одежда для малыша, а не отдельная футболка. Слово начинается со звука /w/, поэтому говорим a onesie, хотя первая буква o.",
+        "uk": "Ви розгортаєте подарунок: це одяг для малюка, у якому верх і низ з’єднані, а внизу є застібки. Друг приймає його за маленьку футболку. This is a onesie — «Це дитяче боді». Onesie тут — суцільний одяг для малюка, а не окрема футболка. Слово починається зі звука /w/, тому кажемо a onesie, хоча перша літера o."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r1",
+              "text": "This is a onesie."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r2",
+              "text": "This is an onesie."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r3",
+              "text": "This are a onesie."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r1",
+              "text": "This is a onesie."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r2",
+              "text": "This is an onesie."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro2:r3",
+              "text": "This are a onesie."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не переставлять колыбель",
+        "uk": "Не переставляти колиску"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете гостям небольшую колыбель на полозьях — a cradle. Малыш сейчас на руках у сестры. Гость хочет передвинуть колыбель ради общего фото, но вы просите оставить её на месте. Please don’t move the cradle — «Пожалуйста, не двигай колыбель». После don’t используем move без окончания.",
+        "uk": "Ви показуєте гостям невелику колиску на полозах — a cradle. Малюк зараз на руках у сестри. Гість хоче пересунути колиску заради спільного фото, але ви просите залишити її на місці. Please don’t move the cradle — «Будь ласка, не рухай колиску». Після don’t використовуємо move без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r1",
+              "text": "Please don't move the cradle."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r2",
+              "text": "Please don't moving the cradle."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r3",
+              "text": "Please not move the cradle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r1",
+              "text": "Please don't move the cradle."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r2",
+              "text": "Please don't moving the cradle."
+            },
+            {
+              "responseId": "en:lesson-09:session-49:intro3:r3",
+              "text": "Please not move the cradle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0da6d48f5b642a29c206095ca455d7d39596b1a4456a39dd93253d60f8dd1ef"
+}

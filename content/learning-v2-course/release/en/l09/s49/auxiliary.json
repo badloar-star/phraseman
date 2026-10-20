@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-49:intro1:r2": {
+          "ru": "Для действия сейчас с she нужна форма is.",
+          "uk": "Для дії зараз із she потрібна форма is."
+        },
+        "en:lesson-09:session-49:intro1:r3": {
+          "ru": "После is нужна форма murmuring.",
+          "uk": "Після is потрібна форма murmuring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-49:intro2:r2": {
+          "ru": "Первый звук /w/, поэтому a, не an.",
+          "uk": "Перший звук /w/, тому a, не an."
+        },
+        "en:lesson-09:session-49:intro2:r3": {
+          "ru": "С this для одного предмета нужна форма is.",
+          "uk": "З this для одного предмета потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-49:intro3:r2": {
+          "ru": "После don’t нужна базовая форма move.",
+          "uk": "Після don’t потрібна базова форма move."
+        },
+        "en:lesson-09:session-49:intro3:r3": {
+          "ru": "Для просьбы не делать что-то нужен don’t.",
+          "uk": "Для прохання не робити щось потрібне don’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6778de273c7ff96c8201289d9e0fd2e7083336d9284ec8acebc13b478aa5036b"
+}

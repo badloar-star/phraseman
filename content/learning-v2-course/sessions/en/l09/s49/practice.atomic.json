@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-49:word:murmur",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:murmur:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — murmur",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:murmur:audio",
+            "transcript": "murmur"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:murmur:r1",
+              "targetText": "murmur",
+              "meaningByLocale": {
+                "ru": "«тихо говорить». I murmur to the baby. — «Я тихо говорю малышу». Произносить слова негромким мягким голосом; murmur → murmuring.",
+                "uk": "«тихо говорити». I murmur to the baby. — «Я тихо говорю малюкові». Вимовляти слова негучним м’яким голосом; murmur → murmuring."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "murmur",
+            "definitionByLocale": {
+              "ru": "«тихо говорить». I murmur to the baby. — «Я тихо говорю малышу». Произносить слова негромким мягким голосом; murmur → murmuring.",
+              "uk": "«тихо говорити». I murmur to the baby. — «Я тихо говорю малюкові». Вимовляти слова негучним м’яким голосом; murmur → murmuring."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат спрашивает, как вы обычно разговариваете с малышом. Скажите, что тихо говорите ему; используйте murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат спрашивает, как вы обычно разговариваете с малышом. Скажите, что тихо говорите ему; используйте murmur",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I murmur to the baby.",
+          "localizedMeaning": {
+            "ru": "Брат спрашивает, как вы обычно разговариваете с малышом. Скажите, что тихо говорите ему; используйте murmur",
+            "uk": "Брат запитує, як ви зазвичай розмовляєте з малюком. Скажіть, що тихо говорите йому; використайте murmur"
+          },
+          "orderedTokens": [
+            "I",
+            "murmur",
+            "to",
+            "the",
+            "baby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i02:r1",
+            "text": "She is murmuring to the baby."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i02:r2",
+            "text": "She is singing to the baby."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i02:r3",
+            "text": "She is not murmuring to the baby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i02:audio",
+            "transcript": "She is murmuring to the baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i02:r1",
+              "targetText": "She is murmuring to the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r2",
+              "targetText": "She is singing to the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r3",
+              "targetText": "She is not murmuring to the baby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is murmuring to the baby.",
+                "uk": "У записі звучить She is murmuring to the baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is murmuring to the baby.",
+                "uk": "У записі звучить She is murmuring to the baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму murmur для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i03:r1",
+            "text": "murmuring"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i03:r2",
+            "text": "murmur"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i03:r3",
+            "text": "murmurs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму murmur для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму murmur для действия сейчас",
+            "uk": "Виберіть форму murmur для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ to the baby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i03:r1",
+              "text": "murmuring"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r2",
+              "text": "murmur"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r3",
+              "text": "murmurs"
+            }
+          ],
+          "testedDimension": "Выберите форму murmur для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму murmur для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма murmuring.",
+                "uk": "Після is потрібна форма murmuring."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму murmur для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is murmuring, не murmurs.",
+                "uk": "Тут використовуємо is murmuring, не murmurs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:pacifier",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pacifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:pacifier:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pacifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:pacifier:audio",
+            "transcript": "pacifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:pacifier:r1",
+              "targetText": "pacifier",
+              "meaningByLocale": {
+                "ru": "«соска-пустышка». The pacifier is in the bag. — «Пустышка в сумке». Здесь предмет для сосания без бутылочки; американское слово pacifier.",
+                "uk": "«соска-пустушка». The pacifier is in the bag. — «Пустушка в сумці». Тут предмет для смоктання без пляшечки; американське слово pacifier."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pacifier",
+            "definitionByLocale": {
+              "ru": "«соска-пустышка». The pacifier is in the bag. — «Пустышка в сумке». Здесь предмет для сосания без бутылочки; американское слово pacifier.",
+              "uk": "«соска-пустушка». The pacifier is in the bag. — «Пустушка в сумці». Тут предмет для смоктання без пляшечки; американське слово pacifier."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра ищет пустышку. Скажите, что она в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра ищет пустышку. Скажите, что она в сумке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The pacifier is in the bag.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет пустышку. Скажите, что она в сумке",
+            "uk": "Сестра шукає пустушку. Скажіть, що вона в сумці"
+          },
+          "orderedTokens": [
+            "The",
+            "pacifier",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i05:r1",
+            "text": "The pacifier is blue."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i05:r2",
+            "text": "The pacifier is green."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i05:r3",
+            "text": "The bag is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i05:audio",
+            "transcript": "The pacifier is blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i05:r1",
+              "targetText": "The pacifier is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r2",
+              "targetText": "The pacifier is green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r3",
+              "targetText": "The bag is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pacifier is blue.",
+                "uk": "У записі звучить The pacifier is blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pacifier is blue.",
+                "uk": "У записі звучить The pacifier is blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку для одной пустышки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку для одной пустышки",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одной пустышки",
+            "uk": "Виберіть зв’язку для однієї пустушки"
+          },
+          "gappedTargetPhrase": "The pacifier ___ in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку для одной пустышки",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку для одной пустышки",
+              "feedbackByLocale": {
+                "ru": "Одна пустышка: is.",
+                "uk": "Одна пустушка: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку для одной пустышки",
+              "feedbackByLocale": {
+                "ru": "Am используем с I.",
+                "uk": "Am використовуємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:onesie",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — onesie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:onesie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — onesie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:onesie:audio",
+            "transcript": "onesie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:onesie:r1",
+              "targetText": "onesie",
+              "meaningByLocale": {
+                "ru": "«детское боди». This is a onesie. — «Это детское боди». Цельный предмет одежды для малыша с застёжками снизу; a перед звуком /w/.",
+                "uk": "«дитяче боді». This is a onesie. — «Це дитяче боді». Суцільний предмет одягу для малюка із застібками внизу; a перед звуком /w/."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "onesie",
+            "definitionByLocale": {
+              "ru": "«детское боди». This is a onesie. — «Это детское боди». Цельный предмет одежды для малыша с застёжками снизу; a перед звуком /w/.",
+              "uk": "«дитяче боді». This is a onesie. — «Це дитяче боді». Суцільний предмет одягу для малюка із застібками внизу; a перед звуком /w/."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг принимает подарок за футболку. Назовите предмет: «Это детское боди»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг принимает подарок за футболку. Назовите предмет: «Это детское боди»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a onesie.",
+          "localizedMeaning": {
+            "ru": "Друг принимает подарок за футболку. Назовите предмет: «Это детское боди»",
+            "uk": "Друг приймає подарунок за футболку. Назвіть предмет: «Це дитяче боді»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "onesie"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i08:r1",
+            "text": "The onesie is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i08:r2",
+            "text": "The onesie is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i08:r3",
+            "text": "The pacifier is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i08:audio",
+            "transcript": "The onesie is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i08:r1",
+              "targetText": "The onesie is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r2",
+              "targetText": "The onesie is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r3",
+              "targetText": "The pacifier is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The onesie is small.",
+                "uk": "У записі звучить The onesie is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The onesie is small.",
+                "uk": "У записі звучить The onesie is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль по первому звуку onesie",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль по первому звуку onesie",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль по первому звуку onesie",
+            "uk": "Виберіть артикль за першим звуком onesie"
+          },
+          "gappedTargetPhrase": "This is ___ onesie.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i09:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите артикль по первому звуку onesie",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль по первому звуку onesie",
+              "feedbackByLocale": {
+                "ru": "Первый звук /w/ согласный: a onesie.",
+                "uk": "Перший звук /w/ приголосний: a onesie."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль по первому звуку onesie",
+              "feedbackByLocale": {
+                "ru": "Are не артикль, здесь нужен a.",
+                "uk": "Are не артикль, тут потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:cradle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cradle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:cradle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cradle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:cradle:audio",
+            "transcript": "cradle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:cradle:r1",
+              "targetText": "cradle",
+              "meaningByLocale": {
+                "ru": "«колыбель». The cradle is empty. — «Колыбель пустая». Небольшая кроватка для младенца, которую можно качать; здесь она на полозьях.",
+                "uk": "«колиска». The cradle is empty. — «Колиска порожня». Невелике ліжечко для немовляти, яке можна гойдати; тут воно на полозах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cradle",
+            "definitionByLocale": {
+              "ru": "«колыбель». The cradle is empty. — «Колыбель пустая». Небольшая кроватка для младенца, которую можно качать; здесь она на полозьях.",
+              "uk": "«колиска». The cradle is empty. — «Колиска порожня». Невелике ліжечко для немовляти, яке можна гойдати; тут воно на полозах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гость заглядывает в колыбель, но малыш на руках у сестры. Скажите: «Колыбель пустая»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гость заглядывает в колыбель, но малыш на руках у сестры. Скажите: «Колыбель пустая»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cradle is empty.",
+          "localizedMeaning": {
+            "ru": "Гость заглядывает в колыбель, но малыш на руках у сестры. Скажите: «Колыбель пустая»",
+            "uk": "Гість заглядає в колиску, але малюк на руках у сестри. Скажіть: «Колиска порожня»"
+          },
+          "orderedTokens": [
+            "The",
+            "cradle",
+            "is",
+            "empty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i11:r1",
+            "text": "Please don't move the cradle."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i11:r2",
+            "text": "Please move the cradle."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i11:r3",
+            "text": "Please don't move the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i11:audio",
+            "transcript": "Please don't move the cradle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i11:r1",
+              "targetText": "Please don't move the cradle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r2",
+              "targetText": "Please move the cradle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r3",
+              "targetText": "Please don't move the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't move the cradle.",
+                "uk": "У записі звучить Please don't move the cradle."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't move the cradle.",
+                "uk": "У записі звучить Please don't move the cradle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гость хочет переставить колыбель ради фото. Попросите не двигать её; назовите колыбель и начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i12:audio"
+        ],
+        "accessibilityLabel": "Гость хочет переставить колыбель ради фото. Попросите не двигать её; назовите колыбель и начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i12:audio",
+            "transcript": "Please don't move the cradle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't move the cradle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-49:i13:p1",
+              "target": "murmur",
+              "meaningByLocale": {
+                "ru": "тихо говорить",
+                "uk": "тихо говорити"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p2",
+              "target": "pacifier",
+              "meaningByLocale": {
+                "ru": "соска-пустышка",
+                "uk": "соска-пустушка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p3",
+              "target": "onesie",
+              "meaningByLocale": {
+                "ru": "детское боди",
+                "uk": "дитяче боді"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p4",
+              "target": "cradle",
+              "meaningByLocale": {
+                "ru": "колыбель",
+                "uk": "колиска"
+              }
+            }
+          ],
+          "leftColumn": [
+            "murmur",
+            "pacifier",
+            "onesie",
+            "cradle"
+          ],
+          "rightColumn": [
+            "тихо говорить",
+            "соска-пустышка",
+            "детское боди",
+            "колыбель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о тихом голосе сестры сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о тихом голосе сестры сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i14:audio",
+            "transcript": "Is she murmuring to the baby?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she murmuring to the baby?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "murmuring",
+            "to",
+            "the",
+            "baby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после don’t в просьбе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i15:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i15:r2",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i15:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после don’t в просьбе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the cradle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i15:r1",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r2",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Выберите форму после don’t в просьбе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма move.",
+                "uk": "Після don’t потрібна форма move."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "В просьбе после don’t не добавляем -s.",
+                "uk": "У проханні після don’t не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат думает, что сестра напевает, но она тихо произносит слова. Скажите: «Она не поёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат думает, что сестра напевает, но она тихо произносит слова. Скажите: «Она не поёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is not singing.",
+          "localizedMeaning": {
+            "ru": "Брат думает, что сестра напевает, но она тихо произносит слова. Скажите: «Она не поёт»",
+            "uk": "Брат думає, що сестра наспівує, але вона тихо вимовляє слова. Скажіть: «Вона не співає»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "singing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра держит малыша и мягко говорит ему несколько слов. Из соседней комнаты папа спрашивает, что она делает. Объясните, что она сейчас тихо говорит малышу; используйте murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра держит малыша и мягко говорит ему несколько слов. Из соседней комнаты папа спрашивает, что она делает. Объясните, что она сейчас тихо говорит малышу; используйте murmur",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i17:audio",
+            "transcript": "She is murmuring to the baby."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is murmuring to the baby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-49:word:murmur",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:murmur:audio"
+        ],
+        "accessibilityLabel": "Картка слова — murmur",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:murmur:audio",
+            "transcript": "murmur"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:murmur:r1",
+              "targetText": "murmur",
+              "meaningByLocale": {
+                "ru": "«тихо говорить». I murmur to the baby. — «Я тихо говорю малышу». Произносить слова негромким мягким голосом; murmur → murmuring.",
+                "uk": "«тихо говорити». I murmur to the baby. — «Я тихо говорю малюкові». Вимовляти слова негучним м’яким голосом; murmur → murmuring."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "murmur",
+            "definitionByLocale": {
+              "ru": "«тихо говорить». I murmur to the baby. — «Я тихо говорю малышу». Произносить слова негромким мягким голосом; murmur → murmuring.",
+              "uk": "«тихо говорити». I murmur to the baby. — «Я тихо говорю малюкові». Вимовляти слова негучним м’яким голосом; murmur → murmuring."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат запитує, як ви зазвичай розмовляєте з малюком. Скажіть, що тихо говорите йому; використайте murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат запитує, як ви зазвичай розмовляєте з малюком. Скажіть, що тихо говорите йому; використайте murmur",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I murmur to the baby.",
+          "localizedMeaning": {
+            "ru": "Брат спрашивает, как вы обычно разговариваете с малышом. Скажите, что тихо говорите ему; используйте murmur",
+            "uk": "Брат запитує, як ви зазвичай розмовляєте з малюком. Скажіть, що тихо говорите йому; використайте murmur"
+          },
+          "orderedTokens": [
+            "I",
+            "murmur",
+            "to",
+            "the",
+            "baby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i02:r1",
+            "text": "She is murmuring to the baby."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i02:r2",
+            "text": "She is singing to the baby."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i02:r3",
+            "text": "She is not murmuring to the baby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i02:audio",
+            "transcript": "She is murmuring to the baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i02:r1",
+              "targetText": "She is murmuring to the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r2",
+              "targetText": "She is singing to the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r3",
+              "targetText": "She is not murmuring to the baby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is murmuring to the baby.",
+                "uk": "У записі звучить She is murmuring to the baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is murmuring to the baby.",
+                "uk": "У записі звучить She is murmuring to the baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму murmur для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i03:r1",
+            "text": "murmuring"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i03:r2",
+            "text": "murmur"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i03:r3",
+            "text": "murmurs"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму murmur для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму murmur для действия сейчас",
+            "uk": "Виберіть форму murmur для дії зараз"
+          },
+          "gappedTargetPhrase": "She is ___ to the baby.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i03:r1",
+              "text": "murmuring"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r2",
+              "text": "murmur"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r3",
+              "text": "murmurs"
+            }
+          ],
+          "testedDimension": "Виберіть форму murmur для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму murmur для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма murmuring.",
+                "uk": "Після is потрібна форма murmuring."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму murmur для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is murmuring, не murmurs.",
+                "uk": "Тут використовуємо is murmuring, не murmurs."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:pacifier",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pacifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:pacifier:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pacifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:pacifier:audio",
+            "transcript": "pacifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:pacifier:r1",
+              "targetText": "pacifier",
+              "meaningByLocale": {
+                "ru": "«соска-пустышка». The pacifier is in the bag. — «Пустышка в сумке». Здесь предмет для сосания без бутылочки; американское слово pacifier.",
+                "uk": "«соска-пустушка». The pacifier is in the bag. — «Пустушка в сумці». Тут предмет для смоктання без пляшечки; американське слово pacifier."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pacifier",
+            "definitionByLocale": {
+              "ru": "«соска-пустышка». The pacifier is in the bag. — «Пустышка в сумке». Здесь предмет для сосания без бутылочки; американское слово pacifier.",
+              "uk": "«соска-пустушка». The pacifier is in the bag. — «Пустушка в сумці». Тут предмет для смоктання без пляшечки; американське слово pacifier."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра шукає пустушку. Скажіть, що вона в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра шукає пустушку. Скажіть, що вона в сумці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The pacifier is in the bag.",
+          "localizedMeaning": {
+            "ru": "Сестра ищет пустышку. Скажите, что она в сумке",
+            "uk": "Сестра шукає пустушку. Скажіть, що вона в сумці"
+          },
+          "orderedTokens": [
+            "The",
+            "pacifier",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i05:r1",
+            "text": "The pacifier is blue."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i05:r2",
+            "text": "The pacifier is green."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i05:r3",
+            "text": "The bag is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i05:audio",
+            "transcript": "The pacifier is blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i05:r1",
+              "targetText": "The pacifier is blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r2",
+              "targetText": "The pacifier is green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r3",
+              "targetText": "The bag is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pacifier is blue.",
+                "uk": "У записі звучить The pacifier is blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The pacifier is blue.",
+                "uk": "У записі звучить The pacifier is blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку для однієї пустушки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку для однієї пустушки",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку для одной пустышки",
+            "uk": "Виберіть зв’язку для однієї пустушки"
+          },
+          "gappedTargetPhrase": "The pacifier ___ in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку для однієї пустушки",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для однієї пустушки",
+              "feedbackByLocale": {
+                "ru": "Одна пустышка: is.",
+                "uk": "Одна пустушка: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку для однієї пустушки",
+              "feedbackByLocale": {
+                "ru": "Am используем с I.",
+                "uk": "Am використовуємо з I."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:onesie",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — onesie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:onesie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — onesie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:onesie:audio",
+            "transcript": "onesie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:onesie:r1",
+              "targetText": "onesie",
+              "meaningByLocale": {
+                "ru": "«детское боди». This is a onesie. — «Это детское боди». Цельный предмет одежды для малыша с застёжками снизу; a перед звуком /w/.",
+                "uk": "«дитяче боді». This is a onesie. — «Це дитяче боді». Суцільний предмет одягу для малюка із застібками внизу; a перед звуком /w/."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "onesie",
+            "definitionByLocale": {
+              "ru": "«детское боди». This is a onesie. — «Это детское боди». Цельный предмет одежды для малыша с застёжками снизу; a перед звуком /w/.",
+              "uk": "«дитяче боді». This is a onesie. — «Це дитяче боді». Суцільний предмет одягу для малюка із застібками внизу; a перед звуком /w/."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг приймає подарунок за футболку. Назвіть предмет: «Це дитяче боді»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг приймає подарунок за футболку. Назвіть предмет: «Це дитяче боді»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a onesie.",
+          "localizedMeaning": {
+            "ru": "Друг принимает подарок за футболку. Назовите предмет: «Это детское боди»",
+            "uk": "Друг приймає подарунок за футболку. Назвіть предмет: «Це дитяче боді»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "onesie"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i08:r1",
+            "text": "The onesie is small."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i08:r2",
+            "text": "The onesie is large."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i08:r3",
+            "text": "The pacifier is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i08:audio",
+            "transcript": "The onesie is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i08:r1",
+              "targetText": "The onesie is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r2",
+              "targetText": "The onesie is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r3",
+              "targetText": "The pacifier is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The onesie is small.",
+                "uk": "У записі звучить The onesie is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The onesie is small.",
+                "uk": "У записі звучить The onesie is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль за першим звуком onesie",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль за першим звуком onesie",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль по первому звуку onesie",
+            "uk": "Виберіть артикль за першим звуком onesie"
+          },
+          "gappedTargetPhrase": "This is ___ onesie.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i09:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль за першим звуком onesie",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль за першим звуком onesie",
+              "feedbackByLocale": {
+                "ru": "Первый звук /w/ согласный: a onesie.",
+                "uk": "Перший звук /w/ приголосний: a onesie."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль за першим звуком onesie",
+              "feedbackByLocale": {
+                "ru": "Are не артикль, здесь нужен a.",
+                "uk": "Are не артикль, тут потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:word:cradle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cradle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:word:cradle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cradle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:word:cradle:audio",
+            "transcript": "cradle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:word:cradle:r1",
+              "targetText": "cradle",
+              "meaningByLocale": {
+                "ru": "«колыбель». The cradle is empty. — «Колыбель пустая». Небольшая кроватка для младенца, которую можно качать; здесь она на полозьях.",
+                "uk": "«колиска». The cradle is empty. — «Колиска порожня». Невелике ліжечко для немовляти, яке можна гойдати; тут воно на полозах."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cradle",
+            "definitionByLocale": {
+              "ru": "«колыбель». The cradle is empty. — «Колыбель пустая». Небольшая кроватка для младенца, которую можно качать; здесь она на полозьях.",
+              "uk": "«колиска». The cradle is empty. — «Колиска порожня». Невелике ліжечко для немовляти, яке можна гойдати; тут воно на полозах."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гість заглядає в колиску, але малюк на руках у сестри. Скажіть: «Колиска порожня»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гість заглядає в колиску, але малюк на руках у сестри. Скажіть: «Колиска порожня»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cradle is empty.",
+          "localizedMeaning": {
+            "ru": "Гость заглядывает в колыбель, но малыш на руках у сестры. Скажите: «Колыбель пустая»",
+            "uk": "Гість заглядає в колиску, але малюк на руках у сестри. Скажіть: «Колиска порожня»"
+          },
+          "orderedTokens": [
+            "The",
+            "cradle",
+            "is",
+            "empty"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i11:r1",
+            "text": "Please don't move the cradle."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i11:r2",
+            "text": "Please move the cradle."
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i11:r3",
+            "text": "Please don't move the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i11:audio",
+            "transcript": "Please don't move the cradle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-49:i11:r1",
+              "targetText": "Please don't move the cradle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r2",
+              "targetText": "Please move the cradle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r3",
+              "targetText": "Please don't move the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't move the cradle.",
+                "uk": "У записі звучить Please don't move the cradle."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't move the cradle.",
+                "uk": "У записі звучить Please don't move the cradle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Гість хоче переставити колиску заради фото. Попросіть не рухати її; назвіть колиску й почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i12:audio"
+        ],
+        "accessibilityLabel": "Гість хоче переставити колиску заради фото. Попросіть не рухати її; назвіть колиску й почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i12:audio",
+            "transcript": "Please don't move the cradle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't move the cradle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-49:i13:p1",
+              "target": "murmur",
+              "meaningByLocale": {
+                "ru": "тихо говорить",
+                "uk": "тихо говорити"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p2",
+              "target": "pacifier",
+              "meaningByLocale": {
+                "ru": "соска-пустышка",
+                "uk": "соска-пустушка"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p3",
+              "target": "onesie",
+              "meaningByLocale": {
+                "ru": "детское боди",
+                "uk": "дитяче боді"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-49:i13:p4",
+              "target": "cradle",
+              "meaningByLocale": {
+                "ru": "колыбель",
+                "uk": "колиска"
+              }
+            }
+          ],
+          "leftColumn": [
+            "murmur",
+            "pacifier",
+            "onesie",
+            "cradle"
+          ],
+          "rightColumn": [
+            "тихо говорити",
+            "соска-пустушка",
+            "дитяче боді",
+            "колиска"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про тихий голос сестри зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про тихий голос сестри зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i14:audio",
+            "transcript": "Is she murmuring to the baby?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is she murmuring to the baby?",
+          "orderedTokens": [
+            "Is",
+            "she",
+            "murmuring",
+            "to",
+            "the",
+            "baby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після don’t у проханні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-49:i15:r1",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i15:r2",
+            "text": "moving"
+          },
+          {
+            "responseId": "en:lesson-09:session-49:i15:r3",
+            "text": "moves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після don’t у проханні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ the cradle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-49:i15:r1",
+              "text": "move"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r2",
+              "text": "moving"
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r3",
+              "text": "moves"
+            }
+          ],
+          "testedDimension": "Виберіть форму після don’t у проханні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна форма move.",
+                "uk": "Після don’t потрібна форма move."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "В просьбе после don’t не добавляем -s.",
+                "uk": "У проханні після don’t не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Брат думає, що сестра наспівує, але вона тихо вимовляє слова. Скажіть: «Вона не співає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат думає, що сестра наспівує, але вона тихо вимовляє слова. Скажіть: «Вона не співає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is not singing.",
+          "localizedMeaning": {
+            "ru": "Брат думает, что сестра напевает, но она тихо произносит слова. Скажите: «Она не поёт»",
+            "uk": "Брат думає, що сестра наспівує, але вона тихо вимовляє слова. Скажіть: «Вона не співає»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "not",
+            "singing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сестра тримає малюка й м’яко каже йому кілька слів. Із сусідньої кімнати тато запитує, що вона робить. Поясніть, що вона зараз тихо говорить малюкові; використайте murmur",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Сестра тримає малюка й м’яко каже йому кілька слів. Із сусідньої кімнати тато запитує, що вона робить. Поясніть, що вона зараз тихо говорить малюкові; використайте murmur",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-49:i17:audio",
+            "transcript": "She is murmuring to the baby."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is murmuring to the baby.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-49:word:murmur",
+      "correctText": "murmur",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i01",
+      "correctText": "I murmur to the baby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i02",
+      "correctText": "She is murmuring to the baby.",
+      "correctResponseId": "en:lesson-09:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i03",
+      "correctText": "murmuring",
+      "correctResponseId": "en:lesson-09:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:word:pacifier",
+      "correctText": "pacifier",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i04",
+      "correctText": "The pacifier is in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i05",
+      "correctText": "The pacifier is blue.",
+      "correctResponseId": "en:lesson-09:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-09:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:word:onesie",
+      "correctText": "onesie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i07",
+      "correctText": "This is a onesie.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i08",
+      "correctText": "The onesie is small.",
+      "correctResponseId": "en:lesson-09:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i09",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-09:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:word:cradle",
+      "correctText": "cradle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i10",
+      "correctText": "The cradle is empty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i11",
+      "correctText": "Please don't move the cradle.",
+      "correctResponseId": "en:lesson-09:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i12",
+      "correctText": "Please don't move the cradle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i14",
+      "correctText": "Is she murmuring to the baby?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i15",
+      "correctText": "move",
+      "correctResponseId": "en:lesson-09:session-49:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i16",
+      "correctText": "She is not singing.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-49:i17",
+      "correctText": "She is murmuring to the baby.",
+      "correctResponseId": null
+    }
+  ]
+}

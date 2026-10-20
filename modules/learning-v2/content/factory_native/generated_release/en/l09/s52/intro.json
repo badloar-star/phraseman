@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "She is gazing at the sunset; The horizon is clear; Please don’t block the view",
+    "uk": "She is gazing at the sunset; The horizon is clear; Please don’t block the view"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не отводит глаз от неба",
+        "uk": "Не відводить очей від неба"
+      },
+      "bodyByLocale": {
+        "ru": "Сестра остановилась на набережной и спокойно любуется вечерним небом. Друг спрашивает, почему она не идёт дальше. She is gazing at the sunset — «Она долго смотрит на закат». Gaze — долго, внимательно смотреть, например задумавшись или любуясь. Это не короткий glance. В этой ситуации сестра любуется закатом, но само слово gaze не всегда означает восхищение. Перед тем, на что смотрят, нужен at.",
+        "uk": "Сестра зупинилася на набережній і спокійно милується вечірнім небом. Друг запитує, чому вона не йде далі. She is gazing at the sunset — «Вона довго дивиться на захід сонця». Gaze — довго, уважно дивитися, наприклад замислившись або милуючись. Це не короткий glance. У цій ситуації сестра милується заходом сонця, але саме слово gaze не завжди означає захоплення. Перед тим, на що дивляться, потрібне at."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r1",
+              "text": "She is gazing at the sunset."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r2",
+              "text": "She is gazing the sunset."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r3",
+              "text": "She is gaze at the sunset."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r1",
+              "text": "She is gazing at the sunset."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r2",
+              "text": "She is gazing the sunset."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro1:r3",
+              "text": "She is gaze at the sunset."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Линия вдали",
+        "uk": "Лінія вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "После тумана воздух стал прозрачнее. С набережной хорошо видна линия, где море словно встречается с небом. The horizon is clear — «Горизонт хорошо виден». Horizon — горизонт, видимая граница между небом и землёй или водой. Здесь clear значит, что её ничто не скрывает, а не что её кто-то почистил.",
+        "uk": "Після туману повітря стало прозорішим. Із набережної добре видно лінію, де море ніби зустрічається з небом. The horizon is clear — «Горизонт добре видно». Horizon — горизонт, видима межа між небом і землею або водою. Тут clear означає, що її ніщо не приховує, а не що її хтось почистив."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r1",
+              "text": "The horizon is clear."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r2",
+              "text": "The horizon are clear."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r3",
+              "text": "The horizon clear."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r1",
+              "text": "The horizon is clear."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r2",
+              "text": "The horizon are clear."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro2:r3",
+              "text": "The horizon clear."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Человек на фоне света",
+        "uk": "Людина на тлі світла"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете другу снимок с набережной. На фоне яркого неба человек получился тёмной фигурой без деталей лица и одежды. This is a silhouette — «Это силуэт». Silhouette — тёмный контур фигуры на более светлом фоне. Здесь это сам человек на снимке, а не тень, которую он отбрасывает на землю.",
+        "uk": "Ви показуєте другові знімок із набережної. На тлі яскравого неба людина вийшла темною фігурою без деталей обличчя й одягу. This is a silhouette — «Це силует». Silhouette — темний контур фігури на світлішому тлі. Тут це сама людина на знімку, а не тінь, яку вона відкидає на землю."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r1",
+              "text": "This is a silhouette."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r2",
+              "text": "This is an silhouette."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r3",
+              "text": "This are a silhouette."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r1",
+              "text": "This is a silhouette."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r2",
+              "text": "This is an silhouette."
+            },
+            {
+              "responseId": "en:lesson-09:session-52:intro3:r3",
+              "text": "This are a silhouette."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8069d6f1006c84e85e58b096808e6798aa90e43592a0856fcec472ee4104a7f8"
+}

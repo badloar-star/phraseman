@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-52:intro1:r2": {
+          "ru": "После gaze перед предметом взгляда нужен at.",
+          "uk": "Після gaze перед предметом погляду потрібне at."
+        },
+        "en:lesson-09:session-52:intro1:r3": {
+          "ru": "После is нужна форма gazing.",
+          "uk": "Після is потрібна форма gazing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-52:intro2:r2": {
+          "ru": "С horizon здесь нужна форма is.",
+          "uk": "З horizon тут потрібна форма is."
+        },
+        "en:lesson-09:session-52:intro2:r3": {
+          "ru": "В английской фразе нужна связка is.",
+          "uk": "В англійській фразі потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-52:intro3:r2": {
+          "ru": "Silhouette начинается с согласного звука, нужен a.",
+          "uk": "Silhouette починається з приголосного звука, потрібне a."
+        },
+        "en:lesson-09:session-52:intro3:r3": {
+          "ru": "С this для одной фигуры нужно is.",
+          "uk": "З this для однієї фігури потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "19a6b26baa01ce3720a934a10242b342af2a1b2efaa2fa78d4986ff1f51e24f0"
+}

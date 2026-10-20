@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-53:word:gesture",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gesture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:word:gesture:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gesture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:word:gesture:audio",
+          "transcript": "gesture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:word:gesture:r1",
+            "targetText": "gesture",
+            "meaningByLocale": {
+              "ru": "«показывать жестом». I gesture towards the door. — «Я жестом показываю в сторону двери». Делать жест для передачи мысли или направления; gesture → gesturing.",
+              "uk": "«показувати жестом». I gesture towards the door. — «Я жестом показую в бік дверей». Робити жест для передавання думки чи напрямку; gesture → gesturing."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gesture",
+          "definitionByLocale": {
+            "ru": "«показывать жестом». I gesture towards the door. — «Я жестом показываю в сторону двери». Делать жест для передачи мысли или направления; gesture → gesturing.",
+            "uk": "«показувати жестом». I gesture towards the door. — «Я жестом показую в бік дверей». Робити жест для передавання думки чи напрямку; gesture → gesturing."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, как вы обычно показываете выход в шумном зале. Скажите, что жестом показываете в сторону двери",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, как вы обычно показываете выход в шумном зале. Скажите, что жестом показываете в сторону двери",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I gesture towards the door.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, как вы обычно показываете выход в шумном зале. Скажите, что жестом показываете в сторону двери",
+          "uk": "Друг запитує, як ви зазвичай показуєте вихід у шумній залі. Скажіть, що жестом показуєте в бік дверей"
+        },
+        "orderedTokens": [
+          "I",
+          "gesture",
+          "towards",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i02:r1",
+          "text": "He is gesturing towards the door."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i02:r2",
+          "text": "He is gesturing towards the window."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i02:r3",
+          "text": "He is not gesturing towards the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i02:audio",
+          "transcript": "He is gesturing towards the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:i02:r1",
+            "targetText": "He is gesturing towards the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i02:r2",
+            "targetText": "He is gesturing towards the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i02:r3",
+            "targetText": "He is not gesturing towards the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is gesturing towards the door.",
+              "uk": "У записі звучить He is gesturing towards the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is gesturing towards the door.",
+              "uk": "У записі звучить He is gesturing towards the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите написание gesture с -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i03:r1",
+          "text": "gesturing"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i03:r2",
+          "text": "gestureing"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i03:r3",
+          "text": "gesture"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание gesture с -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание gesture с -ing",
+          "uk": "Виберіть написання gesture з -ing"
+        },
+        "gappedTargetPhrase": "He is ___ towards the door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-53:i03:r1",
+            "text": "gesturing"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i03:r2",
+            "text": "gestureing"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i03:r3",
+            "text": "gesture"
+          }
+        ],
+        "testedDimension": "Выберите написание gesture с -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите написание gesture с -ing",
+            "feedbackByLocale": {
+              "ru": "Перед -ing конечная e уходит: gesturing.",
+              "uk": "Перед -ing кінцева e зникає: gesturing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите написание gesture с -ing",
+            "feedbackByLocale": {
+              "ru": "После is нужна форма gesturing.",
+              "uk": "Після is потрібна форма gesturing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:word:auditorium",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — auditorium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:word:auditorium:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — auditorium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:word:auditorium:audio",
+          "transcript": "auditorium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:word:auditorium:r1",
+            "targetText": "auditorium",
+            "meaningByLocale": {
+              "ru": "«зрительный зал». We are in the auditorium. — «Мы в зрительном зале». Помещение с местами для зрителей или слушателей.",
+              "uk": "«глядацька зала». We are in the auditorium. — «Ми в глядацькій залі». Приміщення з місцями для глядачів або слухачів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "auditorium",
+          "definitionByLocale": {
+            "ru": "«зрительный зал». We are in the auditorium. — «Мы в зрительном зале». Помещение с местами для зрителей или слушателей.",
+            "uk": "«глядацька зала». We are in the auditorium. — «Ми в глядацькій залі». Приміщення з місцями для глядачів або слухачів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега ищет вас в коридоре. Скажите, что вы с группой в зрительном зале",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега ищет вас в коридоре. Скажите, что вы с группой в зрительном зале",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are in the auditorium.",
+        "localizedMeaning": {
+          "ru": "Коллега ищет вас в коридоре. Скажите, что вы с группой в зрительном зале",
+          "uk": "Колега шукає вас у коридорі. Скажіть, що ви з групою в глядацькій залі"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "in",
+          "the",
+          "auditorium"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i05:r1",
+          "text": "The auditorium is empty."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i05:r2",
+          "text": "The auditorium is full."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i05:r3",
+          "text": "The corridor is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i05:audio",
+          "transcript": "The auditorium is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:i05:r1",
+            "targetText": "The auditorium is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i05:r2",
+            "targetText": "The auditorium is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i05:r3",
+            "targetText": "The corridor is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The auditorium is empty.",
+              "uk": "У записі звучить The auditorium is empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The auditorium is empty.",
+              "uk": "У записі звучить The auditorium is empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму be для we",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму be для we",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму be для we",
+          "uk": "Виберіть форму be для we"
+        },
+        "gappedTargetPhrase": "We ___ in the auditorium.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-53:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму be для we",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму be для we",
+            "feedbackByLocale": {
+              "ru": "С we нужна форма are.",
+              "uk": "З we потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму be для we",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:word:acoustics",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — acoustics",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:word:acoustics:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — acoustics",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:word:acoustics:audio",
+          "transcript": "acoustics"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:word:acoustics:r1",
+            "targetText": "acoustics",
+            "meaningByLocale": {
+              "ru": "«акустика помещения». The acoustics are good. — «Акустика хорошая». Здесь свойства помещения, влияющие на звучание; используем are.",
+              "uk": "«акустика приміщення». The acoustics are good. — «Акустика хороша». Тут властивості приміщення, що впливають на звучання; використовуємо are."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "acoustics",
+          "definitionByLocale": {
+            "ru": "«акустика помещения». The acoustics are good. — «Акустика хорошая». Здесь свойства помещения, влияющие на звучание; используем are.",
+            "uk": "«акустика приміщення». The acoustics are good. — «Акустика хороша». Тут властивості приміщення, що впливають на звучання; використовуємо are."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В заднем ряду хорошо слышна речь со сцены. Оцените зал: «Акустика хорошая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В заднем ряду хорошо слышна речь со сцены. Оцените зал: «Акустика хорошая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The acoustics are good.",
+        "localizedMeaning": {
+          "ru": "В заднем ряду хорошо слышна речь со сцены. Оцените зал: «Акустика хорошая»",
+          "uk": "У задньому ряду добре чути промову зі сцени. Оцініть залу: «Акустика хороша»"
+        },
+        "orderedTokens": [
+          "The",
+          "acoustics",
+          "are",
+          "good"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i08:r1",
+          "text": "The acoustics are poor."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i08:r2",
+          "text": "The acoustics are good."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i08:r3",
+          "text": "The auditorium is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i08:audio",
+          "transcript": "The acoustics are poor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:i08:r1",
+            "targetText": "The acoustics are poor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i08:r2",
+            "targetText": "The acoustics are good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i08:r3",
+            "targetText": "The auditorium is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The acoustics are poor.",
+              "uk": "У записі звучить The acoustics are poor."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The acoustics are poor.",
+              "uk": "У записі звучить The acoustics are poor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для acoustics в значении звучания помещения",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для acoustics в значении звучания помещения",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для acoustics в значении звучания помещения",
+          "uk": "Виберіть зв’язку для acoustics у значенні звучання приміщення"
+        },
+        "gappedTargetPhrase": "The acoustics ___ good.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-53:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку для acoustics в значении звучания помещения",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для acoustics в значении звучания помещения",
+            "feedbackByLocale": {
+              "ru": "В этом значении acoustics во множественном числе: are.",
+              "uk": "У цьому значенні acoustics у множині: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для acoustics в значении звучания помещения",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:word:amplifier",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — amplifier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:word:amplifier:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — amplifier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:word:amplifier:audio",
+          "transcript": "amplifier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:word:amplifier:r1",
+            "targetText": "amplifier",
+            "meaningByLocale": {
+              "ru": "«усилитель звука». The amplifier is on. — «Усилитель включён». Устройство, которое усиливает звуковой сигнал.",
+              "uk": "«підсилювач звуку». The amplifier is on. — «Підсилювач увімкнений». Пристрій, який підсилює звуковий сигнал."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "amplifier",
+          "definitionByLocale": {
+            "ru": "«усилитель звука». The amplifier is on. — «Усилитель включён». Устройство, которое усиливает звуковой сигнал.",
+            "uk": "«підсилювач звуку». The amplifier is on. — «Підсилювач увімкнений». Пристрій, який підсилює звуковий сигнал."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Техник спрашивает, включён ли усилитель. Сообщите: «Усилитель включён»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Техник спрашивает, включён ли усилитель. Сообщите: «Усилитель включён»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The amplifier is on.",
+        "localizedMeaning": {
+          "ru": "Техник спрашивает, включён ли усилитель. Сообщите: «Усилитель включён»",
+          "uk": "Технік запитує, чи увімкнений підсилювач. Повідомте: «Підсилювач увімкнений»"
+        },
+        "orderedTokens": [
+          "The",
+          "amplifier",
+          "is",
+          "on"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i11:r1",
+          "text": "Please don't touch the amplifier."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i11:r2",
+          "text": "Please touch the amplifier."
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i11:r3",
+          "text": "Please don't touch the microphone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i11:audio",
+          "transcript": "Please don't touch the amplifier."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-53:i11:r1",
+            "targetText": "Please don't touch the amplifier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i11:r2",
+            "targetText": "Please touch the amplifier.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i11:r3",
+            "targetText": "Please don't touch the microphone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please don't touch the amplifier.",
+              "uk": "У записі звучить Please don't touch the amplifier."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please don't touch the amplifier.",
+              "uk": "У записі звучить Please don't touch the amplifier."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг тянется к ручке уже настроенного усилителя. Попросите не трогать усилитель; начните с Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Друг тянется к ручке уже настроенного усилителя. Попросите не трогать усилитель; начните с Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i12:audio",
+          "transcript": "Please don't touch the amplifier."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't touch the amplifier.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-53:i13:p1",
+            "target": "gesture",
+            "meaningByLocale": {
+              "ru": "показывать жестом",
+              "uk": "показувати жестом"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-53:i13:p2",
+            "target": "auditorium",
+            "meaningByLocale": {
+              "ru": "зрительный зал",
+              "uk": "глядацька зала"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-53:i13:p3",
+            "target": "acoustics",
+            "meaningByLocale": {
+              "ru": "акустика помещения",
+              "uk": "акустика приміщення"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-53:i13:p4",
+            "target": "amplifier",
+            "meaningByLocale": {
+              "ru": "усилитель звука",
+              "uk": "підсилювач звуку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gesture",
+          "auditorium",
+          "acoustics",
+          "amplifier"
+        ],
+        "rightColumn": [
+          "показывать жестом",
+          "зрительный зал",
+          "акустика помещения",
+          "усилитель звука"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о жесте техника сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о жесте техника сейчас",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i14:audio",
+          "transcript": "Is he gesturing towards the door?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is he gesturing towards the door?",
+        "orderedTokens": [
+          "Is",
+          "he",
+          "gesturing",
+          "towards",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму после don’t в просьбе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-53:i15:r1",
+          "text": "touch"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i15:r2",
+          "text": "touching"
+        },
+        {
+          "responseId": "en:lesson-09:session-53:i15:r3",
+          "text": "touches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму после don’t в просьбе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после don’t в просьбе",
+          "uk": "Виберіть форму після don’t у проханні"
+        },
+        "gappedTargetPhrase": "Please don't ___ the amplifier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-53:i15:r1",
+            "text": "touch"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i15:r2",
+            "text": "touching"
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i15:r3",
+            "text": "touches"
+          }
+        ],
+        "testedDimension": "Выберите форму после don’t в просьбе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-53:i15:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе",
+            "feedbackByLocale": {
+              "ru": "После don’t нужна базовая форма touch.",
+              "uk": "Після don’t потрібна базова форма touch."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-53:i15:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму после don’t в просьбе",
+            "feedbackByLocale": {
+              "ru": "После don’t в просьбе не добавляем -es.",
+              "uk": "Після don’t у проханні не додаємо -es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг думает, что техник показывает на окно. Техник показывает на дверь. Скажите: «Он не показывает жестом в сторону окна»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг думает, что техник показывает на окно. Техник показывает на дверь. Скажите: «Он не показывает жестом в сторону окна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is not gesturing towards the window.",
+        "localizedMeaning": {
+          "ru": "Друг думает, что техник показывает на окно. Техник показывает на дверь. Скажите: «Он не показывает жестом в сторону окна»",
+          "uk": "Друг думає, що технік показує на вікно. Технік показує на двері. Скажіть: «Він не показує жестом у бік вікна»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "gesturing",
+          "towards",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-53:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пробная музыка заглушает слова техника. Он рукой указывает группе на дверь. Коллега спрашивает, что он делает. Скажите, что он сейчас жестом показывает в сторону двери",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Пробная музыка заглушает слова техника. Он рукой указывает группе на дверь. Коллега спрашивает, что он делает. Скажите, что он сейчас жестом показывает в сторону двери",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-53:i17:audio",
+          "transcript": "He is gesturing towards the door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is gesturing towards the door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0524e9c4ac134ed4c3e030e3c8ff40abb8de3f6a88358bcb8b80b2a834a90fe9"
+}

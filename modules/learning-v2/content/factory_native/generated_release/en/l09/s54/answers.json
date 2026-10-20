@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-09:session-54:word:mutter",
+    "correctText": "mutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i01",
+    "correctText": "Please don't mutter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i02",
+    "correctText": "He is muttering.",
+    "correctResponseId": "en:lesson-09:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i03",
+    "correctText": "muttering",
+    "correctResponseId": "en:lesson-09:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:word:washer",
+    "correctText": "washer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i04",
+    "correctText": "This is a washer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i05",
+    "correctText": "The washer is on the table.",
+    "correctResponseId": "en:lesson-09:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i06",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-09:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:word:hinge",
+    "correctText": "hinge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i07",
+    "correctText": "The hinge is loose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i08",
+    "correctText": "I am checking the hinge.",
+    "correctResponseId": "en:lesson-09:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i09",
+    "correctText": "checking",
+    "correctResponseId": "en:lesson-09:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:word:sandpaper",
+    "correctText": "sandpaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i10",
+    "correctText": "The sandpaper is on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i11",
+    "correctText": "Please don't throw away the sandpaper.",
+    "correctResponseId": "en:lesson-09:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i12",
+    "correctText": "Please don't throw away the sandpaper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i13",
+    "correctText": "en:lesson-09:session-54:i13:p1=mutter\nen:lesson-09:session-54:i13:p2=washer\nen:lesson-09:session-54:i13:p3=hinge\nen:lesson-09:session-54:i13:p4=sandpaper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i14",
+    "correctText": "Is he muttering?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i15",
+    "correctText": "throw",
+    "correctResponseId": "en:lesson-09:session-54:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i16",
+    "correctText": "He is not shouting.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-09:session-54:i17",
+    "correctText": "He is muttering.",
+    "correctResponseId": null
+  }
+]

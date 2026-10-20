@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier",
+    "uk": "He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показывает без слов",
+        "uk": "Показує без слів"
+      },
+      "bodyByLocale": {
+        "ru": "В зале громко играет пробная запись. Техник не пытается перекричать её: он рукой показывает группе на дверь. He is gesturing towards the door — «Он жестом показывает в сторону двери». Gesture как глагол — делать жест, что-то показывая или выражая. Towards указывает направление жеста. Здесь техник показывает, куда идти; в других ситуациях жест может выражать и другую мысль.",
+        "uk": "У залі голосно грає пробний запис. Технік не намагається перекричати його: він рукою показує групі на двері. He is gesturing towards the door — «Він жестом показує в бік дверей». Gesture як дієслово — робити жест, щось показуючи чи виражаючи. Towards указує напрямок жесту. Тут технік показує, куди йти; в інших ситуаціях жест може виражати й іншу думку."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r1",
+              "text": "He is gesturing towards the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r2",
+              "text": "He gesturing towards the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r3",
+              "text": "He is gesture towards the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r1",
+              "text": "He is gesturing towards the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r2",
+              "text": "He gesturing towards the door."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro1:r3",
+              "text": "He is gesture towards the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Голос слышно в заднем ряду",
+        "uk": "Голос чути в задньому ряду"
+      },
+      "bodyByLocale": {
+        "ru": "Перед лекцией вы слушаете речь со сцены из разных рядов. Слова звучат отчётливо, сильное эхо не мешает. The acoustics are good — «Акустика хорошая». Acoustics здесь — то, как звук распространяется и воспринимается в помещении. В этом значении слово во множественном числе: are good, хотя по-русски «акустика» одна.",
+        "uk": "Перед лекцією ви слухаєте промову зі сцени з різних рядів. Слова звучать виразно, сильне відлуння не заважає. The acoustics are good — «Акустика хороша». Acoustics тут — те, як звук поширюється й сприймається в приміщенні. У цьому значенні слово в множині: are good, хоча українською «акустика» одна."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r1",
+              "text": "The acoustics are good."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r2",
+              "text": "The acoustics is good."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r3",
+              "text": "The acoustics am good."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r1",
+              "text": "The acoustics are good."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r2",
+              "text": "The acoustics is good."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro2:r3",
+              "text": "The acoustics am good."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Настройки уже выставлены",
+        "uk": "Налаштування вже виставлено"
+      },
+      "bodyByLocale": {
+        "ru": "Техник настроил усилитель для микрофона. Друг тянется повернуть ручку на этом устройстве. Попросите его ничего не трогать: Please don’t touch the amplifier — «Пожалуйста, не трогай усилитель». Amplifier — устройство, усиливающее звуковой сигнал. После don’t нужен touch без окончания.",
+        "uk": "Технік налаштував підсилювач для мікрофона. Друг тягнеться повернути ручку на цьому пристрої. Попросіть його нічого не чіпати: Please don’t touch the amplifier — «Будь ласка, не чіпай підсилювач». Amplifier — пристрій, що підсилює звуковий сигнал. Після don’t потрібне touch без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r1",
+              "text": "Please don't touch the amplifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r2",
+              "text": "Please don't touching the amplifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r3",
+              "text": "Please not touch the amplifier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r1",
+              "text": "Please don't touch the amplifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r2",
+              "text": "Please don't touching the amplifier."
+            },
+            {
+              "responseId": "en:lesson-09:session-53:intro3:r3",
+              "text": "Please not touch the amplifier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0fb960a2ccf68394584c57a2a2c07f9aa7667d9b2e8351130c60a55a4a381ce"
+}

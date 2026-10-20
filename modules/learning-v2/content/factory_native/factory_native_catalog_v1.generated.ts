@@ -3500,4 +3500,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am peering through the telescope; This is the eyepiece; Please don’t move the telescope","uk":"I am peering through the telescope; This is the eyepiece; Please don’t move the telescope"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 52,
+    sourceFingerprint: "9f187493c016074ab1b593c779288774c8d5056b388b7e98a855bc24b98077ca",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She is gazing at the sunset; The horizon is clear; Please don’t block the view","uk":"She is gazing at the sunset; The horizon is clear; Please don’t block the view"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 53,
+    sourceFingerprint: "7780338799d86a1539dafa5d60289f7c9a37931beece0bdaad73b9038a7a5066",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier","uk":"He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 9, sessionOrdinal: 54,
+    sourceFingerprint: "a68f577fa0f2e4dbfb841fa00c1f4428d05ac41b92302433c786304fe0cff938",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He is muttering; The hinge is loose; Please don’t throw away the sandpaper","uk":"He is muttering; The hinge is loose; Please don’t throw away the sandpaper"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
+  }),
 ]);

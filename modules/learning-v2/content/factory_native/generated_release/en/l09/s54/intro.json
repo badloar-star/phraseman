@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-09:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "He is muttering; The hinge is loose; Please don’t throw away the sandpaper",
+    "uk": "He is muttering; The hinge is loose; Please don’t throw away the sandpaper"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-09:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слышно голос, но не слова",
+        "uk": "Чути голос, але не слова"
+      },
+      "bodyByLocale": {
+        "ru": "Друг пытается закрыть перекошенную дверцу шкафчика. Она снова задевает раму, и он недовольно говорит что-то себе под нос. Сестра спрашивает, с кем он разговаривает. He is muttering — «Он бормочет». Mutter — говорить тихо и не очень разборчиво, часто с недовольством. В отличие от мягкого murmur из 9.49, здесь слова звучат раздражённо; но mutter не обязательно всегда означает злость.",
+        "uk": "Друг намагається зачинити перекошені дверцята шафки. Вони знову зачіпають раму, і він невдоволено каже щось собі під ніс. Сестра запитує, з ким він розмовляє. He is muttering — «Він бурмоче». Mutter — говорити тихо й не дуже розбірливо, часто з невдоволенням. На відміну від м’якого murmur із 9.49, тут слова звучать роздратовано; але mutter не обов’язково завжди означає злість."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r1",
+              "text": "He is muttering."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r2",
+              "text": "He muttering."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r3",
+              "text": "He is mutter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r1",
+              "text": "He is muttering."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r2",
+              "text": "He muttering."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro1:r3",
+              "text": "He is mutter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-09:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Маленькое кольцо среди деталей",
+        "uk": "Маленьке кільце серед деталей"
+      },
+      "bodyByLocale": {
+        "ru": "Из пакетика выпало плоское металлическое кольцо с отверстием. Друг принимает его за лишнюю деталь. This is a washer — «Это шайба». Washer здесь — кольцо, которое ставят под головку винта или под гайку. Это не стиральная машина: значение слова понятно по ремонтным деталям вокруг.",
+        "uk": "Із пакетика випало плоске металеве кільце з отвором. Друг приймає його за зайву деталь. This is a washer — «Це шайба». Washer тут — кільце, яке ставлять під головку гвинта або під гайку. Це не пральна машина: значення слова зрозуміле з ремонтних деталей навколо."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r1",
+              "text": "This is a washer."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r2",
+              "text": "This is an washer."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r3",
+              "text": "This are a washer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r1",
+              "text": "This is a washer."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r2",
+              "text": "This is an washer."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro2:r3",
+              "text": "This are a washer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-09:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почему дверца качается",
+        "uk": "Чому дверцята хитаються"
+      },
+      "bodyByLocale": {
+        "ru": "Вы осторожно придерживаете дверцу, а друг осматривает место её крепления к шкафчику. Одна петля болтается. The hinge is loose — «Петля разболталась». Hinge — петля, которая позволяет дверце поворачиваться. Loose здесь значит «держится неплотно», не «потерянная»: потерять — lose, другое слово.",
+        "uk": "Ви обережно притримуєте дверцята, а друг оглядає місце їхнього кріплення до шафки. Одна завіса хитається. The hinge is loose — «Завіса розхиталася». Hinge — завіса, яка дає дверцятам змогу повертатися. Loose тут означає «тримається нещільно», не «загублена»: загубити — lose, інше слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-09:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r1",
+              "text": "The hinge is loose."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r2",
+              "text": "The hinge are loose."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r3",
+              "text": "The hinge loose."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r1",
+              "text": "The hinge is loose."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r2",
+              "text": "The hinge are loose."
+            },
+            {
+              "responseId": "en:lesson-09:session-54:intro3:r3",
+              "text": "The hinge loose."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "748172d01523f94e9e2661d4cb4c4fb411f37ddd2104c17026966d00119d6394"
+}

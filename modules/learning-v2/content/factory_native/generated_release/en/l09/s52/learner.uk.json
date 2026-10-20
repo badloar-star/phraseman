@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-52:word:gaze",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gaze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:word:gaze:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gaze",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:word:gaze:audio",
+          "transcript": "gaze"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:word:gaze:r1",
+            "targetText": "gaze",
+            "meaningByLocale": {
+              "ru": "«долго внимательно смотреть». I gaze at the sea. — «Я долго смотрю на море». Смотреть не отрываясь, например задумавшись; gaze at, gaze → gazing.",
+              "uk": "«довго уважно дивитися». I gaze at the sea. — «Я довго дивлюся на море». Дивитися не відриваючись, наприклад замислившись; gaze at, gaze → gazing."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gaze",
+          "definitionByLocale": {
+            "ru": "«долго внимательно смотреть». I gaze at the sea. — «Я долго смотрю на море». Смотреть не отрываясь, например задумавшись; gaze at, gaze → gazing.",
+            "uk": "«довго уважно дивитися». I gaze at the sea. — «Я довго дивлюся на море». Дивитися не відриваючись, наприклад замислившись; gaze at, gaze → gazing."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує, що ви зазвичай робите на набережній. Скажіть, що довго дивитеся на море; використайте gaze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує, що ви зазвичай робите на набережній. Скажіть, що довго дивитеся на море; використайте gaze",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I gaze at the sea.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, что вы обычно делаете на набережной. Скажите, что долго смотрите на море; используйте gaze",
+          "uk": "Друг запитує, що ви зазвичай робите на набережній. Скажіть, що довго дивитеся на море; використайте gaze"
+        },
+        "orderedTokens": [
+          "I",
+          "gaze",
+          "at",
+          "the",
+          "sea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i02:r1",
+          "text": "She is gazing at the sea."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i02:r2",
+          "text": "She is swimming in the sea."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i02:r3",
+          "text": "She is not gazing at the sea."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i02:audio",
+          "transcript": "She is gazing at the sea."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:i02:r1",
+            "targetText": "She is gazing at the sea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i02:r2",
+            "targetText": "She is swimming in the sea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i02:r3",
+            "targetText": "She is not gazing at the sea.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is gazing at the sea.",
+              "uk": "У записі звучить She is gazing at the sea."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is gazing at the sea.",
+              "uk": "У записі звучить She is gazing at the sea."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму gaze з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i03:r1",
+          "text": "gazing"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i03:r2",
+          "text": "gazeing"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i03:r3",
+          "text": "gaze"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму gaze з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму gaze с -ing",
+          "uk": "Виберіть форму gaze з -ing"
+        },
+        "gappedTargetPhrase": "She is ___ at the sea.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-52:i03:r1",
+            "text": "gazing"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i03:r2",
+            "text": "gazeing"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i03:r3",
+            "text": "gaze"
+          }
+        ],
+        "testedDimension": "Виберіть форму gaze з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму gaze з -ing",
+            "feedbackByLocale": {
+              "ru": "Конечная e уходит перед -ing: gazing.",
+              "uk": "Кінцева e зникає перед -ing: gazing."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму gaze з -ing",
+            "feedbackByLocale": {
+              "ru": "После is нужна форма gazing.",
+              "uk": "Після is потрібна форма gazing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:word:horizon",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — horizon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:word:horizon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — horizon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:word:horizon:audio",
+          "transcript": "horizon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:word:horizon:r1",
+            "targetText": "horizon",
+            "meaningByLocale": {
+              "ru": "«горизонт». The horizon is clear. — «Горизонт хорошо виден». Видимая линия, где небо словно встречается с землёй или водой.",
+              "uk": "«горизонт». The horizon is clear. — «Горизонт добре видно». Видима лінія, де небо ніби зустрічається із землею або водою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "horizon",
+          "definitionByLocale": {
+            "ru": "«горизонт». The horizon is clear. — «Горизонт хорошо виден». Видимая линия, где небо словно встречается с землёй или водой.",
+            "uk": "«горизонт». The horizon is clear. — «Горизонт добре видно». Видима лінія, де небо ніби зустрічається із землею або водою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Туман зник, і далеку межу моря та неба добре видно. Скажіть: «Горизонт добре видно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Туман зник, і далеку межу моря та неба добре видно. Скажіть: «Горизонт добре видно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The horizon is clear.",
+        "localizedMeaning": {
+          "ru": "Туман ушёл, и далёкая граница моря и неба хорошо видна. Скажите: «Горизонт хорошо виден»",
+          "uk": "Туман зник, і далеку межу моря та неба добре видно. Скажіть: «Горизонт добре видно»"
+        },
+        "orderedTokens": [
+          "The",
+          "horizon",
+          "is",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i05:r1",
+          "text": "I am looking at the horizon."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i05:r2",
+          "text": "I am looking at the boat."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i05:r3",
+          "text": "I am not looking at the horizon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i05:audio",
+          "transcript": "I am looking at the horizon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:i05:r1",
+            "targetText": "I am looking at the horizon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i05:r2",
+            "targetText": "I am looking at the boat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i05:r3",
+            "targetText": "I am not looking at the horizon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am looking at the horizon.",
+              "uk": "У записі звучить I am looking at the horizon."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am looking at the horizon.",
+              "uk": "У записі звучить I am looking at the horizon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для horizon",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для horizon",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для horizon",
+          "uk": "Виберіть зв’язку для horizon"
+        },
+        "gappedTargetPhrase": "The horizon ___ clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-52:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для horizon",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для horizon",
+            "feedbackByLocale": {
+              "ru": "Здесь с horizon нужно is.",
+              "uk": "Тут із horizon потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для horizon",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am вживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:word:silhouette",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — silhouette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:word:silhouette:audio"
+      ],
+      "accessibilityLabel": "Картка слова — silhouette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:word:silhouette:audio",
+          "transcript": "silhouette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:word:silhouette:r1",
+            "targetText": "silhouette",
+            "meaningByLocale": {
+              "ru": "«силуэт». This is a silhouette. — «Это силуэт». Тёмный контур человека или предмета на светлом фоне.",
+              "uk": "«силует». This is a silhouette. — «Це силует». Темний контур людини чи предмета на світлому тлі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "silhouette",
+          "definitionByLocale": {
+            "ru": "«силуэт». This is a silhouette. — «Это силуэт». Тёмный контур человека или предмета на светлом фоне.",
+            "uk": "«силует». This is a silhouette. — «Це силует». Темний контур людини чи предмета на світлому тлі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На вашому знімку людину видно лише темним контуром. Назвіть цей вид зображення: «Це силует»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На вашому знімку людину видно лише темним контуром. Назвіть цей вид зображення: «Це силует»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a silhouette.",
+        "localizedMeaning": {
+          "ru": "На вашем снимке человек виден только тёмным контуром. Назовите этот вид изображения: «Это силуэт»",
+          "uk": "На вашому знімку людину видно лише темним контуром. Назвіть цей вид зображення: «Це силует»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "silhouette"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i08:r1",
+          "text": "The silhouette is dark."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i08:r2",
+          "text": "The silhouette is bright."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i08:r3",
+          "text": "The horizon is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i08:audio",
+          "transcript": "The silhouette is dark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:i08:r1",
+            "targetText": "The silhouette is dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i08:r2",
+            "targetText": "The silhouette is bright.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i08:r3",
+            "targetText": "The horizon is clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The silhouette is dark.",
+              "uk": "У записі звучить The silhouette is dark."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The silhouette is dark.",
+              "uk": "У записі звучить The silhouette is dark."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед silhouette",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i09:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i09:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед silhouette",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед silhouette",
+          "uk": "Виберіть артикль перед silhouette"
+        },
+        "gappedTargetPhrase": "This is ___ silhouette.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-52:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед silhouette",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед silhouette",
+            "feedbackByLocale": {
+              "ru": "Первый звук согласный, нужен a.",
+              "uk": "Перший звук приголосний, потрібне a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед silhouette",
+            "feedbackByLocale": {
+              "ru": "Are не артикль, здесь нужен a.",
+              "uk": "Are не артикль, тут потрібне a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:word:sunset",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sunset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:word:sunset:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sunset",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:word:sunset:audio",
+          "transcript": "sunset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:word:sunset:r1",
+            "targetText": "sunset",
+            "meaningByLocale": {
+              "ru": "«закат». She is gazing at the sunset. — «Она долго смотрит на закат». Вечерний заход солнца и вид неба в это время.",
+              "uk": "«захід сонця». She is gazing at the sunset. — «Вона довго дивиться на захід сонця». Вечірнє заходження сонця й вигляд неба в цей час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunset",
+          "definitionByLocale": {
+            "ru": "«закат». She is gazing at the sunset. — «Она долго смотрит на закат». Вечерний заход солнца и вид неба в это время.",
+            "uk": "«захід сонця». She is gazing at the sunset. — «Вона довго дивиться на захід сонця». Вечірнє заходження сонця й вигляд неба в цей час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра не відриває очей від вечірнього неба. Скажіть, що вона довго дивиться на захід сонця; використайте gaze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра не відриває очей від вечірнього неба. Скажіть, що вона довго дивиться на захід сонця; використайте gaze",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is gazing at the sunset.",
+        "localizedMeaning": {
+          "ru": "Сестра не отрывает глаз от вечернего неба. Скажите, что она долго смотрит на закат; используйте gaze",
+          "uk": "Сестра не відриває очей від вечірнього неба. Скажіть, що вона довго дивиться на захід сонця; використайте gaze"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "gazing",
+          "at",
+          "the",
+          "sunset"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i11:r1",
+          "text": "Are you watching the sunset?"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i11:r2",
+          "text": "You are watching the sunset."
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i11:r3",
+          "text": "I am watching the sunset."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i11:audio",
+          "transcript": "Are you watching the sunset?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-52:i11:r1",
+            "targetText": "Are you watching the sunset?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i11:r2",
+            "targetText": "You are watching the sunset.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i11:r3",
+            "targetText": "I am watching the sunset.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you watching the sunset?",
+              "uk": "У записі звучить Are you watching the sunset?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you watching the sunset?",
+              "uk": "У записі звучить Are you watching the sunset?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг став просто перед вами й закрив вечірнє небо. Попросіть не затуляти краєвид; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i12:audio"
+      ],
+      "accessibilityLabel": "Друг став просто перед вами й закрив вечірнє небо. Попросіть не затуляти краєвид; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i12:audio",
+          "transcript": "Please don't block the view."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't block the view.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-52:i13:p1",
+            "target": "gaze",
+            "meaningByLocale": {
+              "ru": "долго внимательно смотреть",
+              "uk": "довго уважно дивитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-52:i13:p2",
+            "target": "horizon",
+            "meaningByLocale": {
+              "ru": "горизонт",
+              "uk": "горизонт"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-52:i13:p3",
+            "target": "silhouette",
+            "meaningByLocale": {
+              "ru": "силуэт",
+              "uk": "силует"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-52:i13:p4",
+            "target": "sunset",
+            "meaningByLocale": {
+              "ru": "закат",
+              "uk": "захід сонця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gaze",
+          "horizon",
+          "silhouette",
+          "sunset"
+        ],
+        "rightColumn": [
+          "довго уважно дивитися",
+          "горизонт",
+          "силует",
+          "захід сонця"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання про сестру зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання про сестру зараз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i14:audio",
+          "transcript": "Is she gazing at the sunset?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she gazing at the sunset?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "gazing",
+          "at",
+          "the",
+          "sunset"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть прийменник після gaze",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-52:i15:r1",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i15:r2",
+          "text": "of"
+        },
+        {
+          "responseId": "en:lesson-09:session-52:i15:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть прийменник після gaze",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите предлог после gaze",
+          "uk": "Виберіть прийменник після gaze"
+        },
+        "gappedTargetPhrase": "She is gazing ___ the sunset.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-52:i15:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i15:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i15:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Виберіть прийменник після gaze",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-52:i15:r2",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після gaze",
+            "feedbackByLocale": {
+              "ru": "В этом выражении нужен at: gaze at.",
+              "uk": "У цьому виразі потрібне at: gaze at."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-52:i15:r3",
+            "correct": false,
+            "testedDimension": "Виберіть прийменник після gaze",
+            "feedbackByLocale": {
+              "ru": "На что-то долго смотрят: gaze at.",
+              "uk": "На щось довго дивляться: gaze at."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дивитеся на захід сонця. Подруга думає, що ви робите знімок. Скажіть: «Я не фотографую»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дивитеся на захід сонця. Подруга думає, що ви робите знімок. Скажіть: «Я не фотографую»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not taking a photo.",
+        "localizedMeaning": {
+          "ru": "Вы смотрите на закат. Подруга думает, что вы делаете снимок. Скажите: «Я не фотографирую»",
+          "uk": "Ви дивитеся на захід сонця. Подруга думає, що ви робите знімок. Скажіть: «Я не фотографую»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "taking",
+          "a",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-52:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Після прогулянки мама запитує, чому сестра затрималася біля води. Сестра все ще мовчки милується заходом сонця. Поясніть, що вона зараз довго дивиться на захід сонця; використайте gaze",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Після прогулянки мама запитує, чому сестра затрималася біля води. Сестра все ще мовчки милується заходом сонця. Поясніть, що вона зараз довго дивиться на захід сонця; використайте gaze",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-52:i17:audio",
+          "transcript": "She is gazing at the sunset."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She is gazing at the sunset.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a31fda7d0e1ae70bf5d0f81edf038e935cf82f47ee464d802013327163e12218"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-13:intro1:r2": {
+          "ru": "С she нужна works.",
+          "uk": "З she потрібна works."
+        },
+        "en:lesson-10:session-13:intro1:r3": {
+          "ru": "Для обычной работы здесь нужна works.",
+          "uk": "Для звичайної роботи тут потрібна works."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-13:intro2:r2": {
+          "ru": "Перед working нужна is.",
+          "uk": "Перед working потрібна is."
+        },
+        "en:lesson-10:session-13:intro2:r3": {
+          "ru": "После is нужна working.",
+          "uk": "Після is потрібна working."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-13:intro3:r2": {
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
+        },
+        "en:lesson-10:session-13:intro3:r3": {
+          "ru": "С she нужна is, не are.",
+          "uk": "З she потрібна is, не are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97f7e5627ee394fc7445c4a9f1e46452e96f46e4cb7e773ee1b44086ad6389ac"
+}

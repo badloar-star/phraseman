@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-33:intro1:r2": {
+          "ru": "С we нужна come без s.",
+          "uk": "З we потрібна come без s."
+        },
+        "en:lesson-10:session-33:intro1:r3": {
+          "ru": "Для этой привычки нужна come.",
+          "uk": "Для цієї звички потрібна come."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-33:intro2:r2": {
+          "ru": "Перед playing нужен is.",
+          "uk": "Перед playing потрібне is."
+        },
+        "en:lesson-10:session-33:intro2:r3": {
+          "ru": "Здесь один артист: is.",
+          "uk": "Тут один артист: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-33:intro3:r2": {
+          "ru": "С I нужна like без s.",
+          "uk": "З I потрібна like без s."
+        },
+        "en:lesson-10:session-33:intro3:r3": {
+          "ru": "Am like неверно; здесь нужна like.",
+          "uk": "Am like неправильно; тут потрібна like."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b0643dafdf8ebb1e2652d16ed532b19076a831bb15fd9d419ac113363ed9a088"
+}

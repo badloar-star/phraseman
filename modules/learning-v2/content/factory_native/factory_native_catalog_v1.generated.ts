@@ -3759,4 +3759,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed","uk":"I usually work here on Saturdays; I am watering the sapling; We are preparing the seedbed"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 33,
+    sourceFingerprint: "c846c3d97abdb2012d9789b9ce87b7e1d0eb55e19ecf4189ef8d3f19f2a49cbb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We come here every year; The headliner is playing now; The band is in the marquee","uk":"We come here every year; The headliner is playing now; The band is in the marquee"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

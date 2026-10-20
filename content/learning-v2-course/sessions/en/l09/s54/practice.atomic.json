@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-09:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-09:session-54:word:mutter",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:mutter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:mutter:audio",
+            "transcript": "mutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:mutter:r1",
+              "targetText": "mutter",
+              "meaningByLocale": {
+                "ru": "«бормотать». Please don’t mutter. — «Пожалуйста, не бормочи». Говорить тихо и неразборчиво, нередко с недовольством; mutter → muttering.",
+                "uk": "«бурмотіти». Please don’t mutter. — «Будь ласка, не бурмочи». Говорити тихо й нерозбірливо, нерідко з невдоволенням; mutter → muttering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mutter",
+            "definitionByLocale": {
+              "ru": "«бормотать». Please don’t mutter. — «Пожалуйста, не бормочи». Говорить тихо и неразборчиво, нередко с недовольством; mutter → muttering.",
+              "uk": "«бурмотіти». Please don’t mutter. — «Будь ласка, не бурмочи». Говорити тихо й нерозбірливо, нерідко з невдоволенням; mutter → muttering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не разбираете слова друга, сказанные себе под нос. Попросите не бормотать; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не разбираете слова друга, сказанные себе под нос. Попросите не бормотать; начните с Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't mutter.",
+          "localizedMeaning": {
+            "ru": "Вы не разбираете слова друга, сказанные себе под нос. Попросите не бормотать; начните с Please",
+            "uk": "Ви не розбираєте слів друга, сказаних собі під ніс. Попросіть не бурмотіти; почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "mutter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i02:r1",
+            "text": "He is muttering."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i02:r2",
+            "text": "He is shouting."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i02:r3",
+            "text": "He is not muttering."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i02:audio",
+            "transcript": "He is muttering."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i02:r1",
+              "targetText": "He is muttering.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r2",
+              "targetText": "He is shouting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r3",
+              "targetText": "He is not muttering.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is muttering.",
+                "uk": "У записі звучить He is muttering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is muttering.",
+                "uk": "У записі звучить He is muttering."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму mutter для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i03:r1",
+            "text": "muttering"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i03:r2",
+            "text": "mutter"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i03:r3",
+            "text": "mutters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму mutter для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму mutter для действия сейчас",
+            "uk": "Виберіть форму mutter для дії зараз"
+          },
+          "gappedTargetPhrase": "He is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i03:r1",
+              "text": "muttering"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r2",
+              "text": "mutter"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r3",
+              "text": "mutters"
+            }
+          ],
+          "testedDimension": "Выберите форму mutter для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму mutter для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма muttering.",
+                "uk": "Після is потрібна форма muttering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму mutter для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is muttering, не mutters.",
+                "uk": "Тут використовуємо is muttering, не mutters."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:washer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — washer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:washer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — washer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:washer:audio",
+            "transcript": "washer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:washer:r1",
+              "targetText": "washer",
+              "meaningByLocale": {
+                "ru": "«шайба». This is a washer. — «Это шайба». Плоское кольцо под головку винта или гайку; здесь ремонтная деталь.",
+                "uk": "«шайба». This is a washer. — «Це шайба». Плоске кільце під головку гвинта або гайку; тут ремонтна деталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washer",
+            "definitionByLocale": {
+              "ru": "«шайба». This is a washer. — «Это шайба». Плоское кольцо под головку винта или гайку; здесь ремонтная деталь.",
+              "uk": "«шайба». This is a washer. — «Це шайба». Плоске кільце під головку гвинта або гайку; тут ремонтна деталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает о маленьком металлическом кольце среди деталей. Скажите: «Это шайба»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает о маленьком металлическом кольце среди деталей. Скажите: «Это шайба»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a washer.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о маленьком металлическом кольце среди деталей. Скажите: «Это шайба»",
+            "uk": "Друг запитує про маленьке металеве кільце серед деталей. Скажіть: «Це шайба»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "washer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i05:r1",
+            "text": "The washer is on the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i05:r2",
+            "text": "The washer is under the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i05:r3",
+            "text": "The screw is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i05:audio",
+            "transcript": "The washer is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i05:r1",
+              "targetText": "The washer is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r2",
+              "targetText": "The washer is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r3",
+              "targetText": "The screw is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washer is on the table.",
+                "uk": "У записі звучить The washer is on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washer is on the table.",
+                "uk": "У записі звучить The washer is on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед washer",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед washer",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед washer",
+            "uk": "Виберіть артикль перед washer"
+          },
+          "gappedTargetPhrase": "This is ___ washer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед washer",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед washer",
+              "feedbackByLocale": {
+                "ru": "Первый звук согласный: a washer.",
+                "uk": "Перший звук приголосний: a washer."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед washer",
+              "feedbackByLocale": {
+                "ru": "Are не артикль, здесь нужен a.",
+                "uk": "Are не артикль, тут потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:hinge",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hinge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:hinge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hinge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:hinge:audio",
+            "transcript": "hinge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:hinge:r1",
+              "targetText": "hinge",
+              "meaningByLocale": {
+                "ru": "«дверная петля». The hinge is loose. — «Петля разболталась». Подвижное крепление, на котором поворачивается дверца.",
+                "uk": "«дверна завіса». The hinge is loose. — «Завіса розхиталася». Рухоме кріплення, на якому повертаються дверцята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hinge",
+            "definitionByLocale": {
+              "ru": "«дверная петля». The hinge is loose. — «Петля разболталась». Подвижное крепление, на котором поворачивается дверца.",
+              "uk": "«дверна завіса». The hinge is loose. — «Завіса розхиталася». Рухоме кріплення, на якому повертаються дверцята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Одна петля дверцы держится неплотно. Сообщите другу: «Петля разболталась»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одна петля дверцы держится неплотно. Сообщите другу: «Петля разболталась»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hinge is loose.",
+          "localizedMeaning": {
+            "ru": "Одна петля дверцы держится неплотно. Сообщите другу: «Петля разболталась»",
+            "uk": "Одна завіса дверцят тримається нещільно. Повідомте другові: «Завіса розхиталася»"
+          },
+          "orderedTokens": [
+            "The",
+            "hinge",
+            "is",
+            "loose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i08:r1",
+            "text": "I am checking the hinge."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i08:r2",
+            "text": "I am checking the washer."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i08:r3",
+            "text": "I am not checking the hinge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i08:audio",
+            "transcript": "I am checking the hinge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i08:r1",
+              "targetText": "I am checking the hinge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r2",
+              "targetText": "I am checking the washer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r3",
+              "targetText": "I am not checking the hinge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am checking the hinge.",
+                "uk": "У записі звучить I am checking the hinge."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am checking the hinge.",
+                "uk": "У записі звучить I am checking the hinge."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму check для действия сейчас",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i09:r1",
+            "text": "checking"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму check для действия сейчас",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму check для действия сейчас",
+            "uk": "Виберіть форму check для дії зараз"
+          },
+          "gappedTargetPhrase": "I am ___ the hinge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i09:r1",
+              "text": "checking"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Выберите форму check для действия сейчас",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму check для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма checking.",
+                "uk": "Після am потрібна форма checking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму check для действия сейчас",
+              "feedbackByLocale": {
+                "ru": "Здесь используем am checking, не checks.",
+                "uk": "Тут використовуємо am checking, не checks."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:sandpaper",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sandpaper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:sandpaper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sandpaper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:sandpaper:audio",
+            "transcript": "sandpaper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:sandpaper:r1",
+              "targetText": "sandpaper",
+              "meaningByLocale": {
+                "ru": "«наждачная бумага». The sandpaper is on the table. — «Наждачная бумага на столе». Шероховатый материал, которым сглаживают поверхность.",
+                "uk": "«наждачний папір». The sandpaper is on the table. — «Наждачний папір на столі». Шорсткий матеріал, яким згладжують поверхню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandpaper",
+            "definitionByLocale": {
+              "ru": "«наждачная бумага». The sandpaper is on the table. — «Наждачная бумага на столе». Шероховатый материал, которым сглаживают поверхность.",
+              "uk": "«наждачний папір». The sandpaper is on the table. — «Наждачний папір на столі». Шорсткий матеріал, яким згладжують поверхню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ищет материал для сглаживания деревянного края. Скажите, что наждачная бумага на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ищет материал для сглаживания деревянного края. Скажите, что наждачная бумага на столе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sandpaper is on the table.",
+          "localizedMeaning": {
+            "ru": "Друг ищет материал для сглаживания деревянного края. Скажите, что наждачная бумага на столе",
+            "uk": "Друг шукає матеріал для згладжування дерев’яного краю. Скажіть, що наждачний папір на столі"
+          },
+          "orderedTokens": [
+            "The",
+            "sandpaper",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i11:r1",
+            "text": "Please don't throw away the sandpaper."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i11:r2",
+            "text": "Please throw away the sandpaper."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i11:r3",
+            "text": "Please don't throw away the washer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i11:audio",
+            "transcript": "Please don't throw away the sandpaper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i11:r1",
+              "targetText": "Please don't throw away the sandpaper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r2",
+              "targetText": "Please throw away the sandpaper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r3",
+              "targetText": "Please don't throw away the washer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't throw away the sandpaper.",
+                "uk": "У записі звучить Please don't throw away the sandpaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't throw away the sandpaper.",
+                "uk": "У записі звучить Please don't throw away the sandpaper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг убирает стол и хочет выбросить лист наждачной бумаги, который ещё нужен. Попросите не выбрасывать наждачную бумагу; начните с Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i12:audio"
+        ],
+        "accessibilityLabel": "Друг убирает стол и хочет выбросить лист наждачной бумаги, который ещё нужен. Попросите не выбрасывать наждачную бумагу; начните с Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i12:audio",
+            "transcript": "Please don't throw away the sandpaper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't throw away the sandpaper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с их значениями в этом занятии",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с их значениями в этом занятии",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-54:i13:p1",
+              "target": "mutter",
+              "meaningByLocale": {
+                "ru": "бормотать",
+                "uk": "бурмотіти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p2",
+              "target": "washer",
+              "meaningByLocale": {
+                "ru": "шайба",
+                "uk": "шайба"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p3",
+              "target": "hinge",
+              "meaningByLocale": {
+                "ru": "дверная петля",
+                "uk": "дверна завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p4",
+              "target": "sandpaper",
+              "meaningByLocale": {
+                "ru": "наждачная бумага",
+                "uk": "наждачний папір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mutter",
+            "washer",
+            "hinge",
+            "sandpaper"
+          ],
+          "rightColumn": [
+            "бормотать",
+            "шайба",
+            "дверная петля",
+            "наждачная бумага"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о бормотании друга сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о бормотании друга сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i14:audio",
+            "transcript": "Is he muttering?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is he muttering?",
+          "orderedTokens": [
+            "Is",
+            "he",
+            "muttering"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после don’t в просьбе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i15:r1",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i15:r2",
+            "text": "throwing"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i15:r3",
+            "text": "throws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после don’t в просьбе",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ away the sandpaper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i15:r1",
+              "text": "throw"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r2",
+              "text": "throwing"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r3",
+              "text": "throws"
+            }
+          ],
+          "testedDimension": "Выберите форму после don’t в просьбе",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна базовая форма throw.",
+                "uk": "Після don’t потрібна базова форма throw."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после don’t в просьбе",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра думает, что друг кричит из-за дверцы, но он только тихо бормочет. Скажите: «Он не кричит»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра думает, что друг кричит из-за дверцы, но он только тихо бормочет. Скажите: «Он не кричит»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is not shouting.",
+          "localizedMeaning": {
+            "ru": "Сестра думает, что друг кричит из-за дверцы, но он только тихо бормочет. Скажите: «Он не кричит»",
+            "uk": "Сестра думає, що друг кричить через дверцята, але він лише тихо бурмоче. Скажіть: «Він не кричить»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "shouting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг снова пробует закрыть дверцу и раздражённо произносит что-то себе под нос. Брат слышит голос, но не разбирает слов и спрашивает, что происходит. Скажите: «Он бормочет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Друг снова пробует закрыть дверцу и раздражённо произносит что-то себе под нос. Брат слышит голос, но не разбирает слов и спрашивает, что происходит. Скажите: «Он бормочет»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i17:audio",
+            "transcript": "He is muttering."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is muttering.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-09:session-54:word:mutter",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:mutter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:mutter:audio",
+            "transcript": "mutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:mutter:r1",
+              "targetText": "mutter",
+              "meaningByLocale": {
+                "ru": "«бормотать». Please don’t mutter. — «Пожалуйста, не бормочи». Говорить тихо и неразборчиво, нередко с недовольством; mutter → muttering.",
+                "uk": "«бурмотіти». Please don’t mutter. — «Будь ласка, не бурмочи». Говорити тихо й нерозбірливо, нерідко з невдоволенням; mutter → muttering."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mutter",
+            "definitionByLocale": {
+              "ru": "«бормотать». Please don’t mutter. — «Пожалуйста, не бормочи». Говорить тихо и неразборчиво, нередко с недовольством; mutter → muttering.",
+              "uk": "«бурмотіти». Please don’t mutter. — «Будь ласка, не бурмочи». Говорити тихо й нерозбірливо, нерідко з невдоволенням; mutter → muttering."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не розбираєте слів друга, сказаних собі під ніс. Попросіть не бурмотіти; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не розбираєте слів друга, сказаних собі під ніс. Попросіть не бурмотіти; почніть із Please",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please don't mutter.",
+          "localizedMeaning": {
+            "ru": "Вы не разбираете слова друга, сказанные себе под нос. Попросите не бормотать; начните с Please",
+            "uk": "Ви не розбираєте слів друга, сказаних собі під ніс. Попросіть не бурмотіти; почніть із Please"
+          },
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "mutter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i02:r1",
+            "text": "He is muttering."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i02:r2",
+            "text": "He is shouting."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i02:r3",
+            "text": "He is not muttering."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i02:audio",
+            "transcript": "He is muttering."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i02:r1",
+              "targetText": "He is muttering.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r2",
+              "targetText": "He is shouting.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r3",
+              "targetText": "He is not muttering.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is muttering.",
+                "uk": "У записі звучить He is muttering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is muttering.",
+                "uk": "У записі звучить He is muttering."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму mutter для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i03:r1",
+            "text": "muttering"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i03:r2",
+            "text": "mutter"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i03:r3",
+            "text": "mutters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму mutter для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму mutter для действия сейчас",
+            "uk": "Виберіть форму mutter для дії зараз"
+          },
+          "gappedTargetPhrase": "He is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i03:r1",
+              "text": "muttering"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r2",
+              "text": "mutter"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r3",
+              "text": "mutters"
+            }
+          ],
+          "testedDimension": "Виберіть форму mutter для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму mutter для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После is нужна форма muttering.",
+                "uk": "Після is потрібна форма muttering."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму mutter для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь используем is muttering, не mutters.",
+                "uk": "Тут використовуємо is muttering, не mutters."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:washer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — washer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:washer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — washer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:washer:audio",
+            "transcript": "washer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:washer:r1",
+              "targetText": "washer",
+              "meaningByLocale": {
+                "ru": "«шайба». This is a washer. — «Это шайба». Плоское кольцо под головку винта или гайку; здесь ремонтная деталь.",
+                "uk": "«шайба». This is a washer. — «Це шайба». Плоске кільце під головку гвинта або гайку; тут ремонтна деталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washer",
+            "definitionByLocale": {
+              "ru": "«шайба». This is a washer. — «Это шайба». Плоское кольцо под головку винта или гайку; здесь ремонтная деталь.",
+              "uk": "«шайба». This is a washer. — «Це шайба». Плоске кільце під головку гвинта або гайку; тут ремонтна деталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує про маленьке металеве кільце серед деталей. Скажіть: «Це шайба»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує про маленьке металеве кільце серед деталей. Скажіть: «Це шайба»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a washer.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает о маленьком металлическом кольце среди деталей. Скажите: «Это шайба»",
+            "uk": "Друг запитує про маленьке металеве кільце серед деталей. Скажіть: «Це шайба»"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "washer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i05:r1",
+            "text": "The washer is on the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i05:r2",
+            "text": "The washer is under the table."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i05:r3",
+            "text": "The screw is on the table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i05:audio",
+            "transcript": "The washer is on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i05:r1",
+              "targetText": "The washer is on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r2",
+              "targetText": "The washer is under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r3",
+              "targetText": "The screw is on the table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washer is on the table.",
+                "uk": "У записі звучить The washer is on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washer is on the table.",
+                "uk": "У записі звучить The washer is on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед washer",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i06:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i06:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед washer",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед washer",
+            "uk": "Виберіть артикль перед washer"
+          },
+          "gappedTargetPhrase": "This is ___ washer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i06:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед washer",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед washer",
+              "feedbackByLocale": {
+                "ru": "Первый звук согласный: a washer.",
+                "uk": "Перший звук приголосний: a washer."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед washer",
+              "feedbackByLocale": {
+                "ru": "Are не артикль, здесь нужен a.",
+                "uk": "Are не артикль, тут потрібне a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:hinge",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hinge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:hinge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hinge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:hinge:audio",
+            "transcript": "hinge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:hinge:r1",
+              "targetText": "hinge",
+              "meaningByLocale": {
+                "ru": "«дверная петля». The hinge is loose. — «Петля разболталась». Подвижное крепление, на котором поворачивается дверца.",
+                "uk": "«дверна завіса». The hinge is loose. — «Завіса розхиталася». Рухоме кріплення, на якому повертаються дверцята."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hinge",
+            "definitionByLocale": {
+              "ru": "«дверная петля». The hinge is loose. — «Петля разболталась». Подвижное крепление, на котором поворачивается дверца.",
+              "uk": "«дверна завіса». The hinge is loose. — «Завіса розхиталася». Рухоме кріплення, на якому повертаються дверцята."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Одна завіса дверцят тримається нещільно. Повідомте другові: «Завіса розхиталася»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одна завіса дверцят тримається нещільно. Повідомте другові: «Завіса розхиталася»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hinge is loose.",
+          "localizedMeaning": {
+            "ru": "Одна петля дверцы держится неплотно. Сообщите другу: «Петля разболталась»",
+            "uk": "Одна завіса дверцят тримається нещільно. Повідомте другові: «Завіса розхиталася»"
+          },
+          "orderedTokens": [
+            "The",
+            "hinge",
+            "is",
+            "loose"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i08:r1",
+            "text": "I am checking the hinge."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i08:r2",
+            "text": "I am checking the washer."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i08:r3",
+            "text": "I am not checking the hinge."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i08:audio",
+            "transcript": "I am checking the hinge."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i08:r1",
+              "targetText": "I am checking the hinge.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r2",
+              "targetText": "I am checking the washer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r3",
+              "targetText": "I am not checking the hinge.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am checking the hinge.",
+                "uk": "У записі звучить I am checking the hinge."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am checking the hinge.",
+                "uk": "У записі звучить I am checking the hinge."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму check для дії зараз",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i09:r1",
+            "text": "checking"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму check для дії зараз",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму check для действия сейчас",
+            "uk": "Виберіть форму check для дії зараз"
+          },
+          "gappedTargetPhrase": "I am ___ the hinge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i09:r1",
+              "text": "checking"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Виберіть форму check для дії зараз",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму check для дії зараз",
+              "feedbackByLocale": {
+                "ru": "После am нужна форма checking.",
+                "uk": "Після am потрібна форма checking."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму check для дії зараз",
+              "feedbackByLocale": {
+                "ru": "Здесь используем am checking, не checks.",
+                "uk": "Тут використовуємо am checking, не checks."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:word:sandpaper",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sandpaper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:word:sandpaper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sandpaper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:word:sandpaper:audio",
+            "transcript": "sandpaper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:word:sandpaper:r1",
+              "targetText": "sandpaper",
+              "meaningByLocale": {
+                "ru": "«наждачная бумага». The sandpaper is on the table. — «Наждачная бумага на столе». Шероховатый материал, которым сглаживают поверхность.",
+                "uk": "«наждачний папір». The sandpaper is on the table. — «Наждачний папір на столі». Шорсткий матеріал, яким згладжують поверхню."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sandpaper",
+            "definitionByLocale": {
+              "ru": "«наждачная бумага». The sandpaper is on the table. — «Наждачная бумага на столе». Шероховатый материал, которым сглаживают поверхность.",
+              "uk": "«наждачний папір». The sandpaper is on the table. — «Наждачний папір на столі». Шорсткий матеріал, яким згладжують поверхню."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг шукає матеріал для згладжування дерев’яного краю. Скажіть, що наждачний папір на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг шукає матеріал для згладжування дерев’яного краю. Скажіть, що наждачний папір на столі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The sandpaper is on the table.",
+          "localizedMeaning": {
+            "ru": "Друг ищет материал для сглаживания деревянного края. Скажите, что наждачная бумага на столе",
+            "uk": "Друг шукає матеріал для згладжування дерев’яного краю. Скажіть, що наждачний папір на столі"
+          },
+          "orderedTokens": [
+            "The",
+            "sandpaper",
+            "is",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i11:r1",
+            "text": "Please don't throw away the sandpaper."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i11:r2",
+            "text": "Please throw away the sandpaper."
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i11:r3",
+            "text": "Please don't throw away the washer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i11:audio",
+            "transcript": "Please don't throw away the sandpaper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-09:session-54:i11:r1",
+              "targetText": "Please don't throw away the sandpaper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r2",
+              "targetText": "Please throw away the sandpaper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r3",
+              "targetText": "Please don't throw away the washer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't throw away the sandpaper.",
+                "uk": "У записі звучить Please don't throw away the sandpaper."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please don't throw away the sandpaper.",
+                "uk": "У записі звучить Please don't throw away the sandpaper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг прибирає стіл і хоче викинути аркуш наждачного паперу, який ще потрібний. Попросіть не викидати наждачний папір; почніть із Please",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i12:audio"
+        ],
+        "accessibilityLabel": "Друг прибирає стіл і хоче викинути аркуш наждачного паперу, який ще потрібний. Попросіть не викидати наждачний папір; почніть із Please",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i12:audio",
+            "transcript": "Please don't throw away the sandpaper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please don't throw away the sandpaper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова з їхніми значеннями в цьому занятті",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова з їхніми значеннями в цьому занятті",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-09:session-54:i13:p1",
+              "target": "mutter",
+              "meaningByLocale": {
+                "ru": "бормотать",
+                "uk": "бурмотіти"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p2",
+              "target": "washer",
+              "meaningByLocale": {
+                "ru": "шайба",
+                "uk": "шайба"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p3",
+              "target": "hinge",
+              "meaningByLocale": {
+                "ru": "дверная петля",
+                "uk": "дверна завіса"
+              }
+            },
+            {
+              "pairId": "en:lesson-09:session-54:i13:p4",
+              "target": "sandpaper",
+              "meaningByLocale": {
+                "ru": "наждачная бумага",
+                "uk": "наждачний папір"
+              }
+            }
+          ],
+          "leftColumn": [
+            "mutter",
+            "washer",
+            "hinge",
+            "sandpaper"
+          ],
+          "rightColumn": [
+            "бурмотіти",
+            "шайба",
+            "дверна завіса",
+            "наждачний папір"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про бурмотіння друга зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про бурмотіння друга зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i14:audio",
+            "transcript": "Is he muttering?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is he muttering?",
+          "orderedTokens": [
+            "Is",
+            "he",
+            "muttering"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після don’t у проханні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-09:session-54:i15:r1",
+            "text": "throw"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i15:r2",
+            "text": "throwing"
+          },
+          {
+            "responseId": "en:lesson-09:session-54:i15:r3",
+            "text": "throws"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після don’t у проханні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после don’t в просьбе",
+            "uk": "Виберіть форму після don’t у проханні"
+          },
+          "gappedTargetPhrase": "Please don't ___ away the sandpaper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-09:session-54:i15:r1",
+              "text": "throw"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r2",
+              "text": "throwing"
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r3",
+              "text": "throws"
+            }
+          ],
+          "testedDimension": "Виберіть форму після don’t у проханні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-09:session-54:i15:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t нужна базовая форма throw.",
+                "uk": "Після don’t потрібна базова форма throw."
+              }
+            },
+            {
+              "responseId": "en:lesson-09:session-54:i15:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після don’t у проханні",
+              "feedbackByLocale": {
+                "ru": "После don’t в просьбе не добавляем -s.",
+                "uk": "Після don’t у проханні не додаємо -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сестра думає, що друг кричить через дверцята, але він лише тихо бурмоче. Скажіть: «Він не кричить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра думає, що друг кричить через дверцята, але він лише тихо бурмоче. Скажіть: «Він не кричить»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is not shouting.",
+          "localizedMeaning": {
+            "ru": "Сестра думает, что друг кричит из-за дверцы, но он только тихо бормочет. Скажите: «Он не кричит»",
+            "uk": "Сестра думає, що друг кричить через дверцята, але він лише тихо бурмоче. Скажіть: «Він не кричить»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "not",
+            "shouting"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-09:session-54:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг знову пробує зачинити дверцята й роздратовано промовляє щось собі під ніс. Брат чує голос, але не розбирає слів і запитує, що відбувається. Скажіть: «Він бурмоче»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-09:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Друг знову пробує зачинити дверцята й роздратовано промовляє щось собі під ніс. Брат чує голос, але не розбирає слів і запитує, що відбувається. Скажіть: «Він бурмоче»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-09:session-54:i17:audio",
+            "transcript": "He is muttering."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is muttering.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-09:session-54:word:mutter",
+      "correctText": "mutter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i01",
+      "correctText": "Please don't mutter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i02",
+      "correctText": "He is muttering.",
+      "correctResponseId": "en:lesson-09:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i03",
+      "correctText": "muttering",
+      "correctResponseId": "en:lesson-09:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:word:washer",
+      "correctText": "washer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i04",
+      "correctText": "This is a washer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i05",
+      "correctText": "The washer is on the table.",
+      "correctResponseId": "en:lesson-09:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i06",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-09:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:word:hinge",
+      "correctText": "hinge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i07",
+      "correctText": "The hinge is loose.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i08",
+      "correctText": "I am checking the hinge.",
+      "correctResponseId": "en:lesson-09:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i09",
+      "correctText": "checking",
+      "correctResponseId": "en:lesson-09:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:word:sandpaper",
+      "correctText": "sandpaper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i10",
+      "correctText": "The sandpaper is on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i11",
+      "correctText": "Please don't throw away the sandpaper.",
+      "correctResponseId": "en:lesson-09:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i12",
+      "correctText": "Please don't throw away the sandpaper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i14",
+      "correctText": "Is he muttering?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i15",
+      "correctText": "throw",
+      "correctResponseId": "en:lesson-09:session-54:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i16",
+      "correctText": "He is not shouting.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:i17",
+      "correctText": "He is muttering.",
+      "correctResponseId": null
+    }
+  ]
+}

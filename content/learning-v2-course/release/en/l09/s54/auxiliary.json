@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-54:intro1:r2": {
+          "ru": "Для действия сейчас с he нужно is.",
+          "uk": "Для дії зараз із he потрібне is."
+        },
+        "en:lesson-09:session-54:intro1:r3": {
+          "ru": "После is нужна форма muttering.",
+          "uk": "Після is потрібна форма muttering."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-54:intro2:r2": {
+          "ru": "Первый звук washer согласный, нужен a.",
+          "uk": "Перший звук washer приголосний, потрібне a."
+        },
+        "en:lesson-09:session-54:intro2:r3": {
+          "ru": "С this для одной детали нужно is.",
+          "uk": "З this для однієї деталі потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-54:intro3:r2": {
+          "ru": "Одна петля: is.",
+          "uk": "Одна завіса: is."
+        },
+        "en:lesson-09:session-54:intro3:r3": {
+          "ru": "В английской фразе нужна связка is.",
+          "uk": "В англійській фразі потрібна зв’язка is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d530a4e997b06988ced7234ab7d90001d49997f7142912d057a4fbdaf1ff1ee5"
+}

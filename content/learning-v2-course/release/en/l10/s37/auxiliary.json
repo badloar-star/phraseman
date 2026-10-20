@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-37:intro1:r2": {
+          "ru": "С semester в единственном числе нужна is.",
+          "uk": "З semester в однині потрібна is."
+        },
+        "en:lesson-10:session-37:intro1:r3": {
+          "ru": "Перед busy нужна связка is.",
+          "uk": "Перед busy потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-37:intro2:r2": {
+          "ru": "Перед reading нужен am.",
+          "uk": "Перед reading потрібне am."
+        },
+        "en:lesson-10:session-37:intro2:r3": {
+          "ru": "С I нужна am.",
+          "uk": "З I потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-37:intro3:r2": {
+          "ru": "С I нужна study без s.",
+          "uk": "З I потрібна study без s."
+        },
+        "en:lesson-10:session-37:intro3:r3": {
+          "ru": "Для привычки здесь нужна study.",
+          "uk": "Для звички тут потрібна study."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a50676cb3c0e41544b2791334d0de9ddda294f887e2b8a63faa4caacaa3d534b"
+}

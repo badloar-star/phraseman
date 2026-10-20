@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "I craft bags by hand; I am making a pincushion",
+    "uk": "I craft bags by hand; I am making a pincushion"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что вы делаете на заказ",
+        "uk": "Що ви робите на замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "Посетитель мастерской спрашивает, чем вы занимаетесь. Вы вручную создаёте сумки: I craft bags by hand — «Я мастерю сумки вручную». Craft здесь глагол: делать вещи умело, с вниманием к работе. Вы описываете своё обычное занятие, поэтому I craft, без am.",
+        "uk": "Відвідувач майстерні запитує, чим ви займаєтеся. Ви вручну створюєте сумки: I craft bags by hand — «Я майструю сумки вручну». Craft тут дієслово: робити речі майстерно, з увагою до роботи. Ви описуєте своє звичайне заняття, тому I craft, без am."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r1",
+              "text": "I craft bags by hand."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r2",
+              "text": "I crafts bags by hand."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r3",
+              "text": "I am craft bags by hand."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r1",
+              "text": "I craft bags by hand."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r2",
+              "text": "I crafts bags by hand."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro1:r3",
+              "text": "I am craft bags by hand."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сегодня другая вещь",
+        "uk": "Сьогодні інша річ"
+      },
+      "bodyByLocale": {
+        "ru": "Обычно вы мастерите сумки, но сейчас шьёте маленькую подушечку для булавок — pincushion. Коллега спрашивает, что получится. I am making a pincushion — «Я делаю подушечку для булавок». Это работа сейчас: am making. У make конечная e исчезает перед -ing.",
+        "uk": "Зазвичай ви майструєте сумки, але зараз шиєте маленьку подушечку для шпильок — pincushion. Колега запитує, що вийде. I am making a pincushion — «Я роблю подушечку для шпильок». Це робота зараз: am making. У make кінцева e зникає перед -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r1",
+              "text": "I am making a pincushion."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r2",
+              "text": "I am makeing a pincushion."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r3",
+              "text": "I making a pincushion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r1",
+              "text": "I am making a pincushion."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r2",
+              "text": "I am makeing a pincushion."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro2:r3",
+              "text": "I making a pincushion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машинка пока не работает",
+        "uk": "Машинка поки не працює"
+      },
+      "bodyByLocale": {
+        "ru": "Bobbin — «шпулька», маленькая катушка для нити в швейной машинке. Обычно вы проверяете её перед работой: I check the bobbin before work. Сейчас коллега думает, что вы уже шьёте. Но машинка выключена, а вы осматриваете шпульку: I am checking the bobbin — «Я проверяю шпульку». Check описывает привычный порядок, am checking — то, что вы делаете сейчас.",
+        "uk": "Bobbin — «шпулька», маленька котушка для нитки у швейній машинці. Зазвичай ви перевіряєте її перед роботою: I check the bobbin before work. Зараз колега думає, що ви вже шиєте. Але машинка вимкнена, а ви оглядаєте шпульку: I am checking the bobbin — «Я перевіряю шпульку». Check описує звичний порядок, am checking — те, що ви робите зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r1",
+              "text": "I am checking the bobbin."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r2",
+              "text": "I checking the bobbin."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r3",
+              "text": "I am check the bobbin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r1",
+              "text": "I am checking the bobbin."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r2",
+              "text": "I checking the bobbin."
+            },
+            {
+              "responseId": "en:lesson-10:session-04:intro3:r3",
+              "text": "I am check the bobbin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "057020f8630f665e6c97bc93bd44fda9a864d4ca470986af6edc9b59c460c246"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-04:intro1:r2": {
+          "ru": "С I не добавляем -s.",
+          "uk": "З I не додаємо -s."
+        },
+        "en:lesson-10:session-04:intro1:r3": {
+          "ru": "Для обычного занятия здесь I craft; am craft неверно.",
+          "uk": "Для звичайного заняття тут I craft; am craft неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-04:intro2:r2": {
+          "ru": "Правильное написание: making.",
+          "uk": "Правильне написання: making."
+        },
+        "en:lesson-10:session-04:intro2:r3": {
+          "ru": "Перед making с I нужно am.",
+          "uk": "Перед making з I потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-04:intro3:r2": {
+          "ru": "Перед checking с I нужно am.",
+          "uk": "Перед checking з I потрібне am."
+        },
+        "en:lesson-10:session-04:intro3:r3": {
+          "ru": "После am нужна checking.",
+          "uk": "Після am потрібна checking."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "591b8276167dde3899f664aa11820685aaa1d8371a60f95213bae2655a85cadf"
+}

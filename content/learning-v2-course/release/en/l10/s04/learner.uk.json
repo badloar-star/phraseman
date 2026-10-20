@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-04:word:craft",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — craft",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:word:craft:audio"
+      ],
+      "accessibilityLabel": "Картка слова — craft",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:word:craft:audio",
+          "transcript": "craft"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:word:craft:r1",
+            "targetText": "craft",
+            "meaningByLocale": {
+              "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
+              "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "craft",
+          "definitionByLocale": {
+            "ru": "«мастерить, создавать вручную». I craft bags by hand. — «Я мастерю сумки вручную». Здесь глагол о создании вещей с умением и вниманием.",
+            "uk": "«майструвати, створювати вручну». I craft bags by hand. — «Я майструю сумки вручну». Тут дієслово про створення речей майстерно й уважно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I craft bags by hand.",
+        "localizedMeaning": {
+          "ru": "Посетитель спрашивает о вашей работе. Скажите: «Я мастерю сумки вручную»",
+          "uk": "Відвідувач запитує про вашу роботу. Скажіть: «Я майструю сумки вручну»"
+        },
+        "orderedTokens": [
+          "I",
+          "craft",
+          "bags",
+          "by",
+          "hand"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i02:r1",
+          "text": "She crafts bags by hand."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i02:r2",
+          "text": "She crafts toys by hand."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i02:r3",
+          "text": "He crafts bags by hand."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i02:audio",
+          "transcript": "She crafts bags by hand."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:i02:r1",
+            "targetText": "She crafts bags by hand.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i02:r2",
+            "targetText": "She crafts toys by hand.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i02:r3",
+            "targetText": "He crafts bags by hand.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She crafts bags by hand.",
+              "uk": "У записі звучить She crafts bags by hand."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She crafts bags by hand.",
+              "uk": "У записі звучить She crafts bags by hand."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму craft для звичайної роботи з she",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i03:r1",
+          "text": "crafts"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i03:r2",
+          "text": "craft"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i03:r3",
+          "text": "crafting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму craft для звичайної роботи з she",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму craft для обычной работы с she",
+          "uk": "Виберіть форму craft для звичайної роботи з she"
+        },
+        "gappedTargetPhrase": "She ___ bags by hand.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-04:i03:r1",
+            "text": "crafts"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i03:r2",
+            "text": "craft"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i03:r3",
+            "text": "crafting"
+          }
+        ],
+        "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+            "feedbackByLocale": {
+              "ru": "С she в Present Simple добавляем -s.",
+              "uk": "З she у Present Simple додаємо -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму craft для звичайної роботи з she",
+            "feedbackByLocale": {
+              "ru": "Crafting без is не образует сказуемое.",
+              "uk": "Crafting без is не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:word:bobbin",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bobbin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:word:bobbin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bobbin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:word:bobbin:audio",
+          "transcript": "bobbin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:word:bobbin:r1",
+            "targetText": "bobbin",
+            "meaningByLocale": {
+              "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
+              "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bobbin",
+          "definitionByLocale": {
+            "ru": "«шпулька». I am checking the bobbin. — «Я проверяю шпульку». Маленькая катушка для нити в швейной машинке.",
+            "uk": "«шпулька». I am checking the bobbin. — «Я перевіряю шпульку». Маленька котушка для нитки у швейній машинці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the bobbin.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, что вы осматриваете. Скажите: «Я проверяю шпульку»",
+          "uk": "Колега запитує, що ви оглядаєте. Скажіть: «Я перевіряю шпульку»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "bobbin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i05:r1",
+          "text": "The bobbin is on the table."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i05:r2",
+          "text": "The bobbin is under the table."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i05:r3",
+          "text": "The button is on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i05:audio",
+          "transcript": "The bobbin is on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:i05:r1",
+            "targetText": "The bobbin is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i05:r2",
+            "targetText": "The bobbin is under the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i05:r3",
+            "targetText": "The button is on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bobbin is on the table.",
+              "uk": "У записі звучить The bobbin is on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bobbin is on the table.",
+              "uk": "У записі звучить The bobbin is on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для однієї шпульки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для однієї шпульки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для одной шпульки",
+          "uk": "Виберіть зв’язку для однієї шпульки"
+        },
+        "gappedTargetPhrase": "The bobbin ___ on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-04:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для однієї шпульки",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для однієї шпульки",
+            "feedbackByLocale": {
+              "ru": "Bobbin в единственном числе: is.",
+              "uk": "Bobbin в однині: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для однієї шпульки",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:word:pincushion",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pincushion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:word:pincushion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pincushion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:word:pincushion:audio",
+          "transcript": "pincushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:word:pincushion:r1",
+            "targetText": "pincushion",
+            "meaningByLocale": {
+              "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
+              "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pincushion",
+          "definitionByLocale": {
+            "ru": "«подушечка для булавок». I am making a pincushion. — «Я делаю подушечку для булавок». Небольшая мягкая подушечка, в которую втыкают булавки.",
+            "uk": "«подушечка для шпильок». I am making a pincushion. — «Я роблю подушечку для шпильок». Невелика м’яка подушечка, у яку встромляють шпильки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am making a pincushion.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, что вы шьёте сейчас. Скажите: «Я делаю подушечку для булавок»",
+          "uk": "Колега запитує, що ви шиєте зараз. Скажіть: «Я роблю подушечку для шпильок»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "making",
+          "a",
+          "pincushion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i08:r1",
+          "text": "She is making a pincushion."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i08:r2",
+          "text": "She is not making a pincushion."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i08:r3",
+          "text": "He is making a pincushion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i08:audio",
+          "transcript": "She is making a pincushion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:i08:r1",
+            "targetText": "She is making a pincushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i08:r2",
+            "targetText": "She is not making a pincushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i08:r3",
+            "targetText": "He is making a pincushion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is making a pincushion.",
+              "uk": "У записі звучить She is making a pincushion."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is making a pincushion.",
+              "uk": "У записі звучить She is making a pincushion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть написання make з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i09:r1",
+          "text": "making"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i09:r2",
+          "text": "makeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i09:r3",
+          "text": "make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть написання make з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание make с -ing",
+          "uk": "Виберіть написання make з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ a pincushion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-04:i09:r1",
+            "text": "making"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i09:r2",
+            "text": "makeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i09:r3",
+            "text": "make"
+          }
+        ],
+        "testedDimension": "Виберіть написання make з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть написання make з -ing",
+            "feedbackByLocale": {
+              "ru": "Конечная e исчезает: making.",
+              "uk": "Кінцева e зникає: making."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть написання make з -ing",
+            "feedbackByLocale": {
+              "ru": "После am нужна форма making.",
+              "uk": "Після am потрібна форма making."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:word:offcut",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — offcut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:word:offcut:audio"
+      ],
+      "accessibilityLabel": "Картка слова — offcut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:word:offcut:audio",
+          "transcript": "offcut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:word:offcut:r1",
+            "targetText": "offcut",
+            "meaningByLocale": {
+              "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
+              "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "offcut",
+          "definitionByLocale": {
+            "ru": "«обрезок материала». I am using an offcut. — «Я использую обрезок». Здесь кусок ткани, оставшийся после раскроя.",
+            "uk": "«обрізок матеріалу». I am using an offcut. — «Я використовую обрізок». Тут шматок тканини, що залишився після розкрою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am using an offcut.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, откуда ткань для маленькой подушечки. Скажите: «Я использую обрезок»",
+          "uk": "Колега запитує, звідки тканина для маленької подушечки. Скажіть: «Я використовую обрізок»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "using",
+          "an",
+          "offcut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i11:r1",
+          "text": "The offcut is small."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i11:r2",
+          "text": "The offcut is large."
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i11:r3",
+          "text": "The button is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i11:audio",
+          "transcript": "The offcut is small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-04:i11:r1",
+            "targetText": "The offcut is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i11:r2",
+            "targetText": "The offcut is large.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i11:r3",
+            "targetText": "The button is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The offcut is small.",
+              "uk": "У записі звучить The offcut is small."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The offcut is small.",
+              "uk": "У записі звучить The offcut is small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль перед offcut",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-04:i12:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i12:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-10:session-04:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль перед offcut",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль перед offcut",
+          "uk": "Виберіть артикль перед offcut"
+        },
+        "gappedTargetPhrase": "I am using ___ offcut.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-04:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль перед offcut",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед offcut",
+            "feedbackByLocale": {
+              "ru": "Offcut начинается с гласного звука: an.",
+              "uk": "Offcut починається з голосного звука: an."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль перед offcut",
+            "feedbackByLocale": {
+              "ru": "Are не артикль; здесь нужен an.",
+              "uk": "Are не артикль; тут потрібний an."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте нові слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-04:i13:p1",
+            "target": "craft",
+            "meaningByLocale": {
+              "ru": "мастерить",
+              "uk": "майструвати"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-04:i13:p2",
+            "target": "bobbin",
+            "meaningByLocale": {
+              "ru": "шпулька",
+              "uk": "шпулька"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-04:i13:p3",
+            "target": "pincushion",
+            "meaningByLocale": {
+              "ru": "подушечка для булавок",
+              "uk": "подушечка для шпильок"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-04:i13:p4",
+            "target": "offcut",
+            "meaningByLocale": {
+              "ru": "обрезок материала",
+              "uk": "обрізок матеріалу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "craft",
+          "bobbin",
+          "pincushion",
+          "offcut"
+        ],
+        "rightColumn": [
+          "майструвати",
+          "шпулька",
+          "подушечка для шпильок",
+          "обрізок матеріалу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть запитання про дію зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i14:audio",
+          "transcript": "Are you making a pincushion?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you making a pincushion?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "making",
+          "a",
+          "pincushion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Відвідувач запитує про ваше звичайне заняття. Скажіть: «Я майструю сумки вручну»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Відвідувач запитує про ваше звичайне заняття. Скажіть: «Я майструю сумки вручну»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i15:audio",
+          "transcript": "I craft bags by hand."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I craft bags by hand.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not making a bag.",
+        "localizedMeaning": {
+          "ru": "Коллега думает, что вы сейчас делаете сумку. Но сегодня вы шьёте подушечку. Скажите: «Я не делаю сумку»",
+          "uk": "Колега думає, що ви зараз робите сумку. Але сьогодні ви шиєте подушечку. Скажіть: «Я не роблю сумку»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "making",
+          "a",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-04:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зазвичай ви майструєте сумки, але зараз шиєте подушечку для шпильок із залишку тканини. Відвідувач запитує, над чим ви працюєте. Дайте відповідь: «Я роблю подушечку для шпильок»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Зазвичай ви майструєте сумки, але зараз шиєте подушечку для шпильок із залишку тканини. Відвідувач запитує, над чим ви працюєте. Дайте відповідь: «Я роблю подушечку для шпильок»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-04:i17:audio",
+          "transcript": "I am making a pincushion."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am making a pincushion.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5a8fa0b389ee3ed0a942ceee91a1fa3d34268c6cde1b0442168ee7fb75fee76f"
+}

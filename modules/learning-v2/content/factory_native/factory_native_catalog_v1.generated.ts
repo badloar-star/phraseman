@@ -3738,4 +3738,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually go to bed before midnight; The countdown is starting; I can hear a chime","uk":"I usually go to bed before midnight; The countdown is starting; I can hear a chime"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 30,
+    sourceFingerprint: "6f3824225897779abfef64d7fecddf340f1c53bcc575f868d5e9040d66af71ac",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour","uk":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

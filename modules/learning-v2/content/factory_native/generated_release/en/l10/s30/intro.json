@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour",
+    "uk": "I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "По будням",
+        "uk": "У будні"
+      },
+      "bodyByLocale": {
+        "ru": "Weekday — «будний день»: день с понедельника по пятницу, в отличие от выходных. Это название дней, а не утверждение, что все люди работают именно тогда. I take the bus on weekdays — «Я езжу на автобусе по будням». Повторяющуюся поездку описываем в Present Simple. Для «по будням» используем on weekdays.",
+        "uk": "Weekday — «будній день»: день із понеділка до п’ятниці, на відміну від вихідних. Це назва днів, а не твердження, що всі люди працюють саме тоді. I take the bus on weekdays — «Я їжджу автобусом у будні». Повторювану поїздку описуємо в Present Simple. Для «у будні» використовуємо on weekdays."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r1",
+              "text": "I take the bus on weekdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r2",
+              "text": "I takes the bus on weekdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r3",
+              "text": "I take the bus at weekdays."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r1",
+              "text": "I take the bus on weekdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r2",
+              "text": "I takes the bus on weekdays."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro1:r3",
+              "text": "I take the bus at weekdays."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пассажир ждёт сейчас",
+        "uk": "Пасажир чекає зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Commuter — «человек, регулярно ездящий на работу или учёбу». Он может ехать на поезде, автобусе или машине. Сейчас вы видите такого пассажира на остановке: The commuter is waiting for a bus — «Человек, который регулярно ездит на работу, ждёт автобус». Для ожидания сейчас используем is + waiting.",
+        "uk": "Commuter — «людина, яка регулярно їздить на роботу або навчання». Вона може їхати потягом, автобусом чи машиною. Зараз ви бачите такого пасажира на зупинці: The commuter is waiting for a bus — «Людина, яка регулярно їздить на роботу, чекає на автобус». Для очікування зараз використовуємо is + waiting."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r1",
+              "text": "The commuter is waiting for a bus."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r2",
+              "text": "The commuter waiting for a bus."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r3",
+              "text": "The commuter are waiting for a bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r1",
+              "text": "The commuter is waiting for a bus."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r2",
+              "text": "The commuter waiting for a bus."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro2:r3",
+              "text": "The commuter are waiting for a bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Час пик",
+        "uk": "Година пік"
+      },
+      "bodyByLocale": {
+        "ru": "Rush hour — «час пик», время особенно интенсивного движения, часто утром или вечером. It is rush hour — «Сейчас час пик». Здесь называем текущий период, поэтому используем is. Now и ситуация «сейчас» не требуют Continuous во всех предложениях. Для конкретного действия: We are waiting for a bus now.",
+        "uk": "Rush hour — «година пік», час особливо інтенсивного руху, часто вранці або ввечері. It is rush hour — «Зараз година пік». Тут називаємо поточний період, тому використовуємо is. Now і ситуація «зараз» не вимагають Continuous в усіх реченнях. Для конкретної дії: We are waiting for a bus now."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r1",
+              "text": "It is rush hour."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r2",
+              "text": "It rush hour."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r3",
+              "text": "It are rush hour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r1",
+              "text": "It is rush hour."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r2",
+              "text": "It rush hour."
+            },
+            {
+              "responseId": "en:lesson-10:session-30:intro3:r3",
+              "text": "It are rush hour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7bc1d12b9e94a44e232cf2caa979503e6c1a5e56e8c753e3862e06a6696542ee"
+}

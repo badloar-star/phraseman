@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-30:intro1:r2": {
+          "ru": "С I нужна take без s.",
+          "uk": "З I потрібна take без s."
+        },
+        "en:lesson-10:session-30:intro1:r3": {
+          "ru": "Говорим on weekdays, не at weekdays.",
+          "uk": "Кажемо on weekdays, не at weekdays."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-30:intro2:r2": {
+          "ru": "Перед waiting нужен is.",
+          "uk": "Перед waiting потрібне is."
+        },
+        "en:lesson-10:session-30:intro2:r3": {
+          "ru": "Commuter здесь один человек: is.",
+          "uk": "Commuter тут одна людина: is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-30:intro3:r2": {
+          "ru": "После it нужна связка is.",
+          "uk": "Після it потрібна зв’язка is."
+        },
+        "en:lesson-10:session-30:intro3:r3": {
+          "ru": "С it нужно is.",
+          "uk": "З it потрібне is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b624d760f613318c104f163da542b83f01c9013706a29e2fa3894cf53a08e19e"
+}

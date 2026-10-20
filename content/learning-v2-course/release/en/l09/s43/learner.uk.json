@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-09:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-09:session-43:word:thumbnail",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thumbnail",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:word:thumbnail:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thumbnail",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:word:thumbnail:audio",
+          "transcript": "thumbnail"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:word:thumbnail:r1",
+            "targetText": "thumbnail",
+            "meaningByLocale": {
+              "ru": "«миниатюра изображения». This is a thumbnail. — «Это миниатюра». Уменьшенная картинка, по которой удобно найти файл.",
+              "uk": "«мініатюра зображення». This is a thumbnail. — «Це мініатюра». Зменшена картинка, за якою зручно знайти файл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thumbnail",
+          "definitionByLocale": {
+            "ru": "«миниатюра изображения». This is a thumbnail. — «Это миниатюра». Уменьшенная картинка, по которой удобно найти файл.",
+            "uk": "«мініатюра зображення». This is a thumbnail. — «Це мініатюра». Зменшена картинка, за якою зручно знайти файл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дитина запитує про маленьку копію фото в папці. Скажіть: «Це мініатюра»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дитина запитує про маленьку копію фото в папці. Скажіть: «Це мініатюра»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a thumbnail.",
+        "localizedMeaning": {
+          "ru": "Ребёнок спрашивает о маленькой копии фото в папке. Скажите: «Это миниатюра»",
+          "uk": "Дитина запитує про маленьку копію фото в папці. Скажіть: «Це мініатюра»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "thumbnail"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i02:r1",
+          "text": "The thumbnail is small."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i02:r2",
+          "text": "The thumbnail is not small."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i02:r3",
+          "text": "The photo is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i02:audio",
+          "transcript": "The thumbnail is small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:i02:r1",
+            "targetText": "The thumbnail is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i02:r2",
+            "targetText": "The thumbnail is not small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i02:r3",
+            "targetText": "The photo is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The thumbnail is small.",
+              "uk": "У записі звучить The thumbnail is small."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The thumbnail is small.",
+              "uk": "У записі звучить The thumbnail is small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть артикль для однієї мініатюри",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть артикль для однієї мініатюри",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите артикль для одной миниатюры",
+          "uk": "Виберіть артикль для однієї мініатюри"
+        },
+        "gappedTargetPhrase": "This is ___ thumbnail.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-43:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Виберіть артикль для однієї мініатюри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї мініатюри",
+            "feedbackByLocale": {
+              "ru": "Thumbnail начинается с согласного звука, нужен a.",
+              "uk": "Thumbnail починається з приголосного звука, потрібне a."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть артикль для однієї мініатюри",
+            "feedbackByLocale": {
+              "ru": "Are — глагол, не артикль перед thumbnail.",
+              "uk": "Are — дієслово, не артикль перед thumbnail."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:word:preview",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — preview",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:word:preview:audio"
+      ],
+      "accessibilityLabel": "Картка слова — preview",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:word:preview:audio",
+          "transcript": "preview"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:word:preview:r1",
+            "targetText": "preview",
+            "meaningByLocale": {
+              "ru": "«предварительный просмотр». I am checking the preview. — «Я проверяю изображение в окне предварительного просмотра». Здесь смотрим результат сканирования перед дальнейшей работой.",
+              "uk": "«попередній перегляд». I am checking the preview. — «Я перевіряю зображення у вікні попереднього перегляду». Тут дивимося на результат сканування перед подальшою роботою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "preview",
+          "definitionByLocale": {
+            "ru": "«предварительный просмотр». I am checking the preview. — «Я проверяю изображение в окне предварительного просмотра». Здесь смотрим результат сканирования перед дальнейшей работой.",
+            "uk": "«попередній перегляд». I am checking the preview. — «Я перевіряю зображення у вікні попереднього перегляду». Тут дивимося на результат сканування перед подальшою роботою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть другові, що зараз перевіряєте зображення у вікні попереднього перегляду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть другові, що зараз перевіряєте зображення у вікні попереднього перегляду",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the preview.",
+        "localizedMeaning": {
+          "ru": "Объясните другу, что сейчас проверяете изображение в окне предварительного просмотра",
+          "uk": "Поясніть другові, що зараз перевіряєте зображення у вікні попереднього перегляду"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "preview"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i05:r1",
+          "text": "Are you checking the preview?"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i05:r2",
+          "text": "You are checking the preview."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i05:r3",
+          "text": "I am checking the preview."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i05:audio",
+          "transcript": "Are you checking the preview?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:i05:r1",
+            "targetText": "Are you checking the preview?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i05:r2",
+            "targetText": "You are checking the preview.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i05:r3",
+            "targetText": "I am checking the preview.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the preview?",
+              "uk": "У записі звучить Are you checking the preview?"
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you checking the preview?",
+              "uk": "У записі звучить Are you checking the preview?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви ще розглядаєте результат сканування, а друг хоче закрити його вікно. Попросіть не закривати вікно; почніть із Please",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Ви ще розглядаєте результат сканування, а друг хоче закрити його вікно. Попросіть не закривати вікно; почніть із Please",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i06:audio",
+          "transcript": "Please don't close the window."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please don't close the window.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:word:resolution",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — resolution",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:word:resolution:audio"
+      ],
+      "accessibilityLabel": "Картка слова — resolution",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:word:resolution:audio",
+          "transcript": "resolution"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:word:resolution:r1",
+            "targetText": "resolution",
+            "meaningByLocale": {
+              "ru": "«разрешение изображения». The resolution is low. — «Разрешение низкое». Здесь характеристика количества деталей цифрового изображения, не разрешение что-то сделать.",
+              "uk": "«роздільна здатність зображення». The resolution is low. — «Роздільна здатність низька». Тут характеристика кількості деталей цифрового зображення, не дозвіл щось зробити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "resolution",
+          "definitionByLocale": {
+            "ru": "«разрешение изображения». The resolution is low. — «Разрешение низкое». Здесь характеристика количества деталей цифрового изображения, не разрешение что-то сделать.",
+            "uk": "«роздільна здатність зображення». The resolution is low. — «Роздільна здатність низька». Тут характеристика кількості деталей цифрового зображення, не дозвіл щось зробити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У налаштуваннях вибрано низький рівень роздільної здатності. Повідомте: «Роздільна здатність низька»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У налаштуваннях вибрано низький рівень роздільної здатності. Повідомте: «Роздільна здатність низька»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The resolution is low.",
+        "localizedMeaning": {
+          "ru": "В настройках выбран низкий уровень разрешения. Сообщите: «Разрешение низкое»",
+          "uk": "У налаштуваннях вибрано низький рівень роздільної здатності. Повідомте: «Роздільна здатність низька»"
+        },
+        "orderedTokens": [
+          "The",
+          "resolution",
+          "is",
+          "low"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i08:r1",
+          "text": "The resolution is high."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i08:r2",
+          "text": "The resolution is low."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i08:r3",
+          "text": "The thumbnail is small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i08:audio",
+          "transcript": "The resolution is high."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:i08:r1",
+            "targetText": "The resolution is high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i08:r2",
+            "targetText": "The resolution is low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i08:r3",
+            "targetText": "The thumbnail is small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The resolution is high.",
+              "uk": "У записі звучить The resolution is high."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The resolution is high.",
+              "uk": "У записі звучить The resolution is high."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку для resolution",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку для resolution",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для resolution",
+          "uk": "Виберіть зв’язку для resolution"
+        },
+        "gappedTargetPhrase": "The resolution ___ low.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-43:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку для resolution",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для resolution",
+            "feedbackByLocale": {
+              "ru": "Resolution здесь в единственном числе, нужно is.",
+              "uk": "Resolution тут в однині, потрібне is."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку для resolution",
+            "feedbackByLocale": {
+              "ru": "Am используется с I, не с resolution.",
+              "uk": "Am використовується з I, не з resolution."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:word:crop",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:word:crop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:word:crop:audio",
+          "transcript": "crop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:word:crop:r1",
+            "targetText": "crop",
+            "meaningByLocale": {
+              "ru": "«обрезать изображение». Please crop the photo. — «Пожалуйста, обрежь фотографию». В редакторе убираем ненужные края; crop → cropping.",
+              "uk": "«обрізати зображення». Please crop the photo. — «Будь ласка, обріж фотографію». У редакторі прибираємо непотрібні краї; crop → cropping."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crop",
+          "definitionByLocale": {
+            "ru": "«обрезать изображение». Please crop the photo. — «Пожалуйста, обрежь фотографию». В редакторе убираем ненужные края; crop → cropping.",
+            "uk": "«обрізати зображення». Please crop the photo. — «Будь ласка, обріж фотографію». У редакторі прибираємо непотрібні краї; crop → cropping."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i10:r1",
+          "text": "Please crop the photo."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i10:r2",
+          "text": "Please don't crop the photo."
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i10:r3",
+          "text": "Please scan the photo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i10:audio",
+          "transcript": "Please crop the photo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-09:session-43:i10:r1",
+            "targetText": "Please crop the photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i10:r2",
+            "targetText": "Please don't crop the photo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i10:r3",
+            "targetText": "Please scan the photo.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please crop the photo.",
+              "uk": "У записі звучить Please crop the photo."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please crop the photo.",
+              "uk": "У записі звучить Please crop the photo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть подрузі, що зараз обрізаєте фотографію в редакторі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть подрузі, що зараз обрізаєте фотографію в редакторі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am cropping the photo.",
+        "localizedMeaning": {
+          "ru": "Объясните подруге, что сейчас обрезаете фотографию в редакторе",
+          "uk": "Поясніть подрузі, що зараз обрізаєте фотографію в редакторі"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "cropping",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму crop з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i12:r1",
+          "text": "cropping"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i12:r2",
+          "text": "croping"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i12:r3",
+          "text": "crop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму crop з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму crop с -ing",
+          "uk": "Виберіть форму crop з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ the photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-43:i12:r1",
+            "text": "cropping"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i12:r2",
+            "text": "croping"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i12:r3",
+            "text": "crop"
+          }
+        ],
+        "testedDimension": "Виберіть форму crop з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму crop з -ing",
+            "feedbackByLocale": {
+              "ru": "При добавлении -ing в cropping удваиваем p.",
+              "uk": "Під час додавання -ing у cropping подвоюємо p."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму crop з -ing",
+            "feedbackByLocale": {
+              "ru": "После am для действия сейчас нужна форма cropping.",
+              "uk": "Після am для дії зараз потрібна форма cropping."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями в роботі із зображеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями в роботі із зображеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-09:session-43:i13:p1",
+            "target": "thumbnail",
+            "meaningByLocale": {
+              "ru": "миниатюра изображения",
+              "uk": "мініатюра зображення"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-43:i13:p2",
+            "target": "preview",
+            "meaningByLocale": {
+              "ru": "предварительный просмотр",
+              "uk": "попередній перегляд"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-43:i13:p3",
+            "target": "resolution",
+            "meaningByLocale": {
+              "ru": "разрешение изображения",
+              "uk": "роздільна здатність зображення"
+            }
+          },
+          {
+            "pairId": "en:lesson-09:session-43:i13:p4",
+            "target": "crop",
+            "meaningByLocale": {
+              "ru": "обрезать изображение",
+              "uk": "обрізати зображення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "thumbnail",
+          "preview",
+          "resolution",
+          "crop"
+        ],
+        "rightColumn": [
+          "мініатюра зображення",
+          "попередній перегляд",
+          "роздільна здатність зображення",
+          "обрізати зображення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть: ви скануєте фотографію зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть: ви скануєте фотографію зараз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i14:audio",
+          "transcript": "I am scanning the photo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am scanning the photo.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "scanning",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть написання scan з -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-09:session-43:i15:r1",
+          "text": "scanning"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i15:r2",
+          "text": "scaning"
+        },
+        {
+          "responseId": "en:lesson-09:session-43:i15:r3",
+          "text": "scan"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть написання scan з -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание scan с -ing",
+          "uk": "Виберіть написання scan з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ the photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-09:session-43:i15:r1",
+            "text": "scanning"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i15:r2",
+            "text": "scaning"
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i15:r3",
+            "text": "scan"
+          }
+        ],
+        "testedDimension": "Виберіть написання scan з -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-09:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Виберіть написання scan з -ing",
+            "feedbackByLocale": {
+              "ru": "В scanning удваиваем n.",
+              "uk": "У scanning подвоюємо n."
+            }
+          },
+          {
+            "responseId": "en:lesson-09:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Виберіть написання scan з -ing",
+            "feedbackByLocale": {
+              "ru": "После am нужна форма scanning.",
+              "uk": "Після am потрібна форма scanning."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Колега запитує, чи обрізаєте ви фото. Ви лише перевіряєте зображення у вікні попереднього перегляду. Скажіть: «Я не обрізаю фотографію»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Колега запитує, чи обрізаєте ви фото. Ви лише перевіряєте зображення у вікні попереднього перегляду. Скажіть: «Я не обрізаю фотографію»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not cropping the photo.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, обрезаете ли вы фото. Вы только проверяете изображение в окне предварительного просмотра. Скажите: «Я не обрезаю фотографию»",
+          "uk": "Колега запитує, чи обрізаєте ви фото. Ви лише перевіряєте зображення у вікні попереднього перегляду. Скажіть: «Я не обрізаю фотографію»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "cropping",
+          "the",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви готуєте цифрову копію старої фотографії для сімейного альбому. Брат запитує, навіщо ви рухаєте рамку в редакторі. Ви прибираєте зайвий край. Поясніть: «Я обрізаю фотографію»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-09:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Ви готуєте цифрову копію старої фотографії для сімейного альбому. Брат запитує, навіщо ви рухаєте рамку в редакторі. Ви прибираєте зайвий край. Поясніть: «Я обрізаю фотографію»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-09:session-43:i17:audio",
+          "transcript": "I am cropping the photo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am cropping the photo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d47f05a4c98d363fb7b1f84596383dfca5563f70ef212a338bbe157450b766d2"
+}

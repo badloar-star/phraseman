@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-09:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-09:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-43:intro1:r2": {
+          "ru": "Перед названием одной миниатюры здесь нужно a.",
+          "uk": "Перед назвою однієї мініатюри тут потрібне a."
+        },
+        "en:lesson-09:session-43:intro1:r3": {
+          "ru": "С this для одного предмета нужно is.",
+          "uk": "З this для одного предмета потрібне is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-43:intro2:r2": {
+          "ru": "Для действия сейчас с I нужна форма am.",
+          "uk": "Для дії зараз з I потрібна форма am."
+        },
+        "en:lesson-09:session-43:intro2:r3": {
+          "ru": "После am нужна форма checking.",
+          "uk": "Після am потрібна форма checking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-09:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-09:session-43:intro3:r2": {
+          "ru": "В cropping две p.",
+          "uk": "У cropping дві p."
+        },
+        "en:lesson-09:session-43:intro3:r3": {
+          "ru": "После am нужна форма cropping.",
+          "uk": "Після am потрібна форма cropping."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4fc1a3c62c58c970f66b41b6306765fee002632327d6849a4710c4b0bbab9389"
+}

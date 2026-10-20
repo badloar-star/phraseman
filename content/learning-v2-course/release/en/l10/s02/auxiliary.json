@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-02:intro1:r2": {
+          "ru": "Перед cleaning с I нужно am.",
+          "uk": "Перед cleaning з I потрібне am."
+        },
+        "en:lesson-10:session-02:intro1:r3": {
+          "ru": "После am нужна форма cleaning.",
+          "uk": "Після am потрібна форма cleaning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-02:intro2:r2": {
+          "ru": "О снастях tackle неисчисляемое, a не нужен.",
+          "uk": "Про снасті tackle незлічуване, a не потрібний."
+        },
+        "en:lesson-10:session-02:intro2:r3": {
+          "ru": "С I перед checking нужно am.",
+          "uk": "З I перед checking потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-02:intro3:r2": {
+          "ru": "В форме sit с -ing две t: sitting.",
+          "uk": "У формі sit з -ing дві t: sitting."
+        },
+        "en:lesson-10:session-02:intro3:r3": {
+          "ru": "С I перед sitting нужно am.",
+          "uk": "З I перед sitting потрібне am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "85b1764f5644d6df778d05d7d53ed264647f764c10d641ccd1a2802b2588e908"
+}

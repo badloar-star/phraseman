@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-03:word:collector",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — collector",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:collector:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — collector",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:collector:audio",
+            "transcript": "collector"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:collector:r1",
+              "targetText": "collector",
+              "meaningByLocale": {
+                "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
+                "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "collector",
+            "definitionByLocale": {
+              "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
+              "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am a collector.",
+          "localizedMeaning": {
+            "ru": "Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»",
+            "uk": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "a",
+            "collector"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i02:r1",
+            "text": "I collect stamps."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i02:r2",
+            "text": "I collect coins."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i02:r3",
+            "text": "She collects stamps."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i02:audio",
+            "transcript": "I collect stamps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i02:r1",
+              "targetText": "I collect stamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r2",
+              "targetText": "I collect coins.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r3",
+              "targetText": "She collects stamps.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I collect stamps.",
+                "uk": "У записі звучить I collect stamps."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I collect stamps.",
+                "uk": "У записі звучить I collect stamps."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму collect для хобби с I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i03:r1",
+            "text": "collect"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i03:r2",
+            "text": "collects"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i03:r3",
+            "text": "collecting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму collect для хобби с I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму collect для хобби с I",
+            "uk": "Виберіть форму collect для хобі з I"
+          },
+          "gappedTargetPhrase": "I ___ stamps.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i03:r1",
+              "text": "collect"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r2",
+              "text": "collects"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r3",
+              "text": "collecting"
+            }
+          ],
+          "testedDimension": "Выберите форму collect для хобби с I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму collect для хобби с I",
+              "feedbackByLocale": {
+                "ru": "С I не добавляем -s.",
+                "uk": "З I не додаємо -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму collect для хобби с I",
+              "feedbackByLocale": {
+                "ru": "Для хобби здесь нужна collect.",
+                "uk": "Для хобі тут потрібна collect."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:stamp-album",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stamp album",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:stamp-album:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stamp album",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:stamp-album:audio",
+            "transcript": "stamp album"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:stamp-album:r1",
+              "targetText": "stamp album",
+              "meaningByLocale": {
+                "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
+                "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stamp album",
+            "definitionByLocale": {
+              "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
+              "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am opening the stamp album.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»",
+            "uk": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "opening",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i05:r1",
+            "text": "The stamp album is on the shelf."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i05:r2",
+            "text": "The stamp album is under the shelf."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i05:r3",
+            "text": "The notebook is on the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i05:audio",
+            "transcript": "The stamp album is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i05:r1",
+              "targetText": "The stamp album is on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r2",
+              "targetText": "The stamp album is under the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r3",
+              "targetText": "The notebook is on the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The stamp album is on the shelf.",
+                "uk": "У записі звучить The stamp album is on the shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The stamp album is on the shelf.",
+                "uk": "У записі звучить The stamp album is on the shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму open после am",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i06:r1",
+            "text": "opening"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i06:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i06:r3",
+            "text": "opens"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму open после am",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму open после am",
+            "uk": "Виберіть форму open після am"
+          },
+          "gappedTargetPhrase": "I am ___ the stamp album.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i06:r1",
+              "text": "opening"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r2",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r3",
+              "text": "opens"
+            }
+          ],
+          "testedDimension": "Выберите форму open после am",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму open после am",
+              "feedbackByLocale": {
+                "ru": "После am нужна opening.",
+                "uk": "Після am потрібна opening."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму open после am",
+              "feedbackByLocale": {
+                "ru": "Opens не употребляется после am.",
+                "uk": "Opens не вживається після am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:postmark",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — postmark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:postmark:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — postmark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:postmark:audio",
+            "transcript": "postmark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:postmark:r1",
+              "targetText": "postmark",
+              "meaningByLocale": {
+                "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
+                "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postmark",
+            "definitionByLocale": {
+              "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
+              "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am looking at the postmark.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»",
+            "uk": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "at",
+            "the",
+            "postmark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i08:r1",
+            "text": "The postmark is clear."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i08:r2",
+            "text": "The postmark is small."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i08:r3",
+            "text": "The address is clear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i08:audio",
+            "transcript": "The postmark is clear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i08:r1",
+              "targetText": "The postmark is clear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r2",
+              "targetText": "The postmark is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r3",
+              "targetText": "The address is clear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The postmark is clear.",
+                "uk": "У записі звучить The postmark is clear."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The postmark is clear.",
+                "uk": "У записі звучить The postmark is clear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите предлог в look at — смотреть на",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i09:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i09:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i09:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите предлог в look at — смотреть на",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог в look at — смотреть на",
+            "uk": "Виберіть прийменник у look at — дивитися на"
+          },
+          "gappedTargetPhrase": "I am looking ___ the postmark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i09:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r2",
+              "text": "of"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Выберите предлог в look at — смотреть на",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите предлог в look at — смотреть на",
+              "feedbackByLocale": {
+                "ru": "В выражении look at нужен at.",
+                "uk": "У виразі look at потрібний at."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите предлог в look at — смотреть на",
+              "feedbackByLocale": {
+                "ru": "Здесь смотрят на отметку: look at.",
+                "uk": "Тут дивляться на позначку: look at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:watermark",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — watermark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:watermark:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — watermark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:watermark:audio",
+            "transcript": "watermark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:watermark:r1",
+              "targetText": "watermark",
+              "meaningByLocale": {
+                "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
+                "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "watermark",
+            "definitionByLocale": {
+              "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
+              "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see a watermark.",
+          "localizedMeaning": {
+            "ru": "Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»",
+            "uk": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "a",
+            "watermark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i11:r1",
+            "text": "The watermark is small."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i11:r2",
+            "text": "The watermark is large."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i11:r3",
+            "text": "The postmark is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i11:audio",
+            "transcript": "The watermark is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i11:r1",
+              "targetText": "The watermark is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r2",
+              "targetText": "The watermark is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r3",
+              "targetText": "The postmark is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The watermark is small.",
+                "uk": "У записі звучить The watermark is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The watermark is small.",
+                "uk": "У записі звучить The watermark is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите артикль перед одним watermark",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите артикль перед одним watermark",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед одним watermark",
+            "uk": "Виберіть артикль перед одним watermark"
+          },
+          "gappedTargetPhrase": "I can see ___ watermark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите артикль перед одним watermark",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед одним watermark",
+              "feedbackByLocale": {
+                "ru": "Watermark начинается с согласного звука: a.",
+                "uk": "Watermark починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите артикль перед одним watermark",
+              "feedbackByLocale": {
+                "ru": "Am не артикль; нужен a.",
+                "uk": "Am не артикль; потрібний a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините новые слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините новые слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-03:i13:p1",
+              "target": "collector",
+              "meaningByLocale": {
+                "ru": "коллекционер",
+                "uk": "колекціонер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p2",
+              "target": "stamp album",
+              "meaningByLocale": {
+                "ru": "альбом для марок",
+                "uk": "альбом для марок"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p3",
+              "target": "postmark",
+              "meaningByLocale": {
+                "ru": "почтовый штемпель",
+                "uk": "поштовий штемпель"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p4",
+              "target": "watermark",
+              "meaningByLocale": {
+                "ru": "водяной знак",
+                "uk": "водяний знак"
+              }
+            }
+          ],
+          "leftColumn": [
+            "collector",
+            "stamp album",
+            "postmark",
+            "watermark"
+          ],
+          "rightColumn": [
+            "коллекционер",
+            "альбом для марок",
+            "почтовый штемпель",
+            "водяной знак"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите вопрос о действии сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i14:audio",
+            "transcript": "Are you opening the stamp album?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you opening the stamp album?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "opening",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знакомый спрашивает о вашем хобби. Скажите: «Я коллекционирую марки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Знакомый спрашивает о вашем хобби. Скажите: «Я коллекционирую марки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i15:audio",
+            "transcript": "I collect stamps."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I collect stamps.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not closing the stamp album.",
+          "localizedMeaning": {
+            "ru": "Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»",
+            "uk": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "closing",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы коллекционируете марки, а сейчас рассматриваете отметку почты на старом конверте. Друг спрашивает: «Что ты делаешь?» Ответьте: «Я рассматриваю почтовый штемпель»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Вы коллекционируете марки, а сейчас рассматриваете отметку почты на старом конверте. Друг спрашивает: «Что ты делаешь?» Ответьте: «Я рассматриваю почтовый штемпель»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i17:audio",
+            "transcript": "I am looking at the postmark."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am looking at the postmark.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-03:word:collector",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — collector",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:collector:audio"
+        ],
+        "accessibilityLabel": "Картка слова — collector",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:collector:audio",
+            "transcript": "collector"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:collector:r1",
+              "targetText": "collector",
+              "meaningByLocale": {
+                "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
+                "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "collector",
+            "definitionByLocale": {
+              "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
+              "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am a collector.",
+          "localizedMeaning": {
+            "ru": "Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»",
+            "uk": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "a",
+            "collector"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i02:r1",
+            "text": "I collect stamps."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i02:r2",
+            "text": "I collect coins."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i02:r3",
+            "text": "She collects stamps."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i02:audio",
+            "transcript": "I collect stamps."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i02:r1",
+              "targetText": "I collect stamps.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r2",
+              "targetText": "I collect coins.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r3",
+              "targetText": "She collects stamps.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I collect stamps.",
+                "uk": "У записі звучить I collect stamps."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I collect stamps.",
+                "uk": "У записі звучить I collect stamps."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму collect для хобі з I",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i03:r1",
+            "text": "collect"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i03:r2",
+            "text": "collects"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i03:r3",
+            "text": "collecting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму collect для хобі з I",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму collect для хобби с I",
+            "uk": "Виберіть форму collect для хобі з I"
+          },
+          "gappedTargetPhrase": "I ___ stamps.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i03:r1",
+              "text": "collect"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r2",
+              "text": "collects"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r3",
+              "text": "collecting"
+            }
+          ],
+          "testedDimension": "Виберіть форму collect для хобі з I",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму collect для хобі з I",
+              "feedbackByLocale": {
+                "ru": "С I не добавляем -s.",
+                "uk": "З I не додаємо -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму collect для хобі з I",
+              "feedbackByLocale": {
+                "ru": "Для хобби здесь нужна collect.",
+                "uk": "Для хобі тут потрібна collect."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:stamp-album",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stamp album",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:stamp-album:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stamp album",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:stamp-album:audio",
+            "transcript": "stamp album"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:stamp-album:r1",
+              "targetText": "stamp album",
+              "meaningByLocale": {
+                "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
+                "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stamp album",
+            "definitionByLocale": {
+              "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
+              "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am opening the stamp album.",
+          "localizedMeaning": {
+            "ru": "Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»",
+            "uk": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "opening",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i05:r1",
+            "text": "The stamp album is on the shelf."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i05:r2",
+            "text": "The stamp album is under the shelf."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i05:r3",
+            "text": "The notebook is on the shelf."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i05:audio",
+            "transcript": "The stamp album is on the shelf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i05:r1",
+              "targetText": "The stamp album is on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r2",
+              "targetText": "The stamp album is under the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r3",
+              "targetText": "The notebook is on the shelf.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The stamp album is on the shelf.",
+                "uk": "У записі звучить The stamp album is on the shelf."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The stamp album is on the shelf.",
+                "uk": "У записі звучить The stamp album is on the shelf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму open після am",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i06:r1",
+            "text": "opening"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i06:r2",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i06:r3",
+            "text": "opens"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму open після am",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму open после am",
+            "uk": "Виберіть форму open після am"
+          },
+          "gappedTargetPhrase": "I am ___ the stamp album.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i06:r1",
+              "text": "opening"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r2",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r3",
+              "text": "opens"
+            }
+          ],
+          "testedDimension": "Виберіть форму open після am",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму open після am",
+              "feedbackByLocale": {
+                "ru": "После am нужна opening.",
+                "uk": "Після am потрібна opening."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму open після am",
+              "feedbackByLocale": {
+                "ru": "Opens не употребляется после am.",
+                "uk": "Opens не вживається після am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:postmark",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — postmark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:postmark:audio"
+        ],
+        "accessibilityLabel": "Картка слова — postmark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:postmark:audio",
+            "transcript": "postmark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:postmark:r1",
+              "targetText": "postmark",
+              "meaningByLocale": {
+                "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
+                "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "postmark",
+            "definitionByLocale": {
+              "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
+              "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am looking at the postmark.",
+          "localizedMeaning": {
+            "ru": "Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»",
+            "uk": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "at",
+            "the",
+            "postmark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i08:r1",
+            "text": "The postmark is clear."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i08:r2",
+            "text": "The postmark is small."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i08:r3",
+            "text": "The address is clear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i08:audio",
+            "transcript": "The postmark is clear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i08:r1",
+              "targetText": "The postmark is clear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r2",
+              "targetText": "The postmark is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r3",
+              "targetText": "The address is clear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The postmark is clear.",
+                "uk": "У записі звучить The postmark is clear."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The postmark is clear.",
+                "uk": "У записі звучить The postmark is clear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть прийменник у look at — дивитися на",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i09:r1",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i09:r2",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i09:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть прийменник у look at — дивитися на",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите предлог в look at — смотреть на",
+            "uk": "Виберіть прийменник у look at — дивитися на"
+          },
+          "gappedTargetPhrase": "I am looking ___ the postmark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i09:r1",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r2",
+              "text": "of"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Виберіть прийменник у look at — дивитися на",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник у look at — дивитися на",
+              "feedbackByLocale": {
+                "ru": "В выражении look at нужен at.",
+                "uk": "У виразі look at потрібний at."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть прийменник у look at — дивитися на",
+              "feedbackByLocale": {
+                "ru": "Здесь смотрят на отметку: look at.",
+                "uk": "Тут дивляться на позначку: look at."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:word:watermark",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — watermark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:word:watermark:audio"
+        ],
+        "accessibilityLabel": "Картка слова — watermark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:word:watermark:audio",
+            "transcript": "watermark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:word:watermark:r1",
+              "targetText": "watermark",
+              "meaningByLocale": {
+                "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
+                "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "watermark",
+            "definitionByLocale": {
+              "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
+              "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see a watermark.",
+          "localizedMeaning": {
+            "ru": "Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»",
+            "uk": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "a",
+            "watermark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i11:r1",
+            "text": "The watermark is small."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i11:r2",
+            "text": "The watermark is large."
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i11:r3",
+            "text": "The postmark is small."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i11:audio",
+            "transcript": "The watermark is small."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-03:i11:r1",
+              "targetText": "The watermark is small.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r2",
+              "targetText": "The watermark is large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r3",
+              "targetText": "The postmark is small.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The watermark is small.",
+                "uk": "У записі звучить The watermark is small."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The watermark is small.",
+                "uk": "У записі звучить The watermark is small."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть артикль перед одним watermark",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-03:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-10:session-03:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть артикль перед одним watermark",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите артикль перед одним watermark",
+            "uk": "Виберіть артикль перед одним watermark"
+          },
+          "gappedTargetPhrase": "I can see ___ watermark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-03:i12:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть артикль перед одним watermark",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед одним watermark",
+              "feedbackByLocale": {
+                "ru": "Watermark начинается с согласного звука: a.",
+                "uk": "Watermark починається з приголосного звука: a."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть артикль перед одним watermark",
+              "feedbackByLocale": {
+                "ru": "Am не артикль; нужен a.",
+                "uk": "Am не артикль; потрібний a."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте нові слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-03:i13:p1",
+              "target": "collector",
+              "meaningByLocale": {
+                "ru": "коллекционер",
+                "uk": "колекціонер"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p2",
+              "target": "stamp album",
+              "meaningByLocale": {
+                "ru": "альбом для марок",
+                "uk": "альбом для марок"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p3",
+              "target": "postmark",
+              "meaningByLocale": {
+                "ru": "почтовый штемпель",
+                "uk": "поштовий штемпель"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-03:i13:p4",
+              "target": "watermark",
+              "meaningByLocale": {
+                "ru": "водяной знак",
+                "uk": "водяний знак"
+              }
+            }
+          ],
+          "leftColumn": [
+            "collector",
+            "stamp album",
+            "postmark",
+            "watermark"
+          ],
+          "rightColumn": [
+            "колекціонер",
+            "альбом для марок",
+            "поштовий штемпель",
+            "водяний знак"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть запитання про дію зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i14:audio",
+            "transcript": "Are you opening the stamp album?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Are you opening the stamp album?",
+          "orderedTokens": [
+            "Are",
+            "you",
+            "opening",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Знайомий запитує про ваше хобі. Скажіть: «Я колекціоную марки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Знайомий запитує про ваше хобі. Скажіть: «Я колекціоную марки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i15:audio",
+            "transcript": "I collect stamps."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I collect stamps.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am not closing the stamp album.",
+          "localizedMeaning": {
+            "ru": "Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»",
+            "uk": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "not",
+            "closing",
+            "the",
+            "stamp",
+            "album"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-03:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви колекціонуєте марки, а зараз розглядаєте позначку пошти на старому конверті. Друг запитує: «Що ти робиш?» Дайте відповідь: «Я розглядаю поштовий штемпель»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Ви колекціонуєте марки, а зараз розглядаєте позначку пошти на старому конверті. Друг запитує: «Що ти робиш?» Дайте відповідь: «Я розглядаю поштовий штемпель»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-03:i17:audio",
+            "transcript": "I am looking at the postmark."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am looking at the postmark.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-03:word:collector",
+      "correctText": "collector",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i01",
+      "correctText": "I am a collector.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i02",
+      "correctText": "I collect stamps.",
+      "correctResponseId": "en:lesson-10:session-03:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i03",
+      "correctText": "collect",
+      "correctResponseId": "en:lesson-10:session-03:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:word:stamp-album",
+      "correctText": "stamp album",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i04",
+      "correctText": "I am opening the stamp album.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i05",
+      "correctText": "The stamp album is on the shelf.",
+      "correctResponseId": "en:lesson-10:session-03:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i06",
+      "correctText": "opening",
+      "correctResponseId": "en:lesson-10:session-03:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:word:postmark",
+      "correctText": "postmark",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i07",
+      "correctText": "I am looking at the postmark.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i08",
+      "correctText": "The postmark is clear.",
+      "correctResponseId": "en:lesson-10:session-03:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i09",
+      "correctText": "at",
+      "correctResponseId": "en:lesson-10:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:word:watermark",
+      "correctText": "watermark",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i10",
+      "correctText": "I can see a watermark.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i11",
+      "correctText": "The watermark is small.",
+      "correctResponseId": "en:lesson-10:session-03:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i12",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-10:session-03:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i14",
+      "correctText": "Are you opening the stamp album?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i15",
+      "correctText": "I collect stamps.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i16",
+      "correctText": "I am not closing the stamp album.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i17",
+      "correctText": "I am looking at the postmark.",
+      "correctResponseId": null
+    }
+  ]
+}

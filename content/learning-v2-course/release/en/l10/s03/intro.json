@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "I collect stamps; I am looking at the postmark",
+    "uk": "I collect stamps; I am looking at the postmark"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рассказать о хобби",
+        "uk": "Розповісти про хобі"
+      },
+      "bodyByLocale": {
+        "ru": "На встрече любителей марок сосед спрашивает о вашем увлечении. I collect stamps — «Я коллекционирую марки». Раньше collect означало «забирать», например посылку; здесь — собирать коллекцию. Это хобби, а не действие в эту секунду, поэтому I collect. Collector — «коллекционер». I am a collector — «Я коллекционер»: называете себя, am здесь не обозначает действие с -ing.",
+        "uk": "На зустрічі любителів марок сусід запитує про ваше захоплення. I collect stamps — «Я колекціоную марки». Раніше collect означало «забирати», наприклад посилку; тут — збирати колекцію. Це хобі, а не дія цієї секунди, тому I collect. Collector — «колекціонер». I am a collector — «Я колекціонер»: називаєте себе, am тут не позначає дію з -ing."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r1",
+              "text": "I collect stamps."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r2",
+              "text": "I collects stamps."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r3",
+              "text": "I am collect stamps."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r1",
+              "text": "I collect stamps."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r2",
+              "text": "I collects stamps."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro1:r3",
+              "text": "I am collect stamps."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Альбом открывают сейчас",
+        "uk": "Альбом відкривають зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Stamp album — «альбом для марок». Обычно вы храните в нём коллекцию: I keep my stamps in a stamp album. Сегодня вы показываете её другу. Он спрашивает, что вы делаете: I am opening the stamp album — «Я открываю альбом для марок». Keep описывает привычный способ хранения, am opening — действие сейчас.",
+        "uk": "Stamp album — «альбом для марок». Зазвичай ви зберігаєте в ньому колекцію: I keep my stamps in a stamp album. Сьогодні ви показуєте її другові. Він запитує, що ви робите: I am opening the stamp album — «Я відкриваю альбом для марок». Keep описує звичний спосіб зберігання, am opening — дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r1",
+              "text": "I am opening the stamp album."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r2",
+              "text": "I opening the stamp album."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r3",
+              "text": "I am open the stamp album."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r1",
+              "text": "I am opening the stamp album."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r2",
+              "text": "I opening the stamp album."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro2:r3",
+              "text": "I am open the stamp album."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отметка на конверте",
+        "uk": "Позначка на конверті"
+      },
+      "bodyByLocale": {
+        "ru": "Друг приносит старый конверт. На нём почтовый штемпель — postmark: отметка почты, часто с местом и датой отправки. Сейчас вы рассматриваете именно его. I am looking at the postmark — «Я рассматриваю почтовый штемпель». В этой фразе look at значит «смотреть на». Для действия сейчас — am looking, а at связывает действие с тем, на что вы смотрите.",
+        "uk": "Друг приносить старий конверт. На ньому поштовий штемпель — postmark: позначка пошти, часто з місцем і датою відправлення. Зараз ви розглядаєте саме його. I am looking at the postmark — «Я розглядаю поштовий штемпель». У цій фразі look at означає «дивитися на». Для дії зараз — am looking, а at пов’язує дію з тим, на що ви дивитеся."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r1",
+              "text": "I am looking at the postmark."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r2",
+              "text": "I am look at the postmark."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r3",
+              "text": "I looking at the postmark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r1",
+              "text": "I am looking at the postmark."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r2",
+              "text": "I am look at the postmark."
+            },
+            {
+              "responseId": "en:lesson-10:session-03:intro3:r3",
+              "text": "I looking at the postmark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c91c355d93c6aa760550f47b2bb97f76351a529dbe8cba1700007135d0e0db30"
+}

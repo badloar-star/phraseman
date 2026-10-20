@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-02:word:reel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:word:reel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:word:reel:audio",
+          "transcript": "reel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:word:reel:r1",
+            "targetText": "reel",
+            "meaningByLocale": {
+              "ru": "«рыболовная катушка». I am cleaning the reel. — «Я чищу катушку». На неё наматывается леска.",
+              "uk": "«риболовна котушка». I am cleaning the reel. — «Я чищу котушку». На неї намотується волосінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reel",
+          "definitionByLocale": {
+            "ru": "«рыболовная катушка». I am cleaning the reel. — «Я чищу катушку». На неё наматывается леска.",
+            "uk": "«риболовна котушка». I am cleaning the reel. — «Я чищу котушку». На неї намотується волосінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сосед видит катушку у вас в руках. Скажите: «Я чищу катушку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед видит катушку у вас в руках. Скажите: «Я чищу катушку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am cleaning the reel.",
+        "localizedMeaning": {
+          "ru": "Сосед видит катушку у вас в руках. Скажите: «Я чищу катушку»",
+          "uk": "Сусід бачить котушку у вас у руках. Скажіть: «Я чищу котушку»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "cleaning",
+          "the",
+          "reel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i02:r1",
+          "text": "I usually fish here."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i02:r2",
+          "text": "I usually swim here."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i02:r3",
+          "text": "She usually fishes here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i02:audio",
+          "transcript": "I usually fish here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:i02:r1",
+            "targetText": "I usually fish here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i02:r2",
+            "targetText": "I usually swim here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i02:r3",
+            "targetText": "She usually fishes here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I usually fish here.",
+              "uk": "У записі звучить I usually fish here."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I usually fish here.",
+              "uk": "У записі звучить I usually fish here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму fish для привычки с I",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i03:r1",
+          "text": "fish"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i03:r2",
+          "text": "fishes"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i03:r3",
+          "text": "fishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму fish для привычки с I",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму fish для привычки с I",
+          "uk": "Виберіть форму fish для звички з I"
+        },
+        "gappedTargetPhrase": "I usually ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-02:i03:r1",
+            "text": "fish"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i03:r2",
+            "text": "fishes"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i03:r3",
+            "text": "fishing"
+          }
+        ],
+        "testedDimension": "Выберите форму fish для привычки с I",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму fish для привычки с I",
+            "feedbackByLocale": {
+              "ru": "С I не добавляем -es.",
+              "uk": "З I не додаємо -es."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму fish для привычки с I",
+            "feedbackByLocale": {
+              "ru": "Для этой привычки нужна fish, не fishing.",
+              "uk": "Для цієї звички потрібна fish, не fishing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:word:tackle",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tackle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:word:tackle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tackle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:word:tackle:audio",
+          "transcript": "tackle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:word:tackle:r1",
+            "targetText": "tackle",
+            "meaningByLocale": {
+              "ru": "«рыболовные снасти». I am checking the tackle. — «Я проверяю снасти». Крючки, леска и другие принадлежности; неисчисляемое слово.",
+              "uk": "«рибальські снасті». I am checking the tackle. — «Я перевіряю снасті». Гачки, волосінь та інше приладдя; незлічуване слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tackle",
+          "definitionByLocale": {
+            "ru": "«рыболовные снасти». I am checking the tackle. — «Я проверяю снасти». Крючки, леска и другие принадлежности; неисчисляемое слово.",
+            "uk": "«рибальські снасті». I am checking the tackle. — «Я перевіряю снасті». Гачки, волосінь та інше приладдя; незлічуване слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, что вы проверяете перед рыбалкой. Скажите: «Я проверяю снасти»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, что вы проверяете перед рыбалкой. Скажите: «Я проверяю снасти»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am checking the tackle.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, что вы проверяете перед рыбалкой. Скажите: «Я проверяю снасти»",
+          "uk": "Друг запитує, що ви перевіряєте перед риболовлею. Скажіть: «Я перевіряю снасті»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "checking",
+          "the",
+          "tackle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i05:r1",
+          "text": "My tackle is in the box."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i05:r2",
+          "text": "My tackle is under the box."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i05:r3",
+          "text": "My lunch is in the box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i05:audio",
+          "transcript": "My tackle is in the box."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:i05:r1",
+            "targetText": "My tackle is in the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i05:r2",
+            "targetText": "My tackle is under the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i05:r3",
+            "targetText": "My lunch is in the box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My tackle is in the box.",
+              "uk": "У записі звучить My tackle is in the box."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My tackle is in the box.",
+              "uk": "У записі звучить My tackle is in the box."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для неисчисляемого tackle",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для неисчисляемого tackle",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для неисчисляемого tackle",
+          "uk": "Виберіть зв’язку для незлічуваного tackle"
+        },
+        "gappedTargetPhrase": "My tackle ___ in the box.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-02:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку для неисчисляемого tackle",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для неисчисляемого tackle",
+            "feedbackByLocale": {
+              "ru": "Tackle — неисчисляемое; здесь is.",
+              "uk": "Tackle — незлічуване; тут is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для неисчисляемого tackle",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:word:waders",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — waders",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:word:waders:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — waders",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:word:waders:audio",
+          "transcript": "waders"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:word:waders:r1",
+            "targetText": "waders",
+            "meaningByLocale": {
+              "ru": "«забродные брюки с сапогами». My waders are wet. — «Мои забродные брюки мокрые». Водонепроницаемая одежда для захода в воду; слово во множественном числе.",
+              "uk": "«забродні штани з чоботами». My waders are wet. — «Мої забродні штани мокрі». Водонепроникний одяг для заходу у воду; слово у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waders",
+          "definitionByLocale": {
+            "ru": "«забродные брюки с сапогами». My waders are wet. — «Мои забродные брюки мокрые». Водонепроницаемая одежда для захода в воду; слово во множественном числе.",
+            "uk": "«забродні штани з чоботами». My waders are wet. — «Мої забродні штани мокрі». Водонепроникний одяг для заходу у воду; слово у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы вышли из воды; забродные брюки мокрые снаружи. Скажите: «Мои забродные брюки мокрые»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы вышли из воды; забродные брюки мокрые снаружи. Скажите: «Мои забродные брюки мокрые»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My waders are wet.",
+        "localizedMeaning": {
+          "ru": "Вы вышли из воды; забродные брюки мокрые снаружи. Скажите: «Мои забродные брюки мокрые»",
+          "uk": "Ви вийшли з води; забродні штани мокрі зовні. Скажіть: «Мої забродні штани мокрі»"
+        },
+        "orderedTokens": [
+          "My",
+          "waders",
+          "are",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i08:r1",
+          "text": "He is wearing waders."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i08:r2",
+          "text": "He is not wearing waders."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i08:r3",
+          "text": "She is wearing waders."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i08:audio",
+          "transcript": "He is wearing waders."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:i08:r1",
+            "targetText": "He is wearing waders.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i08:r2",
+            "targetText": "He is not wearing waders.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i08:r3",
+            "targetText": "She is wearing waders.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is wearing waders.",
+              "uk": "У записі звучить He is wearing waders."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is wearing waders.",
+              "uk": "У записі звучить He is wearing waders."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите связку для waders",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите связку для waders",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку для waders",
+          "uk": "Виберіть зв’язку для waders"
+        },
+        "gappedTargetPhrase": "My waders ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-02:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите связку для waders",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите связку для waders",
+            "feedbackByLocale": {
+              "ru": "Waders во множественном числе: are.",
+              "uk": "Waders у множині: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите связку для waders",
+            "feedbackByLocale": {
+              "ru": "Am употребляется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:word:landing-net",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — landing net",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:word:landing-net:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — landing net",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:word:landing-net:audio",
+          "transcript": "landing net"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:word:landing-net:r1",
+            "targetText": "landing net",
+            "meaningByLocale": {
+              "ru": "«подсачек». The landing net is by the river. — «Подсачек у реки». Сетка на обруче с ручкой, которой подхватывают пойманную рыбу.",
+              "uk": "«підсак». The landing net is by the river. — «Підсак біля річки». Сітка на обручі з ручкою, якою підхоплюють спійману рибу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "landing net",
+          "definitionByLocale": {
+            "ru": "«подсачек». The landing net is by the river. — «Подсачек у реки». Сетка на обруче с ручкой, которой подхватывают пойманную рыбу.",
+            "uk": "«підсак». The landing net is by the river. — «Підсак біля річки». Сітка на обручі з ручкою, якою підхоплюють спійману рибу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ищет подсачек. Скажите: «Подсачек у реки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ищет подсачек. Скажите: «Подсачек у реки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The landing net is by the river.",
+        "localizedMeaning": {
+          "ru": "Друг ищет подсачек. Скажите: «Подсачек у реки»",
+          "uk": "Друг шукає підсак. Скажіть: «Підсак біля річки»"
+        },
+        "orderedTokens": [
+          "The",
+          "landing",
+          "net",
+          "is",
+          "by",
+          "the",
+          "river"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i11:r1",
+          "text": "I am carrying the landing net."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i11:r2",
+          "text": "I am cleaning the landing net."
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i11:r3",
+          "text": "She is carrying the landing net."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i11:audio",
+          "transcript": "I am carrying the landing net."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-02:i11:r1",
+            "targetText": "I am carrying the landing net.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i11:r2",
+            "targetText": "I am cleaning the landing net.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i11:r3",
+            "targetText": "She is carrying the landing net.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am carrying the landing net.",
+              "uk": "У записі звучить I am carrying the landing net."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am carrying the landing net.",
+              "uk": "У записі звучить I am carrying the landing net."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите написание sit с -ing",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-02:i12:r1",
+          "text": "sitting"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i12:r2",
+          "text": "siting"
+        },
+        {
+          "responseId": "en:lesson-10:session-02:i12:r3",
+          "text": "sit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание sit с -ing",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите написание sit с -ing",
+          "uk": "Виберіть написання sit з -ing"
+        },
+        "gappedTargetPhrase": "I am ___ by the river.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-02:i12:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i12:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i12:r3",
+            "text": "sit"
+          }
+        ],
+        "testedDimension": "Выберите написание sit с -ing",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите написание sit с -ing",
+            "feedbackByLocale": {
+              "ru": "Для sit удваиваем t: sitting.",
+              "uk": "Для sit подвоюємо t: sitting."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите написание sit с -ing",
+            "feedbackByLocale": {
+              "ru": "После am нужна форма sitting.",
+              "uk": "Після am потрібна форма sitting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините новые слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините новые слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-02:i13:p1",
+            "target": "reel",
+            "meaningByLocale": {
+              "ru": "рыболовная катушка",
+              "uk": "риболовна котушка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-02:i13:p2",
+            "target": "tackle",
+            "meaningByLocale": {
+              "ru": "рыболовные снасти",
+              "uk": "рибальські снасті"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-02:i13:p3",
+            "target": "waders",
+            "meaningByLocale": {
+              "ru": "забродные брюки с сапогами",
+              "uk": "забродні штани з чоботами"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-02:i13:p4",
+            "target": "landing net",
+            "meaningByLocale": {
+              "ru": "подсачек",
+              "uk": "підсак"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reel",
+          "tackle",
+          "waders",
+          "landing net"
+        ],
+        "rightColumn": [
+          "рыболовная катушка",
+          "рыболовные снасти",
+          "забродные брюки с сапогами",
+          "подсачек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите вопрос о действии сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите вопрос о действии сейчас",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i14:audio",
+          "transcript": "Are you cleaning the reel?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you cleaning the reel?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "cleaning",
+          "the",
+          "reel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сосед спрашивает, часто ли вы рыбачите в этом месте. Скажите: «Я обычно рыбачу здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Сосед спрашивает, часто ли вы рыбачите в этом месте. Скажите: «Я обычно рыбачу здесь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i15:audio",
+          "transcript": "I usually fish here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I usually fish here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сидите на берегу без удочки. Друг думает, что вы ловите рыбу. Скажите: «Я не рыбачу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сидите на берегу без удочки. Друг думает, что вы ловите рыбу. Скажите: «Я не рыбачу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not fishing.",
+        "localizedMeaning": {
+          "ru": "Вы сидите на берегу без удочки. Друг думает, что вы ловите рыбу. Скажите: «Я не рыбачу»",
+          "uk": "Ви сидите на березі без вудки. Друг думає, що ви ловите рибу. Скажіть: «Я не рибалю»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "fishing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-02:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Обычно вы рыбачите на реке, но сегодня сидите на берегу без снастей. Друг звонит: «Что ты делаешь?» Ответьте: «Я сижу у реки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Обычно вы рыбачите на реке, но сегодня сидите на берегу без снастей. Друг звонит: «Что ты делаешь?» Ответьте: «Я сижу у реки»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-02:i17:audio",
+          "transcript": "I am sitting by the river."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am sitting by the river.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3da8b712c2beb4544d059d9204199bcd6f35f20c914dc356183609cf6f511042"
+}

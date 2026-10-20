@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-01:intro1:r2": {
+          "ru": "С I в Present Simple употребляем row без -s.",
+          "uk": "З I у Present Simple вживаємо row без -s."
+        },
+        "en:lesson-10:session-01:intro1:r3": {
+          "ru": "Для привычки здесь достаточно I row; am row неверно.",
+          "uk": "Для звички тут достатньо I row; am row неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-01:intro2:r2": {
+          "ru": "Перед watching с I нужно am.",
+          "uk": "Перед watching з I потрібне am."
+        },
+        "en:lesson-10:session-01:intro2:r3": {
+          "ru": "После am нужна форма watching.",
+          "uk": "Після am потрібна форма watching."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-01:intro3:r2": {
+          "ru": "После am нужна checking, не checks.",
+          "uk": "Після am потрібна checking, не checks."
+        },
+        "en:lesson-10:session-01:intro3:r3": {
+          "ru": "С I перед checking нужно am.",
+          "uk": "З I перед checking потрібне am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0e53850b27b2adc67a409d0765d78d6f4f543ce13dc125211d8126d2a4f0c52"
+}

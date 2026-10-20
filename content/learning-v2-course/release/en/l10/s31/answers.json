@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-31:word:blossom",
+    "correctText": "blossom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i01",
+    "correctText": "The tree is in blossom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i02",
+    "correctText": "The blossom is pink.",
+    "correctResponseId": "en:lesson-10:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i03",
+    "correctText": "in",
+    "correctResponseId": "en:lesson-10:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:word:foliage",
+    "correctText": "foliage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i04",
+    "correctText": "The foliage is turning yellow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i05",
+    "correctText": "The foliage is green.",
+    "correctResponseId": "en:lesson-10:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:word:snowdrop",
+    "correctText": "snowdrop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i07",
+    "correctText": "I can see a snowdrop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i08",
+    "correctText": "The snowdrop is beside the path.",
+    "correctResponseId": "en:lesson-10:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i09",
+    "correctText": "see",
+    "correctResponseId": "en:lesson-10:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:word:daffodil",
+    "correctText": "daffodil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i10",
+    "correctText": "The daffodil is yellow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i11",
+    "correctText": "I can see a daffodil.",
+    "correctResponseId": "en:lesson-10:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i12",
+    "correctText": "turns",
+    "correctResponseId": "en:lesson-10:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i13",
+    "correctText": "en:lesson-10:session-31:i13:p1=blossom\nen:lesson-10:session-31:i13:p2=foliage\nen:lesson-10:session-31:i13:p3=snowdrop\nen:lesson-10:session-31:i13:p4=daffodil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i14",
+    "correctText": "The foliage is turning yellow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i15",
+    "correctText": "Spring is my favourite season.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i16",
+    "correctText": "The tree is in blossom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-31:i17",
+    "correctText": "The foliage is turning yellow.",
+    "correctResponseId": null
+  }
+]

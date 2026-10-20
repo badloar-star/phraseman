@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "Spring is my favourite season; The tree is in blossom; The foliage is turning yellow",
+    "uk": "Spring is my favourite season; The tree is in blossom; The foliage is turning yellow"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Любимое время года",
+        "uk": "Улюблена пора року"
+      },
+      "bodyByLocale": {
+        "ru": "Season уже встречалось как глагол «приправлять». Теперь используем существительное season — «время года». Spring is my favourite season — «Весна — моё любимое время года». Это ваше предпочтение, поэтому используем is. Не нужно ставить Continuous только потому, что вы говорите сейчас.",
+        "uk": "Season уже траплялося як дієслово «приправляти». Тепер використовуємо іменник season — «пора року». Spring is my favourite season — «Весна — моя улюблена пора року». Це ваше вподобання, тому використовуємо is. Не потрібно ставити Continuous лише тому, що ви говорите зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r1",
+              "text": "Spring is my favourite season."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r2",
+              "text": "Spring my favourite season."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r3",
+              "text": "Spring are my favourite season."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r1",
+              "text": "Spring is my favourite season."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r2",
+              "text": "Spring my favourite season."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro1:r3",
+              "text": "Spring are my favourite season."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дерево в цвету",
+        "uk": "Дерево у цвіту"
+      },
+      "bodyByLocale": {
+        "ru": "На весенней фотографии дерево покрыто цветами. Blossom — «цветы на дереве». The tree is in blossom — «Дерево в цвету». In blossom — готовое сочетание о цветущем дереве. Это описание состояния: is in blossom. Сравните обычное время цветения: This tree is usually in blossom in spring.",
+        "uk": "На весняній фотографії дерево вкрите квітами. Blossom — «квіти на дереві». The tree is in blossom — «Дерево у цвіту». In blossom — готове сполучення про дерево, що квітне. Це опис стану: is in blossom. Порівняйте звичний час цвітіння: This tree is usually in blossom in spring."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r1",
+              "text": "The tree is in blossom."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r2",
+              "text": "The tree in blossom."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r3",
+              "text": "The tree is on blossom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r1",
+              "text": "The tree is in blossom."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r2",
+              "text": "The tree in blossom."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro2:r3",
+              "text": "The tree is on blossom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Листва меняет цвет",
+        "uk": "Листя змінює колір"
+      },
+      "bodyByLocale": {
+        "ru": "На другой фотографии уже осень. Foliage — «листва». The foliage is turning yellow — «Листва желтеет». Для происходящего изменения используем is + turning. Foliage обозначает листья вместе и здесь неисчисляемое: is, не are. Для обычного сезонного изменения: The foliage usually turns yellow in autumn.",
+        "uk": "На іншій фотографії вже осінь. Foliage — «листя». The foliage is turning yellow — «Листя жовтіє». Для зміни, що відбувається, використовуємо is + turning. Foliage позначає листя разом і тут незлічуване: is, не are. Для звичної сезонної зміни: The foliage usually turns yellow in autumn."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r1",
+              "text": "The foliage is turning yellow."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r2",
+              "text": "The foliage are turning yellow."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r3",
+              "text": "The foliage turning yellow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r1",
+              "text": "The foliage is turning yellow."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r2",
+              "text": "The foliage are turning yellow."
+            },
+            {
+              "responseId": "en:lesson-10:session-31:intro3:r3",
+              "text": "The foliage turning yellow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa0f17695f17efadd7161d23c71aead161ec39552cae5554afa4835c7fab928c"
+}

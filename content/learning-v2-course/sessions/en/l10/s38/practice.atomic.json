@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-10:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-10:session-38:word:quarter",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — quarter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:quarter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — quarter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:quarter:audio",
+            "transcript": "quarter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:quarter:r1",
+              "targetText": "quarter",
+              "meaningByLocale": {
+                "ru": "«квартал». We review the figures every quarter. — «Мы рассматриваем показатели каждый квартал». Здесь период в три месяца.",
+                "uk": "«квартал». We review the figures every quarter. — «Ми розглядаємо показники кожного кварталу». Тут період у три місяці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quarter",
+            "definitionByLocale": {
+              "ru": "«квартал». We review the figures every quarter. — «Мы рассматриваем показатели каждый квартал». Здесь период в три месяца.",
+              "uk": "«квартал». We review the figures every quarter. — «Ми розглядаємо показники кожного кварталу». Тут період у три місяці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда обсуждает показатели каждые три месяца. Скажите: «Мы рассматриваем показатели каждый квартал». Поставьте every quarter в конце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда обсуждает показатели каждые три месяца. Скажите: «Мы рассматриваем показатели каждый квартал». Поставьте every quarter в конце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We review the figures every quarter.",
+          "localizedMeaning": {
+            "ru": "Команда обсуждает показатели каждые три месяца. Скажите: «Мы рассматриваем показатели каждый квартал». Поставьте every quarter в конце",
+            "uk": "Команда обговорює показники кожні три місяці. Скажіть: «Ми розглядаємо показники кожного кварталу». Поставте every quarter у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "review",
+            "the",
+            "figures",
+            "every",
+            "quarter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i02:r1",
+            "text": "The quarter ends in March."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i02:r2",
+            "text": "The quarter ends in June."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i02:r3",
+            "text": "The course ends in March."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i02:audio",
+            "transcript": "The quarter ends in March."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i02:r1",
+              "targetText": "The quarter ends in March.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r2",
+              "targetText": "The quarter ends in June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r3",
+              "targetText": "The course ends in March.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The quarter ends in March.",
+                "uk": "У записі звучить The quarter ends in March."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The quarter ends in March.",
+                "uk": "У записі звучить The quarter ends in March."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Это регулярное обсуждение. Выберите форму review",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i03:r1",
+            "text": "review"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i03:r2",
+            "text": "reviews"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i03:r3",
+            "text": "reviewing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Это регулярное обсуждение. Выберите форму review",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это регулярное обсуждение. Выберите форму review",
+            "uk": "Це регулярне обговорення. Виберіть форму review"
+          },
+          "gappedTargetPhrase": "We ___ the figures every quarter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i03:r1",
+              "text": "review"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r2",
+              "text": "reviews"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r3",
+              "text": "reviewing"
+            }
+          ],
+          "testedDimension": "Это регулярное обсуждение. Выберите форму review",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Это регулярное обсуждение. Выберите форму review",
+              "feedbackByLocale": {
+                "ru": "С we нужна review без s.",
+                "uk": "З we потрібна review без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Это регулярное обсуждение. Выберите форму review",
+              "feedbackByLocale": {
+                "ru": "Для регулярного действия нужна review.",
+                "uk": "Для регулярної дії потрібна review."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:revenue",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — revenue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:revenue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — revenue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:revenue:audio",
+            "transcript": "revenue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:revenue:r1",
+              "targetText": "revenue",
+              "meaningByLocale": {
+                "ru": "«выручка». Revenue is rising. — «Выручка растёт». Здесь деньги от продаж до вычета расходов.",
+                "uk": "«виручка». Revenue is rising. — «Виручка зростає». Тут гроші від продажів до вирахування витрат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "revenue",
+            "definitionByLocale": {
+              "ru": "«выручка». Revenue is rising. — «Выручка растёт». Здесь деньги от продаж до вычета расходов.",
+              "uk": "«виручка». Revenue is rising. — «Виручка зростає». Тут гроші від продажів до вирахування витрат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "По графику видно, что компания получает от продаж всё больше денег. Опишите текущее изменение: «Выручка растёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "По графику видно, что компания получает от продаж всё больше денег. Опишите текущее изменение: «Выручка растёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Revenue is rising.",
+          "localizedMeaning": {
+            "ru": "По графику видно, что компания получает от продаж всё больше денег. Опишите текущее изменение: «Выручка растёт»",
+            "uk": "На графіку видно, що компанія отримує від продажів дедалі більше грошей. Опишіть поточну зміну: «Виручка зростає»"
+          },
+          "orderedTokens": [
+            "Revenue",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i05:r1",
+            "text": "Revenue is higher this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i05:r2",
+            "text": "Revenue is lower this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i05:r3",
+            "text": "Revenue is higher this month."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i05:audio",
+            "transcript": "Revenue is higher this quarter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i05:r1",
+              "targetText": "Revenue is higher this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r2",
+              "targetText": "Revenue is lower this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r3",
+              "targetText": "Revenue is higher this month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Revenue is higher this quarter.",
+                "uk": "У записі звучить Revenue is higher this quarter."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Revenue is higher this quarter.",
+                "uk": "У записі звучить Revenue is higher this quarter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите правильное написание формы rise",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i06:r1",
+            "text": "rising"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i06:r2",
+            "text": "riseing"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i06:r3",
+            "text": "rise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите правильное написание формы rise",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rise",
+            "uk": "Виберіть правильне написання форми rise"
+          },
+          "gappedTargetPhrase": "Revenue is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i06:r1",
+              "text": "rising"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r2",
+              "text": "riseing"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r3",
+              "text": "rise"
+            }
+          ],
+          "testedDimension": "Выберите правильное написание формы rise",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rise",
+              "feedbackByLocale": {
+                "ru": "Перед ing убираем e: rising.",
+                "uk": "Перед ing прибираємо e: rising."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите правильное написание формы rise",
+              "feedbackByLocale": {
+                "ru": "Для текущего изменения после is нужна rising.",
+                "uk": "Для поточної зміни після is потрібна rising."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:expenditure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — expenditure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:expenditure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — expenditure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:expenditure:audio",
+            "transcript": "expenditure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:expenditure:r1",
+              "targetText": "expenditure",
+              "meaningByLocale": {
+                "ru": "«расходы». Expenditure is falling. — «Расходы снижаются». Здесь общая сумма потраченных денег. В этом значении неисчисляемое слово.",
+                "uk": "«витрати». Expenditure is falling. — «Витрати знижуються». Тут загальна сума витрачених грошей. У цьому значенні незлічуване слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expenditure",
+            "definitionByLocale": {
+              "ru": "«расходы». Expenditure is falling. — «Расходы снижаются». Здесь общая сумма потраченных денег. В этом значении неисчисляемое слово.",
+              "uk": "«витрати». Expenditure is falling. — «Витрати знижуються». Тут загальна сума витрачених грошей. У цьому значенні незлічуване слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Компания сейчас тратит всё меньше денег. Скажите: «Расходы снижаются»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Компания сейчас тратит всё меньше денег. Скажите: «Расходы снижаются»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Expenditure is falling.",
+          "localizedMeaning": {
+            "ru": "Компания сейчас тратит всё меньше денег. Скажите: «Расходы снижаются»",
+            "uk": "Компанія зараз витрачає дедалі менше грошей. Скажіть: «Витрати знижуються»"
+          },
+          "orderedTokens": [
+            "Expenditure",
+            "is",
+            "falling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i08:r1",
+            "text": "Expenditure is lower this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i08:r2",
+            "text": "Expenditure is higher this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i08:r3",
+            "text": "Revenue is lower this quarter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i08:audio",
+            "transcript": "Expenditure is lower this quarter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i08:r1",
+              "targetText": "Expenditure is lower this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r2",
+              "targetText": "Expenditure is higher this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r3",
+              "targetText": "Revenue is lower this quarter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Expenditure is lower this quarter.",
+                "uk": "У записі звучить Expenditure is lower this quarter."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Expenditure is lower this quarter.",
+                "uk": "У записі звучить Expenditure is lower this quarter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите связку с неисчисляемым expenditure",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите связку с неисчисляемым expenditure",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку с неисчисляемым expenditure",
+            "uk": "Виберіть зв’язку з незлічуваним expenditure"
+          },
+          "gappedTargetPhrase": "Expenditure ___ falling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите связку с неисчисляемым expenditure",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите связку с неисчисляемым expenditure",
+              "feedbackByLocale": {
+                "ru": "С expenditure в этом значении нужна is.",
+                "uk": "З expenditure в цьому значенні потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите связку с неисчисляемым expenditure",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужна is.",
+                "uk": "Am уживається з I; тут потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:projection",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — projection",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:projection:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — projection",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:projection:audio",
+            "transcript": "projection"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:projection:r1",
+              "targetText": "projection",
+              "meaningByLocale": {
+                "ru": "«прогноз». I am checking the projection. — «Я проверяю прогноз». Здесь расчёт ожидаемого показателя по данным.",
+                "uk": "«прогноз». I am checking the projection. — «Я перевіряю прогноз». Тут розрахунок очікуваного показника за даними."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "projection",
+            "definitionByLocale": {
+              "ru": "«прогноз». I am checking the projection. — «Я проверяю прогноз». Здесь расчёт ожидаемого показателя по данным.",
+              "uk": "«прогноз». I am checking the projection. — «Я перевіряю прогноз». Тут розрахунок очікуваного показника за даними."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега прислала расчёт на следующий квартал. Вы сейчас сверяете его. Скажите: «Я проверяю прогноз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллега прислала расчёт на следующий квартал. Вы сейчас сверяете его. Скажите: «Я проверяю прогноз»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am checking the projection.",
+          "localizedMeaning": {
+            "ru": "Коллега прислала расчёт на следующий квартал. Вы сейчас сверяете его. Скажите: «Я проверяю прогноз»",
+            "uk": "Колега надіслала розрахунок на наступний квартал. Ви зараз звіряєте його. Скажіть: «Я перевіряю прогноз»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "checking",
+            "the",
+            "projection"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i11:r1",
+            "text": "The projection is in the report."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i11:r2",
+            "text": "The projection is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i11:r3",
+            "text": "The photo is in the report."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i11:audio",
+            "transcript": "The projection is in the report."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i11:r1",
+              "targetText": "The projection is in the report.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r2",
+              "targetText": "The projection is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r3",
+              "targetText": "The photo is in the report.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The projection is in the report.",
+                "uk": "У записі звучить The projection is in the report."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The projection is in the report.",
+                "uk": "У записі звучить The projection is in the report."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сейчас проверяете расчёт. Выберите связку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i12:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сейчас проверяете расчёт. Выберите связку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сейчас проверяете расчёт. Выберите связку",
+            "uk": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку"
+          },
+          "gappedTargetPhrase": "I ___ checking the projection.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i12:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вы сейчас проверяете расчёт. Выберите связку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы сейчас проверяете расчёт. Выберите связку",
+              "feedbackByLocale": {
+                "ru": "С I нужна am.",
+                "uk": "З I потрібна am."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы сейчас проверяете расчёт. Выберите связку",
+              "feedbackByLocale": {
+                "ru": "С I нужна am, не are.",
+                "uk": "З I потрібна am, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-38:i13:p1",
+              "target": "quarter",
+              "meaningByLocale": {
+                "ru": "квартал",
+                "uk": "квартал"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p2",
+              "target": "revenue",
+              "meaningByLocale": {
+                "ru": "выручка",
+                "uk": "виручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p3",
+              "target": "expenditure",
+              "meaningByLocale": {
+                "ru": "расходы",
+                "uk": "витрати"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p4",
+              "target": "projection",
+              "meaningByLocale": {
+                "ru": "прогноз",
+                "uk": "прогноз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "quarter",
+            "revenue",
+            "expenditure",
+            "projection"
+          ],
+          "rightColumn": [
+            "квартал",
+            "выручка",
+            "расходы",
+            "прогноз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i14:audio",
+            "transcript": "Revenue is rising."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Revenue is rising.",
+          "orderedTokens": [
+            "Revenue",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, как часто команда обсуждает показатели. Скажите: «Мы рассматриваем показатели каждый квартал»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, как часто команда обсуждает показатели. Скажите: «Мы рассматриваем показатели каждый квартал»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i15:audio",
+            "transcript": "We review the figures every quarter."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We review the figures every quarter.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На графике видно текущее снижение общей суммы расходов. Скажите: «Расходы снижаются»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На графике видно текущее снижение общей суммы расходов. Скажите: «Расходы снижаются»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Expenditure is falling.",
+          "localizedMeaning": {
+            "ru": "На графике видно текущее снижение общей суммы расходов. Скажите: «Расходы снижаются»",
+            "uk": "На графіку видно поточне зниження загальної суми витрат. Скажіть: «Витрати знижуються»"
+          },
+          "orderedTokens": [
+            "Expenditure",
+            "is",
+            "falling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы сверяете расчёт ожидаемой выручки на следующий квартал. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю прогноз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Вы сверяете расчёт ожидаемой выручки на следующий квартал. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я проверяю прогноз»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i17:audio",
+            "transcript": "I am checking the projection."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am checking the projection.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-10:session-38:word:quarter",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — quarter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:quarter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — quarter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:quarter:audio",
+            "transcript": "quarter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:quarter:r1",
+              "targetText": "quarter",
+              "meaningByLocale": {
+                "ru": "«квартал». We review the figures every quarter. — «Мы рассматриваем показатели каждый квартал». Здесь период в три месяца.",
+                "uk": "«квартал». We review the figures every quarter. — «Ми розглядаємо показники кожного кварталу». Тут період у три місяці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quarter",
+            "definitionByLocale": {
+              "ru": "«квартал». We review the figures every quarter. — «Мы рассматриваем показатели каждый квартал». Здесь период в три месяца.",
+              "uk": "«квартал». We review the figures every quarter. — «Ми розглядаємо показники кожного кварталу». Тут період у три місяці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Команда обговорює показники кожні три місяці. Скажіть: «Ми розглядаємо показники кожного кварталу». Поставте every quarter у кінці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Команда обговорює показники кожні три місяці. Скажіть: «Ми розглядаємо показники кожного кварталу». Поставте every quarter у кінці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We review the figures every quarter.",
+          "localizedMeaning": {
+            "ru": "Команда обсуждает показатели каждые три месяца. Скажите: «Мы рассматриваем показатели каждый квартал». Поставьте every quarter в конце",
+            "uk": "Команда обговорює показники кожні три місяці. Скажіть: «Ми розглядаємо показники кожного кварталу». Поставте every quarter у кінці"
+          },
+          "orderedTokens": [
+            "We",
+            "review",
+            "the",
+            "figures",
+            "every",
+            "quarter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i02:r1",
+            "text": "The quarter ends in March."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i02:r2",
+            "text": "The quarter ends in June."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i02:r3",
+            "text": "The course ends in March."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i02:audio",
+            "transcript": "The quarter ends in March."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i02:r1",
+              "targetText": "The quarter ends in March.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r2",
+              "targetText": "The quarter ends in June.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r3",
+              "targetText": "The course ends in March.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The quarter ends in March.",
+                "uk": "У записі звучить The quarter ends in March."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The quarter ends in March.",
+                "uk": "У записі звучить The quarter ends in March."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Це регулярне обговорення. Виберіть форму review",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i03:r1",
+            "text": "review"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i03:r2",
+            "text": "reviews"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i03:r3",
+            "text": "reviewing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Це регулярне обговорення. Виберіть форму review",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Это регулярное обсуждение. Выберите форму review",
+            "uk": "Це регулярне обговорення. Виберіть форму review"
+          },
+          "gappedTargetPhrase": "We ___ the figures every quarter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i03:r1",
+              "text": "review"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r2",
+              "text": "reviews"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r3",
+              "text": "reviewing"
+            }
+          ],
+          "testedDimension": "Це регулярне обговорення. Виберіть форму review",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Це регулярне обговорення. Виберіть форму review",
+              "feedbackByLocale": {
+                "ru": "С we нужна review без s.",
+                "uk": "З we потрібна review без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Це регулярне обговорення. Виберіть форму review",
+              "feedbackByLocale": {
+                "ru": "Для регулярного действия нужна review.",
+                "uk": "Для регулярної дії потрібна review."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:revenue",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — revenue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:revenue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — revenue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:revenue:audio",
+            "transcript": "revenue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:revenue:r1",
+              "targetText": "revenue",
+              "meaningByLocale": {
+                "ru": "«выручка». Revenue is rising. — «Выручка растёт». Здесь деньги от продаж до вычета расходов.",
+                "uk": "«виручка». Revenue is rising. — «Виручка зростає». Тут гроші від продажів до вирахування витрат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "revenue",
+            "definitionByLocale": {
+              "ru": "«выручка». Revenue is rising. — «Выручка растёт». Здесь деньги от продаж до вычета расходов.",
+              "uk": "«виручка». Revenue is rising. — «Виручка зростає». Тут гроші від продажів до вирахування витрат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На графіку видно, що компанія отримує від продажів дедалі більше грошей. Опишіть поточну зміну: «Виручка зростає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На графіку видно, що компанія отримує від продажів дедалі більше грошей. Опишіть поточну зміну: «Виручка зростає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Revenue is rising.",
+          "localizedMeaning": {
+            "ru": "По графику видно, что компания получает от продаж всё больше денег. Опишите текущее изменение: «Выручка растёт»",
+            "uk": "На графіку видно, що компанія отримує від продажів дедалі більше грошей. Опишіть поточну зміну: «Виручка зростає»"
+          },
+          "orderedTokens": [
+            "Revenue",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i05:r1",
+            "text": "Revenue is higher this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i05:r2",
+            "text": "Revenue is lower this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i05:r3",
+            "text": "Revenue is higher this month."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i05:audio",
+            "transcript": "Revenue is higher this quarter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i05:r1",
+              "targetText": "Revenue is higher this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r2",
+              "targetText": "Revenue is lower this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r3",
+              "targetText": "Revenue is higher this month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Revenue is higher this quarter.",
+                "uk": "У записі звучить Revenue is higher this quarter."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Revenue is higher this quarter.",
+                "uk": "У записі звучить Revenue is higher this quarter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть правильне написання форми rise",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i06:r1",
+            "text": "rising"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i06:r2",
+            "text": "riseing"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i06:r3",
+            "text": "rise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть правильне написання форми rise",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите правильное написание формы rise",
+            "uk": "Виберіть правильне написання форми rise"
+          },
+          "gappedTargetPhrase": "Revenue is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i06:r1",
+              "text": "rising"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r2",
+              "text": "riseing"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r3",
+              "text": "rise"
+            }
+          ],
+          "testedDimension": "Виберіть правильне написання форми rise",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rise",
+              "feedbackByLocale": {
+                "ru": "Перед ing убираем e: rising.",
+                "uk": "Перед ing прибираємо e: rising."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть правильне написання форми rise",
+              "feedbackByLocale": {
+                "ru": "Для текущего изменения после is нужна rising.",
+                "uk": "Для поточної зміни після is потрібна rising."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:expenditure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — expenditure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:expenditure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — expenditure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:expenditure:audio",
+            "transcript": "expenditure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:expenditure:r1",
+              "targetText": "expenditure",
+              "meaningByLocale": {
+                "ru": "«расходы». Expenditure is falling. — «Расходы снижаются». Здесь общая сумма потраченных денег. В этом значении неисчисляемое слово.",
+                "uk": "«витрати». Expenditure is falling. — «Витрати знижуються». Тут загальна сума витрачених грошей. У цьому значенні незлічуване слово."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "expenditure",
+            "definitionByLocale": {
+              "ru": "«расходы». Expenditure is falling. — «Расходы снижаются». Здесь общая сумма потраченных денег. В этом значении неисчисляемое слово.",
+              "uk": "«витрати». Expenditure is falling. — «Витрати знижуються». Тут загальна сума витрачених грошей. У цьому значенні незлічуване слово."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Компанія зараз витрачає дедалі менше грошей. Скажіть: «Витрати знижуються»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Компанія зараз витрачає дедалі менше грошей. Скажіть: «Витрати знижуються»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Expenditure is falling.",
+          "localizedMeaning": {
+            "ru": "Компания сейчас тратит всё меньше денег. Скажите: «Расходы снижаются»",
+            "uk": "Компанія зараз витрачає дедалі менше грошей. Скажіть: «Витрати знижуються»"
+          },
+          "orderedTokens": [
+            "Expenditure",
+            "is",
+            "falling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i08:r1",
+            "text": "Expenditure is lower this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i08:r2",
+            "text": "Expenditure is higher this quarter."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i08:r3",
+            "text": "Revenue is lower this quarter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i08:audio",
+            "transcript": "Expenditure is lower this quarter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i08:r1",
+              "targetText": "Expenditure is lower this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r2",
+              "targetText": "Expenditure is higher this quarter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r3",
+              "targetText": "Revenue is lower this quarter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Expenditure is lower this quarter.",
+                "uk": "У записі звучить Expenditure is lower this quarter."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Expenditure is lower this quarter.",
+                "uk": "У записі звучить Expenditure is lower this quarter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть зв’язку з незлічуваним expenditure",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть зв’язку з незлічуваним expenditure",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите связку с неисчисляемым expenditure",
+            "uk": "Виберіть зв’язку з незлічуваним expenditure"
+          },
+          "gappedTargetPhrase": "Expenditure ___ falling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть зв’язку з незлічуваним expenditure",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку з незлічуваним expenditure",
+              "feedbackByLocale": {
+                "ru": "С expenditure в этом значении нужна is.",
+                "uk": "З expenditure в цьому значенні потрібна is."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть зв’язку з незлічуваним expenditure",
+              "feedbackByLocale": {
+                "ru": "Am используется с I; здесь нужна is.",
+                "uk": "Am уживається з I; тут потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:word:projection",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — projection",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:word:projection:audio"
+        ],
+        "accessibilityLabel": "Картка слова — projection",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:word:projection:audio",
+            "transcript": "projection"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:word:projection:r1",
+              "targetText": "projection",
+              "meaningByLocale": {
+                "ru": "«прогноз». I am checking the projection. — «Я проверяю прогноз». Здесь расчёт ожидаемого показателя по данным.",
+                "uk": "«прогноз». I am checking the projection. — «Я перевіряю прогноз». Тут розрахунок очікуваного показника за даними."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "projection",
+            "definitionByLocale": {
+              "ru": "«прогноз». I am checking the projection. — «Я проверяю прогноз». Здесь расчёт ожидаемого показателя по данным.",
+              "uk": "«прогноз». I am checking the projection. — «Я перевіряю прогноз». Тут розрахунок очікуваного показника за даними."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега надіслала розрахунок на наступний квартал. Ви зараз звіряєте його. Скажіть: «Я перевіряю прогноз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колега надіслала розрахунок на наступний квартал. Ви зараз звіряєте його. Скажіть: «Я перевіряю прогноз»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am checking the projection.",
+          "localizedMeaning": {
+            "ru": "Коллега прислала расчёт на следующий квартал. Вы сейчас сверяете его. Скажите: «Я проверяю прогноз»",
+            "uk": "Колега надіслала розрахунок на наступний квартал. Ви зараз звіряєте його. Скажіть: «Я перевіряю прогноз»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "checking",
+            "the",
+            "projection"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i11:r1",
+            "text": "The projection is in the report."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i11:r2",
+            "text": "The projection is in the email."
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i11:r3",
+            "text": "The photo is in the report."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i11:audio",
+            "transcript": "The projection is in the report."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-10:session-38:i11:r1",
+              "targetText": "The projection is in the report.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r2",
+              "targetText": "The projection is in the email.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r3",
+              "targetText": "The photo is in the report.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The projection is in the report.",
+                "uk": "У записі звучить The projection is in the report."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The projection is in the report.",
+                "uk": "У записі звучить The projection is in the report."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-10:session-38:i12:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-38:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сейчас проверяете расчёт. Выберите связку",
+            "uk": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку"
+          },
+          "gappedTargetPhrase": "I ___ checking the projection.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-10:session-38:i12:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-10:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку",
+              "feedbackByLocale": {
+                "ru": "С I нужна am.",
+                "uk": "З I потрібна am."
+              }
+            },
+            {
+              "responseId": "en:lesson-10:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви зараз перевіряєте розрахунок. Виберіть зв’язку",
+              "feedbackByLocale": {
+                "ru": "С I нужна am, не are.",
+                "uk": "З I потрібна am, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-10:session-38:i13:p1",
+              "target": "quarter",
+              "meaningByLocale": {
+                "ru": "квартал",
+                "uk": "квартал"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p2",
+              "target": "revenue",
+              "meaningByLocale": {
+                "ru": "выручка",
+                "uk": "виручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p3",
+              "target": "expenditure",
+              "meaningByLocale": {
+                "ru": "расходы",
+                "uk": "витрати"
+              }
+            },
+            {
+              "pairId": "en:lesson-10:session-38:i13:p4",
+              "target": "projection",
+              "meaningByLocale": {
+                "ru": "прогноз",
+                "uk": "прогноз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "quarter",
+            "revenue",
+            "expenditure",
+            "projection"
+          ],
+          "rightColumn": [
+            "квартал",
+            "виручка",
+            "витрати",
+            "прогноз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i14:audio",
+            "transcript": "Revenue is rising."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Revenue is rising.",
+          "orderedTokens": [
+            "Revenue",
+            "is",
+            "rising"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, як часто команда обговорює показники. Скажіть: «Ми розглядаємо показники кожного кварталу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, як часто команда обговорює показники. Скажіть: «Ми розглядаємо показники кожного кварталу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i15:audio",
+            "transcript": "We review the figures every quarter."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We review the figures every quarter.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На графіку видно поточне зниження загальної суми витрат. Скажіть: «Витрати знижуються»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На графіку видно поточне зниження загальної суми витрат. Скажіть: «Витрати знижуються»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Expenditure is falling.",
+          "localizedMeaning": {
+            "ru": "На графике видно текущее снижение общей суммы расходов. Скажите: «Расходы снижаются»",
+            "uk": "На графіку видно поточне зниження загальної суми витрат. Скажіть: «Витрати знижуються»"
+          },
+          "orderedTokens": [
+            "Expenditure",
+            "is",
+            "falling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-38:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви звіряєте розрахунок очікуваної виручки на наступний квартал. Колега запитує, чим ви зараз зайняті. Скажіть: «Я перевіряю прогноз»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Ви звіряєте розрахунок очікуваної виручки на наступний квартал. Колега запитує, чим ви зараз зайняті. Скажіть: «Я перевіряю прогноз»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-38:i17:audio",
+            "transcript": "I am checking the projection."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am checking the projection.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-10:session-38:word:quarter",
+      "correctText": "quarter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i01",
+      "correctText": "We review the figures every quarter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i02",
+      "correctText": "The quarter ends in March.",
+      "correctResponseId": "en:lesson-10:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i03",
+      "correctText": "review",
+      "correctResponseId": "en:lesson-10:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:word:revenue",
+      "correctText": "revenue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i04",
+      "correctText": "Revenue is rising.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i05",
+      "correctText": "Revenue is higher this quarter.",
+      "correctResponseId": "en:lesson-10:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i06",
+      "correctText": "rising",
+      "correctResponseId": "en:lesson-10:session-38:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:word:expenditure",
+      "correctText": "expenditure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i07",
+      "correctText": "Expenditure is falling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i08",
+      "correctText": "Expenditure is lower this quarter.",
+      "correctResponseId": "en:lesson-10:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-10:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:word:projection",
+      "correctText": "projection",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i10",
+      "correctText": "I am checking the projection.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i11",
+      "correctText": "The projection is in the report.",
+      "correctResponseId": "en:lesson-10:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i12",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-10:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i14",
+      "correctText": "Revenue is rising.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i15",
+      "correctText": "We review the figures every quarter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i16",
+      "correctText": "Expenditure is falling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-38:i17",
+      "correctText": "I am checking the projection.",
+      "correctResponseId": null
+    }
+  ]
+}

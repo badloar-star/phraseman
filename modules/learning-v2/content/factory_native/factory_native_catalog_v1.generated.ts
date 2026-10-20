@@ -3577,4 +3577,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I brew coffee every morning; I am brewing chamomile tea","uk":"I brew coffee every morning; I am brewing chamomile tea"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 7,
+    sourceFingerprint: "6065a4ec138492e3be14a4b943272b8868e990face5d8befc838c2df22943594",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I carve wooden spoons; I am carving a figurine","uk":"I carve wooden spoons; I am carving a figurine"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 8,
+    sourceFingerprint: "015d87b9829248f7c06170f836674ea8872ea85115be1365960fe24bfafa1d0b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She usually weaves at home; I am watching the demonstration","uk":"She usually weaves at home; I am watching the demonstration"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 9,
+    sourceFingerprint: "a5791d47dcad29fd0680e18fd2ef2888bf2f5bc0207267bb56f7f774deace996",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"She works at a hotel; She is working here this week","uk":"She works at a hotel; She is working here this week"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

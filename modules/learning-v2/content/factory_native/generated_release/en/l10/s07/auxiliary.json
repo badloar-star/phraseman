@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-07:intro1:r2": {
+          "ru": "Правильно carving, без e.",
+          "uk": "Правильно carving, без e."
+        },
+        "en:lesson-10:session-07:intro1:r3": {
+          "ru": "С I перед carving нужно am.",
+          "uk": "З I перед carving потрібне am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-07:intro2:r2": {
+          "ru": "Порядок слов: I am not using.",
+          "uk": "Порядок слів: I am not using."
+        },
+        "en:lesson-10:session-07:intro2:r3": {
+          "ru": "После am not нужна using.",
+          "uk": "Після am not потрібна using."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-07:intro3:r2": {
+          "ru": "После am нужна looking.",
+          "uk": "Після am потрібна looking."
+        },
+        "en:lesson-10:session-07:intro3:r3": {
+          "ru": "С I перед looking нужно am.",
+          "uk": "З I перед looking потрібне am."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e9a94c9d1d5598c72fa9362ff54685010ae12f29df9fbeaa875d6286b290a125"
+}

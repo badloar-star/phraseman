@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-07:word:figurine",
+    "correctText": "figurine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i01",
+    "correctText": "I am carving a figurine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i02",
+    "correctText": "I carve wooden spoons.",
+    "correctResponseId": "en:lesson-10:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i03",
+    "correctText": "carve",
+    "correctResponseId": "en:lesson-10:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:word:mallet",
+    "correctText": "mallet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i04",
+    "correctText": "The mallet is on the bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i05",
+    "correctText": "I am using the mallet.",
+    "correctResponseId": "en:lesson-10:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i06",
+    "correctText": "using",
+    "correctResponseId": "en:lesson-10:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:word:sawdust",
+    "correctText": "sawdust",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i07",
+    "correctText": "The sawdust is on the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i08",
+    "correctText": "I am sweeping up the sawdust.",
+    "correctResponseId": "en:lesson-10:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:word:wood-grain",
+    "correctText": "wood grain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i10",
+    "correctText": "I am looking at the wood grain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i11",
+    "correctText": "The wood grain is clear.",
+    "correctResponseId": "en:lesson-10:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i12",
+    "correctText": "carving",
+    "correctResponseId": "en:lesson-10:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i13",
+    "correctText": "en:lesson-10:session-07:i13:p1=figurine\nen:lesson-10:session-07:i13:p2=mallet\nen:lesson-10:session-07:i13:p3=sawdust\nen:lesson-10:session-07:i13:p4=wood grain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i14",
+    "correctText": "Are you carving a figurine?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i15",
+    "correctText": "I carve wooden spoons.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i16",
+    "correctText": "I am not using the mallet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-07:i17",
+    "correctText": "I am carving a figurine.",
+    "correctResponseId": null
+  }
+]
